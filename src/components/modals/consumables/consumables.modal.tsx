@@ -86,10 +86,12 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
       })
       .map((item) => {
         const stripActivated = item.quantity > 0 && moment.parseZone(item.activatedUntil).isBefore(moment());
+        const disabled = item.disabledUntil && moment.parseZone(item.disabledUntil).isAfter(moment());
 
         return {
           ...item,
           activatedUntil: stripActivated ? undefined : item.activatedUntil,
+          disabledUntil: disabled ? item.disabledUntil : undefined,
         };
       });
 
@@ -131,6 +133,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
           iconUri={item.icon?.uri}
           quantity={item.quantity}
           activeUntil={item.activatedUntil}
+          disabledUntil={item.disabledUntil}
           isDisabled={isActivateLoading}
           isActive={selectedConsumable === first(item.gameConsumables)}
           onPress={() => onPressConsumable(first(item.gameConsumables))}

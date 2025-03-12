@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -62,6 +61,7 @@ export type ApiConfigSduiStaticDeepLink = {
 export type ApiConfigUrls = {
   __typename?: "APIConfigUrls";
   accountSecurity: Scalars["String"]["output"];
+  appDeeplink: Scalars["String"]["output"];
   cookiePolicy: Scalars["String"]["output"];
   eula: Scalars["String"]["output"];
   manageImports: Scalars["String"]["output"];
@@ -72,6 +72,7 @@ export type ApiConfigUrls = {
   rewardsPolicy: Scalars["String"]["output"];
   termsOfBusinessAgreement: Scalars["String"]["output"];
   termsOfUse: Scalars["String"]["output"];
+  trustCenter: Scalars["String"]["output"];
   underwriting: Scalars["String"]["output"];
   website: Scalars["String"]["output"];
   wellbeingTools: Scalars["String"]["output"];
@@ -109,6 +110,13 @@ export type AbsoluteYuScreenProductDetailsContentItem = {
   isBackground?: Maybe<Scalars["Boolean"]["output"]>;
   item: YuScreenProductDetailsContentItem;
   shouldAccountForHeader?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type AccessCodes = {
+  __typename?: "AccessCodes";
+  codes?: Maybe<Array<Scalars["String"]["output"]>>;
+  editable: Scalars["Boolean"]["output"];
+  editableAccessCodeMissing: Scalars["Boolean"]["output"];
 };
 
 export type AccessUserInput = {
@@ -1035,12 +1043,16 @@ export type BusinessPerkItem = {
 
 export type BusinessPerkListItem = {
   __typename?: "BusinessPerkListItem";
-  accessCodes?: Maybe<Array<Scalars["String"]["output"]>>;
+  accessCodeDetails?: Maybe<AccessCodes>;
+  accessCodes?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
   eligibleEmployees?: Maybe<Scalars["Int"]["output"]>;
   name: Scalars["String"]["output"];
   nbrOfClaims?: Maybe<Scalars["Int"]["output"]>;
   obtainedThrough: Array<ObtainedThroughResult>;
-  perkEligibilityId: Scalars["String"]["output"];
+  /** @Deprecated(reason: "Use 'perkEligibilityIds' and 'accessCodeDetails' instead") */
+  perkEligibilityId?: Maybe<Scalars["String"]["output"]>;
+  perkEligibilityIds?: Maybe<Array<Scalars["String"]["output"]>>;
+  perkId?: Maybe<Scalars["String"]["output"]>;
   remainingLicences?: Maybe<Scalars["Int"]["output"]>;
   visible?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -1055,6 +1067,11 @@ export type BusinessProduct = {
   quoteProduct?: Maybe<Scalars["String"]["output"]>;
   quoteStatusReason?: Maybe<Scalars["String"]["output"]>;
   totalSumAssured?: Maybe<Scalars["Float"]["output"]>;
+};
+
+export type BusinessSelfInvitation = {
+  __typename?: "BusinessSelfInvitation";
+  link: Scalars["String"]["output"];
 };
 
 export type BusinessSelfRegistration = {
@@ -1098,6 +1115,7 @@ export type BusinessSessionBusiness = {
   businessTags?: Maybe<Array<BusinessTag>>;
   /** @deprecated Will no longer be used once the portal onboarding experience is complete */
   hasEmployees?: Maybe<Scalars["Boolean"]["output"]>;
+  hasWildCardRuleAssigned?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
   isEligibleForAutomatedAdmin?: Maybe<Scalars["Boolean"]["output"]>;
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
@@ -1108,9 +1126,11 @@ export type BusinessSessionBusiness = {
 export type BusinessSessionSettings = {
   __typename?: "BusinessSessionSettings";
   announcement?: Maybe<AnnouncementSetting>;
+  earlyAccessEnabled: Scalars["Boolean"]["output"];
   enableTagRestriction: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
   onboardingEnabled: Scalars["Boolean"]["output"];
+  peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
   showConnectionsOverride?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
@@ -4079,6 +4099,7 @@ export enum FitKitType {
 export type GameConsumable = {
   __typename?: "GameConsumable";
   activatedUntil?: Maybe<Scalars["String"]["output"]>;
+  disabledUntil?: Maybe<Scalars["String"]["output"]>;
   gameConsumables: Array<Scalars["ID"]["output"]>;
   icon?: Maybe<RemoteImage>;
   id: Scalars["String"]["output"];
@@ -4201,6 +4222,11 @@ export type GetBusinessAccessUserPermissionsResult = {
   businessAccessPermission?: Maybe<Array<Maybe<BusinessAccessPermission>>>;
 };
 
+export type GetBusinessActiveSelfInvitation = {
+  __typename?: "GetBusinessActiveSelfInvitation";
+  selfInvitation?: Maybe<BusinessSelfInvitation>;
+};
+
 export type GetBusinessActiveSelfRegistration = {
   __typename?: "GetBusinessActiveSelfRegistration";
   selfRegistration?: Maybe<BusinessSelfRegistration>;
@@ -4282,6 +4308,7 @@ export type GetMobileUserContentLocation = {
 
 export type GetOnboardingConfigurationResult = {
   __typename?: "GetOnboardingConfigurationResult";
+  connectionCount?: Maybe<Scalars["Int"]["output"]>;
   employeeCount?: Maybe<Scalars["Int"]["output"]>;
   importCount?: Maybe<Scalars["Int"]["output"]>;
 };
@@ -6314,6 +6341,7 @@ export type Mutation = {
   updateMobileUserContentLocation: Scalars["Boolean"]["output"];
   /** Update the data that can be viewed from the My Account section of yulife-member-static */
   updateMyAccountDetails: Scalars["Boolean"]["output"];
+  updatePerkEligibilityAccessCodes: Scalars["Boolean"]["output"];
   updatePerkEligibilityRules: Scalars["Boolean"]["output"];
   updateProfileBySection: Scalars["Boolean"]["output"];
   updateQuestMapLevelChallenge?: Maybe<ActiveResponse>;
@@ -6853,6 +6881,7 @@ export type MutationSendGiftToRecipientsArgs = {
 
 export type MutationSendMagicLinkArgs = {
   captchaResponse?: InputMaybe<CaptchaResponse>;
+  companyCode?: InputMaybe<Scalars["String"]["input"]>;
   email: Scalars["String"]["input"];
   isResetPasswordRequest?: InputMaybe<Scalars["Boolean"]["input"]>;
   referralCode?: InputMaybe<Scalars["String"]["input"]>;
@@ -7127,6 +7156,12 @@ export type MutationUpdateMobileUserContentLocationArgs = {
 
 export type MutationUpdateMyAccountDetailsArgs = {
   details: MyAccountDetailsInput;
+};
+
+export type MutationUpdatePerkEligibilityAccessCodesArgs = {
+  accessCode: Scalars["String"]["input"];
+  perkEligibilityIds: Array<Scalars["String"]["input"]>;
+  perkId: Scalars["String"]["input"];
 };
 
 export type MutationUpdatePerkEligibilityRulesArgs = {
@@ -7668,6 +7703,7 @@ export type Query = {
   getBusinessAccessPermissions: Array<BusinessAccessPermission>;
   getBusinessAccessUser: BusinessAccessUser;
   getBusinessAccessUserPermissions: GetBusinessAccessUserPermissionsResult;
+  getBusinessActiveSelfInvitation?: Maybe<GetBusinessActiveSelfInvitation>;
   getBusinessActiveSelfRegistration?: Maybe<GetBusinessActiveSelfRegistration>;
   getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessSelfRegistrationResult>;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
@@ -8270,6 +8306,8 @@ export type QueryGetMobileGamePartnerRewardsInventoryCardsArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileGamePartnerRewardsInventoryItemsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
   rewardId: Scalars["String"]["input"];
   type: Scalars["String"]["input"];
 };
@@ -12114,6 +12152,7 @@ export type GameConsumableFragment = {
   title: string;
   quantity: number;
   activatedUntil?: string | null;
+  disabledUntil?: string | null;
   gameConsumables: Array<string>;
   icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
 };
@@ -38397,6 +38436,7 @@ export type ActivateGameConsumableMutation = {
       title: string;
       quantity: number;
       activatedUntil?: string | null;
+      disabledUntil?: string | null;
       gameConsumables: Array<string>;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null;
@@ -38423,6 +38463,7 @@ export type GetGameConsumablesQuery = {
       title: string;
       quantity: number;
       activatedUntil?: string | null;
+      disabledUntil?: string | null;
       gameConsumables: Array<string>;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
@@ -46733,6 +46774,7 @@ export const GameConsumableFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "quantity" } },
           { kind: "Field", name: { kind: "Name", value: "activatedUntil" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledUntil" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -98801,6 +98843,7 @@ export const ActivateGameConsumableDocument = {
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "quantity" } },
           { kind: "Field", name: { kind: "Name", value: "activatedUntil" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledUntil" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -98920,6 +98963,7 @@ export const GetGameConsumablesDocument = {
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "quantity" } },
           { kind: "Field", name: { kind: "Name", value: "activatedUntil" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledUntil" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
