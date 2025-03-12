@@ -5,9 +5,19 @@ import { Avatar, Button, SecondaryButton, Slider } from "@molecules";
 import { t } from "@locale";
 import ItemDetailsReward from "@organisms/item-details-reward/item-details-reward";
 import { Style, Colours, TOP_BAR } from "@styles";
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { ScrollView, Pressable, StyleSheet, View } from "react-native";
-import { FadeIn, ZoomIn, BounceIn } from "react-native-reanimated";
+import {
+  FadeIn,
+  ZoomIn,
+  BounceIn,
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  withSequence,
+  withTiming,
+  Easing,
+} from "react-native-reanimated";
 import { YuHeartIcon } from "@atoms/icon/yu-heart-icon";
 import navBarStyles from "@styles/nav-bar.styles";
 import { P2P_GIFT_VIEW, SENDER_GIFTING_AMOUNT, P2P_MESSAGE, P2P_STICKER } from "@ids";
@@ -265,6 +275,26 @@ const Message = ({ message, textColor }: Pick<Props, "message" | "textColor">) =
 };
 
 const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankYou" | "onThankYouPress">) => {
+  const scale = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scale.value }],
+    };
+  });
+
+  const triggerAnimation = useCallback(() => {
+    scale.value = withSequence(
+      withTiming(1.5, { easing: Easing.out(Easing.ease) }),
+      withSpring(1, { damping: 5, stiffness: 150 })
+    );
+  }, [scale]);
+
+  const handleThankYouPress = useCallback(() => {
+    triggerAnimation();
+    onThankYouPress?.();
+  }, [onThankYouPress, triggerAnimation]);
+
   if (!onThankYouPress) {
     return null;
   }
@@ -277,18 +307,22 @@ const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankY
           size="Narrow"
           contentTextStyle="l2"
           contentWrapperStyle={{ paddingHorizontal: Style.adjust(8) }}
-          onPress={onThankYouPress}
+          onPress={handleThankYouPress}
           borderColor={Colours.neutral.white}
           backgroundColor={Colours.neutral.white}
           textColor={Colours.neutral.n900}
           disabled={hasSaidThankYou}
           leftIcon={
-            <YuHeartIcon
-              height={16}
-              width={16}
-              colour={hasSaidThankYou ? Colours.darkHotPink : Colours.neutral.n900}
-              isFilled={hasSaidThankYou}
-            />
+            <>
+              <Box style={animatedStyle} forceAnimated={true}>
+                <YuHeartIcon
+                  height={16}
+                  width={16}
+                  colour={hasSaidThankYou ? Colours.darkHotPink : Colours.neutral.n900}
+                  isFilled={hasSaidThankYou}
+                />
+              </Box>
+            </>
           }
         />
       </Box>
