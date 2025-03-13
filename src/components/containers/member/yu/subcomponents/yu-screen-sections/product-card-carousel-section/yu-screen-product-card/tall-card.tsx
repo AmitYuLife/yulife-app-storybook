@@ -5,7 +5,11 @@ import { Image, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import { IYuScreenProductCardVariant } from "./types";
-import { YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION } from "@ids";
+import {
+  YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD,
+  YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION,
+  YUSCREEN_V5_TALL_CARD,
+} from "@ids";
 
 export const TallCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) => {
   const showButton = !!item.buttonCta && !!onButtonPress;
@@ -13,8 +17,8 @@ export const TallCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) =
   const showBody = !showButton || !showCardCta;
 
   return (
-    <View style={styles.card} testID={`YU_SCREEN_PRODUCT_CARD_TITLE-${item.productName}`}>
-      <View style={styles.cardBanner}>
+    <View style={styles.card} testID={YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(item.productName)}>
+      <View style={styles.cardBanner} testID={YUSCREEN_V5_TALL_CARD(item.title)}>
         <View style={styles.illustration}>
           <Image
             source={item.illustrations.tall}
