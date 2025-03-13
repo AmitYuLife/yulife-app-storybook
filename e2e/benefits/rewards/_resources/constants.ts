@@ -5,7 +5,6 @@ export const locationModalDesc =
   "Enjoy a YuLife experience tailored to your region. Don't worry, you can always change your location later if you need to.";
 export const locationModalButton = "Confirm selection";
 export const locationModalStoreLocation = "Current location";
-export const locationModalStoreLocationCapitalized = "Current Location";
 
 export const lifeInsuranceRewardProductCard = {
   title: "Extend your Life Insurance",

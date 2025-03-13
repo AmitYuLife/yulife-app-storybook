@@ -32,11 +32,7 @@ export const rewardsLocationModalVisible =
   async () => {
     await textVisible(constant.locationModalTitle, 2000)();
     await textVisible(constant.locationModalDesc)();
-    await textVisible(
-      locale == "UK"
-        ? constant.locationModalStoreLocation
-        : constant.locationModalStoreLocationCapitalized
-    )();
+    await textVisible(constant.locationModalStoreLocation)();
     await textVisible(constant.locationModalButton)();
   };
 
