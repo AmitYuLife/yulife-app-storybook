@@ -18,9 +18,9 @@ import {
   withTiming,
   Easing,
 } from "react-native-reanimated";
-import { YuHeartIcon } from "@atoms/icon/yu-heart-icon";
 import navBarStyles from "@styles/nav-bar.styles";
 import { P2P_GIFT_VIEW, SENDER_GIFTING_AMOUNT, P2P_MESSAGE, P2P_STICKER, P2P_STICKER_ITEMS } from "@ids";
+import { GiftingHeartIcon } from "@atoms/icon/gifting-heart-icon";
 
 type StickerAsset = {
   id?: string;
@@ -115,12 +115,7 @@ const GiftView = ({
       )}
       {!onSendGift ? null : (
         <Box width="100%" position="absolute" bottom={navBarStyles.getPositionBottom()}>
-          <Button
-            translationKey={
-              hasSaidThankYou ? "screens.gifting.send_your_own_message" : "screens.gifting.send_your_friend_a_gift"
-            }
-            onPress={onSendGift}
-          />
+          <Button translationKey={"screens.gifting.send_your_friend_a_gift"} onPress={onSendGift} />
         </Box>
       )}
     </View>
@@ -285,8 +280,8 @@ const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankY
 
   const triggerAnimation = useCallback(() => {
     scale.value = withSequence(
-      withTiming(1.5, { easing: Easing.out(Easing.ease) }),
-      withSpring(1, { damping: 5, stiffness: 150 })
+      withTiming(1.25, { easing: Easing.out(Easing.ease) }),
+      withSpring(1, { damping: 5, stiffness: 130 })
     );
   }, [scale]);
 
@@ -305,8 +300,8 @@ const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankY
         <SecondaryButton
           translationKey={hasSaidThankYou ? "screens.gifting.already_thanked_them" : "screens.gifting.thank_them"}
           size="Narrow"
-          contentTextStyle="l2"
-          contentWrapperStyle={{ paddingHorizontal: Style.adjust(8) }}
+          contentTextStyle="l1"
+          contentWrapperStyle={{ paddingHorizontal: Style.adjust(12) }}
           onPress={handleThankYouPress}
           borderColor={Colours.neutral.white}
           backgroundColor={Colours.neutral.white}
@@ -315,11 +310,10 @@ const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankY
           leftIcon={
             <>
               <Box style={animatedStyle} forceAnimated={true}>
-                <YuHeartIcon
+                <GiftingHeartIcon
                   height={16}
-                  width={16}
-                  colour={hasSaidThankYou ? Colours.darkHotPink : Colours.neutral.n900}
-                  isFilled={hasSaidThankYou}
+                  width={19}
+                  {...(hasSaidThankYou ? PINK_HEART_COLOURS : GREY_HEART_COLOURS)}
                 />
               </Box>
             </>
@@ -329,5 +323,8 @@ const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankY
     </Box>
   );
 };
+
+const PINK_HEART_COLOURS = { colour: Colours.primary.p400, shadowColour: Colours.primary.p600 };
+const GREY_HEART_COLOURS = { colour: Colours.neutral.n150, shadowColour: Colours.neutral.n250 };
 
 export default memo(GiftView);
