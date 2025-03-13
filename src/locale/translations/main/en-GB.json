@@ -11,6 +11,9 @@
     "date_picker_display": "DD / MM / YYYY",
     "month_full": "MMMM"
   },
+  "captcha_input": {
+    "hcaptcha_disclaimer": "This app is protected by hCaptcha and its [Privacy Policy](https://www.hcaptcha.com/privacy) and [Terms of Service](https://www.hcaptcha.com/terms) apply."
+  },
   "smart_count": {
     "steps": "%{smart_count} step |||| %{smart_count} steps",
     "minutes": "%{smart_count} min |||| %{smart_count} mins",

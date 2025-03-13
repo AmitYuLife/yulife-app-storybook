@@ -1,10 +1,12 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { Blurb, Heading, Pad, UnauthorisedGradient } from "@atoms";
+import { Blurb, Box, Heading, Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
 import { Button, LinkButton, TextInput, CentredScreen } from "@molecules";
 import styles from "./reset-password.screen.styles";
 import { INPUT_RESET_PASSWORD } from "@ids";
 import { useTranslation } from "@hooks";
+import { CaptchaInput, useCaptcha } from "@organisms/captcha-input";
+import { Colours } from "@styles";
 
 interface IProps {
   disableSubmit: boolean;
@@ -14,6 +16,8 @@ interface IProps {
   onCancelPress: () => void;
   onEmailChange: (email: string) => void;
   onSubmitPress: () => void;
+  captcha: ReturnType<typeof useCaptcha>;
+  error: string;
 }
 
 const ResetPasswordScreen: FunctionComponent<IProps> = ({
@@ -24,6 +28,8 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
   onCancelPress,
   onEmailChange,
   onSubmitPress,
+  captcha,
+  error,
 }) => {
   const translations = useTranslation([
     "screens.reset_password.heading",
@@ -52,7 +58,15 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
         type={TextInput.Types.EMAIL}
         value={email}
       />
-      <Pad height={30} />
+      <Pad height={15} />
+      {!error ? null : (
+        <Box pl={30} pr={30} pb={10} pt={10}>
+          <TextTemplate type={"l2"} color={Colours.lightRed} textAlign="center">
+            {error}
+          </TextTemplate>
+        </Box>
+      )}
+      <Pad height={15} />
       <Button
         isLoading={isSubmitting}
         disabled={disableSubmit || isSubmitting}
@@ -61,6 +75,7 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
       />
       <Pad height={10} />
       <LinkButton translationKey="labels.cta.back" onPress={onCancelPress} />
+      <CaptchaInput {...captcha} />
     </CentredScreen>
   );
 };

@@ -12,6 +12,8 @@ type RegionConfig = {
   language: string;
   stripeKey: string;
   mixpanelKey: string;
+  enabledCaptchaProviders?: string[];
+  hcaptchaSiteKey?: string;
   urls: {
     members: string;
     website: string;
@@ -69,6 +71,10 @@ export class RegionService {
   public getPreferredRegion = () => this.SELECTED_REGION;
   public getRegionUri = (region?: REGION) => this.API_URLS[region || this.SELECTED_REGION];
   public getConfig = <Key extends keyof RegionConfig>(key: Key): RegionConfig[Key] => this.REGION_CONFIG?.[key];
+  public getCaptchaConfig = () => ({
+    hcaptchaSiteKey: this.getConfig("hcaptchaSiteKey"),
+    enabledCaptchaProviders: this.getConfig("enabledCaptchaProviders") || [],
+  });
 
   public configIsOutdated = () => {
     if (!this.REGION_CONFIG_LAST_UPDATED) {
