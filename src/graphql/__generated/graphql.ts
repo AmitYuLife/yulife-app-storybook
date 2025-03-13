@@ -18,6 +18,7 @@ export type Scalars = {
 export type ApiConfig = {
   __typename?: "APIConfig";
   enabledCaptchaProviders?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  hcaptchaSiteKey?: Maybe<Scalars["String"]["output"]>;
   intercom: ApiConfigIntercom;
   language: Scalars["String"]["output"];
   leanplum: ApiConfigLeanplum;
@@ -23621,6 +23622,8 @@ export type GetPublicYuApiConfigQuery = {
     language: string;
     stripeKey: string;
     mixpanelKey: string;
+    enabledCaptchaProviders?: Array<string | null> | null;
+    hcaptchaSiteKey?: string | null;
     sessionTimeout: number;
     urls: {
       __typename?: "APIConfigUrls";
@@ -39156,6 +39159,7 @@ export type RestoreStreakMutation = {
 export type SendMagicLinkMutationVariables = Exact<{
   email: Scalars["String"]["input"];
   isResetPasswordRequest?: InputMaybe<Scalars["Boolean"]["input"]>;
+  captchaResponse?: InputMaybe<CaptchaResponse>;
 }>;
 
 export type SendMagicLinkMutation = {
@@ -78010,6 +78014,8 @@ export const GetPublicYuApiConfigDocument = {
                 { kind: "Field", name: { kind: "Name", value: "language" } },
                 { kind: "Field", name: { kind: "Name", value: "stripeKey" } },
                 { kind: "Field", name: { kind: "Name", value: "mixpanelKey" } },
+                { kind: "Field", name: { kind: "Name", value: "enabledCaptchaProviders" } },
+                { kind: "Field", name: { kind: "Name", value: "hcaptchaSiteKey" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "urls" },
@@ -101160,6 +101166,11 @@ export const SendMagicLinkDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "isResetPasswordRequest" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "captchaResponse" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "CaptchaResponse" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -101177,6 +101188,11 @@ export const SendMagicLinkDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "isResetPasswordRequest" },
                 value: { kind: "Variable", name: { kind: "Name", value: "isResetPasswordRequest" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "captchaResponse" },
+                value: { kind: "Variable", name: { kind: "Name", value: "captchaResponse" } },
               },
             ],
             selectionSet: {

@@ -76,6 +76,10 @@ module.exports = {
             message:
               "Use `TextTemplate` from `src/components/atoms/text/text-template.tsx` or `Text` from `src/components/atoms/text/text.tsx` instead of `Text` from `react-native`.",
           },
+          {
+            name: "react-native-modal",
+            message: "Do not use react-native-modal - this is only included for the hCaptcha implementation",
+          },
         ],
       },
     ],

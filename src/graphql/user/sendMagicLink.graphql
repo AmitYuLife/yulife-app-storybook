@@ -1,5 +1,13 @@
-mutation SendMagicLink($email: String!, $isResetPasswordRequest: Boolean) {
-  sendMagicLink(email: $email, isResetPasswordRequest: $isResetPasswordRequest) {
+mutation SendMagicLink(
+  $email: String!,
+  $isResetPasswordRequest: Boolean,
+  $captchaResponse: CaptchaResponse
+) {
+  sendMagicLink(
+    email: $email
+    isResetPasswordRequest: $isResetPasswordRequest
+    captchaResponse: $captchaResponse
+  ) {
     message
   }
 }
