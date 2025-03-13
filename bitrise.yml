@@ -491,7 +491,7 @@ workflows:
         - project_path: ios/YuLife.xcworkspace
         - export_development_team: 739BJV2T6V
         - is_clean_build: "yes"
-    - deploy-to-bitrise-io@1.3.9:
+    - deploy-to-bitrise-io:
         inputs:
         - notify_user_groups: admins, testers
     - slack@3.1.3:
@@ -762,7 +762,7 @@ workflows:
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
             cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
-    - deploy-to-bitrise-io@2.2:
+    - deploy-to-bitrise-io:
         inputs:
         - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
         - is_compress: "true"
@@ -912,7 +912,7 @@ workflows:
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
             cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
-    - deploy-to-bitrise-io@2.2:
+    - deploy-to-bitrise-io:
         inputs:
         - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
         - is_compress: "true"
@@ -1315,7 +1315,7 @@ workflows:
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
             cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
-    - deploy-to-bitrise-io@2.2:
+    - deploy-to-bitrise-io:
         inputs:
         - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
         - is_compress: "true"
@@ -1481,7 +1481,7 @@ workflows:
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
             cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
-    - deploy-to-bitrise-io@2.2:
+    - deploy-to-bitrise-io:
         inputs:
         - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
         - is_compress: "true"
@@ -1623,7 +1623,7 @@ workflows:
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
             cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
-    - deploy-to-bitrise-io@2.2:
+    - deploy-to-bitrise-io:
         inputs:
         - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
         - is_compress: "true"
@@ -1801,7 +1801,7 @@ workflows:
         - distribution_method: ad-hoc
         - export_development_team: 739BJV2T6V
         - is_clean_build: "yes"
-    - deploy-to-bitrise-io@1.13:
+    - deploy-to-bitrise-io:
         inputs:
         - notify_email_list: test@yulife.com
         - notify_user_groups: admins, testers
@@ -2038,7 +2038,7 @@ workflows:
         - password: $ITUNES_CONNECT_PASSWORD
         - app_password: $ITUNES_PASSWORD_APP_SPECIFIC
         - itunescon_user: $ITUNES_CONNECT_EMAIL
-    - deploy-to-bitrise-io@1.3.6: {}
+    - deploy-to-bitrise-io: {}
     - slack@2.6.2:
         title: Build message
         inputs:
