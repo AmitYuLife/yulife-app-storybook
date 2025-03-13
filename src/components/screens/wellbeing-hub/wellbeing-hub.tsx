@@ -14,19 +14,7 @@ import WellBeingServiceCardSkeleton from "./sub-components/wellbeing-service-car
 import WellBeingServiceEmptyList from "./sub-components/wellbeing-service-empty-list";
 import WellbeingHeader from "./sub-components/wellbeing-header";
 import FirstTimeContentLocationSelection from "../member/content-location/first-time-content-location-selection";
-
-export type BusinessAccount = {
-  __typename?: string;
-  businessAccountId: string;
-  businessAccountName: string;
-  id: string;
-};
-
-export type BusinessAccountState = {
-  setSelectedBusinessAccount: React.Dispatch<React.SetStateAction<BusinessAccount>>;
-  activeBusinessAccounts: BusinessAccount[];
-  selectedBusinessAccount: BusinessAccount | undefined;
-};
+import { BusinessAccountState } from "@components/molecules/business-picker";
 interface IProps {
   loading: boolean;
   userFirstName: string;
