@@ -3,13 +3,14 @@ import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { Platform, View, ViewStyle } from "react-native";
 import { ChipProps } from "@components/molecules/chip-list/chip-list";
-import WellBeingHub, { BusinessAccount } from "@components/screens/wellbeing-hub/wellbeing-hub";
+import WellBeingHub from "@components/screens/wellbeing-hub/wellbeing-hub";
 import { gql, Os } from "@graphql/__generated";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { getUserFirstName } from "@redux/user/user.selectors";
 import { Style } from "@styles";
 import { ROUTES } from "@navigation/constants";
+import { BusinessAccount } from "@components/molecules/business-picker";
 
 interface IProps {
   componentId: string;
