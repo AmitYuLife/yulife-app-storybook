@@ -9,6 +9,3 @@ export const getDailyMeditation = createSelector(reducer, dailyMeditationSelecto
 
 const inAppDailyMeditationSelector = (state: State) => state.inAppMeditation;
 export const getInAppDailyMeditation = createSelector(reducer, inAppDailyMeditationSelector);
-
-const meditationExchangeRateSelector = (state: State) => state.exchangeRate;
-export const getMeditationExchangeRate = createSelector(reducer, meditationExchangeRateSelector);

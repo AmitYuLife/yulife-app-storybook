@@ -73,14 +73,6 @@ const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayl
       surge: data?.getCurrentUser?.passiveSteps?.exchange?.surge,
     },
   },
-  passiveMeditation: {
-    exchangeRate: {
-      yucoin: data?.getCurrentUser?.passiveMeditation?.exchange?.yucoin,
-      steps: data?.getCurrentUser?.passiveMeditation?.exchange?.steps,
-      meditation: data?.getCurrentUser?.passiveMeditation?.exchange?.meditation,
-      surge: data?.getCurrentUser?.passiveMeditation?.exchange?.surge,
-    },
-  },
   user: {
     id: data?.getCurrentUser?.id,
     firstName: data?.getCurrentUser?.firstName,

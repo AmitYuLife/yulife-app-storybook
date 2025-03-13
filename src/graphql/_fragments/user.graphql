@@ -27,45 +27,6 @@ fragment User on User {
       }
     }
   }
-  passiveMeditation: passiveChallenge(id: MEDITATION) {
-    exchange {
-      yucoin
-      steps
-      meditation
-      surge
-    }
-    levelSlot {
-      id
-      subtype
-      unit
-      milestones {
-        id
-        XP
-        coins
-        target {
-          steps
-          meditation
-        }
-      }
-    }
-  }
-  passiveCycling: passiveChallenge(id: CYCLING) {
-    levelSlot {
-      id
-      subtype
-      unit
-      milestones {
-        id
-        XP
-        coins
-        target {
-          steps
-          meditation
-          distance
-        }
-      }
-    }
-  }
   supportConfig {
     supportLevel
   }

@@ -10,9 +10,6 @@ export const getDailySteps = createSelector(reducer, dailyStepsSelector);
 const localStepsSelector = (state: State) => state.localSteps || 0;
 export const getLocalSteps = createSelector(reducer, localStepsSelector);
 
-const exchangeRateSelector = (state: State) => state.exchangeRate;
-export const getExchangeRate = createSelector(reducer, exchangeRateSelector);
-
 const dailyStepsIsFetchingSelector = (state: State) => state.isFetching;
 export const getDailyStepsIsFetching = createSelector(reducer, dailyStepsIsFetchingSelector);
 
