@@ -5,14 +5,15 @@ import { Image, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import { IYuScreenProductCardVariant } from "./types";
+import { YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD, YUSCREEN_V5_WIDE_CARD } from "@ids";
 
 export const WideCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) => {
   const showButton = !!item.buttonCta && !!onButtonPress;
   const showCardCta = !!item.cardCta;
 
   return (
-    <View style={styles.card} testID={`YU_SCREEN_PRODUCT_CARD_TITLE-${item.productName}`}>
-      <View style={styles.cardBody}>
+    <View style={styles.card} testID={YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(item.productName)}>
+      <View style={styles.cardBody} testID={YUSCREEN_V5_WIDE_CARD(item.title)}>
         <View>
           {item.logo ? (
             <Image source={item.logo} width={Style.adjust(68)} height={Style.adjust(14)} suppressLoadingUi={true} />

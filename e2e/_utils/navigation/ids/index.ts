@@ -355,6 +355,9 @@ export const YUMOJI_DO_THIS_LATER = "screens.yumoji_builder.create.link-text-vie
 export const OWNED_PILL = "owned-filter-button-text";
 export const AVAILABLE_PILL = "available-filter-button-text";
 export const HERO_CARD_SECTION = "HERO_CARD_SECTION";
+export const YUSCREEN_V5_WIDE_CARD = (product: string) => `YUSCREEN_V5_WIDE_CARD_${product}`;
+export const YUSCREEN_V5_TALL_CARD = (product: string) => `YUSCREEN_V5_TALL_CARD_${product}`;
+export const YUSCREEN_V5_SQUARE_CARD = (product: string) => `YUSCREEN_V5_SQUARE_CARD_${product}`;
 
 export const CAROUSEL_CARD_BUTTON = (cardTitle: string) => `CAROUSEL_CARD_BUTTON_${cardTitle}`;
 
