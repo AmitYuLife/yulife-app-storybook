@@ -231,17 +231,17 @@
     "battle_pass": {
       "completed": {
         "button_label": "リワードを交換する",
-        "description": "現行のシーズンが完了しました!\n\nすべてのリワードを受け取って、新たなシーズンを開始しましょう。",
-        "title": "おめでとうございます！"
+        "description": "今シーズンが完了しました!\n\nすべてのリワードを受け取って、次のシーズンを開始しましょう。",
+        "title": "おめでとうございます!"
       },
       "finished": {
-        "button_label": "新シーズンを開始する",
-        "description": "現行のシーズンが完了しました!\n\n新しいシーズンを開始して、さらなるリワードをアンロックしましょう!",
+        "button_label": "次のシーズンを開始する",
+        "description": "今シーズンが完了しました!\n\n次のシーズンを開始して、さらに多くのリワードを獲得しましょう!",
         "title": "おめでとうございます！"
       },
       "out_of_coin": {
-        "description": "この購入を行うには、残高が不足しています。\n\nチャレンジを達成して、もっとYuCoinを獲得しましょう!",
-        "title": "残高不足です"
+        "description": "この購入に必要なYuCoinが不足しています。\n\nチャレンジを達成して、もっとYuCoinを獲得しましょう!",
+        "title": "YuCoinが不足しています"
       }
     },
     "consumables": {
@@ -388,6 +388,8 @@
       }
     },
     "open_random_chest": {
+      "claim_all_subtitle": "アンロックした内容をチェック！",
+      "claim_all_title": "ジャックポット!",
       "claim_reward": "リワードを交換する",
       "open": "開く",
       "open_chest": "コインボックスを開く",
@@ -740,19 +742,19 @@
     },
     "battle_pass": {
       "accessibility": {
-        "donate_button": "%{title} に %{amount} yu coin を寄付する",
-        "donation_title": "%{title} 寄付",
-        "progress_bar": "レベル %{level} に到達するために %{steps} のうち %{step} の yu コインを使用",
-        "reward_item_details": "%{title} 報酬",
-        "reward_level": "レベル %{level} リワード",
-        "view_details": "%{title} 報酬の詳細を表示",
-        "view_donation_leaderboard": "%{title} ランキングを見る"
+        "donate_button": "%{title}に%{amount}yucoinを寄付する",
+        "donation_title": "%{title}への寄付",
+        "progress_bar": "レベル%{level}に到達するために%{steps}のうち%{step}のyucoinを使用します",
+        "reward_item_details": "%{title}のリワード",
+        "reward_level": "レベル%{level}のリワード",
+        "view_details": "%{title}のリワードの詳細を表示",
+        "view_donation_leaderboard": "%{title}のランキングを見る"
       },
       "claim_modal": {
         "buttons": {
           "claim_reward": "リワードを交換する",
           "open_chest": "開く",
-          "select_reward": "この報酬を選択"
+          "select_reward": "このリワードを選択"
         }
       },
       "leaderboard": {
@@ -761,28 +763,28 @@
         }
       },
       "level_up": {
-        "accessibility_title": "レベルアップ! レベル %{level} に到達",
+        "accessibility_title": "レベル%{level}に到達しました",
         "title": "レベルアップ!"
       },
       "season_complete": {
         "claim_rewards": {
-          "claim_action": "上記のリワードを交換する!",
+          "claim_action": "リワードを交換する",
           "claim_button": "受け取る"
         },
-        "go_to_next_season": "今シーズンの完了おめでとうございます！次のシーズンを始める時間です！",
+        "go_to_next_season": "今シーズンの完了おめでとうございます! 次のシーズンを開始しましょう!",
         "go_to_next_season_button": "続ける",
         "modal": {
-          "button_label": "新シーズンを開始する",
-          "title": "%{name} は完了しました!"
+          "button_label": "次のシーズンを開始する",
+          "title": "%{name}が完了しました!"
         },
         "staging": {
-          "description": "エキサイティングな報酬が待っているので、毎日のチャレンジに取り組み続けましょう！",
+          "description": "リワード獲得に向けて引き続き毎日チャレンジに取り組みましょう!",
           "go_to_purchases": "購入に進む",
           "go_to_store": "リワードストアに進む",
-          "title": "新しいシーズンがやって来ます！"
+          "title": "新たなシーズンが始まります!"
         },
         "subtitle": "完了しました",
-        "unclaimed_rewards": "シーズン終了！報酬を受け取り、次の冒険へ進みましょう！"
+        "unclaimed_rewards": "今シーズンが完了しました! すべてのリワードを受け取って、次のシーズンを開始しましょう。"
       }
     },
     "challenge_chest_modal": {

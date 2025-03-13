@@ -388,6 +388,8 @@
       }
     },
     "open_random_chest": {
+      "claim_all_subtitle": "Check out what you've unlocked!",
+      "claim_all_title": "Jackpot!",
       "claim_reward": "Claim rewards",
       "open": "Open",
       "open_chest": "Open chest",
