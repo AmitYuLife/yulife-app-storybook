@@ -133,7 +133,9 @@ class LoggerInstance {
   };
 
   public sendTokenToIntercom = async (deviceToken: string) => {
-    if (this.userId && deviceToken) {
+    const isUserLoggedIn = await Intercom.isUserLoggedIn();
+
+    if (this.userId && deviceToken && isUserLoggedIn) {
       await Intercom.sendTokenToIntercom(deviceToken);
     }
   };
