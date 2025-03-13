@@ -151,14 +151,6 @@ const toPassiveChallengesEarnRate = (
       surge: passiveChallengesEarnRate?.STEPS?.exchange?.surge,
     },
   },
-  passiveMeditation: {
-    exchangeRate: {
-      yucoin: passiveChallengesEarnRate?.MEDITATION?.exchange?.yucoin,
-      steps: passiveChallengesEarnRate?.MEDITATION?.exchange?.steps,
-      meditation: passiveChallengesEarnRate?.MEDITATION?.exchange?.meditation,
-      surge: passiveChallengesEarnRate?.MEDITATION?.exchange?.surge,
-    },
-  },
 });
 
 const toDailyPension = (dailyPension: DailyPensionContributionFragment): DailyPension => ({

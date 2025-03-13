@@ -28,14 +28,6 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
       surge: data?.loginUser?.user?.passiveSteps?.exchange?.surge,
     },
   },
-  passiveMeditation: {
-    exchangeRate: {
-      yucoin: data?.loginUser?.user?.passiveMeditation?.exchange?.yucoin,
-      steps: data?.loginUser?.user?.passiveMeditation?.exchange?.steps,
-      meditation: data?.loginUser?.user?.passiveMeditation?.exchange?.meditation,
-      surge: data?.loginUser?.user?.passiveMeditation?.exchange?.surge,
-    },
-  },
   user: {
     id: data?.loginUser?.user?.id,
     firstName: data?.loginUser?.user?.firstName,
