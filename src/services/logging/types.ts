@@ -12,6 +12,7 @@ export type MixpanelEvent =
   | "accordion_interaction"
   | "active_boosts_viewed"
   | "app_debug"
+  | "yu_health_debug"
   | "armour_inspected"
   | "avatar_save"
   | "button_pressed"

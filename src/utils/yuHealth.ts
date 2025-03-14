@@ -88,6 +88,7 @@ const CAPABILITY_TRANSLATIONS: Record<HealthProviderCapability, string> = {
   [HealthProviderCapability.WORKOUT_MINUTES]: "yu_health.capabilitiesRequest.capabilities.workouts",
   [HealthProviderCapability.ACTIVITIES]: "yu_health.capabilitiesRequest.capabilities.workouts",
   [HealthProviderCapability.CALORIES]: "yu_health.capabilitiesRequest.capabilities.calories",
+  [HealthProviderCapability.WHEELCHAIR_PUSHES]: "yu_health.capabilitiesRequest.capabilities.wheelchair_pushes",
 };
 
 export const joinCapabilities = (capabilities: HealthProviderCapability[]) => {
