@@ -1,12 +1,12 @@
 import { memo, ReactElement, useMemo } from "react";
 import { StyleSheet, ViewStyle } from "react-native";
 import { BlurredWrapper, Box, TextTemplate } from "@atoms";
-import { useSafeAreaViewOffset } from "@hooks";
 import { Button } from "@molecules";
 import { PodiumRays, RollingText } from "@organisms";
 import { DETOX_ENABLED } from "@services/socket";
 import { Colours, Style } from "@styles";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface IBattlePassBlurredRaysWrapperProps {
   title: string;
@@ -42,14 +42,14 @@ const BattlePassBlurredRaysWrapper = ({
   children,
   testID,
 }: IBattlePassBlurredRaysWrapperProps) => {
-  const offset = useSafeAreaViewOffset();
+  const safeAreaInsets = useSafeAreaInsets();
 
   const wrapperStyle = useMemo(
     (): ViewStyle => ({
       width: "100%",
-      minHeight: Style.DEVICE_HEIGHT - offset.safeAreaViewOffset.y - Style.adjust(40),
+      minHeight: Style.DEVICE_HEIGHT - safeAreaInsets.top - Style.adjust(40),
     }),
-    [offset.safeAreaViewOffset]
+    [safeAreaInsets.top]
   );
 
   return (
