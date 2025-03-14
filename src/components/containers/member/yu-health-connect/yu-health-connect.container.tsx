@@ -1,6 +1,6 @@
 import HealthPermissionExplanationModal from "@components/modals/health-permission-explanation/health-permission-explanation.modal";
 import YuHealthConnectScreen from "@components/screens/member/yu-health-connect/yu-health-connect.screen";
-import { useBackHandler, useVerifyAndAuthorizeCapability } from "@hooks";
+import { useBackHandler, useTrack, useVerifyAndAuthorizeCapability } from "@hooks";
 import { t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
@@ -33,6 +33,7 @@ const YuHealthConnectContainer = ({
   unsupportedCapabilities,
 }: IYuHealthConnectContainerProps) => {
   const dispatch = useDispatch();
+  const track = useTrack();
   const yuHealthStatus = useSelector(getYuHealthStatus);
   const activeProvider = useSelector(getActiveProvider);
   const providerAvailabilities = useSelector(getProviderAvailabilities);
@@ -80,6 +81,11 @@ const YuHealthConnectContainer = ({
   }, [activeProvider, unsupportedCapabilities]);
 
   const onChangeProvider = useCallback(() => {
+    track("button_pressed", {
+      button_id: "yu_health_change_provider",
+      isLoading,
+    });
+
     if (isLoading) {
       return;
     }
@@ -97,7 +103,7 @@ const YuHealthConnectContainer = ({
         },
       },
     });
-  }, [isLoading, componentId, selectedProvider, availableProviders]);
+  }, [isLoading, componentId, selectedProvider, availableProviders, track]);
 
   const onFinish = useCallback(
     (didSwitch?: boolean) => {

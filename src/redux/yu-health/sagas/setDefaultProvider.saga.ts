@@ -7,7 +7,6 @@ import {
   HealthProviderCapability,
   getAvailabilityStatus,
   hasPermission,
-  hasPermissions,
 } from "@yu-life/react-native-yu-health";
 import { setActiveYuHealthProvider } from "../yu-health.actions";
 import { isiOS, shouldContinueWithPermissionStatus } from "@utils";
@@ -39,8 +38,8 @@ export default function* setDefaultProviderSaga(): unknown {
   yield call(Logger.logMixpanelEvent, "yuhealth_available_providers_fetched", availableProviders);
 
   if (availableProviders[HealthProvider.samsungHealth] === HealthProviderAvailability.available) {
-    const authorisedSamsungHealth = yield hasPermissions(
-      [HealthProviderCapability.STEP_COUNT],
+    const authorisedSamsungHealth: Awaited<ReturnType<typeof hasPermission>> = yield hasPermission(
+      HealthProviderCapability.STEP_COUNT,
       HealthProvider.samsungHealth
     );
 
