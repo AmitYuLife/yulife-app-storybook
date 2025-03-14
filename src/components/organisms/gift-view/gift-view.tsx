@@ -90,7 +90,7 @@ const GiftView = ({
   return (
     <View style={[styles.screen, wrapperStyle]} testID={P2P_GIFT_VIEW(background?.id)}>
       <Background image={background?.image} />
-      <ScrollView showsVerticalScrollIndicator={false} style={[styles.screen, styles.safeArea]}>
+      <ScrollView showsVerticalScrollIndicator={false} style={[styles.scrollView, styles.safeArea]}>
         <Sender sender={sender} textColor={textColor} />
         {!showContent ? null : (
           <>
@@ -103,7 +103,7 @@ const GiftView = ({
             />
             <Message message={message} textColor={textColor} />
             <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
-            <Box height={message.length > MAX_MESSAGE_LENGTH ? NAV_BAR.DEFAULT_FULL_HEIGHT : 1} />
+            <Box height={(message || "").length > MAX_MESSAGE_LENGTH ? NAV_BAR.DEFAULT_FULL_HEIGHT : 1} />
           </>
         )}
       </ScrollView>
@@ -129,6 +129,9 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     overflow: "hidden",
+  },
+  scrollView: {
+    flex: 1,
   },
   safeArea: {
     marginTop: TOP_BAR.PADDING_TOP + Style.adjust(8),
