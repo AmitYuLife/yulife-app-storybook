@@ -19,6 +19,20 @@ export const restart = async (locale = "en-GB", dm = dataManager) => {
   });
 };
 
+export const restartWithoutWBHub = async (locale = "en-GB", dm = dataManager) => {
+  await device.terminateApp();
+  await dm.clearWellbeingHubItemsData();
+  await dm.reseed();
+  await device.clearKeychain();
+  await device.launchApp({
+    delete: true,
+    languageAndLocale: {
+      language: locale,
+      locale: locale,
+    },
+  });
+};
+
 export const restartWithData = async () => {
   await device.terminateApp();
   await device.clearKeychain();
@@ -50,6 +64,12 @@ export const startWithoutLaunch =
   (locale = "en-GB") =>
   async () => {
     await restart(process.env.TARGET_LOCALE || locale);
+  };
+
+export const startWithoutWBHub =
+  (locale = "en-GB") =>
+  async () => {
+    await restartWithoutWBHub(process.env.TARGET_LOCALE || locale);
   };
 
 export const reloadAppToTab =

@@ -13,7 +13,7 @@ interface IGenericSelectorItemProps {
 const GenericSelectorItem = ({ label, onPress, isActive }: IGenericSelectorItemProps) => {
   return (
     <Pressable delay={0} style={styles.button} onPress={onPress}>
-      <TextTemplate type="b2" textAlign="center">
+      <TextTemplate type="b2" textAlign="center" testID={`GENERIC_SELECTOR_ITEM_${label}`}>
         {label}
       </TextTemplate>
       <Radio selected={isActive} />

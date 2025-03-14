@@ -9,6 +9,7 @@ import {
   BUSINESS_ACCOUNT_2,
   BUSINESS_ACCOUNT_4,
   BUSINESS_ACCOUNT_6,
+  BUSINESS_ACCOUNT_7,
   BUSINESS_ACCOUNT_GDent_9,
   BUSINESS_ACCOUNT_GHI_8,
 } from "./business";
@@ -337,6 +338,18 @@ export const BUSINESS_EMPLOYEE_138_b = {
     customer_id: customer.CUSTOMER_138.data.customerId,
     employment_start_date: moment().subtract(6, "months").toDate(),
     employment_leave_date: moment().add(12, "years").toDate(),
+    business_employee_id: generateRandomMongoId(),
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_138_c = {
+  type: "postgres",
+  modelName: "business_employee",
+  data: {
+    business_account_id: BUSINESS_ACCOUNT_7.data.business_account_id,
+    customer_id: customer.CUSTOMER_138.data.customerId,
+    employment_start_date: moment().subtract(3, "months").toDate(),
+    employment_leave_date: moment().add(13, "years").toDate(),
     business_employee_id: generateRandomMongoId(),
   },
 } as IDatabaseItem;
