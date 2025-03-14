@@ -46,11 +46,15 @@ function RewardsPurchasesContainer() {
     { fetchPolicy: "network-only" }
   );
 
-  useEffect(() => {
+  const handleFetchCards = useCallback(() => {
     if (selectedCategory?.type) {
       fetchCards({ variables: { type: selectedCategory.type }, fetchPolicy: "network-only" });
     }
-  }, [fetchCards, selectedCategory?.type]);
+  }, [selectedCategory?.type, fetchCards]);
+
+  useEffect(() => {
+    handleFetchCards();
+  }, [handleFetchCards]);
 
   const handleCardPress = useCallback(
     (onPress: SduiAction) => {
@@ -168,6 +172,8 @@ function RewardsPurchasesContainer() {
             data={calculatedData}
             renderItem={renderItem}
             estimatedItemSize={175}
+            onRefresh={handleFetchCards}
+            refreshing={loading}
           />
         </Box>
       )}

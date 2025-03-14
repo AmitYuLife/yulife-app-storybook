@@ -20,6 +20,7 @@ interface IWalletCouponItem<T> {
   onPress?: T;
   title: string;
   info?: string;
+  secondaryInfo?: string;
 }
 interface WalletCouponItemProps<T> {
   item: IWalletCouponItem<T>;
@@ -60,8 +61,11 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
           <Image style={styles.image} source={item.icon} resizeMode="cover" />
         </Box>
         <Box flex={1} style={styles.infoContainer}>
-          <TextTemplate color={"#464647"} type="b2b" numberOfLines={2}>
+          <TextTemplate color={"#464647"} type="b2b" numberOfLines={1}>
             {item.info}
+          </TextTemplate>
+          <TextTemplate color={"#464647"} type="l2" numberOfLines={1}>
+            {item.secondaryInfo}
           </TextTemplate>
         </Box>
       </StackedShadowWrapper>

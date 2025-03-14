@@ -4,6 +4,7 @@ fragment InventoryRewardsCard on MobileGamePartnerRewardsInventoryCard {
     description
     rewardId
     info
+    secondaryInfo
     type
     icon {
         ...RemoteImage

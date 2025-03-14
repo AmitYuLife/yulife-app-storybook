@@ -19,6 +19,7 @@ interface IWalletCoupon<T> {
   onPress?: T;
   title: string;
   info?: string;
+  secondaryInfo?: string;
 }
 interface WalletItemProps<T> {
   item: IWalletCoupon<T>;
@@ -61,6 +62,9 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletItemProps<T>) => (
         <Box flex={1} style={styles.infoContainer}>
           <TextTemplate color={"#464647"} type="h3" numberOfLines={2}>
             {item.info}
+          </TextTemplate>
+          <TextTemplate color={"#464647"} type="l2" numberOfLines={2}>
+            {item.secondaryInfo}
           </TextTemplate>
         </Box>
       </StackedShadowWrapper>
