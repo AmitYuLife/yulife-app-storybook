@@ -7887,10 +7887,10 @@
   resolved "https://gitlab.com/api/v4/projects/7775989/packages/npm/@yu-life/react-native-fitkit/-/@yu-life/react-native-fitkit-1.0.39.tgz#b3f60782d5a7620209fb496569d6f3f48c98c2cb"
   integrity sha1-s/YHgtWnYgIJ+0lladbz9IyYwss=
 
-"@yu-life/react-native-yu-health@^1.3.3":
-  version "1.3.3"
-  resolved "https://gitlab.com/api/v4/projects/52134022/packages/npm/@yu-life/react-native-yu-health/-/@yu-life/react-native-yu-health-1.3.3.tgz#744332e0a93470cc7dbb4d41efb3d315af045c48"
-  integrity sha1-dEMy4Kk0cMx9u01B77PTFa8EXEg=
+"@yu-life/react-native-yu-health@^1.3.6":
+  version "1.3.6"
+  resolved "https://gitlab.com/api/v4/projects/52134022/packages/npm/@yu-life/react-native-yu-health/-/@yu-life/react-native-yu-health-1.3.6.tgz#8d88400a644ac6680ef60684471f9cfaad5c4928"
+  integrity sha1-jYhACmRKxmgO9gaERx+c+q1cSSg=
 
 "@yu-life/react-native-yu-watch@^1.0.2":
   version "1.0.2"

@@ -1795,7 +1795,8 @@
         "cycling": "cycling",
         "heartRate": "heart rate",
         "workouts": "workouts",
-        "calories": "calories"
+        "calories": "calories",
+        "wheelchair_pushes": "wheelchair pushes"
       },
       "join": "and",
       "header": "Permissions needed",

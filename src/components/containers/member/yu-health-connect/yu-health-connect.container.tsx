@@ -84,6 +84,7 @@ const YuHealthConnectContainer = ({
     track("button_pressed", {
       button_id: "yu_health_change_provider",
       isLoading,
+      availableProviders,
     });
 
     if (isLoading) {
