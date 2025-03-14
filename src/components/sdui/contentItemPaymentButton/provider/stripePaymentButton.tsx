@@ -21,6 +21,10 @@ const errorsToSkip = [
    * Occurs when payment sheet is closed by the user.
    */
   "The payment has been canceled",
+  /**
+   * When user attempts to pay right away after a failed paymentt
+   */
+  "No payment sheet has been initialized yet. You must call `initPaymentSheet` before `presentPaymentSheet`.",
 ];
 
 const StripePaymentButton = memo((props: Props) => {

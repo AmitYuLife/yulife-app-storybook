@@ -19,6 +19,7 @@ interface IWalletDiscount<T> {
   onPress?: T;
   title: string;
   info?: string;
+  secondaryInfo?: string;
 }
 interface WalletItemProps<T> {
   item: IWalletDiscount<T>;
@@ -42,7 +43,7 @@ const WalletDiscountCard = <T,>({ item, onPress }: WalletItemProps<T>) => (
           </TextTemplate>
         </Box>
         <Box>
-          <TextTemplate color={"#640038"} type="h3">
+          <TextTemplate color={"#640038"} type="h3" numberOfLines={1}>
             {item.title}
           </TextTemplate>
           <TextTemplate color={"#464647"} type="l1" numberOfLines={2}>
@@ -59,8 +60,11 @@ const WalletDiscountCard = <T,>({ item, onPress }: WalletItemProps<T>) => (
           <Image style={styles.image} source={item.icon} resizeMode="cover" />
         </Box>
         <Box flex={1} style={styles.infoContainer}>
-          <TextTemplate color={"#464647"} type="h3" numberOfLines={2}>
+          <TextTemplate color={"#464647"} type="h3" numberOfLines={1}>
             {item.info}
+          </TextTemplate>
+          <TextTemplate color={"#464647"} type="l2" numberOfLines={1}>
+            {item.secondaryInfo}
           </TextTemplate>
         </Box>
       </StackedShadowWrapper>

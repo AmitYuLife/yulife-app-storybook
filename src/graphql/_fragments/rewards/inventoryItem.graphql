@@ -11,4 +11,5 @@ fragment InventoryRewardsItem on MobileGamePartnerRewardsInventoryItem {
     label
     type
     info
+    secondaryInfo
 }

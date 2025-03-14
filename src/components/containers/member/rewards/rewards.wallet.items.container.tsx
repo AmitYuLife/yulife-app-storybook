@@ -19,10 +19,17 @@ interface IRewardsPurchasesContainerProps {
   type: string;
 }
 function RewardsPurchasesContainer({ rewardId, type }: IRewardsPurchasesContainerProps) {
-  const { data, loading } = useQuery(gql(`GetMobileGamePartnerRewardsInventoryItemsDocument`), {
+  const { data, loading, refetch } = useQuery(gql(`GetMobileGamePartnerRewardsInventoryItemsDocument`), {
     fetchPolicy: "network-only",
     variables: { rewardId, type },
   });
+
+  const handleRefresh = useCallback(() => {
+    refetch({
+      rewardId,
+      type,
+    });
+  }, [rewardId, type, refetch]);
 
   const dispatch = useDispatch();
 
@@ -102,7 +109,14 @@ function RewardsPurchasesContainer({ rewardId, type }: IRewardsPurchasesContaine
         )}
       </Box>
       <Box flex={1}>
-        <FlashList extraData={loading} data={calculatedData} renderItem={renderItem} estimatedItemSize={142} />
+        <FlashList
+          extraData={loading}
+          data={calculatedData}
+          renderItem={renderItem}
+          estimatedItemSize={142}
+          refreshing={loading}
+          onRefresh={handleRefresh}
+        />
       </Box>
       <GenericHeadingAbsolute
         heading={t("screens.rewards.wallet.title")}

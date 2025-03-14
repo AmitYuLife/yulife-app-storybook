@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -1130,6 +1131,7 @@ export type BusinessSessionSettings = {
   earlyAccessEnabled: Scalars["Boolean"]["output"];
   enableTagRestriction: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
+  homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
   onboardingEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
   showConnectionsOverride?: Maybe<Scalars["Boolean"]["output"]>;
@@ -4312,6 +4314,7 @@ export type GetOnboardingConfigurationResult = {
   connectionCount?: Maybe<Scalars["Int"]["output"]>;
   employeeCount?: Maybe<Scalars["Int"]["output"]>;
   importCount?: Maybe<Scalars["Int"]["output"]>;
+  wellbeingHubItemCount?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type GetPaymentDetailsResponse = {
@@ -5713,6 +5716,7 @@ export type MobileGamePartnerRewardsInventoryCard = {
   label?: Maybe<Scalars["String"]["output"]>;
   onPress?: Maybe<SduiAction>;
   rewardId: Scalars["String"]["output"];
+  secondaryInfo?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
   type: Scalars["String"]["output"];
 };
@@ -5730,6 +5734,7 @@ export type MobileGamePartnerRewardsInventoryItem = {
   info?: Maybe<Scalars["String"]["output"]>;
   label?: Maybe<Scalars["String"]["output"]>;
   onPress?: Maybe<SduiAction>;
+  secondaryInfo?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
   type: Scalars["String"]["output"];
 };
@@ -7438,6 +7443,7 @@ export type PaymentIntent = StripePaymentIntent;
 
 export type PerformedSteps = {
   __typename?: "PerformedSteps";
+  homeModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -9976,6 +9982,7 @@ export type TeamFilterCopy = {
 };
 
 export enum TeamOnboardingStep {
+  HomeModalDismissed = "homeModalDismissed",
   TwoFactorAuthEnabled = "twoFactorAuthEnabled",
   TwoFactorAuthModalDismissed = "twoFactorAuthModalDismissed",
 }
@@ -19794,6 +19801,7 @@ export type InventoryRewardsCardFragment = {
   description: string;
   rewardId: string;
   info?: string | null;
+  secondaryInfo?: string | null;
   type: string;
   label?: string | null;
   icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
@@ -19815,6 +19823,7 @@ export type InventoryRewardsItemFragment = {
   label?: string | null;
   type: string;
   info?: string | null;
+  secondaryInfo?: string | null;
   icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
@@ -21607,50 +21616,6 @@ export type UserFragment = {
         __typename?: "LevelSlotMilestone";
         id?: string | null;
         coins?: number | null;
-      } | null> | null;
-    } | null;
-  } | null;
-  passiveMeditation?: {
-    __typename?: "PassiveChallenge";
-    exchange?: {
-      __typename?: "PassiveStepsExchange";
-      yucoin?: number | null;
-      steps?: number | null;
-      meditation?: number | null;
-      surge?: number | null;
-    } | null;
-    levelSlot?: {
-      __typename?: "LevelSlot";
-      id?: string | null;
-      subtype?: string | null;
-      unit?: string | null;
-      milestones?: Array<{
-        __typename?: "LevelSlotMilestone";
-        id?: string | null;
-        XP?: number | null;
-        coins?: number | null;
-        target?: { __typename?: "MilestoneTarget"; steps?: number | null; meditation?: number | null } | null;
-      } | null> | null;
-    } | null;
-  } | null;
-  passiveCycling?: {
-    __typename?: "PassiveChallenge";
-    levelSlot?: {
-      __typename?: "LevelSlot";
-      id?: string | null;
-      subtype?: string | null;
-      unit?: string | null;
-      milestones?: Array<{
-        __typename?: "LevelSlotMilestone";
-        id?: string | null;
-        XP?: number | null;
-        coins?: number | null;
-        target?: {
-          __typename?: "MilestoneTarget";
-          steps?: number | null;
-          meditation?: number | null;
-          distance?: number | null;
-        } | null;
       } | null> | null;
     } | null;
   } | null;
@@ -34037,6 +34002,7 @@ export type GetMobileGamePartnerRewardsInventoryCardsQuery = {
       description: string;
       rewardId: string;
       info?: string | null;
+      secondaryInfo?: string | null;
       type: string;
       label?: string | null;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
@@ -34078,6 +34044,7 @@ export type GetMobileGamePartnerRewardsInventoryItemsQuery = {
       label?: string | null;
       type: string;
       info?: string | null;
+      secondaryInfo?: string | null;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
@@ -38609,50 +38576,6 @@ export type GetCurrentUserQuery = {
         } | null> | null;
       } | null;
     } | null;
-    passiveMeditation?: {
-      __typename?: "PassiveChallenge";
-      exchange?: {
-        __typename?: "PassiveStepsExchange";
-        yucoin?: number | null;
-        steps?: number | null;
-        meditation?: number | null;
-        surge?: number | null;
-      } | null;
-      levelSlot?: {
-        __typename?: "LevelSlot";
-        id?: string | null;
-        subtype?: string | null;
-        unit?: string | null;
-        milestones?: Array<{
-          __typename?: "LevelSlotMilestone";
-          id?: string | null;
-          XP?: number | null;
-          coins?: number | null;
-          target?: { __typename?: "MilestoneTarget"; steps?: number | null; meditation?: number | null } | null;
-        } | null> | null;
-      } | null;
-    } | null;
-    passiveCycling?: {
-      __typename?: "PassiveChallenge";
-      levelSlot?: {
-        __typename?: "LevelSlot";
-        id?: string | null;
-        subtype?: string | null;
-        unit?: string | null;
-        milestones?: Array<{
-          __typename?: "LevelSlotMilestone";
-          id?: string | null;
-          XP?: number | null;
-          coins?: number | null;
-          target?: {
-            __typename?: "MilestoneTarget";
-            steps?: number | null;
-            meditation?: number | null;
-            distance?: number | null;
-          } | null;
-        } | null> | null;
-      } | null;
-    } | null;
     supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
   } | null;
   getDailyPensionContribution: {
@@ -39081,50 +39004,6 @@ export type LoginUserMutation = {
             __typename?: "LevelSlotMilestone";
             id?: string | null;
             coins?: number | null;
-          } | null> | null;
-        } | null;
-      } | null;
-      passiveMeditation?: {
-        __typename?: "PassiveChallenge";
-        exchange?: {
-          __typename?: "PassiveStepsExchange";
-          yucoin?: number | null;
-          steps?: number | null;
-          meditation?: number | null;
-          surge?: number | null;
-        } | null;
-        levelSlot?: {
-          __typename?: "LevelSlot";
-          id?: string | null;
-          subtype?: string | null;
-          unit?: string | null;
-          milestones?: Array<{
-            __typename?: "LevelSlotMilestone";
-            id?: string | null;
-            XP?: number | null;
-            coins?: number | null;
-            target?: { __typename?: "MilestoneTarget"; steps?: number | null; meditation?: number | null } | null;
-          } | null> | null;
-        } | null;
-      } | null;
-      passiveCycling?: {
-        __typename?: "PassiveChallenge";
-        levelSlot?: {
-          __typename?: "LevelSlot";
-          id?: string | null;
-          subtype?: string | null;
-          unit?: string | null;
-          milestones?: Array<{
-            __typename?: "LevelSlotMilestone";
-            id?: string | null;
-            XP?: number | null;
-            coins?: number | null;
-            target?: {
-              __typename?: "MilestoneTarget";
-              steps?: number | null;
-              meditation?: number | null;
-              distance?: number | null;
-            } | null;
           } | null> | null;
         } | null;
       } | null;
@@ -63084,6 +62963,7 @@ export const InventoryRewardsCardFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "description" } },
           { kind: "Field", name: { kind: "Name", value: "rewardId" } },
           { kind: "Field", name: { kind: "Name", value: "info" } },
+          { kind: "Field", name: { kind: "Name", value: "secondaryInfo" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
           {
             kind: "Field",
@@ -63181,6 +63061,7 @@ export const InventoryRewardsItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "info" } },
+          { kind: "Field", name: { kind: "Name", value: "secondaryInfo" } },
         ],
       },
     },
@@ -63565,120 +63446,6 @@ export const UserFragmentDoc = {
                           selections: [
                             { kind: "Field", name: { kind: "Name", value: "id" } },
                             { kind: "Field", name: { kind: "Name", value: "coins" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "passiveMeditation" },
-            name: { kind: "Name", value: "passiveChallenge" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: { kind: "EnumValue", value: "MEDITATION" },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "exchange" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "yucoin" } },
-                      { kind: "Field", name: { kind: "Name", value: "steps" } },
-                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                      { kind: "Field", name: { kind: "Name", value: "surge" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "passiveCycling" },
-            name: { kind: "Name", value: "passiveChallenge" },
-            arguments: [
-              { kind: "Argument", name: { kind: "Name", value: "id" }, value: { kind: "EnumValue", value: "CYCLING" } },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                ],
-                              },
-                            },
                           ],
                         },
                       },
@@ -93114,6 +92881,7 @@ export const GetMobileGamePartnerRewardsInventoryCardsDocument = {
           { kind: "Field", name: { kind: "Name", value: "description" } },
           { kind: "Field", name: { kind: "Name", value: "rewardId" } },
           { kind: "Field", name: { kind: "Name", value: "info" } },
+          { kind: "Field", name: { kind: "Name", value: "secondaryInfo" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
           {
             kind: "Field",
@@ -93290,6 +93058,7 @@ export const GetMobileGamePartnerRewardsInventoryItemsDocument = {
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "info" } },
+          { kind: "Field", name: { kind: "Name", value: "secondaryInfo" } },
         ],
       },
     },
@@ -99276,120 +99045,6 @@ export const GetCurrentUserDocument = {
           },
           {
             kind: "Field",
-            alias: { kind: "Name", value: "passiveMeditation" },
-            name: { kind: "Name", value: "passiveChallenge" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: { kind: "EnumValue", value: "MEDITATION" },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "exchange" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "yucoin" } },
-                      { kind: "Field", name: { kind: "Name", value: "steps" } },
-                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                      { kind: "Field", name: { kind: "Name", value: "surge" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "passiveCycling" },
-            name: { kind: "Name", value: "passiveChallenge" },
-            arguments: [
-              { kind: "Argument", name: { kind: "Name", value: "id" }, value: { kind: "EnumValue", value: "CYCLING" } },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "supportConfig" },
             selectionSet: {
               kind: "SelectionSet",
@@ -100937,120 +100592,6 @@ export const LoginUserDocument = {
                           selections: [
                             { kind: "Field", name: { kind: "Name", value: "id" } },
                             { kind: "Field", name: { kind: "Name", value: "coins" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "passiveMeditation" },
-            name: { kind: "Name", value: "passiveChallenge" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: { kind: "EnumValue", value: "MEDITATION" },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "exchange" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "yucoin" } },
-                      { kind: "Field", name: { kind: "Name", value: "steps" } },
-                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                      { kind: "Field", name: { kind: "Name", value: "surge" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "passiveCycling" },
-            name: { kind: "Name", value: "passiveChallenge" },
-            arguments: [
-              { kind: "Argument", name: { kind: "Name", value: "id" }, value: { kind: "EnumValue", value: "CYCLING" } },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                ],
-                              },
-                            },
                           ],
                         },
                       },
