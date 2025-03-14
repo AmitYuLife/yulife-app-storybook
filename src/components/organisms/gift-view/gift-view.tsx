@@ -4,7 +4,7 @@ import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
 import { Avatar, Button, SecondaryButton, Slider } from "@molecules";
 import { t } from "@locale";
 import ItemDetailsReward from "@organisms/item-details-reward/item-details-reward";
-import { Style, Colours, TOP_BAR } from "@styles";
+import { Style, Colours, TOP_BAR, NAV_BAR } from "@styles";
 import { memo, useCallback, useMemo } from "react";
 import { ScrollView, Pressable, StyleSheet, View } from "react-native";
 import {
@@ -21,6 +21,8 @@ import {
 import navBarStyles from "@styles/nav-bar.styles";
 import { P2P_GIFT_VIEW, SENDER_GIFTING_AMOUNT, P2P_MESSAGE, P2P_STICKER, P2P_STICKER_ITEMS } from "@ids";
 import { GiftingHeartIcon } from "@atoms/icon/gifting-heart-icon";
+
+const MAX_MESSAGE_LENGTH = 50;
 
 type StickerAsset = {
   id?: string;
@@ -101,6 +103,7 @@ const GiftView = ({
             />
             <Message message={message} textColor={textColor} />
             <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
+            <Box height={message.length > MAX_MESSAGE_LENGTH ? NAV_BAR.DEFAULT_FULL_HEIGHT : 1} />
           </>
         )}
       </ScrollView>
