@@ -301,7 +301,7 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
   });
 
-  Scenario("As a user with two concurrent employments, I should see both of my companies' wellbeing hub benefits on my YuScreen", scenario.start, async () => {
+  Scenario("As a user with two concurrent employments, I should see all of my companies' wellbeing hub benefits on my YuScreen", scenario.startWithoutWBHItems, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Yuniversal", "I"));
     });
@@ -316,6 +316,20 @@ Feature("I am able to use the yuscreen v5", async () => {
       When("I swipe down until the other employment's perks are visible", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.BOX_OPTION_TITLE("MetLife GP24"), "up"), async () => {
         Then("I can see the MetLife benefit from my second employment", then.yuScreenV5WellbeingItemVisible(metLifeGPWellbeingItem, 2000));
       });
+    });
+    When("I go back to the Wellbeing Hub", when.goToWellbeingHub, async () => {
+      Then("I should now be on the Wellbeing Hub screen of my first employment", then.idVisible(ids.WELLBEING_HUB_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_7.data.business_account_name)));
+      Then("I should see that I do not have any wellbeing hub items", then.idVisible(ids.WELLBEING_SERVICE_EMPTY_LIST));
+    });
+    When("I change to the wellbeing hub of my second employment", when.changeWellbeingHubSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name), async () => {
+      Then("I should be on the Wellbeing Hub screen of my second employment", then.idVisible(ids.WELLBEING_HUB_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name)));
+      Then("I should see the 'MetLyfe GP25' item", then.idVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItemv2.title)));
+      Then("I should not see the 'MetLife GP24' item", then.idNotVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItem.title)));
+    });
+    When("I change to the wellbeing hub of my third employment", when.changeWellbeingHubSelectedBusiness(data.BUSINESS_ACCOUNT_6.data.business_account_name), async () => {
+      Then("I should now be on the Wellbeing Hub screen of my third employment", then.idVisible(ids.WELLBEING_HUB_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_6.data.business_account_name)));
+      Then("I should see the 'MetLife GP24' item", then.idVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItem.title)));
+      Then("I should not see the 'MetLyfe GP25' item", then.idNotVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItemv2.title)));
     });
   });
 });

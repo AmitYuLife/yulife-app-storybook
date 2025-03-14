@@ -6,7 +6,7 @@ import { t } from "@locale";
 import { HandWithHeartIcon } from "@atoms/icon/hand-with-heart-icon";
 
 const WellBeingServiceEmptyList: FC = () => (
-  <View style={styles.wrapper}>
+  <View style={styles.wrapper} testID="WELLBEING_SERVICE_EMPTY_LIST">
     <View style={styles.container}>
       <HandWithHeartIcon />
       <View style={styles.title}>

@@ -51,6 +51,7 @@ export const GAME_SETTINGS_SCREEN = "GAME_SETTINGS_SCREEN";
 export const GAME_SETTINGS_LANGUAGE_SELECTOR_SCREEN = "GAME_SETTINGS_LANGUAGE_SELECTOR_SCREEN";
 export const REWARD_STORE_SETTINGS_SCREEN = "REWARD_STORE_SETTINGS_SCREEN";
 export const WELLBEING_HUB_SETTINGS_SCREEN = "REWARD_STORE_SETTINGS_SCREEN";
+export const WELLBEING_SERVICE_EMPTY_LIST = "WELLBEING_SERVICE_EMPTY_LIST";
 export const PERK_SCREEN = "PERK_SCREEN";
 export const EVENT_DIALOG_SCREEN = "EVENT_DIALOG_SCREEN";
 export const EVENT_DIALOG_SCREEN_SCROLL = "EVENT_DIALOG_SCREEN_SCROLL";
@@ -224,6 +225,8 @@ export const QUEST_DETAIL_HALF_MODAL = (heading: string) => `QUEST_DETAIL_HALF_M
 export const SMOKING_STREAK_HALF_MODAL = (heading: string) =>
   `POPUP_WITH_HEADER_ICON_MODAL_${heading}`;
 export const HALF_MODAL_CTA = "rewards.got-it";
+export const GENERIC_SELECTOR_ITEM = (itemText: string) => `GENERIC_SELECTOR_ITEM_${itemText}`;
+export const GENERIC_SELECTOR_CONFIRM = "generic-selector-confirm-text-view";
 
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`;
