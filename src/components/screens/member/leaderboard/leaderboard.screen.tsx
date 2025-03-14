@@ -115,7 +115,8 @@ export const LeaderboardScreen = ({
       return stickItem;
     }
 
-    const filterCurrentUser = items.filter((item) => item.position < items.length);
+    // position is 1 based index, so only filter out (as they'd be floating) using a 0 based index to match the items array
+    const filterCurrentUser = items.filter((item) => item.position - 1 < items.length);
     return [...navigationItems, ...filterCurrentUser];
   }, [items, itemsIsLoading, navigationItems]);
 
