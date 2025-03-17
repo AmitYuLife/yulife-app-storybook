@@ -17,10 +17,11 @@ import { t } from "@locale";
 import { BUTTON_CLOSE } from "@ids";
 import { AppDataType } from "@redux/user/user.types";
 import { getUserDataStart } from "@redux/user/user.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { prizesAwarded } from "@redux/prizes/prizes.actions";
 import { isEmpty } from "lodash";
 import AllPickRewardStage from "./subcomponents/stages/pick-stages/all-pick-reward-stage";
+import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
@@ -41,8 +42,12 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
   });
 
   const dispatch = useDispatch();
+  const socialGroupId = useSelector(getActiveSocialGroupId);
+
   const [openChest, { loading: openLoading }] = useMutation(gql("OpenMobileGameBattlePassChestDocument"));
-  const [claimPrizes, { loading: claimLoading }] = useMutation(gql("ClaimMobileGameBattlePassChestPrizesDocument"));
+  const [claimPrizes, { loading: claimLoading }] = useMutation(gql("ClaimMobileGameBattlePassChestPrizesDocument"), {
+    refetchQueries: [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId } }],
+  });
 
   const [stage, setStage] = useState<ChestStage>(ChestStage.loading);
   const [isDetailsLoading, setIsDetailsLoading] = useState(false);
