@@ -40,9 +40,7 @@ Feature("P2P gifting", async () => {
       Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")));
     });
     When("I select Tywin Lanister", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")), async () => {
-      When("I select Tywin Lanister again due to the keyboard being up", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")), async () => {
-        Then("I can now see all these users are selected", then.selectedUsersVisible([data.CUSTOMER_50, data.CUSTOMER_73]));
-      });
+      Then("I can now see all these users are selected", then.selectedUsersVisible([data.CUSTOMER_50, data.CUSTOMER_73]));
     });
     When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
       Then("I see the message selection screen", then.messageSelectionScreenVisible(2));
@@ -266,5 +264,70 @@ Feature("P2P gifting", async () => {
       Then("I see the input field", then.idVisible(ids.INPUT_FIELD));
       Then("The input field has no value", then.inputHasValue(ids.INPUT_FIELD, ""));
     });
+  });
+});
+
+Scenario("I can send multiple people a YuCoin gift", scenario.start, async () => {
+  Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18), async () => {
+    When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+      When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+        Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));
+        Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem, User73LeaderboardLB1Item], 2000));
+      });
+    });
+  });
+  When("I click on Lynton Stock", when.clickUser(data.CUSTOMER_50), async () => {
+    Then("I should be on the Inspect screen", then.isOnInspectScreen);
+    Then("Lyntons's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_50))));
+    Then("I can see the P2P gifting modal", then.giftingModalVisible(data.CUSTOMER_50.data.firstName));
+  });
+  When("I click to send a gift", when.tapID(ids.P2P_START_BUTTON, 2000), async () => {
+    When("I click on the 'Get started' button", when.tapID(ids.CTA_GET_STARTED, 2000), async () => {
+      Then("Then I am on the P2P gifting selection screen with Lynton already selected", then.giftingSelectionScreenVisible([data.CUSTOMER_50]));
+    });
+  });
+  When("I search for a different user who has consented - Tywin Lannister", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_73)), async () => {
+    Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")));
+  });
+  When("I select Tywin Lanister", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")), async () => {
+    Then("I can now see all these users are selected", then.selectedUsersVisible([data.CUSTOMER_50, data.CUSTOMER_73]));
+  });
+  When("I search for yet another user who has consented - Gill Stock", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_47)), async () => {
+    Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_47), undefined, undefined, "search")));
+  });
+  When("I select Gill Stock", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_47), undefined, undefined, "search")), async () => {
+    Then("I can now see all these users are selected", then.selectedUsersVisible([data.CUSTOMER_50, data.CUSTOMER_73, data.CUSTOMER_47]));
+  });
+  When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+    Then("I see the message selection screen", then.messageSelectionScreenVisible(3));
+  });
+  When("I select You got this!", when.tapID(ids.P2P_MESSAGE(P2P_MESSAGES[4])), async () => {
+    When("I tap next", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+      Then("I see the correct YuCoin gift amounts, with 250 not displaying due to my total value", then.giftingAmountScreenVisible(3, 520));
+    });
+  });
+  When("I select 100 YuCoin", when.tapID(ids.P2P_GIFTING_AMOUNT(`${P2P_GIFTING_AMOUNTS[3]} YuCoin`)), async () => {
+    When("I tap next to see the preview screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+      When("I tap to add a sticker", when.tapID(ids.P2P_STICKER, 2000), async () => {
+        Then("I should see the stickers modal appear", then.idVisible(ids.P2P_STICKER_MODAL));
+      });
+    });
+  });
+  When("I tap on the 'trophy' sticker", when.tapID(ids.P2P_STICKER_ITEMS("trophy"), 2000), async () => {
+    When("I tap to select the sticker", when.tapID(ids.CTA_SELECT, 1500), async () => {
+      Then("I am on the preview screen", then.onGiftingPreviewScreen(P2P_MESSAGES[4], P2P_GIFTING_AMOUNTS[3]));
+      Then("I should see the background slider", then.idVisible(ids.P2P_SLIDER, 1000));
+    });
+  });
+  When("I tap to select the ocean background", when.tapID(ids.P2P_SLIDER_ITEM("ocean"), 1500), async () => {
+    When("I press to send the gift", when.tapID(ids.P2P_SEND_BUTTON, 1500), async () => {
+      When("I wait", when.wait(3000), async () => {
+        Then("I am on the gifting success screen", then.onGiftingSuccessScreen(3));
+      });
+    });
+  });
+  When("I click to continue", when.pressGiftingGotIt, async () => {
+    Then("I am back on the leaderboard screen I started on", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));
+    Then("My YuCoin amount is depleted by 300 yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(220)));
   });
 });
