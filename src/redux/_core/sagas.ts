@@ -1,6 +1,6 @@
 import { all } from "redux-saga/effects";
 import appSagas from "../app/sagas";
-import getDailyPassiveActivity from "../dailyPassiveActivity/sagas";
+import getDailyPassiveActivity from "../daily-passive-activity/sagas";
 import debugToolSaga from "../debug/sagas";
 import coinsSagas from "../coins/sagas";
 import dailyStepsSagas from "../daily-steps/sagas";
@@ -26,7 +26,7 @@ import yuWatchSagas from "../yu-watch/sagas";
 import yuScreenSagas from "../yu-screen/sagas";
 import healthSmokingSagas from "../health-smoking/sagas";
 import rewardsTabSagas from "../rewards-tab/sagas";
-import battlePassSagas from "../battlePass/sagas";
+import battlePassSagas from "../battle-pass/sagas";
 import prizeSagas from "../prizes/sagas";
 
 export default function* allSagas() {
