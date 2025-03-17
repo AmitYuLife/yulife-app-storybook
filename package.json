@@ -177,7 +177,7 @@
     "redux-saga": "^1.2.3",
     "reselect": "^4.1.8",
     "simple-markdown": "^0.7.3",
-    "snyk": "1.996.0"
+    "snyk": "1.1064.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
