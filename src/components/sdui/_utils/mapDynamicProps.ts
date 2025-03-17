@@ -26,12 +26,17 @@ type NumberToFixedOperation = {
   value: number;
 };
 
+type FormatNumberOperation = {
+  type: "format-number";
+};
+
 type Operation =
   | MultiplyOperation
   | StringPrefixOperation
   | MathCeilOperation
   | MathFloorOperation
-  | NumberToFixedOperation;
+  | NumberToFixedOperation
+  | FormatNumberOperation;
 
 export const mapDynamicProps = (sduiId: string, sduiReducerState: SduiReducerState, dynamicProps: string) => {
   if (!sduiReducerState?.id || !dynamicProps || !sduiId) {
@@ -101,6 +106,12 @@ export const mapDynamicProps = (sduiId: string, sduiReducerState: SduiReducerSta
               const accAsNumber = Number(operationAcc);
 
               return accAsNumber.toFixed(operationReducer.value);
+            }
+
+            if (operationReducer.type === "format-number") {
+              const accAsNumber = Number(operationAcc);
+
+              return accAsNumber.toLocaleString();
             }
 
             return operationAcc;
