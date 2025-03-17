@@ -153,7 +153,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
           description: t("screens.permissions.description"),
           value: "",
           onPress: () => {
-            if (features.tempGameEnableReleaseYuHealthV2 && !activeProvider) {
+            if (features.tempGameEnableReleaseYuHealthV3 && !activeProvider) {
               Navigation.push(ROUTES.dailySteps, {
                 component: {
                   id: ROUTES.yuHealthConnect,
@@ -205,7 +205,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
     [
       activeProvider,
       cyclingMeasurement,
-      features.tempGameEnableReleaseYuHealthV2,
+      features.tempGameEnableReleaseYuHealthV3,
       features.gameSettingsLeaderboardsVisible,
     ]
   );

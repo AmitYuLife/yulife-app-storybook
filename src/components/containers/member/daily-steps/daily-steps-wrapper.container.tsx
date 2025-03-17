@@ -4,9 +4,9 @@ import { useUserFeatures } from "@hooks";
 import DailyStepsContainer from "./daily-steps.container";
 
 const DailyStepsWrapper = (props: any) => {
-  const { tempGameEnableReleaseYuHealthV2 } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV3 } = useUserFeatures();
 
-  if (!tempGameEnableReleaseYuHealthV2) {
+  if (!tempGameEnableReleaseYuHealthV3) {
     return <DailyStepsOldContainer {...props} />;
   }
 

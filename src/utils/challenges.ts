@@ -15,7 +15,7 @@ interface IOnPressChallengeTileParams {
   componentId: string;
   showOverlay?: () => void;
   createChallenge: () => void;
-  tempGameEnableReleaseYuHealthV2?: boolean;
+  tempGameEnableReleaseYuHealthV3?: boolean;
   capability?: HealthProviderCapability[];
   levelSlot: Slot;
   setActiveSlot: (slot: Slot) => void;
@@ -32,7 +32,7 @@ export const onPressChallengeTile = async ({
   verifyAndAuthorizeCapability,
   createChallenge,
   level,
-  tempGameEnableReleaseYuHealthV2,
+  tempGameEnableReleaseYuHealthV3,
   ...props
 }: IOnPressChallengeTileParams) => {
   if (levelSlot.isLocked) {
@@ -59,7 +59,7 @@ export const onPressChallengeTile = async ({
     }
   }
 
-  if (!tempGameEnableReleaseYuHealthV2) {
+  if (!tempGameEnableReleaseYuHealthV3) {
     return onPressChallengeTileFitkit({
       showOverlay,
       levelSlot,
@@ -67,7 +67,7 @@ export const onPressChallengeTile = async ({
       componentId,
       createChallenge,
       level,
-      tempGameEnableReleaseYuHealthV2,
+      tempGameEnableReleaseYuHealthV3,
       ...props,
     });
   }

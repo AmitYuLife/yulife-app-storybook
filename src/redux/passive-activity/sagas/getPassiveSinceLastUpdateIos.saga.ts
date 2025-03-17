@@ -60,7 +60,7 @@ const getSteps = async (
 
   const startTime = moment(stepsLastUpdate).startOf("day");
 
-  if (!features.tempGameEnableReleaseYuHealthV2) {
+  if (!features.tempGameEnableReleaseYuHealthV3) {
     const stepsConfiguration = getAggregationStepCountConfiguration([]);
     const steps = await queryFitKitAggregatedData({
       start: startTime,
@@ -99,7 +99,7 @@ const getMeditation = async (
 
   const startTime = moment(meditationLastUpdate).startOf("day");
 
-  if (!features.tempGameEnableReleaseYuHealthV2) {
+  if (!features.tempGameEnableReleaseYuHealthV3) {
     const meditation = await queryFitKitSampleData({
       startTime: startTime.format(),
       endTime: endDateMeditation.format(),
@@ -142,7 +142,7 @@ const getCycling = async (
 
   const startTime = moment(cyclingLastUpdate).startOf("day");
 
-  if (!features.tempGameEnableReleaseYuHealthV2) {
+  if (!features.tempGameEnableReleaseYuHealthV3) {
     const cyclingConfig = getAggregationCyclingConfiguration(features);
     const cycling = await queryFitKitAggregatedData({
       start: startTime,

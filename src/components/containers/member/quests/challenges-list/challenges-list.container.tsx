@@ -49,7 +49,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
   const {
-    tempGameEnableReleaseYuHealthV2,
+    tempGameEnableReleaseYuHealthV3,
     tempGameUseSettingsConfigForQuestMapV3,
     gameHideMeditationInternalContent,
     gameHideWorkoutInternalContent,
@@ -226,7 +226,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
             createChallenge,
             authoriseFitKitTypes,
             setActiveSlot: setSlot,
-            tempGameEnableReleaseYuHealthV2,
+            tempGameEnableReleaseYuHealthV3,
             verifyAndAuthorizeCapability,
             showOverlay: showOverlayRef?.current,
           });
@@ -238,7 +238,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     componentId,
     currentWorld,
     authoriseFitKitTypes,
-    tempGameEnableReleaseYuHealthV2,
+    tempGameEnableReleaseYuHealthV3,
     verifyAndAuthorizeCapability,
     data?.getQuestMapLevel?.slots,
     createChallenge,

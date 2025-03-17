@@ -8,9 +8,9 @@ interface IPermissionsProps {
 }
 
 const PermissionsWrapper = (props: IPermissionsProps) => {
-  const { tempGameEnableReleaseYuHealthV2 } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV3 } = useUserFeatures();
 
-  if (!tempGameEnableReleaseYuHealthV2) {
+  if (!tempGameEnableReleaseYuHealthV3) {
     return <PermissionsOldContainer {...props} />;
   }
 
