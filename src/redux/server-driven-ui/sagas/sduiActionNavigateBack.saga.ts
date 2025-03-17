@@ -7,11 +7,15 @@ import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { parseJSON } from "@utils";
 import Logger from "@services/logging/logger";
+import { Keyboard } from "react-native";
 
 export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPayload) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
 
-  const onExit = () => Navigation.pop(currentRoute);
+  const onExit = () => {
+    Keyboard.dismiss();
+    Navigation.pop(currentRoute);
+  };
 
   const {
     isValid,
