@@ -174,6 +174,7 @@ function RewardsPurchasesContainer() {
             estimatedItemSize={175}
             onRefresh={handleFetchCards}
             refreshing={loading}
+            showsVerticalScrollIndicator={false}
           />
         </Box>
       )}

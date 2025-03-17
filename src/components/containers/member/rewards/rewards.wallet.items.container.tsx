@@ -117,6 +117,7 @@ function RewardsPurchasesContainer({ rewardId, type }: IRewardsPurchasesContaine
           estimatedItemSize={142}
           refreshing={loading}
           onRefresh={handleRefresh}
+          showsVerticalScrollIndicator={false}
         />
       </Box>
       <GenericHeadingAbsolute
