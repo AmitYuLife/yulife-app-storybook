@@ -26,10 +26,12 @@ const WalletItem = <T,>({ item, onPress }: WalletItemProps<T>) => (
       </Box>
       <Box flex={1} style={styles.rightContainer}>
         <Box style={styles.titleContainer}>
-          <TextTemplate color={"#5C5757"} type="b1b" numberOfLines={1}>
-            {item.title}
-          </TextTemplate>
-          <Box style={styles.chevronContainer}>
+          <Box flex={1}>
+            <TextTemplate color={"#5C5757"} type="b1b" numberOfLines={1}>
+              {item.title}
+            </TextTemplate>
+          </Box>
+          <Box style={styles.chevronContainer} flexBasis={24}>
             <ChevronIcon size={24} direction="right" color={Colours.button.link} />
           </Box>
         </Box>

@@ -75,6 +75,7 @@ function RewardsPurchasesContainer({ rewardId, type }: IRewardsPurchasesContaine
 
     return data?.getMobileGamePartnerRewardsInventoryItems?.items;
   }, [data?.getMobileGamePartnerRewardsInventoryItems?.items, loading]);
+
   return (
     <Box flexDirection="column" flex={1} p={20}>
       <GenericHeadingPad />
