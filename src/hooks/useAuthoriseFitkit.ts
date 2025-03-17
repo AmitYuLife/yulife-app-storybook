@@ -23,7 +23,7 @@ export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAut
       const dayStart = now.clone().startOf("day");
       const dayEnd = now.clone().endOf("day");
 
-      if (features.tempGameEnableReleaseYuHealthV2) {
+      if (features.tempGameEnableReleaseYuHealthV3) {
         queryPedometerFromDate({
           startTime: dayStart.toDate(),
           endTime: dayEnd.toDate(),

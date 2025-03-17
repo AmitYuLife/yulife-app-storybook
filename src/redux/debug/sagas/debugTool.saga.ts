@@ -27,7 +27,7 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
     return;
   }
 
-  const { enableDebugTool, tempGameEnableReleaseYuHealthV2 }: ReturnType<typeof getUserFeatures> = yield select(
+  const { enableDebugTool, tempGameEnableReleaseYuHealthV3 }: ReturnType<typeof getUserFeatures> = yield select(
     getUserFeatures
   );
 
@@ -56,12 +56,12 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
       startTime,
       fitKitTypes,
       disableTypeFilter,
-      usingYuHealth: !!tempGameEnableReleaseYuHealthV2,
+      usingYuHealth: !!tempGameEnableReleaseYuHealthV3,
     });
 
     let results: SampleQueryResult[] = [];
 
-    if (!tempGameEnableReleaseYuHealthV2) {
+    if (!tempGameEnableReleaseYuHealthV3) {
       const { results: fitkitResults, error: fitkitError }: QueryFitKitByTypesRawResponse = yield call(
         queryFitKitSampleData,
         {
@@ -83,7 +83,7 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
       });
 
       results = (fitkitResults || []).map((r) => ({ ...r, type: r.type as FitKitType, value: Math.round(r.value) }));
-    } else if (tempGameEnableReleaseYuHealthV2) {
+    } else if (tempGameEnableReleaseYuHealthV3) {
       const FITKIT_TYPE_MAP: Record<string, HealthDataType> = {
         StepCount: HealthDataType.steps,
         MindfulSession: HealthDataType.mindfulMinutes,

@@ -71,7 +71,7 @@ const LoginContainer: React.FC<Props> = ({
       onboarded: boolean;
       userFeatures: IFeature;
     }) => {
-      const { tempGameEnableReleaseYuHealthV2, tempShowSignUpRewardFirst } = userFeatures || {};
+      const { tempGameEnableReleaseYuHealthV3, tempShowSignUpRewardFirst } = userFeatures || {};
 
       Keyboard.dismiss();
 
@@ -84,7 +84,7 @@ const LoginContainer: React.FC<Props> = ({
       };
 
       const connectNavigationBuilder = (next?: VoidFunction) => () => {
-        const route = tempGameEnableReleaseYuHealthV2 ? ROUTES.yuHealthConnect : ROUTES.onboardingFitKitConnect;
+        const route = tempGameEnableReleaseYuHealthV3 ? ROUTES.yuHealthConnect : ROUTES.onboardingFitKitConnect;
 
         return navigateToRoute(componentId, route, next);
       };
@@ -95,7 +95,7 @@ const LoginContainer: React.FC<Props> = ({
         actionOrder.push(onboardingNavigationBuilder);
       }
 
-      if (!authorised || (tempGameEnableReleaseYuHealthV2 && !Style.isIPad())) {
+      if (!authorised || (tempGameEnableReleaseYuHealthV3 && !Style.isIPad())) {
         actionOrder.push(connectNavigationBuilder);
       }
 
@@ -153,7 +153,7 @@ const LoginContainer: React.FC<Props> = ({
         dispatch(loginUserSuccess(toLoginUserSuccessPayload(needle.data)));
 
         const showHealthConnect =
-          !features.some((f) => f.name === "tempGameEnableReleaseYuHealthV2") && fitkitAuthorised;
+          !features.some((f) => f.name === "tempGameEnableReleaseYuHealthV3") && fitkitAuthorised;
         // no need to send the user to healthkit-connect if device is an ipad
         await goToNext({
           authorised: Style.isIPad() ? true : showHealthConnect,

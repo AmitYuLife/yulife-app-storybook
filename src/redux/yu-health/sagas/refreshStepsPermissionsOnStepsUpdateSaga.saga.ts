@@ -18,6 +18,7 @@ export default function* refreshStepsPermissionsOnStepsUpdateSaga({
   const capabilityStatuses: ReturnType<typeof getCapabilityStatuses> = yield select(getCapabilityStatuses);
 
   if (
+    capabilityStatuses &&
     (payload?.steps ?? 0) > 0 &&
     capabilityStatuses[HealthProviderCapability.STEP_COUNT] === HealthPermissionStatus.notDetermined
   ) {

@@ -44,12 +44,12 @@ export default [
 function yuHealthFeatureGuard<T extends Function>(saga: T) {
   return function* yuHealthFeatureGuardSaga(...args: T extends (...args: infer A) => unknown ? A : never) {
     let features: IFeature = yield select(getUserFeatures);
-    if (isEmpty(features) || !features.tempGameEnableReleaseYuHealthV2) {
+    if (isEmpty(features) || !features.tempGameEnableReleaseYuHealthV3) {
       yield take([AUTHENTICATED, GET_ALL_USER_DATA_SUCCESS, GET_USER_SUCCESS]);
       features = yield select(getUserFeatures);
     }
 
-    if (!features.tempGameEnableReleaseYuHealthV2) {
+    if (!features.tempGameEnableReleaseYuHealthV3) {
       return;
     }
 
