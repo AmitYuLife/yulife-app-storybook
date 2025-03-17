@@ -31,6 +31,7 @@ const CUSTOM_CONFIG = {
       "react-native-track-player": path.join(__dirname, "/aliases/react-native-track-player"),
       "expo-image": path.join(__dirname, "/aliases/expo-image"),
       "react-native-share": path.join(__dirname, "/aliases/react-native-share"),
+      "@hcaptcha/react-native-hcaptcha": path.join(__dirname, "/aliases/react-native-hcaptcha"),
     },
     extensions: [".web.js", ".js", ".ts", ".tsx"],
   },
