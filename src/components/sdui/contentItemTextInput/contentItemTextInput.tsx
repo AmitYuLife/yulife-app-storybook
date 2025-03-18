@@ -22,13 +22,15 @@ interface Props extends GqlTextInput {
 }
 
 const getValidationError = (value: string, validation: GqlTextInput["validation"]) => {
+  const strippedNumber = value?.replace(/,/g, "");
+  const numberValue = Number(strippedNumber);
   return (
     validation.find((v) => {
       switch (v.validationType) {
         case ValidationType.MinNumber:
-          return Number(value) < Number(v.validationValue);
+          return numberValue < Number(v.validationValue);
         case ValidationType.MaxNumber:
-          return Number(value.replace(/,/g, "")) > Number(v.validationValue);
+          return numberValue > Number(v.validationValue);
         case ValidationType.Regex:
         default:
           return !new RegExp(v.validationValue).test(value);
