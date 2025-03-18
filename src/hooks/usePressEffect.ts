@@ -2,11 +2,12 @@ import { useCallback, useState } from "react";
 import { ViewStyle } from "react-native";
 import { useAnimatedStyle, withTiming } from "react-native-reanimated";
 
-interface IUsePressEffectProps {
+export interface IUsePressEffectProps {
   pressedOpacity?: number;
   pressedScale?: number;
   pressedTranslation?: number;
   duration?: number;
+  isEnabled?: boolean;
   isActive?: boolean;
 }
 
@@ -16,10 +17,15 @@ export const usePressEffect = ({
   pressedTranslation = 5,
   duration = 100,
   isActive,
+  isEnabled = true,
 }: IUsePressEffectProps = {}) => {
   const [isPressedIn, setIsPressedIn] = useState<boolean>(false);
 
   const animatedStyle = useAnimatedStyle((): ViewStyle => {
+    if (!isEnabled) {
+      return {};
+    }
+
     const { scale, translation } = (() => {
       if (isPressedIn) {
         return { scale: pressedScale, translation: pressedTranslation };
