@@ -9,6 +9,7 @@ import { Box } from "@atoms";
 import ClaimedRewardCard from "@organisms/claimed-reward-card/claimed-reward-card";
 import ClaimLights from "../claim-all/claim-lights";
 import { useTranslation } from "@hooks";
+import { CLAIMED_REWARD_ITEMS } from "@ids";
 
 const AllPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProps) => {
   const onClaimPress = useCallback(() => {
@@ -26,7 +27,7 @@ const AllPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProps
         label={t["modals.open_random_chest.claim_all_title"]}
         body={t["modals.open_random_chest.claim_all_subtitle"]}
       />
-      <Box p={5} w="100%">
+      <Box p={5} w="100%" testID={CLAIMED_REWARD_ITEMS(openedItems?.length)}>
         <ShowcaseStack>
           {openedItems.map((item) => (
             <ClaimedRewardCard

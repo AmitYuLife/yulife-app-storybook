@@ -166,7 +166,7 @@ Feature("P2P gifting", async () => {
       Then("I can see the 'Already thanked them' message", then.textVisible(getTranslation(locale).screens.gifting.already_thanked_them, 2500));
       Then("I should see the correct gift amount", then.idVisible(ids.SENDER_GIFTING_AMOUNT(data.USER_18_GIFT_A.data.amount), 2500));
     });
-    When("I tap to send my own message", when.tapID(ids.P2P_SEND_YOUR_OWN_MESSAGE, 2500), async () => {
+    When("I tap to send my friends a gift", when.tapID(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2500), async () => {
       Then("I should see the soft landing intro screen", then.idVisible(ids.GIFTING_INTRO));
     });
     When("I tap to close the soft landing intro screen", when.tapID(ids.SCREEN_CLOSE, 2500), async () => {
