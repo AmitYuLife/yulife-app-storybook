@@ -13,7 +13,7 @@ import { yuscreenImages } from "@images";
 Feature("Quizzes and questionnaires", async () => {
   Scenario("I encounter an error on quiz event without journey and Health Questionnaire is disabled", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_137_GHI_REWARDS, data.AUTH_137), async () => {
-      Then("I should see the money mastery quiz", then.customerQuizModalVisible("Money Mastery#2", "6"));
+      Then("I should see the money mastery quiz", then.customerQuizModalVisible("Money Mastery#2", "6", 0));
     });
     When("I click on the event card", when.tapText("Money Mastery#2"), async () => {
       Then("I am on the correct description page for the money mastery quiz", then.onFinancialWellnessQuizDescriptionPage(moneyMasteryFWQDescriptionPage, false));

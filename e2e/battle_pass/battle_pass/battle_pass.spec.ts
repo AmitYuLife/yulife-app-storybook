@@ -40,7 +40,7 @@ Feature("I can view and use all battle pass features", async () => {
       When("I tap X to close the prize modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1, 2000), async () => {
         Then("I should see the first reward is now available to claim", then.idVisible(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", 1), 2000));
         Then("I should see my updated coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85140)));
-        Then("I should see level 2 on the prograss bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
+        Then("I should see level 2 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
       });
     });
   });
@@ -63,12 +63,12 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
       When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
-        Then("I should see the yumoji item available to claim", then.idVisible(ids.YUMOJI_REWARD_PICKER_ITEM, 2000));
+        Then("I should see 6 items available to claim", then.idVisible(ids.CLAIMED_REWARD_ITEMS(6), 2000));
       });
     });
     When("I tap to claim my prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
       Then("I should be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
-      Then("I should see level 2 on the prograss bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
+      Then("I should see level 2 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
       Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
     });
   });
@@ -105,7 +105,7 @@ Feature("I can view and use all battle pass features", async () => {
     When("I donate to Plant a tree and progress to the third level", when.donate("tree", 5), async () => {
       When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
         Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
-        Then("I should see level 3 on the prograss bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
+        Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
       });
     });
     When("I go back to the Quests screen", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {

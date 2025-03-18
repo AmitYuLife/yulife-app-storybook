@@ -897,6 +897,7 @@ export const ACTIVATED_INVENTORY_ITEM = "ACTIVATED_INVENTORY_ITEM";
 export const CLOSE_INVENTORY = "modals.consumables.close-text-view";
 export const EXTRA_CHALLENGE_INDICATOR = (value: number) => `EXTRA_CHALLENGE_INDICATOR_${value}`;
 export const YUMOJI_REWARD_PICKER_ITEM = "YUMOJI_REWARD_PICKER_ITEM";
+export const CLAIMED_REWARD_ITEMS = (items: number) => `CLAIMED_REWARD_ITEM_${items}`;
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";
@@ -936,6 +937,7 @@ export const P2P_GIFT_VIEW = (background: string) => `P2P_GIFT_VIEW_${background
 export const P2P_GIFTING_AMOUNT = (label: string) => `P2P_GIFTING_AMOUNT_${label}`;
 export const P2P_SEND_BUTTON = "screens.gifting.send";
 export const P2P_SEND_YOUR_OWN_MESSAGE = "screens.gifting.send_your_own_message";
+export const P2P_SEND_YOUR_FRIENDS_A_GIFT = "screens.gifting.send_your_friend_a_gift";
 export const P2P_STICKER_ITEMS = (id: string) => `P2P_STICKER_ITEMS_${id}`;
 export const P2P_STICKER = "P2P_STICKER";
 export const P2P_STICKER_MODAL = "P2P_STICKER_MODAL";

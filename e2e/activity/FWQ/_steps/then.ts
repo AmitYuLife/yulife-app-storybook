@@ -31,11 +31,13 @@ export const {
 
 export const { scrollUntilTextVisible } = navigation.scrolling;
 
-export const customerQuizModalVisible = (name: string, daysLeft: string) => async () => {
-  await textVisible(name)();
-  await idVisible(ids.EVENT_DESCRIPTION("0 / 1 journeys"))();
-  await textVisible(`${daysLeft} days left`)();
-};
+export const customerQuizModalVisible =
+  (name: string, daysLeft: string, progress: number) => async () => {
+    await textVisible(name)();
+    await textVisible("0 / 1 journeys")();
+    await textVisible(`${daysLeft} days left`)();
+    await idVisible(ids.EVENT_PROGRESS_BAR(progress))();
+  };
 
 export const onFinancialWellnessQuizDescriptionPage =
   (details: FinancialWellnessQuizDescriptionPage, completed: boolean) => async () => {
