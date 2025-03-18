@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -1131,10 +1130,13 @@ export type BusinessSessionSettings = {
   earlyAccessEnabled: Scalars["Boolean"]["output"];
   enableTagRestriction: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
+  helpCentreLink?: Maybe<Scalars["String"]["output"]>;
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
   onboardingEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
+  /** @deprecated Use showConnectionsOverrideState */
   showConnectionsOverride?: Maybe<Scalars["Boolean"]["output"]>;
+  showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
 };
 
 export type BusinessTag = {
@@ -3401,6 +3403,20 @@ export type DailyPensionContribution = {
   contribution?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   yuCoinAwarded?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type DataWidget = {
+  __typename?: "DataWidget";
+  description: Scalars["String"]["output"];
+  value: Scalars["Float"]["output"];
+};
+
+export type DataWidgets = {
+  __typename?: "DataWidgets";
+  downloads: DataWidget;
+  monthlyActiveUsers: Scalars["Int"]["output"];
+  steps: DataWidget;
+  yuCoin: DataWidget;
 };
 
 export type DateQuery = {
@@ -7777,6 +7793,7 @@ export type Query = {
   getGoalDetails?: Maybe<GoalDetails>;
   getGoalMilestoneDetails: GoalMilestoneDetails;
   getHealthSmokingState?: Maybe<HealthSmokingState>;
+  getHomeWidgetsData: DataWidgets;
   getHrisConnection?: Maybe<HrisConnection>;
   getHrisConnections: HrisConnectionsResult;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
@@ -9353,6 +9370,12 @@ export type ShippingAddress = {
   addressThirdLine?: Maybe<Scalars["String"]["output"]>;
 };
 
+export enum ShowConnectionsOverrideState {
+  Disabled = "disabled",
+  Enabled = "enabled",
+  Inactive = "inactive",
+}
+
 export type SmokingSection = {
   __typename?: "SmokingSection";
   content?: Maybe<SmokingSectionContent>;
@@ -10833,12 +10856,16 @@ export type UserProfileAvatar = {
 
 export enum UserProfileBadgeCountType {
   InboxMessages = "inboxMessages",
+  Rewards = "rewards",
+  YuScreen = "yuScreen",
 }
 
 export type UserProfileBadgeCounts = {
   __typename?: "UserProfileBadgeCounts";
   id: Scalars["ID"]["output"];
   inboxMessages: Scalars["Int"]["output"];
+  rewards: Scalars["Int"]["output"];
+  yuScreen: Scalars["Int"]["output"];
 };
 
 export type UserProfileEventMilestone = {
@@ -11886,6 +11913,8 @@ export type UserProfileBadgeCountsFragment = {
   __typename?: "UserProfileBadgeCounts";
   id: string;
   inboxMessages: number;
+  rewards: number;
+  yuScreen: number;
 };
 
 export type MobileGameBattlePassFragment = {
@@ -28156,15 +28185,6 @@ export type UpdateUserNotificationsSettingsMutation = {
   updateUserNotificationsSettings?: boolean | null;
 };
 
-export type MarkMobileNotificationsAsViewedByTypeMutationVariables = Exact<{
-  type?: InputMaybe<Scalars["String"]["input"]>;
-}>;
-
-export type MarkMobileNotificationsAsViewedByTypeMutation = {
-  __typename?: "Mutation";
-  markMobileNotificationsAsViewedByType: boolean;
-};
-
 export type GetMobileWhatsNewModalQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetMobileWhatsNewModalQuery = {
@@ -38492,6 +38512,31 @@ export type GetTodayEarningsQuery = {
   };
 };
 
+export type ClearUserProfileBadgeCountMutationVariables = Exact<{
+  type: UserProfileBadgeCountType;
+}>;
+
+export type ClearUserProfileBadgeCountMutation = {
+  __typename?: "Mutation";
+  data: { __typename?: "UserProfileBadgeCounts"; id: string; inboxMessages: number; rewards: number; yuScreen: number };
+};
+
+export type GetUserProfileBadgeCountQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetUserProfileBadgeCountQuery = {
+  __typename?: "Query";
+  profile: {
+    __typename?: "UserProfile";
+    badgeCounts: {
+      __typename?: "UserProfileBadgeCounts";
+      id: string;
+      inboxMessages: number;
+      rewards: number;
+      yuScreen: number;
+    };
+  };
+};
+
 export type ActivateGameConsumableMutationVariables = Exact<{
   consumableId: Scalars["String"]["input"];
 }>;
@@ -38510,15 +38555,6 @@ export type ActivateGameConsumableMutation = {
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null;
   };
-};
-
-export type ClearUserProfileBadgeCountMutationVariables = Exact<{
-  type: UserProfileBadgeCountType;
-}>;
-
-export type ClearUserProfileBadgeCountMutation = {
-  __typename?: "Mutation";
-  data: { __typename?: "UserProfileBadgeCounts"; id: string; inboxMessages: number };
 };
 
 export type GetGameConsumablesQueryVariables = Exact<{ [key: string]: never }>;
@@ -38746,7 +38782,6 @@ export type GetUserProfileQuery = {
   getUserProfile: {
     __typename?: "UserProfile";
     earnRate: number;
-    tabNotifications: Array<MobileTabs>;
     supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
     gameSettings: {
       __typename?: "GameSettings";
@@ -38827,7 +38862,13 @@ export type GetUserProfileQuery = {
       hasAppReview: boolean;
       hasAdBanners: boolean;
     };
-    badgeCounts: { __typename?: "UserProfileBadgeCounts"; id: string; inboxMessages: number };
+    badgeCounts: {
+      __typename?: "UserProfileBadgeCounts";
+      id: string;
+      inboxMessages: number;
+      rewards: number;
+      yuScreen: number;
+    };
     heroCards: Array<{
       __typename?: "HeroCard";
       id: string;
@@ -45778,6 +45819,8 @@ export const UserProfileBadgeCountsFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "inboxMessages" } },
+          { kind: "Field", name: { kind: "Name", value: "rewards" } },
+          { kind: "Field", name: { kind: "Name", value: "yuScreen" } },
         ],
       },
     },
@@ -84856,42 +84899,6 @@ export const UpdateUserNotificationsSettingsDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateUserNotificationsSettingsMutation, UpdateUserNotificationsSettingsMutationVariables>;
-export const MarkMobileNotificationsAsViewedByTypeDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "MarkMobileNotificationsAsViewedByType" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "markMobileNotificationsAsViewedByType" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "type" },
-                value: { kind: "Variable", name: { kind: "Name", value: "type" } },
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  MarkMobileNotificationsAsViewedByTypeMutation,
-  MarkMobileNotificationsAsViewedByTypeMutationVariables
->;
 export const GetMobileWhatsNewModalDocument = {
   kind: "Document",
   definitions: [
@@ -98721,6 +98728,108 @@ export const GetTodayEarningsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetTodayEarningsQuery, GetTodayEarningsQueryVariables>;
+export const ClearUserProfileBadgeCountDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ClearUserProfileBadgeCount" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "UserProfileBadgeCountType" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "data" },
+            name: { kind: "Name", value: "clearUserProfileBadgeCount" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "type" },
+                value: { kind: "Variable", name: { kind: "Name", value: "type" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserProfileBadgeCounts" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserProfileBadgeCounts" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileBadgeCounts" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "inboxMessages" } },
+          { kind: "Field", name: { kind: "Name", value: "rewards" } },
+          { kind: "Field", name: { kind: "Name", value: "yuScreen" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ClearUserProfileBadgeCountMutation, ClearUserProfileBadgeCountMutationVariables>;
+export const GetUserProfileBadgeCountDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserProfileBadgeCount" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "profile" },
+            name: { kind: "Name", value: "getUserProfile" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "badgeCounts" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserProfileBadgeCounts" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserProfileBadgeCounts" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileBadgeCounts" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "inboxMessages" } },
+          { kind: "Field", name: { kind: "Name", value: "rewards" } },
+          { kind: "Field", name: { kind: "Name", value: "yuScreen" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUserProfileBadgeCountQuery, GetUserProfileBadgeCountQueryVariables>;
 export const ActivateGameConsumableDocument = {
   kind: "Document",
   definitions: [
@@ -98802,59 +98911,6 @@ export const ActivateGameConsumableDocument = {
     },
   ],
 } as unknown as DocumentNode<ActivateGameConsumableMutation, ActivateGameConsumableMutationVariables>;
-export const ClearUserProfileBadgeCountDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "ClearUserProfileBadgeCount" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "UserProfileBadgeCountType" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "data" },
-            name: { kind: "Name", value: "clearUserProfileBadgeCount" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "type" },
-                value: { kind: "Variable", name: { kind: "Name", value: "type" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserProfileBadgeCounts" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "UserProfileBadgeCounts" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileBadgeCounts" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "inboxMessages" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ClearUserProfileBadgeCountMutation, ClearUserProfileBadgeCountMutationVariables>;
 export const GetGameConsumablesDocument = {
   kind: "Document",
   definitions: [
@@ -99828,7 +99884,6 @@ export const GetUserProfileDocument = {
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserProfileEvents" } }],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "tabNotifications" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "supportConfig" },
@@ -99987,6 +100042,8 @@ export const GetUserProfileDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "inboxMessages" } },
+          { kind: "Field", name: { kind: "Name", value: "rewards" } },
+          { kind: "Field", name: { kind: "Name", value: "yuScreen" } },
         ],
       },
     },

@@ -80,6 +80,3 @@ export const getUserEventsWithAds = createSelector(getUserActiveEvents, getAdBan
 
   return [...events, ...formatData];
 });
-
-const tabNotifications = (state: State) => state.tabNotifications || [];
-export const getTabNotifications = createSelector(reducer, tabNotifications);

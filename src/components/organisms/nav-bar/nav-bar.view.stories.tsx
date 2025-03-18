@@ -16,7 +16,6 @@ const meta: Meta<typeof NavBarView> = {
     activeIndex: 0,
     hasQuestNotification: false,
     labels: undefined,
-    tabNotifications: [],
   },
   decorators: [
     (Story) => (

@@ -7,7 +7,6 @@ import {
   IUpdateUserProfilePayload,
   ILoginUserPayload,
   AppDataType,
-  MarkNotificationsAsViewedByTypePayload,
   UserSurge,
   UpdateUserAvatarRemoteFilesPayload,
   Events,
@@ -54,7 +53,6 @@ export const UPDATE_USER_AVATAR = "UPDATE_USER_AVATAR";
 export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
 export const UPDATE_USER_GOAL = "UPDATE_USER_GOAL";
 export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
-export const MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE = "MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE";
 export const GET_USER_SESSION_SUCCESS = "GET_USER_SESSION_SUCCESS";
 
 export const refreshUserToken = createAction<null, "REFRESH_USER_TOKEN">(REFRESH_USER_TOKEN);
@@ -157,10 +155,5 @@ export const updateUserAvatarRemoteFiles: ActionCreatorWithOptionalPayload<Updat
   createAction<UpdateUserAvatarRemoteFilesPayload, "UPDATE_USER_AVATAR">(UPDATE_USER_AVATAR);
 
 export const updateUserSurge = createAction<UserSurge, "UPDATE_USER_SURGE">(UPDATE_USER_SURGE);
-
-export const markNotificationsAsViewedByType = createAction<
-  MarkNotificationsAsViewedByTypePayload,
-  "MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE"
->(MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE);
 
 export const getUserSessionSuccess = createAction<null, "GET_USER_SESSION_SUCCESS">(GET_USER_SESSION_SUCCESS);

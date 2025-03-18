@@ -3,16 +3,20 @@ import { useSelector } from "react-redux";
 import NavBarView from "./nav-bar.view";
 import { getHasNotification as getQuestNotification } from "@redux/levels/levels.selectors";
 import { NavBarProps } from "./nav-bar.helpers";
-import { getBlackListedNavBarTabs, getTabNotifications } from "@redux/user/user.selectors";
+import { getBlackListedNavBarTabs } from "@redux/user/user.selectors";
 import { Optional } from "@utils";
+import { useQuery } from "@apollo/client";
+import { gql } from "@graphql/__generated";
 
-type NavBarContainerProps = Optional<NavBarProps, "hasQuestNotification" | "tabNotifications" | "suspendedTabs">;
+type NavBarContainerProps = Optional<NavBarProps, "hasQuestNotification" | "badgeCounts" | "suspendedTabs">;
 
 const NavBarContainer = (props: NavBarContainerProps) => {
   const hasQuestNotification = useSelector(getQuestNotification);
-  const tabNotifications = useSelector(getTabNotifications);
   const blackListedNavBarTabs = useSelector(getBlackListedNavBarTabs);
 
+  const { data } = useQuery(gql("GetUserProfileBadgeCountDocument"), { fetchPolicy: "cache-only" });
+
+  const badgeCounts = useMemo(() => data?.profile?.badgeCounts || {}, [data?.profile?.badgeCounts]);
   const suspendedTabs = useMemo(
     () =>
       (blackListedNavBarTabs || []).reduce<Record<string, boolean>>((acc, tab) => {
@@ -28,7 +32,7 @@ const NavBarContainer = (props: NavBarContainerProps) => {
       labels={props.labels}
       suspendedTabs={suspendedTabs}
       hasQuestNotification={hasQuestNotification}
-      tabNotifications={tabNotifications}
+      badgeCounts={badgeCounts}
     />
   );
 };

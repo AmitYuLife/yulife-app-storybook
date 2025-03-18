@@ -7,17 +7,15 @@ import { LeftIcon } from "./subcomponents/left";
 import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 
-const CACHE_ONLY_OPTIONS = { fetchPolicy: "cache-only" as const };
-
 const TopBarContainer = (props: Omit<TopBarViewProps, "badges">) => {
   const { onPressLeftIcon, timer, leftIcons, name, menuLabel, leftIcon, middleLabel, type, onLayout, rightIcon } =
     props;
 
-  const { data } = useQuery(gql("GetUserProfileDocument"), CACHE_ONLY_OPTIONS);
+  const { data } = useQuery(gql("GetUserProfileBadgeCountDocument"), { fetchPolicy: "cache-only" });
 
   const hasNotificationBadge = useMemo(
-    () => (data?.getUserProfile?.badgeCounts?.inboxMessages || 0) > 0,
-    [data?.getUserProfile?.badgeCounts?.inboxMessages]
+    () => (data?.profile?.badgeCounts?.inboxMessages || 0) > 0,
+    [data?.profile?.badgeCounts?.inboxMessages]
   );
   const hasMenuBadge = useSelector(getOnboardingReferralsBadge);
 

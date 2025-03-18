@@ -26,8 +26,10 @@ import { usePrizeHintPopup } from "@hooks";
 import { DETOX_ENABLED } from "@services/socket";
 
 const TOOLTIP_DELAY = 1000;
+const hasUnreadBadgeCount = (value: number) => (value || 0) > 0;
+
 const NavBarView = (props: NavBarProps) => {
-  const { activeIndex, hasQuestNotification, tabNotifications, labels = defaultLabels, suspendedTabs = {} } = props;
+  const { activeIndex, hasQuestNotification, labels = defaultLabels, suspendedTabs = {}, badgeCounts = {} } = props;
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const routeState = useSelector(getRouteState);
   const [displayElevation, setDisplayElevation] = useState(false);
@@ -46,9 +48,13 @@ const NavBarView = (props: NavBarProps) => {
 
   const notifications: Partial<Record<MobileTabs, boolean>> = useMemo(
     () => ({
-      [MobileTabs.Quests]: hasQuestNotification,
+      [MobileTabs.DailySteps]: hasQuestNotification || hasUnreadBadgeCount(badgeCounts?.[MobileTabs.DailySteps]),
+      [MobileTabs.Quests]: hasQuestNotification || hasUnreadBadgeCount(badgeCounts?.[MobileTabs.Quests]),
+      [MobileTabs.YuScreen]: hasUnreadBadgeCount(badgeCounts?.[MobileTabs.YuScreen]),
+      [MobileTabs.Leaderboard]: hasUnreadBadgeCount(badgeCounts?.[MobileTabs.Leaderboard]),
+      [MobileTabs.Rewards]: hasUnreadBadgeCount(badgeCounts?.[MobileTabs.Rewards]),
     }),
-    [hasQuestNotification]
+    [hasQuestNotification, badgeCounts]
   );
 
   const ListItemComponent = hasDonationBattlepass ? NavBarListItemAnimated : NavBarListItem;
@@ -79,9 +85,7 @@ const NavBarView = (props: NavBarProps) => {
               isVisible={isNavbarVisible}
               accessibilityLabel={t(data.accessibilityLabelKey)}
               accessibilityValue={t(data.accessibilityTextKey)}
-              hasNotification={
-                notifications[label.name as MobileTabs] || tabNotifications.includes(label.name as MobileTabs)
-              }
+              hasNotification={notifications[label.name as MobileTabs]}
               isActive={isActive}
               isSuspended={isSuspended}
               onPressIn={isSuspended ? noop : label.onPress}
