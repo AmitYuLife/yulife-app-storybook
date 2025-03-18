@@ -1,5 +1,4 @@
-import { MobileTabs } from "@graphql/__generated";
-import { Colours } from "../../../styles";
+import { Colours } from "@styles";
 
 export interface INavBarColourScheme {
   active: string;
@@ -31,7 +30,7 @@ export interface NavBarProps {
   labels?: ILabel[];
   suspendedTabs: Record<string, boolean>;
   hasQuestNotification: boolean;
-  tabNotifications: MobileTabs[];
+  badgeCounts: Record<string, number>;
 }
 
 export function getIconColour(isActive: boolean, isSuspended?: boolean) {

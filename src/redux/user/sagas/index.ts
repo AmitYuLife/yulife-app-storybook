@@ -17,7 +17,6 @@ import {
   REFRESH_USER_PROFILE_EVENTS,
   UPDATE_USER_PROFILE_EVENTS,
   GET_ALL_USER_DATA_START,
-  MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
   UPDATE_USER_PROFILE_HERO_CARDS,
   LOGOUT_SUCCESS,
 } from "../user.actions";
@@ -37,8 +36,7 @@ import updateUserConsentSaga from "./updateUserConsent.saga";
 import showDuelRespondModalSaga from "./showDuelRespondModal.saga";
 import getUserProfileData from "./getUserProfileData.sagas";
 import getUserProfileEvents from "./getUserProfileEvents.saga";
-import updateMobileTabsNotifications from "./updateMobileTabsNotifications.saga";
-import markNotificationsAsViewedByType from "./markNotificationsAsViewedByType.saga";
+import clearMobileTabsUnreadBadgeCounts from "./clearMobileTabsUnreadBadgeCounts.saga";
 import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
 import changeUserLocaleSaga from "./changeUserLocale.saga";
@@ -100,8 +98,7 @@ export default [
   takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
   takeLatest([REFRESH_USER_PROFILE, UPDATE_APP_STATE], getUserProfileData),
-  takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], updateMobileTabsNotifications),
-  takeLatest(MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE, markNotificationsAsViewedByType),
+  takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], clearMobileTabsUnreadBadgeCounts),
   takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS, UPDATE_USER_PROFILE_HERO_CARDS], showEventFinishDialog),
   takeLatest(SET_DEVICE_LOCALE, changeUserLocaleSaga),
   takeLatest([REHYDRATE, UPDATE_USER_PROFILE], setSuspendedTabs),

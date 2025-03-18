@@ -1,4 +1,4 @@
-import { MobileTabs, SduiActionType, UserFeatures } from "@redux/_core/types";
+import { SduiActionType, UserFeatures } from "@redux/_core/types";
 import { features as userFeatures } from "./features.data";
 import {
   IDailyStepsGetUserSuccessPayload,
@@ -52,7 +52,6 @@ export interface IUserStore {
   };
   events: Partial<Events>[];
   heroCards: HeroCard[];
-  tabNotifications: MobileTabs[];
   sessionTimestamp: number;
   supportConfig: {
     supportLevel: UserSupportLevel;
@@ -215,8 +214,6 @@ export type IUpdateUserProfilePayload = Partial<IUserStore> &
   };
 
 export type ILoginUserPayload = { intercomHash: string } & IGetUserSuccessPayload;
-
-export type MarkNotificationsAsViewedByTypePayload = { type: MobileTabs };
 
 export type UpdateUserAvatarRemoteFilesPayload = IUserStore["avatar"]["avatarRemoteFiles"];
 

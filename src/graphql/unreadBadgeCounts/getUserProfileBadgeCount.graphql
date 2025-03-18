@@ -1,0 +1,7 @@
+query GetUserProfileBadgeCount {
+  profile: getUserProfile {
+    badgeCounts {
+      ...UserProfileBadgeCounts
+    }
+  }
+}

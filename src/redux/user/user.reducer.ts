@@ -13,7 +13,6 @@ import {
   updateUserAvatarRemoteFiles,
   updateUserSurge as updateUserSurgeAction,
   logOutSuccess,
-  markNotificationsAsViewedByType as markNotificationsAsViewedByTypeAction,
   getUserFeaturesSuccess as getUserFeaturesSuccessAction,
   getUserConnectionsSuccess as getUserConnectionsSuccessAction,
   getUserSessionSuccess,
@@ -22,7 +21,6 @@ import { reduceUserFeatures } from "./user.helpers";
 import {
   Events,
   IUserGetUserSuccessPayload,
-  MarkNotificationsAsViewedByTypePayload,
   UserSurge,
   UserConnection,
   IUpdateUserProfilePayload,
@@ -81,7 +79,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   },
   events: [],
   heroCards: [],
-  tabNotifications: [],
   sessionTimestamp: 0,
   supportConfig: {
     supportLevel: null,
@@ -117,9 +114,6 @@ const userReducer = createReducer(getInitialState(), (builder) => {
   }));
   builder.addCase(updateUserSurgeAction, (state, action) => updateUserSurge(state, action.payload));
   builder.addCase(logOutSuccess, (state) => getInitialState(state.sessionCount));
-  builder.addCase(markNotificationsAsViewedByTypeAction, (state, action) =>
-    markNotificationsAsViewedByType(state, action.payload)
-  );
   builder.addCase(getUserFeaturesSuccessAction, (state, action) => getUserFeaturesSuccess(state, action.payload));
   builder.addCase(getUserConnectionsSuccessAction, (state, action) => getUserConnectionsSuccess(state, action.payload));
   builder.addCase(getUserSessionSuccess, (state) => ({
@@ -266,7 +260,6 @@ const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload
   },
   events: payload.events,
   heroCards: payload.heroCards,
-  tabNotifications: payload.tabNotifications,
 });
 
 const updateUserProfileEvents = (state: IUserStore, events: IUserStore["events"]) => ({
@@ -313,11 +306,6 @@ const updateUserSurge = (state: IUserStore, payload: UserSurge) => ({
   surge: {
     ...payload,
   },
-});
-
-const markNotificationsAsViewedByType = (state: IUserStore, payload: MarkNotificationsAsViewedByTypePayload) => ({
-  ...state,
-  tabNotifications: state.tabNotifications.filter((it) => it !== payload.type),
 });
 
 const getUserFeaturesSuccess = (state: IUserStore, payload: GetUserFeaturesPayload) => ({
