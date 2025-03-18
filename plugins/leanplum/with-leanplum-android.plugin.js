@@ -63,7 +63,14 @@ const mainApplicationPlugin = (config) => {
       0,
       `
 import com.leanplum.Leanplum;
-import com.leanplum.LeanplumActivityHelper;`
+import com.leanplum.LeanplumActivityHelper;
+import android.app.Notification;
+import android.os.Bundle;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import com.leanplum.LeanplumPushNotificationCustomizer;
+import com.leanplum.LeanplumPushService;
+`
     );
 
     const onCreateLine = splitContents.findIndex((line) => line.includes(`super.onCreate()`));
@@ -72,7 +79,22 @@ import com.leanplum.LeanplumActivityHelper;`
       onCreateLine + 1,
       0,
       `Leanplum.setApplicationContext(this);
-        LeanplumActivityHelper.enableLifecycleCallbacks(this);`
+        LeanplumActivityHelper.enableLifecycleCallbacks(this);
+        
+        LeanplumPushService.setCustomizer(object : LeanplumPushNotificationCustomizer {
+          override fun customize(builder: NotificationCompat.Builder, notificationPayload: Bundle) {
+              val icon = R.drawable.notification_icon
+              builder.setSmallIcon(icon)
+              builder.setColor(resources.getColor(R.color.notification_icon_color))
+          }
+
+          override fun customize(
+              builder: Notification.Builder?,
+              bundle: Bundle?,
+              @Nullable style: Notification.Style?
+          ) {
+          }
+      })`
     );
 
     mod.modResults.contents = splitContents.join(`\n`);
