@@ -174,13 +174,6 @@ export default () => ({
         color: "#e30d76",
       },
     ],
-    [
-      "expo-notifications",
-      {
-        icon: "./assets/native/push-icon.png",
-        color: "#e30d76",
-      },
-    ],
     ["@betomorrow/expo-app-name", { name: appNameWithVersion }],
     [
       "@intercom/intercom-react-native",
