@@ -63,6 +63,9 @@
   },
   "apple_health": "Apple Health",
   "button": "Button",
+  "captcha_input": {
+    "hcaptcha_disclaimer": "This app is protected by hCaptcha and its [Privacy Policy](https://www.hcaptcha.com/privacy) and [Terms of Service](https://www.hcaptcha.com/terms) apply."
+  },
   "communities": "Communities",
   "config": {
     "ios": {
@@ -1100,7 +1103,6 @@
         "title": "Send a gift"
       },
       "send_your_friend_a_gift": "Send your friends a gift!",
-      "send_your_own_message": "Send your own message",
       "success": {
         "description": "Your friend will receive a message in-app. |||| Your friends will receive a message in-app.",
         "title": "Your gift is on the way! |||| Your gifts are on the way!"
@@ -2062,6 +2064,7 @@
         "heartRate": "Heart rate",
         "meditation": "Meditation",
         "steps": "steps",
+        "wheelchair_pushes": "wheelchair pushes",
         "workouts": "Workouts"
       },
       "continue": "Let's connect",

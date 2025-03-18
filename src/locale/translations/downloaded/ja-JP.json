@@ -63,6 +63,9 @@
   },
   "apple_health": "Apple ヘルスケア",
   "button": "ボタン",
+  "captcha_input": {
+    "hcaptcha_disclaimer": "このアプリは hCaptcha によって保護されており、その[プライバシーポリシー](https://www.hcaptcha.com/privacy)および[利用規約](https://www.hcaptcha.com/terms)が適用されます。"
+  },
   "communities": "コミュニティ",
   "config": {
     "ios": {
@@ -247,12 +250,12 @@
     "consumables": {
       "activate_button": "有効化する",
       "already_active_end": "で使用できます",
-      "already_active_start": "パワーアップが有効です。あと",
+      "already_active_start": "パワーアップアイテムが有効です。あと",
       "close": "閉じる",
-      "empty": "所有アイテムがありません。季節のリワードコースに進んで、旅の助けとなるアイテムを獲得しましょう。",
+      "empty": "所有アイテムがありません。リワードに進み、旅の助けとなるアイテムを獲得しましょう。",
       "go_to_rewards_button": "リワードに進む",
       "popover_confirm": "OK",
-      "subtitle": "パワーアップを選択して\n有効化してください",
+      "subtitle": "パワーアップアイテムを選択して\n有効化してください",
       "title": "所有アイテム"
     },
     "duels": {
@@ -388,13 +391,13 @@
       }
     },
     "open_random_chest": {
-      "claim_all_subtitle": "アンロックした内容をチェック！",
-      "claim_all_title": "ジャックポット!",
-      "claim_reward": "リワードを交換する",
+      "claim_all_subtitle": "早速ボックスを開けてみましょう!",
+      "claim_all_title": "新アイテムを獲得しました",
+      "claim_reward": "アイテムを受け取る",
       "open": "開く",
-      "open_chest": "コインボックスを開く",
+      "open_chest": "ボックスを開く",
       "select_one": "続行するには1つ選択してください",
-      "title": "リワードを獲得しました!"
+      "title": "新アイテムを獲得しました"
     },
     "push_notifications": {
       "from_challenge": {
@@ -1100,7 +1103,6 @@
         "title": "ギフトを送信しよう"
       },
       "send_your_friend_a_gift": "同僚にギフトを送信しよう!",
-      "send_your_own_message": "メッセージを編集",
       "success": {
         "description": "メッセージはアプリ内で同僚に送信されます。 |||| メッセージはアプリ内で同僚に送信されます。",
         "title": "ギフトが送信されました! |||| ギフトが送信されました!"
@@ -1455,7 +1457,7 @@
         },
         "no_purchases": {
           "cta_label": "リワードに進む",
-          "subheading": "まだ何も購入されていません、季節のリワードコースに移動して、限定のギフト券や割引を獲得しましょう!"
+          "subheading": "まだ何も購入されていません、リワードに移動して、限定のギフト券や割引を獲得しましょう!"
         },
         "not_enough_coins": {
           "heading": "YuCoinが不足しています",
@@ -2062,6 +2064,7 @@
         "heartRate": "心拍数",
         "meditation": "マインドフルネス",
         "steps": "歩",
+        "wheelchair_pushes": "車椅子のプッシュ",
         "workouts": "ワークアウト"
       },
       "continue": "連携する",

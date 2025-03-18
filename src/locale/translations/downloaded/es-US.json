@@ -63,6 +63,9 @@
   },
   "apple_health": "Salud",
   "button": "Botón",
+  "captcha_input": {
+    "hcaptcha_disclaimer": "Esta aplicación está protegida por hCaptcha y se aplican su [Política de privacidad](https://www.hcaptcha.com/privacy) y sus [Condiciones del servicio](https://www.hcaptcha.com/terms)."
+  },
   "communities": "Comunidades",
   "config": {
     "ios": {
@@ -1100,7 +1103,6 @@
         "title": "Enviar un regalo"
       },
       "send_your_friend_a_gift": "Envía un regalo a tus amigos",
-      "send_your_own_message": "Envía tu propio mensaje",
       "success": {
         "description": "Tu amigo recibirá un mensaje en la app. |||| Tus amigos recibirán un mensaje en la app.",
         "title": "¡Tu regalo está en camino! |||| ¡Tus regalos están en camino!"
@@ -2062,6 +2064,7 @@
         "heartRate": "frecuencia cardiaca",
         "meditation": "meditación",
         "steps": "pasos",
+        "wheelchair_pushes": "empuje de sillas de ruedas",
         "workouts": "entrenamientos"
       },
       "continue": "Conectémonos",
