@@ -61,5 +61,5 @@ export const usePressEffect = ({
     setIsPressedIn(false);
   }, []);
 
-  return { animatedStyle, onPressIn, onPressOut };
+  return { animatedStyle, onPressIn, onPressOut, isPressedIn };
 };

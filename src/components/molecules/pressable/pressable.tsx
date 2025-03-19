@@ -14,20 +14,28 @@ export type IPressableProps = PressableProps &
 const AnimatedPressable = Animated.createAnimatedComponent(RnPressable);
 const Pressable = ({
   onPress,
-  entering,
   exiting,
-  pressedTranslation,
-  enableAnimation,
+  entering,
   delay = 0,
+  style: propStyle,
+  pressedTranslation,
+  enableAnimation = false,
   ...otherProps
 }: IPressableProps) => {
   const boxProps = useBoxProps(otherProps);
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
-  const { animatedStyle, onPressIn, onPressOut } = usePressEffect({ pressedTranslation, isEnabled: enableAnimation });
+  const { animatedStyle, onPressIn, onPressOut, isPressedIn } = usePressEffect({
+    pressedTranslation,
+    isEnabled: enableAnimation,
+  });
 
   const style = useMemo(() => {
-    return [typeof otherProps.style === "function" ? otherProps.style : boxProps.style, animatedStyle];
-  }, [animatedStyle, boxProps.style, otherProps.style]);
+    return [
+      typeof propStyle === "function" ? propStyle({ pressed: isPressedIn }) : propStyle,
+      boxProps.style,
+      animatedStyle,
+    ];
+  }, [animatedStyle, boxProps.style, isPressedIn, propStyle]);
 
   return (
     <AnimatedPressable
