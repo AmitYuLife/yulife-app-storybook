@@ -61,7 +61,6 @@ export const allTogglesTrue = {
       showBrainGameSudoku: true,
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
-      showNewLeaderBoard: true,
       showLeaderboardSearch: true,
       tempGameGoalWeekliesRefactor: true,
       tempGameUseSettingsConfigForQuestMapV3: true,
@@ -238,7 +237,7 @@ export const allTogglesTrueFor_PLI_V4 = {
       showReferrals: true,
       yuScreenV3: true,
       showRewardStoreSelection: true,
-      
+
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
       showDailyScreenCustomIcon: true,

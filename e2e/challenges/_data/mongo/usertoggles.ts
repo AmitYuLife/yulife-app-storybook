@@ -502,7 +502,6 @@ export const CUSTOMER_76_TOGGLES = {
       yuScreenV3: true,
       showPermissionSettings: true,
       showBrainGameSudoku: true,
-      showNewLeaderBoard: true,
       useNewLeaderboardServices: true,
     },
   },
@@ -547,7 +546,6 @@ export const CUSTOMER_86_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showBrainGameSudoku: true,
-      showNewLeaderBoard: true,
     },
   },
 } as IDatabaseItem;
