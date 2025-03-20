@@ -8,10 +8,13 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ImageChoiceLabel } from "./imageChoiceLabel";
 import { Image } from "@atoms";
 import { ImageChoiceActiveIndicator } from "./activeIndicator";
+import { isEmpty, omitBy } from "lodash";
+
+export type ImageChoiceAnswerValue = Record<string, boolean> | undefined;
 
 interface Props extends GqlImageChoice {
-  selectedValues: string[];
-  onChange: (value: string[]) => void;
+  value: ImageChoiceAnswerValue;
+  onChange: (value: ImageChoiceAnswerValue) => void;
 }
 
 const ContentItemImageChoiceBase = memo(
@@ -19,7 +22,7 @@ const ContentItemImageChoiceBase = memo(
     id,
     options,
     columns,
-    selectedValues,
+    value: serverValue = undefined,
     multiSelect,
     styles: serverStyles,
     rowStyles: rowStylesServer,
@@ -29,20 +32,28 @@ const ContentItemImageChoiceBase = memo(
     hideCheckbox,
     onChange,
   }: Props) => {
-    const safeSelectedValues = selectedValues || [];
+    const value = useMemo(() => serverValue || {}, [serverValue]);
 
     const rowStyles = mapServerStyles(rowStylesServer);
     const imageStyles = mapServerStyles(imageStylesServer);
 
     const handleValueChange = useCallback(
-      (value: string) => {
-        if (!multiSelect) {
-          onChange([value]);
-        } else {
-          onChange(buildNewState(safeSelectedValues, value));
+      (optionKey: string, optionValue: boolean) => {
+        // radio buttons cannot be unselected
+        if (!multiSelect && optionValue === false) {
+          return;
         }
+
+        const update = {
+          ...(multiSelect ? value : {}),
+          [optionKey]: optionValue,
+        };
+
+        const changeUpdate = omitBy(update, (x) => x === false);
+
+        onChange(isEmpty(changeUpdate) ? undefined : changeUpdate);
       },
-      [onChange, safeSelectedValues, multiSelect]
+      [onChange, value, multiSelect]
     );
 
     const rows = useMemo(() => {
@@ -65,30 +76,30 @@ const ContentItemImageChoiceBase = memo(
       <View key={id} style={[styles.wrapper, mapServerStyles(serverStyles)]}>
         {rows.map((row) => (
           <View key={row.map((r) => r.value).join(",")} style={[styles.row, rowStyles]}>
-            {row.map((item) => {
-              const isActive = safeSelectedValues.includes(item.value);
+            {row.map(({ value: optionKey, label, image }) => {
+              const isChecked = !!value[optionKey];
 
               return (
                 <TouchableOpacityWithDelay
-                  key={item.value}
+                  key={optionKey}
                   activeOpacity={1}
-                  style={StyleSheet.flatten([styles.item, isActive ? styles.activeWrapper : null])}
-                  onPress={() => handleValueChange(item.value)}
+                  style={StyleSheet.flatten([styles.item, isChecked ? styles.activeWrapper : null])}
+                  onPress={() => handleValueChange(optionKey, !isChecked)}
                   delay={50}
                 >
-                  <ImageChoiceActiveIndicator checkboxVisible={multiSelect && !hideCheckbox} isActive={isActive} />
+                  <ImageChoiceActiveIndicator checkboxVisible={multiSelect && !hideCheckbox} isChecked={isChecked} />
 
                   <View style={styles.viewWrapper}>
                     <View style={[styles.imageWrapper, imageStyles]}>
                       <Image
                         width={Style.adjust((imageStyles?.width as number) || 96)}
                         height={Style.adjust((imageStyles?.height as number) || 56)}
-                        source={{ uri: item.image.uri }}
+                        source={image}
                       />
                     </View>
 
-                    {!item.label ? null : (
-                      <ImageChoiceLabel label={item.label} labelTextType={labelTextType} textStyles={textStyles} />
+                    {!label ? null : (
+                      <ImageChoiceLabel label={label} labelTextType={labelTextType} textStyles={textStyles} />
                     )}
                   </View>
                 </TouchableOpacityWithDelay>
@@ -103,9 +114,9 @@ const ContentItemImageChoiceBase = memo(
 
 export const ContentItemImageChoice = memo((props: Props) => {
   const { answerKey } = props;
-  const { value, onChange } = useSduiOnChange<string[]>(answerKey);
+  const { value, onChange } = useSduiOnChange<ImageChoiceAnswerValue>(answerKey);
 
-  return <ContentItemImageChoiceBase {...props} selectedValues={value} onChange={onChange} />;
+  return <ContentItemImageChoiceBase {...props} value={value} onChange={onChange} />;
 });
 
 const styles = StyleSheet.create({
@@ -145,13 +156,3 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(8),
   } as ViewStyle,
 });
-
-const buildNewState = (oldState: string[], value: string) => {
-  const index = oldState.indexOf(value);
-
-  if (index === -1) {
-    return [...oldState, value];
-  }
-
-  return oldState.filter((item) => item !== value);
-};
