@@ -4,18 +4,18 @@ import { Colours, Style } from "@styles";
 import { CheckBoxType } from "@components/molecules/check-box/check-box-type";
 
 interface Props {
-  isActive: boolean;
+  isChecked: boolean;
   checkboxVisible: boolean;
 }
 
-export const ImageChoiceActiveIndicator = memo(({ isActive, checkboxVisible }: Props) => {
+export const ImageChoiceActiveIndicator = memo(({ isChecked, checkboxVisible }: Props) => {
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, isActive ? styles.activeWrapper : null])}>
+    <View style={StyleSheet.flatten([styles.wrapper, isChecked ? styles.activeWrapper : null])}>
       {checkboxVisible && (
         <View style={styles.absoluteUpperRight}>
           <CheckBoxType
             type={"cubic"}
-            checked={isActive}
+            checked={isChecked}
             strokeColor={Colours.neutral.n400}
             activeCheckboxFillColor={Colours.primary.p600}
             size={Style.adjust(16)}

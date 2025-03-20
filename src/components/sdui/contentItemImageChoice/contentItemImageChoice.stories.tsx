@@ -64,7 +64,7 @@ const meta: Meta<typeof ContentItemImageChoice> = {
     answerKey: "answerKey",
     columns: 2,
     options,
-    selectedValues: ["PORTIONS_0"],
+    value: { PORTIONS_0: true },
     styles: [{ property: "width", value: "320" }],
     labelTextType: "b2",
     textStyles: [],
