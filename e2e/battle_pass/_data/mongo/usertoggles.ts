@@ -15,7 +15,6 @@ export const CUSTOMER_CARMY_TOGGLES = {
     businessAccountId: business.BUSINESS_THE_BEAR.data.business_account_id,
     features: {
       ...allTogglesTrue.data.features,
-      showNewLeaderBoard: true,
       showLeaderboardSearch: true,
       useNewLeaderboardServices: true,
       showYucoinPowerButton: true,
