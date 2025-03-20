@@ -7,6 +7,73 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.55.0] - 2025-03-20
+
+### Features
+
+- Feature LCS-1160: Add tracking on MaxYu card press
+
+### Bugfixes
+
+- Bugfix: Function style not passed to pressable
+- Bugfix: bump persist version
+- Bugfix GS-1286: Hide scroll indicator + keyboard on back
+- Bugfix GS-1373: Add react-native-hcaptcha to alias to fix storybook build
+- Bugfix GS-1286: Fix chevron on walletItem
+- Bugfix GS-1372: Rewards remaining count not going down on battle pass when opening mystery boxes
+- Bugfix: gift view scroll view android
+- Bugfix: gift view padding for long messages
+- Bugfix GS-1286: Coupon bugfixes on client
+- Bugfix GS-1368: Screen size issues on battle pass on android 15
+- Bugfix GS-1361: Fix set default provider return type
+- Bugfix GS-1364: Make sure to only sendTokenToIntercom if the user is logged in into intercom
+- Bugfix GS-1286: Fix deepLink for coupon stripe redirect
+
+### Tasks
+
+- Task GS-1377: Shine button
+- Task: usePressEffect on Pressable
+- Task CTE-92: deprecate mobileTabs and use unreadBadgeCounts for notifications
+- Task GS-1301: Fix Android notification icon
+- Task: Bump YuHealth toggle
+- Task: YuHealth 1.3.7
+- Task GS-1361: YuHealth native events
+- Task ISA-3226: Unify business picker component
+- Task LCS-992: Update gifting thank you interaction
+- Task LCS-1166: captcha input
+- Task GS-1362: Fix ios CI builds
+- Task GS-1357: Remove passive meditation exhcange rate
+
+### Snyk
+
+- [Security] Bump snyk from 1.996.0 to 1.1064.0
+
+### Chores
+
+- Chore - Updated translations
+- Chore: use kebab case for all redux folders
+- chore: DEVOP-3665: Add VSCode GitLab CI Files YAML Schema Validation
+- Chore - Updated translations
+
+### Extra
+
+- Hotfix GS-1286: Fix validation on minimum number values
+- Detox: Multiple Reward Claim
+- [Security] Bump nanoid from 3.3.6 to 3.3.9
+- [Security] Bump axios from 1.4.0 to 1.8.2
+- [Security] Bump markdown-to-jsx from 7.2.1 to 7.7.4
+- [Security] Bump micromatch from 4.0.5 to 4.0.8
+- [Security] Bump store2 from 2.14.2 to 2.14.4
+- [Security] Bump tar from 6.1.15 to 6.2.1
+- [Security] Bump serialize-javascript from 6.0.0 to 6.0.2
+- [Security] Bump @babel/runtime from 7.20.7 to 7.26.10
+- Detox LCS-1041 Multi Send Scenario
+- Fix LCS-1164: fix user leaderboard hiding offset
+- ISA-3176: Wellbeing Hub Business Selector Test
+- Detox: LCS-989 Japan Squad Cards Showing
+- Detox: LCS-1104 - SA default location check
+- Detox: Enable Surge Settings
+
 ## [4.54.0] - 2025-03-12
 
 ### Features
