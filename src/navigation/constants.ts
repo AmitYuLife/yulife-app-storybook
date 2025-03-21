@@ -61,11 +61,6 @@ export const ROUTES = {
   permissions: "yulife.member.permissions",
   leaderboardSettings: "yulife.member.leaderboardSettings",
 
-  // yuniversity
-  yuniversityQuiz: "yulife.member.yuniversityQuiz",
-  courseDetails: "yulife.member.courseDetails",
-  yuniversityCourses: "yulife.member.yuniversityCourses",
-
   //tools
   tools: "yulife.member.tools",
 
@@ -114,7 +109,6 @@ export const ROUTES = {
   fiitMediaCategoryList: "yulife.fiit.media.category.list",
   fiitMediaList: "yulife.fiit.media.list",
   mediaPlayer: "yulife.media.player",
-  yuniversityMediaPlayer: "yulife.media.yuniversityMediaPlayer",
 
   // sdui static not registered
   pensionDetails: "yulife.sdui.static.smartPensionDetails",
@@ -190,7 +184,6 @@ export const MODALS = {
   whatsNew: "yulife.modals.whatsNew",
   collectEventReward: "yulife.modal.collectEventReward",
   weeklyQuestsOverlay: "yulife.overlay.weeklyQuests",
-  yuniversityCertificate: "yulife.modals.yuniversityCertificate",
   sudokuHelp: "yulife.modals.sudokuHelp",
   sudokuPause: "yulife.modals.sudokuPause",
   sudokuLeaderboardConsent: "yulife.modals.sudokuLeaderboardConsent",

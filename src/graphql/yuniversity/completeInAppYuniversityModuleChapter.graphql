@@ -1,3 +1,0 @@
-mutation CompleteInAppYuniversityModuleChapter($moduleId: String!, $chapterId: String!) {
-  completeInAppYuniversityModuleChapter(moduleId: $moduleId, chapterId: $chapterId)
-}

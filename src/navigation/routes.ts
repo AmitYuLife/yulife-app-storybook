@@ -159,18 +159,6 @@ const routesForRegistration = [
     component: require("../components/containers/member/smoking/smoking-commitment/smoking-commitment.container")
       .default,
   },
-  {
-    name: ROUTES.yuniversityQuiz,
-    component: require("../components/containers/member/yuniversity/yuniversity-quiz.container").default,
-  },
-  {
-    name: ROUTES.courseDetails,
-    component: require("../components/containers/member/yuniversity/course-details.container").default,
-  },
-  {
-    name: ROUTES.yuniversityCourses,
-    component: require("../components/containers/member/yuniversity/yuniversity-courses.container").default,
-  },
 
   // Content Location
   {
@@ -264,10 +252,6 @@ const routesForRegistration = [
   {
     name: ROUTES.fiitMediaList,
     component: require("../components/containers/member/media/fiit-media-list/fiit-media-list.container").default,
-  },
-  {
-    name: ROUTES.yuniversityMediaPlayer,
-    component: require("../components/containers/member/media/media-player/yuniversity-media-player.container").default,
   },
   {
     name: ROUTES.mediaPlayer,
@@ -540,10 +524,6 @@ const routesForRegistration = [
   {
     name: MODALS.collectEventReward,
     component: require("../components/modals/collect-event-reward/collect-event-reward.modal").default,
-  },
-  {
-    name: MODALS.yuniversityCertificate,
-    component: require("../components/modals/yuniversity-certificate/yuniversity-certificate").default,
   },
   {
     name: MODALS.sudokuHelp,

@@ -26,8 +26,7 @@ const MenuContainer = () => {
   const permissions = useSelector(getPushNotifications);
   const supportLevel = useSelector(getSupportLevel);
 
-  const { tempAppMenuNewReferralOption, showReferrals, showYuniversityMenuLink, showHelperTools, showDebug } =
-    useUserFeatures();
+  const { tempAppMenuNewReferralOption, showReferrals, showHelperTools, showDebug } = useUserFeatures();
 
   const openSupport = useCallback(() => {
     const callback = () => {
@@ -102,9 +101,6 @@ const MenuContainer = () => {
           });
           handlePush(currentRoute, ROUTES.referralInformation, {}, { sourceId: ROUTES.menu });
           return null;
-        case LINKS.YUNIVERSITY:
-          handlePush(currentRoute, ROUTES.yuniversityCourses, {}, { popTo: currentRoute });
-          return null;
         default:
           return null;
       }
@@ -140,12 +136,6 @@ const MenuContainer = () => {
         source: assets[LINKS.WELLBEING_HUB],
       },
       {
-        condition: showYuniversityMenuLink,
-        label: t("screens.menu.yuniversity.label"),
-        onPress: handlePressLink(LINKS.YUNIVERSITY),
-        source: assets[LINKS.YUNIVERSITY],
-      },
-      {
         condition: true,
         label: t("screens.menu.settings.label"),
         onPress: handlePressLink(LINKS.SETTINGS),
@@ -170,14 +160,7 @@ const MenuContainer = () => {
         source: assets[LINKS.LOGOUT],
       },
     ],
-    [
-      handlePressLink,
-      tempAppMenuNewReferralOption,
-      showReferrals,
-      showYuniversityMenuLink,
-      showHelperTools,
-      supportLevel,
-    ]
+    [handlePressLink, tempAppMenuNewReferralOption, showReferrals, showHelperTools, supportLevel]
   );
 
   return (

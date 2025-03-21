@@ -18,7 +18,6 @@ export { default as WhatsNewModal } from "./whats-new/whats-new";
 export { default as FloatingModal } from "./floating-modals/floating-modal";
 export * from "./floating-modals/showFloatingModal";
 export { default as SurgeModal } from "./surge-modal/surge-modal";
-export { default as YuniversityCertificateModal } from "./yuniversity-certificate/yuniversity-certificate";
 export { default as LeaderboardCommunityOverlay } from "./leaderboard-community-overlay/leaderboard-community-overlay";
 export { default as ChallengeNoDataModal } from "./challenge-no-data/challenge-no-data.modal";
 export { default as JoinLeaderboardOverlay } from "./join-leaderboard-overlay/join-leaderboard-overlay";
