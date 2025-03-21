@@ -142,7 +142,7 @@ export const EARTH_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   // Earth planet ocean
   9: {
     background: require("../episodes/earth/ocean/earth-ocean-1-lineless.webp"),
-    topBarType: TOP_BAR_TYPES.DESERT,
+    topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 1004,
     episodeWidth: 375,
     snapOffsetY: 80,
