@@ -342,9 +342,6 @@ const documents = {
   SendWellbeingHubItemDocumentsDocument: types.SendWellbeingHubItemDocumentsDocument,
   GetMobileUserWrappedDocument: types.GetMobileUserWrappedDocument,
   MarkMobileUserWrappedAsViewedDocument: types.MarkMobileUserWrappedAsViewedDocument,
-  CompleteInAppYuniversityModuleChapterDocument: types.CompleteInAppYuniversityModuleChapterDocument,
-  GetInAppYuniversityCoursesDocument: types.GetInAppYuniversityCoursesDocument,
-  GetInAppYuniversityCourseModuleDetailsDocument: types.GetInAppYuniversityCourseModuleDetailsDocument,
   AddressDocument: types.AddressDocument,
   GetProductPaymentHistoryDocument: types.GetProductPaymentHistoryDocument,
   GetProductYumojiPartDocument: types.GetProductYumojiPartDocument,
@@ -1939,24 +1936,6 @@ export function gql(source: "GetMobileUserWrappedDocument"): typeof documents["G
 export function gql(
   source: "MarkMobileUserWrappedAsViewedDocument"
 ): typeof documents["MarkMobileUserWrappedAsViewedDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "CompleteInAppYuniversityModuleChapterDocument"
-): typeof documents["CompleteInAppYuniversityModuleChapterDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "GetInAppYuniversityCoursesDocument"
-): typeof documents["GetInAppYuniversityCoursesDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "GetInAppYuniversityCourseModuleDetailsDocument"
-): typeof documents["GetInAppYuniversityCourseModuleDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

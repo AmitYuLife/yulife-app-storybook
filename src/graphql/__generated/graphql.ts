@@ -1116,6 +1116,7 @@ export type BusinessSessionBusiness = {
   businessTags?: Maybe<Array<BusinessTag>>;
   /** @deprecated Will no longer be used once the portal onboarding experience is complete */
   hasEmployees?: Maybe<Scalars["Boolean"]["output"]>;
+  hasReachedLaunchThreshold?: Maybe<Scalars["Boolean"]["output"]>;
   hasWildCardRuleAssigned?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
   isEligibleForAutomatedAdmin?: Maybe<Scalars["Boolean"]["output"]>;
@@ -3408,6 +3409,7 @@ export type DailyPensionContribution = {
 export type DataWidget = {
   __typename?: "DataWidget";
   description: Scalars["String"]["output"];
+  displayValue: Scalars["String"]["output"];
   value: Scalars["Float"]["output"];
 };
 
@@ -7460,6 +7462,7 @@ export type PaymentIntent = StripePaymentIntent;
 export type PerformedSteps = {
   __typename?: "PerformedSteps";
   homeModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
+  peopleModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -7883,7 +7886,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7917,6 +7919,7 @@ export type Query = {
   getTeamMemberProfile: TeamEmployeeProfile;
   getTeamProductInformation: TeamProductInformation;
   getTeamProducts: Array<TeamProducts>;
+  getTeamPromotions: Array<TeamPromotion>;
   getTeamSocialGroup: TeamSocialGroup;
   getTeamSocialGroups: GetTeamSocialGroupsResponse;
   getTeamSocialGroupsCount: Scalars["Int"]["output"];
@@ -7990,6 +7993,7 @@ export type Query = {
   pendingAppStoreReview?: Maybe<AppStoreReviewPrompt>;
   pendingFeedbackForm?: Maybe<FeedbackForm>;
   pendingMobileUserJourney?: Maybe<MobilePendingUserJourney>;
+  /** @deprecated This field is deprecated and will be removed in a future version. Replaced with PerformedSteps.homeModalDismissed. */
   peopleWelcomeModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   referralInformation: UserReferralInformation;
   /** Search for the name of someone you can invite to a duel. */
@@ -8952,12 +8956,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -10006,6 +10004,7 @@ export type TeamFilterCopy = {
 
 export enum TeamOnboardingStep {
   HomeModalDismissed = "homeModalDismissed",
+  PeopleModalDismissed = "peopleModalDismissed",
   TwoFactorAuthEnabled = "twoFactorAuthEnabled",
   TwoFactorAuthModalDismissed = "twoFactorAuthModalDismissed",
 }
@@ -10126,6 +10125,24 @@ export type TeamProducts = {
   __typename?: "TeamProducts";
   categories: Array<TeamProductCategory>;
   product: TeamProduct;
+};
+
+export type TeamPromotion = {
+  __typename?: "TeamPromotion";
+  backgroundColour?: Maybe<Scalars["String"]["output"]>;
+  centreImage?: Maybe<Scalars["String"]["output"]>;
+  description: Scalars["String"]["output"];
+  internalIdentifier: Scalars["String"]["output"];
+  primaryButton?: Maybe<TeamPromotionPrimaryButton>;
+  rightImage?: Maybe<Scalars["String"]["output"]>;
+  textColour?: Maybe<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
+};
+
+export type TeamPromotionPrimaryButton = {
+  __typename?: "TeamPromotionPrimaryButton";
+  title: Scalars["String"]["output"];
+  to: Scalars["String"]["output"];
 };
 
 export type TeamSettingValue = {
@@ -39219,150 +39236,6 @@ export type MarkMobileUserWrappedAsViewedMutationVariables = Exact<{
 export type MarkMobileUserWrappedAsViewedMutation = {
   __typename?: "Mutation";
   markMobileUserWrappedAsViewed: { __typename?: "MarkMobileUserWrappedResponse"; count: number };
-};
-
-export type CompleteInAppYuniversityModuleChapterMutationVariables = Exact<{
-  moduleId: Scalars["String"]["input"];
-  chapterId: Scalars["String"]["input"];
-}>;
-
-export type CompleteInAppYuniversityModuleChapterMutation = {
-  __typename?: "Mutation";
-  completeInAppYuniversityModuleChapter: boolean;
-};
-
-export type GetInAppYuniversityCoursesQueryVariables = Exact<{
-  category: Scalars["String"]["input"];
-}>;
-
-export type GetInAppYuniversityCoursesQuery = {
-  __typename?: "Query";
-  getInAppYuniversityCourses: {
-    __typename?: "InAppYuniversityCourses";
-    id: string;
-    title: string;
-    headerColour: string;
-    headerTitle?: string | null;
-    headerLabel?: string | null;
-    headerTextColour: string;
-    headerImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    categoryImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    courses?: Array<{
-      __typename?: "InAppYuniversityCourse";
-      id: string;
-      title: string;
-      description: string;
-      logoImageKey?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      modules?: Array<{
-        __typename?: "InAppYuniversityCourseModule";
-        id: string;
-        slug: string;
-        tags: string;
-        title: string;
-        imageTags: Array<{
-          __typename?: "ImageTag";
-          tag: string;
-          image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-        }>;
-        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        status?: {
-          __typename?: "InAppYuniversityStatus";
-          text: string;
-          icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        } | null;
-      } | null> | null;
-    } | null> | null;
-  };
-};
-
-export type GetInAppYuniversityCourseModuleDetailsQueryVariables = Exact<{
-  id: Scalars["String"]["input"];
-}>;
-
-export type GetInAppYuniversityCourseModuleDetailsQuery = {
-  __typename?: "Query";
-  getInAppYuniversityCourseModuleDetails: {
-    __typename?: "InAppYuniversityCourseModuleDetails";
-    id: string;
-    title: string;
-    tags: string;
-    markdown: string;
-    completed?: boolean | null;
-    quiz: string;
-    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    imageTags?: Array<{
-      __typename?: "ImageTag";
-      tag: string;
-      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    }> | null;
-    chapters: Array<{
-      __typename?: "InAppYuniversityModuleChapter";
-      id: string;
-      tags?: string | null;
-      title: string;
-      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      status?: {
-        __typename?: "InAppYuniversityStatus";
-        text: string;
-        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      } | null;
-      videoMedia: {
-        __typename?: "Media";
-        id: string;
-        title: string;
-        description: string;
-        shortDescription: string;
-        theme: string;
-        duration?: number | null;
-        sourceType?: string | null;
-        media: { __typename?: "RemoteMedia"; id: string; uri?: string | null };
-        cover: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        videoLogo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-        thumbnail: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      };
-    }>;
-    moduleNotes?: {
-      __typename?: "InAppYuniversityModuleInfo";
-      iconWidth: number;
-      iconHeight: number;
-      title: string;
-      description?: string | null;
-      ctaLabel?: string | null;
-      ctaEnabled?: boolean | null;
-      uri?: string | null;
-      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    moduleQuiz?: {
-      __typename?: "InAppYuniversityModuleInfo";
-      iconWidth: number;
-      iconHeight: number;
-      yucoin?: number | null;
-      rewardDescription?: string | null;
-      title: string;
-      description?: string | null;
-      ctaLabel?: string | null;
-      ctaEnabled?: boolean | null;
-      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    moduleCertificate?: {
-      __typename?: "InAppYuniversityModuleInfo";
-      iconWidth: number;
-      iconHeight: number;
-      title: string;
-      description?: string | null;
-      ctaLabel?: string | null;
-      ctaEnabled?: boolean | null;
-      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    moduleCertificateDetails?: {
-      __typename?: "InAppYuniversityModuleCertificateDetails";
-      title: string;
-      subtitle: string;
-      description: string;
-      values: Array<{ __typename?: "InAppYuniversityModuleCertificateValue"; label: string; value: string }>;
-      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-  };
 };
 
 export type AddressQueryVariables = Exact<{
@@ -101411,505 +101284,6 @@ export const MarkMobileUserWrappedAsViewedDocument = {
     },
   ],
 } as unknown as DocumentNode<MarkMobileUserWrappedAsViewedMutation, MarkMobileUserWrappedAsViewedMutationVariables>;
-export const CompleteInAppYuniversityModuleChapterDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "CompleteInAppYuniversityModuleChapter" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "moduleId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "chapterId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "completeInAppYuniversityModuleChapter" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "moduleId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "moduleId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "chapterId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "chapterId" } },
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CompleteInAppYuniversityModuleChapterMutation,
-  CompleteInAppYuniversityModuleChapterMutationVariables
->;
-export const GetInAppYuniversityCoursesDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetInAppYuniversityCourses" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "category" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getInAppYuniversityCourses" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "category" },
-                value: { kind: "Variable", name: { kind: "Name", value: "category" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "headerImage" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "uri" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "categoryImage" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "uri" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "headerColour" } },
-                { kind: "Field", name: { kind: "Name", value: "headerTitle" } },
-                { kind: "Field", name: { kind: "Name", value: "headerLabel" } },
-                { kind: "Field", name: { kind: "Name", value: "headerTextColour" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "courses" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "description" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "logoImageKey" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "modules" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "slug" } },
-                            { kind: "Field", name: { kind: "Name", value: "tags" } },
-                            { kind: "Field", name: { kind: "Name", value: "title" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "imageTags" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "tag" } },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "image" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        { kind: "Field", name: { kind: "Name", value: "id" } },
-                                        { kind: "Field", name: { kind: "Name", value: "uri" } },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "image" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  { kind: "Field", name: { kind: "Name", value: "uri" } },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "status" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "icon" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        { kind: "Field", name: { kind: "Name", value: "id" } },
-                                        { kind: "Field", name: { kind: "Name", value: "uri" } },
-                                      ],
-                                    },
-                                  },
-                                  { kind: "Field", name: { kind: "Name", value: "text" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetInAppYuniversityCoursesQuery, GetInAppYuniversityCoursesQueryVariables>;
-export const GetInAppYuniversityCourseModuleDetailsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetInAppYuniversityCourseModuleDetails" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getInAppYuniversityCourseModuleDetails" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "image" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "uri" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "tags" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "imageTags" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "tag" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "markdown" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "chapters" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "status" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "icon" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  { kind: "Field", name: { kind: "Name", value: "uri" } },
-                                ],
-                              },
-                            },
-                            { kind: "Field", name: { kind: "Name", value: "text" } },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "tags" } },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "videoMedia" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "title" } },
-                            { kind: "Field", name: { kind: "Name", value: "description" } },
-                            { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
-                            { kind: "Field", name: { kind: "Name", value: "theme" } },
-                            { kind: "Field", name: { kind: "Name", value: "duration" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "media" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  { kind: "Field", name: { kind: "Name", value: "uri" } },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "cover" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  { kind: "Field", name: { kind: "Name", value: "uri" } },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "videoLogo" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  { kind: "Field", name: { kind: "Name", value: "uri" } },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "thumbnail" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  { kind: "Field", name: { kind: "Name", value: "uri" } },
-                                ],
-                              },
-                            },
-                            { kind: "Field", name: { kind: "Name", value: "sourceType" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "moduleNotes" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "iconWidth" } },
-                      { kind: "Field", name: { kind: "Name", value: "iconHeight" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "icon" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "description" } },
-                      { kind: "Field", name: { kind: "Name", value: "ctaLabel" } },
-                      { kind: "Field", name: { kind: "Name", value: "ctaEnabled" } },
-                      { kind: "Field", name: { kind: "Name", value: "uri" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "moduleQuiz" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "iconWidth" } },
-                      { kind: "Field", name: { kind: "Name", value: "iconHeight" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "icon" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "yucoin" } },
-                      { kind: "Field", name: { kind: "Name", value: "rewardDescription" } },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "description" } },
-                      { kind: "Field", name: { kind: "Name", value: "ctaLabel" } },
-                      { kind: "Field", name: { kind: "Name", value: "ctaEnabled" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "moduleCertificate" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "iconWidth" } },
-                      { kind: "Field", name: { kind: "Name", value: "iconHeight" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "icon" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "description" } },
-                      { kind: "Field", name: { kind: "Name", value: "ctaLabel" } },
-                      { kind: "Field", name: { kind: "Name", value: "ctaEnabled" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "moduleCertificateDetails" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtitle" } },
-                      { kind: "Field", name: { kind: "Name", value: "description" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "values" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "label" } },
-                            { kind: "Field", name: { kind: "Name", value: "value" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "completed" } },
-                { kind: "Field", name: { kind: "Name", value: "quiz" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetInAppYuniversityCourseModuleDetailsQuery,
-  GetInAppYuniversityCourseModuleDetailsQueryVariables
->;
 export const AddressDocument = {
   kind: "Document",
   definitions: [

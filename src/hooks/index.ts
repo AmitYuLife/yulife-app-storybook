@@ -15,7 +15,6 @@ export * from "./usePressedInWithDelay";
 export * from "./useStatusBarStyle";
 export * from "./useGetLottieJson";
 export * from "./useSafeAreaViewOffset";
-export * from "./useSaveImage";
 export * from "./useNotifications";
 export * from "./useLazyGqlLoading";
 export * from "./useUserFeatures";
