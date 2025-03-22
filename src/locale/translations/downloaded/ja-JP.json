@@ -252,7 +252,7 @@
       "already_active_end": "で使用できます",
       "already_active_start": "パワーアップアイテムが有効です。あと",
       "close": "閉じる",
-      "empty": "所有アイテムがありません。リワードに進み、旅の助けとなるアイテムを獲得しましょう。",
+      "empty": "所有アイテムがありません。リワードからYuCoinを交換して、クエストの助けとなるアイテムを獲得しましょう。",
       "go_to_rewards_button": "リワードに進む",
       "popover_confirm": "OK",
       "subtitle": "パワーアップアイテムを選択して\n有効化してください",
@@ -681,7 +681,7 @@
   "prizes": {
     "tooltips": {
       "power_up": {
-        "body": "クエストのインベントリで見つけてください。",
+        "body": "クエストの所有アイテムとして表示されます。",
         "title": "パワーアップを収集しました！"
       },
       "purchase": {
@@ -1308,9 +1308,6 @@
       },
       "wellbeing_hub": {
         "label": "Well-beingセンター"
-      },
-      "yuniversity": {
-        "label": "Yuniversity"
       }
     },
     "no_access": {
