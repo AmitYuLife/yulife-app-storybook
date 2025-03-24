@@ -2993,6 +2993,7 @@ export type ContentItemTextInput = {
   inputTextStyles?: Maybe<Array<SduiStyle>>;
   keyboardType?: Maybe<Scalars["String"]["output"]>;
   localDispatchActionsOnChange?: Maybe<Array<SduiAction>>;
+  maximumFractionDigits?: Maybe<Scalars["Int"]["output"]>;
   prefixTextStyles?: Maybe<Array<SduiStyle>>;
   prefixValue?: Maybe<Scalars["String"]["output"]>;
   showErrorWhenFocused?: Maybe<Scalars["Boolean"]["output"]>;
@@ -3016,6 +3017,7 @@ export type ContentItemTextInputValidation = {
 
 export enum ContentItemTextInputValidationType {
   MaxNumber = "maxNumber",
+  MaximumDecimalNumbers = "maximumDecimalNumbers",
   MinNumber = "minNumber",
   Regex = "regex",
 }
@@ -13774,6 +13776,7 @@ export type AbsoluteContentItemFragment = {
         showErrorWhenFocused?: boolean | null;
         inputTextAlign?: ContentItemTextInputAlignment | null;
         hideErrorIcon?: boolean | null;
+        maximumFractionDigits?: number | null;
         validation?: Array<{
           __typename?: "ContentItemTextInputValidation";
           validationName: string;
@@ -15465,6 +15468,7 @@ type ContentItem_ContentItemTextInput_Fragment = {
   showErrorWhenFocused?: boolean | null;
   inputTextAlign?: ContentItemTextInputAlignment | null;
   hideErrorIcon?: boolean | null;
+  maximumFractionDigits?: number | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
@@ -19341,6 +19345,7 @@ export type ContentItemTextInputFragment = {
   showErrorWhenFocused?: boolean | null;
   inputTextAlign?: ContentItemTextInputAlignment | null;
   hideErrorIcon?: boolean | null;
+  maximumFractionDigits?: number | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
@@ -21405,6 +21410,7 @@ export type SduiSectionFragment = {
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
           hideErrorIcon?: boolean | null;
+          maximumFractionDigits?: number | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -26194,6 +26200,7 @@ export type GetSduiJourneyQuery = {
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
           hideErrorIcon?: boolean | null;
+          maximumFractionDigits?: number | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -27818,6 +27825,7 @@ export type GetSduiJourneyQuery = {
             showErrorWhenFocused?: boolean | null;
             inputTextAlign?: ContentItemTextInputAlignment | null;
             hideErrorIcon?: boolean | null;
+            maximumFractionDigits?: number | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
@@ -30503,6 +30511,7 @@ export type GetPersonalProductStepQuery = {
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
           hideErrorIcon?: boolean | null;
+          maximumFractionDigits?: number | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -32374,6 +32383,7 @@ export type GetPersonalProductStepDetachedQuery = {
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
           hideErrorIcon?: boolean | null;
+          maximumFractionDigits?: number | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -35821,6 +35831,7 @@ export type GetSduiStaticStepQuery = {
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
           hideErrorIcon?: boolean | null;
+          maximumFractionDigits?: number | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -37445,6 +37456,7 @@ export type GetSduiStaticStepQuery = {
             showErrorWhenFocused?: boolean | null;
             inputTextAlign?: ContentItemTextInputAlignment | null;
             hideErrorIcon?: boolean | null;
+            maximumFractionDigits?: number | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
@@ -41430,6 +41442,7 @@ export type GetYuScreenV5Query = {
                   showErrorWhenFocused?: boolean | null;
                   inputTextAlign?: ContentItemTextInputAlignment | null;
                   hideErrorIcon?: boolean | null;
+                  maximumFractionDigits?: number | null;
                   validation?: Array<{
                     __typename?: "ContentItemTextInputValidation";
                     validationName: string;
@@ -43284,6 +43297,7 @@ export type GetYuScreenV5SectionsQuery = {
                 showErrorWhenFocused?: boolean | null;
                 inputTextAlign?: ContentItemTextInputAlignment | null;
                 hideErrorIcon?: boolean | null;
+                maximumFractionDigits?: number | null;
                 validation?: Array<{
                   __typename?: "ContentItemTextInputValidation";
                   validationName: string;
@@ -45484,6 +45498,7 @@ type YuScreenSection_SduiSection_Fragment = {
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
           hideErrorIcon?: boolean | null;
+          maximumFractionDigits?: number | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -47936,6 +47951,7 @@ export const ContentItemTextInputFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -52511,6 +52527,7 @@ export const ContentItemFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -54317,6 +54334,7 @@ export const AbsoluteContentItemFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -65727,6 +65745,7 @@ export const SduiSectionFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -69721,6 +69740,7 @@ export const YuScreenSectionFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -82142,6 +82162,7 @@ export const GetSduiJourneyDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -87178,6 +87199,7 @@ export const GetPersonalProductStepDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -89858,6 +89880,7 @@ export const GetPersonalProductStepDetachedDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -94103,6 +94126,7 @@ export const GetSduiStaticStepDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -103665,6 +103689,7 @@ export const GetYuScreenV5Document = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },
@@ -106576,6 +106601,7 @@ export const GetYuScreenV5SectionsDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "maximumFractionDigits" } },
         ],
       },
     },

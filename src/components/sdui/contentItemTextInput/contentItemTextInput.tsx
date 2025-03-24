@@ -11,7 +11,7 @@ import { TextField } from "@components/molecules";
 import { Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import media, { DEVICES } from "@styles/media";
-import { addCommasToNumber } from "@utils";
+import { formatNumber } from "@utils";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 import { SduiDispatchContext } from "../_context/SduiProvider";
@@ -24,6 +24,8 @@ interface Props extends GqlTextInput {
 const getValidationError = (value: string, validation: GqlTextInput["validation"]) => {
   const strippedNumber = value?.replace(/,/g, "");
   const numberValue = Number(strippedNumber);
+  const decimalPart = strippedNumber?.split?.(".")?.[1];
+
   return (
     validation.find((v) => {
       switch (v.validationType) {
@@ -31,9 +33,22 @@ const getValidationError = (value: string, validation: GqlTextInput["validation"
           return numberValue < Number(v.validationValue);
         case ValidationType.MaxNumber:
           return numberValue > Number(v.validationValue);
+        case ValidationType.MaximumDecimalNumbers:
+          if (!decimalPart) {
+            return false;
+          }
+
+          return decimalPart.length > Number(v.validationValue);
+        // Old validations have no validateType, can't assume that default is the regex.
         case ValidationType.Regex:
-        default:
+        case null:
+        case undefined:
           return !new RegExp(v.validationValue).test(value);
+        /** older versions of the app with validationType should not fallback to regex
+         * it was the only supported validationValue before validationType was introduced on 4.48
+         */
+        default:
+          return false;
       }
     })?.validationName || ""
   );
@@ -54,6 +69,7 @@ export const ContentItemTextInputBase = ({
   prefixTextStyles,
   inputTextAlign,
   hideErrorIcon,
+  maximumFractionDigits,
 }: Props) => {
   const [indentWidth, setIndentWidth] = useState(0);
 
@@ -85,6 +101,7 @@ export const ContentItemTextInputBase = ({
         showErrorWhenFocused={showErrorWhenFocused}
         textAlign={castTextInputAlignGqlToProps(inputTextAlign)}
         hideErrorIcon={hideErrorIcon}
+        maximumFractionDigits={maximumFractionDigits}
       />
     </View>
   );
@@ -92,7 +109,10 @@ export const ContentItemTextInputBase = ({
 
 export const ContentItemTextInput = memo((props: Props) => {
   const { answerKey, localDispatchActionsOnChange } = props;
-  const { value, onChange } = useSduiOnChange<string>(answerKey, formatValue);
+  const { value, onChange } = useSduiOnChange<string>(
+    answerKey,
+    formatValue({ maximumFractionDigits: props.maximumFractionDigits })
+  );
 
   const localContextDispatch = useContext(SduiDispatchContext);
 
@@ -149,17 +169,19 @@ const mapTextFieldType = (type: ContentItemFormTextInputType): ComponentProps<ty
   }
 };
 
-const formatValue = (value: unknown) => {
-  if (!value) {
-    return null;
-  }
+const formatValue =
+  ({ maximumFractionDigits = 2 }: { maximumFractionDigits?: number }) =>
+  (value: unknown) => {
+    if (!value) {
+      return null;
+    }
 
-  if (typeof value === "number") {
-    return String(addCommasToNumber(value));
-  }
+    if (typeof value === "number") {
+      return formatNumber(String(value), maximumFractionDigits);
+    }
 
-  return value as string;
-};
+    return value as string;
+  };
 
 function mapKeyboardType(keyboardType: string): KeyboardType {
   switch (keyboardType) {

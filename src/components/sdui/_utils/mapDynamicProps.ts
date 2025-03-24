@@ -2,6 +2,7 @@ import { parseJSON } from "@utils";
 import { SduiReducerState } from "../_types/sdui.types";
 import { DynamicDataType } from "@redux/server-driven-ui/sdui.types";
 import { isNil, omit } from "lodash";
+import { getCurrentLocale } from "@locale";
 
 type MultiplyOperation = {
   type: "multiply";
@@ -28,6 +29,7 @@ type NumberToFixedOperation = {
 
 type FormatNumberOperation = {
   type: "format-number";
+  value: number;
 };
 
 type Operation =
@@ -111,7 +113,7 @@ export const mapDynamicProps = (sduiId: string, sduiReducerState: SduiReducerSta
             if (operationReducer.type === "format-number") {
               const accAsNumber = Number(operationAcc);
 
-              return accAsNumber.toLocaleString();
+              return accAsNumber.toLocaleString(getCurrentLocale(), { minimumFractionDigits: operationReducer.value });
             }
 
             return operationAcc;
