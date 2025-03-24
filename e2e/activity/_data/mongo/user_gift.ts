@@ -93,3 +93,35 @@ export const USER_20_GIFT_B = {
     createdAt: moment().subtract(3, "hours").toISOString(),
   },
 } as IDatabaseItem;
+
+export const USER_139_GIFT_B = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    fromUserId: customer.CUSTOMER_139.data.customerId,
+    toUserId: customer.CUSTOMER_138.data.customerId,
+    assetType: "yucoin",
+    amount: 10,
+    message: "Great work today!",
+    background: "forest",
+    sticker: "lantern",
+    autoClaimAfter: moment().subtract(1, "days").toDate(),
+    createdAt: moment().subtract(10, "days"),
+  },
+} as IDatabaseItem;
+
+export const USER_16_GIFT_B = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    fromUserId: customer.CUSTOMER_16.data.customerId,
+    toUserId: customer.CUSTOMER_138.data.customerId,
+    assetType: "yucoin",
+    amount: 50,
+    message: "Great work today!",
+    background: "forest",
+    sticker: "lantern",
+    autoClaimAfter: moment().subtract(1, "days").toDate(),
+    createdAt: moment().subtract(10, "days"),
+  },
+} as IDatabaseItem;

@@ -947,3 +947,11 @@ export const P2P_THANK_THEM_MESSAGE = "screens.gifting.thank_them";
 export const SENDER_GIFTING_AMOUNT = (amount: number) => `SENDER_GIFTING_AMOUNT_${amount}`;
 export const PINK_DOT = `PINK_DOT`;
 export const RETURN_GIFT_BUTTON = "screens.gifting.send_your_friend_a_gift";
+export const NOTIFICATION_PINK_DOT_ARROW = (
+  title: string,
+  showNotificationDot: boolean,
+  onPress: boolean
+) =>
+  `NOTIFICATION_PINK_DOT_ARROW${title}_${showNotificationDot ? "DOT" : "NO_DOT"}_${
+    onPress ? "ARROW" : "NO_ARROW"
+  }`;

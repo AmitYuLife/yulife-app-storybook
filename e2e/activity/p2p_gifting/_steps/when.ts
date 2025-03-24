@@ -78,3 +78,10 @@ export const triggerThanksForGiftNotification =
       giftReceiverUserId: gift.data.toUserId,
     });
   };
+
+export const trigger7DayAutoClaim = async () => {
+  await dataManager.triggerWorkerTask("INVOKE_SERVICE_METHOD", {
+    serviceName: "game.gifting",
+    methodName: "claimExpiredGifts",
+  });
+};

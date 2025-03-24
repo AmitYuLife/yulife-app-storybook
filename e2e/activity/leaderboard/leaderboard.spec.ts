@@ -84,6 +84,19 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       When("I tap close", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
         Then("I can see the emtpy yudoku leaderboard state", then.onLeaderboardWithoutConsent());
       });
+      When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+        When("I am not consented to any leaderboards and I tap 'Show your friends that you appreciate them' card", when.tapID(ids.HERO_CARD_SECTION), async () => {
+          Then("I should see 'Join the Leaderboard to send gifts to your friends!' pop up", then.textVisible("Join the Leaderboard to send gifts to your friends!"));
+        });
+      });
+      When("I tap cancel", when.tapText("Cancel"), async () => {
+        Then("The pop up should close and I should be back on the YuScreen", then.yuScreenV5HeaderVisible(false, "Ryan Howard", "Forest", "2", false));
+      });
+      When("I tap 'Show your friends that you appreciate them' card again", when.tapID(ids.HERO_CARD_SECTION), async () => {
+        When("I tap Join the Leaderboard", when.tapText("Join Leaderboard"), async () => {
+          Then("I should see the leaderboard screen ", then.onLeaderboardWithoutConsent());
+        });
+      });
     });
   });
 
