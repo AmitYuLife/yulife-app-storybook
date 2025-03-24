@@ -13,7 +13,7 @@ import {
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
-import { addCommasToNumber, formatPostCode } from "@utils";
+import { formatNumber, formatPostCode } from "@utils";
 import { TextInputWarningIcon } from "@molecules";
 import { useMaterialInputAnimation } from "./useMaterialInputAnimation";
 import { Box, TextTemplate } from "@atoms";
@@ -40,6 +40,7 @@ interface Props {
   showErrorWhenFocused?: boolean;
   textAlign?: TextInputProps["textAlign"];
   hideErrorIcon?: boolean;
+  maximumFractionDigits?: number;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -50,7 +51,7 @@ function stripPunctuation(text: string, type: Type) {
   return text.replace(/,/g, "");
 }
 
-function formatText(text: string, type: Type) {
+function formatText(text: string, type: Type, maximumFractionDigits = 2) {
   if (type === "Text" || type === "PhoneNumber") {
     return text;
   }
@@ -65,7 +66,7 @@ function formatText(text: string, type: Type) {
     return text;
   }
 
-  return `${addCommasToNumber(castedText)}`;
+  return formatNumber(text, maximumFractionDigits);
 }
 
 export default function TextField(props: Props) {
@@ -89,6 +90,7 @@ export default function TextField(props: Props) {
     showErrorWhenFocused,
     textAlign,
     hideErrorIcon = false,
+    maximumFractionDigits = 2,
   } = props;
 
   const [isFocused, setFocused] = useState(autoFocus);
@@ -101,7 +103,15 @@ export default function TextField(props: Props) {
 
   useEffect(() => {
     if (textInputValue !== value) {
-      setTextInputValue(value);
+      if (type === "Number" && value && textInputValue) {
+        const [valueIntegerPart, valueDecimalPart] = value.split(".");
+        const [_, textInputValueDecimalPart] = textInputValue.split(".");
+        if (textInputValueDecimalPart !== undefined) {
+          setTextInputValue(`${valueIntegerPart}.${valueDecimalPart || textInputValueDecimalPart}`);
+        }
+      } else {
+        setTextInputValue(value);
+      }
     }
 
     if (isFocused || textInputValue) {
@@ -109,7 +119,7 @@ export default function TextField(props: Props) {
     }
 
     setActiveMaterial(false);
-  }, [isFocused, textInputValue, value]);
+  }, [isFocused, textInputValue, value, type]);
 
   useMaterialInputAnimation({
     activeMaterial,
@@ -153,7 +163,7 @@ export default function TextField(props: Props) {
             const strippedPunctuation = stripPunctuation(text, type);
             onChange(type === "Number" ? parseFloat(strippedPunctuation) : strippedPunctuation);
 
-            const formattedText = formatText(strippedPunctuation, type);
+            const formattedText = formatText(strippedPunctuation, type, maximumFractionDigits);
             return setTextInputValue(formattedText);
           }}
           value={textInputValue} //@TODO: Discuss with the team, that instead of using local state we should use the props "value" here, for better control

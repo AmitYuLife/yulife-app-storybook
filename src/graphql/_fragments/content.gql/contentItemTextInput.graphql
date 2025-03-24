@@ -25,4 +25,5 @@ fragment ContentItemTextInput on ContentItemTextInput {
   localDispatchActionsOnChange {
     ...SduiAction
   }
+  maximumFractionDigits
 }
