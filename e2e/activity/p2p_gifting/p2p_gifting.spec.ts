@@ -265,6 +265,35 @@ Feature("P2P gifting", async () => {
       Then("The input field has no value", then.inputHasValue(ids.INPUT_FIELD, ""));
     });
   });
+
+  Scenario("I should see gift auto claim notification in the app inbox", scenario.start, async () => {
+    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
+      When("I trigger worker", when.trigger7DayAutoClaim, async () => {
+        Then("I should see my YuCoin balance before the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(250)));
+      });
+      When("I trigger the 'You received a gift!' notification 10 YuCoin gift", when.triggerGiftReceivedNotification(data.CUSTOMER_139, data.USER_139_GIFT_B), async () => {
+        When("I trigger the 'You received a gift!' notification 50 YuCoin gift", when.triggerGiftReceivedNotification(data.CUSTOMER_139, data.USER_16_GIFT_B), async () => {
+          Then("I should be back on YuCoin screen", then.idVisible(ids.HERO_CARD_SECTION, 2000));
+        });
+      });
+      When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+        Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+        Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+        Then("I should see my YuCoin balance go up by 60 YuCoin from the auto claimed gifts", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(310)));
+      });
+      When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+        When("I wait 5 seconds", when.wait(5000), async () => {
+          Then("I can see that a gift sent 10 days ago triggered an auto-claimed notification displaying '+10 YuCoin!' and does not have the Pink Dot or Arrow", then.idVisible(ids.NOTIFICATION_PINK_DOT_ARROW("+10 YuCoin!", false, false)));
+          Then("I can see that a gift sent 10 days ago triggered an auto-claimed notification displaying '+50 YuCoin!' and does not have the Pink Dot or Arrow", then.idVisible(ids.NOTIFICATION_PINK_DOT_ARROW("+50 YuCoin!", false, false), 2000));
+          Then("I can see the heading copy is correct for the auto claimed messages", then.textVisible(`+50 YuCoin!`));
+          Then("I can see the message copy is correct for the auto claimed messages", then.textVisible(`Your unclaimed gift from ${getFullName(data.CUSTOMER_16, "UK")} was added to your balance.`));
+        });
+      });
+      When("I tap to on +10 YuCoin! notification", when.tapID(ids.INBOX_MESSAGE_ITEM("+10 YuCoin!"), 2000), async () => {
+        Then("Nothing should happen and I should still be on the notification centre", then.idVisible(ids.CONNECTION_SETUP_TITLE));
+      });
+    });
+  });
 });
 
 Scenario("I can send multiple people a YuCoin gift", scenario.start, async () => {

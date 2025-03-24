@@ -13,6 +13,7 @@ export interface IArrowIconProps {
   color?: string;
   intent?: ArrowIntent;
   direction?: ArrowDirection;
+  testID?: string;
 }
 
 export const ArrowIcon = memo(
