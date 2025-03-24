@@ -39,8 +39,10 @@ Feature("P2P gifting", async () => {
     When("I search for a different user who has consented - Tywin Lannister", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_73)), async () => {
       Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")));
     });
-    When("I select Tywin Lanister", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")), async () => {
-      Then("I can now see all these users are selected", then.selectedUsersVisible([data.CUSTOMER_50, data.CUSTOMER_73]));
+    When("I search for Tywin Lanister", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")), async () => {
+      When("I select Tywin Lanister", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME(getFullName(data.CUSTOMER_73)), 2500), async () => {
+        Then("I can now see all these users are selected", then.selectedUsersVisible([data.CUSTOMER_50, data.CUSTOMER_73]));
+      });
     });
     When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
       Then("I see the message selection screen", then.messageSelectionScreenVisible(2));
