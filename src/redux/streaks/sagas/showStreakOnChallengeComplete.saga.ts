@@ -1,9 +1,9 @@
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { Navigation } from "@navigation/main";
-import { call, select, take, delay, race, put } from "redux-saga/effects";
+import { call, select, take, delay, put } from "redux-saga/effects";
 import { getModalState, getRouteState } from "../../app/app.selectors";
-import { GET_USER_ACTIVE_STREAK_SUCCESS, GET_USER_SUCCESS } from "../../user/user.actions";
+import { GET_USER_ACTIVE_STREAK_SUCCESS } from "../../user/user.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import { getStreaks } from "../streaks.selectors";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -11,10 +11,7 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 export default function* showStreakOnChallengeCompleteSaga() {
   const streaksBeforeUpdate: ReturnType<typeof getStreaks> = yield select(getStreaks);
 
-  yield race({
-    userSuccess: take(GET_USER_SUCCESS),
-    streakSuccess: take(GET_USER_ACTIVE_STREAK_SUCCESS),
-  });
+  yield take(GET_USER_ACTIVE_STREAK_SUCCESS);
 
   const streaks: ReturnType<typeof getStreaks> = yield select(getStreaks);
   const activeModal: ReturnType<typeof getModalState> = yield select(getModalState);
