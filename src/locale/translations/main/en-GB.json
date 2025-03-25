@@ -331,6 +331,16 @@
         "alert_error_default_message": "Something wrong"
       }
     },
+    "login-hero": {
+      "primary_cta_label": "I’m new to YuLife",
+      "secondary_cta_label": "Got an account? Sign in",
+      "disclaimer_markdown": "By continuing, you agree to our [Privacy Policy](%{privacyPolicyUrl}).",
+      "slides": {
+        "earn": "Earn YuCoin for your daily steps, mindfulness, and more!",
+        "exchange": "Exchange your YuCoin for vouchers from your favourite brands!",
+        "donate": "Donate to good causes!"
+      }
+    },
     "streak": {
       "completion": {
         "next_streak": "Begin your next streak in"
