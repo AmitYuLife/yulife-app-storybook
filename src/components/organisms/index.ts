@@ -71,3 +71,4 @@ export { default as CouponListItem } from "./coupon-list-item/coupon-list-item";
 export { default as BattlePassBlurredRaysWrapper } from "./battle-pass-blurred-rays-wrapper/battle-pass-blurred-rays-wrapper";
 export { default as PodiumRays } from "./podium/podium-rays";
 export { default as ListItemLoadingSkeleton } from "./list-item-loading-skeleton/list-item-loading-skeleton";
+export { default as FullScreenHero } from "./full-screen-hero/full-screen-hero";
