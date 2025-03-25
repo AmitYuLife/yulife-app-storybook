@@ -16,6 +16,7 @@ export * from "./rewardDetails";
 export * from "./rewards";
 export * from "./settings";
 export * from "./signupConfirm";
+export * from "./smoking";
 export * from "./wellbeingHubItemDetails";
 export * from "./wellbeingHubItems";
 export * from "./wellbeingHubSendDocuments";
