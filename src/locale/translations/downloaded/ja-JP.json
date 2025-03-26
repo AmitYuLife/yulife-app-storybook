@@ -1255,6 +1255,16 @@
         "short": "会社の所在地"
       }
     },
+    "login-hero": {
+      "disclaimer_markdown": "続行することにより、[プライバシーポリシー](%{privacyPolicyUrl})に同意したことになります。",
+      "primary_cta_label": "私は Yumoji に初めてです",
+      "secondary_cta_label": "アカウントをお持ちですか？サインイン",
+      "slides": {
+        "donate": "良い目的に寄付しよう！",
+        "earn": "毎日のステップ、マインドフルネスなどで YuCoin を獲得しましょう！",
+        "exchange": "獲得した YuCoin は、お好きなブランドのギフト券に交換できます！"
+      }
+    },
     "measurement_cycling_settings": {
       "description": "インペリアル法 (マイル) とメートル法 (キロメートル) の切り替え",
       "imperial": {

@@ -1255,6 +1255,16 @@
         "short": "Ubicación de la empresa"
       }
     },
+    "login-hero": {
+      "disclaimer_markdown": "Al continuar, acepta nuestra [Política de privacidad](%{privacyPolicyUrl}).",
+      "primary_cta_label": "Soy nuevo en YuLife",
+      "secondary_cta_label": "¿Tiene una cuenta? Iniciar sesión",
+      "slides": {
+        "donate": "Dona a buenas causas",
+        "earn": "¡Gana YuCoin por tus pasos diarios, mindfulness y mucho más!",
+        "exchange": "¡Canjea tus YuCoin por vales de tus marcas favoritas!"
+      }
+    },
     "measurement_cycling_settings": {
       "description": "Cambia entre el sistema imperial (millas) y el métrico (kilómetros).",
       "imperial": {
@@ -1566,7 +1576,7 @@
         "next_streak": "Comienza tu próxima racha en"
       },
       "cta_label_collect": "Recolectar %{reward} %{type}",
-      "cta_label_take_challenge": "Empieza un reto",
+      "cta_label_take_challenge": "Acepta un reto",
       "heading": "¡Grandes avances!",
       "heading_completed": "¡Has conquistado esa racha!",
       "heading_completed_today_streak": {

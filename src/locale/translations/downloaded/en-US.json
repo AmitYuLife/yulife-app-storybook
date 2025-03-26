@@ -1255,6 +1255,16 @@
         "short": "Company location"
       }
     },
+    "login-hero": {
+      "disclaimer_markdown": "By continuing, you agree to our [Privacy Policy](%{privacyPolicyUrl}).",
+      "primary_cta_label": "I'm new to YuLife",
+      "secondary_cta_label": "Got an account? Sign in",
+      "slides": {
+        "donate": "Donate to good causes!",
+        "earn": "Earn YuCoin for your daily steps, mindfulness, and more!",
+        "exchange": "Exchange your YuCoin for vouchers from your favorite brands!"
+      }
+    },
     "measurement_cycling_settings": {
       "description": "Change between the imperial (miles) and metric (kilometers) system.",
       "imperial": {
