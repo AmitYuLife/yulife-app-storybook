@@ -59,86 +59,62 @@ export const CORE_REWARDS_JOHN_LEWIS = {
   },
 } as IDatabaseItem;
 
-export const CORE_REWARDS_AVIOS = {
+export const CORE_REWARDS_BUZZBIKE = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
     _id: generateRandomMongoId(),
-    images: {
-      listItemImageKey: "reward/background/AVI-GB.jpg",
-      detailHeaderKey: "reward/header/AVI-GB.jpg",
-    },
-    sortOrder: 1,
-    rewardProviderId: "avios",
-    redemptionUrl: "stocked",
-    progression_level: "5",
-    code: "AVI-GB",
-    currencyCode: "GBP",
-    denomination_type: null,
-    description:
-      "Avios are the loyalty currency of Aer Lingus, British Airways, Vueling and other airlines. When you collect Avios you can spend them on flights, hotels and many other experiences.  \n\n * Reward flights are subject to availability. Taxes fees and carrier charges apply \n\n * Avios may take a few days to process your request",
-    e_code_usage_type: null,
-    expiry_date_policy: "12 months",
-    maximum_value: null,
-    minimum_value: null,
-    name: "Avios Miles",
+    loyaltyProgramme: [],
     restrictions: {
       locations: ["GB"],
+      availableForLabels: [],
+      restrictedForLabels: [],
     },
-    termsAndConditionsUrl:
-      "https://res.cloudinary.com/yu-life/image/upload/v1533742185/reward/avios-card.png",
-    reward_sticker: "best value",
-    __v: 0,
-    uiSettings: {
-      id: "AVI-GB",
-      logoWidth: 55,
-      logoHeight: 55,
-      ctaLabel: "buy avios",
+    tags: ["Entertainment"],
+    badge: {
+      name: "Discount",
+      colour: "#E30D76",
     },
-    redemptionSteps: {
-      info: "connect yucoin to avios",
-      steps: [
-        "Please select your Avios loyalty programme and enter your membership number. Choose how many yucoin you want to convert and you’re on your way.",
-      ],
+    code: "BUZZ-GB",
+    rewardProviderId: "link",
+    images: {
+      listItemImageKey: "reward/background/BUZZ-GB.jpg",
+      detailHeaderKey: "cms/1628676590136_buzzbike.png",
     },
-    loyaltyProgramme: ["AerClub", "The British Airways Executive Club", "Vueling Club"],
+    name: "Buzzbike",
+    description:
+      "Buzzbike is a cancel anytime subscription service offering a stunning 3-speed bike & award winning lock for only £27/month. On-demand repairs and stolen bike replacement are included. Get ready to ride!",
     availableDenominations: [
       {
-        yuCoin: 500,
-        value: 50,
-        stock: null,
-      },
-      {
-        yuCoin: 1000,
-        value: 100,
-        stock: null,
-      },
-      {
-        yuCoin: 2500,
-        value: 250,
-        stock: null,
-      },
-      {
-        yuCoin: 5000,
-        value: 500,
-        stock: null,
-      },
-      {
-        yuCoin: 10000,
-        value: 1000,
-        stock: null,
-      },
-      {
-        yuCoin: 20000,
-        value: 2000,
-        stock: null,
-      },
-      {
-        yuCoin: 100000,
-        value: 10000,
-        stock: null,
+        _id: generateRandomMongoId(),
+        yuCoin: 0,
+        value: 0,
+        stock: 7,
+        availableForRewardsStore: true,
       },
     ],
+    currencyCode: "GBP",
+    redemptionSteps: {
+      steps: [
+        "Visit buzzbike.cc",
+        "Proceed to Sign up page",
+        "Enter YULIFE10OFFSUB into the Promo Code field to claim a 10% discount for every month of your subscription. Discount will be applied automatically to all the subsequent months.",
+      ],
+      info: "How to redeem Buzzbike:",
+    },
+    copy: {
+      id: "BUZZ-GB",
+      ctaLabel: "Claim Reward",
+      offerHeading: "10% offf",
+      offerSubheading: "   ",
+      alertHeading: "Claim your discount",
+      alertSubheading: "Do you want to claim your 10% Discount",
+    },
+    termsAndConditionsUrl: "https://buzzbike.cc/termsofuse",
+    sortOrder: 0.001,
+    archived: false,
+    __v: 1,
+    _migrated: true,
   },
 } as IDatabaseItem;
 

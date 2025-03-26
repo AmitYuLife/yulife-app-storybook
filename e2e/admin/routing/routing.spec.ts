@@ -147,6 +147,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
       Then("I should see a John Lewis reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
       Then("I should see a locked reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE));
       Then("I should see the Purchased tab", then.idVisible(ids.PURCHASED_TAB_BUTTON, 1500));
+      Then("I should see the rewards category list even when only 4 rewards are available", then.idVisible(ids.CHIP_LIST_ITEM("Entertainment"), 2000));
     });
     When("I tap the Purchased tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
       When("I wait", when.wait(2500), async () => {
@@ -155,6 +156,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     });
     When("I tap 'check rewards", when.tapID(ids.CHECK_REWARDS_BUTTON), async () => {
       Then("I should be back on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
+      Then("I should still see the rewards category list", then.idVisible(ids.CHIP_LIST_ITEM("All"), 2000));
     });
   });
 
