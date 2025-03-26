@@ -34,7 +34,7 @@ export const LoginHeroScreen = memo(({ componentId }: LoginHeroScreenProps) => {
           backgroundImage: FullScreenHeroBackground.YugiClimbing,
         },
         {
-          title: t("screens.login-hero.slides.exchange"),
+          title: t("screens.login-hero.slides.redeem"),
           backgroundImage: FullScreenHeroBackground.Rewards,
         },
         {
