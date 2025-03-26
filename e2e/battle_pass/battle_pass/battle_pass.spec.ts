@@ -56,6 +56,8 @@ Feature("I can view and use all battle pass features", async () => {
     When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
       When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
         Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+        Then("I should see the correct season title", then.idVisible(ids.BATTLE_PASS_TITLE("Season of Harmony"), 2000));
+        Then("I should see the active season description", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("3 rewards remaining"), 2000));
       });
     });
     When("I tap donate to Plant a tree and complete my first level", when.donate("tree", 3), async () => {
@@ -70,6 +72,7 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
       Then("I should see level 2 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
       Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
+      Then("I should see the correct remaining rewards count", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("2 rewards remaining"), 2000));
     });
   });
 
