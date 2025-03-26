@@ -16,6 +16,21 @@ export const AUTH_TEMPLATE = {
   },
 } as IDatabaseItem;
 
+export const AUTH_TEMPLATE_BDD_SEEDED = {
+  type: "mongo",
+  modelName: "authpassword",
+  data: {
+    userId: generateRandomMongoId(),
+    attempts: 1,
+    lastAttempt: "2019-03-12T14:10:29.275+00:00",
+    lastIp: "35.176.60.174",
+    password: "LetmeinNow1!",
+    scope: "user",
+    strategy: "0",
+    used: false,
+  },
+} as IDatabaseItem;
+
 export const allTogglesTrue = {
   type: "mongo",
   modelName: "usertoggles",
