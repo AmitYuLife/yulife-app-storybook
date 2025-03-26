@@ -1,9 +1,111 @@
-import { LoginUserMutation } from "@graphql/__generated";
+import { gql, LoginUserMutation } from "@graphql/__generated";
 import { t } from "@locale";
-import { ILoginUserPayload } from "@redux/user/user.types";
+import { IFeature, ILoginUserPayload } from "@redux/user/user.types";
 import { VoidFunction } from "@utils";
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
+import { Keyboard } from "react-native";
+import { setAuthenticatedRoot } from "@navigation/root";
+import { Dispatch } from "react";
+import { setAuthenticated, setRegionConfig } from "@redux/app/app.actions";
+import { Style } from "@styles";
+import client from "@graphql/_core/client";
+import { REGION, region as regionService } from "@locale";
+import { setToken } from "@services/storage";
+import { FetchResult } from "@apollo/client";
+import { loginUserSuccess } from "@redux/user/user.actions";
+import { reduceUserFeatures } from "@redux/user/user.helpers";
+
+export const applyLoginSession = async (
+  loginResponse: FetchResult<LoginUserMutation>,
+  region: REGION,
+  componentId: string,
+  dispatch: Dispatch<unknown>,
+  fitkitAuthorised: boolean
+) => {
+  // let's persist the region and config
+  regionService.setRegion(region);
+
+  // fetch the config
+  const response = await client().query({
+    query: gql("GetPublicYuApiConfigDocument"),
+    fetchPolicy: "no-cache",
+  });
+
+  if (response?.data?.config?.mixpanelKey) {
+    await regionService.setConfig(response.data.config);
+  }
+
+  dispatch(setRegionConfig({ shouldFetchConfig: false }));
+
+  if (loginResponse?.data?.loginUser?.token) {
+    const features = loginResponse?.data?.loginUser?.user?.userFeatures;
+
+    await setToken(loginResponse.data.loginUser.token);
+    dispatch(loginUserSuccess(toLoginUserSuccessPayload(loginResponse.data)));
+
+    const showHealthConnect = !features.some((f) => f.name === "tempGameEnableReleaseYuHealthV3") && fitkitAuthorised;
+    // no need to send the user to healthkit-connect if device is an ipad
+    await transitionFromLoginToAuthenticated({
+      authorised: Style.isIPad() ? true : showHealthConnect,
+      onboarded: loginResponse?.data?.loginUser?.user?.redeemedOnboarding,
+      userFeatures: features.reduce(reduceUserFeatures, {}),
+      componentId,
+      dispatch,
+    });
+  } else {
+    throw new Error(t("screens.login.accessibility.alert_error_default_message"));
+  }
+};
+
+const transitionFromLoginToAuthenticated = async ({
+  authorised,
+  onboarded,
+  userFeatures,
+  componentId,
+  dispatch,
+}: {
+  authorised: boolean;
+  onboarded: boolean;
+  userFeatures: IFeature;
+  componentId: string;
+  dispatch: Dispatch<unknown>;
+}) => {
+  const { tempGameEnableReleaseYuHealthV3 } = userFeatures || {};
+
+  // ensure the keyboard is dismissed
+  Keyboard.dismiss();
+
+  const onFinalDone = async () => {
+    await setAuthenticatedRoot(() => dispatch(setAuthenticated()));
+  };
+
+  const onboardingNavigationBuilder = (next?: VoidFunction) => () => {
+    return navigateToRoute(componentId, ROUTES.onboardingSignUpReward, next);
+  };
+
+  const connectNavigationBuilder = (next?: VoidFunction) => () => {
+    const route = tempGameEnableReleaseYuHealthV3 ? ROUTES.yuHealthConnect : ROUTES.onboardingFitKitConnect;
+
+    return navigateToRoute(componentId, route, next);
+  };
+
+  const actionOrder: (VoidFunction | ((next?: VoidFunction) => VoidFunction))[] = [];
+
+  if (!onboarded) {
+    actionOrder.push(onboardingNavigationBuilder);
+  }
+
+  if (!authorised || (tempGameEnableReleaseYuHealthV3 && !Style.isIPad())) {
+    actionOrder.push(connectNavigationBuilder);
+  }
+
+  actionOrder.push(onFinalDone);
+
+  const action = actionOrder.reduceRight((acc, curr) => (acc === null ? curr : curr(acc)), null) as VoidFunction;
+
+  action();
+};
 
 export const validatePassword = (password: string): string => {
   if (!password) {
