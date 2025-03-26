@@ -8,6 +8,7 @@ import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/batt
 import { ImageBackground } from "expo-image";
 import { TextTemplate } from "@atoms";
 import { useScrollToItem } from "@hooks";
+import { BATTLE_PASS_DESCRIPTION, BATTLE_PASS_TITLE } from "@ids";
 
 interface IBattlePassHeaderProps {
   title: string;
@@ -40,11 +41,11 @@ const BattlePassHeader = ({
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
       <View style={styles.headerWrapper} accessible={true}>
         <View style={styles.title}>
-          <TextTemplate type="b1b" color={textColor}>
+          <TextTemplate type="b1b" color={textColor} testID={BATTLE_PASS_TITLE(title)}>
             {title}
           </TextTemplate>
         </View>
-        <TextTemplate type="l1" color={textColor}>
+        <TextTemplate type="l1" color={textColor} testID={BATTLE_PASS_DESCRIPTION(description)}>
           {description}
         </TextTemplate>
       </View>

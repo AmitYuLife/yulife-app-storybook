@@ -898,6 +898,9 @@ export const CLOSE_INVENTORY = "modals.consumables.close-text-view";
 export const EXTRA_CHALLENGE_INDICATOR = (value: number) => `EXTRA_CHALLENGE_INDICATOR_${value}`;
 export const YUMOJI_REWARD_PICKER_ITEM = "YUMOJI_REWARD_PICKER_ITEM";
 export const CLAIMED_REWARD_ITEMS = (items: number) => `CLAIMED_REWARD_ITEM_${items}`;
+export const BATTLE_PASS_TITLE = (title: string) => `BATTLE_PASS_TITLE_${title}`;
+export const BATTLE_PASS_DESCRIPTION = (description: string) =>
+  `BATTLE_PASS_DESCRIPTION_${description}`;
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";
