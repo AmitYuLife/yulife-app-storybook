@@ -227,7 +227,6 @@ export const CUSTOMER_12_TOGGLES = {
     userId: customers.CUSTOMER_12.data.customerId,
     features: {
       ...allTogglesTrue.data.features,
-      tempShowSignUpRewardFirst: true,
     },
   },
 } as IDatabaseItem;

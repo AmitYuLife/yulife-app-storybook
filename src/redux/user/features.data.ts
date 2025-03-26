@@ -82,7 +82,6 @@ export const features = [
   "tempQuestMapLevelBubblePulseAnimation",
   "tempQuestMapLevelBubbleEaseInAnimation",
   "tempQuestMapInterstitialModal",
-  "tempShowSignUpRewardFirst",
   "tempShowUnsyncedDailyStepsPassiveActivities",
   "tempGameGetInAppMeditationFromServer",
   "gameHideMeditationInternalContent",
