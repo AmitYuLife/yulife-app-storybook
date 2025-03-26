@@ -4033,6 +4033,14 @@ export enum ExportEmployeesType {
   YuCoinRedemptionReport = "YU_COIN_REDEMPTION_REPORT",
 }
 
+export type FeaturedReward = {
+  __typename?: "FeaturedReward";
+  description: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+  imageKey: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+};
+
 export type FeedbackForm = {
   __typename?: "FeedbackForm";
   awardYucoin?: Maybe<Scalars["Int"]["output"]>;
@@ -5768,19 +5776,19 @@ export type MobileGamePartnerRewardsInventoryItems = {
   title: Scalars["String"]["output"];
 };
 
-export type MobileGameUserBadge = {
-  __typename?: "MobileGameUserBadge";
-  badgeId: Scalars["ID"]["output"];
-  badgeType: Scalars["String"]["output"];
+export type MobileGameUserAchievement = {
+  __typename?: "MobileGameUserAchievement";
+  achievementId: Scalars["ID"]["output"];
+  achievementType: Scalars["String"]["output"];
   description: Scalars["String"]["output"];
   icon: RemoteImage;
   name: Scalars["String"]["output"];
 };
 
-export type MobileGameUserBadges = {
-  __typename?: "MobileGameUserBadges";
-  badges: Array<MobileGameUserBadge>;
-  equippedBadges: Array<MobileGameUserBadge>;
+export type MobileGameUserAchievements = {
+  __typename?: "MobileGameUserAchievements";
+  achievements: Array<MobileGameUserAchievement>;
+  equippedAchievements: Array<MobileGameUserAchievement>;
 };
 
 export type MobileGameWeeklies = {
@@ -6278,7 +6286,7 @@ export type Mutation = {
   loginUser?: Maybe<UserPayload>;
   makeBusinessAccessUserSoleOwner: Scalars["Boolean"]["output"];
   markInboxMessagesAsSeen?: Maybe<Scalars["Boolean"]["output"]>;
-  markMobileGameUserBadgeViewed?: Maybe<MobileGameUserBadge>;
+  markMobileGameUserAchievementViewed?: Maybe<MobileGameUserAchievement>;
   markMobileNotificationsAsViewedByType: Scalars["Boolean"]["output"];
   markMobileUserWrappedAsViewed: MarkMobileUserWrappedResponse;
   /** Checks if the current step needs to be updated. E.g if you're on any step after checkout - once you quit, you need to be sent back to the main checkout step. */
@@ -6366,7 +6374,7 @@ export type Mutation = {
   updateCyclingMeasurement?: Maybe<Scalars["Boolean"]["output"]>;
   updateLeaderboardConsent?: Maybe<Leaderboard>;
   updateMemberName: Scalars["Boolean"]["output"];
-  updateMobileGameUserBadges?: Maybe<MobileGameUserBadges>;
+  updateMobileGameUserAchievement?: Maybe<MobileGameUserAchievements>;
   /**
    * Used by clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.16.0
    * Incremented feature toggle to V2 on RN version >= 4.16.0
@@ -6776,8 +6784,8 @@ export type MutationMarkInboxMessagesAsSeenArgs = {
   messageIds: Array<Scalars["ID"]["input"]>;
 };
 
-export type MutationMarkMobileGameUserBadgeViewedArgs = {
-  badgeId: Scalars["String"]["input"];
+export type MutationMarkMobileGameUserAchievementViewedArgs = {
+  achievementId: Scalars["String"]["input"];
 };
 
 export type MutationMarkMobileNotificationsAsViewedByTypeArgs = {
@@ -7168,9 +7176,9 @@ export type MutationUpdateMemberNameArgs = {
   nameVariants?: InputMaybe<Array<NameVariantInput>>;
 };
 
-export type MutationUpdateMobileGameUserBadgesArgs = {
-  equipBadgeId?: InputMaybe<Scalars["String"]["input"]>;
-  unEquipBadgeId?: InputMaybe<Scalars["String"]["input"]>;
+export type MutationUpdateMobileGameUserAchievementArgs = {
+  achievementId: Scalars["String"]["input"];
+  slot?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 export type MutationUpdateMobileQuestLevelChallengeArgs = {
@@ -7746,6 +7754,7 @@ export type Query = {
   getBusinessActiveSelfRegistration?: Maybe<GetBusinessActiveSelfRegistration>;
   getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessSelfRegistrationResult>;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
+  getBusinessFeaturedRewards: Array<FeaturedReward>;
   getBusinessMemberDataConnections: Array<MemberDataConnection>;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
   getBusinessPerk: BusinessPerkItem;
@@ -7831,7 +7840,7 @@ export type Query = {
   getMobileGamePartnerRewardsInventoryCards: MobileGamePartnerRewardsInventoryCards;
   getMobileGamePartnerRewardsInventoryCategories: Array<InventoryRewardsCategory>;
   getMobileGamePartnerRewardsInventoryItems: MobileGamePartnerRewardsInventoryItems;
-  getMobileGameUserBadges: MobileGameUserBadges;
+  getMobileGameUserAchievements: MobileGameUserAchievements;
   getMobileGameWeeklies: MobileGameWeeklies;
   getMobileHeroCards: Array<HeroCard>;
   getMobileHints?: Maybe<Array<Hint>>;
@@ -7888,6 +7897,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8354,8 +8364,8 @@ export type QueryGetMobileGamePartnerRewardsInventoryItemsArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetMobileGameUserBadgesArgs = {
-  badgeType?: InputMaybe<Scalars["String"]["input"]>;
+export type QueryGetMobileGameUserAchievementsArgs = {
+  achievementType?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -8959,6 +8969,12 @@ export enum RnViewPointerEvents {
   None = "NONE",
 }
 
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
   description: Scalars["String"]["output"];
@@ -9481,6 +9497,7 @@ export type SpaCheckBusinessType = {
 export type StartSessionResponse = {
   __typename?: "StartSessionResponse";
   hasExistingAccount?: Maybe<Scalars["Boolean"]["output"]>;
+  hasSetPassword?: Maybe<Scalars["Boolean"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -23648,6 +23665,7 @@ export type GetPublicYuApiConfigQuery = {
       website: string;
       privacyPolicy: string;
       rewardsPolicy: string;
+      eula: string;
     };
     intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
     leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
@@ -77729,6 +77747,7 @@ export const GetPublicYuApiConfigDocument = {
                       { kind: "Field", name: { kind: "Name", value: "website" } },
                       { kind: "Field", name: { kind: "Name", value: "privacyPolicy" } },
                       { kind: "Field", name: { kind: "Name", value: "rewardsPolicy" } },
+                      { kind: "Field", name: { kind: "Name", value: "eula" } },
                     ],
                   },
                 },

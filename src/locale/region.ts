@@ -18,6 +18,7 @@ type RegionConfig = {
     members: string;
     website: string;
     privacyPolicy: string;
+    eula: string;
     rewardsPolicy: string;
   };
   intercom: {

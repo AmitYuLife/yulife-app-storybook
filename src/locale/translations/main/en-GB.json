@@ -329,7 +329,8 @@
         "hide_keyboard": "Hide keyboard",
         "alert_error_title": "Login failed",
         "alert_error_default_message": "Something wrong"
-      }
+      },
+      "disclaimer": "By continuing, you agree to our [Privacy Policy](%{privacyPolicyLink}) and [End-User License Agreement](%{eulaLink})."
     },
     "login-hero": {
       "primary_cta_label": "Claim my account",
