@@ -252,7 +252,7 @@ Feature("As a user I can get past the login screen", async () => {
     });
   });
 
-  Scenario("I can see the YuCoin reward before the apple health screen during signup with the tempShowSignUpRewardFirst toggle", scenario.start, async () => {
+  Scenario("I see the YuCoin reward before the apple health screen during signup", scenario.start, async () => {
     Given("I login and go to the daily steps screen", given.loginOnly(data.CUSTOMER_12, data.AUTH_12, false, "United Kingdom"), async () => {
       Then("I should see the signup reward screen", then.signupRewardVisible);
     });

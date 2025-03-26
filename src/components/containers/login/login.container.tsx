@@ -71,7 +71,7 @@ const LoginContainer: React.FC<Props> = ({
       onboarded: boolean;
       userFeatures: IFeature;
     }) => {
-      const { tempGameEnableReleaseYuHealthV3, tempShowSignUpRewardFirst } = userFeatures || {};
+      const { tempGameEnableReleaseYuHealthV3 } = userFeatures || {};
 
       Keyboard.dismiss();
 
@@ -91,16 +91,12 @@ const LoginContainer: React.FC<Props> = ({
 
       const actionOrder: (VoidFunction | ((next?: VoidFunction) => VoidFunction))[] = [];
 
-      if (!onboarded && tempShowSignUpRewardFirst) {
+      if (!onboarded) {
         actionOrder.push(onboardingNavigationBuilder);
       }
 
       if (!authorised || (tempGameEnableReleaseYuHealthV3 && !Style.isIPad())) {
         actionOrder.push(connectNavigationBuilder);
-      }
-
-      if (!onboarded && !tempShowSignUpRewardFirst) {
-        actionOrder.push(onboardingNavigationBuilder);
       }
 
       actionOrder.push(onFinalDone);
