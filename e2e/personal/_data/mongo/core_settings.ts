@@ -3,6 +3,7 @@ import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
   BUSINESS_ACCOUNT_1,
   BUSINESS_ACCOUNT_3,
+  BUSINESS_ACCOUNT_4,
   BUSINESS_ACCOUNT_6,
   BUSINESS_ACCOUNT_7,
 } from "../postgres/business";
@@ -59,6 +60,19 @@ export const BA3_ACCOUNT_REFERRALS_SETTING = {
     entityType: "business",
     settings: {
       isEnabled: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_4_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "partnerships.rewards",
+    entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    entityType: "business",
+    settings: {
+      storeEnabled: true,
     },
   },
 } as IDatabaseItem;
