@@ -10,6 +10,7 @@ query GetPublicYuAPIConfig {
       website
       privacyPolicy
       rewardsPolicy
+      eula
     }
     intercom {
       appId

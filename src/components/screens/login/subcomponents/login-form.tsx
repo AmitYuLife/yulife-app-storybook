@@ -1,15 +1,16 @@
 import React, { useCallback, useMemo, useRef } from "react";
 import { View, Keyboard, StyleSheet, AccessibilityPropsAndroid } from "react-native";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
-import { Pad, TextTemplate } from "@atoms";
-import { Button, LinkGroup, Pressable, TextInput, TextInputError } from "@molecules";
-import { Style } from "@styles";
+import { Box, Pad, TextTemplate } from "@atoms";
+import { Button, LinkGroup, Markdown, Pressable, TextInput, TextInputError } from "@molecules";
+import { Colours, Style, templateTextStyles } from "@styles";
 import { getModalState } from "@redux/app/app.selectors";
 import { useSelector } from "react-redux";
 import { MODALS } from "@navigation/constants";
 import { TextInputPassword } from "@components/molecules/text-input/text-input-password";
-import { useKeyboardListeners, useTranslation } from "@hooks";
+import { useKeyboardListeners } from "@hooks";
 import Animated, { FadeIn } from "react-native-reanimated";
+import { region, t } from "@locale";
 
 export type LoginFormProps = {
   disabled: boolean;
@@ -40,11 +41,6 @@ export const LoginForm = (props: LoginFormProps) => {
     onResetPasswordPress,
   } = props;
 
-  const t = useTranslation([
-    "screens.login.heading",
-    "screens.login.cta_label",
-    "screens.login.accessibility.hide_keyboard",
-  ]);
   const isShowingKeyboard = useKeyboardListeners();
   const currentModal = useSelector(getModalState);
   const links = useMemo(
@@ -92,7 +88,7 @@ export const LoginForm = (props: LoginFormProps) => {
         style={styles.fullScreenWrapper}
         accessible={isShowingKeyboard ? true : false}
         importantForAccessibility={isShowingKeyboard ? "auto" : "no"}
-        accessibilityLabel={t["screens.login.accessibility.hide_keyboard"]}
+        accessibilityLabel={t("screens.login.accessibility.hide_keyboard")}
         onPress={isShowingKeyboard ? Keyboard.dismiss : () => null}
       >
         <View />
@@ -101,7 +97,7 @@ export const LoginForm = (props: LoginFormProps) => {
         <View style={styles.headingWrapper}>
           <Pad height={100} />
           <View style={styles.headingInnerWrapper}>
-            <TextTemplate type="h2">{t["screens.login.heading"]}</TextTemplate>
+            <TextTemplate type="h2">{t("screens.login.heading")}</TextTemplate>
           </View>
         </View>
       )}
@@ -147,6 +143,18 @@ export const LoginForm = (props: LoginFormProps) => {
 
       <Pad height={15} />
       <LinkGroup data={links} />
+
+      <Box pl={40} pr={40} pt={0}>
+        <Markdown
+          text={t("screens.login.disclaimer", {
+            // setting default values in case an outdated region config is present
+
+            privacyPolicyLink: region.getConfig("urls")?.privacyPolicy || "https://yulife.com/privacy-policy/",
+            eulaLink: region.getConfig("urls")?.eula || "https://yulife.com/end-user-license-agreement-policy/",
+          })}
+          markdownStyles={markdownStyles}
+        />
+      </Box>
     </Animated.View>
   );
 };
@@ -169,3 +177,15 @@ const styles = StyleSheet.create({
     height: Style.DEVICE_HEIGHT,
   },
 });
+
+const markdownStyles = {
+  text: {
+    ...templateTextStyles.l1,
+    textAlign: "center",
+  },
+  link: {
+    color: Colours.gray,
+    textDecorationLine: "underline",
+    alignSelf: "flex-start",
+  },
+};
