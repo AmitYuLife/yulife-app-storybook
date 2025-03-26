@@ -12,6 +12,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { Layout } from "react-native-navigation";
 import { MobileTabs } from "@graphql/__generated";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
+import { REGION } from "@locale";
 
 const icon = require("@assets/icons/clock.png");
 
@@ -226,7 +227,14 @@ export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => vo
   }
 }
 
-export async function setUnauthenticatedRoot(passProps: any = {}) {
+interface IUnauthenticatedRootProps {
+  hasSessionExpiredError?: boolean;
+  region?: REGION;
+  email?: string;
+  otp?: string;
+}
+
+export async function setUnauthenticatedRoot(passProps: IUnauthenticatedRootProps = {}) {
   await Navigation.setRoot({
     root: {
       stack: {

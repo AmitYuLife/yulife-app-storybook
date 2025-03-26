@@ -15,7 +15,7 @@ const routesForRegistration = [
   },
   {
     name: ROUTES.login,
-    component: require("../components/containers/login/login.container").default,
+    component: require("../components/containers/login/legacy/login.container").default,
   },
   {
     name: ROUTES.resetPassword,

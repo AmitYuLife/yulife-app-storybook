@@ -1,26 +1,17 @@
 import { bottomTabs, ROUTES } from "@navigation/constants";
-import { setAuthenticatedRoot } from "@navigation/root";
 import { SESSION_EXPIRED_ERROR, TOKEN_EXPIRATION } from "@services/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { Style } from "@styles/index";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
+import { AccessibilityInfo, Alert, Platform } from "react-native";
 import { useDispatch } from "react-redux";
-import { setAuthenticated, setRegionConfig } from "@redux/app/app.actions";
-import { loginUserSuccess } from "@redux/user/user.actions";
-import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
-import { navigateToRoute, toLoginUserSuccessPayload, validatePassword } from "./login.helpers";
-import { REGION, region as regionService, t } from "@locale";
+import { applyLoginSession, validatePassword } from "../login.helpers";
+import { REGION, t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { validateEmail } from "@utils/email";
 import { useMutatationAllRegions } from "@hooks";
 import DeviceInfo from "react-native-device-info";
-import client from "@graphql/_core/client";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
-import { IFeature } from "@redux/user/user.types";
-import { reduceUserFeatures } from "@redux/user/user.helpers";
-import { VoidFunction } from "@utils";
 
 const trimGraphQLError = (message: string = "") => message.replace(/^GraphQL error: /, "");
 
@@ -61,53 +52,6 @@ const LoginContainer: React.FC<Props> = ({
     region ? [region] : undefined
   );
 
-  const goToNext = useCallback(
-    async ({
-      authorised,
-      onboarded,
-      userFeatures,
-    }: {
-      authorised: boolean;
-      onboarded: boolean;
-      userFeatures: IFeature;
-    }) => {
-      const { tempGameEnableReleaseYuHealthV3 } = userFeatures || {};
-
-      Keyboard.dismiss();
-
-      const onFinalDone = async () => {
-        await setAuthenticatedRoot(() => dispatch(setAuthenticated()));
-      };
-
-      const onboardingNavigationBuilder = (next?: VoidFunction) => () => {
-        return navigateToRoute(componentId, ROUTES.onboardingSignUpReward, next);
-      };
-
-      const connectNavigationBuilder = (next?: VoidFunction) => () => {
-        const route = tempGameEnableReleaseYuHealthV3 ? ROUTES.yuHealthConnect : ROUTES.onboardingFitKitConnect;
-
-        return navigateToRoute(componentId, route, next);
-      };
-
-      const actionOrder: (VoidFunction | ((next?: VoidFunction) => VoidFunction))[] = [];
-
-      if (!onboarded) {
-        actionOrder.push(onboardingNavigationBuilder);
-      }
-
-      if (!authorised || (tempGameEnableReleaseYuHealthV3 && !Style.isIPad())) {
-        actionOrder.push(connectNavigationBuilder);
-      }
-
-      actionOrder.push(onFinalDone);
-
-      const action = actionOrder.reduceRight((acc, curr) => (acc === null ? curr : curr(acc)), null) as VoidFunction;
-
-      action();
-    },
-    [componentId, dispatch]
-  );
-
   const handleError = useCallback(
     async (errorMessage: string) => {
       if (isUsingOtp) {
@@ -121,46 +65,6 @@ const LoginContainer: React.FC<Props> = ({
       }
     },
     [isUsingOtp]
-  );
-
-  const loginForRegion = useCallback(
-    async (r: REGION, loginOptions = logins) => {
-      // let's persist the region and config
-      regionService.setRegion(r);
-
-      // fetch the config
-
-      const response = await client().query({
-        query: gql("GetPublicYuApiConfigDocument"),
-        fetchPolicy: "no-cache",
-      });
-
-      if (response?.data?.config?.mixpanelKey) {
-        await regionService.setConfig(response.data.config);
-      }
-
-      dispatch(setRegionConfig({ shouldFetchConfig: false }));
-
-      const needle = loginOptions.find((d) => d.region === r);
-      if (needle?.data?.loginUser?.token) {
-        const features = needle?.data?.loginUser?.user?.userFeatures;
-
-        await setToken(needle.data.loginUser.token);
-        dispatch(loginUserSuccess(toLoginUserSuccessPayload(needle.data)));
-
-        const showHealthConnect =
-          !features.some((f) => f.name === "tempGameEnableReleaseYuHealthV3") && fitkitAuthorised;
-        // no need to send the user to healthkit-connect if device is an ipad
-        await goToNext({
-          authorised: Style.isIPad() ? true : showHealthConnect,
-          onboarded: needle?.data?.loginUser?.user?.redeemedOnboarding,
-          userFeatures: features.reduce(reduceUserFeatures, {}),
-        });
-      } else {
-        handleError(t("screens.login.accessibility.alert_error_default_message"));
-      }
-    },
-    [logins, fitkitAuthorised, dispatch, goToNext, handleError]
   );
 
   const onLogIn = useCallback(async () => {
@@ -181,14 +85,14 @@ const LoginContainer: React.FC<Props> = ({
 
         // only 1 hit, login for this region
         if (results.length === 1) {
-          await loginForRegion(results[0].region, results);
+          await applyLoginSession(results[0], results[0].region, componentId, dispatch, fitkitAuthorised);
           return;
         }
       } catch (e) {
         handleError(trimGraphQLError(e?.message));
       }
     }
-  }, [email, isUsingOtp, password, otp, handleError, isFormValid, loginUser, loginForRegion]);
+  }, [email, isUsingOtp, password, otp, handleError, isFormValid, loginUser, componentId, dispatch, fitkitAuthorised]);
 
   const onResetPassword = useCallback(async () => {
     await Navigation.push(componentId, {
@@ -237,12 +141,19 @@ const LoginContainer: React.FC<Props> = ({
       logins.length > 1
         ? {
             restrictTo: logins.map((d) => d.region),
-            onSelect: (r: REGION) => loginForRegion(r),
+            onSelect: (r: REGION) =>
+              applyLoginSession(
+                logins.find((d) => d.region === r),
+                r,
+                componentId,
+                dispatch,
+                fitkitAuthorised
+              ).catch((err) => handleError(err.message)),
           }
         : undefined,
     // Logins is mutated (it's a ref)! Don't change the dependency array
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [logins.length, loginForRegion]
+    [logins.length, componentId, dispatch, fitkitAuthorised]
   );
 
   return (

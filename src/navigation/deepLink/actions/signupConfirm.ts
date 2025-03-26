@@ -19,7 +19,10 @@ export const signUpConfirm: DeepLinkHandler = {
     }
 
     if (customParams?.redirectUrl === "/member") {
-      setUnauthenticatedRoot(customParams);
+      setUnauthenticatedRoot({
+        region: customParams.region as REGION,
+        ...customParams,
+      });
     }
   },
 };
