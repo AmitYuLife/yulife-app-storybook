@@ -153,6 +153,8 @@ export const SWITCH_ICON = "SWITCH_ICON";
 export const COLLECT_REWARD_CTA = "COLLECT_REWARD_CTA";
 export const REWARDS_UNAVAILABLE_PURCHASE_HISTORY = "screens.rewards.unavailable.purchase_history";
 export const REWARDS_GOT_IT = "rewards.got-it";
+export const CHIP_LIST_ITEM = (item: string) => `CHIP_LIST_ITEM_${item}`;
+
 export const TERTIARY_BUTTON = (label: string) => `TERTIARY_BUTTON_${label}`;
 export const BUTTON_BASE = (title: string, disabled = false) => `BUTTON_BASE_${title}_${disabled}`;
 export const REWARD_STORE_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm-text-view";

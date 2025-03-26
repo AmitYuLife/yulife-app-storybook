@@ -3,6 +3,7 @@ import { ListRenderItemInfo, StyleSheet, View, ViewStyle } from "react-native";
 import { FlatList, TextTemplate } from "@atoms";
 import Pressable from "../pressable/pressable";
 import { Colours, Style } from "@styles";
+import { CHIP_LIST_ITEM } from "@ids";
 
 export type ChipProps = {
   value: string;
@@ -67,6 +68,7 @@ const Chip = memo(
           onPress={handlePress}
           key={value}
           hitSlop={HIT_SLOP}
+          testID={CHIP_LIST_ITEM(value)}
         >
           <TextTemplate type="b2b" color={isSelected ? Colours.neutral.white : Colours.neutral.n800}>
             {value}
