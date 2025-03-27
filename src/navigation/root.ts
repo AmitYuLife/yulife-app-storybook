@@ -241,8 +241,8 @@ export async function setUnauthenticatedRoot(passProps: IUnauthenticatedRootProp
         children: [
           {
             component: {
-              id: ROUTES.login,
-              name: ROUTES.login,
+              id: ROUTES.loginLegacy,
+              name: ROUTES.loginLegacy,
               passProps,
             },
           },

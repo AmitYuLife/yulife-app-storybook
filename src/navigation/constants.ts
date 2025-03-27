@@ -4,7 +4,7 @@ export const ROUTES = {
   appLoading: "yulife.Loading",
   // root screens
   noAccess: "yulife.NoAccess",
-  login: "yulife.Login",
+  loginLegacy: "yulife.LoginLegacy",
   resetPassword: "yulife.ResetPassword",
   emailSent: "yulife.EmailSent",
   signUp: "yulife.SignUp",
