@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.56.0] - 2025-03-27
+
+### Features
+
+- Feature LCS-1202: Add smoking deeplink
+- Feature LCS-1134: Full-screen hero component for onboarding rework
+
+### Bugfixes
+
+- Bugfix GS-1298: Listen to active streak action for streak modal to be shown
+- Bugfix GS-1286: Allow decimals on SDUI input
+- Bugfix ENG-4180: Fix ocean top bar type for earh
+
+### Tasks
+
+- Task LCS-1207: extract login session application to helpers
+- Task LCS-1208: apply disclaimer to existing login screen
+- Task LCS-1134: Tweak login screen copy
+- Task LCS-1206: purge tempShowSignupRewardFirst toggle
+- Task DEVOP-3787: [Detox] Install MongoDb service
+- Task LCS-1177: Ensure image choice template has expected data structure for HQ analysis
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox GS-1324: Rewards Category List
+- Detox GS-1372: BP Season Rewards Count
+- ISA-3269/-3339: In-App Deactivation Notifications Testing
+- Detox: Leaderboard User Gift Search
+- Detox: LCS-1002 Testing gift auto claim copy and function & non consented user leaderboard entry behaviour.
+- Purge: yuniversity
+- Purge CTE-100: showNewLeaderboard & showStats
+
 ## [4.55.0] - 2025-03-20
 
 ### Features
