@@ -335,7 +335,6 @@
     "login-hero": {
       "primary_cta_label": "Claim my account",
       "secondary_cta_label": "Log in",
-      "disclaimer_markdown": "By continuing, you agree to our [Privacy Policy](%{privacyPolicyUrl}).",
       "slides": {
         "earn": "Earn cash value for your daily steps, mindfulness, and more!",
         "redeem": "Redeem rewards like vouchers and discounts from your favourite brands!",

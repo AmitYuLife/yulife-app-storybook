@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { View, Keyboard, StyleSheet, AccessibilityPropsAndroid } from "react-native";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import { Box, Pad, TextTemplate } from "@atoms";
