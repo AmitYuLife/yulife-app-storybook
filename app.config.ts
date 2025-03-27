@@ -158,13 +158,6 @@ export default () => ({
         },
       },
     ],
-    [
-      "react-native-permissions",
-      {
-        iosPermissions: ["PhotoLibraryAddOnly"],
-      },
-    ],
-
     "expo-privacy-manifest-polyfill-plugin",
     "@leanplum/react-native-sdk",
     [

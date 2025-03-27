@@ -1,20 +1,11 @@
-import { Platform } from "react-native";
 import * as ExpoNotification from "expo-notifications";
 import { call, select } from "redux-saga/effects";
 import { getPushNotifications } from "../device.selectors";
-import { PERMISSIONS, check, request } from "react-native-permissions";
-import { Style } from "@styles";
 
 const requestPermissions = async () => {
-  if (Style.isAndroid13AndHigher()) {
-    const result = await check(PERMISSIONS.ANDROID.POST_NOTIFICATIONS);
+  const result = await ExpoNotification.getPermissionsAsync();
 
-    if (result !== "granted") {
-      request(PERMISSIONS.ANDROID.POST_NOTIFICATIONS);
-    }
-  }
-
-  if (Platform.OS === "ios") {
+  if (!result.granted) {
     ExpoNotification.requestPermissionsAsync();
   }
 };

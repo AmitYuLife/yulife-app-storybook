@@ -1,17 +1,13 @@
 import { getToken } from "@services/storage";
-import { Platform, AppStateStatus } from "react-native";
-import { PERMISSIONS, check, PermissionStatus } from "react-native-permissions";
-import { Style } from "@styles";
+import { AppStateStatus } from "react-native";
+import { getPermissionsAsync, NotificationPermissionsStatus } from "expo-notifications";
 import { call, put, race, select, take, delay } from "redux-saga/effects";
 import { Unpacked } from "@utils/types";
 import { appStateChannel } from "../../app/app.channels";
 import { updateUserConsent } from "../../user/user.actions";
 import { setPushPermissions } from "../device.actions";
-import { createPushPermissionsChannel } from "../device.channels";
 import { getPushNotifications } from "../device.selectors";
 import { PushPermissionsStatus } from "../device.types";
-
-type PushNotificationPermissions = Record<"alert" | "badge" | "sound", boolean>;
 
 export default function* listenForPermissionsChangeSaga() {
   const channel: ReturnType<typeof appStateChannel> = yield call(appStateChannel);
@@ -28,19 +24,9 @@ export default function* listenForPermissionsChangeSaga() {
 
 export function* checkPermissions() {
   const perms: ReturnType<typeof getPushNotifications> = yield select(getPushNotifications);
-  let status = PushPermissionsStatus.enabled;
 
-  if (Platform.OS === "ios") {
-    const channel: ReturnType<typeof createPushPermissionsChannel> = yield call(createPushPermissionsChannel);
-    const permissions: PushNotificationPermissions = yield take(channel);
-    status = buildIosPermissionStatus(perms, permissions);
-    channel.close();
-  }
-
-  if (Style.isAndroid13AndHigher()) {
-    const result: PermissionStatus = yield call(check, PERMISSIONS.ANDROID.POST_NOTIFICATIONS);
-    status = buildAndroidPermissionStatus(result);
-  }
+  const result: NotificationPermissionsStatus = yield call(getPermissionsAsync);
+  const status = convertExpoPermissionsToRedux(result);
 
   yield put(setPushPermissions({ status }));
 
@@ -55,30 +41,17 @@ export function* checkPermissions() {
   }
 }
 
-const buildIosPermissionStatus = (
-  currentPermissions: ReturnType<typeof getPushNotifications>,
-  permissions: PushNotificationPermissions
-) => {
-  if (permissions.alert) {
+const convertExpoPermissionsToRedux = (permissions: NotificationPermissionsStatus) => {
+  if (permissions.granted) {
     return PushPermissionsStatus.enabled;
   }
 
-  if (currentPermissions.requested) {
-    return PushPermissionsStatus.denied;
-  }
-
-  return PushPermissionsStatus.notyet;
-};
-
-const buildAndroidPermissionStatus = (status: PermissionStatus) => {
-  switch (status) {
+  switch (permissions.status) {
     case "granted":
-    case "limited":
       return PushPermissionsStatus.enabled;
-    case "blocked":
-    case "unavailable":
+    case "denied":
       return PushPermissionsStatus.denied;
-    case "denied": // denied is default android >=13 state
+    case "undetermined":
     default:
       return PushPermissionsStatus.notyet;
   }
