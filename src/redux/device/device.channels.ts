@@ -45,20 +45,3 @@ export async function createPushNotificationsChannel() {
     return () => null;
   });
 }
-
-/** should rename this into check iOS permissions */
-export function createPushPermissionsChannel() {
-  return eventChannel((emitter) => {
-    ExpoNotification.getPermissionsAsync()
-      .then((val) =>
-        emitter({
-          alert: val.ios.allowsAlert,
-          badge: val.ios.allowsBadge,
-          sound: val.ios.allowsSound,
-        })
-      )
-      .catch((error) => Logger.error(error, { event: "pushNotification" }));
-
-    return () => null;
-  });
-}
