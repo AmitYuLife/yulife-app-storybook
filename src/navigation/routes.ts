@@ -14,7 +14,7 @@ const routesForRegistration = [
     component: require("../components/containers/no-access/no-access.container").default,
   },
   {
-    name: ROUTES.login,
+    name: ROUTES.loginLegacy,
     component: require("../components/containers/login/legacy/login.container").default,
   },
   {
