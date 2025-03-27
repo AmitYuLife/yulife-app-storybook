@@ -1246,6 +1246,7 @@
         "hide_keyboard": "Ocultar teclado"
       },
       "cta_label": "Iniciar sesión",
+      "disclaimer": "Al continuar, acepta nuestra [Política de privacidad](%{privacyPolicyLink}) y nuestro [Acuerdo de licencia de usuario final](%{eulaLink}).",
       "heading": "¡Bienvenido!",
       "help": "¿Necesitas ayuda para iniciar sesión?",
       "server_location": {
@@ -1257,12 +1258,12 @@
     },
     "login-hero": {
       "disclaimer_markdown": "Al continuar, acepta nuestra [Política de privacidad](%{privacyPolicyUrl}).",
-      "primary_cta_label": "Soy nuevo en YuLife",
-      "secondary_cta_label": "¿Tiene una cuenta? Iniciar sesión",
+      "primary_cta_label": "Reclamar mi cuenta",
+      "secondary_cta_label": "Iniciar sesión",
       "slides": {
-        "donate": "Dona a buenas causas",
-        "earn": "¡Gana YuCoin por tus pasos diarios, mindfulness y mucho más!",
-        "exchange": "¡Canjea tus YuCoin por vales de tus marcas favoritas!"
+        "donate": "Consigue un impacto real en el mundo a través de donaciones a causas que importan.",
+        "earn": "¡Gane valor en efectivo por sus pasos diarios, mindfulness y mucho más!",
+        "redeem": "Canjea recompensas como vales y descuentos de tus marcas favoritas."
       }
     },
     "measurement_cycling_settings": {

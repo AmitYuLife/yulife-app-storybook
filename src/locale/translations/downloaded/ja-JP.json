@@ -1246,6 +1246,7 @@
         "hide_keyboard": "キーボードを非表示にする"
       },
       "cta_label": "ログイン",
+      "disclaimer": "続行することにより、[プライバシーポリシー](%{privacyPolicyLink})および[エンドユーザーライセンス契約](%{eulaLink})に同意したことになります。",
       "heading": "Welcome!",
       "help": "ログインにお困りですか?",
       "server_location": {
@@ -1257,12 +1258,12 @@
     },
     "login-hero": {
       "disclaimer_markdown": "続行することにより、[プライバシーポリシー](%{privacyPolicyUrl})に同意したことになります。",
-      "primary_cta_label": "私は Yumoji に初めてです",
-      "secondary_cta_label": "アカウントをお持ちですか？サインイン",
+      "primary_cta_label": "マイアカウントを請求",
+      "secondary_cta_label": "ログイン",
       "slides": {
-        "donate": "良い目的に寄付しよう！",
-        "earn": "毎日のステップ、マインドフルネスなどで YuCoin を獲得しましょう！",
-        "exchange": "獲得した YuCoin は、お好きなブランドのギフト券に交換できます！"
+        "donate": "重要な支援先への寄付を通じて、世界に本当の影響を与えましょう！",
+        "earn": "毎日のステップ、マインドフルネスなどで現金価値を獲得しましょう！",
+        "redeem": "お気に入りのブランドからバウチャーや割引などの報酬を引き換えましょう！"
       }
     },
     "measurement_cycling_settings": {
