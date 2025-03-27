@@ -1,7 +1,6 @@
-import Config from "react-native-config";
 import { memo, useCallback } from "react";
 import { FullScreenHero } from "@organisms";
-import { t } from "@locale";
+import { region, t } from "@locale";
 import { FullScreenHeroBackground } from "@organisms/full-screen-hero/types";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
@@ -12,6 +11,8 @@ type LoginHeroScreenProps = {
 };
 
 export const LoginHeroScreen = memo(({ componentId }: LoginHeroScreenProps) => {
+  const urls = region.getConfig("urls");
+
   const navigateToMagicLink = useCallback(async () => {
     await Navigation.push(componentId, {
       component: {
@@ -25,8 +26,9 @@ export const LoginHeroScreen = memo(({ componentId }: LoginHeroScreenProps) => {
     <FullScreenHero
       primaryCta={{ label: t("screens.login-hero.primary_cta_label"), onPress: navigateToMagicLink }}
       secondaryCta={{ label: t("screens.login-hero.secondary_cta_label"), onPress: setUnauthenticatedRoot }}
-      disclaimerMarkdown={t("screens.login-hero.disclaimer_markdown", {
-        privacyPolicyUrl: Config.PRIVACY_POLICY_URL,
+      disclaimerMarkdown={t("screens.login.disclaimer", {
+        privacyPolicyLink: urls?.privacyPolicy || "https://yulife.com/privacy-policy/",
+        eulaLink: urls?.eula || "https://yulife.com/end-user-license-agreement-policy/",
       })}
       slides={[
         {
