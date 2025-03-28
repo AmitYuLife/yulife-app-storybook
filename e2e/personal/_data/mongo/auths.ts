@@ -114,13 +114,3 @@ export const AUTH_STORE_ACCESS_NEVER = {
     userId: customer.CUSTOMER_STORE_ACCESS_NEVER.data.customerId,
   },
 } as IDatabaseItem;
-
-export const AUTH_CUSTOMER_LEAVER_NOTIF = {
-  type,
-  modelName,
-  data: {
-    ...AUTH_TEMPLATE_BDD_SEEDED.data,
-    lastIp: "35.176.61.000",
-    _id: generateRandomMongoId(),
-  },
-} as IDatabaseItem;

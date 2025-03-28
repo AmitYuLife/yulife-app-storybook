@@ -1683,3 +1683,60 @@ export const CORE_REWARDS_ULTRA_AMAZIN = {
     __v: 0,
   },
 } as IDatabaseItem;
+
+export const CORE_REWARDS_AMAZUNG = {
+  type: "mongo",
+  modelName: "core_rewards",
+  data: {
+    _id: generateRandomMongoId(),
+    redemptionSteps: {
+      steps: [
+        "In-store: At any Amazon in the UK (includes Factory Stores). Please print the eGift or show it on your smart phone at the till (UK only). An unlimited amount of gift cards/eGifts can be used in one transaction in store",
+        "Online: http://www.amazon.com/gb/en_gb/ . Up to 10 gift cards/eGifts can be used in one transaction online",
+        "Exceptions & exclusions: Cannot be redeemed in franchise stores or third party retailers",
+        "Balance checker: http://store.amazon.com/gb/en_gb/?l=shop%2Cgift_cards&amp;balance=true/",
+        "Multiple redemptions possible are possible as the balance will remain on the eGift card.",
+        "You can pay outstanding balance with cash/debit card if the value of the gift card is not enough.",
+      ],
+      info: "How to redeem Amazon",
+    },
+    images: {
+      listItemImageKey: "reward/list-detail/v1/Amazon.png",
+      detailHeaderKey:
+        "https://gift-sandbox.wegift.io/static/product_assets/AMAZON/AMAZON-card.png",
+    },
+    loyaltyProgramme: [],
+    sortOrder: 18,
+    rewardProviderId: "wegift",
+    redemptionUrl: "realtime",
+    progression_level: "5",
+    code: "AMZ-GB",
+    currencyCode: "GBP",
+    isLocked: false,
+    description:
+      "As one of the leading sports brands in the world, Amazon offers authentic athletic footwear, apparel, equipment, and accessories for a wide variety of sports and fitness activities. Redeem your voucher online or in any Amazon UK store.",
+
+    name: "Amazung Prime",
+    restrictions: {
+      locations: ["GB"],
+      level: 3,
+    },
+    termsAndConditionsUrl: "https://gift-sandbox.wegift.io/public/terms/AMAZON-GB.pdf",
+    reward_sticker: null,
+    uiSettings: {
+      id: "AMZ-GB",
+      logoWidth: 71,
+      logoHeight: 37,
+    },
+    availableDenominations: [
+      {
+        _id: generateRandomMongoId(),
+        yuCoin: 6500,
+        value: 28,
+        stock: 10,
+        availableForRewardsStore: true,
+      },
+    ],
+    __v: 0,
+  },
+} as IDatabaseItem;

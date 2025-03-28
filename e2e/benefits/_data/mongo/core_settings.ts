@@ -1,5 +1,9 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_14_STORE_DISABLED } from "../postgres/business";
+import {
+  BUSINESS_ACCOUNT_1,
+  BUSINESS_ACCOUNT_14_STORE_DISABLED,
+  BUSINESS_ACCOUNT_15,
+} from "../postgres/business";
 
 export const BA1_PARTNERSHIP_REWARDS_SETTINGS = {
   type: "mongo",
@@ -27,6 +31,21 @@ export const BA14_PARTNERSHIP_REWARDS_SETTINGS = {
     settings: {
       storeEnabled: false,
       storeAccessLevel: 4,
+    },
+  },
+} as IDatabaseItem;
+
+export const BA15_PARTNERSHIP_REWARDS_SETTINGS = {
+  type: "mongo",
+  modelName: "core_settings",
+  data: {
+    _id: generateRandomMongoId(),
+    entityType: "business",
+    domain: "partnerships.rewards",
+    entityId: BUSINESS_ACCOUNT_15.business.data.businessAccountId,
+    settings: {
+      storeEnabled: false,
+      storeAccessLevel: 1,
     },
   },
 } as IDatabaseItem;
