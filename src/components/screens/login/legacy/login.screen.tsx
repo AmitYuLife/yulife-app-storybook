@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import { UnauthorisedGradient } from "@atoms";
 import { CentredScreen } from "@molecules";
 import { LoginForm, LoginFormProps } from "./subcomponents/login-form";
-import { ServerList } from "./subcomponents/server-list";
+import { ServerList } from "../subcomponents/server-list";
 import { Style } from "@styles";
 import { REGION } from "@locale";
 import Animated, { FadeIn } from "react-native-reanimated";

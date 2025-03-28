@@ -8,11 +8,12 @@ import { t } from "@locale";
 
 interface IProps {
   email: string;
-  hasSetPassword: boolean;
+  showLoginWithPassword: boolean;
   onPressBack: () => void;
+  onPressLoginWithPassword: () => void;
 }
 
-const LoginConfirmScreen = ({ email, hasSetPassword, onPressBack }: IProps) => {
+const LoginConfirmScreen = ({ email, showLoginWithPassword, onPressBack, onPressLoginWithPassword }: IProps) => {
   return (
     <CentredScreen
       backgroundImage={require("@assets/centred-screen/forestBackground.png")}
@@ -20,10 +21,11 @@ const LoginConfirmScreen = ({ email, hasSetPassword, onPressBack }: IProps) => {
       BackgroundGradient={<UnauthorisedGradient />}
     >
       <Box pt={100} pb={40} pl={30} pr={30}>
-        <TextTemplate type="h2">
-          {t("screens.login_confirm.heading")} {email} {hasSetPassword ? "has set password" : "has not set password"}
-        </TextTemplate>
+        <TextTemplate type="h2">{t("screens.login_confirm.heading", { email })}</TextTemplate>
       </Box>
+      {showLoginWithPassword ? (
+        <LinkButton translationKey="labels.cta.login_with_password" onPress={onPressLoginWithPassword} />
+      ) : null}
       <LinkButton translationKey="labels.cta.back" onPress={onPressBack} />
     </CentredScreen>
   );
