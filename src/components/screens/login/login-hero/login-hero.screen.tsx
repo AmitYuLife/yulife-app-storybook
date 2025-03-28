@@ -1,31 +1,19 @@
-import { memo, useCallback } from "react";
+import { memo } from "react";
 import { FullScreenHero } from "@organisms";
 import { region, t } from "@locale";
 import { FullScreenHeroBackground } from "@organisms/full-screen-hero/types";
-import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
-import { setUnauthenticatedRoot } from "@navigation/root";
 
 type LoginHeroScreenProps = {
-  componentId: string;
+  onLoginEmailPress: () => void;
 };
 
-export const LoginHeroScreen = memo(({ componentId }: LoginHeroScreenProps) => {
+export const LoginHeroScreen = memo(({ onLoginEmailPress }: LoginHeroScreenProps) => {
   const urls = region.getConfig("urls");
-
-  const navigateToMagicLink = useCallback(async () => {
-    await Navigation.push(componentId, {
-      component: {
-        id: ROUTES.resetPassword,
-        name: ROUTES.resetPassword,
-      },
-    });
-  }, [componentId]);
 
   return (
     <FullScreenHero
-      primaryCta={{ label: t("screens.login-hero.primary_cta_label"), onPress: navigateToMagicLink }}
-      secondaryCta={{ label: t("screens.login-hero.secondary_cta_label"), onPress: setUnauthenticatedRoot }}
+      primaryCta={{ label: t("screens.login-hero.primary_cta_label"), onPress: onLoginEmailPress }}
+      secondaryCta={{ label: t("screens.login-hero.secondary_cta_label"), onPress: onLoginEmailPress }}
       disclaimerMarkdown={t("screens.login.disclaimer", {
         privacyPolicyLink: urls?.privacyPolicy || "https://yulife.com/privacy-policy/",
         eulaLink: urls?.eula || "https://yulife.com/end-user-license-agreement-policy/",

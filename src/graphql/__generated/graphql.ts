@@ -39131,7 +39131,11 @@ export type SendMagicLinkMutationVariables = Exact<{
 
 export type SendMagicLinkMutation = {
   __typename?: "Mutation";
-  sendMagicLink?: { __typename?: "StartSessionResponse"; message?: string | null } | null;
+  sendMagicLink?: {
+    __typename?: "StartSessionResponse";
+    message?: string | null;
+    hasSetPassword?: boolean | null;
+  } | null;
 };
 
 export type UpdateCyclingMeasurementMutationVariables = Exact<{
@@ -100711,7 +100715,10 @@ export const SendMagicLinkDocument = {
             ],
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{ kind: "Field", name: { kind: "Name", value: "message" } }],
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+                { kind: "Field", name: { kind: "Name", value: "hasSetPassword" } },
+              ],
             },
           },
         ],

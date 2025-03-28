@@ -13,6 +13,7 @@ import { Layout } from "react-native-navigation";
 import { MobileTabs } from "@graphql/__generated";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 import { REGION } from "@locale";
+import Config from "react-native-config";
 
 const icon = require("@assets/icons/clock.png");
 
@@ -232,9 +233,63 @@ interface IUnauthenticatedRootProps {
   region?: REGION;
   email?: string;
   otp?: string;
+
+  // if set to true, the new magic-link-first login flow will be used
+  useNewLoginFlow?: boolean;
 }
 
 export async function setUnauthenticatedRoot(passProps: IUnauthenticatedRootProps = {}) {
+  const USE_NEW_LOGIN_FLOW = !!Config.USE_NEW_LOGIN_FLOW;
+
+  // we support a deeplink/magic link explicitly going into the new flow, or the env variable to test locally
+  if (passProps?.useNewLoginFlow || USE_NEW_LOGIN_FLOW) {
+    const state = store.getState() as IReduxState;
+
+    if (state?.app?.activeRoute === ROUTES.loginConfirm) {
+      // this allows the OTP to get passed in to the screen that redeems it more easily
+      Navigation.updateProps(ROUTES.loginConfirm, passProps);
+      return;
+    }
+
+    await Navigation.setRoot({
+      root: {
+        stack: {
+          children: [
+            {
+              component: {
+                id: ROUTES.loginHero,
+                name: ROUTES.loginHero,
+                passProps,
+              },
+            },
+            ...(passProps.otp
+              ? [
+                  {
+                    component: {
+                      id: ROUTES.loginEmail,
+                      name: ROUTES.loginEmail,
+                      passProps: {
+                        email: passProps.email,
+                      },
+                    },
+                  },
+                  {
+                    component: {
+                      id: ROUTES.loginConfirm,
+                      name: ROUTES.loginConfirm,
+                      passProps,
+                    },
+                  },
+                ]
+              : []),
+          ],
+        },
+      },
+    });
+
+    return;
+  }
+
   await Navigation.setRoot({
     root: {
       stack: {
