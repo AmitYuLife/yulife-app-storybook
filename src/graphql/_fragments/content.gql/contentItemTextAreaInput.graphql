@@ -4,6 +4,7 @@ fragment ContentItemTextAreaInput on ContentItemTextAreaInput {
   placeholder
   numberOfLines
   maxLength
+  showCharacterCount
   styles {
     ...SduiStyle
   }

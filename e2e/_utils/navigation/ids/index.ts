@@ -414,6 +414,8 @@ export const YUMOJI_CONTINUE_BUTTON = "YUMOJI_CONTINUE_BUTTON";
 // SDUI
 export const CONTENT_ITEM = (type: string, id: string) => `SDUI_${type.toUpperCase()}_${id}`;
 export const CONTENT_ITEM_INPUT = (id: string) => `SDUI_INPUT_${id}`;
+export const CONTENT_ITEM_INPUT_CHARACTER_COUNTER = (id: string) =>
+  `SDUI_INPUT_CHARACTER_COUNTER_${id}`;
 export const CONTENT_ITEM_CHOICE = (id: string) => `SDUI_CHOICE_${id}`;
 export const CONTENT_ITEM_MULTI_BUTTON = (id: string) => `SDUI_MULTI_BUTTON_${id}`;
 export const CONTENT_ITEM_INFO_CARD = (id: string) => `SDUI_INFO_CARD_${id}`;

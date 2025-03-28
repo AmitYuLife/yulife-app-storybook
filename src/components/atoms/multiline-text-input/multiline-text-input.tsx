@@ -10,15 +10,31 @@ interface IProps {
   placeholder?: string;
   testID?: string;
   maxLength?: number;
+  error?: boolean;
 }
 
 function _MultilineTextInput(props: IProps) {
   const [isFocused, setFocusedState] = useState(false);
 
-  const { value, onChange, testID, placeholder = "", numberOfLines = 4, onFocus, maxLength = 800 } = props;
+  const {
+    value,
+    onChange,
+    testID,
+    placeholder = "",
+    numberOfLines = 4,
+    onFocus,
+    maxLength = 800,
+    error = false,
+  } = props;
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, isFocused ? styles.wrapperFocused : {}])}>
+    <View
+      style={StyleSheet.flatten([
+        styles.wrapper,
+        isFocused ? styles.wrapperFocused : {},
+        error ? styles.wrapperError : {},
+      ])}
+    >
       <Input
         allowFontScaling={false}
         testID={testID}
@@ -68,5 +84,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   wrapperFocused: {
     borderColor: "#F664A4",
+  } as ViewStyle,
+  wrapperError: {
+    borderColor: Colours.status.er300,
   } as ViewStyle,
 });

@@ -2964,6 +2964,7 @@ export type ContentItemTextAreaInput = {
   maxLength: Scalars["Int"]["output"];
   numberOfLines?: Maybe<Scalars["Int"]["output"]>;
   placeholder?: Maybe<Scalars["String"]["output"]>;
+  showCharacterCount?: Maybe<Scalars["Boolean"]["output"]>;
   styles?: Maybe<Array<SduiStyle>>;
 };
 
@@ -13695,6 +13696,7 @@ export type AbsoluteContentItemFragment = {
         placeholder?: string | null;
         numberOfLines?: number | null;
         maxLength: number;
+        showCharacterCount?: boolean | null;
         styles?: Array<{
           __typename?: "SduiStyle";
           property: string;
@@ -15385,6 +15387,7 @@ type ContentItem_ContentItemTextAreaInput_Fragment = {
   placeholder?: string | null;
   numberOfLines?: number | null;
   maxLength: number;
+  showCharacterCount?: boolean | null;
   styles?: Array<{
     __typename?: "SduiStyle";
     property: string;
@@ -19262,6 +19265,7 @@ export type ContentItemTextAreaInputFragment = {
   placeholder?: string | null;
   numberOfLines?: number | null;
   maxLength: number;
+  showCharacterCount?: boolean | null;
   styles?: Array<{
     __typename?: "SduiStyle";
     property: string;
@@ -21329,6 +21333,7 @@ export type SduiSectionFragment = {
           placeholder?: string | null;
           numberOfLines?: number | null;
           maxLength: number;
+          showCharacterCount?: boolean | null;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -26120,6 +26125,7 @@ export type GetSduiJourneyQuery = {
           placeholder?: string | null;
           numberOfLines?: number | null;
           maxLength: number;
+          showCharacterCount?: boolean | null;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -27745,6 +27751,7 @@ export type GetSduiJourneyQuery = {
             placeholder?: string | null;
             numberOfLines?: number | null;
             maxLength: number;
+            showCharacterCount?: boolean | null;
             styles?: Array<{
               __typename?: "SduiStyle";
               property: string;
@@ -35751,6 +35758,7 @@ export type GetSduiStaticStepQuery = {
           placeholder?: string | null;
           numberOfLines?: number | null;
           maxLength: number;
+          showCharacterCount?: boolean | null;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -37376,6 +37384,7 @@ export type GetSduiStaticStepQuery = {
             placeholder?: string | null;
             numberOfLines?: number | null;
             maxLength: number;
+            showCharacterCount?: boolean | null;
             styles?: Array<{
               __typename?: "SduiStyle";
               property: string;
@@ -41366,6 +41375,7 @@ export type GetYuScreenV5Query = {
                   placeholder?: string | null;
                   numberOfLines?: number | null;
                   maxLength: number;
+                  showCharacterCount?: boolean | null;
                   styles?: Array<{
                     __typename?: "SduiStyle";
                     property: string;
@@ -43221,6 +43231,7 @@ export type GetYuScreenV5SectionsQuery = {
                 placeholder?: string | null;
                 numberOfLines?: number | null;
                 maxLength: number;
+                showCharacterCount?: boolean | null;
                 styles?: Array<{
                   __typename?: "SduiStyle";
                   property: string;
@@ -45422,6 +45433,7 @@ type YuScreenSection_SduiSection_Fragment = {
           placeholder?: string | null;
           numberOfLines?: number | null;
           maxLength: number;
+          showCharacterCount?: boolean | null;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -51179,6 +51191,7 @@ export const ContentItemTextAreaInputFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "placeholder" } },
           { kind: "Field", name: { kind: "Name", value: "numberOfLines" } },
           { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "showCharacterCount" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -53666,6 +53679,7 @@ export const ContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "placeholder" } },
           { kind: "Field", name: { kind: "Name", value: "numberOfLines" } },
           { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "showCharacterCount" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -55694,6 +55708,7 @@ export const AbsoluteContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "placeholder" } },
           { kind: "Field", name: { kind: "Name", value: "numberOfLines" } },
           { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "showCharacterCount" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -67105,6 +67120,7 @@ export const SduiSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "placeholder" } },
           { kind: "Field", name: { kind: "Name", value: "numberOfLines" } },
           { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "showCharacterCount" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -71100,6 +71116,7 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "placeholder" } },
           { kind: "Field", name: { kind: "Name", value: "numberOfLines" } },
           { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "showCharacterCount" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -83523,6 +83540,7 @@ export const GetSduiJourneyDocument = {
           { kind: "Field", name: { kind: "Name", value: "placeholder" } },
           { kind: "Field", name: { kind: "Name", value: "numberOfLines" } },
           { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "showCharacterCount" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -95487,6 +95505,7 @@ export const GetSduiStaticStepDocument = {
           { kind: "Field", name: { kind: "Name", value: "placeholder" } },
           { kind: "Field", name: { kind: "Name", value: "numberOfLines" } },
           { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "showCharacterCount" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -105053,6 +105072,7 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "placeholder" } },
           { kind: "Field", name: { kind: "Name", value: "numberOfLines" } },
           { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "showCharacterCount" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -107965,6 +107985,7 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "placeholder" } },
           { kind: "Field", name: { kind: "Name", value: "numberOfLines" } },
           { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "showCharacterCount" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
