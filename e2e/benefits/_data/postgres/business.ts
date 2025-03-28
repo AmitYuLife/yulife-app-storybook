@@ -1,4 +1,8 @@
-import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import {
+  createBusinessRecords,
+  generateRandomMongoId,
+  IDatabaseItem,
+} from "@yu-life/yulife-bdd-framework";
 import {
   BUSINESS_BACKGROUND_10,
   BUSINESS_BACKGROUND_11,
@@ -214,3 +218,15 @@ export const BUSINESS_ACCOUNT_14_STORE_DISABLED = {
     archived: false,
   },
 } as IDatabaseItem;
+
+export const BUSINESS_ACCOUNT_15 = createBusinessRecords({
+  active: true,
+  businessAccountName: "Sparz Corp",
+  businessAccess: {},
+});
+
+export const BUSINESS_ACCOUNT_16 = createBusinessRecords({
+  active: true,
+  businessAccountName: "Kein Geschaeft",
+  businessAccess: {},
+});

@@ -5,6 +5,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as ids from "@ids";
 import * as data from "../_data";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 import { getLocalisedString as t } from "@i18n";
 import { locationModalButton } from "./_resources/constants";
 
@@ -52,8 +53,10 @@ Feature("Rewards should act correctly", async () => {
       Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN));
     });
     When("I scroll to the bottom of the rewards page", when.swipeFromText("John Lewis", "up", "fast"), async () => {
-      Then("I should see the locked amazon reward", then.lockedRewardVisible(data.CORE_REWARDS_AMAZON_UNAVAILABLE));
-      Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1));
+      When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "down", "fast", 0.3), async () => {
+        Then("I should see the locked amazon reward", then.lockedRewardVisible(data.CORE_REWARDS_AMAZON_UNAVAILABLE));
+        Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1));
+      });
     });
   });
 
@@ -198,6 +201,17 @@ Feature("Rewards should act correctly", async () => {
     });
     When("I scroll down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.3), async () => {
       Then("I should see the 'Ultra Amazin' reward, only visible to those with store access level 4", then.rewardVisible(data.CORE_REWARDS_ULTRA_AMAZIN));
+    });
+  });
+
+  Scenario("As a user with multiple employments, if one of my employments does not have reward store settings explicitly set, my overall store access should resolve to the default values", scenario.start, async () => {
+    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_130.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see that I have access to the rewards store, as is the default setting value", then.rewardsLocationModalVisible());
+    });
+    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+      When("I scroll down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.3), async () => {
+        Then("I should see the 'Amazung Prime' reward, as my storeAccessLevel resolved to the default setting value", then.rewardVisible(data.CORE_REWARDS_AMAZUNG));
+      });
     });
   });
 });
