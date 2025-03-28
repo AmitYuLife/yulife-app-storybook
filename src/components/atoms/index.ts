@@ -52,3 +52,4 @@ export { default as GlowingSpinner } from "./glowing-spinner/glowing-spinner";
 export { default as Draggable } from "./draggable/draggable";
 export { default as BlurredWrapper } from "./blurred-wrapper/blurred-wrapper";
 export { default as StackedShadowWrapper } from "./stacked-shadow-wrapper/stacked-shadow-wrapper";
+export { default as CharacterCounter } from "./character-counter/character-counter";
