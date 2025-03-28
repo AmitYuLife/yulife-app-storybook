@@ -18,6 +18,18 @@ const routesForRegistration = [
     component: require("../components/containers/login/legacy/login.container").default,
   },
   {
+    name: ROUTES.loginHero,
+    component: require("../components/containers/login/login-hero.container").default,
+  },
+  {
+    name: ROUTES.loginEmail,
+    component: require("../components/containers/login/login-email.container").default,
+  },
+  {
+    name: ROUTES.loginConfirm,
+    component: require("../components/containers/login/login-confirm.container").default,
+  },
+  {
     name: ROUTES.resetPassword,
     component: require("../components/containers/reset-password/reset-password.container").default,
   },

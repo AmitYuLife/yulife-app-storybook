@@ -32,6 +32,10 @@ export class Navigation {
     return NativeNavigation.setRoot(layout);
   };
 
+  public static updateProps = async (componentId: string, props: object) => {
+    return NativeNavigation.updateProps(componentId, props);
+  };
+
   public static events = () => {
     return NativeNavigation.events();
   };
