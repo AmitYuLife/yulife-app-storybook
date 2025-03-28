@@ -1257,7 +1257,6 @@
       }
     },
     "login-hero": {
-      "disclaimer_markdown": "続行することにより、[プライバシーポリシー](%{privacyPolicyUrl})に同意したことになります。",
       "primary_cta_label": "マイアカウントを請求",
       "secondary_cta_label": "ログイン",
       "slides": {

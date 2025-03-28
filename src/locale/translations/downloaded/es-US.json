@@ -1257,7 +1257,6 @@
       }
     },
     "login-hero": {
-      "disclaimer_markdown": "Al continuar, acepta nuestra [Política de privacidad](%{privacyPolicyUrl}).",
       "primary_cta_label": "Reclamar mi cuenta",
       "secondary_cta_label": "Iniciar sesión",
       "slides": {
