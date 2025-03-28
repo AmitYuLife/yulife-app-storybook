@@ -30,6 +30,10 @@ const routesForRegistration = [
     component: require("../components/containers/login/login-confirm.container").default,
   },
   {
+    name: ROUTES.loginPassword,
+    component: require("../components/containers/login/login-password.container").default,
+  },
+  {
     name: ROUTES.resetPassword,
     component: require("../components/containers/reset-password/reset-password.container").default,
   },

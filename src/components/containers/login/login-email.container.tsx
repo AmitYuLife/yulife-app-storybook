@@ -1,7 +1,7 @@
 import LoginEmailScreen from "@components/screens/login/login-email/login-email.screen";
 import { CaptchaResponse, gql } from "@graphql/__generated";
 import { useMutatationAllRegions } from "@hooks";
-import { region, t } from "@locale";
+import { REGION, region, t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { useCaptcha } from "@organisms/captcha-input";
 import Logger from "@services/logging/logger";
@@ -18,7 +18,7 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
   const [email, setEmail] = useState(props.email || "");
 
   const navigateToConfirmation = useCallback(
-    async (passProps?: { hasSetPassword?: boolean; email: string }) => {
+    async (passProps: { regionResponses: { hasSetPassword: boolean; region: REGION }[]; email: string }) => {
       await Navigation.push(componentId, {
         component: {
           id: ROUTES.loginConfirm,
@@ -58,10 +58,13 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
 
       if (results.length > 0) {
         // if any of the regions had a set password, show the field on the next screen
-        const hasSetPassword = results.some((result) => result.data?.sendMagicLink.hasSetPassword);
+        const regionResponses = results.map((result) => ({
+          hasSetPassword: !!result.data?.sendMagicLink.hasSetPassword,
+          region: result.region,
+        }));
 
         await navigateToConfirmation({
-          hasSetPassword,
+          regionResponses,
           email,
         });
       }

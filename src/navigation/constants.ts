@@ -8,6 +8,7 @@ export const ROUTES = {
   loginHero: "yulife.LoginHero",
   loginEmail: "yulife.LoginEmail",
   loginConfirm: "yulife.LoginConfirm",
+  loginPassword: "yulife.LoginPassword",
   resetPassword: "yulife.ResetPassword",
   emailSent: "yulife.EmailSent",
   signUp: "yulife.SignUp",

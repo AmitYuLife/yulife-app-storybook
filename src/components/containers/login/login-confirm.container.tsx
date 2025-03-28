@@ -10,11 +10,17 @@ import { TOKEN_EXPIRATION } from "@services/constants";
 import { applyLoginSession } from "./login.helpers";
 import { useDispatch } from "react-redux";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
+import { ROUTES } from "@navigation/constants";
 
 interface Props {
   componentId: string;
   email: string;
-  hasSetPassword: boolean;
+
+  // response from the sendMagicLink mutation
+  regionResponses?: {
+    hasSetPassword: boolean;
+    region: REGION;
+  }[];
 
   // these props are set if an OTP was passed in
   otp?: string;
@@ -27,6 +33,8 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
   const { authorised: fitkitAuthorised, loading: fitkitLoading } = useFitKit();
 
   const otpRef = useRef<string>("");
+
+  const showLoginWithPassword = props.regionResponses?.some((r) => r.hasSetPassword);
 
   useEffect(() => {
     if (!props.otp || !props.email || !props.region) {
@@ -80,8 +88,19 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
   return (
     <LoginConfirmScreen
       email={props.email}
-      hasSetPassword={props.hasSetPassword}
+      showLoginWithPassword={showLoginWithPassword}
       onPressBack={() => Navigation.pop(componentId)}
+      onPressLoginWithPassword={() =>
+        Navigation.push(componentId, {
+          component: {
+            name: ROUTES.loginPassword,
+            passProps: {
+              email: props.email,
+              regions: props.regionResponses?.filter((r) => r.hasSetPassword).map((r) => r.region),
+            },
+          },
+        })
+      }
     />
   );
 };
