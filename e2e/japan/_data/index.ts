@@ -9,6 +9,7 @@ export * from "./mongo/user_onboardings";
 export * from "./mongo/social_groups";
 export * from "./mongo/social_group_leaderboards";
 export * from "./mongo/user_social_leaderboard_enrolments";
+export * from "./mongo/user_social_leaderboard_scores";
 
 export * from "./postgres/business_background";
 export * from "./postgres/business";

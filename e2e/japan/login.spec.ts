@@ -33,6 +33,12 @@ Feature("As a user I can get past the login screen", async () => {
         Then("I can see the translated pill for 'All'", then.textVisible("すべて"));
       });
     });
+    When("I go to the YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+      When("I scroll until I see all the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
+        Then("I should see the tall card for GHealth", then.idVisible(ids.YUSCREEN_V5_TALL_CARD("入院への備え")));
+        Then("I should see the tall card for ExGL", then.idVisible(ids.YUSCREEN_V5_TALL_CARD("万一への備え")));
+      });
+    });
   });
 
   Scenario("I can view the Wellbeing Hub screen as a yulife user", scenario.start, async () => {
@@ -70,12 +76,37 @@ Feature("As a user I can get past the login screen", async () => {
 
   Scenario("I see the correct Square card layout for my Japanese products", scenario.start, async () => {
     Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2), async () => {
-      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
+      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
+      });
     });
     When("I scroll until I see all the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
       Then("I should see the square card for GHealth", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("入院への備え")));
       Then("I should see the square card for GCI", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("がん・急性心筋梗塞・脳卒中への備え")));
       Then("I should see the square card for ExGL", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("万一への備え")));
+    });
+  });
+
+  Scenario("I see search for a user by kanji, their latin, or their furigana name", scenario.start, async () => {
+    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2), async () => {
+      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
+      });
+    });
+    When("I tap on the hero card", when.tapID(ids.HERO_CARD_SECTION), async () => {
+      Then("I should see the soft landing intro screen", then.idVisible(ids.GIFTING_INTRO));
+    });
+    When("I tap on the 'Get started' button", when.tapID(ids.CTA_GET_STARTED, 2000), async () => {
+      Then("Then I am on the gifting selection screen", then.idVisible(ids.INPUT_FIELD));
+    });
+    When("I search a user with their kanji name", when.replaceTextViaID(ids.INPUT_FIELD, data.CUSTOMER_1.data.firstName), async () => {
+      Then("I can see the user appear", then.idVisible(ids.LEADERBOARD_EMPLOYEE_NAME(`${data.CUSTOMER_1.data.lastName} ${data.CUSTOMER_1.data.firstName}`)));
+    });
+    When("I search a user with their latin name", when.replaceTextViaID(ids.INPUT_FIELD, data.CUSTOMER_1.data.name_variants.latin), async () => {
+      Then("I can see the user appear", then.idVisible(ids.LEADERBOARD_EMPLOYEE_NAME(`${data.CUSTOMER_1.data.lastName} ${data.CUSTOMER_1.data.firstName}`)));
+    });
+    When("I search a user with their furigana name", when.replaceTextViaID(ids.INPUT_FIELD, data.CUSTOMER_1.data.name_variants.furigana), async () => {
+      Then("I can see the user appear", then.idVisible(ids.LEADERBOARD_EMPLOYEE_NAME(`${data.CUSTOMER_1.data.lastName} ${data.CUSTOMER_1.data.firstName}`)));
     });
   });
 });
