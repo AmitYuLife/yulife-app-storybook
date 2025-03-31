@@ -31,3 +31,17 @@ export const BA2_GAME_BATTLEPASS_DONATIONS_SETTINGS = {
     },
   },
 } as IDatabaseItem;
+
+export const BUSINESS_THE_BEAR_COUPONS_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "temp",
+    entityId: BUSINESS_THE_BEAR.data.business_account_id,
+    entityType: "everyone",
+    settings: {
+      gameShowCouponPrizeTemplates: true,
+      gameUseNewPurchaseHistory: true,
+    },
+  },
+} as IDatabaseItem;
