@@ -10,6 +10,7 @@ import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { getContentLocationQueryToRefetch, ContentLocationPlacement } from "@utils/contentLocation";
+import { REWARD_LOCATION_MODAL } from "@ids";
 
 type Props = {
   isActive: boolean;
@@ -47,7 +48,7 @@ const _FirstTimeContentLocationSelection = (props: Props) => {
   return (
     <Modal transparent={true}>
       <View style={styles.background} />
-      <View style={styles.wrapper}>
+      <View style={styles.wrapper} testID={REWARD_LOCATION_MODAL}>
         <Animated.View entering={FadeIn.duration(500)} style={styles.container}>
           <Image
             style={styles.image}

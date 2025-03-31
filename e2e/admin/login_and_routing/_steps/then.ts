@@ -11,7 +11,6 @@ import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
 import { CUSTOMER_1 } from "../../_data";
 import { HealthDataSyncModalDesc } from "../_resources/const";
-import { onPCPPage } from "usa/yuscreen_and_products_usa/_steps/then";
 
 export const { textVisible, textNotVisible, idVisible, wait, multipleTextVisible, idNotVisible } =
   navigation.common;

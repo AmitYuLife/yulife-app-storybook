@@ -229,6 +229,7 @@ export const SMOKING_STREAK_HALF_MODAL = (heading: string) =>
 export const HALF_MODAL_CTA = "rewards.got-it";
 export const GENERIC_SELECTOR_ITEM = (itemText: string) => `GENERIC_SELECTOR_ITEM_${itemText}`;
 export const GENERIC_SELECTOR_CONFIRM = "generic-selector-confirm-text-view";
+export const REWARD_LOCATION_MODAL = "REWARD_LOCATION_MODAL";
 
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`;
