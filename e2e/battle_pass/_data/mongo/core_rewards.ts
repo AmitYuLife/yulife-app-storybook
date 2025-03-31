@@ -1604,3 +1604,167 @@ export const CORE_REWARDS_ORDO_REWARDS = {
     },
   },
 } as IDatabaseItem;
+
+export const CORE_REWARDS_MARKS_AND_SPENCER = {
+  type: "mongo",
+  modelName: "core_rewards",
+  data: {
+    _id: generateRandomMongoId(),
+    __v: 1,
+    _migrated: true,
+    availableDenominations: [
+      {
+        yuCoin: 2060,
+        value: 2.5,
+        stock: 7,
+        createPrizes: false,
+        availableForRewardsStore: true,
+        availableForCoupons: true,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 4120,
+        value: 5,
+        stock: 10,
+        createPrizes: false,
+        availableForRewardsStore: true,
+        availableForCoupons: true,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 8240,
+        value: 10,
+        stock: 7,
+        createPrizes: false,
+        availableForRewardsStore: true,
+        availableForCoupons: true,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 16480,
+        value: 20,
+        stock: 7,
+        createPrizes: false,
+        availableForRewardsStore: true,
+        availableForCoupons: true,
+        _id: generateRandomMongoId(),
+      },
+      {
+        value: 75,
+        availableForRewardsStore: true,
+        availableForCoupons: true,
+        _id: generateRandomMongoId(),
+      },
+      {
+        value: 100,
+        availableForCoupons: true,
+        _id: generateRandomMongoId(),
+      },
+    ],
+    badge: {},
+    code: "MAS-GB",
+    copy: {
+      id: "MAS-GB",
+      offerHeading: {
+        "en-GB": "M&S",
+        "ja-JP": "エムアンドエス",
+        _id: "65dc9a8189e37e1202c1d27c",
+      },
+      offerSubheading: {
+        "en-GB": null,
+        "ja-JP": "2,080YuCoinで2.50ポンドからのバウチャーを手に入れよう",
+        _id: "65dc9a8189e37e1202c1d27d",
+      },
+    },
+    createdAt: {
+      $date: "2018-11-07T21:03:24.500Z",
+    },
+    currencyCode: "GBP",
+    description: {
+      "en-GB":
+        "With over 150 years of operation and over 700 stores nationwide, Marks and Spencer needs no introduction. Redeem your voucher for anything from delicious food, to a new pair of shoes or some quality homeware, online and in store.",
+      "ja-JP":
+        "150年以上の歴史を持ち、全国に700以上の店舗を持つマークス・アンド・スペンサーに紹介する必要はないだろう。バウチャーを使えば、美味しい食品から新しい靴、上質なホームウェアまで、オンラインでも店舗でも何でも手に入れることができる。",
+      _id: "65dc9a8189e37e1202c1d27b",
+    },
+    images: {
+      listItemImageKey: "imgixGlobal::cms/1742292430268_test.jpg",
+      detailHeaderKey: "imgixGlobal::cms/1701160100834_M&S.png",
+      websiteImageKey: "imgixGlobal::cms/1666022314144_M&S.png",
+      redemptionStepsFooter: "",
+      prizeTeaserImageKey: null,
+    },
+    loyaltyProgramme: [],
+    name: {
+      "en-GB": "M&S",
+      "ja-JP": "エムアンドエス",
+    },
+    redemptionSteps: {
+      info: {
+        "en-GB": "How to redeem M&S:",
+        "ja-JP": "M&Sの利用方法",
+        _id: "65dc9a8189e37e1202c1d27e",
+      },
+      steps: [
+        {
+          "en-GB":
+            "Online: At checkout, select 'Pay by Gift card'. Enter the gift card number and PIN found on your voucher",
+          "ja-JP":
+            "オンラインチェックアウトの際、「ギフトカードで支払う」を選択します。バウチャーに記載されているギフトカード番号とPINを入力してください。",
+          _id: "65dc9a8189e37e1202c1d277",
+        },
+        {
+          "en-GB":
+            "In-store purchase: Print out your voucher or show the voucher on your mobile device at the till.",
+          "ja-JP": "店頭でのご購入クーポンをプリントアウトしてレジでご提示ください。",
+          _id: "65dc9a8189e37e1202c1d278",
+        },
+        {
+          "en-GB":
+            "Please Note : M&S Gift Vouchers may take up to 24 hours to activate, so it's best to plan ahead!",
+          "ja-JP": "ご注意 : M&Sギフトバウチャーは、有効化までに最大24時間かかる場合があります！",
+          _id: "65dc9a8189e37e1202c1d279",
+        },
+      ],
+    },
+    restrictions: {
+      availableForLabels: [],
+      restrictedForLabels: ["8816725B20564422B81D30189CB7C500"],
+      locations: ["GB", "GB-IoM"],
+    },
+    rewardProviderId: "runa",
+    sortOrder: 2,
+    tags: [
+      {
+        "en-GB": "Grocery",
+        "ja-JP": "食料品",
+        _id: "65dc9a8189e37e1202c1d276",
+      },
+    ],
+    termsAndConditionsUrl: "https://gift.runa.io/public/terms/MAS-GB.pdf",
+    updatedAt: {
+      $date: "2025-03-19T15:57:53.640Z",
+    },
+    website: {
+      heading: "Marks & Spencer",
+      description: "Redeem gift vouchers on food, flowers, clothing and gifts. ",
+      imageAlt: "Marks & Spencer",
+      isFeaturedOnWebsite: true,
+    },
+    claimType: "unlimited",
+    archived: false,
+    failedClaimCount: 0,
+    isLocked: false,
+    couponOptions: {
+      minDenomination: 50,
+      maxDenomination: 500,
+      yulifeDiscountPercentage: 10,
+      discountPercentage: 10,
+    },
+    prizePools: {
+      claimType: null,
+      categories: ["grocery"],
+      _id: "67a642204a29af9bc94d1f89",
+    },
+  },
+} as IDatabaseItem;
