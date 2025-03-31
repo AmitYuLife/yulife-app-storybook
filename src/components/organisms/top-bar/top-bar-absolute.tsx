@@ -15,10 +15,21 @@ interface Props {
   name?: ComponentProps<typeof TopBar>["name"];
   menuLabel?: ComponentProps<typeof TopBar>["menuLabel"];
   timer?: ComponentProps<typeof TopBar>["timer"];
+  skipFetchingNotifications?: boolean;
 }
 
 export const TopBarAbsolute = (props: Props) => {
-  const { onPressLeftIcon, hasWhiteBackground, leftIcon, hasShadow, rightIcon, type, menuLabel, timer } = props;
+  const {
+    onPressLeftIcon,
+    hasWhiteBackground,
+    leftIcon,
+    hasShadow,
+    rightIcon,
+    type,
+    menuLabel,
+    timer,
+    skipFetchingNotifications,
+  } = props;
 
   return (
     <View
@@ -32,6 +43,7 @@ export const TopBarAbsolute = (props: Props) => {
         leftIcon={leftIcon}
         onPressLeftIcon={onPressLeftIcon}
         timer={timer}
+        skipFetchingNotifications={skipFetchingNotifications}
       />
       {!hasShadow ? null : <View style={styles.topBarShadow} />}
     </View>

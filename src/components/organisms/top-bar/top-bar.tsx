@@ -7,11 +7,29 @@ import { LeftIcon } from "./subcomponents/left";
 import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 
-const TopBarContainer = (props: Omit<TopBarViewProps, "badges">) => {
-  const { onPressLeftIcon, timer, leftIcons, name, menuLabel, leftIcon, middleLabel, type, onLayout, rightIcon } =
-    props;
+export interface TopBarContainerProps extends Omit<TopBarViewProps, "badges"> {
+  skipFetchingNotifications?: boolean;
+}
 
-  const { data } = useQuery(gql("GetUserProfileBadgeCountDocument"), { fetchPolicy: "cache-only" });
+const TopBarContainer = (props: TopBarContainerProps) => {
+  const {
+    onPressLeftIcon,
+    timer,
+    leftIcons,
+    name,
+    menuLabel,
+    leftIcon,
+    middleLabel,
+    type,
+    onLayout,
+    rightIcon,
+    skipFetchingNotifications,
+  } = props;
+
+  const { data } = useQuery(gql("GetUserProfileBadgeCountDocument"), {
+    fetchPolicy: "cache-only",
+    skip: skipFetchingNotifications,
+  });
 
   const hasNotificationBadge = useMemo(
     () => (data?.profile?.badgeCounts?.inboxMessages || 0) > 0,
