@@ -1,173 +1,28 @@
-import * as customer from '../postgres/customers';
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import * as customer from "../postgres/customers";
+import * as business from "../postgres/business";
+import { allTogglesTrue } from "./_templates";
 
-const type = "mongo"
-const modelName = "usertoggles"
+const type = "mongo";
+const modelName = "usertoggles";
 
-
-
-
-export const CUSTOMER_USA_1_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_1.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_2_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_2.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_3_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_3.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_4_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_4.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_5_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_5.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_6_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_6.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_7_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_7.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_8_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_8.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_9_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_9.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_10_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_10.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_11_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_11.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_12_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_12.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_13_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_13.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_14_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_14.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
-
-export const CUSTOMER_USA_15_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_USA_15.data.customerId,
-        features: {
-        }
-    }
-} as IDatabaseItem
+export const CUSTOMER_CARMY_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_USA_1.data.customerId,
+    businessAccountId: business.BUSINESS_ACCOUNT_USA_1.data.business_account_id,
+    features: {
+      ...allTogglesTrue.data.features,
+      showLeaderboardSearch: true,
+      useNewLeaderboardServices: true,
+      showYucoinPowerButton: true,
+      tempEnableYuScreenV5: true,
+      showRewardsProducts: true,
+      showGoalProductRewardMilestones: true,
+      enableProductGoals: true,
+      tempGameBattlePassNewService: true,
+    },
+  },
+} as IDatabaseItem;

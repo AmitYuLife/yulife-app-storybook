@@ -1,0 +1,20 @@
+import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { BUSINESS_ACCOUNT_USA_1 } from "../postgres/business";
+
+const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
+  type: "mongo",
+  modelName: "core_settings",
+};
+
+export const BUSINESS_THE_BEAR_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.battlePass.donations",
+    entityId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
+    entityType: "business",
+    settings: {
+      isEnabled: true,
+    },
+  },
+} as IDatabaseItem;
