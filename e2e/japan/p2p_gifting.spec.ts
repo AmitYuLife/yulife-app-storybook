@@ -80,4 +80,14 @@ Scenario("I should see the You received a gift! notification message with the us
   When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
     Then("I can see the user name in the correct way", then.textVisible(`${getFullName(data.CUSTOMER_2_SMOKING, "JP")}さんからのギフトを早速チェックしましょう。`));
   });
+  When("I tap to on you received a gift notification", when.tapID(ids.INBOX_MESSAGE_ITEM("ギフトが届きました！"), 2500), async () => {
+    Then("I can see the thank them button", then.idVisible(ids.P2P_THANK_THEM_MESSAGE, 2500));
+    Then("I can see the heart greyed out", then.idVisible(ids.P2P_THANK_THEM_HEART(false), 2500));
+    Then("I can see the CTA button at the bottoms copy", then.idVisible(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2500));
+  });
+  When("I tap thank them", when.tapID(ids.P2P_THANK_THEM_MESSAGE, 2500), async () => {
+    Then("I can see the you've thanked them button", then.idVisible(ids.P2P_ALREADY_THANK_THEM_MESSAGE, 2500));
+    Then("I can see the heart coloured pink", then.idVisible(ids.P2P_THANK_THEM_HEART(true), 2500));
+    Then("I should see the CTA button at the bottoms copy has stayed the same", then.idVisible(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2500));
+  });
 });

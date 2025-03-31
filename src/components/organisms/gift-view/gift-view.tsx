@@ -19,7 +19,14 @@ import {
   Easing,
 } from "react-native-reanimated";
 import navBarStyles from "@styles/nav-bar.styles";
-import { P2P_GIFT_VIEW, SENDER_GIFTING_AMOUNT, P2P_MESSAGE, P2P_STICKER, P2P_STICKER_ITEMS } from "@ids";
+import {
+  P2P_GIFT_VIEW,
+  SENDER_GIFTING_AMOUNT,
+  P2P_MESSAGE,
+  P2P_STICKER,
+  P2P_STICKER_ITEMS,
+  P2P_THANK_THEM_HEART,
+} from "@ids";
 import { GiftingHeartIcon } from "@atoms/icon/gifting-heart-icon";
 
 const MAX_MESSAGE_LENGTH = 50;
@@ -319,6 +326,7 @@ const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankY
                 <GiftingHeartIcon
                   height={16}
                   width={19}
+                  testID={P2P_THANK_THEM_HEART(hasSaidThankYou)}
                   {...(hasSaidThankYou ? PINK_HEART_COLOURS : GREY_HEART_COLOURS)}
                 />
               </Box>
