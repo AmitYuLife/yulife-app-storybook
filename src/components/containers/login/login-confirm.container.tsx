@@ -1,7 +1,7 @@
 import { region, REGION, t } from "@locale";
 import { Navigation } from "react-native-navigation";
 import LoginConfirmScreen from "@components/screens/login/login-confirm/login-confirm.screen";
-import { memo, useEffect, useRef } from "react";
+import { memo, useCallback, useEffect, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
 import { Alert, Platform } from "react-native";
@@ -11,6 +11,8 @@ import { applyLoginSession } from "./login.helpers";
 import { useDispatch } from "react-redux";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { ROUTES } from "@navigation/constants";
+import { useCaptcha } from "@organisms/captcha-input";
+import { useSendMagicLink } from "./send-magic-link.hook";
 
 interface Props {
   componentId: string;
@@ -31,10 +33,25 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
   const [loginUser] = useMutation(gql("LoginUserDocument"));
   const dispatch = useDispatch();
   const { authorised: fitkitAuthorised, loading: fitkitLoading } = useFitKit();
+  const captcha = useCaptcha(region.getCaptchaConfig());
 
   const otpRef = useRef<string>("");
 
   const showLoginWithPassword = props.regionResponses?.some((r) => r.hasSetPassword);
+
+  const onNavigateBack = useCallback(() => {
+    Navigation.pop(componentId);
+  }, [componentId]);
+
+  const { sendMagicLink, loading: isResending } = useSendMagicLink({
+    email: props.email,
+    captcha,
+    onFailure: (error) => {
+      Alert.alert(t("screens.login-confirm.error-title"), error, [
+        { text: t("labels.cta.ok"), onPress: onNavigateBack },
+      ]);
+    },
+  });
 
   useEffect(() => {
     if (!props.otp || !props.email || !props.region) {
@@ -77,19 +94,32 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
       } catch (error) {
         // if an error occurs, pop back one screen after closing the native alert
         Alert.alert(t("screens.login-confirm.error-title"), error.message, [
-          { text: t("labels.cta.ok"), onPress: () => Navigation.pop(componentId) },
+          { text: t("labels.cta.ok"), onPress: onNavigateBack },
         ]);
       }
     }
 
     handleOTP();
-  }, [props.otp, props.email, props.region, loginUser, componentId, dispatch, fitkitAuthorised, fitkitLoading]);
+  }, [
+    props.otp,
+    props.email,
+    props.region,
+    loginUser,
+    componentId,
+    onNavigateBack,
+    dispatch,
+    fitkitAuthorised,
+    fitkitLoading,
+  ]);
 
   return (
     <LoginConfirmScreen
       email={props.email}
+      captcha={captcha}
+      isResending={isResending}
       showLoginWithPassword={showLoginWithPassword}
-      onPressBack={() => Navigation.pop(componentId)}
+      onPressResend={sendMagicLink}
+      onPressBack={onNavigateBack}
       onPressLoginWithPassword={() =>
         Navigation.push(componentId, {
           component: {

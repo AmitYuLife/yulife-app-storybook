@@ -1,13 +1,11 @@
 import LoginEmailScreen from "@components/screens/login/login-email/login-email.screen";
-import { CaptchaResponse, gql } from "@graphql/__generated";
-import { useMutatationAllRegions } from "@hooks";
 import { REGION, region, t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { useCaptcha } from "@organisms/captcha-input";
-import Logger from "@services/logging/logger";
 import { memo, useCallback, useState } from "react";
 import { AccessibilityInfo, Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
+import { useSendMagicLink } from "./send-magic-link.hook";
 
 interface Props {
   componentId: string;
@@ -16,6 +14,7 @@ interface Props {
 
 const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
   const [email, setEmail] = useState(props.email || "");
+  const [magicLinkError, setMagicLinkError] = useState<string | null>(null);
 
   const navigateToConfirmation = useCallback(
     async (passProps: { regionResponses: { hasSetPassword: boolean; region: REGION }[]; email: string }) => {
@@ -30,50 +29,32 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
     [componentId]
   );
 
-  const {
-    mutate: sendMagicLink,
-    result: { lastError: magicLinkError, loading: isSubmitting },
-  } = useMutatationAllRegions(gql("SendMagicLinkDocument"));
-
   const captcha = useCaptcha(region.getCaptchaConfig());
 
   const handleError = useCallback(async (errorMessage: string) => {
+    setMagicLinkError(errorMessage);
+
     const isScreenReaderEnabled = await AccessibilityInfo.isScreenReaderEnabled();
     if (isScreenReaderEnabled) {
       Alert.alert(t("screens.login.accessibility.alert_error_title"), errorMessage);
     }
   }, []);
 
-  const handleSubmit = useCallback(async () => {
-    try {
-      const captchaResponse = await captcha.submit();
+  const { sendMagicLink, loading: isSubmitting } = useSendMagicLink({
+    email,
+    captcha,
+    onSuccess: async (results: { hasSetPassword: boolean; region: REGION }[]) => {
+      setMagicLinkError(null);
 
-      const results = await sendMagicLink({
-        variables: {
-          email,
-          isResetPasswordRequest: false,
-          captchaResponse: captchaResponse as CaptchaResponse,
-        },
+      await navigateToConfirmation({
+        regionResponses: results,
+        email,
       });
-
-      if (results.length > 0) {
-        // if any of the regions had a set password, show the field on the next screen
-        const regionResponses = results.map((result) => ({
-          hasSetPassword: !!result.data?.sendMagicLink.hasSetPassword,
-          region: result.region,
-        }));
-
-        await navigateToConfirmation({
-          regionResponses,
-          email,
-        });
-      }
-    } catch (e) {
-      // error display to user is handled via lastError
-      handleError(e);
-      Logger.error(e, { file: "login-email.container" });
-    }
-  }, [email, sendMagicLink, handleError, captcha, navigateToConfirmation]);
+    },
+    onFailure: (error: string) => {
+      handleError(error);
+    },
+  });
 
   return (
     <LoginEmailScreen
@@ -81,7 +62,7 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
       emailError={""} // TODO - validation errors
       isSubmitting={isSubmitting}
       onPressBack={() => Navigation.pop(componentId)}
-      onPressSubmit={handleSubmit}
+      onPressSubmit={sendMagicLink}
       onEmailChange={setEmail}
       captcha={captcha}
       magicLinkError={magicLinkError}
