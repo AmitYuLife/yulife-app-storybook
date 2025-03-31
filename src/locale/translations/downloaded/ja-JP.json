@@ -64,7 +64,7 @@
   "apple_health": "Apple ヘルスケア",
   "button": "ボタン",
   "captcha_input": {
-    "hcaptcha_disclaimer": "このアプリは hCaptcha によって保護されており、その[プライバシーポリシー](https://www.hcaptcha.com/privacy)および[利用規約](https://www.hcaptcha.com/terms)が適用されます。"
+    "hcaptcha_disclaimer": "このアプリはhCaptchaによって保護され、[プライバシーポリシー](https://www.hcaptcha.com/privacy)および[利用規約](https://www.hcaptcha.com/terms)が適用されます。"
   },
   "communities": "コミュニティ",
   "config": {
@@ -443,7 +443,7 @@
       "body": "1日逃しましたが、誰にでももう一度挑戦する権利があります — チャレンジを続けましょう！",
       "button": "OK",
       "inventory_item": "チャレンジキープ",
-      "title": "チャレンジキープ完了！"
+      "title": "チャレンジキープが完了しました!"
     },
     "switch_to_google_fit": {
       "button_label": "Google Fitに切り替える",
@@ -682,19 +682,19 @@
     "tooltips": {
       "power_up": {
         "body": "クエストの所有アイテムとして表示されます。",
-        "title": "パワーアップを収集しました！"
+        "title": "パワーアップを収集しました!"
       },
       "purchase": {
-        "body": "ウォレットで見つけてください。",
-        "title": "報酬を受け取りました！"
+        "body": "ウォレットでご確認いただけます。",
+        "title": "リワードを受け取りました!"
       },
       "yucoin": {
-        "body": "YuCoin 画面で確認",
-        "title": "獲得した YuCoin!"
+        "body": "YuCoin画面で確認",
+        "title": "獲得したYuCoin"
       },
       "yumoji": {
-        "body": "Yumoji で試してみてください。",
-        "title": "Yumoji アイテムを収集しました！"
+        "body": "Yumojiでお試しください。",
+        "title": "Yumojiアイテムを収集しました！"
       }
     }
   },
@@ -800,7 +800,7 @@
     },
     "challenge_details": {
       "accessibility": {
-        "star_rating": "評価: %{activeStars} 星"
+        "star_rating": "評価: %{activeStars}星 |||| 評価: %{activeStars}星"
       }
     },
     "challenge_failed": {
@@ -810,7 +810,7 @@
     },
     "challenge_list": {
       "accessibility": {
-        "description": "%{heading} %{reward} ユーコイン %{duration}"
+        "description": "%{heading} %{reward} yucoin %{duration}"
       },
       "level_boosted": "ブースト",
       "level_completed": "完了",
@@ -1260,9 +1260,9 @@
       "primary_cta_label": "マイアカウントを請求",
       "secondary_cta_label": "ログイン",
       "slides": {
-        "donate": "重要な支援先への寄付を通じて、世界に本当の影響を与えましょう！",
-        "earn": "毎日のステップ、マインドフルネスなどで現金価値を獲得しましょう！",
-        "redeem": "お気に入りのブランドからバウチャーや割引などの報酬を引き換えましょう！"
+        "donate": "重要な支援先への寄付を通じて、世界に貢献しましょう!",
+        "earn": "毎日のステップ、マインドフルネスなどでリワードを獲得しましょう!",
+        "redeem": "お好きなブランドのギフト券や割引券とご交換いただけます。"
       }
     },
     "measurement_cycling_settings": {
