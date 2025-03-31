@@ -9,6 +9,9 @@ import { User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, Us
 import { getFullName } from "_utils/users";
 import { getTranslation } from "_utils/translations/getTranslations";
 import { P2P_GIFTING_AMOUNTS, P2P_MESSAGES } from "./_resources/constants";
+import moment from "moment";
+import { GiftNpcAltra } from "./_resources/fixtures";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 const locale = process.env.TARGET_LOCALE || "en-GB";
 const translation = getTranslation(locale);
@@ -258,7 +261,7 @@ Feature("P2P gifting", async () => {
       Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW("forest"), 2500));
       Then("I can see the gift message", then.idVisible(ids.P2P_MESSAGE(data.USER_18_GIFT_A.data.message), 2500));
     });
-    When("I tap to send my friends a gift", when.tapID(ids.RETURN_GIFT_BUTTON, 2000), async () => {
+    When("I tap to send my friends a gift", when.tapID(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2000), async () => {
       Then("I see a button to get started", then.idVisible(ids.CTA_GET_STARTED, 2000));
     });
     When("I click on the 'Get started' button", when.tapID(ids.CTA_GET_STARTED, 2000), async () => {
@@ -293,6 +296,53 @@ Feature("P2P gifting", async () => {
       });
       When("I tap to on +10 YuCoin! notification", when.tapID(ids.INBOX_MESSAGE_ITEM("+10 YuCoin!"), 2000), async () => {
         Then("Nothing should happen and I should still be on the notification centre", then.idVisible(ids.CONNECTION_SETUP_TITLE));
+      });
+    });
+  });
+});
+
+Scenario("I should see gift auto claim notification in the app inbox for a gift sent from a business", scenario.start, async () => {
+  Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_140_NPC_ALTRA.customer, GENERIC_AUTH_PASSWORD), async () => {
+    When("I trigger the issue coin to NPC Biz", when.triggerIssueCoinToNpcBiz(data.BUSINESS_ACCOUNT_14_NPC_ALTRA.business.data.businessAccountId, 30000, "1234"), async () => {
+      When("I trigger the business sending 5000 YuCoin to the user", when.triggerSendGiftFromNpcBiz(data.BUSINESS_ACCOUNT_14_NPC_ALTRA.business.data.businessAccountId, [GiftNpcAltra]), async () => {
+        When("I trigger auto claim worker", when.trigger7DayAutoClaim(moment().add(8, "days").toDate()), async () => {
+          Then("I should be back on YuCoin screen", then.idVisible(ids.HERO_CARD_SECTION, 2000));
+          Then("I should see my YuCoin balance before the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+        });
+      });
+    });
+    When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("I should see my YuCoin balance after the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5200)));
+      Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+      When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+        When("I wait 5 seconds", when.wait(5000), async () => {
+          Then("I can see that a gift sent 8 days ago from the Altra Capital triggered an auto-claimed notification displaying '+5000 YuCoin!' and does not have the Pink Dot or Arrow", then.idVisible(ids.NOTIFICATION_PINK_DOT_ARROW("+5,000 YuCoin!", false, false)));
+        });
+      });
+      When("I tap to on +5000 YuCoin! notification", when.tapID(ids.INBOX_MESSAGE_ITEM("+5,000 YuCoin!"), 2500), async () => {
+        Then("Nothing should happen and I should still be on the notification centre", then.idVisible(ids.CONNECTION_SETUP_TITLE));
+      });
+      When("I tap to on you received a gift notification", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
+        Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW("yuniversal"), 2500));
+      });
+      When("I scroll to the bottom", when.scrollFromID(ids.P2P_GIFT_VIEW("yuniversal"), "up", "fast", 0.5), async () => {
+        Then(
+          "I can see the gift message",
+          then.idVisible(
+            ids.P2P_MESSAGE(
+              "Hello, world! Another great day to receive a gift for hardworking. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Hello, world! Another great day to receive a gift for hardworking."
+            )
+          )
+        );
+        Then("I can see the thank them button", then.idVisible(ids.P2P_THANK_THEM_MESSAGE, 2500));
+        Then("I can see the heart greyed out", then.idVisible(ids.P2P_THANK_THEM_HEART(false), 2500));
+        Then("I can see the CTA button at the bottoms copy", then.idVisible(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2500));
+      });
+      When("I tap thank them", when.tapID(ids.P2P_THANK_THEM_MESSAGE, 2500), async () => {
+        Then("I can see the you've thanked them button", then.idVisible(ids.P2P_ALREADY_THANK_THEM_MESSAGE, 2500));
+        Then("I can see the heart coloured pink", then.idVisible(ids.P2P_THANK_THEM_HEART(true), 2500));
+        Then("I should see the CTA button at the bottoms copy has stayed the same", then.idVisible(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2500));
       });
     });
   });

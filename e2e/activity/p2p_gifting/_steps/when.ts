@@ -3,6 +3,7 @@ import { screens } from "@appScreens";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { getTranslation } from "_utils/translations/getTranslations";
+import { Gift } from "../_resources/types";
 
 const locale = process.env.TARGET_LOCALE || "en-GB";
 const translation = getTranslation(locale);
@@ -79,9 +80,28 @@ export const triggerThanksForGiftNotification =
     });
   };
 
-export const trigger7DayAutoClaim = async () => {
+export const trigger7DayAutoClaim = (from?: Date) => async () => {
   await dataManager.triggerWorkerTask("INVOKE_SERVICE_METHOD", {
     serviceName: "game.gifting",
     methodName: "claimExpiredGifts",
+    args: {
+      from,
+    },
+  });
+};
+
+export const triggerIssueCoinToNpcBiz =
+  (businessAccountId: string, yuCoinAmount: number, invoiceId: string) => async () => {
+    await dataManager.triggerWorkerTask("ISSUE_YUCOIN_TO_BUSINESS_NPC", {
+      businessAccountId,
+      yuCoinAmount,
+      invoiceId,
+    });
+  };
+
+export const triggerSendGiftFromNpcBiz = (businessAccountId: string, gifts: Gift[]) => async () => {
+  await dataManager.triggerWorkerTask("SEND_GIFTS_FROM_BUSINESS_NPC", {
+    businessAccountId,
+    gifts,
   });
 };
