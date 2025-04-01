@@ -6,8 +6,10 @@ import { Button } from "@components/molecules";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import { IYuScreenProductCardVariant } from "./types";
 import {
+  YUSCREEN_V5_CTA_BUTTON,
   YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD,
   YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION,
+  YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE,
   YUSCREEN_V5_SQUARE_CARD,
 } from "@ids";
 
@@ -41,7 +43,12 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
         </View>
       </View>
       <View style={styles.cardBody}>
-        <TextTemplate type="l1b" lineHeight={Style.adjust(18)} numberOfLines={2}>
+        <TextTemplate
+          type="l1b"
+          lineHeight={Style.adjust(18)}
+          numberOfLines={2}
+          testID={YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE(item.title)}
+        >
           {item.title}
         </TextTemplate>
       </View>
@@ -56,7 +63,9 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
         )}
         {!showCardCta ? null : (
           <View style={styles.cta}>
-            <TextTemplate type="l3b">{item.cardCta}</TextTemplate>
+            <TextTemplate type="l3b" testID={YUSCREEN_V5_CTA_BUTTON(item.productName)}>
+              {item.cardCta}
+            </TextTemplate>
             <ArrowButton width={Style.adjust(16)} height={Style.adjust(16)} color={Colours.primary.p600} />
           </View>
         )}

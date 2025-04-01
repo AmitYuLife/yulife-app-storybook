@@ -6,112 +6,105 @@ import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import { AUTH_SA_1, AUTH_SA_2, AUTH_SA_3 } from "../_data/mongo/auths";
 import { CUSTOMER_SA_1, CUSTOMER_SA_2, CUSTOMER_SA_3 } from "../_data";
-import * as helper from "./_resources/helpers";
 import * as fixture from "./_resources/fixture";
 import * as constant from "./_resources/constants";
 import * as ids from "@ids";
 
 Feature("As a user I can get past the login screen and see all SA products", async () => {
-  // @Updaate - first instance of NAVIGATE_BUTTON scrolls to text which is in untappable position on iPhone 15 Pro.
-  // Given structure of this test it's quite a difficult process to debug, skipping for now.
-  ScenarioSkip("I can login and see MeGL/GrFun/GIP/TmpGIP/LSDC product slot and details", scenario.start, async () => {
+  Scenario("I can login and see MeGL/GrFun/GIP/TmpGIP/LSDC product slot and details", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_1, AUTH_SA_1, true, "South Africa"), async () => {
-      helper.ONBOARDING_YUSCREEN_SA("3 products MeGL/GrFun/GIP", "10");
-      helper.YUSCREEN_SA(CUSTOMER_SA_1, "MeGL/GrFun/GIP/TmpGIP/LSDC", "10");
-      helper.PRODUCT_CHECK(fixture.MeGL);
-      helper.KEY_INFO(fixture.MeGLKeyInfo);
-      helper.COVER_AMOUNTS_INFO(fixture.MeGLCoverAmounts);
-      helper.BENEFECIARIES_INFO(fixture.Beneficiaries);
-      helper.USEFUL_LINKS_INFO(fixture.UsefulLinks);
-      helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo);
-      helper.NAVIGATE_BUTTON(true, fixture.IncreaseCover);
-      helper.NAVIGATE_BUTTON(false, fixture.IncreaseCover);
-      helper.NAVIGATE_BUTTON(true, fixture.EditBeneficiariesInfo);
-      helper.NAVIGATE_BUTTON(false, fixture.EditBeneficiariesInfo);
-      helper.NAVIGATE_BUTTON(true, fixture.MakeClaimInfo);
-      helper.NAVIGATE_BUTTON(false, fixture.MakeClaimInfo);
-      helper.CLOSE_PRODUCT_WINDOW();
-      helper.PRODUCT_CHECK(fixture.GrFun);
-      helper.KEY_INFO(fixture.GrFunKeyInfo);
-      helper.COVER_AMOUNTS_INFO(fixture.GrFunCoverAmounts);
-      helper.BENEFECIARIES_INFO(fixture.Beneficiaries);
-      helper.USEFUL_LINKS_INFO(fixture.UsefulLinks);
-      helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo);
-      helper.NAVIGATE_BUTTON(true, fixture.EditBeneficiariesInfo);
-      helper.NAVIGATE_BUTTON(false, fixture.EditBeneficiariesInfo);
-      helper.NAVIGATE_BUTTON(true, fixture.MakeClaimInfo);
-      helper.NAVIGATE_BUTTON(false, fixture.MakeClaimInfo);
-      helper.CLOSE_PRODUCT_WINDOW();
-      helper.PRODUCT_CHECK(fixture.GIP);
-      helper.KEY_INFO(fixture.GIPKeyInfo);
-      helper.COVER_AMOUNTS_INFO(fixture.GIPCoverAmounts, constant.usefulLinksText);
-      helper.USEFUL_LINKS_INFO(fixture.UsefulLinksNoBeneficiaries);
-      helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo);
-      helper.NAVIGATE_BUTTON(true, fixture.IncreaseCoverToGIP);
-      helper.NAVIGATE_BUTTON(false, fixture.IncreaseCoverToGIP);
-      helper.NAVIGATE_BUTTON(true, fixture.MakeClaimInfo);
-      helper.NAVIGATE_BUTTON(false, fixture.MakeClaimInfo);
-      helper.CLOSE_PRODUCT_WINDOW();
-      helper.PRODUCT_CHECK_LONG_NAME(fixture.TmpGIP);
-      helper.KEY_INFO(fixture.TmpGIPKeyInfo);
-      helper.COVER_AMOUNTS_INFO(fixture.TmpGIPCoverAmounts, constant.usefulLinksText);
-      helper.USEFUL_LINKS_INFO(fixture.UsefulLinksNoBeneficiaries);
-      helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo);
-      helper.NAVIGATE_BUTTON(true, fixture.IncreaseCoverToTempGIP);
-      helper.NAVIGATE_BUTTON(false, fixture.IncreaseCoverToTempGIP);
-      helper.NAVIGATE_BUTTON(true, fixture.MakeClaimInfo);
-      helper.NAVIGATE_BUTTON(false, fixture.MakeClaimInfo);
-      helper.CLOSE_PRODUCT_WINDOW();
-      helper.PRODUCT_CHECK(fixture.LumpSum);
-      helper.KEY_INFO(fixture.LMPSKeyInfo);
-      helper.COVER_AMOUNTS_INFO(fixture.LMPSCoverAmounts, constant.usefulLinksText);
-      helper.USEFUL_LINKS_INFO(fixture.UsefulLinksNoBeneficiaries);
-      helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo);
-      helper.NAVIGATE_BUTTON(true, fixture.IncreaseCoverToTempLMSP);
-      helper.NAVIGATE_BUTTON(false, fixture.IncreaseCoverToTempLMSP);
-      helper.NAVIGATE_BUTTON(true, fixture.MakeClaimInfo);
-      helper.NAVIGATE_BUTTON(false, fixture.MakeClaimInfo);
-      helper.CLOSE_PRODUCT_WINDOW();
+      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "SA Customer", "Mountain", "400", true));
+      Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
+      Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
+    });
+    When("I swipe to see all of the product cards", when.swipeFromText("We’ve got you covered", "up", "fast"), async () => {
+      Then("I can see the life cover product", then.productCardVisible(fixture.lifeCoverTallCard));
+      Then("I can see the funeral cover product", then.productCardVisible(fixture.funeralCoverSquareCard));
+      Then("I can see the income protection product", then.productCardVisible(fixture.incomeProtectionSquareCard));
+    });
+    When("I swipe to see more cards", when.swipeFromText(fixture.funeralCoverSquareCard.title, "left", "fast"), async () => {
+      Then("I can see the lump sum disability product", then.productCardVisible(fixture.lumpSumDisabilitySquareCard));
+      Then("I can see the temporary income protection product", then.productCardVisible(fixture.tempIncomeProtectionSquareCard, 1));
+      Then("I should see the button for the wellbeing section", then.idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW));
+    });
+    When("I swipe to back to the first cards", when.swipeFromText(fixture.funeralCoverSquareCard.title, "right", "fast"), async () => {
+      When("I tap life cover card", when.tapText(fixture.MeGL.productName), async () => {
+        Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL, fixture.MeGLKeyInfo, true));
+      });
+    });
+    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+        Then("I can see the life cover product card as I'm back on the YuScreen", then.productCardVisible(fixture.lifeCoverTallCard));
+      });
+    });
+    When("I tap funeral cover card", when.tapText(fixture.funeralCoverSquareCard.name), async () => {
+      Then("I'm on the product page for funeral cover", then.productCheck(fixture.GrFun, fixture.GrFunKeyInfo, true, fixture.GrFunCoverAmounts));
+    });
+    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+        Then("I can see the life cover product card as I'm back on the YuScreen", then.productCardVisible(fixture.lifeCoverTallCard));
+      });
+    });
+    When("I tap GIP card", when.tapText(fixture.incomeProtectionSquareCard.name), async () => {
+      Then("I'm on the product page for GIP", then.productCheck(fixture.GIP, fixture.GIPKeyInfo, false));
+    });
+    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+        Then("I can see the life cover product card as I'm back on the YuScreen", then.productCardVisible(fixture.lifeCoverTallCard));
+      });
+    });
+    When("I swipe to see more cards", when.swipeFromText(fixture.funeralCoverSquareCard.title, "left", "fast"), async () => {
+      When("I tap lump sum disability card", when.tapText(fixture.lumpSumDisabilitySquareCard.name), async () => {
+        Then("I'm on the product page for lump sum disability", then.productCheck(fixture.LumpSum, fixture.LMPSKeyInfo, false));
+      });
+    });
+    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+        Then("I can see the lump sum disability product card as I'm back on the YuScreen", then.productCardVisible(fixture.lumpSumDisabilitySquareCard));
+      });
+    });
+    When("I tap temp income protection card", when.tapText(fixture.tempIncomeProtectionSquareCard.name), async () => {
+      Then("I'm on the product page for temp income protection", then.productCheck(fixture.TmpGIP, fixture.TmpGIPKeyInfo, false));
     });
   });
+
   Scenario("I can login and see MeGL/SpGL/GrFun with dependents, product slot and details", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_2, AUTH_SA_2, true, "South Africa"), async () => {
-      helper.ONBOARDING_YUSCREEN_SA("3 products MeGL/SpGL/GrFun", "1");
-      helper.YUSCREEN_SA(CUSTOMER_SA_2, "MeGL/SpGL/GrFun", "1");
-      helper.PRODUCT_CHECK(fixture.MeGL_2);
-      helper.KEY_INFO(fixture.MeGLKeyInfo);
-      helper.COVER_AMOUNTS_INFO(fixture.MeGL_2_CoverAmounts);
-      helper.BENEFECIARIES_INFO(fixture.Beneficiaries_MeGL_2);
-      helper.USEFUL_LINKS_INFO(fixture.UsefulLinks);
-      helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo);
-      helper.CLOSE_PRODUCT_WINDOW();
-      helper.PRODUCT_CHECK(fixture.SpGL_1);
-      helper.KEY_INFO(fixture.SpGLKeyInfo);
-      helper.COVER_AMOUNTS_INFO(fixture.SpGL_2_CoverAmounts);
-      helper.BENEFECIARIES_INFO(fixture.Beneficiaries_SpGL_2);
-      helper.USEFUL_LINKS_INFO(fixture.UsefulLinks);
-      helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo);
-      helper.CLOSE_PRODUCT_WINDOW();
-      helper.PRODUCT_CHECK(fixture.GrFun_2);
-      helper.KEY_INFO(fixture.GrFunKeyInfo_2);
-      helper.COVER_AMOUNTS_INFO(fixture.GrFunCoverAmounts);
-      helper.BENEFECIARIES_INFO(fixture.Beneficiaries_GrFun_2);
-      helper.USEFUL_LINKS_INFO(fixture.UsefulLinks);
-      helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo);
-      helper.CLOSE_PRODUCT_WINDOW();
+      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Rei Buldo", "Mountain", "400", true));
+      Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
+      Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
+    });
+    When("I swipe to see all of the product cards", when.swipeFromText("We’ve got you covered", "up", "fast"), async () => {
+      When("I tap life cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 1), async () => {
+        Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_2, fixture.MeGLKeyInfo, true, null, fixture.Beneficiaries_MeGL_2));
+      });
+    });
+    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+        When("I tap the spousal cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 0), async () => {
+          Then("I'm on the product page for spousal cover", then.productCheck(fixture.SpGL_1, fixture.SpGLKeyInfo, false));
+        });
+      });
+    });
+    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+        When("I tap the funeral cover card", when.tapTextAtIndex(fixture.funeralCoverSquareCard.name, 0), async () => {
+          Then("I'm on the product page for funeral cover", then.productCheck(fixture.GrFun_2, fixture.GrFunKeyInfo_2, true, fixture.GrFunCoverAmounts, fixture.Beneficiaries_GrFun_2));
+        });
+      });
     });
   });
 
   Scenario("I can login and see the GCI product in the SA app", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_3, AUTH_SA_3, true, "South Africa", false), async () => {
-      Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`));
-      Then("I can see the GCI product slot", then.productSlotVisible(fixture.gciProductSlot, 0, 0, "4"));
+      When("I swipe to see all of the product cards", when.swipeFromText("We’ve got you covered", "up", "fast"), async () => {
+        Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`));
+        Then("I can see the GCI product", then.productCardVisible(fixture.gciWideCard));
+      });
     });
-    helper.PRODUCT_CHECK(fixture.gciProduct1);
-    helper.KEY_INFO(fixture.gciKeyInfo);
-    helper.COVER_AMOUNTS_INFO(fixture.gciCoverAmounts, constant.usefulLinksText);
-    helper.USEFUL_LINKS_INFO(fixture.UsefulLinksNoBeneficiaries);
-    helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo);
+    When("I tap the GCI card", when.tapText(fixture.gciWideCard.name), async () => {
+      Then("I'm on the product page for funeral cover", then.productCheck(fixture.gciProduct1, fixture.gciKeyInfo, false));
+    });
   });
 
   Scenario("I can see the correct default country in the region selector for the SA app", scenario.start, async () => {
