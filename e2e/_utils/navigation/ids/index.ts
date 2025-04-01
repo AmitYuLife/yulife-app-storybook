@@ -346,6 +346,8 @@ export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD = (product: string) =>
   `YU_SCREEN_PRODUCT_CARD_TITLE-${product}`;
 export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO = (uri: any) =>
   `YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO_${uri}`;
+export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE = (title: string) =>
+  `YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE_${title}`;
 export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC = (body: string) =>
   `YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO_${body}`;
 export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION = (uri: any) =>
@@ -364,6 +366,10 @@ export const HERO_CARD_SECTION = "HERO_CARD_SECTION";
 export const YUSCREEN_V5_WIDE_CARD = (product: string) => `YUSCREEN_V5_WIDE_CARD_${product}`;
 export const YUSCREEN_V5_TALL_CARD = (product: string) => `YUSCREEN_V5_TALL_CARD_${product}`;
 export const YUSCREEN_V5_SQUARE_CARD = (product: string) => `YUSCREEN_V5_SQUARE_CARD_${product}`;
+export const YUSCREEN_V5_BENEFICIARIES_BUTTON = (cardSize: string, product: string) =>
+  `yu-product-card-${cardSize}-${product}`;
+export const YUSCREEN_V5_CTA_BUTTON = (product: string) =>
+  `YUSCREEN_V5_PRODUCT_CARD_CTA_${product}`;
 
 export const CAROUSEL_CARD_BUTTON = (cardTitle: string) => `CAROUSEL_CARD_BUTTON_${cardTitle}`;
 
