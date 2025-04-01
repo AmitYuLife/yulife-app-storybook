@@ -33,22 +33,24 @@ release-develop-to-uat:
     refs:
       - develop
 
-release-production:
+release-internal-production:
   extends: .generic-node
   stage: release
-  when: manual
   cache: []
   script:
     # Install node
-    - . "$NVM_DIR/nvm.sh" && nvm install -b  
-    - BRANCH_VERSION_MAJOR=$(node -p -e "require('./package.json').version.split('.')[0]")
-    - BRANCH_VERSION_MINOR=$(node -p -e "require('./package.json').version.split('.')[1]")
-    - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
+    - . "$NVM_DIR/nvm.sh" && nvm install -b
     # Switch from Gitlab SSH to Service User Basic Auth
     - git remote rm origin && git remote add origin https://oauth2:${GITLAB_TOKEN_RELEASE}@gitlab.com/$CI_PROJECT_PATH.git
     - git config --global user.email "$GITLAB_USER_EMAIL"
     - git config --global user.name "$GITLAB_USER_NAME"
     - git fetch --tags -q
+    # Script runs on the develop branch, which is one version ahead of the release branch
+    - git checkout develop
+    # That's why the minor version is decremented by 1
+    - BRANCH_VERSION_MAJOR=$(node -p -e "require('./package.json').version.split('.')[0]")
+    - BRANCH_VERSION_MINOR=$(node -p -e "Number(require('./package.json').version.split('.')[1]) - 1")
+    - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
     - git checkout release/${BRANCH_VERSION}
     - |
       LATEST_TAG=$(git tag -l "release/$BRANCH_VERSION*" | sort -V | tail -n 1)
@@ -64,6 +66,5 @@ release-production:
       git tag $NEW_TAG
       git push origin $NEW_TAG
       echo "New release tag: ${NEW_TAG}"
-  only:
-    refs:
-      - /^release\/.*$/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "release-internal-production"
