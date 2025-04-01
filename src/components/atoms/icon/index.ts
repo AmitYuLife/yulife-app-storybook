@@ -78,6 +78,7 @@ import { StreakSaverIcon } from "./streak-saver-icon";
 import { LocationIcon } from "./location-icon";
 import { GiftIcon } from "./gift-icon";
 import { VoucherIcon } from "./voucher-icon";
+import { AchievementPointIcon } from "./achievement-point-icon";
 
 export default {
   GlobeIcon,
@@ -162,4 +163,5 @@ export default {
   LocationIcon,
   GiftIcon,
   VoucherIcon,
+  AchievementPointIcon,
 };
