@@ -1,0 +1,147 @@
+import { BACKGROUND_IMAGE_MAP } from "../constants";
+import { Colours, Style } from "@styles";
+import { delay } from "@utils/misc";
+import { FlashList } from "@shopify/flash-list";
+import { FullScreenHeroSlide } from "../types";
+import { getTopOffset } from "../helpers";
+import { Box, Logo, TextTemplate } from "@atoms";
+import { memo, useCallback, useMemo, useRef } from "react";
+import { NativeScrollEvent, NativeSyntheticEvent, SafeAreaView } from "react-native";
+import useInterval from "@use-it/interval";
+
+const SCROLL_DELAY_MS = 250;
+
+const LoopingCarousel = ({ data }: { data: FullScreenHeroSlide[] }) => {
+  /**
+   * Triple the data to create an infinite loop effect in both directions.
+   * When the the user scrolls into the first or last group of data, we reset the scroll position to the middle group.
+   */
+  const tripledData = useMemo(() => [...data, ...data, ...data], [data]);
+
+  /**
+   * Set the initial index to the middle of the tripled data array.
+   */
+  const startIndex = useMemo(() => data.length, [data.length]);
+
+  const estimatedFirstItemOffset = useMemo(() => Style.DEVICE_WIDTH * startIndex, [startIndex]);
+
+  const listRef = useRef<FlashList<FullScreenHeroSlide> | null>(null);
+  const currentIndexRef = useRef(startIndex);
+  const hasUserScrolled = useRef(false);
+
+  const resetIndexToMiddleGroup = useCallback(
+    async (currentIndex: number) => {
+      await delay(SCROLL_DELAY_MS);
+
+      const isFirstGroup = currentIndex <= data.length - 1;
+      const isLastGroup = currentIndex >= data.length * 2;
+
+      // If the user enters the first group of data, reset the scroll position to the middle group without animation.
+      if (isFirstGroup) {
+        listRef.current?.scrollToIndex({
+          index: currentIndex + data.length,
+          animated: false,
+        });
+
+        currentIndexRef.current = currentIndex + data.length;
+        return;
+      }
+
+      // If the user enters the last group of data, reset the scroll position to the middle group without animation.
+      if (isLastGroup) {
+        listRef.current?.scrollToIndex({
+          index: currentIndex - data.length,
+          animated: false,
+        });
+
+        currentIndexRef.current = currentIndex - data.length;
+        return;
+      }
+
+      currentIndexRef.current = currentIndex;
+    },
+    [data.length]
+  );
+
+  const onMomentumScrollEnd = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      const offsetX = event.nativeEvent.contentOffset.x;
+      const index = Math.round(offsetX / Style.DEVICE_WIDTH);
+
+      resetIndexToMiddleGroup(index);
+    },
+    [resetIndexToMiddleGroup]
+  );
+
+  const onScrollBeginDrag = useCallback(() => {
+    hasUserScrolled.current = true;
+  }, []);
+
+  useInterval(() => {
+    if (!hasUserScrolled?.current) {
+      const newIndex = currentIndexRef.current + 1;
+
+      listRef.current?.scrollToIndex({
+        index: newIndex,
+        animated: true,
+      });
+
+      resetIndexToMiddleGroup(newIndex);
+    }
+  }, 5000);
+
+  const renderItem = useCallback(
+    ({ item }: { item: FullScreenHeroSlide }) => (
+      <Box disableAutoAdjust={true} w={Style.DEVICE_WIDTH} h={Style.DEVICE_HEIGHT} alignItems="center">
+        <Box position="absolute" top={getTopOffset().background} left={0} right={0}>
+          {BACKGROUND_IMAGE_MAP[item.backgroundImage]}
+        </Box>
+        <SafeAreaView>
+          {/* The logo should not swipe with the rest of the item, so we use a hidden logo to reserve exactly the same space - and implement the actual logo in the parent component */}
+          <Box opacity={0}>
+            <Logo type="full" width={Style.adjust(114)} />
+          </Box>
+          <Box key={item.title} maxWidth={311} mt={getTopOffset().heading}>
+            <TextTemplate type="h3" textAlign="center" color={Colours.inkStrong}>
+              {item.title}
+            </TextTemplate>
+          </Box>
+        </SafeAreaView>
+      </Box>
+    ),
+    []
+  );
+
+  return (
+    <FlashList
+      ref={listRef}
+      data={tripledData}
+      decelerationRate="fast"
+      estimatedItemSize={Style.DEVICE_WIDTH}
+      overrideItemLayout={overrideItemLayout}
+      horizontal={true}
+      initialScrollIndex={startIndex}
+      estimatedFirstItemOffset={estimatedFirstItemOffset}
+      keyExtractor={keyExtractor}
+      onScrollBeginDrag={onScrollBeginDrag}
+      onMomentumScrollEnd={onMomentumScrollEnd}
+      renderItem={renderItem}
+      scrollEventThrottle={SCROLL_DELAY_MS}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      snapToAlignment="center"
+      snapToInterval={Style.DEVICE_WIDTH}
+      removeClippedSubviews={true}
+    />
+  );
+};
+
+function keyExtractor(item: FullScreenHeroSlide, index: number) {
+  return `${item.title}-${index}`;
+}
+
+function overrideItemLayout(layout: { size: number }) {
+  layout.size = Style.DEVICE_WIDTH;
+}
+
+export default memo(LoopingCarousel);
