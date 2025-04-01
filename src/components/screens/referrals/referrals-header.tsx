@@ -12,19 +12,20 @@ import { MixpanelEvent } from "@services/logging/types";
 import { t } from "@locale";
 import QRCode from "react-qr-code";
 import { InviteIcon } from "@atoms/icon/invite-icon";
-
-type Item = GetReferralInformationQuery["referralInformation"]["referralHistory"][0];
+import { Item } from "./referrals.screen";
+import { BusinessAccountState, BusinessPicker } from "@components/molecules/business-picker";
 
 interface IHeaderProps {
   onShare: () => void;
   info: GetReferralInformationQuery["referralInformation"];
   componentId: string;
-  data: (string | Item)[];
+  data: Item[];
+  businessAccountState: BusinessAccountState;
 }
 
 const QR_CODE_SIZE = Style.adjust(84);
 
-const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => {
+const ReferralsHeader = ({ onShare, data, info, componentId, businessAccountState }: IHeaderProps) => {
   const tapToCopyAnalytics = useMemo(
     () => ({
       name: "referral_link_copied" as MixpanelEvent,
@@ -32,6 +33,8 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
     }),
     [componentId]
   );
+
+  const { activeBusinessAccounts } = businessAccountState;
 
   if (!info) {
     return null;
@@ -42,7 +45,7 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
     background: { uri },
     shareCTA,
     disclaimer,
-    markdown: { header, historyTitle, historyEmptyMessage },
+    markdown: { headerSubtitle, headerTitle, shareTitle, historyTitle, historyEmptyMessage },
   } = info;
 
   return (
@@ -55,12 +58,15 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
           testID={REFERRALS_IMAGE_URI(uri)}
         />
         <View style={styles.header}>
-          <Markdown text={header} markdownStyles={markdownStyles} />
+          <Markdown text={headerTitle} markdownStyles={markdownStyles} />
+          {activeBusinessAccounts.length === 0 ? null : <BusinessPicker businessAccountState={businessAccountState} />}
+          <Markdown text={headerSubtitle} markdownStyles={markdownStyles} />
         </View>
       </View>
       <View style={styles.body}>
         <View style={styles.tapToCopy}>
           <TapToCopy
+            heading={shareTitle}
             markdown={false}
             canCopy={true}
             customCopyText={referralLink}

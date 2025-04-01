@@ -76,6 +76,7 @@ export type ApiConfigUrls = {
   trustCenter: Scalars["String"]["output"];
   underwriting: Scalars["String"]["output"];
   website: Scalars["String"]["output"];
+  wellbeingHub: Scalars["String"]["output"];
   wellbeingTools: Scalars["String"]["output"];
 };
 
@@ -1372,6 +1373,7 @@ export enum ConnectionType {
   CloudCover = "cloudCover",
   Email = "email",
   HrisApi = "hrisApi",
+  ManualUpload = "manualUpload",
   Sftp = "sftp",
 }
 
@@ -7903,6 +7905,7 @@ export type Query = {
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
+  getReferralHistory: UserReferralHistory;
   getReferralOnboardingPopover: ReferralOnboardingPopover;
   getReferralRewardAmount: ReferralRewardAmount;
   getResources: Array<Resource>;
@@ -8512,6 +8515,13 @@ export type QueryGetRecentDuelOpponentsArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetReferralHistoryArgs = {
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetSduiJourneyArgs = {
   dynamicId?: InputMaybe<Scalars["String"]["input"]>;
   journeyId: Scalars["String"]["input"];
@@ -8723,6 +8733,7 @@ export type QueryPendingFeedbackFormArgs = {
 
 /** Default types to be extended / root query */
 export type QueryReferralInformationArgs = {
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
@@ -9003,9 +9014,12 @@ export type ReferralHistoryItem = {
 
 export type ReferralMarkdown = {
   __typename?: "ReferralMarkdown";
-  header: Scalars["String"]["output"];
+  header?: Maybe<Scalars["String"]["output"]>;
+  headerSubtitle?: Maybe<Scalars["String"]["output"]>;
+  headerTitle?: Maybe<Scalars["String"]["output"]>;
   historyEmptyMessage: Scalars["String"]["output"];
   historyTitle: Scalars["String"]["output"];
+  shareTitle?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type ReferralOnboardingPopover = {
@@ -10150,13 +10164,13 @@ export type TeamProducts = {
 export type TeamPromotion = {
   __typename?: "TeamPromotion";
   backgroundColour?: Maybe<Scalars["String"]["output"]>;
-  centreImage?: Maybe<Scalars["String"]["output"]>;
   description: Scalars["String"]["output"];
+  descriptionColour?: Maybe<Scalars["String"]["output"]>;
+  image?: Maybe<Scalars["String"]["output"]>;
   internalIdentifier: Scalars["String"]["output"];
   primaryButton?: Maybe<TeamPromotionPrimaryButton>;
-  rightImage?: Maybe<Scalars["String"]["output"]>;
-  textColour?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
+  titleColour?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type TeamPromotionPrimaryButton = {
@@ -11003,9 +11017,16 @@ export type UserProfileStatisticComparison = {
   opponent?: Maybe<UserProfileStatistic>;
 };
 
+export type UserReferralHistory = {
+  __typename?: "UserReferralHistory";
+  referralHistory: Array<ReferralHistoryItem>;
+  totalReferralsHistoryCount: Scalars["Int"]["output"];
+};
+
 export type UserReferralInformation = {
   __typename?: "UserReferralInformation";
   background: RemoteImage;
+  businessAccountId?: Maybe<Scalars["String"]["output"]>;
   disclaimer: Scalars["String"]["output"];
   markdown: ReferralMarkdown;
   referralHistory: Array<ReferralHistoryItem>;
@@ -11052,7 +11073,8 @@ export enum UserSupportLevel {
 
 export type ValidateBusinessClaimKeyResponse = {
   __typename?: "ValidateBusinessClaimKeyResponse";
-  businessAccountName: Scalars["String"]["output"];
+  alreadyClaimed?: Maybe<Scalars["Boolean"]["output"]>;
+  businessAccountName?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type VariableRemoteImage = {
@@ -34032,20 +34054,17 @@ export type GetReferralRewardAmountQuery = {
   getReferralRewardAmount: { __typename?: "ReferralRewardAmount"; yuCoinAmount: number };
 };
 
-export type GetReferralInformationQueryVariables = Exact<{
+export type GetReferralHistoryQueryVariables = Exact<{
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
 }>;
 
-export type GetReferralInformationQuery = {
+export type GetReferralHistoryQuery = {
   __typename?: "Query";
-  referralInformation: {
-    __typename?: "UserReferralInformation";
-    rewardForReferral: number;
-    referralLink: string;
-    shareCTA: string;
-    shareMessage: string;
-    disclaimer: string;
+  getReferralHistory: {
+    __typename?: "UserReferralHistory";
+    totalReferralsHistoryCount: number;
     referralHistory: Array<{
       __typename?: "ReferralHistoryItem";
       id: string;
@@ -34054,9 +34073,42 @@ export type GetReferralInformationQuery = {
       avatarUrl?: string | null;
       coin: number;
     }>;
-    background: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    markdown: { __typename?: "ReferralMarkdown"; header: string; historyTitle: string; historyEmptyMessage: string };
   };
+};
+
+export type GetReferralInformationQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
+  hasSelectedBusinessAccount: Scalars["Boolean"]["input"];
+}>;
+
+export type GetReferralInformationQuery = {
+  __typename?: "Query";
+  referralInformation?: {
+    __typename?: "UserReferralInformation";
+    rewardForReferral: number;
+    referralLink: string;
+    shareCTA: string;
+    shareMessage: string;
+    disclaimer: string;
+    businessAccountId?: string | null;
+    background: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    markdown: {
+      __typename?: "ReferralMarkdown";
+      headerTitle?: string | null;
+      headerSubtitle?: string | null;
+      shareTitle?: string | null;
+      historyTitle: string;
+      historyEmptyMessage: string;
+    };
+  };
+  activeEmployments: Array<{
+    __typename?: "EmployerListItem";
+    id: string;
+    businessAccountId: string;
+    businessAccountName: string;
+  }>;
 };
 
 export type GetMobileGamePartnerRewardsInventoryCardsQueryVariables = Exact<{
@@ -92655,6 +92707,79 @@ export const GetReferralRewardAmountDocument = {
     },
   ],
 } as unknown as DocumentNode<GetReferralRewardAmountQuery, GetReferralRewardAmountQueryVariables>;
+export const GetReferralHistoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetReferralHistory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getReferralHistory" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "businessAccountId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "offset" },
+                value: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "referralHistory" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "date" } },
+                      { kind: "Field", name: { kind: "Name", value: "avatarUrl" } },
+                      { kind: "Field", name: { kind: "Name", value: "coin" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "totalReferralsHistoryCount" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetReferralHistoryQuery, GetReferralHistoryQueryVariables>;
 export const GetReferralInformationDocument = {
   kind: "Document",
   definitions: [
@@ -92672,6 +92797,16 @@ export const GetReferralInformationDocument = {
           kind: "VariableDefinition",
           variable: { kind: "Variable", name: { kind: "Name", value: "offset" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
         },
       ],
       selectionSet: {
@@ -92691,26 +92826,30 @@ export const GetReferralInformationDocument = {
                 name: { kind: "Name", value: "offset" },
                 value: { kind: "Variable", name: { kind: "Name", value: "offset" } },
               },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "businessAccountId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+              },
+            ],
+            directives: [
+              {
+                kind: "Directive",
+                name: { kind: "Name", value: "include" },
+                arguments: [
+                  {
+                    kind: "Argument",
+                    name: { kind: "Name", value: "if" },
+                    value: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+                  },
+                ],
+              },
             ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "rewardForReferral" } },
                 { kind: "Field", name: { kind: "Name", value: "referralLink" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "referralHistory" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "date" } },
-                      { kind: "Field", name: { kind: "Name", value: "avatarUrl" } },
-                      { kind: "Field", name: { kind: "Name", value: "coin" } },
-                    ],
-                  },
-                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "background" },
@@ -92731,12 +92870,28 @@ export const GetReferralInformationDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "header" } },
+                      { kind: "Field", name: { kind: "Name", value: "headerTitle" } },
+                      { kind: "Field", name: { kind: "Name", value: "headerSubtitle" } },
+                      { kind: "Field", name: { kind: "Name", value: "shareTitle" } },
                       { kind: "Field", name: { kind: "Name", value: "historyTitle" } },
                       { kind: "Field", name: { kind: "Name", value: "historyEmptyMessage" } },
                     ],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "activeEmployments" },
+            name: { kind: "Name", value: "getActiveEmployments" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
+                { kind: "Field", name: { kind: "Name", value: "businessAccountName" } },
               ],
             },
           },

@@ -1,14 +1,13 @@
-query GetReferralInformation($limit: Int, $offset: Int) {
-  referralInformation(limit: $limit, offset: $offset) {
+query GetReferralInformation(
+  $limit: Int
+  $offset: Int
+  $businessAccountId: String
+  $hasSelectedBusinessAccount: Boolean!
+) {
+  referralInformation(limit: $limit, offset: $offset, businessAccountId: $businessAccountId)
+    @include(if: $hasSelectedBusinessAccount) {
     rewardForReferral
     referralLink
-    referralHistory {
-      id
-      name
-      date
-      avatarUrl
-      coin
-    }
     background {
       id
       uri
@@ -17,9 +16,17 @@ query GetReferralInformation($limit: Int, $offset: Int) {
     shareMessage
     disclaimer
     markdown {
-      header
+      headerTitle
+      headerSubtitle
+      shareTitle
       historyTitle
       historyEmptyMessage
     }
+    businessAccountId
+  }
+  activeEmployments: getActiveEmployments {
+    id
+    businessAccountId
+    businessAccountName
   }
 }

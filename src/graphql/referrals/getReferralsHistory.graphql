@@ -1,0 +1,12 @@
+query GetReferralHistory($businessAccountId: String, $limit: Int, $offset: Int) {
+  getReferralHistory(businessAccountId: $businessAccountId, limit: $limit, offset: $offset) {
+    referralHistory {
+      id
+      name
+      date
+      avatarUrl
+      coin
+    }
+    totalReferralsHistoryCount
+  }
+}

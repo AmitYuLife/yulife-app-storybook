@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
   },
   headerWrapper: {
     marginTop: Style.adjust(20),
+    paddingTop: Style.adjust(70),
     marginBottom: Style.adjust(-30),
   },
   header: {
@@ -19,7 +20,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(24),
   },
   tapToCopy: {
-    marginTop: Style.adjust(-24),
+    marginTop: Style.adjust(-62),
     marginBottom: Style.adjust(16),
   },
   shareButton: {
@@ -44,11 +45,14 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: Style.adjust(10),
   },
+  info: {
+    flexDirection: "column",
+  },
 });
 
 export const markdownStyles = StyleSheet.create({
   text: {
-    textAlign: "center",
+    textAlign: "left",
   },
   imageWrapper: {
     width: Style.adjust(16),
