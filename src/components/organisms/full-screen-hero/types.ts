@@ -4,6 +4,11 @@ export enum FullScreenHeroBackground {
   Rewards = "Rewards",
 }
 
+export type FullScreenHeroSlide = {
+  title: string;
+  backgroundImage: FullScreenHeroBackground;
+};
+
 export type FullScreenHeroProps = {
   primaryCta: {
     label: string;
@@ -14,8 +19,5 @@ export type FullScreenHeroProps = {
     onPress: () => void;
   };
   disclaimerMarkdown?: string;
-  slides: {
-    title: string;
-    backgroundImage: FullScreenHeroBackground;
-  }[];
+  slides: FullScreenHeroSlide[];
 };

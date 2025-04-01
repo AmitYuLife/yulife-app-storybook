@@ -7,10 +7,6 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignContent: "space-between",
   },
-  wrapper: {
-    width: "100%",
-    alignItems: "center",
-  },
   logo: {
     alignSelf: "center",
     marginTop: Style.adjust(Platform.select({ ios: 4, android: 12 })),
