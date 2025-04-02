@@ -4,19 +4,21 @@ import { Style, Colours } from "@styles";
 import * as media from "@styles/media";
 import { TouchableWithDelay } from "@molecules";
 import { usePressedInWithDelay } from "@hooks";
+import { IBoxProps } from "@atoms/box/box.types";
 
-interface Props extends Pick<TouchableOpacityProps, "importantForAccessibility" | "testID" | "accessibilityLabel"> {
-  onPress: () => void;
-  children: React.ReactElement;
-  isSelected: boolean;
-  selectedStyle?: ViewStyle | ViewStyle[];
-  debounce?: boolean;
-  wrapperStyle?: ViewStyle;
-  innerWrapperStyle?: ViewStyle | ViewStyle[];
-  innerHeight?: number;
-  disabled?: boolean;
-  showShadow?: boolean;
-}
+type Props = Pick<TouchableOpacityProps, "importantForAccessibility" | "testID" | "accessibilityLabel"> &
+  Pick<IBoxProps, "br"> & {
+    onPress: () => void;
+    children: React.ReactElement;
+    isSelected?: boolean;
+    selectedStyle?: ViewStyle | ViewStyle[];
+    debounce?: boolean;
+    wrapperStyle?: ViewStyle;
+    innerWrapperStyle?: ViewStyle | ViewStyle[];
+    innerHeight?: number;
+    disabled?: boolean;
+    showShadow?: boolean;
+  };
 
 const SHADOW_HEIGHT = media.select(
   [
@@ -46,6 +48,7 @@ const BoxOption = memo(
     debounce = true,
     accessibilityLabel,
     importantForAccessibility,
+    br = BOX_OPTION_BORDER_RADIUS,
   }: Props) => {
     const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
     const { translateY } = useAnimation({ isSelected, isPressedIn });
@@ -64,13 +67,14 @@ const BoxOption = memo(
         accessibilityLabel={accessibilityLabel}
         importantForAccessibility={importantForAccessibility}
       >
-        <View style={StyleSheet.flatten([styles.wrapper, { height: totalHeight }, wrapperStyle])}>
-          {!showShadow ? null : <View style={styles.shadowWrapper} />}
+        <View style={StyleSheet.flatten([styles.wrapper, { height: totalHeight }, wrapperStyle, { borderRadius: br }])}>
+          {!showShadow ? null : <View style={[styles.shadowWrapper, { borderRadius: br }]} />}
           <Animated.View
             style={[
               styles.innerWrapper,
               innerWrapperStyle,
               (isSelected || isPressedIn) && selectedStyle,
+              { borderRadius: br },
               { transform: [{ translateY }], height: safeInnerHeight },
             ]}
           >
