@@ -45,7 +45,7 @@ meta:
   bitrise.io:
     machine_type: performance
     machine_type_id: g2-m1.4core
-    stack: osx-xcode-15.3.x
+    stack: osx-xcode-16.2.x
 trigger_map:
 - pipeline: pipeline-develop
   push_branch: develop
@@ -536,7 +536,7 @@ workflows:
             BUGSNAG_RELEASE_ENVIRONMENT
     meta:
       bitrise.io:
-        stack: osx-xcode-15.3.x
+        stack: osx-xcode-16.2.x
   ios-detox-build-70:
     before_run:
     - ios-git-checkout
@@ -1843,7 +1843,7 @@ workflows:
             BUGSNAG_RELEASE_ENVIRONMENT
     meta:
       bitrise.io:
-        stack: osx-xcode-15.3.x
+        stack: osx-xcode-16.2.x
   ios-git-checkout:
     steps:
     - activate-ssh-key@4.1:
@@ -1946,7 +1946,7 @@ workflows:
             # sleep 1000000000000;
     meta:
       bitrise.io:
-        stack: osx-xcode-15.3.x
+        stack: osx-xcode-16.2.x
   ios-production:
     before_run:
     - ios-primary
@@ -2072,7 +2072,7 @@ workflows:
             BUGSNAG_RELEASE_ENVIRONMENT
     meta:
       bitrise.io:
-        stack: osx-xcode-15.3.x
+        stack: osx-xcode-16.2.x
   ios-pull-request: {}
   ios-set-uat-env-vars:
     steps:
