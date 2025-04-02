@@ -111,3 +111,4 @@ export { default as WalletCouponItem } from "./reward-wallet/walletCouponItem";
 export { default as WalletItem } from "./reward-wallet/walletItem";
 export { default as ShineButton } from "./shine-button/shine-button";
 export { default as AchievementPoints } from "./achievement-points/achievement-points";
+export { default as AchievementSlot } from "./achievement-slot/achievement-slot";
