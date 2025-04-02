@@ -1,4 +1,4 @@
-apple_id ENV["APPLE_ID"]
-itc_team_id ENV["ITC_TEAM_ID"]
-team_id ENV["TEAM_ID"]
+apple_id ENV["FL_APPLE_ID"]
+itc_team_id ENV["FL_ITC_TEAM_ID"]
+team_id ENV["FL_TEAM_ID"]
 json_key_file ENV["FL_JSON_KEY_FILE"]
