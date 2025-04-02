@@ -69,3 +69,14 @@ release-production-build:
       echo "New release tag: ${NEW_TAG}"
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "release-production-build"
+
+release-production-ios-internal:
+  image: ruby:3.2-slim
+  stage: release
+  cache: []
+  script:
+    - ruby -v
+    - gem install fastlane
+    - fastlane ios submit_to_internal
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "release-production-ios-internal"
