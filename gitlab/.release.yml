@@ -81,3 +81,29 @@ release-production-ios-internal:
     - fastlane ios submit_to_internal
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "release-production-ios-internal"
+
+release-production-product-and-tech:
+  image: ruby:3.2-slim
+  stage: release
+  cache: []
+  script:
+    - ruby -v
+    - gem install fastlane
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - fastlane android submit_to_pt
+    - fastlane ios submit_to_pt
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "release-production-product-and-tech"
+
+release-production-yucrew:
+  image: ruby:3.2-slim
+  stage: release
+  cache: []
+  script:
+    - ruby -v
+    - gem install fastlane
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - fastlane android submit_to_yucrew
+    - fastlane ios submit_to_yucrew
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "release-production-yucrew"
