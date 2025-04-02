@@ -98,6 +98,7 @@ plugins/expo-apple-targets
 
 # this file changes whenever you run different environments and is just a copy of the environment specific .env file
 .env
+.secure_files/
 
 # ignore generated translation files
 translations_*_*_*.csv
