@@ -72,3 +72,4 @@ export { default as BattlePassBlurredRaysWrapper } from "./battle-pass-blurred-r
 export { default as PodiumRays } from "./podium/podium-rays";
 export { default as ListItemLoadingSkeleton } from "./list-item-loading-skeleton/list-item-loading-skeleton";
 export { default as FullScreenHero } from "./full-screen-hero/full-screen-hero";
+export { default as RecentRewardCard } from "./recent-reward-card/recent-reward-card";
