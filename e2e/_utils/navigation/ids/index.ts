@@ -912,6 +912,8 @@ export const CLAIMED_REWARD_ITEMS = (items: number) => `CLAIMED_REWARD_ITEM_${it
 export const BATTLE_PASS_TITLE = (title: string) => `BATTLE_PASS_TITLE_${title}`;
 export const BATTLE_PASS_DESCRIPTION = (description: string) =>
   `BATTLE_PASS_DESCRIPTION_${description}`;
+export const EMPTY_WALLET_TITLE = (title: string) => `EMPTY_WALLET_TITLE_${title}`;
+export const WALLET_CATEGORY_LABEL = (label: string) => `WALLET_CATEGORY_LABEL_${label}`;
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";

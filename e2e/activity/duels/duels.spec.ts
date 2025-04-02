@@ -209,8 +209,8 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
       Then("I should be on the duels hub", then.idVisible(ids.DUELS_HUB));
     });
     When("I tap Completed", when.tapID(ids.COMPLETED_TAB, 1500), async () => {
-      Then("I should see my past duel with a deleted user", then.idVisible(ids.DUEL_ENTRY("", 10, "finished")));
-      Then("I should see I lost this duel", then.idVisible(ids.DUEL_ICON("", false)));
+      Then("I should see my past duel with a deleted user", then.idVisible(ids.DUEL_ENTRY(null, 10, "finished")));
+      Then("I should see I lost this duel", then.idVisible(ids.DUEL_ICON(null, false)));
       Then("I should see the steps for this duel", then.idVisible(ids.DUEL_DESCRIPTION(500, 300)));
     });
   });
