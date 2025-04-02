@@ -18,6 +18,7 @@ import WalletDiscountCard from "../../../molecules/reward-wallet/walletDiscountC
 import EmptyWallet from "./subcomponents/empty-wallet";
 import WalletCouponLoading from "./subcomponents/wallet-coupon-loading";
 import WalletGiftCardLoading from "./subcomponents/wallet-gift-card-loading";
+import { WALLET_CATEGORY_LABEL } from "@ids";
 
 const HIT_SLOP_SIZE = Style.adjust(8);
 const HIT_SLOP = {
@@ -155,7 +156,7 @@ function RewardsPurchasesContainer() {
           return (
             <Box key={id} h={35}>
               <TouchableOpacityWithDelay onPress={onPress} hitSlop={HIT_SLOP} style={tabStyles}>
-                <TextTemplate type="b2b" color={Colours.neutral.n800}>
+                <TextTemplate type="b2b" color={Colours.neutral.n800} testID={WALLET_CATEGORY_LABEL(label)}>
                   {label}
                 </TextTemplate>
               </TouchableOpacityWithDelay>

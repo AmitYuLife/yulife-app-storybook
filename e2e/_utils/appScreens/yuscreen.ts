@@ -377,7 +377,7 @@ export const unlockedYumojiItemsVisible =
   async () => {
     scrollFromItemTab && (await scrollFromID(CATEGORY_TYPE("hairStyle"), "left", "fast")());
 
-    await tapID(CATEGORY_TYPE("chest"), 2000)();
+    await tapID(CATEGORY_TYPE("chest"), 3000)();
     await scrollUntilIdVisible(
       AVATAR_BUILDER_LIST,
       YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
@@ -385,11 +385,12 @@ export const unlockedYumojiItemsVisible =
     )();
     await idVisible(
       YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
-      2000
+      3000
     )();
-    tapItem && (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`))());
+    tapItem &&
+      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`), 3000)());
 
-    await tapID(CATEGORY_TYPE("pants"), 2000)();
+    await tapID(CATEGORY_TYPE("pants"), 3000)();
     await scrollUntilIdVisible(
       AVATAR_BUILDER_LIST,
       YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
@@ -397,12 +398,12 @@ export const unlockedYumojiItemsVisible =
     )();
     await idVisible(
       YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
-      2000
+      3000
     )();
     tapItem &&
-      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`), 2000)());
+      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`), 3000)());
 
-    await tapID(CATEGORY_TYPE("boots"), 2000)();
+    await tapID(CATEGORY_TYPE("boots"), 3000)();
     await scrollUntilIdVisible(
       AVATAR_BUILDER_LIST,
       YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
@@ -410,14 +411,14 @@ export const unlockedYumojiItemsVisible =
     )();
     await idVisible(
       YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
-      2000
+      3000
     )();
     tapItem &&
-      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`), 2000)());
+      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`), 3000)());
 
     if (itemLevel != "base") {
       await scrollFromID(CATEGORY_TYPE("chest"), "left", "slow")();
-      await tapID(CATEGORY_TYPE("gloves"), 2000)();
+      await tapID(CATEGORY_TYPE("gloves"), 3000)();
       await scrollUntilIdVisible(
         AVATAR_BUILDER_LIST,
         YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`),
@@ -428,7 +429,7 @@ export const unlockedYumojiItemsVisible =
         2000
       )();
       tapItem &&
-        (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`), 2000)());
+        (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`), 3000)());
     }
   };
 

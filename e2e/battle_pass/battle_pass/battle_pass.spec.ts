@@ -25,9 +25,11 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see no progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 60, 0), 2000));
     });
     When("I tap on the 'Purchased' tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 2500), async () => {
-      Then("I should see there are no purchased rewards yet", then.textVisible(emptySeasonalRewardVisible));
+      When("I tap on the 'Gift Cards' tab", when.tapID(ids.WALLET_CATEGORY_LABEL("Gift Cards"), 2500), async () => {
+        Then("I should see my wallet is still empty", then.idVisible(ids.EMPTY_WALLET_TITLE("Your wallet is ready to be filled!")));
+      });
     });
-    When("I tap on the 'Go to rewards' button", when.tapID(ids.CHECK_REWARDS_BUTTON, 2500), async () => {
+    When("I tap on to go back", when.tapID(ids.BACK_BUTTON, 2500), async () => {
       Then("I should see all impact cards available", then.impactCardsVisible);
     });
     When("I tap to donate to Clean the ocean", when.donate("ocean", 2), async () => {

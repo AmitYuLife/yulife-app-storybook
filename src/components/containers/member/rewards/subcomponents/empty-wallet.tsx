@@ -1,5 +1,6 @@
 import { Source, TextTemplate } from "@atoms";
 import Box from "@atoms/box/box";
+import { EMPTY_WALLET_TITLE } from "@ids";
 import { Colours } from "@styles";
 import { Image } from "expo-image";
 import { memo } from "react";
@@ -23,7 +24,7 @@ const EmptyWallet = ({ image, title, description }: EmptyWalletProps) => (
     <Box p={32}>
       <Image source={image} style={styles.image} />
     </Box>
-    <TextTemplate type="b1b" color={Colours.neutral.n900}>
+    <TextTemplate type="b1b" color={Colours.neutral.n900} testID={EMPTY_WALLET_TITLE(title)}>
       {title}
     </TextTemplate>
     <Box pv={16} alignContent="center">
