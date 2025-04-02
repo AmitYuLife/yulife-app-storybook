@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.57.0] - 2025-04-02
+
+### Features
+
+- Feature LCS-1134: Add swipeable carousel to login hero component
+
+### Tasks
+
+- Task GS-1526: download secured files
+- Task: osx-xcode-16.2.x for ios
+- Task GS-1428: Create AchievementSlot component
+- Task GS-1426: submit ios to TestFlight
+- Task GS-1422: Create AchievementPoints component
+- Task GS-1426: renamed release pipeline
+- Task GS-1426: automated UAT -> internal prod
+- Task ISA-3282: Introduce concurrent employments on referral screen
+- Task LCS-1143: unify login form wrapper
+- Task LCS-1143: add re send magic link
+- Task LCS-1210: update dev uat url schemes
+- Task LCS-1143: add password login step
+- Task LCS-1025: Add CharacterCounter to ContentItemTextAreaInput
+- Task LCS-1143: initial flow build for magic link login
+- Task LCS-1143: move existing login to legacy folder
+- Task LCS-1134: Use updated disclaimer featuring EULA in login hero component
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Wallet Empty State
+- detox: fixed SA automated app tests
+- Detox: Coupon Settings
+- Detox: LCS-1196 testing that the gift auto claim functionality works correctly when a business sends a gift to a user.
+- detox: LCS-986 - confirm location before donate tab
+- detox: LCS-934 JP tall cards and searching different names
+- ISA-3302: Sparsely-set Reward Store Settings
+- Purge: react-native-permissions
+
 ## [4.56.0] - 2025-03-27
 
 ### Features
