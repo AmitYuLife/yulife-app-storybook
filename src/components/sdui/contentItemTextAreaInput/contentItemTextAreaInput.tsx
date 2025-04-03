@@ -34,7 +34,7 @@ const ContentItemTextAreaInputBase = ({
       />
       {!showCharacterCount ? null : (
         <Box
-          testID={CONTENT_ITEM_INPUT_CHARACTER_COUNTER(id)}
+          testID={CONTENT_ITEM_INPUT_CHARACTER_COUNTER(id, currentLength)}
           mx={6}
           my={8}
           flexDirection="row"

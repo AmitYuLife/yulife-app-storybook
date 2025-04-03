@@ -42,20 +42,20 @@ export const {
 export const { loginOnly } = navigation.login;
 
 export const cycleThroughEngagementSurveyAgreeCheckBoxes = async () => {
-  await tapID("RADIO_ITEM_SELECTED_agree_false")();
-  await tapID("RADIO_ITEM_SELECTED_neutral_false")();
-  await tapID("RADIO_ITEM_SELECTED_disagree_false")();
-  await tapID("RADIO_ITEM_SELECTED_strongly_disagree_false")();
-  await tapID("RADIO_ITEM_SELECTED_strongly_agree_false")();
+  await tapID(ids.CHECK_BOX_STATE("Agree", false))();
+  await tapID(ids.CHECK_BOX_STATE("Neutral", false))();
+  await tapID(ids.CHECK_BOX_STATE("Disagree", false))();
+  await tapID(ids.CHECK_BOX_STATE("Strongly disagree", false))();
+  await tapID(ids.CHECK_BOX_STATE("Strongly agree", false))();
 };
 
 export const fillOutEngagementSurvey = async () => {
   await scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5)();
   await tapID(ids.BUTTON_BASE("Let’s go!"))();
-  await tapID("RADIO_ITEM_SELECTED_strongly_agree_false")();
+  await tapID(ids.WORK_LIFE_BALANCE_IMPORTANT)();
   await tapID(ids.BUTTON_BASE("Next"))();
-  await tapID("RADIO_ITEM_SELECTED_strongly_agree_false")();
+  await tapID(ids.ACCEPTABLE_WORKLOAD)();
   await tapID(ids.BUTTON_BASE("Next"))();
-  await tapID("RADIO_ITEM_SELECTED_strongly_agree_false")();
+  await tapID(ids.SUPPORTED_IN_TAKING_LEAVE)();
   await tapID(ids.BUTTON_BASE("Next"))();
 };
