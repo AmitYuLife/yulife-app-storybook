@@ -1,5 +1,6 @@
 import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
 import { LottieView, TouchableOpacityWithDelay } from "@components/molecules";
+import { WALLET_COUPON_ITEM_DESCRIPTION, WALLET_COUPON_ITEM_INFO } from "@ids";
 import { Colours, Style } from "@styles";
 import { memo } from "react";
 import { Image, StyleSheet } from "react-native";
@@ -47,7 +48,12 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
           <TextTemplate color={Colours.neutral.white} type="h3">
             {item.title}
           </TextTemplate>
-          <TextTemplate color={Colours.neutral.white} type="l1" numberOfLines={2}>
+          <TextTemplate
+            color={Colours.neutral.white}
+            type="l1"
+            numberOfLines={2}
+            testID={WALLET_COUPON_ITEM_DESCRIPTION(item.description)}
+          >
             {item.description}
           </TextTemplate>
         </Box>
@@ -61,7 +67,7 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
           <Image style={styles.image} source={item.icon} resizeMode="cover" />
         </Box>
         <Box flex={1} style={styles.infoContainer}>
-          <TextTemplate color={"#464647"} type="b2b" numberOfLines={1}>
+          <TextTemplate color={"#464647"} type="b2b" numberOfLines={1} testID={WALLET_COUPON_ITEM_INFO(item.info)}>
             {item.info}
           </TextTemplate>
           <TextTemplate color={"#464647"} type="l2" numberOfLines={1}>

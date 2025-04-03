@@ -918,6 +918,14 @@ export const BATTLE_PASS_DESCRIPTION = (description: string) =>
   `BATTLE_PASS_DESCRIPTION_${description}`;
 export const EMPTY_WALLET_TITLE = (title: string) => `EMPTY_WALLET_TITLE_${title}`;
 export const WALLET_CATEGORY_LABEL = (label: string) => `WALLET_CATEGORY_LABEL_${label}`;
+export const WALLET_COUPON_ITEM_INFO = (info: string) => `WALLET_COUPON_ITEM_INFO_${info}`;
+export const WALLET_COUPON_CARD_TITLE = (title: string) => `WALLET_COUPON_CARD_TITLE_${title}`;
+export const WALLET_COUPON_ITEM_DESCRIPTION = (description: string) =>
+  `WALLET_COUPON_ITEM_DESCRIPTION_${description}`;
+export const PARTNER_REWARDS_INVENTORY_ITEMS_COUNT = (quantity: number) =>
+  `PARTNER_REWARDS_INVENTORY_ITEMS_COUNT_${quantity}`;
+export const PARTNER_REWARDS_INVENTORY_ITEMS_TITLE = (title: string) =>
+  `PARTNER_REWARDS_INVENTORY_ITEMS_TITLE_${title}`;
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";

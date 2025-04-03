@@ -1,5 +1,6 @@
 import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
 import { LottieView, TouchableOpacityWithDelay } from "@components/molecules";
+import { WALLET_COUPON_CARD_TITLE } from "@ids";
 import { Colours, Style } from "@styles";
 import { memo } from "react";
 import { Image, StyleSheet } from "react-native";
@@ -43,7 +44,7 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletItemProps<T>) => (
           </TextTemplate>
         </Box>
         <Box>
-          <TextTemplate color={Colours.neutral.white} type="h3">
+          <TextTemplate color={Colours.neutral.white} type="h3" testID={WALLET_COUPON_CARD_TITLE(item.title)}>
             {item.title}
           </TextTemplate>
           <TextTemplate color={Colours.neutral.white} type="l1" numberOfLines={2}>
