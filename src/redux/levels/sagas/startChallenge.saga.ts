@@ -11,7 +11,6 @@ import { getActiveLevel } from "../levels.selectors";
 import { FetchResult } from "@apollo/client";
 import { CreateMobileQuestLevelChallengeMutation, CreateQuestMapLevelChallengeMutation } from "@graphql/__generated";
 import { toYuHealthReduxType } from "@utils";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { createChallengeToggle, getCreateChallengeData } from "@graphql/challenges/createChallenge.gql";
 import { t } from "@locale";
 import { getIsStatusCodeClientErrors } from "@utils/statusCode";
@@ -19,12 +18,7 @@ import moment from "moment";
 
 export default function* startChallengeSaga({ payload }: ReturnType<typeof challengeStartAction>) {
   try {
-    const {
-      levelSlotId,
-      challengeStartSuccessPayload,
-      createQuestMapLevelChallengeVariables,
-      createMobileQuestLevelChallengeVariables,
-    } = payload;
+    const { levelSlotId, challengeStartSuccessPayload, createMobileQuestLevelChallengeVariables } = payload;
 
     const {
       endDateTime,
@@ -48,18 +42,12 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
       }
     }
 
-    const { tempGameUseSettingsConfigForQuestMapV3 }: ReturnType<typeof getUserFeatures> = yield select(
-      getUserFeatures
-    );
-
     const {
       data,
       extensions,
     }: FetchResult<CreateMobileQuestLevelChallengeMutation | CreateQuestMapLevelChallengeMutation> = yield call(
       createChallengeToggle,
       {
-        tempGameUseSettingsConfigForQuestMapV3,
-        createQuestMapLevelChallengeVariables,
         createMobileQuestLevelChallengeVariables,
       }
     );

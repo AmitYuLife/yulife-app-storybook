@@ -101,7 +101,6 @@ const MediaPlayerContainer = ({
             videoPlayerIsActive: true,
             videoDuration: video.duration,
           },
-          createQuestMapLevelChallengeVariables: { levelSlotId, contentId: video.id },
           createMobileQuestLevelChallengeVariables: { level, levelSlotTemplateId, yuniversalMap, contentId: video.id },
         })
       );

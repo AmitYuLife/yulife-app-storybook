@@ -36,7 +36,6 @@ export const features = [
   "enableResumeInAppMeditation",
   "canFallbackToStepDetectorSensor",
   "enablePopToRootOnDateChange",
-  "tempGameUseSettingsConfigForQuestMapV3",
   "tempGameEnableExtraChallengesHint",
   "enableChallengeNoDataDefer",
   "tempGameEnableReleaseYuHealthV3",

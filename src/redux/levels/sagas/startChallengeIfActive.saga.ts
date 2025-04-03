@@ -7,7 +7,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { challengeResetSuccessAction } from "@redux/levels/levels.actions";
 import { Storage, StorageKey } from "@utils/storage";
 import moment from "moment";
-import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
+import { getMobileQuestLevelDetails } from "@graphql/challenges/getChallengeDetails.gql";
 import { cancelChallengeToggle } from "@graphql/challenges/cancelChallenge.gql";
 
 export default function* startChallengeIfActiveSaga() {
@@ -46,8 +46,6 @@ export default function* startChallengeIfActiveSaga() {
       try {
         yield Storage.removeItem(StorageKey.mediaPlayerProgress);
         yield call(cancelChallengeToggle, {
-          levelSlotId,
-          tempGameUseSettingsConfigForQuestMapV3: features.tempGameUseSettingsConfigForQuestMapV3,
           challengeId: id,
         });
         yield put(challengeResetSuccessAction());
@@ -59,14 +57,10 @@ export default function* startChallengeIfActiveSaga() {
 
     if (challengeId && !status) {
       try {
-        yield call(getChallengeDetailsToggle, {
-          tempGameUseSettingsConfigForQuestMapV3: features.tempGameUseSettingsConfigForQuestMapV3,
-          levelSlotId,
-          getDetailsToggleVariables: {
-            level,
-            levelSlotTemplateId,
-            yuniversalMap,
-          },
+        yield call(getMobileQuestLevelDetails, {
+          level,
+          levelSlotTemplateId,
+          yuniversalMap,
         });
       } catch (error) {
         Logger.error(error, { file: "startChallengeIfActiveSaga.saga" });
@@ -87,7 +81,6 @@ export default function* startChallengeIfActiveSaga() {
         createdBySource,
         yuHealth,
         challengeId: id,
-        tempGameUseSettingsConfigForQuestMapV3: features.tempGameUseSettingsConfigForQuestMapV3,
       });
     }
   } catch (error) {

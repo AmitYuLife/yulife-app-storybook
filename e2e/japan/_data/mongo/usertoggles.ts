@@ -10,9 +10,6 @@ export const CUSTOMER_1_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_1.data.customerId,
-    features: {
-      tempGameUseSettingsConfigForQuestMapV3: true,
-    },
   },
 } as IDatabaseItem;
 

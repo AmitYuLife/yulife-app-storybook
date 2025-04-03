@@ -17,7 +17,7 @@ import { handleLinkPress, openApp } from "@services/app-link";
 import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 import { t } from "@locale";
 import { TopBarType } from "@graphql/__generated";
-import { getChallengeDetailsData, useGetChallengeDetails, useUserFeatures } from "@hooks";
+import { useGetChallengeDetails } from "@hooks";
 
 // transparent png 1x1
 const empty_uri = {
@@ -25,7 +25,6 @@ const empty_uri = {
 };
 interface IChallengeProgressScreenProps extends IConnectedScreenProps {
   challengeType: IActiveLevel["subtype"];
-  levelSlotId: string;
   endDateTime: string;
   userProgress: number;
   progressTargets: number[];
@@ -39,7 +38,6 @@ interface IChallengeProgressScreenProps extends IConnectedScreenProps {
 
 function ChallengeProgressScreen({
   challengeType,
-  levelSlotId,
   endDateTime,
   onDismissPress,
   onLeftMenuPress,
@@ -52,14 +50,11 @@ function ChallengeProgressScreen({
   yuniversalMap,
 }: IChallengeProgressScreenProps) {
   const appButton = useSelector(getActiveChallengeAppButton);
-  const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
 
   const { data } = useGetChallengeDetails({
-    slotId: levelSlotId,
     levelSlotTemplateId,
     level,
     yuniversalMap,
-    tempGameUseSettingsConfigForQuestMapV3,
     fetchPolicy: "cache-only",
   });
 
@@ -88,7 +83,7 @@ function ChallengeProgressScreen({
       primaryColour: "white",
       secondaryColour: "#BCBCBC",
     },
-  } = getChallengeDetailsData(data) || {};
+  } = data?.getMobileQuestLevelChallengeDetails || {};
 
   const handleOpenApp = useCallback(async () => {
     if (appButton?.tutorialUrl) {

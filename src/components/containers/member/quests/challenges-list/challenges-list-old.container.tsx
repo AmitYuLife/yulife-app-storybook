@@ -21,7 +21,7 @@ import { getActiveChallengeState, getCreateChallengeError } from "@redux/levels/
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
-import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
+import { getMobileQuestLevelDetails } from "@graphql/challenges/getChallengeDetails.gql";
 import { t } from "@locale";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
@@ -88,20 +88,15 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
         }
       }
 
-      await getChallengeDetailsToggle({
-        tempGameUseSettingsConfigForQuestMapV3: features?.tempGameUseSettingsConfigForQuestMapV3,
-        getDetailsToggleVariables: {
-          levelSlotTemplateId: slot.levelSlotTemplateId,
-          yuniversalMap,
-          level,
-        },
-        levelSlotId: slot.id,
+      await getMobileQuestLevelDetails({
+        levelSlotTemplateId: slot.levelSlotTemplateId,
+        yuniversalMap,
+        level,
       });
 
       dispatch(
         challengeStartAction({
           levelSlotId: slot.id,
-          createQuestMapLevelChallengeVariables: { levelSlotId: slot.id },
           createMobileQuestLevelChallengeVariables: {
             levelSlotTemplateId: slot.levelSlotTemplateId,
             yuniversalMap,
@@ -135,15 +130,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       setError();
       setSubmittingState(false);
     }
-  }, [
-    authoriseFitKitTypes,
-    setError,
-    dispatch,
-    slot,
-    level,
-    yuniversalMap,
-    features?.tempGameUseSettingsConfigForQuestMapV3,
-  ]);
+  }, [authoriseFitKitTypes, setError, dispatch, slot, level, yuniversalMap]);
 
   useEffect(() => {
     if (!submitting) {

@@ -12,7 +12,8 @@ import {
 import { logEmptyResultDebugData, getEndResult } from "../levels.helpers";
 import { getActiveLevel } from "../levels.selectors";
 import { isEmpty } from "lodash";
-import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
+import { updateMobileQuestLevelChallenge } from "@graphql/challenges/updateChallenge.gql";
+import { UpdateMobileQuestLevelChallengeMutation } from "@graphql/__generated";
 
 const RETRY_UPDATE_CHALLENGE_COUNT = 5;
 
@@ -65,20 +66,21 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
           return;
         }
 
-        let challengeData: ReturnType<typeof getUpdateChallengeData>;
+        let challengeData: UpdateMobileQuestLevelChallengeMutation["updateMobileQuestLevelChallenge"];
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;
         while (challengeStatus !== "completed" && updateActiveChallengeCount < RETRY_UPDATE_CHALLENGE_COUNT) {
-          const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
-            tempGameUseSettingsConfigForQuestMapV3: features?.tempGameUseSettingsConfigForQuestMapV3,
-            challengeId: active.id,
-            payload: result,
-            yuniversalMap: active.yuniversalMap,
-            level: active.level,
-            levelSlotId: active.levelSlotId,
-          });
+          const { data }: Awaited<ReturnType<typeof updateMobileQuestLevelChallenge>> = yield call(
+            updateMobileQuestLevelChallenge,
+            {
+              challengeId: active.id,
+              payload: result,
+              yuniversalMap: active.yuniversalMap,
+              level: active.level,
+            }
+          );
 
-          challengeData = getUpdateChallengeData(data);
+          challengeData = data?.updateMobileQuestLevelChallenge;
 
           challengeStatus = challengeData?.challenge?.status;
           if (challengeStatus !== "completed") {

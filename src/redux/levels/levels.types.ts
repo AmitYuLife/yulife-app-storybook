@@ -184,10 +184,6 @@ export type UpdateChallengeAppButtonPayload = Pick<IActiveLevel, "appButton">;
 export type ChallengeStartActionPayload = {
   levelSlotId: string;
   challengeStartSuccessPayload?: Record<string, string | boolean | number>;
-  createQuestMapLevelChallengeVariables: {
-    levelSlotId: string;
-    contentId?: string | null;
-  };
   createMobileQuestLevelChallengeVariables: {
     levelSlotTemplateId: string;
     level: number;

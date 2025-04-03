@@ -209,7 +209,6 @@ export const CUSTOMER_MEDITOPIA_2_TOGGLES = {
     features: {
       ...mediaContentToggle.data.features,
       tempGameEnableExtraChallengesHint: true,
-      tempGameUseSettingsConfigForQuestMapV3: true,
     },
   },
 } as IDatabaseItem;
@@ -298,7 +297,6 @@ export const CUSTOMER_52_TOGGLES = {
       showBrainGameSudoku: true,
       useNewLeaderboardServices: true,
       newChallengeList: true,
-      tempGameUseSettingsConfigForQuestMapV3: true,
       tempGameUseStreakSettings: true,
     },
   },
@@ -463,7 +461,6 @@ export const CUSTOMER_72_TOGGLES = {
       passiveCyclingEnabled: true,
       showFiit: true,
       newMediaPlayer: true,
-      tempGameUseSettingsConfigForQuestMapV3: true,
     },
   },
 } as IDatabaseItem;

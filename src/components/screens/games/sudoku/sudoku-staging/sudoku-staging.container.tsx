@@ -12,13 +12,7 @@ import { getActiveLevel, getCreateChallengeError, getYuniversalProgress } from "
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import {
-  getChallengeDetailsData,
-  useGetChallengeDetails,
-  usePopToQuestsRootOnNewDate,
-  useQueryOnScreenSeen,
-  useUserFeatures,
-} from "@hooks";
+import { useGetChallengeDetails, usePopToQuestsRootOnNewDate, useQueryOnScreenSeen } from "@hooks";
 import { challengeStartAction } from "@redux/levels/levels.actions";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
@@ -43,7 +37,6 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   const [error, setErrorState] = useState<string | null>(null);
   const createChallengeError = useSelector(getCreateChallengeError);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
-  const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
   const sudokuState = useSelector(getSudokuState);
 
   const [, { data }] = useQueryOnScreenSeen(gql(`GetSudokuBoardDocument`), componentId, {
@@ -82,11 +75,9 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     level,
     levelSlotTemplateId: slot.levelSlotTemplateId,
     yuniversalMap,
-    slotId: slot.id,
-    tempGameUseSettingsConfigForQuestMapV3,
   });
 
-  const challengeDetails = getChallengeDetailsData(levelDetails);
+  const challengeDetails = levelDetails?.getMobileQuestLevelChallengeDetails;
 
   useEffect(() => {
     const stateGameIdentifier = sudokuState?.gameIdentifier;
@@ -118,7 +109,6 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     dispatch(
       challengeStartAction({
         levelSlotId: slot.id,
-        createQuestMapLevelChallengeVariables: { levelSlotId: slot.id },
         createMobileQuestLevelChallengeVariables: {
           level,
           levelSlotTemplateId: slot.levelSlotTemplateId,
@@ -137,7 +127,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
       return;
     }
 
-    const challengeIdentifier = tempGameUseSettingsConfigForQuestMapV3 ? activeLevel.id : slot.id;
+    const challengeIdentifier = activeLevel.id;
 
     if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED && challengeIdentifier) {
       dispatch(
@@ -156,7 +146,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
         component: {
           id: ROUTES.sudokuGame,
           name: ROUTES.sudokuGame,
-          passProps: { date: currentDate, levelSlotId: slot.id, challengeId: activeLevel.id },
+          passProps: { date: currentDate, challengeId: activeLevel.id },
           options: { popGesture: false },
         },
       });
@@ -176,7 +166,6 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     currentDate,
     dispatch,
     setError,
-    tempGameUseSettingsConfigForQuestMapV3,
   ]);
 
   const onBack = useCallback(() => {
