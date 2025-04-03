@@ -172,7 +172,6 @@ const QuestsContainer = () => {
           <SudokuProgressScreen
             onDismissPress={showOverlay}
             onLeftMenuPress={onLeftMenuPress}
-            levelSlotId={activeLevel.levelSlotId}
             challengeId={activeLevel.id}
           />
         );
@@ -202,7 +201,6 @@ const QuestsContainer = () => {
           userProgress={activeLevel.score}
           onLeftMenuPress={onLeftMenuPress}
           challengeType={activeLevel.subtype}
-          levelSlotId={activeLevel.levelSlotId}
           endDateTime={activeLevel.endDateTime}
           hideExternalLinks={hideExternalLinks}
           progressTargets={activeLevel.milestones.map((item) => item.target[getUnitTarget(activeLevel.subtype)])}

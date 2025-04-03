@@ -25,7 +25,7 @@ import { getActiveChallengeState, getCreateChallengeError } from "@redux/levels/
 import { handleInternalContentChallenge, onPressChallengeTile } from "@utils/challenges";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
-import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
+import { getMobileQuestLevelDetails } from "@graphql/challenges/getChallengeDetails.gql";
 import { t } from "@locale";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
@@ -48,12 +48,8 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const {
-    tempGameEnableReleaseYuHealthV3,
-    tempGameUseSettingsConfigForQuestMapV3,
-    gameHideMeditationInternalContent,
-    gameHideWorkoutInternalContent,
-  } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV3, gameHideMeditationInternalContent, gameHideWorkoutInternalContent } =
+    useUserFeatures();
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
@@ -93,20 +89,15 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     try {
       setSubmittingState(true);
 
-      await getChallengeDetailsToggle({
-        tempGameUseSettingsConfigForQuestMapV3,
-        getDetailsToggleVariables: {
-          levelSlotTemplateId: slot.levelSlotTemplateId,
-          yuniversalMap,
-          level,
-        },
-        levelSlotId: slot.id,
+      await getMobileQuestLevelDetails({
+        levelSlotTemplateId: slot.levelSlotTemplateId,
+        yuniversalMap,
+        level,
       });
 
       dispatch(
         challengeStartAction({
           levelSlotId: slot.id,
-          createQuestMapLevelChallengeVariables: { levelSlotId: slot.id },
           createMobileQuestLevelChallengeVariables: {
             level,
             levelSlotTemplateId: slot.levelSlotTemplateId,
@@ -137,7 +128,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
       setError();
       setSubmittingState(false);
     }
-  }, [dispatch, setError, level, yuniversalMap, slot, tempGameUseSettingsConfigForQuestMapV3]);
+  }, [dispatch, setError, level, yuniversalMap, slot]);
 
   useEffect(() => {
     if (!submitting) {

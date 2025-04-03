@@ -67,7 +67,6 @@ export const CUSTOMER_7_TOGGLES = {
     features: {
       ...allTogglesTrue.data.features,
       tempGameUseStreakSettings: true,
-      tempGameUseSettingsConfigForQuestMapV3: true,
     },
   },
 } as IDatabaseItem;
@@ -185,7 +184,6 @@ export const CUSTOMER_70_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
-      tempGameUseSettingsConfigForQuestMapV3: true,
     },
   },
 } as IDatabaseItem;

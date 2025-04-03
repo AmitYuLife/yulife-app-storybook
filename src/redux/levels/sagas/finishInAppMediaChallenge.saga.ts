@@ -19,7 +19,7 @@ import { Storage, StorageKey } from "@utils/storage";
 import { getActiveLevel } from "../levels.selectors";
 import { store } from "@redux/_core/store";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
+import { updateMobileQuestLevelChallenge } from "@graphql/challenges/updateChallenge.gql";
 import { isApolloError } from "@apollo/client";
 import { ChallengeSubmissionStatus } from "../levels.types";
 import { getUserDataStart } from "@redux/user/user.actions";
@@ -32,9 +32,7 @@ export default function* finishInAppMediaChallengeSaga({
 }: ReturnType<typeof finishInAppMediaChallengeAction>) {
   const { video, eventType } = payload;
   const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
-  const { tempGameUseSettingsConfigForQuestMapV3, tempGameGetInAppMeditationFromServer } = yield select(
-    getUserFeatures
-  );
+  const { tempGameGetInAppMeditationFromServer } = yield select(getUserFeatures);
 
   if (!activeLevel) {
     return;
@@ -52,12 +50,12 @@ export default function* finishInAppMediaChallengeSaga({
       challengeId: activeLevel.id,
     };
 
-    const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
-      tempGameUseSettingsConfigForQuestMapV3,
-      ...payloadToSend,
-    });
+    const { data }: Awaited<ReturnType<typeof updateMobileQuestLevelChallenge>> = yield call(
+      updateMobileQuestLevelChallenge,
+      payloadToSend
+    );
 
-    const challenge = getUpdateChallengeData(data)?.challenge;
+    const challenge = data?.updateMobileQuestLevelChallenge?.challenge;
 
     if (!challenge) {
       yield put(setChallengeSubmissionStatus(ChallengeSubmissionStatus.Error));

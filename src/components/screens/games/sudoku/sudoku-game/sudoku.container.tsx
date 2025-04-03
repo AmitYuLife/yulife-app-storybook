@@ -12,13 +12,7 @@ import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
-import {
-  getSubmitSudokuData,
-  useBackHandler,
-  useChallengePause,
-  useSubmitSudokuSolution,
-  useTranslation,
-} from "@hooks";
+import { useBackHandler, useChallengePause, useSubmitSudokuSolution, useTranslation } from "@hooks";
 import { delay } from "@utils/misc";
 import { challengeEndSuccessAction } from "@redux/levels/levels.actions";
 import { Alert } from "react-native";
@@ -27,7 +21,6 @@ import { AppDataType } from "@redux/user/user.types";
 import {
   gql,
   SudokuDifficulty,
-  SubmitSudokuSolutionMutation,
   GetSudokuBoardQuery,
   SubmitMobileQuestLevelSudokuSolutionMutation,
 } from "@graphql/__generated";
@@ -41,20 +34,19 @@ export interface ISodukuBoard {
 }
 
 interface IProps {
-  levelSlotId: string;
   challengeId: string;
   componentId: string;
 }
 
 const SUDOKU_ANIMATION_TIMEOUT = 2000;
-export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProps) => {
+export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
   const dispatch = useDispatch();
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const features = useSelector(getUserFeatures);
   const sudokuState = useSelector(getSudokuState);
 
-  const sendPause = useChallengePause(features.tempGameUseSettingsConfigForQuestMapV3);
-  const submitSudokuSolution = useSubmitSudokuSolution(features.tempGameUseSettingsConfigForQuestMapV3);
+  const sendPause = useChallengePause();
+  const submitSudokuSolution = useSubmitSudokuSolution();
 
   const { data } = useQuery(gql(`GetSudokuBoardDocument`), {
     fetchPolicy: "no-cache",
@@ -75,7 +67,10 @@ export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProp
   const board = first(data?.getSudokuBoard?.boards);
 
   const navigateToCompleted = useCallback(
-    (params: GetSudokuBoardQuery["getSudokuBoard"], result: ReturnType<typeof getSubmitSudokuData>) => {
+    (
+      params: GetSudokuBoardQuery["getSudokuBoard"],
+      result: SubmitMobileQuestLevelSudokuSolutionMutation["submitMobileQuestLevelSudokuSolution"]
+    ) => {
       Navigation.push(componentId, {
         component: {
           id: ROUTES.sudokuCompleted,
@@ -99,18 +94,16 @@ export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProp
   const onPause = useCallback(() => {
     sendPause({
       challengeId,
-      levelSlotId,
       paused: true,
     });
-  }, [challengeId, levelSlotId, sendPause]);
+  }, [challengeId, sendPause]);
 
   const onResume = useCallback(() => {
     sendPause({
       challengeId,
-      levelSlotId,
       paused: false,
     });
-  }, [challengeId, levelSlotId, sendPause]);
+  }, [challengeId, sendPause]);
 
   const showSubmissionError = useCallback(
     ({ onRetry, onCancel }: { onRetry: VoidFunction; onCancel: VoidFunction }) => {
@@ -137,7 +130,7 @@ export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProp
 
   const submitSolution = useCallback(
     (params: ISudokuResults, onGameComplete: (params: ISudokuResults, delayMs?: number) => void) => {
-      return new Promise<SubmitSudokuSolutionMutation | SubmitMobileQuestLevelSudokuSolutionMutation>((res) => {
+      return new Promise<SubmitMobileQuestLevelSudokuSolutionMutation>((res) => {
         (async () => {
           const results = await submitSudokuSolution(
             {
@@ -194,7 +187,7 @@ export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProp
         const [result] = await Promise.all([submitSolution(params, onGameComplete), delay(delayMs)]);
 
         if (result) {
-          const resultData = getSubmitSudokuData(result);
+          const resultData = result?.submitMobileQuestLevelSudokuSolution;
 
           dispatch(
             challengeEndSuccessAction({

@@ -3,44 +3,24 @@ import {
   ActiveChallengeSourceType,
   CreateMobileQuestLevelChallengeMutation,
   CreateMobileQuestLevelChallengeMutationVariables,
-  CreateQuestMapLevelChallengeMutation,
-  CreateQuestMapLevelChallengeMutationVariables,
   gql,
 } from "@graphql/__generated";
 
 type Args = {
-  tempGameUseSettingsConfigForQuestMapV3: boolean;
   createMobileQuestLevelChallengeVariables: CreateMobileQuestLevelChallengeMutationVariables;
-  createQuestMapLevelChallengeVariables: CreateQuestMapLevelChallengeMutationVariables;
 };
 
-export const createChallengeToggle = ({
-  tempGameUseSettingsConfigForQuestMapV3 = false,
-  createQuestMapLevelChallengeVariables,
-  createMobileQuestLevelChallengeVariables,
-}: Args) => {
-  if (!createQuestMapLevelChallengeVariables?.levelSlotId || tempGameUseSettingsConfigForQuestMapV3) {
-    return client().mutate({
-      mutation: gql("CreateMobileQuestLevelChallengeDocument"),
-      variables: {
-        ...createMobileQuestLevelChallengeVariables,
-        createdBySource: ActiveChallengeSourceType.Phone,
-      },
-    });
-  }
-
+export const createChallengeToggle = ({ createMobileQuestLevelChallengeVariables }: Args) => {
   return client().mutate({
-    mutation: gql("CreateQuestMapLevelChallengeDocument"),
+    mutation: gql("CreateMobileQuestLevelChallengeDocument"),
     variables: {
-      ...createQuestMapLevelChallengeVariables,
+      ...createMobileQuestLevelChallengeVariables,
       createdBySource: ActiveChallengeSourceType.Phone,
     },
   });
 };
 
-export type CreateChallengeData =
-  | CreateMobileQuestLevelChallengeMutation["createMobileQuestLevelChallenge"]
-  | CreateQuestMapLevelChallengeMutation["createQuestMapLevelChallenge"];
+export type CreateChallengeData = CreateMobileQuestLevelChallengeMutation["createMobileQuestLevelChallenge"];
 
 type Data = Awaited<ReturnType<typeof createChallengeToggle>>["data"];
 
@@ -49,11 +29,5 @@ export const getCreateChallengeData = (data: Data): CreateChallengeData => {
     return null;
   }
 
-  if ("createMobileQuestLevelChallenge" in data) {
-    return data?.createMobileQuestLevelChallenge;
-  }
-
-  if ("createQuestMapLevelChallenge" in data) {
-    return data?.createQuestMapLevelChallenge;
-  }
+  return data?.createMobileQuestLevelChallenge;
 };

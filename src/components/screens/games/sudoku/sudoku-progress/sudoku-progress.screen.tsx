@@ -13,22 +13,21 @@ import { getCurrentWorldName } from "@utils";
 import { gql } from "@graphql/__generated";
 import { Colours, NAV_BAR, Style } from "@styles";
 import moment from "moment";
-import { useTranslation, useUserFeatures } from "@hooks";
+import { useTranslation } from "@hooks";
 import { Box, Image, TextTemplate } from "@atoms";
 import SudokuDate from "@components/games/sudoku/sudoku-date";
-import { getChallengeDetailsData, useGetChallengeDetails } from "@hooks";
+import { useGetChallengeDetails } from "@hooks";
 import { getSudokuChallengeIdState } from "@redux/sudoku/sudoku.selectors";
 import { sudokuStateChanged } from "@redux/sudoku/sudoku.actions";
 import Logger from "@services/logging/logger";
 import { useDispatch } from "react-redux";
 
 interface IProps extends IConnectedScreenProps {
-  levelSlotId: string;
   challengeId: string;
   onDismissPress: () => void;
 }
 
-function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeftMenuPress }: IProps) {
+function SudokuProgressScreen({ challengeId, onDismissPress, onLeftMenuPress }: IProps) {
   const t = useTranslation([
     "labels.cta.quit",
     "labels.cta.cancel",
@@ -46,14 +45,10 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
   const sudokuChallengeId = useSelector(getSudokuChallengeIdState);
   const dispatch = useDispatch();
 
-  const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
-
   const { data: levelDetails } = useGetChallengeDetails({
     level: activeLevel.level,
     levelSlotTemplateId: activeLevel.levelSlotTemplateId,
     yuniversalMap: activeLevel.yuniversalMap,
-    slotId: levelSlotId,
-    tempGameUseSettingsConfigForQuestMapV3,
   });
 
   const onResumePress = useCallback(() => {
@@ -61,19 +56,18 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
       dispatch(sudokuStateChanged({ challengeId }));
     }
 
-    Logger.logEvent("resume_sudoku_game", { challengeId: activeLevel.id, levelSlotId });
+    Logger.logEvent("resume_sudoku_game", { challengeId: activeLevel.id });
 
     Navigation.push(ROUTES.quests, {
       component: {
         id: ROUTES.sudokuGame,
         name: ROUTES.sudokuGame,
         passProps: {
-          levelSlotId,
           challengeId,
         },
       },
     });
-  }, [sudokuChallengeId, levelSlotId, challengeId, dispatch, activeLevel.id]);
+  }, [sudokuChallengeId, challengeId, dispatch, activeLevel.id]);
 
   const currentStyle = useMemo(() => {
     if (activeLevel.yuniversalMap) {
@@ -84,7 +78,7 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
     return SUDOKU_PLANET_STYLES[worldName];
   }, [currentLevel, activeLevel.yuniversalMap]);
 
-  const challengeDetails = useMemo(() => getChallengeDetailsData(levelDetails), [levelDetails]);
+  const challengeDetails = levelDetails?.getMobileQuestLevelChallengeDetails;
 
   const imageUri = useMemo(() => {
     return { uri: challengeDetails?.assets?.backgroundImage?.uri };
