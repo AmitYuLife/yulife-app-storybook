@@ -19,7 +19,6 @@ import userSagas from "../user/sagas";
 import detoxSagas from "../detox/detox.sagas";
 import assetsSagas from "../assets/sagas/assets.saga";
 import serverDrivenUISagas from "../server-driven-ui/sagas";
-import adBannersSagas from "../ad-banners/sagas";
 import getDailyPensionSagas from "../daily-pension/sagas";
 import yuHealthSagas from "../yu-health/sagas";
 import yuWatchSagas from "../yu-watch/sagas";
@@ -52,7 +51,6 @@ export default function* allSagas() {
     ...userSagas,
     ...detoxSagas,
     ...serverDrivenUISagas,
-    ...adBannersSagas,
     ...yuHealthSagas,
     ...yuWatchSagas,
     ...yuScreenSagas,

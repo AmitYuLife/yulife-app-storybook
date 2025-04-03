@@ -35,8 +35,6 @@ import dailyCyclingReducer, {
 } from "../daily-cycling/daily-cycling.reducer";
 import fitkitReducer, { getInitialState as getInitialFitkitState } from "../fitkit/fitkit.reducer";
 import { IFitkitStore } from "../fitkit/fitkit.types";
-import adBannersReducer, { getInitialAdbannersState } from "../ad-banners/ad-banners.reducer";
-import { IAdBannersStore } from "../ad-banners/ad-banners.types";
 import dailyPensionReducer, { getInitialState as getInitialDailyPension } from "../daily-pension/daily-pension.reducer";
 import { IDailyPensionStore } from "@redux/daily-pension/daily-pension.types";
 import leaderboardReducer, {
@@ -80,7 +78,6 @@ export interface IReduxState {
   dailyPension: IDailyPensionStore;
   sdui: ISduiStore;
   fitkit: IFitkitStore;
-  adBanners: IAdBannersStore;
   sudoku: ISudokuStore;
   hints: IHintsStore;
   leaderboard: ILeaderboardsStore;
@@ -110,7 +107,6 @@ export const initialState: IReduxState = {
   hints: getInitialHintsState(),
   sdui: getInitialSduiState(),
   fitkit: getInitialFitkitState(),
-  adBanners: getInitialAdbannersState(),
   sudoku: getInitialSudokuState(),
   leaderboard: getInitialLeaderboardState(),
   questMap: getInitialQuestMapState(),
@@ -141,7 +137,6 @@ const combinedReducers = combineReducers({
   dailyPension: dailyPensionReducer,
   sdui: sduiReducer,
   fitkit: fitkitReducer,
-  adBanners: adBannersReducer,
   sudoku: sudokuReducer,
   hints: hintsReducer,
   leaderboard: leaderboardReducer,

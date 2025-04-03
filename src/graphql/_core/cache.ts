@@ -7,7 +7,6 @@ const dataIdFromObject = (object: any) => {
   switch (object.__typename) {
     case "APIConfigLeanplum":
       return `${object.__typename}-${object.appId}`;
-    case "AdBanner":
     case "Level":
     case "Duel":
     case "LevelSlot":
@@ -46,11 +45,6 @@ const dataIdFromObject = (object: any) => {
 const typePolicies: TypePolicies = {
   Query: {
     fields: {
-      getAdBanners: {
-        merge(_existing, incoming) {
-          return incoming;
-        },
-      },
       getUserProfileEvents: {
         merge(_existing, incoming) {
           return incoming;

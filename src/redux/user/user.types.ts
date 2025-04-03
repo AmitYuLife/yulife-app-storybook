@@ -48,7 +48,6 @@ export interface IUserStore {
     hasDuels: boolean;
     hasPendingForm: boolean;
     hasAppReview: boolean;
-    hasAdBanners: boolean;
   };
   events: Partial<Events>[];
   heroCards: HeroCard[];

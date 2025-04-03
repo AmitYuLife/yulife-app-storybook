@@ -1,6 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { IReduxState } from "../_core/reducers";
-import { getAdBanners } from "../ad-banners/ad-banners.selectors";
 import { UserProfileEventStatus } from "./user.types";
 
 type State = IReduxState["user"];
@@ -69,14 +68,3 @@ export const sessionTimestamp = (state: State) => state.sessionTimestamp;
 export const getUserActiveEvents = createSelector(getUserEvents, (events) =>
   events.filter((event) => event.status !== UserProfileEventStatus.Completed)
 );
-
-export const getUserEventsWithAds = createSelector(getUserActiveEvents, getAdBanners, (events, banners) => {
-  const formatData = banners.map(({ id, imageUrl, navigateTo, routeProps }) => ({
-    id,
-    imageUrl: imageUrl.uri,
-    navigateTo,
-    routeProps,
-  }));
-
-  return [...events, ...formatData];
-});

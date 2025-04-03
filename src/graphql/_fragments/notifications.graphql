@@ -4,5 +4,4 @@ fragment UserProfileNotification on UserProfileNotification {
     hasPendingForm
     hasMobileWhatsNewModal
     hasAppReview
-    hasAdBanners
 }
