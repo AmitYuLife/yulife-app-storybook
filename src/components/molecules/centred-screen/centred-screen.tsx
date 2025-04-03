@@ -1,16 +1,16 @@
-import React, { memo, PropsWithChildren } from "react";
+import { memo, PropsWithChildren, JSX, ReactElement, isValidElement } from "react";
 import { Image as RNImage, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
 import { IScreen } from "@theme";
 import { LottieView } from "@molecules";
-import { Image, Source } from "@atoms";
+import { Box, Image, Source } from "@atoms";
 
 interface Props {
   children?: React.ReactNode;
   testID?: string;
   BackgroundGradient?: JSX.Element;
-  backgroundImage?: Source;
+  backgroundImage?: Source | ReactElement;
   style?: ViewStyle | ImageStyle;
   isLottie?: boolean;
   isFullScreen?: boolean;
@@ -25,12 +25,37 @@ function CentredScreen({
   isLottie,
   isFullScreen,
 }: Props) {
+  if (isValidElement(backgroundImage)) {
+    return (
+      <SafeAreaView style={[styles.wrapper, style]} testID={testID}>
+        {BackgroundGradient}
+        <Box
+          position="absolute"
+          width={Style.DEVICE_WIDTH}
+          height={Style.DEVICE_HEIGHT}
+          left={0}
+          right={0}
+          bottom={0}
+          justifyContent="flex-end"
+        >
+          {backgroundImage}
+        </Box>
+        {children}
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={[styles.wrapper, style]} testID={testID}>
       {BackgroundGradient}
       {!backgroundImage ? null : (
         <View style={styles.imageWrapper}>
-          <Background backgroundImage={backgroundImage} isFullScreen={isFullScreen} isLottie={isLottie} style={style} />
+          <Background
+            backgroundImage={backgroundImage as Source}
+            isFullScreen={isFullScreen}
+            isLottie={isLottie}
+            style={style}
+          />
         </View>
       )}
       {children}

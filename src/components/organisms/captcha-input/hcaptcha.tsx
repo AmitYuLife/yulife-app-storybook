@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from "react";
 import ConfirmHcaptcha from "@hcaptcha/react-native-hcaptcha";
 import { WebViewMessageEvent } from "react-native-webview";
 import { CaptchaCancelledError } from "./types";
@@ -6,6 +6,7 @@ import { t } from "@locale";
 import { Box } from "@atoms";
 import { Markdown } from "@components/molecules";
 import { Colours, templateTextStyles } from "@styles";
+import { StyleSheet } from "react-native";
 
 export type HcaptchaHandle = {
   execute: () => Promise<string>;
@@ -71,14 +72,14 @@ export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, si
   );
 });
 
-const markdownStyles = {
+const markdownStyles = StyleSheet.create({
   text: {
     ...templateTextStyles.l1,
     textAlign: "center",
   },
   link: {
-    color: Colours.gray,
+    color: Colours.inkStrong,
     textDecorationLine: "underline",
     alignSelf: "flex-start",
   },
-};
+});

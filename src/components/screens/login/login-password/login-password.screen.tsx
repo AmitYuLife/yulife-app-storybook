@@ -3,11 +3,12 @@ import { memo } from "react";
 import { Box, Pad, TextTemplate } from "@atoms";
 import { Button, TextInput } from "@molecules";
 import { BUTTON_LOGIN, INPUT_LOGIN_PASSWORD } from "@ids";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { REGION, t } from "@locale";
 import { ServerList } from "../subcomponents/server-list";
 import { TextInputPassword } from "@components/molecules/text-input/text-input-password";
 import LoginFormWrapper from "../subcomponents/login-form-wrapper";
+import { StyleSheet } from "react-native";
 
 interface IProps {
   password: string;
@@ -49,6 +50,7 @@ const LoginPasswordScreen = ({
             onChange={onPasswordChange}
             value={password}
             onSubmitEditing={!isSubmitting && !disableSubmit ? onPressSubmit : undefined}
+            style={styles.input}
           />
 
           <Pad height={15} />
@@ -75,5 +77,11 @@ const LoginPasswordScreen = ({
     </LoginFormWrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  input: {
+    paddingHorizontal: Style.adjust(30),
+  },
+});
 
 export default memo(LoginPasswordScreen);

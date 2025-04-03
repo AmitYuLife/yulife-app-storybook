@@ -12,23 +12,23 @@ export const LoginHeroScreen = memo(({ onLoginEmailPress }: LoginHeroScreenProps
 
   return (
     <FullScreenHero
-      primaryCta={{ label: t("screens.login-hero.primary_cta_label"), onPress: onLoginEmailPress }}
-      secondaryCta={{ label: t("screens.login-hero.secondary_cta_label"), onPress: onLoginEmailPress }}
+      primaryCta={{ label: t("screens.login_hero.primary_cta_label"), onPress: onLoginEmailPress }}
+      secondaryCta={{ label: t("screens.login_hero.secondary_cta_label"), onPress: onLoginEmailPress }}
       disclaimerMarkdown={t("screens.login.disclaimer", {
         privacyPolicyLink: urls?.privacyPolicy || "https://yulife.com/privacy-policy/",
         eulaLink: urls?.eula || "https://yulife.com/end-user-license-agreement-policy/",
       })}
       slides={[
         {
-          title: t("screens.login-hero.slides.earn"),
+          title: t("screens.login_hero.slides.earn"),
           backgroundImage: FullScreenHeroBackground.YugiClimbing,
         },
         {
-          title: t("screens.login-hero.slides.redeem"),
+          title: t("screens.login_hero.slides.redeem"),
           backgroundImage: FullScreenHeroBackground.Rewards,
         },
         {
-          title: t("screens.login-hero.slides.donate"),
+          title: t("screens.login_hero.slides.donate"),
           backgroundImage: FullScreenHeroBackground.YugiGardening,
         },
       ]}

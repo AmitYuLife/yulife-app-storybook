@@ -1,5 +1,4 @@
 import * as React from "react";
-import { GenericHeadingPad } from "@organisms/generic-heading/generic-heading-absolute";
 import { memo, useCallback } from "react";
 import { Box, Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
 import { CentredScreen, Pressable } from "@molecules";
@@ -9,14 +8,21 @@ import { t } from "@locale";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { useKeyboardListeners } from "@hooks";
+import LoginBackgroundSvg from "@components/screens/login/subcomponents/svgs/login-background-svg";
 
 interface ILoginFormWrapperProps {
   onPressBack: () => void;
   heading: string;
+  /**
+   * Variant of the login form wrapper. This only affects the background image.
+   * - `default`: Default login form wrapper.
+   * - `magicLink`: Login form wrapper for magic link, containing a bird with a letter.
+   */
+  variant?: "default" | "magicLink";
   children: React.ReactNode;
 }
 
-export const LoginFormWrapper = ({ onPressBack, heading, children }: ILoginFormWrapperProps) => {
+export const LoginFormWrapper = ({ onPressBack, heading, variant = "default", children }: ILoginFormWrapperProps) => {
   const isShowingKeyboard = useKeyboardListeners();
 
   const dismissKeyboard = useCallback(() => {
@@ -27,12 +33,12 @@ export const LoginFormWrapper = ({ onPressBack, heading, children }: ILoginFormW
 
   return (
     <CentredScreen
-      backgroundImage={require("@assets/centred-screen/forestBackground.png")}
+      backgroundImage={<LoginBackgroundSvg showBird={variant === "magicLink"} />}
       style={styles.wrapper}
       BackgroundGradient={<UnauthorisedGradient />}
     >
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
-        <GenericHeadingPad />
+        <Pad height={32} />
         <Pressable
           delay={1000}
           style={styles.fullScreenWrapper}
@@ -68,6 +74,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+    width: "100%",
   },
   fullScreenWrapper: {
     ...StyleSheet.absoluteFillObject,

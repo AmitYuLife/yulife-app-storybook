@@ -6,6 +6,7 @@ import { memo, useCallback, useState } from "react";
 import { AccessibilityInfo, Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { useSendMagicLink } from "./send-magic-link.hook";
+import { validateEmail } from "@utils/email";
 
 interface Props {
   componentId: string;
@@ -15,6 +16,12 @@ interface Props {
 const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
   const [email, setEmail] = useState(props.email || "");
   const [magicLinkError, setMagicLinkError] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
+
+  const onChange = useCallback((userInput: string) => {
+    setEmail(userInput);
+    setEmailError(validateEmail(userInput));
+  }, []);
 
   const navigateToConfirmation = useCallback(
     async (passProps: { regionResponses: { hasSetPassword: boolean; region: REGION }[]; email: string }) => {
@@ -59,11 +66,11 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
   return (
     <LoginEmailScreen
       email={email}
-      emailError={""} // TODO - validation errors
+      emailError={emailError}
       isSubmitting={isSubmitting}
       onPressBack={() => Navigation.pop(componentId)}
       onPressSubmit={sendMagicLink}
-      onEmailChange={setEmail}
+      onEmailChange={onChange}
       captcha={captcha}
       magicLinkError={magicLinkError}
     />
