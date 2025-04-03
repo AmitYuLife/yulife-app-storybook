@@ -48,10 +48,16 @@ function stripPunctuation(text: string, type: Type) {
     return text;
   }
 
-  return text.replace(/,/g, "");
+  return (
+    text
+      // First preserve only digits, decimals and minus signs
+      .replace(/[^\d.]/g, "")
+      // Then ensure only one decimal point remains
+      .replace(/(\..*)\./g, "$1")
+  );
 }
 
-function formatText(text: string, type: Type, maximumFractionDigits = 2) {
+function formatText(text: string, type: Type, maximumFractionDigits?: number) {
   if (type === "Text" || type === "PhoneNumber") {
     return text;
   }
@@ -103,11 +109,15 @@ export default function TextField(props: Props) {
 
   useEffect(() => {
     if (textInputValue !== value) {
-      if (type === "Number" && value && textInputValue) {
-        const [valueIntegerPart, valueDecimalPart] = value.split(".");
-        const [_, textInputValueDecimalPart] = textInputValue.split(".");
-        if (textInputValueDecimalPart !== undefined) {
-          setTextInputValue(`${valueIntegerPart}.${valueDecimalPart || textInputValueDecimalPart}`);
+      if (type === "Number" && textInputValue && value) {
+        const strippedTextInput = stripPunctuation(textInputValue, "Number");
+        const strippedValue = stripPunctuation(value, "Number");
+
+        const textInputNumber = parseFloat(strippedTextInput);
+        const valueNumber = parseFloat(strippedValue);
+
+        if (valueNumber !== textInputNumber) {
+          setTextInputValue(formatNumber(value));
         }
       } else {
         setTextInputValue(value);
@@ -119,7 +129,7 @@ export default function TextField(props: Props) {
     }
 
     setActiveMaterial(false);
-  }, [isFocused, textInputValue, value, type]);
+  }, [isFocused, textInputValue, value, maximumFractionDigits, type]);
 
   useMaterialInputAnimation({
     activeMaterial,
@@ -161,9 +171,16 @@ export default function TextField(props: Props) {
           }}
           onChangeText={(text: string) => {
             const strippedPunctuation = stripPunctuation(text, type);
-            onChange(type === "Number" ? parseFloat(strippedPunctuation) : strippedPunctuation);
-
             const formattedText = formatText(strippedPunctuation, type, maximumFractionDigits);
+
+            if (type !== "Number") {
+              onChange(strippedPunctuation);
+            } else {
+              // stripped formatted text is different as initial text is unformatted for decimals
+              const strippedNumber = stripPunctuation(formattedText, "Number");
+              onChange(parseFloat(strippedNumber));
+            }
+
             return setTextInputValue(formattedText);
           }}
           value={textInputValue} //@TODO: Discuss with the team, that instead of using local state we should use the props "value" here, for better control
