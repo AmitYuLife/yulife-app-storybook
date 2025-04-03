@@ -75,7 +75,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     hasDuels: false,
     hasPendingForm: false,
     hasAppReview: false,
-    hasAdBanners: false,
   },
   events: [],
   heroCards: [],

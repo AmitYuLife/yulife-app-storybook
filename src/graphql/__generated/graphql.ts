@@ -7475,6 +7475,8 @@ export type PaymentIntent = StripePaymentIntent;
 export type PerformedSteps = {
   __typename?: "PerformedSteps";
   homeModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
+  leaderboardModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
+  manageAdminsModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   peopleModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
@@ -10038,6 +10040,8 @@ export type TeamFilterCopy = {
 
 export enum TeamOnboardingStep {
   HomeModalDismissed = "homeModalDismissed",
+  LeaderboardModalDismissed = "leaderboardModalDismissed",
+  ManageAdminsModalDismissed = "manageAdminsModalDismissed",
   PeopleModalDismissed = "peopleModalDismissed",
   TwoFactorAuthEnabled = "twoFactorAuthEnabled",
   TwoFactorAuthModalDismissed = "twoFactorAuthModalDismissed",
@@ -10989,6 +10993,7 @@ export type UserProfileEventsTags = {
 
 export type UserProfileNotification = {
   __typename?: "UserProfileNotification";
+  /** @deprecated We use hero cards now, instead of ad banners. Safe to remove this field when we stop supporting 4.57 */
   hasAdBanners: Scalars["Boolean"]["output"];
   hasAppReview: Scalars["Boolean"]["output"];
   /** @deprecated not used, will be purged when 4.36 is no longer supported */
@@ -19885,7 +19890,6 @@ export type UserProfileNotificationFragment = {
   hasPendingForm: boolean;
   hasMobileWhatsNewModal: boolean;
   hasAppReview: boolean;
-  hasAdBanners: boolean;
 };
 
 export type InventoryRewardsCardFragment = {
@@ -22035,24 +22039,6 @@ export type YuHealthOptionsFragment = {
   __typename?: "YuHealthOptions";
   dataType: YuHealthDataType;
   capabilities: Array<YuHealthCapability>;
-};
-
-export type GetAdBannersQueryVariables = Exact<{
-  place?: InputMaybe<Scalars["String"]["input"]>;
-}>;
-
-export type GetAdBannersQuery = {
-  __typename?: "Query";
-  getAdBanners?: Array<{
-    __typename: "AdBanner";
-    id: string;
-    navigateTo: string;
-    navigateToType: string;
-    routeProps?: string | null;
-    startDate: string;
-    endDate?: string | null;
-    imageUrl: { __typename?: "RemoteImage"; uri?: string | null };
-  } | null> | null;
 };
 
 export type GetInboxMessagesQueryVariables = Exact<{ [key: string]: never }>;
@@ -38968,7 +38954,6 @@ export type GetUserProfileQuery = {
       hasPendingForm: boolean;
       hasMobileWhatsNewModal: boolean;
       hasAppReview: boolean;
-      hasAdBanners: boolean;
     };
     badgeCounts: {
       __typename?: "UserProfileBadgeCounts";
@@ -62965,7 +62950,6 @@ export const UserProfileNotificationFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "hasPendingForm" } },
           { kind: "Field", name: { kind: "Name", value: "hasMobileWhatsNewModal" } },
           { kind: "Field", name: { kind: "Name", value: "hasAppReview" } },
-          { kind: "Field", name: { kind: "Name", value: "hasAdBanners" } },
         ],
       },
     },
@@ -72175,59 +72159,6 @@ export const YumojiRemotePartFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<YumojiRemotePartFragment, unknown>;
-export const GetAdBannersDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetAdBanners" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "place" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getAdBanners" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "place" },
-                value: { kind: "Variable", name: { kind: "Name", value: "place" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "imageUrl" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "navigateTo" } },
-                { kind: "Field", name: { kind: "Name", value: "navigateToType" } },
-                { kind: "Field", name: { kind: "Name", value: "routeProps" } },
-                { kind: "Field", name: { kind: "Name", value: "startDate" } },
-                { kind: "Field", name: { kind: "Name", value: "endDate" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetAdBannersQuery, GetAdBannersQueryVariables>;
 export const GetInboxMessagesDocument = {
   kind: "Document",
   definitions: [
@@ -100123,7 +100054,6 @@ export const GetUserProfileDocument = {
           { kind: "Field", name: { kind: "Name", value: "hasPendingForm" } },
           { kind: "Field", name: { kind: "Name", value: "hasMobileWhatsNewModal" } },
           { kind: "Field", name: { kind: "Name", value: "hasAppReview" } },
-          { kind: "Field", name: { kind: "Name", value: "hasAdBanners" } },
         ],
       },
     },

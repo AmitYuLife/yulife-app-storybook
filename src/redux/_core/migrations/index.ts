@@ -24,6 +24,7 @@ import addDateFieldForInAppMeditation from "./0022_add_date_field_for_in_app_med
 import addChallengeIdToSudoku from "./0023_add_challenge_id_sudoku_state";
 import addYuniversalMapToLevelActiveState from "./0024_add_yuniversal_map_active_level";
 import removeTabNotifications from "./0025_remove_tab_notifications";
+import removeHasAdBanner from "./0026_remove_has_ad_banner";
 
 export const migrations = {
   "0": initial,
@@ -52,4 +53,5 @@ export const migrations = {
   "23": addChallengeIdToSudoku,
   "24": addYuniversalMapToLevelActiveState,
   "25": removeTabNotifications,
+  "26": removeHasAdBanner,
 };

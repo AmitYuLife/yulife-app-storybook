@@ -9,7 +9,7 @@ import { Navigation } from "@navigation/main";
 import { DailyStepsScreen } from "@screens";
 import { FitkitContext } from "@services/fitkit/fitkit.context";
 import { useNavigationComponentDidAppear, useTapBackTwiceToExit, useYuWatch } from "@hooks";
-import { getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
+import { getUserSurge, getUserEvents, getUserFeatures } from "@redux/user/user.selectors";
 
 import {
   getChallengesStatus,
@@ -33,7 +33,7 @@ function _DailyStepsContainer() {
   const userFeatures = useSelector(getUserFeatures);
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
 
-  const userEvents = useSelector(getUserEventsWithAds);
+  const userEvents = useSelector(getUserEvents);
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
