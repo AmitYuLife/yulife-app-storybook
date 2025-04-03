@@ -1,5 +1,6 @@
 import { Given, When, Then, Feature, Scenario, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
-import { emptyInventoryState, emptySeasonalRewardVisible, locationModalTitle } from "./_resources/constants";
+import { couponsTermsAndConditions } from "./_resources/fixtures";
+import { emptyInventoryState } from "./_resources/constants";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -149,6 +150,58 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
       Then("I should be able to see the battle pass", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+    });
+  });
+});
+
+Scenario("I can view, adjust and validate coupon values before completing checkout", scenario.start, () => {
+  Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+    Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+  });
+  When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
+    Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
+  });
+  When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
+    When("I tap on the 'Purchased' tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 2500), async () => {
+      Then("I should see both wallet categories", then.multipleIDVisible([ids.WALLET_CATEGORY_LABEL("Discounts"), ids.WALLET_CATEGORY_LABEL("Gift Cards")]));
+      Then("I should see the 'M&S' coupon available for purchase", then.idVisible(ids.WALLET_COUPON_CARD_TITLE("M&S"), 2000));
+    });
+  });
+  When("I tap the 'M&S' Coupon card", when.tapID(ids.WALLET_COUPON_CARD_TITLE("M&S"), 2000), async () => {
+    Then("I should see the correct discount info", then.idVisible(ids.WALLET_COUPON_ITEM_INFO("10%"), 2000));
+    Then("I should see the Coupon description", then.idVisible(ids.WALLET_COUPON_ITEM_DESCRIPTION("One time use"), 2000));
+  });
+  When("I tap the voucher card to adjust its values", when.tapID(ids.WALLET_COUPON_ITEM_INFO("10%"), 2000), async () => {
+    Then("I should see multiple available denominations", then.multipleIDVisible([ids.TEXT_TEMPLATE("£100", "b2b"), ids.TEXT_TEMPLATE("£5", "b2b")]));
+    Then("I should see the coupon input field", then.idVisible(ids.CONTENT_ITEM_INPUT("coupon-input"), 2000));
+    Then("I should see the currency info warning", then.idVisible(ids.TEXT_TEMPLATE("You can only redeem it in GBP (£).", "b2"), 2000));
+  });
+  When("I select the '£20' value pill", when.tapID(ids.TEXT_TEMPLATE("£20", "b2b"), 2000), async () => {
+    Then("I should see the minimum denomination error message", then.textVisible("Must be at least £50.", 2000));
+    Then("I should see that the checkout cta button is disabled", then.idVisible(ids.BUTTON_BASE("Checkout", true), 2000));
+  });
+  When("I select the '£100' value pill", when.tapID(ids.TEXT_TEMPLATE("£100", "b2b"), 2000), async () => {
+    Then("I should see the correct discount amount", then.idVisible(ids.TEXT_TEMPLATE("-£10.00", "b2b"), 2000));
+    Then("I should see the correct remaining payable amount", then.idVisible(ids.TEXT_TEMPLATE("£90.00", "b1b"), 2000));
+    Then("I should see that the 'Checkout' cta button is now enabled", then.idVisible(ids.BUTTON_BASE("Checkout", false), 2000));
+  });
+  When("I tap to checkout", when.tapID(ids.BUTTON_BASE("Checkout", false), 2000), async () => {
+    Then("I should see the terms and conditions checkbox", then.idVisible(ids.CHECK_BOX_STATE(couponsTermsAndConditions, false), 2000));
+    Then("I should see that the total payable amount is still '£90'", then.idVisible(ids.TEXT_TEMPLATE("£90", "b1b"), 2000));
+    Then("I should see the 'Accept terms and conditions' title", then.idVisible(ids.TEXT_TEMPLATE("Accept terms and conditions", "b1b"), 2000));
+    Then("I should see that the 'Continue to Payment' cta button is disabled", then.idVisible(ids.BUTTON_BASE("Continue to Payment", true), 2000));
+  });
+  When("I tap to edit the Coupon values", when.tapID(ids.TEXT_TEMPLATE("Edit", "b2b"), 2000), async () => {
+    Then("I should see the multiple available denominations", then.multipleIDVisible([ids.TEXT_TEMPLATE("£75", "b2b"), ids.TEXT_TEMPLATE("£2.50", "b2b")]));
+  });
+  When("I select the '£75' value pill", when.tapID(ids.TEXT_TEMPLATE("£75", "b2b"), 2000), async () => {
+    Then("I should see the updated discount amount", then.idVisible(ids.TEXT_TEMPLATE("-£7.50", "b2b"), 2000));
+    Then("I should see the correct remaining payable amount", then.idVisible(ids.TEXT_TEMPLATE("£67.50", "b1b"), 2000));
+  });
+  When("I tap to checkout", when.tapID(ids.BUTTON_BASE("Checkout", false), 2000), async () => {
+    When("I mark the terms and conditions checkbox", when.tapID(ids.CHECK_BOX_STATE(couponsTermsAndConditions, false), 2000), async () => {
+      Then("I should see that the 'Continue to Payment' cta button is now enabled", then.idVisible(ids.BUTTON_BASE("Continue to Payment", false), 2000));
+      Then("I should see that checkbox is now selected", then.idVisible(ids.CHECK_BOX_STATE(couponsTermsAndConditions, true), 2000));
     });
   });
 });

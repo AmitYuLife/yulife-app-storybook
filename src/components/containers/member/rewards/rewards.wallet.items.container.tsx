@@ -14,6 +14,7 @@ import { StyleSheet } from "react-native";
 import { t } from "@locale";
 import WalletCouponLoading from "./subcomponents/wallet-coupon-loading";
 import WalletItemLoading from "./subcomponents/wallet-item-loading";
+import { PARTNER_REWARDS_INVENTORY_ITEMS_COUNT, PARTNER_REWARDS_INVENTORY_ITEMS_TITLE } from "@ids";
 interface IRewardsPurchasesContainerProps {
   rewardId: string;
   type: string;
@@ -86,7 +87,11 @@ function RewardsPurchasesContainer({ rewardId, type }: IRewardsPurchasesContaine
           <>
             <Box flexDirection="row" style={styles.descriptionContainer}>
               <Box>
-                <TextTemplate color={"#464647"} type="b2b">
+                <TextTemplate
+                  color={"#464647"}
+                  type="b2b"
+                  testID={PARTNER_REWARDS_INVENTORY_ITEMS_TITLE(data?.getMobileGamePartnerRewardsInventoryItems.title)}
+                >
                   {data?.getMobileGamePartnerRewardsInventoryItems.title}
                 </TextTemplate>
               </Box>
@@ -95,7 +100,13 @@ function RewardsPurchasesContainer({ rewardId, type }: IRewardsPurchasesContaine
                   color={"#464647"}
                   type="b2b"
                 >{`${data?.getMobileGamePartnerRewardsInventoryItems.label}:`}</TextTemplate>
-                <TextTemplate color={"#956AFF"} type="b2b">
+                <TextTemplate
+                  color={"#956AFF"}
+                  type="b2b"
+                  testID={PARTNER_REWARDS_INVENTORY_ITEMS_COUNT(
+                    data?.getMobileGamePartnerRewardsInventoryItems.quantity
+                  )}
+                >
                   {" "}
                   {`${data?.getMobileGamePartnerRewardsInventoryItems.quantity}`}
                 </TextTemplate>
