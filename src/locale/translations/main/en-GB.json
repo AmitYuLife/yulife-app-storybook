@@ -332,7 +332,24 @@
       },
       "disclaimer": "By continuing, you agree to our [Privacy Policy](%{privacyPolicyLink}) and [End-User License Agreement](%{eulaLink})."
     },
-    "login-hero": {
+    "login_email": {
+      "heading": "Hi there! What’s your email?",
+      "cta_label": "Continue",
+      "submitting": "Submitting..."
+    },
+    "login_confirm": {
+      "heading": "Ready to be your best Yu? Let’s verify your account.",
+      "description": "Use the link in the email we’ve just sent you.",
+      "login_with_password": "Log in with password instead.",
+      "resend_link": "Didn’t get it? Send a new link.",
+      "cooldown": "Send a new link in %{seconds}s..."
+    },
+    "login_password": {
+      "heading": "Enter your password",
+      "cta_label": "Continue",
+      "submitting": "Submitting..."
+    },
+    "login_hero": {
       "primary_cta_label": "Claim my account",
       "secondary_cta_label": "Log in",
       "slides": {
