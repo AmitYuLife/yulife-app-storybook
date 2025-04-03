@@ -421,8 +421,8 @@ export const YUMOJI_CONTINUE_BUTTON = "YUMOJI_CONTINUE_BUTTON";
 // SDUI
 export const CONTENT_ITEM = (type: string, id: string) => `SDUI_${type.toUpperCase()}_${id}`;
 export const CONTENT_ITEM_INPUT = (id: string) => `SDUI_INPUT_${id}`;
-export const CONTENT_ITEM_INPUT_CHARACTER_COUNTER = (id: string) =>
-  `SDUI_INPUT_CHARACTER_COUNTER_${id}`;
+export const CONTENT_ITEM_INPUT_CHARACTER_COUNTER = (id: string, currentLength: number) =>
+  `SDUI_INPUT_CHARACTER_COUNTER_${id}_${currentLength}`;
 export const CONTENT_ITEM_CHOICE = (id: string) => `SDUI_CHOICE_${id}`;
 export const CONTENT_ITEM_MULTI_BUTTON = (id: string) => `SDUI_MULTI_BUTTON_${id}`;
 export const CONTENT_ITEM_INFO_CARD = (id: string) => `SDUI_INFO_CARD_${id}`;
@@ -512,6 +512,10 @@ export const CHECKOUT_SCROLL_VIEW = "CHECKOUT_SCROLL_VIEW";
 export const PAYMENT_DETAILS_CARD = (endDigits: string, name: string, expiry: string) =>
   `PAYMENT_DETAILS_CARD_${endDigits}_${name}_${expiry}`;
 export const CHECKOUT_CHECKBOX = "CHECKOUT_CHECKBOX";
+export const WORKPLACE_CHOICE = (i: number) => `recommend_workplace_choice_${i}`;
+export const WORK_LIFE_BALANCE_IMPORTANT = `work_life_balance_important_choice_strongly_agree`;
+export const ACCEPTABLE_WORKLOAD = `acceptable_workload_choice_strongly_agree`;
+export const SUPPORTED_IN_TAKING_LEAVE = `supported_in_taking_leave_choice_strongly_agree`;
 
 // DUELS
 export const DUELS_HUB = "DUELS_HUB";

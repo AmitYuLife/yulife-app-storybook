@@ -3,7 +3,6 @@ import { screens } from "@appScreens";
 import * as ids from "@ids";
 import { FinancialWellnessQuizDescriptionPage } from "../_resources/types";
 import { swipeFromText } from "./when";
-import { scrollFromID } from "_utils/navigation/scrolling";
 export {
   languageSettingVisible,
   languageSelectorVisible,
@@ -29,7 +28,7 @@ export const {
   maximiseYucoinVisible,
 } = screens.yuscreen;
 
-export const { scrollUntilTextVisible } = navigation.scrolling;
+export const { scrollUntilTextVisible, scrollFromID } = navigation.scrolling;
 
 export const customerQuizModalVisible =
   (name: string, daysLeft: string, progress: number) => async () => {
@@ -131,24 +130,20 @@ export const progressBarVisible =
   };
 
 export const canSeeEngagementSurveyAgreeCheckBoxes = async () => {
-  await idVisible("RADIO_ITEM_SELECTED_strongly_agree_false")();
-  await idVisible("RADIO_ITEM_SELECTED_agree_false")();
-  await idVisible("RADIO_ITEM_SELECTED_neutral_false")();
-  await idVisible("RADIO_ITEM_SELECTED_disagree_false")();
-  await idVisible("RADIO_ITEM_SELECTED_strongly_disagree_false")();
+  await idVisible(ids.CHECK_BOX_STATE("Strongly agree", false))();
+  await idVisible(ids.CHECK_BOX_STATE("Agree", false))();
+  await idVisible(ids.CHECK_BOX_STATE("Neutral", false))();
+  await idVisible(ids.CHECK_BOX_STATE("Disagree", false))();
+  await idVisible(ids.CHECK_BOX_STATE("Strongly disagree", false))();
 };
 
 export const canSeeEngagementSurvey1To10CheckBoxes = async () => {
-  await idVisible("RADIO_ITEM_SELECTED_10_false")();
-  await idVisible("RADIO_ITEM_SELECTED_9_false")();
-  await idVisible("RADIO_ITEM_SELECTED_8_false")();
-  await idVisible("RADIO_ITEM_SELECTED_7_false")();
-  await idVisible("RADIO_ITEM_SELECTED_6_false")();
-  await idVisible("RADIO_ITEM_SELECTED_5_false")();
-  await idVisible("RADIO_ITEM_SELECTED_4_false")();
-  await idVisible("RADIO_ITEM_SELECTED_3_false")();
-  await idVisible("RADIO_ITEM_SELECTED_2_false")();
-  await idVisible("RADIO_ITEM_SELECTED_1_false")();
+  for (let i = 10; i >= 1; i--) {
+    if (i === 5) {
+      await scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5)();
+    }
+    await idVisible(ids.WORKPLACE_CHOICE(i))();
+  }
 };
 
 export const canSeeEngagementSurveySupportedByCheckBoxes = async () => {
