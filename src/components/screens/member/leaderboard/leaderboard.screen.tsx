@@ -45,6 +45,7 @@ interface IProps {
   ranks: ITop3;
   referralAmount: number;
   showReferral: boolean;
+  currentUserIsOutOfBounds: boolean;
 }
 
 const FlashList = Animated.createAnimatedComponent(_FlashList);
@@ -91,6 +92,7 @@ export const LeaderboardScreen = ({
   ranks,
   referralAmount,
   showReferral,
+  currentUserIsOutOfBounds,
 }: IProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
   const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef();
@@ -115,10 +117,12 @@ export const LeaderboardScreen = ({
       return stickItem;
     }
 
-    // position is 1 based index, so only filter out (as they'd be floating) using a 0 based index to match the items array
-    const filterCurrentUser = items.filter((item) => item.position - 1 < items.length);
-    return [...navigationItems, ...filterCurrentUser];
-  }, [items, itemsIsLoading, navigationItems]);
+    const itemCount = items.length;
+
+    // remove the current user if they are out of bounds
+    const filteredItems = items.filter((_, index) => index < itemCount - 1 || !currentUserIsOutOfBounds);
+    return [...navigationItems, ...filteredItems];
+  }, [items, itemsIsLoading, navigationItems, currentUserIsOutOfBounds]);
 
   const showTrophy = (!itemsIsLoading && showYudokuEmptyMessage) || !activeLeaderboard?.consent;
 
@@ -237,7 +241,7 @@ export const LeaderboardScreen = ({
   );
 
   const onPressFloatingRank = useCallback(() => {
-    if (onShowRankModal) {
+    if (currentUserIsOutOfBounds) {
       return onShowRankModal();
     }
 
@@ -245,7 +249,7 @@ export const LeaderboardScreen = ({
       index: currentUserInfo?.position - 2,
       animated: true,
     });
-  }, [currentUserInfo?.position, onShowRankModal]);
+  }, [currentUserInfo?.position, onShowRankModal, currentUserIsOutOfBounds]);
 
   const renderFooter = useCallback(
     () => (

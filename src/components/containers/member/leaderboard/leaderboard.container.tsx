@@ -255,6 +255,19 @@ export const LeaderboardContainer = () => {
     [currentUserId, leaderboardItems]
   );
 
+  const currentUserIsOutOfBounds = useMemo(() => {
+    // the current user is considered out of bounds if there is a gap between the current user's position and the next user's position
+    // the current user is always pushed to the end of the list if they are inserted out of bounds
+    const lastItem = leaderboardItems[leaderboardItems.length - 1];
+    const secondLastItem = leaderboardItems[leaderboardItems.length - 2];
+
+    if (lastItem && secondLastItem) {
+      return lastItem.position - secondLastItem.position > 1;
+    }
+
+    return false;
+  }, [leaderboardItems]);
+
   return (
     <LeaderboardScreen
       currentUserInfo={currentUserInfo}
@@ -276,11 +289,11 @@ export const LeaderboardContainer = () => {
       ranks={top3}
       onLeftMenuPress={onLeftMenuPress}
       onNotificationPress={showNotificationCentre ? onNotificationPress : undefined}
-      // the -1 is because the user's score is pushed into the list even if they are not in the top set
-      onShowRankModal={currentUserInfo?.position > leaderboardItems.length - 1 ? onShowRankModal : null}
+      onShowRankModal={onShowRankModal}
       onUpdateActiveLeaderboard={selectSocialGroupLeaderboard}
       referralAmount={data?.referralRewardAmount?.yuCoinAmount || 0}
       showReferral={tempShowReferralOnLeaderboardV2}
+      currentUserIsOutOfBounds={currentUserIsOutOfBounds}
     />
   );
 };
