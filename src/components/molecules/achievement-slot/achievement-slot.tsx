@@ -6,12 +6,13 @@ import { Image } from "@atoms";
 interface IProps {
   onPress: () => void;
   icon: {
-    uri: string;
-    id?: string;
+    uri?: string;
+    id: string;
   };
 }
 
 const SIZE = 56;
+const IMAGE_SIZE = SIZE + 4;
 const AchievementSlot = ({ onPress, icon }: IProps) => {
   return (
     <Pressable
@@ -26,7 +27,7 @@ const AchievementSlot = ({ onPress, icon }: IProps) => {
       onPress={onPress}
     >
       {icon?.uri ? (
-        <Image w={SIZE} h={SIZE} source={{ uri: icon.uri }} />
+        <Image w={IMAGE_SIZE} h={IMAGE_SIZE} source={{ uri: icon.uri }} />
       ) : (
         <AddIcon color="#464647" showBorder={false} />
       )}
