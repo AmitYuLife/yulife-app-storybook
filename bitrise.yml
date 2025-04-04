@@ -295,23 +295,6 @@ workflows:
         - reset_repository: "Yes"
     - nvm@1: {}
     - script@1:
-        title: Magic
-        inputs:
-        - content: |-
-            # TODO: Is Magic needed?
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-            # Cris Magic goes here
-            mkdir /usr/local/share/android-sdk/cmdline-tools/latest/
-            mkdir /usr/local/share/android-sdk/cmdline-tools/latest/bin/
-            ln -s /usr/local/share/android-sdk/cmdline-tools/cmdline-tools/bin/sdkmanager /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager
-            /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
-    - script@1:
         title: yarn
         inputs:
         - content: |-
