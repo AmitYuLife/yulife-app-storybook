@@ -7,6 +7,7 @@ import { ApolloProvider } from "@apollo/client";
 import createClient from "../src/graphql/_core/client";
 import translator from "../src/locale/translator";
 import { translations } from "../src/locale/translations";
+import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context";
 const client = createClient();
 
 const Wrapper = (Story, context) => {
@@ -18,9 +19,11 @@ const Wrapper = (Story, context) => {
   return (
     <Provider store={mockStore}>
       <ApolloProvider client={client}>
-        <View style={{ position: "relative", width: 414, display: "flex" }}>
-          <Story />
-        </View>
+        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+          <View style={{ position: "relative", width: 414, display: "flex" }}>
+            <Story />
+          </View>
+        </SafeAreaProvider>
       </ApolloProvider>
     </Provider>
   );
