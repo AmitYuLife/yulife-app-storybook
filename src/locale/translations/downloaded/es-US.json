@@ -1256,7 +1256,19 @@
         "short": "Ubicación de la empresa"
       }
     },
-    "login-hero": {
+    "login_confirm": {
+      "cooldown": "Enviar un nuevo enlace en %{seconds}s...",
+      "description": "Utilice el enlace del correo electrónico que acabamos de enviarle.",
+      "heading": "¿Listo para ser tu mejor Yu? Vamos a verificar tu cuenta.",
+      "login_with_password": "Inicie sesión con la contraseña en su lugar.",
+      "resend_link": "¿No lo has recibido? Envíe un nuevo enlace."
+    },
+    "login_email": {
+      "cta_label": "Continuar",
+      "heading": "Hola a todos. ¿Cuál es tu correo electrónico?",
+      "submitting": "Presentar..."
+    },
+    "login_hero": {
       "primary_cta_label": "Reclamar mi cuenta",
       "secondary_cta_label": "Iniciar sesión",
       "slides": {
@@ -1264,6 +1276,11 @@
         "earn": "¡Gane valor en efectivo por sus pasos diarios, mindfulness y mucho más!",
         "redeem": "Canjea recompensas como vales y descuentos de tus marcas favoritas."
       }
+    },
+    "login_password": {
+      "cta_label": "Continuar",
+      "heading": "Introduzca su contraseña",
+      "submitting": "Presentar..."
     },
     "measurement_cycling_settings": {
       "description": "Cambia entre el sistema imperial (millas) y el métrico (kilómetros).",

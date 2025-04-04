@@ -1256,14 +1256,31 @@
         "short": "会社の所在地"
       }
     },
-    "login-hero": {
+    "login_confirm": {
+      "cooldown": "%{seconds} 秒後に新しいリンクを送信...",
+      "description": "送信したメールのリンクを使用してください。",
+      "heading": "最高の Yumoji になる準備はできましたか？アカウントを確認しましょう。",
+      "login_with_password": "パスワードでログインしてください。",
+      "resend_link": "届きませんでしたか？新しいリンクを送信"
+    },
+    "login_email": {
+      "cta_label": "続ける",
+      "heading": "こんにちは！メールアドレスは何ですか？",
+      "submitting": "送信中..."
+    },
+    "login_hero": {
       "primary_cta_label": "マイアカウントを請求",
       "secondary_cta_label": "ログイン",
       "slides": {
-        "donate": "重要な支援先への寄付を通じて、世界に貢献しましょう!",
-        "earn": "毎日のステップ、マインドフルネスなどでリワードを獲得しましょう!",
-        "redeem": "お好きなブランドのギフト券や割引券とご交換いただけます。"
+        "donate": "大切な支援先への寄付を通じて、世界に本当の影響を与えましょう！",
+        "earn": "毎日のステップ、マインドフルネスなどで現金価値を獲得しましょう！",
+        "redeem": "お気に入りのブランドからバウチャーや割引などの報酬を引き換えましょう！"
       }
+    },
+    "login_password": {
+      "cta_label": "続ける",
+      "heading": "パスワードを入力してください",
+      "submitting": "送信中..."
     },
     "measurement_cycling_settings": {
       "description": "インペリアル法 (マイル) とメートル法 (キロメートル) の切り替え",

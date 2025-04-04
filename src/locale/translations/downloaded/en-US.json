@@ -1256,7 +1256,19 @@
         "short": "Company location"
       }
     },
-    "login-hero": {
+    "login_confirm": {
+      "cooldown": "Send a new link in %{seconds}s...",
+      "description": "Use the link in the email we've just sent you.",
+      "heading": "Ready to be your best Yu? Let's verify your account.",
+      "login_with_password": "Log in with password instead",
+      "resend_link": "Didn't get it? Send a new link."
+    },
+    "login_email": {
+      "cta_label": "Continue",
+      "heading": "Hi there! What's your email?",
+      "submitting": "Submitting..."
+    },
+    "login_hero": {
       "primary_cta_label": "Claim my account",
       "secondary_cta_label": "Log in",
       "slides": {
@@ -1264,6 +1276,11 @@
         "earn": "Earn cash value for your daily steps, mindfulness, and more!",
         "redeem": "Redeem rewards like vouchers and discounts from your favorite brands!"
       }
+    },
+    "login_password": {
+      "cta_label": "Continue",
+      "heading": "Enter your password",
+      "submitting": "Submitting..."
     },
     "measurement_cycling_settings": {
       "description": "Change between the imperial (miles) and metric (kilometers) system.",
