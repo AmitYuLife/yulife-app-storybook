@@ -27,7 +27,7 @@ const AchievementPoints = ({ points, autoWidth }: IProps) => {
       justifyContent="space-between"
       {...autoWidthStyle}
     >
-      <Box left={-2} top={2}>
+      <Box left={-1.7} top={1.5}>
         <AchievementPointIcon size={28} />
       </Box>
       <TextTemplate color={textColor} type="l1b">
