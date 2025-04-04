@@ -106,7 +106,6 @@ export const USER_139_GIFT_B = {
     background: "forest",
     sticker: "lantern",
     autoClaimAfter: moment().subtract(1, "days").toDate(),
-    createdAt: moment().subtract(10, "days"),
   },
 } as IDatabaseItem;
 
@@ -122,6 +121,5 @@ export const USER_16_GIFT_B = {
     background: "forest",
     sticker: "lantern",
     autoClaimAfter: moment().subtract(1, "days").toDate(),
-    createdAt: moment().subtract(10, "days"),
   },
 } as IDatabaseItem;

@@ -574,19 +574,20 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should be on the 'How likely are you to recommend Biz' question", then.idVisible("TEXT_TEMPLATE_How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)b2b"));
       Then("I should see all check box's", then.canSeeEngagementSurvey1To10CheckBoxes);
     });
-    When("I select first option", when.tapID("recommend_workplace_choice_1"), async () => {
-      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-        Then("I should see 'Thank you for answering this survey.'", then.idVisible("thank_you_submission_title"));
-      });
-      When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
-        Then("I should be back on the 'How likely are you to recommend Biz' question", then.idVisible("TEXT_TEMPLATE_How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)b2b"));
-      });
-      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-        Then("I should see 'Thank you for answering this survey.'", then.idVisible("thank_you_submission_title"));
-      });
-      When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit")), async () => {
-        Then("I should see my YuCoin balance increase by 300 YuCoins for completing the survey to make a total of 1300 YuCoins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1300), 1500));
-      });
+    When("I select choice 1", when.tapID(ids.WORKPLACE_CHOICE(1)), async () => {
+      Then("I should see the checkbox for the first option selected", then.idVisible(ids.WORKPLACE_CHOICE(1)));
+    });
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I should see 'Thank you for answering this survey.'", then.idVisible("thank_you_submission_title"));
+    });
+    When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
+      Then("I should be back on the 'How likely are you to recommend Biz' question", then.idVisible("TEXT_TEMPLATE_How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)b2b"));
+    });
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I should see 'Thank you for answering this survey.'", then.idVisible("thank_you_submission_title"));
+    });
+    When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit")), async () => {
+      Then("I should see my YuCoin balance increase by 300 YuCoins for completing the survey to make a total of 1300 YuCoins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1300), 1500));
     });
   });
 
