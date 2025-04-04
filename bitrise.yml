@@ -321,6 +321,9 @@ workflows:
             # debug log
             set -x
 
+            echo "enabling corepack"
+            corepack enable
+
             yarn install --frozen-lockfile
     - install-react-native@0.10:
         inputs:
@@ -1866,6 +1869,9 @@ workflows:
             set -e
             # debug log
             set -x
+
+            echo "enabling corepack"
+            corepack enable
 
             yarn install --frozen-lockfile
     - script@1.2:
