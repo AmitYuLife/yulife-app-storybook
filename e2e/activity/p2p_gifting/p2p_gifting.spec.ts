@@ -273,7 +273,7 @@ Feature("P2P gifting", async () => {
 
   Scenario("I should see gift auto claim notification in the app inbox", scenario.start, async () => {
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
-      When("I trigger worker", when.trigger7DayAutoClaim, async () => {
+      When("I trigger worker", when.trigger7DayAutoClaim(moment().add(8, "days").toDate()), async () => {
         Then("I should see my YuCoin balance before the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(250)));
       });
       When("I trigger the 'You received a gift!' notification 10 YuCoin gift", when.triggerGiftReceivedNotification(data.CUSTOMER_139, data.USER_139_GIFT_B), async () => {

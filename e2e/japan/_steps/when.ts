@@ -5,7 +5,6 @@ import * as data from "../_data/index";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { screens } from "@appScreens";
-export { cycleThroughEngagementSurveyAgreeCheckBoxes } from "../../activity/FWQ/_steps/when";
 
 export const {
   scrollFromText,
@@ -45,11 +44,11 @@ export const { triggerSearchTokens } = screens.leaderboard;
 export const fillOutEngagementSurvey = async () => {
   await scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5)();
   await tapID(ids.BUTTON_BASE("始める"))();
-  await tapID("RADIO_ITEM_SELECTED_strongly_agree_false")();
+  await tapID(ids.WORK_LIFE_BALANCE_IMPORTANT)();
   await tapID(ids.BUTTON_BASE("次のページ"))();
-  await tapID("RADIO_ITEM_SELECTED_strongly_agree_false")();
+  await tapID(ids.ACCEPTABLE_WORKLOAD)();
   await tapID(ids.BUTTON_BASE("次のページ"))();
-  await tapID("RADIO_ITEM_SELECTED_strongly_agree_false")();
+  await tapID(ids.SUPPORTED_IN_TAKING_LEAVE)();
   await tapID(ids.BUTTON_BASE("次のページ"))();
 };
 
@@ -111,3 +110,11 @@ export const triggerThanksForGiftNotification =
       giftReceiverUserId: gift.data.toUserId,
     });
   };
+
+export const cycleThroughEngagementSurveyAgreeCheckBoxesJp = async () => {
+  await tapID(ids.CHECK_BOX_STATE("ややそう思う", false))();
+  await tapID(ids.CHECK_BOX_STATE("どちらともいえない", false))();
+  await tapID(ids.CHECK_BOX_STATE("あまりそう思わない", false))();
+  await tapID(ids.CHECK_BOX_STATE("まったくそう思わない", false))();
+  await tapID(ids.CHECK_BOX_STATE("とてもそう思う", false))();
+};

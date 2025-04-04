@@ -2,10 +2,8 @@ import * as ids from "@ids";
 import { expect } from "detox";
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
-import { scrollFromID } from "./when";
 import { getTranslation } from "_utils/translations/getTranslations";
 export {
-  canSeeEngagementSurveyAgreeCheckBoxes,
   canSeeEngagementSurvey1To10CheckBoxes,
   canSeeEngagementSurveySupportedByCheckBoxes,
 } from "../../activity/FWQ/_steps/then";
@@ -29,8 +27,13 @@ export const {
 
 export const { yuScreenV5HeaderVisible } = screens.yuscreen;
 
-export const { swipeToID, swipeFromText, scrollUntilIdVisible, scrollUntilTextVisible } =
-  navigation.scrolling;
+export const {
+  swipeToID,
+  swipeFromText,
+  scrollUntilIdVisible,
+  scrollUntilTextVisible,
+  scrollFromID,
+} = navigation.scrolling;
 
 export const wellbeingServiceVisible = async () => {
   const titles = ["Smart Health", "YuMatter", "Beam", "HiBob", "More Happi"];
@@ -51,4 +54,12 @@ export const cycleThroughGiftMessages = async () => {
   await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.lets_do_our_best_today_too"))();
   await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.keep_it_up"))();
   await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.youve_helped_me_so_much"))();
+};
+
+export const canSeeEngagementSurveyAgreeCheckBoxesJp = async () => {
+  await idVisible(ids.CHECK_BOX_STATE("とてもそう思う", false))();
+  await idVisible(ids.CHECK_BOX_STATE("ややそう思う", false))();
+  await idVisible(ids.CHECK_BOX_STATE("どちらともいえない", false))();
+  await idVisible(ids.CHECK_BOX_STATE("あまりそう思わない", false))();
+  await idVisible(ids.CHECK_BOX_STATE("まったくそう思わない", false))();
 };
