@@ -74,3 +74,4 @@ export { default as ListItemLoadingSkeleton } from "./list-item-loading-skeleton
 export { default as FullScreenHero } from "./full-screen-hero/full-screen-hero";
 export { default as RecentRewardCard } from "./recent-reward-card/recent-reward-card";
 export { default as AchievementsShowcase } from "./achievements-showcase/achievements-showcase";
+export { default as AchievementCard } from "./achievement-card/achievement-card";
