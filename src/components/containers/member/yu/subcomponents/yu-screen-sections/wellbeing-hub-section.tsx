@@ -44,10 +44,9 @@ export const WellbeingHubSection = ({ sectionInstanceId, content }: IWellbeingHu
       component: {
         id: ROUTES.wellbeingHubItems,
         name: ROUTES.wellbeingHubItems,
-        passProps: { businessAccountId: content?.businessAccountId },
       },
     });
-  }, [currentRoute, content]);
+  }, [currentRoute]);
 
   if (!content) {
     return null;

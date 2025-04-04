@@ -8,7 +8,6 @@ fragment WellbeingHubSectionContent on WellbeingHubSectionContent {
     description
     route
   }
-  businessAccountId
   buttonLabel
 }
 

@@ -11125,7 +11125,8 @@ export type WellbeingHubSection = {
 
 export type WellbeingHubSectionContent = {
   __typename?: "WellbeingHubSectionContent";
-  businessAccountId: Scalars["String"]["output"];
+  /** @deprecated No longer used from app v4.58.0 onwards */
+  businessAccountId?: Maybe<Scalars["String"]["output"]>;
   buttonLabel: Scalars["String"]["output"];
   items: Array<WellbeingHubSectionItem>;
 };
@@ -41677,7 +41678,6 @@ export type GetYuScreenV5Query = {
           loadingGroup?: number | null;
           content?: {
             __typename?: "WellbeingHubSectionContent";
-            businessAccountId: string;
             buttonLabel: string;
             items: Array<{
               __typename?: "WellbeingHubSectionItem";
@@ -43533,7 +43533,6 @@ export type GetYuScreenV5SectionsQuery = {
         loadingGroup?: number | null;
         content?: {
           __typename?: "WellbeingHubSectionContent";
-          businessAccountId: string;
           buttonLabel: string;
           items: Array<{
             __typename?: "WellbeingHubSectionItem";
@@ -43886,7 +43885,6 @@ export type SmokingSectionFragment = {
 
 export type WellbeingHubSectionContentFragment = {
   __typename?: "WellbeingHubSectionContent";
-  businessAccountId: string;
   buttonLabel: string;
   items: Array<{
     __typename?: "WellbeingHubSectionItem";
@@ -43907,7 +43905,6 @@ export type WellbeingHubSectionFragment = {
   loadingGroup?: number | null;
   content?: {
     __typename?: "WellbeingHubSectionContent";
-    businessAccountId: string;
     buttonLabel: string;
     items: Array<{
       __typename?: "WellbeingHubSectionItem";
@@ -45737,7 +45734,6 @@ type YuScreenSection_WellbeingHubSection_Fragment = {
   loadingGroup?: number | null;
   content?: {
     __typename?: "WellbeingHubSectionContent";
-    businessAccountId: string;
     buttonLabel: string;
     items: Array<{
       __typename?: "WellbeingHubSectionItem";
@@ -68771,7 +68767,6 @@ export const WellbeingHubSectionContentFragmentDoc = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
@@ -68857,7 +68852,6 @@ export const WellbeingHubSectionFragmentDoc = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
@@ -71841,7 +71835,6 @@ export const YuScreenSectionFragmentDoc = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
@@ -105959,7 +105952,6 @@ export const GetYuScreenV5Document = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
@@ -108872,7 +108864,6 @@ export const GetYuScreenV5SectionsDocument = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
