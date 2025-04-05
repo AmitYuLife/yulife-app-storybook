@@ -38,6 +38,7 @@
     },
     "start_game": "ゲーム開始"
   },
+  "achievements": "実績",
   "activity_types": {
     "cycling": {
       "plural": "サイクリング"
@@ -83,6 +84,7 @@
   "coupons": "クーポン",
   "create_challenge_error": "チャレンジの開始時に問題が発生しました。\nもう一度お試しください!",
   "device_not_supported": "お使いのデバイスは対応していません",
+  "equipped": "加入",
   "format": {
     "date_picker_display": "YYYY / MM / DD",
     "date_readable": "YYYY年M月D日",
@@ -1257,30 +1259,30 @@
       }
     },
     "login_confirm": {
-      "cooldown": "%{seconds} 秒後に新しいリンクを送信...",
-      "description": "送信したメールのリンクを使用してください。",
-      "heading": "最高の Yumoji になる準備はできましたか？アカウントを確認しましょう。",
+      "cooldown": "%{seconds}秒後に新しいリンクが送信されます。",
+      "description": "送信されたメールに記載されているリンクを使用してください。",
+      "heading": "アカウントの認証を完了してください。",
       "login_with_password": "パスワードでログインしてください。",
-      "resend_link": "届きませんでしたか？新しいリンクを送信"
+      "resend_link": "届いていない場合は、新しいリンクを送信できます。"
     },
     "login_email": {
       "cta_label": "続ける",
-      "heading": "こんにちは！メールアドレスは何ですか？",
-      "submitting": "送信中..."
+      "heading": "メールアドレスをご入力ください。",
+      "submitting": "送信中です..."
     },
     "login_hero": {
-      "primary_cta_label": "マイアカウントを請求",
+      "primary_cta_label": "アカウントを申請",
       "secondary_cta_label": "ログイン",
       "slides": {
-        "donate": "大切な支援先への寄付を通じて、世界に本当の影響を与えましょう！",
-        "earn": "毎日のステップ、マインドフルネスなどで現金価値を獲得しましょう！",
-        "redeem": "お気に入りのブランドからバウチャーや割引などの報酬を引き換えましょう！"
+        "donate": "支援先への寄付を通じて世界に貢献",
+        "earn": "毎日の歩数、マインドフルネスなどでYuCoinを獲得",
+        "redeem": "お好きなブランドのギフト券や割引券などのリワードと引き換え"
       }
     },
     "login_password": {
       "cta_label": "続ける",
       "heading": "パスワードを入力してください",
-      "submitting": "送信中..."
+      "submitting": "送信中です..."
     },
     "measurement_cycling_settings": {
       "description": "インペリアル法 (マイル) とメートル法 (キロメートル) の切り替え",

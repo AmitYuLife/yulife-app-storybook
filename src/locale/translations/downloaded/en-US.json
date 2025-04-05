@@ -38,6 +38,7 @@
     },
     "start_game": "Start Game"
   },
+  "achievements": "Achievements",
   "activity_types": {
     "cycling": {
       "plural": "cycled"
@@ -83,6 +84,7 @@
   "coupons": "Coupons",
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "device_not_supported": "device not supported",
+  "equipped": "Equipped",
   "format": {
     "date_picker_display": "MM / DD / YYYY",
     "date_readable": "MMMM DD, YYYY",

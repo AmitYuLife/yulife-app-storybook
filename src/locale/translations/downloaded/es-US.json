@@ -38,6 +38,7 @@
     },
     "start_game": "Comenzar juego"
   },
+  "achievements": "Logros",
   "activity_types": {
     "cycling": {
       "plural": "Ciclismo"
@@ -83,6 +84,7 @@
   "coupons": "Cupones",
   "create_challenge_error": "Lo sentimos, ha habido un problema al iniciar tu reto.\n¡Inténtalo de nuevo!",
   "device_not_supported": "dispositivo no compatible",
+  "equipped": "Equipado",
   "format": {
     "date_picker_display": "DD / MM / AAAA",
     "date_readable": "DD MMM AAAA",
