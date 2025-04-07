@@ -88,4 +88,5 @@ export const features = [
   "tempGameConfirmDuelScore",
   "tempGameShowCouponsTab",
   "tempGameUseNewPurchaseHistory",
+  "tempGameShowAchievements",
 ] as const;

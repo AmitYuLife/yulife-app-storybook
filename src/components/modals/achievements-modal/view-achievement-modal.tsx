@@ -9,7 +9,7 @@ import { MODALS } from "@navigation/constants";
 import { t } from "@locale";
 
 interface IProps {
-  title: string;
+  name: string;
   icon: {
     uri?: string;
     id: string;
@@ -23,7 +23,7 @@ interface IProps {
 const onClose = () => Navigation.dismissModal(MODALS.viewAchievementModal);
 
 const ViewAchievementModal = ({
-  title,
+  name,
   description,
   icon,
   points,
@@ -40,7 +40,7 @@ const ViewAchievementModal = ({
       <Box alignItems="center" justifyContent="center" p={38}>
         <Image source={icon} width={Style.adjust(232)} height={Style.adjust(232)} />
         <Box mt={60} mb={16}>
-          <TextTemplate type="h2">{title}</TextTemplate>
+          <TextTemplate type="h2">{name}</TextTemplate>
         </Box>
         <TextTemplate type="b2" textAlign="center">
           {description}

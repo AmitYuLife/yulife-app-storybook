@@ -27,6 +27,7 @@ import { useAnimation } from "./use-animation";
 import { INITIAL_SCROLL, MIN_SECTIONS_HEIGHT, styles } from "./yu-screen.styles";
 import { YumojiPrompt } from "./yumoji-prompt";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { useUserFeatures } from "@hooks";
 
 interface IProps {
   onNotificationPress: () => void;
@@ -38,6 +39,8 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress }) => {
   const lastLayoutUpdate = useSelector(getYuScreenLastLayoutUpdate);
   const currentScreen = useSelector(getRouteState);
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
+
+  const { tempGameShowAchievements } = useUserFeatures();
 
   const dispatch = useDispatch();
   const [collapseHeader, setCollapseHeader] = useState(false);
@@ -152,6 +155,13 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress }) => {
     [onNotificationPress, onLeftMenuPress]
   );
 
+  const sectionsStyle = useMemo(
+    () => ({
+      ...styles.sections,
+      paddingTop: tempGameShowAchievements ? Style.adjust(45) : 0,
+    }),
+    [tempGameShowAchievements]
+  );
   return (
     <View style={memoizedStyles.wrapper}>
       <View style={styles.contentWrapper}>
@@ -181,8 +191,9 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress }) => {
               yumojiOpacity={yumojiOpacity}
               yumojiScale={yumojiScale}
               headerHeight={headerHeight}
+              showAchievements={tempGameShowAchievements}
             />
-            <View style={styles.sections} onLayout={handleLayout}>
+            <View style={sectionsStyle} onLayout={handleLayout}>
               {sections.map(renderSection)}
             </View>
             <View style={memoizedStyles.bottomPad} />

@@ -43,7 +43,6 @@ export const styles = StyleSheet.create({
   },
   yumojiWrapper: {
     position: "absolute",
-    bottom: Style.adjust(10),
     right: Style.adjust(20),
     alignItems: "center",
     transformOrigin: "50% 0%",

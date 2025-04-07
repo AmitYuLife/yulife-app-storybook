@@ -33,8 +33,10 @@ export const WithAchievementEquipped: Story = {
     achievements: [
       {
         name: "complete 3 challenges",
-        achievementId: "67e2a95091dd910d3631f02b",
-        achievementType: "progress",
+        id: "67e2a95091dd910d3631f02b",
+        type: "progress",
+        points: 10,
+        description: "description",
         icon: {
           uri: "https://yulife-local.imgix.net/storybook/step-achievement.png?ixlib=js-3.2.1&s=f9252a00e07cc0e6b940f9aa0a2ec96a",
           id: "icon-key",
