@@ -590,6 +590,10 @@ const routesForRegistration = [
     name: MODALS.openRandomChest,
     component: require("../components/modals/open-random-chest/open-random-chest-modal").default,
   },
+  {
+    name: MODALS.viewAchievementModal,
+    component: require("../components/modals/achievements-modal/view-achievement-modal").default,
+  },
 ];
 
 export default routesForRegistration;

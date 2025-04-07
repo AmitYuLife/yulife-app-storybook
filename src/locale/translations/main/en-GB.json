@@ -130,6 +130,8 @@
   "history": "History",
   "coupons": "Coupons",
   "achievements": "Achievements",
+  "equip": "Equip",
+  "unequip": "Unequip",
   "equipped": "Equipped",
   "yu_coin": {
     "lower_case": "yucoin",
