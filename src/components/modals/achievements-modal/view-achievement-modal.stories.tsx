@@ -20,7 +20,7 @@ const meta: Meta<typeof ViewAchievementModal> = {
     },
   },
   args: {
-    title: "Cosmic Threads",
+    name: "Cosmic Threads",
     description: "[You’ve earned this achievement by completing all challenges on Ring Planet!]",
     percentageOfUsersWithAchievement: "0.5% of YuLifers have this",
     points: 10,
