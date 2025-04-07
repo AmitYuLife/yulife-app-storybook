@@ -140,7 +140,6 @@ export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
               guesses: params.guesses,
               adjustedTime: params.adjustedTime,
               difficulty: SudokuDifficulty.Easy,
-              levelSlotId: sudokuState.levelSlotId,
               date: sudokuState.date,
               challengeId: sudokuState.challengeId,
             },

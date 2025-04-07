@@ -14,7 +14,6 @@ interface SubmitProps {
   hints: number;
   mistakes: number;
   challengeId: string;
-  levelSlotId: string;
 }
 
 export const useSubmitSudokuSolution = () => {
