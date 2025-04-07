@@ -16,6 +16,7 @@ const environmentConfig = {
   intercom_android_api_key: process.env.INTERCOM_API_KEY_ANDROID ?? "",
   intercom_ios_api_key: process.env.INTERCOM_API_KEY_IOS ?? "",
   url_scheme: process.env.URL_SCHEME ?? "yulifeapp",
+  apple_merchant_identifier: process.env.APPLE_MERCHANT_IDENTIFIER ?? "merchant.develop.yulife",
 };
 
 const googleServicesFile =
@@ -188,6 +189,13 @@ export default () => ({
           "./assets/fonts/OpenSans-Light.ttf",
           "./assets/fonts/OpenSans-Regular.ttf",
         ],
+      },
+    ],
+    [
+      "@stripe/stripe-react-native",
+      {
+        merchantIdentifier: environmentConfig.apple_merchant_identifier,
+        enableGooglePay: false,
       },
     ],
     "./plugins/yulife/with-yulife.plugin",
