@@ -79,7 +79,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
       if (reward.isLocked) {
         Logger.logMixpanelEvent("reward_viewed", {
           locked: true,
-          reward_code: reward.id,
+          reward_id: reward.id,
           reward_name: reward.name,
         });
 
