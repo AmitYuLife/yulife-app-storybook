@@ -6,7 +6,7 @@ import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR, CHALLENGE_PROGRESS_SCREEN } from "@ids";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
-import { Image } from "@atoms";
+import { Box, Image } from "@atoms";
 import { Pressable, TertiaryButton } from "@molecules";
 import { Style } from "@styles";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
@@ -18,6 +18,8 @@ import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 import { t } from "@locale";
 import { TopBarType } from "@graphql/__generated";
 import { useGetChallengeDetails } from "@hooks";
+import ChallengeProgressDebugInfoWrapper from "./subcomponents/challengeProgressDebugInfoWrapper";
+import { getDebugToolsEnabled } from "@redux/debug/debug.selectors";
 
 // transparent png 1x1
 const empty_uri = {
@@ -50,6 +52,7 @@ function ChallengeProgressScreen({
   yuniversalMap,
 }: IChallengeProgressScreenProps) {
   const appButton = useSelector(getActiveChallengeAppButton);
+  const debugToolsEnabled = useSelector(getDebugToolsEnabled);
 
   const { data } = useGetChallengeDetails({
     levelSlotTemplateId,
@@ -132,6 +135,12 @@ function ChallengeProgressScreen({
           <Exit onPress={onDismissPress} {...actionStyles} />
         </View>
       </View>
+      {debugToolsEnabled && unit === "steps" ? (
+        <Box mt={40} ml={16}>
+          <ChallengeProgressDebugInfoWrapper />
+        </Box>
+      ) : null}
+
       {hideExternalLinks || !appButton?.title ? null : (
         <View style={styles.meditationButtonWrapper}>
           <Pressable delay={1000} onPress={openFaqUrl} style={styles.faqUrl}>

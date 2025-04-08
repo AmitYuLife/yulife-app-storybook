@@ -771,6 +771,13 @@
           "heading": "Get started with Fiit",
           "subheading": "Complete any Fiit class to get rewarded"
         }
+      },
+      "debug_info": {
+        "initial_steps": "1. %{healthProvider} initial steps: %{steps}",
+        "current_pedometer_steps": "2. Current Pedometer Steps: %{steps}",
+        "progress": "3. Progress (2 - 1): %{progress}",
+        "history_steps": "4. Pedometer history steps:",
+        "cta": "Export data"
       }
     },
     "challenge_progress_watch": {
@@ -1795,7 +1802,8 @@
       "samsungHealth": "Samsung Health",
       "googleFit": "Google Fit",
       "healthKit": "Apple Health",
-      "healthConnect": "Health Connect"
+      "healthConnect": "Health Connect",
+      "generic": "Health Provider"
     },
     "explanation": {
       "title": "Why do I need this?",

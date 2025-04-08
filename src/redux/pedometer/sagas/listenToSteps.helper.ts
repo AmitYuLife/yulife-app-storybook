@@ -14,6 +14,10 @@ import { stepsChannel, NEXT_DAY_STARTED } from "../pedometer.channels";
 import { stepsChannel as yuHealthStepsChannel } from "../yu-health.pedometer.channels";
 import { getLastUpdated, getSteps } from "../pedometer.selectors";
 import { getMaxStepsAnomalyWindowMs, getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
+import { getActiveLevel } from "@redux/levels/levels.selectors";
+import { updatePedometerForDebugSuccessAction } from "@redux/debug/debug.actions";
+import { getDebugToolsEnabled } from "@redux/debug/debug.selectors";
+import { HealthDataType } from "@yu-life/react-native-yu-health";
 
 const ERROR_NOT_AUTHORISED = "Pedometer not authorised";
 const STEPS_PER_MILLISECONDS_LIMIT = 2;
@@ -76,6 +80,17 @@ export default function* listenToSteps() {
           const stepsPerMilliseconds = (results.steps - currentSteps) / Math.max(1, timeSinceLastUpdate);
           areValidSteps = stepsPerMilliseconds < STEPS_PER_MILLISECONDS_LIMIT;
         }
+      }
+
+      const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
+      const debugToolsEnabled: ReturnType<typeof getDebugToolsEnabled> = yield select(getDebugToolsEnabled);
+
+      if (
+        debugToolsEnabled &&
+        activeLevel.challengeIsActive &&
+        activeLevel.yuHealth.dataType.includes(HealthDataType.steps)
+      ) {
+        yield put(updatePedometerForDebugSuccessAction(results));
       }
 
       if (results.steps !== currentSteps && areValidSteps) {

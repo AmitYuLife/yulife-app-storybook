@@ -14,6 +14,7 @@ import { getActiveLevel } from "../levels.selectors";
 import { isEmpty } from "lodash";
 import { updateMobileQuestLevelChallenge } from "@graphql/challenges/updateChallenge.gql";
 import { UpdateMobileQuestLevelChallengeMutation } from "@graphql/__generated";
+import { getDebugToolsEnabled } from "@redux/debug/debug.selectors";
 
 const RETRY_UPDATE_CHALLENGE_COUNT = 5;
 
@@ -44,12 +45,14 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
     } else {
       try {
         const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+        const debugToolsEnabled: ReturnType<typeof getDebugToolsEnabled> = yield select(getDebugToolsEnabled);
         const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
         const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, stepsBlackListApps, features);
+
         if (
           result.value === 0 &&
           !payload?.skipDefer &&
-          features.enableChallengeNoDataDefer &&
+          (features.enableChallengeNoDataDefer || debugToolsEnabled) &&
           !isEmpty(active.fitKitTypes)
         ) {
           yield spawn(async () => {
