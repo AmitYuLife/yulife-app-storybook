@@ -6,10 +6,12 @@ import { ViewStyle } from "react-native";
 interface IProps {
   label: string;
   autoWidth?: boolean;
+  locked?: boolean;
 }
 
-const AchievementPoints = ({ label, autoWidth }: IProps) => {
+const AchievementPoints = ({ label, autoWidth, locked }: IProps) => {
   const textColor = useMemo(() => (label === "0" ? "#D9D9D7" : "#464647"), [label]);
+  const backgroundColor = useMemo(() => (locked ? "#E3E3E1" : "#F4F0FF"), [locked]);
 
   const autoWidthStyle = useMemo(
     () => (autoWidth ? { flexGrow: 0, flexShrink: 0, alignSelf: "flex-start" } : { width: 104 }),
@@ -18,7 +20,7 @@ const AchievementPoints = ({ label, autoWidth }: IProps) => {
   return (
     <Box
       pr={8}
-      bg="#F4F0FF"
+      bg={backgroundColor}
       h={24}
       br={20}
       flexDirection="row"
@@ -27,7 +29,7 @@ const AchievementPoints = ({ label, autoWidth }: IProps) => {
       {...autoWidthStyle}
     >
       <Box left={-1.7} top={1.5}>
-        <AchievementPointIcon size={28} />
+        <AchievementPointIcon size={28} locked={locked} />
       </Box>
       <TextTemplate color={textColor} type="l1b">
         {label}

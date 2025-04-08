@@ -1,25 +1,27 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { CheckIcon } from "@atoms/icon/check-icon";
+import { LockIcon } from "@atoms/icon/lock-icon";
 import { t } from "@locale";
 import { AchievementPoints, BoxOption } from "@molecules";
 import { Style } from "@styles";
 import { addCommasToNumber } from "@utils";
 import { memo } from "react";
 import { StyleSheet } from "react-native";
+import { ReactNode } from "react";
 
 interface IProps {
   title: string;
   description: string;
   onPress: () => void;
   points: number;
-  isEquipped?: boolean;
+  status: "locked" | "unlocked" | "equipped";
   icon: {
     uri?: string;
     id: string;
   };
 }
 
-const AchievementCard = ({ title, description, onPress, points, icon, isEquipped }: IProps) => {
+const AchievementCard = ({ title, description, onPress, points, icon, status }: IProps) => {
   return (
     <BoxOption
       onPress={onPress}
@@ -31,17 +33,8 @@ const AchievementCard = ({ title, description, onPress, points, icon, isEquipped
       {/* we need to change the type of the BoxOption component for children */}
       <>
         <Box position="absolute" top={8} flexDirection="row" justifyContent="space-between" left={8} right={8}>
-          <AchievementPoints label={addCommasToNumber(points)} autoWidth={true} />
-          {!isEquipped ? null : (
-            <Box bg="#FFF2F2" flexDirection="row" alignItems="center" pl={8} pr={2} br={20} gap={4}>
-              <TextTemplate color="#E30D76" type="l3b">
-                {t("equipped")}
-              </TextTemplate>
-              <Box w={20} h={20} br={100} p={2} bg="#E30D76" alignItems="center" justifyContent="center">
-                <CheckIcon color="white" size={11} />
-              </Box>
-            </Box>
-          )}
+          <AchievementPoints label={addCommasToNumber(points)} autoWidth={true} locked={status === "locked"} />
+          {STATUS_COMPONENTS[status]}
         </Box>
         <Box alignItems="center" justifyContent="center" mt={24}>
           <Image h={95} w={95} style={styles.image} source={icon} />
@@ -59,6 +52,29 @@ const AchievementCard = ({ title, description, onPress, points, icon, isEquipped
       </>
     </BoxOption>
   );
+};
+
+const Equipped = () => (
+  <Box bg="#FFF2F2" flexDirection="row" alignItems="center" pl={8} pr={2} br={20} gap={4}>
+    <TextTemplate color="#E30D76" type="l3b">
+      {t("equipped")}
+    </TextTemplate>
+    <Box w={20} h={20} br={100} p={2} bg="#E30D76" alignItems="center" justifyContent="center">
+      <CheckIcon color="white" size={11} />
+    </Box>
+  </Box>
+);
+
+const Locked = () => (
+  <Box br={100} bg="#D9D9D7" p={4} alignItems="center" justifyContent="center">
+    <LockIcon size={16} />
+  </Box>
+);
+
+const STATUS_COMPONENTS: Record<string, ReactNode> = {
+  unlocked: null,
+  locked: <Locked />,
+  equipped: <Equipped />,
 };
 
 const styles = StyleSheet.create({

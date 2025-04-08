@@ -43,3 +43,10 @@ export const LabelAsText: Story = {
     autoWidth: true,
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    label: "10",
+    locked: true,
+  },
+};
