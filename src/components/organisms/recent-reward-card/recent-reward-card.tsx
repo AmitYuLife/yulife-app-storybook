@@ -13,11 +13,15 @@ interface IRecentRewardCardProps extends IBoxProps {
 const RecentRewardCard = ({ label, onPress, imageUrl, ...props }: IRecentRewardCardProps) => {
   return (
     <Box flexDirection="column" {...props}>
-      <BoxOption showShadow={true} br={Style.adjust(15)} innerHeight={Style.adjust(150)} onPress={onPress}>
+      <BoxOption showShadow={true} br={Style.adjust(18)} innerHeight={Style.adjust(130)} onPress={onPress}>
         <Box alignItems="center" flexDirection="column" h="100%">
-          <Image source={{ uri: imageUrl }} width={"100%"} height={90} resizeMode="cover" borderTopRadius={20} />
+          <Box alignItems="center" flexDirection="column" w="100%" mb={-10}>
+            <Image source={{ uri: imageUrl }} width={"100%"} height={90} resizeMode="cover" borderTopRadius={18} />
+            {/* Hide a bit of the bottom of the image as some reward images have border radius in the images!! >_< */}
+            <Box bottom={0} w="100%" position="absolute" bg="#FFFFFF" h={10} />
+          </Box>
           <Box justifyContent="center" alignItems="center" pl={2} w="100%" flex={1}>
-            <TextTemplate type="l1b" color="#5A5A5C" textAlign="center" numberOfLines={3}>
+            <TextTemplate type="l1b" color="#5A5A5C" textAlign="center" numberOfLines={2}>
               {label}
             </TextTemplate>
           </Box>

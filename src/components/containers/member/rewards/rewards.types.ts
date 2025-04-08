@@ -1,3 +1,5 @@
+import { GetMobileRewardsListQuery } from "@graphql/__generated";
+
 export enum RewardsManagerActionTypes {
   SET_SHOW_TITLE = "SET_SHOW_TITLE",
   SET_SHOW_CHIP_LIST = "SET_SHOW_CHIP_LIST",
@@ -33,4 +35,12 @@ export interface IRewardsManagerAction {
 export interface IRewardContainerProps {
   hasOtherContainers?: boolean;
   handlePurchasesPress?: () => void;
+}
+
+export interface RewardOnPressArgs {
+  id: string;
+  name: string;
+  sduiStepId?: string;
+  isLocked?: boolean;
+  teaseDetails?: GetMobileRewardsListQuery["data"]["list"][0]["teaseDetails"];
 }

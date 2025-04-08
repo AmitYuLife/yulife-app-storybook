@@ -4,13 +4,13 @@ import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import RewardsListScreen, { DEFAULT_TAG } from "@screens/member/rewards/list/rewards-list.screen";
 import { showYuModal } from "@navigation/root";
-import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
+import { useQueryOnScreenSeen, useTapBackTwiceToExit, useUserFeatures } from "@hooks";
 import { t } from "@locale";
 import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/subcomponents/reward-milestone-details";
-import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
+import { gql } from "@graphql/__generated";
 import { useNavigation } from "@navigation/navigation.context";
 import { RewardsManagerContext } from "./rewards.manager.context";
-import { IRewardContainerProps, RewardsManagerActionTypes } from "./rewards.types";
+import { IRewardContainerProps, RewardOnPressArgs, RewardsManagerActionTypes } from "./rewards.types";
 
 const REWARDS_ON_LIST = 5;
 
@@ -19,6 +19,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
   const [chipList, setChipList] = useState([]);
   const { componentId, onLeftMenuPress } = useNavigation();
   const { onScroll, state, dispatch } = useContext(RewardsManagerContext);
+  const { tempGameNewRewardsScreen } = useUserFeatures();
 
   useTapBackTwiceToExit(componentId);
 
@@ -28,9 +29,17 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
     { variables: { tag } }
   );
 
+  const [getRecentlyUsedRewards, { loading: recentLoading, data: recentRewards }] = useQueryOnScreenSeen(
+    gql("GetMobileRecentlyUsedRewardsListDocument"),
+    ROUTES.rewards,
+    {},
+    { disabled: !tempGameNewRewardsScreen }
+  );
+
   const onRefresh = useCallback(() => {
     getRewards();
-  }, [getRewards]);
+    getRecentlyUsedRewards();
+  }, [getRecentlyUsedRewards, getRewards]);
 
   useEffect(() => {
     if (chipList.length === 0 && rewards?.data?.tags.length > 0) {
@@ -52,7 +61,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
     }
   }, [rewards?.data?.list?.length, state.isOnScrollActionEnabled]);
 
-  const isLoading = !rewards?.data?.list?.length && loading;
+  const isLoading = (loading || recentLoading) && !rewards?.data?.list?.length && !recentRewards?.data;
 
   const handleStoreLocationPress = useCallback(() => {
     Navigation.dismissAllModals({ animations: { dismissModal: { enabled: false } } });
@@ -68,7 +77,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
   }, [componentId]);
 
   const handleRewardDetailsItemPress = useCallback(
-    (reward: GetMobileRewardsListQuery["data"]["list"][0]) => {
+    (reward: RewardOnPressArgs) => {
       /**
        * locked means that the reward does not have
        * available denominations
@@ -122,7 +131,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
           id: ROUTES.rewardDetailsSdui,
           name: ROUTES.rewardDetailsSdui,
           passProps: {
-            stepId: rewards?.data?.sduiStepId,
+            stepId: reward?.sduiStepId ?? rewards?.data?.sduiStepId,
             dynamicId: reward.id,
             shouldRefetchOnScreenSeen: true,
           },
@@ -130,7 +139,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
         },
       });
     },
-    [rewards?.data?.sduiStepId]
+    [componentId, rewards?.data?.sduiStepId]
   );
 
   return (
@@ -140,6 +149,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
       loading={isLoading}
       onRefresh={onRefresh}
       rewardsData={rewards?.data}
+      recentRewards={recentRewards?.data}
       chipList={chipList}
       onLeftMenuPress={onLeftMenuPress}
       onItemPress={handleRewardDetailsItemPress}

@@ -1017,7 +1017,8 @@
       "list": {
         "rewards": "Rewards",
         "history": "Purchased",
-        "store": "Store"
+        "store": "Store",
+        "recently_used": "Recently used"
       },
       "purchases": {
         "empty": {

@@ -1,0 +1,12 @@
+query GetMobileRecentlyUsedRewardsList {
+  data: getMobileRecentlyUsedRewardsList {
+    recentlyUsedRewards {
+      id
+      sduiStepId
+      name
+      image {
+        ...RemoteImage
+      }
+    }
+  }
+}
