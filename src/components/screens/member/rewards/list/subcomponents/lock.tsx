@@ -1,8 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
-
-import { LockIcon } from "@atoms/icon/lock";
+import { LockIcon } from "@atoms/icon/lock-icon";
 
 type Props = {
   testID?: string;
@@ -12,7 +11,7 @@ const _LockedReward = ({ testID }: Props) => (
   <View testID={testID} style={styles.wrapper}>
     <View style={styles.inner}>
       <View style={styles.lock}>
-        <LockIcon />
+        <LockIcon size={14} />
       </View>
     </View>
   </View>

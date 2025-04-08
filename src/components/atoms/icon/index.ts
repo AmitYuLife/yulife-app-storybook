@@ -31,7 +31,7 @@ import { StepsIcon } from "./steps-icon";
 import { CyclingIcon } from "./cycling-icon";
 import { MindfulnessIcon } from "./mindfulness-icon";
 import { StarIcon } from "./star-icon";
-import { LockIcon } from "./lock";
+import { LockIcon } from "./lock-icon";
 import { Stars1, Stars2, Stars3 } from "./stars-icon";
 import { InformationIcon } from "./information-icon";
 import { ExclamationIcon } from "./exclamation-icon";
