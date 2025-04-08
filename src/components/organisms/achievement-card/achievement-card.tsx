@@ -3,6 +3,7 @@ import { CheckIcon } from "@atoms/icon/check-icon";
 import { t } from "@locale";
 import { AchievementPoints, BoxOption } from "@molecules";
 import { Style } from "@styles";
+import { addCommasToNumber } from "@utils";
 import { memo } from "react";
 import { StyleSheet } from "react-native";
 
@@ -30,7 +31,7 @@ const AchievementCard = ({ title, description, onPress, points, icon, isEquipped
       {/* we need to change the type of the BoxOption component for children */}
       <>
         <Box position="absolute" top={8} flexDirection="row" justifyContent="space-between" left={8} right={8}>
-          <AchievementPoints points={points} autoWidth={true} />
+          <AchievementPoints label={addCommasToNumber(points)} autoWidth={true} />
           {!isEquipped ? null : (
             <Box bg="#FFF2F2" flexDirection="row" alignItems="center" pl={8} pr={2} br={20} gap={4}>
               <TextTemplate color="#E30D76" type="l3b">

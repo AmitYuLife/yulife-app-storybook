@@ -7,6 +7,7 @@ import { Style } from "@styles";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { t } from "@locale";
+import { addCommasToNumber } from "@utils";
 
 interface IProps {
   name: string;
@@ -63,7 +64,7 @@ const ViewAchievementModal = ({
       </Box>
       <GenericHeadingAbsolute onRightIconPress={onClose} />
       <Box position="absolute" top={insets.top} left={16}>
-        <AchievementPoints autoWidth={true} points={points} />
+        <AchievementPoints autoWidth={true} label={addCommasToNumber(points)} />
       </Box>
     </Box>
   );
