@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TextTemplate } from "@atoms";
-import { Linking, Platform, StyleSheet, View } from "react-native";
+import { Alert, Linking, Platform, StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { ActionButton, Button, SecondaryButton } from "@components/molecules";
 import { challengeEndAction } from "@redux/levels/levels.actions";
@@ -28,6 +28,8 @@ function ChallengeNoDataModal() {
     "screens.challenge_no_data.buttons.faq",
     "screens.challenge_no_data.buttons.open_apple_health",
     "screens.daily.fitkit.help.faq_uri",
+    "screens.challenge_no_data.cant_open_apple_health_title",
+    "screens.challenge_no_data.cant_open_apple_health_body",
   ]);
 
   useEffect(() => {
@@ -62,6 +64,17 @@ function ChallengeNoDataModal() {
     Linking.openURL(t["screens.daily.fitkit.help.faq_uri"]);
   }, [t]);
 
+  const openAppleHealth = useCallback(async () => {
+    try {
+      await openAppleHealthSummary();
+    } catch {
+      Alert.alert(
+        t["screens.challenge_no_data.cant_open_apple_health_title"],
+        t["screens.challenge_no_data.cant_open_apple_health_body"]
+      );
+    }
+  }, [t]);
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.mainContentWrapper}>
@@ -86,7 +99,7 @@ function ChallengeNoDataModal() {
         <ActionButton label={t["screens.challenge_no_data.buttons.faq"]} onPress={openHelp} icon={<FaqIcon />} />
         {Platform.OS === "ios" ? (
           <ActionButton
-            onPress={openAppleHealthSummary}
+            onPress={openAppleHealth}
             label={t["screens.challenge_no_data.buttons.open_apple_health"]}
             icon={<HealthAppIcon />}
           />

@@ -820,6 +820,8 @@
     "challenge_no_data": {
       "title": "Oops! Your active challenge isn't syncing yet.",
       "description": "We're missing your active challenge data. Make sure the challenge activity is synced within your health app. If you hit a snag, you can always cancel and give it another go.",
+      "cant_open_apple_health_title": "Something went wrong",
+      "cant_open_apple_health_body": "Please try opening Apple Health manually to check your data",
       "buttons": {
         "retry": "Try sync again",
         "cancel_challenge": "Cancel challenge",
