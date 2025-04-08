@@ -5,6 +5,7 @@ import { t } from "@locale";
 import { AchievementPoints, AchievementSlot } from "@molecules";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
+import { addCommasToNumber } from "@utils";
 import { memo, useCallback, useMemo } from "react";
 
 export interface IAchievement {
@@ -56,7 +57,7 @@ const AchievementsShowcase = ({ points, achievements = [] }: IProps) => {
       <Box w={132} bg="white" p={16} br={8} alignItems="center" borderWidth={1} borderColor="#E3E3E1">
         <Box position="absolute" top={-12} left={0} right={0} alignItems="center">
           <Box position="absolute" top={-1} borderWidth={1} borderColor="#E3E3E1" width={105} height={23} br={20} />
-          <AchievementPoints points={points} />
+          <AchievementPoints label={addCommasToNumber(points)} />
         </Box>
         <Pressable flexDirection="row" alignItems="center" mb={8} mt={8} onPress={goToAchievements}>
           <TextTemplate type="l1b">{t("achievements")}</TextTemplate>

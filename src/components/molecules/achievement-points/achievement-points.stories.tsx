@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import AchievementPoints from "./achievement-points";
+import { addCommasToNumber } from "@utils";
 
 const meta: Meta<typeof AchievementPoints> = {
   component: AchievementPoints,
@@ -19,14 +20,26 @@ type Story = StoryObj<typeof AchievementPoints>;
 
 export const Default: Story = {
   args: {
-    points: 10000,
-    autoWidth: false,
+    label: "0",
+  },
+};
+
+export const WithoutAutoWidth: Story = {
+  args: {
+    label: addCommasToNumber(1000),
   },
 };
 
 export const AutoWidth: Story = {
   args: {
-    points: 100,
+    label: addCommasToNumber(1000),
+    autoWidth: true,
+  },
+};
+
+export const LabelAsText: Story = {
+  args: {
+    label: "35 Achievement Points",
     autoWidth: true,
   },
 };
