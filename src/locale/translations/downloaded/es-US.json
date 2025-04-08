@@ -84,6 +84,7 @@
   "coupons": "Cupones",
   "create_challenge_error": "Lo sentimos, ha habido un problema al iniciar tu reto.\n¡Inténtalo de nuevo!",
   "device_not_supported": "dispositivo no compatible",
+  "equip": "Equipar",
   "equipped": "Equipado",
   "format": {
     "date_picker_display": "DD / MM / AAAA",
@@ -1982,6 +1983,7 @@
       }
     }
   },
+  "unequip": "Desequipar",
   "user_other_app": "O usa la app",
   "user_referral": {
     "description": {

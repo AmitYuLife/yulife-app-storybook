@@ -84,6 +84,7 @@
   "coupons": "Coupons",
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "device_not_supported": "device not supported",
+  "equip": "Equip",
   "equipped": "Equipped",
   "format": {
     "date_picker_display": "MM / DD / YYYY",
@@ -1982,6 +1983,7 @@
       }
     }
   },
+  "unequip": "Un-equip",
   "user_other_app": "Or use the app",
   "user_referral": {
     "description": {

@@ -84,6 +84,7 @@
   "coupons": "クーポン",
   "create_challenge_error": "チャレンジの開始時に問題が発生しました。\nもう一度お試しください!",
   "device_not_supported": "お使いのデバイスは対応していません",
+  "equip": "加入",
   "equipped": "加入",
   "format": {
     "date_picker_display": "YYYY / MM / DD",
@@ -1982,6 +1983,7 @@
       }
     }
   },
+  "unequip": "装備解除",
   "user_other_app": "または専用アプリを使用してください",
   "user_referral": {
     "description": {
