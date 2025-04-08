@@ -19,7 +19,7 @@ function getGemColor(level: QuestsMapLevel) {
       case 150:
         return "#FA906A";
       case 0:
-        return "#FFD2DB";
+        return "#E8AAFE";
       default:
         return "white";
     }
