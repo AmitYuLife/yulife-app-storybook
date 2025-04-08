@@ -93,7 +93,8 @@ export type MixpanelEvent =
   | "smoking_streak_carousel_item_viewed"
   | "yuhealth_available_providers_fetched"
   | "yuhealth_permissions_fetched"
-  | "wrapped_screen_view";
+  | "wrapped_screen_view"
+  | "challenge_progress_debug_tools";
 
 export enum UserSupportLevel {
   Basic = "basic",

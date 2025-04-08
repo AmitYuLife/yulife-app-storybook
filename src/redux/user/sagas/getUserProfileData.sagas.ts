@@ -41,6 +41,7 @@ export default function* getUserProfileData(
           cyclingGameSettings: {
             cyclingMeasurement: userProfile.getUserProfile.gameSettings.cyclingMeasurement,
           },
+          debugToolsEnabled: userProfile.getUserProfile.gameSettings.debugToolsEnabled,
         })
       );
     }

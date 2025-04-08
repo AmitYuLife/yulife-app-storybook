@@ -1,5 +1,9 @@
 query GetMobileQuestLevelChallengeDetails($level: Int!, $yuniversalMap: Int, $levelSlotTemplateId: String!) {
-  getMobileQuestLevelChallengeDetails(level: $level, yuniversalMap: $yuniversalMap, levelSlotTemplateId: $levelSlotTemplateId) {
+  getMobileQuestLevelChallengeDetails(
+    level: $level
+    yuniversalMap: $yuniversalMap
+    levelSlotTemplateId: $levelSlotTemplateId
+  ) {
     id
     heading
     backgroundColour

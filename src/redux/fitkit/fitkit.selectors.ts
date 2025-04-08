@@ -15,3 +15,6 @@ export const getFitkitInitilized = createSelector(fitkitSelector, fitkitInitiali
 
 const fitkitLoadingSelector = (fitkit: State) => fitkit.loading;
 export const getFitkitLoading = createSelector(fitkitSelector, fitkitLoadingSelector);
+
+const fitkitHealthApp = (fitkit: State) => fitkit.healthApp;
+export const getFitkitHealthApp = createSelector(fitkitSelector, fitkitHealthApp);
