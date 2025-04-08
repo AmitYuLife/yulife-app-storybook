@@ -6,13 +6,16 @@ import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
 import FirstTimeContentLocationSelection from "../../content-location/first-time-content-location-selection";
 import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL } from "@ids";
-import { ChipList, InfoPanel } from "@components/molecules";
+import { ChipList, InfoPanel, RewardSectionHeader } from "@components/molecules";
 import { Box } from "@atoms";
 import { RewardsListItem } from "./rewards-list.item";
-import { GetMobileRewardsListQuery } from "@graphql/__generated";
+import { GetMobileRecentlyUsedRewardsListQuery, GetMobileRewardsListQuery } from "@graphql/__generated";
 import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { t } from "@locale";
 import moment from "moment";
+import { get } from "lodash";
+import { useUserFeatures } from "@hooks";
+import RewardRecentlyUsedSectionContainer from "./subcomponents/reward-recently-used-section/reward-recently-used-section.container";
 
 type IGetMobileRewardsListData = GetMobileRewardsListQuery["data"];
 
@@ -29,40 +32,49 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
   chipList: IGetMobileRewardsListData["tags"];
   isOnScrollActionEnabled: boolean;
   shouldAnimate: boolean;
+  recentRewards?: GetMobileRecentlyUsedRewardsListQuery["data"];
 }
 
 export const DEFAULT_TAG = "All";
 
-const EXTRA_DATA = {
-  GoalProductMilestones: "GoalProductMilestones",
-  RewardStoreExpiryWarning: "RewardStoreExpiryWarning",
-} as const;
-type IData = IGetMobileRewardsListData["list"][number] | typeof EXTRA_DATA[keyof typeof EXTRA_DATA];
+enum RewardListItemTypes {
+  GoalProductMilestones = "GoalProductMilestones",
+  RewardStoreExpiryWarning = "RewardStoreExpiryWarning",
+  RewardsSectionHeader = "RewardSectionHeader",
+  RewardRecentlyUsedSection = "RewardRecentlyUsed",
+}
 
-const keyExtractor = (item: IGetMobileRewardsListData["list"][0]) => {
+type IData =
+  | IGetMobileRewardsListData["list"][number]
+  | ({ __typename: typeof RewardListItemTypes[keyof typeof RewardListItemTypes] } & { children?: string });
+
+const keyExtractor = (item: IData) => {
   if (typeof item === "string") {
     return `rewards-list_${item}`;
   }
 
-  return item.id;
+  return get(item, "id") || item.__typename;
 };
 
 const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   const {
-    rewardsData,
-    selectedTag,
-    onLeftMenuPress,
-    onTagPress,
-    onRefresh,
-    onItemPress,
-    onChangeStoreLocationPress,
     loading,
-    showChipList,
     onScroll,
     chipList,
-    isOnScrollActionEnabled,
+    onRefresh,
+    onTagPress,
+    rewardsData,
+    selectedTag,
+    onItemPress,
+    showChipList,
+    recentRewards,
     shouldAnimate,
+    onLeftMenuPress,
+    isOnScrollActionEnabled,
+    onChangeStoreLocationPress,
   } = props;
+
+  const { tempGameNewRewardsScreen } = useUserFeatures();
 
   // can't use negation as we need to ignore null and undefined
   const shouldShowFirstTimeModal = rewardsData?.hasUserSelectedStoreLocation === false;
@@ -77,7 +89,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IData>) => {
-      if (item === EXTRA_DATA.GoalProductMilestones) {
+      if (item.__typename === RewardListItemTypes.GoalProductMilestones) {
         if (selectedTag !== DEFAULT_TAG) {
           return null;
         }
@@ -85,7 +97,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
         return null;
       }
 
-      if (item === "RewardStoreExpiryWarning") {
+      if (item.__typename === "RewardStoreExpiryWarning") {
         if (!rewardsData?.rewardStoreAccessRevokesAt) {
           return null;
         }
@@ -104,19 +116,40 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
         );
       }
 
+      if (item.__typename === RewardListItemTypes.RewardsSectionHeader) {
+        return <RewardSectionHeader>{item.children}</RewardSectionHeader>;
+      }
+
+      if (item.__typename === RewardListItemTypes.RewardRecentlyUsedSection) {
+        return <RewardRecentlyUsedSectionContainer recentRewards={recentRewards} onItemPress={onItemPress} />;
+      }
+
       if (item.__typename === "MobileRewardsListItem") {
         return <RewardsListItem {...item} onPress={() => onItemPress(item)} />;
       }
 
       return null;
     },
-    [onItemPress, selectedTag, rewardsData?.rewardStoreAccessRevokesAt]
+    [selectedTag, rewardsData?.rewardStoreAccessRevokesAt, recentRewards, onItemPress]
   );
 
-  const dataWithChiplist = useMemo(
-    () => [EXTRA_DATA.RewardStoreExpiryWarning, EXTRA_DATA.GoalProductMilestones, ...(rewardsData?.list || [])],
-    [rewardsData]
-  );
+  const dataWithChiplist = useMemo(() => {
+    if (!tempGameNewRewardsScreen) {
+      return [
+        { __typename: RewardListItemTypes.RewardStoreExpiryWarning },
+        { __typename: RewardListItemTypes.GoalProductMilestones },
+        ...(rewardsData?.list || []),
+      ];
+    }
+
+    return [
+      { __typename: RewardListItemTypes.RewardStoreExpiryWarning },
+      { __typename: RewardListItemTypes.GoalProductMilestones },
+      { __typename: RewardListItemTypes.RewardRecentlyUsedSection },
+      { __typename: RewardListItemTypes.RewardsSectionHeader, children: t("screens.rewards.list.store") },
+      ...(rewardsData?.list || []),
+    ];
+  }, [rewardsData?.list, tempGameNewRewardsScreen]);
 
   return (
     <RewardsListLayout

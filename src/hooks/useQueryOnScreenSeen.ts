@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
 type ScreenSeenHookOptions = {
-  refetch: boolean;
+  refetch?: boolean;
   disabled?: boolean;
 };
 

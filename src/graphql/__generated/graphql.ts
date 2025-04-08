@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -4957,6 +4958,7 @@ export type HrisConnection = {
   id: Scalars["String"]["output"];
   lastSyncedAt?: Maybe<Scalars["String"]["output"]>;
   name?: Maybe<Scalars["String"]["output"]>;
+  ownerIds?: Maybe<Array<Scalars["String"]["output"]>>;
   percentageBasedDataSample?: Maybe<Array<HrisSampleItem>>;
   previewImport?: Maybe<HrisPreviewImport>;
   sampleResult?: Maybe<HrisSampleResult>;
@@ -4968,6 +4970,7 @@ export type HrisConnection = {
 
 export type HrisConnectionSettingsInput = {
   contractedWeeksPerYear?: InputMaybe<Scalars["Int"]["input"]>;
+  ownerIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
   shouldAutoInvite?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
@@ -5779,6 +5782,14 @@ export type MobileGamePartnerRewardsInventoryItems = {
   title: Scalars["String"]["output"];
 };
 
+export type MobileGameRecentlyUsedReward = {
+  __typename?: "MobileGameRecentlyUsedReward";
+  id: Scalars["String"]["output"];
+  image?: Maybe<RemoteImage>;
+  name: Scalars["String"]["output"];
+  sduiStepId: Scalars["String"]["output"];
+};
+
 export type MobileGameUserAchievement = {
   __typename?: "MobileGameUserAchievement";
   achievementId: Scalars["ID"]["output"];
@@ -5786,10 +5797,12 @@ export type MobileGameUserAchievement = {
   description: Scalars["String"]["output"];
   icon: RemoteImage;
   name: Scalars["String"]["output"];
+  points: Scalars["Int"]["output"];
 };
 
 export type MobileGameUserAchievements = {
   __typename?: "MobileGameUserAchievements";
+  achievementPoints: Scalars["Int"]["output"];
   achievements: Array<MobileGameUserAchievement>;
   equippedAchievements: Array<MobileGameUserAchievement>;
 };
@@ -5933,6 +5946,11 @@ export type MobileQuestSudokuSubmission = {
   guesses?: InputMaybe<Array<Scalars["Float"]["input"]>>;
   hints: Scalars["Int"]["input"];
   mistakes: Scalars["Int"]["input"];
+};
+
+export type MobileRecentlyUsedRewardsList = {
+  __typename?: "MobileRecentlyUsedRewardsList";
+  recentlyUsedRewards: Array<MobileGameRecentlyUsedReward>;
 };
 
 export type MobileRewardStoreLocation = {
@@ -7475,11 +7493,13 @@ export type PaymentIntent = StripePaymentIntent;
 export type PerformedSteps = {
   __typename?: "PerformedSteps";
   homeModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
+  hrConnectionsModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   leaderboardModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   manageAdminsModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   peopleModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
+  wellbeingHubModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type PerkClaim = {
@@ -7856,6 +7876,7 @@ export type Query = {
   getMobileQuestLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   /** Supported RN version >= 4.9.0 */
   getMobileQuestLevelChallengeDetails: QuestMapLevelChallengeDetails;
+  getMobileRecentlyUsedRewardsList: MobileRecentlyUsedRewardsList;
   getMobileRewardStoreLocations: Array<MobileRewardStoreLocation>;
   getMobileRewardsGoalProductMilestones: MobileRewardsGoalProductMilestones;
   getMobileRewardsList: MobileRewardsList;
@@ -7902,7 +7923,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8143,6 +8163,7 @@ export type QueryGetBusinessAccessAdminsArgs = {
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy?: InputMaybe<OrderBy>;
+  permissions?: InputMaybe<Array<BusinessAccessPermission>>;
   search?: InputMaybe<Scalars["String"]["input"]>;
   status?: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -8982,12 +9003,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -10040,11 +10055,13 @@ export type TeamFilterCopy = {
 
 export enum TeamOnboardingStep {
   HomeModalDismissed = "homeModalDismissed",
+  HrConnectionsModalDismissed = "hrConnectionsModalDismissed",
   LeaderboardModalDismissed = "leaderboardModalDismissed",
   ManageAdminsModalDismissed = "manageAdminsModalDismissed",
   PeopleModalDismissed = "peopleModalDismissed",
   TwoFactorAuthEnabled = "twoFactorAuthEnabled",
   TwoFactorAuthModalDismissed = "twoFactorAuthModalDismissed",
+  WellbeingHubModalDismissed = "wellbeingHubModalDismissed",
 }
 
 export enum TeamPortalFieldType {
@@ -34182,6 +34199,22 @@ export type GetMobilePurchasesListQuery = {
       yuCoin: number;
       status: string;
       statusColour: string;
+    }>;
+  };
+};
+
+export type GetMobileRecentlyUsedRewardsListQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobileRecentlyUsedRewardsListQuery = {
+  __typename?: "Query";
+  data: {
+    __typename?: "MobileRecentlyUsedRewardsList";
+    recentlyUsedRewards: Array<{
+      __typename?: "MobileGameRecentlyUsedReward";
+      id: string;
+      sduiStepId: string;
+      name: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
   };
 };
@@ -93169,6 +93202,63 @@ export const GetMobilePurchasesListDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobilePurchasesListQuery, GetMobilePurchasesListQueryVariables>;
+export const GetMobileRecentlyUsedRewardsListDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileRecentlyUsedRewardsList" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "data" },
+            name: { kind: "Name", value: "getMobileRecentlyUsedRewardsList" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "recentlyUsedRewards" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "sduiStepId" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileRecentlyUsedRewardsListQuery, GetMobileRecentlyUsedRewardsListQueryVariables>;
 export const GetMobileRewardsListDocument = {
   kind: "Document",
   definitions: [
