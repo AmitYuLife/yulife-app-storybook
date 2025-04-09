@@ -12,7 +12,7 @@ const meta: Meta<typeof AchievementCard> = {
     },
   },
   args: {
-    title: "Cosmic Threads",
+    name: "Cosmic Threads",
     description: "0.5% of YuLifers",
     points: 10,
     onPress: () => console.log("pressed"),

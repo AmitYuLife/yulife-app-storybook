@@ -1247,6 +1247,9 @@
         "heading": "These rewards aren’t available for you right now.",
         "description": "You can still redeem rewards in your in-app store by earning YuCoin! If you have any questions, talk to us in your in-app chat."
       }
+    },
+    "achievements": {
+      "achievements_points": "%{achievementPoints} Achievement Points"
     }
   },
   "permissions": {

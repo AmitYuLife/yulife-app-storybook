@@ -6,6 +6,7 @@ import { styles } from "./hero-header.styles";
 import { PLATFORM_SIZE } from "./yu-screen.styles";
 import { Style } from "@styles";
 import AchievementsShowcase, { IAchievement } from "@organisms/achievements-showcase/achievements-showcase";
+import { ROUTES } from "@navigation/constants";
 
 interface Props {
   platformImage: ImageSourcePropType;
@@ -63,7 +64,11 @@ export const HeroHeaderForeground: FC<Props> = memo(
         )}
         {!showAchievements ? null : (
           <Animated.View style={memoizedStyles.achievements}>
-            <AchievementsShowcase points={achievements.points} achievements={achievements.list} />
+            <AchievementsShowcase
+              componentId={ROUTES.yuScreen}
+              points={achievements?.points || 0}
+              achievements={achievements?.list}
+            />
           </Animated.View>
         )}
       </Animated.View>

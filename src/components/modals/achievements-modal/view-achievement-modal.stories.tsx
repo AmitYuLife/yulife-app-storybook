@@ -22,7 +22,7 @@ const meta: Meta<typeof ViewAchievementModal> = {
   args: {
     name: "Cosmic Threads",
     description: "[You’ve earned this achievement by completing all challenges on Ring Planet!]",
-    percentageOfUsersWithAchievement: "0.5% of YuLifers have this",
+    shortDescription: "0.5% of YuLifers have this",
     points: 10,
     icon: {
       id: "1",
@@ -40,6 +40,6 @@ export const Default: Story = {
 
 export const UnEquipped: Story = {
   args: {
-    isEquipped: true,
+    status: "equipped",
   },
 };

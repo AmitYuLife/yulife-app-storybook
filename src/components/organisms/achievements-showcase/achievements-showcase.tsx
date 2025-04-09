@@ -3,8 +3,8 @@ import { ArrowIcon } from "@atoms/icon/arrow";
 import Pressable from "@components/molecules/pressable/pressable";
 import { t } from "@locale";
 import { AchievementPoints, AchievementSlot } from "@molecules";
-import { MODALS } from "@navigation/constants";
-import { showYuModal } from "@navigation/root";
+import { MODALS, ROUTES } from "@navigation/constants";
+import { pushToScreen, showYuModal } from "@navigation/root";
 import { addCommasToNumber } from "@utils";
 import { memo, useCallback, useMemo } from "react";
 
@@ -21,14 +21,13 @@ export interface IAchievement {
 }
 
 interface IProps {
+  componentId: string;
   // Making this props optional until we have the graphql query ready
   points?: number;
   achievements?: IAchievement[];
 }
 
-const goToAchievements = () => console.log("go to achievements");
-
-const AchievementsShowcase = ({ points, achievements = [] }: IProps) => {
+const AchievementsShowcase = ({ points, achievements = [], componentId }: IProps) => {
   const onPress = useCallback(async (achievement: IAchievement) => {
     await showYuModal({
       component: {
@@ -42,12 +41,23 @@ const AchievementsShowcase = ({ points, achievements = [] }: IProps) => {
     });
   }, []);
 
+  const goToAchievements = useCallback(
+    () =>
+      pushToScreen(componentId, {
+        component: {
+          id: ROUTES.achievements,
+          name: ROUTES.achievements,
+        },
+      }),
+    [componentId]
+  );
+
   const slots = useMemo(
     () =>
       Array.from({ length: 3 }, (_, index) => ({
         id: achievements[index]?.id || `slot-${index}`,
         icon: achievements[index]?.icon,
-        onAchievementPress: () => (achievements[index]?.name ? onPress(achievements[index]) : goToAchievements),
+        onAchievementPress: () => (achievements[index]?.name ? onPress(achievements[index]) : goToAchievements()),
       })),
     [achievements, onPress]
   );
