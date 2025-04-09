@@ -16,7 +16,7 @@ const BattlePassItemSubtitleContainer = ({ milestoneId }: IBattlePassItemSubtitl
 
   const subtitle = useMemo(() => {
     if (explanation?.rewardInfo?.possibleItems?.length) {
-      return t("modals.reward_info.unlock_voucher");
+      return t("modals.reward_info.unlock_multiple_rewards");
     }
 
     return t("modals.reward_info.unlock_reward");

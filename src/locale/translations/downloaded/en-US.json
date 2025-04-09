@@ -422,7 +422,7 @@
     "reward_info": {
       "got_it": "Got it",
       "unlock_reward": "Spend YuCoin to unlock this reward!",
-      "unlock_voucher": "Spend YuCoin to claim a random brand discount or coupon."
+      "unlock_multiple_rewards": "Spend YuCoin to unlock a reward"
     },
     "smoking_streak_lapsed": {
       "page_1": {
