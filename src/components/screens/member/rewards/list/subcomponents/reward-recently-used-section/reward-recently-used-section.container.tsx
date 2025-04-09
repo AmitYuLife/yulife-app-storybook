@@ -49,7 +49,7 @@ const RewardRecentlyUsedSectionContainer = ({
     [onPress]
   );
 
-  if (isEmpty(recentRewards)) {
+  if (isEmpty(recentRewards?.recentlyUsedRewards)) {
     return null;
   }
 

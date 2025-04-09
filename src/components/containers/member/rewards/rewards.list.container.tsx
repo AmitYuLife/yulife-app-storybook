@@ -61,7 +61,9 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
     }
   }, [rewards?.data?.list?.length, state.isOnScrollActionEnabled]);
 
-  const isLoading = (loading || recentLoading) && !rewards?.data?.list?.length && !recentRewards?.data;
+  const isRecentLoading = (recentLoading || !recentRewards?.data?.recentlyUsedRewards) && tempGameNewRewardsScreen;
+
+  const isLoading = (loading || isRecentLoading) && !rewards?.data?.list?.length && !recentRewards?.data;
 
   const handleStoreLocationPress = useCallback(() => {
     Navigation.dismissAllModals({ animations: { dismissModal: { enabled: false } } });
