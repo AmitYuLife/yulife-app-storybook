@@ -14,6 +14,7 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import StreakSaverCountContainer from "@components/molecules/streak-saver-count/streak-saver-count.container";
 import { ScrollableFloatingModal } from "@organisms";
+import { ACTIVATE_POWER_UP_BUTTON } from "@ids";
 
 interface IConsumablesModalProps {
   onClose: () => void;
@@ -159,6 +160,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
             isLoading={isActivateLoading}
             disabled={!selectedConsumable}
             onPress={onSubmit}
+            testID={ACTIVATE_POWER_UP_BUTTON(!!selectedConsumable)}
           />
         ) : (
           <Button translationKey="modals.consumables.go_to_rewards_button" onPress={goToRewards} />

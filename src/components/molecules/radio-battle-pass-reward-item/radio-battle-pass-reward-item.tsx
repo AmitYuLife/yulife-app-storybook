@@ -5,6 +5,7 @@ import { SuccessIcon } from "@atoms/icon/success-icon";
 import { Colours, Style } from "@styles";
 import { Pressable } from "..";
 import LinearGradient from "react-native-linear-gradient";
+import { RADIO_BATTLE_PASS_REWARD_ITEM } from "@ids";
 
 export interface IRadioBattlePassRewardItem {
   reward: {
@@ -21,7 +22,7 @@ const RadioBattlePassRewardItem = ({ reward, checked, onPress }: IRadioBattlePas
 
   return (
     <>
-      <Pressable style={styles.wrapper} onPress={handleOnPress} delay={1000}>
+      <Pressable style={styles.wrapper} onPress={handleOnPress} delay={1000} testID={RADIO_BATTLE_PASS_REWARD_ITEM}>
         <LinearGradient colors={gradient} style={styles.gradient} useAngle={true} angle={270}>
           <View style={styles.innerContainer}>
             <TextTemplate type="b2b" color={Colours.neutral.white}>

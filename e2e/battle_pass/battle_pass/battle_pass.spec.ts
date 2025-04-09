@@ -89,11 +89,21 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I tap on 'Take a challenge' button", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON, 2000), async () => {
       When("I tap on the inventory banner", when.tapID(ids.INVENTORY_BANNER, 2000), async () => {
-        Then("I should see that my inventory is empty", then.textVisible(emptyInventoryState, 1000));
+        Then("I should see the 'Extra Brisk Walk' consumable available", then.idVisible(ids.INVENTORY_ITEM("Extra Brisk Walk challenge"), 2000));
       });
     });
-    When("I tap on 'Go to rewards' button", when.tapID(ids.INVENTORY_GO_TO_REWARDS, 2000), async () => {
-      Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM));
+    When("I tap to select the Extra Short Stroll challenge", when.tapID(ids.INVENTORY_ITEM("Extra Brisk Walk challenge"), 2000), async () => {
+      When("I tap to activate the extra challenge", when.tapID(ids.ACTIVATE_POWER_UP_BUTTON(true), 2000), async () => {
+        Then("I should see the inventory item activated", then.idVisible(ids.ACTIVATED_INVENTORY_ITEM, 2000));
+      });
+    });
+    When("I close inventory", when.tapID(ids.CLOSE_INVENTORY, 2000), async () => {
+      Then("I should see the Extra Brisk Walk indicator activated", then.idVisible(ids.EXTRA_CHALLENGE_INDICATOR(1), 2000));
+    });
+    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+      When("I go to the rewards store", when.tapID(ids.NAV_BAR("rewards"), 2000), async () => {
+        Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM));
+      });
     });
     When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
       When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
@@ -110,30 +120,32 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I donate to Plant a tree and progress to the third level", when.donate("tree", 5), async () => {
       When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
+        Then("I should see the '8' spinning rewards", then.idVisible(ids.SPINNING_REWARD_ITEMS(7), 2000));
+      });
+    });
+    When("I tap to open the spinning rewards chest", when.tapID(ids.CLAIM_REWARD_MODAL, 2000), async () => {
+      Then("I should see the random extra challenge reward", then.idVisible(ids.RADIO_BATTLE_PASS_REWARD_ITEM, 2000));
+    });
+    When("I tap to select the extra challenge reward", when.tapID(ids.RADIO_BATTLE_PASS_REWARD_ITEM, 2000), async () => {
+      When("I tap to select the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
         Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
         Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
       });
     });
-    When("I go back to the Quests screen", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+    When("I go back to the 'Quests' screen", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
       When("I tap on level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10)), async () => {
         When("I tap to check my inventory", when.tapID(ids.INVENTORY_BANNER, 2000), async () => {
-          Then("I should see the Extra Short Stroll power up available", then.idVisible(ids.INVENTORY_ITEM("Extra Short Stroll challenge"), 2000));
+          Then("I should NOT be able to activate the second extra challenge power up", then.idVisible(ids.ACTIVATE_POWER_UP_BUTTON(false), 2000));
         });
       });
     });
-    When("I tap to select the Extra Short Stroll challenge", when.tapID(ids.INVENTORY_ITEM("Extra Short Stroll challenge"), 2000), async () => {
-      When("I tap to activate the extra challenge", when.tapID(ids.INVENTORY_ACTIVATE_POWER_UP, 2000), async () => {
-        Then("I should see the inventory item activated", then.idVisible(ids.ACTIVATED_INVENTORY_ITEM, 2000));
+    When("I close inventory", when.tapID(ids.CLOSE_INVENTORY, 2000), async () => {
+      When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I go to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
+          Then("I should now see that I have two available challenges for today", then.textVisible("Take a challenge (2 left today)"));
+          Then("I see my updated YuCoin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85040)));
+        });
       });
-    });
-  });
-  When("I close inventory", when.tapID(ids.CLOSE_INVENTORY, 2000), async () => {
-    Then("I should see the Extra Short Stroll indicator activated", then.idVisible(ids.EXTRA_CHALLENGE_INDICATOR(1), 2000));
-  });
-  When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-    When("I go to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-      Then("I should now see that I have two available challenges for today", then.textVisible("Take a challenge (2 left today)"));
-      Then("I see my updated YuCoin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85040)));
     });
   });
 

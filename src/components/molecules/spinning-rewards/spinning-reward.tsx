@@ -1,4 +1,5 @@
 import { Image } from "@atoms";
+import { SPINNING_REWARD_ITEMS } from "@ids";
 import { Style } from "@styles";
 import { ImageSource } from "expo-image";
 import { memo } from "react";
@@ -39,6 +40,7 @@ const SpinningReward = ({ image, time, offset, index, radius }: ISpinningRewardP
           width={Style.adjust(IMAGE_SIZE)}
           height={Style.adjust(IMAGE_SIZE)}
           suppressLoadingUi={true}
+          testID={SPINNING_REWARD_ITEMS(index)}
         />
       </Animated.View>
     </Animated.View>
