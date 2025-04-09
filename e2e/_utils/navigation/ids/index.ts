@@ -902,11 +902,14 @@ export const LEVEL_UP_CLAIM_MODAL_BUTTON = "battle-pass-level-up-modal-claim-but
 export const COMPLETED_BATTLE_PASS_LIST_ITEM = (buttonLabel: string, level: number) =>
   `COMPLETED_BATTLE_PASS_LIST_ITEM_${buttonLabel}_${level}`;
 export const CLAIMED_BATTLE_PASS_LIST_ITEM = "CLAIMED_BATTLE_PASS_LIST_ITEM";
+export const SPINNING_REWARD_ITEMS = (index: number) => `SPINNING_REWARD_ITEMS_${index}`;
 export const CLAIM_REWARD_MODAL = "modals.open_random_chest.open-text-view";
 export const CLAIM_REWARD_BUTTON = "claimChestPrize-text-view";
 export const INVENTORY_BANNER = "INVENTORY_BANNER";
 export const INVENTORY_ITEM = (name: string) => `INVENTORY_ITEM_${name}`;
 export const INVENTORY_GO_TO_REWARDS = "modals.consumables.go_to_rewards_button";
+export const ACTIVATE_POWER_UP_BUTTON = (isActive: boolean) =>
+  `ACTIVATE_POWER_UP_BUTTON_${isActive}`;
 export const INVENTORY_ACTIVATE_POWER_UP = "modals.consumables.activate_button-text-view";
 export const ACTIVATED_INVENTORY_ITEM = "ACTIVATED_INVENTORY_ITEM";
 export const CLOSE_INVENTORY = "modals.consumables.close-text-view";
@@ -916,6 +919,7 @@ export const CLAIMED_REWARD_ITEMS = (items: number) => `CLAIMED_REWARD_ITEM_${it
 export const BATTLE_PASS_TITLE = (title: string) => `BATTLE_PASS_TITLE_${title}`;
 export const BATTLE_PASS_DESCRIPTION = (description: string) =>
   `BATTLE_PASS_DESCRIPTION_${description}`;
+export const RADIO_BATTLE_PASS_REWARD_ITEM = "RADIO_BATTLE_PASS_REWARD_ITEM";
 export const EMPTY_WALLET_TITLE = (title: string) => `EMPTY_WALLET_TITLE_${title}`;
 export const WALLET_CATEGORY_LABEL = (label: string) => `WALLET_CATEGORY_LABEL_${label}`;
 export const WALLET_COUPON_ITEM_INFO = (info: string) => `WALLET_COUPON_ITEM_INFO_${info}`;
