@@ -8,7 +8,6 @@ const BLACKLIST_RETRY_OPERATIONS = [
   "SaveAvatar",
   "GetMobileCopy",
   "CreateActiveChallenge",
-  "CreateQuestMapLevelChallenge",
   "CreateMobileQuestLevelChallenge",
   "RedeemMobileSduiReward",
   "SubscribeToPerk",
