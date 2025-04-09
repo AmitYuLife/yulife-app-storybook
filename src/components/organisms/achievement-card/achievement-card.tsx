@@ -9,8 +9,9 @@ import { memo } from "react";
 import { StyleSheet } from "react-native";
 import { ReactNode } from "react";
 
-interface IProps {
-  title: string;
+export interface IAchievementCardProps {
+  id: string;
+  name: string;
   description: string;
   onPress: () => void;
   points: number;
@@ -21,7 +22,7 @@ interface IProps {
   };
 }
 
-const AchievementCard = ({ title, description, onPress, points, icon, status }: IProps) => {
+const AchievementCard = ({ name, description, onPress, points, icon, status }: IAchievementCardProps) => {
   return (
     <BoxOption
       onPress={onPress}
@@ -40,7 +41,7 @@ const AchievementCard = ({ title, description, onPress, points, icon, status }: 
           <Image h={95} w={95} style={styles.image} source={icon} />
           <Box mt={4} gap={4}>
             <TextTemplate type="b2b" color="#464647" textAlign="center" numberOfLines={2}>
-              {title}
+              {name}
             </TextTemplate>
             {!description ? null : (
               <TextTemplate type="l2b" color="#464647" textAlign="center" numberOfLines={2}>

@@ -81,3 +81,6 @@ export { default as BattlePassLeaderboardScreen } from "./battle-pass/battle-pas
  * @deprecated by src/components/screens/member/quests/quests-scroll-screen/quest-detail-modal
  */
 export { default as LevelLockedScreen } from "./member/challenges/level-locked/level-locked.screen";
+
+// achievements
+export { default as AchievementsScreen } from "./achievements/achievements.screen";

@@ -151,6 +151,9 @@ export const ROUTES = {
 
   // generic heading testing
   genericHeading: "yulife.genericHeading",
+
+  // achievements
+  achievements: "yulife.achievements",
 };
 
 export const MODALS = {

@@ -17,20 +17,13 @@ interface IProps {
   };
   description: string;
   points: number;
-  percentageOfUsersWithAchievement: string;
-  isEquipped?: boolean;
+  shortDescription: string;
+  status: "locked" | "unlocked" | "equipped";
 }
 
 const onClose = () => Navigation.dismissModal(MODALS.viewAchievementModal);
 
-const ViewAchievementModal = ({
-  name,
-  description,
-  icon,
-  points,
-  isEquipped,
-  percentageOfUsersWithAchievement,
-}: IProps) => {
+const ViewAchievementModal = ({ name, description, icon, points, status, shortDescription }: IProps) => {
   const insets = useSafeAreaInsets();
 
   const onButtonPress = useCallback(() => console.log("add graphql mutation"), []);
@@ -46,25 +39,27 @@ const ViewAchievementModal = ({
         <TextTemplate type="b2" textAlign="center">
           {description}
         </TextTemplate>
-        {!percentageOfUsersWithAchievement ? null : (
+        {!shortDescription ? null : (
           <Box mt={56}>
             <TextTemplate type="b2b" textAlign="center">
-              {percentageOfUsersWithAchievement}
+              {shortDescription}
             </TextTemplate>
           </Box>
         )}
       </Box>
-      <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">
-        <Button
-          testID="id-baby"
-          translatedLabel={isEquipped ? t("unequip") : t("equip")}
-          onPress={onButtonPress}
-          isLoading={false}
-        />
-      </Box>
+      {status === "locked" ? null : (
+        <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">
+          <Button
+            testID="id-baby"
+            translatedLabel={status === "equipped" ? t("unequip") : t("equip")}
+            onPress={onButtonPress}
+            isLoading={false}
+          />
+        </Box>
+      )}
       <GenericHeadingAbsolute onRightIconPress={onClose} />
       <Box position="absolute" top={insets.top} left={16}>
-        <AchievementPoints autoWidth={true} label={addCommasToNumber(points)} />
+        <AchievementPoints autoWidth={true} label={addCommasToNumber(points)} locked={status === "locked"} />
       </Box>
     </Box>
   );

@@ -422,6 +422,12 @@ const routesForRegistration = [
     component: require("../components/containers/member/debug/generic-heading/generic-heading.container").default,
   },
 
+  // achievements
+  {
+    name: ROUTES.achievements,
+    component: require("../components/containers/achievements/achievements.container").default,
+  },
+
   // modals
   {
     name: MODALS.yuCoinPowerExplained,
