@@ -7,6 +7,65 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.58.0] - 2025-04-09
+
+### Features
+
+- Feature GS-1427: Add stripe config plugin setup
+- Feature LCS-1214: High fidelity designs for magic link login flow
+
+### Bugfixes
+
+- Bugfix ENG-4221: Change color for planets last level
+- Bugfix GS-1350: Remove levelSlotId from sudoku submission
+- Bugfix GS-1449: Update redux migration version
+- Bugfix GS-1387: Fix pills not updating text input
+- Bugfix LCS-1197: Purge app banners
+
+### Tasks
+
+- Task GS-1378: Recently used improvements
+- Task GS-1432: multiple rewards chest info
+- Task: ruby-slim not working and android open testing = beta
+- Task GS-1456: Add locked state on AchievementPoints and AchievementCard
+- Task GS-1378: Recently used seciton
+- Task GS-1455: Update LockIcon component
+- Task: Catch errors when opening apple health
+- Task GS-1454: Change AchievementPoints prop points to label to support strings too
+- Task GS-1132: Challenge progress debug info
+- Task: Recently used rewards design changes
+- Task ISA-3328: rename Mixpanel event property
+- Task GS-1450: Add AchievementShowCase on YuScreen
+- Task GS-1426: connect api
+- Task GS-1431: Create ViewAchievementModal
+- Task GS-1426: use ruby image instead of slim
+- Task GS-1447: Add SafeAreaProvider into storybook
+- Task GS-1446: Fix bitrise pipeline
+- Task GS-1446: Fix missing yarn on bitrise
+- Task GS-1430: Create AchievementCard component
+- Task ISA-3349: Remove unused concurrent employment property
+- Task GS-1429: Create AchievementShowcase component
+- Task GS-1350: Remove use settings config for quest map queries
+- Task GS-1378: Recent reward card
+- Task GS-1426: auto release P&T and YuCrew
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Revert: Remove introducing decimal places on sdui text input
+- Fix CTE-121: out of bounds leaderboard item for self
+- Bump axios from 1.8.2 to 1.8.3
+- [Security] Bump word-wrap from 1.2.3 to 1.2.5
+- Detox: Updated JP engagement survey IDs to new stepIds, enforce 1000 char limit, added date argument to the 7 day auto claim.
+- Detox GS-1164: Coupon and Voucher Edit Flow
+- Detox: Update survey IDs to new stepIds, enforce 1000 char limit, and disable HQ progress bar check until fix.
+
 ## [4.57.0] - 2025-04-02
 
 ### Features
