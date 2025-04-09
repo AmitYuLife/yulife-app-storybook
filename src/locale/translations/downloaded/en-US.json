@@ -832,10 +832,19 @@
         "open_apple_health": "Open Apple Health App",
         "retry": "Retry sync"
       },
+      "cant_open_apple_health_body": "Please try opening Apple Health manually to check your data",
+      "cant_open_apple_health_title": "Something went wrong",
       "description": "We don't have any data for your active challenge. Please ensure that your challenge activity is synced with your health app. If you encounter any issues, you can always cancel and try again.",
       "title": "Oops! Your active challenge isn't syncing yet."
     },
     "challenge_progress": {
+      "debug_info": {
+        "cta": "Export data",
+        "current_pedometer_steps": "2. Current Pedometer Steps: %{steps}",
+        "history_steps": "4. Pedometer history steps:",
+        "initial_steps": "1. %{healthProvider} initial steps: %{steps}",
+        "progress": "3. Progress (2 - 1): %{progress}"
+      },
       "external_app_links": {
         "different_app_cta_label": "I'm using a different app",
         "fiit": {
@@ -1464,6 +1473,7 @@
       },
       "list": {
         "history": "Purchased",
+        "recently_used": "Recently used",
         "rewards": "Rewards",
         "store": "Store"
       },
@@ -2113,6 +2123,7 @@
       "title": "Why do I need this?"
     },
     "providers": {
+      "generic": "Health Provider",
       "googleFit": "Google Fit",
       "healthConnect": "Health Connect",
       "healthKit": "Apple Health",

@@ -832,10 +832,19 @@
         "open_apple_health": "Apple ヘルスケアアプリを開く",
         "retry": "再度同期を試みる"
       },
+      "cant_open_apple_health_body": "Apple Health を手動で開いてデータを確認してください",
+      "cant_open_apple_health_title": "エラーが発生しました",
       "description": "進行中のチャレンジに関するデータがありません。チャレンジのアクティビティがヘルスケアアプリ内で同期されていることを確認してください。問題が発生した場合は、いつでもキャンセルして再挑戦できます。",
       "title": "進行中のチャレンジがまだ同期されていません。"
     },
     "challenge_progress": {
+      "debug_info": {
+        "cta": "データをエクスポート",
+        "current_pedometer_steps": "2. 現在の歩数計のステップ: %{steps}",
+        "history_steps": "4. 歩数計の履歴ステップ:",
+        "initial_steps": "1. %{healthProvider} 初期ステップ: %{steps}",
+        "progress": "3. 進行状況 (2 - 1): %{progress}"
+      },
       "external_app_links": {
         "different_app_cta_label": "別のアプリを使っている",
         "fiit": {
@@ -1464,6 +1473,7 @@
       },
       "list": {
         "history": "購入履歴",
+        "recently_used": "最近使用",
         "rewards": "リワード",
         "store": "ストア"
       },
@@ -2113,6 +2123,7 @@
       "title": "必要な理由"
     },
     "providers": {
+      "generic": "医療機関",
       "googleFit": "Google Fit",
       "healthConnect": "Health Connect",
       "healthKit": "Apple ヘルスケア",

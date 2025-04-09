@@ -832,10 +832,19 @@
         "open_apple_health": "Abrir la aplicación Salud",
         "retry": "Intenta sincronizar de nuevo"
       },
+      "cant_open_apple_health_body": "Intenta abrir Apple Health manualmente para comprobar tus datos.",
+      "cant_open_apple_health_title": "Algo salió mal",
       "description": "Nos faltan los datos de tu reto activo. Asegúrate de que la actividad del reto está sincronizada con tu aplicación de salud. Si te encuentras con un obstáculo, siempre puedes cancelarlo y volver a intentarlo.",
       "title": "¡Uy! Tu reto activo aún no se ha sincronizado."
     },
     "challenge_progress": {
+      "debug_info": {
+        "cta": "Exportar datos",
+        "current_pedometer_steps": "2. Pasos actuales del podómetro: %{steps}",
+        "history_steps": "4. Pasos de la historia del podómetro:",
+        "initial_steps": "1. %{healthProvider} pasos iniciales: %{steps}",
+        "progress": "3. Progreso (2 - 1): %{progress}"
+      },
       "external_app_links": {
         "different_app_cta_label": "Estoy usando una aplicación diferente",
         "fiit": {
@@ -926,7 +935,7 @@
     "daily": {
       "challenge_button": {
         "back_to_challenge": "Volver al reto",
-        "take_challenge": "Empieza un reto (%{challenges} queda hoy)"
+        "take_challenge": "Empieza un reto (falta(n) %{challenges} hoy)"
       },
       "daily_passive": {
         "coins": {
@@ -1464,6 +1473,7 @@
       },
       "list": {
         "history": "Comprado",
+        "recently_used": "Utilizado recientemente",
         "rewards": "Recompensas",
         "store": "Tienda"
       },
@@ -2113,6 +2123,7 @@
       "title": "¿Por qué necesito esto?"
     },
     "providers": {
+      "generic": "Proveedor de servicios sanitarios",
       "googleFit": "Google Fit",
       "healthConnect": "Health Connect",
       "healthKit": "Salud",
