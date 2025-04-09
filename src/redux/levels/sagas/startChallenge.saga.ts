@@ -9,12 +9,12 @@ import {
 } from "../levels.actions";
 import { getActiveLevel } from "../levels.selectors";
 import { FetchResult } from "@apollo/client";
-import { CreateMobileQuestLevelChallengeMutation, CreateQuestMapLevelChallengeMutation } from "@graphql/__generated";
+import { ActiveChallengeSourceType, CreateMobileQuestLevelChallengeMutation, gql } from "@graphql/__generated";
 import { toYuHealthReduxType } from "@utils";
-import { createChallengeToggle, getCreateChallengeData } from "@graphql/challenges/createChallenge.gql";
 import { t } from "@locale";
 import { getIsStatusCodeClientErrors } from "@utils/statusCode";
 import moment from "moment";
+import client from "@graphql/_core/client";
 
 export default function* startChallengeSaga({ payload }: ReturnType<typeof challengeStartAction>) {
   try {
@@ -42,19 +42,18 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
       }
     }
 
-    const {
-      data,
-      extensions,
-    }: FetchResult<CreateMobileQuestLevelChallengeMutation | CreateQuestMapLevelChallengeMutation> = yield call(
-      createChallengeToggle,
-      {
-        createMobileQuestLevelChallengeVariables,
-      }
+    const { data, extensions }: FetchResult<CreateMobileQuestLevelChallengeMutation> = yield call(() =>
+      client().mutate({
+        mutation: gql("CreateMobileQuestLevelChallengeDocument"),
+        variables: {
+          ...createMobileQuestLevelChallengeVariables,
+          createdBySource: ActiveChallengeSourceType.Phone,
+        },
+      })
     );
 
+    const result = data?.createMobileQuestLevelChallenge;
     const staleTimestamp = moment(extensions?.tracing?.startTime).format();
-
-    const result = getCreateChallengeData(data);
 
     if (result) {
       const { levelSlot } = result;

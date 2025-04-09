@@ -1,3 +1,0 @@
-mutation ToggleChallengePause($paused: Boolean!, $levelSlotId: String!) {
-  toggleChallengePause(paused: $paused, levelSlotId: $levelSlotId)
-}

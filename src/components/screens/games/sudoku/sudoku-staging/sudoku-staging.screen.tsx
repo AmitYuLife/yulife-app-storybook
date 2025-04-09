@@ -3,7 +3,7 @@ import { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import {
   GetMobileSocialGroupLeaderboardItemsQuery,
-  GetQuestMapLevelChallengeDetailsQuery,
+  GetMobileQuestLevelChallengeDetailsQuery,
   GetSudokuBoardQuery,
 } from "@graphql/__generated";
 import { GenericHeadingAbsolute } from "@organisms";
@@ -39,7 +39,7 @@ interface IProps {
   hasLeaderboardConsent?: boolean;
   showSecondAttemptDisclaimer?: boolean;
   leaderboard: GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"];
-  levelDetails: GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"];
+  levelDetails: GetMobileQuestLevelChallengeDetailsQuery["getMobileQuestLevelChallengeDetails"];
   isStartingChallenge: boolean;
   error?: string;
 }

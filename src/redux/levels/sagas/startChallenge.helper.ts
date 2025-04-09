@@ -15,7 +15,7 @@ import {
 import { ChallengeSourceType, ChallengeStartPayload, IActiveLevel } from "../levels.types";
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
-import { ChallengesPayload, CreateQuestMapLevelChallengeMutation, FitKitType } from "@graphql/__generated";
+import { ChallengesPayload, CreateMobileQuestLevelChallengeMutation, FitKitType } from "@graphql/__generated";
 import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 import { YuHealthOptions } from "@redux/_core/types";
 import { updateMobileQuestLevelChallenge } from "@graphql/challenges/updateChallenge.gql";
@@ -131,7 +131,7 @@ type Args = {
   endDateTime: string;
   challengeId: string;
 } & Pick<
-  CreateQuestMapLevelChallengeMutation["createQuestMapLevelChallenge"]["levelSlot"],
+  CreateMobileQuestLevelChallengeMutation["createMobileQuestLevelChallenge"]["levelSlot"],
   "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
 > &
   Pick<ChallengeStartPayload, "videoPlayerIsActive"> &
