@@ -3,7 +3,6 @@ include:
   - project: "yu-life/infrastructure/yulife-devops-shared-config"
     ref: main
     file:
-      - "shared-gitlab-config.yml"
       - "shared-gitlab-config/generic-node.yml"
   - component: $CI_SERVER_FQDN/yu-life/infrastructure/yulife-devops-shared-config/assume-aws-role-with-web-identity@main
     inputs:
