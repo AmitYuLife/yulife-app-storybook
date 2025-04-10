@@ -421,7 +421,8 @@
     },
     "reward_info": {
       "got_it": "Entendido.",
-      "unlock_reward": "¡Gasta YuCoin para desbloquear esta recompensa!",
+      "unlock_multiple_rewards": "Gasta YuCoin para desbloquear una recompensa",
+      "unlock_reward": "¡Gasta YuCoin para desbloquear esta recompensa!"
     },
     "smoking_streak_lapsed": {
       "page_1": {
@@ -735,6 +736,9 @@
     }
   },
   "screens": {
+    "achievements": {
+      "achievements_points": "%{achievementPoints} Puntos de logro"
+    },
     "activity_history": {
       "empty_message": "Parece que aún no has completado ninguna actividad. Comienza hoy tu viaje de bienestar con algunos retos."
     },

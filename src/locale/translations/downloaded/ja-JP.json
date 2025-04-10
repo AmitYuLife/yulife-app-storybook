@@ -421,7 +421,8 @@
     },
     "reward_info": {
       "got_it": "OK",
-      "unlock_reward": "このリワードを獲得するには、YuCoinを交換しましょう!",
+      "unlock_multiple_rewards": "リワードを獲得するには、YuCoinを交換しましょう",
+      "unlock_reward": "このリワードを獲得するには、YuCoinを交換しましょう!"
     },
     "smoking_streak_lapsed": {
       "page_1": {
@@ -735,6 +736,9 @@
     }
   },
   "screens": {
+    "achievements": {
+      "achievements_points": "%{achievementPoints} 実績ポイント"
+    },
     "activity_history": {
       "empty_message": "まだ何もチャレンジを達成してないようです。早速今日からWell-beingの旅に出かけましょう。"
     },

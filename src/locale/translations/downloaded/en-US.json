@@ -421,8 +421,8 @@
     },
     "reward_info": {
       "got_it": "Got it",
-      "unlock_reward": "Spend YuCoin to unlock this reward!",
-      "unlock_multiple_rewards": "Spend YuCoin to unlock a reward"
+      "unlock_multiple_rewards": "Spend YuCoin to unlock a reward",
+      "unlock_reward": "Spend YuCoin to unlock this reward!"
     },
     "smoking_streak_lapsed": {
       "page_1": {
@@ -736,6 +736,9 @@
     }
   },
   "screens": {
+    "achievements": {
+      "achievements_points": "%{achievementPoints} Achievement Points"
+    },
     "activity_history": {
       "empty_message": "Looks like you haven't completed any activities yet. Begin your wellbeing journey today with some challenges."
     },
