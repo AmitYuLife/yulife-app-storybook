@@ -70,7 +70,7 @@ const Chip = memo(
           hitSlop={HIT_SLOP}
           testID={CHIP_LIST_ITEM(value)}
         >
-          <TextTemplate type="b2b" color={isSelected ? Colours.neutral.white : Colours.neutral.n800}>
+          <TextTemplate type="b2b" color={"#464647"}>
             {value}
           </TextTemplate>
         </Pressable>
@@ -103,13 +103,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(12),
   },
   selected: {
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Colours.primary.p600,
-    backgroundColor: Colours.primary.p600,
+    borderWidth: 1,
+    borderColor: "#E30D76",
+    backgroundColor: "#FCE7F1",
   },
   default: {
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Colours.neutral.n100,
+    borderWidth: 1,
+    borderColor: "#E7E7EB",
     backgroundColor: Colours.neutral.white,
   },
   separator: {
