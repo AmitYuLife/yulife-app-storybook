@@ -103,19 +103,21 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
   Scenario("I can check other leaderboards", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_19, data.AUTH_19), async () => {
       When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-        When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
-          When("I click leaderboard 2", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_C2.data.name)), async () => {
-            When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
-              Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE("LB2")));
-              Then("I should be on the second leaderboard", then.leaderboardVisible([User20LeaderboardItem, User40LeaderboardItem], 2000));
-            });
-          });
+        Then("I should see the union leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_U1.data.name)));
+        Then("On the union leaderboard, I should see members from other companies as well", then.idVisible(ids.LEADERBOARD_EMPLOYEE_NAME("Eugeniu Grosu")));
+      });
+    });
+    When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
+      When("I click leaderboard 2", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_C2.data.name)), async () => {
+        When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
+          Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE("LB2")));
+          Then("I should be on the second leaderboard", then.leaderboardVisible([User20LeaderboardItem, User40LeaderboardItem], 2000));
         });
       });
     });
     When("I scroll to the top of the page", when.scrollUntilIdVisible(ids.LEADERBOARD_SCROLL_LIST, ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C2.data.name), "down"), async () => {
       When("I tap the leaderboard drop down", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
-        Then("I should be on the leaderboard selection screen", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_C2.data.name, data.SOCIAL_GROUP_C1.data.name])));
+        Then("I should be on the leaderboard selection screen", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_U1.data.name, data.SOCIAL_GROUP_C2.data.name, data.SOCIAL_GROUP_C1.data.name])));
       });
     });
     When("I tap the first leaderboard, Lb1", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_C1.data.name)), async () => {
@@ -360,7 +362,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     });
     When("I exit", when.tapID(ids.SEARCH_CLOSE), async () => {
       When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
-        Then("I can see the list of leaderboards the user is in", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_BA5_RULE.data.name, data.SOCIAL_GROUP_BA5_TAG.data.name, data.SOCIAL_GROUP_BA5.data.name, data.SOCIAL_GROUP_BA3.data.name])));
+        Then("I can see the list of leaderboards the user is in", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_BA5_RULE.data.name, data.SOCIAL_GROUP_U1.data.name, data.SOCIAL_GROUP_BA5_TAG.data.name, data.SOCIAL_GROUP_BA5.data.name, data.SOCIAL_GROUP_BA3.data.name])));
       });
     });
     When("I click the leaderboard with rules", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5_RULE.data.name)), async () => {
