@@ -289,13 +289,13 @@
         "colleague": "un colega",
         "header": "Estás retando a **%{name}** a un duelo. Quien registre más pasos durante el duelo, ¡gana!",
         "instruction": "¿Por qué compites?",
-        "select_wager": "Seleccione una apuesta",
+        "select_wager": "Selecciona una apuesta",
         "subheader_1": "El duelo comienza mañana y dura todo el día. Los resultados que anuncian a el ganador aparecerán la mañana siguiente.",
         "subheader_2": "**¿Por qué es el duelo?**",
         "your_wager": "Tu apuesta"
       },
       "duel_respond": {
-        "heading": "¿Seguro?",
+        "heading": "¿Seguro(a)? ",
         "subheading": "Recuerda, si aceptas este duelo, podrías perder %{yucoin} YuCoin. ¿Quieres continuar?",
         "subheading_no_yucoin": "Este duelo es sólo por el derecho a presumir, así que no ganarás ni perderás YuCoin. ¿Quieres continuar?"
       },
