@@ -380,12 +380,12 @@ Feature("Quizzes and questionnaires", async () => {
       });
     });
     When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_Share your feedback"), async () => {
-      Then("I should see the intro screen for the engagement survey", then.idVisible("TEXT_TEMPLATE_Share your feedback!h3"));
+      Then("I should see the intro screen for the engagement survey", then.idVisible(ids.TEXT_TEMPLATE("Share your feedback!", "h3")));
       Then("I should see how much YuCoin will be rewarded", then.idVisible(ids.CONTENT_ITEM_INFO_CARD("**Rewards**\n\nEarn 300 YuCoin!")));
     });
     When("I swipe to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
       When("I click on the 'let's go!' button", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
-        Then("I should be on the 'maintaining work-life balance' question", then.idVisible("TEXT_TEMPLATE_Maintaining work-life balance is important to you.b2b"));
+        Then("I should be on the 'maintaining work-life balance' question", then.idVisible(ids.TEXT_TEMPLATE("Maintaining work-life balance is important to you.", "b2b")));
         Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
       });
     });
@@ -393,14 +393,14 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'acceptable workload' question", then.idVisible("TEXT_TEMPLATE_You have an acceptable workload within your standard working hours.b2b"));
+      Then("I should be on the 'acceptable workload' question", then.idVisible(ids.TEXT_TEMPLATE("You have an acceptable workload within your standard working hours.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'supported by the company' question", then.idVisible("TEXT_TEMPLATE_You feel supported by the company or managers in taking paid leave.b2b"));
+      Then("I should be on the 'supported by the company' question", then.idVisible(ids.TEXT_TEMPLATE("You feel supported by the company or managers in taking paid leave.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
@@ -409,7 +409,7 @@ Feature("Quizzes and questionnaires", async () => {
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
       Then(
         "I should be on the 'Biz 13 provides adequate resources' question and as a user who works at 2 companies I should only see the business at the zeroth index listed",
-        then.idVisible("TEXT_TEMPLATE_Biz 13 provides adequate resources to support your mental health (e.g., counselling services, stress checks).b2b")
+        then.idVisible(ids.TEXT_TEMPLATE("Biz 13 provides adequate resources to support your mental health (e.g., counselling services, stress checks).", "b2b"))
       );
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
@@ -417,113 +417,113 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'feel stressed at work' question", then.idVisible("TEXT_TEMPLATE_You frequently feel stressed at work due to your job responsibilities.b2b"));
+      Then("I should be on the 'feel stressed at work' question", then.idVisible(ids.TEXT_TEMPLATE("You frequently feel stressed at work due to your job responsibilities.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'access to a working environment' question", then.idVisible("TEXT_TEMPLATE_You have access to a working environment where you can be at your best and most productive.b2b"));
+      Then("I should be on the 'access to a working environment' question", then.idVisible(ids.TEXT_TEMPLATE("You have access to a working environment where you can be at your best and most productive.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'satisfied with your current role' question", then.idVisible("TEXT_TEMPLATE_You are satisfied with your current role at Biz 13.b2b"));
+      Then("I should be on the 'satisfied with your current role' question", then.idVisible(ids.TEXT_TEMPLATE("You are satisfied with your current role at Biz 13.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
-      Then("I should be on the 'access to a working environment' question", then.idVisible("TEXT_TEMPLATE_You have access to a working environment where you can be at your best and most productive.b2b"));
+      Then("I should be on the 'access to a working environment' question", then.idVisible(ids.TEXT_TEMPLATE("You have access to a working environment where you can be at your best and most productive.", "b2b")));
       Then("I should see the checkbox for the first option is still selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'satisfied with your current role' question", then.idVisible("TEXT_TEMPLATE_You are satisfied with your current role at Biz 13.b2b"));
+      Then("I should be on the 'satisfied with your current role' question", then.idVisible(ids.TEXT_TEMPLATE("You are satisfied with your current role at Biz 13.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'satisfied with the level of reward' question", then.idVisible("TEXT_TEMPLATE_You are satisfied with the level of reward and appreciation for your contributions.b2b"));
+      Then("I should be on the 'satisfied with the level of reward' question", then.idVisible(ids.TEXT_TEMPLATE("You are satisfied with the level of reward and appreciation for your contributions.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'heard and valued by your manager' question", then.idVisible("TEXT_TEMPLATE_Your opinions are heard and valued by your manager.b2b"));
+      Then("I should be on the 'heard and valued by your manager' question", then.idVisible(ids.TEXT_TEMPLATE("Your opinions are heard and valued by your manager.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'level of collaboration and teamwork' question", then.idVisible("TEXT_TEMPLATE_The level of collaboration and teamwork is high in my team.b2b"));
+      Then("I should be on the 'level of collaboration and teamwork' question", then.idVisible(ids.TEXT_TEMPLATE("The level of collaboration and teamwork is high in my team.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'level of collaboration and teamwork is high between teams", then.idVisible("TEXT_TEMPLATE_The level of collaboration and teamwork is high between teams.b2b"));
+      Then("I should be on the 'level of collaboration and teamwork is high between teams", then.idVisible(ids.TEXT_TEMPLATE("The level of collaboration and teamwork is high between teams.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'receive clear and timely communication' question", then.idVisible("TEXT_TEMPLATE_You receive clear and timely communication from senior leadership about important decisions.b2b"));
+      Then("I should be on the 'receive clear and timely communication' question", then.idVisible(ids.TEXT_TEMPLATE("You receive clear and timely communication from senior leadership about important decisions.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'have trust in the senior leadership team' question", then.idVisible("TEXT_TEMPLATE_You have trust in the senior leadership team.b2b"));
+      Then("I should be on the 'have trust in the senior leadership team' question", then.idVisible(ids.TEXT_TEMPLATE("You have trust in the senior leadership team.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'satisfied with the opportunities for professional growth' question", then.idVisible("TEXT_TEMPLATE_Based on your current role, you are satisfied with the opportunities for professional growth and skill development at Biz 13.b2b"));
+      Then("I should be on the 'satisfied with the opportunities for professional growth' question", then.idVisible(ids.TEXT_TEMPLATE("Based on your current role, you are satisfied with the opportunities for professional growth and skill development at Biz 13.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'constructive feedback and coaching from your manager' question", then.idVisible("TEXT_TEMPLATE_You receive constructive feedback and coaching from your manager to help you grow in your role.b2b"));
+      Then("I should be on the 'constructive feedback and coaching from your manager' question", then.idVisible(ids.TEXT_TEMPLATE("You receive constructive feedback and coaching from your manager to help you grow in your role.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'see yourself continuing to work for the next 3+ years' question", then.idVisible("TEXT_TEMPLATE_You see yourself continuing to work at Biz 13 for the next 3+ years?b2b"));
+      Then("I should be on the 'see yourself continuing to work for the next 3+ years' question", then.idVisible(ids.TEXT_TEMPLATE("You see yourself continuing to work at Biz 13 for the next 3+ years?", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'Your growth and development in the company is supported by:' question", then.idVisible("TEXT_TEMPLATE_Your growth and development in the company is supported by:b2b"));
+      Then("I should be on the 'Your growth and development in the company is supported by:' question", then.idVisible(ids.TEXT_TEMPLATE("Your growth and development in the company is supported by:", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveySupportedByCheckBoxes);
     });
     When("I select first option", when.tapID("growth_development_supported_choice_my_manager"), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible("growth_development_supported_choice_my_manager"));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'believe there are equal opportunities for career advancement", then.idVisible("TEXT_TEMPLATE_You believe there are equal opportunities for career advancement at Biz 13.b2b"));
+      Then("I should be on the 'believe there are equal opportunities for career advancement", then.idVisible(ids.TEXT_TEMPLATE("You believe there are equal opportunities for career advancement at Biz 13.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'Please elaborate on why you think this' question", then.idVisible("TEXT_TEMPLATE_Please elaborate on why you think this.h2"));
+      Then("I should be on the 'Please elaborate on why you think this' question", then.idVisible(ids.TEXT_TEMPLATE("Please elaborate on why you think this.", "h2")));
       Then("I can see that the character counter shows 0.", then.idVisible(ids.CONTENT_ITEM_INPUT_CHARACTER_COUNTER("equal_opportunities_reason_text-input", 0)));
     });
     When("I type in 1001 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, oneThousandAndOneCharacters), async () => {
@@ -532,40 +532,40 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I swipe to the bottom", then.scrollFromID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, "up", "fast", 0.5));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'You feel your role contributes meaningfully' question", then.idVisible("TEXT_TEMPLATE_You feel your role contributes meaningfully to the company’s success.b2b"));
+      Then("I should be on the 'You feel your role contributes meaningfully' question", then.idVisible(ids.TEXT_TEMPLATE("You feel your role contributes meaningfully to the company’s success.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'You believe in the company’s vision' question", then.idVisible("TEXT_TEMPLATE_You believe in the company’s vision and direction.b2b"));
+      Then("I should be on the 'You believe in the company’s vision' question", then.idVisible(ids.TEXT_TEMPLATE("You believe in the company’s vision and direction.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'You are proud to work at your company' question", then.idVisible("TEXT_TEMPLATE_You are proud to work at Biz 13.b2b"));
+      Then("I should be on the 'You are proud to work at your company' question", then.idVisible(ids.TEXT_TEMPLATE("You are proud to work at Biz 13.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("Strongly agree", false)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'What motivates you to do your best work' question", then.idVisible("TEXT_TEMPLATE_What motivates you to do your best work?h2"));
+      Then("I should be on the 'What motivates you to do your best work' question", then.idVisible(ids.TEXT_TEMPLATE("What motivates you to do your best work?", "h2")));
     });
     When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_WORK_MOTIVATION, oneHundredCharacters), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("Next")));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'What do you enjoy most about working at Biz' question", then.idVisible("TEXT_TEMPLATE_What do you enjoy most about working at Biz 13?h2"));
+      Then("I should be on the 'What do you enjoy most about working at Biz' question", then.idVisible(ids.TEXT_TEMPLATE("What do you enjoy most about working at Biz 13?", "h2")));
     });
     When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY, oneHundredCharacters), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("Next")));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the 'the one thing you would change about Biz' question", then.idVisible("TEXT_TEMPLATE_What's the one thing you would change about Biz 13 to make your experience there better?h2"));
+      Then("I should be on the 'the one thing you would change about Biz' question", then.idVisible(ids.TEXT_TEMPLATE("What's the one thing you would change about Biz 13 to make your experience there better?", "h2")));
     });
     When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY, oneHundredCharacters), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("Next")));
@@ -574,20 +574,22 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should be on the 'How likely are you to recommend Biz' question", then.idVisible("TEXT_TEMPLATE_How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)b2b"));
       Then("I should see all check box's", then.canSeeEngagementSurvey1To10CheckBoxes);
     });
+
+    When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
+      Then("I should be back on the 'the one thing you would change about Biz' question", then.idVisible("TEXT_TEMPLATE_What's the one thing you would change about Biz 13 to make your experience there better?h2"));
+      Then("My last typed out answer should still be filled in", then.textVisible(`${oneHundredCharacters}`));
+    });
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I should be back on the 'How likely are you to recommend Biz' question", then.idVisible("TEXT_TEMPLATE_How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)b2b"));
+      Then("I should see all check box's", then.canSeeEngagementSurvey1To10CheckBoxes);
+    });
     When("I select choice 1", when.tapID(ids.WORKPLACE_CHOICE(1)), async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.WORKPLACE_CHOICE(1)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should see 'Thank you for answering this survey.'", then.idVisible("thank_you_submission_title"));
-    });
-    When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
-      Then("I should be back on the 'How likely are you to recommend Biz' question", then.idVisible("TEXT_TEMPLATE_How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)b2b"));
-    });
-    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should see 'Thank you for answering this survey.'", then.idVisible("thank_you_submission_title"));
-    });
-    When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit")), async () => {
-      Then("I should see my YuCoin balance increase by 300 YuCoins for completing the survey to make a total of 1300 YuCoins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1300), 1500));
+      When("I click on the 'Claim' button", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
+        Then("I should see my YuCoin balance increase by 300 YuCoins for completing the survey to make a total of 1300 YuCoins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1300), 1500));
+      });
     });
   });
 
@@ -597,7 +599,7 @@ Feature("Quizzes and questionnaires", async () => {
         When("I should see the Let's go! button", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN", false)), async () => {
           When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_Share your feedback"), async () => {
             When("I click on the engagement survey hero card", when.fillOutEngagementSurvey, async () => {
-              Then("As a user who has no work business listed, I should see 'your company' provides adequate resources' ", then.idVisible("TEXT_TEMPLATE_your company provides adequate resources to support your mental health (e.g., counselling services, stress checks).b2b"));
+              Then("As a user who has no work business listed, I should see 'your company' provides adequate resources' ", then.idVisible(ids.TEXT_TEMPLATE("your company provides adequate resources to support your mental health (e.g., counselling services, stress checks).", "b2b")));
             });
           });
         });
@@ -613,14 +615,14 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see Today you've earned '0 YuCoin'", then.textVisible("0 YuCoin"));
     });
     When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I click on the Automated QA Test Journey 10 Multiplier card", when.tapID("EVENT_HEADING_Automated QA Test Journey 10 Multiplier"), async () => {
-        Then("I should see the 'The choice is yours' question", then.idVisible("TEXT_TEMPLATE_The choice is yours.h3"));
+      When("I click on the Automated QA Test Journey 10 Multiplier card", when.tapID(ids.EVENT_HEADING("Automated QA Test Journey 10 Multiplier")), async () => {
+        Then("I should see the 'The choice is yours' question", then.idVisible(ids.TEXT_TEMPLATE("The choice is yours.", "b2b")));
         Then("I should see the progress bar has moved", then.progressBarVisible(100, 100));
       });
     });
-    When("I select the first choice", when.tapID("RADIO_ITEM_SELECTED_red_pill_false"), async () => {
+    When("I select the first choice", when.tapID(ids.CHECKBOX_SELECTORS("initial_choice", "red_pill")), async () => {
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-        Then("I should see the Thank you for answering", then.idVisible("TEXT_TEMPLATE_Thank you for answeringh2"));
+        Then("I should see the Thank you for answering", then.idVisible(ids.TEXT_TEMPLATE("Thank you for answering", "h2")));
       });
     });
     When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit")), async () => {
@@ -643,16 +645,16 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see Today you've earned '0 YuCoin'", then.textVisible("0 YuCoin"));
     });
     When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I swipe left on the Automated QA Test Journey 10 Multiplier card", when.scrollFromID("EVENT_HEADING_Automated QA Test Journey 10 Multiplier", "left", "fast", 0.2), async () => {
-        When("I click on the Automated QA Test Journey 500 YuCoin Flat Amount card", when.tapID("EVENT_HEADING_Automated QA Test Journey 500 YuCoin Flat Amount"), async () => {
-          Then("I should see the 'The choice is yours' question", then.idVisible("TEXT_TEMPLATE_The choice is yours.h3"));
+      When("I swipe left on the Automated QA Test Journey 10 Multiplier card", when.scrollFromID(ids.EVENT_HEADING("Automated QA Test Journey 10 Multiplier"), "left", "fast", 0.2), async () => {
+        When("I click on the Automated QA Test Journey 500 YuCoin Flat Amount card", when.tapID(ids.EVENT_HEADING("Automated QA Test Journey 500 YuCoin Flat Amount")), async () => {
+          Then("I should see the 'The choice is yours' question", then.idVisible(ids.TEXT_TEMPLATE("The choice is yours.", "b2b")));
           Then("I should see the progress bar has moved", then.progressBarVisible(500, 500));
         });
       });
     });
-    When("I select the first choice", when.tapID("RADIO_ITEM_SELECTED_red_pill_false"), async () => {
+    When("I select the first choice", when.tapID(ids.CHECKBOX_SELECTORS("initial_choice", "red_pill")), async () => {
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-        Then("I should see the Thank you for answering", then.idVisible("TEXT_TEMPLATE_Thank you for answeringh2"));
+        Then("I should see the Thank you for answering", then.idVisible(ids.TEXT_TEMPLATE("Thank you for answering", "h2")));
       });
     });
     When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit")), async () => {
