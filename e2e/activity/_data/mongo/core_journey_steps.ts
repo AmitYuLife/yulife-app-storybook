@@ -1839,10 +1839,10 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_1 = {
   data: {
     _id: generateRandomMongoId,
     journey: CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST.data._id,
-    stepId: "whats_your_favourite_colour",
-    name: "What's your favourite colour?",
+    stepId: "initial",
+    name: "initial",
     stepType: "initial",
-    template: "journey_template_radio",
+    template: "journey_template_choice",
     templateUi: {
       design: "default",
       copy: {
@@ -1850,14 +1850,15 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_1 = {
           "en-GB": "The choice is yours.",
         },
         description: {
-          "en-GB": "Will you choose the Red pill or Blue pill.",
+          "en-GB": "Will you choose the Red pill or Blue pill?",
         },
         ctaLabel: {
           "en-GB": "Next",
         },
       },
       answerKey: "the_choice_is_yours",
-      choices: [
+      multiSelect: false,
+      options: [
         {
           label: {
             "en-GB": "Red pill",
@@ -1901,7 +1902,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_2 = {
     _id: generateRandomMongoId,
     journey: CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST.data._id,
     stepId: "submission",
-    name: "Submission",
+    name: "submission",
     stepType: "submission",
     template: "journey_template_no_question",
     templateUi: {
@@ -1926,12 +1927,12 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_2 = {
     temporaryProperties: [],
     hooks: [
       {
-        hook: "awardYucoin",
-        trigger: "onPreFill",
-      },
-      {
         hook: "validateAccessRules",
         trigger: "onPreSave",
+      },
+      {
+        hook: "awardYucoin",
+        trigger: "onPreFill",
       },
     ],
     ui: generateRandomMongoId(),
@@ -1946,10 +1947,10 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
   data: {
     _id: generateRandomMongoId,
     journey: CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST.data._id,
-    stepId: "whats_your_favourite_colour",
-    name: "What's your favourite colour?",
+    stepId: "initial",
+    name: "initial",
     stepType: "initial",
-    template: "journey_template_radio",
+    template: "journey_template_choice",
     templateUi: {
       design: "default",
       copy: {
@@ -1957,14 +1958,15 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
           "en-GB": "The choice is yours.",
         },
         description: {
-          "en-GB": "Will you choose the Red pill or Blue pill.",
+          "en-GB": "Will you choose the Red pill or Blue pill?",
         },
         ctaLabel: {
           "en-GB": "Next",
         },
       },
       answerKey: "the_choice_is_yours",
-      choices: [
+      multiSelect: false,
+      options: [
         {
           label: {
             "en-GB": "Red pill",
@@ -2008,7 +2010,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_2 = {
     _id: generateRandomMongoId,
     journey: CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST.data._id,
     stepId: "submission",
-    name: "Submission",
+    name: "submission",
     stepType: "submission",
     template: "journey_template_no_question",
     templateUi: {
@@ -2033,12 +2035,12 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_2 = {
     temporaryProperties: [],
     hooks: [
       {
-        hook: "awardYucoin",
-        trigger: "onPreFill",
-      },
-      {
         hook: "validateAccessRules",
         trigger: "onPreSave",
+      },
+      {
+        hook: "awardYucoin",
+        trigger: "onPreFill",
       },
     ],
     ui: generateRandomMongoId(),

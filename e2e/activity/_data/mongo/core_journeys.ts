@@ -87,7 +87,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST = {
     allAnswerKeys: ["the_choice_is_yours"],
     published: true,
     showHeroCard: true,
-    minAppVersion: ">=3.44.0",
+    minAppVersion: ">=4.9.0",
     staticJourney: false,
     requiresUserStateForAccess: false,
     uiAccess: [],
@@ -102,11 +102,10 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST = {
         description: {
           "en-GB": "Automated QA Test Journey 10 Multiplier",
         },
-        image: "journeys/banner-yugi-coin-2025-02-24.svg",
-        backgroundImage: "journeys/banner-gradient-2025-02-24.svg",
       },
     },
     yuCoinRewardAsEarnRateMultiple: 10,
+    yuCoinRewardAsFlatAmount: 0,
   },
 };
 
@@ -120,11 +119,13 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST = {
     allAnswerKeys: ["the_choice_is_yours"],
     published: true,
     showHeroCard: true,
-    minAppVersion: ">=3.44.0",
-    yuCoinRewardAsEarnRateMultiple: 0,
+    minAppVersion: ">=4.9.0",
     staticJourney: false,
     requiresUserStateForAccess: false,
     uiAccess: [],
+    accessRules: {
+      tags: [CUSTOMER_44.data.customerId],
+    },
     uiAccessCopy: {
       eventPanel: {
         title: {
@@ -133,13 +134,9 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST = {
         description: {
           "en-GB": "Automated QA Test Journey 500 YuCoin Flat Amount",
         },
-        image: "journeys/banner-yugi-coin-2025-02-24.svg",
-        backgroundImage: "journeys/banner-gradient-2025-02-24.svg",
       },
     },
-    accessRules: {
-      tags: [CUSTOMER_44.data.customerId],
-    },
+    yuCoinRewardAsEarnRateMultiple: 0,
     yuCoinRewardAsFlatAmount: 500,
   },
 };
