@@ -28,7 +28,7 @@ const YuHealthConnectContainer = ({
     }
 
     return SUPPORTED_PROVIDERS.filter(
-      (provider) => providerAvailabilities[provider] === HealthProviderAvailability.available
+      (provider) => providerAvailabilities?.[provider] === HealthProviderAvailability.available
     );
   }, [availableProviders, providerAvailabilities]);
 
@@ -47,6 +47,7 @@ const YuHealthConnectContainer = ({
       onCancel={onCancel}
       onChangeProvider={setActiveProvider}
       providers={providers}
+      isLoadingProviders={!providerAvailabilities}
       activeProvider={activeProvider}
     />
   );

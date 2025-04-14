@@ -83,7 +83,7 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
       });
 
       results = (fitkitResults || []).map((r) => ({ ...r, type: r.type as FitKitType, value: Math.round(r.value) }));
-    } else if (tempGameEnableReleaseYuHealthV3) {
+    } else {
       const FITKIT_TYPE_MAP: Record<string, HealthDataType> = {
         StepCount: HealthDataType.steps,
         MindfulSession: HealthDataType.mindfulMinutes,
@@ -117,20 +117,28 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
     }
 
     /**
-     * Only send to API StepCount data, other data types hasn't been tested
+     * Only send to API StepCount data on fitkit, other data types hasn't been tested
+     * The SubmitUserDebugData mutation is very specific to fitkit and doens't work with YuHealth as YuHealth has different data types
+     * We still need to send some results (empty) so we can mark this debug request as completed
      */
-    if (fitKitTypes.length === 1 && fitKitTypes[0] === FitKitType.StepCount && data.getUserDebugData.id) {
-      yield call(() =>
-        client().mutate({
-          mutation: gql("SubmitUserDebugDataDocument"),
-          errorPolicy: "ignore",
-          variables: {
-            id: data.getUserDebugData.id,
-            results: (results || []).map((r) => ({ ...r, type: r.type as FitKitType, value: Math.round(r.value) })),
-          },
-        })
-      );
-    }
+    const sendResults =
+      tempGameEnableReleaseYuHealthV3 &&
+      fitKitTypes?.length === 1 &&
+      fitKitTypes[0] === FitKitType.StepCount &&
+      data.getUserDebugData.id;
+
+    yield call(() =>
+      client().mutate({
+        mutation: gql("SubmitUserDebugDataDocument"),
+        errorPolicy: "ignore",
+        variables: {
+          id: data.getUserDebugData.id,
+          results: sendResults
+            ? (results || []).map((r) => ({ ...r, type: r.type as FitKitType, value: Math.round(r.value) }))
+            : [],
+        },
+      })
+    );
   } catch (e) {
     yield spawn(() => {
       Logger.error(e, { event: "debugToolSaga" });

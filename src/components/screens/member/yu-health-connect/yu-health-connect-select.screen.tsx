@@ -11,6 +11,7 @@ import { ScrollView, StyleSheet } from "react-native";
 interface IYuHealthConnectSelectScreenProps {
   activeProvider: HealthProvider;
   providers: HealthProvider[];
+  isLoadingProviders?: boolean;
   onChangeProvider: (provider: HealthProvider) => void;
   onConfirm: () => void;
   onCancel: () => void;
@@ -22,6 +23,7 @@ const YuHealthConnectSelectScreen = ({
   onCancel,
   providers,
   onChangeProvider,
+  isLoadingProviders,
 }: IYuHealthConnectSelectScreenProps) => {
   const t = useTranslation(["yu_health.select.confirm", "yu_health.select.choose"]);
 
@@ -41,7 +43,7 @@ const YuHealthConnectSelectScreen = ({
             ))}
           </Box>
 
-          <Button translationKey="yu_health.select.confirm" onPress={onConfirm} />
+          <Button translationKey="yu_health.select.confirm" onPress={onConfirm} isLoading={isLoadingProviders} />
         </Box>
       </ScrollView>
       <GenericHeadingAbsolute heading={t["yu_health.select.choose"]} onRightIconPress={onCancel} />
