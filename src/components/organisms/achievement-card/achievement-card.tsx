@@ -40,11 +40,11 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
         <Box alignItems="center" justifyContent="center" mt={24}>
           <Image h={95} w={95} style={styles.image} source={icon} />
           <Box mt={4} gap={4}>
-            <TextTemplate type="b2b" color="#464647" textAlign="center" numberOfLines={2}>
+            <TextTemplate type="b2b" color="#464647" textAlign="center" numberOfLines={1}>
               {name}
             </TextTemplate>
             {!description ? null : (
-              <TextTemplate type="l2b" color="#464647" textAlign="center" numberOfLines={2}>
+              <TextTemplate type="l2b" color="#464647" textAlign="center" numberOfLines={1}>
                 {description}
               </TextTemplate>
             )}
