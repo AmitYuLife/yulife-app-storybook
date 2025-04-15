@@ -12,6 +12,7 @@ export const {
   wait,
   completedTodayStreakCopyVisible,
   multipleIDVisible,
+  textNotVisible,
 } = navigation.common;
 
 export const {

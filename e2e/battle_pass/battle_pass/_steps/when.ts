@@ -1,4 +1,4 @@
-export { authoriseFitkit } from "@socket";
+export { authoriseFitkit, sendSteps } from "@socket";
 import { screens } from "@appScreens";
 import { navigation } from "@utils";
 import * as ids from "@ids";

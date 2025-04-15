@@ -8,7 +8,6 @@ export * from "./postgres/customer_product_entity";
 export * from "./postgres/customer_business_product";
 
 export * from "./mongo/auths";
-export * from "./mongo/battle_pass";
 export * from "./mongo/core_settings";
 export * from "./mongo/users";
 export * from "./mongo/user_profile";

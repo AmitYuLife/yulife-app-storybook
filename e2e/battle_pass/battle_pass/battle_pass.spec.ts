@@ -1,6 +1,7 @@
 import { Given, When, Then, Feature, Scenario, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import { couponsTermsAndConditions } from "./_resources/fixtures";
-import { emptyInventoryState } from "./_resources/constants";
+import { outOfCoinsMessage } from "./_resources/constants";
+import { BUSINESS_THE_BEAR, BUSINESS_ACCOUNT_2 } from "battle_pass/_data";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -10,7 +11,7 @@ import * as ids from "@ids";
 
 Feature("I can view and use all battle pass features", async () => {
   Scenario("I can view battle pass, donate YuCoin and successfully level up", scenario.start, () => {
-    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason, async () => {
+    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
         Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
           Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
@@ -49,12 +50,29 @@ Feature("I can view and use all battle pass features", async () => {
   });
 
   Scenario("I can successfully level up and claim a mystery box as the first reward", scenario.start, () => {
-    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason, async () => {
+    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
-        When("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          Then("I should see the store location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+        When("I login and navigate to the 'Quest' screen", given.logInAndGoToTab("quests", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+          When("I tap level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10)), async () => {
+            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll"), 2500));
+          });
         });
       });
+    });
+    When("I start a challenge", when.startChallenge("Short Stroll"), async () => {
+      Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR, 3000));
+    });
+    When("I walk over 300 steps", when.sendSteps(400, 35000), async () => {
+      Then("I should see the well done screen", then.onChallengeComplete(400, 10));
+    });
+    When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
+      Then("I should see the completed streak day 1 modal", then.completedTodayStreakCopyVisible(1));
+    });
+    When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+      Then("I should be on the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+    });
+    When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
+      Then("I should see the store location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
     });
     When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
       When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
@@ -64,6 +82,7 @@ Feature("I can view and use all battle pass features", async () => {
       });
     });
     When("I tap donate to Plant a tree and complete my first level", when.donate("tree", 3), async () => {
+      Then("I should NOT see the insufficient balance error message", then.textNotVisible(outOfCoinsMessage, 2000));
       Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
     });
     When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
@@ -80,7 +99,7 @@ Feature("I can view and use all battle pass features", async () => {
   });
 
   Scenario("I can successfully level up and claim an extra challenge power-up", scenario.start, () => {
-    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason, async () => {
+    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
         When("I login and go to the YuCoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
           Then("I see that I have only one challenge available for today", then.textVisible("Take a challenge (1 left today)"));
@@ -149,8 +168,8 @@ Feature("I can view and use all battle pass features", async () => {
     });
   });
 
-  Scenario("As a member with concurrent employments, I should be able to access the battlepass if one of my employments has it enabled for me", scenario.start, () => {
-    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason, async () => {
+  Scenario("As a member with concurrent employments, I should be able to access Battle Pass if one of my employments has it enabled for me", scenario.start, () => {
+    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_ACCOUNT_2.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
         Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
           Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
