@@ -52,7 +52,7 @@ Feature("Rewards should act correctly", async () => {
     When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
       Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll to the bottom of the rewards page", when.swipeFromText("John Lewis", "up", "fast"), async () => {
+    When("I scroll to the bottom of the rewards page", when.swipeFromText("Bloom & Wild", "up", "fast"), async () => {
       When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "down", "fast", 0.3), async () => {
         Then("I should see the locked amazon reward", then.lockedRewardVisible(data.CORE_REWARDS_AMAZON_UNAVAILABLE));
         Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1));
@@ -176,7 +176,7 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("I can login and view my previously purchased rewards with different date formate : locale US", scenario.startUS, async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
-      Then("I should see the modal to select store location", then.rewardsLocationModalVisible("US"));
+      Then("I should see the modal to select store location", then.textVisible("Current Location", 2000));
     });
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
       When("I swipe down this page", when.swipeToText(ids.REWARDS_LIST_SCREEN, t("Purchased"), "up"), async () => {

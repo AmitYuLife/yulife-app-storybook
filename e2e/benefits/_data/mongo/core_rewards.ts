@@ -38,7 +38,7 @@ export const CORE_REWARDS_JOHN_LEWIS = {
     availableDenominations: [
       {
         _id: generateRandomMongoId(),
-        yuCoin: 4130,
+        yuCoin: 4132,
         value: 5,
         stock: 7,
         availableForRewardsStore: true,

@@ -37,7 +37,7 @@ export const CORE_REWARDS_JOHN_LEWIS = {
     availableDenominations: [
       {
         _id: generateRandomMongoId(),
-        yuCoin: 4130,
+        yuCoin: 4132,
         value: 5,
         stock: 7,
         availableForRewardsStore: true,
@@ -70,7 +70,12 @@ export const CORE_REWARDS_BUZZBIKE = {
       availableForLabels: [],
       restrictedForLabels: [],
     },
-    tags: ["Entertainment"],
+    tags: [
+      {
+        "en-GB": "Entertainment",
+        _id: generateRandomMongoId(),
+      },
+    ],
     badge: {
       name: "Discount",
       colour: "#E30D76",
