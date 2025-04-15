@@ -71,8 +71,6 @@ Feature("Quizzes and questionnaires", async () => {
     });
   });
 
-  // @bug LCS-1042 -- The progress bar is not filling correctly. It reaches 100% at question 5 even though there are 8 questions total,
-  // causing it to complete prematurely. To get the test passing until a fix I have commented out all the progressBarVisible's.
   Scenario("I should see the Health Questionnaire and be able to complete, if I have not done so before", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_73, data.AUTH_73), async () => {
       Then("I should see my YuCoin balance of 560, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560)));
@@ -130,7 +128,7 @@ Feature("Quizzes and questionnaires", async () => {
 
     When("I press the Let’s go! button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01));
-      // Then("I should see the progress bar in the start position", then.progressBarVisible(10));
+      Then("I should see the progress bar in the start position", then.progressBarVisible(20, 200));
     });
     When("I select the first option for Q1", when.tapText(data.CORE_JOURNEY_STEPS_01.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_01, 0));
@@ -138,16 +136,17 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the second question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_02));
-      // Then("I should see the progress bar has moved", then.progressBarVisible(20));
+      Then("I should see the progress bar has moved", then.progressBarVisible(50, 200));
     });
     When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
       Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01));
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_01, 0));
       Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_01, 1));
+      Then("I should see the progress bar has moved down", then.progressBarVisible(20, 200));
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the second question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_02));
-      // Then("I should see the progress bar has moved", then.progressBarVisible(20));
+      Then("I should see the progress bar has moved", then.progressBarVisible(50, 200));
       Then("I should not see the first option selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_02, 0));
       Then("I should not see the second option selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_02, 1));
     });
@@ -157,7 +156,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the third question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_03));
-      // Then("I should see the progress bar has moved", then.progressBarVisible(50));
+      Then("I should see the progress bar has moved", then.progressBarVisible(70, 200));
     });
     When("I select the second option for Q3", when.tapText(data.CORE_JOURNEY_STEPS_03.data.templateUi.options[1].label["en-GB"]), async () => {
       Then("I should see the second option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_03, 1));
@@ -165,7 +164,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the fourth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_04));
-      // Then("I should see the progress bar has moved", then.progressBarVisible(70));
+      Then("I should see the progress bar has moved", then.progressBarVisible(100, 200));
     });
     When("I select the first option for Q4", when.tapText(data.CORE_JOURNEY_STEPS_04.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_04));
@@ -173,7 +172,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the fifth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_05));
-      // Then("I should see the progress bar has moved", then.progressBarVisible(100));
+      Then("I should see the progress bar has moved", then.progressBarVisible(120, 200));
     });
     When("I select the first option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_05.data.templateUi.options[0].label["en-GB"]), async () => {
       When("I also select the third option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_05.data.templateUi.options[2].label["en-GB"]), async () => {
@@ -186,7 +185,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the sixth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_06));
-      // Then("I should see the progress bar has moved", then.progressBarVisible(120));
+      Then("I should see the progress bar has moved", then.progressBarVisible(150, 200));
     });
     When("I select the first option for Q6", when.tapText(data.CORE_JOURNEY_STEPS_06.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_06));
@@ -194,7 +193,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the seventh question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_07));
-      // Then("I should see the progress bar has moved", then.progressBarVisible(150));
+      Then("I should see the progress bar has moved", then.progressBarVisible(170, 200));
     });
     When("I select the first option for Q7", when.tapText(data.CORE_JOURNEY_STEPS_07.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_07));
@@ -202,7 +201,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the eigth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_08));
-      // Then("I should see the progress bar has moved", then.progressBarVisible(170));
+      Then("I should see the progress bar has moved", then.progressBarVisible(200, 200));
     });
     When("I select the first option for Q8", when.tapText(data.CORE_JOURNEY_STEPS_08.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_08));

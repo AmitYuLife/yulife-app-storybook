@@ -504,7 +504,7 @@ export const hqNudgeVisible =
 
 export const moodMonitorNudgeVisible = async () => {
   const moodMonitorMarkdown =
-    "Keep track of how you're feeling to earn 100 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)";
+    "Keep track of how you're feeling to earn 30 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)";
   await idVisible(NUDGE_ITEM(moodMonitorMarkdown))();
 };
 
@@ -560,7 +560,7 @@ export const completedHQNudgeVisible =
 
 export const completedMoodMonitorNudgeVisible = async () => {
   const moodMonitorMarkdown =
-    "Keep track of how you're feeling to earn 100 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)";
+    "Keep track of how you're feeling to earn 30 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)";
   await idVisible(DONE_NUDGE_ICON(moodMonitorMarkdown))();
 };
 
