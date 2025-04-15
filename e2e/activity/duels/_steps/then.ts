@@ -1,7 +1,7 @@
 import { navigation } from "@utils";
 import { expect } from "detox";
 import * as ids from "@ids";
-import { tapText } from "./when";
+import { scrollFromID, tapText } from "./when";
 
 export const {
   idVisible,
@@ -46,5 +46,6 @@ export const inviteFriendScreenVisible = async () => {
 export const isOnInivteColleaguePage = async () => {
   await expect(element(by.id(ids.REFERRALS_QR_CODE))).toBeVisible();
   await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible();
+  await scrollFromID(ids.REFERRALS_INVITE_BUTTON, "up", "fast")();
   await expect(element(by.text("Your referrals"))).toBeVisible();
 };
