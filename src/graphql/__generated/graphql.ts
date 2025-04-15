@@ -587,6 +587,7 @@ export type BulkMemberImport = {
   connectionName?: Maybe<Scalars["String"]["output"]>;
   connectionType?: Maybe<Scalars["String"]["output"]>;
   createdAt: Scalars["String"]["output"];
+  hasClientResolvableErrors?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["ID"]["output"];
   importType: BulkMemberImportType;
   issues: Array<BulkMemberImportIssueRow>;
@@ -1160,7 +1161,7 @@ export type BusinessTagInput = {
 
 export type CaptchaResponse = {
   provider: Scalars["String"]["input"];
-  result: Scalars["String"]["input"];
+  result?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** @Deprecated - Use MobileQuestChallenge instead */
@@ -5791,12 +5792,14 @@ export type MobileGameRecentlyUsedReward = {
 
 export type MobileGameUserAchievement = {
   __typename?: "MobileGameUserAchievement";
-  achievementId: Scalars["ID"]["output"];
-  achievementType: Scalars["String"]["output"];
   description: Scalars["String"]["output"];
   icon: RemoteImage;
+  id: Scalars["ID"]["output"];
   name: Scalars["String"]["output"];
   points: Scalars["Int"]["output"];
+  shortDescription?: Maybe<Scalars["String"]["output"]>;
+  status: Scalars["String"]["output"];
+  type: Scalars["String"]["output"];
 };
 
 export type MobileGameUserAchievements = {
@@ -5804,6 +5807,7 @@ export type MobileGameUserAchievements = {
   achievementPoints: Scalars["Int"]["output"];
   achievements: Array<MobileGameUserAchievement>;
   equippedAchievements: Array<MobileGameUserAchievement>;
+  lockedAchievements: Array<MobileGameUserAchievement>;
 };
 
 export type MobileGameWeeklies = {
@@ -6805,7 +6809,7 @@ export type MutationMarkInboxMessagesAsSeenArgs = {
 };
 
 export type MutationMarkMobileGameUserAchievementViewedArgs = {
-  achievementId: Scalars["String"]["input"];
+  id: Scalars["String"]["input"];
 };
 
 export type MutationMarkMobileNotificationsAsViewedByTypeArgs = {
@@ -7197,7 +7201,7 @@ export type MutationUpdateMemberNameArgs = {
 };
 
 export type MutationUpdateMobileGameUserAchievementArgs = {
-  achievementId: Scalars["String"]["input"];
+  id: Scalars["String"]["input"];
   slot?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
@@ -7922,7 +7926,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8392,7 +8395,7 @@ export type QueryGetMobileGamePartnerRewardsInventoryItemsArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileGameUserAchievementsArgs = {
-  achievementType?: InputMaybe<Scalars["String"]["input"]>;
+  type?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -8419,6 +8422,7 @@ export type QueryGetMobileQuestLevelChallengeDetailsArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileRewardsListArgs = {
+  searchTerm?: InputMaybe<Scalars["String"]["input"]>;
   tag?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -9003,12 +9007,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -9943,11 +9941,27 @@ export type TeamEmployeeBeneficiaryFields = {
   name: Scalars["String"]["output"];
 };
 
+export type TeamEmployeeExternalIntegration = {
+  __typename?: "TeamEmployeeExternalIntegration";
+  archived?: Maybe<Scalars["Boolean"]["output"]>;
+  businessMemberDataConnectionEmployeeId?: Maybe<Scalars["String"]["output"]>;
+  businessMemberDataConnectionId: Scalars["String"]["output"];
+  connectionName: Scalars["String"]["output"];
+  connectionStatus: Scalars["String"]["output"];
+  connectionType: Scalars["String"]["output"];
+  isBusinessEmployeeSkipped: Scalars["Boolean"]["output"];
+  lastObservedImportCreatedAt?: Maybe<Scalars["String"]["output"]>;
+  lastObservedImportId?: Maybe<Scalars["String"]["output"]>;
+  remoteEmployeeId?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type TeamEmployeeExternalIntegrationMetadata = {
   __typename?: "TeamEmployeeExternalIntegrationMetadata";
   employeeIsConnected: Scalars["Boolean"]["output"];
+  /** @deprecated Use name in externalIntegrations instead */
   externalIntegrationName: Scalars["String"]["output"];
   externalIntegrationUpdatesEnabled: Scalars["Boolean"]["output"];
+  externalIntegrations: Array<TeamEmployeeExternalIntegration>;
 };
 
 export type TeamEmployeeField = {
@@ -33732,13 +33746,6 @@ export type SetShareOfBenefitForProductMutation = {
       shareOfBenefit: number;
     }> | null;
   };
-};
-
-export type GetReferralBackgroundQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetReferralBackgroundQuery = {
-  __typename?: "Query";
-  getReferralBackground: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
 export type GetReferralOnboardingPopoverQueryVariables = Exact<{ [key: string]: never }>;
@@ -91347,32 +91354,6 @@ export const SetShareOfBenefitForProductDocument = {
     },
   ],
 } as unknown as DocumentNode<SetShareOfBenefitForProductMutation, SetShareOfBenefitForProductMutationVariables>;
-export const GetReferralBackgroundDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetReferralBackground" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getReferralBackground" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "uri" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetReferralBackgroundQuery, GetReferralBackgroundQueryVariables>;
 export const GetReferralOnboardingPopoverDocument = {
   kind: "Document",
   definitions: [
