@@ -27,6 +27,11 @@ const StatsSection = ({ section, onPress, actionButtonLabel }: StatsProps) => {
     []
   );
 
+  if (!section?.title && !section?.items?.length) {
+    // the section is not available
+    return null;
+  }
+
   return (
     <View>
       {!section.title ? null : (
