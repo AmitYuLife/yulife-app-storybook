@@ -37,17 +37,6 @@ export default StyleSheet.create({
   itemWrapperHighlight: {
     backgroundColor: Colours.neutral.n50,
   } as ViewStyle,
-  referralSection: {
-    position: "absolute",
-    justifyContent: "flex-end",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingBottom: Style.adjust(32),
-  } as ViewStyle,
-  referralBackgroundWrapper: {
-    position: "absolute",
-  } as ViewStyle,
   wrapper: {
     flex: 1,
   } as ViewStyle,
@@ -56,9 +45,6 @@ export default StyleSheet.create({
     top: PADDING_TOP,
     right: 0,
     padding: 16,
-  } as ViewStyle,
-  referralButtonWrapper: {
-    paddingHorizontal: Style.adjust(40),
   } as ViewStyle,
   bottomPadding: {
     height: Style.adjust(120),

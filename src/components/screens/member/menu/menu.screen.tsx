@@ -1,16 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Image as RNImage, ImageRequireSource, ScrollView, View } from "react-native";
-import { useSelector } from "react-redux";
-import { getCurrentLevel } from "@redux/levels/levels.selectors";
-import { getOnboardingReferralsBadge } from "@redux/onboarding/onboarding.selectors";
-import { useDebouncedQuery, useUserFeatures } from "@hooks";
-import { gql } from "@graphql/__generated";
-import { MENU_ITEM, MENU_SCREEN, REFERRALS_BUTTON_BADGE } from "@ids";
-import { CloseSvg, Image, Pad } from "@atoms";
+import { MENU_ITEM, MENU_SCREEN } from "@ids";
+import { CloseSvg, Pad } from "@atoms";
 import Logo from "@atoms/logo";
 import { TextTemplate } from "@atoms/text/text-template";
-import { Button, TouchableOpacityWithDelay } from "@molecules";
-import { Colours, Style } from "@styles";
+import { TouchableOpacityWithDelay } from "@molecules";
+import { Colours } from "@styles";
 import styles, { SCROLL_PADDING } from "./menu.screen.styles";
 import { t } from "@locale";
 import LottieView from "@components/molecules/lottie-view/lottie-view";
@@ -27,34 +22,12 @@ interface IProps {
   links: IMenuLink[];
   onPressClose: () => void;
   onDebugPress: (() => void) | null;
-  onInvitePress: (() => void) | null;
   version: string;
 }
 
 const HIT_SLOP = { left: 8, right: 8 };
 
-const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version }: IProps) => {
-  const { showReferrals, tempAppMenuNewReferralOption } = useUserFeatures();
-
-  const [getReferralBackground, { data, loading }] = useDebouncedQuery(
-    gql("GetReferralBackgroundDocument"),
-    {
-      fetchPolicy: "cache-and-network",
-    },
-    1800
-  );
-
-  const currentLevel = useSelector(getCurrentLevel);
-  const showBadge = useSelector(getOnboardingReferralsBadge);
-
-  const showReferralsV1 = showReferrals && !tempAppMenuNewReferralOption;
-
-  useEffect(() => {
-    if (showReferralsV1) {
-      getReferralBackground();
-    }
-  }, [showReferralsV1, currentLevel, getReferralBackground]);
-
+const MenuScreen = ({ onDebugPress, onPressClose, links, version }: IProps) => {
   return (
     <>
       <View style={styles.wrapper} testID={MENU_SCREEN}>
@@ -77,48 +50,9 @@ const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version 
       >
         <CloseSvg />
       </TouchableOpacityWithDelay>
-      {!showReferralsV1 ? null : (
-        <ReferralButton
-          showBadge={showBadge}
-          loading={loading}
-          uri={data?.getReferralBackground.uri}
-          onInvitePress={onInvitePress}
-        />
-      )}
     </>
   );
 };
-
-interface ReferralButtonProps {
-  showBadge: boolean;
-  loading: boolean;
-  uri: string;
-  onInvitePress: () => void;
-}
-
-const ReferralButton = ({ showBadge, loading, uri, onInvitePress }: ReferralButtonProps) => (
-  <View pointerEvents="box-none" style={styles.referralSection}>
-    <View style={styles.referralBackgroundWrapper}>
-      {loading || !uri ? null : (
-        <Image
-          width={Style.DEVICE_WIDTH}
-          source={{
-            uri,
-          }}
-        />
-      )}
-    </View>
-    <View style={styles.referralButtonWrapper}>
-      <Button
-        translationKey="labels.cta.invite"
-        size="Fill"
-        onPress={onInvitePress}
-        showBadge={showBadge}
-        testID={REFERRALS_BUTTON_BADGE(showBadge)}
-      />
-    </View>
-  </View>
-);
 
 const Links = ({ links }: { links: IProps["links"] }) => (
   <>

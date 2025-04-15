@@ -26,7 +26,7 @@ const MenuContainer = () => {
   const permissions = useSelector(getPushNotifications);
   const supportLevel = useSelector(getSupportLevel);
 
-  const { tempAppMenuNewReferralOption, showReferrals, showHelperTools, showDebug } = useUserFeatures();
+  const { showReferrals, showHelperTools, showDebug } = useUserFeatures();
 
   const openSupport = useCallback(() => {
     const callback = () => {
@@ -97,7 +97,7 @@ const MenuContainer = () => {
         case LINKS.REFERRALS_INFO:
           Logger.logMixpanelEvent("user_action", {
             action_type: "pressed_referral_info",
-            version: tempAppMenuNewReferralOption ? "v2" : "v1",
+            version: "v2",
           });
           handlePush(currentRoute, ROUTES.referralInformation, {}, { sourceId: ROUTES.menu });
           return null;
@@ -105,13 +105,13 @@ const MenuContainer = () => {
           return null;
       }
     },
-    [currentRoute, dispatch, openSupport, handlePressLogout, tempAppMenuNewReferralOption]
+    [currentRoute, dispatch, openSupport, handlePressLogout]
   );
 
   const links: IMenuLink[] = useMemo(
     () => [
       {
-        condition: tempAppMenuNewReferralOption && showReferrals,
+        condition: showReferrals,
         label: t("screens.menu.invite_a_colleague.label"),
         onPress: handlePressLink(LINKS.REFERRALS_INFO),
         source: assets[LINKS.REFERRALS_INFO],
@@ -160,7 +160,7 @@ const MenuContainer = () => {
         source: assets[LINKS.LOGOUT],
       },
     ],
-    [handlePressLink, tempAppMenuNewReferralOption, showReferrals, showHelperTools, supportLevel]
+    [handlePressLink, showReferrals, showHelperTools, supportLevel]
   );
 
   return (
@@ -169,7 +169,6 @@ const MenuContainer = () => {
       links={links}
       version={nativeApplicationVersion}
       onDebugPress={showDebug || IS_DEVELOP ? handlePressLink(LINKS.DEBUG) : null}
-      onInvitePress={handlePressLink(LINKS.REFERRALS_INFO)}
     />
   );
 };

@@ -17,7 +17,6 @@ export const features = [
   "yuScreenV3",
   "limitPedometerSteps",
   "showReferrals",
-  "tempAppMenuNewReferralOption",
   "showBuffs",
   "useActiveChallengesService",
   "waitForStepsSync",
