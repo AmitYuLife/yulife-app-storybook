@@ -1,6 +1,6 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { FlatList as RNFlatList, StyleSheet, View, ViewStyle, Platform, ListRenderItem, Pressable } from "react-native";
-import { Colours, Style } from "@styles";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { FlatList as RNFlatList, StyleSheet, View, ViewStyle, ListRenderItem, Pressable } from "react-native";
+import { Colours, Style, TOP_BAR } from "@styles";
 import { FlatList, TextTemplate } from "@atoms";
 import { Controller } from "./controller";
 import { Page, IPageItem } from "./page";
@@ -63,7 +63,7 @@ export const FullScreenSwiper = memo((props: Props) => {
 
   const handleChangeActiveIndex = useCallback(
     (increment: number, autoMove: boolean = false) =>
-      () => {
+      (): void => {
         if (!items) {
           return null;
         }
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   } as ViewStyle,
   inner: {
-    height: Style.DEVICE_HEIGHT - Platform.select({ ios: 40, android: 0 }),
+    height: Style.DEVICE_HEIGHT - TOP_BAR.PADDING_TOP,
     flexDirection: "row",
     overflow: "hidden",
   } as ViewStyle,
