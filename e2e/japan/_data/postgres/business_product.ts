@@ -191,3 +191,22 @@ export const BUSINESS_PRODUCT_1_TDI = generateProductRecords({
     },
   ],
 });
+
+export const BUSINESS_PRODUCT_LUNALUNA = generateProductRecords({
+  productCode: ProductCode.wellbeingAccess,
+  carrier: Carrier.YuLife,
+  productId: "YUG0001186",
+  businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+  startDate: "2021-06-03T00:00:00.000Z",
+  categories: [
+    {
+      categoryId: "1",
+      earnRate: 10,
+      categoryName: "App access only",
+      categoryDescription: "All employees will have access to the YuLife app",
+      versionId: 1,
+      versionArchived: false,
+      isClosed: false,
+    },
+  ],
+});
