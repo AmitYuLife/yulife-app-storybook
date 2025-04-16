@@ -10,6 +10,8 @@ export * from "./mongo/social_groups";
 export * from "./mongo/social_group_leaderboards";
 export * from "./mongo/user_social_leaderboard_enrolments";
 export * from "./mongo/user_social_leaderboard_scores";
+export * from "./mongo/wellbeing_hub_items";
+export * from "./mongo/wellbeing_hub_category";
 
 export * from "./postgres/business_background";
 export * from "./postgres/business";
@@ -20,3 +22,4 @@ export * from "./postgres/customer_product_entity";
 export * from "./postgres/business_product_category";
 export * from "./postgres/customer_business_product";
 export * from "./postgres/business_schedule";
+export * from "./postgres/perk_eligibility";
