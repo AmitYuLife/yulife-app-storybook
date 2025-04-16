@@ -29,6 +29,7 @@ interface IProps {
   userSelectionComponent?: ReactNode;
   displayTopBar?: boolean;
   bottomPad?: number;
+  showReferral: boolean;
 }
 
 const KEYBOARD_BEHAVIOR = Platform.select({ ios: "padding", android: null } as const);
@@ -47,10 +48,17 @@ const UserSearchScreen = ({
   userSelectionComponent,
   displayTopBar = true,
   bottomPad,
+  showReferral,
 }: IProps) => {
-  const { referralComponent, goToReferralInformation } = useReferral(referralAmount);
+  const { referralComponent, goToReferralInformation } = useReferral(showReferral, referralAmount);
   const flashListTestId = useMemo(() => SEARCH_RESULTS(data.map((i) => i.name).sort()), [data]);
-  const renderItem = useUserSearchItemRenderer({ items: data, onItemPress, referralComponent, ListItem, bottomPad });
+  const renderItem = useUserSearchItemRenderer({
+    items: data,
+    onItemPress,
+    referralComponent,
+    ListItem,
+    bottomPad,
+  });
 
   const { showSkeletonLoading, showMagnifyingGlass, showList, listEmptyComponent } = useMemo(
     () => ({
@@ -76,7 +84,7 @@ const UserSearchScreen = ({
       {!showSkeletonLoading ? null : <ListItemLoadingSkeleton items={12} />}
       {!showMagnifyingGlass ? null : (
         <ScrollView showsVerticalScrollIndicator={false}>
-          <FindAFriend loading={loading} onPress={goToReferralInformation} records={data} />
+          <FindAFriend loading={loading} onPress={goToReferralInformation} records={data} showReferral={showReferral} />
         </ScrollView>
       )}
       {!showList ? null : (

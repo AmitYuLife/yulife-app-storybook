@@ -14,6 +14,7 @@ type Props = {
   onChangeText: (text: string) => void;
   referralAmount: number;
   isFilteredSearch: boolean;
+  showReferral: boolean;
 };
 
 const GiftingSearchScreen = ({
@@ -24,6 +25,7 @@ const GiftingSearchScreen = ({
   onChangeText,
   referralAmount,
   isFilteredSearch,
+  showReferral,
 }: Props) => (
   <View style={styles.screenWidth}>
     <UserSearchScreen
@@ -38,6 +40,7 @@ const GiftingSearchScreen = ({
       userSelectionComponent={<UserSelection selected={selectedUsers} onPress={onPressItem} />}
       displayTopBar={false}
       bottomPad={200}
+      showReferral={showReferral}
     />
   </View>
 );

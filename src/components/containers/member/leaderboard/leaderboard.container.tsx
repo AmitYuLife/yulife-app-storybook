@@ -36,13 +36,8 @@ export const LeaderboardContainer = () => {
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
   const socialGroups = useSelector(getSocialGroups);
   const activeSocialGroup = useSelector(getActiveSocialGroup);
-  const {
-    showDuels,
-    showLeaderboardSearch,
-    tempGameEnableAvatarFrames,
-    showNotificationCentre,
-    tempShowReferralOnLeaderboardV2,
-  } = useUserFeatures();
+  const { showDuels, showLeaderboardSearch, tempGameEnableAvatarFrames, showNotificationCentre, showReferrals } =
+    useUserFeatures();
   const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"));
   const [getLeaderboardFull, { data, loading, refetch }] = useLazyQuery(gql("GetLeaderboardFullDocument"), {
     fetchPolicy: "network-only",
@@ -292,7 +287,7 @@ export const LeaderboardContainer = () => {
       onShowRankModal={onShowRankModal}
       onUpdateActiveLeaderboard={selectSocialGroupLeaderboard}
       referralAmount={data?.referralRewardAmount?.yuCoinAmount || 0}
-      showReferral={tempShowReferralOnLeaderboardV2}
+      showReferral={showReferrals}
       currentUserIsOutOfBounds={currentUserIsOutOfBounds}
     />
   );

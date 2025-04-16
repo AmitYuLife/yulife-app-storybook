@@ -1,13 +1,14 @@
 import { memo, useCallback, useContext, useMemo } from "react";
 import { GiftingManagerContext } from "./context/gifting-manager.context";
 import GiftingSearchScreen from "./screens/gifting-search.screen";
-import { useSocialGroupUserSearch } from "@hooks";
+import { useSocialGroupUserSearch, useUserFeatures } from "@hooks";
 import { useQuery } from "@apollo/client";
 import { gql, SocialGroupLeaderboardSearchType } from "@graphql/__generated";
 import { UserSearchItem } from "@redux/_core/types";
 
 const GiftingSearchContainer = () => {
   const context = useContext(GiftingManagerContext);
+  const { showReferrals } = useUserFeatures();
   const selectedUsers = useMemo(
     () => ({ array: context?.targetUsers ? Object.values(context.targetUsers) : [] }),
     [context]
@@ -36,6 +37,7 @@ const GiftingSearchContainer = () => {
       onChangeText={handleChangeText}
       referralAmount={referralRewardAmountData?.getReferralRewardAmount?.yuCoinAmount ?? 0}
       isFilteredSearch={isFilteredSearch}
+      showReferral={showReferrals}
     />
   );
 };
