@@ -68,7 +68,6 @@ export const CUSTOMER_7_TOGGLES = {
     userId: customer.CUSTOMER_7.data.customerId,
     features: {
       ...allTogglesTrue.data.features,
-      tempGameEnableExtraChallengesHint: true,
       tempGameUseStreakSettings: true,
     },
   },
@@ -208,7 +207,6 @@ export const CUSTOMER_MEDITOPIA_2_TOGGLES = {
     userId: customer.CUSTOMER_MEDITOPIA_2.data.customerId,
     features: {
       ...mediaContentToggle.data.features,
-      tempGameEnableExtraChallengesHint: true,
     },
   },
 } as IDatabaseItem;
@@ -323,7 +321,6 @@ export const CUSTOMER_61_TOGGLES = {
     userId: customer.CUSTOMER_61.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      tempGameEnableExtraChallengesHint: true,
     },
   },
 } as IDatabaseItem;
