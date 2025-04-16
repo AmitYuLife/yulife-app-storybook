@@ -238,7 +238,6 @@ export const CUSTOMER_81_TOGGLES = {
       showFiit: true,
       showWeeklies: true,
       showGoals: true,
-      tempGameEnableExtraChallengesHint: true,
     },
   },
 } as IDatabaseItem;

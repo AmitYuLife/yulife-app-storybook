@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, View } from "react-native";
-import React, { memo, useCallback, useRef } from "react";
+import { memo, useCallback, useRef } from "react";
 import { Image, TextTemplate } from "@atoms";
-import { useTranslation, useUserFeatures } from "@hooks";
+import { useTranslation } from "@hooks";
 import SudokuStatsList from "@components/games/sudoku/sudoku-stats-list";
 import { Button } from "@components/molecules";
 import { Style } from "@styles";
@@ -31,9 +31,8 @@ const SPIRAL_ANIMATION = require("./assets/spiral.json");
 const SHINE_ANIMATION = require("./assets/shine.json");
 
 const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }: IProps) => {
-  const { tempGameEnableExtraChallengesHint } = useUserFeatures();
   const currentLevel = useSelector(getCurrentLevel);
-  const showChallengesHint = tempGameEnableExtraChallengesHint && currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
+  const showChallengesHint = currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
 
   const lottie = useRef<Lottie>();
   const t = useTranslation([

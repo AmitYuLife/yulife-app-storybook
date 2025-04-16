@@ -12,8 +12,8 @@ export const CUSTOMER_1_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_1.data.customerId,
     features: {
-      ...DEFAULT_TOGGLES.data.features
-    }
+      ...DEFAULT_TOGGLES.data.features,
+    },
   },
 } as IDatabaseItem;
 
@@ -61,7 +61,6 @@ export const CUSTOMER_BODY_COACH_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showWorkout: true,
-      tempGameEnableExtraChallengesHint:true
     },
   },
 } as IDatabaseItem;

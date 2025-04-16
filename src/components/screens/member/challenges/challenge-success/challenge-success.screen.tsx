@@ -41,10 +41,10 @@ export default function ChallengeSuccessScreen({
   yuniversalMap,
 }: IProps) {
   const dispatch = useDispatch();
-  const { showYucoinPowerButton, tempGameEnableExtraChallengesHint } = useUserFeatures();
+  const { showYucoinPowerButton } = useUserFeatures();
   const { challengeSuccessScreen } = getTheme(level, yuniversalMap);
   const currentLevel = useSelector(getCurrentLevel);
-  const showChallengesHint = tempGameEnableExtraChallengesHint && currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
+  const showChallengesHint = currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
 
   const onPressYucoinPowerButton = useCallback(() => {
     dispatch(
