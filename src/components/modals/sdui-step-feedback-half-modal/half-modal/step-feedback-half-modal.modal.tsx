@@ -90,7 +90,7 @@ const StepFeedbackHalfModal = ({
       },
       podiumRays: {
         ...styles.podiumRays,
-        top: -desiredHeight * 0.75,
+        top: HEADER_TOP_PADDING / 2 - Style.DEVICE_WIDTH,
       },
     }),
     [desiredHeight]
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     borderTopLeftRadius: Style.adjust(20),
     borderTopRightRadius: Style.adjust(20),
-    marginTop: -Style.adjust(10),
+    marginTop: Style.adjust(10),
   },
   headerContainer: {
     overflow: "hidden",
