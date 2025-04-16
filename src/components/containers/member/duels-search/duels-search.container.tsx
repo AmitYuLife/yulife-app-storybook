@@ -9,7 +9,7 @@ import RecentOpponents from "./subcomponents/recent-opponents";
 import { useQuery } from "@apollo/client";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
-import { useBackHandler, useDebouncedQuery } from "@hooks";
+import { useBackHandler, useDebouncedQuery, useUserFeatures } from "@hooks";
 import { FindAFriend, SearchInput } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
 import { showYuModal } from "@navigation/root";
@@ -89,6 +89,8 @@ function _DuelsSearchContainer() {
     fetchPolicy: "cache-and-network",
   });
 
+  const { showReferrals } = useUserFeatures();
+
   const duels = getDuels?.data?.getDuels || [];
 
   const onPress = useCallback(
@@ -143,7 +145,12 @@ function _DuelsSearchContainer() {
         emptyElement={
           opponents.length || !queryText.current ? null : (
             <View style={styles.emptyComponentWrapper}>
-              <FindAFriend loading={loading} onPress={goToReferralInformation} records={opponents} />
+              <FindAFriend
+                loading={loading}
+                onPress={goToReferralInformation}
+                records={opponents}
+                showReferral={showReferrals}
+              />
             </View>
           )
         }

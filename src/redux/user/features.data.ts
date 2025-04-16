@@ -71,7 +71,6 @@ export const features = [
   "tempEnableQuestMapOnboarding",
   "showDebug",
   "showHelperTools",
-  "tempShowReferralOnLeaderboardV2",
   "showNotificationCentre",
   "showLeaderboardSearch",
   "canUpdateActivityHistory",

@@ -1,6 +1,6 @@
 import { UserSearchScreen } from "@components/screens";
 import { gql } from "@graphql/__generated";
-import { useDebouncedQuery } from "@hooks";
+import { useDebouncedQuery, useUserFeatures } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 import { UserSearchItem } from "@redux/_core/types";
 import { addLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.actions";
@@ -31,6 +31,7 @@ const LeaderboardSearchContainer = ({
   const [isSearchTextEmpty, setSearchTextEmpty] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const recentSearch = useSelector(getLeaderboardRecentSearch);
+  const { showReferrals } = useUserFeatures();
   const [searchLeaderboardUser, { data, loading }] = useDebouncedQuery(gql("SearchLeaderboardUserDocument"), {
     fetchPolicy: "network-only",
   });
@@ -79,6 +80,7 @@ const LeaderboardSearchContainer = ({
       onClose={onClose}
       referralAmount={referralAmount}
       isFilteredSearch={true}
+      showReferral={showReferrals}
     />
   );
 };

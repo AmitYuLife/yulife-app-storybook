@@ -972,6 +972,7 @@
       },
       "search": {
         "friends_not_found": "We couldn’t find the friend you’re\nlooking for. You can invite them using\nthe button below:",
+        "friends_not_found_no_referrals": "We couldn’t find the friend you’re\nlooking for.",
         "loading_state": "Looking for results ...",
         "sub_heading": "Search Leaderboards"
       }
