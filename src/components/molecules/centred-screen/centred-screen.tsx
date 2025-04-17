@@ -14,6 +14,7 @@ interface Props {
   style?: ViewStyle | ImageStyle;
   isLottie?: boolean;
   isFullScreen?: boolean;
+  shouldUseSafeArea?: boolean;
 }
 
 function CentredScreen({
@@ -24,11 +25,14 @@ function CentredScreen({
   style,
   isLottie,
   isFullScreen,
+  shouldUseSafeArea = true,
 }: Props) {
-  if (isValidElement(backgroundImage)) {
-    return (
-      <SafeAreaView style={[styles.wrapper, style]} testID={testID}>
-        {BackgroundGradient}
+  const Wrapper = shouldUseSafeArea ? SafeAreaView : View;
+
+  return (
+    <Wrapper style={[styles.wrapper, style]} testID={testID}>
+      {BackgroundGradient}
+      {isValidElement(backgroundImage) ? (
         <Box
           position="absolute"
           width={Style.DEVICE_WIDTH}
@@ -40,15 +44,7 @@ function CentredScreen({
         >
           {backgroundImage}
         </Box>
-        {children}
-      </SafeAreaView>
-    );
-  }
-
-  return (
-    <SafeAreaView style={[styles.wrapper, style]} testID={testID}>
-      {BackgroundGradient}
-      {!backgroundImage ? null : (
+      ) : !backgroundImage ? null : (
         <View style={styles.imageWrapper}>
           <Background
             backgroundImage={backgroundImage as Source}
@@ -59,7 +55,7 @@ function CentredScreen({
         </View>
       )}
       {children}
-    </SafeAreaView>
+    </Wrapper>
   );
 }
 
