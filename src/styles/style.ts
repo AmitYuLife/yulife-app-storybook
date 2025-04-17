@@ -1,6 +1,7 @@
 import { isAndroid, isWeb, isiOS } from "@utils";
 import { Dimensions, PixelRatio, Platform, StatusBar } from "react-native";
 import DeviceInfo from "react-native-device-info";
+import { isAndroidWithTransparentStatusBar } from "./status-bar.styles";
 
 const pixelRatio = PixelRatio.get();
 const x = isWeb() ? 414 : Dimensions.get("window").width;
@@ -168,7 +169,11 @@ const getLetterSpacing = (spacing: number) => {
 
 const Style = {
   BASE_HEIGHT,
-  DEVICE_HEIGHT: y,
+  /**
+   * from android 15, Dimensions.get("screen").height doesnt include the status bar height.
+   * our codebase treats DEVICE_HEIGHT as the whole screen, meaning including the status bar height for android >= 15
+   * */
+  DEVICE_HEIGHT: y + (isAndroidWithTransparentStatusBar() ? getSafeAreaStart() : 0),
   DEVICE_WIDTH: x,
   SCREEN_HEIGHT: screenHeight,
   SCREEN_WIDTH: screenWidth,
