@@ -1215,6 +1215,7 @@
       },
       "search": {
         "friends_not_found": "No pudimos encontrar al amigo que estás\nbuscando. Puedes invitarle utilizando\nel botón de abajo:",
+        "friends_not_found_no_referrals": "No pudimos encontrar al amigo que estás\nbuscando.",
         "loading_state": "Buscando resultados ...",
         "sub_heading": "Buscar clasificaciones"
       },

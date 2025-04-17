@@ -1215,6 +1215,7 @@
       },
       "search": {
         "friends_not_found": "同僚が見つかりません。\n以下のボタンより招待メールを\n送信できます:",
+        "friends_not_found_no_referrals": "同僚が見つかりません。",
         "loading_state": "結果を検索中です...",
         "sub_heading": "ランキングを検索"
       },
