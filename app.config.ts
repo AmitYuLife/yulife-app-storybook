@@ -208,6 +208,7 @@ export default () => ({
     "./plugins/mixpanel/with-mixpanel.plugin",
     "./plugins/intercom/with-intercom.plugin.js",
     "./plugins/react-native-config/with-react-native-config.plugin",
+    "./plugins/yulife/with-yulife-debug-signing.plugin",
     "./plugins/react-native-navigation/with-react-native-navigation.plugin.js",
     ["@bugsnag/plugin-expo-eas-sourcemaps"],
     // This must be last, or build will fail with issues finding YuWatch target
