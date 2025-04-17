@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { memo } from "react";
 import { Colours, Style } from "@styles";
 import { Box, Image, TextTemplate } from "@atoms";
@@ -50,6 +50,21 @@ const HeroCardBannerHeader = ({
         gap={8}
         style={[styles.headingWrapper, styles.headingNegativeMargins]}
       >
+        <Box
+          position="absolute"
+          right={12}
+          top={16}
+          flexShrink={0}
+          bg={Colours.primary.p600}
+          br={13}
+          width={26}
+          height={26}
+          justifyContent="center"
+          alignItems="center"
+          pl={2}
+        >
+          <CaretIcon size={Style.adjust(16)} color={Colours.neutral.white} />
+        </Box>
         <Image
           source={image}
           width={Style.adjust(157)}
@@ -66,7 +81,7 @@ const HeroCardBannerHeader = ({
             icon={icon}
             fontColor={fontColor}
             boldTextColor={boldTextColor}
-            fontWeight={700}
+            fontWeight={400}
             width={textWidth}
           />
         ))}
@@ -106,7 +121,7 @@ const HeroCardHeader = (
           }}
         >
           {showCaret ? (
-            <Box height={24} width={24} justifyContent="center" alignItems="center" pl={4}>
+            <Box height={24} width={24} justifyContent="center" alignItems="center" pl={2}>
               <CaretIcon size={Style.adjust(16)} color={Colours.neutral.white} />
             </Box>
           ) : (
@@ -192,6 +207,19 @@ const getMarkdownStyles = (fontColor: string, boldTextColor?: string, fontWeight
     lineHeight: Style.adjust(16),
     color: fontColor,
     fontWeight,
+  },
+  imageWrapper: {
+    width: Style.adjust(16),
+  },
+  image: {
+    width: Style.adjust(16),
+    height: Style.adjust(16),
+    bottom: Style.adjust(
+      Platform.select({
+        ios: -6,
+        android: -2,
+      })
+    ),
   },
   ...(boldTextColor
     ? {
