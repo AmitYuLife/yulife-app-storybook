@@ -1,17 +1,28 @@
 import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
-import { ChevronIcon } from "@atoms/icon/chevron-icon";
-import { TouchableOpacityWithDelay } from "@components/molecules";
-import { Colours } from "@styles";
+import { LottieView, TouchableOpacityWithDelay } from "@components/molecules";
+import { Colours, Style, TemplateTextType } from "@styles";
 import { memo } from "react";
 import { Image, StyleSheet } from "react-native";
 
+const BACKGROUND_COLOUR = "#FFD600";
+const SHADOW_COLOUR = "#FFB803";
+const TEXT_COLOUR = "#640038";
+
+const HIT_SLOP_SIZE = Style.adjust(8);
+const HIT_SLOP = {
+  left: HIT_SLOP_SIZE,
+  right: HIT_SLOP_SIZE,
+  bottom: Style.adjust(12),
+  top: HIT_SLOP_SIZE,
+};
+const shineLottie = require("@assets/lottie/wallet/shine.json");
 interface IWalletItem<T> {
-  description: string;
-  icon?: Source;
+  description?: string;
+  image?: Source;
   label?: string;
+  info?: Array<{ text: string; style?: string }>;
   onPress?: T;
   title: string;
-  info?: string;
 }
 interface WalletItemProps<T> {
   item: IWalletItem<T>;
@@ -19,73 +30,77 @@ interface WalletItemProps<T> {
 }
 
 const WalletItem = <T,>({ item, onPress }: WalletItemProps<T>) => (
-  <TouchableOpacityWithDelay onPress={() => onPress(item.onPress)}>
-    <StackedShadowWrapper style={styles.container} stackColors={["#E7E7EB"]} outerStyle={styles.outerContainer}>
-      <Box flex={1} style={styles.imageContainer}>
-        <Image style={styles.image} source={item.icon} resizeMode="cover" />
+  <TouchableOpacityWithDelay
+    onPress={() => onPress?.(item.onPress)}
+    hitSlop={HIT_SLOP}
+    accessible={true}
+    accessibilityRole="button"
+    accessibilityLabel={`${item.title} ${item.description || ""}`}
+  >
+    <StackedShadowWrapper style={styles.container} stackColors={[SHADOW_COLOUR]} outerStyle={styles.outerContainer}>
+      <Box style={StyleSheet.absoluteFillObject}>
+        <LottieView style={styles.lottie} source={shineLottie} autoPlay={true} loop={true} resizeMode="cover" />
       </Box>
-      <Box flex={1} style={styles.rightContainer}>
-        <Box style={styles.titleContainer}>
-          <Box flex={1}>
-            <TextTemplate color={"#5C5757"} type="b1b" numberOfLines={1}>
-              {item.title}
+      <Box style={styles.imageContainer}>
+        {item.image && <Image style={styles.image} source={item.image} resizeMode="cover" />}
+      </Box>
+      <Box style={styles.infoContainer}>
+        {!item.label ? null : (
+          <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
+            <TextTemplate color={TEXT_COLOUR} type="l2b">
+              {item.label}
             </TextTemplate>
           </Box>
-          <Box style={styles.chevronContainer} flexBasis={24}>
-            <ChevronIcon size={24} direction="right" color={Colours.button.link} />
-          </Box>
-        </Box>
-        <Box style={styles.descriptionContainer}>
-          <TextTemplate color={"#5C5757"} type="b2b" numberOfLines={2}>
-            {item.description}
-          </TextTemplate>
-        </Box>
-        <Box style={styles.infoContainer}>
-          <TextTemplate color={"#5C5757"} type="b2">
-            {item.info}
-          </TextTemplate>
-        </Box>
+        )}
+        <TextTemplate color={TEXT_COLOUR} type="h3">
+          {item.title}
+        </TextTemplate>
+        <TextTemplate color={Colours.neutral.n900} type="b2" numberOfLines={1}>
+          {item.description}
+        </TextTemplate>
       </Box>
+      {item.info && item.info.length > 0 && (
+        <Box>
+          {item.info.map((infoItem, index) => (
+            <TextTemplate key={index} color={TEXT_COLOUR} type={(infoItem.style as TemplateTextType) || "b2"}>
+              {infoItem.text}
+            </TextTemplate>
+          ))}
+        </Box>
+      )}
     </StackedShadowWrapper>
   </TouchableOpacityWithDelay>
 );
 
 const styles = StyleSheet.create({
   container: {
-    height: 160,
-    backgroundColor: "#FFFFFF",
-    padding: 10,
+    height: Style.adjust(120),
+    backgroundColor: BACKGROUND_COLOUR,
     flexDirection: "row",
     alignItems: "stretch",
     justifyContent: "space-between",
+    padding: 8,
   },
-  outerContainer: { flex: 2, marginBottom: 20 },
-  imageContainer: { alignItems: "flex-start", justifyContent: "center" },
-  image: { width: 140, height: 140, borderRadius: 16 },
-  rightContainer: {
-    alignItems: "stretch",
-    justifyContent: "center",
+  outerContainer: { marginBottom: 24 },
+  infoContainer: {
+    alignItems: "flex-start",
+    justifyContent: "space-around",
     flexDirection: "column",
+    flex: 1,
+    paddingLeft: 8,
   },
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    minHeight: 40,
-  },
-  labelContainer: {
-    alignItems: "center",
+  imageContainer: {
+    alignItems: "flex-start",
     justifyContent: "center",
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    backgroundColor: "#956AFF",
+    width: Style.adjust(120),
   },
-  chevronContainer: { paddingVertical: 4 },
-  descriptionContainer: {
-    minHeight: 40,
+  image: { width: "100%", height: "100%", borderRadius: 8 },
+  textContainer: {
+    alignItems: "stretch",
+    justifyContent: "center",
+    flexDirection: "row",
   },
-  infoContainer: { minHeight: 40 },
+  lottie: { width: "100%", height: "100%" },
 });
 
 export default memo(WalletItem);

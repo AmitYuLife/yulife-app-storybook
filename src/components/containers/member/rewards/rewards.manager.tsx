@@ -50,7 +50,7 @@ const END_OF_SEASON_BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversa
 
 const _RewardsTabManagerContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
-  const { showNotificationCentre, tempGameUseNewPurchaseHistory } = useUserFeatures();
+  const { showNotificationCentre, tempGameShowWallet } = useUserFeatures();
   const purchasesIconRef = useRef<View>(null);
 
   const [state, dispatch] = useReducer<Reducer<IRewardsManagerState, IRewardsManagerAction>>(
@@ -184,7 +184,7 @@ const _RewardsTabManagerContainer = () => {
   );
 
   const handlePurchasesPress = useCallback(() => {
-    if (tempGameUseNewPurchaseHistory) {
+    if (tempGameShowWallet) {
       Navigation.push(componentId, {
         component: {
           id: ROUTES.wallet,
@@ -200,7 +200,7 @@ const _RewardsTabManagerContainer = () => {
         name: ROUTES.purchases,
       },
     });
-  }, [componentId, tempGameUseNewPurchaseHistory]);
+  }, [componentId, tempGameShowWallet]);
 
   const handleStoreLocationPress = useCallback(
     () =>

@@ -1,9 +1,13 @@
-import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
+import { Box, StackedShadowWrapper, TextTemplate } from "@atoms";
 import { LottieView, TouchableOpacityWithDelay } from "@components/molecules";
-import { WALLET_COUPON_ITEM_DESCRIPTION, WALLET_COUPON_ITEM_INFO } from "@ids";
-import { Colours, Style } from "@styles";
+import { WALLET_COUPON_ITEM_DESCRIPTION } from "@ids";
+import { Colours, Style, TemplateTextType } from "@styles";
 import { memo } from "react";
-import { Image, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+
+const BACKGROUND_COLOUR = "#4801AF";
+const SHADOW_COLOR = "#340080";
+const LABEL_TEXT_COLOR = "#4801AF";
 
 const shineLottie = require("@assets/lottie/wallet/shine.json");
 
@@ -14,13 +18,16 @@ const HIT_SLOP = {
   bottom: Style.adjust(12),
   top: HIT_SLOP_SIZE,
 };
+
+const BORDER_RADIUS = 14;
+
+const CARD_HEIGHT = Style.adjust(120);
 interface IWalletCouponItem<T> {
-  description: string;
-  icon?: Source;
+  description?: string;
   label?: string;
   onPress?: T;
   title: string;
-  info?: string;
+  info?: Array<{ text: string; style?: string }>;
   secondaryInfo?: string;
 }
 interface WalletCouponItemProps<T> {
@@ -29,21 +36,30 @@ interface WalletCouponItemProps<T> {
 }
 
 const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
-  <TouchableOpacityWithDelay onPress={() => onPress(item.onPress)} hitSlop={HIT_SLOP}>
-    <Box flexDirection="row" pb={20}>
+  <TouchableOpacityWithDelay
+    onPress={() => onPress?.(item.onPress)}
+    hitSlop={HIT_SLOP}
+    accessible={true}
+    accessibilityRole="button"
+    accessibilityLabel={`${item.title} ${item.description || ""}`}
+  >
+    <Box flexDirection="row" mb={24}>
       <StackedShadowWrapper
         style={styles.leftContainer}
         outerStyle={styles.leftOuterContainer}
-        stackColors={["#340080"]}
+        stackColors={[SHADOW_COLOR]}
+        borderRadius={BORDER_RADIUS}
       >
         <Box style={StyleSheet.absoluteFillObject}>
           <LottieView style={styles.lottie} source={shineLottie} autoPlay={true} loop={true} resizeMode="cover" />
         </Box>
-        <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
-          <TextTemplate color={"#4801AF"} type="l2b">
-            {item.label}
-          </TextTemplate>
-        </Box>
+        {!item.label ? null : (
+          <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
+            <TextTemplate color={LABEL_TEXT_COLOR} type="l2b" numberOfLines={1}>
+              {item.label}
+            </TextTemplate>
+          </Box>
+        )}
         <Box>
           <TextTemplate color={Colours.neutral.white} type="h3">
             {item.title}
@@ -61,18 +77,28 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
       <StackedShadowWrapper
         style={styles.rightContainer}
         outerStyle={styles.rightOuterContainer}
-        stackColors={["#340080"]}
+        stackColors={[SHADOW_COLOR]}
+        borderRadius={BORDER_RADIUS}
       >
-        <Box flex={1}>
-          <Image style={styles.image} source={item.icon} resizeMode="cover" />
-        </Box>
-        <Box flex={1} style={styles.infoContainer}>
-          <TextTemplate color={"#464647"} type="b2b" numberOfLines={1} testID={WALLET_COUPON_ITEM_INFO(item.info)}>
-            {item.info}
-          </TextTemplate>
-          <TextTemplate color={"#464647"} type="l2" numberOfLines={1}>
-            {item.secondaryInfo}
-          </TextTemplate>
+        <Box style={styles.dottedBorder} />
+        <Box style={styles.infoContainer}>
+          {!item.info
+            ? null
+            : item.info.map((i, index) => (
+                <TextTemplate
+                  color={Colours.neutral.white}
+                  type={(i.style as TemplateTextType) || "l1"}
+                  key={index}
+                  numberOfLines={3}
+                >
+                  {i.text}
+                </TextTemplate>
+              ))}
+          {item.secondaryInfo && (
+            <TextTemplate color={Colours.neutral.white} type="l2" numberOfLines={2}>
+              {item.secondaryInfo}
+            </TextTemplate>
+          )}
         </Box>
       </StackedShadowWrapper>
     </Box>
@@ -81,30 +107,39 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
 
 const styles = StyleSheet.create({
   leftContainer: {
-    height: 160,
-    backgroundColor: "#4801AF",
-    padding: 20,
+    height: CARD_HEIGHT,
+    backgroundColor: BACKGROUND_COLOUR,
+    padding: 16,
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "space-between",
+    marginRight: 0,
   },
   leftOuterContainer: { flex: 2 },
   rightContainer: {
-    height: 160,
-    backgroundColor: "#FFFFFF",
-    flexDirection: "column",
-    alignItems: "stretch",
-    justifyContent: "space-evenly",
+    backgroundColor: BACKGROUND_COLOUR,
+    height: CARD_HEIGHT,
+    flexDirection: "row",
+    marginLeft: 0,
   },
   rightOuterContainer: { flex: 1 },
-  infoContainer: { alignItems: "center", justifyContent: "center", padding: 5 },
-  image: { width: "100%", height: "100%" },
-  textContainer: {
-    alignItems: "stretch",
+  infoContainer: {
+    padding: 16,
+    alignItems: "center",
     justifyContent: "center",
-    flexDirection: "row",
+    flexDirection: "column",
+    flex: 1,
   },
   lottie: { width: "100%", height: "100%" },
+  dottedBorder: {
+    height: CARD_HEIGHT,
+    marginVertical: BORDER_RADIUS + 1, // Make sure border doesn't start with white space
+    borderColor: Colours.neutral.white,
+    borderStyle: "dashed",
+    // We have to do this because iOS doesn't support borderStyle if borderWidth is not same for all sides
+    left: -1,
+    borderWidth: 1,
+  },
 });
 
 export default memo(WalletCouponItem);

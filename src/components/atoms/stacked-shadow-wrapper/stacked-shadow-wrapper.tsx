@@ -23,13 +23,13 @@ const StackedShadowWrapper = ({
 }: IProps) => {
   const wrapperStyle = useMemo(
     () => ({
-      ...style,
       marginLeft: 1,
       marginRight: 1,
       marginTop: 1,
       marginBottom: stackColors.length * shadowHeight,
       borderRadius,
       overflow: "hidden" as "hidden",
+      ...style,
     }),
     [borderRadius, shadowHeight, stackColors.length, style]
   );

@@ -1056,6 +1056,9 @@
       },
       "wallet": {
         "title": "Wallet",
+        "cta":{
+          "see_more": "See more"
+        },
         "empty": {
           "voucher": {
             "heading": "Your wallet is ready to be filled!",

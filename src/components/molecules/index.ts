@@ -105,9 +105,9 @@ export { default as EndOfSeasonRewardsInfo } from "./end-of-season-rewards-info/
 export { default as HintPopup } from "./hint-popup/hint-popup";
 export { default as ShowcaseStack } from "./showcase-stack/showcase-stack";
 export { default as WalletCard } from "./reward-wallet/walletCard";
-export { default as WalletDiscountCard } from "./reward-wallet/walletDiscountCard";
 export { default as WalletCouponItem } from "./reward-wallet/walletCouponItem";
 export { default as WalletItem } from "./reward-wallet/walletItem";
+export { default as WalletDiscountItem } from "./reward-wallet/walletDiscountIem";
 export { default as ShineButton } from "./shine-button/shine-button";
 export { default as AchievementPoints } from "./achievement-points/achievement-points";
 export { default as AchievementSlot } from "./achievement-slot/achievement-slot";

@@ -1,7 +1,0 @@
-query getMobileGamePartnerRewardsInventoryCards($type: String!) {
-    getMobileGamePartnerRewardsInventoryCards(type: $type) {
-        items {
-            ...InventoryRewardsCard
-        }
-    }
-}
