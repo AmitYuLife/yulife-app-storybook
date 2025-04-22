@@ -1,5 +1,4 @@
 import { Box, SkeletonLoading, StackedShadowWrapper } from "@atoms";
-import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { Colours } from "@styles";
 import { memo } from "react";
 import { StyleSheet } from "react-native";
@@ -9,21 +8,15 @@ const IMAGE_COLOR = Colours.metallic.m100;
 const BORDER_COLORS = [Colours.metallic.m100];
 const WalletItemLoading = () => (
   <StackedShadowWrapper style={styles.container} stackColors={BORDER_COLORS} outerStyle={styles.outerContainer}>
-    <Box flex={1} style={styles.imageContainer}>
+    <Box style={styles.imageContainer}>
       <SkeletonLoading style={styles.image} />
     </Box>
-    <Box flex={1} style={styles.rightContainer}>
+    <Box style={styles.rightContainer}>
       <Box style={styles.titleContainer}>
         <SkeletonLoading style={styles.title} />
-        <Box style={styles.chevronContainer}>
-          <ChevronIcon size={24} direction="right" color={Colours.button.link} />
-        </Box>
       </Box>
       <Box style={styles.descriptionContainer}>
         <SkeletonLoading style={styles.description} />
-        <SkeletonLoading style={styles.description} />
-      </Box>
-      <Box style={styles.infoContainer}>
         <SkeletonLoading style={styles.description} />
       </Box>
     </Box>
@@ -32,7 +25,7 @@ const WalletItemLoading = () => (
 
 const styles = StyleSheet.create({
   container: {
-    height: 160,
+    height: 120,
     backgroundColor: "#FFFFFF",
     padding: 10,
     flexDirection: "row",
@@ -40,7 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   outerContainer: {
-    flex: 2,
     marginBottom: 20,
   },
   imageContainer: {
@@ -48,12 +40,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: 140,
-    height: 140,
+    width: 100,
+    height: 100,
     borderRadius: 16,
     backgroundColor: IMAGE_COLOR,
   },
   rightContainer: {
+    flex: 1,
+    padding: 16,
     alignItems: "stretch",
     justifyContent: "center",
     flexDirection: "column",
@@ -64,11 +58,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     minHeight: 40,
   },
-  chevronContainer: { paddingVertical: 4 },
   descriptionContainer: {
     minHeight: 40,
+    alignItems: "flex-start",
   },
-  infoContainer: { minHeight: 40 },
   title: {
     height: 20,
     marginVertical: 2,

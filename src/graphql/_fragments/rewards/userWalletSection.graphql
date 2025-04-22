@@ -1,0 +1,13 @@
+fragment UserWalletSection on MobileGameUserWalletSection {
+  id
+  title
+  description
+  items {
+    ...UserWalletItem
+  }
+  icon {
+    ...RemoteImage
+  }
+  type
+  hasMore
+}

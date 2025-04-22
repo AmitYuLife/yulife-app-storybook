@@ -346,6 +346,7 @@ export type AdviserWithBusinessAccess = {
 
 export type AnalyticsConfiguration = {
   __typename?: "AnalyticsConfiguration";
+  exportEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   showRewards?: Maybe<Scalars["Boolean"]["output"]>;
   showYuScore?: Maybe<Scalars["Boolean"]["output"]>;
   welcomePosterLink?: Maybe<Scalars["String"]["output"]>;
@@ -5189,13 +5190,6 @@ export enum InventoryItemType {
   YumojiItem = "yumojiItem",
 }
 
-export type InventoryRewardsCategory = {
-  __typename?: "InventoryRewardsCategory";
-  id: Scalars["ID"]["output"];
-  title: Scalars["String"]["output"];
-  type: Scalars["String"]["output"];
-};
-
 export type JoinCompanyStrategy = {
   __typename?: "JoinCompanyStrategy";
   allowedEmailDomains?: Maybe<Array<Scalars["String"]["output"]>>;
@@ -5741,47 +5735,6 @@ export enum MobileGameChestCollectionType {
   List = "list",
 }
 
-export type MobileGamePartnerRewardsInventoryCard = {
-  __typename?: "MobileGamePartnerRewardsInventoryCard";
-  description: Scalars["String"]["output"];
-  icon?: Maybe<RemoteImage>;
-  id: Scalars["ID"]["output"];
-  info?: Maybe<Scalars["String"]["output"]>;
-  label?: Maybe<Scalars["String"]["output"]>;
-  onPress?: Maybe<SduiAction>;
-  rewardId: Scalars["String"]["output"];
-  secondaryInfo?: Maybe<Scalars["String"]["output"]>;
-  title: Scalars["String"]["output"];
-  type: Scalars["String"]["output"];
-};
-
-export type MobileGamePartnerRewardsInventoryCards = {
-  __typename?: "MobileGamePartnerRewardsInventoryCards";
-  items: Array<MobileGamePartnerRewardsInventoryCard>;
-};
-
-export type MobileGamePartnerRewardsInventoryItem = {
-  __typename?: "MobileGamePartnerRewardsInventoryItem";
-  description: Scalars["String"]["output"];
-  icon?: Maybe<RemoteImage>;
-  id: Scalars["ID"]["output"];
-  info?: Maybe<Scalars["String"]["output"]>;
-  label?: Maybe<Scalars["String"]["output"]>;
-  onPress?: Maybe<SduiAction>;
-  secondaryInfo?: Maybe<Scalars["String"]["output"]>;
-  title: Scalars["String"]["output"];
-  type: Scalars["String"]["output"];
-};
-
-export type MobileGamePartnerRewardsInventoryItems = {
-  __typename?: "MobileGamePartnerRewardsInventoryItems";
-  description: Scalars["String"]["output"];
-  items: Array<MobileGamePartnerRewardsInventoryItem>;
-  label: Scalars["String"]["output"];
-  quantity: Scalars["Int"]["output"];
-  title: Scalars["String"]["output"];
-};
-
 export type MobileGameRecentlyUsedReward = {
   __typename?: "MobileGameRecentlyUsedReward";
   id: Scalars["String"]["output"];
@@ -5808,6 +5761,63 @@ export type MobileGameUserAchievements = {
   achievements: Array<MobileGameUserAchievement>;
   equippedAchievements: Array<MobileGameUserAchievement>;
   lockedAchievements: Array<MobileGameUserAchievement>;
+};
+
+export type MobileGameUserWalletItem = {
+  __typename?: "MobileGameUserWalletItem";
+  description?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  image?: Maybe<RemoteImage>;
+  info: Array<MobileGameUserWalletItemInfo>;
+  label?: Maybe<Scalars["String"]["output"]>;
+  onPress?: Maybe<SduiAction>;
+  rewardId: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+  type: Scalars["String"]["output"];
+};
+
+export type MobileGameUserWalletItemInfo = {
+  __typename?: "MobileGameUserWalletItemInfo";
+  style?: Maybe<Scalars["String"]["output"]>;
+  text: Scalars["String"]["output"];
+};
+
+export type MobileGameUserWalletReward = {
+  __typename?: "MobileGameUserWalletReward";
+  icon?: Maybe<RemoteImage>;
+  id: Scalars["ID"]["output"];
+  info: Array<MobileGameUserWalletRewardInfo>;
+  onPress?: Maybe<SduiAction>;
+  rewardId: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+};
+
+export type MobileGameUserWalletRewardInfo = {
+  __typename?: "MobileGameUserWalletRewardInfo";
+  icon?: Maybe<RemoteImage>;
+  text?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type MobileGameUserWalletRewards = {
+  __typename?: "MobileGameUserWalletRewards";
+  rewards: Array<MobileGameUserWalletReward>;
+};
+
+export type MobileGameUserWalletSection = {
+  __typename?: "MobileGameUserWalletSection";
+  description?: Maybe<Scalars["String"]["output"]>;
+  hasMore?: Maybe<Scalars["Boolean"]["output"]>;
+  icon?: Maybe<RemoteImage>;
+  id: Scalars["ID"]["output"];
+  items: Array<MobileGameUserWalletItem>;
+  title?: Maybe<Scalars["String"]["output"]>;
+  type?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type MobileGameUserWalletSections = {
+  __typename?: "MobileGameUserWalletSections";
+  image?: Maybe<RemoteImage>;
+  sections: Array<MobileGameUserWalletSection>;
 };
 
 export type MobileGameWeeklies = {
@@ -7865,10 +7875,9 @@ export type Query = {
   getMobileGameBattlePass?: Maybe<MobileGameBattlePass>;
   getMobileGameBattlePassChestDetails: MobileGameBattlePassChestDetails;
   getMobileGameBattlePassRewardInfo: MobileGameBattlePassRewardInfo;
-  getMobileGamePartnerRewardsInventoryCards: MobileGamePartnerRewardsInventoryCards;
-  getMobileGamePartnerRewardsInventoryCategories: Array<InventoryRewardsCategory>;
-  getMobileGamePartnerRewardsInventoryItems: MobileGamePartnerRewardsInventoryItems;
   getMobileGameUserAchievements: MobileGameUserAchievements;
+  getMobileGameUserWalletRewardItems: MobileGameUserWalletSections;
+  getMobileGameUserWalletRewards: MobileGameUserWalletRewards;
   getMobileGameWeeklies: MobileGameWeeklies;
   getMobileHeroCards: Array<HeroCard>;
   getMobileHints?: Maybe<Array<Hint>>;
@@ -8381,20 +8390,14 @@ export type QueryGetMobileGameBattlePassRewardInfoArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetMobileGamePartnerRewardsInventoryCardsArgs = {
-  type: Scalars["String"]["input"];
+export type QueryGetMobileGameUserAchievementsArgs = {
+  type?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
-export type QueryGetMobileGamePartnerRewardsInventoryItemsArgs = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
+export type QueryGetMobileGameUserWalletRewardItemsArgs = {
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   rewardId: Scalars["String"]["input"];
-  type: Scalars["String"]["input"];
-};
-
-/** Default types to be extended / root query */
-export type QueryGetMobileGameUserAchievementsArgs = {
   type?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -9958,8 +9961,6 @@ export type TeamEmployeeExternalIntegration = {
 export type TeamEmployeeExternalIntegrationMetadata = {
   __typename?: "TeamEmployeeExternalIntegrationMetadata";
   employeeIsConnected: Scalars["Boolean"]["output"];
-  /** @deprecated Use name in externalIntegrations instead */
-  externalIntegrationName: Scalars["String"]["output"];
   externalIntegrationUpdatesEnabled: Scalars["Boolean"]["output"];
   externalIntegrations: Array<TeamEmployeeExternalIntegration>;
 };
@@ -19930,38 +19931,53 @@ export type UserProfileNotificationFragment = {
   hasAppReview: boolean;
 };
 
-export type InventoryRewardsCardFragment = {
-  __typename?: "MobileGamePartnerRewardsInventoryCard";
+export type UserWalletItemFragment = {
+  __typename?: "MobileGameUserWalletItem";
   id: string;
   title: string;
-  description: string;
+  description?: string | null;
+  label?: string | null;
+  type: string;
   rewardId: string;
-  info?: string | null;
-  secondaryInfo?: string | null;
-  type: string;
-  label?: string | null;
+  image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  info: Array<{ __typename?: "MobileGameUserWalletItemInfo"; text: string; style?: string | null }>;
+};
+
+export type UserWalletRewardFragment = {
+  __typename?: "MobileGameUserWalletReward";
+  id: string;
+  title: string;
+  rewardId: string;
+  info: Array<{
+    __typename?: "MobileGameUserWalletRewardInfo";
+    text?: string | null;
+    icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  }>;
   icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
-export type InventoryRewardsCategoryFragment = {
-  __typename?: "InventoryRewardsCategory";
+export type UserWalletSectionFragment = {
+  __typename?: "MobileGameUserWalletSection";
   id: string;
-  title: string;
-  type: string;
-};
-
-export type InventoryRewardsItemFragment = {
-  __typename?: "MobileGamePartnerRewardsInventoryItem";
-  id: string;
-  title: string;
-  description: string;
-  label?: string | null;
-  type: string;
-  info?: string | null;
-  secondaryInfo?: string | null;
+  title?: string | null;
+  description?: string | null;
+  type?: string | null;
+  hasMore?: boolean | null;
+  items: Array<{
+    __typename?: "MobileGameUserWalletItem";
+    id: string;
+    title: string;
+    description?: string | null;
+    label?: string | null;
+    type: string;
+    rewardId: string;
+    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    info: Array<{ __typename?: "MobileGameUserWalletItemInfo"; text: string; style?: string | null }>;
+  }>;
   icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 export type LinearGradientOrientationFragment = { __typename?: "LinearGradientOrientation"; x: number; y: number };
@@ -33825,64 +33841,57 @@ export type GetReferralInformationQuery = {
   }>;
 };
 
-export type GetMobileGamePartnerRewardsInventoryCardsQueryVariables = Exact<{
-  type: Scalars["String"]["input"];
+export type GetMobileGameUserWalletRewardItemsQueryVariables = Exact<{
+  type?: InputMaybe<Scalars["String"]["input"]>;
+  rewardId: Scalars["String"]["input"];
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
 }>;
 
-export type GetMobileGamePartnerRewardsInventoryCardsQuery = {
+export type GetMobileGameUserWalletRewardItemsQuery = {
   __typename?: "Query";
-  getMobileGamePartnerRewardsInventoryCards: {
-    __typename?: "MobileGamePartnerRewardsInventoryCards";
-    items: Array<{
-      __typename?: "MobileGamePartnerRewardsInventoryCard";
+  getMobileGameUserWalletRewardItems: {
+    __typename?: "MobileGameUserWalletSections";
+    sections: Array<{
+      __typename?: "MobileGameUserWalletSection";
       id: string;
-      title: string;
-      description: string;
-      rewardId: string;
-      info?: string | null;
-      secondaryInfo?: string | null;
-      type: string;
-      label?: string | null;
+      title?: string | null;
+      description?: string | null;
+      type?: string | null;
+      hasMore?: boolean | null;
+      items: Array<{
+        __typename?: "MobileGameUserWalletItem";
+        id: string;
+        title: string;
+        description?: string | null;
+        label?: string | null;
+        type: string;
+        rewardId: string;
+        image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        info: Array<{ __typename?: "MobileGameUserWalletItemInfo"; text: string; style?: string | null }>;
+      }>;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
+    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   };
 };
 
-export type GetMobileGamePartnerRewardsInventoryCategoriesQueryVariables = Exact<{ [key: string]: never }>;
+export type GetMobileGameUserWalletRewardsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetMobileGamePartnerRewardsInventoryCategoriesQuery = {
+export type GetMobileGameUserWalletRewardsQuery = {
   __typename?: "Query";
-  getMobileGamePartnerRewardsInventoryCategories: Array<{
-    __typename?: "InventoryRewardsCategory";
-    id: string;
-    title: string;
-    type: string;
-  }>;
-};
-
-export type GetMobileGamePartnerRewardsInventoryItemsQueryVariables = Exact<{
-  type: Scalars["String"]["input"];
-  rewardId: Scalars["String"]["input"];
-}>;
-
-export type GetMobileGamePartnerRewardsInventoryItemsQuery = {
-  __typename?: "Query";
-  getMobileGamePartnerRewardsInventoryItems: {
-    __typename?: "MobileGamePartnerRewardsInventoryItems";
-    description: string;
-    label: string;
-    quantity: number;
-    title: string;
-    items: Array<{
-      __typename?: "MobileGamePartnerRewardsInventoryItem";
+  getMobileGameUserWalletRewards: {
+    __typename?: "MobileGameUserWalletRewards";
+    rewards: Array<{
+      __typename?: "MobileGameUserWalletReward";
       id: string;
       title: string;
-      description: string;
-      label?: string | null;
-      type: string;
-      info?: string | null;
-      secondaryInfo?: string | null;
+      rewardId: string;
+      info: Array<{
+        __typename?: "MobileGameUserWalletRewardInfo";
+        text?: string | null;
+        icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      }>;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
@@ -62695,23 +62704,37 @@ export const UserProfileNotificationFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UserProfileNotificationFragment, unknown>;
-export const InventoryRewardsCardFragmentDoc = {
+export const UserWalletRewardFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "InventoryRewardsCard" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGamePartnerRewardsInventoryCard" } },
+      name: { kind: "Name", value: "UserWalletReward" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserWalletReward" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "description" } },
           { kind: "Field", name: { kind: "Name", value: "rewardId" } },
-          { kind: "Field", name: { kind: "Name", value: "info" } },
-          { kind: "Field", name: { kind: "Name", value: "secondaryInfo" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "info" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -62728,7 +62751,6 @@ export const InventoryRewardsCardFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
         ],
       },
     },
@@ -62757,32 +62779,14 @@ export const InventoryRewardsCardFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<InventoryRewardsCardFragment, unknown>;
-export const InventoryRewardsCategoryFragmentDoc = {
+} as unknown as DocumentNode<UserWalletRewardFragment, unknown>;
+export const UserWalletItemFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "InventoryRewardsCategory" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "InventoryRewardsCategory" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<InventoryRewardsCategoryFragment, unknown>;
-export const InventoryRewardsItemFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "InventoryRewardsItem" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGamePartnerRewardsInventoryItem" } },
+      name: { kind: "Name", value: "UserWalletItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserWalletItem" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -62791,7 +62795,7 @@ export const InventoryRewardsItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "description" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "icon" },
+            name: { kind: "Name", value: "image" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
@@ -62807,8 +62811,18 @@ export const InventoryRewardsItemFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "info" } },
-          { kind: "Field", name: { kind: "Name", value: "secondaryInfo" } },
+          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "info" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "style" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -62837,7 +62851,110 @@ export const InventoryRewardsItemFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<InventoryRewardsItemFragment, unknown>;
+} as unknown as DocumentNode<UserWalletItemFragment, unknown>;
+export const UserWalletSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserWalletSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserWalletSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserWalletItem" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "hasMore" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserWalletItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserWalletItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "info" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "style" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserWalletSectionFragment, unknown>;
 export const ProductActionFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -91608,177 +91725,36 @@ export const GetReferralInformationDocument = {
     },
   ],
 } as unknown as DocumentNode<GetReferralInformationQuery, GetReferralInformationQueryVariables>;
-export const GetMobileGamePartnerRewardsInventoryCardsDocument = {
+export const GetMobileGameUserWalletRewardItemsDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "getMobileGamePartnerRewardsInventoryCards" },
+      name: { kind: "Name", value: "GetMobileGameUserWalletRewardItems" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
           variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getMobileGamePartnerRewardsInventoryCards" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "type" },
-                value: { kind: "Variable", name: { kind: "Name", value: "type" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "InventoryRewardsCard" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "InventoryRewardsCard" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGamePartnerRewardsInventoryCard" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "description" } },
-          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
-          { kind: "Field", name: { kind: "Name", value: "info" } },
-          { kind: "Field", name: { kind: "Name", value: "secondaryInfo" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "icon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "onPress" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetMobileGamePartnerRewardsInventoryCardsQuery,
-  GetMobileGamePartnerRewardsInventoryCardsQueryVariables
->;
-export const GetMobileGamePartnerRewardsInventoryCategoriesDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getMobileGamePartnerRewardsInventoryCategories" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getMobileGamePartnerRewardsInventoryCategories" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "InventoryRewardsCategory" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "InventoryRewardsCategory" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "InventoryRewardsCategory" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetMobileGamePartnerRewardsInventoryCategoriesQuery,
-  GetMobileGamePartnerRewardsInventoryCategoriesQueryVariables
->;
-export const GetMobileGamePartnerRewardsInventoryItemsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getMobileGamePartnerRewardsInventoryItems" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
         {
           kind: "VariableDefinition",
           variable: { kind: "Variable", name: { kind: "Name", value: "rewardId" } },
           type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
         selections: [
           {
             kind: "Field",
-            name: { kind: "Name", value: "getMobileGamePartnerRewardsInventoryItems" },
+            name: { kind: "Name", value: "getMobileGameUserWalletRewardItems" },
             arguments: [
               {
                 kind: "Argument",
@@ -91790,22 +91766,31 @@ export const GetMobileGamePartnerRewardsInventoryItemsDocument = {
                 name: { kind: "Name", value: "rewardId" },
                 value: { kind: "Variable", name: { kind: "Name", value: "rewardId" } },
               },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "offset" },
+                value: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+              },
             ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "items" },
+                  name: { kind: "Name", value: "sections" },
                   selectionSet: {
                     kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "InventoryRewardsItem" } }],
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserWalletSection" } }],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-                { kind: "Field", name: { kind: "Name", value: "quantity" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -91838,14 +91823,162 @@ export const GetMobileGamePartnerRewardsInventoryItemsDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "InventoryRewardsItem" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGamePartnerRewardsInventoryItem" } },
+      name: { kind: "Name", value: "UserWalletItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserWalletItem" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "info" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "style" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserWalletSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserWalletSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserWalletItem" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "hasMore" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileGameUserWalletRewardItemsQuery, GetMobileGameUserWalletRewardItemsQueryVariables>;
+export const GetMobileGameUserWalletRewardsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileGameUserWalletRewards" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileGameUserWalletRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "rewards" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserWalletReward" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserWalletReward" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserWalletReward" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "info" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -91862,18 +91995,11 @@ export const GetMobileGamePartnerRewardsInventoryItemsDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "info" } },
-          { kind: "Field", name: { kind: "Name", value: "secondaryInfo" } },
         ],
       },
     },
   ],
-} as unknown as DocumentNode<
-  GetMobileGamePartnerRewardsInventoryItemsQuery,
-  GetMobileGamePartnerRewardsInventoryItemsQueryVariables
->;
+} as unknown as DocumentNode<GetMobileGameUserWalletRewardsQuery, GetMobileGameUserWalletRewardsQueryVariables>;
 export const GetMobilePurchasesListDocument = {
   kind: "Document",
   definitions: [

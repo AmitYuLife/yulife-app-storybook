@@ -1,51 +1,59 @@
 import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { Colours } from "@styles";
 import { memo } from "react";
 import { Image, StyleSheet } from "react-native";
+import { Style } from "@styles";
+
+const SHADOW_COLOR = "#E7E7EB";
+const BACKGROUND_COLOR = "#FFFFFF";
+const TEXT_COLOR = "#5C5757";
+const CHEVRON_COLOR = "#E30D76";
 
 interface IWalletCard<T> {
-  description: string;
   icon?: Source;
-  label?: string;
+  rewardId: string;
   onPress?: T;
   title: string;
-  info?: string;
+  info?: Array<{ text?: string; icon?: Source }>;
 }
-interface WalletItemProps<T> {
+
+interface WalletCardProps<T> {
   item: IWalletCard<T>;
   onPress: (action: T) => void;
 }
 
-const WalletCard = <T,>({ item, onPress }: WalletItemProps<T>) => (
-  <TouchableOpacityWithDelay onPress={() => onPress(item.onPress)}>
-    <StackedShadowWrapper style={styles.container} stackColors={["#E7E7EB"]} outerStyle={styles.outerContainer}>
-      <Box flex={1} style={styles.imageContainer}>
+const WalletCard = <T,>({ item, onPress }: WalletCardProps<T>) => (
+  <TouchableOpacityWithDelay
+    onPress={() => onPress?.(item.onPress)}
+    accessible={true}
+    accessibilityRole="button"
+    accessibilityLabel={item.title}
+  >
+    <StackedShadowWrapper style={styles.container} stackColors={[SHADOW_COLOR]} outerStyle={styles.outerContainer}>
+      <Box style={styles.imageContainer}>
         <Image style={styles.image} source={item.icon} resizeMode="cover" />
       </Box>
       <Box flex={1} style={styles.rightContainer}>
-        <Box>
+        <Box flexDirection="column" justifyContent="space-around">
           <Box style={styles.titleContainer}>
-            <Box flex={1}>
-              <TextTemplate color={"#5C5757"} type="b1b" numberOfLines={1}>
-                {item.title}
-              </TextTemplate>
-            </Box>
-            <Box style={styles.chevronContainer} flexBasis={24}>
-              <ChevronIcon size={24} direction="right" color={"#5C5757"} />
-            </Box>
-          </Box>
-          <TextTemplate color={"#464647"} type="l1" numberOfLines={2}>
-            {item.description}
-          </TextTemplate>
-        </Box>
-        <Box style={styles.labelContainer}>
-          <Box style={styles.label}>
-            <TextTemplate color={Colours.neutral.white} type="l2b">
-              {item.info}
+            <TextTemplate color={TEXT_COLOR} type="b1b" numberOfLines={1}>
+              {item.title}
             </TextTemplate>
           </Box>
+          <Box>
+            {item.info?.map((info, index) => (
+              <Box key={index} flexDirection="row" alignItems="center">
+                <Image style={styles.icon} source={info.icon} resizeMode="contain" />
+                <TextTemplate color={TEXT_COLOR} type="b2" numberOfLines={1}>
+                  {info.text}
+                </TextTemplate>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+        <Box style={styles.chevronContainer} flexBasis={24}>
+          <ChevronIcon size={24} direction="right" color={CHEVRON_COLOR} />
         </Box>
       </Box>
     </StackedShadowWrapper>
@@ -54,35 +62,34 @@ const WalletCard = <T,>({ item, onPress }: WalletItemProps<T>) => (
 
 const styles = StyleSheet.create({
   container: {
-    height: 160,
-    backgroundColor: "#FFFFFF",
+    height: Style.adjust(120),
+    backgroundColor: BACKGROUND_COLOR,
     flexDirection: "row",
     alignItems: "stretch",
   },
   outerContainer: { flex: 2, marginBottom: 20 },
-  imageContainer: { alignItems: "flex-start", justifyContent: "center" },
-  image: { width: "100%", height: "100%" },
+  imageContainer: {
+    alignItems: "flex-start",
+    justifyContent: "center",
+    margin: 8,
+    borderRadius: 16,
+    overflow: "hidden",
+    width: Style.adjust(120),
+  },
+  image: { width: "100%", height: "100%", borderRadius: 16 },
+  icon: { width: Style.adjust(20), height: Style.adjust(20), marginRight: 8 },
   rightContainer: {
     padding: 10,
     alignItems: "stretch",
     justifyContent: "space-between",
-    flexDirection: "column",
+    flexDirection: "row",
   },
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  label: {
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    backgroundColor: "#956AFF",
-  },
-  labelContainer: { alignItems: "flex-start" },
-  chevronContainer: { paddingVertical: 4 },
+  chevronContainer: { paddingVertical: 4, flexDirection: "column", justifyContent: "center", alignItems: "center" },
 });
 
 export default memo(WalletCard);

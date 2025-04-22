@@ -1,9 +1,8 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react-native";
 import WalletItem from "./walletItem";
 import WalletCard from "./walletCard";
-import WalletCouponCard from "./walletCouponCard";
-import WalletDiscountCard from "./walletDiscountCard";
 import WalletCouponItem from "./walletCouponItem";
+import WalletDiscountItem from "./walletDiscountIem";
 
 const mockAction = {
   type: "NAVIGATE",
@@ -20,8 +19,9 @@ const mockItem = {
   title: "Test Reward",
   description: "This is a test reward description that might be a bit longer to test multiple lines",
   icon: { uri: "https://picsum.photos/200" },
+  image: { uri: "https://picsum.photos/200" },
   label: "Active",
-  info: "2 Available",
+  info: [{ text: "2 Available" }],
   onPress: mockAction,
 };
 
@@ -38,21 +38,22 @@ export const DefaultItem: ComponentStory<typeof WalletItem> = (args) => <WalletI
 
 export const Card: ComponentStory<typeof WalletCard> = (args) => <WalletCard {...args} />;
 
-export const CouponCard: ComponentStory<typeof WalletCouponCard> = (args) => <WalletCouponCard {...args} />;
+export const CouponCard: ComponentStory<typeof WalletCouponItem> = (args) => <WalletCouponItem {...args} />;
 CouponCard.args = {
   item: {
     ...mockItem,
-    label: "Coupon",
-    info: "7 Coupons",
+    label: "COUPON",
+    title: "This is card with stylized info",
+    info: [{ text: "7%", style: "h1" }, { text: "OFF" }],
   },
 };
 
-export const DiscountCard: ComponentStory<typeof WalletDiscountCard> = (args) => <WalletDiscountCard {...args} />;
-DiscountCard.args = {
+export const DiscountItem: ComponentStory<typeof WalletDiscountItem> = (args) => <WalletDiscountItem {...args} />;
+DiscountItem.args = {
   item: {
     ...mockItem,
-    label: "Discount",
-    info: "20% off",
+    label: "DISCOUNT",
+    info: [{ text: "20% off" }],
   },
 };
 
@@ -60,8 +61,8 @@ export const CouponItem: ComponentStory<typeof WalletCouponItem> = (args) => <Wa
 CouponItem.args = {
   item: {
     ...mockItem,
-    label: "Coupon",
-    info: "Expires in 30 days",
+    label: "COUPON",
+    info: [{ text: "Expires in 30 days" }],
   },
 };
 
@@ -70,6 +71,7 @@ export const LongText: ComponentStory<typeof WalletItem> = (args) => (
     {...args}
     item={{
       ...mockItem,
+      label: "GIFT CARD",
       title: "This is a very long title that should be truncated",
       description:
         "This is a very long description that should be truncated after two lines. It continues even further to ensure we test the truncation properly.",
@@ -82,6 +84,7 @@ export const NoInfo: ComponentStory<typeof WalletItem> = (args) => (
   <WalletItem
     {...args}
     item={{
+      label: "GIFT CARD",
       ...mockItem,
       info: undefined,
     }}

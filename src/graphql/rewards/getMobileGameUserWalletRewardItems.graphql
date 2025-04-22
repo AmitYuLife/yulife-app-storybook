@@ -1,0 +1,10 @@
+query GetMobileGameUserWalletRewardItems($type: String, $rewardId: String!, $offset: Int) {
+  getMobileGameUserWalletRewardItems(type: $type, rewardId: $rewardId, offset: $offset) {
+    sections {
+      ...UserWalletSection
+    }
+    image {
+      ...RemoteImage
+    }
+  }
+}

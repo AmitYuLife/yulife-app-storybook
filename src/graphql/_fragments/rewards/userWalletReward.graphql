@@ -1,0 +1,17 @@
+fragment UserWalletReward on MobileGameUserWalletReward {
+    id
+    title
+    rewardId
+    info {
+        text
+        icon {
+            ...RemoteImage
+        }
+    }
+    icon {
+        ...RemoteImage
+    }
+    onPress {
+        ...SduiAction
+    }
+}
