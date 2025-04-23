@@ -116,3 +116,6 @@ translation-mapping.json
 ios
 android
 dist
+
+!support/android
+!support/ios
