@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.59.0] - 2025-04-23
+
+### Bugfixes
+
+- Bugfix GS-1475: Prevent the end of the season modal to open twice
+
 ## [4.58.0] - 2025-04-23
 
 ### Features
