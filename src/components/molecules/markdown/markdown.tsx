@@ -1,9 +1,8 @@
 import { Text } from "@atoms/index";
-import React from "react";
+import React, { createContext, useContext, useMemo } from "react";
 import { StyleSheet, View, Image, StyleProp, ViewStyle, Linking } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 import getMarkdownStyles from "./markdown.styles";
-import { TouchableOpacityWithDelay } from "@molecules";
 
 interface IProps {
   text: string;
@@ -13,255 +12,26 @@ interface IProps {
   testID?: string;
 }
 
-interface IState {
-  syntaxTree: React.ReactElement[];
-  styles: StyleProp<any>;
-}
-
 interface IExtras {
   style?: StyleProp<any>;
   isOrdered?: boolean;
   isParagraph?: boolean;
 }
 
-class Markdown extends React.PureComponent<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
+const Markdown: React.FC<IProps> = ({ text, markdownStyles, containerStyle = {}, linkActions, testID }) => {
+  const syntaxTree = useMemo(() => SimpleMarkdown.markdownToReact(text) as React.ReactElement[], [text]);
+  // test if this changes when needed, if not need to remove the memoization
+  const styles = useMemo(() => StyleSheet.create(getMarkdownStyles(markdownStyles)), [markdownStyles]);
+  const context = useMemo(() => ({ styles, linkActions }), [styles, linkActions]);
 
-    const syntaxTree = SimpleMarkdown.markdownToReact(this.props.text) as React.ReactElement[];
-
-    this.state = {
-      syntaxTree,
-      styles: StyleSheet.create(getMarkdownStyles(this.props.markdownStyles)),
-    };
-  }
-
-  componentDidUpdate(prevProps: IProps) {
-    if (this.props.text !== prevProps.text) {
-      this.setState({
-        syntaxTree: SimpleMarkdown.markdownToReact(this.props.text) as React.ReactElement[],
-      });
-    }
-
-    if (this.props.markdownStyles !== prevProps.markdownStyles) {
-      this.setState({
-        styles: StyleSheet.create(getMarkdownStyles(this.props.markdownStyles)),
-      });
-    }
-  }
-
-  renderImage(node: React.ReactElement, key: string) {
-    const { styles } = this.state;
-
-    return (
-      <View style={styles.imageWrapper} key={"imageWrapper_" + key}>
-        <Image source={{ uri: node.props.src }} style={styles.image} />
+  return (
+    <MarkdownContext.Provider value={context}>
+      <View style={containerStyle} testID={testID}>
+        {renderNodes(syntaxTree, null, null)}
       </View>
-    );
-  }
-
-  renderLine(key: string) {
-    const { styles } = this.state;
-
-    return <View style={styles.hr} key={"hr_" + key} />;
-  }
-
-  renderList(node: React.ReactElement, key: string, isOrdered: boolean) {
-    const { styles } = this.state;
-
-    return (
-      <View key={"list_" + key} style={styles.list}>
-        {this.renderNodes(node.props.children, key, { isOrdered })}
-      </View>
-    );
-  }
-
-  renderListBullet(isOrdered: boolean, index: number) {
-    const { styles } = this.state;
-
-    if (isOrdered) {
-      return (
-        <Text key={"listBullet_" + index} style={styles.listItemNumber}>
-          {index + 1 + "."}
-        </Text>
-      );
-    }
-
-    return <View key={"listBullet_" + index} style={styles.listItemBullet} />;
-  }
-
-  renderListItem(node: React.ReactElement, key: string, index: number, extras: IExtras) {
-    const { styles } = this.state;
-    const children = this.renderNodes(node.props.children, key, extras);
-
-    return (
-      <View style={styles.listItem} key={"listItem_" + key}>
-        {this.renderListBullet(extras.isOrdered, index)}
-        <View key={"listItemContent_" + key} style={styles.listItemContent}>
-          <Text>{children}</Text>
-        </View>
-      </View>
-    );
-  }
-
-  renderText(node: React.ReactElement, key: string, extras: IExtras) {
-    const { styles } = this.state;
-    const style = [styles.text].concat(extras?.style || []);
-
-    if (node.props) {
-      return (
-        <Text key={key} style={style}>
-          {this.renderNodes(node.props.children, key, extras)}
-        </Text>
-      );
-    }
-
-    return (
-      <Text key={key} style={style}>
-        {node}
-      </Text>
-    );
-  }
-
-  renderLink(node: React.ReactElement, key: string) {
-    const { styles } = this.state;
-    const { linkActions } = this.props;
-
-    return (
-      <TouchableOpacityWithDelay
-        style={styles.linkWrapper}
-        key={"linkWrapper_" + key}
-        onPress={() => {
-          const action = linkActions && linkActions[node.props.href];
-
-          if (action && typeof action === "function") {
-            action();
-          } else {
-            Linking.openURL(node.props.href).catch(() => {
-              // do nothing
-            });
-          }
-        }}
-      >
-        {this.renderNodes(node.props.children, key, concatStyles(null, styles.link))}
-      </TouchableOpacityWithDelay>
-    );
-  }
-
-  renderInlineLink(node: React.ReactElement, key: string, extras: IExtras) {
-    const { styles } = this.state;
-    const { linkActions } = this.props;
-
-    const noPress = styles.link.pointerEvents === "none";
-
-    if (node.props) {
-      return (
-        <Text
-          style={styles.link}
-          key={key}
-          onPress={
-            noPress
-              ? null
-              : () => {
-                  const action = linkActions && linkActions[node.props.href];
-
-                  if (action && typeof action === "function") {
-                    action();
-                  } else {
-                    Linking.openURL(node.props.href).catch(() => {
-                      // do nothing
-                    });
-                  }
-                }
-          }
-        >
-          {this.renderNodes(node.props.children, key, extras)}
-        </Text>
-      );
-    }
-
-    return null;
-  }
-
-  renderBlock(node: React.ReactElement, key: string, extras: IExtras) {
-    const { styles } = this.state;
-
-    return (
-      <View key={"block_" + key} style={styles.block}>
-        {this.renderNodes(node.props.children, key, extras)}
-      </View>
-    );
-  }
-
-  renderNode(node: React.ReactElement, key: string, index: number, extras: IExtras) {
-    // we can't use `!node` because node can be `0` and it won't be rendered
-    if (node === null || (node as any) === "undefined" || (node as any) === "" || node === undefined) {
-      return null;
-    }
-
-    const { styles } = this.state;
-
-    switch (node.type) {
-      case "h1":
-        return this.renderText(node, key, concatStyles(extras, styles.h1));
-      case "h2":
-        return this.renderText(node, key, concatStyles(extras, styles.h2));
-      case "h3":
-        return this.renderText(node, key, concatStyles(extras, styles.h3));
-      case "h4":
-        return this.renderText(node, key, concatStyles(extras, styles.h4));
-      case "h5":
-        return this.renderText(node, key, concatStyles(extras, styles.h5));
-      case "hr":
-        return this.renderLine(key);
-      case "div":
-        // Handle paragraphs
-        if (node.props.className === "paragraph") {
-          return this.renderText(node, key, {
-            ...extras,
-            style: styles?.paragraph,
-            isParagraph: true,
-          });
-        }
-
-        return this.renderBlock(node, key, extras);
-      case "ul":
-        return this.renderList(node, key, false);
-      case "ol":
-        return this.renderList(node, key, true);
-      case "li":
-        return this.renderListItem(node, key, index, extras);
-      case "a":
-        return this.renderInlineLink(node, key, concatStyles(extras, styles.link));
-      case "img":
-        return this.renderImage(node, key);
-      case "strong":
-        return this.renderText(node, key, concatStyles(extras, styles.strong));
-      case "del":
-        return this.renderText(node, key, concatStyles(extras, styles.del));
-      case "em":
-        return this.renderText(node, key, concatStyles(extras, styles.em));
-      case "u":
-        return this.renderText(node, key, concatStyles(extras, styles.u));
-      case undefined:
-        return this.renderText(node, key, extras);
-      default:
-        return null;
-    }
-  }
-
-  renderNodes(nodes: React.ReactElement[], key?: string, extras?: any) {
-    return nodes.map((node, index) => {
-      const newKey = key ? key + "_" + index : index + "";
-      return this.renderNode(node, newKey, index, extras);
-    });
-  }
-
-  render() {
-    const { containerStyle = {} } = this.props;
-    return <View style={containerStyle}>{this.renderNodes(this.state.syntaxTree, null, null)}</View>;
-  }
-}
+    </MarkdownContext.Provider>
+  );
+};
 
 export default Markdown;
 
@@ -282,3 +52,216 @@ const concatStyles = (extras: IExtras, newStyle: StyleProp<any>) => {
     style: [newStyle],
   };
 };
+
+export const MarkdownContext = createContext<{
+  styles: StyleProp<any>;
+  linkActions?: Record<string, any>;
+}>({
+  styles: {},
+  linkActions: {},
+});
+
+const MarkdownImage = ({ node, key }: { node: React.ReactElement; key: string }) => {
+  const { styles } = useContext(MarkdownContext);
+
+  return (
+    <View style={styles.imageWrapper} key={"imageWrapper_" + key}>
+      <Image source={{ uri: node.props.src }} style={styles.image} />
+    </View>
+  );
+};
+
+const MarkdownLine = ({ key }: { key: string }) => {
+  const { styles } = useContext(MarkdownContext);
+
+  return <View style={styles.hr} key={"hr_" + key} />;
+};
+
+const MarkdownList = ({ key, node, isOrdered }: { node: React.ReactElement; key: string; isOrdered: boolean }) => {
+  const { styles } = useContext(MarkdownContext);
+
+  return (
+    <View key={"list_" + key} style={styles.list}>
+      {renderNodes(node.props.children, key, { isOrdered })}
+    </View>
+  );
+};
+
+const MarkdownListBullet = ({ isOrdered, index }: { isOrdered: boolean; index: number }) => {
+  const { styles } = useContext(MarkdownContext);
+
+  if (isOrdered) {
+    return (
+      <Text key={"listBullet_" + index} style={styles.listItemNumber}>
+        {index + 1 + "."}
+      </Text>
+    );
+  }
+
+  return <View key={"listBullet_" + index} style={styles.listItemBullet} />;
+};
+
+const MarkdownListItem = ({
+  node,
+  key,
+  extras,
+  index,
+}: {
+  node: React.ReactElement;
+  key: string;
+  index: number;
+  extras: IExtras;
+}) => {
+  const { styles } = useContext(MarkdownContext);
+  const children = renderNodes(node.props.children, key, extras);
+
+  return (
+    <View style={styles.listItem} key={"listItem_" + key}>
+      <MarkdownListBullet isOrdered={extras.isOrdered} index={index} />
+      <View key={"listItemContent_" + key} style={styles.listItemContent}>
+        <Text>{children}</Text>
+      </View>
+    </View>
+  );
+};
+
+const MarkdownText = ({ node, key, extras }: { node: React.ReactElement; key: string; extras: IExtras }) => {
+  const { styles } = useContext(MarkdownContext);
+  const style = [styles.text].concat(extras?.style || []);
+
+  if (node.props) {
+    return (
+      <Text key={key} style={style}>
+        {renderNodes(node.props.children, key, extras)}
+      </Text>
+    );
+  }
+
+  return (
+    <Text key={key} style={style}>
+      {node}
+    </Text>
+  );
+};
+
+const MarkdownInlineLink = ({ node, key, extras }: { node: React.ReactElement; key: string; extras: IExtras }) => {
+  const { styles, linkActions } = useContext(MarkdownContext);
+  const noPress = styles.link.pointerEvents === "none";
+
+  if (node.props) {
+    return (
+      <Text
+        style={styles.link}
+        key={key}
+        onPress={
+          noPress
+            ? null
+            : () => {
+                const action = linkActions?.[node.props.href];
+
+                if (action && typeof action === "function") {
+                  action();
+                } else {
+                  Linking.openURL(node.props.href).catch(() => {
+                    // do nothing
+                  });
+                }
+              }
+        }
+      >
+        {renderNodes(node.props.children, key, extras)}
+      </Text>
+    );
+  }
+
+  return null;
+};
+
+const MarkdownBlock = ({ node, key, extras }: { node: React.ReactElement; key: string; extras: IExtras }) => {
+  const { styles } = useContext(MarkdownContext);
+
+  return (
+    <View key={"block_" + key} style={styles.block}>
+      {renderNodes(node.props.children, key, extras)}
+    </View>
+  );
+};
+
+const MarkdownNode = ({
+  node,
+  key,
+  index,
+  extras,
+}: {
+  node: React.ReactElement;
+  key: string;
+  index: number;
+  extras: IExtras;
+}) => {
+  const { styles } = useContext(MarkdownContext);
+
+  // we can't use `!node` because node can be `0` and it won't be rendered
+  if (node === null || (node as any) === "undefined" || (node as any) === "" || node === undefined) {
+    return null;
+  }
+
+  switch (node.type) {
+    case "h1":
+      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h1)} />;
+    case "h2":
+      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h2)} />;
+    case "h3":
+      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h3)} />;
+    case "h4":
+      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h4)} />;
+    case "h5":
+      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h5)} />;
+    case "hr":
+      return <MarkdownLine key={key} />;
+    case "div":
+      // Handle paragraphs
+      if (node.props.className === "paragraph") {
+        return (
+          <MarkdownText
+            node={node}
+            key={key}
+            extras={{
+              ...extras,
+              style: styles?.paragraph,
+              isParagraph: true,
+            }}
+          />
+        );
+      }
+
+      return <MarkdownBlock node={node} key={key} extras={extras} />;
+    case "ul":
+      return <MarkdownList key={key} node={node} isOrdered={false} />;
+    case "ol":
+      return <MarkdownList key={key} node={node} isOrdered={true} />;
+    case "li":
+      return <MarkdownListItem node={node} key={key} index={index} extras={extras} />;
+    case "a":
+      return <MarkdownInlineLink node={node} key={key} extras={concatStyles(extras, styles.link)} />;
+    case "img":
+      return <MarkdownImage node={node} key={key} />;
+    case "strong":
+      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.strong)} />;
+    case "del":
+      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.del)} />;
+    case "em":
+      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.em)} />;
+    case "u":
+      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.u)} />;
+    case undefined:
+      return <MarkdownText node={node} key={key} extras={extras} />;
+    default:
+      return null;
+  }
+};
+
+const renderNodes = (nodes: React.ReactElement[], key?: string, extras?: IExtras) =>
+  nodes.map((node, index) => {
+    const newKey = key ? key + "_" + index : index + "";
+    return <MarkdownNode node={node} key={newKey} index={index} extras={extras} />;
+  });
