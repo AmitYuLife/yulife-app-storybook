@@ -5,8 +5,10 @@ import Markdown from "@components/molecules/markdown/markdown";
 import { Style, TemplateTextType } from "@styles";
 import { getMarkdownStyles } from "../markdown/markdown.styles";
 import { parseJSON } from "@utils";
+import { MARKDOWN } from "@ids";
 
 interface IProps {
+  testID?: string;
   markdown: string;
   title?: string;
   titleType?: TemplateTextType;
@@ -27,7 +29,7 @@ const HeadingAndCopy = (props: IProps) => {
   }, [props.markdownStyles]);
 
   return (
-    <View style={[styles.wrapper, titleMarginTop, wrapperStyle]}>
+    <View style={[styles.wrapper, titleMarginTop, wrapperStyle]} testID={MARKDOWN(props.markdown)}>
       {!title ? null : <TextTemplate type={titleType}>{title}</TextTemplate>}
       <Markdown
         text={markdown}

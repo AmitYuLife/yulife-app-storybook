@@ -220,9 +220,14 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.WORKPLACE_CHOICE(1)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
-      When("I click on the 'Claim' button", when.tapID(ids.BUTTON_BASE("受け取る")), async () => {
-        Then("I should see my YuCoin balance increase by 30 YuCoins for completing the survey to make a total of 8500 YuCoins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(8230)));
-      });
+      Then("I should see how much YuCoin will be rewarded", then.idVisible(ids.MARKDOWN("+30 ![](https://yulife-develop.imgix.net/journeys/yuCoin.svg?ixlib=js-3.2.1&w=24&h=24&dpr=3&s=3cb4cda29e509a2eb7f6cb42af14a01e)")));
+      Then("I should see Yucoin asset", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE("https://yulife-develop.imgix.net/journeys/celebration-illustration-2025-04-03.svg?ixlib=js-3.2.1&w=272&h=272&fit=clip&fm=png&dpr=3&s=0588315aa6720d45de5d790d8327ec82")));
+      Then("I should see copy header", then.idVisible(ids.TEXT_TEMPLATE("ご協力ありがとう\nございます!", "h3")));
+      Then("I should see copy body", then.idVisible(ids.MARKDOWN("アンケート回答のお礼として、\nYuCoinを差し上げます。")));
+      Then("I should see cta button", then.idVisible(ids.BUTTON_BASE("受け取る")));
+    });
+    When("I click on the 'Claim' button", when.tapID(ids.BUTTON_BASE("受け取る")), async () => {
+      Then("I should see my YuCoin balance increase by 30 YuCoins for completing the survey to make a total of 8500 YuCoins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(8230)));
     });
   });
 

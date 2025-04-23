@@ -517,6 +517,7 @@ export const WORK_LIFE_BALANCE_IMPORTANT = `work_life_balance_important_choice_s
 export const ACCEPTABLE_WORKLOAD = `acceptable_workload_choice_strongly_agree`;
 export const SUPPORTED_IN_TAKING_LEAVE = `supported_in_taking_leave_choice_strongly_agree`;
 export const CHECKBOX_SELECTORS = (stepId: string, questionId: string) => `${stepId}_${questionId}`;
+export const MARKDOWN = (message: string) => `MARKDOWN_${message}`;
 
 // DUELS
 export const DUELS_HUB = "DUELS_HUB";
