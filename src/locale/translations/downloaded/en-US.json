@@ -1525,6 +1525,9 @@
         "title": "Rewards closed for now!"
       },
       "wallet": {
+        "cta": {
+          "see_more": "See more"
+        },
         "empty": {
           "discount": {
             "heading": "Your wallet is ready to be filled!",

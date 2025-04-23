@@ -1525,6 +1525,9 @@
         "title": "¡Recompensas cerradas por ahora!"
       },
       "wallet": {
+        "cta": {
+          "see_more": "Más información"
+        },
         "empty": {
           "discount": {
             "heading": "Su cartera está lista para ser llenada.",
