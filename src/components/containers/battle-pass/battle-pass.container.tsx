@@ -41,6 +41,7 @@ const BattlePassContainer = () => {
     battlePass: GetMobileGameBattlePassFullQuery["battlePass"] | undefined;
     templates: GetMobileGameBattlePassFullQuery["templates"] | undefined;
     isSeasonComplete: boolean;
+    isEndOfSeasonModalEnabled: boolean;
   }>({
     donationUpdates: {},
     goalId: "",
@@ -48,6 +49,7 @@ const BattlePassContainer = () => {
     battlePass: undefined,
     templates: [],
     isSeasonComplete: false,
+    isEndOfSeasonModalEnabled: true,
   });
 
   const track = useTrack();
@@ -117,7 +119,8 @@ const BattlePassContainer = () => {
       ...item.endOfSeasonInfo,
     }));
 
-    if (isAllRewardsClaimed && !state.current.isSeasonComplete) {
+    if (isAllRewardsClaimed && !state.current.isSeasonComplete && state.current.isEndOfSeasonModalEnabled) {
+      state.current.isEndOfSeasonModalEnabled = false;
       Navigation.showOverlayWithChild(
         <BattlePassEndOfSeasonModal
           title={t("screens.battle_pass.season_complete.modal.title", { name: battlePass?.title })}
@@ -289,6 +292,7 @@ const BattlePassContainer = () => {
     (reward: typeof battlePass.rewards[0]) => {
       if (state.current.isSeasonComplete) {
         state.current.isSeasonComplete = false;
+        state.current.isEndOfSeasonModalEnabled = true;
       }
 
       if (reward.onPress) {
