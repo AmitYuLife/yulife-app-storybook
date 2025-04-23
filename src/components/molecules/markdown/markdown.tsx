@@ -42,6 +42,12 @@ class Markdown extends React.PureComponent<IProps, IState> {
         syntaxTree: SimpleMarkdown.markdownToReact(this.props.text) as React.ReactElement[],
       });
     }
+
+    if (this.props.markdownStyles !== prevProps.markdownStyles) {
+      this.setState({
+        styles: StyleSheet.create(getMarkdownStyles(this.props.markdownStyles)),
+      });
+    }
   }
 
   renderImage(node: React.ReactElement, key: string) {
