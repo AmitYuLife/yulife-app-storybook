@@ -20,7 +20,6 @@ interface IExtras {
 
 const Markdown: React.FC<IProps> = ({ text, markdownStyles, containerStyle = {}, linkActions, testID }) => {
   const syntaxTree = useMemo(() => SimpleMarkdown.markdownToReact(text) as React.ReactElement[], [text]);
-  // test if this changes when needed, if not need to remove the memoization
   const styles = useMemo(() => StyleSheet.create(getMarkdownStyles(markdownStyles)), [markdownStyles]);
   const context = useMemo(() => ({ styles, linkActions }), [styles, linkActions]);
 
