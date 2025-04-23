@@ -7,6 +7,107 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.58.0] - 2025-04-23
+
+### Features
+
+- Feature GS-1427: Add stripe config plugin setup
+- Feature LCS-1214: High fidelity designs for magic link login flow
+
+### Bugfixes
+
+- Bugfix LCS-1248: Hero card markdown description colour not updating
+- Bugfix CTE-152: jumping login screen
+- Bugfix GS-1425: add status bar height to device_height
+- Bugfix LCS-1107: fix styling in feedback modal
+- Bugfix LCS-1243: Fix Instagram-style swiper component on Android 15
+- Bugfix ENG-4235: Make endChallengeSaga takeLeading
+- Bugfix ENG-4221: Change color for planets last level
+- Bugfix GS-1350: Remove levelSlotId from sudoku submission
+- Bugfix GS-1449: Update redux migration version
+- Bugfix GS-1387: Fix pills not updating text input
+- Bugfix LCS-1197: Purge app banners
+
+### Tasks
+
+- Task: Fix certificate encoding
+- Task LCS-1248: Clean up Markdown component comment
+- Task: Add Android debug certificate
+- Task: refactor markdown to functional component
+- Task GS-1479: Fix Android Bitrise builds
+- Task GS-1466: User reward wallet
+- Task LCS-1219: Update DHQ Hero card design
+- Task: Bump YuHealth to 1.3.8
+- Task: Ensure consistent app debug signing
+- Task LCS-484: Purge toggle to enable extra challenges hint
+- Task LCS-960: purge tempShowReferralOnLeaderboardV2 toggle
+- Task LCS-1246: purge tempAppMenuNewReferralOption toggle
+- Task LCS-1238: hide duels on inspect if not available
+- Task GS-1468: Only display 1 line on achievements name and description
+- Task: Disable debug tool API reporting for YuHealth
+- Task GS-1467: Update ChipList component
+- Task DEVOP-3872: Remove unused shared-gitlab-config included file
+- Task GS-1461: Create Achievements Screen
+- Task GS-1458: Purge old challenges methods
+- Task GS-1378: Recently used improvements
+- Task GS-1432: multiple rewards chest info
+- Task: ruby-slim not working and android open testing = beta
+- Task GS-1456: Add locked state on AchievementPoints and AchievementCard
+- Task GS-1378: Recently used seciton
+- Task GS-1455: Update LockIcon component
+- Task: Catch errors when opening apple health
+- Task GS-1454: Change AchievementPoints prop points to label to support strings too
+- Task GS-1132: Challenge progress debug info
+- Task: Recently used rewards design changes
+- Task ISA-3328: rename Mixpanel event property
+- Task GS-1450: Add AchievementShowCase on YuScreen
+- Task GS-1426: connect api
+- Task GS-1431: Create ViewAchievementModal
+- Task GS-1426: use ruby image instead of slim
+- Task GS-1447: Add SafeAreaProvider into storybook
+- Task GS-1446: Fix bitrise pipeline
+- Task GS-1446: Fix missing yarn on bitrise
+- Task GS-1430: Create AchievementCard component
+- Task ISA-3349: Remove unused concurrent employment property
+- Task GS-1429: Create AchievementShowcase component
+- Task GS-1350: Remove use settings config for quest map queries
+- Task GS-1378: Recent reward card
+- Task GS-1426: auto release P&T and YuCrew
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: testing UK & JP final engagement survey screen.
+- Detox: LCS-631 testing that perk codes get populated correctly for wellbeing hub items Asken & LunaLuna.
+- Detox: LCS-1042 testing progress bars movement if it fills up correctly related to question amount.
+- Detox: Reward Store Tags
+- Detox ENG-4160: Validate Donation Flow After Challenge Completion
+- Detox: Updated engagement survey last step claim and tweaked test journeys with the updated purged templates.
+- Bump axios from 1.8.3 to 1.8.4
+- [Security] Bump @babel/helpers from 7.20.7 to 7.27.0
+- [Security] Bump image-size from 1.1.1 to 1.2.1
+- [Security] Bump tar-fs from 2.1.1 to 2.1.2
+- [Security] Bump webpack-dev-middleware from 6.1.1 to 6.1.3
+- ISA-2838: Union-type Social Groups
+- Detox GS-1342: Validate Single Active Consumable Type
+- Revert: Remove introducing decimal places on sdui text input
+- Fix CTE-121: out of bounds leaderboard item for self
+- Bump axios from 1.8.2 to 1.8.3
+- [Security] Bump word-wrap from 1.2.3 to 1.2.5
+- Detox: Updated JP engagement survey IDs to new stepIds, enforce 1000 char limit, added date argument to the 7 day auto claim.
+- Detox GS-1164: Coupon and Voucher Edit Flow
+- Detox: Update survey IDs to new stepIds, enforce 1000 char limit, and disable HQ progress bar check until fix.
+
 ## [4.58.0] - 2025-04-09
 
 ### Features
