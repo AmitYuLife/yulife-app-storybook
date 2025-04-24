@@ -40,7 +40,7 @@ export const HeroHeaderForeground: FC<Props> = memo(
           ...styles.yumojiWrapper,
           left: Style.adjust(20),
           right: "auto",
-          bottom: Style.adjust(-30),
+          bottom: Style.adjust(Style.isIphone13ProMax() ? -40 : -30),
           opacity: yumojiOpacity,
           transform: [{ scale: yumojiScale }],
         } as ViewStyle,
@@ -62,7 +62,7 @@ export const HeroHeaderForeground: FC<Props> = memo(
             <YumojiAvatar uri={yumojiRemoteUrl} />
           </Animated.View>
         )}
-        {!showAchievements ? null : (
+        {!showAchievements || !yumojiRemoteUrl ? null : (
           <Animated.View style={memoizedStyles.achievements}>
             <AchievementsShowcase
               componentId={ROUTES.yuScreen}

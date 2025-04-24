@@ -8,40 +8,79 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import AchievementCard, { IAchievementCardProps } from "@organisms/achievement-card/achievement-card";
 import { FlashList } from "@shopify/flash-list";
 import { Style } from "@styles";
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { StyleSheet } from "react-native";
+import { ChipList } from "@molecules";
 
 const onLeftIconPress = () => Navigation.pop(ROUTES.achievements);
 
-interface IAchievement extends IAchievementCardProps {
-  shortDescription: string;
+interface IAchievement extends Omit<IAchievementCardProps, "onPress"> {
+  shortDescription?: string;
 }
 
 interface IProps {
   achievementPoints: number;
   achievements: IAchievement[];
+  slotsTaken: number;
+  categories: {
+    value: string;
+    isSelected: boolean;
+    onPress: () => void;
+  }[];
 }
 
-const AchievementsScreen = ({ achievementPoints, achievements }: IProps) => {
+const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, categories }: IProps) => {
+  const renderItem = useCallback(
+    ({ item }: { item: IAchievement }) => {
+      return (
+        <Box mb={16} flex={1} alignItems="center">
+          <AchievementCard
+            {...item}
+            description={item.shortDescription}
+            onPress={async () =>
+              await showYuModal({
+                component: {
+                  id: MODALS.viewAchievementModal,
+                  name: MODALS.viewAchievementModal,
+                  passProps: {
+                    slotsTaken,
+                    ...item,
+                  },
+                },
+              })
+            }
+          />
+        </Box>
+      );
+    },
+    [slotsTaken]
+  );
+
   return (
     <Box flex={1}>
       <GenericHeadingPad />
       <Box flex={1}>
-        <Box alignSelf="center" justifyContent="center" mt={15} mb={10}>
+        <Box pt={8} pr={8} pb={8} style={styles.shadowBox}>
+          <ChipList chips={categories} />
+        </Box>
+        <Box alignSelf="center" justifyContent="center" mt={24} mb={10}>
           <AchievementPoints
             label={t("screens.achievements.achievements_points", { achievementPoints })}
             autoWidth={true}
+            alignTextInCenter={true}
           />
         </Box>
-        <FlashList
-          renderItem={renderItem}
-          estimatedItemSize={Style.adjust(164)}
-          keyExtractor={keyExtractor}
-          showsVerticalScrollIndicator={false}
-          data={achievements}
-          numColumns={2}
-          contentContainerStyle={styles.contentContainer}
-        />
+        <Box flex={1} width={"100%"}>
+          <FlashList
+            renderItem={renderItem}
+            estimatedItemSize={Style.adjust(164)}
+            keyExtractor={keyExtractor}
+            showsVerticalScrollIndicator={false}
+            data={achievements}
+            numColumns={2}
+            contentContainerStyle={styles.contentContainer}
+          />
+        </Box>
       </Box>
       <GenericHeadingAbsolute onLeftIconPress={onLeftIconPress} heading={t("achievements")} />
     </Box>
@@ -50,32 +89,22 @@ const AchievementsScreen = ({ achievementPoints, achievements }: IProps) => {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingTop: Style.adjust(24),
+    paddingTop: Style.adjust(12),
+    paddingHorizontal: Style.adjust(8),
+  },
+  shadowBox: {
+    shadowColor: "rgba(0, 0, 0, 0.08)",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 4,
+    backgroundColor: "white",
   },
 });
 
 const keyExtractor = (item: IAchievement) => item.id;
-
-const renderItem = ({ item }: { item: IAchievement }) => {
-  return (
-    <Box pl={18} mb={16}>
-      <AchievementCard
-        {...item}
-        description={item.shortDescription}
-        onPress={async () =>
-          await showYuModal({
-            component: {
-              id: MODALS.viewAchievementModal,
-              name: MODALS.viewAchievementModal,
-              passProps: {
-                ...item,
-              },
-            },
-          })
-        }
-      />
-    </Box>
-  );
-};
 
 export default memo(AchievementsScreen);
