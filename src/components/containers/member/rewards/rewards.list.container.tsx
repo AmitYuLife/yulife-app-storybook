@@ -61,7 +61,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
     }
   }, [rewards?.data?.list?.length, state.isOnScrollActionEnabled]);
 
-  const isRecentLoading = (recentLoading || !recentRewards?.data?.recentlyUsedRewards) && tempGameNewRewardsScreen;
+  const isRecentLoading = (recentLoading || !recentRewards?.data?.recentlyUsedRewards) && !!tempGameNewRewardsScreen;
 
   const isLoading = (loading || isRecentLoading) && !rewards?.data?.list?.length && !recentRewards?.data;
 
