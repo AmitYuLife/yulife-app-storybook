@@ -85,14 +85,14 @@ const LoginContainer: React.FC<Props> = ({
 
         // only 1 hit, login for this region
         if (results.length === 1) {
-          await applyLoginSession(results[0], results[0].region, componentId, dispatch, fitkitAuthorised);
+          await applyLoginSession(results[0], results[0].region, componentId, dispatch);
           return;
         }
       } catch (e) {
         handleError(trimGraphQLError(e?.message));
       }
     }
-  }, [email, isUsingOtp, password, otp, handleError, isFormValid, loginUser, componentId, dispatch, fitkitAuthorised]);
+  }, [email, isUsingOtp, password, otp, handleError, isFormValid, loginUser, componentId, dispatch]);
 
   const onResetPassword = useCallback(async () => {
     await Navigation.push(componentId, {
@@ -146,8 +146,7 @@ const LoginContainer: React.FC<Props> = ({
                 logins.find((d) => d.region === r),
                 r,
                 componentId,
-                dispatch,
-                fitkitAuthorised
+                dispatch
               ).catch((err) => handleError(err.message)),
           }
         : undefined,

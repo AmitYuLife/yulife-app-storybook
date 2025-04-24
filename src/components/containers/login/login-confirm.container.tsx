@@ -32,7 +32,7 @@ interface Props {
 const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
   const [loginUser] = useMutation(gql("LoginUserDocument"));
   const dispatch = useDispatch();
-  const { authorised: fitkitAuthorised, loading: fitkitLoading } = useFitKit();
+  const { loading: fitkitLoading } = useFitKit();
   const captcha = useCaptcha(region.getCaptchaConfig());
 
   const otpRef = useRef<string>("");
@@ -89,7 +89,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
         });
 
         if (result.data?.loginUser?.token) {
-          await applyLoginSession(result, props.region, componentId, dispatch, fitkitAuthorised);
+          await applyLoginSession(result, props.region, componentId, dispatch);
         }
       } catch (error) {
         // if an error occurs, pop back one screen after closing the native alert
@@ -100,17 +100,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
     }
 
     handleOTP();
-  }, [
-    props.otp,
-    props.email,
-    props.region,
-    loginUser,
-    componentId,
-    onNavigateBack,
-    dispatch,
-    fitkitAuthorised,
-    fitkitLoading,
-  ]);
+  }, [props.otp, props.email, props.region, loginUser, componentId, onNavigateBack, dispatch, fitkitLoading]);
 
   return (
     <LoginConfirmScreen
