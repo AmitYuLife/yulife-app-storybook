@@ -21,6 +21,7 @@ const isIPad = () => {
 };
 
 const isIphone13 = () => isiOS() && x === 390 && y === 844;
+const isIphone13ProMax = () => isiOS() && x === 428 && y === 926;
 const isIphoneX = () => isiOS() && y === 812;
 const isIphone8 = () => isiOS() && x === 375 && y === 667;
 const isIphoneXS = () => isiOS() && x === 375 && y === 812;
@@ -188,6 +189,7 @@ const Style = {
   isAndroid13AndHigher,
   isAnyIphoneX,
   isIphone13,
+  isIphone13ProMax,
   isIphoneX,
   isIphoneXPlus,
   isIphone8,
