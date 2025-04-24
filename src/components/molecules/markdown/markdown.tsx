@@ -60,7 +60,7 @@ export const MarkdownContext = createContext<{
   linkActions: {},
 });
 
-const MarkdownImage = ({ node, key }: { node: React.ReactElement; key: string }) => {
+const MarkdownImage = ({ node, nodeKey: key }: { node: React.ReactElement; nodeKey: string }) => {
   const { styles } = useContext(MarkdownContext);
 
   return (
@@ -70,13 +70,21 @@ const MarkdownImage = ({ node, key }: { node: React.ReactElement; key: string })
   );
 };
 
-const MarkdownLine = ({ key }: { key: string }) => {
+const MarkdownLine = ({ nodeKey: key }: { nodeKey: string }) => {
   const { styles } = useContext(MarkdownContext);
 
   return <View style={styles.hr} key={"hr_" + key} />;
 };
 
-const MarkdownList = ({ key, node, isOrdered }: { node: React.ReactElement; key: string; isOrdered: boolean }) => {
+const MarkdownList = ({
+  nodeKey: key,
+  node,
+  isOrdered,
+}: {
+  node: React.ReactElement;
+  nodeKey: string;
+  isOrdered: boolean;
+}) => {
   const { styles } = useContext(MarkdownContext);
 
   return (
@@ -102,12 +110,12 @@ const MarkdownListBullet = ({ isOrdered, index }: { isOrdered: boolean; index: n
 
 const MarkdownListItem = ({
   node,
-  key,
+  nodeKey: key,
   extras,
   index,
 }: {
   node: React.ReactElement;
-  key: string;
+  nodeKey: string;
   index: number;
   extras: IExtras;
 }) => {
@@ -124,7 +132,15 @@ const MarkdownListItem = ({
   );
 };
 
-const MarkdownText = ({ node, key, extras }: { node: React.ReactElement; key: string; extras: IExtras }) => {
+const MarkdownText = ({
+  node,
+  nodeKey: key,
+  extras,
+}: {
+  node: React.ReactElement;
+  nodeKey: string;
+  extras: IExtras;
+}) => {
   const { styles } = useContext(MarkdownContext);
   const style = [styles.text].concat(extras?.style || []);
 
@@ -143,7 +159,15 @@ const MarkdownText = ({ node, key, extras }: { node: React.ReactElement; key: st
   );
 };
 
-const MarkdownInlineLink = ({ node, key, extras }: { node: React.ReactElement; key: string; extras: IExtras }) => {
+const MarkdownInlineLink = ({
+  node,
+  nodeKey: key,
+  extras,
+}: {
+  node: React.ReactElement;
+  nodeKey: string;
+  extras: IExtras;
+}) => {
   const { styles, linkActions } = useContext(MarkdownContext);
   const noPress = styles.link.pointerEvents === "none";
 
@@ -176,7 +200,15 @@ const MarkdownInlineLink = ({ node, key, extras }: { node: React.ReactElement; k
   return null;
 };
 
-const MarkdownBlock = ({ node, key, extras }: { node: React.ReactElement; key: string; extras: IExtras }) => {
+const MarkdownBlock = ({
+  node,
+  nodeKey: key,
+  extras,
+}: {
+  node: React.ReactElement;
+  nodeKey: string;
+  extras: IExtras;
+}) => {
   const { styles } = useContext(MarkdownContext);
 
   return (
@@ -188,12 +220,12 @@ const MarkdownBlock = ({ node, key, extras }: { node: React.ReactElement; key: s
 
 const MarkdownNode = ({
   node,
-  key,
+  nodeKey,
   index,
   extras,
 }: {
   node: React.ReactElement;
-  key: string;
+  nodeKey: string;
   index: number;
   extras: IExtras;
 }) => {
@@ -206,24 +238,24 @@ const MarkdownNode = ({
 
   switch (node.type) {
     case "h1":
-      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h1)} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.h1)} />;
     case "h2":
-      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h2)} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.h2)} />;
     case "h3":
-      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h3)} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.h3)} />;
     case "h4":
-      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h4)} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.h4)} />;
     case "h5":
-      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.h5)} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.h5)} />;
     case "hr":
-      return <MarkdownLine key={key} />;
+      return <MarkdownLine nodeKey={nodeKey} />;
     case "div":
       // Handle paragraphs
       if (node.props.className === "paragraph") {
         return (
           <MarkdownText
             node={node}
-            key={key}
+            nodeKey={nodeKey}
             extras={{
               ...extras,
               style: styles?.paragraph,
@@ -233,27 +265,27 @@ const MarkdownNode = ({
         );
       }
 
-      return <MarkdownBlock node={node} key={key} extras={extras} />;
+      return <MarkdownBlock node={node} nodeKey={nodeKey} extras={extras} />;
     case "ul":
-      return <MarkdownList key={key} node={node} isOrdered={false} />;
+      return <MarkdownList nodeKey={nodeKey} node={node} isOrdered={false} />;
     case "ol":
-      return <MarkdownList key={key} node={node} isOrdered={true} />;
+      return <MarkdownList nodeKey={nodeKey} node={node} isOrdered={true} />;
     case "li":
-      return <MarkdownListItem node={node} key={key} index={index} extras={extras} />;
+      return <MarkdownListItem node={node} nodeKey={nodeKey} index={index} extras={extras} />;
     case "a":
-      return <MarkdownInlineLink node={node} key={key} extras={concatStyles(extras, styles.link)} />;
+      return <MarkdownInlineLink node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.link)} />;
     case "img":
-      return <MarkdownImage node={node} key={key} />;
+      return <MarkdownImage node={node} nodeKey={nodeKey} />;
     case "strong":
-      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.strong)} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.strong)} />;
     case "del":
-      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.del)} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.del)} />;
     case "em":
-      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.em)} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.em)} />;
     case "u":
-      return <MarkdownText node={node} key={key} extras={concatStyles(extras, styles.u)} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.u)} />;
     case undefined:
-      return <MarkdownText node={node} key={key} extras={extras} />;
+      return <MarkdownText node={node} nodeKey={nodeKey} extras={extras} />;
     default:
       return null;
   }
@@ -262,5 +294,5 @@ const MarkdownNode = ({
 const renderNodes = (nodes: React.ReactElement[], key?: string, extras?: IExtras) =>
   nodes.map((node, index) => {
     const newKey = key ? key + "_" + index : index + "";
-    return <MarkdownNode node={node} key={newKey} index={index} extras={extras} />;
+    return <MarkdownNode node={node} key={newKey} nodeKey={newKey} index={index} extras={extras} />;
   });
