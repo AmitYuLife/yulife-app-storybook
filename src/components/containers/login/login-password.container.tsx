@@ -24,7 +24,7 @@ interface Props {
 const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { authorised: fitkitAuthorised, loading: fitkitLoading } = useFitKit();
+  const { loading: fitkitLoading } = useFitKit();
 
   const {
     mutate: loginUser,
@@ -57,7 +57,7 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
 
       if (results.length === 1) {
         // only 1 hit, login for this region
-        await applyLoginSession(results[0], results[0].region, componentId, dispatch, fitkitAuthorised);
+        await applyLoginSession(results[0], results[0].region, componentId, dispatch);
         return;
       }
 
@@ -67,7 +67,7 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
       handleError(e);
       Logger.error(e, { file: "login-password.container" });
     }
-  }, [email, password, loginUser, handleError, componentId, dispatch, fitkitAuthorised]);
+  }, [email, password, loginUser, handleError, componentId, dispatch]);
 
   // if there's more than 1 results, return
   const regionSelect = useMemo(
@@ -80,14 +80,13 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
                 loginResponses.find((d) => d.region === r),
                 r,
                 componentId,
-                dispatch,
-                fitkitAuthorised
+                dispatch
               ).catch((err) => handleError(err.message)),
           }
         : undefined,
     // loginResponses is mutated (it's a ref)! Don't change the dependency array
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [loginResponses.length, componentId, dispatch, fitkitAuthorised]
+    [loginResponses.length, componentId, dispatch]
   );
 
   return (

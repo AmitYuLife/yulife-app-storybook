@@ -20,8 +20,7 @@ export const applyLoginSession = async (
   loginResponse: FetchResult<LoginUserMutation>,
   region: REGION,
   componentId: string,
-  dispatch: Dispatch<unknown>,
-  fitkitAuthorised: boolean
+  dispatch: Dispatch<unknown>
 ) => {
   // let's persist the region and config
   regionService.setRegion(region);
@@ -44,10 +43,8 @@ export const applyLoginSession = async (
     await setToken(loginResponse.data.loginUser.token);
     dispatch(loginUserSuccess(toLoginUserSuccessPayload(loginResponse.data)));
 
-    const showHealthConnect = !features.some((f) => f.name === "tempGameEnableReleaseYuHealthV3") && fitkitAuthorised;
     // no need to send the user to healthkit-connect if device is an ipad
     await transitionFromLoginToAuthenticated({
-      authorised: Style.isIPad() ? true : showHealthConnect,
       onboarded: loginResponse?.data?.loginUser?.user?.redeemedOnboarding,
       userFeatures: features.reduce(reduceUserFeatures, {}),
       componentId,
@@ -59,13 +56,11 @@ export const applyLoginSession = async (
 };
 
 const transitionFromLoginToAuthenticated = async ({
-  authorised,
   onboarded,
   userFeatures,
   componentId,
   dispatch,
 }: {
-  authorised: boolean;
   onboarded: boolean;
   userFeatures: IFeature;
   componentId: string;
@@ -96,7 +91,7 @@ const transitionFromLoginToAuthenticated = async ({
     actionOrder.push(onboardingNavigationBuilder);
   }
 
-  if (!authorised || (tempGameEnableReleaseYuHealthV3 && !Style.isIPad())) {
+  if (!Style.isIPad()) {
     actionOrder.push(connectNavigationBuilder);
   }
 
