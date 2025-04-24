@@ -240,9 +240,10 @@ Feature("I am able to use the yuscreen v5", async () => {
       });
     });
     When("I swipe back to the first product", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life insurance"), "right", "fast"), async () => {
-      When("I tap Bupa health insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
-        Then("I should see the details on the Bupa Health Insurance", then.idVisible(ids.TEXT_TEMPLATE("Health Insurance", "undefined")));
-      });
+      Then("I should see the correct body and copy", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO("Online GP, open referrals, and more.")));
+    });
+    When("I tap Bupa health insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
+      Then("I should see the details on the Bupa Health Insurance", then.idVisible(ids.TEXT_TEMPLATE("Health Insurance", "undefined")));
     });
     When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
       When("I tap Bupa dental insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Dental insurance")), async () => {
@@ -267,8 +268,8 @@ Feature("I am able to use the yuscreen v5", async () => {
       });
     });
     When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-      When("I tap Pension", when.tapID(ids.YUSCREEN_V5_PRODUCT_CARD_BUTTON("tall", "Pension")), async () => {
-        Then("I should see details on the Pension", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL));
+      When("I tap Pension", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")), async () => {
+        Then("I should see details on the Pension", then.idVisible(ids.TEXT_TEMPLATE("We’ve partnered with Smart Pension, connect your account today:", "b2")));
       });
     });
   });
