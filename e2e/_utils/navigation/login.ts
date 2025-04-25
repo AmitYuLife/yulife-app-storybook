@@ -41,10 +41,12 @@ export const loginAsUser =
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN(false));
+
     if (firstTime) {
       await wait(3000)();
       await navigateViaID(BUTTON_BASE("SIGN_UP_REWARD_SCREEN"));
     }
+    await skipHealthConnection();
     await dismissPLIModalIfVisible();
     await dismissNewLooksModalIfVisible();
     await dismissStreakIfVisible();
@@ -64,6 +66,7 @@ export const loginAsPLIUser =
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN(false));
     await navigateViaText(t("Let's go")); // sign-up reward screen
+    await skipHealthConnection();
     await dismissPLIModalIfVisible();
     await dismissNewLooksModalIfVisible();
     await tapText(t("Next"))();
@@ -181,6 +184,16 @@ export const selectRegionIfVisible = (region: string) => async () => {
   try {
     await expect(element(by.text(t("Select your company location")))).toBeVisible();
     await tapText(region)();
+  } catch (err) {}
+};
+
+export const skipHealthConnection = async () => {
+  try {
+    await navigateViaID(BUTTON_CLOSE);
+  } catch (err) {}
+
+  try {
+    await tapText("Skip this step")();
   } catch (err) {}
 };
 
