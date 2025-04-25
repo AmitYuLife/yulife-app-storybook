@@ -73,14 +73,16 @@ Feature("As a user I can get past the login screen", async () => {
           Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
           Then("I should see the sign up reward screen", then.rewardScreenVisible);
           When("I tap 'Let's go'", when.tapLetsGo, async () => {
-            Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
-            Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} ${t("today")}`));
-            Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO));
-            When("I tap the YuCoins", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
-              Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`));
-              When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
-                Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} today`));
-                Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
+            Given("I skip the health connection screen", given.skipHealthConnection, async () => {
+              Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
+              Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} ${t("today")}`));
+              Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO));
+              When("I tap the YuCoins", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
+                Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`));
+                When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
+                  Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} today`));
+                  Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
+                });
               });
             });
           });

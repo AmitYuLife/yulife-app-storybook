@@ -28,7 +28,7 @@ type Props = IProps;
 const FitKitConnectContainer: React.FC<Props> = (props) => {
   const { dailyStepScreenHandleAuthorised, navigateToNext, onDismiss, dismissButtonTranslationKey } = props;
   const [isConnecting, setIsConnecting] = React.useState(false);
-  const { authorise, authorised, loading, available } = useFitKit();
+  const { authorise, loading, available } = useFitKit();
   const dispatch = useDispatch();
 
   const handleConnect = useCallback(
@@ -52,7 +52,7 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
   return (
     <FitKitConnectScreen
       connecting={isConnecting}
-      loading={loading || authorised}
+      loading={loading}
       fitKitAvailable={available}
       onConnectPress={handleConnect}
       onPrivacyPolicyPress={handleLinkPress(region.getConfig("urls").privacyPolicy)}

@@ -6,9 +6,12 @@ import { AUTH_7, CUSTOMER_7, CUSTOMER_1, CUSTOMER_2 } from "../../_data";
 import { getLocalisedString as t } from "@i18n";
 import { expect } from 'detox'
 import { selectRegionIfVisible, wait } from "../../_common/given";
+import { skipHealthConnection } from "_utils/navigation/login";
 
 export { authoriseFitkit, sendSteps, addCyclingData, sendMindfulnessData, sendReduxEvent } from "@socket";
 export { logInAndGoToTab, loginOnly, selectRegionIfVisible } from "../../_common/given";
+
+export { skipHealthConnection } from "_utils/navigation/login";
 
 export const enterInvalidCredentials = (email: string, region = "United Kingdom") => async () => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
@@ -46,6 +49,7 @@ export const loginToDailySteps = async (): Promise<void> => {
     await enterValidCredentials()();
     await when.tapOnLogin();
     await when.tapLetsGo();
+    await skipHealthConnection();
 }
 
 export const onLoginScreen = async () => {
