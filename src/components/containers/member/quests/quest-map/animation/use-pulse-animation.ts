@@ -1,7 +1,6 @@
 import { ROUTES } from "@navigation/constants";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getShouldQuestMapAnimateOnboardingStart } from "@redux/quest-map/quest-map.selectors";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { DETOX_ENABLED } from "@services/socket";
 import { useRef, useEffect } from "react";
 import { Animated } from "react-native";
@@ -28,7 +27,6 @@ export function usePulseAnimation({ levelIsActive, nextAvailableTimer, pulseMaxS
   const borderOpacityAnimationRef = useRef(new Animated.Value(0)).current;
   const pulseScaleAnimationRef = useRef(new Animated.Value(0)).current;
   const pulseOpacityAnimationRef = useRef(new Animated.Value(IDLE_OPACITY)).current;
-  const { tempQuestMapLevelBubblePulseAnimation } = useSelector(getUserFeatures);
   const activeScreen = routeState === ROUTES.quests;
   const pulseScaleInterpolation = {
     inputRange: [0, 1],
@@ -36,12 +34,7 @@ export function usePulseAnimation({ levelIsActive, nextAvailableTimer, pulseMaxS
   };
 
   const preventsAnimation =
-    DETOX_ENABLED ||
-    !levelIsActive ||
-    nextAvailableTimer < 0 ||
-    !activeScreen ||
-    !tempQuestMapLevelBubblePulseAnimation ||
-    shouldQuestMapAnimate;
+    DETOX_ENABLED || !levelIsActive || nextAvailableTimer < 0 || !activeScreen || shouldQuestMapAnimate;
 
   useEffect(() => {
     if (preventsAnimation) {
