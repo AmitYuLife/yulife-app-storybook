@@ -13,6 +13,7 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { ROUTES } from "@navigation/constants";
 import { useCaptcha } from "@organisms/captcha-input";
 import { useSendMagicLink } from "./send-magic-link.hook";
+import { handleOpenWebView } from "@navigation/utils";
 
 interface Props {
   componentId: string;
@@ -47,7 +48,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
     email: props.email,
     captcha,
     onFailure: (error) => {
-      Alert.alert(t("screens.login-confirm.error-title"), error, [
+      Alert.alert(t("screens.login_confirm.error_title"), error, [
         { text: t("labels.cta.ok"), onPress: onNavigateBack },
       ]);
     },
@@ -70,23 +71,43 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
 
     otpRef.current = props.otp;
 
-    async function handleOTP() {
+    async function handleOTP(payload: { otp: string; email: string; region: REGION }) {
       try {
         // set the region before logging in for the GQL client
-        region.setRegion(props.region);
+        region.setRegion(payload.region);
 
         const uniqueDeviceId = await DeviceInfo.getUniqueId();
 
         const result = await loginUser({
           variables: {
-            email: props.email.toLowerCase(),
+            email: payload.email.toLowerCase(),
             intercomHashMethod: Platform.OS as IntercomHashMethod,
             method: LoginMethod.Otp,
-            password: props.otp,
+            password: payload.otp,
             tokenExpiration: TOKEN_EXPIRATION,
             uniqueDeviceId,
           },
         });
+
+        if (result.data?.loginUser?.completionUrl) {
+          // we need to open the completion URL in the webview
+          handleOpenWebView({
+            uri: result.data.loginUser.completionUrl,
+            title: t("screens.login_confirm.webview_title"),
+            onAppHandBack: (appHandbackPayload) => {
+              Navigation.dismissModal(ROUTES.webView);
+
+              if (appHandbackPayload.type === "otp") {
+                handleOTP({
+                  otp: appHandbackPayload.otp,
+                  email: appHandbackPayload.email,
+                  region: appHandbackPayload.region,
+                });
+              }
+            },
+          });
+          return;
+        }
 
         if (result.data?.loginUser?.token) {
           await applyLoginSession(result, props.region, componentId, dispatch);
@@ -99,7 +120,11 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
       }
     }
 
-    handleOTP();
+    handleOTP({
+      otp: props.otp,
+      email: props.email,
+      region: props.region,
+    });
   }, [props.otp, props.email, props.region, loginUser, componentId, onNavigateBack, dispatch, fitkitLoading]);
 
   return (

@@ -346,7 +346,9 @@
       "description": "Use the link in the email we’ve just sent you.",
       "login_with_password": "Log in with password instead.",
       "resend_link": "Didn’t get it? Send a new link.",
-      "cooldown": "Send a new link in %{seconds}s..."
+      "cooldown": "Send a new link in %{seconds}s...",
+      "webview_title": "Continue",
+      "error_title": "Something went wrong"
     },
     "login_password": {
       "heading": "Enter your password",
@@ -1056,7 +1058,7 @@
       },
       "wallet": {
         "title": "Wallet",
-        "cta":{
+        "cta": {
           "see_more": "See more"
         },
         "empty": {

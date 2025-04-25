@@ -1136,7 +1136,6 @@ export type BusinessSessionSettings = {
   eventManagementEnabled: Scalars["Boolean"]["output"];
   helpCentreLink?: Maybe<Scalars["String"]["output"]>;
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
-  onboardingEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
   /** @deprecated Use showConnectionsOverrideState */
   showConnectionsOverride?: Maybe<Scalars["Boolean"]["output"]>;
@@ -7581,6 +7580,13 @@ export enum PolicyStatus {
   Termination = "TERMINATION",
 }
 
+export type PotentialReward = {
+  __typename?: "PotentialReward";
+  id: Scalars["ID"]["output"];
+  image: RemoteImage;
+  name: Scalars["String"]["output"];
+};
+
 export type Practicioner = {
   __typename?: "Practicioner";
   /** Practicioner name */
@@ -7922,6 +7928,7 @@ export type Query = {
   getPersonalProductStepDetachedDocuments?: Maybe<ProductUnderwritingStep>;
   /** @Deprecated - Use the generic getPersonalProductStepDetached with FAQ stepId */
   getPersonalProductStepDetachedFaqs?: Maybe<ProductUnderwritingStep>;
+  getPotentialRewards: Array<PotentialReward>;
   getPricingConfigurations: Array<PricingConfiguration>;
   /** Query to get a customer's beneficiaries for a product */
   getProductBeneficiaries: CustomerProductBeneficiaries;
@@ -8500,6 +8507,11 @@ export type QueryGetPersonalProductStepDetachedDocumentsArgs = {
 export type QueryGetPersonalProductStepDetachedFaqsArgs = {
   os?: InputMaybe<Os>;
   productId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetPotentialRewardsArgs = {
+  limit: Scalars["Int"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -10917,6 +10929,7 @@ export type UserPassiveChallengesLastUpdate = {
 
 export type UserPayload = {
   __typename?: "UserPayload";
+  completionUrl?: Maybe<Scalars["String"]["output"]>;
   expiresAt?: Maybe<Scalars["Int"]["output"]>;
   intercomHash?: Maybe<Scalars["String"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
@@ -38861,6 +38874,7 @@ export type LoginUserMutation = {
   __typename?: "Mutation";
   loginUser?: {
     __typename?: "UserPayload";
+    completionUrl?: string | null;
     token?: string | null;
     expiresAt?: number | null;
     message?: string | null;
@@ -99554,6 +99568,7 @@ export const LoginUserDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "completionUrl" } },
                 { kind: "Field", name: { kind: "Name", value: "token" } },
                 { kind: "Field", name: { kind: "Name", value: "expiresAt" } },
                 { kind: "Field", name: { kind: "Name", value: "message" } },

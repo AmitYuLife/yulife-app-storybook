@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { WebViewScreen } from "@components/screens/web-view/web-view.screen";
+import { AppHandBackPayload, WebViewScreen } from "@components/screens/web-view/web-view.screen";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { WebViewErrorBoundary } from "@components/screens/web-view/web-view.error-boundary";
@@ -12,6 +12,7 @@ export interface WebViewContainerProps {
   title: string;
   onBothLinksFail?: () => void;
   onClose?: (dispatch: Dispatch<AnyAction>) => void;
+  onAppHandBack?: (payload: AppHandBackPayload) => void;
 }
 
 function closeWebView() {
@@ -19,7 +20,7 @@ function closeWebView() {
 }
 
 function WebViewContainer(props: WebViewContainerProps) {
-  const { uri, title, onBothLinksFail = () => null, onClose = (_) => null } = props;
+  const { uri, title, onBothLinksFail = () => null, onClose = (_) => null, onAppHandBack = () => null } = props;
   const dispatch = useDispatch();
 
   const handleCloseWebView = useCallback(() => {
@@ -37,7 +38,7 @@ function WebViewContainer(props: WebViewContainerProps) {
       onBothLinksFail={onBothLinksFail}
       handleCloseWebView={handleCloseWebView}
     >
-      <WebViewScreen uri={uri} title={title} handleCloseWebView={handleCloseWebView} />
+      <WebViewScreen uri={uri} title={title} handleCloseWebView={handleCloseWebView} onAppHandBack={onAppHandBack} />
     </WebViewErrorBoundary>
   );
 }
