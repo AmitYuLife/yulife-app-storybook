@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Image } from "@atoms";
 import { VariableRemoteImage } from "@graphql/__generated";
-import { YULIFE_BUPA_LOGO } from "@ids";
+import { YULIFE_AND_PROVIDER_LOGO } from "@ids";
 
 export const ProviderLogo = memo(({ image, width, height }: VariableRemoteImage) => {
   if (!image || !width) {
@@ -15,7 +15,7 @@ export const ProviderLogo = memo(({ image, width, height }: VariableRemoteImage)
       height={height}
       loadingHeight={height}
       suppressLoadingUi={true}
-      testID={YULIFE_BUPA_LOGO}
+      testID={YULIFE_AND_PROVIDER_LOGO}
     />
   );
 });

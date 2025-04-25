@@ -1,9 +1,9 @@
 export interface SAProductData {
   productName: string;
   productLongName?: string;
-  schemeType: string;
-  rightImage: string;
-  yuCoinPower: string;
+  schemeType?: string;
+  rightImage?: string;
+  yuCoinPower?: string;
   productDescription: string;
   yugiInfoImgSrc: string;
   yugiInfotext: string;
@@ -63,7 +63,7 @@ export interface ProductSlot {
   cardSize: "tall" | "square" | "wide";
   title: string;
   body?: string;
-  logo?: string;
+  logo?: boolean;
   img: string;
   beneficiaries: boolean;
 }
