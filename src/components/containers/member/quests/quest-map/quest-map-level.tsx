@@ -21,9 +21,6 @@ import Pulse from "@components/screens/member/quests/quests-scroll-screen/assets
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Image } from "@atoms";
 import { LevelSvg } from "@components/screens/member/quests/quests-scroll-screen/assets/level/levelSvg";
-import { PulseLegacy } from "@components/screens/member/quests/quests-scroll-screen/assets/level/pulse.legacy";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { usePulseAnimation } from "./animation/use-pulse-animation";
 import { DropShadow } from "./drop-shadow";
 import { usePressEffect } from "@hooks";
@@ -45,8 +42,6 @@ const BUTTON_HITSLOP = {
 
 const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
   const [nextAvailableTimer, setNextAvailableTimer] = useState(null);
-  const { tempQuestMapLevelBubblePulseAnimation } = useSelector(getUserFeatures);
-  const shouldUseNewPulseAnimation = tempQuestMapLevelBubblePulseAnimation;
 
   useInterval(
     () => {
@@ -74,8 +69,6 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
     return getLevelButton(nextAvailableTimer, currentLevel, level, normalizedLevel, pulseAnimation.levelTextScale);
   }, [currentLevel, level, nextAvailableTimer, normalizedLevel]);
 
-  const PulseComponent = shouldUseNewPulseAnimation ? Pulse : PulseLegacy;
-
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     pressedOpacity: 0.8,
     pressedScale: 0.98,
@@ -87,10 +80,9 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
       <View style={styles.container}>
         {!level.isActive ? null : (
           <View style={styles.levelPulse}>
-            <PulseComponent
+            <Pulse
               size={CIRCLE_SIZE}
               pulseMaxSize={PULSE_MAX_SIZE}
-              interval={nextAvailableTimer < 0 ? 1500 : 1000}
               backgroundColor={bubblePulseColor}
               opacity={pulseAnimation.pulseOpacity}
               scale={pulseAnimation.pulseScale}
