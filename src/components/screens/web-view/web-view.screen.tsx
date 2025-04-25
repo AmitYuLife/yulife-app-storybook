@@ -2,19 +2,57 @@ import React, { useCallback, useState } from "react";
 import WebView from "react-native-webview";
 import { View, StyleSheet, KeyboardAvoidingView, Linking, Platform } from "react-native";
 import Config from "react-native-config";
-import { ShouldStartLoadRequest, WebViewRenderProcessGoneEvent } from "react-native-webview/lib/WebViewTypes";
+import {
+  ShouldStartLoadRequest,
+  WebViewMessageEvent,
+  WebViewRenderProcessGoneEvent,
+} from "react-native-webview/lib/WebViewTypes";
 import { Style, TOP_BAR } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { IS_DEVELOP } from "@utils";
+import { REGION } from "@locale";
+import Logger from "@services/logging/logger";
+
+export type AppHandBackPayload = {
+  type: "otp";
+  otp: string;
+  email: string;
+  region: REGION;
+};
 
 export interface Props {
   uri: string;
   handleCloseWebView: () => void;
   title: string;
+  onAppHandBack?: (payload: AppHandBackPayload) => void;
+  onBothLinksFail?: () => void;
 }
 
 export function WebViewScreen(props: Props) {
-  const { uri, handleCloseWebView, title } = props;
+  const { uri, handleCloseWebView, title, onAppHandBack } = props;
   const [hasError, setErrorState] = useState(false);
+
+  const handlePostMessage = useCallback(
+    (event: WebViewMessageEvent) => {
+      try {
+        const parsedData = JSON.parse(event.nativeEvent.data);
+
+        if (parsedData.type === "appHandBack" && parsedData.payload.type === "otp") {
+          onAppHandBack({
+            type: "otp",
+            otp: parsedData.payload.otp,
+            email: parsedData.payload.email,
+            region: parsedData.payload.region,
+          });
+        }
+      } catch (err) {
+        Logger.error(err, {
+          location: "handlePostMessage",
+        });
+      }
+    },
+    [onAppHandBack]
+  );
 
   const handleInsideLinks = (event: ShouldStartLoadRequest) => {
     if (!event.url.toLowerCase().startsWith("http")) {
@@ -61,6 +99,8 @@ export function WebViewScreen(props: Props) {
             style={{ width: Style.DEVICE_WIDTH }}
             source={{ uri, headers: { yu_client_token: Config.YU_CLIENT_TOKEN } }}
             onShouldStartLoadWithRequest={handleInsideLinks}
+            onMessage={handlePostMessage}
+            webviewDebuggingEnabled={IS_DEVELOP}
           />
         </KeyboardAvoidingView>
       </View>
