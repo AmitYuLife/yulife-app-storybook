@@ -62,8 +62,7 @@ export const productCardVisible =
     )();
     productCard.body &&
       (await idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC(productCard.body))());
-    productCard.logo &&
-      (await idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO(productCard.logo))());
+    productCard.logo && (await idVisible(ids.YUSCREEN_V5_PRODUCT_CARD_LOGO)());
 
     if (productCard.cardSize !== "tall") {
       productCard.beneficiaries
@@ -86,11 +85,18 @@ export const productCheck =
     keyInfo: keyInfo,
     beneficiarySection: boolean,
     coverInfo?: coverAmounts,
-    beneficiaries?: beneficiaries
+    beneficiaries?: beneficiaries,
+    oldMutual = false
   ) =>
   async () => {
     await onProductPage(productPage)();
-    if (coverInfo) {
+    if (oldMutual) {
+      await scrollUntilTextVisible(
+        ids.PRODUCT_DETAILS_SCROLL_VIEW,
+        constant.beneficiaresText,
+        "down"
+      )();
+    } else if (coverInfo) {
       await scrollUntilTextVisible(
         ids.PRODUCT_DETAILS_SCROLL_VIEW,
         constant.coverAmountsText,
@@ -124,21 +130,18 @@ export const productCheck =
         "down"
       )());
     beneficiarySection && (await beneficiariesSectionVisible(beneficiaries)());
-    await scrollUntilTextVisible(
-      ids.PRODUCT_DETAILS_SCROLL_VIEW,
-      constant.additionalInfo_2,
-      "down"
-    )();
-    await usefulLinksVisible(beneficiarySection)();
-    await additionalInfoVisible();
+    const additionalInfo2 = oldMutual ? constant.additionalInfo_OM : constant.additionalInfo_2;
+    await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, additionalInfo2, "down")();
+    await usefulLinksVisible(beneficiarySection, oldMutual)();
+    await additionalInfoVisible(additionalInfo2);
   };
 
 export const onProductPage = (product: SAProductData) => async () => {
   await idVisible(ids.BUTTON_CLOSE_HEADER("button_only"))();
   await textVisibleAtIndex(product.productName, 1)();
-  await textVisible(product.schemeType)();
-  await idVisible(ids.TOP_RIGHT_ITEM_IMAGE(product.rightImage))();
-  await idVisible(ids.YUCOIN_POWER(product.yuCoinPower))();
+  product.schemeType && (await textVisible(product.schemeType)());
+  product.rightImage && (await idVisible(ids.TOP_RIGHT_ITEM_IMAGE(product.rightImage))());
+  product.yuCoinPower && (await idVisible(ids.YUCOIN_POWER(product.yuCoinPower))());
   await textVisible(product.productDescription)();
 };
 
@@ -170,18 +173,18 @@ export const beneficiariesSectionVisible = (beneficiaries?: beneficiaries) => as
   }
 };
 
-export const usefulLinksVisible = (beneficiaries: boolean) => async () => {
+export const usefulLinksVisible = (beneficiaries: boolean, oldMutual: boolean) => async () => {
   beneficiaries && (await textVisible(constant.editBeneficiariText)());
   beneficiaries && (await idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constant.editBeneficiariImg))());
   !beneficiaries && (await textNotVisible(constant.editBeneficiariText)());
   await idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constant.makeClaimImg))();
   await textVisible(constant.makeClaimText)();
-  await textVisible(constant.memberCertText)();
+  !oldMutual && (await textVisible(constant.memberCertText)());
 };
 
-export const additionalInfoVisible = async () => {
+export const additionalInfoVisible = (info2: string) => async () => {
   await textVisible(constant.additionalInfo_1)();
-  await textVisible(constant.additionalInfo_2)();
+  await textVisible(info2)();
 };
 
 export const coverAmountsVisible = (product: coverAmounts) => async () => {

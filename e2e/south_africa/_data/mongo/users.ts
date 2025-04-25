@@ -1,56 +1,69 @@
-import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import * as customer from "../postgres/customers"
+import * as customer from "../postgres/customers";
 import moment from "moment";
 
-const type = "mongo"
-const modelName = "users"
+const type = "mongo";
+const modelName = "users";
 
 const USER_DATA_TEMPLATE = {
-    data: {
-        _id: "",
-        userId: "",
-        products: [{
-            productId: generateRandomMongoId(),
-            productType: "Yulife",
-            option: "epic",
-            type: "employer",
-            earnRate: 1,
-        }],
-        isAvatarCreated: false,
+  data: {
+    _id: "",
+    userId: "",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
         earnRate: 1,
-    }
-
-}
+      },
+    ],
+    isAvatarCreated: false,
+    earnRate: 1,
+  },
+};
 
 export const USER_SA_1 = {
-    type: "mongo",
-    modelName: "users",
-    data: {
-        ...USER_DATA_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_SA_1.data.customerId,
-    }
-} as IDatabaseItem
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_SA_1.data.customerId,
+  },
+} as IDatabaseItem;
 
 export const USER_SA_2 = {
-    type: "mongo",
-    modelName: "users",
-    data: {
-        ...USER_DATA_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_SA_2.data.customerId,
-    }
-} as IDatabaseItem
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_SA_2.data.customerId,
+  },
+} as IDatabaseItem;
 
 export const USER_SA_3 = {
-    type: "mongo",
-    modelName: "users",
-    data: {
-        ...USER_DATA_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_SA_3.data.customerId,
-        isAvatarCreated: true,
-        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
-    }
-} as IDatabaseItem
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_SA_3.data.customerId,
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;
+
+export const USER_SA_4 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_SA_4.data.customerId,
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;

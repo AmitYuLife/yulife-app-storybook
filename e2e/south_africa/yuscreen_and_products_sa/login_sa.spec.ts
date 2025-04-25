@@ -4,8 +4,8 @@ import * as given from "./_steps/given";
 import * as scenario from "./_steps/scenario";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
-import { AUTH_SA_1, AUTH_SA_2, AUTH_SA_3 } from "../_data/mongo/auths";
-import { CUSTOMER_SA_1, CUSTOMER_SA_2, CUSTOMER_SA_3 } from "../_data";
+import { AUTH_SA_1, AUTH_SA_2, AUTH_SA_3, AUTH_SA_4 } from "../_data/mongo/auths";
+import { CUSTOMER_SA_1, CUSTOMER_SA_2, CUSTOMER_SA_3, CUSTOMER_SA_4 } from "../_data";
 import * as fixture from "./_resources/fixture";
 import * as constant from "./_resources/constants";
 import * as ids from "@ids";
@@ -114,6 +114,18 @@ Feature("As a user I can get past the login screen and see all SA products", asy
     When("I navigate to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
       Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
       Then("I should see that SA is selected by default", then.textVisible("South Africa"));
+    });
+  });
+
+  Scenario("I can see Old Mutual products and see the correct hero section", scenario.start, async () => {
+    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_4, AUTH_SA_4, true, "South Africa", false), async () => {
+      Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_4.data.firstName} ${CUSTOMER_SA_4.data.lastName}`));
+    });
+    When("I swipe to see all of the product cards", when.swipeFromText("We’ve got you covered", "up", "fast"), async () => {
+      Then("I can see the life assurace product", then.productCardVisible(fixture.groupLifeAssuranceOMWideCard));
+    });
+    When("I tap life assurance card", when.tapText(fixture.groupLifeAssuranceOMWideCard.name), async () => {
+      Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_OM, fixture.MeGL_OMKeyInfo, true, undefined, undefined, true));
     });
   });
 });

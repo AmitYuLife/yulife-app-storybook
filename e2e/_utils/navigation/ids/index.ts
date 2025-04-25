@@ -344,8 +344,6 @@ export const YUSCREEN_V5_WELLBEING_SECTION_HEADER = "YUSCREEN_V5_WELLBEING_SECTI
 export const YUSCREEN_V5_PROTECTION_TITLE = "yu-product-card-carousel-title";
 export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD = (product: string) =>
   `YU_SCREEN_PRODUCT_CARD_TITLE-${product}`;
-export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO = (uri: any) =>
-  `YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO_${uri}`;
 export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE = (title: string) =>
   `YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE_${title}`;
 export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC = (body: string) =>
@@ -372,6 +370,7 @@ export const YUSCREEN_V5_CTA_BUTTON = (product: string) =>
   `YUSCREEN_V5_PRODUCT_CARD_CTA_${product}`;
 
 export const CAROUSEL_CARD_BUTTON = (cardTitle: string) => `CAROUSEL_CARD_BUTTON_${cardTitle}`;
+export const YUSCREEN_V5_PRODUCT_CARD_LOGO = "YUSCREEN_V5_PRODUCT_CARD_LOGO";
 
 // PRODUCT DETAILS
 export const PRODUCT_DETAILS_SCROLL_VIEW = "PRODUCT_DETAILS_SCROLL_VIEW";
@@ -612,7 +611,7 @@ export const YUMOJI_OUTFIT_RADIO = (title: string) => `YUMOJI_OUTFIT_RADIO${titl
 export const YUMOJI_OUTFIT_LABEL = (title: string) => `YUMOJI_OUTFIT_LABEL${title}`;
 export const DENTAL_TOOLTIP_INFO = "DENTAL_TOOLTIP_INFO";
 export const POPOVER = "POPOVER";
-export const YULIFE_BUPA_LOGO = "YULIFE_BUPA_LOGO";
+export const YULIFE_AND_PROVIDER_LOGO = "YULIFE_AND_PROVIDER_LOGO";
 
 // CHALLENGES
 export const TIME_REMAINING = (timeRemaing: string) => `TIME_REMAINING_${timeRemaing}`;

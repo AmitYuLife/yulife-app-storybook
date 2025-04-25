@@ -7,6 +7,7 @@ import { ArrowButton } from "@components/molecules/arrow-button";
 import { IYuScreenProductCardVariant } from "./types";
 import {
   YUSCREEN_V5_CTA_BUTTON,
+  YUSCREEN_V5_PRODUCT_CARD_LOGO,
   YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD,
   YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC,
   YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION,
@@ -34,7 +35,13 @@ export const TallCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) =
         </View>
         <View style={styles.bannerContent}>
           {item.logo ? (
-            <Image source={item.logo} width={Style.adjust(68)} height={Style.adjust(14)} suppressLoadingUi={true} />
+            <Image
+              source={item.logo}
+              width={Style.adjust(68)}
+              height={Style.adjust(14)}
+              suppressLoadingUi={true}
+              testID={YUSCREEN_V5_PRODUCT_CARD_LOGO}
+            />
           ) : null}
           <View style={styles.productName}>
             <TextTemplate type="l3b">{item.productName}</TextTemplate>

@@ -1,4 +1,5 @@
 import {
+  BUSINESS_PRODUCT_1_OM_MeGL,
   BUSINESS_PRODUCT_SA_1_GCI,
   BUSINESS_PRODUCT_SA_1_GIP,
   BUSINESS_PRODUCT_SA_1_GrFun,
@@ -17,6 +18,7 @@ import {
   CPE_LSDC_SA_1,
   CPE_MeGL_SA_1,
   CPE_MeGL_SA_2,
+  CPE_OM_MeGL_SA_1,
   CPE_SpGL_SA_2,
   CPE_TmpGIP_SA_1,
 } from "south_africa/_data";
@@ -61,6 +63,13 @@ export const SpGL_1: SAProductData = {
   yugiInfotext: constant.yugiTextInfo,
 };
 
+export const MeGL_OM: SAProductData = {
+  productName: "Group Life Assurance",
+  productDescription: constant.MeGLDescription,
+  yugiInfoImgSrc: constant.yugiInfoImg,
+  yugiInfotext: constant.yufiTextInfoSA,
+};
+
 export const MeGLKeyInfo: keyInfo = {
   keyInfo: constant.keyInfoText,
   membershipNumberText: constant.membershipNumberText,
@@ -77,6 +86,15 @@ export const SpGLKeyInfo: keyInfo = {
   startDateText: constant.startDateText,
   startDate: moment(CPE_SpGL_SA_2.data.startDate).format("DD/MM/YYYY"),
   termsText: constant.termsAndConditionsWarning,
+};
+
+export const MeGL_OMKeyInfo: keyInfo = {
+  keyInfo: constant.keyInfoText,
+  membershipNumberText: constant.policyNumberText,
+  membershipNumber: BUSINESS_PRODUCT_1_OM_MeGL.product.data.product_id,
+  startDateText: constant.startDateText,
+  startDate: moment(CPE_OM_MeGL_SA_1.data.startDate).format("DD/MM/YYYY"),
+  termsText: constant.basisCover,
 };
 
 export const MeGLCoverAmounts: coverAmounts = {
@@ -356,7 +374,15 @@ export const gciWideCard: ProductSlot = {
   name: "Critical Illness Cover",
   cardSize: "wide",
   title: "Feel supported in your time of need",
-  logo: "Lump-sum payment in case of defined critical illness.",
   img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/gci-wide.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=c9fd033d5eae3e9b79656c0b38e17d66",
   beneficiaries: false,
+};
+
+export const groupLifeAssuranceOMWideCard: ProductSlot = {
+  name: "Life Assurance",
+  cardSize: "wide",
+  title: "Protection for your loved ones",
+  img: constant.oldMutualMeGLImg,
+  beneficiaries: true,
+  logo: true,
 };

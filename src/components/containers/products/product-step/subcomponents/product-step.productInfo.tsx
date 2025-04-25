@@ -8,7 +8,7 @@ import { YumojiSwipePart } from "@organisms/yumoji/yumoji.swipe-part";
 import { ContentItemPersonalProductInfoFragment as Props, YuWorld } from "@graphql/__generated";
 import { ProductStepContext } from "../product-step.context";
 import { mapServerStyles } from "@components/sdui";
-import { PACKAGE_INFO, YULIFE_BUPA_LOGO } from "@ids";
+import { PACKAGE_INFO, YULIFE_AND_PROVIDER_LOGO } from "@ids";
 
 export const ProductStepProductInfo = memo((props: Props) => {
   const { customerProductId, setDynamicData } = useContext(ProductStepContext);
@@ -54,7 +54,7 @@ export const ProductStepProductInfo = memo((props: Props) => {
               width={Style.DEVICE_WIDTH - Style.adjust(200)}
               theme="light"
               style={styles.icon}
-              testID={YULIFE_BUPA_LOGO}
+              testID={YULIFE_AND_PROVIDER_LOGO}
             />
           )}
         </View>

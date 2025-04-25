@@ -22,8 +22,11 @@ export const Employerscheme = "Employer scheme";
 export const startsSoon = "Starts soon";
 export const yugiTextInfo =
   "This policy is provided by your employer. Should you change jobs, you’ll lose this policy.";
+export const yufiTextInfoSA =
+  "This policy is provided by your employer. If you change jobs, you may lose this policy. If you wish to continue your cover, alert your employer.";
 export const keyInfoText = "Key Info";
 export const membershipNumberText = "Membership number";
+export const policyNumberText = "Policy Number";
 export const startDateText = "Start date";
 export const coverTypeText = "Cover type";
 export const coverAmountsText = "Cover amounts";
@@ -38,6 +41,8 @@ export const additionalInfo_1 =
   "This information is based on data we received from your employer. Please contact us if you have any questions.";
 export const additionalInfo_2 =
   "YuLife SA Ltd is an authorised financial services provider (FSP No 52478). Insurance products are underwritten by Guardrisk Life Limited, an authorised financial services provider (FSP No 76) and a licenced life insurer.";
+export const additionalInfo_OM =
+  "YuLife SA Ltd is an authorised financial services provider (FSP No 52478). Insurance products are underwritten by Old Mutual Life Assurance Company (SA) Limited, a licensed FSP and Life Insurer.";
 export const child0_12MonthsText = "Child 0 - 12 months";
 export const child1_5YearsText = "Child 1 - 5 years";
 export const child6_13YearsText = "Child 6 - 13 years";
@@ -165,3 +170,5 @@ export const lumpSumpImg =
   "https://yulife-develop.imgix.net/yuscreen_products_assets/default/lantern_active.svg?ixlib=js-3.2.1&w=180&h=180&s=034cd9c70886ebbac50210813cb97e8d";
 export const magnifyingGlassTopRightImg =
   "https://yulife-develop.imgix.net/yuscreen_products_assets/default/magnifier_active.svg?ixlib=js-3.2.1&w=180&h=180&s=42c312245e546023876a8a475960196a";
+export const oldMutualMeGLImg =
+  "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/old-mutual/group-life-assurance-wide.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=88669b6209c4c04e74a155c6b0471858";
