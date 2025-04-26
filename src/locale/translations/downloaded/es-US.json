@@ -1275,9 +1275,11 @@
     "login_confirm": {
       "cooldown": "Enviar un nuevo enlace en %{seconds}s...",
       "description": "Utilice el enlace del correo electrónico que acabamos de enviarle.",
+      "error_title": "Algo salió mal",
       "heading": "¿Listo para ser tu mejor Yu? Vamos a verificar tu cuenta.",
       "login_with_password": "Inicie sesión con la contraseña en su lugar.",
-      "resend_link": "¿No lo has recibido? Envíe un nuevo enlace."
+      "resend_link": "¿No lo has recibido? Envíe un nuevo enlace.",
+      "webview_title": "Continuar"
     },
     "login_email": {
       "cta_label": "Continuar",

@@ -1275,9 +1275,11 @@
     "login_confirm": {
       "cooldown": "%{seconds}秒後に新しいリンクが送信されます。",
       "description": "送信されたメールに記載されているリンクを使用してください。",
+      "error_title": "エラーが発生しました",
       "heading": "アカウントの認証を完了してください。",
       "login_with_password": "パスワードでログインしてください。",
-      "resend_link": "届いていない場合は、新しいリンクを送信できます。"
+      "resend_link": "届いていない場合は、新しいリンクを送信できます。",
+      "webview_title": "続ける"
     },
     "login_email": {
       "cta_label": "続ける",

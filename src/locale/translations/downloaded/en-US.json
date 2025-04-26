@@ -1275,9 +1275,11 @@
     "login_confirm": {
       "cooldown": "Send a new link in %{seconds}s...",
       "description": "Use the link in the email we've just sent you.",
+      "error_title": "Something went wrong",
       "heading": "Ready to be your best Yu? Let's verify your account.",
       "login_with_password": "Log in with password instead",
-      "resend_link": "Didn't get it? Send a new link."
+      "resend_link": "Didn't get it? Send a new link.",
+      "webview_title": "Continue"
     },
     "login_email": {
       "cta_label": "Continue",
