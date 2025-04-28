@@ -144,9 +144,8 @@ export const DailyStepsOnline = memo(
         yuniversalMap,
         hasDoneChallengeToday: hasDone,
         isChallengeActive: hasNotification,
-        allowDirectNavigation: features.tempTakeAChallengeDirectV2,
       });
-    }, [currentLevel, yuniversalLevel, yuniversalMap, hasDone, hasNotification, features.tempTakeAChallengeDirectV2]);
+    }, [currentLevel, yuniversalLevel, yuniversalMap, hasDone, hasNotification]);
 
     return (
       <>

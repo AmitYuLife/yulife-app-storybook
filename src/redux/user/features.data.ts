@@ -74,7 +74,6 @@ export const features = [
   "showLeaderboardSearch",
   "canUpdateActivityHistory",
   "gameEnableExpoImageDiskCachingPolicy",
-  "tempTakeAChallengeDirectV2",
   "tempQuestMapLevelBubbleEaseInAnimation",
   "tempQuestMapInterstitialModal",
   "tempShowUnsyncedDailyStepsPassiveActivities",

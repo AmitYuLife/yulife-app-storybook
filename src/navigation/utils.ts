@@ -31,19 +31,11 @@ type TakeAChallengeHandlerParams = {
   yuniversalMap?: number;
   hasDoneChallengeToday?: boolean;
   isChallengeActive?: boolean;
-  allowDirectNavigation?: boolean; // Feature toggle "tempTakeAChallengeDirectV2"
 };
 export async function handleTakeAChallengeCTA(params: TakeAChallengeHandlerParams) {
-  const {
-    currentLevel,
-    yuniversalLevel,
-    yuniversalMap,
-    hasDoneChallengeToday,
-    isChallengeActive,
-    allowDirectNavigation,
-  } = params;
+  const { currentLevel, yuniversalLevel, yuniversalMap, hasDoneChallengeToday, isChallengeActive } = params;
 
-  if (isChallengeActive || !allowDirectNavigation) {
+  if (isChallengeActive) {
     return handleNavigateToQuestsTab();
   }
 
