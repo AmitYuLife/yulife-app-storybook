@@ -1,8 +1,9 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import { Alert } from "react-native";
+import { CaptchaHandleExecuteResponse } from "./types";
 
 export type TestCaptchaHandle = {
-  execute: () => Promise<string>;
+  execute: () => Promise<CaptchaHandleExecuteResponse>;
   reset?: () => void;
 };
 
@@ -16,13 +17,17 @@ const options = ["INVALID", "PASS", "FAIL"];
 export const TestCaptcha = forwardRef<TestCaptchaHandle>((_, ref) => {
   useImperativeHandle(ref, () => ({
     execute: () => {
-      return new Promise<string>((resolve) => {
+      return new Promise<CaptchaHandleExecuteResponse>((resolve) => {
         Alert.alert(
           `Captcha`,
           null,
           options.map((option) => ({
             text: option,
-            onPress: () => resolve(option),
+            onPress: () =>
+              resolve({
+                result: option,
+                debugInfo: null,
+              }),
           }))
         );
       });

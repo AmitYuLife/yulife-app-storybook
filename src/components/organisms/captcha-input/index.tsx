@@ -1,11 +1,7 @@
 import React, { useMemo } from "react";
 import { TestCaptchaHandle, TestCaptcha } from "./test-captcha";
 import { HcaptchaHandle, Hcaptcha } from "./hcaptcha";
-
-export type CaptchaResponse = {
-  result: string | null;
-  provider: string;
-};
+import { CaptchaResponse } from "./types";
 
 export type CaptchaConfig = {
   hcaptchaSiteKey?: string;
@@ -57,7 +53,8 @@ export const useCaptcha = (config: CaptchaConfig) => {
 
       return {
         provider: selectedCaptchaProvider,
-        result,
+        result: result.result,
+        debugInfo: result.debugInfo,
       };
     }
 
@@ -70,7 +67,8 @@ export const useCaptcha = (config: CaptchaConfig) => {
 
       return {
         provider: selectedCaptchaProvider,
-        result,
+        result: result.result,
+        debugInfo: result.debugInfo,
       };
     }
 
