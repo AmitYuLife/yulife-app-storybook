@@ -14,6 +14,7 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { HEALTH_PROVIDER_OPTIONS, SupportedHealthTypes } from "@services/yuHealth/supported-health-types";
 import { isAndroid } from "@utils";
 import { YugiHealthConnectIcon } from "@atoms/icon/yugi-health-connect-icon";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface IYuHealthConnectScreenProps {
   body?: string;
@@ -55,6 +56,13 @@ const YuHealthConnectScreen = ({
     return options.supportedTypes.length < Object.values(SupportedHealthTypes).length;
   }, [options]);
 
+  const { bottom } = useSafeAreaInsets();
+
+  const wrapperStyles = useMemo(() => {
+    const extraPadding = Style.adjust(isAndroid() ? 15 : -10);
+    return [styles.wrapper, { bottom: bottom + extraPadding }];
+  }, [bottom]);
+
   useBackHandler(() => {
     onModalClose();
     return true;
@@ -65,7 +73,7 @@ const YuHealthConnectScreen = ({
       <GenericHeadingPad />
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <View style={styles.wrapper}>
+        <View style={wrapperStyles}>
           <Box gap={10} style={styles.content}>
             <View>
               <View style={styles.title}>
