@@ -102,7 +102,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
           return null;
         }
 
-        const daysLeft = moment(rewardsData.rewardStoreAccessRevokesAt).diff(moment(), "days");
+        const daysLeft = moment(rewardsData.rewardStoreAccessRevokesAt).endOf("day").diff(moment(), "days");
 
         return (
           <Box mb={16} mx={16}>
