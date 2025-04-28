@@ -6,15 +6,17 @@ import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
 import { STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT, YUCOIN_POWER_INFO } from "@ids";
 import { AUTH_USA_1 } from "../_data/mongo/auths";
-import { CUSTOMER_USA_1 } from "../_data";
+import { BUSINESS_ACCOUNT_USA_1, CUSTOMER_USA_1 } from "../_data";
 import * as ids from "@ids";
 
 Feature("As a user I can get past the login screen and see the donate tab after selecting my location", async () => {
   Scenario("USA", scenario.start, async () => {
-    Given("I have authorised fitkit", given.authoriseFitkit(), async () => {
-      Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", CUSTOMER_USA_1, AUTH_USA_1, true, "United States"), async () => {
-        When("I have done 20 steps", given.sendSteps(20), async () => {
-          Then("I should see 20 steps", then.idVisible(STEPS_COUNT(20), 5000));
+    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_ACCOUNT_USA_1.data.business_account_id]), async () => {
+      Given("I have authorised fitkit", given.authoriseFitkit(), async () => {
+        Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", CUSTOMER_USA_1, AUTH_USA_1, true, "United States"), async () => {
+          When("I have done 20 steps", given.sendSteps(20), async () => {
+            Then("I should see 20 steps", then.idVisible(STEPS_COUNT(20), 5000));
+          });
         });
       });
     });
