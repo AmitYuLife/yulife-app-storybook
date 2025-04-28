@@ -1,5 +1,5 @@
 import { Box } from "@atoms";
-import PodiumRays from "@organisms/podium/podium-rays";
+import Rays from "@organisms/rays/rays";
 import { StyleSheet, useWindowDimensions } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import {
@@ -195,7 +195,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
                     top={Style.adjust(Style.DEVICE_HEIGHT > 600 ? -90 : -140)}
                     entering={FadeIn.delay(500).duration(SCALE_STAGE_DURATION)}
                   >
-                    <PodiumRays backgroundColor={"transparent"} style="alternate" color="#FFED44" />
+                    <Rays backgroundColor={"transparent"} style="alternate" color="#FFED44" />
                   </Box>
                   <Box h="100%" w="100%" justifyContent="center" alignItems="center">
                     <Image source={require("./yucoin-hifi.webp")} style={styles.yugiHifi} resizeMode="contain" />

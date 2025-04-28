@@ -8,25 +8,42 @@ import Svg, { G, Path, Defs, LinearGradient, Stop, ClipPath } from "react-native
 const PODIUM_ROTATE_TIME = 70000;
 const OPACITY = 0.7;
 
-interface IPodiumRaysProps {
+interface IRaysProps {
   containerStyle?: ViewStyle;
   backgroundColor?: string;
+  duration?: number;
+  initialRotation?: number;
+  positionStyle?: ViewStyle;
   color?: string;
-  style?: "default" | "alternate";
+  style?: "default" | "alternate" | "thin";
 }
 
-const PodiumRays = ({ containerStyle, backgroundColor = "#CEEBFF", color, style = "default" }: IPodiumRaysProps) => {
-  const rotation = useSharedValue(0);
+const DEFAULT_POSITION_STYLE: ViewStyle = {
+  left: "-50%",
+  width: "200%",
+  height: "200%",
+};
+
+const Rays = ({
+  containerStyle,
+  initialRotation = 0,
+  backgroundColor = "#CEEBFF",
+  color,
+  positionStyle = DEFAULT_POSITION_STYLE,
+  style = "default",
+  duration = PODIUM_ROTATE_TIME,
+}: IRaysProps) => {
+  const rotation = useSharedValue(initialRotation);
 
   useEffect(() => {
     rotation.value = withRepeat(
-      withTiming(360, {
-        duration: PODIUM_ROTATE_TIME,
+      withTiming(360 + initialRotation, {
+        duration: duration,
         easing: Easing.linear,
       }),
       -1
     );
-  }, [rotation]);
+  }, [duration, initialRotation, rotation]);
 
   const wrapperStyle = useMemo(() => {
     return [containerStyle || styles.wrapper, { backgroundColor }];
@@ -35,9 +52,7 @@ const PodiumRays = ({ containerStyle, backgroundColor = "#CEEBFF", color, style 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       opacity: OPACITY,
-      left: "-50%",
-      width: "200%",
-      height: "200%",
+      ...positionStyle,
       transform: [{ rotate: `${rotation.value}deg` }],
     };
   }, [style]);
@@ -46,7 +61,8 @@ const PodiumRays = ({ containerStyle, backgroundColor = "#CEEBFF", color, style 
     <Animated.View style={wrapperStyle}>
       <Animated.View style={animatedStyle}>
         {style === "default" ? <PodiumRaysSvg /> : null}
-        {style === "alternate" ? <PodiumRaysSvgAlternate color={color} /> : null}
+        {style === "alternate" ? <RaysSvgAlternate color={color} /> : null}
+        {style === "thin" ? <RaysSvgThin /> : null}
       </Animated.View>
     </Animated.View>
   );
@@ -172,7 +188,118 @@ const PodiumRaysSvg = memo(() => (
   </Svg>
 ));
 
-const PodiumRaysSvgAlternate = memo(({ color = "#fff" }: Pick<IPodiumRaysProps, "color">) => (
+const RaysSvgThin = memo(() => (
+  <Svg width={"100%"} height={"100%"} viewBox="0 0 477 477" fill="none">
+    <Path d="M176.659 476.41h122.536l-61.268-238.396-61.268 238.396z" fill="url(#paint0_linear_1_18)" opacity={0.4} />
+    <Path
+      d="M363.209 449.894l86.645-86.645L237.96 238l125.249 211.894z"
+      fill="url(#paint1_linear_1_18)"
+      opacity={0.4}
+    />
+    <Path d="M26 363.249l86.646 86.645L237.894 238 26 363.249z" fill="url(#paint2_linear_1_18)" opacity={0.4} />
+    <Path d="M0 176.659v122.536l238.396-61.268L0 176.659z" fill="url(#paint3_linear_1_18)" opacity={0.4} />
+    <Path d="M113.162 26l-86.646 86.646L238.41 237.894 113.162 26z" fill="url(#paint4_linear_1_18)" opacity={0.4} />
+    <Path d="M300.195 0H177.66l61.267 238.396L300.195 0z" fill="url(#paint5_linear_1_18)" opacity={0.4} />
+    <Path
+      d="M450.854 113.162l-86.645-86.646L238.96 238.41l211.894-125.248z"
+      fill="url(#paint6_linear_1_18)"
+      opacity={0.4}
+    />
+    <Path d="M476.41 299.195V176.66l-238.396 61.267 238.396 61.268z" fill="url(#paint7_linear_1_18)" opacity={0.4} />
+    <Defs>
+      <LinearGradient
+        id="paint0_linear_1_18"
+        x1={235.92}
+        y1={478.236}
+        x2={244.397}
+        y2={235.944}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint1_linear_1_18"
+        x1={406.404}
+        y1={409.281}
+        x2={241.071}
+        y2={231.961}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint2_linear_1_18"
+        x1={66.613}
+        y1={406.444}
+        x2={243.933}
+        y2={241.111}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint3_linear_1_18"
+        x1={-1.82587}
+        y1={235.92}
+        x2={240.467}
+        y2={244.397}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint4_linear_1_18"
+        x1={69.9665}
+        y1={66.613}
+        x2={235.299}
+        y2={243.933}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint5_linear_1_18"
+        x1={240.934}
+        y1={-1.82587}
+        x2={232.457}
+        y2={240.467}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint6_linear_1_18"
+        x1={410.241}
+        y1={69.9665}
+        x2={232.921}
+        y2={235.299}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint7_linear_1_18"
+        x1={478.236}
+        y1={239.934}
+        x2={235.944}
+        y2={231.457}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+    </Defs>
+  </Svg>
+));
+
+const RaysSvgAlternate = memo(({ color = "#fff" }: Pick<IRaysProps, "color">) => (
   <Svg width={"100%"} height={"100%"} viewBox="0 0 754 754" fill="none">
     <Path d="M250.976 754h252.048L376.928 377.073 250.976 754z" fill="url(#paint0_linear_4903_53)" />
     <Path d="M250.976 0h252.048L376.928 376.927 250.976 0z" fill="url(#paint1_linear_4903_53)" />
@@ -284,4 +411,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(PodiumRays);
+export default memo(Rays);

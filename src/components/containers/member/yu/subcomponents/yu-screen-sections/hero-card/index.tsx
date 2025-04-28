@@ -6,7 +6,7 @@ import Markdown from "@components/molecules/markdown/markdown";
 import { HeroCardSection as IYuScreenBannerSection } from "@redux/yu-screen/yu-screen.types";
 import { useDispatch } from "react-redux";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import PodiumRays from "@organisms/podium/podium-rays";
+import Rays from "@organisms/rays/rays";
 import { ItemDetailsReward } from "@organisms";
 import { DETOX_ENABLED } from "@services/socket";
 import { HERO_CARD_SECTION } from "@ids";
@@ -65,7 +65,7 @@ export const HeroCardSection = ({ sectionInstanceId, content }: IYuScreenBannerS
           {!descriptionMarkdown ? null : (
             <Box justifyContent="center" alignItems="center" mh={24}>
               {!animatedRays || DETOX_ENABLED ? null : (
-                <PodiumRays containerStyle={styles.rays} backgroundColor="transparent" style="alternate" />
+                <Rays containerStyle={styles.rays} backgroundColor="transparent" style="alternate" />
               )}
               <ItemDetailsReward
                 bubblesEnabled={false}

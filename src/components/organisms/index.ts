@@ -69,9 +69,10 @@ export { default as GiftViewLoading } from "./gift-view-loading/gift-view-loadin
 export { default as InboxMessageItem } from "./inbox-message-item/inbox-message-item";
 export { default as CouponListItem } from "./coupon-list-item/coupon-list-item";
 export { default as BattlePassBlurredRaysWrapper } from "./battle-pass-blurred-rays-wrapper/battle-pass-blurred-rays-wrapper";
-export { default as PodiumRays } from "./podium/podium-rays";
+export { default as Rays } from "./rays/rays";
 export { default as ListItemLoadingSkeleton } from "./list-item-loading-skeleton/list-item-loading-skeleton";
 export { default as FullScreenHero } from "./full-screen-hero/full-screen-hero";
 export { default as RecentRewardCard } from "./recent-reward-card/recent-reward-card";
 export { default as AchievementsShowcase } from "./achievements-showcase/achievements-showcase";
 export { default as AchievementCard } from "./achievement-card/achievement-card";
+export { default as RewardPass } from "./reward-pass/reward-pass";

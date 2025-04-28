@@ -4,7 +4,7 @@ import { memo, ReactNode, useMemo } from "react";
 import { Button } from "@components/molecules";
 import { useBackHandler } from "@hooks";
 import { ItemDetailsReward, ScrollableFloatingModal } from "@organisms";
-import PodiumRays from "@organisms/podium/podium-rays";
+import Rays from "@organisms/rays/rays";
 import { TextTemplate } from "@atoms";
 import Box from "@atoms/box/box";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
@@ -126,7 +126,7 @@ const StepFeedbackHalfModal = ({
         <Box style={[calculatedStyles.headerBackground, { backgroundColor: levelRewardColor }]}>
           {!DETOX_ENABLED && displayRays ? (
             <Animated.View style={[calculatedStyles.podiumRays, raysContainerStyle]}>
-              <PodiumRays
+              <Rays
                 backgroundColor={"transparent"}
                 style="alternate"
                 containerStyle={styles.podiumRaysContainerStyle}
