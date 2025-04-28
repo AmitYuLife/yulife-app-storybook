@@ -6,6 +6,7 @@ import {
   BUTTON_CLOSE,
   BACK_BUTTON,
   BUTTON_BASE,
+  SKIP_HEALTH_CONNECT_SCREEN_BUTTON,
 } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
@@ -157,11 +158,13 @@ export const loginOnly =
     await navigateViaID(BUTTON_LOGIN(false));
     await dismissNewLooksModalIfVisible();
   };
+
 export const loginAndCollectSignupBonus =
   (customer: any, auth: any, fitkitAuth?: boolean) => async () => {
     await loginOnly(customer, auth, fitkitAuth)();
     await navigateViaText(t("Let's go"));
   };
+
 export const continueLogin = async () => {
   await navigateViaText(t("Let's go"));
   await dismissStreakIfVisible();
@@ -189,11 +192,11 @@ export const selectRegionIfVisible = (region: string) => async () => {
 
 export const skipHealthConnection = async () => {
   try {
-    await navigateViaID(BUTTON_CLOSE);
+    await navigateViaID(BUTTON_CLOSE, 2000);
   } catch (err) {}
 
   try {
-    await tapText("Skip this step")();
+    await navigateViaID(SKIP_HEALTH_CONNECT_SCREEN_BUTTON, 2000);
   } catch (err) {}
 };
 

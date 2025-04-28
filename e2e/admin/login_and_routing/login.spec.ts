@@ -72,21 +72,21 @@ Feature("As a user I can get past the login screen", async () => {
         When("I press `log in`", when.tapOnLogin, async () => {
           Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
           Then("I should see the sign up reward screen", then.rewardScreenVisible);
-          When("I tap 'Let's go'", when.tapLetsGo, async () => {
-            Given("I skip the health connection screen", given.skipHealthConnection, async () => {
-              Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
-              Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} ${t("today")}`));
-              Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO));
-              When("I tap the YuCoins", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
-                Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`));
-                When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
-                  Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} today`));
-                  Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
-                });
-              });
-            });
-          });
         });
+      });
+      When("I tap 'Let's go'", when.tapLetsGo, async () => {
+        When("I skip the health connection screen", when.skipHealthConnection, async () => {
+          Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
+          Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} ${t("today")}`));
+          Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO));
+        });
+      });
+      When("I tap the YuCoins", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
+        Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`));
+      });
+      When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
+        Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} today`));
+        Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
       });
     });
   });
@@ -95,7 +95,9 @@ Feature("As a user I can get past the login screen", async () => {
     Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
       Given("I login and go to the daily steps screen", given.loginToDailySteps, async () => {
         When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
-          Then("I should see 0 steps done so far today", then.idVisible(ids.STEPS_COUNT(0)));
+          When("I skip the health connection screen", when.skipHealthConnection, async () => {
+            Then("I should see 0 steps done so far today", then.idVisible(ids.STEPS_COUNT(0), 2000));
+          });
         });
       });
       When("I have done 20 steps", given.sendSteps(20), async () => {
@@ -136,7 +138,6 @@ Feature("As a user I can get past the login screen", async () => {
       Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
       Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
     });
-
     Given("I enter an incorrect password a second time", given.enterPasswordIncorrectly(), async () => {
       Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
       Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
@@ -178,8 +179,10 @@ Feature("As a user I can get past the login screen", async () => {
     Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
       Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1), async () => {
         When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
-          When("I have done 20 steps", given.sendSteps(20), async () => {
-            Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20), 2000));
+          When("I skip the health connection screen", when.skipHealthConnection, async () => {
+            When("I have done 20 steps", given.sendSteps(20), async () => {
+              Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20), 2000));
+            });
           });
           When("I have done 11.3 km cycling", given.addCyclingData(11345), async () => {
             When("I have done 13 min Mindfulness", given.sendMindfulnessData(800), async () => {

@@ -81,6 +81,8 @@ export const CHALLENGE_FAILED_SCREEEN = "CHALLENGE_FAILED_SCREEEN";
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
 export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";
+export const SKIP_HEALTH_CONNECT_SCREEN_BUTTON =
+  "screens.fitkit_connect.secondary_button_label-text-view";
 export const BUTTON_INTRO_SCREEN = (index: number) => `BUTTON_INTRO_SCREEN_${index}`;
 export const BUTTON_TOP_LEFT_BAR = "BUTTON_TOP_LEFT_BAR";
 export const BUTTON_CLOSE = "BUTTON_CLOSE";
