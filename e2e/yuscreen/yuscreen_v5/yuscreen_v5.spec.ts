@@ -240,7 +240,7 @@ Feature("I am able to use the yuscreen v5", async () => {
       });
     });
     When("I swipe back to the first product", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life insurance"), "right", "fast"), async () => {
-      Then("I should see the correct body and copy", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO("Online GP, open referrals, and more.")));
+      Then("I should see the correct body and copy", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC("Online GP, open referrals, and more.")));
     });
     When("I tap Bupa health insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
       Then("I should see the details on the Bupa Health Insurance", then.idVisible(ids.TEXT_TEMPLATE("Health Insurance", "undefined")));
