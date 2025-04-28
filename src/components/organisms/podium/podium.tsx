@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import React, { memo } from "react";
 import Svg, { G, Path, Defs, LinearGradient, Stop, ClipPath } from "react-native-svg";
 import { Dimensions, StyleSheet, View } from "react-native";
-import PodiumRays from "./podium-rays";
+import Rays from "../rays/rays";
 
 const variation = Dimensions.get("window").scale * 4 - Dimensions.get("window").fontScale;
 const podiumHeight = Math.round(Style.DEVICE_WIDTH - variation);
@@ -13,7 +13,7 @@ interface IPodiumProps {
 
 const Podium = ({ enableAnimatedRays }: IPodiumProps) => (
   <View style={styles.wrapper}>
-    {enableAnimatedRays ? <PodiumRays /> : null}
+    {enableAnimatedRays ? <Rays /> : null}
 
     <Svg width={Style.DEVICE_WIDTH} height={podiumHeight} viewBox="0 0 375 353" fill="none">
       <G clipPath="url(#a)">

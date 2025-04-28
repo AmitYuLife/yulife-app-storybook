@@ -2,7 +2,7 @@ import { memo, ReactElement, useMemo } from "react";
 import { StyleSheet, ViewStyle } from "react-native";
 import { BlurredWrapper, Box, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
-import { PodiumRays, RollingText } from "@organisms";
+import { Rays, RollingText } from "@organisms";
 import { DETOX_ENABLED } from "@services/socket";
 import { Colours, Style } from "@styles";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
@@ -57,7 +57,7 @@ const BattlePassBlurredRaysWrapper = ({
       <Animated.View entering={FadeIn.duration(200)} style={styles.wrapper}>
         <Box w="100%" h="100%" position="absolute" opacity={0.4}>
           <Animated.View style={styles.rays} entering={FadeIn.delay(300).duration(800)}>
-            {!DETOX_ENABLED && showRays ? <PodiumRays backgroundColor={"transparent"} style="alternate" /> : null}
+            {!DETOX_ENABLED && showRays ? <Rays backgroundColor={"transparent"} style="alternate" /> : null}
           </Animated.View>
         </Box>
         <Box style={wrapperStyle} testID={testID}>

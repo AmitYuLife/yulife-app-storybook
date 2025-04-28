@@ -4,7 +4,7 @@ import { ReactNode, memo, useMemo, useState } from "react";
 import { Button } from "@components/molecules";
 import { GetItemDetailsHookResponse, HalfModalItemDetails, useAsyncEffect, useBackHandler } from "@hooks";
 import { ItemDetailsContainer, ItemDetailsReward, ScrollableFloatingModal } from "@organisms";
-import PodiumRays from "@organisms/podium/podium-rays";
+import Rays from "@organisms/rays/rays";
 import { prefetchImages as prefetchImagesFunction, TextTemplate } from "@atoms";
 import Box from "@atoms/box/box";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
@@ -153,7 +153,7 @@ const ItemDetailsHalfModal = ({
         <View style={[styles.headerBackground, { backgroundColor: levelRewardColor }]}>
           {!DETOX_ENABLED && (
             <Animated.View style={[styles.podiumRays, raysContainerStyle]}>
-              <PodiumRays backgroundColor={"transparent"} style="alternate" />
+              <Rays backgroundColor={"transparent"} style="alternate" />
             </Animated.View>
           )}
         </View>
