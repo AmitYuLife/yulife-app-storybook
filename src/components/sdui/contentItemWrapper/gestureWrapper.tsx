@@ -1,9 +1,11 @@
-import { ComponentProps, memo, useCallback, useContext, useMemo, useRef } from "react";
-import { runOnJS, SharedValue, useAnimatedReaction, withTiming } from "react-native-reanimated";
+import { ComponentProps, memo, useCallback, useContext, useMemo } from "react";
+import { runOnJS, SharedValue, useAnimatedReaction, useSharedValue, withTiming } from "react-native-reanimated";
 import { SduiDispatchContext } from "../_context/SduiProvider";
 import { TouchableOpacity, View } from "react-native";
 import { DETOX_ENABLED } from "@services/socket";
 import { GESTURE_WRAPPER } from "@ids";
+import { Trigger } from "./hooks/useTriggers";
+import { useTriggers } from "@components/sdui/contentItemWrapper/hooks/useTriggers";
 
 type Props = {
   children: React.ReactNode;
@@ -11,10 +13,12 @@ type Props = {
     start: {
       target: number;
       config?: Record<string, number>;
+      trigger?: Trigger;
     };
     end?: {
       target: number;
       config?: Record<string, number>;
+      trigger?: Trigger;
       terminateOnEnd?: boolean;
     };
     gesture: Record<string, number>;
@@ -26,22 +30,27 @@ type Props = {
 
 export const GestureWrapper = memo((props: Props) => {
   const dispatch = useContext(SduiDispatchContext);
-  const dispatched = useRef(false);
+  const dispatched = useSharedValue(false);
+  const { trigger } = useTriggers();
 
   const dispatchAllOnEndCallbacks = useCallback(() => {
+    if (props.config.end?.trigger) {
+      trigger(props.config.end?.trigger);
+    }
+
     if (!props.dispatchOnEnd) {
       return;
     }
 
     props.dispatchOnEnd.forEach(dispatch);
-    dispatched.current = true;
-  }, [props.dispatchOnEnd]);
+    dispatched.value = true;
+  }, [props.dispatchOnEnd, props.config.end, trigger]);
 
   useAnimatedReaction(
     () => props.sharedValue.value,
     (currentValue, previousValue) => {
       if (currentValue !== previousValue) {
-        if (!dispatched.current && currentValue === props.config.start.target) {
+        if (!dispatched.value && currentValue === props.config.start.target) {
           runOnJS(dispatchAllOnEndCallbacks)();
         }
       }
@@ -56,6 +65,10 @@ export const GestureWrapper = memo((props: Props) => {
         }
 
         props.sharedValue.value = withTiming(props.config.start.target, props.config.start.config);
+
+        if (props.config.start.trigger) {
+          trigger(props.config.start.trigger);
+        }
       },
       handlePressOut: () => {
         if (DETOX_ENABLED) {
@@ -71,7 +84,7 @@ export const GestureWrapper = memo((props: Props) => {
         }
       },
     };
-  }, [props.sharedValue, props.config]);
+  }, [props.sharedValue, props.config, trigger, dispatchAllOnEndCallbacks]);
 
   return (
     <TouchableOpacity
