@@ -19,7 +19,7 @@ import { isSamsung } from "@utils/device";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitTypes } from "@services/fitkit/fitkit.service";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { useTranslation, useUserFeatures } from "@hooks";
+import { useTranslation } from "@hooks";
 import { GetTodayEarningsQuery, FitKitType } from "@graphql/__generated";
 import {
   getChallengesStatus,
@@ -64,7 +64,6 @@ const ActivityFeed = ({
   const dispatch = useDispatch();
   const questionMarkRef = useRef<View>();
   const { authorise, authoriseFitKitTypes } = useFitKit();
-  const features = useUserFeatures();
   const t = useTranslation([
     "screens.today_earning.alert.never_ask_again.title",
     "screens.today_earning.alert.never_ask_again.message",
@@ -213,18 +212,9 @@ const ActivityFeed = ({
       yuniversalMap,
       hasDoneChallengeToday: hasDone,
       isChallengeActive,
-      allowDirectNavigation: features.tempTakeAChallengeDirectV2,
     });
     Navigation.popToRoot(ROUTES.todayEarnings);
-  }, [
-    button,
-    currentLevel,
-    yuniversalLevel,
-    yuniversalMap,
-    hasDone,
-    isChallengeActive,
-    features.tempTakeAChallengeDirectV2,
-  ]);
+  }, [button, currentLevel, yuniversalLevel, yuniversalMap, hasDone, isChallengeActive]);
 
   const isDisabled = useCallback(
     (activity: IActivityFeed["activityProgress"][0]) => {

@@ -69,7 +69,7 @@ const DailyStepsScreen = ({
   theme,
   contentProps,
 }: Props) => {
-  const { tempGameEnableReleaseYuHealthV3, tempTakeAChallengeDirectV2 } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV3 } = useUserFeatures();
   const currentModal = useSelector(getModalState);
 
   const { androidImportantForAccessibility, accessibilityElementsHidden } = useMemo(
@@ -143,10 +143,9 @@ const DailyStepsScreen = ({
         yuniversalMap,
         hasDoneChallengeToday,
         isChallengeActive,
-        allowDirectNavigation: tempTakeAChallengeDirectV2,
       });
     },
-    [currentLevel, hasDoneChallengeToday, isChallengeActive, yuniversalLevel, yuniversalMap, tempTakeAChallengeDirectV2]
+    [currentLevel, hasDoneChallengeToday, isChallengeActive, yuniversalLevel, yuniversalMap]
   );
 
   return (
