@@ -9,13 +9,19 @@ import { memo } from "react";
 import { StyleSheet } from "react-native";
 import { ReactNode } from "react";
 
+export enum IAchievementStatus {
+  locked = "locked",
+  unlocked = "unlocked",
+  equipped = "equipped",
+}
+
 export interface IAchievementCardProps {
   id: string;
   name: string;
   description: string;
   onPress: () => void;
   points: number;
-  status: "locked" | "unlocked" | "equipped";
+  status: string;
   icon: {
     uri?: string;
     id: string;
@@ -34,7 +40,11 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
       {/* we need to change the type of the BoxOption component for children */}
       <>
         <Box position="absolute" top={8} flexDirection="row" justifyContent="space-between" left={8} right={8}>
-          <AchievementPoints label={addCommasToNumber(points)} autoWidth={true} locked={status === "locked"} />
+          <AchievementPoints
+            label={addCommasToNumber(points)}
+            autoWidth={true}
+            locked={status === IAchievementStatus.locked}
+          />
           {STATUS_COMPONENTS[status]}
         </Box>
         <Box alignItems="center" justifyContent="center" mt={24}>
