@@ -52,16 +52,16 @@ Feature("Mood Monitor", async () => {
     When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
       Then("I should be on the final Mood Monitor Screen", then.textVisible(moodMonitorFinalScreen.title));
       Then("I should see the happy mood monitor image", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(moodMonitorHappy)));
-      Then("I should see the progress bar fully complete", then.progressBarVisible(200));
+      Then("I should see the progress bar fully complete", then.progressBarVisible(600));
     });
     When("I click done", when.tapIDAtIndex(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 1), async () => {
-      Then("I should see the correct reward amount on the 'Additional rewards' section", then.idVisible(ids.ACTIVITY_LISTING("Mood monitor", 200)));
+      Then("I should see the correct reward amount on the 'Additional rewards' section", then.idVisible(ids.ACTIVITY_LISTING("Mood monitor", 60)));
     });
     When("I swipe up the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "down", "fast", 0.3), async () => {
-      Then("I should now have 400 yucoin", then.textVisible("400 YuCoin"));
+      Then("I should now have 260 yucoin", then.textVisible("260 YuCoin"));
     });
     When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      Then("I should see my yucoin balance update to 400", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(400)));
+      Then("I should see my yucoin balance update to 260", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(260)));
     });
     When("I tap the menu icon", when.tapID(ids.MENU_ICON, 1500), async () => {
       When("I go the Activity history", when.tapMenuItem("Activity History"), async () => {
@@ -69,14 +69,14 @@ Feature("Mood Monitor", async () => {
       });
     });
     When("I tap the previous month", when.selectActivityMonth(1), async () => {
-      Then("I should see my Mood monitor activity from the past", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Mood monitor"), 2500));
+      Then("I should see my Mood monitor activity from the past", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Mood monitor"), 200));
     });
   });
 
   Scenario("I can see my mood monitor history", scenario.start, () => {
     Given("I login as a user with the mood monitor enabled", given.logInAndGoToTab("yu", data.CUSTOMER_5, data.AUTH_5), async () => {
       Then("I should see my YuCoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 340));
+      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 270));
     });
     When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
       When("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async () => {
@@ -122,14 +122,14 @@ Feature("Mood Monitor", async () => {
     });
     When("I click done", when.tapIDAtIndex(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 1), async () => {
       When("I swipe up the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "down", "fast", 0.3), async () => {
-        Then("I should now have 300 yucoin", then.textVisible("300 YuCoin"));
+        Then("I should now have 230 yucoin", then.textVisible("230 YuCoin"));
       });
     });
     When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      Then("I should see my yucoin balance update to 300", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(300)));
+      Then("I should see my yucoin balance update to 230", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(230)));
     });
     When("I back to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(300, 340));
+      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(230, 270));
       Then("I should see the completed mood monitor nudge", then.completedMoodMonitorNudgeVisible);
     });
   });
