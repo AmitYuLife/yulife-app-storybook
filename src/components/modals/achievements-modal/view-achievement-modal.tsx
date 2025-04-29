@@ -8,25 +8,56 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { t } from "@locale";
 import { addCommasToNumber } from "@utils";
-
 interface IProps {
+  id: string;
   name: string;
   icon: {
     uri?: string;
     id: string;
   };
   description: string;
+  selectedSlot?: number;
   points: number;
   shortDescription: string;
   status: "locked" | "unlocked" | "equipped";
+  slotsTaken: number;
+  isInspectingUser?: boolean;
 }
 
 const onClose = () => Navigation.dismissModal(MODALS.viewAchievementModal);
 
-const ViewAchievementModal = ({ name, description, icon, points, status, shortDescription }: IProps) => {
+const ViewAchievementModal = ({
+  id,
+  name,
+  description,
+  icon,
+  points,
+  status,
+  shortDescription,
+  slotsTaken,
+  // selectedSlot,
+  isInspectingUser,
+}: IProps) => {
   const insets = useSafeAreaInsets();
 
-  const onButtonPress = useCallback(() => console.log("add graphql mutation"), []);
+  // uncomment when we add mutation
+  // const getSlot = useCallback((slot: number, selected: number) => {
+  //   if (selected) {
+  //     return { slot: selected };
+  //   }
+
+  //   if (slot < 4 && status === "unlocked") {
+  //     return { slot };
+  //   }
+
+  //   return {};
+  // }, []);
+
+  const onButtonPress = useCallback(async () => {
+    // const slot = slotsTaken + 1;
+
+    onClose();
+  }, [slotsTaken, id, status]);
 
   return (
     <Box flex={1}>
@@ -47,7 +78,7 @@ const ViewAchievementModal = ({ name, description, icon, points, status, shortDe
           </Box>
         )}
       </Box>
-      {status === "locked" ? null : (
+      {status === "locked" || isInspectingUser ? null : (
         <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">
           <Button
             testID="id-baby"

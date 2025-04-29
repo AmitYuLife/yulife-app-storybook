@@ -2,9 +2,11 @@ import { Pressable } from "@molecules";
 import { AddIcon } from "@atoms/icon/add-icon";
 import { memo } from "react";
 import { Image } from "@atoms";
+import { StarEmptySlotIcon } from "@atoms/icon/star-empty-slot-icon";
 
 interface IProps {
   onPress: () => void;
+  showStarIcon?: boolean;
   icon: {
     uri?: string;
     id: string;
@@ -13,7 +15,7 @@ interface IProps {
 
 const SIZE = 56;
 const IMAGE_SIZE = SIZE + 4;
-const AchievementSlot = ({ onPress, icon }: IProps) => {
+const AchievementSlot = ({ onPress, icon, showStarIcon }: IProps) => {
   return (
     <Pressable
       w={SIZE}
@@ -29,7 +31,7 @@ const AchievementSlot = ({ onPress, icon }: IProps) => {
       {icon?.uri ? (
         <Image w={IMAGE_SIZE} h={IMAGE_SIZE} source={{ uri: icon.uri }} />
       ) : (
-        <AddIcon color="#464647" showBorder={false} />
+        <>{showStarIcon ? <StarEmptySlotIcon /> : <AddIcon color="#464647" showBorder={false} />}</>
       )}
     </Pressable>
   );

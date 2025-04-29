@@ -6,13 +6,15 @@ import { AchievementPoints, AchievementSlot } from "@molecules";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { pushToScreen, showYuModal } from "@navigation/root";
 import { addCommasToNumber } from "@utils";
-import { memo, useCallback, useMemo } from "react";
+import { memo, useCallback } from "react";
+import { IAchievementStatus } from "../achievement-card/achievement-card";
 
 export interface IAchievement {
   id: string;
   name: string;
   description: string;
   points: number;
+  slot?: number | null;
   type: string;
   icon: {
     uri?: string;
@@ -20,46 +22,71 @@ export interface IAchievement {
   };
 }
 
+interface ISlot {
+  icon: {
+    uri?: string;
+    id: string;
+  };
+  onPress: () => void;
+}
+
 interface IProps {
   componentId: string;
   // Making this props optional until we have the graphql query ready
   points?: number;
   achievements?: IAchievement[];
+  isInspectingUser?: boolean;
 }
 
-const AchievementsShowcase = ({ points, achievements = [], componentId }: IProps) => {
-  const onPress = useCallback(async (achievement: IAchievement) => {
-    await showYuModal({
-      component: {
-        id: MODALS.viewAchievementModal,
-        name: MODALS.viewAchievementModal,
-        passProps: {
-          ...achievement,
-          isEquipped: true,
+const AchievementsShowcase = ({ points, achievements = [], componentId, isInspectingUser }: IProps) => {
+  const onPress = useCallback(
+    async (achievement: IAchievement) => {
+      await showYuModal({
+        component: {
+          id: MODALS.viewAchievementModal,
+          name: MODALS.viewAchievementModal,
+          passProps: {
+            ...achievement,
+            status: IAchievementStatus.equipped,
+            isInspectingUser,
+          },
         },
-      },
-    });
-  }, []);
+      });
+    },
+    [isInspectingUser]
+  );
 
   const goToAchievements = useCallback(
-    () =>
+    (selectedSlot?: number) =>
       pushToScreen(componentId, {
         component: {
           id: ROUTES.achievements,
           name: ROUTES.achievements,
+          passProps: {
+            selectedSlot,
+          },
         },
       }),
     [componentId]
   );
 
-  const slots = useMemo(
-    () =>
-      Array.from({ length: 3 }, (_, index) => ({
-        id: achievements[index]?.id || `slot-${index}`,
-        icon: achievements[index]?.icon,
-        onAchievementPress: () => (achievements[index]?.name ? onPress(achievements[index]) : goToAchievements()),
-      })),
-    [achievements, onPress]
+  const getSlot = useCallback(
+    (slot: number): ISlot => {
+      const achievement = achievements.find((a) => a.slot === slot);
+
+      if (achievement) {
+        return {
+          icon: achievement.icon,
+          onPress: () => onPress(achievement),
+        };
+      }
+
+      return {
+        icon: undefined,
+        onPress: () => goToAchievements(slot),
+      };
+    },
+    [achievements, onPress, goToAchievements]
   );
 
   return (
@@ -69,15 +96,13 @@ const AchievementsShowcase = ({ points, achievements = [], componentId }: IProps
           <Box position="absolute" top={-1} borderWidth={1} borderColor="#E3E3E1" width={105} height={23} br={20} />
           <AchievementPoints label={addCommasToNumber(points)} />
         </Box>
-        <Pressable flexDirection="row" alignItems="center" mb={8} mt={8} onPress={goToAchievements}>
+        <Pressable flexDirection="row" alignItems="center" mb={8} mt={8} onPress={() => goToAchievements()}>
           <TextTemplate type="l1b">{t("achievements")}</TextTemplate>
           <ArrowIcon width={14} />
         </Pressable>
         <Box gap={14}>
-          {slots.map(({ icon, id, onAchievementPress }) => (
-            <Box key={id} gap={14}>
-              <AchievementSlot icon={icon} onPress={onAchievementPress} />
-            </Box>
+          {Array.from({ length: 3 }).map((_, index) => (
+            <AchievementSlot key={index} {...getSlot(index + 1)} showStarIcon={isInspectingUser} />
           ))}
         </Box>
       </Box>

@@ -80,6 +80,7 @@ import { GiftIcon } from "./gift-icon";
 import { VoucherIcon } from "./voucher-icon";
 import { AchievementPointIcon } from "./achievement-point-icon";
 import { WalletIcon } from "./wallet-icon";
+import { StarEmptySlotIcon } from "./star-empty-slot-icon";
 
 export default {
   GlobeIcon,
@@ -166,4 +167,5 @@ export default {
   VoucherIcon,
   AchievementPointIcon,
   WalletIcon,
+  StarEmptySlotIcon,
 };
