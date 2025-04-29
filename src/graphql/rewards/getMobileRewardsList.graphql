@@ -1,5 +1,5 @@
-query GetMobileRewardsList($tag: String) {
-  data: getMobileRewardsList(tag: $tag) {
+query GetMobileRewardsList($tag: String, $searchTerm: String, $offset: Int) {
+  data: getMobileRewardsList(tag: $tag, searchTerm: $searchTerm, offset: $offset) {
     __typename
     id
     sduiStepId

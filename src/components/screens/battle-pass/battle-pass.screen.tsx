@@ -1,4 +1,4 @@
-import { BattlePassHeader } from "@organisms";
+import { BattlePassHeader, TopBarAbsolute } from "@organisms";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   ImageSourcePropType,
@@ -16,6 +16,9 @@ import { RewardsList } from "./rewards-list/rewards-list";
 import { BattlePassSeasonComplete } from "@organisms/battle-pass-season-complete/battle-pass-season-complete";
 import { FlashList } from "@shopify/flash-list";
 import { BATTLE_PASS_SCREEN } from "@ids";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import { Box } from "@atoms";
 
 interface IProps {
   title: string;
@@ -26,8 +29,9 @@ interface IProps {
   progressStatus: IBattlePassProgressBar;
   isCompleteLoading?: boolean; //leave this for now, it will be purged on container changes
   rewards: IBattlePassListItem[];
+  onBackPress?: () => void;
+  showNavigation?: boolean;
   onComplete: () => void; //leave this for now, it will be purged on container changes
-
   showCoinAnimation: boolean;
   onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
@@ -37,6 +41,8 @@ const BattlePassScreen = ({
   description,
   disclaimer,
   backgroundImage,
+  onBackPress,
+  showNavigation,
   donationTemplates,
   progressStatus,
   rewards,
@@ -64,30 +70,38 @@ const BattlePassScreen = ({
   }, [rewards]);
 
   return (
-    <View style={styles.wrapper} testID={BATTLE_PASS_SCREEN}>
-      <BattlePassHeader
-        title={title}
-        description={description}
-        backgroundImage={backgroundImage}
-        items={rewards}
-        listRef={headerListRef}
-        onScrollStart={onScrollStart}
-        progressStatus={progressStatus}
-      />
-      <View style={styles.container}>
-        <ScrollView bounces={false} scrollEventThrottle={16} onScroll={onScroll} showsVerticalScrollIndicator={false}>
-          {!isSeasonComplete ? (
-            <RewardsList
-              donationTemplates={donationTemplates}
-              showCoinAnimation={showCoinAnimation}
-              disclaimer={disclaimer}
-            />
-          ) : (
-            <BattlePassSeasonComplete rewards={rewards} title={title} />
-          )}
-        </ScrollView>
+    <>
+      <View style={styles.wrapper} testID={BATTLE_PASS_SCREEN}>
+        <BattlePassHeader
+          title={title}
+          description={description}
+          backgroundImage={backgroundImage}
+          items={rewards}
+          listRef={headerListRef}
+          onScrollStart={onScrollStart}
+          progressStatus={progressStatus}
+          pt={showNavigation ? TOP_BAR_WITH_PAD : 0}
+        />
+        <Box px={16} pb={showNavigation ? 0 : 80} mt={30} flex={1}>
+          <ScrollView bounces={false} scrollEventThrottle={16} onScroll={onScroll} showsVerticalScrollIndicator={false}>
+            {!isSeasonComplete ? (
+              <RewardsList
+                donationTemplates={donationTemplates}
+                showCoinAnimation={showCoinAnimation}
+                disclaimer={disclaimer}
+              />
+            ) : (
+              <BattlePassSeasonComplete rewards={rewards} title={title} />
+            )}
+          </ScrollView>
+        </Box>
       </View>
-    </View>
+      {showNavigation ? (
+        <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP}>
+          <TopBarAbsolute type="white" leftIcon={LeftIcon.BACK} onPressLeftIcon={onBackPress} />
+        </Box>
+      ) : null}
+    </>
   );
 };
 
