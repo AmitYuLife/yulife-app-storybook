@@ -76,3 +76,4 @@ export { default as RecentRewardCard } from "./recent-reward-card/recent-reward-
 export { default as AchievementsShowcase } from "./achievements-showcase/achievements-showcase";
 export { default as AchievementCard } from "./achievement-card/achievement-card";
 export { default as RewardPass } from "./reward-pass/reward-pass";
+export { default as RewardSearchListItem } from "./reward-search-list-item/reward-search-list-item";

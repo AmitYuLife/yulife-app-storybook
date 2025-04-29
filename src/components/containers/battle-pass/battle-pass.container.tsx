@@ -22,7 +22,7 @@ import BattlePassSeasonStaging from "@organisms/battle-pass-season-staging/battl
 import { pushToScreen } from "@navigation/root";
 import { RewardsManagerContext } from "@components/containers/member/rewards/rewards.manager.context";
 import { ROUTES } from "@navigation/constants";
-import { RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
+import { IRewardContainerProps, RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
 import FirstTimeContentLocationSelection from "@components/screens/member/content-location/first-time-content-location-selection";
 import { Navigation } from "@navigation/main";
 import { isEmpty } from "lodash";
@@ -30,9 +30,15 @@ import { prizesAwarded } from "@redux/prizes/prizes.actions";
 import { BattlePassEndOfSeasonModal } from "@components/modals";
 import { t } from "@locale";
 
-const BattlePassContainer = () => {
+const BattlePassContainer = ({ showNavigation = false }: IRewardContainerProps) => {
   const { componentId } = useNavigation();
   const { onScroll, dispatch: rewardsManagerDispatch } = useContext(RewardsManagerContext);
+
+  const onBack = useCallback(() => {
+    if (showNavigation) {
+      Navigation.pop(componentId);
+    }
+  }, [componentId, showNavigation]);
 
   const state = useRef<{
     donationUpdates: Record<string, number>;
@@ -347,6 +353,8 @@ const BattlePassContainer = () => {
           description={battlePass?.description || ""}
           disclaimer={battlePass?.disclaimer}
           donationTemplates={donationTemplates}
+          onBackPress={onBack}
+          showNavigation={showNavigation}
           backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
           progressStatus={battlePass?.progressStatus}
           isCompleteLoading={isCompleteLoading}

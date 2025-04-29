@@ -1008,6 +1008,13 @@
       }
     },
     "rewards": {
+      "search": {
+        "title": "Store",
+        "subheading": "Search brands",
+        "placeholder": "Search all brands",
+        "no_results": "We couldn’t find the brand you’re looking for.",
+        "initial_state": "Search for discounts, vouchers, and subscriptions."
+      },
       "expiry_warning": {
         "title": "Your rewards access is ending soon",
         "body": "We’re sorry to see you go, but you still have **%{daysLeft} days** to redeem your hard-earned YuCoin!"

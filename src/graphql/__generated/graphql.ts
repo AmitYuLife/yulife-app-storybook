@@ -8432,6 +8432,7 @@ export type QueryGetMobileQuestLevelChallengeDetailsArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileRewardsListArgs = {
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
   searchTerm?: InputMaybe<Scalars["String"]["input"]>;
   tag?: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -33953,6 +33954,8 @@ export type GetMobileRecentlyUsedRewardsListQuery = {
 
 export type GetMobileRewardsListQueryVariables = Exact<{
   tag?: InputMaybe<Scalars["String"]["input"]>;
+  searchTerm?: InputMaybe<Scalars["String"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
 }>;
 
 export type GetMobileRewardsListQuery = {
@@ -92162,6 +92165,16 @@ export const GetMobileRewardsListDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "tag" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "searchTerm" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -92175,6 +92188,16 @@ export const GetMobileRewardsListDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "tag" },
                 value: { kind: "Variable", name: { kind: "Name", value: "tag" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "searchTerm" },
+                value: { kind: "Variable", name: { kind: "Name", value: "searchTerm" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "offset" },
+                value: { kind: "Variable", name: { kind: "Name", value: "offset" } },
               },
             ],
             selectionSet: {

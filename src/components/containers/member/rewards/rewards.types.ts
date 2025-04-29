@@ -33,6 +33,7 @@ export interface IRewardsManagerAction {
 }
 
 export interface IRewardContainerProps {
+  showNavigation?: boolean;
   hasOtherContainers?: boolean;
   handlePurchasesPress?: () => void;
 }

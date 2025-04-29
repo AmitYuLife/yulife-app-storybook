@@ -1,7 +1,7 @@
-import { memo, useContext, useMemo } from "react";
+import { memo, useCallback, useContext, useMemo } from "react";
 import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, TOP_BAR } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 import { gql } from "@graphql/__generated";
 import { ContentItemWrapper } from "@components/sdui";
@@ -11,8 +11,12 @@ import { useQueryOnScreenSeen } from "@hooks";
 import { useNavigation } from "@navigation/navigation.context";
 import RewardsUnlockEmpty from "@organisms/rewards-unlock-empty/rewards-unlock-empty";
 import { RewardsManagerContext } from "../member/rewards/rewards.manager.context";
+import { TopBarAbsolute } from "@organisms";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { Navigation } from "@navigation/main";
+import { IRewardContainerProps } from "../member/rewards/rewards.types";
 
-const RewardsUnlockContainer = () => {
+const RewardsUnlockContainer = ({ showNavigation = false }: IRewardContainerProps) => {
   const { componentId } = useNavigation();
   const [_, { data: queryResult }] = useQueryOnScreenSeen(
     gql("GetMobileUnlockableBattlePassVouchersDocument"),
@@ -30,6 +34,12 @@ const RewardsUnlockContainer = () => {
       },
     };
   }, [queryResult?.getMobileUnlockableBattlePassVouchers?.header?.background?.color]);
+
+  const onBack = useCallback(() => {
+    if (showNavigation) {
+      Navigation.pop(componentId);
+    }
+  }, [componentId, showNavigation]);
 
   if (!queryResult?.getMobileUnlockableBattlePassVouchers) {
     return (
@@ -60,7 +70,15 @@ const RewardsUnlockContainer = () => {
           scrollEventThrottle={16}
           onScroll={onScroll}
         >
-          <Box right={0} left={0} bg={data.header.background.color} pt={20} pl={20} pr={20} pb={84}>
+          <Box
+            right={0}
+            left={0}
+            bg={data.header.background.color}
+            pt={showNavigation ? TOP_BAR.HEIGHT : 20}
+            pl={20}
+            pr={20}
+            pb={84}
+          >
             <Box position="absolute" right={0}>
               <Image width={Style.adjust(240)} source={data.header.background.image} />
             </Box>
@@ -90,6 +108,11 @@ const RewardsUnlockContainer = () => {
           <LinearGradient {...linearGradient} style={StyleSheet.absoluteFill} />
         </Box>
       </Box>
+      {showNavigation ? (
+        <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP}>
+          <TopBarAbsolute type="white" leftIcon={LeftIcon.BACK} onPressLeftIcon={onBack} />
+        </Box>
+      ) : null}
     </>
   );
 };

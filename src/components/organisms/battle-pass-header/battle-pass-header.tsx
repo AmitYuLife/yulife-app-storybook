@@ -6,11 +6,12 @@ import { Colours, Style } from "@styles";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { useScrollToItem } from "@hooks";
 import { BATTLE_PASS_DESCRIPTION, BATTLE_PASS_TITLE } from "@ids";
+import { IBoxProps } from "@atoms/box/box.types";
 
-interface IBattlePassHeaderProps {
+interface IBattlePassHeaderProps extends IBoxProps {
   title: string;
   textColor?: string;
   description: string;
@@ -30,6 +31,7 @@ const BattlePassHeader = ({
   onScrollStart,
   items,
   listRef,
+  ...props
 }: IBattlePassHeaderProps) => {
   const { activeListRef, scrollToReward } = useScrollToItem({
     items,
@@ -39,7 +41,7 @@ const BattlePassHeader = ({
 
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
-      <View style={styles.headerWrapper} accessible={true}>
+      <Box pl={16} mb={24} accessible={true} {...props}>
         <View style={styles.title}>
           <TextTemplate type="b1b" color={textColor} testID={BATTLE_PASS_TITLE(title)}>
             {title}
@@ -48,7 +50,7 @@ const BattlePassHeader = ({
         <TextTemplate type="l1" color={textColor} testID={BATTLE_PASS_DESCRIPTION(description)}>
           {description}
         </TextTemplate>
-      </View>
+      </Box>
       <BattlePassList
         ref={activeListRef}
         items={items}
@@ -68,10 +70,6 @@ const styles = StyleSheet.create({
   backgroundImage: {
     paddingBottom: Style.adjust(50),
     backgroundColor: "#290163",
-  },
-  headerWrapper: {
-    paddingLeft: Style.adjust(16),
-    marginBottom: Style.adjust(24),
   },
   title: {
     marginTop: Style.adjust(8),

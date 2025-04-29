@@ -4,19 +4,13 @@ import Animated from "react-native-reanimated";
 import { IBoxProps } from "./box.types";
 import { useBoxProps } from "@hooks";
 
-const Box = ({
-  forceAnimated,
-  entering,
-  exiting,
-  children,
-
-  ...props
-}: IBoxProps & ViewProps) => {
-  const ViewComponent = !!entering || !!exiting || forceAnimated ? Animated.View : View;
+const Box = ({ forceAnimated, entering, exiting, children, animatedRef, ...props }: IBoxProps & ViewProps) => {
+  const isAnimated = !!entering || !!exiting || forceAnimated;
+  const ViewComponent = isAnimated ? Animated.View : View;
   const boxProps = useBoxProps(props);
 
   return (
-    <ViewComponent {...boxProps} entering={entering} exiting={exiting}>
+    <ViewComponent {...boxProps} entering={entering} exiting={exiting} ref={isAnimated ? animatedRef : undefined}>
       {children}
     </ViewComponent>
   );
