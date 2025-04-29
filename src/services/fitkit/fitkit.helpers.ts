@@ -142,11 +142,9 @@ export const queryFitKitAggregatedData = async ({
     disableUserEntries = true,
     loggingEnabled = false,
     runOnNewThread = false,
-    enableServerQueries = false,
   } = features || {
     disableUserEntries: true,
     loggingEnabled: false,
-    enableServerQueries: false,
     cyclingAggregationMin: false,
     runOnNewThread: false,
   };
@@ -166,7 +164,6 @@ export const queryFitKitAggregatedData = async ({
       endTime,
       startTime,
       blackListApps,
-      enableServerQueries,
       types: fitKitTypes.map(mapGqlFitKitTypeToFitKitType),
       runOnNewThread,
     };
