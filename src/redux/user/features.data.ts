@@ -44,7 +44,6 @@ export const features = [
   "enableBikingStationary",
   "enableBikingUtility",
   "runOnNewThread",
-  "enableServerQueries",
   "tempGameEnableYuWatch",
   "tempGameEnableStreakSaver",
   "yuScreenV4",
