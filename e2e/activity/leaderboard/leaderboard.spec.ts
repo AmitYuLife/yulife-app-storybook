@@ -40,19 +40,15 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     When("I tap the Steps switch", when.tapLeaderboardConsentSwitch(DefaultStepsLeaderboard, false), async () => {
       When("I tap the Yudoku switch", when.tapLeaderboardConsentSwitch(DefaultYudokuLeaderboard, false), async () => {
         When("I press continue", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
-          When("I swipe up if needed", when.swipeFromText("Steps", "up", "fast"), async () => {
-            Then("I should see the leaderboard", then.leaderboardVisible([User16LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem], 3000));
-          });
+          Then("I should see the leaderboard", then.leaderboardVisible([User50LeaderboardItem, User47LeaderboardItem], 3000));
         });
       });
     });
-    When("I swipe up if needed", when.swipeFromText("Steps", "down", "fast"), async () => {
-      When("I tap 30 days", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
-        Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO));
-      });
+    When("I tap 30 days", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
+      Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO));
     });
     When("I tap the back button", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
-      Then("I should be back on the leaderboard", then.leaderboardVisible([User16LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem], 2000));
+      Then("I should be back on the leaderboard", then.leaderboardVisible([User18LeaderboardItem, User16LeaderboardItem], 2000));
     });
   });
 

@@ -1,7 +1,7 @@
 import { navigation } from "@utils";
 import { loginOnly } from "_utils/navigation/login";
 import * as ids from "@ids";
-export { authoriseFitkit, sendSteps, addStepsHistoricalData } from "@socket";
+export { sendSteps, addStepsHistoricalData } from "@socket";
 export { triggerSearchTokens } from "_utils/appScreens/leaderboard";
 
 export const { scrollFromText, scrollFromID, swipeToText } = navigation.scrolling;
