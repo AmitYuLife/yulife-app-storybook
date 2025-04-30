@@ -37,7 +37,6 @@ export const useCaptcha = (config: CaptchaConfig) => {
 
   const selectedCaptchaProvider = useMemo(() => {
     const provider = selectProvider(config);
-
     reset();
 
     return provider;
