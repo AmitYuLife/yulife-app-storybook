@@ -1140,6 +1140,7 @@ export type BusinessSessionSettings = {
   /** @deprecated Use showConnectionsOverrideState */
   showConnectionsOverride?: Maybe<Scalars["Boolean"]["output"]>;
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
+  yuStoreEnabled: Scalars["Boolean"]["output"];
 };
 
 export type BusinessTag = {
@@ -1160,6 +1161,7 @@ export type BusinessTagInput = {
 };
 
 export type CaptchaResponse = {
+  debugInfo?: InputMaybe<Scalars["String"]["input"]>;
   provider: Scalars["String"]["input"];
   result?: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -5750,6 +5752,7 @@ export type MobileGameUserAchievement = {
   name: Scalars["String"]["output"];
   points: Scalars["Int"]["output"];
   shortDescription?: Maybe<Scalars["String"]["output"]>;
+  slot?: Maybe<Scalars["Int"]["output"]>;
   status: Scalars["String"]["output"];
   type: Scalars["String"]["output"];
 };
@@ -7583,7 +7586,7 @@ export enum PolicyStatus {
 export type PotentialReward = {
   __typename?: "PotentialReward";
   id: Scalars["ID"]["output"];
-  image: RemoteImage;
+  logo: RemoteImage;
   name: Scalars["String"]["output"];
 };
 
@@ -9518,6 +9521,7 @@ export type SocialGroupLeaderboardItemsFilter = {
 
 export enum SocialGroupLeaderboardSearchType {
   Gifting = "Gifting",
+  Leaderboard = "Leaderboard",
 }
 
 export type SocialLeaderboardConstent = {
@@ -27968,6 +27972,20 @@ export type UpdateMemberConsentMutation = {
     companyLeaderboard?: boolean | null;
     workspaceLeaderboard?: boolean | null;
   } | null;
+};
+
+export type GetPotentialRewardsQueryVariables = Exact<{
+  limit: Scalars["Int"]["input"];
+}>;
+
+export type GetPotentialRewardsQuery = {
+  __typename?: "Query";
+  getPotentialRewards: Array<{
+    __typename?: "PotentialReward";
+    id: string;
+    name: string;
+    logo: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
 };
 
 export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
@@ -83648,6 +83666,66 @@ export const UpdateMemberConsentDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateMemberConsentMutation, UpdateMemberConsentMutationVariables>;
+export const GetPotentialRewardsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPotentialRewards" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getPotentialRewards" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetPotentialRewardsQuery, GetPotentialRewardsQueryVariables>;
 export const GetUserNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [

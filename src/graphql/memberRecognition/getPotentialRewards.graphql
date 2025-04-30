@@ -1,0 +1,9 @@
+query GetPotentialRewards($limit: Int!) {
+  getPotentialRewards(limit: $limit) {
+    id
+    name
+    logo {
+      ...RemoteImage
+    }
+  }
+}

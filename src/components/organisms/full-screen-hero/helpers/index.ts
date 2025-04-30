@@ -5,12 +5,12 @@ export function getTopOffset() {
   if (Style.DEVICE_HEIGHT < DEVICES.iPhone8.height) {
     return {
       background: -106,
-      heading: -16,
+      heading: -24,
     };
   }
 
   return {
     background: 0,
-    heading: 0,
+    heading: -16,
   };
 }

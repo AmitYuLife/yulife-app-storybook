@@ -111,6 +111,17 @@ export const DEVICES = {
     width: 430,
     height: 932,
   },
+  /**
+   * iPhone 16 Pro Max
+   * Screen Size:	6.9"
+   * Resolution: 1320x2868
+   * Density: 460ppi
+   */
+  iPhone16ProMax: {
+    width: 440,
+    height: 956,
+    pixelRatio: 3,
+  },
 };
 
 interface IMediaQuery {

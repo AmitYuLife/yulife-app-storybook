@@ -4,23 +4,27 @@ import { Colours, Style } from "@styles";
 import { FullScreenHeroProps } from "./types";
 import { KeyboardAvoidingView, Platform, SafeAreaView } from "react-native";
 import { markdownStyles, styles } from "./styles";
-import { memo } from "react";
+import { memo, useState } from "react";
 import LoopingCarousel from "./components/looping-carousel";
-import { SlideInDown } from "react-native-reanimated";
+import { FadeIn, SlideInDown } from "react-native-reanimated";
 
 const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }: FullScreenHeroProps) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.flex}>
-      <LoopingCarousel data={slides} />
+      <LoopingCarousel data={slides} setCurrentSlide={(index: number) => setCurrentSlide(index)} />
       <Box position="absolute" top={0} left={0} right={0}>
         <SafeAreaView>
-          <Logo type="full" width={Style.adjust(114)} style={styles.logo} />
+          <Logo type="full" width={Style.adjust(76)} style={styles.logo} colour={Colours.neutral.white} />
         </SafeAreaView>
       </Box>
-      <Box position="absolute" bottom={0} left={0} right={0}>
+      <Box position="absolute" bottom={0} left={0} right={0} entering={SlideInDown.duration(1000)}>
+        <Box position="relative" left={0} right={0} bottom={0} entering={FadeIn.duration(1000)}>
+          {slides[currentSlide].foregroundComponent}
+        </Box>
         <Box
           forceAnimated={true}
-          entering={SlideInDown.duration(1000)}
           bg={Colours.neutral.white}
           pv={40}
           ph={32}
@@ -30,11 +34,12 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
           shadowOffset={{ width: 0, height: -8 }}
           shadowOpacity={0.1}
           shadowRadius={16}
+          entering={FadeIn.duration(1000)}
         >
           <Button size="Large" onPress={primaryCta.onPress} translatedLabel={primaryCta.label} translationKey="" />
           {secondaryCta ? (
             <TouchableOpacityWithDelay onPress={secondaryCta.onPress} delay={1000}>
-              <Box pv={20}>
+              <Box pv={16}>
                 <TextTemplate type="l1b" textAlign="center" color={Colours.primary.p600} decoration="underline">
                   {secondaryCta.label}
                 </TextTemplate>
@@ -42,7 +47,7 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
             </TouchableOpacityWithDelay>
           ) : null}
           {disclaimerMarkdown ? (
-            <Box pt={20}>
+            <Box pt={12}>
               <Markdown text={disclaimerMarkdown} markdownStyles={markdownStyles} />
             </Box>
           ) : null}

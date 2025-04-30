@@ -6,7 +6,8 @@ export enum FullScreenHeroBackground {
 
 export type FullScreenHeroSlide = {
   title: string;
-  backgroundImage: FullScreenHeroBackground;
+  foregroundComponent?: React.ReactNode;
+  backgroundComponent?: React.ReactNode;
 };
 
 export type FullScreenHeroProps = {
