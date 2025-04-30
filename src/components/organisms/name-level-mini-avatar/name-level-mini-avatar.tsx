@@ -13,13 +13,15 @@ import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   showYumoji?: boolean;
+  animateYumoji?: boolean;
   textColour?: string;
+  centerContent?: boolean;
 }
 
 const ANIMATION_DURATION = DETOX_ENABLED ? 0 : 200;
 const HIDDEN_YUMOJI_POSITION = Style.adjust(-76);
 
-export const NameAndLevel: FC<IProps> = memo(({ showYumoji, textColour }) => {
+const NameLevelMiniAvatar: FC<IProps> = memo(({ showYumoji, animateYumoji, textColour, centerContent }) => {
   const userName = useSelector(getUserName);
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
@@ -40,21 +42,23 @@ export const NameAndLevel: FC<IProps> = memo(({ showYumoji, textColour }) => {
 
     const animation = Animated.timing(translateX, {
       duration: ANIMATION_DURATION,
-      toValue: showYumoji ? 0 : HIDDEN_YUMOJI_POSITION,
+      toValue: animateYumoji ? 0 : HIDDEN_YUMOJI_POSITION,
       useNativeDriver: true,
       easing: Easing.inOut(Easing.ease),
     });
 
     animation.start();
     return () => animation.stop();
-  }, [showYumoji]);
+  }, [animateYumoji]);
 
   return (
     <Animated.View style={{ transform: [{ translateX }] }}>
-      <View style={styles.avatarWrapper}>
-        <Avatar uri={avatar?.avatarRemoteFiles?.pngMini} showEmpty={true} size={52} />
-      </View>
-      <View style={styles.wrapper}>
+      {!showYumoji ? null : (
+        <View style={styles.avatarWrapper}>
+          <Avatar uri={avatar?.avatarRemoteFiles?.pngMini} showEmpty={true} size={52} />
+        </View>
+      )}
+      <View style={[styles.wrapper, centerContent ? { alignItems: "center" } : {}]}>
         <TextTemplate type="b1b" numberOfLines={1} color={textColour} testID={YUSCREEN_V5_USERNAME(userName)}>
           {userName}
         </TextTemplate>
@@ -71,17 +75,17 @@ export const NameAndLevel: FC<IProps> = memo(({ showYumoji, textColour }) => {
   );
 });
 
+export default NameLevelMiniAvatar;
+
 const styles = StyleSheet.create({
   avatarWrapper: {
     position: "absolute",
   },
   wrapper: {
-    position: "absolute",
     left: Style.adjust(76),
     width: Style.adjust(194),
   },
   worldContainer: {
-    display: "flex",
     flexDirection: "row",
     marginTop: Style.adjust(4),
     alignItems: "center",

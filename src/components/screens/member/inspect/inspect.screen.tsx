@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
-import { NameAndLevel, Pressable, Yumoji } from "@molecules";
-import { GenericHeadingAbsolute, GenericHeadingPad, GiftSendPrompt } from "@organisms";
+import { Pressable, Yumoji } from "@molecules";
+import { GenericHeadingAbsolute, GenericHeadingPad, GiftSendPrompt, NameLevelMiniAvatar } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { t } from "@locale";
@@ -40,7 +40,6 @@ const InspectScreen = ({
   activity,
   userName,
   level,
-  yuniversalMap,
   inspectOtherUser,
   onYumojiPress,
   onGiftPress,
@@ -59,7 +58,9 @@ const InspectScreen = ({
         contentContainerStyle={styles.containerStyle}
         testID={USER_INFO(`${userName} ${level}`)}
       >
-        <NameAndLevel name={userName} level={level} yuniversalMap={yuniversalMap} />
+        <Box alignItems="center" mt={24}>
+          <NameLevelMiniAvatar showYumoji={false} centerContent={true} />
+        </Box>
         <View style={styles.yumojiWrapper} testID={YUMOJI}>
           <Pressable delay={1000} onLongPress={onYumojiPress}>
             <Yumoji

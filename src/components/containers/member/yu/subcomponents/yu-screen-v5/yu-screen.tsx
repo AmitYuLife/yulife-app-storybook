@@ -1,7 +1,7 @@
 import { NOTIF_CENTRE, YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 import { ROUTES } from "@navigation/constants";
 import { useNavigation } from "@navigation/navigation.context";
-import { NavBar, TopBar } from "@organisms";
+import { NameLevelMiniAvatar, NavBar, TopBar } from "@organisms";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { SduiActionType } from "@redux/_core/types";
 import { getRouteState } from "@redux/app/app.selectors";
@@ -22,7 +22,6 @@ import { renderSection } from "../yu-screen-sections";
 import { HeroHeaderBackground } from "./hero-header-background";
 import { HeroHeaderForeground } from "./hero-header-foreground";
 import { HeroHeaderGradient } from "./hero-header-gradient";
-import { NameAndLevel } from "./name-and-level";
 import { useAnimation } from "./use-animation";
 import { INITIAL_SCROLL, MIN_SECTIONS_HEIGHT, styles } from "./yu-screen.styles";
 import { YumojiPrompt } from "./yumoji-prompt";
@@ -204,7 +203,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress }) => {
       <View pointerEvents="box-none" style={styles.sectionTopWrapper}>
         <Animated.View style={memoizedStyles.bouncingHeaderWrapper}>
           <View style={styles.info}>
-            <NameAndLevel showYumoji={collapseHeader} textColour={nameAndLevelColour} />
+            <NameLevelMiniAvatar showYumoji={true} animateYumoji={collapseHeader} textColour={nameAndLevelColour} />
           </View>
           {yumojiRemoteUrl ? null : (
             <Animated.View

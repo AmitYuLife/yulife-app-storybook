@@ -77,3 +77,4 @@ export { default as AchievementsShowcase } from "./achievements-showcase/achieve
 export { default as AchievementCard } from "./achievement-card/achievement-card";
 export { default as RewardPass } from "./reward-pass/reward-pass";
 export { default as RewardSearchListItem } from "./reward-search-list-item/reward-search-list-item";
+export { default as NameLevelMiniAvatar } from "./name-level-mini-avatar/name-level-mini-avatar";
