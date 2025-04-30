@@ -209,4 +209,5 @@ export const fullRestartAndLogin =
     await device.launchApp({ delete: true });
     await wait(waitTime)();
     await loginOnly(customer, auth, fitkitAuth)();
+    await skipHealthConnection();
   };

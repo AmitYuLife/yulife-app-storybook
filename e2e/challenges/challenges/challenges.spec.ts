@@ -215,7 +215,7 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 1));
     });
     When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-      When("I scroll up from steps", when.swipeFromText("Steps", "down", "fast"), async () => {
+      When("I scroll up from steps", when.scrollFromID(ids.LEADERBOARD_EMPLOYEE_NAME("Simone Posner"), "down", "fast"), async () => {
         Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)));
       });
     });
@@ -239,7 +239,7 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 2));
     });
     When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-      When("I scroll up from steps", when.swipeFromText("Steps", "down", "fast"), async () => {
+      When("I scroll up from steps", when.scrollFromID(ids.LEADERBOARD_EMPLOYEE_NAME("Simone Posner"), "down", "fast"), async () => {
         Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)));
       });
     });
@@ -265,7 +265,7 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 3));
     });
     When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-      When("I scroll up from steps", when.swipeFromText("Steps", "down", "fast"), async () => {
+      When("I scroll up from steps", when.scrollFromID(ids.LEADERBOARD_EMPLOYEE_NAME("Simone Posner"), "down", "fast"), async () => {
         Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)));
       });
     });

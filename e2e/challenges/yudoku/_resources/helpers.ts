@@ -80,9 +80,15 @@ export const START_YUDOKU_CLOSE_OPEN_APP_FAKE_TIME = async () => {
   });
   When("I start the soduku game", when.tapStartGame, async () => {
     When("I close and reopen the app", when.quitAndReopenApp, async () => {
-      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 5000), async () => {
-        Then("I can see the paused game screen", then.onMidGamePausedScreenAfterQuit);
-      });
+      When(
+        "I tap on the daily screen YuCoin icon",
+        when.tapID(ids.DAILYSTEP_SCREEN_COIN, 3000),
+        async () => {
+          When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+            Then("I can see the paused game screen", then.onMidGamePausedScreenAfterQuit);
+          });
+        }
+      );
     });
   });
 };
