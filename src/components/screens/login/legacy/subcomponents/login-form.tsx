@@ -144,7 +144,7 @@ export const LoginForm = (props: LoginFormProps) => {
       <Pad height={15} />
       <LinkGroup data={links} />
 
-      <Box pl={40} pr={40} pt={0}>
+      <Box ph={40} pt={0}>
         <Markdown
           text={t("screens.login.disclaimer", {
             // setting default values in case an outdated region config is present

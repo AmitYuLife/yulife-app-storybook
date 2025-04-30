@@ -334,7 +334,7 @@
         "alert_error_title": "Login failed",
         "alert_error_default_message": "Something wrong"
       },
-      "disclaimer": "By continuing, you agree to our [Privacy Policy](%{privacyPolicyLink}) and [End-User License Agreement](%{eulaLink})."
+      "disclaimer": "By continuing, you agree to our\n[Privacy Policy](%{privacyPolicyLink}) and [End-User License Agreement](%{eulaLink})."
     },
     "login_email": {
       "heading": "Hi there! What’s your email?",
@@ -359,9 +359,7 @@
       "primary_cta_label": "Claim my account",
       "secondary_cta_label": "Log in",
       "slides": {
-        "earn": "Earn cash value for your daily steps, mindfulness, and more!",
-        "redeem": "Redeem rewards like vouchers and discounts from your favourite brands!",
-        "donate": "Make real impact in the world through donations to causes that matter!"
+        "rewards": "Turn healthy habits into rewards!"
       }
     },
     "streak": {

@@ -1,4 +1,3 @@
-import { BACKGROUND_IMAGE_MAP } from "../constants";
 import { Colours, Style } from "@styles";
 import { delay } from "@utils/misc";
 import { FlashList } from "@shopify/flash-list";
@@ -11,7 +10,17 @@ import useInterval from "@use-it/interval";
 
 const SCROLL_DELAY_MS = 250;
 
-const LoopingCarousel = ({ data }: { data: FullScreenHeroSlide[] }) => {
+const LoopingCarousel = ({
+  data,
+  setCurrentSlide,
+}: {
+  data: FullScreenHeroSlide[];
+
+  /**
+   * Useful for tracking the current slide from the parent component.
+   */
+  setCurrentSlide: (index: number) => void;
+}) => {
   /**
    * Triple the data to create an infinite loop effect in both directions.
    * When the the user scrolls into the first or last group of data, we reset the scroll position to the middle group.
@@ -44,6 +53,7 @@ const LoopingCarousel = ({ data }: { data: FullScreenHeroSlide[] }) => {
         });
 
         currentIndexRef.current = currentIndex + data.length;
+        setCurrentSlide(currentIndexRef.current % data.length);
         return;
       }
 
@@ -55,12 +65,14 @@ const LoopingCarousel = ({ data }: { data: FullScreenHeroSlide[] }) => {
         });
 
         currentIndexRef.current = currentIndex - data.length;
+        setCurrentSlide(currentIndexRef.current % data.length);
         return;
       }
 
       currentIndexRef.current = currentIndex;
+      setCurrentSlide(currentIndexRef.current % data.length);
     },
-    [data.length]
+    [data.length, setCurrentSlide]
   );
 
   const onMomentumScrollEnd = useCallback(
@@ -78,7 +90,7 @@ const LoopingCarousel = ({ data }: { data: FullScreenHeroSlide[] }) => {
   }, []);
 
   useInterval(() => {
-    if (!hasUserScrolled?.current) {
+    if (!hasUserScrolled?.current && data.length > 1) {
       const newIndex = currentIndexRef.current + 1;
 
       listRef.current?.scrollToIndex({
@@ -94,15 +106,15 @@ const LoopingCarousel = ({ data }: { data: FullScreenHeroSlide[] }) => {
     ({ item }: { item: FullScreenHeroSlide }) => (
       <Box disableAutoAdjust={true} w={Style.DEVICE_WIDTH} h={Style.DEVICE_HEIGHT} alignItems="center">
         <Box position="absolute" top={getTopOffset().background} left={0} right={0}>
-          {BACKGROUND_IMAGE_MAP[item.backgroundImage]}
+          {item.backgroundComponent}
         </Box>
         <SafeAreaView>
           {/* The logo should not swipe with the rest of the item, so we use a hidden logo to reserve exactly the same space - and implement the actual logo in the parent component */}
           <Box opacity={0}>
-            <Logo type="full" width={Style.adjust(114)} />
+            <Logo type="full" width={Style.adjust(76)} />
           </Box>
-          <Box key={item.title} maxWidth={311} mt={getTopOffset().heading}>
-            <TextTemplate type="h3" textAlign="center" color={Colours.inkStrong}>
+          <Box key={item.title} maxWidth={240} mt={getTopOffset().heading}>
+            <TextTemplate type="h3" textAlign="center" color={Colours.neutral.white}>
               {item.title}
             </TextTemplate>
           </Box>
@@ -132,6 +144,7 @@ const LoopingCarousel = ({ data }: { data: FullScreenHeroSlide[] }) => {
       snapToAlignment="center"
       snapToInterval={Style.DEVICE_WIDTH}
       removeClippedSubviews={true}
+      scrollEnabled={data.length > 1}
     />
   );
 };

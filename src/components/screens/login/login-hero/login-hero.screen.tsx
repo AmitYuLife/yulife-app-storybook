@@ -1,7 +1,12 @@
-import { memo } from "react";
+import { Colours, Style } from "@styles";
 import { FullScreenHero } from "@organisms";
+import { gql } from "@graphql/__generated";
+import { memo } from "react";
 import { region, t } from "@locale";
-import { FullScreenHeroBackground } from "@organisms/full-screen-hero/types";
+import { useQuery } from "@apollo/client";
+import LinearGradient from "react-native-linear-gradient";
+import AnimatedChest from "./components/animated-chest";
+import { StyleSheet } from "react-native";
 
 type LoginHeroScreenProps = {
   onLoginEmailPress: () => void;
@@ -9,6 +14,11 @@ type LoginHeroScreenProps = {
 
 export const LoginHeroScreen = memo(({ onLoginEmailPress }: LoginHeroScreenProps) => {
   const urls = region.getConfig("urls");
+
+  const { data } = useQuery(gql("GetPotentialRewardsDocument"), {
+    variables: { limit: 5 },
+    fetchPolicy: "cache-and-network",
+  });
 
   return (
     <FullScreenHero
@@ -20,20 +30,28 @@ export const LoginHeroScreen = memo(({ onLoginEmailPress }: LoginHeroScreenProps
       })}
       slides={[
         {
-          title: t("screens.login_hero.slides.earn"),
-          backgroundImage: FullScreenHeroBackground.YugiClimbing,
-        },
-        {
-          title: t("screens.login_hero.slides.redeem"),
-          backgroundImage: FullScreenHeroBackground.Rewards,
-        },
-        {
-          title: t("screens.login_hero.slides.donate"),
-          backgroundImage: FullScreenHeroBackground.YugiGardening,
+          title: t("screens.login_hero.slides.rewards"),
+          foregroundComponent: <AnimatedChest rewards={data?.getPotentialRewards || []} />,
+          backgroundComponent: (
+            <LinearGradient
+              colors={[Colours.secondary.s100S3, "#7238FF"]}
+              style={styles.gradient}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
         },
       ]}
     />
   );
+});
+
+const styles = StyleSheet.create({
+  gradient: {
+    flex: 1,
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
+  },
 });
 
 export default LoginHeroScreen;
