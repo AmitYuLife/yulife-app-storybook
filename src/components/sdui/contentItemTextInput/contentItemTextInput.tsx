@@ -11,13 +11,15 @@ import { TextField } from "@components/molecules";
 import { Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import media, { DEVICES } from "@styles/media";
-import { addCommasToNumber } from "@utils";
+import { formatNumber } from "@utils";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 import { SduiDispatchContext } from "../_context/SduiProvider";
+import { getCurrentLocale } from "@locale";
 
 interface Props extends GqlTextInput {
   value: string;
+  unformattedValue?: string | number;
   onChange: (value: string) => void;
 }
 const getValidationError = (value: string, validation: GqlTextInput["validation"]) => {
@@ -61,6 +63,7 @@ export const ContentItemTextInputBase = ({
   prefixTextStyles,
   inputTextAlign,
   hideErrorIcon,
+  maximumFractionDigits,
 }: Props) => {
   const [indentWidth, setIndentWidth] = useState(0);
 
@@ -80,7 +83,6 @@ export const ContentItemTextInputBase = ({
       <TextField
         type={mapTextFieldType(type)}
         placeholderIndentSize={indentWidth}
-        value={value}
         placeholder={heading}
         key={id}
         onChange={onChange}
@@ -92,14 +94,16 @@ export const ContentItemTextInputBase = ({
         showErrorWhenFocused={showErrorWhenFocused}
         textAlign={castTextInputAlignGqlToProps(inputTextAlign)}
         hideErrorIcon={hideErrorIcon}
+        value={value}
+        maximumFractionDigits={maximumFractionDigits}
       />
     </View>
   );
 };
 
 export const ContentItemTextInput = memo((props: Props) => {
-  const { answerKey, localDispatchActionsOnChange } = props;
-  const { value, onChange } = useSduiOnChange<string>(answerKey, formatValue);
+  const { answerKey, localDispatchActionsOnChange, maximumFractionDigits } = props;
+  const { value, onChange } = useSduiOnChange<string>(answerKey, formatValue({ maximumFractionDigits }));
 
   const localContextDispatch = useContext(SduiDispatchContext);
 
@@ -119,7 +123,14 @@ export const ContentItemTextInput = memo((props: Props) => {
     [onChange, localDispatchActionsOnChange, localContextDispatch]
   );
 
-  return <ContentItemTextInputBase {...props} value={value} onChange={onInputChange} />;
+  return (
+    <ContentItemTextInputBase
+      {...props}
+      value={value}
+      onChange={onInputChange}
+      maximumFractionDigits={maximumFractionDigits}
+    />
+  );
 });
 
 const TOP = media.select(
@@ -156,13 +167,16 @@ const mapTextFieldType = (type: ContentItemFormTextInputType): ComponentProps<ty
   }
 };
 
-const formatValue = (value: unknown) => {
+const formatValue = (options: { maximumFractionDigits?: number }) => (value: unknown) => {
   if (!value) {
     return null;
   }
 
   if (typeof value === "number") {
-    return String(addCommasToNumber(value));
+    return formatNumber(String(value), getCurrentLocale(), {
+      style: "decimal",
+      maximumFractionDigits: options?.maximumFractionDigits,
+    });
   }
 
   return value as string;

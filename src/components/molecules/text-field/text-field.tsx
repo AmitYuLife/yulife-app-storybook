@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -13,10 +13,11 @@ import {
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
-import { addCommasToNumber, formatPostCode } from "@utils";
+import { formatNumber, formatPostCode, truncateNumberValue } from "@utils";
 import { TextInputWarningIcon } from "@molecules";
 import { useMaterialInputAnimation } from "./useMaterialInputAnimation";
 import { Box, TextTemplate } from "@atoms";
+import { getCurrentLocale } from "@locale";
 
 type Type = "Text" | "Number" | "PhoneNumber" | "PostCode" | "PostCodeFinder";
 
@@ -40,6 +41,7 @@ interface Props {
   showErrorWhenFocused?: boolean;
   textAlign?: TextInputProps["textAlign"];
   hideErrorIcon?: boolean;
+  maximumFractionDigits?: number;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -50,7 +52,7 @@ function stripPunctuation(text: string, type: Type) {
   return text.replace(/,/g, "");
 }
 
-function formatText(text: string, type: Type) {
+function formatText(text: string, type: Type, options?: { maximumFractionDigits?: number }) {
   if (type === "Text" || type === "PhoneNumber") {
     return text;
   }
@@ -65,7 +67,10 @@ function formatText(text: string, type: Type) {
     return text;
   }
 
-  return `${addCommasToNumber(castedText)}`;
+  return `${formatNumber(text, getCurrentLocale(), {
+    style: "decimal",
+    maximumFractionDigits: options?.maximumFractionDigits,
+  })}`;
 }
 
 export default function TextField(props: Props) {
@@ -89,6 +94,7 @@ export default function TextField(props: Props) {
     showErrorWhenFocused,
     textAlign,
     hideErrorIcon = false,
+    maximumFractionDigits = 3,
   } = props;
 
   const [isFocused, setFocused] = useState(autoFocus);
@@ -101,7 +107,8 @@ export default function TextField(props: Props) {
 
   useEffect(() => {
     if (textInputValue !== value) {
-      setTextInputValue(value);
+      const updatedVal = applyDecimals(textInputValue, value, type, maximumFractionDigits);
+      setTextInputValue(updatedVal);
     }
 
     if (isFocused || textInputValue) {
@@ -109,7 +116,7 @@ export default function TextField(props: Props) {
     }
 
     setActiveMaterial(false);
-  }, [isFocused, textInputValue, value]);
+  }, [isFocused, textInputValue, value, maximumFractionDigits, type]);
 
   useMaterialInputAnimation({
     activeMaterial,
@@ -121,6 +128,23 @@ export default function TextField(props: Props) {
   });
 
   const showErrorCondition = showErrorWhenFocused ? showError : showError && !isFocused;
+
+  const onChangeText = useCallback(
+    (text: string) => {
+      const strippedPunctuation = stripPunctuation(text, type);
+      onChange(
+        type === "Number"
+          ? Number(truncateNumberValue(strippedPunctuation, maximumFractionDigits))
+          : strippedPunctuation
+      );
+
+      const formattedText = formatText(strippedPunctuation, type, { maximumFractionDigits });
+
+      const textInput = applyDecimals(text, formattedText, type, maximumFractionDigits);
+      setTextInputValue(textInput);
+    },
+    [type, maximumFractionDigits, onChange]
+  );
 
   return (
     <>
@@ -149,13 +173,7 @@ export default function TextField(props: Props) {
               onFocus();
             }
           }}
-          onChangeText={(text: string) => {
-            const strippedPunctuation = stripPunctuation(text, type);
-            onChange(type === "Number" ? parseFloat(strippedPunctuation) : strippedPunctuation);
-
-            const formattedText = formatText(strippedPunctuation, type);
-            return setTextInputValue(formattedText);
-          }}
+          onChangeText={onChangeText}
           value={textInputValue} //@TODO: Discuss with the team, that instead of using local state we should use the props "value" here, for better control
           keyboardType={keyboardType || getKeyboardTypeFromType(type)}
           underlineColorAndroid="transparent"
@@ -226,4 +244,21 @@ const styles = StyleSheet.create({
 
 function getKeyboardTypeFromType(type: Props["type"]) {
   return type === "Number" || type === "PhoneNumber" ? "number-pad" : "default";
+}
+
+function hasDecimalValue(text: string) {
+  return !!text.match(/.*\.0*$/)?.length;
+}
+
+function getDecimals(text: string, maximumFractionDigits = 3) {
+  const [_, decimal] = text.split(".");
+
+  return (decimal || "").slice(0, maximumFractionDigits);
+}
+
+function applyDecimals(input: string, value: string, type: Type, maximumFractionDigits = 3) {
+  const decimal = type === "Number" ? getDecimals(input, maximumFractionDigits) : null;
+  const decimalPart = hasDecimalValue(input) && maximumFractionDigits ? `.${decimal}` : "";
+
+  return value ? `${value}${decimalPart}` : "";
 }
