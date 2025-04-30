@@ -1516,6 +1516,13 @@
           "subheading": "Please come back later."
         }
       },
+      "search": {
+        "initial_state": "Search for discounts, vouchers, and subscriptions.",
+        "no_results": "We could not find the brand you are looking for.",
+        "placeholder": "Search all brands",
+        "subheading": "Search brands",
+        "title": "Store"
+      },
       "tabs": {
         "donations": "Donate",
         "premium": "Unlock",

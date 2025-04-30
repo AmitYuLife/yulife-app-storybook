@@ -1516,6 +1516,13 @@
           "subheading": "Por favor, vuelve más tarde."
         }
       },
+      "search": {
+        "initial_state": "Busque descuentos, vales y suscripciones.",
+        "no_results": "No hemos encontrado la marca que busca.",
+        "placeholder": "Buscar todas las marcas",
+        "subheading": "Buscar marcas",
+        "title": "Tienda"
+      },
       "tabs": {
         "donations": "Donar",
         "premium": "Desbloquear",

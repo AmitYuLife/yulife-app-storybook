@@ -1516,6 +1516,13 @@
           "subheading": "後ほどご確認ください。"
         }
       },
+      "search": {
+        "initial_state": "割引、バウチャー、サブスクリプションを検索",
+        "no_results": "ブランドが見つかりません。",
+        "placeholder": "すべての ブランド を検索",
+        "subheading": "ブランド を検索",
+        "title": "ストア"
+      },
       "tabs": {
         "donations": "寄付",
         "premium": "アンロック",
