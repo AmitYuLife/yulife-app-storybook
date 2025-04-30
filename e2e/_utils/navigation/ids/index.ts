@@ -833,7 +833,7 @@ export const SMOKING_INTRO_TITLE = "smoking_cessation_intro_title";
 export const SMOKING_HEADER_DAYS = (currentStreak: number) =>
   `SMOKING_HEADER_DAYS_${currentStreak}`;
 export const SMOKING_CHECKIN_OVERLAY = "SMOKING_CHECKIN_OVERLAY";
-export const SMOKING_CELEBRATION_NEXT_BUTTON = "SMOKING_CELEBRATION_NEXT_BUTTON";
+export const SMOKING_CELEBRATION_NEXT_BUTTON = "SMOKING_CELEBRATION_NEXT_BUTTON-text-view";
 export const SMOKING_SPONSORSHIP_CARD_CTA = "SMOKING_SPONSORSHIP_CARD_CTA";
 export const SMOKING_CHIP = (value: string) => `SMOKING_CHIP_${value}`;
 export const SMOKING_MILESTONE_POPUP = (id: string) => `SMOKING_MILESTONE_POPUP_${id}`;

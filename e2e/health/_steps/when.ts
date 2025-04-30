@@ -8,7 +8,7 @@ export const {
   scrollUntilIdVisible,
   scrollFromIDMultiple,
   scrollToAndTapText,
-  swipeFromText
+  swipeFromText,
 } = navigation.scrolling;
 
 export const {
@@ -34,8 +34,12 @@ export const {
   tapIDAtIndex,
   navigateTo,
   tapLocalisedText,
-  minimiseAndReopenApp
+  minimiseAndReopenApp,
+  terminateApp,
 } = navigation.common;
 
 export const { loginOnly } = navigation.login;
 
+export const goToSmokingCessation = async () => {
+  await device.launchApp({ url: "yulifeapp-detox://yulife/smoking" });
+};
