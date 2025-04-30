@@ -64,7 +64,6 @@ export { default as Panel } from "./panel/panel";
 export { CollapsingHeader } from "./collapsing-header/collapsing-header";
 export { ChipList } from "./chip-list/chip-list";
 export { default as PermissionItem } from "./permissions/permission-item";
-export { default as NameAndLevel } from "./name-and-level/name-and-level";
 export { default as ActivityAvatar } from "./inspect/activity-avatar";
 export { default as MediaListHeader } from "./media-list-header/media-list-header";
 export { default as PromotionPanel } from "./promotion-panel/promotion-panel";
