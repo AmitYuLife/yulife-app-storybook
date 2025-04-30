@@ -180,6 +180,7 @@ export const loginToYuScreen =
     await logInAndGoToTab("yu", customer, auth, true)();
     if (skipIntro === true) {
       await completeOnboardingIntro();
+      await skipHealthConnection();
     }
   };
 
