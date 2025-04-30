@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.60.0] - 2025-04-30
+
+### Bugfixes
+
+- Bugfix GS-1473: Add Bottom Spacing on YuHealth Connect Screen
+- Bugfix ISA-3395: use end of day at rewards store access ending banner
+- Bugfix GS-1480: Improvements for achievements part 1
+
+### Tasks
+
+- Task GS-1496: Lunar quest map background & initial config
+- Task GS-1503: Merge all the Name-and-Level components into a single one
+- Task GS-1485: Purge enableServerQueries
+- Task GS-1501: Improvements for achievements part 2
+- Task GS-1402: Reward search components
+- Task LCS-1252: pass debugInfo for sendMagicLink
+- Task GS-1375: Reward card component
+- Task: LCS-667: Add impact haptics on gesture wrapper
+- Task LCS-1261: purge tempTakeAChallengeDirectV2
+- Task: Navigate past health connection screen in detox
+- Task LCS-1256: load webview from login
+- Task: LCS-1262: Remove toggle tempQuestMapLevelBubblePulseAnimation
+- Task GS-1482: Always show health authorisation screen on fitkit
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Activity Health Connect Skip
+- Detox: Leaderboard List Navigation
+- Detox: smoking fixes and LCS-1004 and LCS-651
+- Detox: LCS-1198 fixed mood monitor tests
+- Detox: quick fix for US test
+- Detox: Admin Health Connect Skip
+- detox: LCS-1073 Old Mutual product tested
+- Detox: checking correct body copy on the product card for Bupa Group Health Insurance
+- Fix runtime errors
+
 ## [4.59.0] - 2025-04-23
 
 ### Bugfixes
