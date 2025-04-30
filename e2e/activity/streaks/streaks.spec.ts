@@ -6,7 +6,6 @@ import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
 import { getLocalisedString as t } from "@i18n";
-import { yuscreenImages } from "@images";
 
 Feature("As a user I can use the streaks functionality", async () => {
   Scenario("I can start a new streak and complete a challenge", scenario.start, async () => {
