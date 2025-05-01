@@ -1,7 +1,7 @@
 import { sendReduxEvent } from "@socket";
 
-export { loginAsUser, loginOnly, loginAndCollectSignupBonus, loginToYuScreen, logInAndGoToTab } from "../../_common/given"
+export { loginAsUser, loginOnly, loginToYuScreen, logInAndGoToTab } from "../../_common/given";
 
 export const triggerAppUpdateState = async (): Promise<void> => {
-    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
-}
+  await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
+};

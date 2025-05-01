@@ -26,13 +26,8 @@ export const {
   testMultipleIndexesVisibility,
 } = navigation.common;
 
-export const {
-  loginAsUser,
-  loginAndCollectSignupBonus,
-  continueLogin,
-  continueLoginAfterSignupBonus,
-  loginOnly,
-} = navigation.login;
+export const { loginAsUser, continueLogin, continueLoginAfterSignupBonus, loginOnly } =
+  navigation.login;
 
 export const {
   scrollFromID,

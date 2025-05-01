@@ -7,6 +7,7 @@ import { markdownStyles, styles } from "./styles";
 import { memo, useState } from "react";
 import LoopingCarousel from "./components/looping-carousel";
 import { FadeIn, SlideInDown } from "react-native-reanimated";
+import { FULL_SCREEN_HERO_BUTTON } from "@ids";
 
 const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }: FullScreenHeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -36,11 +37,23 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
           shadowRadius={16}
           entering={FadeIn.duration(1000)}
         >
-          <Button size="Large" onPress={primaryCta.onPress} translatedLabel={primaryCta.label} translationKey="" />
+          <Button
+            size="Large"
+            onPress={primaryCta.onPress}
+            translatedLabel={primaryCta.label}
+            translationKey=""
+            testID={FULL_SCREEN_HERO_BUTTON(primaryCta.label)}
+          />
           {secondaryCta ? (
             <TouchableOpacityWithDelay onPress={secondaryCta.onPress} delay={1000}>
               <Box pv={16}>
-                <TextTemplate type="l1b" textAlign="center" color={Colours.primary.p600} decoration="underline">
+                <TextTemplate
+                  type="l1b"
+                  textAlign="center"
+                  color={Colours.primary.p600}
+                  decoration="underline"
+                  testID={FULL_SCREEN_HERO_BUTTON(secondaryCta.label)}
+                >
                   {secondaryCta.label}
                 </TextTemplate>
               </Box>
