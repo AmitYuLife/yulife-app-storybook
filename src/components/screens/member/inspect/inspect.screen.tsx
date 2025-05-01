@@ -44,6 +44,7 @@ const InspectScreen = ({
   onYumojiPress,
   onGiftPress,
   shortName,
+  yuniversalMap,
 }: InspectProps) => {
   const actionButtonLabel = useMemo(
     () => (inspectOtherUser ? t("screens.inspect.duel.challenge_duel") : t("screens.inspect.duel.challenge_somebody")),
@@ -59,7 +60,14 @@ const InspectScreen = ({
         testID={USER_INFO(`${userName} ${level}`)}
       >
         <Box alignItems="center" mt={24}>
-          <NameLevelMiniAvatar showYumoji={false} centerContent={true} />
+          <NameLevelMiniAvatar
+            name={userName}
+            level={level}
+            yuniversalMap={yuniversalMap}
+            showYumoji={false}
+            centerContent={true}
+            hideDisplayedLevel={!!(inspectOtherUser && yuniversalMap)}
+          />
         </Box>
         <View style={styles.yumojiWrapper} testID={YUMOJI}>
           <Pressable delay={1000} onLongPress={onYumojiPress}>
