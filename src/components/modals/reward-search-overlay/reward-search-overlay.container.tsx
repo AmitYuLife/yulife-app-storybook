@@ -22,7 +22,7 @@ const RewardSearchOverlayContainer = ({ onClose, onItemPress, onPressWallet }: I
   const [isClosing, setIsClosing] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [searchRewards, { data, loading }] = useDebouncedQuery(gql("GetMobileRewardsListDocument"), {
+  const [searchRewards, { data, loading }] = useDebouncedQuery(gql("GetMobileRewardsListItemsDocument"), {
     fetchPolicy: "no-cache",
     variables: { searchTerm },
   });

@@ -15,7 +15,7 @@ interface IRewardRecentlyUsedSectionContainerProps {
   onItemPress?: (item: RewardOnPressArgs) => void;
 }
 
-const MAX_ITEM_WIDTH = 105;
+const MAX_ITEM_WIDTH = 120;
 const ITEM_WIDTH = Math.min(Style.DEVICE_WIDTH / 2.5, MAX_ITEM_WIDTH);
 
 type RecentlyUsedReward = GetMobileRecentlyUsedRewardsListQuery["data"]["recentlyUsedRewards"][0];
@@ -38,7 +38,7 @@ const RewardRecentlyUsedSectionContainer = ({
     ({ item }: { item: RecentlyUsedReward }) => {
       return (
         <RecentRewardCard
-          mr={20}
+          mr={15}
           label={item.name}
           imageUrl={item.image.uri}
           width={ITEM_WIDTH}

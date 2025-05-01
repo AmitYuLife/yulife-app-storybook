@@ -1,0 +1,23 @@
+fragment MobileGameRewardPass on MobileGameRewardPass {
+  label
+  primaryColor
+  passIcon {
+    ...RemoteImage
+  }
+  backgroundImage {
+    ...RemoteImage
+  }
+  foregroundImage {
+    ...RemoteImage
+  }
+  onPress {
+    ...SduiAction
+  }
+  slots {
+    x
+    y
+    images {
+      ...RemoteImage
+    }
+  }
+}

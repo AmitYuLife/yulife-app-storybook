@@ -1,46 +1,5 @@
 query GetMobileRewardsList($tag: String, $searchTerm: String, $offset: Int) {
   data: getMobileRewardsList(tag: $tag, searchTerm: $searchTerm, offset: $offset) {
-    __typename
-    id
-    sduiStepId
-    rewardStoreLocation
-    rewardStoreLocationLabel
-    hasUserSelectedStoreLocation
-    rewardStoreAccessRevokesAt
-    tags
-    list {
-      __typename
-      id
-      isLocked
-      showLockedRewardOverlay
-      name
-      description
-      imageUrl {
-        ...RemoteImage
-      }
-      pills {
-        __typename
-        id
-        text
-        backgroundColor
-      }
-      teaseDetails {
-        progress
-        target
-        rewardQuantity
-        image {
-          ...RemoteImage
-        }
-        overlayImage {
-          ...RemoteImage
-        }
-        theme {
-          primaryColor
-          secondaryColor
-          overlayColor
-        }
-        modalTitle
-      }
-    }
+    ...MobileRewardsList
   }
 }

@@ -1,0 +1,7 @@
+query GetMobileRewardsListItems($tag: String, $searchTerm: String, $offset: Int) {
+  data: getMobileRewardsList(tag: $tag, searchTerm: $searchTerm, offset: $offset) {
+    list {
+      ...MobileRewardsListItem
+    }
+  }
+}

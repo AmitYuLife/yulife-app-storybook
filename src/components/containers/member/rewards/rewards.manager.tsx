@@ -37,6 +37,7 @@ import {
 } from "./rewards.types";
 import { getRouteState } from "@redux/app/app.selectors";
 import { usePrizeHintPopup } from "@hooks";
+import ShopFrontContainer from "@components/containers/shopfront/shopfront.container";
 
 // TODO: remove the partial type
 const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNode> = {
@@ -50,7 +51,7 @@ const END_OF_SEASON_BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversa
 
 const _RewardsTabManagerContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
-  const { showNotificationCentre, tempGameShowWallet } = useUserFeatures();
+  const { showNotificationCentre, tempGameShowWallet, tempGameNewRewardsStorefront } = useUserFeatures();
   const purchasesIconRef = useRef<View>(null);
 
   const [state, dispatch] = useReducer<Reducer<IRewardsManagerState, IRewardsManagerAction>>(
@@ -272,6 +273,10 @@ const _RewardsTabManagerContainer = () => {
 
   if (selectedSection === RewardsSection.Unavailable) {
     return <Container handlePurchasesPress={handlePurchasesPress} />;
+  }
+
+  if (tempGameNewRewardsStorefront) {
+    return <ShopFrontContainer leftIcons={leftIcons} />;
   }
 
   return (

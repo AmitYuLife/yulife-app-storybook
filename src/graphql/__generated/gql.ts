@@ -138,6 +138,7 @@ const documents = {
   HintFragmentDoc: types.HintFragmentDoc,
   MobileInventoryInfoFragmentDoc: types.MobileInventoryInfoFragmentDoc,
   MediaFragmentDoc: types.MediaFragmentDoc,
+  MobileGameRewardPassFragmentDoc: types.MobileGameRewardPassFragmentDoc,
   MobileWeeklyActivityProgressFragmentDoc: types.MobileWeeklyActivityProgressFragmentDoc,
   UserProfileNotificationFragmentDoc: types.UserProfileNotificationFragmentDoc,
   UserWalletItemFragmentDoc: types.UserWalletItemFragmentDoc,
@@ -288,11 +289,13 @@ const documents = {
   GetReferralRewardAmountDocument: types.GetReferralRewardAmountDocument,
   GetReferralHistoryDocument: types.GetReferralHistoryDocument,
   GetReferralInformationDocument: types.GetReferralInformationDocument,
+  GetMobileGameShopfrontDocument: types.GetMobileGameShopfrontDocument,
   GetMobileGameUserWalletRewardItemsDocument: types.GetMobileGameUserWalletRewardItemsDocument,
   GetMobileGameUserWalletRewardsDocument: types.GetMobileGameUserWalletRewardsDocument,
   GetMobilePurchasesListDocument: types.GetMobilePurchasesListDocument,
   GetMobileRecentlyUsedRewardsListDocument: types.GetMobileRecentlyUsedRewardsListDocument,
   GetMobileRewardsListDocument: types.GetMobileRewardsListDocument,
+  GetMobileRewardsListItemsDocument: types.GetMobileRewardsListItemsDocument,
   GetMobileUnlockableBattlePassVouchersDocument: types.GetMobileUnlockableBattlePassVouchersDocument,
   GetSduiStaticStepDocument: types.GetSduiStaticStepDocument,
   GetHealthSmokingStateDocument: types.GetHealthSmokingStateDocument,
@@ -347,6 +350,9 @@ const documents = {
   GetYumojiPartUrlSetSwiperDocument: types.GetYumojiPartUrlSetSwiperDocument,
   GetYumojiRemoteFittingRoomDocument: types.GetYumojiRemoteFittingRoomDocument,
   GetYumojiRemotePartsDocument: types.GetYumojiRemotePartsDocument,
+  MobileGameRecentlyUsedRewardFragmentDoc: types.MobileGameRecentlyUsedRewardFragmentDoc,
+  MobileRewardsListFragmentDoc: types.MobileRewardsListFragmentDoc,
+  MobileRewardsListItemFragmentDoc: types.MobileRewardsListItemFragmentDoc,
   UpdateAvatarDocument: types.UpdateAvatarDocument,
   ProductPaymentHistoryInfoPanelButtonFragmentDoc: types.ProductPaymentHistoryInfoPanelButtonFragmentDoc,
   GetYuScreenV5Document: types.GetYuScreenV5Document,
@@ -983,6 +989,10 @@ export function gql(source: "MobileInventoryInfoFragmentDoc"): typeof documents[
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "MediaFragmentDoc"): typeof documents["MediaFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "MobileGameRewardPassFragmentDoc"): typeof documents["MobileGameRewardPassFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1676,6 +1686,10 @@ export function gql(source: "GetReferralInformationDocument"): typeof documents[
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "GetMobileGameShopfrontDocument"): typeof documents["GetMobileGameShopfrontDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(
   source: "GetMobileGameUserWalletRewardItemsDocument"
 ): typeof documents["GetMobileGameUserWalletRewardItemsDocument"];
@@ -1699,6 +1713,10 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetMobileRewardsListDocument"): typeof documents["GetMobileRewardsListDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetMobileRewardsListItemsDocument"): typeof documents["GetMobileRewardsListItemsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1945,6 +1963,20 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetYumojiRemotePartsDocument"): typeof documents["GetYumojiRemotePartsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "MobileGameRecentlyUsedRewardFragmentDoc"
+): typeof documents["MobileGameRecentlyUsedRewardFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "MobileRewardsListFragmentDoc"): typeof documents["MobileRewardsListFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "MobileRewardsListItemFragmentDoc"): typeof documents["MobileRewardsListItemFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
