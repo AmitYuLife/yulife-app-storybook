@@ -14,11 +14,16 @@ export function* sduiActionRefetchQueriesSaga(action: SduiActionWithServerPayloa
       throw new Error("Invalid action payload!");
     }
 
-    yield call(() =>
-      apolloClient.refetchQueries({
-        include: data.refetchQueries,
-      })
-    );
+    const observableQueries = new Set(Array.from(apolloClient.getObservableQueries().values()).map((q) => q.queryName));
+    const queriesToRefetch = data.refetchQueries.filter((q: string) => observableQueries.has(q));
+
+    if (queriesToRefetch.length > 0) {
+      yield call(() =>
+        apolloClient.refetchQueries({
+          include: queriesToRefetch,
+        })
+      );
+    }
   } catch (e) {
     const errorMessage = e?.message;
     yield call(() =>
