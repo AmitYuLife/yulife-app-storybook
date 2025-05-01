@@ -1,0 +1,34 @@
+fragment MobileRewardsListItem on MobileRewardsListItem {
+  __typename
+  id
+  isLocked
+  showLockedRewardOverlay
+  name
+  description
+  imageUrl {
+    ...RemoteImage
+  }
+  pills {
+    __typename
+    id
+    text
+    backgroundColor
+  }
+  teaseDetails {
+    progress
+    target
+    rewardQuantity
+    image {
+      ...RemoteImage
+    }
+    overlayImage {
+      ...RemoteImage
+    }
+    theme {
+      primaryColor
+      secondaryColor
+      overlayColor
+    }
+    modalTitle
+  }
+}

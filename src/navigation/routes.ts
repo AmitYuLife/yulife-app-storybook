@@ -408,6 +408,10 @@ const routesForRegistration = [
     component: require("../components/containers/battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.container")
       .default,
   },
+  {
+    name: ROUTES.rewardsUnlock,
+    component: require("../components/containers/rewards-unlock/rewards-unlock.container").default,
+  },
 
   // wrapped
   {

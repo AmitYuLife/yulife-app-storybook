@@ -342,7 +342,7 @@ const BattlePassContainer = ({ showNavigation = false }: IRewardContainerProps) 
   }
 
   if (loading || !battlePass) {
-    return <BattlePassLoading />;
+    return <BattlePassLoading showNavigation={showNavigation} onBackPress={onBack} />;
   }
 
   return (

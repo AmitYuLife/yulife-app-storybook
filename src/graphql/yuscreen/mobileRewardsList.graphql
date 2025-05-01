@@ -1,0 +1,13 @@
+fragment MobileRewardsList on MobileRewardsList {
+  __typename
+  id
+  sduiStepId
+  rewardStoreLocation
+  rewardStoreLocationLabel
+  hasUserSelectedStoreLocation
+  rewardStoreAccessRevokesAt
+  tags
+  list {
+    ...MobileRewardsListItem
+  }
+}

@@ -123,6 +123,7 @@ export const ROUTES = {
   // battle pass
   battlePass: "yulife.battlePass",
   battlePassLeaderboard: "yulife.battlePass.battlePassLeaderboard",
+  rewardsUnlock: "yulife.rewardsUnlock",
 
   // debug
   smokingJourneyTree: "yulife.debug.smokingJourneyTree",

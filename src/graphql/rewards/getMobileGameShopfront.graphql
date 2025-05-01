@@ -1,0 +1,15 @@
+query GetMobileGameShopfront {
+  rewardPasses: getMobileGameRewardPassList {
+    activeRewardPasses {
+      ...MobileGameRewardPass
+    }
+  }
+  rewardList: getMobileRewardsList(offset: 0) {
+    ...MobileRewardsList
+  }
+  recentlyUsed: getMobileRecentlyUsedRewardsList {
+    recentlyUsedRewards {
+      ...MobileGameRecentlyUsedReward
+    }
+  }
+}

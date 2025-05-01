@@ -1,0 +1,8 @@
+fragment MobileGameRecentlyUsedReward on MobileGameRecentlyUsedReward {
+  id
+  sduiStepId
+  name
+  image {
+    ...RemoteImage
+  }
+}

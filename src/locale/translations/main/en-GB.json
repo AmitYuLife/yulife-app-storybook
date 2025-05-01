@@ -1015,6 +1015,9 @@
         "no_results": "We couldn’t find the brand you’re looking for.",
         "initial_state": "Search for discounts, vouchers, and subscriptions."
       },
+      "storefront": {
+        "reward_location": "Your rewards are set to %{location}"
+      },
       "expiry_warning": {
         "title": "Your rewards access is ending soon",
         "body": "We’re sorry to see you go, but you still have **%{daysLeft} days** to redeem your hard-earned YuCoin!"
@@ -1028,7 +1031,8 @@
         "rewards": "Rewards",
         "history": "Purchased",
         "store": "Store",
-        "recently_used": "Recently used"
+        "recently_used": "Recently used",
+        "reward_passes": "Your reward passes"
       },
       "purchases": {
         "empty": {

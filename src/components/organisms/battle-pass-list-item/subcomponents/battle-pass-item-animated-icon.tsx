@@ -17,7 +17,12 @@ const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const MAX_BORDER_RADIUS = 500;
 
-const BattlePassItemAnimatedIcon = ({ radius = 24, images, style, resizeMode }: BattlePassItemAnimatedIconProps) => {
+const BattlePassItemAnimatedIcon = ({
+  radius = 24,
+  images = [],
+  style,
+  resizeMode,
+}: BattlePassItemAnimatedIconProps) => {
   const [activeImage, setActiveImage] = useState(0);
 
   useEffect(() => {
