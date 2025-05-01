@@ -7,6 +7,7 @@ import {
   BACK_BUTTON,
   BUTTON_BASE,
   SKIP_HEALTH_CONNECT_SCREEN_BUTTON,
+  FULL_SCREEN_HERO_BUTTON,
 } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
@@ -32,15 +33,20 @@ export const loginAsUser =
   ) =>
   async () => {
     console.log("CUSTOMER ID: ", customer.data.customerId);
-    await authoriseFitkit(fitkitAuth)();
     await selectRegionIfVisible(region)();
+    const loginButton = element(by.id(FULL_SCREEN_HERO_BUTTON("Log in")));
+    await loginButton.tap();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
-    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await waitFor(loginField).toBeVisible().withTimeout(30000);
     await loginField.tap();
     await loginField.replaceText(customer.data.email);
+    await navigateViaID(BUTTON_LOGIN(false));
+    await tapText("PASS")();
+    await tapText("Log in with password instead.")();
+    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
+    await authoriseFitkit(fitkitAuth)();
     await navigateViaID(BUTTON_LOGIN(false));
 
     if (firstTime) {
@@ -52,27 +58,6 @@ export const loginAsUser =
     await dismissNewLooksModalIfVisible();
     await dismissStreakIfVisible();
     await dismissCyclingScreenIfVisible();
-  };
-
-export const loginAsPLIUser =
-  (customer: any, auth: any, fitkitAuth = true) =>
-  async () => {
-    console.log("CUSTOMER ID: ", customer.data.customerId);
-    await authoriseFitkit(fitkitAuth)();
-    const loginField = element(by.id(INPUT_LOGIN_EMAIL));
-    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
-    await loginField.tap();
-    await loginField.replaceText(customer.data.email);
-    await passwordField.tap();
-    await passwordField.replaceText(auth.data.password);
-    await navigateViaID(BUTTON_LOGIN(false));
-    await navigateViaText(t("Let's go")); // sign-up reward screen
-    await skipHealthConnection();
-    await dismissPLIModalIfVisible();
-    await dismissNewLooksModalIfVisible();
-    await tapText(t("Next"))();
-    await tapText(t("Next"))();
-    await tapText(t("Let's go"))();
   };
 
 export const logInAndGoToTab =
@@ -145,24 +130,22 @@ export const dismissCyclingScreenIfVisible = async () => {
 export const loginOnly =
   (customer: any, auth: any, fitkitAuth?: boolean, region = "United Kingdom") =>
   async () => {
-    if (fitkitAuth) {
-      await authoriseFitkit(fitkitAuth)();
-    }
     await selectRegionIfVisible(region)();
+    const loginButton = element(by.id(FULL_SCREEN_HERO_BUTTON("Log in")));
+    await loginButton.tap();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
-    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
+    await waitFor(loginField).toBeVisible().withTimeout(30000);
     await loginField.tap();
     await loginField.replaceText(customer.data.email);
+    await navigateViaID(BUTTON_LOGIN(false));
+    await tapText("PASS")();
+    await tapText("Log in with password instead.")();
+    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
+    fitkitAuth && (await authoriseFitkit(fitkitAuth)());
     await navigateViaID(BUTTON_LOGIN(false));
     await dismissNewLooksModalIfVisible();
-  };
-
-export const loginAndCollectSignupBonus =
-  (customer: any, auth: any, fitkitAuth?: boolean) => async () => {
-    await loginOnly(customer, auth, fitkitAuth)();
-    await navigateViaText(t("Let's go"));
   };
 
 export const continueLogin = async () => {

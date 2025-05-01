@@ -20,8 +20,7 @@ export const {
   restartWithoutDelete,
 } = navigation.common;
 
-export const { restartAndLoginToTab, loginAndCollectSignupBonus, fullRestartAndLogin } =
-  navigation.login;
+export const { restartAndLoginToTab, fullRestartAndLogin } = navigation.login;
 
 export const tapTab = (tabName: string) => async () => {
   const tab = element(by.id(ids.BODY_ITEM_TITLE(tabName)));

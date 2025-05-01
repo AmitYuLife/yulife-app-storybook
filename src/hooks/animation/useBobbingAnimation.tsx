@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSharedValue, useAnimatedStyle, withRepeat, withTiming, withDelay, Easing } from "react-native-reanimated";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface UseBobbingAnimationProps {
   amplitude?: number;
@@ -17,6 +18,10 @@ export function useBobbingAnimation({
   const translateY = useSharedValue(startDirection === "up" ? 0 : -amplitude);
 
   useEffect(() => {
+    if (DETOX_ENABLED) {
+      return;
+    }
+
     translateY.value = withDelay(
       delay,
       withRepeat(
@@ -31,7 +36,7 @@ export function useBobbingAnimation({
   }, [amplitude, duration, delay, startDirection, translateY]);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: translateY.value }],
+    transform: [{ translateY: DETOX_ENABLED ? 0 : translateY.value }],
   }));
 
   return animatedStyle;

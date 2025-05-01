@@ -3,7 +3,6 @@ import Logger from "@services/logging/logger";
 import { region } from "@locale";
 import { initStripe } from "@services/stripe";
 import { SyncAction } from "@redux/_core/types";
-import { DETOX_ENABLED } from "@services/socket";
 import deepLink from "@navigation/deepLink";
 import client from "@graphql/_core/client";
 import { gql, GetPublicYuApiConfigQuery } from "@graphql/__generated";
@@ -22,9 +21,6 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
 
       // We're not running 3 servers for each region at the same time; so every time we select a region that's not spun up, we get a thrown error
       // When reloading the app only, we need the previous part (hydration) to run as it was saved locally
-      if (DETOX_ENABLED) {
-        return;
-      }
     }
 
     if (shouldFetchConfig) {

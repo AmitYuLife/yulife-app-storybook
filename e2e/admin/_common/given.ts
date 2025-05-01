@@ -1,20 +1,12 @@
 import { navigation } from "@navigation";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 
-export const {
-    loginOnly,
-    loginAsUser,
-    logInAndGoToTab,
-    loginAndCollectSignupBonus,
-    selectRegionIfVisible,
-} = navigation.login
+export const { loginOnly, loginAsUser, logInAndGoToTab, selectRegionIfVisible } = navigation.login;
 
-export const {
-    wait,
-} = navigation.common
+export const { wait } = navigation.common;
 
-export const triggerawardReferralYucoin = (userId:string) => async () => {
-    await dataManager.triggerWorkerTask("AWARD_REFERRAL_YUCOIN", {
-        userId
-    })
-}
+export const triggerawardReferralYucoin = (userId: string) => async () => {
+  await dataManager.triggerWorkerTask("AWARD_REFERRAL_YUCOIN", {
+    userId,
+  });
+};
