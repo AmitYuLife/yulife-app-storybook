@@ -1,7 +1,7 @@
 import { Style } from "@styles";
-import { useBobbingAnimation } from "@app/hooks/animation/useBobbingAnimation";
 import { CHEST_MAX_HEIGHT, CHEST_ASPECT_RATIO } from "../components/svgs/login-chest-svg";
 import { DEVICES } from "@styles/media";
+import { useBobbingAnimation } from "@hooks";
 
 type LogoPosition = {
   id: string;
