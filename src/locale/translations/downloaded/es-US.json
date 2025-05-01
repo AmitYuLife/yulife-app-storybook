@@ -1262,7 +1262,7 @@
         "hide_keyboard": "Ocultar teclado"
       },
       "cta_label": "Iniciar sesión",
-      "disclaimer": "Al continuar, acepta nuestra [Política de privacidad](%{privacyPolicyLink}) y nuestro [Acuerdo de licencia de usuario final](%{eulaLink}).",
+      "disclaimer": "Al continuar, acepta nuestra\n[Política de privacidad](%{privacyPolicyLink}) y el [Acuerdo de licencia de usuario final](%{eulaLink}).",
       "heading": "¡Bienvenido!",
       "help": "¿Necesitas ayuda para iniciar sesión?",
       "server_location": {
@@ -1290,9 +1290,7 @@
       "primary_cta_label": "Reclamar mi cuenta",
       "secondary_cta_label": "Iniciar sesión",
       "slides": {
-        "donate": "Consigue un impacto real en el mundo a través de donaciones a causas que importan.",
-        "earn": "¡Gane valor en efectivo por sus pasos diarios, mindfulness y mucho más!",
-        "redeem": "Canjea recompensas como vales y descuentos de tus marcas favoritas."
+        "rewards": "Convierta los hábitos saludables en recompensas"
       }
     },
     "login_password": {
@@ -1480,6 +1478,7 @@
       "list": {
         "history": "Comprado",
         "recently_used": "Utilizado recientemente",
+        "reward_passes": "Tus pases de recompensa",
         "rewards": "Recompensas",
         "store": "Tienda"
       },
@@ -1522,6 +1521,9 @@
         "placeholder": "Buscar todas las marcas",
         "subheading": "Buscar marcas",
         "title": "Tienda"
+      },
+      "storefront": {
+        "reward_location": "Sus recompensas se fijan en %{location}"
       },
       "tabs": {
         "donations": "Donar",

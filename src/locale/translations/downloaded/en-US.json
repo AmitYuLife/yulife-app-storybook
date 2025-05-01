@@ -1262,7 +1262,7 @@
         "hide_keyboard": "Hide keyboard"
       },
       "cta_label": "Log in",
-      "disclaimer": "By continuing, you agree to our [Privacy Policy](%{privacyPolicyLink}) and [End-User License Agreement](%{eulaLink}).",
+      "disclaimer": "By continuing, you agree to our\n[Privacy Policy](%{privacyPolicyLink}) and [End User License Agreement](%{eulaLink}).",
       "heading": "Welcome!",
       "help": "Need help logging in?",
       "server_location": {
@@ -1290,9 +1290,7 @@
       "primary_cta_label": "Claim my account",
       "secondary_cta_label": "Log in",
       "slides": {
-        "donate": "Make real impact in the world through donations to causes that matter!",
-        "earn": "Earn cash value for your daily steps, mindfulness, and more!",
-        "redeem": "Redeem rewards like vouchers and discounts from your favorite brands!"
+        "rewards": "Turn healthy habits into rewards!"
       }
     },
     "login_password": {
@@ -1480,6 +1478,7 @@
       "list": {
         "history": "Purchased",
         "recently_used": "Recently used",
+        "reward_passes": "Your reward passes",
         "rewards": "Rewards",
         "store": "Store"
       },
@@ -1522,6 +1521,9 @@
         "placeholder": "Search all brands",
         "subheading": "Search brands",
         "title": "Store"
+      },
+      "storefront": {
+        "reward_location": "Your rewards are set to %{location}"
       },
       "tabs": {
         "donations": "Donate",

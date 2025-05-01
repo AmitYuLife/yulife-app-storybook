@@ -1262,7 +1262,7 @@
         "hide_keyboard": "キーボードを非表示にする"
       },
       "cta_label": "ログイン",
-      "disclaimer": "続行することにより、[プライバシーポリシー](%{privacyPolicyLink})および[エンドユーザーライセンス契約](%{eulaLink})に同意したことになります。",
+      "disclaimer": "続行することで、当社の\n[プライバシーポリシー](%{privacyPolicyLink})および[エンドユーザーライセンス契約](%{eulaLink})に同意したことになります。",
       "heading": "Welcome!",
       "help": "ログインにお困りですか?",
       "server_location": {
@@ -1290,9 +1290,7 @@
       "primary_cta_label": "アカウントを申請",
       "secondary_cta_label": "ログイン",
       "slides": {
-        "donate": "支援先への寄付を通じて世界に貢献",
-        "earn": "毎日の歩数、マインドフルネスなどでYuCoinを獲得",
-        "redeem": "お好きなブランドのギフト券や割引券などのリワードと引き換え"
+        "rewards": "健康的な習慣を報酬に変えよう！"
       }
     },
     "login_password": {
@@ -1480,6 +1478,7 @@
       "list": {
         "history": "購入履歴",
         "recently_used": "最近使用",
+        "reward_passes": "あなたの報酬パス",
         "rewards": "リワード",
         "store": "ストア"
       },
@@ -1522,6 +1521,9 @@
         "placeholder": "すべての ブランド を検索",
         "subheading": "ブランド を検索",
         "title": "ストア"
+      },
+      "storefront": {
+        "reward_location": "あなたの報酬は %{location} に設定されています"
       },
       "tabs": {
         "donations": "寄付",
