@@ -114,7 +114,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
         }
       } catch (error) {
         // if an error occurs, pop back one screen after closing the native alert
-        Alert.alert(t("screens.login-confirm.error-title"), error.message, [
+        Alert.alert(t("screens.login_confirm.error_title"), error.message, [
           { text: t("labels.cta.ok"), onPress: onNavigateBack },
         ]);
       }
