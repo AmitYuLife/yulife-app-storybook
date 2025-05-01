@@ -68,7 +68,7 @@ const LoginEmailScreen = ({
       />
 
       {!magicLinkError ? null : (
-        <Box py={10}>
+        <Box py={10} px={30}>
           <TextTemplate type={"l2"} color={Colours.lightRed} textAlign="center">
             {magicLinkError}
           </TextTemplate>
