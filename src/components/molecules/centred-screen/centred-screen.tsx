@@ -1,5 +1,6 @@
 import { memo, PropsWithChildren, JSX, ReactElement, isValidElement } from "react";
-import { Image as RNImage, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native";
+import { Image as RNImage, ImageStyle, View, ViewStyle } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
 import { IScreen } from "@theme";
