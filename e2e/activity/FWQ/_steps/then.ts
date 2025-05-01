@@ -19,6 +19,8 @@ export const {
   multipleTextVisible,
   textVisibleAtIndex,
   idExist,
+  idVisibleAtIndex,
+  testMultipleIndexesVisibility,
 } = navigation.common;
 
 export const {
@@ -155,4 +157,21 @@ export const canSeeEngagementSurveySupportedByCheckBoxes = async () => {
   await idVisible("growth_development_supported_choice_no_one_yet")();
   await scrollFromID("growth_development_supported_choice_my_manager", "up", "fast", 0.5)();
   await idVisible("growth_development_supported_choice_other")();
+};
+
+export const verifyImageChoicesVisible = async () => {
+  const images = [
+    "journeys/health-questionnaire/image-choice/sleep_chrono_morning.svg",
+    "journeys/health-questionnaire/image-choice/sleep_chrono_night.svg",
+    "journeys/health-questionnaire/image-choice/sleep_chrono_unsure.svg",
+  ];
+
+  const labels = ["Morning person", "Night person", "I'm not sure"];
+
+  for (const src of images) {
+    await idVisible(ids.IMAGE_CHOICE(src))();
+  }
+  for (const label of labels) {
+    await idVisible(ids.IMAGE_CHOICE_LABEL(label))();
+  }
 };

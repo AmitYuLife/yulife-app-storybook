@@ -5,6 +5,7 @@ import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import Markdown from "@molecules/markdown/markdown";
 import { t } from "@locale";
 import StepFeedbackHalfModal from "./half-modal/step-feedback-half-modal.modal";
+import { HALF_MODAL_SUBTITLE } from "@ids";
 
 export interface ISduiStepFeedbackHalfModalProps {
   image?: {
@@ -68,7 +69,9 @@ const SduiStepFeedbackHalfModal = ({
       levelRewardColor={backgroundColor}
       overlayIcon={image.image}
       title={title}
-      rewardSubtitleComponent={<Markdown text={descriptionMarkdown} />}
+      rewardSubtitleComponent={
+        <Markdown text={descriptionMarkdown} testID={HALF_MODAL_SUBTITLE(descriptionMarkdown)} />
+      }
       ctaLabel={ctaButtonLabel}
       onCtaClick={handleOnCtaClick}
       onBackgroundClick={handleOnBackgroundClick}

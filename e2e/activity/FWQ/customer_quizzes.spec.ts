@@ -673,3 +673,125 @@ Feature("Quizzes and questionnaires", async () => {
     });
   });
 });
+
+Scenario("I should see the Health Questionnaire with the new question styles", scenario.start, async () => {
+  Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_44, data.AUTH_44, true, "United Kingdom", false), async () => {
+    Given("I skip the health connection screen", given.skipHealthConnection, async () => {
+      Then("I should see my YuCoin balance of 0, before I finish the Automated QA Test Journey 10 Multiplier", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
+    });
+  });
+  When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN"), async () => {
+    Then("I should see Today you've earned '0 YuCoin'", then.textVisible("0 YuCoin"));
+  });
+  When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+    Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
+    Then("I should see the Let's go! button", then.textVisible("Let's go!"));
+  });
+  When("I click lets go!", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
+    Then("I can see the getting to know yu title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
+  });
+  When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
+    Then("I can see lets go button", then.idVisible(ids.BUTTON_BASE("Let’s go!")));
+  });
+  When("I press lets go ", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
+    Then("I can see the new designed advice/goal question with the banner with an image on top", then.idVisible(ids.HINT_LABEL("Health advice and tips")));
+    Then("I can see the new designed advice/goal questions image", then.idVisible(ids.HINT_VARIANT_IMAGE("https://yulife-develop.imgix.net/journeys/health-questionnaire/advice.svg?ixlib=js-3.2.1&s=22d39a7ba57dafd56f6a12b0f8f1da7f")));
+    Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("How motivated are you to take up this advice?", "b2b")));
+    Then("I can see the next button is disabled as I haven't selected an answer", then.idVisible(ids.BUTTON_BASE("Next", true)));
+  });
+  When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_advice.1.2.15", "choice_dynamic_advice.1.2.15", 5), async () => {
+    Then("I can see the next button is enabled as I have selected an answer", then.idVisible(ids.BUTTON_BASE("Next", false)));
+  });
+  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+    Then("I can see the quiz time question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What is the recommended daily intake of fruits and vegetables?", "b2b")));
+    Then("I can see the next button is disabled as I haven't selected an answer", then.idVisible(ids.BUTTON_BASE("Next", true)));
+  });
+  When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_health.1.1.216", "choice_dynamic_health.1.1.216", 4), async () => {
+    When("I select a wrong answer", when.tapID(ids.CHECKBOX_SELECTORS("dynamic_health.1.1.216", "choice_dynamic_health.1.1.216.1")), async () => {
+      Then("I can see the next button is enabled as I have selected an answer", then.idVisible(ids.BUTTON_BASE("Next", false)));
+    });
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I can see So Close!", then.idVisible(ids.HALF_MODAL_TITLE("So close!"), 5));
+      Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("The actual answer is: **5 portions**.")));
+    });
+  });
+  When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
+    Then("I can see the next question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What are the benefits of a balanced diet?", "b2b")));
+  });
+  When("I click on the 'Back arrow' button", when.tapID(ids.BACK_BUTTON), async () => {
+    Then("I can see the quiz time question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What is the recommended daily intake of fruits and vegetables?", "b2b")));
+  });
+  When("I select a correct answer", when.tapID(ids.CHECKBOX_SELECTORS("dynamic_health.1.1.216", "choice_dynamic_health.1.1.216.3")), async () => {
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I can see Nicely Done!", then.idVisible(ids.HALF_MODAL_TITLE("Nicely done!")));
+      Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("**5 portions** is the correct answer.")));
+    });
+  });
+  When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
+    Then("I can see the next question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What are the benefits of a balanced diet?", "b2b")));
+  });
+  When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_health.1.1.222", "choice_dynamic_health.1.1.222", 4), async () => {
+    When("I select a correct answer", when.tapID(ids.CHECKBOX_SELECTORS("dynamic_health.1.1.222", "choice_dynamic_health.1.1.222.2")), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I can see Nicely Done!", then.idVisible(ids.HALF_MODAL_TITLE("Nicely done!")));
+        Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("**Improved digestion, energy levels, and reduced risk of chronic diseases** is the correct answer.")));
+      });
+    });
+  });
+  When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
+    Then("I can see the image question", then.idVisible(ids.TEXT_TEMPLATE("Are you a morning or night person?", "b2b")));
+    Then("I can see each question has an image and a label", then.verifyImageChoicesVisible());
+  });
+  When("I click select morning person", when.tapID(ids.IMAGE_CHOICE_LABEL("Morning person")), async () => {
+    Then("I can see morning person checkbox is selected", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.1.31.1", true)));
+  });
+  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+    Then("I can see the slider question", then.idVisible(ids.TEXT_TEMPLATE("In the past week, how often did you manage to stay focused on important tasks without getting sidetracked?", "b2b")));
+    Then("I can see the question slider", then.idVisible(ids.CONTENT_ITEM_SCALE));
+  });
+  When("I swipe the slider into each position, that position becomes visible", when.verifySliderPositionsBySwiping(ids.CONTENT_ITEM_SLIDER, [0, 1, 2, 3, 4]), async () => {
+    Then("I can see the slider on never", then.idExist(ids.SLIDABLE_POSITION(4)));
+  });
+  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+    Then("I can see the slider question", then.idVisible(ids.TEXT_TEMPLATE("Yesterday, did you check social media multiple times, even when it may not have been appropriate (e.g., during a meeting, at dinner, etc.)?", "b2b")));
+    Then("I can see the next button is disabled as I have not moved the slider yet", then.idVisible(ids.BUTTON_BASE("Next", true)));
+  });
+  When("I swipe the slider to yes", when.swipeFromIDAtIndex(ids.CONTENT_ITEM_SLIDER, 1, "left", "slow", 0.4), async () => {
+    Then("I can see the next button is enabled as I have moved the slider", then.idVisible(ids.BUTTON_BASE("Next", false)));
+  });
+  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+    Then("I can see the select multiple image question", then.idVisible(ids.TEXT_TEMPLATE("How do you typically maintain your social connections?", "b2b")));
+    Then("I can see the (select all that apply) subheading", then.idVisible(ids.MARKDOWN("(Select all that apply)")));
+    Then("I can see the next button is disabled as I have not selected an answer yet", then.idVisible(ids.BUTTON_BASE("Next", true)));
+  });
+  When("I select in-person meet ups", when.tapID(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.1", false)), async () => {
+    When("I select phone calls or video chats", when.tapID(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.2", false)), async () => {
+      Then("I can see the next button is enabled as I have select answers", then.idVisible(ids.BUTTON_BASE("Next", false)));
+    });
+  });
+  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+    Then("I the final slider question", then.idVisible(ids.TEXT_TEMPLATE("Do you use your personal or work mobile phone for work?", "b2b")));
+  });
+  When("I click on the 'Back arrow' button", when.tapID(ids.BACK_BUTTON), async () => {
+    Then("I can see the multiple image question", then.idVisible(ids.TEXT_TEMPLATE("How do you typically maintain your social connections?", "b2b")));
+    Then("I can see the multiple selections are still highlighted ", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.1", true)));
+    Then("I can see the multiple selections are still highlighted ", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.2", true)));
+  });
+  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+    When("I swipe the slider to the furthest left", when.swipeFromIDAtIndex(ids.CONTENT_ITEM_SLIDER, 1, "left", "slow", 0.4), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should be on the chest screen", then.idVisibleAtIndex(ids.LOTTIE_VIEW, 0));
+      });
+    });
+  });
+  When("I tap the screen", when.tapIDAtIndex(ids.LOTTIE_VIEW, 0), async () => {
+    Then("The chest should be open", then.idVisibleAtIndex(ids.LOTTIE_VIEW, 0));
+  });
+  When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
+    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+      When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+        Then("I see the 20 yucoin earned today so far", then.textVisible("20 YuCoin"));
+      });
+    });
+  });
+});

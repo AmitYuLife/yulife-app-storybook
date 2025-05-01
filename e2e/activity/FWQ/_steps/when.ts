@@ -7,6 +7,7 @@ export const { tapMenuItem } = screens.menu;
 export const {
   scrollFromText,
   scrollFromID,
+  swipeFromIDAtIndex,
   swipeToText,
   scrollUntilTextVisible,
   scrollUntilIdVisible,
@@ -29,6 +30,7 @@ export const {
   restartWithData,
   restartWithoutDelete,
   idVisible,
+  idExist,
   navigateViaText,
   navigateViaID,
   textVisible,
@@ -59,3 +61,26 @@ export const fillOutEngagementSurvey = async () => {
   await tapID(ids.SUPPORTED_IN_TAKING_LEAVE)();
   await tapID(ids.BUTTON_BASE("Next"))();
 };
+
+export const tapAllCheckboxes =
+  (stepId: string, questionId: string, numberOfBoxes: number) => async () => {
+    for (let i = 1; i <= numberOfBoxes; i++) {
+      const checkboxTestId = ids.CHECKBOX_SELECTORS(stepId, `${questionId}.${i}`);
+      await tapID(checkboxTestId)();
+    }
+  };
+
+export const verifySliderPositionsBySwiping =
+  (sliderID: string, positions: number[]) => async () => {
+    await swipeFromIDAtIndex(sliderID, 1, "left", "slow", 1.0)();
+    await wait(500)();
+
+    for (const i of positions) {
+      if (i > 0) {
+        await swipeFromIDAtIndex(sliderID, 1, "right", "slow", 0.2)();
+      }
+
+      await wait(300)();
+      await idExist(ids.SLIDABLE_POSITION(i))();
+    }
+  };

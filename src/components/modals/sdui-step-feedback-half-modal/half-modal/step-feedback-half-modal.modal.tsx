@@ -14,7 +14,7 @@ import LinearGradient from "react-native-linear-gradient";
 import { DETOX_ENABLED } from "@services/socket";
 import { ImageSource } from "expo-image";
 import { VoidFunction } from "@utils";
-import { HALF_MODAL_CTA } from "@ids";
+import { HALF_MODAL_CTA, HALF_MODAL_TITLE } from "@ids";
 
 export interface IStepFeedbackHalfModalProps {
   levelRewardColor: string;
@@ -176,7 +176,7 @@ const StepFeedbackHalfModal = ({
             <Box style={styles.bodyContainer}>
               <Box style={styles.contentContainer}>
                 <Box gap={10} center={true} px={20}>
-                  <Box px={32}>
+                  <Box px={32} testID={HALF_MODAL_TITLE(title)}>
                     <TextTemplate textAlign="center" type="h2">
                       {title}
                     </TextTemplate>

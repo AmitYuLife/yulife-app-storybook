@@ -9,7 +9,7 @@ import { TouchableOpacityWithDelay } from "..";
 import Markdown from "../markdown/markdown";
 import getMarkdownStyles from "../markdown/markdown.styles";
 import { PlusOneChallengeBackgroundImageSvg } from "./PlusOneChallengeBackgroundImageSvg";
-import { HINT_VARIANT } from "@ids";
+import { HINT_LABEL, HINT_VARIANT, HINT_VARIANT_IMAGE } from "@ids";
 
 interface IHintProps {
   label: string;
@@ -40,7 +40,7 @@ const Hint = ({ label, description, markdownDescription, image, onPress, variant
   return (
     <Wrapper onPress={onPress} style={styles.wrapper}>
       <View style={[styles.container, variantStyles.container]} testID={HINT_VARIANT(variant)}>
-        <View style={styles.contentContainer}>
+        <View style={styles.contentContainer} testID={HINT_LABEL(label)}>
           <View style={styles.titleContainer}>
             <View style={[styles.iconContainer, variantStyles.icon]}>
               <HintIcon width={Style.adjust(12)} height={Style.adjust(12)} />
@@ -56,7 +56,7 @@ const Hint = ({ label, description, markdownDescription, image, onPress, variant
             {!description ? null : <TextTemplate type="l2">{description}</TextTemplate>}
           </View>
         </View>
-        <View style={styles.imageContainer}>
+        <View style={styles.imageContainer} testID={HINT_VARIANT_IMAGE(image?.uri ?? "")}>
           <Animated.View style={animatedStyle}>
             {!image ? null : image.uri ? (
               <Image

@@ -9,6 +9,7 @@ import { ImageChoiceLabel } from "./imageChoiceLabel";
 import { Image } from "@atoms";
 import { ImageChoiceActiveIndicator } from "./activeIndicator";
 import { isEmpty, omitBy } from "lodash";
+import { IMAGE_CHOICE, IMAGE_CHOICE_CHECKBOX } from "@ids";
 
 export type ImageChoiceAnswerValue = Record<string, boolean> | undefined;
 
@@ -89,8 +90,8 @@ const ContentItemImageChoiceBase = memo(
                 >
                   <ImageChoiceActiveIndicator checkboxVisible={multiSelect && !hideCheckbox} isChecked={isChecked} />
 
-                  <View style={styles.viewWrapper}>
-                    <View style={[styles.imageWrapper, imageStyles]}>
+                  <View style={styles.viewWrapper} testID={IMAGE_CHOICE_CHECKBOX(optionKey, isChecked)}>
+                    <View style={[styles.imageWrapper, imageStyles]} testID={IMAGE_CHOICE(image.id)}>
                       <Image
                         width={Style.adjust((imageStyles?.width as number) || 96)}
                         height={Style.adjust((imageStyles?.height as number) || 56)}

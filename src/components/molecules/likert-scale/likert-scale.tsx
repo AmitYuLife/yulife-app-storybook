@@ -5,6 +5,7 @@ import { LayoutChangeEvent, StyleSheet, useWindowDimensions, View, ViewStyle } f
 import LikertScaleLabels from "./likert-scale-labels";
 import Pressable from "../pressable/pressable";
 import { useSharedValue, withTiming } from "react-native-reanimated";
+import { DRAGGABLE_SLIDER_POSITION, SLIDABLE_POSITION } from "@ids";
 
 const CONFIG = {
   POINTS: 5,
@@ -92,6 +93,7 @@ const LikertScale = ({ children, handleWidth, handleHeight, labelMax, labelMin, 
           left={breakpoint}
           height={handleHeight + CONFIG.LABELS_HEIGHT}
           w={layout.sectionWidth}
+          testID={SLIDABLE_POSITION(breakpointIndex)}
         >
           <Pressable
             key={breakpoint}
@@ -114,7 +116,7 @@ const LikertScale = ({ children, handleWidth, handleHeight, labelMax, labelMin, 
           <Box key={pointIndex} bg={Colours.primary.p600} h={4} w={4} br={4} />
         ))}
       </Box>
-      <Box position="absolute" top={0} left={0} right={0}>
+      <Box position="absolute" top={0} left={0} right={0} testID={DRAGGABLE_SLIDER_POSITION(value)}>
         <Draggable
           minOffsetX={layout.offsetX}
           maxOffsetX={layout.offsetX + layout.width}

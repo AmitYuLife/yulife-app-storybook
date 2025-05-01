@@ -1,6 +1,5 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_42, CUSTOMER_44 } from "../postgres/customers";
-import { CUSTOMER_2_SMOKING } from "japan/_data";
+import { CUSTOMER_45, CUSTOMER_44 } from "../postgres/customers";
 
 const model = "core_journeys";
 
