@@ -7,6 +7,7 @@ import { SduiStyle } from "@redux/user/user.types";
 import { ContentItemWrapper } from "../contentItemWrapper/contentItemWrapper";
 import { parseJSON } from "@utils";
 import { Box } from "@atoms";
+import { CONTENT_ITEM_SCALE } from "@ids";
 
 type Props = {
   answerKey: string;
@@ -75,7 +76,7 @@ const ContentItemScale = (props: Props) => {
   }
 
   return (
-    <View style={mapServerStyles(props.styles)}>
+    <View style={mapServerStyles(props.styles)} testID={CONTENT_ITEM_SCALE}>
       <LikertScale
         onChange={handleSduiChange}
         value={calculatedValue}

@@ -2048,3 +2048,884 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_2 = {
     nextSteps: [],
   },
 };
+
+export const CORE_JOURNEY_STEPS_19 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: "66140199f9be413b16dd1c81",
+
+    stepId: "dynamic_advice.1.2.15",
+    name: "dynamic_advice.1.2.15",
+    stepType: "normal",
+    externalId: "dynamic_advice.1.2.15",
+    template: "journey_template_advice",
+    templateUi: {
+      answerKey: "dynamic_advice.1.2.15",
+      copy: {
+        heading: {
+          "en-GB": "How motivated are you to take up this advice?",
+          "ja-JP": "このアドバイスを積極的に取り入れたい気持ちはどのくらいありますか?",
+          _id: "680840de9ce202f0ef54743b",
+        },
+        ctaLabel: {
+          en: "Next",
+          "en-GB": "Next",
+          "en-US": "Next",
+          "en-ZA": "Next",
+          "ja-JP": "次へ",
+          "es-US": "Siguiente",
+          _id: "680840de9ce202f0ef54743c",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 10,
+      },
+      hint: {
+        title: {
+          en: "Health advice and tips",
+          "en-GB": "Health advice and tips",
+          "en-US": "Health advice and tips",
+          "en-ZA": "Health advice and tips",
+          "ja-JP": "健康に関するアドバイス",
+          "es-US": "Consejos de salud",
+          _id: "680840de9ce202f0ef54743d",
+        },
+        description: {
+          "en-GB":
+            "Understanding your sleep habits are important for building a healthy sleep pattern.",
+          "ja-JP": "自分の睡眠習慣を理解することは、健康的な睡眠パターンを築くために重要です。",
+          _id: "680840de9ce202f0ef54743e",
+        },
+        imageKey: "journeys/health-questionnaire/advice.svg",
+      },
+      design: "default",
+      options: [
+        {
+          value: "dynamic_advice.1.2.15.1",
+          label: {
+            "en-GB": "It's not for me",
+            "ja-JP": "自分に適切だとは思わない",
+            _id: "680840de9ce202f0ef54743f",
+          },
+        },
+        {
+          value: "dynamic_advice.1.2.15.2",
+          label: {
+            "en-GB": "I'll think about it",
+            "ja-JP": "後で考えたい",
+            _id: "680840de9ce202f0ef547440",
+          },
+        },
+        {
+          value: "dynamic_advice.1.2.15.3",
+          label: {
+            "en-GB": "I'm interested in it",
+            "ja-JP": "興味はない",
+            _id: "680840de9ce202f0ef547441",
+          },
+        },
+        {
+          value: "dynamic_advice.1.2.15.4",
+          label: {
+            "en-GB": "I'll definitely give it a try",
+            "ja-JP": "ぜひ試したい",
+            _id: "680840de9ce202f0ef547442",
+          },
+        },
+        {
+          value: "dynamic_advice.1.2.15.5",
+          label: {
+            "en-GB": "I'm committed to do it regularly",
+            "ja-JP": "必ず継続して行いたい",
+            _id: "680840de9ce202f0ef547443",
+          },
+        },
+      ],
+    },
+    answerKeys: ["dynamic_advice.1.2.15"],
+    temporaryProperties: [],
+    ui: generateRandomMongoId(),
+    __v: 0,
+    hooks: [],
+    events: [],
+    nextSteps: [],
+  },
+};
+
+export const CORE_JOURNEY_STEPS_20 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: "66140199f9be413b16dd1c81",
+    stepId: "dynamic_health.1.1.216",
+    name: "dynamic_health.1.1.216",
+    stepType: "normal",
+    externalId: "dynamic_health.1.1.216",
+    template: "journey_template_choice",
+    templateUi: {
+      answerKey: "dynamic_health.1.1.216",
+      copy: {
+        heading: {
+          "en-GB": "Quiz time! What is the recommended daily intake of fruits and vegetables?",
+          "ja-JP": "クイズです! 1日に推奨される果物や野菜の摂取量はどのくらいですか?",
+          _id: "6808411c4be42efa459a8b9b",
+        },
+        description: {
+          "en-GB": "",
+          "ja-JP": "",
+          _id: "6808411c4be42efa459a8b9c",
+        },
+        ctaLabel: {
+          en: "Next",
+          "en-GB": "Next",
+          "en-US": "Next",
+          "en-ZA": "Next",
+          "ja-JP": "次へ",
+          "es-US": "Siguiente",
+          _id: "6808411c4be42efa459a8b9d",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 10,
+      },
+      design: "default",
+      multiSelect: false,
+      options: [
+        {
+          value: "dynamic_health.1.1.216.1",
+          label: {
+            "en-GB": "1 portion",
+            "ja-JP": "1皿分",
+            _id: "6808411c4be42efa459a8b9e",
+          },
+        },
+        {
+          value: "dynamic_health.1.1.216.2",
+          label: {
+            "en-GB": "2 – 3 portions",
+            "ja-JP": "2~3皿分",
+            _id: "6808411c4be42efa459a8b9f",
+          },
+        },
+        {
+          value: "dynamic_health.1.1.216.3",
+          label: {
+            "en-GB": "5 portions",
+            "ja-JP": "5皿分",
+            _id: "6808411c4be42efa459a8ba0",
+          },
+        },
+        {
+          value: "dynamic_health.1.1.216.4",
+          label: {
+            "en-GB": "6+ portions",
+            "ja-JP": "6皿分以上",
+            _id: "6808411c4be42efa459a8ba1",
+          },
+        },
+      ],
+    },
+    answerKeys: ["dynamic_health.1.1.216"],
+    temporaryProperties: [],
+    feedback: {
+      submitOnNoMatch: false,
+      entries: [
+        {
+          values: ["dynamic_health.1.1.216.3"],
+          imageKey: "journeys/health-questionnaire/feedback/correct.svg",
+          imageWidth: 78,
+          backgroundColor: "#40C057",
+          displayRays: true,
+          starMultiplier: 5,
+          title: {
+            en: "Nicely done!",
+            "en-GB": "Nicely done!",
+            "en-US": "Well done!",
+            "en-ZA": "Nicely done!",
+            "ja-JP": "よくできました！",
+            "es-US": "¡Bien hecho!",
+            _id: "6808411c4be42efa459a8ba2",
+          },
+          description: {
+            en: "**5 portions** is the correct answer.",
+            "en-GB": "**5 portions** is the correct answer.",
+            "en-US": "**5 portions** is the correct answer.",
+            "en-ZA": "**5 portions** is the correct answer.",
+            "ja-JP": "**5 portions** が正しい答えです。",
+            "es-US": "**5 portions** es la respuesta correcta.",
+            _id: "6808411c4be42efa459a8ba3",
+          },
+          ctaLabel: {
+            en: "Next",
+            "en-GB": "Next",
+            "en-US": "Next",
+            "en-ZA": "Next",
+            "ja-JP": "次へ",
+            "es-US": "Siguiente",
+            _id: "6808411c4be42efa459a8ba4",
+          },
+          onCtaClickAction: "SUBMIT_STEP",
+        },
+        {
+          values: [
+            "dynamic_health.1.1.216.1",
+            "dynamic_health.1.1.216.2",
+            "dynamic_health.1.1.216.4",
+          ],
+          imageKey: "journeys/health-questionnaire/feedback/incorrect-2025-04-16.svg",
+          imageWidth: 202,
+          backgroundColor: "#F06B2A",
+          displayRays: true,
+          title: {
+            en: "So close!",
+            "en-GB": "So close!",
+            "en-US": "So close!",
+            "en-ZA": "So close!",
+            "ja-JP": "もう少し！",
+            "es-US": "¡Tan cerca!",
+            _id: "6808411c4be42efa459a8ba5",
+          },
+          description: {
+            en: "The actual answer is: **5 portions**.",
+            "en-GB": "The actual answer is: **5 portions**.",
+            "en-US": "The actual answer is: **5 portions**.",
+            "en-ZA": "The actual answer is: **5 portions**.",
+            "ja-JP": "実際の答えは：**5 portions**。",
+            "es-US": "La respuesta es: **5 portions**.",
+            _id: "6808411c4be42efa459a8ba6",
+          },
+          ctaLabel: {
+            en: "Next",
+            "en-GB": "Next",
+            "en-US": "Next",
+            "en-ZA": "Next",
+            "ja-JP": "次へ",
+            "es-US": "Siguiente",
+            _id: "6808411c4be42efa459a8ba7",
+          },
+          onCtaClickAction: "SUBMIT_STEP",
+        },
+      ],
+    },
+    ui: generateRandomMongoId(),
+    hooks: [],
+    events: [],
+    nextSteps: [],
+  },
+};
+
+export const CORE_JOURNEY_STEPS_21 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: "66140199f9be413b16dd1c81",
+    stepId: "dynamic_health.1.1.222",
+    name: "dynamic_health.1.1.222",
+    stepType: "normal",
+    externalId: "dynamic_health.1.1.222",
+    template: "journey_template_choice",
+    templateUi: {
+      answerKey: "dynamic_health.1.1.222",
+      copy: {
+        heading: {
+          "en-GB": "Quiz time! What are the benefits of a balanced diet?",
+          "ja-JP": "クイズです! バランスの取れた食事がもたらすメリットは何ですか?",
+          _id: "680840382655875c3868e623",
+        },
+        description: {
+          "en-GB": "",
+          "ja-JP": "",
+          _id: "680840382655875c3868e624",
+        },
+        ctaLabel: {
+          en: "Next",
+          "en-GB": "Next",
+          "en-US": "Next",
+          "en-ZA": "Next",
+          "ja-JP": "次へ",
+          "es-US": "Siguiente",
+          _id: "680840382655875c3868e625",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 10,
+      },
+      design: "default",
+      multiSelect: false,
+      options: [
+        {
+          value: "dynamic_health.1.1.222.1",
+          label: {
+            "en-GB": "Instant weight loss",
+            "ja-JP": "素早い体重の減量",
+            _id: "680840382655875c3868e626",
+          },
+        },
+        {
+          value: "dynamic_health.1.1.222.2",
+          label: {
+            "en-GB": "Improved digestion, energy levels, and reduced risk of chronic diseases",
+            "ja-JP": "消化/体力の向上、慢性疾患のリスク軽減",
+            _id: "680840382655875c3868e627",
+          },
+        },
+        {
+          value: "dynamic_health.1.1.222.3",
+          label: {
+            "en-GB": "Immunity against all diseases",
+            "ja-JP": "あらゆる病気に対する免疫力の向上",
+            _id: "680840382655875c3868e628",
+          },
+        },
+        {
+          value: "dynamic_health.1.1.222.4",
+          label: {
+            "en-GB": "Cure mental health",
+            "ja-JP": "メンタルヘルスの回復",
+            _id: "680840382655875c3868e629",
+          },
+        },
+      ],
+    },
+    answerKeys: ["dynamic_health.1.1.222"],
+    temporaryProperties: [],
+    feedback: {
+      submitOnNoMatch: false,
+      entries: [
+        {
+          values: ["dynamic_health.1.1.222.2"],
+          imageKey: "journeys/health-questionnaire/feedback/correct.svg",
+          imageWidth: 78,
+          backgroundColor: "#40C057",
+          displayRays: true,
+          starMultiplier: 5,
+          title: {
+            en: "Nicely done!",
+            "en-GB": "Nicely done!",
+            "en-US": "Well done!",
+            "en-ZA": "Nicely done!",
+            "ja-JP": "よくできました！",
+            "es-US": "¡Bien hecho!",
+            _id: "680840382655875c3868e62a",
+          },
+          description: {
+            en: "**Improved digestion, energy levels, and reduced risk of chronic diseases** is the correct answer.",
+            "en-GB":
+              "**Improved digestion, energy levels, and reduced risk of chronic diseases** is the correct answer.",
+            "en-US":
+              "**Improved digestion, energy levels, and reduced risk of chronic diseases** is the correct answer.",
+            "en-ZA":
+              "**Improved digestion, energy levels, and reduced risk of chronic diseases** is the correct answer.",
+            "ja-JP":
+              "**Improved digestion, energy levels, and reduced risk of chronic diseases** が正しい答えです。",
+            "es-US":
+              "**Improved digestion, energy levels, and reduced risk of chronic diseases** es la respuesta correcta.",
+            _id: "680840382655875c3868e62b",
+          },
+          ctaLabel: {
+            en: "Next",
+            "en-GB": "Next",
+            "en-US": "Next",
+            "en-ZA": "Next",
+            "ja-JP": "次へ",
+            "es-US": "Siguiente",
+            _id: "680840382655875c3868e62c",
+          },
+          onCtaClickAction: "SUBMIT_STEP",
+          _id: "68084038bbb150b94b8a0385",
+        },
+        {
+          values: [
+            "dynamic_health.1.1.222.1",
+            "dynamic_health.1.1.222.3",
+            "dynamic_health.1.1.222.4",
+          ],
+          imageKey: "journeys/health-questionnaire/feedback/incorrect-2025-04-16.svg",
+          imageWidth: 202,
+          backgroundColor: "#F06B2A",
+          displayRays: true,
+          title: {
+            en: "So close!",
+            "en-GB": "So close!",
+            "en-US": "So close!",
+            "en-ZA": "So close!",
+            "ja-JP": "もう少し！",
+            "es-US": "¡Tan cerca!",
+            _id: "680840382655875c3868e62d",
+          },
+          description: {
+            en: "The actual answer is: **Improved digestion, energy levels, and reduced risk of chronic diseases**.",
+            "en-GB":
+              "The actual answer is: **Improved digestion, energy levels, and reduced risk of chronic diseases**.",
+            "en-US":
+              "The actual answer is: **Improved digestion, energy levels, and reduced risk of chronic diseases**.",
+            "en-ZA":
+              "The actual answer is: **Improved digestion, energy levels, and reduced risk of chronic diseases**.",
+            "ja-JP":
+              "実際の答えは：**Improved digestion, energy levels, and reduced risk of chronic diseases**。",
+            "es-US":
+              "La respuesta es: **Improved digestion, energy levels, and reduced risk of chronic diseases**.",
+            _id: "680840382655875c3868e62e",
+          },
+          ctaLabel: {
+            en: "Next",
+            "en-GB": "Next",
+            "en-US": "Next",
+            "en-ZA": "Next",
+            "ja-JP": "次へ",
+            "es-US": "Siguiente",
+            _id: "680840382655875c3868e62f",
+          },
+          onCtaClickAction: "SUBMIT_STEP",
+          _id: "68084038bbb150b94b8a0386",
+        },
+      ],
+    },
+    ui: generateRandomMongoId(),
+    __v: 0,
+    hooks: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_22 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: "66140199f9be413b16dd1c81",
+    stepId: "dynamic_health.2.1.31",
+    name: "dynamic_health.2.1.31",
+    stepType: "normal",
+    externalId: "dynamic_health.2.1.31",
+    template: "journey_template_image_choice",
+    templateUi: {
+      answerKey: "dynamic_health.2.1.31",
+      copy: {
+        heading: {
+          "en-GB": "Are you a morning or night person?",
+          "ja-JP": "あなたは朝型、または夜型のどちらですか?",
+          _id: "68083fe84be42efa459a8982",
+        },
+        description: {
+          "en-GB": "",
+          "ja-JP": "",
+          _id: "68083fe84be42efa459a8983",
+        },
+        ctaLabel: {
+          en: "Next",
+          "en-GB": "Next",
+          "en-US": "Next",
+          "en-ZA": "Next",
+          "ja-JP": "次へ",
+          "es-US": "Siguiente",
+          _id: "68083fe84be42efa459a8984",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 10,
+      },
+      multiSelect: false,
+      options: [
+        {
+          value: "dynamic_health.2.1.31.1",
+          label: {
+            "en-GB": "Morning person",
+            "ja-JP": "朝型",
+            _id: "68083fe84be42efa459a8985",
+          },
+          imageKey: "journeys/health-questionnaire/image-choice/sleep_chrono_morning.svg",
+        },
+        {
+          value: "dynamic_health.2.1.31.2",
+          label: {
+            "en-GB": "Night person",
+            "ja-JP": "夜型",
+            _id: "68083fe84be42efa459a8986",
+          },
+          imageKey: "journeys/health-questionnaire/image-choice/sleep_chrono_night.svg",
+        },
+        {
+          value: "dynamic_health.2.1.31.3",
+          label: {
+            "en-GB": "I'm not sure",
+            "ja-JP": "分からない",
+            _id: "68083fe84be42efa459a8987",
+          },
+          imageKey: "journeys/health-questionnaire/image-choice/sleep_chrono_unsure.svg",
+        },
+      ],
+      columns: 2,
+    },
+    answerKeys: ["dynamic_health.2.1.31"],
+    temporaryProperties: [],
+    ui: generateRandomMongoId(),
+    __v: 0,
+    hooks: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_23 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: "66140199f9be413b16dd1c81",
+    stepId: "dynamic_health.2.11.8",
+    name: "dynamic_health.2.11.8",
+    stepType: "normal",
+    externalId: "dynamic_health.2.11.8",
+    template: "journey_template_scale",
+    templateUi: {
+      answerKey: "dynamic_health.2.11.8",
+      copy: {
+        heading: {
+          "en-GB":
+            "In the past week, how often did you manage to stay focused on important tasks without getting sidetracked?",
+          "ja-JP": "過去1週間で、重要なタスクに集中し、脱線せずに取り組むことはできましたか?",
+          _id: "6808413c4be42efa459a8c54",
+        },
+        description: {
+          "en-GB": "",
+          "ja-JP": "",
+          _id: "6808413c4be42efa459a8c55",
+        },
+        ctaLabel: {
+          en: "Next",
+          "en-GB": "Next",
+          "en-US": "Next",
+          "en-ZA": "Next",
+          "ja-JP": "次へ",
+          "es-US": "Siguiente",
+          _id: "6808413c4be42efa459a8c56",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 10,
+      },
+      design: "default",
+      multiSelect: false,
+      options: [
+        {
+          value: "dynamic_health.2.11.8.1",
+          label: {
+            "en-GB": "Always",
+            "ja-JP": "常にできた",
+            _id: "6808413c4be42efa459a8c57",
+          },
+        },
+        {
+          value: "dynamic_health.2.11.8.2",
+          label: {
+            "en-GB": "Often",
+            "ja-JP": "だいたいできた",
+            _id: "6808413c4be42efa459a8c58",
+          },
+        },
+        {
+          value: "dynamic_health.2.11.8.3",
+          label: {
+            "en-GB": "Sometimes",
+            "ja-JP": "時々できた",
+            _id: "6808413c4be42efa459a8c59",
+          },
+        },
+        {
+          value: "dynamic_health.2.11.8.4",
+          label: {
+            "en-GB": "Rarely",
+            "ja-JP": "あまりできなかった",
+            _id: "6808413c4be42efa459a8c5a",
+          },
+        },
+        {
+          value: "dynamic_health.2.11.8.5",
+          label: {
+            "en-GB": "Never",
+            "ja-JP": "全くできなかった",
+            _id: "6808413c4be42efa459a8c5b",
+          },
+        },
+      ],
+    },
+    answerKeys: ["dynamic_health.2.11.8"],
+    temporaryProperties: [],
+    ui: generateRandomMongoId(),
+    __v: 0,
+    hooks: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_24 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: "66140199f9be413b16dd1c81",
+    stepId: "dynamic_health.2.9.3",
+    name: "dynamic_health.2.9.3",
+    stepType: "normal",
+    externalId: "dynamic_health.2.9.3",
+    template: "journey_template_scale",
+    templateUi: {
+      answerKey: "dynamic_health.2.9.3",
+      copy: {
+        heading: {
+          "en-GB":
+            "Yesterday, did you check social media multiple times, even when it may not have been appropriate (e.g., during a meeting, at dinner, etc.)?",
+          "ja-JP": "昨日、会議中や食事中など、適切でない状況でも複数回SNSをチェックしましたか?",
+          _id: "680840492655875c3868e681",
+        },
+        description: {
+          "en-GB": "",
+          "ja-JP": "",
+          _id: "680840492655875c3868e682",
+        },
+        ctaLabel: {
+          en: "Next",
+          "en-GB": "Next",
+          "en-US": "Next",
+          "en-ZA": "Next",
+          "ja-JP": "次へ",
+          "es-US": "Siguiente",
+          _id: "680840492655875c3868e683",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 10,
+      },
+      design: "default",
+      multiSelect: false,
+      options: [
+        {
+          value: "dynamic_health.2.9.3.1",
+          label: {
+            "en-GB": "Yes, I checked social media repeatedly",
+            "ja-JP": "はい、繰り返しSNSをチェックしました",
+            _id: "680840492655875c3868e684",
+          },
+        },
+        {
+          value: "dynamic_health.2.9.3.2",
+          label: {
+            "en-GB": "I checked social media a few times, but it was controlled",
+            "ja-JP": "いくつかの場面でSNSをチェックしましたが、コントロールされていました",
+            _id: "680840492655875c3868e685",
+          },
+        },
+        {
+          value: "dynamic_health.2.9.3.3",
+          label: {
+            "en-GB": "No, I didn't check social media",
+            "ja-JP": "いいえ、SNSはチェックしませんでした",
+            _id: "680840492655875c3868e686",
+          },
+        },
+        {
+          value: "dynamic_health.2.9.3.4",
+          label: {
+            "en-GB": "I wanted to check social media at inappropriate times, but I didn't",
+            "ja-JP": "不適切な時にSNSをチェックしたかったが、しませんでした",
+            _id: "680840492655875c3868e687",
+          },
+        },
+      ],
+    },
+    answerKeys: ["dynamic_health.2.9.3"],
+    temporaryProperties: [],
+    ui: generateRandomMongoId(),
+    __v: 0,
+    hooks: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_25 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: "66140199f9be413b16dd1c81",
+    stepId: "dynamic_health.2.8.109",
+    name: "dynamic_health.2.8.109",
+    stepType: "normal",
+    externalId: "dynamic_health.2.8.109",
+    template: "journey_template_image_choice",
+    templateUi: {
+      answerKey: "dynamic_health.2.8.109",
+      copy: {
+        heading: {
+          "en-GB": "How do you typically maintain your social connections?",
+          "ja-JP": "普段、どのように社交的なつながりを維持していますか?",
+          _id: "681179858ce1b213c187c23a",
+        },
+        description: {
+          "en-GB": "(Select all that apply)",
+          "ja-JP": "（該当するものを全て選択してください）",
+          _id: "681179858ce1b213c187c23b",
+        },
+        ctaLabel: {
+          en: "Next",
+          "en-GB": "Next",
+          "en-US": "Next",
+          "en-ZA": "Next",
+          "ja-JP": "次へ",
+          "es-US": "Siguiente",
+          _id: "681179858ce1b213c187c23c",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 10,
+      },
+      multiSelect: true,
+      options: [
+        {
+          value: "dynamic_health.2.8.109.1",
+          label: {
+            "en-GB": "In-person meet ups",
+            "ja-JP": "対面での会合",
+            _id: "681179858ce1b213c187c23d",
+          },
+          imageKey: "journeys/health-questionnaire/image-choice/social_inperson.svg",
+        },
+        {
+          value: "dynamic_health.2.8.109.2",
+          label: {
+            "en-GB": "Phone calls or video chats",
+            "ja-JP": "電話やビデオチャット",
+            _id: "681179858ce1b213c187c23e",
+          },
+          imageKey: "journeys/health-questionnaire/image-choice/social_calls.svg",
+        },
+        {
+          value: "dynamic_health.2.8.109.3",
+          label: {
+            "en-GB": "Social media or messaging apps",
+            "ja-JP": "ソーシャルメディアやメッセージングアプリ",
+            _id: "681179858ce1b213c187c23f",
+          },
+          imageKey: "journeys/health-questionnaire/image-choice/social_online.svg",
+        },
+        {
+          value: "dynamic_health.2.8.109.4",
+          label: {
+            "en-GB": "Other methods",
+            "ja-JP": "その他の方法",
+            _id: "681179858ce1b213c187c240",
+          },
+          imageKey: "journeys/health-questionnaire/image-choice/social_other.svg",
+        },
+      ],
+      columns: 2,
+    },
+    answerKeys: ["dynamic_health.2.8.109"],
+    temporaryProperties: [],
+    ui: generateRandomMongoId(),
+    __v: 0,
+    hooks: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_26 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: "66140199f9be413b16dd1c81",
+    stepId: "dynamic_health.2.9.11",
+    name: "dynamic_health.2.9.11",
+    stepType: "normal",
+    externalId: "dynamic_health.2.9.11",
+    template: "journey_template_scale",
+    templateUi: {
+      answerKey: "dynamic_health.2.9.11",
+      copy: {
+        heading: {
+          "en-GB": "Do you use your personal or work mobile phone for work?",
+          "ja-JP": "仕事で個人用または業務用の携帯電話を使用していますか?",
+          _id: "68083ef62655875c3868e406",
+        },
+        description: {
+          "en-GB": "",
+          "ja-JP": "",
+          _id: "68083ef62655875c3868e407",
+        },
+        ctaLabel: {
+          en: "Next",
+          "en-GB": "Next",
+          "en-US": "Next",
+          "en-ZA": "Next",
+          "ja-JP": "次へ",
+          "es-US": "Siguiente",
+          _id: "68083ef62655875c3868e408",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 10,
+      },
+      design: "default",
+      multiSelect: false,
+      options: [
+        {
+          value: "dynamic_health.2.9.11.1",
+          label: {
+            "en-GB": "I use my work mobile phone for work",
+            "ja-JP": "仕事用の携帯電話を仕事に使用している",
+            _id: "68083ef62655875c3868e409",
+          },
+        },
+        {
+          value: "dynamic_health.2.9.11.2",
+          label: {
+            "en-GB": "I use my personal mobile phone for work",
+            "ja-JP": "個人用の携帯電話を仕事に使用している",
+            _id: "68083ef62655875c3868e40a",
+          },
+        },
+        {
+          value: "dynamic_health.2.9.11.3",
+          label: {
+            "en-GB": "I don't need to use a mobile phone for work",
+            "ja-JP": "仕事用に携帯電話を使用する必要はない",
+            _id: "68083ef62655875c3868e40b",
+          },
+        },
+      ],
+    },
+    answerKeys: ["dynamic_health.2.9.11"],
+    temporaryProperties: [],
+    ui: generateRandomMongoId(),
+    __v: 0,
+    hooks: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;

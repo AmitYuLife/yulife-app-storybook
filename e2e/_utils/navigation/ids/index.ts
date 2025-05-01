@@ -232,6 +232,16 @@ export const HALF_MODAL_CTA = "rewards.got-it";
 export const GENERIC_SELECTOR_ITEM = (itemText: string) => `GENERIC_SELECTOR_ITEM_${itemText}`;
 export const GENERIC_SELECTOR_CONFIRM = "generic-selector-confirm-text-view";
 export const REWARD_LOCATION_MODAL = "REWARD_LOCATION_MODAL";
+export const HALF_MODAL_TITLE = (title: string) => `HALF_MODAL_TITLE_${title}`;
+export const HALF_MODAL_SUBTITLE = (title: string) => `HALF_MODAL_SUBTITLE_${title}`;
+export const IMAGE_CHOICE = (id: string) => `IMAGE_CHOICE_${id}`;
+export const IMAGE_CHOICE_LABEL = (label: string) => `IMAGE_CHOICE_LABEL_${label}`;
+export const IMAGE_CHOICE_CHECKBOX = (optionKey: string, isChecked: boolean) =>
+  `IMAGE_CHOICE_CHECKBOX_${optionKey}_${isChecked ? "checked" : "unchecked"}`;
+export const CONTENT_ITEM_SCALE = `CONTENT_ITEM_SCALE`;
+export const CONTENT_ITEM_SLIDER = `CONTENT_ITEM_SLIDER`;
+export const SLIDABLE_POSITION = (value: number) => `SLIDABLE_POSITION_${value}`;
+export const DRAGGABLE_SLIDER_POSITION = (value: number) => `DRAGGABLE_SLIDER_POSITION_${value}`;
 
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`;
@@ -637,6 +647,9 @@ export const CHALLENGE_TILE_SURGE_ICON = "CHALLENGE_TILE_SURGE_ICON";
 export const CHALLENGE_LOCKED_ICON = "CHALLENGE_LOCKED_ICON";
 export const GHI_REWARD_ICON = (level: string | number) => `GHI_REWARD_ICON_${level}`;
 export const HINT_VARIANT = (variant: string) => `HINT_VARIANT_${variant}`;
+export const HINT_LABEL = (label: string) => `HINT_LABEL_${label}`;
+export const HINT_VARIANT_IMAGE = (uri?: string) =>
+  uri ? `HINT_VARIANT_IMAGE_${uri}` : "HINT_VARIANT_IMAGE_NONE";
 export const QUEST_MODAL_MAYBE_LATER = "quest-detail-modal-dismiss-button-text-view";
 export const QUEST_MAP_ONBOARDING_CLOSE = "quest-map-onboarding-close-button";
 export const LOCKED_QUEST_LEVEL_CTA = "quest-detail-modal-cta-button";

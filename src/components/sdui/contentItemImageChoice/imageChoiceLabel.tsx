@@ -4,6 +4,7 @@ import { TextTemplate } from "@atoms";
 import { Style, Colours, TemplateTextType } from "@styles";
 import { ContentItemImageChoiceFragment } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
+import { IMAGE_CHOICE_LABEL } from "@ids";
 
 interface Props {
   label: string;
@@ -15,7 +16,7 @@ export const ImageChoiceLabel = ({ label, labelTextType, textStyles }: Props) =>
   const textType = (labelTextType as TemplateTextType) || "b2";
 
   return (
-    <View style={[styles.textWrapper, mapServerStyles(textStyles)]}>
+    <View style={[styles.textWrapper, mapServerStyles(textStyles)]} testID={IMAGE_CHOICE_LABEL(label)}>
       <TextTemplate type={textType} color={Colours.neutral.n800} textAlign="center">
         {label}
       </TextTemplate>
