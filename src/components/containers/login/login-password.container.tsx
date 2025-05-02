@@ -1,12 +1,12 @@
 import LoginPasswordScreen from "@components/screens/login/login-password/login-password.screen";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
-import { useMutatationAllRegions } from "@hooks";
+import { useBackHandler, useMutatationAllRegions } from "@hooks";
 import { REGION, t } from "@locale";
 import { TOKEN_EXPIRATION } from "@services/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import Logger from "@services/logging/logger";
 import { memo, useCallback, useMemo, useState } from "react";
-import { AccessibilityInfo, Alert, Platform } from "react-native";
+import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
 import DeviceInfo from "react-native-device-info";
 import { Navigation } from "react-native-navigation";
 import { applyLoginSession } from "./login.helpers";
@@ -25,6 +25,14 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { loading: fitkitLoading } = useFitKit();
+
+  const handlePressBack = useCallback(() => {
+    Keyboard.dismiss();
+    Navigation.pop(componentId);
+    return true;
+  }, [componentId]);
+
+  useBackHandler(handlePressBack);
 
   const {
     mutate: loginUser,
@@ -58,6 +66,7 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
       if (results.length === 1) {
         // only 1 hit, login for this region
         await applyLoginSession(results[0], results[0].region, componentId, dispatch);
+        Keyboard.dismiss();
         return;
       }
 
@@ -94,7 +103,7 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
       password={password}
       validationError={""} // TODO - validation errors
       isSubmitting={isSubmitting || fitkitLoading}
-      onPressBack={() => Navigation.pop(componentId)}
+      onPressBack={handlePressBack}
       onPressSubmit={handleSubmit}
       onPasswordChange={setPassword}
       loginError={loginError}

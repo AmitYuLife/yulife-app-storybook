@@ -1,5 +1,5 @@
 import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { Style, TOP_BAR } from "@styles";
 
 export default StyleSheet.create({
   imageWrapper: {
@@ -14,6 +14,7 @@ export default StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
     flexDirection: "column",
+    paddingTop: TOP_BAR.PADDING_TOP,
   } as ViewStyle,
   lottie: {
     width: Style.DEVICE_WIDTH,

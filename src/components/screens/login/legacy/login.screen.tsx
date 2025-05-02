@@ -27,7 +27,6 @@ export const LoginScreen = memo((props: LoginScreenProps) => (
         backgroundImage={require("@assets/centred-screen/forestBackground.png")}
         style={styles.wrapper}
         BackgroundGradient={<UnauthorisedGradient />}
-        shouldUseSafeArea={false}
       >
         {props.regionSelect ? (
           <ServerList onPress={props.regionSelect.onSelect} restrictToRegions={props.regionSelect.restrictTo} />
