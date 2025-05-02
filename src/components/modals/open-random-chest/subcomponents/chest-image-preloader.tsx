@@ -1,5 +1,5 @@
-import { prefetchImages } from "@atoms";
-import { memo, ReactNode, useEffect, useState } from "react";
+import { useImagePreload } from "@hooks";
+import { memo, ReactNode } from "react";
 
 interface IChestImagePreloaderProps {
   images?: string[];
@@ -7,18 +7,7 @@ interface IChestImagePreloaderProps {
 }
 
 const ChestImagePreloader = ({ images, children }: IChestImagePreloaderProps) => {
-  const [hasLoaded, setHasLoaded] = useState<boolean>(false);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        await prefetchImages(images, "memory-disk");
-      } finally {
-        // We still want to continue if an image fails to load
-        setHasLoaded(true);
-      }
-    })();
-  }, [images]);
+  const { hasLoaded } = useImagePreload({ images });
 
   if (!hasLoaded) {
     return null;

@@ -40,3 +40,4 @@ export * from "./useModal";
 export * from "./usePrizeHintPopup";
 export * from "./useBoxProps";
 export * from "./animation/useBobbingAnimation";
+export * from "./useImagePreload";
