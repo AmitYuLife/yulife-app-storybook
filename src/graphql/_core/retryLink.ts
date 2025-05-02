@@ -1,4 +1,5 @@
 import { RetryLink } from "@apollo/client/link/retry";
+import { DETOX_ENABLED } from "@services/socket";
 import moment from "moment";
 
 export const MAX_OPERATIONS_ATTEMPTS = 3;
@@ -14,6 +15,9 @@ const BLACKLIST_RETRY_OPERATIONS = [
   "LoginUser",
   "SubmitSduiJourney",
 ];
+if (DETOX_ENABLED) {
+  BLACKLIST_RETRY_OPERATIONS.push("GetPublicYuAPIConfig", "GetPotentialRewards");
+}
 
 const retryLink = (showOfflineScreen: () => void) => {
   return new RetryLink({

@@ -4,9 +4,10 @@ import { region } from "@locale";
 import { initStripe } from "@services/stripe";
 import { SyncAction } from "@redux/_core/types";
 import deepLink from "@navigation/deepLink";
-import client from "@graphql/_core/client";
+import client, { regionalClients } from "@graphql/_core/client";
 import { gql, GetPublicYuApiConfigQuery } from "@graphql/__generated";
 import { ApolloQueryResult } from "@apollo/client";
+import { DETOX_ENABLED } from "@services/socket";
 
 const initialPayloadTypes = ["INIT", "SET_MAIN_ROOT"];
 
@@ -24,15 +25,19 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
     }
 
     if (shouldFetchConfig) {
-      const response: ApolloQueryResult<GetPublicYuApiConfigQuery> = yield call(() =>
-        client().query({
-          query: gql("GetPublicYuApiConfigDocument"),
-          fetchPolicy: "no-cache",
-        })
-      );
+      if (DETOX_ENABLED) {
+        yield call(hydrateForDetox);
+      } else {
+        const response: ApolloQueryResult<GetPublicYuApiConfigQuery> = yield call(() =>
+          client().query({
+            query: gql("GetPublicYuApiConfigDocument"),
+            fetchPolicy: "no-cache",
+          })
+        );
 
-      if (response?.data?.config?.mixpanelKey) {
-        yield call(region.setConfig, response.data.config);
+        if (response?.data?.config?.mixpanelKey) {
+          yield call(region.setConfig, response.data.config);
+        }
       }
     }
 
@@ -46,3 +51,22 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
     Logger.error(error, { file: "hydrateApiConfigSaga" });
   }
 }
+
+const hydrateForDetox = async () => {
+  for (const regionalClient of regionalClients) {
+    try {
+      const response = await regionalClient.query({
+        query: gql("GetPublicYuApiConfigDocument"),
+        fetchPolicy: "no-cache",
+        errorPolicy: "ignore",
+      });
+
+      if (response?.data?.config?.mixpanelKey) {
+        await region.setConfig(response.data.config);
+        return;
+      }
+    } catch {
+      //
+    }
+  }
+};
