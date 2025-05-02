@@ -3,10 +3,11 @@ import { REGION, region, t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { useCaptcha } from "@organisms/captcha-input";
 import { memo, useCallback, useState } from "react";
-import { AccessibilityInfo, Alert } from "react-native";
+import { AccessibilityInfo, Alert, Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { useSendMagicLink } from "./send-magic-link.hook";
 import { validateEmail } from "@utils/email";
+import { useBackHandler } from "@hooks";
 
 interface Props {
   componentId: string;
@@ -17,6 +18,14 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
   const [email, setEmail] = useState(props.email || "");
   const [magicLinkError, setMagicLinkError] = useState<string | null>(null);
   const [emailError, setEmailError] = useState<string | null>(null);
+
+  const handlePressBack = useCallback(() => {
+    Keyboard.dismiss();
+    Navigation.pop(componentId);
+    return true;
+  }, [componentId]);
+
+  useBackHandler(handlePressBack);
 
   const onChange = useCallback((userInput: string) => {
     setEmail(userInput);
@@ -57,6 +66,7 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
         regionResponses: results,
         email,
       });
+      Keyboard.dismiss();
     },
     onFailure: (error: string) => {
       handleError(error);
@@ -68,7 +78,7 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
       email={email}
       emailError={emailError}
       isSubmitting={isSubmitting}
-      onPressBack={() => Navigation.pop(componentId)}
+      onPressBack={handlePressBack}
       onPressSubmit={sendMagicLink}
       onEmailChange={onChange}
       captcha={captcha}

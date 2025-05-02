@@ -1,13 +1,10 @@
-import * as React from "react";
-import { memo, useCallback } from "react";
+import { memo } from "react";
 import { Box, Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
-import { CentredScreen, Pressable } from "@molecules";
+import { CentredScreen } from "@molecules";
 import { Style } from "@styles";
-import { Keyboard, ScrollView, StyleSheet, View } from "react-native";
-import { t } from "@locale";
+import { ScrollView, StyleSheet } from "react-native";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { useKeyboardListeners } from "@hooks";
 import LoginBackgroundSvg from "@components/screens/login/subcomponents/svgs/login-background-svg";
 
 interface ILoginFormWrapperProps {
@@ -23,32 +20,14 @@ interface ILoginFormWrapperProps {
 }
 
 export const LoginFormWrapper = ({ onPressBack, heading, variant = "default", children }: ILoginFormWrapperProps) => {
-  const isShowingKeyboard = useKeyboardListeners();
-
-  const dismissKeyboard = useCallback(() => {
-    if (isShowingKeyboard) {
-      Keyboard.dismiss();
-    }
-  }, [isShowingKeyboard]);
-
   return (
     <CentredScreen
       backgroundImage={<LoginBackgroundSvg showBird={variant === "magicLink"} />}
       style={styles.wrapper}
       BackgroundGradient={<UnauthorisedGradient />}
     >
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+      <ScrollView keyboardShouldPersistTaps={"handled"} showsVerticalScrollIndicator={false} style={styles.scrollView}>
         <Pad height={32} />
-        <Pressable
-          delay={1000}
-          style={styles.fullScreenWrapper}
-          accessible={isShowingKeyboard ? true : false}
-          importantForAccessibility={isShowingKeyboard ? "auto" : "no"}
-          accessibilityLabel={t("screens.login.accessibility.hide_keyboard")}
-          onPress={dismissKeyboard}
-        >
-          <View />
-        </Pressable>
         <Box pt={60} pb={40} px={30}>
           <TextTemplate type="h2">{heading}</TextTemplate>
         </Box>

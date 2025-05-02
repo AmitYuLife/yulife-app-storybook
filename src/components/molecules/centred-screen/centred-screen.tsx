@@ -1,6 +1,5 @@
 import { memo, PropsWithChildren, JSX, ReactElement, isValidElement } from "react";
 import { Image as RNImage, ImageStyle, View, ViewStyle } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
 import { IScreen } from "@theme";
@@ -15,7 +14,6 @@ interface Props {
   style?: ViewStyle | ImageStyle;
   isLottie?: boolean;
   isFullScreen?: boolean;
-  shouldUseSafeArea?: boolean;
 }
 
 function CentredScreen({
@@ -26,18 +24,16 @@ function CentredScreen({
   style,
   isLottie,
   isFullScreen,
-  shouldUseSafeArea = true,
 }: Props) {
-  const Wrapper = shouldUseSafeArea ? SafeAreaView : View;
-
   return (
-    <Wrapper style={[styles.wrapper, style]} testID={testID}>
+    <View style={[styles.wrapper, style]} testID={testID}>
       {BackgroundGradient}
       {isValidElement(backgroundImage) ? (
         <Box
           position="absolute"
           width={Style.DEVICE_WIDTH}
           height={Style.DEVICE_HEIGHT}
+          disableAutoAdjust={true}
           left={0}
           right={0}
           justifyContent="flex-end"
@@ -55,7 +51,7 @@ function CentredScreen({
         </View>
       )}
       {children}
-    </Wrapper>
+    </View>
   );
 }
 
