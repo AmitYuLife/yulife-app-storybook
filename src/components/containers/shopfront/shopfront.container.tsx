@@ -5,7 +5,7 @@ import { useLazyQuery } from "@apollo/client";
 import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
 import { useNavigation } from "@navigation/navigation.context";
 import { IIcon } from "@organisms/top-bar/subcomponents/left";
-import { useQueryOnScreenSeen } from "@hooks";
+import { useImagePreload, useQueryOnScreenSeen } from "@hooks";
 import { RewardOnPressArgs } from "../member/rewards/rewards.types";
 import { showYuModal } from "@navigation/root";
 import { RewardMilestoneDetails } from "@components/screens/member/rewards/list/subcomponents/reward-milestone-details";
@@ -33,6 +33,16 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
   );
   const [getMoreRewards, { loading: isFetchingMore }] = useLazyQuery(gql("GetMobileRewardsListItemsDocument"), {
     fetchPolicy: "network-only",
+  });
+
+  const { hasLoaded } = useImagePreload({
+    images: shopfront?.rewardPasses?.activeRewardPasses
+      ?.map(({ backgroundImage, foregroundImage, passIcon }) => [
+        backgroundImage?.uri,
+        foregroundImage?.uri,
+        passIcon?.uri,
+      ])
+      ?.flat(),
   });
 
   const allRewardItems = useMemo(() => {
@@ -149,7 +159,7 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
 
   const shouldShowFirstTimeModal = shopfront?.rewardList?.hasUserSelectedStoreLocation === false;
 
-  if (isShopfrontLoading || !shopfront) {
+  if (isShopfrontLoading || !shopfront || !hasLoaded) {
     return <ShopfrontLoading leftIcons={leftIcons} />;
   }
 
