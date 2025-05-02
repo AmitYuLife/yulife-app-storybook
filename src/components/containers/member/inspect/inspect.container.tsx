@@ -190,6 +190,7 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
       onGiftPress={isGiftingEnabled && isOtherUser ? handlePressGiftPrompt : undefined}
       shortName={current.shortName}
       inspectOtherUser={isOtherUser}
+      componentId={_componentId}
     />
   );
 };
