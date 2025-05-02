@@ -1,7 +1,13 @@
 import React, { memo, useMemo } from "react";
 import { Pressable, Yumoji } from "@molecules";
-import { GenericHeadingAbsolute, GenericHeadingPad, GiftSendPrompt, NameLevelMiniAvatar } from "@organisms";
-import { Colours, Style } from "@styles";
+import {
+  AchievementsShowcase,
+  GenericHeadingAbsolute,
+  GenericHeadingPad,
+  GiftSendPrompt,
+  NameLevelMiniAvatar,
+} from "@organisms";
+import { Colours, Style, TOP_BAR } from "@styles";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { t } from "@locale";
 import { INSPECT_SCREEN, YUMOJI, USER_INFO } from "@ids";
@@ -9,6 +15,7 @@ import AverageStatsSection, { ActivityItems } from "./sections/average.stats.sec
 import StatsSection, { Section } from "./sections/stats.section";
 import { Box } from "@atoms";
 import { VoidFunction } from "@utils";
+import { useUserFeatures } from "@hooks";
 
 const AVATAR_WIDTH = Style.adjust(160) * 0.95;
 const AVATAR_HEIGHT = Style.adjust(328) * 0.95;
@@ -29,6 +36,7 @@ export interface InspectProps {
   challengeDuel: VoidFunction;
   onYumojiPress: VoidFunction;
   onGiftPress?: VoidFunction;
+  componentId?: string;
 }
 
 const InspectScreen = ({
@@ -45,50 +53,94 @@ const InspectScreen = ({
   onGiftPress,
   shortName,
   yuniversalMap,
+  componentId,
 }: InspectProps) => {
   const actionButtonLabel = useMemo(
     () => (inspectOtherUser ? t("screens.inspect.duel.challenge_duel") : t("screens.inspect.duel.challenge_somebody")),
     [inspectOtherUser]
   );
 
+  // remove this when we merge the gql endpoints
+  const { tempGameShowAchievements } = useUserFeatures();
+
   return (
     <View style={styles.wrapper} testID={INSPECT_SCREEN}>
       <GenericHeadingPad />
       <ScrollView
+        bounces={!tempGameShowAchievements}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.containerStyle}
         testID={USER_INFO(`${userName} ${level}`)}
       >
-        <Box alignItems="center" mt={24}>
-          <NameLevelMiniAvatar
-            name={userName}
-            level={level}
-            yuniversalMap={yuniversalMap}
-            showYumoji={false}
-            centerContent={true}
-            hideDisplayedLevel={!!(inspectOtherUser && yuniversalMap)}
-          />
+        <Box ph={24}>
+          {tempGameShowAchievements ? (
+            <Box flexDirection="row" pr={5} mt={12}>
+              <Box width={"55%"}>
+                <NameLevelMiniAvatar
+                  name={userName}
+                  level={level}
+                  yuniversalMap={yuniversalMap}
+                  showYumoji={false}
+                  hideDisplayedLevel={!!(inspectOtherUser && yuniversalMap)}
+                />
+                <Box mt={24}>
+                  <AchievementsShowcase
+                    componentId={componentId}
+                    points={0}
+                    achievements={[]}
+                    isInspectingUser={inspectOtherUser}
+                  />
+                </Box>
+              </Box>
+              <Box testID={YUMOJI} mt={16}>
+                <Pressable delay={1000} onLongPress={onYumojiPress}>
+                  <Yumoji
+                    width={AVATAR_WIDTH}
+                    height={AVATAR_HEIGHT}
+                    emptyWidth={EMPTY_AVATAR_WIDTH}
+                    emptyHeight={EMPTY_AVATAR_HEIGHT}
+                    uri={yumoji}
+                  />
+                </Pressable>
+              </Box>
+            </Box>
+          ) : (
+            <>
+              <Box alignItems="center" mt={24}>
+                <NameLevelMiniAvatar
+                  name={userName}
+                  level={level}
+                  yuniversalMap={yuniversalMap}
+                  showYumoji={false}
+                  centerContent={true}
+                  hideDisplayedLevel={!!(inspectOtherUser && yuniversalMap)}
+                />
+              </Box>
+              <View style={styles.yumojiWrapper} testID={YUMOJI}>
+                <Pressable delay={1000} onLongPress={onYumojiPress}>
+                  <Yumoji
+                    width={AVATAR_WIDTH}
+                    height={AVATAR_HEIGHT}
+                    emptyWidth={EMPTY_AVATAR_WIDTH}
+                    emptyHeight={EMPTY_AVATAR_HEIGHT}
+                    uri={yumoji}
+                  />
+                </Pressable>
+              </View>
+            </>
+          )}
+
+          {onGiftPress ? (
+            <Box mt={16}>
+              <GiftSendPrompt name={shortName} onPress={onGiftPress} />
+            </Box>
+          ) : null}
+          <StatsSection section={duel} actionButtonLabel={actionButtonLabel} onPress={challengeDuel} />
+          <StatsSection section={general} />
+          <AverageStatsSection activity={activity} inspectOtherUser={inspectOtherUser} />
         </Box>
-        <View style={styles.yumojiWrapper} testID={YUMOJI}>
-          <Pressable delay={1000} onLongPress={onYumojiPress}>
-            <Yumoji
-              width={AVATAR_WIDTH}
-              height={AVATAR_HEIGHT}
-              emptyWidth={EMPTY_AVATAR_WIDTH}
-              emptyHeight={EMPTY_AVATAR_HEIGHT}
-              uri={yumoji}
-            />
-          </Pressable>
-        </View>
-        {onGiftPress ? (
-          <Box mt={16}>
-            <GiftSendPrompt name={shortName} onPress={onGiftPress} />
-          </Box>
-        ) : null}
-        <StatsSection section={duel} actionButtonLabel={actionButtonLabel} onPress={challengeDuel} />
-        <StatsSection section={general} />
-        <AverageStatsSection activity={activity} inspectOtherUser={inspectOtherUser} />
       </ScrollView>
+      {!tempGameShowAchievements ? null : <Box style={styles.shadowBox} width={"100%"} h={4} />}
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={onClose} />
     </View>
   );
@@ -98,7 +150,6 @@ export default memo(InspectScreen);
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: Style.adjust(24),
     height: Style.DEVICE_HEIGHT,
     backgroundColor: Colours.neutral.n50,
   },
@@ -109,5 +160,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: Style.adjust(10),
     marginTop: Style.adjust(16),
+  },
+  shadowBox: {
+    position: "absolute",
+    top: TOP_BAR.TOP_BAR_WITH_PAD,
+    shadowColor: "rgba(0, 0, 0, 0.08)",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 4,
+    backgroundColor: "white",
   },
 });
