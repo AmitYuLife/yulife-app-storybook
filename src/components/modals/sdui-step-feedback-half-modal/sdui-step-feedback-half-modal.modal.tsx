@@ -1,4 +1,5 @@
 import React, { memo, useMemo } from "react";
+import { StyleSheet } from "react-native";
 import { ImageSource } from "expo-image";
 import { useBackHandler } from "@hooks";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
@@ -70,7 +71,11 @@ const SduiStepFeedbackHalfModal = ({
       overlayIcon={image.image}
       title={title}
       rewardSubtitleComponent={
-        <Markdown text={descriptionMarkdown} testID={HALF_MODAL_SUBTITLE(descriptionMarkdown)} />
+        <Markdown
+          text={descriptionMarkdown}
+          markdownStyles={markdownStyles}
+          testID={HALF_MODAL_SUBTITLE(descriptionMarkdown)}
+        />
       }
       ctaLabel={ctaButtonLabel}
       onCtaClick={handleOnCtaClick}
@@ -85,3 +90,9 @@ const SduiStepFeedbackHalfModal = ({
 };
 
 export default memo(SduiStepFeedbackHalfModal);
+
+const markdownStyles = StyleSheet.create({
+  text: {
+    textAlign: "center",
+  },
+});
