@@ -137,9 +137,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     });
     When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18), async () => {
       Then("I should be on the Inspect screen", then.isOnInspectScreen);
-      Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_18))));
-      Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")));
-      Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.USER_GAME_STATE_18.data.currentLevel)));
+      Then("Michael's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_18))));
+      Then("Michael's world and level is visible", then.idVisible(ids.YUSCREEN_V5_WORLD_AND_LEVEL("Forest", data.USER_GAME_STATE_18.data.currentLevel)));
       Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI));
     });
     When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
@@ -159,9 +158,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     When("I close", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
       When("I click on my own name", when.tapLeaderboardUser(User47LeaderboardItem), async () => {
         Then("I should be on the Inspect screen", then.isOnInspectScreen);
-        Then("My name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_47))));
-        Then("My world is visible", then.idVisible(ids.USER_WORLD("Forest")));
-        Then("My level is visible", then.idVisible(ids.USER_LEVEL(data.USER_GAME_STATE_47.data.currentLevel)));
+        Then("My name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_47))));
+        Then("My world and level is visible", then.idVisible(ids.YUSCREEN_V5_WORLD_AND_LEVEL("Forest", data.USER_GAME_STATE_47.data.currentLevel)));
         Then("My yumoji is", then.idVisible(ids.YUMOJI));
         Then("I should see my Duel stats", then.myDuelStatsVisible(2));
       });
@@ -201,9 +199,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     });
     When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18), async () => {
       Then("I should be on the Inspect screen", then.isOnInspectScreen);
-      Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_18))));
-      Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")));
-      Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.USER_GAME_STATE_18.data.currentLevel)));
+      Then("Michael's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_18))));
+      Then("Michael's world and level is visible", then.idVisible(ids.YUSCREEN_V5_WORLD_AND_LEVEL("Forest", data.USER_GAME_STATE_18.data.currentLevel)));
       Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI));
     });
     When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.1), async () => {
@@ -351,7 +348,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     });
     When("I tap on Donald Trump", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME(`${data.CUSTOMER_44.data.firstName} ${data.CUSTOMER_44.data.lastName}`)), async () => {
       Then("I should be on the Inspect screen", then.isOnInspectScreen);
-      Then("Donald's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_44))));
+      Then("Donald's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_44))));
     });
     When("I exit", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
       Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])));
