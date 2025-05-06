@@ -6,6 +6,7 @@ import { ScrollView, StyleSheet } from "react-native";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import LoginBackgroundSvg from "@components/screens/login/subcomponents/svgs/login-background-svg";
+import { LOGIN_SCREEN_HEADER } from "@ids";
 
 interface ILoginFormWrapperProps {
   onPressBack: () => void;
@@ -29,7 +30,9 @@ export const LoginFormWrapper = ({ onPressBack, heading, variant = "default", ch
       <ScrollView keyboardShouldPersistTaps={"handled"} showsVerticalScrollIndicator={false} style={styles.scrollView}>
         <Pad height={32} />
         <Box pt={60} pb={40} px={30}>
-          <TextTemplate type="h2">{heading}</TextTemplate>
+          <TextTemplate type="h2" testID={LOGIN_SCREEN_HEADER}>
+            {heading}
+          </TextTemplate>
         </Box>
         {children}
         <Pad height={40} />

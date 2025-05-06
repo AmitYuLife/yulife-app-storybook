@@ -80,8 +80,8 @@ export const CHALLENGE_FAILED_SCREEEN = "CHALLENGE_FAILED_SCREEEN";
 
 // buttons
 export const FULL_SCREEN_HERO_BUTTON = (label: string) => `FULL_SCREEN_HERO_BUTTON_${label}`;
-export const LOGIN_WITH_PASSWORD_BUTTON = "screens.login_confirm.login_with_password-text-view";
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
+export const LOGIN_WITH_PASSWORD = "screens.login_confirm.login_with_password-text-view";
 export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";
 export const SKIP_HEALTH_CONNECT_SCREEN_BUTTON =
   "screens.fitkit_connect.secondary_button_label-text-view";
@@ -259,6 +259,7 @@ export const STEPS_COUNT = (steps: number) => `STEPS_COUNT_${steps}`;
 export const CYCLING_COUNT = (cycling: string) => `CYCLING_COUNT_${cycling}`;
 export const MINDFUL_COUNT = (mindfulness: string) => ` MINDFUL_COUNT_${mindfulness}`;
 export const COVER_TYPE = (copy: string) => `COVER_TYPE_${copy}`;
+export const LOGIN_SCREEN_HEADER = "LOGIN_SCREEN_HEADER";
 
 // reward purchased
 export const WEGIFT_CONFIRMED = "WEGIFT_CONFIRMED";

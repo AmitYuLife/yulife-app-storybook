@@ -8,7 +8,8 @@ import {
   BUTTON_BASE,
   SKIP_HEALTH_CONNECT_SCREEN_BUTTON,
   FULL_SCREEN_HERO_BUTTON,
-  LOGIN_WITH_PASSWORD_BUTTON,
+  LOGIN_SCREEN_HEADER,
+  LOGIN_WITH_PASSWORD,
 } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
@@ -42,12 +43,14 @@ export const loginAsUser =
     await waitFor(loginField).toBeVisible().withTimeout(30000);
     await loginField.tap();
     await loginField.replaceText(customer.data.email);
+    await tapID(LOGIN_SCREEN_HEADER)();
     await navigateViaID(BUTTON_LOGIN(false));
     await tapText("PASS")();
-    await tapID(LOGIN_WITH_PASSWORD_BUTTON)();
+    await tapID(LOGIN_WITH_PASSWORD)();
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
+    await tapID(LOGIN_SCREEN_HEADER)();
     await authoriseFitkit(fitkitAuth)();
     await navigateViaID(BUTTON_LOGIN(false));
 
@@ -139,12 +142,14 @@ export const loginOnly =
     await waitFor(loginField).toBeVisible().withTimeout(30000);
     await loginField.tap();
     await loginField.replaceText(customer.data.email);
+    await tapID(LOGIN_SCREEN_HEADER)();
     await navigateViaID(BUTTON_LOGIN(false));
     await tapText("PASS")();
-    await tapText("Log in with password instead.")();
+    await tapID(LOGIN_WITH_PASSWORD)();
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
+    await tapID(LOGIN_SCREEN_HEADER)();
     fitkitAuth && (await authoriseFitkit(fitkitAuth)());
     await navigateViaID(BUTTON_LOGIN(false));
     await dismissNewLooksModalIfVisible();

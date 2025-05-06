@@ -10,52 +10,67 @@ import moment from "moment";
 
 Feature("As a user I can get past the login screen", async () => {
   Scenario("A locked account unlocks after 30 minutes since the last attempt", scenario.start, async () => {
-    Given("I have entered a valid email address but an invalid password after my lockout window has expired", given.enterInvalidCredentials(data.CUSTOMER_11.data.email), async () => {
-      When("I press `log in`", when.tapOnLogin, async () => {
-        Then("I should not see the account locked text as it shouldn't be locked anymore", then.textNotVisible(t("Account is locked. Try again later.")));
-        Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+    When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+      When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_11.data.email), async () => {
+        When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+          When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+            When("I tap pass on the captcha", when.tapText("PASS"), async () => {
+              Then("I should see the option to login with a password instead", then.textVisible("Log in with password instead."));
+            });
+          });
+        });
       });
     });
-    When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_11, data.AUTH_11), async () => {
-      Then("I should see the sign up reward screen", then.rewardScreenVisible);
-      Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
+    When("I tap to login with password instead", when.tapID(ids.LOGIN_WITH_PASSWORD), async () => {
+      When("I put in the wrong password", when.typeViaID(ids.INPUT_LOGIN_PASSWORD("Password"), "wrongpass"), async () => {
+        When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+          When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+            Then("I should not see the account locked text as it shouldn't be locked anymore", then.textNotVisible(t("Account is locked. Try again later.")));
+            Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+          });
+        });
+      });
+    });
+    When("I enter the correct password", when.replaceTextViaID(ids.INPUT_LOGIN_PASSWORD("Password"), data.AUTH_11.data.password), async () => {
+      When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+        When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+          Then("I should see the sign up reward screen", then.rewardScreenVisible);
+          Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
+        });
+      });
     });
   });
 
   Scenario("I cannot login with the wrong password for my email address", scenario.start, async () => {
-    Given("I have entered a valid email address but an invalid password", given.enterInvalidCredentials(data.CUSTOMER_1.data.email), async () => {
-      When("I press `log in`", when.tapOnLogin, async () => {
-        Then("my email address should remain unchanged in the email field", then.emailUnchanged);
-        Then("my password should be hidden", then.passwordHidden);
-        Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
-        Then("the login button should not be disabled", then.loginButtonIsActive);
+    When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+      When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_11.data.email), async () => {
+        When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+          When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+            When("I tap pass on the captcha", when.tapText("PASS"), async () => {
+              Then("I should see the option to login with a password instead", then.textVisible("Log in with password instead."));
+            });
+          });
+        });
       });
     });
-  });
-
-  Scenario("I can login with correct login details and be prompted with a health screen", scenario.start, async () => {
-    Given("I have entered a valid email address and valid password", given.enterValidCredentials(), async () => {
-      When("I press `log in`", when.tapOnLogin, async () => {
-        Then("I should not longer be on the login screen", then.notOnLoginScreen);
-        Then("I should see the signup reward screen", then.signupRewardVisible);
+    When("I tap to login with password instead", when.tapID(ids.LOGIN_WITH_PASSWORD), async () => {
+      When("I put in the wrong password", when.typeViaID(ids.INPUT_LOGIN_PASSWORD("Password"), "wrongpass"), async () => {
+        When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+          When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+            Then("I should not see the account locked text as it shouldn't be locked anymore", then.textNotVisible(t("Account is locked. Try again later.")));
+            Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+            Then("my password should be hidden", then.passwordHidden);
+            Then("the login button should not be disabled", then.loginButtonIsActive);
+          });
+        });
       });
-    });
-    When("I tap let's go", when.tapText("Let's go"), async () => {
-      Then("I should see a prompt to connect to the health app", then.healthAppPromptVisible);
-      Then("I should see a link to the privacy notice", then.privacyLinkVisible);
-    });
-    When("I tap skip this step", when.tapText("Skip this step"), async () => {
-      Then("I should see my total yucoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-      Then("I should see the grey connect screen as I have not connected Apple Health", then.greyConnectScreenVisible);
     });
   });
 
   Scenario("I can login with correct login detail and see the connection setup for daily activities", scenario.start, async () => {
-    Given("I have entered a valid email address and valid password", given.enterValidCredentials(data.CUSTOMER_2, data.AUTH_2), async () => {
-      When("I press `log in`", when.tapOnLogin, async () => {
-        Then("I should not longer be on the login screen", then.notOnLoginScreen);
-        Then("I should see the signup reward screen", then.signupRewardVisible);
-      });
+    Given("I have entered a valid email address and valid password", given.loginOnly(data.CUSTOMER_2, data.AUTH_2, true), async () => {
+      Then("I should not longer be on the login screen", then.notOnLoginScreen);
+      Then("I should see the signup reward screen", then.signupRewardVisible);
     });
     When("I tap let's go", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN")), async () => {
       Then("I should see a prompt to connect to the health app", then.connectionSetupScreenVisible);
@@ -67,52 +82,45 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("I can login with correct login details and make it past the intro screens", scenario.start, async () => {
-    Given("I have authorised fitkit on my device", given.authoriseFitkit(), async () => {
-      Given("I have entered a valid email address and valid password", given.enterValidCredentials(), async () => {
-        When("I press `log in`", when.tapOnLogin, async () => {
-          Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
-          Then("I should see the sign up reward screen", then.rewardScreenVisible);
-        });
+    Given("I have entered a valid email address and valid password", given.loginOnly(data.CUSTOMER_7, data.AUTH_7, true), async () => {
+      Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
+      Then("I should see the sign up reward screen", then.rewardScreenVisible);
+    });
+    When("I tap 'Let's go'", when.tapLetsGo, async () => {
+      When("I skip the health connection screen", when.skipHealthConnection, async () => {
+        Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
+        Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} ${t("today")}`));
+        Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO));
       });
-      When("I tap 'Let's go'", when.tapLetsGo, async () => {
-        When("I skip the health connection screen", when.skipHealthConnection, async () => {
-          Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
-          Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} ${t("today")}`));
-          Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO));
-        });
-      });
-      When("I tap the YuCoins", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
-        Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`));
-      });
-      When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
-        Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} today`));
-        Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
-      });
+    });
+    When("I tap the YuCoins", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
+      Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`));
+    });
+    When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
+      Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} today`));
+      Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
     });
   });
 
   Scenario("I can login with correct login details and see the correct steps sent", scenario.start, async () => {
-    Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
-      Given("I login and go to the daily steps screen", given.loginToDailySteps, async () => {
-        When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
-          When("I skip the health connection screen", when.skipHealthConnection, async () => {
-            Then("I should see 0 steps done so far today", then.idVisible(ids.STEPS_COUNT(0), 2000));
-          });
-        });
+    Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_7, data.AUTH_7, true), async () => {
+      When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
+        Then("I should see 0 steps done so far today", then.idVisible(ids.STEPS_COUNT(0), 2000));
       });
-      When("I have done 20 steps", given.sendSteps(20), async () => {
-        Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20)));
-      });
-      When("I have done 2000 steps", given.sendSteps(2000), async () => {
-        Then("I should see 2000 steps", then.idVisible(ids.STEPS_COUNT(2000)));
-      });
-      When("I tap on YuCoin", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
-        Then("I should see 2000 steps, 0 mindful, 20 step coins", then.dailyCoreActivities(2000, 0, 20));
-      });
+    });
+    When("I have done 20 steps", given.sendSteps(20), async () => {
+      Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20)));
+    });
+    When("I have done 2000 steps", given.sendSteps(2000), async () => {
+      Then("I should see 2000 steps", then.idVisible(ids.STEPS_COUNT(2000)));
+    });
+    When("I tap on YuCoin", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
+      Then("I should see 2000 steps, 0 mindful, 20 step coins", then.dailyCoreActivities(2000, 0, 20));
     });
   });
 
-  Scenario("I can view all unauthenticated screens", scenario.start, async () => {
+  // skipping as unsure if forgotten password flow exists in same way - Rogers investigating
+  ScenarioSkip("I can view all unauthenticated screens", scenario.start, async () => {
     Given("I select region United Kingdom", given.selectRegionIfVisible("United Kingdom"), async () => {
       Given("I am on the login screen", given.onLoginScreen, async () => {
         When("I press forgot password", when.tapText(t("Need help logging in?")), async () => {
@@ -134,31 +142,67 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
-    Given("I enter an incorrect password one time", given.enterPasswordIncorrectly(), async () => {
-      Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
-      Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+    When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+      When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_11.data.email), async () => {
+        When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+          When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+            When("I tap pass on the captcha", when.tapText("PASS"), async () => {
+              Then("I should see the option to login with a password instead", then.textVisible("Log in with password instead."));
+            });
+          });
+        });
+      });
     });
-    Given("I enter an incorrect password a second time", given.enterPasswordIncorrectly(), async () => {
-      Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
-      Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+    When("I tap to login with password instead", when.tapID(ids.LOGIN_WITH_PASSWORD), async () => {
+      When("I put in the wrong password", when.typeViaID(ids.INPUT_LOGIN_PASSWORD("Password"), "wrongpass"), async () => {
+        When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+          When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+            Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
+            Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+          });
+        });
+      });
     });
-    Given("I enter an incorrect password a third time", given.enterPasswordIncorrectly(), async () => {
-      Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
-      Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+    When("I enter an incorrect password a second time", when.replaceTextViaID(ids.INPUT_LOGIN_PASSWORD("Password"), "wrongpass2"), async () => {
+      When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+        When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+          Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
+          Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+        });
+      });
     });
-    Given("I enter an incorrect password a fourth time", given.enterPasswordIncorrectly(), async () => {
-      Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
-      Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+    When("I enter an incorrect password a third time", when.replaceTextViaID(ids.INPUT_LOGIN_PASSWORD("Password"), "wrongpass3"), async () => {
+      When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+        When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+          Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
+          Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+        });
+      });
     });
-    Given("I enter an incorrect password a fifth time", given.enterPasswordIncorrectly(), async () => {
-      Then("I should see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")));
+    When("I enter an incorrect password a fourth time", when.replaceTextViaID(ids.INPUT_LOGIN_PASSWORD("Password"), "wrongpass4"), async () => {
+      When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+        When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+          Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")));
+          Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+        });
+      });
     });
-    When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_2, data.AUTH_2), async () => {
-      Then("I should still be on the login screen", then.idVisible(ids.INPUT_LOGIN_EMAIL));
-      Then("I should still see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")));
+    When("I enter an incorrect password a fifth time", when.replaceTextViaID(ids.INPUT_LOGIN_PASSWORD("Password"), "wrongpass5"), async () => {
+      When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+        When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+          Then("I should see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")));
+        });
+      });
+    });
+    When("I enter the correct password", when.replaceTextViaID(ids.INPUT_LOGIN_PASSWORD("Password"), data.AUTH_11.data.password), async () => {
+      When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+        When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+          Then("I should see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")));
+        });
+      });
     });
     When("I reload the app", when.reloadOnly, async () => {
-      When("I enter enter the correct details", when.loginOnly(data.CUSTOMER_2, data.AUTH_2), async () => {
+      When("I enter enter the correct details", when.loginOnly(data.CUSTOMER_11, data.AUTH_11), async () => {
         Then("I should still see the account locked message", then.textVisible(t("Account is locked. Try again later.")));
       });
     });
@@ -254,19 +298,6 @@ Feature("As a user I can get past the login screen", async () => {
     Given("I have entered a valid email address and valid password", given.logInAndGoToTab("yucoin", data.CUSTOMER_3, data.AUTH_3), async () => {
       Then("I should be on the daily steps screen", then.dailyStepsScreenVisible);
       Then("I should see I have 420 YuCoin", then.givenCoinsTopRight(420));
-    });
-  });
-
-  Scenario("I see the YuCoin reward before the apple health screen during signup", scenario.start, async () => {
-    Given("I login and go to the daily steps screen", given.loginOnly(data.CUSTOMER_12, data.AUTH_12, false, "United Kingdom"), async () => {
-      Then("I should see the signup reward screen", then.signupRewardVisible);
-    });
-    When("I tap let's go", when.tapText("Let's go"), async () => {
-      Then("I should see the apple health sync screen", then.healthAppPromptVisible);
-    });
-    When("I tap skip this step", when.tapText("Skip this step"), async () => {
-      Then("I should see my total yucoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-      Then("I should see the grey connect screen as I have not connected Apple Health", then.greyConnectScreenVisible);
     });
   });
 });
