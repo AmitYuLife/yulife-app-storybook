@@ -8,6 +8,7 @@ import {
   BUTTON_BASE,
   SKIP_HEALTH_CONNECT_SCREEN_BUTTON,
   FULL_SCREEN_HERO_BUTTON,
+  LOGIN_WITH_PASSWORD_BUTTON,
 } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
@@ -32,9 +33,10 @@ export const loginAsUser =
     firstTime = true
   ) =>
   async () => {
+    const loginText = region === "Japan" ? "ログイン" : "Log in";
     console.log("CUSTOMER ID: ", customer.data.customerId);
     await selectRegionIfVisible(region)();
-    const loginButton = element(by.id(FULL_SCREEN_HERO_BUTTON("Log in")));
+    const loginButton = element(by.id(FULL_SCREEN_HERO_BUTTON(loginText)));
     await loginButton.tap();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     await waitFor(loginField).toBeVisible().withTimeout(30000);
@@ -42,7 +44,7 @@ export const loginAsUser =
     await loginField.replaceText(customer.data.email);
     await navigateViaID(BUTTON_LOGIN(false));
     await tapText("PASS")();
-    await tapText("Log in with password instead.")();
+    await tapID(LOGIN_WITH_PASSWORD_BUTTON)();
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);

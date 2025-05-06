@@ -80,6 +80,7 @@ export const CHALLENGE_FAILED_SCREEEN = "CHALLENGE_FAILED_SCREEEN";
 
 // buttons
 export const FULL_SCREEN_HERO_BUTTON = (label: string) => `FULL_SCREEN_HERO_BUTTON_${label}`;
+export const LOGIN_WITH_PASSWORD_BUTTON = "screens.login_confirm.login_with_password-text-view";
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
 export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";
 export const SKIP_HEALTH_CONNECT_SCREEN_BUTTON =
