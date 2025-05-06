@@ -4,7 +4,7 @@ import { navigation } from "@navigation";
 import { screens } from "@appScreens";
 import { getLocalisedString as t } from "@i18n";
 
-export const { tapText, typeViaID, wait, reloadOnly, tapID } = navigation.common;
+export const { tapText, typeViaID, wait, reloadOnly, tapID, replaceTextViaID } = navigation.common;
 
 export const { swipeFromText, scrollUntilTextVisible } = navigation.scrolling;
 
