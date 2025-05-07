@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.61.0] - 2025-05-07
+
+### Features
+
+- Feature LCS-1272: Update app client with latest login hero designs
+
+### Bugfixes
+
+- Bugfix LCS-1282: Timer on sent link stops when leaving app
+- Bugfix LCS-1139: use react-native-safe-area-context in centered-screen
+- Bugfix: Storybook deployment
+- Bugfix GS-1507: Name and level displaying wrong when inspecting user on leaderboard
+
+### Tasks
+
+- Task GS-1947: Lunar events config
+- Task GS-1492 GS-1490: Lunar background config for today and challenges screens
+- Task LCS-1139: magic link login error bugsnag
+- Task GS-1494: Lunar yunity and chest animations
+- Task GS-1496: Lunar levels config
+- Task: LCS-760: Full screen swiper improvements
+- Task LCS-1107: Center sdui feedback description
+- Task GS-1505: Add AchievementsShowcase into inspect screen
+- Task LCS-1139: Enable magic link login for UAT and production
+- Task: fix hydrate for detox
+- Task: Preload storefront images
+- Task: Add Ruslan v1 device into hardware-profiles for android
+- Task: New storefront
+- Task LCS-1214: padding for email error
+- Task GS-1402: Decimal changes for SDUI input
+- Task LCS-1139: enable magic link login for dev + local
+
+### Chores
+
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Profile Viewed Event
+- Detox: login edge case fixes
+- Detox: Magic Link Access Email
+- Detox: Leaderboard User Inspect
+- Detox: LCS-1139 Japan Login Fixes
+- Purge: centred screen SafeArea & login form pressable
+- Fix LCS-1143: login confirm error key + background bottom alignment
+- Detox: LCS-1139 Enable magic link login for Detox & Detox Login Fixes
+- Detox: Testing HQ image, slider and quiz questions
+- Filter out queries which don't need to be refetched because they are not being observed
+- Detox: smoking fixes LCS-970 LCS-972 LCS-1202
+
 ## [4.60.0] - 2025-04-30
 
 ### Bugfixes
