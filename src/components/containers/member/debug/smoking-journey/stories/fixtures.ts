@@ -11,7 +11,7 @@ export const debugSmokingJourneyStories = {
   },
   dismissMinVisibleIndex: 2,
   ctaMinVisibleIndex: 2,
-  autoPlaySpeedMs: 6000,
+  autoPlaySpeedMs: 10000,
   close: {
     icon: {
       id: "",
@@ -67,4 +67,6 @@ export const debugSmokingJourneyStories = {
   },
   onlyAllowForward: true,
   forwardOnScreenPress: true,
+  enablePause: true,
+  enableSwiping: true,
 } as UseIntroModalProps;
