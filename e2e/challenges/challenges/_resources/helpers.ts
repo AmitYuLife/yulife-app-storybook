@@ -10,6 +10,7 @@ export const INSPECT_USER =
   (
     customerPersonalData: typeof data.CUSTOMER_52,
     world: string,
+    userLevel: number,
     customer: typeof data.CUSTOMER_52
   ) =>
   async () => {
@@ -23,8 +24,12 @@ export const INSPECT_USER =
           async () => {
             Then("I should be on the Inspect screen", then.idVisible(ids.INSPECT_SCREEN, 2500));
             Then(
-              "I should see's name, level and world",
-              then.personalDataVisible(getFullName(customerPersonalData), world)
+              "I should see the user name",
+              then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(customerPersonalData)), 2000)
+            );
+            Then(
+              "I should see user's level and world",
+              then.idVisible(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, userLevel), 2000)
             );
           }
         );

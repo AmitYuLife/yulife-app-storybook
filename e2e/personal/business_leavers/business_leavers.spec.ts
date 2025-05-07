@@ -30,7 +30,7 @@ Feature("As a business leaver I should still have app access", async () => {
     });
     When("I tap the leaver", when.tapText(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)), async () => {
       Then("I should be on the Inspect screen", then.idVisible(ids.INSPECT_SCREEN));
-      Then("The leaver's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING))));
+      Then("The leaver's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING))));
     });
   });
 
@@ -42,7 +42,7 @@ Feature("As a business leaver I should still have app access", async () => {
     });
     When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
       Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN));
-      Then("I should see the store grace period warning displaying the correct remaining dates", then.rewardAccessWarningVisible("89"));
+      Then("I should see the store grace period warning displaying the correct remaining dates", then.rewardAccessWarningVisible("90"));
     });
   });
 

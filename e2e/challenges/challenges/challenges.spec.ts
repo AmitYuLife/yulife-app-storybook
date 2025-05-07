@@ -195,7 +195,7 @@ Feature("As a user I can take a challenge", async () => {
         });
       });
     });
-    helper.INSPECT_USER(data.CUSTOMER_55, "Forest", data.CUSTOMER_52)();
+    helper.INSPECT_USER(data.CUSTOMER_55, "Forest", 2, data.CUSTOMER_52)();
     When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
       When("I click on the challenge profiles viewed", when.tapChallenge("0 / 5 " + t("profiles viewed")), async () => {
         Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(1, 0.2));
@@ -219,7 +219,7 @@ Feature("As a user I can take a challenge", async () => {
         Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)));
       });
     });
-    helper.INSPECT_USER(data.CUSTOMER_54, "Forest", data.CUSTOMER_52)();
+    helper.INSPECT_USER(data.CUSTOMER_54, "Forest", 2, data.CUSTOMER_52)();
     When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
       When("I click on the challenge profiles viewed", when.tapChallenge("1 / 5 " + t("profiles viewed")), async () => {
         Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(2, 0.4));
@@ -243,7 +243,7 @@ Feature("As a user I can take a challenge", async () => {
         Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)));
       });
     });
-    helper.INSPECT_USER(data.CUSTOMER_58, "Forest", data.CUSTOMER_52)();
+    helper.INSPECT_USER(data.CUSTOMER_58, "Forest", 4, data.CUSTOMER_52)();
     When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
       When("I click on the challenge profiles viewed", when.tapChallenge("2 / 5 " + t("profiles viewed")), async () => {
         Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.6));
@@ -272,11 +272,11 @@ Feature("As a user I can take a challenge", async () => {
     When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
       Then("I should see Stephen's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_57)));
     });
-    helper.INSPECT_USER(data.CUSTOMER_57, "Forest", data.CUSTOMER_52)();
+    helper.INSPECT_USER(data.CUSTOMER_57, "Forest", 4, data.CUSTOMER_52)();
     When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
       Then("I should see Milton's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_56)));
     });
-    helper.INSPECT_USER(data.CUSTOMER_56, "Forest", data.CUSTOMER_52)();
+    helper.INSPECT_USER(data.CUSTOMER_56, "Forest", 3, data.CUSTOMER_52)();
     When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
       When("I click on the challenge profiles viewed", when.tapChallenge("3 / 5 " + t("profiles viewed")), async () => {
         Then("I should be on the completed events milestone page", then.onCompletedEventPage("Ends on the 10th", "5 Profiles viewed", "650"));
