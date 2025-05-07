@@ -5,6 +5,7 @@ import { RED_PLANET_EPISODES } from "./config/red-planet.config";
 import { EARTH_PLANET_EPISODES } from "./config/earth-planet.config";
 import { PURPLE_PLANET_EPISODES } from "./config/purple-planet.config";
 import { RING_PLANET_EPISODES } from "./config/ring-planet.config";
+import { LUNAR_PLANET_EPISODES } from "./config/lunar-planet.config";
 
 const episodes = {
   ...EARTH_PLANET_EPISODES,
@@ -13,6 +14,7 @@ const episodes = {
   ...ORANGE_PLANET_EPISODES,
   ...PURPLE_PLANET_EPISODES,
   ...RING_PLANET_EPISODES,
+  ...LUNAR_PLANET_EPISODES,
 };
 
 export const getQuestMapConfig = (): IQuestMapConfig => ({

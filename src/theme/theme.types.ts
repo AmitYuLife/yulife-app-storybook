@@ -75,4 +75,7 @@ export interface ITheme {
   [Planets.RING]: {
     [key: number]: IThemeScreens;
   };
+  [Planets.LUNAR]: {
+    [key: number]: IThemeScreens;
+  };
 }
