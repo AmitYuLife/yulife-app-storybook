@@ -1,14 +1,16 @@
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { FlatList as RNFlatList, StyleSheet, View, ViewStyle, ListRenderItem, Pressable } from "react-native";
+import { FlatList as RNFlatList, ListRenderItem, StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style, TOP_BAR } from "@styles";
 import { FlatList, TextTemplate } from "@atoms";
-import { Controller } from "./controller";
-import { Page, IPageItem } from "./page";
+import { IPageItem, Page } from "./page";
 import { Dismiss } from "./dismiss";
 import { useDispatch } from "react-redux";
 import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
-import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
+import { useAnimatedStyle } from "react-native-reanimated";
 import { ProgressItems } from "./progress-items";
+import useStoryMaskAnimation from "./use-story-mask-animation";
+import { LeftRightController } from "./controllers/left-right-controller";
+import { TouchController } from "./controllers/touch-controller";
 
 interface Props {
   id: string;
@@ -35,7 +37,13 @@ interface Props {
     progressBarBackgroundColor?: string;
   };
   onlyAllowForward?: boolean;
+  enablePause?: boolean;
   forwardOnScreenPress?: boolean;
+  pauseTimingThreshold?: number;
+  leftScreenFraction?: number;
+  enableSwiping?: boolean;
+  swipeMinimumDistance?: number;
+  invertSwipingDirection?: boolean;
 }
 
 export const FullScreenSwiper = memo((props: Props) => {
@@ -50,16 +58,16 @@ export const FullScreenSwiper = memo((props: Props) => {
     autoPlaySpeedMs,
     theme,
     onlyAllowForward,
-    forwardOnScreenPress,
+    enablePause,
+    forwardOnScreenPress: enableScreenNavigation,
+    pauseTimingThreshold = 500,
+    leftScreenFraction = 0.3,
+    enableSwiping,
+    swipeMinimumDistance,
+    invertSwipingDirection,
   } = props;
+
   const { activeIndex, setActiveIndex, setUserInteractionToggler, listRef } = useScrollHandler(items);
-  const maskWidth = useSharedValue(0);
-  const maskStyle = useAnimatedStyle(() => ({
-    width: maskWidth.value,
-    height: "100%",
-    backgroundColor: theme.progressBarForegroundColor || Colours.primary.p600,
-    ...StyleSheet.absoluteFillObject,
-  }));
 
   const handleChangeActiveIndex = useCallback(
     (increment: number, autoMove: boolean = false) =>
@@ -106,35 +114,23 @@ export const FullScreenSwiper = memo((props: Props) => {
     [setActiveIndex, items]
   );
 
-  const moveForward = useCallback(handleChangeActiveIndex(1), [handleChangeActiveIndex]);
+  const changeActiveIndex = useCallback((vecX: number) => handleChangeActiveIndex(vecX)(), [handleChangeActiveIndex]);
 
-  const onScreenPress = useCallback(() => {
-    if (forwardOnScreenPress) {
-      moveForward?.();
-    }
-  }, [forwardOnScreenPress, moveForward]);
+  const { pauseAnimation, resumeAnimation, maskWidth } = useStoryMaskAnimation({
+    itemsLength: items.length,
+    activeIndex,
+    autoPlaySpeedMs,
+    updateActiveIndex: handleChangeActiveIndex,
+    paddingHorizontal: 16,
+    gap: 8,
+  });
 
-  useEffect(() => {
-    const itemsLength = items.length;
-
-    maskWidth.value = withSequence(
-      withTiming(activeIndex * (Style.DEVICE_WIDTH / itemsLength), { duration: 0 }),
-      withTiming(
-        (activeIndex + 1) * (Style.DEVICE_WIDTH / itemsLength),
-        {
-          duration: autoPlaySpeedMs,
-          easing: Easing.linear,
-        },
-        (finished) => {
-          if (!finished) {
-            return;
-          }
-
-          runOnJS(moveForward)();
-        }
-      )
-    );
-  }, [activeIndex]);
+  const maskStyle = useAnimatedStyle(() => ({
+    width: maskWidth.value,
+    height: "100%",
+    backgroundColor: theme.progressBarForegroundColor || Colours.primary.p600,
+    ...StyleSheet.absoluteFillObject,
+  }));
 
   const renderItem: ListRenderItem<IPageItem> = useCallback(
     ({ item, index }) => <Page {...item} isActive={index === activeIndex} />,
@@ -146,37 +142,50 @@ export const FullScreenSwiper = memo((props: Props) => {
   }
 
   return (
-    <Pressable onPress={onScreenPress}>
-      <View style={[styles.screen, { backgroundColor: theme.primaryColor }]}>
-        <View style={styles.inner}>
-          <FlatList
-            forwardRef={listRef}
-            snapToInterval={Style.DEVICE_WIDTH}
-            renderItem={renderItem}
-            data={items}
-            scrollEnabled={false}
-            windowSize={3}
-            initialNumToRender={3}
+    <View style={[styles.screen, { backgroundColor: theme.primaryColor }]}>
+      <View style={styles.inner}>
+        <FlatList
+          forwardRef={listRef}
+          snapToInterval={Style.DEVICE_WIDTH}
+          renderItem={renderItem}
+          data={items}
+          scrollEnabled={false}
+          windowSize={3}
+          initialNumToRender={3}
+        />
+        {enableScreenNavigation && (enablePause || enableSwiping) ? (
+          <TouchController
+            onlyAllowForward={onlyAllowForward}
+            handleChangeActiveIndex={changeActiveIndex}
+            leftFraction={leftScreenFraction}
+            pausingThreshold={pauseTimingThreshold}
+            pause={pauseAnimation}
+            resume={resumeAnimation}
+            enableSwiping={enableSwiping}
+            swipeMinimumDistance={swipeMinimumDistance}
+            invertSwipingDirection={invertSwipingDirection}
           />
-          <Controller onlyAllowForward={onlyAllowForward} handleChangeActiveIndex={handleChangeActiveIndex} />
-          <ProgressItems
-            backgroundColor={props.theme.progressBarBackgroundColor}
-            count={items.length}
-            maskStyle={maskStyle}
-          />
-          <View style={styles.title}>
-            <TextTemplate color={theme.titleColor || Colours.neutral.white} type="l1b">
-              {title}
-            </TextTemplate>
-          </View>
-          <Dismiss
-            currentIndex={activeIndex}
-            button={activeIndex < ctaMinVisibleIndex ? null : button}
-            close={activeIndex < dismissMinVisibleIndex ? null : close}
-          />
+        ) : null}
+        {enableScreenNavigation && !enablePause ? (
+          <LeftRightController onlyAllowForward={onlyAllowForward} handleChangeActiveIndex={handleChangeActiveIndex} />
+        ) : null}
+        <ProgressItems
+          backgroundColor={props.theme.progressBarBackgroundColor}
+          count={items.length}
+          maskStyle={maskStyle}
+        />
+        <View style={styles.title}>
+          <TextTemplate color={theme.titleColor || Colours.neutral.white} type="l1b">
+            {title}
+          </TextTemplate>
         </View>
+        <Dismiss
+          currentIndex={activeIndex}
+          button={activeIndex < ctaMinVisibleIndex ? null : button}
+          close={activeIndex < dismissMinVisibleIndex ? null : close}
+        />
       </View>
-    </Pressable>
+    </View>
   );
 });
 

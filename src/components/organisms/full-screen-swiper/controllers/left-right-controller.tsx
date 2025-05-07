@@ -9,7 +9,7 @@ interface IProps {
   onlyAllowForward?: boolean;
 }
 
-export const Controller = ({ handleChangeActiveIndex, onlyAllowForward }: IProps) => (
+export const LeftRightController = ({ handleChangeActiveIndex, onlyAllowForward }: IProps) => (
   <View pointerEvents="box-none" style={styles.wrapper}>
     <TouchableOpacityWithDelay
       style={[styles.controller, styles.left]}
