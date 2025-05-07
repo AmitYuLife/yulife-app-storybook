@@ -14,6 +14,7 @@ import { ROUTES } from "@navigation/constants";
 import { useCaptcha } from "@organisms/captcha-input";
 import { useSendMagicLink } from "./send-magic-link.hook";
 import { handleOpenWebView } from "@navigation/utils";
+import Logger from "@services/logging/logger";
 
 interface Props {
   componentId: string;
@@ -72,13 +73,15 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
     otpRef.current = props.otp;
 
     async function handleOTP(payload: { otp: string; email: string; region: REGION }) {
+      let result;
+
       try {
         // set the region before logging in for the GQL client
         region.setRegion(payload.region);
 
         const uniqueDeviceId = await DeviceInfo.getUniqueId();
 
-        const result = await loginUser({
+        result = await loginUser({
           variables: {
             email: payload.email.toLowerCase(),
             intercomHashMethod: Platform.OS as IntercomHashMethod,
@@ -113,6 +116,13 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
           await applyLoginSession(result, props.region, componentId, dispatch);
         }
       } catch (error) {
+        Logger.error(error, {
+          file: "login-confirm.container",
+          region: payload.region,
+          loginUserSuccess: !!result,
+          userId: result?.data?.loginUser?.user?.id,
+        });
+
         // if an error occurs, pop back one screen after closing the native alert
         Alert.alert(t("screens.login_confirm.error_title"), error.message, [
           { text: t("labels.cta.ok"), onPress: onNavigateBack },
