@@ -17,6 +17,8 @@ interface IProps {
   captcha: ReturnType<typeof useCaptcha>;
 }
 
+const COOLDOWN_DURATION_SECONDS = 30;
+
 const LoginConfirmScreen = ({
   email,
   showLoginWithPassword,
@@ -26,7 +28,9 @@ const LoginConfirmScreen = ({
   onPressResend,
   isResending,
 }: IProps) => {
-  const [cooldownSeconds, setCooldownSeconds] = useState(30);
+  const [lastResendTime, setLastResendTime] = useState<number>(Date.now());
+  const [cooldownSeconds, setCooldownSeconds] = useState<number>(COOLDOWN_DURATION_SECONDS);
+
   const isCooldownActive = useMemo(() => cooldownSeconds > 0 || isResending, [cooldownSeconds, isResending]);
 
   const handleResend = useCallback(() => {
@@ -35,7 +39,8 @@ const LoginConfirmScreen = ({
     }
 
     onPressResend();
-    setCooldownSeconds(30);
+    setLastResendTime(Date.now());
+    setCooldownSeconds(COOLDOWN_DURATION_SECONDS);
   }, [isCooldownActive, onPressResend]);
 
   useEffect(() => {
@@ -43,14 +48,15 @@ const LoginConfirmScreen = ({
 
     if (isCooldownActive) {
       interval = setInterval(() => {
-        setCooldownSeconds((prev) => (prev > 0 ? prev - 1 : 0));
+        const diff = Math.round((Date.now() - lastResendTime) / 1000);
+        setCooldownSeconds(Math.max(0, COOLDOWN_DURATION_SECONDS - diff));
       }, 1000);
     } else {
       clearInterval(interval);
     }
 
     return () => clearInterval(interval);
-  }, [isCooldownActive]);
+  }, [isCooldownActive, lastResendTime]);
 
   return (
     <LoginFormWrapper
