@@ -19,6 +19,7 @@ export enum Planets {
   ORANGE = "orange",
   PURPLE = "purple",
   RING = "ring",
+  LUNAR = "lunar",
 }
 
 export function getCurrentWorldName(currentLevel: number): WorldName {
@@ -177,7 +178,11 @@ export const getCurrentPlanetByLevel = (currentLevel: number) => {
     return Planets.PURPLE;
   }
 
-  if (currentLevel > 1000) {
+  if (currentLevel < 1201) {
     return Planets.RING;
+  }
+
+  if (currentLevel > 1200) {
+    return Planets.LUNAR;
   }
 };

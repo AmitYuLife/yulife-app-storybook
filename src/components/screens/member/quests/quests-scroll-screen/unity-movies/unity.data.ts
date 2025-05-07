@@ -63,6 +63,9 @@ const UNITY_ANIMATION_CONFIG = new Map<number, AnimationConfig>([
   [1050, { totalFrames: 230, loopStartFrame: 144, loopEndFrame: 230, frameRate: 24 }],
   [1100, { totalFrames: 230, loopStartFrame: 144, loopEndFrame: 230, frameRate: 24 }],
   [1150, { totalFrames: 230, loopStartFrame: 144, loopEndFrame: 230, frameRate: 24 }],
+  [1250, { totalFrames: 230, loopStartFrame: 144, loopEndFrame: 230, frameRate: 24 }],
+  [1300, { totalFrames: 230, loopStartFrame: 144, loopEndFrame: 230, frameRate: 24 }],
+  [1350, { totalFrames: 230, loopStartFrame: 144, loopEndFrame: 230, frameRate: 24 }],
 ]);
 
 const data = [
@@ -235,5 +238,35 @@ const data = [
     backgroundChest: require("./assets/background/common/yuniverse-background.webp"),
     background: require("./assets/background/purple/mountain-background.json"), // TODO: replace with ring
     foreground: require("./assets/foreground/orange/mountain-foreground.json"), // // TODO: replace with ring
+  },
+
+  // Lunar planet
+  {
+    color: Colours.darkestGray,
+    backgroundGradient: require("./assets/background/lunar/forest-gradient-background.webp"),
+    backgroundChest: require("./assets/background/lunar/forest-chest-background.webp"),
+    background: require("./assets/background/lunar/forest-background.json"),
+    foreground: require("./assets/foreground/lunar/forest-foreground.json"),
+  },
+  {
+    color: Colours.darkestGray,
+    backgroundGradient: require("./assets/background/lunar/ocean-gradient-background.webp"),
+    backgroundChest: require("./assets/background/lunar/ocean-chest-background.webp"),
+    background: require("./assets/background/lunar/ocean-background.json"),
+    foreground: require("./assets/foreground/lunar/ocean-foreground.json"),
+  },
+  {
+    color: Colours.darkestGray,
+    backgroundGradient: require("./assets/background/lunar/desert-gradient-background.webp"),
+    backgroundChest: require("./assets/background/lunar/desert-chest-background.webp"),
+    background: require("./assets/background/lunar/desert-background.json"),
+    foreground: require("./assets/foreground/lunar/desert-foreground.json"),
+  },
+  {
+    color: Colours.neutral.white,
+    backgroundGradient: require("./assets/background/common/yuniverse-background.webp"),
+    backgroundChest: require("./assets/background/common/yuniverse-background.webp"),
+    background: require("./assets/background/purple/mountain-background.json"), // TODO: replace with lunar
+    foreground: require("./assets/foreground/orange/mountain-foreground.json"), // TODO: replace with lunar
   },
 ];

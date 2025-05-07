@@ -1942,4 +1942,5 @@ export const planetStyles: ITheme = {
       },
     },
   },
+  [Planets.LUNAR]: {},
 };
