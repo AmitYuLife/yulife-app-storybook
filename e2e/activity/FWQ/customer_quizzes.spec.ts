@@ -52,8 +52,10 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see all the available languages listed", then.allLanguagesVsible);
     });
     When("I tap to switch to Japanese", when.tapText(`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`, 2000, true), async () => {
-      Then("I should be back on my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2000));
-      Then("I should see that the YuCoin screen has changed in Japanese", then.textVisible(getTranslation("ja-JP").navbar.yucoin.label, 2500));
+      When("I close the pop up", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
+        Then("I should be back on my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2000));
+        Then("I should see that the YuCoin screen has changed in Japanese", then.textVisible(getTranslation("ja-JP").navbar.yucoin.label, 2500));
+      });
     });
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
       When("I scroll to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
@@ -80,7 +82,7 @@ Feature("Quizzes and questionnaires", async () => {
 
     When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
       Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000));
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 260));
+      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 280));
       Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
     });
     When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
@@ -128,7 +130,7 @@ Feature("Quizzes and questionnaires", async () => {
 
     When("I press the Let’s go! button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01));
-      Then("I should see the progress bar in the start position", then.progressBarVisible(20, 200));
+      Then("I should see the progress bar in the start position", then.progressBarVisible(50, 400));
     });
     When("I select the first option for Q1", when.tapText(data.CORE_JOURNEY_STEPS_01.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_01, 0));
@@ -136,17 +138,17 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the second question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_02));
-      Then("I should see the progress bar has moved", then.progressBarVisible(50, 200));
+      Then("I should see the progress bar has moved", then.progressBarVisible(100, 400));
     });
     When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
       Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01));
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_01, 0));
       Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_01, 1));
-      Then("I should see the progress bar has moved down", then.progressBarVisible(20, 200));
+      Then("I should see the progress bar has moved down", then.progressBarVisible(50, 400));
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the second question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_02));
-      Then("I should see the progress bar has moved", then.progressBarVisible(50, 200));
+      Then("I should see the progress bar has moved", then.progressBarVisible(100, 400));
       Then("I should not see the first option selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_02, 0));
       Then("I should not see the second option selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_02, 1));
     });
@@ -156,7 +158,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the third question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_03));
-      Then("I should see the progress bar has moved", then.progressBarVisible(70, 200));
+      Then("I should see the progress bar has moved", then.progressBarVisible(150, 400));
     });
     When("I select the second option for Q3", when.tapText(data.CORE_JOURNEY_STEPS_03.data.templateUi.options[1].label["en-GB"]), async () => {
       Then("I should see the second option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_03, 1));
@@ -164,7 +166,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the fourth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_04));
-      Then("I should see the progress bar has moved", then.progressBarVisible(100, 200));
+      Then("I should see the progress bar has moved", then.progressBarVisible(200, 400));
     });
     When("I select the first option for Q4", when.tapText(data.CORE_JOURNEY_STEPS_04.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_04));
@@ -172,7 +174,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the fifth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_05));
-      Then("I should see the progress bar has moved", then.progressBarVisible(120, 200));
+      Then("I should see the progress bar has moved", then.progressBarVisible(250, 400));
     });
     When("I select the first option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_05.data.templateUi.options[0].label["en-GB"]), async () => {
       When("I also select the third option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_05.data.templateUi.options[2].label["en-GB"]), async () => {
@@ -185,7 +187,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the sixth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_06));
-      Then("I should see the progress bar has moved", then.progressBarVisible(150, 200));
+      Then("I should see the progress bar has moved", then.progressBarVisible(300, 400));
     });
     When("I select the first option for Q6", when.tapText(data.CORE_JOURNEY_STEPS_06.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_06));
@@ -193,7 +195,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the seventh question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_07));
-      Then("I should see the progress bar has moved", then.progressBarVisible(170, 200));
+      Then("I should see the progress bar has moved", then.progressBarVisible(350, 400));
     });
     When("I select the first option for Q7", when.tapText(data.CORE_JOURNEY_STEPS_07.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_07));
@@ -201,43 +203,41 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the eigth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_08));
-      Then("I should see the progress bar has moved", then.progressBarVisible(200, 200));
+      Then("I should see the progress bar has moved", then.progressBarVisible(400, 400));
     });
     When("I select the first option for Q8", when.tapText(data.CORE_JOURNEY_STEPS_08.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_08));
       Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_08, 1));
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-      Then("I should be on the chest screen", then.idVisible(ids.LOTTIE_VIEW));
+      Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
+      Then(
+        "As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 40 YuCoin for completing it",
+        then.idVisible(ids.MARKDOWN("+40 ![](https://yulife-develop.imgix.net/journeys/yuCoin.svg?ixlib=js-3.2.1&w=24&h=24&dpr=3&s=3cb4cda29e509a2eb7f6cb42af14a01e)"))
+      );
     });
-    When("I tap the screen", when.tapID(ids.LOTTIE_VIEW), async () => {
-      Then("The chest should be open", then.idVisible(ids.LOTTIE_VIEW));
-    });
-    When("I tap claim", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
+    When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
       When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-        When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
-          Then("I see the 220 yucoin earned today so far", then.textVisible("220 YuCoin"));
+        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+          Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(240, 280));
+          Then("I should see the completed HQ nudge", then.completedHQNudgeVisible());
         });
-      });
-    });
-    When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
-      Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"));
-      Then("I should see that I completed the qustionnaire", then.textVisible("Quiz"));
-      Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("20", 1500));
-    });
-
-    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-        Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(220, 260));
-        Then("I should see the completed HQ nudge", then.completedHQNudgeVisible());
       });
     });
     When("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {
       Then("I should be on the same screen, and still see the completed HQ nudge", then.completedHQNudgeVisible());
     });
+    When("I tap earned from todays activities", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(240, 280)), async () => {
+      Then("I see the 240 yucoin earned today so far", then.textVisible("240 YuCoin"));
+    });
+    When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+      Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"));
+      Then("I should see that I completed the qustionnaire", then.textVisible("Quiz"));
+      Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("40", 1500));
+    });
   });
 
-  Scenario("I should see a second Health Questionnaire and complete it, with differences on second+ journey", scenario.start, async () => {
+  Scenario("Once I complete the journey, press cta - I should see the HQ journey modal is gone", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_44, data.AUTH_44, true, "United Kingdom", false), async () => {
       Then("I should see my YuCoin balance of 200, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
       Then("I should not see the event panel, as I have completed one before", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]));
@@ -250,10 +250,13 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see the Let's go! button", then.textVisible("Let's go!"));
     });
     When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
-      Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
+      Then("I can see the HQ description screen title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
+      Then("I can see the HQ description screen title", then.idVisible(ids.MARKDOWN("Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some **extra YuCoin** as you sail through these questions!")));
     });
-    When("I press the Let's go! button on the intro screen of the HQ", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-      Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_11));
+    When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
+      When("I click on the let's go! button", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
+        Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_11));
+      });
     });
     When("I select the first option for Q1", when.tapText(data.CORE_JOURNEY_STEPS_11.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_11));
@@ -338,35 +341,29 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see 9ft 11 in as the selected height", then.idVisible(ids.TEXT_TEMPLATE("9ft 11in", "l1b")));
     });
     When("I click the next button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the chest screen", then.idVisible(ids.LOTTIE_VIEW));
-    });
-    When("I tap the screen", when.tapID(ids.LOTTIE_VIEW), async () => {
-      Then("The chest should be open and show the YuCoin I earned", then.idVisible(ids.LOTTIE_VIEW));
+      Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
+      Then(
+        "As a user who is on a earnRate: 1, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 4 YuCoin for completing it",
+        then.idVisible(ids.MARKDOWN("+4 ![](https://yulife-develop.imgix.net/journeys/yuCoin.svg?ixlib=js-3.2.1&w=24&h=24&dpr=3&s=3cb4cda29e509a2eb7f6cb42af14a01e)"))
+      );
     });
     When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
-      Then("I should still see the HQ title", then.textVisible("Getting to know Yu!"));
-      Then("I should still see the Let's go! button", then.textVisible("Let's go!"));
-    });
-    When("I tap let's go", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
-      Then("I should be on the HQ Hold screen", then.onHQHoldScreen);
-    });
-    When("I close this screen", when.tapID(ids.SCREEN_CLOSE), async () => {
-      Then("I should still see the HQ title", then.textVisible("Getting to know Yu!"));
-      Then("I should still see the Let's go! button", then.textVisible("Let's go!"));
+      Then("I should not see the HQ title", then.textNotVisible("Getting to know Yu!"));
+      Then("I should not see the HQ Let's go! button", then.textNotVisible("Let's go!"));
     });
     When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
       Then("I should be on the daily screen", then.textVisible("Take a challenge (2 left today)"));
       Then("I should not see the event panel", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]));
-      Then("I should see my YuCoin balance of 20, after I finish the HQ", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20)));
-      Then("I should see '20 YuCoin Today' due to finishing HQ", then.textVisible("20 YuCoin today"));
+      Then("I should see my YuCoin balance of 4, after I finish the HQ", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(4)));
+      Then("I should see '4 YuCoin Today' due to finishing HQ", then.textVisible("4 YuCoin today"));
     });
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
-      Then("I see the 20 yucoin earned today so far", then.textVisible("20 YuCoin"));
+      Then("I should see 4 YuCoin for reward", then.textVisible("4 YuCoin"));
     });
     When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
       Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"));
-      Then("I should see that I completed the qustionnaire", then.textVisible("Quiz"));
-      Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("20", 1500));
+      Then("I should see that I completed the questionnaire", then.textVisible("Quiz"));
+      Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("4", 1500));
     });
   });
 
@@ -672,125 +669,127 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("500"));
     });
   });
-});
 
-Scenario("I should see the Health Questionnaire with the new question styles", scenario.start, async () => {
-  Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_44, data.AUTH_44, true, "United Kingdom", false), async () => {
-    Given("I skip the health connection screen", given.skipHealthConnection, async () => {
-      Then("I should see my YuCoin balance of 0, before I finish the Automated QA Test Journey 10 Multiplier", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
+  Scenario("I should see the Health Questionnaire with the new question styles", scenario.start, async () => {
+    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_47, data.AUTH_47), async () => {
+      Then("I should see my starting YuCoin balance", then.textVisible("200 YuCoin today"));
     });
-  });
-  When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN"), async () => {
-    Then("I should see Today you've earned '0 YuCoin'", then.textVisible("0 YuCoin"));
-  });
-  When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
-    Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
-    Then("I should see the Let's go! button", then.textVisible("Let's go!"));
-  });
-  When("I click lets go!", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
-    Then("I can see the getting to know yu title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
-  });
-  When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
-    Then("I can see lets go button", then.idVisible(ids.BUTTON_BASE("Let’s go!")));
-  });
-  When("I press lets go ", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
-    Then("I can see the new designed advice/goal question with the banner with an image on top", then.idVisible(ids.HINT_LABEL("Health advice and tips")));
-    Then("I can see the new designed advice/goal questions image", then.idVisible(ids.HINT_VARIANT_IMAGE("https://yulife-develop.imgix.net/journeys/health-questionnaire/advice.svg?ixlib=js-3.2.1&s=22d39a7ba57dafd56f6a12b0f8f1da7f")));
-    Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("How motivated are you to take up this advice?", "b2b")));
-    Then("I can see the next button is disabled as I haven't selected an answer", then.idVisible(ids.BUTTON_BASE("Next", true)));
-  });
-  When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_advice.1.2.15", "choice_dynamic_advice.1.2.15", 5), async () => {
-    Then("I can see the next button is enabled as I have selected an answer", then.idVisible(ids.BUTTON_BASE("Next", false)));
-  });
-  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-    Then("I can see the quiz time question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What is the recommended daily intake of fruits and vegetables?", "b2b")));
-    Then("I can see the next button is disabled as I haven't selected an answer", then.idVisible(ids.BUTTON_BASE("Next", true)));
-  });
-  When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_health.1.1.216", "choice_dynamic_health.1.1.216", 4), async () => {
-    When("I select a wrong answer", when.tapID(ids.CHECKBOX_SELECTORS("dynamic_health.1.1.216", "choice_dynamic_health.1.1.216.1")), async () => {
+    When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN"), async () => {
+      Then("I should see Today you've earned '200 YuCoin' (from the download bonus)", then.textVisible("200 YuCoin"));
+    });
+    When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+      Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
+      Then("I should see the Let's go! button", then.textVisible("Let's go!"));
+    });
+    When("I click lets go!", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
+      Then("I can see the getting to know yu title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
+    });
+    When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
+      Then("I can see lets go button", then.idVisible(ids.BUTTON_BASE("Let’s go!")));
+    });
+    When("I press lets go ", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
+      Then("I can see the new designed advice/goal question with the banner with an image on top", then.idVisible(ids.HINT_LABEL("Health advice and tips")));
+      Then("I can see the new designed advice/goal questions image", then.idVisible(ids.HINT_VARIANT_IMAGE("https://yulife-develop.imgix.net/journeys/health-questionnaire/advice.svg?ixlib=js-3.2.1&s=22d39a7ba57dafd56f6a12b0f8f1da7f")));
+      Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("How motivated are you to take up this advice?", "b2b")));
+      Then("I can see the next button is disabled as I haven't selected an answer", then.idVisible(ids.BUTTON_BASE("Next", true)));
+    });
+    When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_advice.1.2.15", "choice_dynamic_advice.1.2.15", 5), async () => {
       Then("I can see the next button is enabled as I have selected an answer", then.idVisible(ids.BUTTON_BASE("Next", false)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I can see So Close!", then.idVisible(ids.HALF_MODAL_TITLE("So close!"), 5));
-      Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("The actual answer is: **5 portions**.")));
+      Then("I can see the quiz time question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What is the recommended daily intake of fruits and vegetables?", "b2b")));
+      Then("I can see the next button is disabled as I haven't selected an answer", then.idVisible(ids.BUTTON_BASE("Next", true)));
     });
-  });
-  When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
-    Then("I can see the next question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What are the benefits of a balanced diet?", "b2b")));
-  });
-  When("I click on the 'Back arrow' button", when.tapID(ids.BACK_BUTTON), async () => {
-    Then("I can see the quiz time question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What is the recommended daily intake of fruits and vegetables?", "b2b")));
-  });
-  When("I select a correct answer", when.tapID(ids.CHECKBOX_SELECTORS("dynamic_health.1.1.216", "choice_dynamic_health.1.1.216.3")), async () => {
-    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I can see Nicely Done!", then.idVisible(ids.HALF_MODAL_TITLE("Nicely done!")));
-      Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("**5 portions** is the correct answer.")));
+    When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_health.1.1.216", "choice_dynamic_health.1.1.216", 4), async () => {
+      When("I select a wrong answer", when.tapID(ids.CHECKBOX_SELECTORS("dynamic_health.1.1.216", "choice_dynamic_health.1.1.216.1")), async () => {
+        Then("I can see the next button is enabled as I have selected an answer", then.idVisible(ids.BUTTON_BASE("Next", false)));
+      });
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I can see So Close!", then.idVisible(ids.HALF_MODAL_TITLE("So close!"), 5));
+        Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("The actual answer is: **5 portions**.")));
+      });
     });
-  });
-  When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
-    Then("I can see the next question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What are the benefits of a balanced diet?", "b2b")));
-  });
-  When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_health.1.1.222", "choice_dynamic_health.1.1.222", 4), async () => {
-    When("I select a correct answer", when.tapID(ids.CHECKBOX_SELECTORS("dynamic_health.1.1.222", "choice_dynamic_health.1.1.222.2")), async () => {
+    When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
+      Then("I can see the next question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What are the benefits of a balanced diet?", "b2b")));
+    });
+    When("I click on the 'Back arrow' button", when.tapID(ids.BACK_BUTTON), async () => {
+      Then("I can see the quiz time question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What is the recommended daily intake of fruits and vegetables?", "b2b")));
+    });
+    When("I select a correct answer", when.tapID(ids.CHECKBOX_SELECTORS("dynamic_health.1.1.216", "choice_dynamic_health.1.1.216.3")), async () => {
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
         Then("I can see Nicely Done!", then.idVisible(ids.HALF_MODAL_TITLE("Nicely done!")));
-        Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("**Improved digestion, energy levels, and reduced risk of chronic diseases** is the correct answer.")));
+        Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("**5 portions** is the correct answer.")));
       });
     });
-  });
-  When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
-    Then("I can see the image question", then.idVisible(ids.TEXT_TEMPLATE("Are you a morning or night person?", "b2b")));
-    Then("I can see each question has an image and a label", then.verifyImageChoicesVisible());
-  });
-  When("I click select morning person", when.tapID(ids.IMAGE_CHOICE_LABEL("Morning person")), async () => {
-    Then("I can see morning person checkbox is selected", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.1.31.1", true)));
-  });
-  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-    Then("I can see the slider question", then.idVisible(ids.TEXT_TEMPLATE("In the past week, how often did you manage to stay focused on important tasks without getting sidetracked?", "b2b")));
-    Then("I can see the question slider", then.idVisible(ids.CONTENT_ITEM_SCALE));
-  });
-  When("I swipe the slider into each position, that position becomes visible", when.verifySliderPositionsBySwiping(ids.CONTENT_ITEM_SLIDER, [0, 1, 2, 3, 4]), async () => {
-    Then("I can see the slider on never", then.idExist(ids.SLIDABLE_POSITION(4)));
-  });
-  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-    Then("I can see the slider question", then.idVisible(ids.TEXT_TEMPLATE("Yesterday, did you check social media multiple times, even when it may not have been appropriate (e.g., during a meeting, at dinner, etc.)?", "b2b")));
-    Then("I can see the next button is disabled as I have not moved the slider yet", then.idVisible(ids.BUTTON_BASE("Next", true)));
-  });
-  When("I swipe the slider to yes", when.swipeFromIDAtIndex(ids.CONTENT_ITEM_SLIDER, 1, "left", "slow", 0.4), async () => {
-    Then("I can see the next button is enabled as I have moved the slider", then.idVisible(ids.BUTTON_BASE("Next", false)));
-  });
-  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-    Then("I can see the select multiple image question", then.idVisible(ids.TEXT_TEMPLATE("How do you typically maintain your social connections?", "b2b")));
-    Then("I can see the (select all that apply) subheading", then.idVisible(ids.MARKDOWN("(Select all that apply)")));
-    Then("I can see the next button is disabled as I have not selected an answer yet", then.idVisible(ids.BUTTON_BASE("Next", true)));
-  });
-  When("I select in-person meet ups", when.tapID(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.1", false)), async () => {
-    When("I select phone calls or video chats", when.tapID(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.2", false)), async () => {
-      Then("I can see the next button is enabled as I have select answers", then.idVisible(ids.BUTTON_BASE("Next", false)));
+    When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
+      Then("I can see the next question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What are the benefits of a balanced diet?", "b2b")));
     });
-  });
-  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-    Then("I the final slider question", then.idVisible(ids.TEXT_TEMPLATE("Do you use your personal or work mobile phone for work?", "b2b")));
-  });
-  When("I click on the 'Back arrow' button", when.tapID(ids.BACK_BUTTON), async () => {
-    Then("I can see the multiple image question", then.idVisible(ids.TEXT_TEMPLATE("How do you typically maintain your social connections?", "b2b")));
-    Then("I can see the multiple selections are still highlighted ", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.1", true)));
-    Then("I can see the multiple selections are still highlighted ", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.2", true)));
-  });
-  When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-    When("I swipe the slider to the furthest left", when.swipeFromIDAtIndex(ids.CONTENT_ITEM_SLIDER, 1, "left", "slow", 0.4), async () => {
-      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-        Then("I should be on the chest screen", then.idVisibleAtIndex(ids.LOTTIE_VIEW, 0));
+    When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_health.1.1.222", "choice_dynamic_health.1.1.222", 4), async () => {
+      When("I select a correct answer", when.tapID(ids.CHECKBOX_SELECTORS("dynamic_health.1.1.222", "choice_dynamic_health.1.1.222.2")), async () => {
+        When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+          Then("I can see Nicely Done!", then.idVisible(ids.HALF_MODAL_TITLE("Nicely done!")));
+          Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("**Improved digestion, energy levels, and reduced risk of chronic diseases** is the correct answer.")));
+        });
       });
     });
-  });
-  When("I tap the screen", when.tapIDAtIndex(ids.LOTTIE_VIEW, 0), async () => {
-    Then("The chest should be open", then.idVisibleAtIndex(ids.LOTTIE_VIEW, 0));
-  });
-  When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
-    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
-        Then("I see the 20 yucoin earned today so far", then.textVisible("20 YuCoin"));
+    When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
+      Then("I can see the image question", then.idVisible(ids.TEXT_TEMPLATE("Are you a morning or night person?", "b2b")));
+      Then("I can see each question has an image and a label", then.verifyImageChoicesVisible);
+    });
+    When("I click select morning person", when.tapID(ids.IMAGE_CHOICE_LABEL("Morning person")), async () => {
+      Then("I can see morning person checkbox is selected", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.1.31.1", true)));
+    });
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I can see the slider question", then.idVisible(ids.TEXT_TEMPLATE("In the past week, how often did you manage to stay focused on important tasks without getting sidetracked?", "b2b")));
+      Then("I can see the question slider", then.idVisible(ids.CONTENT_ITEM_SCALE));
+    });
+    When("I swipe the slider into each position, that position becomes visible", when.verifySliderPositionsBySwiping(ids.CONTENT_ITEM_SLIDER, [0, 1, 2, 3, 4]), async () => {
+      Then("I can see the slider on never", then.idExist(ids.SLIDABLE_POSITION(4)));
+    });
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I can see the slider question", then.idVisible(ids.TEXT_TEMPLATE("Yesterday, did you check social media multiple times, even when it may not have been appropriate (e.g., during a meeting, at dinner, etc.)?", "b2b")));
+      Then("I can see the next button is disabled as I have not moved the slider yet", then.idVisible(ids.BUTTON_BASE("Next", true)));
+    });
+    When("I swipe the slider to yes", when.swipeFromIDAtIndex(ids.CONTENT_ITEM_SLIDER, 1, "left", "slow", 0.4), async () => {
+      Then("I can see the next button is enabled as I have moved the slider", then.idVisible(ids.BUTTON_BASE("Next", false)));
+    });
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I can see the select multiple image question", then.idVisible(ids.TEXT_TEMPLATE("How do you typically maintain your social connections?", "b2b")));
+      Then("I can see the (select all that apply) subheading", then.idVisible(ids.MARKDOWN("(Select all that apply)")));
+      Then("I can see the next button is disabled as I have not selected an answer yet", then.idVisible(ids.BUTTON_BASE("Next", true)));
+    });
+    When("I select in-person meet ups", when.tapID(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.1", false)), async () => {
+      When("I select phone calls or video chats", when.tapID(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.2", false)), async () => {
+        Then("I can see the next button is enabled as I have select answers", then.idVisible(ids.BUTTON_BASE("Next", false)));
+      });
+    });
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I the final slider question", then.idVisible(ids.TEXT_TEMPLATE("Do you use your personal or work mobile phone for work?", "b2b")));
+    });
+    When("I click on the 'Back arrow' button", when.tapID(ids.BACK_BUTTON), async () => {
+      Then("I can see the multiple image question", then.idVisible(ids.TEXT_TEMPLATE("How do you typically maintain your social connections?", "b2b")));
+      Then("I can see the multiple selections are still highlighted ", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.1", true)));
+      Then("I can see the multiple selections are still highlighted ", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.2", true)));
+    });
+    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      When("I swipe the slider to the furthest left", when.swipeFromIDAtIndex(ids.CONTENT_ITEM_SLIDER, 1, "left", "slow", 0.4), async () => {
+        When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+          Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
+          Then(
+            "As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 40 YuCoin for completing it",
+            then.idVisible(ids.MARKDOWN("+40 ![](https://yulife-develop.imgix.net/journeys/yuCoin.svg?ixlib=js-3.2.1&w=24&h=24&dpr=3&s=3cb4cda29e509a2eb7f6cb42af14a01e)"))
+          );
+        });
+      });
+    });
+    When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
+      When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+          When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5), async () => {
+            Then("I should see Additional rewards showing the questionnaire", then.textVisible("Quiz"));
+            Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("40"));
+          });
+        });
       });
     });
   });

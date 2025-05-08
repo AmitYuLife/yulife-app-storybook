@@ -825,7 +825,7 @@ export const CORE_JOURNEY_STEPS_09 = {
         {
           iconImageKey: "journeys/info-panel-chest.png",
           description: {
-            "en-GB": "Earn 20 YuCoin!",
+            "en-GB": "${amount} YuCoin!",
             "ja-JP": "${amount}YuCoinを獲得!",
           },
           heading: {
@@ -854,7 +854,7 @@ export const CORE_JOURNEY_STEPS_09 = {
           "このアンケートは機密情報として扱われ、雇用主や第三者に共有されることはありません。",
       },
       showProgress: false,
-      yuCoinAmount: 20,
+      yuCoinRewardAsEarnRateMultiple: 4,
       disclaimer: {
         "en-GB":
           "By completing this questionnaire and submitting this information, you consent to us processing your data in order to record and analyse the information on a pseudonymised basis for research purposes in order to develop our understanding of where we might be able to improve population health through gamification. You may withdraw your consent at any time through our in-app chat function or via email to [data@yulife.com](mailto:data@yulife.com). Please see our Privacy Policy for further information: \n[https://yulife.com/privacy-policy/](https://yulife.com/privacy-policy/).",
@@ -862,7 +862,6 @@ export const CORE_JOURNEY_STEPS_09 = {
           "このアンケートに回答し、この情報を送信することで、あなたは、ゲーミフィケーションを通じて集団の健康を改善できる可能性のある場所についての理解を深めるために、研究目的で仮名ベースで情報を記録し分析するために、当社があなたのデータを処理することに同意します。あなたは、当社のアプリ内チャット機能または[data@yulife.com](mailto:data@yulife.com)への電子メールを通じて、いつでも同意を撤回することができます。詳しくは[プライバシーポリシー](https://yulife.com/jp/privacy-policy/)をご覧ください。",
       },
     },
-
     stepType: "initial",
     answerKeys: [],
     validation: {
@@ -886,47 +885,52 @@ export const CORE_JOURNEY_STEPS_10 = {
   data: {
     _id: "6627908b790eab650c2a6a01",
     journey: "66140199f9be413b16dd1c81",
-    stepId: "health_questionnaire_submission",
-    name: "health_questionnaire_submission",
-    template: "journey_template_lottie",
+    stepId: "thank_you_submission_pulse",
+    name: "Thank you and submission",
+    stepType: "submission",
+    template: "journey_template_yucoin_award",
     templateUi: {
-      url: "media/chest-yucoin/hq-chest-reward-2.json",
       copy: {
+        heading: {
+          "en-GB": "Thank you for your feedback!",
+          "ja-JP": "ご協力ありがとうございます！",
+          _id: "67e18d2897e7765fda549a7d",
+        },
+        description: {
+          "en-GB": "Here’s some YuCoin for helping to make your company experience even better.",
+          "ja-JP": "アンケート回答のお礼として、YuCoinを差し上げます。",
+          _id: "67e18d2897e7765fda549a7e",
+        },
         ctaLabel: {
           "en-GB": "Claim",
+          "ja-JP": "受け取る",
+          _id: "67e18d2897e7765fda549a7f",
         },
       },
-      loop: false,
-      autoPlay: false,
       showProgress: false,
+      progress: {
+        progressValue: 2,
+        progressTotal: 2,
+      },
+      category: {},
     },
-    stepType: "submission",
     answerKeys: [],
+    temporaryProperties: [],
     hooks: [
       {
         hook: "awardYucoin",
+        trigger: "onPreFill",
+      },
+      {
+        hook: "validateAccessRules",
         trigger: "onPreSave",
-        props: {
-          awardYucoin: 20,
-        },
       },
     ],
-    validation: {
-      type: "object",
-      properties: {
-        SHOULD_LOTTIE_PLAY_KEY: {
-          type: "boolean",
-        },
-      },
-      additionalProperties: false,
-    },
-    temporaryProperties: ["SHOULD_LOTTIE_PLAY_KEY"],
-    ui: "6627908b790eab650c2a69ff",
     events: [],
     nextSteps: [],
-    createdAt: "2024-04-23T10:42:19.955+0000",
-    updatedAt: "2024-04-23T10:42:19.955+0000",
+    ui: "6627908b790eab650c2a69ff",
     __v: 0,
+    disableBackAction: true,
   },
 } as IDatabaseItem;
 

@@ -78,6 +78,19 @@ export const BUSINESS_2_P2P_SETTINGS = {
   },
 } as IDatabaseItem;
 
+export const BUSINESS_2_HQ_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.healthQuestionnaire",
+    entityId: BUSINESS_ACCOUNT_2.data.business_account_id,
+    entityType: "business",
+    settings: {
+      isQuestionnaireEnabled: true,
+    },
+  },
+} as IDatabaseItem;
+
 export const BUSINESS_2_MAX_YU_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {

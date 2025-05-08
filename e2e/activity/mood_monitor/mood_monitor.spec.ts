@@ -23,7 +23,7 @@ Feature("Mood Monitor", async () => {
       Then("I should be on the Mood Monitor intro screen", then.objCopyVisible(moodMonitorIntro));
     });
     When("I tap Let's Go", when.tapID(ids.BUTTON_BASE("Let's Go")), async () => {
-      Then("I should see correct YuCoin reward amount on the progress bar", then.progressBarVisible(0));
+      Then("I should see correct YuCoin reward amount on the progress bar", then.progressBarVisible(0, 600));
       Then("I should be on the rested question screen", then.objCopyVisible(restedQuestion));
     });
     When("I tap 'Neutral'", when.tapID(ids.CHECK_BOX_STATE("3 - Neutral", false)), async () => {
@@ -52,7 +52,7 @@ Feature("Mood Monitor", async () => {
     When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
       Then("I should be on the final Mood Monitor Screen", then.textVisible(moodMonitorFinalScreen.title));
       Then("I should see the happy mood monitor image", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(moodMonitorHappy)));
-      Then("I should see the progress bar fully complete", then.progressBarVisible(600));
+      Then("I should see the progress bar fully complete", then.progressBarVisible(600, 600));
     });
     When("I click done", when.tapIDAtIndex(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 1), async () => {
       Then("I should see the correct reward amount on the 'Additional rewards' section", then.idVisible(ids.ACTIVITY_LISTING("Mood monitor", 60)));
