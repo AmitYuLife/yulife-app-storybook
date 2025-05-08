@@ -101,7 +101,7 @@ export const USER_JOURNEY_STATE_01 = {
         isAQuestion: true,
       },
       {
-        stepId: "health_questionnaire_submission",
+        stepId: "thank_you_submission_pulse",
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,
@@ -213,7 +213,7 @@ export const USER_JOURNEY_STATE_02 = {
         isAQuestion: true,
       },
       {
-        stepId: "health_questionnaire_submission",
+        stepId: "thank_you_submission_pulse",
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,
@@ -325,7 +325,7 @@ export const USER_JOURNEY_STATE_03 = {
         isAQuestion: true,
       },
       {
-        stepId: "health_questionnaire_submission",
+        stepId: "thank_you_submission_pulse",
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,
@@ -374,7 +374,7 @@ export const USER_JOURNEY_STATE_04 = {
     _id: generateRandomMongoId(),
     journeyId: "health_questionnaire",
     triggerSourceId: "initial",
-    userId: customer.CUSTOMER_44.data.customerId,
+    userId: customer.CUSTOMER_47.data.customerId,
     __v: 0,
     createdAt: "2024-04-23T10:42:19.959+0000",
     requiresUserStateForAccess: true,
@@ -437,7 +437,7 @@ export const USER_JOURNEY_STATE_04 = {
         isAQuestion: true,
       },
       {
-        stepId: "health_questionnaire_submission",
+        stepId: "thank_you_submission_pulse",
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,

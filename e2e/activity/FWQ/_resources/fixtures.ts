@@ -24,12 +24,15 @@ export const moneyMasteryFWQDescriptionPage: FinancialWellnessQuizDescriptionPag
 
 export const hqInfoCopy = {
   title: "Getting to Know Yu!",
-  description:
-    "Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some extra YuCoin as you sail through these questions!",
+  description: [
+    "Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some ",
+    "**extra YuCoin**",
+    " as you sail through these questions!",
+  ],
   boxOneTitle: "Task",
   boxOneDescription: "Complete the health questions to the best of your ability.",
   boxTwoTitle: "Rewards",
-  boxTwoDescription: "Earn 20 YuCoin!",
+  boxTwoDescription: "40 YuCoin!",
   boxThreeTitle: "Why all the questions?",
   boxThreeDescription:
     "These questions were hand-picked and referenced from NHS sources to help you create an overall picture of your health.",

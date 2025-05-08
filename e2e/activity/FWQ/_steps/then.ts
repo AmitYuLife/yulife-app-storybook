@@ -74,7 +74,9 @@ export const eventPanelForRewardTest = (eventPanel: any) => async () => {
 };
 
 export const onHQInformationScreen = (copy: any) => async () => {
-  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.description, "down")();
+  copy.description.forEach((text) => async () => {
+    await textVisible(text)();
+  });
   await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxOneTitle, "down")();
   await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxOneDescription, "down")();
   await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxTwoTitle, "down")();
@@ -126,7 +128,7 @@ export const onHQHoldScreen = async () => {
 };
 
 export const progressBarVisible =
-  (currentPosition: number, maxLength = 600, colour = "#E30D76") =>
+  (currentPosition: number, maxLength: number, colour = "#E30D76") =>
   async () => {
     await idVisible(ids.WEEKLY_PROGRESS_BAR(currentPosition, maxLength, colour), 2500)();
   };

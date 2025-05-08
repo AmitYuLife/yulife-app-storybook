@@ -1,5 +1,5 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_45, CUSTOMER_44 } from "../postgres/customers";
+import { CUSTOMER_44 } from "../postgres/customers";
 
 const model = "core_journeys";
 
@@ -19,7 +19,7 @@ export const CORE_JOURNEY_1 = {
     __v: 0,
     requiresUserStateForAccess: true,
     staticJourney: true,
-    yuCoinRewardAsFlatAmount: 20,
+    yuCoinRewardAsEarnRateMultiple: 4,
     uiAccess: [
       {
         isFirstJourney: true,

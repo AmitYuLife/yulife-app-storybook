@@ -496,7 +496,7 @@ export const cyclingNudgeVisible =
   };
 
 export const hqNudgeVisible =
-  (yuCoinAmount = 20) =>
+  (yuCoinAmount = 40) =>
   async () => {
     const hqMarkdown = `Check in on your health to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(NUDGE_ITEM(hqMarkdown))();
@@ -552,7 +552,7 @@ export const completedStreakNudgeVisible =
   };
 
 export const completedHQNudgeVisible =
-  (yuCoinAmount = 20) =>
+  (yuCoinAmount = 40) =>
   async () => {
     const hqMarkdown = `Check in on your health to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(DONE_NUDGE_ICON(hqMarkdown))();
