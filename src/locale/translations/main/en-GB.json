@@ -347,7 +347,7 @@
       "login_with_password": "Log in with password instead.",
       "resend_link": "Didn’t get it? Send a new link.",
       "cooldown": "Send a new link in %{seconds}s...",
-      "webview_title": "Continue",
+      "webview_title": "Preparing for liftoff...",
       "error_title": "Something went wrong"
     },
     "login_password": {
