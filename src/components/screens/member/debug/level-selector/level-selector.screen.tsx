@@ -13,6 +13,7 @@ interface IProps {
   onSubmit: (currentLevel: number, yuniversalMap?: number, yuniversalLevel?: number) => void;
 }
 
+const MAX_LEVEL = 1400;
 const MAX_YUNIVERSAL_LEVEL = 6;
 const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onLeftIconPress, onSubmit }: IProps) => {
   const [levelInput, setLevelInput] = useState(String(currentLevel));
@@ -20,7 +21,7 @@ const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onL
   const [yuniversalLevelInput, setYuniversalLevelInput] = useState(yuniversalLevel ? String(yuniversalLevel) : "");
 
   const onChangeLevel = useCallback((value: string) => {
-    if (onlyContainsNumbers(value) && isLessThan(value, 1200)) {
+    if (onlyContainsNumbers(value) && isLessThan(value, MAX_LEVEL)) {
       setLevelInput(value);
     }
   }, []);
@@ -54,7 +55,7 @@ const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onL
 
   const setCurrentLevelDisabled = useMemo(() => {
     const value = Number(levelInput);
-    return Number.isNaN(value) || value <= 0 || value > 1200;
+    return Number.isNaN(value) || value <= 0 || value > MAX_LEVEL;
   }, [levelInput, onSubmit]);
 
   const setYuniversalLevelDisabled = useMemo(() => {
