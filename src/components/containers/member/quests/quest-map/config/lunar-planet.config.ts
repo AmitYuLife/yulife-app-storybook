@@ -37,7 +37,6 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeHeight: 733,
     bubbleOffsetY: -14,
     episodeKey: 68,
-    snapOffsetY: -30,
     snapPosition: "center",
     levels: {
       1215: { x: 375 / 2, y: 812 / 2 + 88 },
@@ -87,7 +86,6 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   198: {
     background: require("../episodes/lunar/forest/lunar-forest-6.webp"),
-    snapOffsetY: 20,
     episodeWidth: 375,
     episodeHeight: 557,
     episodeKey: 71,
@@ -172,7 +170,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 76,
     snapPosition: "center",
     bubbleOffsetY: 20,
-    snapOffsetY: -40,
+    snapOffsetY: -20,
     levels: {
       1265: { x: 375 / 2, y: 470 },
       1266: { x: 375 / 2 + 88 * 1.05, y: 470 },
@@ -191,7 +189,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     snapPosition: "center",
     episodeKey: 77,
     bubbleOffsetY: -180,
-    snapOffsetY: -40,
+    snapOffsetY: -30,
     levels: {
       1272: { x: 375 / 2, y: 812 / 2 + 88 * 3 + 15 },
       1273: { x: 375 / 2 + 88, y: 600 },
@@ -244,7 +242,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     background: require("../episodes/lunar/ocean/lunar-ocean-7.webp"),
     topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 684,
-    snapOffsetY: 40,
+    snapOffsetY: -25,
     episodeWidth: 375,
     episodeKey: 80,
     snapPosition: "center",
@@ -278,7 +276,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   209: {
     background: require("../episodes/lunar/desert/lunar-desert-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.WHITE,
-    episodeHeight: 1009,
+    episodeHeight: 1008,
     snapOffsetY: 70,
     episodeKey: 82,
     episodeWidth: 375,
@@ -292,6 +290,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     bubbleOffsetY: 15,
     episodeKey: 83,
+    snapOffsetY: -20,
     levels: {
       1308: { x: 375 / 2, y: 480 },
       1309: { x: 375 / 2, y: 400 },
@@ -327,6 +326,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 85,
     episodeWidth: 375,
     bubbleOffsetY: -65,
+    snapOffsetY: 20,
     snapPosition: "center",
     levels: {
       1322: { x: 375 / 2, y: 510 },
@@ -344,7 +344,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     snapPosition: "center",
     episodeKey: 86,
-    snapOffsetY: 40,
+    snapOffsetY: 10,
     bubbleOffsetY: -25,
     levels: {
       1329: { x: 375 / 2, y: 812 / 2 + 88 },
@@ -379,7 +379,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 88,
     episodeWidth: 375,
     snapPosition: "center",
-    snapOffsetY: -30,
+    snapOffsetY: -60,
     bubbleOffsetY: 80,
     seperator: {
       width: 1080,
@@ -517,7 +517,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeHeight: 712,
     episodeKey: 96,
     episodeWidth: 375,
-    snapOffsetY: 30,
+    snapOffsetY: -30,
     snapPosition: "top",
     bubbleOffsetY: -30,
     seperator: {
