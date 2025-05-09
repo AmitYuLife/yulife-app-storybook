@@ -948,6 +948,7 @@ export const PARTNER_REWARDS_INVENTORY_ITEMS_COUNT = (quantity: number) =>
   `PARTNER_REWARDS_INVENTORY_ITEMS_COUNT_${quantity}`;
 export const PARTNER_REWARDS_INVENTORY_ITEMS_TITLE = (title: string) =>
   `PARTNER_REWARDS_INVENTORY_ITEMS_TITLE_${title}`;
+export const DONATION_LIST_AVATARS = (count: number) => `DONATION_LIST_AVATARS_${count}`;
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";

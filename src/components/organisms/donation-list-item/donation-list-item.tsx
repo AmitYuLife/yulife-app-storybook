@@ -1,7 +1,7 @@
 import { Image, TextTemplate } from "@atoms";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { useScreenReaderChange } from "@hooks";
-import { DONATION_BUTTON, IMPACT_DONATION_IMAGE, IMPACT_DONATION_TITLE } from "@ids";
+import { DONATION_BUTTON, DONATION_LIST_AVATARS, IMPACT_DONATION_IMAGE, IMPACT_DONATION_TITLE } from "@ids";
 import { t } from "@locale";
 import { Avatar, BoxOption, Markdown, Pressable } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
@@ -117,7 +117,12 @@ const DonationListItem = ({
             <View style={styles.avatarsWrapper}>
               {top.map((item) => (
                 <View key={item.id} style={styles.avatar}>
-                  <Avatar size={32} uri={item.avatar.uri} position={item.position} />
+                  <Avatar
+                    size={32}
+                    uri={item.avatar.uri}
+                    position={item.position}
+                    testID={DONATION_LIST_AVATARS(top.length)}
+                  />
                 </View>
               ))}
               {top.length < 3 ? null : (
