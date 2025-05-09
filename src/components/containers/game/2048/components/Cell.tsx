@@ -1,14 +1,8 @@
 import { Image } from "expo-image";
 import React, { memo, useCallback, useEffect } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
-import Animated, {
-  interpolateColor,
-  useAnimatedStyle,
-  useSharedValue,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
-import { ANIMATION_DURATION, CELL_COLORS, EASING, MARGIN, TILES, theme } from "../constants";
+import Animated, { useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
+import { ANIMATION_DURATION, EASING, MARGIN, theme, TILES } from "../constants";
 import { GameBoardSize, GameSkin, GameValue, useCellSize } from "../hooks";
 
 interface IProps extends ViewProps {
@@ -57,31 +51,32 @@ const Cell = React.forwardRef(({ x, y, value, boardSize, skin, ...props }: IProp
     return {
       top: top.value,
       left: left.value,
+      width: cellWidth,
+      height: cellWidth,
+      ...styles.container,
+    };
+  });
+
+  const animatedContainerTransformStyle = useAnimatedStyle(() => {
+    return {
       transform: [
         {
           scale: scale.value,
         },
       ],
-
-      width: cellWidth,
-      height: cellWidth,
-      backgroundColor: interpolateColor(
-        cellValue.value,
-        Object.keys(CELL_COLORS).map(Number),
-        Object.values(CELL_COLORS)
-      ),
-      ...styles.container,
     };
   });
 
   return (
     <Animated.View ref={ref} {...props} style={animatedContainerStyle}>
-      <Image
-        cachePolicy="memory"
-        source={TILES[skin][value]}
-        contentFit="contain"
-        style={{ width: cellWidth, height: cellWidth, backgroundColor: theme.backgroundPrimary }}
-      />
+      <Animated.View style={animatedContainerTransformStyle}>
+        <Image
+          cachePolicy="memory"
+          source={TILES[skin][value]}
+          contentFit="contain"
+          style={{ width: cellWidth, height: cellWidth, backgroundColor: theme.backgroundPrimary }}
+        />
+      </Animated.View>
     </Animated.View>
   );
 });
