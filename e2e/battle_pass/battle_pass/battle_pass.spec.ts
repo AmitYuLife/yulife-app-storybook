@@ -81,9 +81,11 @@ Feature("I can view and use all battle pass features", async () => {
         Then("I should see the active season description", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("3 rewards remaining"), 2000));
       });
     });
-    When("I tap donate to Plant a tree and complete my first level", when.donate("tree", 3), async () => {
-      Then("I should NOT see the insufficient balance error message", then.textNotVisible(outOfCoinsMessage, 2000));
-      Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
+    When("I tap donate to 'Plant a tree' twice", when.donate("tree", 2), async () => {
+      When("I tap donate to 'Provide water' and complete my first level", when.donate("water", 1), async () => {
+        Then("I should NOT see the insufficient balance error message", then.textNotVisible(outOfCoinsMessage, 2000));
+        Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
+      });
     });
     When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
       When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
@@ -95,6 +97,20 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see level 2 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
       Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
       Then("I should see the correct remaining rewards count", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("2 rewards remaining"), 2000));
+    });
+    When("I minimise the app", when.minimiseApp, async () => {
+      When("I follow the deep link to donations", when.goToDonationsScreen, async () => {
+        Then("I should successfully be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+        Then("I should see my avatar being first on the 'Plant trees' donations list", then.idVisibleAtIndex(ids.DONATION_LIST_AVATARS(1), 0, 2000));
+      });
+    });
+    When("I tap on my 'trees' leaderboard avatar", when.tapIDAtIndex(ids.DONATION_LIST_AVATARS(1), 0, 2000), async () => {
+      Then("I should see the correct donated amount and position for the 'trees' leaderboard", then.idVisible(ids.LEADERBOARD_NAME("Carmy Berzatto", "40", 1, "#464647")));
+    });
+    When("I tap to go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR, 2000), async () => {
+      When("I tap on the 'water' leaderboard avatar", when.tapIDAtIndex(ids.DONATION_LIST_AVATARS(1), 1, 2000), async () => {
+        Then("I should also see correct donated amount for the 'water' leaderboard", then.idVisible(ids.LEADERBOARD_NAME("Carmy Berzatto", "20", 1, "#464647")));
+      });
     });
   });
 

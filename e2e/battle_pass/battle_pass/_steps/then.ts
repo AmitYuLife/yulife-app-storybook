@@ -13,6 +13,7 @@ export const {
   completedTodayStreakCopyVisible,
   multipleIDVisible,
   textNotVisible,
+  idVisibleAtIndex,
 } = navigation.common;
 
 export const {
