@@ -596,13 +596,13 @@ Feature("Quizzes and questionnaires", async () => {
 
   Scenario("If no business is available, when I can traverse through the engagement survey I will see a fallback 'your company' instead of the business name.", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_90.data.customerId]), async () => {
-      Given("I login as a user", given.loginAsUser(data.CUSTOMER_90, data.AUTH_90, true, "United Kingdom", false), async () => {
-        When("I should see the Let's go! button", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN", false)), async () => {
-          When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_Share your feedback"), async () => {
-            When("I click on the engagement survey hero card", when.fillOutEngagementSurvey, async () => {
-              Then("As a user who has no work business listed, I should see 'your company' provides adequate resources' ", then.idVisible(ids.TEXT_TEMPLATE("your company provides adequate resources to support your mental health (e.g., counselling services, stress checks).", "b2b")));
-            });
-          });
+      Given("I login as a user", given.loginAsUser(data.CUSTOMER_90, data.AUTH_90), async () => {
+        Then("I should see the engagement survey hero card", then.idVisible(ids.EVENT_HEADING("Share your feedback")));
+        Then("I should see the Engagement Survey hero card displaying the correct YuCoin reward — 300 YuCoin — based on the user's earn rate of 10 and the survey's 30* multiplier.", then.idVisible(ids.EVENT_DESCRIPTION("Earn **300** YuCoin and help improve your workplace anonymously!")));
+      });
+      When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_Share your feedback"), async () => {
+        When("I click on the engagement survey hero card", when.fillOutEngagementSurvey, async () => {
+          Then("As a user who has no work business listed, I should see 'your company' provides adequate resources' ", then.idVisible(ids.TEXT_TEMPLATE("your company provides adequate resources to support your mental health (e.g., counselling services, stress checks).", "b2b")));
         });
       });
     });
