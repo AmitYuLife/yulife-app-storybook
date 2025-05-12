@@ -1,7 +1,8 @@
 import LoginHeroScreen from "@components/screens/login/login-hero/login-hero.screen";
 import { REGION, t } from "@locale";
 import { ROUTES } from "@navigation/constants";
-import { memo, useCallback, useEffect } from "react";
+import { debounce } from "lodash";
+import { memo, useCallback, useEffect, useMemo } from "react";
 import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
 
@@ -26,6 +27,18 @@ const LoginHeroContainer = ({ componentId, hasSessionExpiredError }: Props) => {
     [componentId]
   );
 
+  const debouncedNavigateToLoginEmail = useMemo(
+    () => debounce(navigateToLoginEmail, 500, { leading: true, trailing: false }),
+    [navigateToLoginEmail]
+  );
+
+  useEffect(() => {
+    // On component unmount, cancel the debounced function
+    return () => {
+      debouncedNavigateToLoginEmail.cancel();
+    };
+  }, [debouncedNavigateToLoginEmail]);
+
   useEffect(() => {
     if (hasSessionExpiredError) {
       Alert.alert(
@@ -35,7 +48,7 @@ const LoginHeroContainer = ({ componentId, hasSessionExpiredError }: Props) => {
     }
   }, [hasSessionExpiredError]);
 
-  return <LoginHeroScreen onLoginEmailPress={navigateToLoginEmail} />;
+  return <LoginHeroScreen onLoginEmailPress={debouncedNavigateToLoginEmail} />;
 };
 
 export default memo(LoginHeroContainer);
