@@ -875,7 +875,7 @@
     "wellbeing_hub": {
       "category_all": "All",
       "header_title": "Hi %{name}",
-      "header_description": "Welcome to this quick-access hub to all your company’s wellbeing benefits",
+      "header_description": "Your quick-access hub to explore and enjoy your wellbeing benefits.",
       "send_documents": {
         "title": "Email document(s)",
         "description": "Please enter the e-mail address you would like the document(s) sent to:",
@@ -886,7 +886,7 @@
       },
       "no_results": {
         "title": "Check back later!",
-        "description": "You currently don’t have any company wellbeing benefits. You may be able to find them here at a later date."
+        "description": "You currently don’t have any wellbeing benefits. You may be able to find them here at a later date."
       }
     },
     "content_location": {
@@ -927,7 +927,7 @@
         "info_heading": "About Leaderboards",
         "communities_info": {
           "heading": "Communities",
-          "content": "These can represent the entire company or specific groups that your HR has set up. You can filter your leaderboards based on the groups you are assigned to."
+          "content": "Communities are groups you’re assigned to, such as organisational teams or regional cohorts. You can view and filter leaderboards based on these groupings."
         },
         "steps_info": {
           "heading": "Steps Leaderboard",
