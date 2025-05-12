@@ -1,57 +1,48 @@
-import { memo } from "react";
-import { Box, Image } from "@atoms";
-import { Style } from "@styles";
-import { FadeIn } from "react-native-reanimated";
-import { useLogoPositions } from "../hooks/useLogoPositions";
-import LoginChestSvg from "./svgs/login-chest-svg";
-import CircleBorder from "./circle-border";
-
-type AnimatedChestProps = {
-  rewards: Array<{
-    id: string;
-    logo: {
-      id: string;
-      uri?: string;
-    };
-  }>;
-};
+import { memo, useCallback, useRef, useState } from "react";
+import { Box } from "@atoms";
+import LoginChestFallback from "./svgs/login-chest-fallback";
+import Lottie from "lottie-react-native";
+import { LottieView } from "@components/molecules";
+import { StyleSheet } from "react-native";
+import RewardLogos from "./reward-logos";
+import { useTimeout } from "@hooks";
+import { CHEST_HEIGHT, CHEST_WIDTH } from "../constants";
+import { AnimatedChestProps } from "../types";
 
 const AnimatedChest = ({ rewards }: AnimatedChestProps) => {
-  const logoPositions = useLogoPositions();
+  const lottieRef = useRef<Lottie>(null);
+
+  const [isLottieFinished, setIsLottieFinished] = useState(false);
+  const [useFallback, setUseFallback] = useState(false);
+
+  useTimeout(() => setIsLottieFinished(true), 3500);
+
+  const handleAnimationFailure = useCallback(() => {
+    setUseFallback(true);
+  }, []);
 
   return (
-    <Box>
-      <LoginChestSvg />
-      <Box position="absolute" top={0} left={0} right={0} bottom={0} alignItems="center">
-        {rewards.map((reward, index) => {
-          const { id, top, left, right, size, rotation, border, animation } = logoPositions[index];
-
-          return (
-            <Box
-              key={`${reward.id}-${id}`}
-              position="absolute"
-              top={top}
-              left={left}
-              right={right}
-              alignItems="center"
-              entering={FadeIn.delay(750 + 100 * index).duration(500)}
-              forceAnimated={true}
-              style={animation}
-              disableAutoAdjust={true} // required for exact positioning
-            >
-              <CircleBorder size={size} border={border} />
-              <Image
-                source={reward.logo}
-                width={Style.adjust(size)}
-                height={Style.adjust(size)}
-                style={{ transform: [{ rotate: `${rotation}deg` }] }}
-              />
-            </Box>
-          );
-        })}
-      </Box>
+    <Box justifyContent="center" alignItems="center">
+      <LottieView
+        resizeMode="cover"
+        style={styles.lottie}
+        ref={lottieRef}
+        source={require("./assets/login-chest.lottie")}
+        autoPlay={true}
+        loop={false}
+        onAnimationFailure={handleAnimationFailure}
+      />
+      {useFallback ? <LoginChestFallback width={CHEST_WIDTH} height={CHEST_HEIGHT} /> : null}
+      {isLottieFinished ? <RewardLogos rewards={rewards} /> : null}
     </Box>
   );
 };
+
+const styles = StyleSheet.create({
+  lottie: {
+    width: CHEST_WIDTH,
+    height: CHEST_HEIGHT,
+  },
+});
 
 export default memo(AnimatedChest);
