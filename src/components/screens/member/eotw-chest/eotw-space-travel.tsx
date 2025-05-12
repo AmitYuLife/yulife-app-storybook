@@ -123,6 +123,17 @@ const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar
         avatar,
         testID: PLANET("RING"),
       },
+      {
+        key: "lunar",
+        position: {
+          left: width / 2,
+          bottom: contentHeight,
+        },
+        icon: PLANET_ASSETS.Lunar,
+        state: getPlanetState(7),
+        avatar,
+        testID: PLANET("LUNAR"),
+      },
     ],
     [avatar, contentHeight, getPlanetState, width]
   );

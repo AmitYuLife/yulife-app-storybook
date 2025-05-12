@@ -9,7 +9,7 @@ export type ItemSlot =
   | "map"
   | "binoculars"
   | "clockPendant";
-export type Planet = "EARTH" | "RED" | "BRIGHT" | "ORANGE" | "PURPLE" | "RING";
+export type Planet = "EARTH" | "RED" | "BRIGHT" | "ORANGE" | "PURPLE" | "RING" | "LUNAR";
 
 // screens
 export const COMPONENT_HOME_SCREEN = "COMPONENT_HOME_SCREEN";

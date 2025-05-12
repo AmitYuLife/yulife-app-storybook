@@ -1,7 +1,6 @@
-import React, { useCallback, useMemo, useState, FC, useRef, useEffect, memo } from "react";
+import React, { useCallback, useMemo, useState, FC, useEffect, memo } from "react";
 import { ImageSourcePropType, View } from "react-native";
 import { useDispatch } from "react-redux";
-import Lottie from "lottie-react-native";
 import { Chest, ChestType, ChestItemType, CHEST_STATE } from "@organisms";
 import { Button, LottieView } from "@molecules";
 import { RawImage, TextTemplate } from "@atoms";
@@ -39,8 +38,6 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, lev
   const dispatch = useDispatch();
   const currentPlanet = getCurrentPlanet(level);
   const currentPlanetName = getCurrentPlanetByLevel(level);
-
-  const travelRef = useRef<Lottie>(null);
   const [travel, setTravel] = useState(false);
 
   const chestButtonTranslationKey = useMemo(
@@ -84,9 +81,6 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, lev
 
   const onBeginningButtonPress = useCallback(() => {
     setPage(EOTW_CHEST_PAGE.TRAVEL_ANIMATION);
-    setImmediate(() => {
-      travelRef.current.play();
-    });
   }, []);
 
   const onInitialized = useCallback(() => {
@@ -161,9 +155,8 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, lev
         <LottieView
           resizeMode="cover"
           style={styles.lottie}
-          ref={travelRef}
           source={PLANET_TRAVEL_ANIMATION[currentPlanetName]}
-          autoPlay={false}
+          autoPlay={true}
           onAnimationFinish={onPressCta}
           loop={false}
         />

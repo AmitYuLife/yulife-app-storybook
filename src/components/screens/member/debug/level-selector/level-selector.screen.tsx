@@ -15,6 +15,7 @@ interface IProps {
 
 const MAX_LEVEL = 1400;
 const MAX_YUNIVERSAL_LEVEL = 6;
+const MAX_YUNIVERSAL_MAP = 6;
 const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onLeftIconPress, onSubmit }: IProps) => {
   const [levelInput, setLevelInput] = useState(String(currentLevel));
   const [yuniversalMapInput, setYuniversalMapInput] = useState(yuniversalMap ? String(yuniversalMap) : "");
@@ -71,7 +72,7 @@ const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onL
       Number.isNaN(yuniversalMapValue) ||
       Number.isNaN(yuniversalLevelValue) ||
       yuniversalMapValue < 0 ||
-      yuniversalMapValue > 5 ||
+      yuniversalMapValue > MAX_YUNIVERSAL_MAP ||
       yuniversalLevelValue < 0 ||
       yuniversalLevelValue > MAX_YUNIVERSAL_LEVEL + 1
     );
