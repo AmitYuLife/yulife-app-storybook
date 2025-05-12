@@ -54,6 +54,7 @@ const YUNIVERSAL_ANIMATION_CONFIG = new Map<number, AnimationConfig>([
   [600, DEFAULT_YUNIVERSAL_ANIMATION_CONFIG], // current animation has only 300 frames we need to change it
   [800, { totalFrames: 266, loopStartFrame: 208, loopEndFrame: 266, frameRate: 24 }],
   [1000, { totalFrames: 394, loopStartFrame: 288, loopEndFrame: 394, frameRate: 24 }],
+  [1200, { totalFrames: 318, loopStartFrame: 236, loopEndFrame: 318, frameRate: 24 }],
 ]);
 
 const UNITY_ANIMATION_CONFIG = new Map<number, AnimationConfig>([
@@ -236,8 +237,8 @@ const data = [
     color: Colours.neutral.white,
     backgroundGradient: require("./assets/background/common/yuniverse-background.webp"),
     backgroundChest: require("./assets/background/common/yuniverse-background.webp"),
-    background: require("./assets/background/purple/mountain-background.json"), // TODO: replace with ring
-    foreground: require("./assets/foreground/orange/mountain-foreground.json"), // // TODO: replace with ring
+    background: require("./assets/background/ring/mountain-background.json"),
+    foreground: require("./assets/foreground/ring/mountain-foreground.json"),
   },
 
   // Lunar planet
