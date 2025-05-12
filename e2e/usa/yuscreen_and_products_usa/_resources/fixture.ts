@@ -88,7 +88,7 @@ export const canEnrolPlusImage =
 //Wellbeing Hub
 
 export const wellbeingHubDescription =
-  "Welcome to this quick-access hub to all your company’s wellbeing benefits";
+  "Your quick-access hub to explore and enjoy your wellbeing benefits.";
 
 // Top Banner Images
 
