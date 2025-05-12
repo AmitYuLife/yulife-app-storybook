@@ -35,7 +35,7 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
     fetchPolicy: "network-only",
   });
 
-  const { hasLoaded } = useImagePreload({
+  const { hasLoaded: hasImagesLoaded } = useImagePreload({
     images: shopfront?.rewardPasses?.activeRewardPasses
       ?.map(({ backgroundImage, foregroundImage, passIcon }) => [
         backgroundImage?.uri,
@@ -159,7 +159,7 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
 
   const shouldShowFirstTimeModal = shopfront?.rewardList?.hasUserSelectedStoreLocation === false;
 
-  if (isShopfrontLoading || !shopfront || !hasLoaded) {
+  if ((isShopfrontLoading && !shopfront) || !hasImagesLoaded) {
     return <ShopfrontLoading leftIcons={leftIcons} />;
   }
 
