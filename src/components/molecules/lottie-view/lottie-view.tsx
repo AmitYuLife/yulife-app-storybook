@@ -20,7 +20,7 @@ const LottieWrapper = forwardRef<LottieView, ILottieProps>((props, ref) => {
           <Loading />
         </View>
       ) : (
-        <LottieView ref={ref} {...props} source={uri || props.source} testID={LOTTIE_VIEW}/>
+        <LottieView ref={ref} {...props} source={uri || props.source} testID={LOTTIE_VIEW} />
       )}
     </>
   );
