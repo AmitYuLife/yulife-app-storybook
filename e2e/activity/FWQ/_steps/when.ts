@@ -39,6 +39,7 @@ export const {
   booleanIdVisible,
   tapIDAtIndex,
   navigateTo,
+  minimiseAndReopenApp,
 } = navigation.common;
 
 export const { loginOnly } = navigation.login;
@@ -84,3 +85,8 @@ export const verifySliderPositionsBySwiping =
       await idExist(ids.SLIDABLE_POSITION(i))();
     }
   };
+
+export const agreeAndNext = async () => {
+  await tapID(ids.CHECK_BOX_STATE("Agree", false))();
+  await tapID(ids.BUTTON_BASE("Next"))();
+};

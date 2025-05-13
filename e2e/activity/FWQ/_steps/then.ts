@@ -177,3 +177,7 @@ export const verifyImageChoicesVisible = async () => {
     await idVisible(ids.IMAGE_CHOICE_LABEL(label))();
   }
 };
+
+export const nextQuestionVisible = (expectedQuestionText: string) => async () => {
+  await idVisible(ids.TEXT_TEMPLATE(expectedQuestionText, "b2b"))();
+};
