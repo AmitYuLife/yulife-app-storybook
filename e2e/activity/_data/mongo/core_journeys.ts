@@ -18,6 +18,9 @@ export const CORE_JOURNEY_1 = {
     updatedAt: "2024-03-27T13:31:13.059+0000",
     __v: 0,
     requiresUserStateForAccess: true,
+
+    showHeroCard: true,
+
     staticJourney: true,
     yuCoinRewardAsEarnRateMultiple: 4,
     uiAccess: [
@@ -68,9 +71,24 @@ export const CORE_JOURNEY_1 = {
     ],
     uiAccessCopy: {
       eventPanel: {
-        title: { "en-GB": "Getting to know Yu!" },
-        description: { "en-GB": "Earn YuCoin by discovering more about your health!" },
-        image: "illustrations/health-questionnaire-panel-2024-04-05-1.svg",
+        title: {
+          "en-GB": "Daily health questions",
+          "ja-JP": "健康チェックの質問",
+        },
+        description: {
+          "en-GB": "Earn **${amount}**${yuCoin} by discovering more about your health.",
+          "en-US": "Earn **${amount}**${yuCoin} by discovering more about your health.",
+          "en-ZA": "Earn **${amount}**${yuCoin} by discovering more about your health.",
+          "ja-JP": "健康に関する質問への回答で\n**${amount}**${yuCoin}をプレゼント。",
+        },
+        image: "journeys/banner-yugi-coin-2025-04-17.svg",
+        backgroundImage: "journeys/banner-gradient-2025-02-24.svg",
+        titleImage: {
+          "en-GB": "journeys/health-questionnaire/banner-title-2025-04-17.svg",
+          "en-US": "journeys/health-questionnaire/banner-title-2025-04-17.svg",
+          "en-ZA": "journeys/health-questionnaire/banner-title-2025-04-17.svg",
+          "ja-JP": "journeys/health-questionnaire/banner-title-jp-2025-04-17.svg",
+        },
       },
     },
   },

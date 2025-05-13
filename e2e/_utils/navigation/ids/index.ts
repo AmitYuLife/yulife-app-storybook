@@ -743,6 +743,8 @@ export const CHALLENGE_STARS = (
 ) => `CHALLENGE_STARS_${isLefttHighlighted}_${isMidHighlighted}_${isRightHighlighted}`;
 export const HERO_CARD_BADGE = (copy: string) => `HERO_CARD_BADGE_${copy}`;
 export const EVENT_CARD_COLOUR = (colour: string) => `EVENT_CARD_COLOUR_${colour}`;
+export const EVENT_CARD = (header: string) => `EVENT_CARD_${header}`;
+export const PINK_ARROW_ICON = "PINK_ARROW_ICON";
 export const EVENT_DIALOG_BUTTON = "EVENT_DIALOG_BUTTON";
 
 // ETOW

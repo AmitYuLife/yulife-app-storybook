@@ -1,6 +1,6 @@
 import { FC, memo, PropsWithChildren, useCallback, useMemo } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
-import { EVENT_CARD_COLOUR } from "@ids";
+import { EVENT_CARD_COLOUR, EVENT_CARD } from "@ids";
 import { getTheme } from "@theme";
 import { Style } from "@styles";
 import { Box } from "@atoms";
@@ -64,7 +64,12 @@ const HeroCard = ({
   return (
     <TouchableOpacityWithDelay onPress={handleSduiAction} testID={EVENT_CARD_COLOUR(backgroundColor)}>
       <Box pt={HERO_CARD_BADGE_HEIGHT / 2}>
-        <Box pb={5} br={8} style={{ width: cardWidth, backgroundColor: borderColor }}>
+        <Box
+          pb={5}
+          br={8}
+          style={{ width: cardWidth, backgroundColor: borderColor }}
+          testID={EVENT_CARD(header?.heading)}
+        >
           <Box
             br={8}
             borderWidth={1}
