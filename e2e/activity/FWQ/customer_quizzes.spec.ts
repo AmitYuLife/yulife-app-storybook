@@ -5,7 +5,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
-import { backSpace, hqInfoCopy, moneyMasteryFWQDescriptionPage, oneHundredAndOneCharacters, oneHundredCharacters, oneThousandAndOneCharacters } from "./_resources/fixtures";
+import { hqInfoCopy, moneyMasteryFWQDescriptionPage } from "./_resources/fixtures";
 import { getTranslation } from "_utils/translations/getTranslations";
 import { translations } from "@app/locale/translations";
 import { yuscreenImages } from "@images";
@@ -369,10 +369,8 @@ Feature("Quizzes and questionnaires", async () => {
 
   Scenario("As a user that works at 2 companies, I can traverse through the engagement survey until it is complete and I receive the correct amount of YuCoin for English.", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_137_GHI_REWARDS.data.customerId, data.BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id, data.BUSINESS_BACKGROUND_10.data.business_background_id]), async () => {
-      Given("I login as a user", given.loginAsUser(data.CUSTOMER_137_GHI_REWARDS, data.AUTH_137, true, "United Kingdom", false), async () => {
-        When("I should see the Let's go! button", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN", false)), async () => {
-          Then("I should see my YuCoin balance of 1000, before I finish the Engagement Survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1000)));
-        });
+      Given("I login as a user", given.loginAsUser(data.CUSTOMER_137_GHI_REWARDS, data.AUTH_137), async () => {
+        Then("I should see my YuCoin balance of 1000, before I finish the Engagement Survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1000)));
       });
     });
     When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_Share your feedback"), async () => {
@@ -522,7 +520,7 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should be on the 'Please elaborate on why you think this' question", then.idVisible(ids.TEXT_TEMPLATE("Please elaborate on why you think this.", "h2")));
       Then("I can see that the character counter shows 0.", then.idVisible(ids.CONTENT_ITEM_INPUT_CHARACTER_COUNTER("equal_opportunities_reason_text-input", 0)));
     });
-    When("I type in 1001 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, oneThousandAndOneCharacters), async () => {
+    When("I type in 1001 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, "a".repeat(1001)), async () => {
       Then("I can see that the character counter only goes up to 1000, which means the input is correctly restricting the user from typing beyond that limit.", then.idVisible(ids.CONTENT_ITEM_INPUT_CHARACTER_COUNTER("equal_opportunities_reason_text-input", 1000)));
       Then("I swipe to the bottom", then.scrollFromID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, "down", "fast", 0.5));
       Then("I swipe to the bottom", then.scrollFromID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, "up", "fast", 0.5));
@@ -551,29 +549,28 @@ Feature("Quizzes and questionnaires", async () => {
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
       Then("I should be on the 'What motivates you to do your best work' question", then.idVisible(ids.TEXT_TEMPLATE("What motivates you to do your best work?", "h2")));
     });
-    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_WORK_MOTIVATION, oneHundredCharacters), async () => {
+    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_WORK_MOTIVATION, "a".repeat(100)), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("Next")));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
       Then("I should be on the 'What do you enjoy most about working at Biz' question", then.idVisible(ids.TEXT_TEMPLATE("What do you enjoy most about working at Biz 13?", "h2")));
     });
-    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY, oneHundredCharacters), async () => {
+    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY, "a".repeat(100)), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("Next")));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
       Then("I should be on the 'the one thing you would change about Biz' question", then.idVisible(ids.TEXT_TEMPLATE("What's the one thing you would change about Biz 13 to make your experience there better?", "h2")));
     });
-    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY, oneHundredCharacters), async () => {
+    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY, "a".repeat(100)), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("Next")));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
       Then("I should be on the 'How likely are you to recommend Biz' question", then.idVisible("TEXT_TEMPLATE_How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)b2b"));
       Then("I should see all check box's", then.canSeeEngagementSurvey1To10CheckBoxes);
     });
-
     When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
       Then("I should be back on the 'the one thing you would change about Biz' question", then.idVisible("TEXT_TEMPLATE_What's the one thing you would change about Biz 13 to make your experience there better?h2"));
-      Then("My last typed out answer should still be filled in", then.textVisible(`${oneHundredCharacters}`));
+      Then("My last typed out answer should still be filled in", then.textVisible("a".repeat(100)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
       Then("I should be back on the 'How likely are you to recommend Biz' question", then.idVisible("TEXT_TEMPLATE_How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)b2b"));
@@ -591,6 +588,112 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click on the 'Claim' button", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
       Then("I should see my YuCoin balance increase by 300 YuCoins for completing the survey to make a total of 1300 YuCoins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1300), 1500));
+    });
+    // This part is testing the invalidation flow for a user who has already completed the survey and once they complete a second time receive no reward
+    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_137_GHI_REWARDS.data.customerId, data.BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id], [data.CUSTOMER_137_GHI_REWARDS.data.customerId]), async () => {
+      When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+        Then("I can see the engagement survey hero card", when.idVisible("EVENT_HEADING_Share your feedback"));
+      });
+    });
+    When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_Share your feedback"), async () => {
+      When("I swipe to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I click on the 'let's go!' button", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
+          Then("I should be on the 'maintaining work-life balance' question", then.idVisible(ids.TEXT_TEMPLATE("Maintaining work-life balance is important to you.", "b2b")));
+        });
+      });
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You have an acceptable workload within your standard working hours."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You feel supported by the company or managers in taking paid leave."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("Biz 13 provides adequate resources to support your mental health (e.g., counselling services, stress checks)."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You frequently feel stressed at work due to your job responsibilities."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You have access to a working environment where you can be at your best and most productive."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You are satisfied with your current role at Biz 13."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You are satisfied with the level of reward and appreciation for your contributions."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("Your opinions are heard and valued by your manager."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("The level of collaboration and teamwork is high in my team."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("The level of collaboration and teamwork is high between teams."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You receive clear and timely communication from senior leadership about important decisions."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You have trust in the senior leadership team."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("Based on your current role, you are satisfied with the opportunities for professional growth and skill development at Biz 13."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You receive constructive feedback and coaching from your manager to help you grow in your role."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You see yourself continuing to work at Biz 13 for the next 3+ years?"));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("Your growth and development in the company is supported by:"));
+    });
+    When("I click My manager", when.tapID(ids.CHECK_BOX_STATE("My manager", false)), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should see the next question", then.nextQuestionVisible("You believe there are equal opportunities for career advancement at Biz 13."));
+      });
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.idVisible(ids.TEXT_TEMPLATE("Please elaborate on why you think this.", "h2")));
+    });
+    When("I type in 2 character into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, "a".repeat(2)), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should see the next question", then.nextQuestionVisible("You feel your role contributes meaningfully to the company’s success."));
+      });
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You believe in the company’s vision and direction."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.nextQuestionVisible("You are proud to work at Biz 13."));
+    });
+    When("I agree and press next", when.agreeAndNext, async () => {
+      Then("I should see the next question", then.idVisible(ids.TEXT_TEMPLATE("What motivates you to do your best work?", "h2")));
+    });
+    When("I type in 2 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_WORK_MOTIVATION, "a".repeat(2)), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should see the next question", then.idVisible(ids.TEXT_TEMPLATE("What do you enjoy most about working at Biz 13?", "h2")));
+      });
+    });
+    When("I type in 2 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY, "a".repeat(2)), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should see the next question", then.idVisible(ids.TEXT_TEMPLATE("What's the one thing you would change about Biz 13 to make your experience there better?", "h2")));
+      });
+    });
+    When("I type in 2 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY, "a".repeat(2)), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should see the next question", then.nextQuestionVisible("How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)"));
+      });
+    });
+    When("I click 10", when.tapID(ids.CHECK_BOX_STATE("10", false)), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should see the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
+      });
+    });
+    When("I click on the 'Claim' button", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
+      Then("I should see my YuCoin balance not increase as I already completed the survey and didnt earn anything", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1300), 1500));
     });
   });
 

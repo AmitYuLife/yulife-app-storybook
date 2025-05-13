@@ -7,8 +7,11 @@ export const { logInAndGoToTab, loginAsUser, loginOnly, loginToYuScreen } = navi
 
 export const { navigateViaID, navigateViaText } = navigation.common;
 
-export const giveEngagementSurveyAccess = (tags: string[]) => async () => {
-  await dataManager.triggerWorkerTask("GIVE_ENGAGEMENT_SURVEY_ACCESS", {
-    tags,
-  });
-};
+export const giveEngagementSurveyAccess =
+  (tags: string[], userIdsToInvalidate: string[] = []) =>
+  async () => {
+    await dataManager.triggerWorkerTask("GIVE_ENGAGEMENT_SURVEY_ACCESS", {
+      tags,
+      userIdsToInvalidate,
+    });
+  };

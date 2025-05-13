@@ -5,7 +5,6 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "./_data";
 import * as ids from "@ids";
-import { oneHundredCharacters, oneThousandAndOneCharacters } from "../activity/FWQ/_resources/fixtures";
 
 const locale = process.env.TARGET_LOCALE || "ja-JP";
 
@@ -159,7 +158,7 @@ Feature("Quizzes and questionnaires", async () => {
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'Please elaborate on why you think this' question", then.idVisible(ids.TEXT_TEMPLATE("そう思う理由を簡単に\n説明してください。", "h2")));
     });
-    When("I type in 1001 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, oneThousandAndOneCharacters), async () => {
+    When("I type in 1001 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, "a".repeat(1001)), async () => {
       Then("I can see that the character counter only goes up to 1000, which means the input is correctly restricting the user from typing beyond that limit.", then.idVisible(ids.CONTENT_ITEM_INPUT_CHARACTER_COUNTER("equal_opportunities_reason_text-input", 1000)));
       Then("I swipe to the bottom", then.scrollFromID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, "down", "fast", 0.5));
       Then("I swipe to the bottom", then.scrollFromID(ids.ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON, "up", "fast", 0.5));
@@ -188,19 +187,19 @@ Feature("Quizzes and questionnaires", async () => {
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'PWhat motivates you to do your best work' question", then.idVisible(ids.TEXT_TEMPLATE("能力を最大限に発揮するモチベーションとなるものは何ですか？", "h2")));
     });
-    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_WORK_MOTIVATION, oneHundredCharacters), async () => {
+    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_WORK_MOTIVATION, "a".repeat(100)), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("次のページ", false)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'What do you enjoy most about working at Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDでの仕事について、何が一番楽しいですか?", "h2")));
     });
-    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY, oneHundredCharacters), async () => {
+    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY, "a".repeat(100)), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("次のページ", false)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'the one thing you would change about Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDでの体験をより良くするために、あなたが変えたいことは何ですか?", "h2")));
     });
-    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY, oneHundredCharacters), async () => {
+    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY, "a".repeat(100)), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("次のページ", false)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
@@ -208,7 +207,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
       Then("I should be on the 'the one thing you would change about Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDでの体験をより良くするために、あなたが変えたいことは何ですか?", "h2")));
-      Then("My last typed out answer should still be filled in", then.textVisible(`${oneHundredCharacters}`));
+      Then("My last typed out answer should still be filled in", then.textVisible("a".repeat(100)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'How likely are you to recommend Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDを職場として勧める可能性はどのくらいありますか? (1: 全く思わない, 10: 非常にそう思う)", "b2b")));
