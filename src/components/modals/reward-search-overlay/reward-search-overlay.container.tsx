@@ -1,9 +1,6 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import RewardSearchOverlayScreen from "./reward-search-overlay.screen";
 import { useBackHandler, useDebouncedQuery } from "@hooks";
-import { ROUTES } from "@navigation/constants";
-import { getRouteState } from "@redux/app/app.selectors";
-import { useSelector } from "react-redux";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
 import { gql } from "@graphql/__generated";
 
@@ -18,7 +15,6 @@ const MIN_SEARCH_LENGTH = 1;
 
 const RewardSearchOverlayContainer = ({ onClose, onItemPress, onPressWallet }: IRewardSearchOverlayProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const currentRoute = useSelector(getRouteState);
   const [isClosing, setIsClosing] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -39,14 +35,14 @@ const RewardSearchOverlayContainer = ({ onClose, onItemPress, onPressWallet }: I
   const onSearch = useCallback(
     (term: string) => {
       setSearchTerm(term);
-      if (!term || term.length < MIN_SEARCH_LENGTH) {
+      if (!term || !passedMinLength) {
         return;
       }
 
       setIsLoading(true);
       searchRewards({ searchTerm: term });
     },
-    [searchRewards]
+    [searchRewards, passedMinLength]
   );
 
   const handleItemPress = useCallback(
@@ -71,7 +67,6 @@ const RewardSearchOverlayContainer = ({ onClose, onItemPress, onPressWallet }: I
       searchTerm={searchTerm}
       setSearchTerm={onSearch}
       isLoading={isLoading}
-      isFocused={currentRoute === ROUTES.rewards}
       isClosing={isClosing}
       onPressWallet={onPressWallet}
       onItemPress={handleItemPress}
