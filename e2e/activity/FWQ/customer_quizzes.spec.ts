@@ -71,15 +71,20 @@ Feature("Quizzes and questionnaires", async () => {
         Then("I should see the first answer option in Japanese", then.textVisible(getTranslation("ja-JP").labels.cta.yes));
       });
     });
+    When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
+      When("I go back to the yucoin tab", when.tapID(ids.BACK_BUTTON), async () => {
+        Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("健康チェックの質問")));
+        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("健康に関する質問への回答で\n**40**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)をプレゼント。")));
+        Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON));
+      });
+    });
   });
 
   Scenario("I should see the Health Questionnaire and be able to complete, if I have not done so before", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_73, data.AUTH_73), async () => {
       Then("I should see my YuCoin balance of 560, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560)));
       Then("I should see '200 YuCoin Today' before the HQ", then.textVisible("200 YuCoin today"));
-      Then("I should see the FTUE event panel, before the HQ event panel", then.textVisible(data.GOALS_FTUE.data.title["en-GB"]));
     });
-
     When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
       Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000));
       Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 280));
@@ -99,10 +104,9 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-        Then("I should see the FTUE event panel, before the HQ event panel", then.textVisible(data.GOALS_FTUE.data.title["en-GB"]));
+        Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("Daily health questions")));
       });
     });
-
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
       When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
         Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
@@ -112,22 +116,16 @@ Feature("Quizzes and questionnaires", async () => {
     When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-
-    // @UPDATE - hero card not showing for the HQ - will investigate but priority for this ticket is mood monitor / getting most of the test running
-    // using other entry points to HQ for time being
-    // When("I swipe to the HQ Event panel", when.swipeFromText(data.GOALS_FTUE.data.title["en-GB"], "left", "slow", 0.5), async () => {
-    //     Then("I should see the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))
-    // })
-    // When("I swipe to the Test Event", when.swipeFromText(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"], "left", "slow", 0.5), async () => {
-    //     Then("I should see the Test Event panel, after the HQ event panel", then.textVisible(data.GOALS_1.data.title))
-    // })
-    // When("I swipe back to the HQ Event panel, from the Test Event", when.swipeFromText(data.GOALS_1.data.title, "right", "slow", 0.5), async () => {
-    //     Then("I should see the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))
-    // })
-    // When("I tap the event panel for the HQ", when.tapText(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]), async () => {
-    //     Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy))
-    // })
-
+    When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
+      When("I go back to the yucoin tab", when.tapID(ids.LEFT_HEADIND_BUTTON("Today’s Earnings")), async () => {
+        Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("Daily health questions")));
+        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("Earn **40**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7) by discovering more about your health.")));
+        Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON));
+      });
+    });
+    When("I tap the event panel for the HQ", when.tapID(ids.EVENT_CARD("Daily health questions")), async () => {
+      Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
+    });
     When("I press the Let’s go! button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01));
       Then("I should see the progress bar in the start position", then.progressBarVisible(50, 400));
@@ -217,11 +215,9 @@ Feature("Quizzes and questionnaires", async () => {
       );
     });
     When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
-      When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-          Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(240, 280));
-          Then("I should see the completed HQ nudge", then.completedHQNudgeVisible());
-        });
+      When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+        Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(240, 280));
+        Then("I should see the completed HQ nudge", then.completedHQNudgeVisible());
       });
     });
     When("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {

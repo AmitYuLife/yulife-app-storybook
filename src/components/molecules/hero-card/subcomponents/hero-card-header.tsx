@@ -62,6 +62,7 @@ const HeroCardBannerHeader = ({
           justifyContent="center"
           alignItems="center"
           pl={2}
+          testID="PINK_ARROW_ICON"
         >
           <CaretIcon size={Style.adjust(16)} color={Colours.neutral.white} />
         </Box>
