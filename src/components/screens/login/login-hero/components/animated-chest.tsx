@@ -8,6 +8,7 @@ import RewardLogos from "./reward-logos";
 import { useTimeout } from "@hooks";
 import { CHEST_HEIGHT, CHEST_WIDTH } from "../constants";
 import { AnimatedChestProps } from "../types";
+import { DETOX_ENABLED } from "@services/socket";
 
 const AnimatedChest = ({ rewards }: AnimatedChestProps) => {
   const lottieRef = useRef<Lottie>(null);
@@ -28,7 +29,7 @@ const AnimatedChest = ({ rewards }: AnimatedChestProps) => {
         style={styles.lottie}
         ref={lottieRef}
         source={require("./assets/login-chest.lottie")}
-        autoPlay={true}
+        autoPlay={!DETOX_ENABLED}
         loop={false}
         onAnimationFailure={handleAnimationFailure}
       />
