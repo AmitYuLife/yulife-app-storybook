@@ -75,7 +75,7 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("I see the correct Square card layout for my Japanese products", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2), async () => {
+    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "Japan", true), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
       });
@@ -88,7 +88,7 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("I see search for a user by kanji, their latin, or their furigana name", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2), async () => {
+    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "Japan", true), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
       });
