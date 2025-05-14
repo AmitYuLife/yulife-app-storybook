@@ -51,6 +51,7 @@ const LoginPasswordScreen = ({
             value={password}
             onSubmitEditing={!isSubmitting && !disableSubmit ? onPressSubmit : undefined}
             style={styles.input}
+            autoComplete="current-password"
           />
 
           <Pad height={15} />

@@ -50,11 +50,13 @@ const LoginEmailScreen = ({
         testID={INPUT_LOGIN_EMAIL}
         errorMessage={showEmailError ? emailError : ""}
         hasError={!!(showEmailError && emailError)}
+        returnKeyType="next"
         onChange={onEmailChange}
         type={TextInput.Types.EMAIL}
         value={email}
         maxLength={320}
         style={styles.input}
+        autoComplete="email"
       />
 
       <Pad height={40} />
