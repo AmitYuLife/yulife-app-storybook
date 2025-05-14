@@ -9,7 +9,7 @@ import { getFullName } from "_utils/users";
 
 Feature("P2P gifting", async () => {
   Scenario("I should see 9 selectable messages", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async () => {
+    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
           Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
@@ -35,59 +35,61 @@ Feature("P2P gifting", async () => {
   });
 
   Scenario("I should see the gifting restriction messages fit the screen without being cut off.", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async () => {
+    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
           Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
         });
       });
-      When("I send user 福田 太郎 a gift three times", when.completeSendGiftUserFlow(data.CUSTOMER_2_SMOKING, 3), async () => {
+      When("I send user 福田 太郎 a gift two times", when.completeSendGiftUserFlow(data.CUSTOMER_2_SMOKING, 2), async () => {
         Then("I should be back on the YuScreen and can see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
       });
       When("I tap on the hero card", when.tapID(ids.HERO_CARD_SECTION), async () => {
-        When("I search for user - 福田 太郎 again to send another gift", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_2_SMOKING, "JP")), async () => {
-          // @bug LCS-1132 – For now, testing passes if the restriction message copy is visible. However, on the iPhone 15 Pro Max the message still appears cut off. Further adjustments are needed to ensure complete visibility across all screen sizes.
-          Then("I should see a restriction limit message for 福田 太郎", then.idVisible(ids.DISABLED_USER_REASON("制限に到達しました。また明日お試しください。")));
+        When("I tap on the cta", when.tapID(ids.CTA_GET_STARTED), async () => {
+          When("I search for user - 福田 太郎 again to send another gift", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_2_SMOKING, "JP")), async () => {
+            // @bug LCS-1132 – For now, testing passes if the restriction message copy is visible. However, on the iPhone 15 Pro Max the message still appears cut off. Further adjustments are needed to ensure complete visibility across all screen sizes.
+            Then("I should see a restriction limit message for 福田 太郎", then.idVisible(ids.DISABLED_USER_REASON("制限に到達しました。また明日お試しください。")));
+          });
         });
       });
     });
   });
-});
 
-Scenario("I should see the Thanks for the gift notification message with the users name the correct way round", scenario.start, async () => {
-  Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async () => {
-    When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_A), async () => {
-      Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+  Scenario("I should see the Thanks for the gift notification message with the users name the correct way round", scenario.start, async () => {
+    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
+      When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_A), async () => {
+        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+      });
+    });
+    When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+    });
+    When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I can see the users name in the correct way", then.textVisible(`${getFullName(data.CUSTOMER_2_SMOKING, "JP")} さんから感謝のメッセージが届きました！`));
     });
   });
-  When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
-    Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
-  });
-  When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
-    Then("I can see the users name in the correct way", then.textVisible(`${getFullName(data.CUSTOMER_2_SMOKING, "JP")} さんから感謝のメッセージが届きました！`));
-  });
-});
 
-Scenario("I should see the You received a gift! notification message with the users name the correct way round", scenario.start, async () => {
-  Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async () => {
-    When("I trigger the 'You received a gift!' notification", when.triggerGiftReceivedNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_B), async () => {
-      Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+  Scenario("I should see the You received a gift! notification message with the users name the correct way round", scenario.start, async () => {
+    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
+      When("I trigger the 'You received a gift!' notification", when.triggerGiftReceivedNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_B), async () => {
+        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+      });
     });
-  });
-  When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
-    Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
-  });
-  When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
-    Then("I can see the user name in the correct way", then.textVisible(`${getFullName(data.CUSTOMER_2_SMOKING, "JP")}さんからのギフトを早速チェックしましょう。`));
-  });
-  When("I tap to on you received a gift notification", when.tapID(ids.INBOX_MESSAGE_ITEM("ギフトが届きました！"), 2500), async () => {
-    Then("I can see the thank them button", then.idVisible(ids.P2P_THANK_THEM_MESSAGE, 2500));
-    Then("I can see the heart greyed out", then.idVisible(ids.P2P_THANK_THEM_HEART(false), 2500));
-    Then("I can see the CTA button at the bottoms copy", then.idVisible(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2500));
-  });
-  When("I tap thank them", when.tapID(ids.P2P_THANK_THEM_MESSAGE, 2500), async () => {
-    Then("I can see the you've thanked them button", then.idVisible(ids.P2P_ALREADY_THANK_THEM_MESSAGE, 2500));
-    Then("I can see the heart coloured pink", then.idVisible(ids.P2P_THANK_THEM_HEART(true), 2500));
-    Then("I should see the CTA button at the bottoms copy has stayed the same", then.idVisible(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2500));
+    When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+    });
+    When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I can see the user name in the correct way", then.textVisible(`${getFullName(data.CUSTOMER_2_SMOKING, "JP")}さんからのギフトを早速チェックしましょう。`));
+    });
+    When("I tap to on you received a gift notification", when.tapID(ids.INBOX_MESSAGE_ITEM("ギフトが届きました！"), 2500), async () => {
+      Then("I can see the thank them button", then.idVisible(ids.P2P_THANK_THEM_MESSAGE, 2500));
+      Then("I can see the heart greyed out", then.idVisible(ids.P2P_THANK_THEM_HEART(false), 2500));
+      Then("I can see the CTA button at the bottoms copy", then.idVisible(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2500));
+    });
+    When("I tap thank them", when.tapID(ids.P2P_THANK_THEM_MESSAGE, 2500), async () => {
+      Then("I can see the you've thanked them button", then.idVisible(ids.P2P_ALREADY_THANK_THEM_MESSAGE, 2500));
+      Then("I can see the heart coloured pink", then.idVisible(ids.P2P_THANK_THEM_HEART(true), 2500));
+      Then("I should see the CTA button at the bottoms copy has stayed the same", then.idVisible(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT, 2500));
+    });
   });
 });

@@ -12,7 +12,7 @@ const locale = process.env.TARGET_LOCALE || "ja-JP";
 
 Feature("I can view and use the smoking cessation feature", async () => {
   Scenario("I can begin my smoking cessation journey, fill out the questionnaire, and track view the smoking hub", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2), async () => {
+    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "Japan", true), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
     });
     When("I scroll down until I see the smoking tile", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
