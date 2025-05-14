@@ -35,9 +35,9 @@ const WalletCard = <T,>({ item, onPress }: WalletCardProps<T>) => (
         <Image style={styles.image} source={item.icon} resizeMode="cover" />
       </Box>
       <Box flex={1} style={styles.rightContainer}>
-        <Box flexDirection="column" justifyContent="space-around">
+        <Box flexDirection="column" justifyContent="space-around" flex={1}>
           <Box style={styles.titleContainer}>
-            <TextTemplate color={TEXT_COLOR} type="b1b" numberOfLines={1}>
+            <TextTemplate color={TEXT_COLOR} type="b1b" numberOfLines={2}>
               {item.title}
             </TextTemplate>
           </Box>
@@ -52,7 +52,7 @@ const WalletCard = <T,>({ item, onPress }: WalletCardProps<T>) => (
             ))}
           </Box>
         </Box>
-        <Box style={styles.chevronContainer} flexBasis={24}>
+        <Box style={styles.chevronContainer}>
           <ChevronIcon size={24} direction="right" color={CHEVRON_COLOR} />
         </Box>
       </Box>
@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "stretch",
   },
-  outerContainer: { flex: 2, marginBottom: 20 },
+  outerContainer: { flex: 2, marginBottom: Style.adjust(20) },
   imageContainer: {
     alignItems: "flex-start",
     justifyContent: "center",
-    margin: 8,
+    margin: Style.adjust(8),
     borderRadius: 16,
     overflow: "hidden",
     width: Style.adjust(120),
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   image: { width: "100%", height: "100%", borderRadius: 16 },
   icon: { width: Style.adjust(20), height: Style.adjust(20), marginRight: 8 },
   rightContainer: {
-    padding: 10,
+    padding: Style.adjust(10),
     alignItems: "stretch",
     justifyContent: "space-between",
     flexDirection: "row",
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    paddingRight: Style.adjust(16),
   },
   chevronContainer: { paddingVertical: 4, flexDirection: "column", justifyContent: "center", alignItems: "center" },
 });
