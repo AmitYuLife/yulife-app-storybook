@@ -24,6 +24,7 @@ import {
   CORE_JOURNEY_STEPS_24,
   CORE_JOURNEY_STEPS_25,
   CORE_JOURNEY_STEPS_26,
+  CORE_JOURNEY_STEPS_CONSENT,
 } from "./core_journey_steps";
 import * as customer from "../postgres/customers";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
@@ -387,6 +388,9 @@ export const USER_JOURNEY_STATE_04 = {
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,
+      },
+      {
+        stepId: "health_questionnaire_consent",
       },
       {
         stepId: CORE_JOURNEY_STEPS_19.data.externalId,

@@ -787,6 +787,9 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I can see lets go button", then.idVisible(ids.BUTTON_BASE("Let’s go!")));
     });
     When("I press lets go ", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
+      Then("I should be on the HQ consent screen", then.idVisible(ids.TEXT_TEMPLATE("Your privacy and consent", "h3")));
+    });
+    When("I press the Consent and continue button ", when.tapID(ids.BUTTON_BASE("Consent and continue", false)), async () => {
       Then("I can see the new designed advice/goal question with the banner with an image on top", then.idVisible(ids.HINT_LABEL("Health advice and tips")));
       Then("I can see the new designed advice/goal questions image", then.idVisible(ids.HINT_VARIANT_IMAGE("https://yulife-develop.imgix.net/journeys/health-questionnaire/advice.svg?ixlib=js-3.2.1&s=22d39a7ba57dafd56f6a12b0f8f1da7f")));
       Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("How motivated are you to take up this advice?", "b2b")));
@@ -890,6 +893,51 @@ Feature("Quizzes and questionnaires", async () => {
           });
         });
       });
+    });
+  });
+
+  Scenario("I should see the Health Questionnaire consent screen as a first time answerer (UK & JP copy)", scenario.start, async () => {
+    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_47, data.AUTH_47), async () => {
+      Then("I should see the HQ hero card", then.idVisible(ids.EVENT_CARD("Daily health questions")));
+    });
+    When("I click on the HQ hero card", when.tapID(ids.EVENT_CARD("Daily health questions")), async () => {
+      Then("I can see the HQ title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
+    });
+    When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
+      When("I press lets go ", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
+        Then("I should be on the HQ consent screen", then.canSeeHQConsentScreen("en-GB"));
+      });
+    });
+    When("I press the Consent and continue button ", when.tapID(ids.BUTTON_BASE("Consent and continue", false)), async () => {
+      Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("How motivated are you to take up this advice?", "b2b")));
+    });
+    When("I tap the close button on top right", when.tapID(ids.SCREEN_CLOSE), async () => {
+      Then("I should see the HQ hero card", then.idVisible(ids.EVENT_CARD("Daily health questions")));
+    });
+    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
+      When("I tap settings", when.tapMenuItem("Settings"), async () => {
+        Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
+      });
+    });
+    When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
+      When("I tap the language options", when.tapText("Language", 2000, true), async () => {
+        Then("I should be on the langauge selector screen", then.languageSelectorVisible);
+      });
+    });
+    When("I tap to switch to Japanese", when.tapText(`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`, 2000, true), async () => {
+      When("I close the pop up", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
+        Then("I should be back on my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2000));
+      });
+    });
+    When("I click on the HQ hero card", when.tapID(ids.EVENT_CARD("健康チェックの質問")), async () => {
+      When("I click to go back to the consent screen", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I scroll up the consent page", when.scrollFromID(ids.TEXT_TEMPLATE("お客様の個人情報の取扱について", "h3"), "up", "fast", 0.5), async () => {
+          Then("I should be on the HQ consent screen", then.canSeeHQConsentScreen("ja-JP"));
+        });
+      });
+    });
+    When("I press the Consent and continue button ", when.tapID(ids.BUTTON_BASE("同意して次へ進む", false)), async () => {
+      Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("このアドバイスを積極的に取り入れたい気持ちはどのくらいありますか?", "b2b")));
     });
   });
 });

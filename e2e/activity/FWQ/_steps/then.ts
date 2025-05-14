@@ -181,3 +181,21 @@ export const verifyImageChoicesVisible = async () => {
 export const nextQuestionVisible = (expectedQuestionText: string) => async () => {
   await idVisible(ids.TEXT_TEMPLATE(expectedQuestionText, "b2b"))();
 };
+
+export const canSeeHQConsentScreen = (locale: "en-GB" | "ja-JP") => async () => {
+  const locales = {
+    "en-GB": {
+      heading: "Your privacy and consent",
+      headingType: "h3",
+      button: "Consent and continue",
+    },
+    "ja-JP": {
+      heading: "お客様の個人情報の取扱について",
+      headingType: "h3",
+      button: "同意して次へ進む",
+    },
+  };
+  const { heading, headingType, button } = locales[locale];
+  await idVisible(ids.TEXT_TEMPLATE(heading, headingType))();
+  await idVisible(ids.BUTTON_BASE(button, false))();
+};
