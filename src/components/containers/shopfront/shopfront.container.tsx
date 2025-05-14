@@ -14,6 +14,8 @@ import Logger from "@services/logging/logger";
 import { isEmpty } from "lodash";
 import ShopfrontLoading from "./shopfront-loading";
 import ShopfrontScreen from "@components/screens/member/shopfront/shopfront.screen";
+import { useSelector } from "react-redux";
+import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 interface IRewardPassContainerProps {
   leftIcons: IIcon[];
@@ -25,11 +27,17 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
   const [itemOffset, setItemOffset] = useState(0);
   const [allFetched, setAllFetched] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const tabsSettings = useSelector(getRewardsTabSettings);
+  const { hasVoucherStore } = tabsSettings || {};
+
   const [moreRewards, setMoreItems] = useState<IGetMobileRewardsListData["list"]>([]);
   const [_, { data: shopfront, loading: isShopfrontLoading }] = useQueryOnScreenSeen(
     gql("GetMobileGameShopfrontDocument"),
     ROUTES.rewards,
-    {}
+    {},
+    {
+      disabled: !hasVoucherStore,
+    }
   );
   const [getMoreRewards, { loading: isFetchingMore }] = useLazyQuery(gql("GetMobileRewardsListItemsDocument"), {
     fetchPolicy: "network-only",
@@ -172,6 +180,7 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
       onPressWallet={onPressWallet}
       allRewardItems={allRewardItems}
       setIsSearchOpen={setIsSearchOpen}
+      hasVoucherStore={hasVoucherStore}
       handleEndReached={handleEndReached}
       handleStoreLocationPress={handleStoreLocationPress}
       shouldShowFirstTimeModal={shouldShowFirstTimeModal}
