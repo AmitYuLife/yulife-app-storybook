@@ -30,6 +30,7 @@ interface IShopfrontScreenProps {
   leftIcons: IIcon[];
   isSearchOpen: boolean;
   onPressWallet: () => void;
+  hasVoucherStore?: boolean;
   onEndReached?: () => void;
   handleEndReached: () => void;
   shouldShowFirstTimeModal: boolean;
@@ -49,6 +50,7 @@ const ShopfrontScreen = ({
   isSearchOpen,
   onPressWallet,
   allRewardItems,
+  hasVoucherStore,
   setIsSearchOpen,
   handleEndReached,
   handleStoreLocationPress,
@@ -153,11 +155,18 @@ const ShopfrontScreen = ({
       ...rewardPassItems,
       { __typename: RewardListItemTypes.RewardStoreExpiryWarning as const },
       { __typename: RewardListItemTypes.RewardRecentlyUsedSection as const },
-      { __typename: RewardListItemTypes.RewardsSectionHeader as const, children: t("screens.rewards.list.store") },
-      ...(allRewardItems || []),
+      ...(hasVoucherStore
+        ? [
+            {
+              __typename: RewardListItemTypes.RewardsSectionHeader as const,
+              children: t("screens.rewards.list.store"),
+            },
+            ...(allRewardItems || []),
+          ]
+        : []),
       { __typename: RewardListItemTypes.ContentLocationSelection as const },
     ];
-  }, [allRewardItems, shopfront?.rewardPasses?.activeRewardPasses]);
+  }, [allRewardItems, hasVoucherStore, shopfront?.rewardPasses?.activeRewardPasses]);
 
   const onSearchOpen = useCallback(() => {
     setIsSearchOpen(true);
