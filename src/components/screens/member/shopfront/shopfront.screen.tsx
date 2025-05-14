@@ -177,6 +177,7 @@ const ShopfrontScreen = ({
         onEndReachedThreshold={0.3}
         estimatedItemSize={128}
         onEndReached={handleEndReached}
+        keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.flashListContent}
       />
