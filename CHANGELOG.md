@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.62.0] - 2025-05-14
+
+### Features
+
+- Feature LCS-1315: Ensure email field triggers autosuggestions
+- Feature LCS-1263: Replace the static chest asset with Lottie
+
+### Bugfixes
+
+- Bugfix LCS-1311: Debounce navigate to login (attempt 2)
+- Revert "Merge branch 'bugfix/debounce-navigate-to-login-email' into 'develop'"
+- Bugfix LCS-1311: Debounce navigate to login email
+
+### Tasks
+
+- Task: Support voucher store being disabled
+- Task GS-1566: Fix storefront teaser images
+- Task LCS-1314: Disable login hero lottie animation for detox
+- Task GS-1557: Shopfront UI improvements
+- Task GS-1557: Fix shopfront loading
+- Task GS-1498: Ring to lunar yucoin evolution
+- Task GS-1493 GS-1556: Lunar travel
+- Task: Update QA template for licensing
+- Task GS-1496: Adjust lunar slices offset
+- Task LCS-1256: webview claim title update
+
+### Improvements
+
+- GS-1548: Improve Wallet Card titles
+
+### Extra
+
+- Bump axios from 1.8.4 to 1.9.0
+- Detox: LCS-1114 - HQ consent screen function test UK & JP
+- Feat: LCS-1305: Add smoking distraction game intro modal
+- Detox: Fix login flow for JP smoking, p2p gifting & wellbeing hub, fixed p2p gifting sending restriction
+- Detox: Testing update DHQ Hero card design for UK & JP
+- Detox: Users can complete an invalidated engagement survey but no reward is granted upon submission
+- Detox: Fix login flow for JP in customer_quizzes.spec and login.spec
+- Feat LCS-1260: change text copy for MoO
+- Detox GS-1421: Donation Leaderboards
+- Detox: Testing the Engagement Survey's hero card shows the correct amount of YuCoin based on a users earn rate.
+- Fix: LCS-998: Animated Style fixes
+- Detox: Moved HQ tests to be based on earn rate multiplier for 4, fixed last step for claim HQ reward for all tests .
+
 ## [4.61.0] - 2025-05-07
 
 ### Features
