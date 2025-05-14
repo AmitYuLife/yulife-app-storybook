@@ -1,5 +1,5 @@
 import { SduiAction } from "@redux/user/user.types";
-import { Image } from "@redux/_core/types";
+import { Image, VariableRemoteImage } from "@redux/_core/types";
 
 enum HealthSmokingStreakCarouselItemStatus {
   Claimed = "claimed",
@@ -103,6 +103,15 @@ export interface HealthSmokingStateTip {
   icon?: Image;
 }
 
+interface GameIntroModal {
+  title: string;
+  ctaLabel: string;
+  image?: VariableRemoteImage;
+  displayDuration?: number;
+  closeOnBlur?: boolean;
+  onDismiss?: SduiAction;
+}
+
 export interface HealthSmokingState {
   autoClaimedStreakDaysCopy?: string;
   claimedStreakDay?: number;
@@ -162,4 +171,5 @@ export interface HealthSmokingState {
       start: number;
     }>;
   };
+  gameIntroModal?: GameIntroModal;
 }

@@ -211,6 +211,7 @@ export const MODALS = {
   sduiStepFeedbackHalfModal: "yulife.modals.sduiStepFeedbackHalfModal",
   game2048GameOver: "yulife.modals.game2048GameOver",
   game2048Victory: "yulife.modals.game2048Victory",
+  game2048Intro: "yulife.modals.game2048Intro",
   viewAchievementModal: "yulife.modals.viewAchievementModal",
 
   // YuHealth

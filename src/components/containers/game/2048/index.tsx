@@ -1,14 +1,19 @@
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import React, { memo } from "react";
+import React, { memo, useCallback, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { GameScreen } from "./components";
 import { theme } from "./constants";
 import { TextTemplate } from "@atoms";
 import { t } from "@locale";
-import { GameBoardSize, GameValue, GameMode, GameSkin, DEFAULT_GAME_CONFIG } from "./hooks";
+import { DEFAULT_GAME_CONFIG, GameBoardSize, GameMode, GameSkin, GameValue } from "./hooks";
 import { Colours, Style } from "@styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
+import { showGameIntroModal, ShowGameIntroModalProps } from "@containers/game/2048/gameIntro.modal";
+import { usePressedInWithDelay } from "@hooks";
+import { useCreateSduiActionDispatcher } from "@components/sdui/_hooks/useCreateSduiActionDispatcher";
+import { VoidFunction } from "@utils";
+import { SduiAction } from "@redux/user/user.types";
 
 interface IGame2048Props {
   componentId: string;
@@ -17,6 +22,9 @@ interface IGame2048Props {
   mode?: GameMode;
   enableHaptics?: boolean;
   skin?: GameSkin;
+  gameIntroModal?: ShowGameIntroModalProps & {
+    onDismiss?: SduiAction;
+  };
 }
 
 export const Game2048 = ({
@@ -26,7 +34,31 @@ export const Game2048 = ({
   mode = DEFAULT_GAME_CONFIG.mode,
   enableHaptics = DEFAULT_GAME_CONFIG.enableHaptics,
   skin = "symbols",
+  gameIntroModal,
 }: IGame2048Props) => {
+  const { createSduiActionDispatcher } = useCreateSduiActionDispatcher();
+
+  const onDismiss = useCallback(() => {
+    if (gameIntroModal?.onDismiss) {
+      createSduiActionDispatcher(gameIntroModal.onDismiss)();
+    }
+  }, [createSduiActionDispatcher, gameIntroModal?.onDismiss]);
+
+  const { handlePress: gameIntroModalSafeOnDismiss } = usePressedInWithDelay({ onPress: onDismiss, delay: 10000 });
+
+  useEffect(() => {
+    if (!gameIntroModal) {
+      return;
+    }
+
+    showGameIntroModal({
+      ...gameIntroModal,
+      onDismiss: gameIntroModalSafeOnDismiss as VoidFunction,
+    });
+    // Once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <View style={styles.wrapper}>
       <GestureHandlerRootView>

@@ -4,6 +4,7 @@ import { ComponentProvider, ViewStyle } from "react-native";
 import { Layout, LayoutRoot, Navigation as NativeNavigation, Options } from "react-native-navigation";
 import { MODALS, ROUTES } from "./constants";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
+import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 
 const BLURRED_OVERLAY_COMPONENT_ID = MODALS.blurredOverlay;
 
@@ -115,7 +116,8 @@ export class Navigation {
     withBlurBackground = true,
     wrapperStyle?: ViewStyle,
     modalId?: string,
-    closeOnBlur?: boolean
+    closeOnBlur?: boolean,
+    onClose?: VoidFunctionOrSduiActionPayload
   ) {
     if (modalId) {
       Logger.logEvent("screen_view", { name: modalId });
@@ -138,6 +140,7 @@ export class Navigation {
           withBlurBackground,
           wrapperStyle,
           closeOnBlur,
+          onClose,
         },
       },
     });

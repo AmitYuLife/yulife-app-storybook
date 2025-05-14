@@ -1,4 +1,13 @@
-import React, { memo, isValidElement, ReactElement, useMemo, useState, useCallback, ReactNode } from "react";
+import React, {
+  memo,
+  isValidElement,
+  ReactElement,
+  useMemo,
+  useState,
+  useCallback,
+  ReactNode,
+  cloneElement,
+} from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { Button, Pressable, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
@@ -58,7 +67,7 @@ const FloatingModal = ({
 
   const content = useMemo(() => {
     if (isValidElement(children)) {
-      return children;
+      return cloneElement(children as ReactElement, { closeActiveOverlay: closeOverlay });
     }
 
     const Content = children as FloatingModalComponent;
