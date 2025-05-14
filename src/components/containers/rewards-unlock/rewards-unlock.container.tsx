@@ -104,9 +104,11 @@ const RewardsUnlockContainer = ({ showNavigation = false }: IRewardContainerProp
           <ContentItemWrapper {...data.content} />
           <Box h={264} />
         </ScrollView>
-        <Box pointerEvents="none" position="absolute" left={0} right={0} bottom={0} height={200}>
-          <LinearGradient {...linearGradient} style={StyleSheet.absoluteFill} />
-        </Box>
+        {!showNavigation ? (
+          <Box pointerEvents="none" position="absolute" left={0} right={0} bottom={0} height={200}>
+            <LinearGradient {...linearGradient} style={StyleSheet.absoluteFill} />
+          </Box>
+        ) : null}
       </Box>
       {showNavigation ? (
         <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP}>

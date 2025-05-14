@@ -11,6 +11,8 @@ interface IAnimatedTeaserImageProps {
 const BattlePassListItemTeaserAnimation = ({ children }: IAnimatedTeaserImageProps) => {
   const containerAnimationStyle = useAnimatedStyle(() => {
     return {
+      width: "100%",
+      height: "100%",
       transform: [
         {
           scale: withSequence(
