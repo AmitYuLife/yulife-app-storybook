@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 8,
   },
-  outerContainer: { marginBottom: 24 },
+  outerContainer: { marginBottom: Style.adjust(24) },
   infoContainer: {
     alignItems: "flex-start",
     justifyContent: "space-around",

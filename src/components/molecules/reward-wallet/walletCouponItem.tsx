@@ -61,7 +61,7 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
           </Box>
         )}
         <Box>
-          <TextTemplate color={Colours.neutral.white} type="h3">
+          <TextTemplate color={Colours.neutral.white} type="h3" numberOfLines={1}>
             {item.title}
           </TextTemplate>
           <TextTemplate
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   leftContainer: {
     height: CARD_HEIGHT,
     backgroundColor: BACKGROUND_COLOUR,
-    padding: 16,
+    padding: Style.adjust(16),
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "space-between",

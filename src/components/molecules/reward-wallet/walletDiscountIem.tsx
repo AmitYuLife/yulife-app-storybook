@@ -53,8 +53,8 @@ const WalletDiscountItem = <T,>({ item, onPress }: WalletDiscountItemProps<T>) =
             </Box>
           </Box>
         )}
-        <Box flexDirection="column">
-          <TextTemplate color={Colours.neutral.white} type="h3">
+        <Box flexDirection="column" flex={1}>
+          <TextTemplate color={Colours.neutral.white} type="h3" numberOfLines={2}>
             {item.title}
           </TextTemplate>
           <TextTemplate
@@ -89,12 +89,12 @@ const styles = StyleSheet.create({
   container: {
     height: Style.adjust(120),
     backgroundColor: BACKGROUND_COLOUR,
-    padding: 16,
+    padding: Style.adjust(16),
     flexDirection: "row",
     alignItems: "stretch",
     justifyContent: "space-between",
   },
-  outerContainer: { marginBottom: 24 },
+  outerContainer: { marginBottom: Style.adjust(24) },
   image: { width: "100%", height: "100%" },
   textContainer: {
     alignItems: "stretch",
