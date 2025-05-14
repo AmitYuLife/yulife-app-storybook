@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, ReactElement, cloneElement, useMemo } from "react";
+import React, { cloneElement, ReactElement, useCallback, useEffect, useMemo, useRef } from "react";
 import { Animated, StyleSheet, View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
 import { BlurView, BlurViewProps } from "@react-native-community/blur";
 import { useBackHandler, usePressedInWithDelay } from "@hooks";
 import { MODALS } from "@navigation/constants";
+import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
+import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 
 interface IProps extends Pick<BlurViewProps, "blurAmount" | "blurType"> {
   children: ReactElement;
@@ -12,6 +14,7 @@ interface IProps extends Pick<BlurViewProps, "blurAmount" | "blurType"> {
   closeOnBlur?: boolean;
   blurAmount?: number;
   backgroundColor?: string;
+  onClose?: VoidFunctionOrSduiActionPayload;
 }
 
 const commonProps = {
@@ -27,7 +30,11 @@ const BlurredOverlay = ({
   blurType = "light",
   blurAmount = 5,
   backgroundColor = "rgba(0,0,0,.5)",
+  onClose,
 }: IProps) => {
+  const { handleSduiAction: handleOnClose } = useSduiCallbackFunctionOrReduxAction(onClose, () =>
+    Navigation.dismissOverlay(MODALS.blurredOverlay)
+  );
   const opacity = useRef(new Animated.Value(0)).current;
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -46,13 +53,15 @@ const BlurredOverlay = ({
     };
   }, [fadeIn, fadeOut]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     fadeOut.start(({ finished }) => {
-      if (finished) {
-        Navigation.dismissOverlay(MODALS.blurredOverlay);
+      if (!finished) {
+        return;
       }
+
+      handleOnClose();
     });
-  };
+  }, [fadeOut, handleOnClose]);
 
   useBackHandler(() => {
     handleClose();

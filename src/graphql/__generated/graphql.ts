@@ -880,41 +880,6 @@ export enum BulkUploadStatus {
   Pending = "pending",
 }
 
-export type Business = {
-  __typename?: "Business";
-  alpha?: Maybe<Scalars["Boolean"]["output"]>;
-  /** @deprecated Not supported anymore. */
-  businessAccountName?: Maybe<Scalars["String"]["output"]>;
-  businessPhone?: Maybe<Scalars["String"]["output"]>;
-  businessProducts?: Maybe<Array<Maybe<BusinessProduct>>>;
-  companiesHouseAddress?: Maybe<Scalars["String"]["output"]>;
-  /** @deprecated Not supported anymore. */
-  companiesHouseName?: Maybe<Scalars["String"]["output"]>;
-  companiesHouseRegisteredNumber?: Maybe<Scalars["String"]["output"]>;
-  companiesHouseSize?: Maybe<Scalars["String"]["output"]>;
-  /** @deprecated Not supported anymore. */
-  coupon?: Maybe<Scalars["String"]["output"]>;
-  /** @deprecated Not supported anymore. */
-  couponDetails?: Maybe<BusinessCoupon>;
-  directors?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
-  employeeCount?: Maybe<Scalars["Int"]["output"]>;
-  id?: Maybe<Scalars["String"]["output"]>;
-  industryType?: Maybe<Scalars["String"]["output"]>;
-  isGroup?: Maybe<Scalars["Boolean"]["output"]>;
-  isGuest?: Maybe<Scalars["Boolean"]["output"]>;
-  isInstantGroup?: Maybe<Scalars["Boolean"]["output"]>;
-  isUnderInsurance?: Maybe<Scalars["Boolean"]["output"]>;
-  isWellbeingAccess?: Maybe<Scalars["Boolean"]["output"]>;
-  ownerEmail?: Maybe<Scalars["String"]["output"]>;
-  ownerFirstName?: Maybe<Scalars["String"]["output"]>;
-  ownerLastName?: Maybe<Scalars["String"]["output"]>;
-  ownerRole?: Maybe<Scalars["String"]["output"]>;
-  personsWithSignificantControl?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
-  policyEndDate?: Maybe<Scalars["String"]["output"]>;
-  /** @deprecated Not supported anymore */
-  requiresPaymentDetails?: Maybe<Scalars["Boolean"]["output"]>;
-};
-
 export enum BusinessAccessOrganisationPermission {
   ManageAdvisers = "manageAdvisers",
   ManageClientConnections = "manageClientConnections",
@@ -930,6 +895,7 @@ export enum BusinessAccessPermission {
   ManageAdmins = "manageAdmins",
   ManageAdviserAccess = "manageAdviserAccess",
   ManageCustomValues = "manageCustomValues",
+  ManageEmployeeRecognition = "manageEmployeeRecognition",
   ManageEngagementDashboard = "manageEngagementDashboard",
   ManageExternalIntegrations = "manageExternalIntegrations",
   ManageLeaderboards = "manageLeaderboards",
@@ -984,17 +950,6 @@ export type BusinessAccessUserWithPermission = {
   lastName?: Maybe<Scalars["String"]["output"]>;
 };
 
-export type BusinessCoupon = {
-  __typename?: "BusinessCoupon";
-  active?: Maybe<Scalars["Boolean"]["output"]>;
-  appliedForMonths?: Maybe<Scalars["Float"]["output"]>;
-  couponId?: Maybe<Scalars["String"]["output"]>;
-  id?: Maybe<Scalars["String"]["output"]>;
-  percentage?: Maybe<Scalars["Float"]["output"]>;
-  valid?: Maybe<Scalars["Boolean"]["output"]>;
-  validForDays?: Maybe<Scalars["Float"]["output"]>;
-};
-
 export type BusinessEarlyAccessSelfRegistrationPreset = {
   __typename?: "BusinessEarlyAccessSelfRegistrationPreset";
   expiresAt?: Maybe<Scalars["String"]["output"]>;
@@ -1019,13 +974,9 @@ export type BusinessPasswordUpdateResponse = {
 
 export type BusinessPayload = {
   __typename?: "BusinessPayload";
-  business?: Maybe<Business>;
-  expiresAt?: Maybe<Scalars["Int"]["output"]>;
   id?: Maybe<Scalars["String"]["output"]>;
   intercomHash?: Maybe<Scalars["String"]["output"]>;
-  message?: Maybe<Scalars["String"]["output"]>;
   secret?: Maybe<TwoFaSecretResponse>;
-  step?: Maybe<MemberStep>;
   token?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -1059,18 +1010,6 @@ export type BusinessPerkListItem = {
   perkId?: Maybe<Scalars["String"]["output"]>;
   remainingLicences?: Maybe<Scalars["Int"]["output"]>;
   visible?: Maybe<Scalars["Boolean"]["output"]>;
-};
-
-export type BusinessProduct = {
-  __typename?: "BusinessProduct";
-  annualPremium?: Maybe<Scalars["Float"]["output"]>;
-  businessAccountId?: Maybe<Scalars["String"]["output"]>;
-  comission?: Maybe<Scalars["Float"]["output"]>;
-  livesCount?: Maybe<Scalars["Float"]["output"]>;
-  quoteNumber?: Maybe<Scalars["Int"]["output"]>;
-  quoteProduct?: Maybe<Scalars["String"]["output"]>;
-  quoteStatusReason?: Maybe<Scalars["String"]["output"]>;
-  totalSumAssured?: Maybe<Scalars["Float"]["output"]>;
 };
 
 export type BusinessSelfInvitation = {
@@ -1132,6 +1071,7 @@ export type BusinessSessionSettings = {
   __typename?: "BusinessSessionSettings";
   announcement?: Maybe<AnnouncementSetting>;
   earlyAccessEnabled: Scalars["Boolean"]["output"];
+  employeeRecognitionEnabled: Scalars["Boolean"]["output"];
   enableTagRestriction: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
   helpCentreLink?: Maybe<Scalars["String"]["output"]>;
@@ -3800,6 +3740,12 @@ export type EmployeePerkInfo = {
   images?: Maybe<Array<Maybe<PerkImage>>>;
 };
 
+export enum EmployeeRecognitionCampaignStatus {
+  Completed = "COMPLETED",
+  Draft = "DRAFT",
+  Pending = "PENDING",
+}
+
 export type EmployeesList = {
   __typename?: "EmployeesList";
   active?: Maybe<Scalars["Int"]["output"]>;
@@ -4621,6 +4567,16 @@ export type HealthSmokingCelebration = {
   title: Scalars["String"]["output"];
 };
 
+export type HealthSmokingGameIntroModal = {
+  __typename?: "HealthSmokingGameIntroModal";
+  closeOnBlur?: Maybe<Scalars["Boolean"]["output"]>;
+  ctaLabel: Scalars["String"]["output"];
+  displayDuration?: Maybe<Scalars["Int"]["output"]>;
+  image?: Maybe<VariableRemoteImage>;
+  onDismiss?: Maybe<SduiAction>;
+  title: Scalars["String"]["output"];
+};
+
 export type HealthSmokingMilestoneCarousel = {
   __typename?: "HealthSmokingMilestoneCarousel";
   completed: Scalars["Boolean"]["output"];
@@ -4676,6 +4632,7 @@ export type HealthSmokingState = {
   customTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   defaultReasons: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   defaultTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
+  gameIntroModal?: Maybe<HealthSmokingGameIntroModal>;
   headerButtonText?: Maybe<Scalars["String"]["output"]>;
   heading: Scalars["String"]["output"];
   isActive: Scalars["Boolean"]["output"];
@@ -5451,12 +5408,6 @@ export type MemberOnboardingYuCoinProgress = {
   total: Scalars["Int"]["output"];
 };
 
-export type MemberStep = {
-  __typename?: "MemberStep";
-  currentPage?: Maybe<Scalars["Int"]["output"]>;
-  stepId?: Maybe<Scalars["String"]["output"]>;
-};
-
 export enum Metric {
   Ces = "CES",
   Nps = "NPS",
@@ -5786,6 +5737,12 @@ export type MobileGameUserAchievements = {
   achievements: Array<MobileGameUserAchievement>;
   equippedAchievements: Array<MobileGameUserAchievement>;
   lockedAchievements: Array<MobileGameUserAchievement>;
+};
+
+export type MobileGameUserEquippedAchievements = {
+  __typename?: "MobileGameUserEquippedAchievements";
+  achievementPoints: Scalars["Int"]["output"];
+  achievements: Array<MobileGameUserAchievement>;
 };
 
 export type MobileGameUserWalletItem = {
@@ -6292,6 +6249,7 @@ export type Mutation = {
   completeGoal?: Maybe<Scalars["Boolean"]["output"]>;
   completeInAppYuniversityModuleChapter: Scalars["Boolean"]["output"];
   completeMobileGameBattlePassSeason?: Maybe<MobileGameBattlePass>;
+  completeSignup: Scalars["Boolean"]["output"];
   configureHrisConnection: Scalars["Boolean"]["output"];
   confirmDuelsScore: ConfirmDuelsScoreResponse;
   confirmPaymentCard: ConfirmedPaymentCard;
@@ -6301,6 +6259,7 @@ export type Mutation = {
   createBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
+  createEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
   /**
    * Introduced to clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.10.0
    * Incremented feature toggle to V2 on RN version >= 4.16.0
@@ -6661,6 +6620,10 @@ export type MutationCreateBusinessTagArgs = {
 
 export type MutationCreateCustomValueArgs = {
   customValue: CustomValueInput;
+};
+
+export type MutationCreateEmployeeRecognitionCampaignArgs = {
+  title: Scalars["String"]["input"];
 };
 
 export type MutationCreateMobileQuestLevelChallengeArgs = {
@@ -7909,6 +7872,7 @@ export type Query = {
   getMobileGameBattlePassRewardInfo: MobileGameBattlePassRewardInfo;
   getMobileGameRewardPassList: MobileGameRewardPassList;
   getMobileGameUserAchievements: MobileGameUserAchievements;
+  getMobileGameUserEquippedAchievements: MobileGameUserEquippedAchievements;
   getMobileGameUserWalletRewardItems: MobileGameUserWalletSections;
   getMobileGameUserWalletRewards: MobileGameUserWalletRewards;
   getMobileGameWeeklies: MobileGameWeeklies;
@@ -8426,6 +8390,11 @@ export type QueryGetMobileGameBattlePassRewardInfoArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileGameUserAchievementsArgs = {
   type?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileGameUserEquippedAchievementsArgs = {
+  userId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -10073,6 +10042,19 @@ export type TeamEmployeeProfile = {
   status: Scalars["String"]["output"];
 };
 
+export type TeamEmployeeRecognitionCampaign = {
+  __typename?: "TeamEmployeeRecognitionCampaign";
+  amount?: Maybe<Scalars["Int"]["output"]>;
+  giftBackground?: Maybe<Scalars["String"]["output"]>;
+  giftMessage?: Maybe<Scalars["String"]["output"]>;
+  giftSticker?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  requestedById?: Maybe<Scalars["String"]["output"]>;
+  startsAt?: Maybe<Scalars["String"]["output"]>;
+  status: EmployeeRecognitionCampaignStatus;
+  title: Scalars["String"]["output"];
+};
+
 export type TeamEmployeeSection = {
   __typename?: "TeamEmployeeSection";
   fields: Array<TeamEmployeeField>;
@@ -10662,6 +10644,7 @@ export type UpdatePerkEligibilityRulesInput = {
 };
 
 export type UpdateSmokingStateInput = {
+  gameIntroModalSeen?: InputMaybe<Scalars["Boolean"]["input"]>;
   reasons?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   triggers?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
@@ -11716,22 +11699,6 @@ export type YuScreenYumojiPrompt = {
   text: Scalars["String"]["output"];
 };
 
-export type YuStoreDynoPackage = {
-  __typename?: "YuStoreDynoPackage";
-  discountPercentage: Scalars["Float"]["output"];
-  id: Scalars["String"]["output"];
-  images: YuStoreProductImages;
-  includesVAT: Scalars["Boolean"]["output"];
-  isDisplayOnly: Scalars["Boolean"]["output"];
-  longDescription: Scalars["String"]["output"];
-  minimumTotalPrice: Scalars["Float"]["output"];
-  name: Scalars["String"]["output"];
-  pricePerEmployee: Scalars["Boolean"]["output"];
-  section: YuStoreProductSectionName;
-  shortDescription: Scalars["String"]["output"];
-  yuStorePrice: Scalars["Float"]["output"];
-};
-
 export type YuStoreGroupProduct = {
   __typename?: "YuStoreGroupProduct";
   images: YuStoreProductImages;
@@ -11796,7 +11763,6 @@ export enum YuStorePlatform {
 
 export type YuStoreProduct = {
   __typename?: "YuStoreProduct";
-  dynoPackage?: Maybe<YuStoreDynoPackage>;
   groupProduct?: Maybe<YuStoreGroupProduct>;
   perk?: Maybe<YuStorePerkProduct>;
 };
@@ -11840,7 +11806,6 @@ export type YuStoreProductSection = {
 };
 
 export enum YuStoreProductSectionName {
-  DynoPackages = "dynoPackages",
   Favourites = "favourites",
   GroupProducts = "groupProducts",
   HealthAndWellness = "healthAndWellness",
@@ -37791,6 +37756,20 @@ export type GetHealthSmokingStateQuery = {
         animation: string;
       }> | null;
     } | null;
+    gameIntroModal?: {
+      __typename?: "HealthSmokingGameIntroModal";
+      title: string;
+      ctaLabel: string;
+      displayDuration?: number | null;
+      closeOnBlur?: boolean | null;
+      image?: {
+        __typename?: "VariableRemoteImage";
+        width: number;
+        height?: number | null;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      } | null;
+      onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
   } | null;
 };
 
@@ -37965,6 +37944,20 @@ export type HealthSmokingStateFragment = {
       end: number;
       animation: string;
     }> | null;
+  } | null;
+  gameIntroModal?: {
+    __typename?: "HealthSmokingGameIntroModal";
+    title: string;
+    ctaLabel: string;
+    displayDuration?: number | null;
+    closeOnBlur?: boolean | null;
+    image?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   } | null;
 };
 
@@ -38143,6 +38136,20 @@ export type StartSmokingStreakMutation = {
         end: number;
         animation: string;
       }> | null;
+    } | null;
+    gameIntroModal?: {
+      __typename?: "HealthSmokingGameIntroModal";
+      title: string;
+      ctaLabel: string;
+      displayDuration?: number | null;
+      closeOnBlur?: boolean | null;
+      image?: {
+        __typename?: "VariableRemoteImage";
+        width: number;
+        height?: number | null;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      } | null;
+      onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
   } | null;
 };
@@ -38331,6 +38338,20 @@ export type UpdateSmokingStreakMutation = {
         end: number;
         animation: string;
       }> | null;
+    } | null;
+    gameIntroModal?: {
+      __typename?: "HealthSmokingGameIntroModal";
+      title: string;
+      ctaLabel: string;
+      displayDuration?: number | null;
+      closeOnBlur?: boolean | null;
+      image?: {
+        __typename?: "VariableRemoteImage";
+        width: number;
+        height?: number | null;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      } | null;
+      onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
   } | null;
 };
@@ -65196,6 +65217,35 @@ export const HealthSmokingStateFragmentDoc = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gameIntroModal" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "ctaLabel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "displayDuration" } },
+                { kind: "Field", name: { kind: "Name", value: "closeOnBlur" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onDismiss" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -65220,6 +65270,26 @@ export const HealthSmokingStateFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
         ],
       },
     },
@@ -96182,6 +96252,26 @@ export const GetHealthSmokingStateDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "HealthSmokingState" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HealthSmokingState" } },
       selectionSet: {
@@ -96711,6 +96801,35 @@ export const GetHealthSmokingStateDocument = {
                       { kind: "Field", name: { kind: "Name", value: "end" } },
                       { kind: "Field", name: { kind: "Name", value: "animation" } },
                     ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gameIntroModal" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "ctaLabel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "displayDuration" } },
+                { kind: "Field", name: { kind: "Name", value: "closeOnBlur" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onDismiss" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                   },
                 },
               ],
@@ -96768,6 +96887,26 @@ export const StartSmokingStreakDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "HealthSmokingState" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HealthSmokingState" } },
       selectionSet: {
@@ -97297,6 +97436,35 @@ export const StartSmokingStreakDocument = {
                       { kind: "Field", name: { kind: "Name", value: "end" } },
                       { kind: "Field", name: { kind: "Name", value: "animation" } },
                     ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gameIntroModal" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "ctaLabel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "displayDuration" } },
+                { kind: "Field", name: { kind: "Name", value: "closeOnBlur" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onDismiss" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                   },
                 },
               ],
@@ -97414,6 +97582,26 @@ export const UpdateSmokingStreakDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "HealthSmokingState" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HealthSmokingState" } },
       selectionSet: {
@@ -97943,6 +98131,35 @@ export const UpdateSmokingStreakDocument = {
                       { kind: "Field", name: { kind: "Name", value: "end" } },
                       { kind: "Field", name: { kind: "Name", value: "animation" } },
                     ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gameIntroModal" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "ctaLabel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "displayDuration" } },
+                { kind: "Field", name: { kind: "Name", value: "closeOnBlur" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onDismiss" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                   },
                 },
               ],

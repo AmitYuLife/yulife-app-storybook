@@ -1,4 +1,4 @@
-import React, { FC, memo, useMemo } from "react";
+import React, { FC, memo, useMemo, useState } from "react";
 import { View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -8,7 +8,7 @@ import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { TextTemplate } from "@atoms";
 import { Avatar, Button } from "@molecules";
 import { Colours } from "@styles";
-import { YUMOJI_AVATAR_SIZE, styles } from "../smoking-hub.styles";
+import { styles, YUMOJI_AVATAR_SIZE } from "../smoking-hub.styles";
 import { SMOKING_HEADER_BUTTON, SMOKING_HEADER_DAYS } from "@ids";
 import { Sizes } from "@components/molecules/button/button.types";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -21,11 +21,27 @@ interface Props {
 export const SmokingHeading: FC<Props> = memo(({ smokingState, navigateToCommitmentScreen }) => {
   const avatar = useSelector(getUserAvatar);
   const dispatch = useDispatch();
+  const [introModalShown, setIntroModalShown] = useState(false);
 
   const { onHeaderButtonPress, headerButtonSize } = useMemo(() => {
     const buttonSize = (smokingState?.smokingStreakCarousel ? "Narrow" : "Fill") as Sizes;
 
     if (smokingState?.isActive) {
+      const { image: introModalImage, ...introModal } = smokingState?.gameIntroModal || {};
+      const gameIntroModal =
+        smokingState?.gameIntroModal && !introModalShown
+          ? {
+              ...introModal,
+              image: introModalImage?.image?.uri
+                ? {
+                    uri: introModalImage.image.uri,
+                    width: introModalImage.width,
+                    height: introModalImage.height,
+                  }
+                : undefined,
+            }
+          : undefined;
+
       return {
         onHeaderButtonPress: () => {
           dispatch(
@@ -35,10 +51,14 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState, navigateToCommitm
               location: "smoking_hub",
             })
           );
+          setIntroModalShown(true);
           Navigation.push(ROUTES.smoking, {
             component: {
               id: ROUTES.game2048,
               name: ROUTES.game2048,
+              passProps: {
+                gameIntroModal,
+              },
             },
           });
         },
@@ -50,7 +70,7 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState, navigateToCommitm
       onHeaderButtonPress: () => navigateToCommitmentScreen(smokingState),
       headerButtonSize: buttonSize,
     };
-  }, [smokingState, navigateToCommitmentScreen]);
+  }, [smokingState, introModalShown, navigateToCommitmentScreen]);
 
   return (
     <View>

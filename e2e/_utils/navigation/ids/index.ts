@@ -92,6 +92,7 @@ export const BUTTON_CLOSE_TEXT_VIEW = "BUTTON_CLOSE-text-view";
 export const BUTTON_CLOSE_HEADER = (header: any) => `BUTTON_CLOSE_HEADER_${header}`;
 export const BUTTON_CLOSE_CHALLENGE = "BUTTON_CLOSE_CHALLENGE";
 export const BUTTON_CLOSE_ONBOARDING = "BUTTON_CLOSE_ONBOARDING";
+export const BUTTON_SUBMIT = (name: string) => `BUTTON_SUBMIT_${name}`;
 export const BACK_BUTTON = "BACK_BUTTON";
 export const EDIT_BUTTON = "EDIT_BUTTON";
 export const ARROW_BUTTON = `ARROW_BUTTON`;

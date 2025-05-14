@@ -218,4 +218,16 @@ fragment HealthSmokingState on HealthSmokingState {
       animation
     }
   }
+  gameIntroModal {
+    title
+    ctaLabel
+    image {
+      ...VariableRemoteImage
+    }
+    displayDuration
+    closeOnBlur
+    onDismiss {
+      ...SduiAction
+    }
+  }
 }

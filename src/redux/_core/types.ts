@@ -133,6 +133,12 @@ export interface Image {
   hash?: string | null;
 }
 
+export interface VariableRemoteImage {
+  image: Image;
+  width: number;
+  height?: number;
+}
+
 export interface UserFeatures {
   name: string | null;
   value: boolean | null;
