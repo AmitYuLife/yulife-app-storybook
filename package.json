@@ -58,10 +58,8 @@
     "ios:record": "(rm simulator.mov || echo '') && xcrun simctl io booted recordVideo simulator.mov",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet",
     "postinstall": "patch-package",
-    "prepublish": "yarn snyk-protect",
     "prettify:graphql": "prettier src/graphql/_core --write",
     "reset:storybook": "node ./scripts/start-storybook reset",
-    "snyk-protect": "snyk protect",
     "start:all-devices": "./scripts/start-a-fuck-ton-of-devices.sh",
     "start:android:local": "ENVFILE=.env.local yarn android",
     "start:android:production": "ENVFILE=.env.uat.production yarn android",
@@ -175,8 +173,7 @@
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.3",
     "reselect": "^4.1.8",
-    "simple-markdown": "^0.7.3",
-    "snyk": "1.1064.0"
+    "simple-markdown": "^0.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
@@ -282,6 +279,5 @@
       "./assets/fonts/"
     ]
   },
-  "snyk": true,
   "packageManager": "yarn@1.22.22"
 }
