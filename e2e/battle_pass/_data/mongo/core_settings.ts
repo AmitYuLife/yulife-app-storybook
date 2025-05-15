@@ -45,3 +45,16 @@ export const BUSINESS_THE_BEAR_COUPONS_SETTINGS = {
     },
   },
 } as IDatabaseItem;
+
+export const BUSINESS_THE_BEAR_SURGE_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.surge",
+    entityType: "everyone",
+    entityId: BUSINESS_THE_BEAR.data.business_account_id,
+    settings: {
+      isEnabled: true,
+    },
+  },
+} as IDatabaseItem;

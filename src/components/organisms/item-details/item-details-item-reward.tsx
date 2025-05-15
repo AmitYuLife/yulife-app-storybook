@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { t } from "@locale";
+import { ITEM_DETAILS_REWARD } from "@ids";
 
 type ItemDetailsItemRewardProps = {
   image: ImageSource;
@@ -19,6 +20,7 @@ const ItemDetailsItemReward = ({ image, label }: ItemDetailsItemRewardProps) => 
       px={ITEM_PADDING}
       accessible={true}
       accessibilityLabel={t("screens.battle_pass.accessibility.reward_item_details", { title: label })}
+      testID={ITEM_DETAILS_REWARD(label)}
     >
       <Image
         source={image}

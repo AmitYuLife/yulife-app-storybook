@@ -23,6 +23,7 @@ export const CUSTOMER_CARMY_TOGGLES = {
       showGoalProductRewardMilestones: true,
       enableProductGoals: true,
       tempGameBattlePassNewService: true,
+      enableChallengeBonuses: true,
     },
   },
 } as IDatabaseItem;

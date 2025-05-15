@@ -224,6 +224,7 @@ export const LOTTIE_VIEW = "LOTTIE_VIEW";
 export const FOOTER_LEGAL_DISCLAIMER = "FOOTER_LEGAL_DISCLAIMER";
 export const VOUCHER_CODE_TITLE = (text: string) => `VOUCHER_CODE_TITLE_${text}`;
 export const VOUCHER_CODE = (code: string) => `VOUCHER_CODE_${code}`;
+export const ITEM_DETAILS_REWARD = (label: string) => `ITEM_DETAILS_REWARD_${label}`;
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`;
@@ -834,7 +835,7 @@ export const CLAIMED_SMOKING_CAROUSEL_LIST_ITEM = (id: string) =>
 export const SMOKING_CAROUSEL_LIST_ITEM_CTA = (id: string) =>
   `SMOKING_CAROUSEL_LIST_ITEM_CTA_${id}`;
 export const BATTLE_PASS_LIST = "BATTLE_PASS_LIST";
-export const BATTLE_PASS_LIST_ITEM = (id: string) => `BATTLE_PASS_LIST_ITEM_${id}`;
+export const BATTLE_PASS_LIST_ITEM = (id: number) => `BATTLE_PASS_LIST_ITEM_${id}`;
 export const BATTLE_PASS_LIST_IMAGE_LOCKED = (id: string) => `BATTLE_PASS_LIST_ITEM_${id}_LOCKED`;
 export const BATTLE_PASS_LIST_IMAGE_UNLOCKED = (id: string) =>
   `BATTLE_PASS_LIST_ITEM_${id}_UNLOCKED`;
@@ -925,6 +926,8 @@ export const CLAIMED_BATTLE_PASS_LIST_ITEM = "CLAIMED_BATTLE_PASS_LIST_ITEM";
 export const SPINNING_REWARD_ITEMS = (index: number) => `SPINNING_REWARD_ITEMS_${index}`;
 export const CLAIM_REWARD_MODAL = "modals.open_random_chest.open-text-view";
 export const CLAIM_REWARD_BUTTON = "claimChestPrize-text-view";
+export const INVENTORY_BANNER_ITEM_COUNT = (amount: number) =>
+  `INVENTORY_BANNER_ITEM_COUNT_${amount}`;
 export const INVENTORY_BANNER = "INVENTORY_BANNER";
 export const INVENTORY_ITEM = (name: string) => `INVENTORY_ITEM_${name}`;
 export const INVENTORY_GO_TO_REWARDS = "modals.consumables.go_to_rewards_button";
@@ -951,6 +954,8 @@ export const PARTNER_REWARDS_INVENTORY_ITEMS_COUNT = (quantity: number) =>
 export const PARTNER_REWARDS_INVENTORY_ITEMS_TITLE = (title: string) =>
   `PARTNER_REWARDS_INVENTORY_ITEMS_TITLE_${title}`;
 export const DONATION_LIST_AVATARS = (count: number) => `DONATION_LIST_AVATARS_${count}`;
+export const ITEM_DETAILS_SUBTITLE = (text: string) => `ITEM_DETAILS_SUBTITLE_${text}`;
+export const REWARDS_MODAL_INFO_BUTTON = "rewards.got-it";
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";

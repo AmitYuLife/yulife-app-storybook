@@ -30,7 +30,7 @@ export const LevelComponent = memo((props: Props) => {
       alignItems="center"
       justifyContent="center"
       bg="rgba(0,0,0,0.1)"
-      testID={BATTLE_PASS_LIST_ITEM(props.id)}
+      testID={BATTLE_PASS_LIST_ITEM(props.position)}
     >
       <TextTemplate
         type="l1b"
