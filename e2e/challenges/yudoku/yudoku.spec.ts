@@ -16,7 +16,9 @@ Feature("Yudoku", async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
-      Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      });
     });
     When("I tap the soduku challenge", when.tapSudoku, async () => {
       Then("I am on the sudoku page", then.amOnSudokuPage);
@@ -119,7 +121,9 @@ Feature("Yudoku", async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(665)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
-      Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      });
     });
     When("I tap the soduku challenge", when.tapSudoku, async () => {
       Then("I am on the sudoku page", then.amOnSudokuPage);
@@ -141,7 +145,9 @@ Feature("Yudoku", async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
-      Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      });
     });
     When("I tap the soduku challenge", when.tapSudoku, async () => {
       Then("I am on the sudoku page", then.amOnSudokuPage);
@@ -173,7 +179,9 @@ Feature("Yudoku", async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
-      Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      });
     });
     When("I tap the soduku challenge", when.tapSudoku, async () => {
       Then("I am on the sudoku page", then.amOnSudokuPage);
@@ -222,7 +230,9 @@ Feature("Yudoku", async () => {
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
       When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+        When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+          Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+        });
       });
     });
     When("I tap the soduku challenge", when.tapSudoku, async () => {
@@ -313,7 +323,9 @@ Feature("Yudoku", async () => {
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
       When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+        When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+          Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+        });
       });
     });
     When("I tap the soduku challenge", when.tapSudoku, async () => {
@@ -352,7 +364,9 @@ Feature("Yudoku", async () => {
       Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)));
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5), 2000), async () => {
-      Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+      When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+        Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+      });
     });
     When("I tap the soduku challenge", when.tapSudoku, async () => {
       Then("I am on the sudoku page", then.amOnSudokuPage);
@@ -389,7 +403,9 @@ Feature("Yudoku", async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
-      Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      });
     });
     When("I tap the soduku challenge", when.tapSudoku, async () => {
       Then("I am on the sudoku page", then.amOnSudokuPage);

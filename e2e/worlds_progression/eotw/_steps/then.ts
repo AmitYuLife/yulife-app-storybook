@@ -26,7 +26,7 @@ export const {
   successScreenNotHintVisible,
 } = screens.challenges;
 
-export const { swipeFromText, scrollUntilIdVisible } = navigation.scrolling;
+export const { swipeFromText, scrollUntilIdVisible, scrollFromID } = navigation.scrolling;
 
 export const { onCreateAvatarScreen, unlockedYumojiItemsVisible, yumojiItemLockedModalVisible } =
   screens.yuscreen;
@@ -131,7 +131,6 @@ export const challengesAvailableVisible = async () => {
   await idVisible(ids.CHALLENGE_TILE("Brisk Walk"))();
   await idVisible(ids.CHALLENGE_TILE("Long Walk"))();
   await idVisible(ids.CHALLENGE_TILE("Meditation"))();
-  await swipeFromText("Meditation", "up", "fast")();
 };
 
 export const challengeStarsCorrect = (starCount: number, challengeType: string) => async () => {
