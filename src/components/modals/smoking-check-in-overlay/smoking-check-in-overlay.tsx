@@ -22,7 +22,7 @@ const SmokingCheckInOverlay = ({ title, failCta, onPressNo, continueCta, onPress
       onPressCta={onPressNo}
       ctaDismissLabel={failCta}
       onPressCtaDismiss={onPressYes}
-      ctaDismissType="primary"
+      ctaDismissType="secondary"
     >
       <View style={styles.container} testID={SMOKING_CHECKIN_OVERLAY}>
         <TextTemplate type="h2" textAlign="center">
