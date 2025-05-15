@@ -2212,9 +2212,7 @@ workflows:
     - restore-cache@1:
         inputs:
         - key: yarn-cache-silicon-{{ checksum "package-lock.json" "**/*.patch" }}
-    - nvm@1:
-        inputs:
-        - node_version: 18.18.2
+    - nvm@1: {}
     - script@1.2:
         title: Pull & Run yulife-api-server (API)
         inputs:
@@ -2241,7 +2239,7 @@ workflows:
             git checkout "${API_BRANCH_NAME:-${BITRISE_GIT_BRANCH}}" || git checkout develop
             git pull
 
-            nvm install 18.19.1
+            nvm install
             echo "enabling corepack"
             corepack enable
             echo "running yarn install"
