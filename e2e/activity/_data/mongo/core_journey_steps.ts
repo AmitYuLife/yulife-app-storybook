@@ -2042,7 +2042,7 @@ export const CORE_JOURNEY_STEPS_19 = {
     name: "dynamic_advice.1.2.15",
     stepType: "normal",
     externalId: "dynamic_advice.1.2.15",
-    template: "journey_template_advice",
+    template: "journey_template_choice",
     templateUi: {
       answerKey: "dynamic_advice.1.2.15",
       copy: {
