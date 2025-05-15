@@ -469,11 +469,13 @@ Feature("As a user I can take a challenge", async () => {
     });
     When("I tap got it", when.tapText("Got it"), async () => {
       When("I tap level 5", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
-        Then("I should see Short Stroll", then.textVisible("Short Stroll"));
-        Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
-        Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
-        Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
-        Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+        When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+          Then("I should see Short Stroll", then.textVisible("Short Stroll"));
+          Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
+          Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
+          Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
+          Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+        });
       });
     });
     When("I start the short stroll", when.startChallenge("Short Stroll"), async () => {

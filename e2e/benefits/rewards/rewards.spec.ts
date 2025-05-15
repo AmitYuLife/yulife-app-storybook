@@ -52,11 +52,9 @@ Feature("Rewards should act correctly", async () => {
     When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
       Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll to the bottom of the rewards page", when.swipeFromText("Bloom & Wild", "up", "fast"), async () => {
-      When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "down", "fast", 0.3), async () => {
-        Then("I should see the locked amazon reward", then.lockedRewardVisible(data.CORE_REWARDS_AMAZON_UNAVAILABLE));
-        Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1));
-      });
+    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.4), async () => {
+      Then("I should see the locked amazon reward", then.lockedRewardVisible(data.CORE_REWARDS_AMAZON_UNAVAILABLE));
+      Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1));
     });
   });
 

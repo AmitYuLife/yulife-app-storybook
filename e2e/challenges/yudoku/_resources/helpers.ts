@@ -39,7 +39,13 @@ export const START_YUDOKU_MINIMISE_FAKE_TIME = async () => {
     Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)));
   });
   When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5), 2000), async () => {
-    Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+    When(
+      "I scroll down the challenge list",
+      when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"),
+      async () => {
+        Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+      }
+    );
   });
   When("I tap the soduku challenge", when.tapSudoku, async () => {
     Then("I am on the sudoku page", then.amOnSudokuPage);
@@ -73,7 +79,13 @@ export const START_YUDOKU_CLOSE_OPEN_APP_FAKE_TIME = async () => {
     Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)));
   });
   When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
-    Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+    When(
+      "I scroll down the challenge list",
+      when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"),
+      async () => {
+        Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+      }
+    );
   });
   When("I tap the soduku challenge", when.tapSudoku, async () => {
     Then("I am on the sudoku page", then.amOnSudokuPage);

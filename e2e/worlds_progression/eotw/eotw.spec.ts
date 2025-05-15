@@ -386,7 +386,9 @@ Feature("End of the world/Yuniverse", async () => {
       Then("I should see level 401 unlocked in the red planet", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)));
     });
     When("I tap level 401 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(401)), async () => {
-      Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
+      When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+        Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
+      });
     });
   });
 
