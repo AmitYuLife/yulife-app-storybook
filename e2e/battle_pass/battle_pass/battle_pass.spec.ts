@@ -123,17 +123,24 @@ Feature("I can view and use all battle pass features", async () => {
       });
     });
     When("I tap on 'Take a challenge' button", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON, 2000), async () => {
-      When("I tap on the inventory banner", when.tapID(ids.INVENTORY_BANNER, 2000), async () => {
-        Then("I should see the 'Extra Brisk Walk' consumable available", then.idVisible(ids.INVENTORY_ITEM("Extra Brisk Walk challenge"), 2000));
-      });
+      Then("I should see the consumables indicator on the inventory banner", then.idVisible(ids.INVENTORY_BANNER_ITEM_COUNT(2), 2000));
+    });
+    When("I tap on the inventory banner", when.tapID(ids.INVENTORY_BANNER, 2000), async () => {
+      Then("I should see the 'Extra Brisk Walk' consumable available", then.idVisible(ids.INVENTORY_ITEM("Extra Brisk Walk challenge"), 2000));
+      Then("I should see the 'Boost any challenge' consumable available", then.idVisible(ids.INVENTORY_ITEM("Boost any challenge"), 2000));
     });
     When("I tap to select the Extra Short Stroll challenge", when.tapID(ids.INVENTORY_ITEM("Extra Brisk Walk challenge"), 2000), async () => {
       When("I tap to activate the extra challenge", when.tapID(ids.ACTIVATE_POWER_UP_BUTTON(true), 2000), async () => {
         Then("I should see the inventory item activated", then.idVisible(ids.ACTIVATED_INVENTORY_ITEM, 2000));
       });
     });
-    When("I close inventory", when.tapID(ids.CLOSE_INVENTORY, 2000), async () => {
-      Then("I should see the Extra Brisk Walk indicator activated", then.idVisible(ids.EXTRA_CHALLENGE_INDICATOR(1), 2000));
+    When("I tap to select the 'Boost any challenge' consumable", when.tapID(ids.INVENTORY_ITEM("Boost any challenge"), 2000), async () => {
+      When("I tap to activate the Boost power up", when.tapID(ids.ACTIVATE_POWER_UP_BUTTON(true), 2000), async () => {
+        When("I close inventory", when.tapID(ids.CLOSE_INVENTORY, 2000), async () => {
+          Then("I should see the Extra Brisk Walk indicator activated", then.idVisible(ids.EXTRA_CHALLENGE_INDICATOR(1), 2000));
+          Then("I should see the boost on the challenge list tiles activated", then.idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Short Stroll", "90", true), 2000));
+        });
+      });
     });
     When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
       When("I go to the rewards store", when.tapID(ids.NAV_BAR("rewards"), 2000), async () => {
@@ -144,6 +151,15 @@ Feature("I can view and use all battle pass features", async () => {
       When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
         Then("I should be on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
       });
+    });
+    When("I tap on the Extra Challenge reward tile", when.tapID(ids.BATTLE_PASS_LIST_ITEM(2), 2000), async () => {
+      Then("I should see the correct subtitle on the info modal", then.idVisible(ids.ITEM_DETAILS_SUBTITLE("Spend YuCoin to unlock a reward"), 2000));
+    });
+    When("I scroll down on the info modal", when.scrollFromID(ids.ITEM_DETAILS_SUBTITLE("Spend YuCoin to unlock a reward"), "up", "slow", 0.4), async () => {
+      Then("I should see the info for all the available extra challenges", then.extraChallengesModalVisible);
+    });
+    When("I tap the button 'Got it' to close the modal", when.tapID(ids.REWARDS_MODAL_INFO_BUTTON, 2000), async () => {
+      Then("I should be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
     });
     When("I donate to Plant a tree and complete my first level", when.donate("tree", 3), async () => {
       Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));

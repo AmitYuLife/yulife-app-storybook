@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { Box, TextTemplate } from "@atoms";
 import { t } from "@locale";
+import { ITEM_DETAILS_SUBTITLE } from "@ids";
 
 interface IBattlePassItemSubtitleContainer {
   milestoneId: string;
@@ -28,7 +29,13 @@ const BattlePassItemSubtitleContainer = ({ milestoneId }: IBattlePassItemSubtitl
 
   return (
     <Box accessible={true}>
-      <TextTemplate type="b2" textAlign="center" accessible={true} accessibilityLabel={subtitle}>
+      <TextTemplate
+        type="b2"
+        textAlign="center"
+        accessible={true}
+        accessibilityLabel={subtitle}
+        testID={ITEM_DETAILS_SUBTITLE(subtitle)}
+      >
         {subtitle}
       </TextTemplate>
     </Box>

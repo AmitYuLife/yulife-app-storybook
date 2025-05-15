@@ -4,6 +4,7 @@ import { screens } from "@appScreens";
 import { scrollFromID } from "_utils/navigation/scrolling";
 import { impactDonationImages } from "../_resources/constants";
 import { IMPACT_DONATION } from "../_resources/types";
+import { expect } from "detox";
 
 export const {
   idVisible,
@@ -43,5 +44,20 @@ export const impactCardsVisible = async (waitTime = 2000) => {
     if (index == 1) {
       await scrollFromID(ids.DONATIONS_LIST, "up", "slow", 0.2)();
     }
+  }
+};
+
+export const extraChallengesModalVisible = async () => {
+  const challengeTypes = [
+    "Extra brisk walk challenge",
+    "Extra long walk challenge",
+    "Extra meditation challenge",
+    "Extra workout challenge",
+    "Extra short stroll challenge",
+  ];
+
+  for (const type of challengeTypes) {
+    const testID = ids.ITEM_DETAILS_REWARD(type);
+    await expect(element(by.id(testID))).toBeVisible();
   }
 };

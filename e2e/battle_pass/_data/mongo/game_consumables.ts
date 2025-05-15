@@ -31,3 +31,29 @@ export const GAME_CONSUMABLE_USER_CARMY_BRISK_WALK = {
     __v: 0,
   },
 } as IDatabaseItem;
+
+export const GAME_CONSUMABLE_USER_CARMY_CHALLENGES_BOOST = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_CARMY.data.customerId,
+    options: {
+      type: "ChallengeBoost",
+      amount: 10,
+      multiple: 1,
+      startTimeMarker: "immediate",
+      endTimeMarker: "endOfDay",
+      endTimeOffset: {
+        seconds: 0,
+      },
+    },
+    createdAt: {
+      $date: moment().format("YYYY-MM-DD"),
+    },
+    updatedAt: {
+      $date: moment().format("YYYY-MM-DD"),
+    },
+    __v: 0,
+  },
+} as IDatabaseItem;

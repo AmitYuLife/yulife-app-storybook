@@ -8,7 +8,7 @@ import { Image } from "expo-image";
 import { memo } from "react";
 import LottieView from "../lottie-view/lottie-view";
 import { usePressEffect } from "../../../hooks/usePressEffect";
-import { INVENTORY_BANNER } from "@ids";
+import { INVENTORY_BANNER, INVENTORY_BANNER_ITEM_COUNT } from "@ids";
 
 const BANNER_IMAGE = require("./inventory-banner-icon.webp");
 const BANNER_BACKGROUND = require("./inventory-banner-background.webp");
@@ -43,7 +43,7 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
               autoPlay={true}
             />
             {amount ? (
-              <View style={styles.indicator}>
+              <View style={styles.indicator} testID={INVENTORY_BANNER_ITEM_COUNT(amount)}>
                 <TextTemplate type="l3b" color={Colours.neutral.white} lineHeight={Style.adjust(20)}>
                   {amount}
                 </TextTemplate>
