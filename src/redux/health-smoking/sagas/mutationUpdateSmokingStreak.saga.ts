@@ -9,7 +9,9 @@ import { updateHealthSmokingStateAction } from "../health-smoking.actions";
 import { HealthSmokingState } from "../health-smoking.types";
 import { updateSmokingStreak } from "../health-smoking.actions";
 import { refreshUserProfileEvents } from "@redux/user/user.actions";
+import { refreshTotalCoins } from "@redux/coins/coins.actions";
 
+// Not used at the moment, so any updates on this should happen on other gql("UpdateSmokingStreakDocument") calls
 export function* mutationUpdateSmokingStreak({ payload }: ReturnType<typeof updateSmokingStreak>) {
   const token: Unpacked<typeof getToken> = yield call(getToken);
   if (!token) {
@@ -24,6 +26,7 @@ export function* mutationUpdateSmokingStreak({ payload }: ReturnType<typeof upda
     if (data?.updateSmokingStreak) {
       yield put(updateHealthSmokingStateAction(data.updateSmokingStreak as HealthSmokingState));
       yield put(refreshUserProfileEvents());
+      yield put(refreshTotalCoins());
     }
   } catch (e) {
     yield spawn(() => {
