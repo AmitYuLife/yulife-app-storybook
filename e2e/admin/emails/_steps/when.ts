@@ -45,8 +45,10 @@ export const followEmailLink = (emailAddress: string) => async () => {
     throw new Error(`Link not found in the email`);
   }
 
+  const [_, deeplink] = link.split("?link=");
+
   await device.launchApp({
     newInstance: true,
-    url: link,
+    url: deeplink,
   });
 };

@@ -21,7 +21,8 @@ Feature("I receive the correct emails", async () => {
     });
     When("I terminate the app", when.terminateApp, async () => {
       When("I follow the email link", when.followEmailLink(data.CUSTOMER_6.data.email), async () => {
-        Then("I should be back on the login page", then.idVisible(ids.FULL_SCREEN_HERO_BUTTON("Claim my account"), 2500));
+        Then("I should see the sign up reward screen", then.rewardScreenVisible);
+        Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
       });
     });
   });
@@ -43,6 +44,27 @@ Feature("I receive the correct emails", async () => {
             });
           });
         });
+      });
+    });
+  });
+
+  Scenario("A user without a password set should be able to log into the app via the magic link in their email", scenario.start, async () => {
+    Then("I should be on the login page", then.idVisible(ids.FULL_SCREEN_HERO_BUTTON("Claim my account"), 2500));
+    When("I tap to begin the login flow", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+      Then("I should be on the email login screen", then.isOnLoginEmailScreen);
+    });
+    When("I enter my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_14.data.email), async () => {
+      When("I tap to continue", when.tapID(ids.BUTTON_LOGIN(false), 2000), async () => {
+        When("I tap 'PASS' on the captcha prompt", when.tapText("PASS", 2000), async () => {
+          Then("I shouldn't see the option to login with email", then.idNotVisible(ids.LOGIN_WITH_PASSWORD));
+          Then("I should have received the correct email", then.hasReceivedMagicLinkEmail(data.CUSTOMER_14.data.email));
+        });
+      });
+    });
+    When("I terminate the app", when.terminateApp, async () => {
+      When("I follow the email link", when.followEmailLink(data.CUSTOMER_14.data.email), async () => {
+        Then("I should see the sign up reward screen", then.rewardScreenVisible);
+        Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
       });
     });
   });

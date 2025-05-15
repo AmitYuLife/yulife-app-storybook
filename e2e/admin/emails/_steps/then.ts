@@ -18,6 +18,8 @@ export const { onRewardScreen } = screens.rewards;
 
 export const { swipeToID } = navigation.scrolling;
 
+export { rewardScreenVisible, given200coins } from "../../login_and_routing/_steps/then";
+
 export const isOnLoginEmailScreen = async () => {
   await expect(element(by.text("Hi there! What’s your email?"))).toBeVisible();
   await expect(element(by.id(ids.BUTTON_LOGIN(true)))).toBeVisible();
