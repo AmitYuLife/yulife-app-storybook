@@ -39,7 +39,14 @@ export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, si
   }));
 
   const onMessage = useCallback(
-    (event: WebViewMessageEvent & { success?: boolean; reset?: () => void; markUsed?: () => void }) => {
+    (
+      event: WebViewMessageEvent & {
+        success?: boolean;
+        reset?: () => void;
+        markUsed?: () => void;
+        nativeEvent: { data: string; description?: string };
+      }
+    ) => {
       if (event && event.nativeEvent.data) {
         if (event.nativeEvent.data === "open") {
           // do nothing
@@ -52,7 +59,7 @@ export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, si
             result: token,
             debugInfo: null,
           });
-        } else if (["challenge-closed", "challenge-expired"].includes(event.nativeEvent.data)) {
+        } else if (["challenge-closed", "challenge-expired", "cancel"].includes(event.nativeEvent.data)) {
           event.reset();
           captchaRef?.current?.hide();
 
@@ -62,7 +69,10 @@ export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, si
 
           resolveFunction?.({
             result: null,
-            debugInfo: event.nativeEvent.data,
+            debugInfo: JSON.stringify({
+              data: event.nativeEvent.data,
+              description: event.nativeEvent.description || null,
+            }),
           });
         }
       }
@@ -73,7 +83,7 @@ export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, si
   return (
     <Box pl={40} pr={40} pt={0}>
       <Markdown text={t("captcha_input.hcaptcha_disclaimer")} markdownStyles={markdownStyles} />
-      <ConfirmHcaptcha siteKey={siteKey} size={size} onMessage={onMessage} ref={captchaRef} />
+      <ConfirmHcaptcha siteKey={siteKey} size={size} onMessage={onMessage} ref={captchaRef} hasBackdrop={false} />
     </Box>
   );
 });
