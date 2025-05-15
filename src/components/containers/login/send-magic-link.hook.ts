@@ -2,7 +2,7 @@ import { gql } from "@graphql/__generated";
 import { useMutatationAllRegions } from "@hooks";
 import { REGION } from "@locale";
 import { useCaptcha } from "@organisms/captcha-input";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface SendMagicLinkArgs {
   email: string;
@@ -12,9 +12,11 @@ interface SendMagicLinkArgs {
 }
 
 export const useSendMagicLink = ({ email, captcha, onSuccess, onFailure }: SendMagicLinkArgs) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     mutate,
-    result: { loading, lastError },
+    result: { lastError },
   } = useMutatationAllRegions(gql("SendMagicLinkDocument"));
 
   useEffect(() => {
@@ -25,6 +27,8 @@ export const useSendMagicLink = ({ email, captcha, onSuccess, onFailure }: SendM
 
   const sendMagicLink = useCallback(async () => {
     try {
+      setIsSubmitting(true);
+
       const captchaResponse = await captcha.submit();
 
       const results = await mutate({
@@ -41,11 +45,13 @@ export const useSendMagicLink = ({ email, captcha, onSuccess, onFailure }: SendM
       }
     } catch (e) {
       onFailure?.(e.message);
+    } finally {
+      setIsSubmitting(false);
     }
-  }, [email, captcha, mutate, onFailure, onSuccess]);
+  }, [email, captcha, mutate, onFailure, onSuccess, setIsSubmitting]);
 
   return {
     sendMagicLink,
-    loading,
+    loading: isSubmitting,
   };
 };
