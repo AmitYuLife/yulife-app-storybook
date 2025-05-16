@@ -37,15 +37,28 @@ export const followEmailLink = (emailAddress: string) => async () => {
   const link = email.html
     .split("\n")
     .join("")
-    .match(
-      /http:\/\/localhost:5000\/redirect\?link=yulifeapp-detox:\/\/yulife\/signup\/confirm\?email=[^&]+&otp=[^&]+&redirectUrl=[^&]+&region=UK/gi
-    )?.[0];
+    .match(/http:\/\/localhost:5000\/redirect(.*)/gi)?.[0];
 
   if (!link) {
     throw new Error(`Link not found in the email`);
   }
 
-  const [_, deeplink] = link.split("?link=");
+  const parsedUrl = new URL(link);
+
+  let deeplink: string | null = null;
+
+  if (parsedUrl.searchParams.has("link")) {
+    // old style link with the deeplink straight inside
+    deeplink = parsedUrl.searchParams.get("link");
+  } else if (parsedUrl.searchParams.has("appDeeplink")) {
+    // this is a deeplink base64 encoded
+    // as we can't open the URL (to the smart redirect page), we just decode and use it directly with the app
+    deeplink = Buffer.from(parsedUrl.searchParams.get("appDeeplink"), "base64").toString("utf-8");
+  }
+
+  if (!deeplink) {
+    throw new Error(`Deeplink not found in the email`);
+  }
 
   await device.launchApp({
     newInstance: true,
