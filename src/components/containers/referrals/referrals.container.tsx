@@ -47,11 +47,12 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
         return [...prevData, ...newData.getReferralHistory.referralHistory];
       },
       checkIfReachedEnd: (req) => req?.getReferralHistory?.referralHistory?.length === 0,
+      isLazy: true,
     }),
     [selectedBusinessAccount?.businessAccountId]
   );
 
-  const { fullData, loading, handleRefresh, handleEndReached } = useLazyGqlLoading(LAZY_LOAD_ARGS);
+  const { handleRefresh, fullData, loading, handleEndReached } = useLazyGqlLoading(LAZY_LOAD_ARGS);
   const [getReferralInformation, { data, loading: loadingData }] = useLazyQuery(gql("GetReferralInformationDocument"), {
     fetchPolicy: "cache-and-network",
   });
@@ -64,13 +65,15 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
         businessAccountId: selectedBusinessAccount?.businessAccountId,
       },
     }).finally(() => {
-      handleRefresh();
+      if (selectedBusinessAccount?.businessAccountId) {
+        handleRefresh();
+      }
     });
-  }, [getReferralInformation, handleRefresh, selectedBusinessAccount?.businessAccountId]);
+  }, [handleRefresh, getReferralInformation, selectedBusinessAccount?.businessAccountId]);
 
   useEffect(() => {
     handleRefreshScreen();
-  }, [getReferralInformation, handleRefresh, selectedBusinessAccount?.businessAccountId]);
+  }, [handleRefreshScreen, selectedBusinessAccount?.businessAccountId]);
 
   useEffect(() => {
     const activeEmployments = data?.activeEmployments || [];
