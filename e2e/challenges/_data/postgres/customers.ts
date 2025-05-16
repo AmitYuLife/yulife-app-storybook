@@ -13,7 +13,7 @@ export const CUSTOMER_1 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "dan@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Dan",
     lastName: "Greane",
     status: "onboarded",
@@ -25,7 +25,7 @@ export const CUSTOMER_2 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "osama@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Osama",
     lastName: "Rahman",
     status: "onboarded",
@@ -37,7 +37,7 @@ export const CUSTOMER_6 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "gus@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Gustavo",
     lastName: "Fring",
     status: "onboarded",
@@ -49,7 +49,7 @@ export const CUSTOMER_7 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "skyler@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Skyler",
     lastName: "White",
     status: "onboarded",
@@ -61,7 +61,7 @@ export const CUSTOMER_8 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "jeffleff@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Jeff",
     lastName: "Leff",
     status: "onboarded",
@@ -85,7 +85,7 @@ export const CUSTOMER_10 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "anyaforger@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Anya",
     lastName: "Forger",
     status: "onboarded",
@@ -97,7 +97,7 @@ export const CUSTOMER_11 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "yorforger@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Yor",
     lastName: "Forger",
     status: "onboarded",
@@ -109,7 +109,7 @@ export const CUSTOMER_13 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "frank@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Frank",
     lastName: "Costanza",
     status: "onboarded",

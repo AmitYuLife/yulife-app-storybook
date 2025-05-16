@@ -16,7 +16,7 @@ export const CUSTOMER_1 = {
   modelName: "customer",
   data: {
     customerId: generateRandomMongoId(),
-    email: "dan@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Dan",
     lastName: "Greane",
     status: "onboarded",
@@ -28,7 +28,7 @@ export const CUSTOMER_2 = {
   modelName: "customer",
   data: {
     customerId: generateRandomMongoId(),
-    email: "osama@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Osama",
     lastName: "Rahman",
     status: "onboarded",
@@ -40,7 +40,7 @@ export const CUSTOMER_5 = {
   modelName: "customer",
   data: {
     customerId: generateRandomMongoId(),
-    email: "saul@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Saul",
     lastName: "Goodman",
     status: "onboarded",
@@ -52,7 +52,7 @@ export const CUSTOMER_6 = {
   modelName: "customer",
   data: {
     customerId: generateRandomMongoId(),
-    email: "gus@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Gustavo",
     lastName: "Fring",
     status: "onboarded",
@@ -64,7 +64,7 @@ export const CUSTOMER_7 = {
   modelName: "customer",
   data: {
     customerId: generateRandomMongoId(),
-    email: "skyler@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Skyler",
     lastName: "White",
     status: "onboarded",
@@ -76,7 +76,7 @@ export const CUSTOMER_8 = {
   modelName: "customer",
   data: {
     customerId: generateRandomMongoId(),
-    email: "jerry@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Jerry",
     lastName: "Seinfeld",
     status: "onboarded",
@@ -88,7 +88,7 @@ export const CUSTOMER_15 = {
   modelName: "customer",
   data: {
     customerId: generateRandomMongoId(),
-    email: "luigi@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Luigi",
     lastName: "Segale",
     status: "onboarded",
