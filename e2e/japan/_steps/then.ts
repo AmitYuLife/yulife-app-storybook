@@ -54,6 +54,13 @@ export const cycleThroughGiftMessages = async () => {
   await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.lets_do_our_best_today_too"))();
   await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.keep_it_up"))();
   await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.youve_helped_me_so_much"))();
+  await scrollFromID(
+    ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.youve_helped_me_so_much"),
+    "up",
+    "fast",
+    0.2
+  )();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.happy_birthday"))();
 };
 
 export const canSeeEngagementSurveyAgreeCheckBoxesJp = async () => {

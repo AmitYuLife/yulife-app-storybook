@@ -8,7 +8,7 @@ import * as data from "./_data";
 import { getFullName } from "_utils/users";
 
 Feature("P2P gifting", async () => {
-  Scenario("I should see 9 selectable messages", scenario.start, async () => {
+  Scenario("I should see 8 selectable messages", scenario.start, async () => {
     Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
@@ -27,7 +27,7 @@ Feature("P2P gifting", async () => {
       When("I tap user 福田 太郎", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search")), async () => {
         When("I tap user 福田 太郎 again", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search")), async () => {
           When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
-            Then("I can see and select through all 9 gift messages", then.cycleThroughGiftMessages);
+            Then("I can see and select through all 8 gift messages", then.cycleThroughGiftMessages);
           });
         });
       });
