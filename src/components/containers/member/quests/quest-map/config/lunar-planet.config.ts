@@ -328,6 +328,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     bubbleOffsetY: -65,
     snapOffsetY: 20,
     snapPosition: "center",
+    topBarType: TOP_BAR_TYPES.WHITE,
     levels: {
       1322: { x: 375 / 2, y: 510 },
       1323: { x: 375 / 2 + 80, y: 450 },
@@ -363,6 +364,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     bubbleOffsetY: -65,
     snapPosition: "center",
+    topBarType: TOP_BAR_TYPES.WHITE,
     levels: {
       1336: { x: 375 / 2, y: 530 },
       1337: { x: 375 / 2, y: 450 },
@@ -383,7 +385,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     bubbleOffsetY: 80,
     seperator: {
       width: 1080,
-      height: 518,
+      height: 519,
       background: require("../episodes/lunar/lunar-desert-seperator.webp"),
     },
     levels: {
@@ -457,7 +459,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   220: {
     background: require("../episodes/lunar/mountain/lunar-mountain-4.webp"),
-    topBarType: TOP_BAR_TYPES.MOUNTAIN,
+    topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 729,
     episodeKey: 93,
     episodeWidth: 375,
@@ -494,7 +496,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   222: {
     background: require("../episodes/lunar/mountain/lunar-mountain-6.webp"),
-    topBarType: TOP_BAR_TYPES.MOUNTAIN,
+    topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 785,
     episodeKey: 95,
     episodeWidth: 375,
@@ -513,7 +515,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   223: {
     background: require("../episodes/lunar/mountain/lunar-mountain-7.webp"),
-    topBarType: TOP_BAR_TYPES.MOUNTAIN,
+    topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 712,
     episodeKey: 96,
     episodeWidth: 375,
