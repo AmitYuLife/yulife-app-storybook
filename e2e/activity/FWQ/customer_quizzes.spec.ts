@@ -769,7 +769,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
   });
 
-  Scenario("I should see the Health Questionnaire with the new question styles", scenario.start, async () => {
+  Scenario("I should see the Health Questionnaire with the new question styles, and if I close the app before I press the final claim button, I should still see my YuCoin balance gone up by the right amount", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_47, data.AUTH_47), async () => {
       Then("I should see my starting YuCoin balance", then.textVisible("200 YuCoin today"));
     });
@@ -884,14 +884,15 @@ Feature("Quizzes and questionnaires", async () => {
         });
       });
     });
-    When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
-      When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-        When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
-          When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5), async () => {
-            Then("I should see Additional rewards showing the questionnaire", then.textVisible("Quiz"));
-            Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("40"));
-          });
-        });
+    When("I close the app before I press the claim button", when.restartWithData, async () => {
+      Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_47, data.AUTH_47, true, "United Kingdom", false), async () => {
+        Then("I should see my YuCoin balance gone up by 40", then.textVisible("240 YuCoin today"));
+      });
+    });
+    When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+      When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5), async () => {
+        Then("I should see Additional rewards showing the questionnaire", then.textVisible("Quiz"));
+        Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("40"));
       });
     });
   });

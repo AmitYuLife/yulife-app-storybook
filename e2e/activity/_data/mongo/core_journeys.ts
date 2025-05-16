@@ -18,9 +18,7 @@ export const CORE_JOURNEY_1 = {
     updatedAt: "2024-03-27T13:31:13.059+0000",
     __v: 0,
     requiresUserStateForAccess: true,
-
     showHeroCard: true,
-
     staticJourney: true,
     yuCoinRewardAsEarnRateMultiple: 4,
     uiAccess: [
