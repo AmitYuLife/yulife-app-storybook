@@ -1,4 +1,8 @@
-import { generateRandomMongoId, IDatabaseItem, generateRandomInbox } from "@yu-life/yulife-bdd-framework";
+import {
+  generateRandomMongoId,
+  IDatabaseItem,
+  generateRandomInbox,
+} from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
 
 const type = "postgres";
@@ -9,7 +13,7 @@ export const CUSTOMER_1 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "dan@yulife.com",
+    email: generateRandomInbox(),
     firstName: "Dan",
     lastName: "Greane",
     status: "onboarded",
@@ -98,7 +102,7 @@ export const CUSTOMER_GHI = {
     lastName: "Group",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_GHI_STARTED = {
   type,
@@ -110,7 +114,7 @@ export const CUSTOMER_GHI_STARTED = {
     lastName: "Starter",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_93 = {
   type,
@@ -290,7 +294,7 @@ export const CUSTOMER_109 = {
     lastName: "Onboardorino",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_110 = {
   type,
@@ -302,7 +306,7 @@ export const CUSTOMER_110 = {
     lastName: "Onboardorino",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_115 = {
   type,
@@ -314,7 +318,7 @@ export const CUSTOMER_115 = {
     lastName: "InBetweeno",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_125 = {
   type,
@@ -326,7 +330,7 @@ export const CUSTOMER_125 = {
     lastName: "Choice",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_126_LEAVER_WELLBEING = {
   type,
@@ -338,7 +342,7 @@ export const CUSTOMER_126_LEAVER_WELLBEING = {
     lastName: "McLeaverson",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_DENTAL_RENEW_2 = {
   type,
@@ -362,7 +366,7 @@ export const CUSTOMER_138 = {
     lastName: "Daddy",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_139 = {
   type,
@@ -386,7 +390,7 @@ export const CUSTOMER_MAXIMISE_YU = {
     lastName: "Mise",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_140 = {
   type,
@@ -398,7 +402,7 @@ export const CUSTOMER_140 = {
     lastName: "Spencer",
     status: "onboarded",
   },
-} as IDatabaseItem
+} as IDatabaseItem;
 
 export const CUSTOMER_141 = {
   type,
