@@ -8,11 +8,13 @@ deploy:dev:storybook:
   variables:
     CLOUDFRONT_DOMAIN: app-components.yulife.engineering
     CLOUDFRONT_S3_BUCKET: yu-develop-app-components
+    # Increase memory limit for node
+    NODE_OPTIONS: "--max_old_space_size=3072"
   needs:
     - test
   script:
     # Install node
-    - . "$NVM_DIR/nvm.sh" && nvm install -b
+    - nvm install -b
     - corepack enable
     - yarn build:storybook:web
     - aws s3 sync --delete ./storybook-static  "s3://$CLOUDFRONT_S3_BUCKET"
