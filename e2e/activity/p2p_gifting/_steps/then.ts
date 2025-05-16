@@ -5,7 +5,7 @@ import { getTranslation, replaceName, splitPlural } from "_utils/translations/ge
 const locale = process.env.TARGET_LOCALE || "en-GB";
 const translation = getTranslation(locale);
 import { CUSTOMER_1 } from "../../_data";
-import { P2P_GIFTING_AMOUNTS, P2P_MESSAGES } from "../_resources/constants";
+import { P2P_GIFTING_AMOUNTS, P2P_MESSAGES, P2P_GIFTING_STICKERS } from "../_resources/constants";
 import { scrollFromID } from "./when";
 export { searchReferralVisible } from "../../leaderboard/_steps/then";
 export { leaderboardVisible, isOnInspectScreen } from "../../leaderboard/_steps/then";
@@ -140,31 +140,12 @@ export const cycleThroughGiftMessages = async () => {
 };
 
 export const cycleThroughStickers = async () => {
-  await tapID(ids.P2P_STICKER_ITEMS("gift"))();
-  await tapID(ids.P2P_STICKER_ITEMS("gift-2"))();
-  await tapID(ids.P2P_STICKER_ITEMS("gift-3"))();
-  await tapID(ids.P2P_STICKER_ITEMS("gift-4"))();
-  await tapID(ids.P2P_STICKER_ITEMS("gift-5"))();
-  await tapID(ids.P2P_STICKER_ITEMS("trophy"))();
-  await scrollFromID(ids.P2P_STICKER_ITEMS("gift-5"), "up", "fast", 0.14)();
-  await tapID(ids.P2P_STICKER_ITEMS("heart"))();
-  await tapID(ids.P2P_STICKER_ITEMS("cake"))();
-  await tapID(ids.P2P_STICKER_ITEMS("earthy"))();
-  await tapID(ids.P2P_STICKER_ITEMS("arch"))();
-  await tapID(ids.P2P_STICKER_ITEMS("surge"))();
-  await tapID(ids.P2P_STICKER_ITEMS("letter"))();
-  await scrollFromID(ids.P2P_STICKER_ITEMS("surge"), "up", "fast", 0.14)();
-  await tapID(ids.P2P_STICKER_ITEMS("deez-nuts"))();
-  await tapID(ids.P2P_STICKER_ITEMS("squirrel"))();
-  await tapID(ids.P2P_STICKER_ITEMS("rocket"))();
-  await tapID(ids.P2P_STICKER_ITEMS("cookie"))();
-  await tapID(ids.P2P_STICKER_ITEMS("snail"))();
-  await tapID(ids.P2P_STICKER_ITEMS("shooting-star"))();
-  await scrollFromID(ids.P2P_STICKER_ITEMS("snail"), "up", "fast", 0.14)();
-  await tapID(ids.P2P_STICKER_ITEMS("rainbow"))();
-  await tapID(ids.P2P_STICKER_ITEMS("lantern"))();
-  await tapID(ids.P2P_STICKER_ITEMS("thumbs-up"))();
-  await tapID(ids.P2P_STICKER_ITEMS("thug-yugi"))();
-  await tapID(ids.P2P_STICKER_ITEMS("yugi-headphones"))();
-  await tapID(ids.P2P_STICKER_ITEMS("fuji"))();
+  for (let i = 0; i < P2P_GIFTING_STICKERS.length; i++) {
+    const id = P2P_GIFTING_STICKERS[i];
+    const testID = ids.P2P_STICKER_ITEMS(id);
+    await tapID(testID)();
+    if ((i + 1) % 6 === 0 && i !== P2P_GIFTING_STICKERS.length - 1) {
+      await scrollFromID(testID, "up", "fast", 0.14)();
+    }
+  }
 };
