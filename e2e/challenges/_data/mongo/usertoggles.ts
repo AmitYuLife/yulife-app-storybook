@@ -55,7 +55,6 @@ export const CUSTOMER_2_TOGGLES = {
       showDailySurvey: true,
       showNotificationCentre: true,
       showAllLanguages: true,
-      tempEnableQuestMapOnboarding: true,
     },
   },
 } as IDatabaseItem;
