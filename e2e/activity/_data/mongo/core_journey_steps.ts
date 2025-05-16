@@ -878,7 +878,7 @@ export const CORE_JOURNEY_STEPS_10 = {
     journey: "66140199f9be413b16dd1c81",
     stepId: "thank_you_submission_pulse",
     name: "Thank you and submission",
-    stepType: "submission",
+    stepType: "post_submission_confirmation",
     template: "journey_template_yucoin_award",
     templateUi: {
       copy: {
