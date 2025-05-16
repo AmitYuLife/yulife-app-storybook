@@ -47,11 +47,10 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
   });
 
   const currentLevel = useSelector(getCurrentLevel);
-  const { tempEnableQuestMapOnboarding } = useUserFeatures();
 
   const { data: onboarding } = useQuery(gql("GetQuestMapOnboardingDocument"), {
     fetchPolicy: "no-cache",
-    skip: currentLevel > 1 || !tempEnableQuestMapOnboarding,
+    skip: currentLevel > 1,
   });
 
   const { showOnboarding, handleClose } = useQuestMapOnboarding();
