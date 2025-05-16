@@ -64,7 +64,6 @@ export const features = [
   "enableSudokuCheatDetection",
   "tempGameEnableYumojiBuilderScaleAnimation",
   "tempGameEnableAvatarFrames",
-  "tempDisableBounceOnProductSDUI",
   "showNewYuCoinExplained",
   "tempEnableQuestMapOnboarding",
   "showDebug",

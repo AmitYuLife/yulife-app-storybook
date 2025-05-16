@@ -22,8 +22,6 @@ import media from "@styles/media";
 import { Colours, Style } from "@styles";
 import { ProductDetailsHoldingHeader } from "../subcomponents/product-details.holding-header/product-details.holding-header";
 import { PRODUCT_DETAILS_SCROLL_VIEW } from "@ids";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "../../../../../redux/user/user.selectors";
 import { GetYuScreenProductDetailsQuery } from "@graphql/__generated";
 
 type IGetYuScreenProductDetails = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"];
@@ -52,7 +50,6 @@ export const Body = (props: Props) => {
   const { body, headerHeight, contentInsetAdjustmentBehavior } = props;
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
   const uiContext = useContext(UiContext);
-  const { tempDisableBounceOnProductSDUI } = useSelector(getUserFeatures);
 
   return (
     <Animated.ScrollView
@@ -63,7 +60,7 @@ export const Body = (props: Props) => {
       })}
       showsVerticalScrollIndicator={false}
       style={styles.wrapper}
-      bounces={!tempDisableBounceOnProductSDUI}
+      bounces={true}
       contentInsetAdjustmentBehavior={contentInsetAdjustmentBehavior}
     >
       <View>
