@@ -1,28 +1,23 @@
-import { useCallback, useRef, useState } from "react";
-import { DocumentNode, TypedDocumentNode, useQuery } from "@apollo/client";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { DocumentNode, TypedDocumentNode, useLazyQuery } from "@apollo/client";
 
 export type LazyGqlLoadingArgs<TData, TRes, TVars> = {
   gql: DocumentNode | TypedDocumentNode<TData, TVars>;
   buildVariables: (page: number) => TVars;
   buildFullData: (newData: TRes, prevData: TData[]) => TData[];
   checkIfReachedEnd: (data: TRes) => boolean;
+  isLazy?: boolean;
 };
 
 export function useLazyGqlLoading<TData, TRes, TVars>(args: LazyGqlLoadingArgs<TData, TRes, TVars>) {
-  const { gql, buildVariables, checkIfReachedEnd, buildFullData } = args;
+  const { gql, buildVariables, checkIfReachedEnd, buildFullData, isLazy } = args;
 
   const [fullData, setFullData] = useState<TData[]>([]);
   const [page, setPage] = useState(0);
 
   const hasReachedTheEnd = useRef(false);
 
-  const handleEndReached = useCallback(() => {
-    if (!hasReachedTheEnd.current) {
-      setPage((s) => s + 1);
-    }
-  }, []);
-
-  const { data, loading, refetch, error } = useQuery<TRes, TVars>(gql, {
+  const [fetchLazyQuery, { data, loading, error }] = useLazyQuery<TRes, TVars>(gql, {
     fetchPolicy: "cache-and-network",
     variables: buildVariables(page),
     onError: () => (hasReachedTheEnd.current = true),
@@ -36,6 +31,21 @@ export function useLazyGqlLoading<TData, TRes, TVars>(args: LazyGqlLoadingArgs<T
     },
   });
 
+  useEffect(() => {
+    if (isLazy) {
+      return;
+    }
+
+    fetchLazyQuery(buildVariables(0));
+  }, [isLazy]);
+
+  const handleEndReached = useCallback(() => {
+    if (!hasReachedTheEnd.current) {
+      setPage((s) => s + 1);
+      fetchLazyQuery();
+    }
+  }, [fetchLazyQuery]);
+
   const handleRefresh = useCallback(() => {
     hasReachedTheEnd.current = false;
     setPage((p) => {
@@ -48,10 +58,10 @@ export function useLazyGqlLoading<TData, TRes, TVars>(args: LazyGqlLoadingArgs<T
       }
 
       // we need to force the refetch otherwise
-      refetch(buildVariables(0));
+      fetchLazyQuery(buildVariables(0));
       return p;
     });
-  }, [refetch, buildVariables]);
+  }, [fetchLazyQuery, buildVariables]);
 
   return {
     loading,
