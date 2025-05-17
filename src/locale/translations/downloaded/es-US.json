@@ -1189,7 +1189,7 @@
       },
       "podium": {
         "communities_info": {
-          "content": "Estos pueden representar a toda la empresa o a grupos específicos que tu RRHH haya establecido. Puedes filtrar tus clasificaciones en función de los grupos a los que estés asignado.",
+          "content": "Las comunidades son grupos a los que estás asignado, como equipos organizativos o cohortes regionales. Puedes ver y filtrar las clasificaciones en función de estas agrupaciones.",
           "heading": "Comunidades"
         },
         "cycling_info": {
@@ -1279,7 +1279,7 @@
       "heading": "¿Listo para ser tu mejor Yu? Vamos a verificar tu cuenta.",
       "login_with_password": "Inicie sesión con la contraseña en su lugar.",
       "resend_link": "¿No lo has recibido? Envíe un nuevo enlace.",
-      "webview_title": "Continuar"
+      "webview_title": "Preparándose para el despegue..."
     },
     "login_email": {
       "cta_label": "Continuar",
@@ -1736,10 +1736,10 @@
     },
     "wellbeing_hub": {
       "category_all": "Todos",
-      "header_description": "Bienvenido a este centro de acceso rápido a todas las prestaciones de bienestar de tu empresa",
+      "header_description": "Su centro de acceso rápido para explorar y disfrutar de sus ventajas de bienestar.",
       "header_title": "Hola %{name}",
       "no_results": {
-        "description": "Actualmente no dispones de prestaciones de bienestar de empresa. Es posible que puedas encontrarlas más adelante.",
+        "description": "Actualmente no tiene prestaciones de bienestar. Es posible que pueda encontrarlas más adelante.",
         "title": "Vuelve más tarde."
       },
       "send_documents": {

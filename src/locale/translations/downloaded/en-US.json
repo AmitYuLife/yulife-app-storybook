@@ -1189,7 +1189,7 @@
       },
       "podium": {
         "communities_info": {
-          "content": "These can represent the entire company or specific groups that your HR has set up. You can filter your leaderboards based on the groups you are assigned to.",
+          "content": "Communities are groups you’re assigned to, such as organizational teams or regional cohorts. You can view and filter leaderboards based on these groupings.",
           "heading": "Communities"
         },
         "cycling_info": {
@@ -1279,7 +1279,7 @@
       "heading": "Ready to be your best Yu? Let's verify your account.",
       "login_with_password": "Log in with password instead",
       "resend_link": "Didn't get it? Send a new link.",
-      "webview_title": "Continue"
+      "webview_title": "Preparing for launch..."
     },
     "login_email": {
       "cta_label": "Continue",
@@ -1736,10 +1736,10 @@
     },
     "wellbeing_hub": {
       "category_all": "All",
-      "header_description": "Welcome to this quick-access hub to all your company’s wellbeing benefits",
+      "header_description": "Your quick-access hub to explore and enjoy your wellness benefits.",
       "header_title": "Hi %{name}",
       "no_results": {
-        "description": "You currently don’t have any company wellbeing benefits. You may be able to find them here at a later date.",
+        "description": "You currently don't have any wellness benefits. You may be able to find them here at a later date.",
         "title": "Check back later!"
       },
       "send_documents": {
