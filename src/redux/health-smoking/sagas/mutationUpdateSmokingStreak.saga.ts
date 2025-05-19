@@ -8,8 +8,9 @@ import client from "@graphql/_core/client";
 import { updateHealthSmokingStateAction } from "../health-smoking.actions";
 import { HealthSmokingState } from "../health-smoking.types";
 import { updateSmokingStreak } from "../health-smoking.actions";
-import { refreshUserProfileEvents } from "@redux/user/user.actions";
+import { getUserDataStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
+import { AppDataType } from "@redux/user/user.types";
 
 // Not used at the moment, so any updates on this should happen on other gql("UpdateSmokingStreakDocument") calls
 export function* mutationUpdateSmokingStreak({ payload }: ReturnType<typeof updateSmokingStreak>) {
@@ -27,6 +28,7 @@ export function* mutationUpdateSmokingStreak({ payload }: ReturnType<typeof upda
       yield put(updateHealthSmokingStateAction(data.updateSmokingStreak as HealthSmokingState));
       yield put(refreshUserProfileEvents());
       yield put(refreshTotalCoins());
+      yield put(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
     }
   } catch (e) {
     yield spawn(() => {
