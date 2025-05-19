@@ -33,7 +33,6 @@ export const CUSTOMER_131_TOGGLES = {
       useHalfModalsForQuestMap: true,
       showQuestMapNotificationIcons: true,
       tempQuestMapLevelBubbleRedesign: true,
-      tempQuestMapLevelReorder: true,
       showReferrals: true,
     },
   },
