@@ -52,7 +52,7 @@ export const youreDoingGreatPopupVisible = (days: number) => async () => {
 };
 
 export const smokingCardVisible = (days: number, locale: string) => async () => {
-  const daysText = locale === "en-GB" ? "days" : "日";
+  const daysText = locale === "jp-JP" ? "日" : "days";
   await idVisible(ids.FLAT_LIST_EVENTS)();
   await textVisible(`${days} / 28 ${daysText}`)();
 };
@@ -74,18 +74,26 @@ export const onSmokingHub =
     let costText = "";
     let heartText = "";
 
-    if (locale === "en-GB") {
-      costText = `£${totalCost}`;
-      heartText = totalVolume;
-    } else {
-      costText = `${totalCost} 円`;
-      heartText = `${totalVolume}本`;
+    switch (locale) {
+      case "jp-JP":
+        costText = `${totalCost} 円`;
+        heartText = `${totalVolume}本`;
+        break;
+      case "en-US":
+        costText = `$${totalCost}`;
+        heartText = totalVolume;
+        break;
+      case "en-GB":
+      default:
+        costText = `£${totalCost}`;
+        heartText = totalVolume;
+        break;
     }
 
     // check header
     await checkSmokingHubHeader(streakDays, emptyAvatar)();
     // check battle pass
-    await checkSmokingHubBattlePass(streakDays, longestStreak)();
+    await idVisible(ids.SMOKING_CAROUSEL_LIST)();
     // check milestones
     await checkSmokingHubMilestones(longestStreak || streakDays)();
     // check saving section
@@ -123,17 +131,17 @@ const checkSmokingHubHeader = (days: number, emptyAvatar: boolean) => async () =
   await idVisible(ids.SMOKING_HEADER_BUTTON)();
 };
 
-const checkSmokingHubBattlePass = (days: number, longestStreak: number) => async () => {
-  const previousClaimed = false;
-  await idVisible(ids.SMOKING_CAROUSEL_LIST)();
-  previousClaimed
-    ? await idVisible(
-        ids.SMOKING_CAROUSEL_LIST_ITEM_CTA(`smoking-cessation-carousel-item-day-${days.toString()}`)
-      )()
-    : await idVisible(
-        ids.SMOKING_CAROUSEL_LIST_ITEM(`smoking-cessation-carousel-item-day-${days.toString()}`)
-      )();
-};
+// commenting out as behaviour has changed, but also component is going to be changed soon so will be updated with the new one shortly
+// const checkSmokingHubBattlePass = (days: number) => async () => {
+//   await idVisible(ids.SMOKING_CAROUSEL_LIST)();
+//   previousClaimed
+//     ? await idVisible(
+//         ids.SMOKING_CAROUSEL_LIST_ITEM_CTA(`smoking-cessation-carousel-item-day-${days.toString()}`)
+//       )()
+//     : await idVisible(
+//         ids.SMOKING_CAROUSEL_LIST_ITEM(`smoking-cessation-carousel-item-day-${days.toString()}`)
+//       )();
+// };
 
 export const checkSmokingHubMilestones = (days: number) => async () => {
   const milestones = [0, 1, 3, 7, 14, 21, 28];

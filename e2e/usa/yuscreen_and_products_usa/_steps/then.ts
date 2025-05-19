@@ -37,6 +37,7 @@ export const {
   textVisibleAtIndex,
   tapIDNotBeingVisible,
   enrolmentEndsIn,
+  objCopyVisible,
 } = navigation.common;
 
 export const {
@@ -55,10 +56,13 @@ export const {
   onPackageScreen,
   packageScreenCorrect,
   onSkinToneScreen,
+  yuScreenV5HeaderVisible,
 } = screens.yuscreen;
 
 export const { swipeToID, swipeFromText, scrollUntilIdVisible, scrollUntilTextVisible } =
   navigation.scrolling;
+
+export { smokingTileVisible, smokingCardVisible, onSmokingHub } from "../../../health/_steps/then";
 
 export const howToEnrollTexts = async () => {
   await expect(element(by.text(text.HowToEnroll))).toBeVisible();
