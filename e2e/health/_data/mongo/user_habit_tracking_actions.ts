@@ -52,7 +52,7 @@ export const USER_HABIT_SMOKING_ACTIONS_ZOIDBERG = {
     type: "smoking",
     action: "streak_continue",
     state: state.USER_HABIT_SMOKING_STATE_ZOIDBERG.data._id,
-    eventDate: moment().subtract(15, "days").format(),
+    eventDate: moment().subtract(10, "days").format(),
   },
 } as IDatabaseItem;
 

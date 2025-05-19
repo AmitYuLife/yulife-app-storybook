@@ -1,6 +1,6 @@
 import { navigation } from "@utils";
 import { USProductData } from "../_resources/types";
-import * as ids from "@ids"
+import * as ids from "@ids";
 
 export const {
   scrollFromText,
@@ -11,7 +11,7 @@ export const {
   scrollUntilIdVisible,
   swipeFromText,
   scrollUntilTextVisibleAtIndex,
-  scrollUntilIdVisibleAtIndex
+  scrollUntilIdVisibleAtIndex,
 } = navigation.scrolling;
 
 export const {
@@ -27,11 +27,17 @@ export const {
   tapIDAtIndex,
   textNotVisible,
   tapTextAtIndex,
+  minimiseAndReopenApp,
 } = navigation.common;
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
   const item = element(
-    by.id(ids.AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status))
+    by.id(
+      ids.AVATAR_ITEM(
+        `https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`,
+        status
+      )
+    )
   );
   await item.tap();
 };
@@ -138,13 +144,13 @@ export const addContactDetails = async () => {
 
 export const attemptToTapSlot = (productCard: USProductData) => async () => {
   try {
-      await tapText(productCard.slotAbreviation)()
+    await tapText(productCard.slotAbreviation)();
   } catch (err) {
     try {
-      await tapText(productCard.boxTitle)()
+      await tapText(productCard.boxTitle)();
     } catch (err) {
-      await tapText("More protection")()
-      await tapText(productCard.boxTitle)()
+      await tapText("More protection")();
+      await tapText(productCard.boxTitle)();
     }
   }
-}
+};

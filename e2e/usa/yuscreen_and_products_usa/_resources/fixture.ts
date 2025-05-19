@@ -121,3 +121,17 @@ export const NoProduct: YuScreenInfo = {
 export const BlankProductEnrollmentScreen: YuScreenInfo = {
   mainYuCoinPower: "1",
 };
+
+export const CUSTOMER_1_SMOKING_TIPS = [
+  "health-benefit-tip-day-1",
+  "celebrate-trigger-tip-0",
+  "default-trigger-tip-2",
+  "default-trigger-tip-3",
+];
+
+export const CUSTOMER_1_MOMENTS_AND_REASONS = [
+  "To celebrate something",
+  "financial stress",
+  "To save money",
+  "To improve my health",
+];
