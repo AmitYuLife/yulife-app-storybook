@@ -192,13 +192,16 @@ export const skipHealthConnection = async () => {
 };
 
 export const fullRestartAndLogin =
-  (customer: IDatabaseItem, auth: IDatabaseItem, fitkitAuth = true, waitTime = 0) =>
+  (
+    customer: IDatabaseItem,
+    auth: IDatabaseItem,
+    fitkitAuth = true,
+    region = "United Kingdom",
+    firstTime = true
+  ) =>
   async () => {
-    await wait(waitTime)();
     await device.terminateApp();
     await device.clearKeychain();
     await device.launchApp({ delete: true });
-    await wait(waitTime)();
-    await loginOnly(customer, auth, fitkitAuth)();
-    await skipHealthConnection();
+    await loginAsUser(customer, auth, fitkitAuth, (region = "United Kingdom"), firstTime)();
   };

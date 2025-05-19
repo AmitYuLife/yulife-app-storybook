@@ -8,7 +8,7 @@ import * as ids from "@ids";
 import { User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem, User73LeaderboardLB1Item } from "activity/leaderboard/_resources/fixtures";
 import { getFullName } from "_utils/users";
 import { getTranslation } from "_utils/translations/getTranslations";
-import { P2P_GIFTING_AMOUNTS, P2P_MESSAGES } from "./_resources/constants";
+import { P2P_GIFTING_AMOUNTS, P2P_MESSAGES, P2P_GIFTING_STICKERS } from "./_resources/constants";
 import moment from "moment";
 import { GiftNpcAltra } from "./_resources/fixtures";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
@@ -18,7 +18,7 @@ const translation = getTranslation(locale);
 
 Feature("P2P gifting", async () => {
   Scenario("I can send someone a YuCoin gift from the leaderboard", scenario.start, async () => {
-    Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18, true, "United Kingdom", true), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
           Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));
@@ -28,7 +28,7 @@ Feature("P2P gifting", async () => {
     });
     When("I click on Lynton Stock", when.clickUser(data.CUSTOMER_50), async () => {
       Then("I should be on the Inspect screen", then.isOnInspectScreen);
-      Then("Lyntons's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_50))));
+      Then("Lyntons's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_50))));
       Then("I can see the P2P gifting modal", then.giftingModalVisible(data.CUSTOMER_50.data.firstName));
     });
     When("I click to send a gift", when.tapID(ids.P2P_START_BUTTON, 2000), async () => {
@@ -95,11 +95,9 @@ Feature("P2P gifting", async () => {
       Then("I am back on the leaderboard screen I started on", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));
       Then("My YuCoin amount is depleted to the correct amount - 270 yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(270)));
     });
-    When("I log out and log in again as Lynton Stock", when.fullRestartAndLogin(data.CUSTOMER_50, data.AUTH_50, true, 3500), async () => {
-      When("I dismiss the modal", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN")), async () => {
-        When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
-          Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
-        });
+    When("I log out and log in again as Lynton Stock", when.fullRestartAndLogin(data.CUSTOMER_50, data.AUTH_50), async () => {
+      When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+        Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
       });
     });
     When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
@@ -134,7 +132,7 @@ Feature("P2P gifting", async () => {
     });
     When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
       Then("I should not see the soft landing intro screen for the second time", then.idNotVisible(ids.GIFTING_INTRO));
-      Then("I can see and select through all 18 gift messages", then.cycleThroughGiftMessages);
+      Then(`I can see and select through all ${P2P_MESSAGES.length} gift messages`, then.cycleThroughGiftMessages);
     });
     When("I tap next", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
       When("I select 250 YuCoin", when.tapID(ids.P2P_GIFTING_AMOUNT(`${P2P_GIFTING_AMOUNTS[4]} YuCoin`)), async () => {
@@ -145,7 +143,7 @@ Feature("P2P gifting", async () => {
     });
     When("I tap to add a sticker", when.tapID(ids.P2P_STICKER, 2000), async () => {
       Then("I should see the stickers modal appear", then.idVisible(ids.P2P_STICKER_MODAL));
-      Then("I can see and select through all 33 stickers", then.cycleThroughStickers);
+      Then(`I can see and select through all ${P2P_GIFTING_STICKERS.length} stickers`, then.cycleThroughStickers);
     });
   });
 
@@ -359,7 +357,7 @@ Scenario("I can send multiple people a YuCoin gift", scenario.start, async () =>
   });
   When("I click on Lynton Stock", when.clickUser(data.CUSTOMER_50), async () => {
     Then("I should be on the Inspect screen", then.isOnInspectScreen);
-    Then("Lyntons's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_50))));
+    Then("Lyntons's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_50))));
     Then("I can see the P2P gifting modal", then.giftingModalVisible(data.CUSTOMER_50.data.firstName));
   });
   When("I click to send a gift", when.tapID(ids.P2P_START_BUTTON, 2000), async () => {
