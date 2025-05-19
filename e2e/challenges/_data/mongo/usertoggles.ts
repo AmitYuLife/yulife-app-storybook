@@ -81,7 +81,6 @@ export const CUSTOMER_8_TOGGLES = {
     features: {
       ...allTogglesTrue.data.features,
       tempQuestMapLevelBubbleRedesign: true,
-      tempQuestMapLevelReorder: true,
     },
   },
 } as IDatabaseItem;
