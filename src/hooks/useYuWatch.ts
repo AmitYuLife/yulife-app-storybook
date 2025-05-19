@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useUserFeatures } from "./useUserFeatures";
 import { addMessageReplyListener } from "@yu-life/react-native-yu-watch";
 import { isiOS } from "@utils";
 import { useSelector } from "react-redux";
@@ -17,23 +16,13 @@ const SENSITIVE_FIELDS = ["token", "client_token", "mixpanel_token"];
 export const useYuWatch = () => {
   const dispatch = useDispatch();
   const currentUserId = useSelector(getCurrentUserId);
-  const { tempGameEnableYuWatch, tempGameEnableYuWatchUsage } = useUserFeatures();
 
   useEffect(() => {
-    if (!tempGameEnableYuWatch || !isiOS()) {
+    if (!isiOS()) {
       return;
     }
 
     const authTokenListener = addMessageReplyListener("GetAuthToken", async (_, reply) => {
-      if (!tempGameEnableYuWatchUsage) {
-        Logger.logEvent("watch_login_fail", {
-          message: "User tried to login on watch, but tempGameEnableYuWatchUsage isn't enabled",
-        });
-
-        reply({ error: "notAvailable" });
-        return;
-      }
-
       const token = await getToken();
       const url = region.getRegionUri();
 
@@ -74,5 +63,5 @@ export const useYuWatch = () => {
       authTokenListener.remove();
       appDataListener.remove();
     };
-  }, [currentUserId, dispatch, tempGameEnableYuWatch, tempGameEnableYuWatchUsage]);
+  }, [currentUserId, dispatch]);
 };

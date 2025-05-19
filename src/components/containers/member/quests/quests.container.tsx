@@ -163,7 +163,7 @@ const QuestsContainer = () => {
 
   const renderProgressScreen = useCallback(
     ({ showOverlay }: { showOverlay: () => void }) => {
-      if (activeLevel.createdBySource === ChallengeSourceType.Watch && features?.tempGameEnableYuWatch) {
+      if (activeLevel.createdBySource === ChallengeSourceType.Watch) {
         return <ChallengeWatchProgress onLeftMenuPress={onLeftMenuPress} onCancel={showOverlay} />;
       }
 
@@ -210,15 +210,7 @@ const QuestsContainer = () => {
         />
       );
     },
-    [
-      activeLevel,
-      features?.tempGameEnableYuWatch,
-      videoPlayerIsActive,
-      hasVideoProgressStorage,
-      currentRoute,
-      onLeftMenuPress,
-      hideExternalLinks,
-    ]
+    [activeLevel, videoPlayerIsActive, hasVideoProgressStorage, currentRoute, onLeftMenuPress, hideExternalLinks]
   );
 
   if (Style.isIPad()) {
