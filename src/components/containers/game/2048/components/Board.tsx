@@ -3,7 +3,8 @@ import React, { memo } from "react";
 import { ImageBackground, ImageSourcePropType, StyleSheet, View } from "react-native";
 import { BOARD_WIDTH_MULTIPLIER, MARGIN } from "../constants";
 import Cells from "./Cells";
-import { GameBoardSize, GameSkin } from "../hooks";
+import { GameBoardSize } from "../game";
+import { GameSkin } from "../types";
 
 const backgroundGrid: Record<number, ImageSourcePropType> = {
   4: require("./assets/grid_4.png"),

@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { BOARD_SIZE } from "../constants";
 import BackgroundCell from "./BackgroundCell";
-import { GameBoardSize } from "../hooks";
+import { GameBoardSize } from "../game";
 
 interface IProps {
   boardSize: GameBoardSize;
