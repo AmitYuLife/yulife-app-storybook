@@ -42,41 +42,36 @@ const dataIdFromObject = (object: any) => {
   }
 };
 
+const incomingMergeStrategy = (_existing: never, incoming: never) => incoming;
+
 const typePolicies: TypePolicies = {
   Query: {
     fields: {
       getUserProfileEvents: {
-        merge(_existing, incoming) {
-          return incoming;
-        },
+        merge: incomingMergeStrategy,
+      },
+      getMobileHeroCards: {
+        merge: incomingMergeStrategy,
       },
     },
   },
   QuestMapLevelListItem: {
     fields: {
       goals: {
-        merge(_existing, incoming) {
-          return incoming;
-        },
+        merge: incomingMergeStrategy,
       },
     },
   },
   MobileGameBattlePassChestDetails: {
     fields: {
       possibleRewards: {
-        merge(_existing, incoming) {
-          return incoming;
-        },
+        merge: incomingMergeStrategy,
       },
       redeemedRewards: {
-        merge(_existing, incoming) {
-          return incoming;
-        },
+        merge: incomingMergeStrategy,
       },
       openedRewards: {
-        merge(_existing, incoming) {
-          return incoming;
-        },
+        merge: incomingMergeStrategy,
       },
     },
   },

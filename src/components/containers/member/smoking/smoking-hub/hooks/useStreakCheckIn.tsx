@@ -11,8 +11,9 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { getRouteState } from "@redux/app/app.selectors";
 import { navigateToCommitmentScreen } from "../helpers/navigateToCommitmentScreen";
 import { VoidFunction } from "@utils";
-import { refreshUserProfileEvents } from "@redux/user/user.actions";
+import { getUserDataStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
+import { AppDataType } from "@redux/user/user.types";
 
 export const useStreakCheckIn = (
   smokingState: HealthSmokingState,
@@ -98,6 +99,7 @@ export const useStreakCheckIn = (
       // As the streak has now been updated, we need to update the events so the hero card for smoking updates to latest day
       dispatch(refreshUserProfileEvents());
       dispatch(refreshTotalCoins());
+      dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
 
       await showYuModal({
         component: {
