@@ -107,36 +107,14 @@ export const onGiftingSuccessScreen = (recipients: number) => async () => {
 };
 
 export const cycleThroughGiftMessages = async () => {
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.great_work_today"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.you_nailed_it"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.certified_legend"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.smashing_it"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.you_got_this"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.have_a_nice_day"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.good_morning"))();
-  await scrollFromID(
-    ids.P2P_MESSAGE("game.gifting.message_preset.have_a_nice_day"),
-    "up",
-    "fast",
-    0.2
-  )();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.heres_a_huge_thank_you"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.you_awesome_me_grateful"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.youre_the_best"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.happy_birthday"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.congratulations"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.high_five"))();
-  await scrollFromID(
-    ids.P2P_MESSAGE("game.gifting.message_preset.congratulations"),
-    "up",
-    "fast",
-    0.2
-  )();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.heres_a_little_sparkle_to_your_day"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.sending_you_energy"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.youre_the_goat"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.boo_yah"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.slay"))();
+  for (let i = 0; i < P2P_MESSAGES.length; i++) {
+    const messageId = P2P_MESSAGES[i];
+    const testID = ids.P2P_MESSAGE(messageId);
+    await tapID(testID)();
+    if ((i + 1) % 6 === 0 && i !== P2P_MESSAGES.length - 1) {
+      await scrollFromID(testID, "up", "fast", 0.2)();
+    }
+  }
 };
 
 export const cycleThroughStickers = async () => {
