@@ -230,4 +230,22 @@ fragment HealthSmokingState on HealthSmokingState {
       ...SduiAction
     }
   }
+  cravingsManaged
+  gameOptions {
+    timer {
+      enableMinuteAdditionAnimation
+      enableMinutePulseAnimation
+      enableMinuteHapticsImpact
+      displayColor
+      triggers {
+        seconds
+        repeat
+        color
+        pulseColor
+        action {
+          ...SduiAction
+        }
+      }
+    }
+  }
 }

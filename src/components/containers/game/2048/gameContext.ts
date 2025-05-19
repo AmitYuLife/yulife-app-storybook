@@ -1,5 +1,26 @@
 import { createContext, useContext } from "react";
 import { BoardCell, Direction, GameState } from "./hooks";
+import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
+
+interface TimerOptions {
+  enableMinuteAdditionAnimation?: boolean;
+  enableMinutePulseAnimation?: boolean;
+  enableMinuteHapticsImpact?: boolean;
+
+  displayColor?: string;
+
+  triggers?: {
+    seconds: number;
+    repeat?: boolean; // Repeat every <seconds> seconds
+    color?: string;
+    pulseColor?: boolean; // Return back to initial color
+    action?: VoidFunctionOrSduiActionPayload;
+  }[];
+}
+
+export interface GameOptions {
+  timer?: TimerOptions;
+}
 
 export interface IGame2048Context {
   logBoard: () => void;
@@ -11,6 +32,9 @@ export interface IGame2048Context {
   moveNumber: number;
   enableHaptics: boolean;
   toggleHaptics: () => void;
+  startTimestamp: number | null;
+  endTimestamp: number | null;
+  gameOptions?: GameOptions | null;
 }
 export const Game2048Context = createContext<IGame2048Context>({
   logBoard: () => {
@@ -30,6 +54,9 @@ export const Game2048Context = createContext<IGame2048Context>({
   toggleHaptics: () => {
     // ignore
   },
+  startTimestamp: null,
+  endTimestamp: null,
+  gameOptions: null,
 });
 
 export const useGame2048Context = () => useContext(Game2048Context);

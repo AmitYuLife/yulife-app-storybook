@@ -1,4 +1,4 @@
-import React, { FC, memo, useMemo, useState } from "react";
+import { FC, memo, useMemo, useState } from "react";
 import { View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -58,6 +58,7 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState, navigateToCommitm
               name: ROUTES.game2048,
               passProps: {
                 gameIntroModal,
+                gameOptions: smokingState?.gameOptions,
               },
             },
           });

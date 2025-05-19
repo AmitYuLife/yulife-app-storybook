@@ -5,30 +5,39 @@ import { SduiStateContext } from "../_context/SduiProvider";
 import { VoidFunctionOrSduiActionPayload } from "../_types/sdui.types";
 
 export function useSduiCallbackFunctionOrReduxAction(
-  action: VoidFunctionOrSduiActionPayload,
-  callback?: VoidFunction,
-  contextPayload?: Record<string, never>
+  defaultAction?: VoidFunctionOrSduiActionPayload,
+  defaultCallback?: VoidFunction,
+  defaultContextPayload?: Record<string, never>
 ) {
   const sduiContext = useContext(SduiStateContext);
   const dispatch = useDispatch();
 
-  const handleSduiAction = useCallback(async () => {
-    if (typeof action === "function") {
-      await action();
-    } else if (action?.type) {
-      const reduxPayload = {
-        type: action.type,
-        payload: action.payload,
-        contextPayload: contextPayload || sduiContext,
-      };
+  const handleSduiActionWithParams = useCallback(
+    async (
+      action: VoidFunctionOrSduiActionPayload = defaultAction,
+      callback: VoidFunction | undefined = defaultCallback,
+      contextPayload: Record<string, never> | undefined = defaultContextPayload
+    ) => {
+      if (typeof action === "function") {
+        await action();
+      } else if (action?.type) {
+        const reduxPayload = {
+          type: action.type,
+          payload: action.payload,
+          contextPayload: contextPayload || sduiContext,
+        };
 
-      dispatch(reduxPayload);
-    }
+        dispatch(reduxPayload);
+      }
 
-    if (callback) {
-      callback();
-    }
-  }, [dispatch, contextPayload, sduiContext, action, callback]);
+      if (callback) {
+        callback();
+      }
+    },
+    [defaultAction, defaultCallback, defaultContextPayload, sduiContext]
+  );
 
-  return { handleSduiAction };
+  const handleSduiAction = useCallback(() => handleSduiActionWithParams(), [handleSduiActionWithParams]);
+
+  return { handleSduiAction, handleSduiActionWithParams };
 }

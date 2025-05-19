@@ -3389,6 +3389,8 @@ export type DebugData = {
 /** Describes the user information required during the onboarding process */
 export type DefaultOnboardingDetails = {
   __typename?: "DefaultOnboardingDetails";
+  /** Whether the user is eligible for the experimental "seamless" D2C onboarding flow */
+  d2cOnboardingEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   /** The user's email address, either from the users customer record or their employee record */
   email?: Maybe<Scalars["String"]["output"]>;
   /** The user's first name, either from the users customer record or their employee record */
@@ -4340,6 +4342,12 @@ export type GetTeamCreateAssignProductFieldsResult = {
   selectedProductInformation?: Maybe<AssignProductSelectedProductInformation>;
 };
 
+export type GetTeamEmployeeRecognitionCampaignsResponse = {
+  __typename?: "GetTeamEmployeeRecognitionCampaignsResponse";
+  campaigns: Array<TeamEmployeeRecognitionCampaign>;
+  totalCount: Scalars["Int"]["output"];
+};
+
 export type GetTeamSocialGroupsResponse = {
   __typename?: "GetTeamSocialGroupsResponse";
   count: Scalars["Int"]["output"];
@@ -4577,6 +4585,29 @@ export type HealthSmokingGameIntroModal = {
   title: Scalars["String"]["output"];
 };
 
+export type HealthSmokingGameOptions = {
+  __typename?: "HealthSmokingGameOptions";
+  timer?: Maybe<HealthSmokingGameTimerOptions>;
+};
+
+export type HealthSmokingGameTimerOptions = {
+  __typename?: "HealthSmokingGameTimerOptions";
+  displayColor?: Maybe<Scalars["String"]["output"]>;
+  enableMinuteAdditionAnimation?: Maybe<Scalars["Boolean"]["output"]>;
+  enableMinuteHapticsImpact?: Maybe<Scalars["Boolean"]["output"]>;
+  enableMinutePulseAnimation?: Maybe<Scalars["Boolean"]["output"]>;
+  triggers?: Maybe<Array<HealthSmokingGameTimerTrigger>>;
+};
+
+export type HealthSmokingGameTimerTrigger = {
+  __typename?: "HealthSmokingGameTimerTrigger";
+  action?: Maybe<SduiAction>;
+  color?: Maybe<Scalars["String"]["output"]>;
+  pulseColor?: Maybe<Scalars["Boolean"]["output"]>;
+  repeat?: Maybe<Scalars["Boolean"]["output"]>;
+  seconds?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type HealthSmokingMilestoneCarousel = {
   __typename?: "HealthSmokingMilestoneCarousel";
   completed: Scalars["Boolean"]["output"];
@@ -4627,12 +4658,14 @@ export type HealthSmokingState = {
   autoClaimedStreakDaysCopy?: Maybe<Scalars["String"]["output"]>;
   backgroundColour: Scalars["String"]["output"];
   backgroundImage: RemoteImage;
+  cravingsManaged?: Maybe<Scalars["Int"]["output"]>;
   currentStreak: Scalars["Int"]["output"];
   customReasons: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   customTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   defaultReasons: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   defaultTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   gameIntroModal?: Maybe<HealthSmokingGameIntroModal>;
+  gameOptions?: Maybe<HealthSmokingGameOptions>;
   headerButtonText?: Maybe<Scalars["String"]["output"]>;
   heading: Scalars["String"]["output"];
   isActive: Scalars["Boolean"]["output"];
@@ -4939,6 +4972,7 @@ export enum HrisConnectionState {
   ConnectionSamplingFailed = "CONNECTION_SAMPLING_FAILED",
   NotConnected = "NOT_CONNECTED",
   Paused = "PAUSED",
+  Preview = "PREVIEW",
 }
 
 export type HrisConnectionsResult = {
@@ -7827,6 +7861,7 @@ export type Query = {
   getDuelsTomorrow?: Maybe<Array<Maybe<Duel>>>;
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
+  getEmployeeRecognitionCampaigns: GetTeamEmployeeRecognitionCampaignsResponse;
   getEmployeesByEmployeeIds: GetEmployeesByEmployeeIdsResult;
   getEngagementDashboardActivitiesProgress: Array<EngagementDashboardActivity>;
   getEngagementDashboardClaimableActivitiesForCategory: EngagementDashboardClaimableActivityForCategory;
@@ -7837,6 +7872,7 @@ export type Query = {
   getEngagementDashboardTasks: Array<EngagementDashboardTask>;
   getGameConsumables: GetGameConsumableResponse;
   getGift: Gift;
+  getGiftingAssets: TeamGiftingAssets;
   getGoalDetails?: Maybe<GoalDetails>;
   getGoalMilestoneDetails: GoalMilestoneDetails;
   getHealthSmokingState?: Maybe<HealthSmokingState>;
@@ -8244,6 +8280,13 @@ export type QueryGetDuellerDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetEmployeeDashboardArgs = {
   businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetEmployeeRecognitionCampaignsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
 };
 
 /** Default types to be extended / root query */
@@ -10045,10 +10088,12 @@ export type TeamEmployeeProfile = {
 export type TeamEmployeeRecognitionCampaign = {
   __typename?: "TeamEmployeeRecognitionCampaign";
   amount?: Maybe<Scalars["Int"]["output"]>;
+  createdAt?: Maybe<Scalars["String"]["output"]>;
   giftBackground?: Maybe<Scalars["String"]["output"]>;
   giftMessage?: Maybe<Scalars["String"]["output"]>;
   giftSticker?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
+  recipientCount?: Maybe<Scalars["Int"]["output"]>;
   requestedById?: Maybe<Scalars["String"]["output"]>;
   startsAt?: Maybe<Scalars["String"]["output"]>;
   status: EmployeeRecognitionCampaignStatus;
@@ -10095,6 +10140,21 @@ export type TeamFilterCopy = {
   imageKey?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
   value: Array<Scalars["String"]["output"]>;
+};
+
+export type TeamGiftAsset = {
+  __typename?: "TeamGiftAsset";
+  backgroundColor?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["String"]["output"];
+  image: RemoteImage;
+  previewImage?: Maybe<RemoteImage>;
+  textColor?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type TeamGiftingAssets = {
+  __typename?: "TeamGiftingAssets";
+  backgrounds: Array<TeamGiftAsset>;
+  stickers: Array<TeamGiftAsset>;
 };
 
 export enum TeamOnboardingStep {
@@ -10644,6 +10704,7 @@ export type UpdatePerkEligibilityRulesInput = {
 };
 
 export type UpdateSmokingStateInput = {
+  cravingManaged?: InputMaybe<Scalars["Boolean"]["input"]>;
   gameIntroModalSeen?: InputMaybe<Scalars["Boolean"]["input"]>;
   reasons?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   triggers?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
@@ -37599,6 +37660,7 @@ export type GetHealthSmokingStateQuery = {
     optOutText: string;
     isActive: boolean;
     updatedToday: boolean;
+    cravingsManaged?: number | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     streakCarousel?: Array<{
       __typename?: "HealthSmokingStreakCarouselItemDeprecated";
@@ -37770,6 +37832,24 @@ export type GetHealthSmokingStateQuery = {
       } | null;
       onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
+    gameOptions?: {
+      __typename?: "HealthSmokingGameOptions";
+      timer?: {
+        __typename?: "HealthSmokingGameTimerOptions";
+        enableMinuteAdditionAnimation?: boolean | null;
+        enableMinutePulseAnimation?: boolean | null;
+        enableMinuteHapticsImpact?: boolean | null;
+        displayColor?: string | null;
+        triggers?: Array<{
+          __typename?: "HealthSmokingGameTimerTrigger";
+          seconds?: number | null;
+          repeat?: boolean | null;
+          color?: string | null;
+          pulseColor?: boolean | null;
+          action?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }> | null;
+      } | null;
+    } | null;
   } | null;
 };
 
@@ -37788,6 +37868,7 @@ export type HealthSmokingStateFragment = {
   optOutText: string;
   isActive: boolean;
   updatedToday: boolean;
+  cravingsManaged?: number | null;
   backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   streakCarousel?: Array<{
     __typename?: "HealthSmokingStreakCarouselItemDeprecated";
@@ -37959,6 +38040,24 @@ export type HealthSmokingStateFragment = {
     } | null;
     onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   } | null;
+  gameOptions?: {
+    __typename?: "HealthSmokingGameOptions";
+    timer?: {
+      __typename?: "HealthSmokingGameTimerOptions";
+      enableMinuteAdditionAnimation?: boolean | null;
+      enableMinutePulseAnimation?: boolean | null;
+      enableMinuteHapticsImpact?: boolean | null;
+      displayColor?: string | null;
+      triggers?: Array<{
+        __typename?: "HealthSmokingGameTimerTrigger";
+        seconds?: number | null;
+        repeat?: boolean | null;
+        color?: string | null;
+        pulseColor?: boolean | null;
+        action?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      }> | null;
+    } | null;
+  } | null;
 };
 
 export type StartSmokingStreakMutationVariables = Exact<{ [key: string]: never }>;
@@ -37980,6 +38079,7 @@ export type StartSmokingStreakMutation = {
     optOutText: string;
     isActive: boolean;
     updatedToday: boolean;
+    cravingsManaged?: number | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     streakCarousel?: Array<{
       __typename?: "HealthSmokingStreakCarouselItemDeprecated";
@@ -38150,6 +38250,24 @@ export type StartSmokingStreakMutation = {
         image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       } | null;
       onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+    gameOptions?: {
+      __typename?: "HealthSmokingGameOptions";
+      timer?: {
+        __typename?: "HealthSmokingGameTimerOptions";
+        enableMinuteAdditionAnimation?: boolean | null;
+        enableMinutePulseAnimation?: boolean | null;
+        enableMinuteHapticsImpact?: boolean | null;
+        displayColor?: string | null;
+        triggers?: Array<{
+          __typename?: "HealthSmokingGameTimerTrigger";
+          seconds?: number | null;
+          repeat?: boolean | null;
+          color?: string | null;
+          pulseColor?: boolean | null;
+          action?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }> | null;
+      } | null;
     } | null;
   } | null;
 };
@@ -38182,6 +38300,7 @@ export type UpdateSmokingStreakMutation = {
     optOutText: string;
     isActive: boolean;
     updatedToday: boolean;
+    cravingsManaged?: number | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     streakCarousel?: Array<{
       __typename?: "HealthSmokingStreakCarouselItemDeprecated";
@@ -38352,6 +38471,24 @@ export type UpdateSmokingStreakMutation = {
         image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       } | null;
       onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+    gameOptions?: {
+      __typename?: "HealthSmokingGameOptions";
+      timer?: {
+        __typename?: "HealthSmokingGameTimerOptions";
+        enableMinuteAdditionAnimation?: boolean | null;
+        enableMinutePulseAnimation?: boolean | null;
+        enableMinuteHapticsImpact?: boolean | null;
+        displayColor?: string | null;
+        triggers?: Array<{
+          __typename?: "HealthSmokingGameTimerTrigger";
+          seconds?: number | null;
+          repeat?: boolean | null;
+          color?: string | null;
+          pulseColor?: boolean | null;
+          action?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }> | null;
+      } | null;
     } | null;
   } | null;
 };
@@ -65241,6 +65378,50 @@ export const HealthSmokingStateFragmentDoc = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gameOptions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "timer" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "enableMinuteAdditionAnimation" } },
+                      { kind: "Field", name: { kind: "Name", value: "enableMinutePulseAnimation" } },
+                      { kind: "Field", name: { kind: "Name", value: "enableMinuteHapticsImpact" } },
+                      { kind: "Field", name: { kind: "Name", value: "displayColor" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "triggers" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "seconds" } },
+                            { kind: "Field", name: { kind: "Name", value: "repeat" } },
+                            { kind: "Field", name: { kind: "Name", value: "color" } },
+                            { kind: "Field", name: { kind: "Name", value: "pulseColor" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "action" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                 },
               ],
@@ -96835,6 +97016,50 @@ export const GetHealthSmokingStateDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gameOptions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "timer" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "enableMinuteAdditionAnimation" } },
+                      { kind: "Field", name: { kind: "Name", value: "enableMinutePulseAnimation" } },
+                      { kind: "Field", name: { kind: "Name", value: "enableMinuteHapticsImpact" } },
+                      { kind: "Field", name: { kind: "Name", value: "displayColor" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "triggers" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "seconds" } },
+                            { kind: "Field", name: { kind: "Name", value: "repeat" } },
+                            { kind: "Field", name: { kind: "Name", value: "color" } },
+                            { kind: "Field", name: { kind: "Name", value: "pulseColor" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "action" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -97465,6 +97690,50 @@ export const StartSmokingStreakDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gameOptions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "timer" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "enableMinuteAdditionAnimation" } },
+                      { kind: "Field", name: { kind: "Name", value: "enableMinutePulseAnimation" } },
+                      { kind: "Field", name: { kind: "Name", value: "enableMinuteHapticsImpact" } },
+                      { kind: "Field", name: { kind: "Name", value: "displayColor" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "triggers" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "seconds" } },
+                            { kind: "Field", name: { kind: "Name", value: "repeat" } },
+                            { kind: "Field", name: { kind: "Name", value: "color" } },
+                            { kind: "Field", name: { kind: "Name", value: "pulseColor" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "action" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                 },
               ],
@@ -98160,6 +98429,50 @@ export const UpdateSmokingStreakDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gameOptions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "timer" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "enableMinuteAdditionAnimation" } },
+                      { kind: "Field", name: { kind: "Name", value: "enableMinutePulseAnimation" } },
+                      { kind: "Field", name: { kind: "Name", value: "enableMinuteHapticsImpact" } },
+                      { kind: "Field", name: { kind: "Name", value: "displayColor" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "triggers" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "seconds" } },
+                            { kind: "Field", name: { kind: "Name", value: "repeat" } },
+                            { kind: "Field", name: { kind: "Name", value: "color" } },
+                            { kind: "Field", name: { kind: "Name", value: "pulseColor" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "action" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                 },
               ],

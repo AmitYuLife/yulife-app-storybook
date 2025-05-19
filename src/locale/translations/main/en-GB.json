@@ -2008,6 +2008,7 @@
     "subtext": "Swipe to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach %{finalScore}!",
     "current_score": "Current score",
     "high_score": "High score",
+    "time": "Time",
     "vibration": "Vibration",
     "restart": "Restart game",
     "victory": {
