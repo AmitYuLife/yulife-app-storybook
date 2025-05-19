@@ -147,7 +147,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   202: {
     background: require("../episodes/lunar/ocean/lunar-ocean-2.webp"),
     topBarType: TOP_BAR_TYPES.DEFAULT,
-    episodeHeight: 650,
+    episodeHeight: 649,
     episodeWidth: 375,
     snapPosition: "center",
     episodeKey: 75,
@@ -359,7 +359,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   214: {
     background: require("../episodes/lunar/desert/lunar-desert-6.webp"),
-    episodeHeight: 630, // increased with 1px to fix white line
+    episodeHeight: 629,
     episodeKey: 87,
     episodeWidth: 375,
     bubbleOffsetY: -65,
@@ -479,7 +479,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     background: require("../episodes/lunar/mountain/lunar-mountain-5.webp"),
     topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 600,
-    episodeWidth: 375,
+    episodeWidth: 374, // decreased with 1px to fix image moving to the left
     snapOffsetY: 10,
     episodeKey: 94,
     bubbleOffsetY: -55,
