@@ -1,5 +1,6 @@
 import { SduiAction } from "@redux/user/user.types";
 import { Image, VariableRemoteImage } from "@redux/_core/types";
+import { GameOptions } from "@components/containers/game/2048/gameContext";
 
 enum HealthSmokingStreakCarouselItemStatus {
   Claimed = "claimed",
@@ -172,4 +173,6 @@ export interface HealthSmokingState {
     }>;
   };
   gameIntroModal?: GameIntroModal;
+  cravingsManaged?: number;
+  gameOptions?: GameOptions;
 }

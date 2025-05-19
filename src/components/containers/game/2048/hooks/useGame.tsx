@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { updateGame2048HighScore } from "@redux/game-2048/game-2048.actions";
 import { showGameOverModal } from "../gameOver.modal";
 import { showGameVictoryModal } from "../gameVictory.modal";
+import { GameOptions } from "../gameContext";
+import { Colours } from "@styles";
 
 export type Direction = "up" | "down" | "left" | "right";
 export type GameState = "inactive" | "active" | "failed" | "won";
@@ -26,6 +28,7 @@ export interface IGameConfig {
   mode: GameMode;
   boardSize: GameBoardSize;
   enableHaptics?: boolean;
+  gameOptions?: GameOptions;
 }
 
 export const DEFAULT_GAME_CONFIG: IGameConfig = {
@@ -33,6 +36,14 @@ export const DEFAULT_GAME_CONFIG: IGameConfig = {
   mode: "normal",
   boardSize: 4,
   enableHaptics: true,
+  gameOptions: {
+    timer: {
+      enableMinutePulseAnimation: true,
+      enableMinuteAdditionAnimation: true,
+      enableMinuteHapticsImpact: true,
+      displayColor: Colours.neutral.white,
+    },
+  },
 };
 
 class BoardFilled extends Error {
@@ -329,25 +340,37 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
   }
 };
 
-export const useGame = ({ finalScore, mode, boardSize, enableHaptics: enableHapticsInitial }: IGameConfig) => {
+export const useGame = ({
+  finalScore,
+  mode,
+  boardSize,
+  enableHaptics: enableHapticsInitial,
+  gameOptions,
+}: IGameConfig) => {
   const dispatch = useDispatch();
   const [moveNumber, setMoveNumber] = useState(0);
   const [state, setState] = useState<GameState>("inactive");
   const [enableHaptics, setEnableHaptics] = useState(enableHapticsInitial);
+  const [startTimestamp, setStartTimestamp] = useState<null | number>(null);
+  const [endTimestamp, setEndTimestamp] = useState<null | number>(null);
 
   const memoizedStartGame = useCallback(() => {
     startGame(boardSize, mode);
     setMoveNumber(0);
     setState("active");
+    setStartTimestamp(null);
+    setEndTimestamp(null);
   }, [boardSize, mode]);
 
   const memoizedMove = useCallback(
     (direction: Direction) => {
       try {
         move(direction, boardSize, mode, enableHaptics);
+        setStartTimestamp((prevState) => prevState || Date.now());
       } catch (err) {
         if (err instanceof BoardFilled) {
           setState("failed");
+          setEndTimestamp(Date.now());
           showGameOverModal(memoizedStartGame);
           dispatch({ type: updateGame2048HighScore, payload: BoardState.score });
         } else {
@@ -357,6 +380,7 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics: enableHapt
 
       if (BoardState.board.findIndex((cell) => cell.value >= finalScore) !== -1) {
         setState("won");
+        setEndTimestamp(Date.now());
         showGameVictoryModal(memoizedStartGame);
         dispatch({ type: updateGame2048HighScore, payload: BoardState.score });
       }
@@ -380,5 +404,8 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics: enableHapt
     moveNumber,
     enableHaptics,
     setEnableHaptics,
+    startTimestamp,
+    endTimestamp,
+    gameOptions,
   };
 };

@@ -1,9 +1,9 @@
+import { memo, useEffect, useMemo } from "react";
+import { StyleSheet, View } from "react-native";
 import { Button, Counter, Switch } from "@components/molecules";
 import { Colours, Style, templateTextStyles } from "@styles";
 import * as Haptics from "expo-haptics";
 import { Image } from "expo-image";
-import React, { memo, useEffect, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
 import {
   Gesture,
   GestureDetector,
@@ -12,15 +12,16 @@ import {
 } from "react-native-gesture-handler";
 import { runOnJS } from "react-native-reanimated";
 import { theme } from "../constants";
-import { useGame2048Context } from "../gameContext";
+import { GameOptions, useGame2048Context } from "../gameContext";
 import Game2048Manager from "../gameManager";
-import { Direction, GameBoardSize, GameValue, GameMode, GameSkin } from "../hooks";
+import { Direction, GameBoardSize, GameMode, GameSkin, GameValue } from "../hooks";
 import Board from "./Board";
 import { TextTemplate } from "@atoms";
 import { HAPTIC_TOGGLE } from "@ids";
 import { t } from "@locale";
 import { useSelector } from "react-redux";
 import { getGame2048HighScore } from "@redux/game-2048/game-2048.selectors";
+import GameTimer from "./game-timer";
 
 const RESTART_IMG = require("./assets/restart_icon.png");
 const STAR_IMG = require("@assets/icons/star.png");
@@ -30,30 +31,43 @@ interface IGameScreenProps {
   skin: GameSkin;
 }
 
-interface IGameScreenWithStateProps {
-  boardSize: GameBoardSize;
+interface IGameScreenWithStateProps extends IGameScreenProps {
   mode: GameMode;
   finalScore: GameValue;
   enableHaptics?: boolean;
-  skin: GameSkin;
+  gameOptions: GameOptions;
 }
 
-const GameScreenWithState = ({ boardSize, mode, finalScore, enableHaptics, skin }: IGameScreenWithStateProps) => {
+const GameScreenWithState = ({
+  boardSize,
+  mode,
+  finalScore,
+  enableHaptics,
+  skin,
+  gameOptions,
+}: IGameScreenWithStateProps) => {
   return (
-    <Game2048Manager boardSize={boardSize} mode={mode} finalScore={finalScore} enableHaptics={enableHaptics}>
+    <Game2048Manager
+      boardSize={boardSize}
+      mode={mode}
+      finalScore={finalScore}
+      enableHaptics={enableHaptics}
+      gameOptions={gameOptions}
+    >
       <GameScreen skin={skin} boardSize={boardSize} />
     </Game2048Manager>
   );
 };
 
 const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
-  const { move, startGame, state: gameState, score, enableHaptics, toggleHaptics } = useGame2048Context();
+  const { move, startGame, state: gameState, score, enableHaptics, toggleHaptics, gameOptions } = useGame2048Context();
   const highScore = useSelector(getGame2048HighScore);
 
   useEffect(() => {
     if (gameState === "inactive") {
       startGame();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState]);
 
   const flingGesture = useMemo(
@@ -101,6 +115,14 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
     [score, highScore]
   );
 
+  const timerOptions = useMemo(
+    () => ({
+      ...(gameOptions?.timer || {}),
+      enableMinuteHapticsImpact: Boolean(enableHaptics && gameOptions?.timer?.enableMinuteHapticsImpact),
+    }),
+    [gameOptions?.timer, enableHaptics]
+  );
+
   return (
     <>
       <View style={styles.scores}>
@@ -108,7 +130,7 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
           <TextTemplate type="b2" color={Colours.secondary.s50S3}>
             {t("2048.current_score")}
           </TextTemplate>
-          <Counter duration={500} value={score || 0} textStyle={currentScoreStyle} />
+          <Counter duration={score === 0 ? 0 : 500} value={score || 0} textStyle={currentScoreStyle} />
         </View>
         {!highScore ? null : (
           <View style={styles.scoreItem}>
@@ -121,6 +143,12 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
             </View>
           </View>
         )}
+        <View style={styles.scoreItem}>
+          <TextTemplate type="b2" color={Colours.secondary.s50S3}>
+            {t("2048.time")}
+          </TextTemplate>
+          <GameTimer options={timerOptions} />
+        </View>
       </View>
       <GestureDetector gesture={flingGesture}>
         <View style={styles.container}>
@@ -164,10 +192,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    gap: Style.adjust(48),
+    gap: Style.adjust(24),
+    paddingHorizontal: Style.adjust(24),
     paddingBottom: Style.adjust(24),
   },
   scoreItem: {
+    flex: 1,
+    width: "auto",
     height: Style.adjust(44),
     alignItems: "center",
   },
