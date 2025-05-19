@@ -1,6 +1,23 @@
-import { Style } from "@styles";
 import { Easing } from "react-native-reanimated";
-import { GameSkin, GameValue } from "./hooks";
+import { Colours, Style } from "@styles";
+import { IGameConfig } from "./hooks";
+import { GameValue } from "./game";
+import { GameSkin } from "./types";
+
+export const DEFAULT_GAME_CONFIG: IGameConfig = {
+  finalScore: 1024,
+  mode: "normal",
+  boardSize: 4,
+  enableHaptics: true,
+  gameOptions: {
+    timer: {
+      enableMinutePulseAnimation: true,
+      enableMinuteAdditionAnimation: true,
+      enableMinuteHapticsImpact: true,
+      displayColor: Colours.neutral.white,
+    },
+  },
+};
 
 export const theme = {
   backgroundPrimary: "#5727C83D",

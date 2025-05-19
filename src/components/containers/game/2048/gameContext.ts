@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
-import { BoardCell, Direction, GameState } from "./hooks";
+import { GameState } from "./hooks";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
+import { BoardCell, Direction } from "./game";
 
 interface TimerOptions {
   enableMinuteAdditionAnimation?: boolean;
@@ -23,7 +24,6 @@ export interface GameOptions {
 }
 
 export interface IGame2048Context {
-  logBoard: () => void;
   board: BoardCell[];
   score: number;
   move: (direction: Direction) => void;
@@ -37,9 +37,6 @@ export interface IGame2048Context {
   gameOptions?: GameOptions | null;
 }
 export const Game2048Context = createContext<IGame2048Context>({
-  logBoard: () => {
-    // ignore
-  },
   board: [],
   move: () => {
     // ignore

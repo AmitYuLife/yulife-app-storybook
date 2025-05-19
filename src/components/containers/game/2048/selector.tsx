@@ -5,8 +5,7 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Image } from "expo-image";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { theme } from "./constants";
-import { GameBoardSize, GameValue, GameMode, GameSkin, DEFAULT_GAME_CONFIG } from "./hooks";
+import { DEFAULT_GAME_CONFIG, theme } from "./constants";
 import { TextTemplate } from "@atoms";
 import {
   BOARD_SIZE_INPUT,
@@ -19,6 +18,8 @@ import {
 } from "@ids";
 import { t } from "@locale";
 import { Style } from "@styles";
+import { GameBoardSize, GameMode, GameValue } from "./game";
+import { GameSkin } from "./types";
 
 const TITLE_IMG = require("./components/assets/yunity_swipe_title.png");
 
@@ -42,7 +43,7 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
   }, []);
 
   const modes = useMemo(() => {
-    const gameModes: GameMode[] = ["normal", "difficult", "hard"];
+    const gameModes: GameMode[] = ["normal", "hard", "extreme"];
     return gameModes.map((gameMode) => ({
       label: t(`2048_selector.difficulty.options.${gameMode}`),
       value: gameMode,

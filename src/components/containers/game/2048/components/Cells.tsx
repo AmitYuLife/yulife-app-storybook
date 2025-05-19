@@ -3,7 +3,8 @@ import { useGame2048Context } from "../gameContext";
 import Cell from "./Cell";
 import { ZoomIn, ZoomOut } from "react-native-reanimated";
 import { ANIMATION_DURATION } from "../constants";
-import { GameBoardSize, GameSkin } from "../hooks";
+import { GameBoardSize } from "../game";
+import { GameSkin } from "../types";
 
 interface IProps {
   boardSize: GameBoardSize;

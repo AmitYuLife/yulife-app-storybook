@@ -1,6 +1,6 @@
 import { useWindowDimensions } from "react-native";
 import { BOARD_WIDTH_MULTIPLIER, MARGIN } from "../constants";
-import { GameBoardSize } from "./useGame";
+import { GameBoardSize } from "../game";
 
 export const useCellSize = (boardSize: GameBoardSize) => {
   const { width } = useWindowDimensions();

@@ -14,7 +14,6 @@ import { runOnJS } from "react-native-reanimated";
 import { theme } from "../constants";
 import { GameOptions, useGame2048Context } from "../gameContext";
 import Game2048Manager from "../gameManager";
-import { Direction, GameBoardSize, GameMode, GameSkin, GameValue } from "../hooks";
 import Board from "./Board";
 import { TextTemplate } from "@atoms";
 import { HAPTIC_TOGGLE } from "@ids";
@@ -22,9 +21,12 @@ import { t } from "@locale";
 import { useSelector } from "react-redux";
 import { getGame2048HighScore } from "@redux/game-2048/game-2048.selectors";
 import GameTimer from "./game-timer";
+import { Direction, GameBoardSize, GameMode, GameValue } from "../game";
+import { GameSkin } from "../types";
 
 const RESTART_IMG = require("./assets/restart_icon.png");
 const STAR_IMG = require("@assets/icons/star.png");
+const COUNTER_ANIMATION_SPEED = 500;
 
 interface IGameScreenProps {
   boardSize: GameBoardSize;
@@ -130,7 +132,11 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
           <TextTemplate type="b2" color={Colours.secondary.s50S3}>
             {t("2048.current_score")}
           </TextTemplate>
-          <Counter duration={score === 0 ? 0 : 500} value={score || 0} textStyle={currentScoreStyle} />
+          <Counter
+            duration={score === 0 ? 0 : COUNTER_ANIMATION_SPEED}
+            value={score || 0}
+            textStyle={currentScoreStyle}
+          />
         </View>
         {!highScore ? null : (
           <View style={styles.scoreItem}>
@@ -139,7 +145,7 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
             </TextTemplate>
             <View style={styles.starContainer}>
               <Image source={STAR_IMG} style={styles.starIcon} />
-              <Counter duration={500} value={highScore} textStyle={styles.counter} />
+              <Counter duration={COUNTER_ANIMATION_SPEED} value={highScore} textStyle={styles.counter} />
             </View>
           </View>
         )}

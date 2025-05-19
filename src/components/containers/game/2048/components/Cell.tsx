@@ -3,7 +3,9 @@ import React, { memo, useCallback, useEffect } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
 import { ANIMATION_DURATION, EASING, MARGIN, theme, TILES } from "../constants";
-import { GameBoardSize, GameSkin, GameValue, useCellSize } from "../hooks";
+import { useCellSize } from "../hooks";
+import { GameBoardSize, GameValue } from "../game";
+import { GameSkin } from "../types";
 
 interface IProps extends ViewProps {
   x: number;

@@ -2034,8 +2034,8 @@
       "title": "Game Difficulty",
       "options": {
         "normal": "normal",
-        "difficult": "difficult",
-        "hard": "hard"
+        "hard": "hard",
+        "extreme": "extreme"
       }
     },
     "size": "Board Size",

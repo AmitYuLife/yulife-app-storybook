@@ -3,10 +3,9 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import React, { memo, useCallback, useEffect, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { GameScreen } from "./components";
-import { theme } from "./constants";
+import { DEFAULT_GAME_CONFIG, theme } from "./constants";
 import { TextTemplate } from "@atoms";
 import { t } from "@locale";
-import { DEFAULT_GAME_CONFIG, GameBoardSize, GameMode, GameSkin, GameValue } from "./hooks";
 import { Colours, Style } from "@styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import { showGameIntroModal, ShowGameIntroModalProps } from "@containers/game/2048/gameIntro.modal";
@@ -16,6 +15,8 @@ import { VoidFunction } from "@utils";
 import { SduiAction } from "@redux/user/user.types";
 import { GameOptions } from "@containers/game/2048/gameContext";
 import { cloneDeep, mergeWith } from "lodash";
+import { GameSkin } from "./types";
+import { GameBoardSize, GameMode, GameValue } from "./game";
 
 interface IGame2048Props {
   componentId: string;

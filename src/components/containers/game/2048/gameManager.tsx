@@ -1,6 +1,7 @@
 import { memo, ReactNode, useCallback, useMemo } from "react";
-import { GameBoardSize, GameMode, GameValue, useGame } from "./hooks";
+import { useGame } from "./hooks";
 import { Game2048Context, GameOptions } from "./gameContext";
+import { GameBoardSize, GameMode, GameValue } from "./game";
 
 interface IProps {
   children: ReactNode;
@@ -20,7 +21,6 @@ const Game2048Manager = ({
   gameOptions: gameOptionsInitial,
 }: IProps) => {
   const {
-    logBoard,
     board,
     move,
     startGame,
@@ -44,7 +44,6 @@ const Game2048Manager = ({
 
   const gameState = useMemo(
     () => ({
-      logBoard,
       board,
       move,
       startGame,
@@ -58,7 +57,6 @@ const Game2048Manager = ({
       gameOptions,
     }),
     [
-      logBoard,
       board,
       move,
       startGame,
