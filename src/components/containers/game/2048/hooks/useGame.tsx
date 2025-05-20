@@ -7,6 +7,7 @@ import { showGameVictoryModal } from "../gameVictory.modal";
 import { GameOptions } from "../gameContext";
 import { BoardFilled, Direction, Game2048, GameBoardSize, GameMode, GameValue } from "../game";
 import { ANIMATION_DURATION } from "../constants";
+import uuid from "react-native-uuid";
 
 export type GameState = "inactive" | "active" | "failed" | "won";
 
@@ -26,6 +27,7 @@ export const useGame = ({
   gameOptions,
 }: IGameConfig) => {
   const [gameInstance] = useState<Game2048>(new Game2048());
+  const [gameId, setGameId] = useState<string>("");
   const [moveNumber, setMoveNumber] = useState(0);
   const dispatch = useDispatch();
   const [state, setState] = useState<GameState>("inactive");
@@ -35,6 +37,7 @@ export const useGame = ({
 
   const memoizedStartGame = useCallback(() => {
     gameInstance.startGame(boardSize, mode);
+    setGameId(uuid.v4().toString());
     setMoveNumber(0);
     setState("active");
     setStartTimestamp(null);
@@ -76,6 +79,7 @@ export const useGame = ({
   );
 
   return {
+    gameId,
     board: gameInstance.getBoard(),
     score: gameInstance.getScore(),
     moveNumber,

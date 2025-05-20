@@ -97,7 +97,13 @@ export class Game2048 {
   }
 
   spawnCell() {
-    const { x, y } = this.getRandomPosition();
+    const randomPosition = this.getRandomPosition();
+
+    if (!randomPosition) {
+      throw new BoardFilled();
+    }
+
+    const { x, y } = randomPosition;
 
     const spawnWeights = SPAWN_WEIGHTS[this.boardSize as GameBoardSize] || SPAWN_WEIGHTS_4x4;
     const values = spawnWeights[this.mode];

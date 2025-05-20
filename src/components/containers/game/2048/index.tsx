@@ -78,7 +78,11 @@ export const Game2048 = ({
   return (
     <View style={styles.wrapper}>
       <GestureHandlerRootView>
-        <ScrollView contentContainerStyle={styles.contentContainer} contentInsetAdjustmentBehavior="never">
+        <ScrollView
+          bounces={false}
+          contentContainerStyle={styles.contentContainer}
+          contentInsetAdjustmentBehavior="never"
+        >
           <GenericHeadingPad />
           <View style={styles.header}>
             <TextTemplate type="h3" textAlign="center" color={Colours.neutral.white}>

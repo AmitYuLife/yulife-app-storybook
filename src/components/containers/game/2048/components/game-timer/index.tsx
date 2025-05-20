@@ -8,7 +8,7 @@ import { GameOptions, useGame2048Context } from "../../gameContext";
 import PlusOne from "./plus-one";
 import PulseContent from "./pulse-content";
 import * as Haptics from "expo-haptics";
-import TimerDisplay from "./timer-display";
+import TimerDisplay, { TimerDisplayHandle } from "./timer-display";
 import { Colours } from "@styles";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 
@@ -34,9 +34,10 @@ type GameTimerProps = {
 
 const GameTimer = ({ options = {} }: GameTimerProps) => {
   const { enableMinuteAdditionAnimation, enableMinutePulseAnimation, enableMinuteHapticsImpact } = options;
-  const { startTimestamp, endTimestamp } = useGame2048Context();
+  const { gameId, startTimestamp, endTimestamp } = useGame2048Context();
   const { handleSduiActionWithParams } = useSduiCallbackFunctionOrReduxAction();
 
+  const timerDisplayRef = useRef<TimerDisplayHandle>(null);
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [pulse, setPulse] = useState<VoidFunction>(noop);
   const [animatePlusOne, setAnimatePlusOne] = useState<VoidFunction>(noop);
@@ -54,6 +55,10 @@ const GameTimer = ({ options = {} }: GameTimerProps) => {
     endTimestampRef.current = endTimestamp;
   }, [endTimestamp]);
 
+  useEffect(() => {
+    timerDisplayRef.current?.reset();
+  }, [gameId]);
+
   const getTimeElapsed = useCallback(() => {
     if (!startTimestampRef.current) {
       return 0;
@@ -69,8 +74,10 @@ const GameTimer = ({ options = {} }: GameTimerProps) => {
 
     const seconds = Math.floor(elapsed / 1000);
 
-    const canTriggerMinuteActions =
-      seconds > 0 && seconds % PULSE_INTERVAL_SECONDS === 0 && lastTriggerActionsSeconds !== seconds;
+    const lastPulseCount = Math.floor(lastTriggerActionsSeconds / PULSE_INTERVAL_SECONDS);
+    const currentPulseCount = Math.floor(seconds / PULSE_INTERVAL_SECONDS);
+
+    const canTriggerMinuteActions = currentPulseCount > lastPulseCount;
 
     if (!canTriggerMinuteActions) {
       return;
@@ -127,6 +134,7 @@ const GameTimer = ({ options = {} }: GameTimerProps) => {
       <PlusOne setAnimateAction={setAnimatePlusOneAction} />
       <PulseContent setPulseContentAction={setPulseContentAction}>
         <TimerDisplay
+          ref={timerDisplayRef}
           timeElapsed={timeElapsed}
           initialColor={options.displayColor ?? Colours.neutral.white}
           triggers={triggers}
