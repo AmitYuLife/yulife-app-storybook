@@ -277,7 +277,6 @@ export const DEFAULT_TOGGLES = {
       showFiit: true,
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
-      tempGameEnableNewYumojiHeadwearGlassesHair: true,
       showYumojiHeadwear: true,
       newChallengeList: true,
       tempGameGoalWeekliesRefactor: true,

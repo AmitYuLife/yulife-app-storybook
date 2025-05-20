@@ -122,7 +122,16 @@ export const START_WALKING_CHALLENGE_MINIMISE_FAKE_TIME = async () => {
     );
   });
   When("I tap 'lets do it'", when.tapText("Let's do it"), async () => {
-    Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
+    When(
+      "I scroll down the challenge list",
+      when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"),
+      async () => {
+        Then(
+          "I should see the long walk challenge",
+          then.idVisible(ids.CHALLENGE_TILE("Long Walk"))
+        );
+      }
+    );
   });
   When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
