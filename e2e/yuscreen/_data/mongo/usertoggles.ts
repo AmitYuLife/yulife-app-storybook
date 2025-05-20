@@ -12,8 +12,8 @@ export const CUSTOMER_1_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_1.data.customerId,
     features: {
-      ...DEFAULT_TOGGLES.data.features
-    }
+      ...DEFAULT_TOGGLES.data.features,
+    },
   },
 } as IDatabaseItem;
 
@@ -25,7 +25,7 @@ export const CUSTOMER_45_TOGGLES = {
     userId: customer.CUSTOMER_45.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
+
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
     },
@@ -40,7 +40,7 @@ export const CUSTOMER_49_TOGGLES = {
     userId: customer.CUSTOMER_49.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
+
       hasBupaDentActive: true,
     },
   },
@@ -54,7 +54,7 @@ export const CUSTOMER_51_TOGGLES = {
     userId: customer.CUSTOMER_51.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
+
       hasBupaDentActive: true,
     },
   },
@@ -68,7 +68,6 @@ export const CUSTOMER_53_TOGGLES = {
     userId: customer.CUSTOMER_53.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
     },
   },
 } as IDatabaseItem;
@@ -95,7 +94,7 @@ export const CUSTOMER_93_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
-      showBrainGameSudoku: true
+      showBrainGameSudoku: true,
     },
   },
 } as IDatabaseItem;
@@ -136,7 +135,6 @@ export const CUSTOMER_97_TOGGLES = {
       tempGameEnableYumojiMasks: true,
       tempGameEnableJapaneseHairStyles: true,
       tempGameEnableSammyHair: true,
-      tempGameEnableNewYumojiHeadwearGlassesHair: true,
       tempShowYumojiEyesCategory: true,
       showYumojiHeadband: true,
     },
@@ -272,7 +270,7 @@ export const CUSTOMER_109_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
-      showOnboardingPensionModal: true
+      showOnboardingPensionModal: true,
     },
   },
 } as IDatabaseItem;
@@ -286,7 +284,7 @@ export const CUSTOMER_110_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
-      showOnboardingPensionModal: true
+      showOnboardingPensionModal: true,
     },
   },
 } as IDatabaseItem;
@@ -300,7 +298,7 @@ export const CUSTOMER_115_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
-      showOnboardingPensionModal: true
+      showOnboardingPensionModal: true,
     },
   },
 } as IDatabaseItem;
@@ -313,7 +311,7 @@ export const CUSTOMER_125_TOGGLES = {
     userId: customer.CUSTOMER_125.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
+
       hasBupaDentActive: true,
     },
   },
@@ -342,14 +340,14 @@ export const CUSTOMER_139_TOGGLES = {
     userId: customer.CUSTOMER_139.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
+
       hasCoveaFibActive: false,
       hasBupaDentActive: false,
-      
+
       hasSmartPensionActive: true,
-      showReferrals: true
+      showReferrals: true,
     },
-  }
+  },
 } as IDatabaseItem;
 
 export const CUSTOMER_MAXIMISE_YU_TOGGLES = {
@@ -360,8 +358,8 @@ export const CUSTOMER_MAXIMISE_YU_TOGGLES = {
     userId: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
-      showReferrals: true
+
+      showReferrals: true,
     },
   },
 } as IDatabaseItem;
@@ -374,8 +372,8 @@ export const CUSTOMER_140_TOGGLES = {
     userId: customer.CUSTOMER_140.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
-      showReferrals: true
+
+      showReferrals: true,
     },
   },
 } as IDatabaseItem;
@@ -388,12 +386,8 @@ export const CUSTOMER_141_TOGGLES = {
     userId: customer.CUSTOMER_141.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
+
       showReferrals: true,
     },
   },
 } as IDatabaseItem;
-
-
-
-
