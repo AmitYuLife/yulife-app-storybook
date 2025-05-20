@@ -2018,6 +2018,12 @@
     "lost": {
       "title": "You ran out of space!",
       "info": "Don't give up"
+    },
+    "restart_dialog": {
+      "title": "Restart game?",
+      "description": "Your progress for the current game will be lost.",
+      "no": "Cancel",
+      "yes": "Restart"
     }
   },
   "2048_selector": {

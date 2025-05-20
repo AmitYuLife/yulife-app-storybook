@@ -1,5 +1,5 @@
-import { memo, useEffect, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { memo, useCallback, useEffect, useMemo } from "react";
+import { Alert, StyleSheet, View } from "react-native";
 import { Button, Counter, Switch } from "@components/molecules";
 import { Colours, Style, templateTextStyles } from "@styles";
 import * as Haptics from "expo-haptics";
@@ -71,6 +71,18 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState]);
+
+  const restartGame = useCallback(() => {
+    Alert.alert(
+      t("2048.restart_dialog.title"),
+      t("2048.restart_dialog.description"),
+      [
+        { text: t("2048.restart_dialog.no"), style: "cancel" },
+        { text: t("2048.restart_dialog.yes"), style: "destructive", onPress: startGame },
+      ],
+      { cancelable: true }
+    );
+  }, [startGame]);
 
   const flingGesture = useMemo(
     () =>
@@ -167,7 +179,7 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
               borderColor={Colours.neutral.white}
               shadowColor={Colours.neutral.n300}
               translationKey="2048.restart"
-              onPress={startGame}
+              onPress={restartGame}
               size="Fill"
             />
             <View style={styles.switch}>
