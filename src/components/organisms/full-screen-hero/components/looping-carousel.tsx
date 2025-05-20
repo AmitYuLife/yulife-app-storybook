@@ -1,12 +1,13 @@
-import { Colours, Style } from "@styles";
+import { Colours, Style, TOP_BAR } from "@styles";
 import { delay } from "@utils/misc";
 import { FlashList } from "@shopify/flash-list";
 import { FullScreenHeroSlide } from "../types";
 import { getTopOffset } from "../helpers";
 import { Box, Logo, TextTemplate } from "@atoms";
 import { memo, useCallback, useMemo, useRef } from "react";
-import { NativeScrollEvent, NativeSyntheticEvent, SafeAreaView } from "react-native";
+import { LayoutChangeEvent, NativeScrollEvent, NativeSyntheticEvent, SafeAreaView } from "react-native";
 import useInterval from "@use-it/interval";
+import { useLoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
 
 const SCROLL_DELAY_MS = 250;
 
@@ -21,6 +22,8 @@ const LoopingCarousel = ({
    */
   setCurrentSlide: (index: number) => void;
 }) => {
+  const { setTitleSectionHeight } = useLoginHeroContext();
+
   /**
    * Triple the data to create an infinite loop effect in both directions.
    * When the the user scrolls into the first or last group of data, we reset the scroll position to the middle group.
@@ -102,26 +105,35 @@ const LoopingCarousel = ({
     }
   }, 5000);
 
+  const handleLayout = useCallback(
+    (e: LayoutChangeEvent) => {
+      setTitleSectionHeight(e.nativeEvent.layout.height + TOP_BAR.HEIGHT);
+    },
+    [setTitleSectionHeight]
+  );
+
   const renderItem = useCallback(
     ({ item }: { item: FullScreenHeroSlide }) => (
       <Box disableAutoAdjust={true} w={Style.DEVICE_WIDTH} h={Style.DEVICE_HEIGHT} alignItems="center">
         <Box position="absolute" top={getTopOffset().background} left={0} right={0}>
           {item.backgroundComponent}
         </Box>
-        <SafeAreaView>
-          {/* The logo should not swipe with the rest of the item, so we use a hidden logo to reserve exactly the same space - and implement the actual logo in the parent component */}
-          <Box opacity={0}>
-            <Logo type="full" width={Style.adjust(76)} />
-          </Box>
-          <Box key={item.title} maxWidth={240} mt={getTopOffset().heading}>
-            <TextTemplate type="h3" textAlign="center" color={Colours.neutral.white}>
-              {item.title}
-            </TextTemplate>
-          </Box>
-        </SafeAreaView>
+        <Box onLayout={handleLayout}>
+          <SafeAreaView>
+            {/* The logo should not swipe with the rest of the item, so we use a hidden logo to reserve exactly the same space - and implement the actual logo in the parent component */}
+            <Box opacity={0}>
+              <Logo type="full" width={Style.adjust(76)} />
+            </Box>
+            <Box key={item.title} maxWidth={240} mt={getTopOffset().heading}>
+              <TextTemplate type="h3" textAlign="center" color={Colours.neutral.white}>
+                {item.title}
+              </TextTemplate>
+            </Box>
+          </SafeAreaView>
+        </Box>
       </Box>
     ),
-    []
+    [handleLayout]
   );
 
   return (

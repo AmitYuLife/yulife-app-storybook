@@ -1,11 +1,9 @@
-import { Style } from "@styles";
 import { DEVICES } from "@styles/media";
 import { useBobbingAnimation } from "@hooks";
-import { CHEST_MAX_HEIGHT, CHEST_ASPECT_RATIO } from "../constants";
 
 type LogoPosition = {
   id: string;
-  top: number;
+  bottom: number;
   left: number;
   right: number;
   size: number;
@@ -15,35 +13,21 @@ type LogoPosition = {
 };
 
 const guidelineBaseWidth = DEVICES.iPhone16ProMax.width;
-const guidelineBaseHeight = 353; // height of the chest, when scaled to the width of an iPhone 16 Pro Max
+const guidelineBaseHeight = 373; // height of the chest, when scaled to the width of an iPhone 16 Pro Max
 
-const getCurrentChestDimensions = () => {
-  const widthFromDevice = Style.DEVICE_WIDTH;
-  const heightFromDevice = widthFromDevice / CHEST_ASPECT_RATIO;
+export const useLogoPositions = ({ height, width }: { height: number; width: number }): LogoPosition[] => {
+  const scale = (size: number) => {
+    return (width / guidelineBaseWidth) * size;
+  };
 
-  if (heightFromDevice <= CHEST_MAX_HEIGHT) {
-    return { width: widthFromDevice, height: heightFromDevice };
-  }
+  const verticalScale = (size: number) => {
+    return (height / guidelineBaseHeight) * size;
+  };
 
-  const cappedHeight = CHEST_MAX_HEIGHT;
-  return { width: cappedHeight * CHEST_ASPECT_RATIO, height: cappedHeight };
-};
-
-const scale = (size: number) => {
-  const { width } = getCurrentChestDimensions();
-  return (width / guidelineBaseWidth) * size;
-};
-
-const verticalScale = (size: number) => {
-  const { height } = getCurrentChestDimensions();
-  return (height / guidelineBaseHeight) * size;
-};
-
-export const useLogoPositions = (): LogoPosition[] => {
   return [
     {
       id: "center",
-      top: verticalScale(102),
+      bottom: verticalScale(190),
       left: scale(0),
       right: scale(0),
       size: scale(80),
@@ -57,7 +41,7 @@ export const useLogoPositions = (): LogoPosition[] => {
     },
     {
       id: "top-right",
-      top: verticalScale(51),
+      bottom: verticalScale(275),
       left: scale(220),
       right: scale(0),
       size: scale(46),
@@ -71,7 +55,7 @@ export const useLogoPositions = (): LogoPosition[] => {
     },
     {
       id: "top-left",
-      top: verticalScale(56),
+      bottom: verticalScale(250),
       left: scale(0),
       right: scale(240),
       size: scale(62),
@@ -85,7 +69,7 @@ export const useLogoPositions = (): LogoPosition[] => {
     },
     {
       id: "bottom-left",
-      top: verticalScale(192),
+      bottom: verticalScale(130),
       left: scale(0),
       right: scale(230),
       size: scale(48),
@@ -99,7 +83,7 @@ export const useLogoPositions = (): LogoPosition[] => {
     },
     {
       id: "bottom-right",
-      top: verticalScale(156),
+      bottom: verticalScale(150),
       left: scale(274),
       right: scale(0),
       size: scale(60),
