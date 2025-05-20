@@ -3,7 +3,6 @@ import { Pressable, Image, ScrollView, StyleSheet } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
-import { Button } from "@components/molecules";
 import { Navigation } from "@navigation/main";
 import { chunk } from "lodash";
 import { GiftingAsset } from "../context/gifting-manager.types";
@@ -17,11 +16,17 @@ type Props = {
 
 export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selectedSticker }: Props) => {
   const [focusedSticker, setFocusedSticker] = useState(selectedSticker);
+
   const stickerChunks = chunk(stickers, 3);
-  const confirm = useCallback(() => {
-    selectSticker(focusedSticker);
-    Navigation.dismissAllOverlays();
-  }, [focusedSticker]);
+
+  const selectNewSticker = useCallback(
+    (sticker: GiftingAsset) => {
+      setFocusedSticker(sticker);
+      selectSticker(sticker);
+      Navigation.dismissAllOverlays();
+    },
+    [selectSticker]
+  );
 
   return (
     <Box
@@ -40,7 +45,7 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
           {t("screens.gifting.choose_sticker")}
         </TextTemplate>
       </Box>
-      <Box ph={16} mt={24} maxHeight={Style.DEVICE_WIDTH / 1.5}>
+      <Box ph={16} mt={24} maxHeight={Style.DEVICE_HEIGHT * 0.5} overflow="hidden">
         <ScrollView
           scrollEnabled={stickerChunks.length > 2}
           showsVerticalScrollIndicator={false}
@@ -55,7 +60,7 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
                   return (
                     <Pressable
                       key={`${sticker.id}_${chunkIndex}_${stickerIndex}`}
-                      onPress={() => setFocusedSticker(sticker)}
+                      onPress={() => selectNewSticker(sticker)}
                       testID={P2P_STICKER_ITEMS(sticker.id)}
                     >
                       <Box w={104} h={selected ? 104 : 108} bg={Colours.neutral.n100} br={16}>
@@ -79,9 +84,6 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
             );
           })}
         </ScrollView>
-      </Box>
-      <Box mt={24}>
-        <Button onPress={confirm} translationKey="labels.cta.select" />
       </Box>
     </Box>
   );
