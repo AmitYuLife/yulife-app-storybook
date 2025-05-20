@@ -7,7 +7,12 @@ import Animated, {
   withSequence,
   withTiming,
 } from "react-native-reanimated";
-import { memo, useEffect, useMemo, useRef } from "react";
+import { ForwardedRef, forwardRef, memo, useEffect, useImperativeHandle, useMemo, useRef } from "react";
+import { sortBy } from "lodash";
+
+export interface TimerDisplayHandle {
+  reset: () => void;
+}
 
 export type TimerTrigger = {
   seconds: number;
@@ -23,80 +28,99 @@ type TimerDisplayProps = {
   triggers: TimerTrigger[];
 };
 
-const TimerDisplay = ({ timeElapsed, initialColor, triggers }: TimerDisplayProps) => {
-  const baseColor = useSharedValue(initialColor);
-  const colorValue = useSharedValue(initialColor);
-  const lastTriggerSecondsRef = useRef<number>(-1);
+const TimerDisplay = forwardRef(
+  ({ timeElapsed, initialColor, triggers: triggersProp }: TimerDisplayProps, ref: ForwardedRef<TimerDisplayHandle>) => {
+    const baseColor = useSharedValue(initialColor);
+    const colorValue = useSharedValue(initialColor);
+    const lastTriggerSecondsRef = useRef<number>(-1);
 
-  useEffect(() => {
-    const secondsElapsed = Math.floor(timeElapsed / 1000);
+    useImperativeHandle(ref, () => ({
+      reset: () => {
+        baseColor.value = initialColor;
+        colorValue.value = initialColor;
+        lastTriggerSecondsRef.current = -1;
+      },
+    }));
 
-    if (lastTriggerSecondsRef.current === secondsElapsed) {
-      return;
-    }
+    const triggers: TimerTrigger[] = useMemo(() => sortBy(triggersProp, "seconds"), [triggersProp]);
 
-    lastTriggerSecondsRef.current = secondsElapsed;
+    useEffect(() => {
+      const secondsElapsed = Math.floor(timeElapsed / 1000);
 
-    let newBaseColor = baseColor.value;
-    triggers.forEach((trigger) => {
-      const { seconds, repeat, pulseColor, color, action } = trigger;
-
-      const shouldTrigger = repeat ? secondsElapsed > 0 && secondsElapsed % seconds === 0 : secondsElapsed === seconds;
-
-      if (!shouldTrigger) {
+      if (lastTriggerSecondsRef.current === secondsElapsed) {
         return;
       }
 
-      if (color) {
-        colorValue.value = withTiming(color, { duration: 300 });
+      let newBaseColor = baseColor.value;
+      triggers.forEach((trigger) => {
+        const { seconds, repeat, pulseColor, color, action } = trigger;
 
-        if (pulseColor) {
-          colorValue.value = withSequence(
-            withTiming(color, { duration: 300 }),
-            withDelay(700, withTiming(newBaseColor, { duration: 300 }))
-          );
+        let shouldTrigger;
+
+        if (repeat) {
+          const wasTriggered = Math.floor(lastTriggerSecondsRef.current / seconds);
+          const isTriggered = Math.floor(secondsElapsed / seconds);
+          shouldTrigger = isTriggered > wasTriggered;
         } else {
-          newBaseColor = color;
+          shouldTrigger = seconds > lastTriggerSecondsRef.current && seconds <= secondsElapsed;
         }
-      }
 
-      if (action) {
-        runOnJS(action)();
-      }
+        if (!shouldTrigger) {
+          return;
+        }
+
+        if (color) {
+          colorValue.value = withTiming(color, { duration: 300 });
+
+          if (pulseColor) {
+            colorValue.value = withSequence(
+              withTiming(color, { duration: 300 }),
+              withDelay(700, withTiming(newBaseColor, { duration: 300 }))
+            );
+          } else {
+            newBaseColor = color;
+          }
+        }
+
+        if (action) {
+          runOnJS(action)();
+        }
+      });
+
+      lastTriggerSecondsRef.current = secondsElapsed;
+      baseColor.value = newBaseColor;
+    }, [timeElapsed, triggers, initialColor]);
+
+    const animatedStyle = useAnimatedStyle(() => {
+      return { color: colorValue.value };
     });
 
-    baseColor.value = newBaseColor;
-  }, [timeElapsed, triggers, initialColor]);
+    const timeDisplay = useMemo(() => {
+      const seconds = Math.floor(timeElapsed / 1000);
 
-  const animatedStyle = useAnimatedStyle(() => {
-    return { color: colorValue.value };
-  });
+      if (seconds <= 0) {
+        return "00:00";
+      }
 
-  const timeDisplay = useMemo(() => {
-    const seconds = Math.floor(timeElapsed / 1000);
+      const minutesNum = Math.floor(seconds / 60);
+      const secondsNum = Math.floor(seconds % 60);
 
-    if (seconds <= 0) {
-      return "00:00";
-    }
+      const minutesDisplay = minutesNum.toString().padStart(2, "0");
+      const secondsDisplay = secondsNum.toString().padStart(2, "0");
 
-    const minutesNum = Math.floor(seconds / 60);
-    const secondsNum = Math.floor(seconds % 60);
+      return `${minutesDisplay}:${secondsDisplay}`;
+    }, [timeElapsed]);
 
-    const minutesDisplay = minutesNum.toString().padStart(2, "0");
-    const secondsDisplay = secondsNum.toString().padStart(2, "0");
-
-    return `${minutesDisplay}:${secondsDisplay}`;
-  }, [timeElapsed]);
-
-  return (
-    <Animated.Text
-      style={[templateTextStyles.b2b, animatedStyle]}
-      allowFontScaling={false}
-      importantForAccessibility="auto"
-    >
-      {timeDisplay}
-    </Animated.Text>
-  );
-};
+    return (
+      <Animated.Text
+        style={[templateTextStyles.b2b, animatedStyle]}
+        allowFontScaling={false}
+        importantForAccessibility="auto"
+      >
+        {timeDisplay}
+      </Animated.Text>
+    );
+  }
+);
 
 export default memo(TimerDisplay);

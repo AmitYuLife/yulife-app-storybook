@@ -1,10 +1,14 @@
-import { memo, useMemo } from "react";
+import { memo } from "react";
+import { ZoomIn, ZoomOut } from "react-native-reanimated";
 import { useGame2048Context } from "../gameContext";
 import Cell from "./Cell";
-import { ZoomIn, ZoomOut } from "react-native-reanimated";
 import { ANIMATION_DURATION } from "../constants";
 import { GameBoardSize } from "../game";
 import { GameSkin } from "../types";
+import { useCellSize } from "../hooks";
+
+const enteringAnimation = ZoomIn.duration(ANIMATION_DURATION);
+const exitingAnimation = ZoomOut.duration(ANIMATION_DURATION);
 
 interface IProps {
   boardSize: GameBoardSize;
@@ -12,25 +16,25 @@ interface IProps {
 }
 
 const Cells = ({ boardSize, skin }: IProps) => {
-  const { board, moveNumber, state: gameState } = useGame2048Context();
-  const cells = useMemo(
-    () =>
-      board.map(({ x, y, value, id }) => (
+  const { board } = useGame2048Context();
+  const cellWidth = useCellSize(boardSize);
+
+  return (
+    <>
+      {board.map(({ x, y, value, id }) => (
         <Cell
+          key={id}
           x={x}
           y={y}
+          cellWidth={cellWidth}
           value={value}
           skin={skin}
-          key={id}
-          boardSize={boardSize}
-          entering={ZoomIn.duration(ANIMATION_DURATION)}
-          exiting={ZoomOut.duration(ANIMATION_DURATION)}
+          entering={enteringAnimation}
+          exiting={exitingAnimation}
         />
-      )),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [moveNumber, board, gameState]
+      ))}
+    </>
   );
-  return <>{cells}</>;
 };
 
 export default memo(Cells);

@@ -21,6 +21,7 @@ const Game2048Manager = ({
   gameOptions: gameOptionsInitial,
 }: IProps) => {
   const {
+    gameId,
     board,
     move,
     startGame,
@@ -44,6 +45,7 @@ const Game2048Manager = ({
 
   const gameState = useMemo(
     () => ({
+      gameId,
       board,
       move,
       startGame,
@@ -57,6 +59,7 @@ const Game2048Manager = ({
       gameOptions,
     }),
     [
+      gameId,
       board,
       move,
       startGame,

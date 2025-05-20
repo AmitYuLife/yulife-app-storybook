@@ -1,87 +1,66 @@
 import { Image } from "expo-image";
-import React, { memo, useCallback, useEffect } from "react";
-import { StyleSheet, View, ViewProps } from "react-native";
-import Animated, { useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
+import React, { memo } from "react";
+import { StyleSheet } from "react-native";
+import Animated, {
+  BaseAnimationBuilder,
+  LinearTransition,
+  useAnimatedStyle,
+  useDerivedValue,
+  withSequence,
+  withTiming,
+} from "react-native-reanimated";
 import { ANIMATION_DURATION, EASING, MARGIN, theme, TILES } from "../constants";
-import { useCellSize } from "../hooks";
-import { GameBoardSize, GameValue } from "../game";
+import { GameValue } from "../game";
 import { GameSkin } from "../types";
 
-interface IProps extends ViewProps {
+const TIMING = { duration: ANIMATION_DURATION, easing: EASING };
+
+type CellProps = {
   x: number;
   y: number;
+  cellWidth: number;
   value: GameValue;
-  boardSize: GameBoardSize;
   skin: GameSkin;
-}
+  entering: BaseAnimationBuilder;
+  exiting: BaseAnimationBuilder;
+};
 
-const Cell = React.forwardRef(({ x, y, value, boardSize, skin, ...props }: IProps, ref: React.LegacyRef<View>) => {
-  const cellWidth = useCellSize(boardSize);
-  const scale = useSharedValue(0);
-  const cellValue = useSharedValue(value);
+const Cell = ({ x, y, cellWidth, value, skin, entering, exiting }: CellProps) => {
+  const scale = useDerivedValue(() => withSequence(withTiming(1.15, TIMING), withTiming(1, TIMING)), [value]);
 
-  const getCellPosition = useCallback(
-    (position_x: number, position_y: number) => {
-      return {
-        top: 2 * MARGIN + position_x * (cellWidth + 2 * MARGIN),
-        left: 2 * MARGIN + position_y * (cellWidth + 2 * MARGIN),
-      };
-    },
-    [cellWidth]
-  );
+  const animatedTransformStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
 
-  const top = useSharedValue(getCellPosition(x, y).top);
-  const left = useSharedValue(getCellPosition(x, y).left);
-
-  useEffect(() => {
-    const position = getCellPosition(x, y);
-    top.value = withTiming(position.top, { duration: ANIMATION_DURATION, easing: EASING });
-    left.value = withTiming(position.left, { duration: ANIMATION_DURATION, easing: EASING });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [x, y]);
-
-  useEffect(() => {
-    cellValue.value = withTiming(value, { duration: ANIMATION_DURATION });
-    scale.value = withSequence(
-      withTiming(1.15, { duration: ANIMATION_DURATION, easing: EASING }),
-      withTiming(1, { duration: ANIMATION_DURATION, easing: EASING })
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
-
-  const animatedContainerStyle = useAnimatedStyle(() => {
-    return {
-      top: top.value,
-      left: left.value,
-      width: cellWidth,
-      height: cellWidth,
-      ...styles.container,
-    };
-  });
-
-  const animatedContainerTransformStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          scale: scale.value,
-        },
-      ],
-    };
-  });
+  const positionStyle = {
+    top: 2 * MARGIN + x * (cellWidth + 2 * MARGIN),
+    left: 2 * MARGIN + y * (cellWidth + 2 * MARGIN),
+    width: cellWidth,
+    height: cellWidth,
+  };
 
   return (
-    <Animated.View ref={ref} {...props} style={animatedContainerStyle}>
-      <Animated.View style={animatedContainerTransformStyle}>
+    <Animated.View
+      entering={entering}
+      exiting={exiting}
+      layout={LinearTransition.duration(TIMING.duration).easing(TIMING.easing)}
+      style={[styles.container, positionStyle]}
+    >
+      <Animated.View style={animatedTransformStyle}>
         <Image
           cachePolicy="memory"
           source={TILES[skin][value]}
           contentFit="contain"
-          style={{ width: cellWidth, height: cellWidth, backgroundColor: theme.backgroundPrimary }}
+          style={{
+            width: cellWidth,
+            height: cellWidth,
+            backgroundColor: theme.backgroundPrimary,
+          }}
         />
       </Animated.View>
     </Animated.View>
   );
-});
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -92,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(Animated.createAnimatedComponent(Cell));
+export default memo(Cell);

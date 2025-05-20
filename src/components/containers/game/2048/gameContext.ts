@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import uuid from "react-native-uuid";
 import { GameState } from "./hooks";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { BoardCell, Direction } from "./game";
@@ -24,6 +25,7 @@ export interface GameOptions {
 }
 
 export interface IGame2048Context {
+  gameId: string;
   board: BoardCell[];
   score: number;
   move: (direction: Direction) => void;
@@ -37,6 +39,7 @@ export interface IGame2048Context {
   gameOptions?: GameOptions | null;
 }
 export const Game2048Context = createContext<IGame2048Context>({
+  gameId: uuid.v4().toString(),
   board: [],
   move: () => {
     // ignore
