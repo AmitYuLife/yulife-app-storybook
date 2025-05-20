@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React, { useCallback, useMemo, useState } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
@@ -18,7 +18,6 @@ import { RewardCard } from "@components/molecules/reward-card/reward-card";
 import { View } from "react-native";
 import { streaksModalStyles } from "./streaks.modal.styles";
 import { TextTemplate } from "@atoms";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import Hint from "@components/molecules/hint/hint";
 
 const StreaksModal: React.FC<Props> = ({
@@ -34,7 +33,6 @@ const StreaksModal: React.FC<Props> = ({
   type,
 }) => {
   const dispatch = useDispatch();
-  const features = useSelector(getUserFeatures);
   const [isLoading, setLoading] = useState(false);
   const backHandler = useBackHandlerCallback(onPressCtaSecondary);
   useBackHandler(backHandler);
@@ -45,7 +43,6 @@ const StreaksModal: React.FC<Props> = ({
 
   const { data } = useQuery(gql("GetStreakDetailsDocument"), {
     fetchPolicy: "no-cache",
-    skip: !features.useStreakDetails,
   });
 
   const onSubmit = useSubmitHandler({ streakAwardId, onPressCtaPrimary, setLoading, collectAward });
@@ -103,41 +100,39 @@ const StreaksModal: React.FC<Props> = ({
       timeRemaining={timeRemaining.time}
       accessibilityTimeRemaining={timeRemaining.accessibility}
     >
-      {!features.useStreakDetails ? null : (
-        <View>
-          {!data?.getStreakDetails?.goalMilestone ? null : (
-            <View style={streaksModalStyles.rewardMilestoneSection}>
-              <TextTemplate textAlign="center" type="b2b">
-                {data.getStreakDetails.teaserTitle}
-              </TextTemplate>
-              <View style={streaksModalStyles.sectionWrapper}>
-                <RewardCard
-                  progress={data.getStreakDetails.goalMilestone.progress}
-                  target={data.getStreakDetails.goalMilestone.target}
-                  rewardQuantity={data.getStreakDetails.goalMilestone.rewardQuantity}
-                  rewardTitle={data.getStreakDetails.goalMilestone.rewardTitle}
-                  primaryColor={data.getStreakDetails.goalMilestone.theme.primaryColor}
-                  secondaryColor={data.getStreakDetails.goalMilestone.theme.secondaryColor}
-                  overlayColor={data.getStreakDetails.goalMilestone.theme.overlayColor}
-                  rewardImage={data.getStreakDetails.goalMilestone.image}
-                  overlayImage={data.getStreakDetails.goalMilestone.overlayImage}
-                  showSparks={data.getStreakDetails.goalMilestone.showSparks}
-                />
-              </View>
-            </View>
-          )}
-          {!data?.getStreakDetails?.hint ? null : (
-            <View style={streaksModalStyles.hintWrapper}>
-              <Hint
-                label={data.getStreakDetails.hint.label}
-                description={data.getStreakDetails.hint.description}
-                image={data.getStreakDetails.hint.image}
-                onPress={handlePressHint}
+      <View>
+        {!data?.getStreakDetails?.goalMilestone ? null : (
+          <View style={streaksModalStyles.rewardMilestoneSection}>
+            <TextTemplate textAlign="center" type="b2b">
+              {data.getStreakDetails.teaserTitle}
+            </TextTemplate>
+            <View style={streaksModalStyles.sectionWrapper}>
+              <RewardCard
+                progress={data.getStreakDetails.goalMilestone.progress}
+                target={data.getStreakDetails.goalMilestone.target}
+                rewardQuantity={data.getStreakDetails.goalMilestone.rewardQuantity}
+                rewardTitle={data.getStreakDetails.goalMilestone.rewardTitle}
+                primaryColor={data.getStreakDetails.goalMilestone.theme.primaryColor}
+                secondaryColor={data.getStreakDetails.goalMilestone.theme.secondaryColor}
+                overlayColor={data.getStreakDetails.goalMilestone.theme.overlayColor}
+                rewardImage={data.getStreakDetails.goalMilestone.image}
+                overlayImage={data.getStreakDetails.goalMilestone.overlayImage}
+                showSparks={data.getStreakDetails.goalMilestone.showSparks}
               />
             </View>
-          )}
-        </View>
-      )}
+          </View>
+        )}
+        {!data?.getStreakDetails?.hint ? null : (
+          <View style={streaksModalStyles.hintWrapper}>
+            <Hint
+              label={data.getStreakDetails.hint.label}
+              description={data.getStreakDetails.hint.description}
+              image={data.getStreakDetails.hint.image}
+              onPress={handlePressHint}
+            />
+          </View>
+        )}
+      </View>
     </StreaksScreen>
   );
 };

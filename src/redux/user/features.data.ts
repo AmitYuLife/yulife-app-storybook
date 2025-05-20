@@ -54,7 +54,6 @@ export const features = [
   "enhanceConnectionLogging",
   "logReduxState",
   "gameEnableExpoImageDiskCachingPolicyInYumojiBuilder",
-  "useStreakDetails",
   "showWeeklies",
   "tempGameEnableAnimatedLeaderboardRays",
   "showYucoinPowerButton",
