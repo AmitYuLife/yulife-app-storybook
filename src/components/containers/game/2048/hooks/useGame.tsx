@@ -52,7 +52,7 @@ export const useGame = ({
 
         if (enableHaptics && mergeHappened) {
           setTimeout(() => {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           }, ANIMATION_DURATION);
         }
       } catch (err) {
