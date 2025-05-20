@@ -2,15 +2,24 @@ import { Box, Logo, TextTemplate } from "@atoms";
 import { Button, Markdown, TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { FullScreenHeroProps } from "./types";
-import { KeyboardAvoidingView, Platform, SafeAreaView } from "react-native";
+import { KeyboardAvoidingView, LayoutChangeEvent, Platform, SafeAreaView } from "react-native";
 import { markdownStyles, styles } from "./styles";
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import LoopingCarousel from "./components/looping-carousel";
 import { FadeIn, SlideInDown } from "react-native-reanimated";
 import { FULL_SCREEN_HERO_BUTTON } from "@ids";
+import { useLoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
 
 const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }: FullScreenHeroProps) => {
+  const { setCtaContainerHeight } = useLoginHeroContext();
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleLayout = useCallback(
+    (e: LayoutChangeEvent) => {
+      setCtaContainerHeight(e.nativeEvent.layout.height);
+    },
+    [setCtaContainerHeight]
+  );
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.flex}>
@@ -36,6 +45,7 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
           shadowOpacity={0.1}
           shadowRadius={16}
           entering={FadeIn.duration(1000)}
+          onLayout={handleLayout}
         >
           <Button
             size="Large"

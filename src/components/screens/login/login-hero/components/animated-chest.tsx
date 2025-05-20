@@ -3,12 +3,12 @@ import { Box } from "@atoms";
 import LoginChestFallback from "./svgs/login-chest-fallback";
 import Lottie from "lottie-react-native";
 import { LottieView } from "@components/molecules";
-import { StyleSheet } from "react-native";
 import RewardLogos from "./reward-logos";
 import { useTimeout } from "@hooks";
-import { CHEST_HEIGHT, CHEST_WIDTH } from "../constants";
 import { AnimatedChestProps } from "../types";
 import { DETOX_ENABLED } from "@services/socket";
+import { getChestSize } from "@components/screens/login/login-hero/constants";
+import { useLoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
 
 const AnimatedChest = ({ rewards }: AnimatedChestProps) => {
   const lottieRef = useRef<Lottie>(null);
@@ -22,28 +22,24 @@ const AnimatedChest = ({ rewards }: AnimatedChestProps) => {
     setUseFallback(true);
   }, []);
 
+  const { titleSectionHeight, ctaContainerHeight } = useLoginHeroContext();
+  const { height, width } = getChestSize(titleSectionHeight, ctaContainerHeight);
+
   return (
     <Box justifyContent="center" alignItems="center">
       <LottieView
         resizeMode="cover"
-        style={styles.lottie}
+        style={{ height, width }}
         ref={lottieRef}
         source={require("./assets/login-chest.lottie")}
         autoPlay={!DETOX_ENABLED}
         loop={false}
         onAnimationFailure={handleAnimationFailure}
       />
-      {useFallback ? <LoginChestFallback width={CHEST_WIDTH} height={CHEST_HEIGHT} /> : null}
+      {useFallback ? <LoginChestFallback width={width} height={height} /> : null}
       {isLottieFinished ? <RewardLogos rewards={rewards} /> : null}
     </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  lottie: {
-    width: CHEST_WIDTH,
-    height: CHEST_HEIGHT,
-  },
-});
 
 export default memo(AnimatedChest);

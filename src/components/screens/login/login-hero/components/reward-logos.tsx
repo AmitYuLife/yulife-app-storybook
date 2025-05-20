@@ -5,20 +5,25 @@ import { FadeIn } from "react-native-reanimated";
 import CircleBorder from "./circle-border";
 import { useLogoPositions } from "@components/screens/login/login-hero/hooks/useLogoPositions";
 import { AnimatedChestProps } from "../types";
+import { useLoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
+import { getChestSize } from "@components/screens/login/login-hero/constants";
 
 const RewardLogos = ({ rewards }: Pick<AnimatedChestProps, "rewards">) => {
-  const logoPositions = useLogoPositions();
+  const { titleSectionHeight, ctaContainerHeight } = useLoginHeroContext();
+  const { height, width } = getChestSize(titleSectionHeight, ctaContainerHeight);
+
+  const logoPositions = useLogoPositions({ height, width });
 
   return (
     <Box position="absolute" top={0} left={0} right={0} bottom={0} alignItems="center">
       {rewards.map((reward, index) => {
-        const { id, top, left, right, size, rotation, border, animation } = logoPositions[index];
+        const { id, bottom, left, right, size, rotation, border, animation } = logoPositions[index];
 
         return (
           <Box
             key={`${reward.id}-${id}`}
             position="absolute"
-            top={top}
+            bottom={bottom}
             left={left}
             right={right}
             alignItems="center"
