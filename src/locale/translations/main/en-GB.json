@@ -360,7 +360,8 @@
       "secondary_cta_label": "Log in",
       "slides": {
         "rewards": "Turn healthy habits into rewards!"
-      }
+      },
+      "session_expired_error_message": "Your session has expired. Please log in again."
     },
     "streak": {
       "completion": {
