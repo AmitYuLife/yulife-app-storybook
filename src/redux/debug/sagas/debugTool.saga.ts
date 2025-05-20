@@ -108,11 +108,12 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
       });
 
       results = yuHealthResults.map((r) => ({
-        ...r,
         type: fitKitTypes[0],
         value: Math.round(r.value),
         endTime: r.endTime.toString(),
         startTime: r.startTime.toString(),
+        userEntered: r.isUserEntered,
+        source: { bundleIdentifier: r.bundleIdentifier },
       }));
     }
 
@@ -122,10 +123,7 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
      * We still need to send some results (empty) so we can mark this debug request as completed
      */
     const sendResults =
-      tempGameEnableReleaseYuHealthV3 &&
-      fitKitTypes?.length === 1 &&
-      fitKitTypes[0] === FitKitType.StepCount &&
-      data.getUserDebugData.id;
+      fitKitTypes?.length === 1 && fitKitTypes[0] === FitKitType.StepCount && data.getUserDebugData.id;
 
     yield call(() =>
       client().mutate({
