@@ -229,9 +229,11 @@ Feature("Yudoku", async () => {
       Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
-      When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-        When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
-          Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+          When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+            Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+          });
         });
       });
     });
@@ -322,9 +324,11 @@ Feature("Yudoku", async () => {
       Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
-      When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-        When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
-          Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+          When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+            Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
+          });
         });
       });
     });
