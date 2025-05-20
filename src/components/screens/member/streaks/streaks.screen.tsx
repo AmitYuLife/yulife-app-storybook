@@ -8,8 +8,6 @@ import { DETOX_ENABLED } from "@services/socket";
 import { BuffArea } from "@graphql/__generated";
 import { t } from "@locale";
 import { StreaksLegacy } from "./_legacy/streaks.legacy";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { Fade } from "@atoms";
 import { STREAKS_SCREEN_BUTTON } from "@ids";
 import StreakSaverCountContainer from "@components/molecules/streak-saver-count/streak-saver-count.container";
@@ -52,7 +50,6 @@ const StreaksScreen = ({
   children,
 }: IProps) => {
   const dispatch = useDispatch();
-  const features = useSelector(getUserFeatures);
   const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
   const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
   const hideBuffs = streakMax === streakCompleted;
@@ -113,7 +110,7 @@ const StreaksScreen = ({
           accessibilityLabel={accessibilityLabel}
         />
         {children}
-        {!features.useStreakDetails ? null : <View style={hideLinkButton ? styles.bottomPad : styles.bottomPadLarge} />}
+        <View style={hideLinkButton ? styles.bottomPad : styles.bottomPadLarge} />
       </ScrollView>
       <SafeAreaView pointerEvents="box-none" style={styles.buttonWrapper}>
         <Fade />

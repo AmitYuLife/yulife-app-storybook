@@ -31,7 +31,6 @@ export const CUSTOMER_116_TOGGLES = {
       useHalfModalsForQuestMap: true,
       showQuestMapNotificationIcons: true,
       showGoalProductRewardMilestones: true,
-      useStreakDetails: true,
       showReferrals: true,
     },
   },
@@ -50,7 +49,6 @@ export const CUSTOMER_121_TOGGLES = {
       useHalfModalsForQuestMap: true,
       showQuestMapNotificationIcons: true,
       showGoalProductRewardMilestones: true,
-      useStreakDetails: true,
       showReferrals: true,
     },
   },
@@ -84,7 +82,6 @@ export const CUSTOMER_137_TOGGLES = {
       useHalfModalsForQuestMap: true,
       showQuestMapNotificationIcons: true,
       showGoalProductRewardMilestones: true,
-      useStreakDetails: true,
       showReferrals: true,
     },
   },
@@ -103,7 +100,6 @@ export const CUSTOMER_140_TOGGLES = {
       useHalfModalsForQuestMap: true,
       showQuestMapNotificationIcons: true,
       showGoalProductRewardMilestones: true,
-      useStreakDetails: true,
       showReferrals: true,
     },
   },
@@ -124,7 +120,6 @@ export const CUSTOMER_141_STARTED_TOGGLES = {
       showQuestMapNotificationIcons: true,
       showReferrals: true,
       showGoalProductRewardMilestones: true,
-      useStreakDetails: true,
     },
   },
 } as IDatabaseItem;
@@ -144,7 +139,6 @@ export const CUSTOMER_142_STARTED_TOGGLES = {
       showQuestMapNotificationIcons: true,
       showReferrals: true,
       showGoalProductRewardMilestones: true,
-      useStreakDetails: true,
     },
   },
 } as IDatabaseItem;
@@ -164,7 +158,6 @@ export const CUSTOMER_143_STARTED_TOGGLES = {
       showQuestMapNotificationIcons: true,
       showReferrals: true,
       showGoalProductRewardMilestones: true,
-      useStreakDetails: true,
     },
   },
 } as IDatabaseItem;
@@ -184,7 +177,6 @@ export const CUSTOMER_144_STARTED_TOGGLES = {
       showQuestMapNotificationIcons: true,
       showReferrals: true,
       showGoalProductRewardMilestones: true,
-      useStreakDetails: true,
     },
   },
 } as IDatabaseItem;
