@@ -8,6 +8,7 @@
     },
     "restart": "Restart Game",
     "subtext": "Swipe to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach %{finalScore}!",
+    "time": "Time",
     "title": "Join the tiles and get to %{finalScore}!",
     "vibration": "Haptics",
     "victory": {
@@ -19,7 +20,7 @@
     "difficulty": {
       "label": "Difficulty",
       "options": {
-        "difficult": "difficult",
+        "extreme": "extreme",
         "hard": "hard",
         "normal": "regular"
       },

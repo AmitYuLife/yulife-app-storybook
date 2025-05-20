@@ -8,6 +8,7 @@
     },
     "restart": "Reiniciar juego",
     "subtext": "Desliza con el dedo para mover las fichas. Las fichas con el mismo número se vuelven una cuando se tocan. ¡Súmalas para alcanzar %{finalScore}!",
+    "time": "Tiempo",
     "title": "¡Une los azulejos y llega a %{finalScore}!",
     "vibration": "Vibración",
     "victory": {
@@ -19,7 +20,7 @@
     "difficulty": {
       "label": "Dificultad",
       "options": {
-        "difficult": "difícil",
+        "extreme": "extremo",
         "hard": "difícil",
         "normal": "normal"
       },
