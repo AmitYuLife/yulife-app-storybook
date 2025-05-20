@@ -41,10 +41,7 @@ const LoginHeroContainer = ({ componentId, hasSessionExpiredError }: Props) => {
 
   useEffect(() => {
     if (hasSessionExpiredError) {
-      Alert.alert(
-        t("screens.login_hero.session-expired-error-title"),
-        t("screens.login_hero.session-expired-error-message")
-      );
+      Alert.alert(t("screens.login_hero.session_expired_error_message"));
     }
   }, [hasSessionExpiredError]);
 
