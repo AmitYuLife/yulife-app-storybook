@@ -100,9 +100,11 @@ function mapRewardItemToBattlePassListItem(componentId: string) {
           </Box>
         ) : null,
       onContainerPress:
-        gameRewardItem.status === "claimed"
-          ? () => goToRewardDetails({ componentId, rewardId: gameRewardItem.rewardId })
-          : undefined,
+        gameRewardItem.onContainerPress ||
+        (gameRewardItem.status === "claimed"
+          ? // defaults to going to reward details for goal_products
+            () => goToRewardDetails({ componentId, rewardId: gameRewardItem.rewardId })
+          : undefined),
       overlayIcon: gameRewardItem.icon,
       modalRewardImageComponent: (
         <Box position="absolute">

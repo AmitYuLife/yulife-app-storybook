@@ -16,7 +16,7 @@ import {
 import Logger from "@services/logging/logger";
 import { usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
-import { VoidFunction } from "@utils";
+import { useDispatch } from "react-redux";
 import { BattlePassListItemTitle } from "./battle-pass-list-item-title";
 import { LevelComponent } from "./subcomponents/level-component";
 import BattlePassItemDetailsContainer from "./subcomponents/battle-pass-item-details-container";
@@ -49,7 +49,7 @@ export interface IBattlePassListItem {
   status?: "completed" | "claimed" | "pending" | null;
   imageOverlay?: ReactNode;
   background?: ReactNode;
-  onContainerPress?: VoidFunction;
+  onContainerPress?: VoidFunctionOrSduiActionPayload;
   showButton?: boolean;
   enableModal?: boolean;
   rewardSubtitleComponent?: ReactNode;
@@ -102,9 +102,11 @@ const BattlePassListItem = ({
   detailsTitle,
 }: IBattlePassListItem) => {
   const track = useTrack();
+  const dispatch = useDispatch();
   const [loadingState, setLoadingState] = useState(DEFAULT_STATE);
   const titleColour = propTitleColour ?? Colours.neutral.white;
-  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
+  const { handleSduiAction: handleClaimSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
+
   const { openInfoModal } = useItemDetailsHalfModal();
 
   useEffect(() => {
@@ -145,22 +147,28 @@ const BattlePassListItem = ({
       battle_pass_type: battlePassType,
     });
 
-    if (handleSduiAction) {
+    if (handleClaimSduiAction) {
       try {
         setLoadingState({ id, loading: true });
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-        await handleSduiAction();
+        await handleClaimSduiAction();
       } catch (e) {
         Logger.error(e, { event: "@battle_pass_list_item" });
       } finally {
         setLoadingState(DEFAULT_STATE);
       }
     }
-  }, [track, title, id, battlePassType, handleSduiAction]);
+  }, [track, title, id, battlePassType, handleClaimSduiAction]);
 
   const handleContainerPress = useCallback(async () => {
     if (onContainerPress) {
-      return onContainerPress();
+      if (typeof onContainerPress === "function") {
+        return onContainerPress();
+      }
+
+      if (onContainerPress.type) {
+        return dispatch(onContainerPress);
+      }
     }
 
     track("battlepass_reward_viewed", { reward_id: id, reward_name: title, battle_pass_type: battlePassType });
@@ -190,6 +198,7 @@ const BattlePassListItem = ({
     battlePassType,
     backgroundColour,
     onContainerPress,
+    dispatch,
     rewardLevelComponent,
     rewardSubtitleComponent,
     modalRewardImageComponent,

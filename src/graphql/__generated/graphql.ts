@@ -1069,7 +1069,9 @@ export type BusinessSessionBusiness = {
 
 export type BusinessSessionSettings = {
   __typename?: "BusinessSessionSettings";
+  /** @deprecated No longer in use */
   announcement?: Maybe<AnnouncementSetting>;
+  customValuesFiltering: CustomValuesFiltering;
   earlyAccessEnabled: Scalars["Boolean"]["output"];
   employeeRecognitionEnabled: Scalars["Boolean"]["output"];
   enableTagRestriction: Scalars["Boolean"]["output"];
@@ -1214,6 +1216,14 @@ export type ClaimAccountInput = {
   termsOfBusinessAgreement: Scalars["Boolean"]["input"];
 };
 
+export type ClaimAccountViaMagicLinkResponse = {
+  __typename?: "ClaimAccountViaMagicLinkResponse";
+  expiresAt: Scalars["Int"]["output"];
+  intercomHash: Scalars["String"]["output"];
+  token: Scalars["String"]["output"];
+  user: User;
+};
+
 export type Client = {
   __typename?: "Client";
   id: Scalars["ID"]["output"];
@@ -1310,6 +1320,25 @@ export type Connection = {
   lastUpdated?: Maybe<Scalars["Int"]["output"]>;
   name?: Maybe<Scalars["String"]["output"]>;
 };
+
+export enum ConnectionEventStatus {
+  Committed = "COMMITTED",
+  Failed = "FAILED",
+  Previewed = "PREVIEWED",
+  Running = "RUNNING",
+  Skipped = "SKIPPED",
+}
+
+export enum ConnectionEventType {
+  Full = "FULL",
+  Partial = "PARTIAL",
+}
+
+export enum ConnectionStatus {
+  Disabled = "DISABLED",
+  Live = "LIVE",
+  Preview = "PREVIEW",
+}
 
 export enum ConnectionType {
   CarrierScraper = "carrierScraper",
@@ -3209,6 +3238,12 @@ export type CustomValueTypeData = {
   type: CustomValueType;
 };
 
+export type CustomValuesFiltering = {
+  __typename?: "CustomValuesFiltering";
+  isEnabled: Scalars["Boolean"]["output"];
+  maxPerType: Scalars["Int"]["output"];
+};
+
 export type CustomerBeneficiary = {
   __typename?: "CustomerBeneficiary";
   firstName: Scalars["String"]["output"];
@@ -4348,6 +4383,11 @@ export type GetTeamEmployeeRecognitionCampaignsResponse = {
   totalCount: Scalars["Int"]["output"];
 };
 
+export type GetTeamEmployeesCustomValue = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  type?: InputMaybe<CustomValueType>;
+};
+
 export type GetTeamSocialGroupsResponse = {
   __typename?: "GetTeamSocialGroupsResponse";
   count: Scalars["Int"]["output"];
@@ -4960,6 +5000,21 @@ export type HrisConnection = {
   statusDescription: Scalars["String"]["output"];
 };
 
+export type HrisConnectionImportEvent = {
+  __typename?: "HrisConnectionImportEvent";
+  businessMemberDataConnectionEventId: Scalars["String"]["output"];
+  businessMemberDataConnectionId: Scalars["String"]["output"];
+  businessMemberDataImportId?: Maybe<Scalars["String"]["output"]>;
+  completedAt?: Maybe<Scalars["String"]["output"]>;
+  createdAt: Scalars["String"]["output"];
+  eventType?: Maybe<ConnectionEventType>;
+  id: Scalars["String"]["output"];
+  importDisplayStatus?: Maybe<BulkUploadPublicStatus>;
+  startedAt?: Maybe<Scalars["String"]["output"]>;
+  status: ConnectionEventStatus;
+  summary?: Maybe<BulkMemberImportPreviewSummary>;
+};
+
 export type HrisConnectionSettingsInput = {
   contractedWeeksPerYear?: InputMaybe<Scalars["Int"]["input"]>;
   ownerIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
@@ -4986,6 +5041,12 @@ export type HrisEmployeeFilter = {
   description?: Maybe<Scalars["String"]["output"]>;
   id?: Maybe<Scalars["String"]["output"]>;
   query: Scalars["String"]["output"];
+};
+
+export type HrisImportEventsResult = {
+  __typename?: "HrisImportEventsResult";
+  count: Scalars["Int"]["output"];
+  records: Array<HrisConnectionImportEvent>;
 };
 
 export type HrisPreviewImport = {
@@ -5663,6 +5724,7 @@ export type MobileGameBattlePassReward = {
   detailsTitle?: Maybe<Scalars["String"]["output"]>;
   icon: RemoteImage;
   id: Scalars["ID"]["output"];
+  onContainerPress?: Maybe<SduiAction>;
   onPress?: Maybe<SduiAction>;
   overlayIcon?: Maybe<RemoteImage>;
   position: Scalars["Int"]["output"];
@@ -6268,6 +6330,7 @@ export type Mutation = {
   changeMemberConsent: Scalars["Boolean"]["output"];
   changeUserLocale: Scalars["Boolean"]["output"];
   changeUserPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  claimAccountViaMagicLink?: Maybe<ClaimAccountViaMagicLinkResponse>;
   claimBusinessAccount: Scalars["Boolean"]["output"];
   claimEngagementDashboardCredit: Scalars["Boolean"]["output"];
   claimEngagementDashboardTask: EngagementDashboardTaskClaim;
@@ -6374,6 +6437,7 @@ export type Mutation = {
   sendBusinessMagicLink?: Maybe<BusinessMagicLinkResponse>;
   sendGiftToRecipients: SendGiftToRecipientsResponse;
   sendMagicLink?: Maybe<StartSessionResponse>;
+  sendMagicLinkForClaimingAccount?: Maybe<SendMagicLinkForClaimingAccountResponse>;
   sendMagicLinkForPrimaryEmailReset?: Maybe<SendMagicLinkForPrimaryEmailResetResponse>;
   sendMagicLinkForPrimaryEmailResetToUser?: Maybe<SendMagicLinkForPrimaryEmailResetToUserResponse>;
   sendMagicLinkWithInviteCode: SendMagicLinkWithInviteCodeResponse;
@@ -6553,6 +6617,10 @@ export type MutationChangeUserLocaleArgs = {
 export type MutationChangeUserPasswordArgs = {
   oldPassword: Scalars["String"]["input"];
   password: Scalars["String"]["input"];
+};
+
+export type MutationClaimAccountViaMagicLinkArgs = {
+  otp: Scalars["String"]["input"];
 };
 
 export type MutationClaimBusinessAccountArgs = {
@@ -6986,6 +7054,10 @@ export type MutationSendMagicLinkArgs = {
   email: Scalars["String"]["input"];
   isResetPasswordRequest?: InputMaybe<Scalars["Boolean"]["input"]>;
   referralCode?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationSendMagicLinkForClaimingAccountArgs = {
+  email: Scalars["String"]["input"];
 };
 
 export type MutationSendMagicLinkForPrimaryEmailResetArgs = {
@@ -7861,6 +7933,7 @@ export type Query = {
   getDuelsTomorrow?: Maybe<Array<Maybe<Duel>>>;
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
+  getEmployeeRecognitionCampaignRecipients: TeamEmployeeRecognitionCampaignRecipientsResponse;
   getEmployeeRecognitionCampaigns: GetTeamEmployeeRecognitionCampaignsResponse;
   getEmployeesByEmployeeIds: GetEmployeesByEmployeeIdsResult;
   getEngagementDashboardActivitiesProgress: Array<EngagementDashboardActivity>;
@@ -7879,6 +7952,7 @@ export type Query = {
   getHomeWidgetsData: DataWidgets;
   getHrisConnection?: Maybe<HrisConnection>;
   getHrisConnections: HrisConnectionsResult;
+  getHrisImportEvents: HrisImportEventsResult;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
   getInAppYuniversityCourseModuleDetails: InAppYuniversityCourseModuleDetails;
   getInAppYuniversityCourses: InAppYuniversityCourses;
@@ -8283,6 +8357,14 @@ export type QueryGetEmployeeDashboardArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetEmployeeRecognitionCampaignRecipientsArgs = {
+  campaignId: Scalars["String"]["input"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetEmployeeRecognitionCampaignsArgs = {
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8330,6 +8412,14 @@ export type QueryGetHrisConnectionArgs = {
 export type QueryGetHrisConnectionsArgs = {
   page?: InputMaybe<Scalars["Int"]["input"]>;
   perPage?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetHrisImportEventsArgs = {
+  connectionId?: InputMaybe<Scalars["String"]["input"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
 };
 
 /** Default types to be extended / root query */
@@ -8680,6 +8770,7 @@ export type QueryGetTeamDidYouKnowInsightsArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetTeamEmployeesArgs = {
+  customValues?: InputMaybe<Array<InputMaybe<GetTeamEmployeesCustomValue>>>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy?: InputMaybe<OrderBy>;
@@ -8693,6 +8784,11 @@ export type QueryGetTeamEmployeesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetTeamMemberBeneficiariesArgs = {
   businessEmployeeId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetTeamMemberFieldsArgs = {
+  businessEmployeeId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -9439,6 +9535,11 @@ export type SendGiftToRecipientsResponse = {
   success: Array<Scalars["String"]["output"]>;
 };
 
+export type SendMagicLinkForClaimingAccountResponse = {
+  __typename?: "SendMagicLinkForClaimingAccountResponse";
+  success?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
 export type SendMagicLinkForPrimaryEmailResetResponse = {
   __typename?: "SendMagicLinkForPrimaryEmailResetResponse";
   success?: Maybe<Scalars["Boolean"]["output"]>;
@@ -10075,6 +10176,7 @@ export type TeamEmployeeProfile = {
   availablePerks?: Maybe<Array<AvailablePerk>>;
   avatar?: Maybe<Scalars["String"]["output"]>;
   businessEmployeeId: Scalars["ID"]["output"];
+  eligibleToVoidDeactivation: Scalars["Boolean"]["output"];
   externalIntegrationMetadata?: Maybe<TeamEmployeeExternalIntegrationMetadata>;
   name: Scalars["String"]["output"];
   perkClaims?: Maybe<Array<PerkClaim>>;
@@ -10098,6 +10200,22 @@ export type TeamEmployeeRecognitionCampaign = {
   startsAt?: Maybe<Scalars["String"]["output"]>;
   status: EmployeeRecognitionCampaignStatus;
   title: Scalars["String"]["output"];
+};
+
+export type TeamEmployeeRecognitionCampaignRecipient = {
+  __typename?: "TeamEmployeeRecognitionCampaignRecipient";
+  email?: Maybe<Scalars["String"]["output"]>;
+  firstName?: Maybe<Scalars["String"]["output"]>;
+  fullName?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["String"]["output"];
+  lastName?: Maybe<Scalars["String"]["output"]>;
+  tags: Array<Scalars["String"]["output"]>;
+};
+
+export type TeamEmployeeRecognitionCampaignRecipientsResponse = {
+  __typename?: "TeamEmployeeRecognitionCampaignRecipientsResponse";
+  recipients: Array<TeamEmployeeRecognitionCampaignRecipient>;
+  totalCount: Scalars["Int"]["output"];
 };
 
 export type TeamEmployeeSection = {
@@ -12130,6 +12248,7 @@ export type MobileGameBattlePassFragment = {
     } | null;
     overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    onContainerPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   }>;
 };
 
@@ -12311,6 +12430,7 @@ export type MobileGameBattlePassRewardFragment = {
   } | null;
   overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  onContainerPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 export type MobileGameBattlePassRewardTeaserFragment = {
@@ -22252,6 +22372,7 @@ export type ClaimMobileGameBattlePassChestPrizesMutation = {
       } | null;
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onContainerPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }> | null;
   };
 };
@@ -22288,6 +22409,7 @@ export type ClaimMobileGameBattlePassRewardsMutation = {
     } | null;
     overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    onContainerPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   }>;
 };
 
@@ -22339,6 +22461,7 @@ export type CompleteMobileGameBattlePassSeasonMutation = {
       } | null;
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onContainerPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
   } | null;
 };
@@ -22497,6 +22620,7 @@ export type GetMobileGameBattlePassQuery = {
       } | null;
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onContainerPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
   } | null;
 };
@@ -22608,6 +22732,7 @@ export type GetMobileGameBattlePassFullQuery = {
       } | null;
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onContainerPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
   } | null;
   templates: Array<{
@@ -22822,6 +22947,7 @@ export type SubmitMobileGameBattlePassDonationsMutation = {
       } | null;
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onContainerPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
   };
 };
@@ -34276,6 +34402,7 @@ export type GetMobileUnlockableBattlePassVouchersQuery = {
         } | null;
         overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
         onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        onContainerPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
       }>;
       progress?: {
         __typename?: "MobileUnlockableBattlePassVouchersGameProgress";
@@ -46102,6 +46229,14 @@ export const MobileGameBattlePassRewardFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onContainerPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -46322,6 +46457,14 @@ export const MobileGameBattlePassFragmentDoc = {
           {
             kind: "Field",
             name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onContainerPress" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
@@ -73219,6 +73362,14 @@ export const ClaimMobileGameBattlePassChestPrizesDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onContainerPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -73370,6 +73521,14 @@ export const ClaimMobileGameBattlePassRewardsDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onContainerPress" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
@@ -73578,6 +73737,14 @@ export const CompleteMobileGameBattlePassSeasonDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onContainerPress" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
@@ -74163,6 +74330,14 @@ export const GetMobileGameBattlePassDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onContainerPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -74529,6 +74704,14 @@ export const GetMobileGameBattlePassFullDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onContainerPress" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
@@ -75269,6 +75452,14 @@ export const SubmitMobileGameBattlePassDonationsDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onContainerPress" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
@@ -93997,6 +94188,14 @@ export const GetMobileUnlockableBattlePassVouchersDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onContainerPress" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
