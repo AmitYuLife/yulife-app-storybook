@@ -11,13 +11,13 @@ import { first } from "lodash";
 import { getDebugPedometerHistorySteps } from "@redux/debug/debug.selectors";
 
 const ChallengeProgressDebugInfoWrapper = () => {
-  const { tempGameEnableReleaseYuHealthV3 } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV4 } = useUserFeatures();
 
   const fitkitHealthApp = useSelector(getFitkitHealthApp);
   const yuHealthProvider = useSelector(getActiveProvider);
 
   const healthProvider = useMemo(() => {
-    if (!tempGameEnableReleaseYuHealthV3) {
+    if (!tempGameEnableReleaseYuHealthV4) {
       switch (fitkitHealthApp) {
         case "GoogleFit":
           return t("yu_health.providers.googleFit");
@@ -42,7 +42,7 @@ const ChallengeProgressDebugInfoWrapper = () => {
       default:
         return t("yu_health.providers.generic");
     }
-  }, [tempGameEnableReleaseYuHealthV3, fitkitHealthApp, yuHealthProvider]);
+  }, [tempGameEnableReleaseYuHealthV4, fitkitHealthApp, yuHealthProvider]);
 
   const { initialPedometerResult } = useSelector(getActiveLevel);
   const historySteps = useSelector(getDebugPedometerHistorySteps);

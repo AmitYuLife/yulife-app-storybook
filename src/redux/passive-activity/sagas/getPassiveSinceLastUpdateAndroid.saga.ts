@@ -88,7 +88,7 @@ const getCycling = async (
   }
 
   const start = moment(cyclingLastUpdate).startOf("day");
-  if (!features.tempGameEnableReleaseYuHealthV3) {
+  if (!features.tempGameEnableReleaseYuHealthV4) {
     const cyclingConfig = getAggregationCyclingConfiguration(features);
     const cycling = await queryFitKitAggregatedData({
       start,
@@ -132,7 +132,7 @@ const getMeditation = async (
 
   const start = moment(meditationLastUpdate).startOf("day");
 
-  if (!features.tempGameEnableReleaseYuHealthV3) {
+  if (!features.tempGameEnableReleaseYuHealthV4) {
     const meditationConfiguration = getAggregationMindfulSessionConfiguration();
     const meditation = await queryFitKitAggregatedData({
       start: start.clone(),
@@ -172,7 +172,7 @@ const getSteps = async (
 
   const start = moment(stepsLastUpdate).startOf("day");
 
-  if (!features.tempGameEnableReleaseYuHealthV3) {
+  if (!features.tempGameEnableReleaseYuHealthV4) {
     const stepsConfiguration = getAggregationStepCountConfiguration(stepsBlackListApps);
     const steps: QueryFitKitByTypesResponse = await queryFitKitAggregatedData({
       start: start.clone(),

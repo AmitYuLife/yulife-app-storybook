@@ -69,7 +69,7 @@ const DailyStepsScreen = ({
   theme,
   contentProps,
 }: Props) => {
-  const { tempGameEnableReleaseYuHealthV3 } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV4 } = useUserFeatures();
   const currentModal = useSelector(getModalState);
 
   const { androidImportantForAccessibility, accessibilityElementsHidden } = useMemo(
@@ -181,7 +181,7 @@ const DailyStepsScreen = ({
             </View>
           </View>
         </TouchableOpacityWithDelay>
-        {!tempGameEnableReleaseYuHealthV3 ? <DailyStepsContentOld /> : <DailyStepsContent {...contentProps} />}
+        {!tempGameEnableReleaseYuHealthV4 ? <DailyStepsContentOld /> : <DailyStepsContent {...contentProps} />}
         <View style={styles.leftIconList}>
           {!userSurge?.endDateTime ? null : (
             <Surge multiplier={userSurge?.multiplier} endDateTime={userSurge?.endDateTime} onPress={onSurgePress} />

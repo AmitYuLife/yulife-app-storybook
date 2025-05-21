@@ -48,7 +48,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const { tempGameEnableReleaseYuHealthV3, gameHideMeditationInternalContent, gameHideWorkoutInternalContent } =
+  const { tempGameEnableReleaseYuHealthV4, gameHideMeditationInternalContent, gameHideWorkoutInternalContent } =
     useUserFeatures();
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
   const [submitting, setSubmittingState] = useState(false);
@@ -217,7 +217,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
             createChallenge,
             authoriseFitKitTypes,
             setActiveSlot: setSlot,
-            tempGameEnableReleaseYuHealthV3,
+            tempGameEnableReleaseYuHealthV4,
             verifyAndAuthorizeCapability,
             showOverlay: showOverlayRef?.current,
           });
@@ -229,7 +229,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     componentId,
     currentWorld,
     authoriseFitKitTypes,
-    tempGameEnableReleaseYuHealthV3,
+    tempGameEnableReleaseYuHealthV4,
     verifyAndAuthorizeCapability,
     data?.getQuestMapLevel?.slots,
     createChallenge,

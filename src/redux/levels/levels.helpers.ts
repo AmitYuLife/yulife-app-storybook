@@ -156,7 +156,7 @@ const getNonPedometerEndResult = async ({
 };
 
 export async function getEndResult(activeLevel: IActiveLevel, blacklistApps: string[], features: IFeature) {
-  if (!features.tempGameEnableReleaseYuHealthV3) {
+  if (!features.tempGameEnableReleaseYuHealthV4) {
     return getEndResultFitkit(activeLevel, blacklistApps, features);
   }
 
