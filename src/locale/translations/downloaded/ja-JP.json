@@ -7,6 +7,12 @@
       "title": "スペースが\n不足しています!"
     },
     "restart": "最初からやり直す",
+    "restart_dialog": {
+      "description": "現在のゲームの進捗は失われます。",
+      "no": "キャンセル",
+      "title": "ゲームを最初からやり直しますか？",
+      "yes": "やり直す"
+    },
     "subtext": "タイルをスワイプして動かし、同じ数字の\nタイルが接触すると一つに合体します。\n合計%{finalScore}に到達させましょう!",
     "time": "時間",
     "title": "%{finalScore}を目指そう!",
@@ -1290,6 +1296,7 @@
     "login_hero": {
       "primary_cta_label": "アカウントを申請",
       "secondary_cta_label": "ログイン",
+      "session_expired_error_message": "セッションの有効期限が切れました。再度ログインしてください。",
       "slides": {
         "rewards": "健康的な習慣を報酬に変えよう！"
       }

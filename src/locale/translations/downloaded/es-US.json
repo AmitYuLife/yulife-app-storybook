@@ -7,6 +7,12 @@
       "title": "¡Te has quedado sin espacio!"
     },
     "restart": "Reiniciar juego",
+    "restart_dialog": {
+      "description": "Tu progreso en la partida actual se perderá.",
+      "no": "Cancelar",
+      "title": "¿Reiniciar el juego?",
+      "yes": "Reinicie"
+    },
     "subtext": "Desliza con el dedo para mover las fichas. Las fichas con el mismo número se vuelven una cuando se tocan. ¡Súmalas para alcanzar %{finalScore}!",
     "time": "Tiempo",
     "title": "¡Une los azulejos y llega a %{finalScore}!",
@@ -1290,6 +1296,7 @@
     "login_hero": {
       "primary_cta_label": "Reclamar mi cuenta",
       "secondary_cta_label": "Iniciar sesión",
+      "session_expired_error_message": "Su sesión ha expirado. Por favor, conéctese de nuevo.",
       "slides": {
         "rewards": "Convierta los hábitos saludables en recompensas"
       }

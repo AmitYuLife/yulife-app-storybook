@@ -7,6 +7,12 @@
       "title": "You ran out of space!"
     },
     "restart": "Restart Game",
+    "restart_dialog": {
+      "description": "Your progress for the current game will be lost.",
+      "no": "Cancel",
+      "title": "Restart Game?",
+      "yes": "Restart"
+    },
     "subtext": "Swipe to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach %{finalScore}!",
     "time": "Time",
     "title": "Join the tiles and get to %{finalScore}!",
@@ -1290,6 +1296,7 @@
     "login_hero": {
       "primary_cta_label": "Claim my account",
       "secondary_cta_label": "Log in",
+      "session_expired_error_message": "Your session has expired. Please sign in again.",
       "slides": {
         "rewards": "Turn healthy habits into rewards!"
       }
