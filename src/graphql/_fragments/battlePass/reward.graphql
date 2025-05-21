@@ -23,4 +23,7 @@ fragment MobileGameBattlePassReward on MobileGameBattlePassReward {
   onPress {
     ...SduiAction
   }
+  onContainerPress {
+    ...SduiAction
+  }
 }
