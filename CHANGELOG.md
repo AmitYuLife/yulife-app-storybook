@@ -7,6 +7,67 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.63.0] - 2025-05-21
+
+### Features
+
+- Feature LCS-1263: Dynamically calculate height available to login chest animation
+
+### Bugfixes
+
+- Bugfix DEVOP-4007: Increase memory limit for storybook CI job
+- Bugfix ISA-3417: Referral screen is not showing rewarded user history for single employee
+
+### Tasks
+
+- Task GS-1477: Bump YuHealth toggle
+- Task CTE-187: battle pass container press sdui
+- Task GS-1477: Fix yuhealth debug tools
+- Task GS-1577: Lunar planet image quality and white lines
+- Task GS-1579: Purge YuWatch toggles
+- Task LCS-754: purge tempQuestMapLevelReorder from e2e
+- Task LCS-1326: purge tempEnableQuestMapOnboarding
+- Task LCS-1328: purge tempDisableBounceOnProductSDUI
+- Task GS-1574 GS-1559: Tiles and top bar colour
+- Task LCS-1293: fix detox for encoded deeplink
+- Task LCS-1322: improve loading state during captcha evaluation
+- Task DEVOP-3997: Purge Snyk
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Improvements
+
+- Fix: LCS-1333: Improve 2048 game performance
+- Fix: LCS-1333: Game 2048 improvements
+
+### Extra
+
+- Purge GS-1553: Purge useStreakDetails toggle
+- Fix LCS-754: missing login expired error message
+- Feat: LCS-1333: Add 2048 game restart game validation
+- Detox: Quest Map Onboarding
+- Detox: Purge Yumoji Headwear Toggle
+- Feat LCS-1188: made stickers selectable without CTA button
+- Fix: LCS-139: Fix smoking opt out issues
+- Feat: LCS-1306: Add game timer
+- Detox: p2p fixes and refactor
+- Detox: smoking fixes and LCS-988 US smoking added
+- Detox: Remove Real Emails
+- Detox: updated stickers for p2p gifting test
+- Detox: Auto claim reward on final HQ screen
+- Detox: test for reinstated JP P2P birthday message
+- Detox: updated Purged Advice Template seed data
+- Detox: Challenge List Navigation
+- DEVOP-3838 - Use the API server .nvmrc
+- Detox GS-1432 / GS-1412: Donations Challenge Boost
+- Feat: LCS-1316: Update lapsed question half modal button type
+- Detox LCS-1158 - email login flows fixed
+- Feat: LCS-1318: Fetch YC after smoking streak updates
+
 ## [4.62.0] - 2025-05-14
 
 ### Features
