@@ -10,7 +10,9 @@ import * as helper from "./_resources/helpers";
 Feature("As a user I can take a Meditopia challenge", async () => {
   Scenario("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      });
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge Details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
@@ -90,7 +92,9 @@ Feature("As a user I can take a Meditopia challenge", async () => {
 
   Scenario("I can successfully take and quit a Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      });
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
@@ -114,7 +118,9 @@ Feature("As a user I can take a Meditopia challenge", async () => {
 
   Scenario("I can successfully take, pause, start and finish a Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      });
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge Details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
@@ -139,7 +145,9 @@ Feature("As a user I can take a Meditopia challenge", async () => {
 
   Scenario("I can successfully take a Meditopia challenge in app and hide the on screen elements", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      });
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
@@ -161,7 +169,9 @@ Feature("As a user I can take a Meditopia challenge", async () => {
 
   Scenario("I can successfully take a Meditopia challenge in app, close and reopen the app, and the challenge still runs", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      });
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));

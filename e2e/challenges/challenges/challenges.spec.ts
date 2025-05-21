@@ -9,13 +9,14 @@ import * as data from "../_data";
 import { getLocalisedString as t } from "@i18n";
 import { getFullName } from "_utils/users";
 import { questFTUEButton } from "./_resources/fixtures";
-import { yuscreenImages } from "@images";
 
 Feature("As a user I can take a challenge", async () => {
   Scenario("I can take a challenge and cancel it", scenario.start, async () => {
     Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+        Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
+      });
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
       Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
@@ -45,8 +46,12 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0)));
     });
     When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
-      When("I tap the first level button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        When("I tap the first level button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+          When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
+          });
+        });
       });
     });
     When("I start the 'Short Stroll' challenge", when.startChallenge("Short Stroll"), async () => {
@@ -64,29 +69,33 @@ Feature("As a user I can take a challenge", async () => {
 
   Scenario("I can fail a challenge", scenario.start, async () => {
     Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
-      When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
-        When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
-          Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_1.data.earnRate));
-          When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
-            When("I dismiss this screen", when.dismissNotificationScreenIfVisible, async () => {
-              Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
-              When("I wait for the challenge to end", when.wait(35000), async () => {
-                Then("I should see the didn't make it screen", then.textVisible("You were so close!", 5000));
-                Then("I should see the sub copy", then.textVisible("Why not try again?"));
-                When("I tap Got it", when.tapText(t("Got it")), async () => {
-                  Then("I should be back on quests", then.idVisible(ids.QUESTS_SCREEN(0)));
-                  When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-                    Then("I should see the number of points I started with", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-                  });
-                });
-              });
-            });
-          });
-        });
+      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+        Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
       });
+    });
+    When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+      When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
+      });
+    });
+    When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
+      Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_1.data.earnRate));
+    });
+    When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
+      When("I dismiss this screen", when.dismissNotificationScreenIfVisible, async () => {
+        Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
+      });
+    });
+    When("I wait for the challenge to end", when.wait(35000), async () => {
+      Then("I should see the didn't make it screen", then.textVisible("You were so close!", 5000));
+      Then("I should see the sub copy", then.textVisible("Why not try again?"));
+    });
+    When("I tap Got it", when.tapText(t("Got it")), async () => {
+      Then("I should be back on quests", then.idVisible(ids.QUESTS_SCREEN(0)));
+    });
+    When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+      Then("I should see the number of points I started with", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
   });
 
