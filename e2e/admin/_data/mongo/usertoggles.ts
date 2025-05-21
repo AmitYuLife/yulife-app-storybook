@@ -56,7 +56,7 @@ export const CUSTOMER_2_TOGGLES = {
     userId: customers.CUSTOMER_2.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      tempGameEnableReleaseYuHealthV3: true,
+      tempGameEnableReleaseYuHealthV4: true,
       showPermissionSettings: true,
     },
   },

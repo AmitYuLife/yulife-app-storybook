@@ -66,7 +66,7 @@ const transitionFromLoginToAuthenticated = async ({
   componentId: string;
   dispatch: Dispatch<unknown>;
 }) => {
-  const { tempGameEnableReleaseYuHealthV3 } = userFeatures || {};
+  const { tempGameEnableReleaseYuHealthV4 } = userFeatures || {};
 
   // ensure the keyboard is dismissed
   Keyboard.dismiss();
@@ -80,7 +80,7 @@ const transitionFromLoginToAuthenticated = async ({
   };
 
   const connectNavigationBuilder = (next?: VoidFunction) => () => {
-    const route = tempGameEnableReleaseYuHealthV3 ? ROUTES.yuHealthConnect : ROUTES.onboardingFitKitConnect;
+    const route = tempGameEnableReleaseYuHealthV4 ? ROUTES.yuHealthConnect : ROUTES.onboardingFitKitConnect;
 
     return navigateToRoute(componentId, route, next);
   };

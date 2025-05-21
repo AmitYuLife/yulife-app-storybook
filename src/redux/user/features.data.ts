@@ -36,7 +36,7 @@ export const features = [
   "canFallbackToStepDetectorSensor",
   "enablePopToRootOnDateChange",
   "enableChallengeNoDataDefer",
-  "tempGameEnableReleaseYuHealthV3",
+  "tempGameEnableReleaseYuHealthV4",
   "enableBikingHand",
   "enableBikingMountain",
   "enableBikingRoad",

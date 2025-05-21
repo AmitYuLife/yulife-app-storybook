@@ -27,7 +27,7 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
     return;
   }
 
-  const { enableDebugTool, tempGameEnableReleaseYuHealthV3 }: ReturnType<typeof getUserFeatures> = yield select(
+  const { enableDebugTool, tempGameEnableReleaseYuHealthV4 }: ReturnType<typeof getUserFeatures> = yield select(
     getUserFeatures
   );
 
@@ -56,12 +56,12 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
       startTime,
       fitKitTypes,
       disableTypeFilter,
-      usingYuHealth: !!tempGameEnableReleaseYuHealthV3,
+      usingYuHealth: !!tempGameEnableReleaseYuHealthV4,
     });
 
     let results: SampleQueryResult[] = [];
 
-    if (!tempGameEnableReleaseYuHealthV3) {
+    if (!tempGameEnableReleaseYuHealthV4) {
       const { results: fitkitResults, error: fitkitError }: QueryFitKitByTypesRawResponse = yield call(
         queryFitKitSampleData,
         {
