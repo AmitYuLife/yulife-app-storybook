@@ -7,6 +7,7 @@ extension Yulife.Objects {
   /// Default types to be extended / root query
   static let Query = Apollo.Object(
     typename: "Query",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }

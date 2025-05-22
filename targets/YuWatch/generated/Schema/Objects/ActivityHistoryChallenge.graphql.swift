@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let ActivityHistoryChallenge = Apollo.Object(
     typename: "ActivityHistoryChallenge",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }

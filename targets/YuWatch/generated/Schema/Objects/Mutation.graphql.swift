@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let Mutation = Apollo.Object(
     typename: "Mutation",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }

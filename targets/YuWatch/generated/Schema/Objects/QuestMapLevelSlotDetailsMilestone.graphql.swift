@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let QuestMapLevelSlotDetailsMilestone = Apollo.Object(
     typename: "QuestMapLevelSlotDetailsMilestone",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }

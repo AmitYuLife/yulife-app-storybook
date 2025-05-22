@@ -1,11 +1,9 @@
 import { StyleSheet, View } from "react-native";
 import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
 import StreakStart from "../subcomponents/streak-start";
-import { ActiveBuffsButton } from "@organisms";
 import { Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import { LottieView } from "@molecules";
-import { BuffArea } from "@graphql/__generated";
 
 interface Props {
   streakInfo: {
@@ -14,12 +12,10 @@ interface Props {
     image: any;
   };
   autoPlayLottie: boolean;
-  hideBuffs: boolean;
   isStreakCompleted: boolean;
   timeRemaining: string;
   isNotValidTime: boolean;
   ribbonLabel: string;
-  buffTypes: BuffArea[];
   accessibilityLabel: string;
   streakCompleted: number;
   streakMax: number;
@@ -28,12 +24,10 @@ interface Props {
 export const StreaksLegacy = ({
   streakInfo,
   autoPlayLottie,
-  hideBuffs,
   isStreakCompleted,
   timeRemaining,
   isNotValidTime,
   ribbonLabel,
-  buffTypes,
   accessibilityLabel,
   streakCompleted,
   streakMax,
@@ -42,9 +36,6 @@ export const StreaksLegacy = ({
     <View style={styles.wrapper}>
       <View style={styles.lottieWrapper}>
         <LottieView style={styles.lottie} source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
-        {hideBuffs ? null : (
-          <ActiveBuffsButton style={styles.activeBuffsButton} iconWidth={35} iconHeight={35} buffTypes={buffTypes} />
-        )}
       </View>
 
       <View accessible={true} accessibilityLabel={accessibilityLabel} style={styles.progressWrapper}>

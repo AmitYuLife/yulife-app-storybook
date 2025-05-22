@@ -2,11 +2,9 @@ import * as React from "react";
 import { Animated, Image, StyleSheet, View, ViewStyle } from "react-native";
 import { ChestCoin, Text } from "@atoms";
 import { Button, LinkButton } from "@molecules";
-import { ActiveBuffsButton } from "@organisms";
 import styles from "./animated-chest.styles";
 import assets from "./assets";
 import { DETOX_ENABLED } from "@services/socket";
-import { BuffArea } from "@graphql/__generated";
 
 interface IProps {
   ctaLabel: string;
@@ -22,7 +20,6 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
   private coinYOffset = new Animated.Value(500);
   private confettiScale = new Animated.Value(0);
   private confettiOpacity = new Animated.Value(0);
-  private buffTypes = [BuffArea.Chest];
 
   public componentWillUnmount() {
     if (this.animationDelay) {
@@ -55,7 +52,6 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
           {isLocked ? (
             <>
               <Image style={styles.image} source={assets.chestLocked} />
-              <ActiveBuffsButton style={styles.activeBuffsButton} buffTypes={this.buffTypes} />
             </>
           ) : (
             <>

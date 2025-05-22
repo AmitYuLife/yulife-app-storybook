@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let DailyPensionContribution = Apollo.Object(
     typename: "DailyPensionContribution",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }

@@ -5,7 +5,6 @@ import { Button, LinkButton } from "@molecules";
 import styles from "./streaks.styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { DETOX_ENABLED } from "@services/socket";
-import { BuffArea } from "@graphql/__generated";
 import { t } from "@locale";
 import { StreaksLegacy } from "./_legacy/streaks.legacy";
 import { Fade } from "@atoms";
@@ -52,13 +51,11 @@ const StreaksScreen = ({
   const dispatch = useDispatch();
   const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
   const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
-  const hideBuffs = streakMax === streakCompleted;
 
   const isNotValidTime = timeRemaining.startsWith("NaNd");
   const autoPlayLottie = DETOX_ENABLED ? false : true;
 
   const streakInfo = getStreakInfo(streakMax, heading, subHeading, reward, currentStreakCompleted);
-  const buffTypes = useMemo(() => [BuffArea.Streak], []);
 
   const accessibilityLabel = useMemo(
     () =>
@@ -99,14 +96,12 @@ const StreaksScreen = ({
         <StreaksLegacy
           streakInfo={streakInfo}
           autoPlayLottie={autoPlayLottie}
-          hideBuffs={hideBuffs}
           isStreakCompleted={isStreakCompleted}
           timeRemaining={timeRemaining}
           isNotValidTime={isNotValidTime}
           ribbonLabel={ribbonLabel}
           streakCompleted={streakCompleted}
           streakMax={streakMax}
-          buffTypes={buffTypes}
           accessibilityLabel={accessibilityLabel}
         />
         {children}

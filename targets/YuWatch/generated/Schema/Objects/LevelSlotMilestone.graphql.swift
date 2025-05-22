@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let LevelSlotMilestone = Apollo.Object(
     typename: "LevelSlotMilestone",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }

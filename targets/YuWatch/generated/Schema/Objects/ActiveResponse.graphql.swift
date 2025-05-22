@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let ActiveResponse = Apollo.Object(
     typename: "ActiveResponse",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }
