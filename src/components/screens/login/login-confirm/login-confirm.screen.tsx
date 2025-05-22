@@ -11,6 +11,7 @@ interface IProps {
   email: string;
   showLoginWithPassword: boolean;
   isResending: boolean;
+  isRedeemingOtp: boolean;
   onPressBack: () => void;
   onPressLoginWithPassword: () => void;
   onPressResend: () => void;
@@ -27,6 +28,7 @@ const LoginConfirmScreen = ({
   captcha,
   onPressResend,
   isResending,
+  isRedeemingOtp,
 }: IProps) => {
   const [lastResendTime, setLastResendTime] = useState<number>(Date.now());
   const [cooldownSeconds, setCooldownSeconds] = useState<number>(COOLDOWN_DURATION_SECONDS);
@@ -63,6 +65,7 @@ const LoginConfirmScreen = ({
       heading={t("screens.login_confirm.heading", { email })}
       onPressBack={onPressBack}
       variant="magicLink"
+      showFullScreenLoader={isRedeemingOtp}
     >
       <Box ph={30} pb={24}>
         <TextTemplate type="b1" textAlign="left">

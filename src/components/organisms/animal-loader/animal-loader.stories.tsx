@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import QuestMapLoader from "./quest-map-loader";
+import AnimalLoader from "./animal-loader";
 
-const meta: Meta<typeof QuestMapLoader> = {
-  component: QuestMapLoader,
-  title: "Design System/Molecules/QuestMapLoader",
+const meta: Meta<typeof AnimalLoader> = {
+  component: AnimalLoader,
+  title: "Design System/Molecules/AnimalLoader",
   tags: ["autodocs"],
   parameters: {
     design: {
@@ -17,7 +17,7 @@ const meta: Meta<typeof QuestMapLoader> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof QuestMapLoader>;
+type Story = StoryObj<typeof AnimalLoader>;
 
 export const Default: Story = {
   args: {

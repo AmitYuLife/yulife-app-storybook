@@ -3,14 +3,14 @@ import { Colours, Style } from "@styles";
 import { memo, useEffect, useState } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 
-const LOADING_ANIMATION = require("./quest-map-loading-animation.json");
+const LOADING_ANIMATION = require("./animal-loader-animation.json");
 
 interface IQuestMapLoaderProps {
   isLoading: boolean;
 }
 
 const DEBOUNCE_TIME = 500;
-const QuestMapLoader = ({ isLoading }: IQuestMapLoaderProps) => {
+const AnimalLoader = ({ isLoading }: IQuestMapLoaderProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(isLoading);
 
   useEffect(() => {
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(QuestMapLoader);
+export default memo(AnimalLoader);
