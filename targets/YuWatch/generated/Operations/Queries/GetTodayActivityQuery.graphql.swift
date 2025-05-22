@@ -18,7 +18,7 @@ extension Yulife {
       let __data: DataDict
       init(_dataDict: DataDict) { __data = _dataDict }
 
-      static var __parentType: Apollo.ParentType { Yulife.Objects.Query }
+      static var __parentType: any Apollo.ParentType { Yulife.Objects.Query }
       static var __selections: [Apollo.Selection] { [
         .field("getUserTodayActivity", [GetUserTodayActivity?]?.self),
         .field("getDailyPensionContribution", GetDailyPensionContribution.self),
@@ -34,7 +34,7 @@ extension Yulife {
         let __data: DataDict
         init(_dataDict: DataDict) { __data = _dataDict }
 
-        static var __parentType: Apollo.ParentType { Yulife.Objects.ActivityHistoryChallenge }
+        static var __parentType: any Apollo.ParentType { Yulife.Objects.ActivityHistoryChallenge }
         static var __selections: [Apollo.Selection] { [
           .field("__typename", String.self),
           .fragment(UserTodayActivity.self),
@@ -61,7 +61,7 @@ extension Yulife {
         let __data: DataDict
         init(_dataDict: DataDict) { __data = _dataDict }
 
-        static var __parentType: Apollo.ParentType { Yulife.Objects.DailyPensionContribution }
+        static var __parentType: any Apollo.ParentType { Yulife.Objects.DailyPensionContribution }
         static var __selections: [Apollo.Selection] { [
           .field("__typename", String.self),
           .fragment(UserDailyPensionContribution.self),

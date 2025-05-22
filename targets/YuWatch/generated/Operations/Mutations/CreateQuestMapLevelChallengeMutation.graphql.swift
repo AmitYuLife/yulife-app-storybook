@@ -35,7 +35,7 @@ extension Yulife {
       let __data: DataDict
       init(_dataDict: DataDict) { __data = _dataDict }
 
-      static var __parentType: Apollo.ParentType { Yulife.Objects.Mutation }
+      static var __parentType: any Apollo.ParentType { Yulife.Objects.Mutation }
       static var __selections: [Apollo.Selection] { [
         .field("createQuestMapLevelChallenge", CreateQuestMapLevelChallenge?.self, arguments: [
           "levelSlotId": .variable("levelSlotId"),
@@ -53,7 +53,7 @@ extension Yulife {
         let __data: DataDict
         init(_dataDict: DataDict) { __data = _dataDict }
 
-        static var __parentType: Apollo.ParentType { Yulife.Objects.ActiveResponse }
+        static var __parentType: any Apollo.ParentType { Yulife.Objects.ActiveResponse }
         static var __selections: [Apollo.Selection] { [
           .field("__typename", String.self),
           .field("challenge", Challenge?.self),
@@ -72,7 +72,7 @@ extension Yulife {
           let __data: DataDict
           init(_dataDict: DataDict) { __data = _dataDict }
 
-          static var __parentType: Apollo.ParentType { Yulife.Objects.Challenge }
+          static var __parentType: any Apollo.ParentType { Yulife.Objects.Challenge }
           static var __selections: [Apollo.Selection] { [
             .field("__typename", String.self),
             .field("id", String?.self),
@@ -98,7 +98,7 @@ extension Yulife {
           let __data: DataDict
           init(_dataDict: DataDict) { __data = _dataDict }
 
-          static var __parentType: Apollo.ParentType { Yulife.Objects.LevelSlot }
+          static var __parentType: any Apollo.ParentType { Yulife.Objects.LevelSlot }
           static var __selections: [Apollo.Selection] { [
             .field("__typename", String.self),
             .field("id", String?.self),
@@ -123,7 +123,7 @@ extension Yulife {
             let __data: DataDict
             init(_dataDict: DataDict) { __data = _dataDict }
 
-            static var __parentType: Apollo.ParentType { Yulife.Objects.LevelSlotMilestone }
+            static var __parentType: any Apollo.ParentType { Yulife.Objects.LevelSlotMilestone }
             static var __selections: [Apollo.Selection] { [
               .field("__typename", String.self),
               .field("id", String?.self),
@@ -144,7 +144,7 @@ extension Yulife {
               let __data: DataDict
               init(_dataDict: DataDict) { __data = _dataDict }
 
-              static var __parentType: Apollo.ParentType { Yulife.Objects.MilestoneTarget }
+              static var __parentType: any Apollo.ParentType { Yulife.Objects.MilestoneTarget }
               static var __selections: [Apollo.Selection] { [
                 .field("__typename", String.self),
                 .field("steps", Int?.self),

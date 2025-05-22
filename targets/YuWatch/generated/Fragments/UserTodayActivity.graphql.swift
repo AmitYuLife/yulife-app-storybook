@@ -12,7 +12,7 @@ extension Yulife {
     let __data: DataDict
     init(_dataDict: DataDict) { __data = _dataDict }
 
-    static var __parentType: Apollo.ParentType { Yulife.Objects.ActivityHistoryChallenge }
+    static var __parentType: any Apollo.ParentType { Yulife.Objects.ActivityHistoryChallenge }
     static var __selections: [Apollo.Selection] { [
       .field("__typename", String.self),
       .field("id", String?.self),

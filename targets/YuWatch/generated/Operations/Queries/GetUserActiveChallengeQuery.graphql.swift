@@ -18,7 +18,7 @@ extension Yulife {
       let __data: DataDict
       init(_dataDict: DataDict) { __data = _dataDict }
 
-      static var __parentType: Apollo.ParentType { Yulife.Objects.Query }
+      static var __parentType: any Apollo.ParentType { Yulife.Objects.Query }
       static var __selections: [Apollo.Selection] { [
         .field("getUserActiveChallenge", GetUserActiveChallenge?.self),
         .field("getCurrentUser", GetCurrentUser?.self),
@@ -34,7 +34,7 @@ extension Yulife {
         let __data: DataDict
         init(_dataDict: DataDict) { __data = _dataDict }
 
-        static var __parentType: Apollo.ParentType { Yulife.Objects.ActiveChallenge }
+        static var __parentType: any Apollo.ParentType { Yulife.Objects.ActiveChallenge }
         static var __selections: [Apollo.Selection] { [
           .field("__typename", String.self),
           .fragment(UserActiveChallenge.self),
@@ -62,13 +62,15 @@ extension Yulife {
         let __data: DataDict
         init(_dataDict: DataDict) { __data = _dataDict }
 
-        static var __parentType: Apollo.ParentType { Yulife.Objects.User }
+        static var __parentType: any Apollo.ParentType { Yulife.Objects.User }
         static var __selections: [Apollo.Selection] { [
           .field("__typename", String.self),
           .fragment(ChallengeUser.self),
         ] }
 
+        @available(*, deprecated, message: "Use getUserChallengesDoneToday query instead")
         var challengesDoneToday: Int? { __data["challengesDoneToday"] }
+        @available(*, deprecated, message: "Use getUserDailyChallengeAmountAvailable query instead")
         var dailyChallengeAmountAvailable: Int? { __data["dailyChallengeAmountAvailable"] }
 
         struct Fragments: FragmentContainer {

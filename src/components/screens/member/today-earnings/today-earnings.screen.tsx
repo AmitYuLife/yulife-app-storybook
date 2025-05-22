@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { TODAYS_EARNINGS } from "@ids";
-import { ActiveBuffsButton, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import ActivityFeed from "./subcomponents/activity-feed";
 import { Colours, Style } from "@styles";
 import { t } from "@locale";
@@ -9,7 +9,6 @@ import HintContainer from "@components/molecules/hint/hint.container";
 import { ROUTES } from "@navigation/constants";
 import { Box, YuCoinBadge, TextTemplate } from "@atoms";
 import { YucoinPowerButton } from "@components/molecules";
-import { BuffArea } from "@graphql/__generated";
 import { ScrollThresholdView } from "@molecules";
 import { GetTodayEarningsQuery } from "@graphql/__generated";
 
@@ -53,12 +52,6 @@ const TodayEarningsScreen = ({
         <Box gap={10} style={styles.headerWrapper}>
           <View style={styles.headerYucoinWrapper}>
             <YuCoinBadge width={110} height={116} currentWorld={currentWorld} currentYuniverse={currentYuniverse} />
-            <ActiveBuffsButton
-              iconWidth={25}
-              iconHeight={25}
-              style={styles.activeBuffs}
-              buffTypes={[BuffArea.StepsMilestone]}
-            />
           </View>
           <View style={styles.headerText} accessible={true}>
             <TextTemplate color={Colours.neutral.n900} type="l1">
@@ -107,11 +100,6 @@ const styles = StyleSheet.create({
   },
   headerText: {
     alignItems: "center",
-  },
-  activeBuffs: {
-    position: "absolute",
-    top: Style.adjust(18),
-    right: Style.adjust(18),
   },
   bodyWrapper: {
     paddingTop: Style.adjust(GAP),

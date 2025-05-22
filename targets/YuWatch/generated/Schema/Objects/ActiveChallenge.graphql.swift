@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let ActiveChallenge = Apollo.Object(
     typename: "ActiveChallenge",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }

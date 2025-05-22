@@ -153,28 +153,6 @@ export type ActiveAndInactiveCount = {
   inactive?: Maybe<Scalars["Int"]["output"]>;
 };
 
-export type ActiveBuffsOverlay = {
-  __typename?: "ActiveBuffsOverlay";
-  equipment: Array<ActiveBuffsOverlayEquipment>;
-  icon: RemoteImage;
-  image: RemoteImage;
-  title: Scalars["String"]["output"];
-};
-
-export type ActiveBuffsOverlayBuff = {
-  __typename?: "ActiveBuffsOverlayBuff";
-  description: Scalars["String"]["output"];
-  icon: RemoteImage;
-  title: Scalars["String"]["output"];
-};
-
-export type ActiveBuffsOverlayEquipment = {
-  __typename?: "ActiveBuffsOverlayEquipment";
-  buffs: Array<ActiveBuffsOverlayBuff>;
-  iconUri: Scalars["String"]["output"];
-  slotUri: Scalars["String"]["output"];
-};
-
 export type ActiveChallenge = {
   __typename?: "ActiveChallenge";
   challenge?: Maybe<Challenge>;
@@ -569,13 +547,6 @@ export type Buff = {
   name: Scalars["String"]["output"];
   value: Scalars["Int"]["output"];
 };
-
-export enum BuffArea {
-  Chest = "chest",
-  MeditationMilestone = "meditationMilestone",
-  StepsMilestone = "stepsMilestone",
-  Streak = "streak",
-}
 
 export type BulkMemberImport = {
   __typename?: "BulkMemberImport";
@@ -7850,7 +7821,6 @@ export type Query = {
   getAccessRequestsForAdviser: GetAccessRequestsForAdviserResult;
   getAccessRequestsForBusiness?: Maybe<GetAccessRequestsForBusinessResult>;
   getActiveAndInactiveCount: ActiveAndInactiveCount;
-  getActiveBuffsOverlay: ActiveBuffsOverlay;
   getActiveEmployments: Array<EmployerListItem>;
   getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
@@ -8179,11 +8149,6 @@ export type QueryGetAccessRequestsForBusinessArgs = {
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy?: InputMaybe<OrderBy>;
   state?: InputMaybe<BusinessAccessRequestState>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetActiveBuffsOverlayArgs = {
-  buffTypes: Array<BuffArea>;
 };
 
 /** Default types to be extended / root query */
@@ -23039,31 +23004,6 @@ export type SubmitMobileQuestLevelSudokuSolutionMutation = {
       } | null;
     } | null> | null;
   } | null;
-};
-
-export type GetActiveBuffsOverlayQueryVariables = Exact<{
-  buffTypes: Array<BuffArea> | BuffArea;
-}>;
-
-export type GetActiveBuffsOverlayQuery = {
-  __typename?: "Query";
-  getActiveBuffsOverlay: {
-    __typename?: "ActiveBuffsOverlay";
-    title: string;
-    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    equipment: Array<{
-      __typename?: "ActiveBuffsOverlayEquipment";
-      slotUri: string;
-      iconUri: string;
-      buffs: Array<{
-        __typename?: "ActiveBuffsOverlayBuff";
-        title: string;
-        description: string;
-        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      }>;
-    }>;
-  };
 };
 
 export type CancelMobileQuestLevelChallengeMutationVariables = Exact<{
@@ -75705,109 +75645,6 @@ export const SubmitMobileQuestLevelSudokuSolutionDocument = {
   SubmitMobileQuestLevelSudokuSolutionMutation,
   SubmitMobileQuestLevelSudokuSolutionMutationVariables
 >;
-export const GetActiveBuffsOverlayDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetActiveBuffsOverlay" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "buffTypes" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "BuffArea" } } },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getActiveBuffsOverlay" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "buffTypes" },
-                value: { kind: "Variable", name: { kind: "Name", value: "buffTypes" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "icon" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "image" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "equipment" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "slotUri" } },
-                      { kind: "Field", name: { kind: "Name", value: "iconUri" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "buffs" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "icon" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            { kind: "Field", name: { kind: "Name", value: "title" } },
-                            { kind: "Field", name: { kind: "Name", value: "description" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetActiveBuffsOverlayQuery, GetActiveBuffsOverlayQueryVariables>;
 export const CancelMobileQuestLevelChallengeDocument = {
   kind: "Document",
   definitions: [

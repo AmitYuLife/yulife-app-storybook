@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let CoinLedger = Apollo.Object(
     typename: "CoinLedger",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }

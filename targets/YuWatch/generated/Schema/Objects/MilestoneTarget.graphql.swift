@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let MilestoneTarget = Apollo.Object(
     typename: "MilestoneTarget",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }

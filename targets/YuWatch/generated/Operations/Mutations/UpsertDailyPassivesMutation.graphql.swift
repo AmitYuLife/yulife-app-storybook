@@ -23,7 +23,7 @@ extension Yulife {
       let __data: DataDict
       init(_dataDict: DataDict) { __data = _dataDict }
 
-      static var __parentType: Apollo.ParentType { Yulife.Objects.Mutation }
+      static var __parentType: any Apollo.ParentType { Yulife.Objects.Mutation }
       static var __selections: [Apollo.Selection] { [
         .field("upsertDailyPassives", UpsertDailyPassives.self, arguments: ["payload": .variable("payload")]),
       ] }
@@ -37,7 +37,7 @@ extension Yulife {
         let __data: DataDict
         init(_dataDict: DataDict) { __data = _dataDict }
 
-        static var __parentType: Apollo.ParentType { Yulife.Objects.PassiveChallengesResponse }
+        static var __parentType: any Apollo.ParentType { Yulife.Objects.PassiveChallengesResponse }
         static var __selections: [Apollo.Selection] { [
           .field("__typename", String.self),
           .field("challenges", [Challenge].self),
@@ -56,7 +56,7 @@ extension Yulife {
           let __data: DataDict
           init(_dataDict: DataDict) { __data = _dataDict }
 
-          static var __parentType: Apollo.ParentType { Yulife.Objects.Challenge }
+          static var __parentType: any Apollo.ParentType { Yulife.Objects.Challenge }
           static var __selections: [Apollo.Selection] { [
             .field("__typename", String.self),
             .field("updatedAt", Int?.self),
@@ -75,7 +75,7 @@ extension Yulife {
             let __data: DataDict
             init(_dataDict: DataDict) { __data = _dataDict }
 
-            static var __parentType: Apollo.ParentType { Yulife.Objects.MilestoneTarget }
+            static var __parentType: any Apollo.ParentType { Yulife.Objects.MilestoneTarget }
             static var __selections: [Apollo.Selection] { [
               .field("__typename", String.self),
               .field("steps", Int?.self),

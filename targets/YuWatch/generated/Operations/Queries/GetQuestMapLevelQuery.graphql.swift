@@ -31,7 +31,7 @@ extension Yulife {
       let __data: DataDict
       init(_dataDict: DataDict) { __data = _dataDict }
 
-      static var __parentType: Apollo.ParentType { Yulife.Objects.Query }
+      static var __parentType: any Apollo.ParentType { Yulife.Objects.Query }
       static var __selections: [Apollo.Selection] { [
         .field("getQuestMapLevel", GetQuestMapLevel.self, arguments: [
           "level": .variable("level"),
@@ -48,7 +48,7 @@ extension Yulife {
         let __data: DataDict
         init(_dataDict: DataDict) { __data = _dataDict }
 
-        static var __parentType: Apollo.ParentType { Yulife.Objects.QuestMapLevel }
+        static var __parentType: any Apollo.ParentType { Yulife.Objects.QuestMapLevel }
         static var __selections: [Apollo.Selection] { [
           .field("__typename", String.self),
           .field("id", Yulife.ID.self),
@@ -71,7 +71,7 @@ extension Yulife {
           let __data: DataDict
           init(_dataDict: DataDict) { __data = _dataDict }
 
-          static var __parentType: Apollo.ParentType { Yulife.Objects.QuestMapLevelSlot }
+          static var __parentType: any Apollo.ParentType { Yulife.Objects.QuestMapLevelSlot }
           static var __selections: [Apollo.Selection] { [
             .field("__typename", String.self),
             .field("id", Yulife.ID.self),
@@ -114,7 +114,7 @@ extension Yulife {
             let __data: DataDict
             init(_dataDict: DataDict) { __data = _dataDict }
 
-            static var __parentType: Apollo.ParentType { Yulife.Objects.QuestMapLevelSlotDetails }
+            static var __parentType: any Apollo.ParentType { Yulife.Objects.QuestMapLevelSlotDetails }
             static var __selections: [Apollo.Selection] { [
               .field("__typename", String.self),
               .field("heading", String.self),
@@ -131,7 +131,7 @@ extension Yulife {
               let __data: DataDict
               init(_dataDict: DataDict) { __data = _dataDict }
 
-              static var __parentType: Apollo.ParentType { Yulife.Objects.QuestMapLevelSlotDetailsMilestone }
+              static var __parentType: any Apollo.ParentType { Yulife.Objects.QuestMapLevelSlotDetailsMilestone }
               static var __selections: [Apollo.Selection] { [
                 .field("__typename", String.self),
                 .field("id", Yulife.ID.self),

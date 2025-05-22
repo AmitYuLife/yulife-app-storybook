@@ -6,6 +6,7 @@ import Apollo
 extension Yulife.Objects {
   static let User = Apollo.Object(
     typename: "User",
-    implementedInterfaces: []
+    implementedInterfaces: [],
+    keyFields: nil
   )
 }
