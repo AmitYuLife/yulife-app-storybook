@@ -1,4 +1,4 @@
-import { Box, TextTemplate } from "@atoms";
+import { Box } from "@atoms";
 import RewardSearchOverlayContainer from "@components/modals/reward-search-overlay/reward-search-overlay.container";
 import RewardSearchHeader from "@components/modals/reward-search-overlay/subcomponents/reward-search-header";
 import { GetMobileGameShopfrontQuery, GetMobileRewardsListQuery } from "@graphql/__generated/graphql";
@@ -17,6 +17,7 @@ import RewardRecentlyUsedSectionContainer from "../rewards/list/subcomponents/re
 import { RewardsListItem } from "../rewards/list/rewards-list.item";
 import { t } from "@locale";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
+import NoStoreWalletButton from "../rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
 
 export enum RewardListItemTypes {
   RewardStoreExpiryWarning = "RewardStoreExpiryWarning",
@@ -24,6 +25,7 @@ export enum RewardListItemTypes {
   RewardPassItem = "RewardPassItem",
   ContentLocationSelection = "ContentLocationSelection",
   RewardRecentlyUsedSection = "RewardRecentlyUsed",
+  NoStoreWallet = "NoStoreWallet",
 }
 
 interface IShopfrontScreenProps {
@@ -77,26 +79,6 @@ const ShopfrontScreen = ({
         );
       }
 
-      if (item.__typename === RewardListItemTypes.ContentLocationSelection) {
-        return (
-          <Pressable
-            px={20}
-            pt={10}
-            alignItems="center"
-            mb={SECTION_SPACING}
-            enableAnimation={true}
-            justifyContent="center"
-            onPress={handleStoreLocationPress}
-          >
-            <TextTemplate type="b2">
-              {t("screens.rewards.storefront.reward_location", {
-                location: shopfront?.rewardList?.rewardStoreLocation,
-              })}
-            </TextTemplate>
-          </Pressable>
-        );
-      }
-
       if (item.__typename === RewardListItemTypes.RewardPassItem) {
         const { label, primaryColor, passIcon, backgroundImage, onPress, foregroundImage, slots } = item;
         return (
@@ -132,13 +114,21 @@ const ShopfrontScreen = ({
         );
       }
 
+      if (item.__typename === RewardListItemTypes.NoStoreWallet) {
+        return (
+          <Box mt={SECTION_SPACING}>
+            <NoStoreWalletButton onPress={onPressWallet} />
+          </Box>
+        );
+      }
+
       if (item.__typename === "MobileRewardsListItem") {
         return <RewardsListItem {...item} onPress={() => onItemPress(item)} />;
       }
 
       return null;
     },
-    [handleStoreLocationPress, onItemPress, shopfront]
+    [onItemPress, shopfront, onPressWallet]
   );
 
   const listData = useMemo(() => {
@@ -148,6 +138,7 @@ const ShopfrontScreen = ({
     }));
 
     return [
+      ...(!hasVoucherStore ? [{ __typename: RewardListItemTypes.NoStoreWallet as const }] : []),
       {
         __typename: RewardListItemTypes.RewardsSectionHeader as const,
         children: t("screens.rewards.list.reward_passes"),
@@ -164,7 +155,6 @@ const ShopfrontScreen = ({
             ...(allRewardItems || []),
           ]
         : []),
-      { __typename: RewardListItemTypes.ContentLocationSelection as const },
     ];
   }, [allRewardItems, hasVoucherStore, shopfront?.rewardPasses?.activeRewardPasses]);
 
@@ -176,9 +166,16 @@ const ShopfrontScreen = ({
     <Box bg="#FAFAFE" flex={1}>
       <Box bg="white">
         <GenericHeadingPad />
-        <Pressable onPress={onSearchOpen} pb={SECTION_SPACING} bg="white" pt={8}>
-          <RewardSearchHeader onPress={onSearchOpen} editable={false} onPressWallet={onPressWallet} />
-        </Pressable>
+        {hasVoucherStore ? (
+          <Pressable onPress={onSearchOpen} pb={SECTION_SPACING} bg="white" pt={8}>
+            <RewardSearchHeader
+              onPress={onSearchOpen}
+              editable={false}
+              onPressWallet={onPressWallet}
+              isOpen={isSearchOpen}
+            />
+          </Pressable>
+        ) : null}
       </Box>
       <FlashList
         data={listData}

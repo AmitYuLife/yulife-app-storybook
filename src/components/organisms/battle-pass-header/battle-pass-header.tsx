@@ -10,12 +10,16 @@ import { Box, TextTemplate } from "@atoms";
 import { useScrollToItem } from "@hooks";
 import { BATTLE_PASS_DESCRIPTION, BATTLE_PASS_TITLE } from "@ids";
 import { IBoxProps } from "@atoms/box/box.types";
+import { ShineButton } from "@components/molecules";
+import { WalletIcon } from "@atoms/icon/wallet-icon";
+import { t } from "@locale";
 
 interface IBattlePassHeaderProps extends IBoxProps {
   title: string;
   textColor?: string;
   description: string;
   backgroundImage: ImageSourcePropType;
+  onPressWallet?: () => void;
   items: IBattlePassListItem[];
   onScrollStart?: () => void;
   listRef?: RefObject<FlashList<IBattlePassListItem>>;
@@ -31,6 +35,7 @@ const BattlePassHeader = ({
   onScrollStart,
   items,
   listRef,
+  onPressWallet,
   ...props
 }: IBattlePassHeaderProps) => {
   const { activeListRef, scrollToReward } = useScrollToItem({
@@ -41,15 +46,24 @@ const BattlePassHeader = ({
 
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
-      <Box pl={16} mb={24} accessible={true} {...props}>
-        <View style={styles.title}>
-          <TextTemplate type="b1b" color={textColor} testID={BATTLE_PASS_TITLE(title)}>
-            {title}
+      <Box pl={16} pr={16} mb={24} accessible={true} {...props} flexDirection="row" justifyContent="space-between">
+        <Box>
+          <View style={styles.title}>
+            <TextTemplate type="b1b" color={textColor} testID={BATTLE_PASS_TITLE(title)}>
+              {title}
+            </TextTemplate>
+          </View>
+          <TextTemplate type="l1" color={textColor} testID={BATTLE_PASS_DESCRIPTION(description)}>
+            {description}
           </TextTemplate>
-        </View>
-        <TextTemplate type="l1" color={textColor} testID={BATTLE_PASS_DESCRIPTION(description)}>
-          {description}
-        </TextTemplate>
+        </Box>
+        {onPressWallet ? (
+          <ShineButton
+            icon={<WalletIcon size={22} />}
+            label={t("screens.rewards.storefront.wallet")}
+            onPress={onPressWallet}
+          />
+        ) : null}
       </Box>
       <BattlePassList
         ref={activeListRef}

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -350,12 +351,6 @@ export type AnalyticsConfiguration = {
   showRewards?: Maybe<Scalars["Boolean"]["output"]>;
   showYuScore?: Maybe<Scalars["Boolean"]["output"]>;
   welcomePosterLink?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type AnnouncementSetting = {
-  __typename?: "AnnouncementSetting";
-  description?: Maybe<Scalars["String"]["output"]>;
-  type?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type AnswerInput = {
@@ -1069,8 +1064,6 @@ export type BusinessSessionBusiness = {
 
 export type BusinessSessionSettings = {
   __typename?: "BusinessSessionSettings";
-  /** @deprecated No longer in use */
-  announcement?: Maybe<AnnouncementSetting>;
   customValuesFiltering: CustomValuesFiltering;
   earlyAccessEnabled: Scalars["Boolean"]["output"];
   employeeRecognitionEnabled: Scalars["Boolean"]["output"];
@@ -1079,8 +1072,6 @@ export type BusinessSessionSettings = {
   helpCentreLink?: Maybe<Scalars["String"]["output"]>;
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
-  /** @deprecated Use showConnectionsOverrideState */
-  showConnectionsOverride?: Maybe<Scalars["Boolean"]["output"]>;
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
   yuStoreEnabled: Scalars["Boolean"]["output"];
 };
@@ -5004,7 +4995,7 @@ export type HrisConnectionImportEvent = {
   __typename?: "HrisConnectionImportEvent";
   businessMemberDataConnectionEventId: Scalars["String"]["output"];
   businessMemberDataConnectionId: Scalars["String"]["output"];
-  businessMemberDataImportId?: Maybe<Scalars["String"]["output"]>;
+  businessMemberDataImportId: Scalars["String"]["output"];
   completedAt?: Maybe<Scalars["String"]["output"]>;
   createdAt: Scalars["String"]["output"];
   eventType?: Maybe<ConnectionEventType>;
@@ -6401,7 +6392,7 @@ export type Mutation = {
   loginUser?: Maybe<UserPayload>;
   makeBusinessAccessUserSoleOwner: Scalars["Boolean"]["output"];
   markInboxMessagesAsSeen?: Maybe<Scalars["Boolean"]["output"]>;
-  markMobileGameUserAchievementViewed?: Maybe<MobileGameUserAchievement>;
+  markMobileGameUserAchievementsViewed?: Maybe<MobileGameUserAchievements>;
   markMobileNotificationsAsViewedByType: Scalars["Boolean"]["output"];
   markMobileUserWrappedAsViewed: MarkMobileUserWrappedResponse;
   /** Checks if the current step needs to be updated. E.g if you're on any step after checkout - once you quit, you need to be sent back to the main checkout step. */
@@ -6908,8 +6899,8 @@ export type MutationMarkInboxMessagesAsSeenArgs = {
   messageIds: Array<Scalars["ID"]["input"]>;
 };
 
-export type MutationMarkMobileGameUserAchievementViewedArgs = {
-  id: Scalars["String"]["input"];
+export type MutationMarkMobileGameUserAchievementsViewedArgs = {
+  ids?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 export type MutationMarkMobileNotificationsAsViewedByTypeArgs = {

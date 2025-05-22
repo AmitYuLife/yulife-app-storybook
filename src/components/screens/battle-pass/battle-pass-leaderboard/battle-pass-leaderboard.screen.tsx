@@ -47,6 +47,7 @@ interface IDetails {
 }
 
 interface IProps {
+  onBack: () => void;
   details: IDetails;
   selectedDate?: string;
   availableDates?: string;
@@ -64,6 +65,7 @@ const FLOATING_ITEM_OFFSET = Style.adjust(190) - 10 - Style.DEVICE_HEIGHT + NAV_
 
 const BattlePassLeaderboardScreen = ({
   details,
+  onBack,
   onPressDate,
   leaderboard,
   selectedDate,
@@ -206,12 +208,10 @@ const BattlePassLeaderboardScreen = ({
           onPress={onPressFloatingRank}
         />
       </View>
-      <TopBarAbsolute type="default" leftIcon={LeftIcon.BACK} onPressLeftIcon={onPressLeftIcon} />
+      <TopBarAbsolute type="default" leftIcon={LeftIcon.BACK} onPressLeftIcon={onBack} />
     </View>
   );
 };
-
-const onPressLeftIcon = () => Navigation.popTo(ROUTES.rewards);
 
 const keyExtractor = (item: ISocialGroupLeaderboardListItem) => item.id;
 

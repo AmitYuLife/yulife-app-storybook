@@ -51,7 +51,7 @@ const END_OF_SEASON_BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversa
 
 const _RewardsTabManagerContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
-  const { showNotificationCentre, tempGameShowWallet, tempGameNewRewardsStorefront } = useUserFeatures();
+  const { showNotificationCentre, tempGameShowWallet, tempGameNewRewardsStorefrontRelease } = useUserFeatures();
   const purchasesIconRef = useRef<View>(null);
 
   const [state, dispatch] = useReducer<Reducer<IRewardsManagerState, IRewardsManagerAction>>(
@@ -275,7 +275,7 @@ const _RewardsTabManagerContainer = () => {
     return <Container handlePurchasesPress={handlePurchasesPress} />;
   }
 
-  if (tempGameNewRewardsStorefront) {
+  if (tempGameNewRewardsStorefrontRelease) {
     return <ShopFrontContainer leftIcons={leftIcons} />;
   }
 

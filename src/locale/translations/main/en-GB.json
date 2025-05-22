@@ -598,6 +598,10 @@
         "title": "Connect your fitness tracker to get rewarded for additional daily steps. Don’t forget to still keep your phone with you during challenges!",
         "not_connected": "Not connected",
         "last_sync": "Last synced at %{date}"
+      },
+      "content_location": {
+        "label": "Store location",
+        "description": "Select your preferred store location"
       }
     },
     "smoking_hub": {
@@ -1015,7 +1019,8 @@
         "initial_state": "Search for discounts, vouchers, and subscriptions."
       },
       "storefront": {
-        "reward_location": "Your rewards are set to %{location}"
+        "reward_location": "Your rewards are set to %{location}",
+        "wallet": "Wallet"
       },
       "expiry_warning": {
         "title": "Your rewards access is ending soon",

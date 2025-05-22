@@ -1,11 +1,10 @@
 import { Box, StackedShadowWrapper, TextTemplate } from "@atoms";
-import { LottieView, TouchableOpacityWithDelay } from "@components/molecules";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 import { WALLET_COUPON_ITEM_DESCRIPTION } from "@ids";
 import { Colours, Style, TemplateTextType } from "@styles";
 import { memo } from "react";
 import { StyleSheet } from "react-native";
-
-const shineLottie = require("@assets/lottie/wallet/shine.json");
+import WalletShine from "./wallet-shine";
 
 const HIT_SLOP_SIZE = Style.adjust(8);
 const HIT_SLOP = {
@@ -28,10 +27,11 @@ interface IWalletDiscountItem<T> {
 
 interface WalletDiscountItemProps<T> {
   item: IWalletDiscountItem<T>;
+  index: number;
   onPress: (action: T) => void;
 }
 
-const WalletDiscountItem = <T,>({ item, onPress }: WalletDiscountItemProps<T>) => (
+const WalletDiscountItem = <T,>({ item, index, onPress }: WalletDiscountItemProps<T>) => (
   <TouchableOpacityWithDelay
     onPress={() => onPress?.(item.onPress)}
     hitSlop={HIT_SLOP}
@@ -40,9 +40,7 @@ const WalletDiscountItem = <T,>({ item, onPress }: WalletDiscountItemProps<T>) =
     accessibilityLabel={`${item.title} ${item.description || ""}`}
   >
     <StackedShadowWrapper style={styles.container} outerStyle={styles.outerContainer} stackColors={[SHADOW_COLOR]}>
-      <Box style={StyleSheet.absoluteFillObject}>
-        <LottieView style={styles.lottie} source={shineLottie} autoPlay={true} loop={true} resizeMode="cover" />
-      </Box>
+      <WalletShine index={index} />
       <Box flex={2} justifyContent="space-around" alignItems="stretch" flexDirection="column">
         {!item.label ? null : (
           <Box justifyContent="flex-start" alignItems="flex-start">
@@ -70,11 +68,11 @@ const WalletDiscountItem = <T,>({ item, onPress }: WalletDiscountItemProps<T>) =
       <Box flex={1} pl={10} alignItems="center" justifyContent="center" flexDirection="column">
         {!item.info
           ? null
-          : item.info.map((i, index) => (
+          : item.info.map((i, infoIndex) => (
               <TextTemplate
                 color={Colours.neutral.white}
                 type={(i.style as TemplateTextType) || "l1"}
-                key={index}
+                key={infoIndex}
                 numberOfLines={3}
               >
                 {i.text}

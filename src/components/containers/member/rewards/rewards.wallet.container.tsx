@@ -14,6 +14,8 @@ import WalletCard from "../../../molecules/reward-wallet/walletCard";
 import EmptyWallet from "./subcomponents/empty-wallet";
 
 import WalletItemLoading from "./subcomponents/wallet-item-loading";
+import { Style } from "@styles";
+import { StyleSheet } from "react-native";
 
 function RewardsWalletContainer() {
   const dispatch = useDispatch();
@@ -82,10 +84,11 @@ function RewardsWalletContainer() {
       {EmptyComponent ? (
         EmptyComponent
       ) : (
-        <Box flex={1} p={20}>
+        <Box flex={1}>
           <FlashList
             data={calculatedData}
             renderItem={renderItem}
+            contentContainerStyle={styles.contentContainer}
             estimatedItemSize={175}
             onRefresh={refetch}
             refreshing={loading}
@@ -102,5 +105,11 @@ function RewardsWalletContainer() {
     </Box>
   );
 }
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    padding: Style.adjust(20),
+  },
+});
 
 export default memo(RewardsWalletContainer);

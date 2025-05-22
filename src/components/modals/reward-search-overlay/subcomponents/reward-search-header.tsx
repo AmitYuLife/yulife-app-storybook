@@ -4,7 +4,7 @@ import { WalletIcon } from "@atoms/icon/wallet-icon";
 import { Pressable, ShineButton } from "@components/molecules";
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useEffect, useRef } from "react";
 import { LayoutChangeEvent, StyleSheet, TextInput, TextInputProps } from "react-native";
 import {
   FadeIn,
@@ -16,16 +16,24 @@ import {
 } from "react-native-reanimated";
 
 interface ISearchBarProps extends TextInputProps {
+  isOpen?: boolean;
   onPressWallet?: () => void;
   onChangeText?: (text: string) => void;
 }
 
 const TRANSITION_DURATION = 350;
 
-const RewardSearchHeader = ({ value, onPressWallet, onChangeText, ...props }: ISearchBarProps) => {
+const RewardSearchHeader = ({ value, onPressWallet, onChangeText, isOpen, ...props }: ISearchBarProps) => {
   const wrapperRef = useAnimatedRef();
   const initialSearchBarWidth = useSharedValue(0);
   const wrapperWidth = useSharedValue(0);
+  const inputRef = useRef<TextInput>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      inputRef.current?.focus();
+    }
+  }, [isOpen]);
 
   const onLayoutWrapper = useCallback(
     (layout: LayoutChangeEvent) => {
@@ -96,6 +104,7 @@ const RewardSearchHeader = ({ value, onPressWallet, onChangeText, ...props }: IS
               onLayout={onSearchLayout}
               placeholderTextColor={"#A0A09B"}
               value={value}
+              ref={inputRef}
               spellCheck={false}
               autoCorrect={false}
               onChangeText={onChangeText}
@@ -108,7 +117,11 @@ const RewardSearchHeader = ({ value, onPressWallet, onChangeText, ...props }: IS
         </Box>
 
         <Box forceAnimated={true} style={walletButtonStyle}>
-          <ShineButton icon={<WalletIcon size={22} />} label="Wallet" onPress={onPressWallet} />
+          <ShineButton
+            icon={<WalletIcon size={22} />}
+            label={t("screens.rewards.storefront.wallet")}
+            onPress={onPressWallet}
+          />
         </Box>
 
         {!onPressWallet && value ? (

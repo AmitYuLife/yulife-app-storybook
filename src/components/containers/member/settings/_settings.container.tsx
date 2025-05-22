@@ -200,6 +200,19 @@ function SettingsContainer({ componentId }: IOwnProps) {
             });
           },
         },
+        {
+          isVisible: true,
+          title: t("screens.settings.content_location.label"),
+          description: t("screens.settings.content_location.description"),
+          onPress: () => {
+            Navigation.push(ROUTES.settings, {
+              component: {
+                id: ROUTES.selectContentLocation,
+                name: ROUTES.selectContentLocation,
+              },
+            });
+          },
+        },
       ],
     }),
     [

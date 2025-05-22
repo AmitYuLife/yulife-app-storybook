@@ -35,7 +35,9 @@ export interface IRewardsManagerAction {
 export interface IRewardContainerProps {
   showNavigation?: boolean;
   hasOtherContainers?: boolean;
+  onPressWallet?: () => void;
   handlePurchasesPress?: () => void;
+  isInnerScreen?: boolean;
 }
 
 export interface RewardOnPressArgs {

@@ -1,8 +1,9 @@
 import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
-import { LottieView, TouchableOpacityWithDelay } from "@components/molecules";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours, Style, TemplateTextType } from "@styles";
 import { memo } from "react";
 import { Image, StyleSheet } from "react-native";
+import WalletShine from "./wallet-shine";
 
 const BACKGROUND_COLOUR = "#FFD600";
 const SHADOW_COLOUR = "#FFB803";
@@ -15,7 +16,6 @@ const HIT_SLOP = {
   bottom: Style.adjust(12),
   top: HIT_SLOP_SIZE,
 };
-const shineLottie = require("@assets/lottie/wallet/shine.json");
 interface IWalletItem<T> {
   description?: string;
   image?: Source;
@@ -26,10 +26,11 @@ interface IWalletItem<T> {
 }
 interface WalletItemProps<T> {
   item: IWalletItem<T>;
+  index: number;
   onPress: (action: T) => void;
 }
 
-const WalletItem = <T,>({ item, onPress }: WalletItemProps<T>) => (
+const WalletItem = <T,>({ item, index, onPress }: WalletItemProps<T>) => (
   <TouchableOpacityWithDelay
     onPress={() => onPress?.(item.onPress)}
     hitSlop={HIT_SLOP}
@@ -38,9 +39,7 @@ const WalletItem = <T,>({ item, onPress }: WalletItemProps<T>) => (
     accessibilityLabel={`${item.title} ${item.description || ""}`}
   >
     <StackedShadowWrapper style={styles.container} stackColors={[SHADOW_COLOUR]} outerStyle={styles.outerContainer}>
-      <Box style={StyleSheet.absoluteFillObject}>
-        <LottieView style={styles.lottie} source={shineLottie} autoPlay={true} loop={true} resizeMode="cover" />
-      </Box>
+      <WalletShine index={index} />
       <Box style={styles.imageContainer}>
         {item.image && <Image style={styles.image} source={item.image} resizeMode="cover" />}
       </Box>
@@ -52,17 +51,19 @@ const WalletItem = <T,>({ item, onPress }: WalletItemProps<T>) => (
             </TextTemplate>
           </Box>
         )}
-        <TextTemplate color={TEXT_COLOUR} type="h3">
-          {item.title}
-        </TextTemplate>
+        <Box>
+          <TextTemplate color={TEXT_COLOUR} type="h3" numberOfLines={2}>
+            {item.title}
+          </TextTemplate>
+        </Box>
         <TextTemplate color={Colours.neutral.n900} type="b2" numberOfLines={1}>
           {item.description}
         </TextTemplate>
       </Box>
       {item.info && item.info.length > 0 && (
         <Box>
-          {item.info.map((infoItem, index) => (
-            <TextTemplate key={index} color={TEXT_COLOUR} type={(infoItem.style as TemplateTextType) || "b2"}>
+          {item.info.map((infoItem, infoIndex) => (
+            <TextTemplate key={infoIndex} color={TEXT_COLOUR} type={(infoItem.style as TemplateTextType) || "b2"}>
               {infoItem.text}
             </TextTemplate>
           ))}

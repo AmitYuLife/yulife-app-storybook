@@ -25,12 +25,14 @@ interface IProps {
   description: string;
   disclaimer?: string;
   backgroundImage: ImageSourcePropType;
+  isInnerScreen?: boolean;
   donationTemplates: IDonationListItem[];
   progressStatus: IBattlePassProgressBar;
   isCompleteLoading?: boolean; //leave this for now, it will be purged on container changes
   rewards: IBattlePassListItem[];
   onBackPress?: () => void;
   showNavigation?: boolean;
+  onPressWallet?: () => void;
   onComplete: () => void; //leave this for now, it will be purged on container changes
   showCoinAnimation: boolean;
   onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
@@ -45,9 +47,11 @@ const BattlePassScreen = ({
   showNavigation,
   donationTemplates,
   progressStatus,
+  isInnerScreen,
   rewards,
   showCoinAnimation,
   onScroll,
+  onPressWallet,
 }: IProps) => {
   const isSeasonComplete = progressStatus.step === progressStatus.steps;
   const headerListRef = useRef<FlashList<IBattlePassListItem>>(null);
@@ -79,11 +83,12 @@ const BattlePassScreen = ({
           items={rewards}
           listRef={headerListRef}
           onScrollStart={onScrollStart}
+          onPressWallet={onPressWallet}
           progressStatus={progressStatus}
-          pt={showNavigation ? TOP_BAR_WITH_PAD : 0}
+          pt={showNavigation || isInnerScreen ? TOP_BAR_WITH_PAD : 0}
         />
-        <Box px={16} pb={showNavigation ? 0 : 80} mt={30} flex={1}>
-          <ScrollView bounces={false} scrollEventThrottle={16} onScroll={onScroll} showsVerticalScrollIndicator={false}>
+        <Box px={16} pb={showNavigation || isInnerScreen ? 0 : 80} mt={30} flex={1}>
+          <ScrollView scrollEventThrottle={16} onScroll={onScroll} showsVerticalScrollIndicator={false}>
             {!isSeasonComplete ? (
               <RewardsList
                 donationTemplates={donationTemplates}
