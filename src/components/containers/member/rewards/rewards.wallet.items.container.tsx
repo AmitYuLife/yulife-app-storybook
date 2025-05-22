@@ -113,7 +113,7 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
   );
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<MobileGameUserWalletListItem>) => {
+    ({ item, index }: ListRenderItemInfo<MobileGameUserWalletListItem>) => {
       if (item.item_type === "section-header") {
         return <WalletSectionHeader {...item} />;
       }
@@ -127,14 +127,14 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
       }
 
       if (item.type === "coupon") {
-        return <WalletCouponItem item={item} onPress={handleCardPress} />;
+        return <WalletCouponItem item={item} onPress={handleCardPress} index={index} />;
       }
 
       if (item.type === "discount") {
-        return <WalletDiscountIem item={item} onPress={handleCardPress} />;
+        return <WalletDiscountIem item={item} onPress={handleCardPress} index={index} />;
       }
 
-      return <WalletItem item={item} onPress={handleCardPress} />;
+      return <WalletItem item={item} onPress={handleCardPress} index={index} />;
     },
     [handleCardPress]
   );

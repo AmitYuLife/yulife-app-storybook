@@ -30,7 +30,7 @@ import { prizesAwarded } from "@redux/prizes/prizes.actions";
 import { BattlePassEndOfSeasonModal } from "@components/modals";
 import { t } from "@locale";
 
-const BattlePassContainer = ({ showNavigation = false }: IRewardContainerProps) => {
+const BattlePassContainer = ({ showNavigation = false, onPressWallet, isInnerScreen }: IRewardContainerProps) => {
   const { componentId } = useNavigation();
   const { onScroll, dispatch: rewardsManagerDispatch } = useContext(RewardsManagerContext);
 
@@ -353,8 +353,10 @@ const BattlePassContainer = ({ showNavigation = false }: IRewardContainerProps) 
           description={battlePass?.description || ""}
           disclaimer={battlePass?.disclaimer}
           donationTemplates={donationTemplates}
+          onPressWallet={onPressWallet}
           onBackPress={onBack}
           showNavigation={showNavigation}
+          isInnerScreen={isInnerScreen}
           backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
           progressStatus={battlePass?.progressStatus}
           isCompleteLoading={isCompleteLoading}

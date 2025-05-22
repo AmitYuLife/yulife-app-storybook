@@ -15,8 +15,9 @@ import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Navigation } from "@navigation/main";
 import { IRewardContainerProps } from "../member/rewards/rewards.types";
+import NoStoreWalletButton from "@components/screens/member/rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
 
-const RewardsUnlockContainer = ({ showNavigation = false }: IRewardContainerProps) => {
+const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPressWallet }: IRewardContainerProps) => {
   const { componentId } = useNavigation();
   const [_, { data: queryResult }] = useQueryOnScreenSeen(
     gql("GetMobileUnlockableBattlePassVouchersDocument"),
@@ -71,27 +72,32 @@ const RewardsUnlockContainer = ({ showNavigation = false }: IRewardContainerProp
           onScroll={onScroll}
         >
           <Box
-            right={0}
-            left={0}
-            bg={data.header.background.color}
-            pt={showNavigation ? TOP_BAR.HEIGHT : 20}
-            pl={20}
-            pr={20}
-            pb={84}
+            pt={showNavigation ? TOP_BAR.TOP_BAR_WITH_PAD : Style.adjust(isInnerScreen ? 0 : 20)}
+            disableAutoAdjust={true}
           >
-            <Box position="absolute" right={0}>
-              <Image width={Style.adjust(240)} source={data.header.background.image} />
-            </Box>
-            <Box flex={1}>
-              <Box mt={8} w={230}>
-                <TextTemplate color={"white"} type="h3">
-                  {data.header.heading}
-                </TextTemplate>
+            <Box
+              right={0}
+              left={0}
+              bg={data.header.background.color}
+              pl={20}
+              pr={20}
+              pb={84}
+              pt={isInnerScreen ? TOP_BAR.PADDING_TOP : 0}
+            >
+              <Box position="absolute" right={0}>
+                <Image width={Style.adjust(240)} source={data.header.background.image} />
               </Box>
-              <Box mt={8} w={230}>
-                <TextTemplate color={"white"} type="l1">
-                  {data.header.description}
-                </TextTemplate>
+              <Box flex={1}>
+                <Box mt={8} w={230}>
+                  <TextTemplate color={"white"} type="h3">
+                    {data.header.heading}
+                  </TextTemplate>
+                </Box>
+                <Box mt={8} w={230}>
+                  <TextTemplate color={"white"} type="l1">
+                    {data.header.description}
+                  </TextTemplate>
+                </Box>
               </Box>
             </Box>
           </Box>
@@ -101,10 +107,16 @@ const RewardsUnlockContainer = ({ showNavigation = false }: IRewardContainerProp
           {!data.futureGames.length
             ? null
             : data.futureGames.map((game, gameIndex) => <FutureGame key={gameIndex} {...game} />)}
+
           <ContentItemWrapper {...data.content} />
-          <Box h={264} />
+          {isInnerScreen ? (
+            <Box mt={20}>
+              <NoStoreWalletButton onPress={onPressWallet} />
+            </Box>
+          ) : null}
+          {isInnerScreen ? <Box h={264} /> : null}
         </ScrollView>
-        {!showNavigation ? (
+        {!showNavigation && !isInnerScreen ? (
           <Box pointerEvents="none" position="absolute" left={0} right={0} bottom={0} height={200}>
             <LinearGradient {...linearGradient} style={StyleSheet.absoluteFill} />
           </Box>

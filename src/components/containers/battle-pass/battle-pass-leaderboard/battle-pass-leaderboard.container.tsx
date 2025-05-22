@@ -4,9 +4,10 @@ import GenericSelectorModal from "@components/modals/generic-selector-modal/gene
 import { BattlePassLeaderboardScreen } from "@components/screens";
 import { gql } from "@graphql/__generated";
 import { t } from "@locale";
-import { MODALS, ROUTES } from "@navigation/constants";
+import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { GenericFullScreenLoading } from "@organisms";
+import { getRouteState } from "@redux/app/app.selectors";
 import { updateActiveSocialGroupId } from "@redux/leaderboards/leaderboards.actions";
 import { getActiveSocialGroup, getSocialGroups } from "@redux/leaderboards/leaderboards.selectors";
 import { getCurrentUserId } from "@redux/user/user.selectors";
@@ -26,10 +27,15 @@ interface IProps {
 const BattlePassLeaderboardContainer = ({ availableDates, updating, leaderboards, templateId }: IProps) => {
   const currentUserId = useSelector(getCurrentUserId);
   const dispatch = useDispatch();
+  const currentRoute = useSelector(getRouteState);
   const allSocialGroups = useSelector(getSocialGroups);
   const [selectedDate, setSelectedDate] = useState<string>(first(availableDates));
   const activeSocialGroup = useSelector(getActiveSocialGroup);
   const selectedSocialGroupId = useRef(activeSocialGroup?.socialGroupId);
+
+  const onBack = useCallback(() => {
+    Navigation.pop(currentRoute);
+  }, [currentRoute]);
 
   const leaderboardId = useMemo(
     () =>
@@ -141,6 +147,7 @@ const BattlePassLeaderboardContainer = ({ availableDates, updating, leaderboards
 
   return (
     <BattlePassLeaderboardScreen
+      onBack={onBack}
       details={data.details}
       onPressDate={onPressDate}
       socialGroups={socialGroups}
@@ -152,7 +159,5 @@ const BattlePassLeaderboardContainer = ({ availableDates, updating, leaderboards
     />
   );
 };
-
-const onBack = () => Navigation.pop(ROUTES.rewards);
 
 export default memo(BattlePassLeaderboardContainer);

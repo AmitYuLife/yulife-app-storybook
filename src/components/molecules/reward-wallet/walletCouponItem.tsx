@@ -1,15 +1,14 @@
 import { Box, StackedShadowWrapper, TextTemplate } from "@atoms";
-import { LottieView, TouchableOpacityWithDelay } from "@components/molecules";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 import { WALLET_COUPON_ITEM_DESCRIPTION } from "@ids";
 import { Colours, Style, TemplateTextType } from "@styles";
 import { memo } from "react";
 import { StyleSheet } from "react-native";
+import WalletShine from "./wallet-shine";
 
 const BACKGROUND_COLOUR = "#4801AF";
 const SHADOW_COLOR = "#340080";
 const LABEL_TEXT_COLOR = "#4801AF";
-
-const shineLottie = require("@assets/lottie/wallet/shine.json");
 
 const HIT_SLOP_SIZE = Style.adjust(8);
 const HIT_SLOP = {
@@ -32,10 +31,11 @@ interface IWalletCouponItem<T> {
 }
 interface WalletCouponItemProps<T> {
   item: IWalletCouponItem<T>;
+  index: number;
   onPress: (action: T) => void;
 }
 
-const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
+const WalletCouponItem = <T,>({ item, index, onPress }: WalletCouponItemProps<T>) => (
   <TouchableOpacityWithDelay
     onPress={() => onPress?.(item.onPress)}
     hitSlop={HIT_SLOP}
@@ -50,9 +50,7 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
         stackColors={[SHADOW_COLOR]}
         borderRadius={BORDER_RADIUS}
       >
-        <Box style={StyleSheet.absoluteFillObject}>
-          <LottieView style={styles.lottie} source={shineLottie} autoPlay={true} loop={true} resizeMode="cover" />
-        </Box>
+        <WalletShine index={index} />
         {!item.label ? null : (
           <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
             <TextTemplate color={LABEL_TEXT_COLOR} type="l2b" numberOfLines={1}>
@@ -84,11 +82,11 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
         <Box style={styles.infoContainer}>
           {!item.info
             ? null
-            : item.info.map((i, index) => (
+            : item.info.map((i, infoIndex) => (
                 <TextTemplate
                   color={Colours.neutral.white}
                   type={(i.style as TemplateTextType) || "l1"}
-                  key={index}
+                  key={infoIndex}
                   numberOfLines={3}
                 >
                   {i.text}

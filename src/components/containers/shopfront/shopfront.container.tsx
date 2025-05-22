@@ -12,10 +12,14 @@ import { RewardMilestoneDetails } from "@components/screens/member/rewards/list/
 import { t } from "@locale";
 import Logger from "@services/logging/logger";
 import { isEmpty } from "lodash";
-import ShopfrontLoading from "./shopfront-loading";
+import ShopfrontLoading from "./subcomponents/shopfront-loading";
 import ShopfrontScreen from "@components/screens/member/shopfront/shopfront.screen";
 import { useSelector } from "react-redux";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
+import { useFocusEffect } from "@app/hooks/useFocusEffect";
+import BattlePassContainer from "../battle-pass/battle-pass.container";
+import RewardsUnlockContainer from "../rewards-unlock/rewards-unlock.container";
+import ShopfrontSingleWrapper from "./subcomponents/shopfront-single-wrapper";
 
 interface IRewardPassContainerProps {
   leftIcons: IIcon[];
@@ -28,20 +32,26 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
   const [allFetched, setAllFetched] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const tabsSettings = useSelector(getRewardsTabSettings);
-  const { hasVoucherStore } = tabsSettings || {};
 
   const [moreRewards, setMoreItems] = useState<IGetMobileRewardsListData["list"]>([]);
+  const { hasVoucherStore } = tabsSettings || {};
+
   const [_, { data: shopfront, loading: isShopfrontLoading }] = useQueryOnScreenSeen(
     gql("GetMobileGameShopfrontDocument"),
-    ROUTES.rewards,
-    {},
-    {
-      disabled: !hasVoucherStore,
-    }
+    ROUTES.rewards
   );
   const [getMoreRewards, { loading: isFetchingMore }] = useLazyQuery(gql("GetMobileRewardsListItemsDocument"), {
     fetchPolicy: "network-only",
   });
+
+  const [refetchRecentlyUsed, { data: recentlyUsedData }] = useLazyQuery(
+    gql("GetMobileRecentlyUsedRewardsListDocument"),
+    {
+      fetchPolicy: "network-only",
+    }
+  );
+
+  useFocusEffect(refetchRecentlyUsed, { defer: true, componentId });
 
   const { hasLoaded: hasImagesLoaded } = useImagePreload({
     images: shopfront?.rewardPasses?.activeRewardPasses
@@ -167,14 +177,41 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
 
   const shouldShowFirstTimeModal = shopfront?.rewardList?.hasUserSelectedStoreLocation === false;
 
+  const shopfrontData = useMemo(() => {
+    if (!shopfront) {
+      return null;
+    }
+
+    return {
+      ...shopfront,
+      recentlyUsed: recentlyUsedData?.data || shopfront.recentlyUsed,
+    };
+  }, [shopfront, recentlyUsedData]);
+
   if ((isShopfrontLoading && !shopfront) || !hasImagesLoaded) {
     return <ShopfrontLoading leftIcons={leftIcons} />;
+  }
+
+  if (!hasVoucherStore && shopfront.rewardPasses.activeRewardPasses?.length === 1) {
+    if (tabsSettings.hasDonationBattlepass) {
+      return (
+        <ShopfrontSingleWrapper leftIcons={leftIcons}>
+          <BattlePassContainer isInnerScreen={true} onPressWallet={onPressWallet} />
+        </ShopfrontSingleWrapper>
+      );
+    }
+
+    return (
+      <ShopfrontSingleWrapper leftIcons={leftIcons}>
+        <RewardsUnlockContainer isInnerScreen={true} onPressWallet={onPressWallet} />
+      </ShopfrontSingleWrapper>
+    );
   }
 
   return (
     <ShopfrontScreen
       leftIcons={leftIcons}
-      shopfront={shopfront}
+      shopfront={shopfrontData}
       onItemPress={onItemPress}
       isSearchOpen={isSearchOpen}
       onPressWallet={onPressWallet}

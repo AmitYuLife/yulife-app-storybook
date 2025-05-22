@@ -79,5 +79,5 @@ export const features = [
   "tempGameShowWallet",
   "tempGameShowAchievements",
   "tempGameNewRewardsScreen",
-  "tempGameNewRewardsStorefront",
+  "tempGameNewRewardsStorefrontRelease",
 ] as const;
