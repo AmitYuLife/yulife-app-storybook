@@ -1,7 +1,7 @@
 import { region, REGION, t } from "@locale";
 import { Navigation } from "react-native-navigation";
 import LoginConfirmScreen from "@components/screens/login/login-confirm/login-confirm.screen";
-import { memo, useCallback, useEffect, useRef } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
 import { Alert, Platform } from "react-native";
@@ -36,6 +36,8 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
   const dispatch = useDispatch();
   const { loading: fitkitLoading } = useFitKit();
   const captcha = useCaptcha(region.getCaptchaConfig());
+
+  const [isRedeemingOtp, setIsRedeemingOtp] = useState(false);
 
   const otpRef = useRef<string>("");
 
@@ -73,6 +75,8 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
     otpRef.current = props.otp;
 
     async function handleOTP(payload: { otp: string; email: string; region: REGION }) {
+      setIsRedeemingOtp(true);
+
       let result;
 
       try {
@@ -109,6 +113,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
               }
             },
           });
+          setIsRedeemingOtp(false);
           return;
         }
 
@@ -116,6 +121,8 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
           await applyLoginSession(result, props.region, componentId, dispatch);
         }
       } catch (error) {
+        setIsRedeemingOtp(false);
+
         Logger.error(error, {
           file: "login-confirm.container",
           region: payload.region,
@@ -142,6 +149,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
       email={props.email}
       captcha={captcha}
       isResending={isResending}
+      isRedeemingOtp={isRedeemingOtp}
       showLoginWithPassword={showLoginWithPassword}
       onPressResend={sendMagicLink}
       onPressBack={onNavigateBack}

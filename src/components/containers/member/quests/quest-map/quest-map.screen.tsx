@@ -5,7 +5,7 @@ import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
 import { QUESTS_SCREEN } from "@ids";
 import { NavBar, TopBar } from "@organisms";
-import QuestMapLoader from "@organisms/quest-map-loader/quest-map-loader";
+import AnimalLoader from "@organisms/animal-loader/animal-loader";
 import { IIcon } from "@organisms/top-bar/subcomponents/left";
 import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
 import { Style, TOP_BAR } from "@styles";
@@ -155,7 +155,7 @@ const QuestMapScreen = ({
         ) : null}
       </View>
 
-      <QuestMapLoader isLoading={isLoading} />
+      <AnimalLoader isLoading={isLoading} />
 
       <View style={styles.header}>
         <TopBar type={isScreenReaderEnabled ? "default" : topBarType} leftIcons={leftIcons} />

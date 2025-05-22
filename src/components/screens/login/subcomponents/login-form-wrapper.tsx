@@ -7,10 +7,12 @@ import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import LoginBackgroundSvg from "@components/screens/login/subcomponents/svgs/login-background-svg";
 import { LOGIN_SCREEN_HEADER } from "@ids";
+import AnimalLoader from "@organisms/animal-loader/animal-loader";
 
 interface ILoginFormWrapperProps {
   onPressBack: () => void;
   heading: string;
+  showFullScreenLoader?: boolean;
   /**
    * Variant of the login form wrapper. This only affects the background image.
    * - `default`: Default login form wrapper.
@@ -20,7 +22,13 @@ interface ILoginFormWrapperProps {
   children: React.ReactNode;
 }
 
-export const LoginFormWrapper = ({ onPressBack, heading, variant = "default", children }: ILoginFormWrapperProps) => {
+export const LoginFormWrapper = ({
+  onPressBack,
+  heading,
+  variant = "default",
+  children,
+  showFullScreenLoader = false,
+}: ILoginFormWrapperProps) => {
   return (
     <CentredScreen
       backgroundImage={<LoginBackgroundSvg showBird={variant === "magicLink"} />}
@@ -43,6 +51,7 @@ export const LoginFormWrapper = ({ onPressBack, heading, variant = "default", ch
         onPressLeftIcon={onPressBack}
         skipFetchingNotifications={true}
       />
+      <AnimalLoader isLoading={showFullScreenLoader} />
     </CentredScreen>
   );
 };
