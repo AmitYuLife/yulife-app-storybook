@@ -12,6 +12,19 @@ const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
   modelName: "core_settings",
 };
 
+export const BUSINESS_1_REFERRALS_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "account.referrals",
+    entityType: "business",
+    entityId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    settings: {
+      isEnabled: false,
+    },
+  },
+} as IDatabaseItem;
+
 export const BUSINESS_6_INTERCOM_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {

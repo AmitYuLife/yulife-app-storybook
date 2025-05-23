@@ -1,7 +1,13 @@
 import React, { memo, useMemo } from "react";
 import { View } from "react-native";
 import { GetReferralInformationQuery } from "@graphql/__generated";
-import { REFERRALS_IMAGE_URI, REFERRALS_INVITE_BUTTON, REFERRALS_QR_CODE } from "@ids";
+import {
+  REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN,
+  REFERRALS_BUSINESS_ACCOUNT_NAME,
+  REFERRALS_IMAGE_URI,
+  REFERRALS_INVITE_BUTTON,
+  REFERRALS_QR_CODE,
+} from "@ids";
 import { Image, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
@@ -59,7 +65,17 @@ const ReferralsHeader = ({ onShare, data, info, componentId, businessAccountStat
         />
         <View style={styles.header}>
           <Markdown text={headerTitle} markdownStyles={markdownStyles} />
-          {activeBusinessAccounts.length === 0 ? null : <BusinessPicker businessAccountState={businessAccountState} />}
+          {activeBusinessAccounts.length === 0 ? null : (
+            <BusinessPicker
+              businessAccountState={businessAccountState}
+              testIds={{
+                box: REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN,
+                textTemplate: REFERRALS_BUSINESS_ACCOUNT_NAME(
+                  businessAccountState.selectedBusinessAccount.businessAccountName
+                ),
+              }}
+            />
+          )}
           <Markdown text={headerSubtitle} markdownStyles={markdownStyles} />
         </View>
       </View>

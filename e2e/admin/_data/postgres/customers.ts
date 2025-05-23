@@ -2,8 +2,11 @@ import {
   generateRandomMongoId,
   IDatabaseItem,
   generateRandomInbox,
+  createCustomerRecords,
+  generateRandomPostgresId,
 } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
+import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_4 } from "./business";
 
 const type = "postgres";
 const modelName = "customer";
@@ -192,3 +195,61 @@ export const CUSTOMER_14 = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_15 = createCustomerRecords({
+  customerId: generateRandomPostgresId(),
+  archived: false,
+  firstName: "Sylvanus",
+  lastName: "Druid",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  dateOfBirth: moment().subtract(33, "year").format("YYYY-MM-DD"),
+  employments: [
+    {
+      legalIdentifier: "JB473313C",
+      legalFirstName: "Sylvanus",
+      legalLastName: "Druid",
+      businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+      employmentStartDate: moment().subtract(3, "years").format("YYYY-MM-DD"),
+      products: [],
+    },
+    {
+      legalIdentifier: "JB473313C",
+      legalFirstName: "Sylvanus",
+      legalLastName: "Druid",
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+});
+
+export const CUSTOMER_15_PUBLIC_ID_UPDATE = {
+  type: "postgres",
+  modelName: "customer",
+  updateKey: "customerId",
+  data: {
+    customerId: CUSTOMER_15.customer.data.customerId,
+    public_id: "CU14",
+  },
+};
+
+export const CUSTOMER_16 = createCustomerRecords({
+  customerId: generateRandomPostgresId(),
+  archived: false,
+  firstName: "Reverald",
+  lastName: "Bownus",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  dateOfBirth: moment().subtract(33, "year").format("YYYY-MM-DD"),
+  employments: [
+    {
+      legalIdentifier: "JB479943C",
+      legalFirstName: "Reverald",
+      legalLastName: "Druid",
+      businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+      employmentStartDate: moment().subtract(3, "years").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+});
