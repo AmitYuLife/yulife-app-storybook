@@ -16,7 +16,7 @@ import ShopfrontLoading from "./subcomponents/shopfront-loading";
 import ShopfrontScreen from "@components/screens/member/shopfront/shopfront.screen";
 import { useSelector } from "react-redux";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
-import { useFocusEffect } from "@app/hooks/useFocusEffect";
+import { useFocusEffect } from "@hooks";
 import BattlePassContainer from "../battle-pass/battle-pass.container";
 import RewardsUnlockContainer from "../rewards-unlock/rewards-unlock.container";
 import ShopfrontSingleWrapper from "./subcomponents/shopfront-single-wrapper";
