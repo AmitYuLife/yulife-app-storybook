@@ -4,7 +4,7 @@ import { Navigation } from "@navigation/main";
 import { useSelector, useDispatch } from "react-redux";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { updateConnectionStart } from "@redux/user/user.actions";
-import { getUserConnections } from "@redux/user/user.selectors";
+import { getBlackListedNavBarTabs, getUserConnections } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 import { gql, NotificationSettingsProps } from "@graphql/__generated";
@@ -34,6 +34,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false);
   const [modalDate, setModalDate] = useState<string>(null);
   const [selectedNotification, setNotification] = useState<NotificationSettingsProps>(null);
+  const blackListedNavBarTabs = useSelector(getBlackListedNavBarTabs);
 
   const [updateNotification, { loading: notificationLoading }] = useMutation(
     gql(`UpdateUserNotificationsSettingsDocument`)
@@ -135,7 +136,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       isVisible: true,
       items: [
         {
-          isVisible: features.gameSettingsLeaderboardsVisible,
+          isVisible: !blackListedNavBarTabs.includes(ROUTES.leaderboard),
           title: t("screens.leaderboard_settings.title"),
           description: t("screens.leaderboard_settings.description"),
           onPress: () => {
@@ -215,12 +216,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
         },
       ],
     }),
-    [
-      activeProvider,
-      cyclingMeasurement,
-      features.tempGameEnableReleaseYuHealthV4,
-      features.gameSettingsLeaderboardsVisible,
-    ]
+    [activeProvider, blackListedNavBarTabs, cyclingMeasurement, features.tempGameEnableReleaseYuHealthV4]
   );
 
   const connection = {

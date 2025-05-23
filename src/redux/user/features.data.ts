@@ -7,7 +7,6 @@ export const features = [
   "showStreaks",
   "disableUserEntries",
   "showConnections",
-  "gameSettingsLeaderboardsVisible",
   "fitbit",
   "newPassiveValidationRule",
   "hideYuMatterScreen",
