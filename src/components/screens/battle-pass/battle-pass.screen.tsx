@@ -1,16 +1,9 @@
 import { BattlePassHeader, TopBarAbsolute } from "@organisms";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import {
-  ImageSourcePropType,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { ImageSourcePropType, NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
-import { Style, TOP_BAR } from "@styles";
+import { TOP_BAR } from "@styles";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { RewardsList } from "./rewards-list/rewards-list";
 import { BattlePassSeasonComplete } from "@organisms/battle-pass-season-complete/battle-pass-season-complete";
@@ -75,7 +68,7 @@ const BattlePassScreen = ({
 
   return (
     <>
-      <View style={styles.wrapper} testID={BATTLE_PASS_SCREEN}>
+      <Box flex={1} bg="white" pb={isInnerScreen ? 80 : 0} testID={BATTLE_PASS_SCREEN}>
         <BattlePassHeader
           title={title}
           description={description}
@@ -100,7 +93,7 @@ const BattlePassScreen = ({
             )}
           </ScrollView>
         </Box>
-      </View>
+      </Box>
       {showNavigation ? (
         <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP}>
           <TopBarAbsolute type="white" leftIcon={LeftIcon.BACK} onPressLeftIcon={onBackPress} />
@@ -109,46 +102,5 @@ const BattlePassScreen = ({
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-  container: {
-    paddingHorizontal: Style.adjust(16),
-    flex: 1,
-    paddingBottom: Style.adjust(80),
-    marginTop: Style.adjust(30),
-  },
-  impactTitle: {
-    marginBottom: Style.adjust(16),
-  },
-  impactItem: {
-    marginBottom: Style.adjust(16),
-  },
-  actionContainer: {
-    paddingHorizontal: Style.adjust(16),
-  },
-  contentInset: {
-    top: 0,
-    left: 0,
-    bottom: Style.adjust(180),
-    right: 0,
-  },
-  topbarWrapper: {
-    left: 0,
-    top: TOP_BAR.PADDING_TOP,
-    position: "absolute",
-    right: 0,
-  },
-  lottie: {
-    position: "absolute",
-    right: Style.adjust(-15),
-    top: Style.adjust(-100),
-    width: Style.adjust(130),
-    height: Style.adjust(130),
-  },
-});
 
 export default memo(BattlePassScreen);

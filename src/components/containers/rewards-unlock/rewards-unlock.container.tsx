@@ -71,10 +71,7 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
           scrollEventThrottle={16}
           onScroll={onScroll}
         >
-          <Box
-            pt={showNavigation ? TOP_BAR.TOP_BAR_WITH_PAD : Style.adjust(isInnerScreen ? 0 : 20)}
-            disableAutoAdjust={true}
-          >
+          <Box>
             <Box
               right={0}
               left={0}
@@ -82,7 +79,7 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
               pl={20}
               pr={20}
               pb={84}
-              pt={isInnerScreen ? TOP_BAR.PADDING_TOP : 0}
+              pt={isInnerScreen || showNavigation ? TOP_BAR.PADDING_TOP : 0}
             >
               <Box position="absolute" right={0}>
                 <Image width={Style.adjust(240)} source={data.header.background.image} />
@@ -110,17 +107,17 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
 
           <ContentItemWrapper {...data.content} />
           {isInnerScreen ? (
-            <Box mt={20}>
+            <Box mt={15} pb={30}>
               <NoStoreWalletButton onPress={onPressWallet} />
             </Box>
           ) : null}
-          {isInnerScreen ? <Box h={264} /> : null}
+          {isInnerScreen || showNavigation ? <Box mb={-50} h={100} bg="white" /> : <Box h={250} />}
         </ScrollView>
-        {!showNavigation && !isInnerScreen ? (
+        {!isInnerScreen && showNavigation ? null : (
           <Box pointerEvents="none" position="absolute" left={0} right={0} bottom={0} height={200}>
             <LinearGradient {...linearGradient} style={StyleSheet.absoluteFill} />
           </Box>
-        ) : null}
+        )}
       </Box>
       {showNavigation ? (
         <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP}>
@@ -132,9 +129,9 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
 };
 
 const linearGradient = {
-  start: { x: 0, y: 1 },
-  end: { x: 0, y: 0 },
-  colors: ["#FFFFFF", "#FFFFFFEE"],
+  start: { x: 0, y: 0.8 },
+  end: { x: 0, y: 0.4 },
+  colors: ["#FFFFFFFF", "#FFFFFF00"],
 };
 
 const styles = StyleSheet.create({
