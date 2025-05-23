@@ -17,7 +17,7 @@ Feature("As a user I can opt in and take an event", async () => {
       Then("I should see 200 yucoin earned today", then.yuCoinTodayEarned([200]));
       Then("I should see my yucoin total in the top of the page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
-    When("I click on the event challenge", when.tapID(ids.EVENT_HEADING("3 star challenges streak")), async () => {
+    When("I click on the event challenge", when.tapID(ids.EVENT_HEADING("3 star challenges streak", "#5A5A5C")), async () => {
       When("I scroll", when.scrollUntilTextVisible(ids.EVENT_DIALOG_SCREEN_SCROLL, data.GOALS_4.data.descriptionTitle, "down"), async () => {
         Then("I should be on the event screen and see the correct earn rates for the challenges", then.eventScreenDetailsAreCorrect(data.GOALS_4));
         Then("I should see all milestones visible to take and their correct yucoin and stars", then.allMilestonesVisible);
@@ -141,6 +141,8 @@ Feature("As a user I can opt in and take an event", async () => {
       Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
       Then("I should see I have done 0 steps today", then.textVisible("0 steps"));
       Then("I should see the event card has the correct desert colour", then.idVisible(ids.EVENT_CARD_COLOUR("#FFF9E0")));
+      Then("I should see the event card title has the correct desert colour", then.idVisible(ids.EVENT_HEADING("Walk 10k this week", "#5A5A5C")));
+      Then("I should see the event card description has the correct desert colour", then.idVisible(ids.EVENT_DESCRIPTION("0 / 10,000 steps", "#5A5A5C")));
     });
     When("I have done 75,001 steps yesterday", when.addStepsHistoricalData(4000), async () => {
       Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
@@ -155,7 +157,7 @@ Feature("As a user I can opt in and take an event", async () => {
       Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps);
     });
     When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Activity history")), async () => {
-      When("I tap on the event challenge", when.tapID(ids.EVENT_HEADING("Walk 10k this week")), async () => {
+      When("I tap on the event challenge", when.tapID(ids.EVENT_HEADING("Walk 10k this week", "#5A5A5C")), async () => {
         When("I click confirm", when.tapID(ids.EVENT_DIALOG_BUTTON), async () => {
           Then("I should be on the event screen", then.onEventDetailsScreen(data.GOALS_5));
           Then("I should see 4,000 steps have been completed", then.textVisible("4,000 / 10,000 steps"));
@@ -166,6 +168,8 @@ Feature("As a user I can opt in and take an event", async () => {
       When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
         When("I go to level 800 and claim the chest", when.completeYuniversalAndClaim(800), async () => {
           Then("I should see the event card has the correct yuniverse colour", then.idVisible(ids.EVENT_CARD_COLOUR("#370888")));
+          Then("I should see the event card title has the correct yuniverse colour", then.idVisible(ids.EVENT_HEADING("Walk 10k this week", "#FFFFFF")));
+          Then("I should see the event card description has the correct yuniverse colour", then.idVisible(ids.EVENT_DESCRIPTION("4,000 / 10,000 steps", "#FFFFFF")));
         });
       });
     });

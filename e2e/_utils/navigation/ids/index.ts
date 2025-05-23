@@ -730,8 +730,10 @@ export const ACTIVITY_LISTING = (activity: string, value: string | number) =>
 export const LIST_YUMOJI = (index: number) => `LIST_YUMOJI_${index}`;
 
 // EVENTS
-export const EVENT_HEADING = (heading: string) => `EVENT_HEADING_${heading}`;
-export const EVENT_DESCRIPTION = (description: string) => `EVENT_DESCRIPTION_${description}`;
+export const EVENT_HEADING = (heading: string, fontColor: string) =>
+  `EVENT_HEADING_${heading}_${fontColor}`;
+export const EVENT_DESCRIPTION = (description: string, fontColor: string) =>
+  `EVENT_DESCRIPTION_${description}_${fontColor}`;
 export const NEW_EVENT_ICON = "NEW_EVENT_ICON";
 export const EVENT_PROGRESS_BAR = (progress: number) => `EVENT_PROGRESS_BAR_${progress}`;
 export const CLAIM_BUTTON = "CLAIM_BUTTON";

@@ -29,7 +29,7 @@ const Subheading = ({
       <Markdown
         text={text}
         markdownStyles={getMarkdownStyles(fontColor, boldTextColor, fontWeight)}
-        testID={EVENT_DESCRIPTION(text)}
+        testID={EVENT_DESCRIPTION(text, fontColor)}
       />
     </Box>
   );
@@ -107,7 +107,7 @@ const HeroCardHeader = (
     <>
       <Box flexDirection="row" justifyContent="space-between" gap={8} style={styles.headingWrapper}>
         <Box flexGrow={1} maxWidth={Style.DEVICE_WIDTH - Style.adjust(180)}>
-          <TextTemplate numberOfLines={1} type="b2b" color={fontColor} testID={EVENT_HEADING(heading)}>
+          <TextTemplate numberOfLines={1} type="b2b" color={fontColor} testID={EVENT_HEADING(heading, fontColor)}>
             {heading}
           </TextTemplate>
         </Box>
