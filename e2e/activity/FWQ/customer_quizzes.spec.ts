@@ -74,7 +74,7 @@ Feature("Quizzes and questionnaires", async () => {
     When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.BACK_BUTTON), async () => {
         Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("健康チェックの質問")));
-        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("健康に関する質問への回答で\n**40**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)をプレゼント。")));
+        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("健康に関する質問への回答で\n**40**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)をプレゼント。", "#464647")));
         Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON));
       });
     });
@@ -119,7 +119,7 @@ Feature("Quizzes and questionnaires", async () => {
     When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.LEFT_HEADIND_BUTTON("Today’s Earnings")), async () => {
         Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("Daily health questions")));
-        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("Earn **40**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7) by discovering more about your health.")));
+        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("Earn **40**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7) by discovering more about your health.", "#464647")));
         Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON));
       });
     });
@@ -369,7 +369,7 @@ Feature("Quizzes and questionnaires", async () => {
         Then("I should see my YuCoin balance of 1000, before I finish the Engagement Survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1000)));
       });
     });
-    When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_Share your feedback"), async () => {
+    When("I click on the engagement survey hero card", when.tapID(ids.EVENT_HEADING("Share your feedback", "#5A5A5C")), async () => {
       Then("I should see the intro screen for the engagement survey", then.idVisible(ids.TEXT_TEMPLATE("Share your feedback!", "h3")));
       Then("I should see how much YuCoin will be rewarded", then.idVisible(ids.CONTENT_ITEM_INFO_CARD("**Rewards**\n\nEarn 300 YuCoin!")));
     });
@@ -588,10 +588,10 @@ Feature("Quizzes and questionnaires", async () => {
     // This part is testing the invalidation flow for a user who has already completed the survey and once they complete a second time receive no reward
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_137_GHI_REWARDS.data.customerId, data.BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id], [data.CUSTOMER_137_GHI_REWARDS.data.customerId]), async () => {
       When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
-        Then("I can see the engagement survey hero card", when.idVisible("EVENT_HEADING_Share your feedback"));
+        Then("I can see the engagement survey hero card", when.idVisible(ids.EVENT_HEADING("Share your feedback", "#5A5A5C")));
       });
     });
-    When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_Share your feedback"), async () => {
+    When("I click on the engagement survey hero card", when.tapID(ids.EVENT_HEADING("Share your feedback", "#5A5A5C")), async () => {
       When("I swipe to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
         When("I click on the 'let's go!' button", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
           Then("I should be on the 'maintaining work-life balance' question", then.idVisible(ids.TEXT_TEMPLATE("Maintaining work-life balance is important to you.", "b2b")));
@@ -696,10 +696,10 @@ Feature("Quizzes and questionnaires", async () => {
   Scenario("If no business is available, when I can traverse through the engagement survey I will see a fallback 'your company' instead of the business name.", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_90.data.customerId]), async () => {
       Given("I login as a user", given.loginAsUser(data.CUSTOMER_90, data.AUTH_90), async () => {
-        Then("I should see the engagement survey hero card", then.idVisible(ids.EVENT_HEADING("Share your feedback")));
-        Then("I should see the Engagement Survey hero card displaying the correct YuCoin reward — 300 YuCoin — based on the user's earn rate of 10 and the survey's 30* multiplier.", then.idVisible(ids.EVENT_DESCRIPTION("Earn **300** YuCoin and help improve your workplace anonymously!")));
+        Then("I should see the engagement survey hero card", then.idVisible(ids.EVENT_HEADING("Share your feedback", "#5A5A5C")));
+        Then("I should see the Engagement Survey hero card displaying the correct YuCoin reward — 300 YuCoin — based on the user's earn rate of 10 and the survey's 30* multiplier.", then.idVisible(ids.EVENT_DESCRIPTION("Earn **300** YuCoin and help improve your workplace anonymously!", "#5A5A5C")));
       });
-      When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_Share your feedback"), async () => {
+      When("I click on the engagement survey hero card", when.tapID(ids.EVENT_HEADING("Share your feedback", "#5A5A5C")), async () => {
         When("I click on the engagement survey hero card", when.fillOutEngagementSurvey, async () => {
           Then("As a user who has no work business listed, I should see 'your company' provides adequate resources' ", then.idVisible(ids.TEXT_TEMPLATE("your company provides adequate resources to support your mental health (e.g., counselling services, stress checks).", "b2b")));
         });
@@ -715,7 +715,7 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see Today you've earned '0 YuCoin'", then.textVisible("0 YuCoin"));
     });
     When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I click on the Automated QA Test Journey 10 Multiplier card", when.tapID(ids.EVENT_HEADING("Automated QA Test Journey 10 Multiplier")), async () => {
+      When("I click on the Automated QA Test Journey 10 Multiplier card", when.tapID(ids.EVENT_HEADING("Automated QA Test Journey 10 Multiplier", "#FFFFFF")), async () => {
         Then("I should see the 'The choice is yours' question", then.idVisible(ids.TEXT_TEMPLATE("The choice is yours.", "b2b")));
         Then("I should see the progress bar has moved", then.progressBarVisible(100, 100));
       });
@@ -745,8 +745,8 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see Today you've earned '0 YuCoin'", then.textVisible("0 YuCoin"));
     });
     When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I swipe left on the Automated QA Test Journey 10 Multiplier card", when.scrollFromID(ids.EVENT_HEADING("Automated QA Test Journey 10 Multiplier"), "left", "fast", 0.2), async () => {
-        When("I click on the Automated QA Test Journey 500 YuCoin Flat Amount card", when.tapID(ids.EVENT_HEADING("Automated QA Test Journey 500 YuCoin Flat Amount")), async () => {
+      When("I swipe left on the Automated QA Test Journey 10 Multiplier card", when.scrollFromID(ids.EVENT_HEADING("Automated QA Test Journey 10 Multiplier", "#FFFFFF"), "left", "fast", 0.2), async () => {
+        When("I click on the Automated QA Test Journey 500 YuCoin Flat Amount card", when.tapID(ids.EVENT_HEADING("Automated QA Test Journey 500 YuCoin Flat Amount", "#FFFFFF")), async () => {
           Then("I should see the 'The choice is yours' question", then.idVisible(ids.TEXT_TEMPLATE("The choice is yours.", "b2b")));
           Then("I should see the progress bar has moved", then.progressBarVisible(500, 500));
         });

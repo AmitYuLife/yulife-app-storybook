@@ -15,7 +15,7 @@ Feature("Quizzes and questionnaires", async () => {
         Then("I should see my YuCoin balance of 8200, before I finish the Engagement Survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(8200)));
       });
     });
-    When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_アンケートのお願い"), async () => {
+    When("I click on the engagement survey hero card", when.tapID(ids.EVENT_HEADING("アンケートのお願い", "#5A5A5C")), async () => {
       Then("I should see the intro screen for the engagement survey", then.idVisible("SDUI_BODY_SCROLL"));
       Then("I should see how much YuCoin will be rewarded", then.idVisible(ids.CONTENT_ITEM_INFO_CARD("**報酬**\n\n30 YuCoinを獲得できます。")));
     });
@@ -71,9 +71,9 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see the checkbox for the first option selected", then.idVisible(ids.CHECK_BOX_STATE("とてもそう思う", true)));
     });
     When("I exit the survey", when.tapID("SCREEN_CLOSE"), async () => {
-      Then("I should be back on the main screen and see the intro screen for the engagement survey", then.idVisible("EVENT_HEADING_アンケートのお願い"));
+      Then("I should be back on the main screen and see the intro screen for the engagement survey", then.idVisible(ids.EVENT_HEADING("アンケートのお願い", "#5A5A5C")));
     });
-    When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_アンケートのお願い"), async () => {
+    When("I click on the engagement survey hero card", when.tapID(ids.EVENT_HEADING("アンケートのお願い", "#5A5A5C")), async () => {
       Then("I should be on the 'satisfied with your current role' question", then.idVisible(ids.TEXT_TEMPLATE("職場での現在の役職に満足している。", "b2b")));
     });
     When("I select first option", when.tapID(ids.CHECK_BOX_STATE("とてもそう思う", false)), async () => {
@@ -231,7 +231,7 @@ Feature("Quizzes and questionnaires", async () => {
   Scenario("If no business is available, when I can traverse through the engagement survey I will see a fallback '勤務先は' instead of the business name.", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_2_SMOKING.data.customerId]), async () => {
       Given("I login as a user", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "Japan", true), async () => {
-        When("I click on the engagement survey hero card", when.tapID("EVENT_HEADING_アンケートのお願い"), async () => {
+        When("I click on the engagement survey hero card", when.tapID(ids.EVENT_HEADING("アンケートのお願い", "#5A5A5C")), async () => {
           When("I start to fill out the survey", when.fillOutEngagementSurvey, async () => {
             Then("As a user who has no work business listed, I should see '勤務先は' provides adequate resources' ", then.idVisible(ids.TEXT_TEMPLATE("勤務先はメンタルヘルスをサポートする十分なリソースを提供している (カウンセリングサービスやストレスチェックなど)。", "b2b")));
           });

@@ -708,14 +708,15 @@ export const onFAQPage = (content: string[]) => async () => {
   });
 };
 
-export const rewardStoreGameProgressVisible = (unlocked: string, date: string) => async () => {
-  const timeToGameEnd = moment.duration(moment(date).diff(moment()));
-  const days = Math.floor(timeToGameEnd.asDays());
+export const rewardStoreGameProgressVisible =
+  (unlocked: string, date: string, fontColor: string) => async () => {
+    const timeToGameEnd = moment.duration(moment(date).diff(moment()));
+    const days = Math.floor(timeToGameEnd.asDays());
 
-  await idVisible(ids.REWARDS_STORE_GAME_PROGRESS)();
-  await idVisible(ids.EVENT_DESCRIPTION(`${unlocked}/200 levels`))();
-  await textVisible(`${days} days left`)();
-};
+    await idVisible(ids.REWARDS_STORE_GAME_PROGRESS)();
+    await idVisible(ids.EVENT_DESCRIPTION(`${unlocked}/200 levels`, fontColor))();
+    await textVisible(`${days} days left`)();
+  };
 
 export const rewardGameStreakModalVisible =
   (unlocked: boolean, reward: string, levels: string) => async () => {
