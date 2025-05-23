@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { IPickStageProps } from "../../../open-random-chest.types";
 import Animated, { FadeInUp } from "react-native-reanimated";
 import { StyleSheet, View } from "react-native";
@@ -10,9 +10,22 @@ import { GlowingSpinner, Image, TextTemplate } from "@atoms";
 import StageContainer from "../../stage-container";
 import { t } from "@locale";
 import { DETOX_ENABLED } from "@services/socket";
+import { first } from "lodash";
 
 const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: IPickStageProps) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+
+  const isSingleReward = openedItems?.length === 1;
+  const singleRewardItem = first(openedItems)?.item;
+  const image = isSingleReward ? singleRewardItem.image?.uri : overlayImage;
+
+  useEffect(() => {
+    if (!isSingleReward) {
+      return;
+    }
+
+    setSelectedItem(singleRewardItem.id);
+  }, [singleRewardItem?.id, isSingleReward]);
 
   const onClaimPress = useCallback(() => {
     onClaim([selectedItem]);
@@ -21,13 +34,21 @@ const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: 
   return (
     <StageContainer>
       <View style={styles.wrapper}>
-        <ChestHeaderText label={t("modals.open_random_chest.title")} />
-        {overlayImage ? (
+        <ChestHeaderText
+          label={
+            isSingleReward
+              ? t("modals.open_random_chest.won_reward", {
+                  reward: singleRewardItem.title,
+                })
+              : t("modals.open_random_chest.title")
+          }
+        />
+        {image ? (
           <Animated.View entering={FadeInUp.delay(300).duration(400)} style={styles.imageContainer}>
             {!DETOX_ENABLED ? <GlowingSpinner size={Style.adjust(260)} /> : null}
             <Image
               resizeMode="cover"
-              source={{ uri: overlayImage }}
+              source={{ uri: image }}
               width={Style.adjust(160)}
               height={Style.adjust(160)}
               suppressLoadingUi={true}
@@ -35,30 +56,34 @@ const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: 
           </Animated.View>
         ) : null}
 
-        <Animated.View entering={FadeInUp.delay(400).duration(400)} style={styles.text}>
-          <TextTemplate type="b2" color="white">
-            {t("modals.open_random_chest.select_one")}
-          </TextTemplate>
-        </Animated.View>
-        <Animated.View entering={FadeInUp.delay(450).duration(400)} style={styles.contentContainer}>
-          <View style={styles.listSelectPicker}>
-            {openedItems.map((item) => (
-              <RadioBattlePassRewardItem
-                key={item.id}
-                reward={{ id: item.item.id, title: item.item.title }}
-                checked={selectedItem === item.id}
-                onPress={() => {
-                  if (selectedItem === item.id) {
-                    setSelectedItem(null);
-                    return;
-                  }
+        {!isSingleReward ? (
+          <>
+            <Animated.View entering={FadeInUp.delay(400).duration(400)} style={styles.text}>
+              <TextTemplate type="b2" color="white">
+                {t("modals.open_random_chest.select_one")}
+              </TextTemplate>
+            </Animated.View>
+            <Animated.View entering={FadeInUp.delay(450).duration(400)} style={styles.contentContainer}>
+              <View style={styles.listSelectPicker}>
+                {openedItems.map((item) => (
+                  <RadioBattlePassRewardItem
+                    key={item.id}
+                    reward={{ id: item.item.id, title: item.item.title }}
+                    checked={selectedItem === item.id}
+                    onPress={() => {
+                      if (selectedItem === item.id) {
+                        setSelectedItem(null);
+                        return;
+                      }
 
-                  setSelectedItem(item.id);
-                }}
-              />
-            ))}
-          </View>
-        </Animated.View>
+                      setSelectedItem(item.id);
+                    }}
+                  />
+                ))}
+              </View>
+            </Animated.View>
+          </>
+        ) : null}
       </View>
       <ClaimPrizeButton onPress={onClaimPress} isLoading={isLoading} shouldShow={!!selectedItem} />
     </StageContainer>
@@ -70,6 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    marginTop: Style.adjust(10),
   },
   contentContainer: { marginTop: Style.adjust(24), width: "100%", justifyContent: "center", alignItems: "center" },
   listSelectPicker: {

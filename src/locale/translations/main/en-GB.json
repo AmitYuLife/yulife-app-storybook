@@ -1637,7 +1637,8 @@
       "claim_reward": "Claim reward",
       "select_one": "Select one to continue",
       "claim_all_title": "Jackpot!",
-      "claim_all_subtitle": "Check out what you’ve unlocked!"
+      "claim_all_subtitle": "Check out what you’ve unlocked!",
+      "won_reward": "You've won %{reward}!"
     },
     "reward_info": {
       "got_it": "Got it",
