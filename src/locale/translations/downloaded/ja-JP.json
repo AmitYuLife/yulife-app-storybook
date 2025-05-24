@@ -407,7 +407,8 @@
       "open": "開く",
       "open_chest": "ボックスを開く",
       "select_one": "続行するには1つ選択してください",
-      "title": "新アイテムを獲得しました"
+      "title": "新アイテムを獲得しました",
+      "won_reward": "%{reward} を獲得しました！"
     },
     "push_notifications": {
       "from_challenge": {
@@ -1531,7 +1532,8 @@
         "title": "ストア"
       },
       "storefront": {
-        "reward_location": "あなたの報酬は %{location} に設定されています"
+        "reward_location": "あなたの報酬は %{location} に設定されています",
+        "wallet": "ウォレット"
       },
       "tabs": {
         "donations": "寄付",
@@ -1567,6 +1569,10 @@
       }
     },
     "settings": {
+      "content_location": {
+        "description": "希望のストアの場所を選択してください",
+        "label": "店舗の場所"
+      },
       "email_notification": {
         "label": "メールアドレス"
       },

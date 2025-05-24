@@ -407,7 +407,8 @@
       "open": "Open",
       "open_chest": "Open chest",
       "select_one": "Select one to proceed",
-      "title": "You got a reward!"
+      "title": "You got a reward!",
+      "won_reward": "You've won %{reward}!"
     },
     "push_notifications": {
       "from_challenge": {
@@ -1531,7 +1532,8 @@
         "title": "Store"
       },
       "storefront": {
-        "reward_location": "Your rewards are set to %{location}"
+        "reward_location": "Your rewards are set to %{location}",
+        "wallet": "Wallet"
       },
       "tabs": {
         "donations": "Donate",
@@ -1567,6 +1569,10 @@
       }
     },
     "settings": {
+      "content_location": {
+        "description": "Select your preferred store location",
+        "label": "Store location"
+      },
       "email_notification": {
         "label": "Email"
       },

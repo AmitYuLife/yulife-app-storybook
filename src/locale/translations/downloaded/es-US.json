@@ -407,7 +407,8 @@
       "open": "Abrir",
       "open_chest": "Cofre abierto",
       "select_one": "Seleccione uno para continuar",
-      "title": "¡Tienes una recompensa!"
+      "title": "¡Tienes una recompensa!",
+      "won_reward": "¡Has ganado %{reward}!"
     },
     "push_notifications": {
       "from_challenge": {
@@ -1531,7 +1532,8 @@
         "title": "Tienda"
       },
       "storefront": {
-        "reward_location": "Sus recompensas se fijan en %{location}"
+        "reward_location": "Sus recompensas se fijan en %{location}",
+        "wallet": "Cartera"
       },
       "tabs": {
         "donations": "Donar",
@@ -1567,6 +1569,10 @@
       }
     },
     "settings": {
+      "content_location": {
+        "description": "Seleccione su tienda preferida",
+        "label": "Ubicación de la tienda"
+      },
       "email_notification": {
         "label": "Email"
       },
