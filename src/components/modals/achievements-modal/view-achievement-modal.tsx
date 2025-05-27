@@ -1,5 +1,5 @@
 import { Box, Image, TextTemplate } from "@atoms";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { AchievementPoints, Button } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -59,6 +59,8 @@ const ViewAchievementModal = ({
     onClose();
   }, [slotsTaken, id, status]);
 
+  const showAchievementPoints = useMemo(() => typeof points === "number", [points]);
+
   return (
     <Box flex={1}>
       <GenericHeadingPad />
@@ -89,9 +91,11 @@ const ViewAchievementModal = ({
         </Box>
       )}
       <GenericHeadingAbsolute onRightIconPress={onClose} />
-      <Box position="absolute" top={insets.top} left={16}>
-        <AchievementPoints autoWidth={true} label={addCommasToNumber(points)} locked={status === "locked"} />
-      </Box>
+      {!showAchievementPoints ? null : (
+        <Box position="absolute" top={insets.top} left={16}>
+          <AchievementPoints autoWidth={true} label={addCommasToNumber(points)} locked={status === "locked"} />
+        </Box>
+      )}
     </Box>
   );
 };

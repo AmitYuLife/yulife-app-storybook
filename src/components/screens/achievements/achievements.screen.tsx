@@ -8,7 +8,7 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import AchievementCard, { IAchievementCardProps } from "@organisms/achievement-card/achievement-card";
 import { FlashList } from "@shopify/flash-list";
 import { Style } from "@styles";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { ChipList } from "@molecules";
 
@@ -56,6 +56,8 @@ const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, categ
     [slotsTaken]
   );
 
+  const showAchievementPoints = useMemo(() => typeof achievementPoints === "number", [achievementPoints]);
+
   return (
     <Box flex={1}>
       <GenericHeadingPad />
@@ -63,13 +65,15 @@ const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, categ
         <Box pt={8} pr={8} pb={8} style={styles.shadowBox}>
           <ChipList chips={categories} />
         </Box>
-        <Box alignSelf="center" justifyContent="center" mt={24} mb={10}>
-          <AchievementPoints
-            label={t("screens.achievements.achievements_points", { achievementPoints })}
-            autoWidth={true}
-            alignTextInCenter={true}
-          />
-        </Box>
+        {!showAchievementPoints ? null : (
+          <Box alignSelf="center" justifyContent="center" mt={24} mb={10}>
+            <AchievementPoints
+              label={t("screens.achievements.achievements_points", { achievementPoints })}
+              autoWidth={true}
+              alignTextInCenter={true}
+            />
+          </Box>
+        )}
         <Box flex={1} width={"100%"}>
           <FlashList
             renderItem={renderItem}

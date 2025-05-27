@@ -5,7 +5,7 @@ import { t } from "@locale";
 import { AchievementPoints, BoxOption } from "@molecules";
 import { Style } from "@styles";
 import { addCommasToNumber } from "@utils";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { ReactNode } from "react";
 
@@ -29,6 +29,8 @@ export interface IAchievementCardProps {
 }
 
 const AchievementCard = ({ name, description, onPress, points, icon, status }: IAchievementCardProps) => {
+  const showAchievementPoints = useMemo(() => typeof points === "number", [points]);
+
   return (
     <BoxOption
       onPress={onPress}
@@ -40,11 +42,13 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
       {/* we need to change the type of the BoxOption component for children */}
       <>
         <Box position="absolute" top={8} flexDirection="row" justifyContent="space-between" left={8} right={8}>
-          <AchievementPoints
-            label={addCommasToNumber(points)}
-            autoWidth={true}
-            locked={status === IAchievementStatus.locked}
-          />
+          {!showAchievementPoints ? null : (
+            <AchievementPoints
+              label={addCommasToNumber(points)}
+              autoWidth={true}
+              locked={status === IAchievementStatus.locked}
+            />
+          )}
           {STATUS_COMPONENTS[status]}
         </Box>
         <Box alignItems="center" justifyContent="center" mt={24}>
