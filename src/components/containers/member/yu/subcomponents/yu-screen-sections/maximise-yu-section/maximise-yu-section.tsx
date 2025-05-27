@@ -71,6 +71,13 @@ export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximi
 
   const { badge, scrollItems } = content || {};
 
+  const showProgress = !!content?.progress?.max;
+  const showItems = !!scrollItems?.length;
+
+  if (!showProgress && !showItems) {
+    return null;
+  }
+
   return (
     <Box key={sectionInstanceId}>
       {showTransitionAnimation ? <BorderOpacityAnimation /> : null}
@@ -87,8 +94,8 @@ export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximi
           bg={Colours.neutral.white}
         >
           {showPersistentAnimation ? <GoldenSheenAnimation /> : null}
-          {!progress?.max ? null : <TodayEarnings animate={showTransitionAnimation} progress={progress} />}
-          {!scrollItems?.length ? null : <HorizontalList data={scrollItems} />}
+          {showProgress ? <TodayEarnings animate={showTransitionAnimation} progress={progress} /> : null}
+          {showItems ? <HorizontalList data={scrollItems} /> : null}
           <Badge badge={badge} animate={showTransitionAnimation} />
         </Box>
       </Box>
