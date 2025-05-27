@@ -81,6 +81,7 @@ import { VoucherIcon } from "./voucher-icon";
 import { AchievementPointIcon } from "./achievement-point-icon";
 import { WalletIcon } from "./wallet-icon";
 import { StarEmptySlotIcon } from "./star-empty-slot-icon";
+import { HeartIcon } from "./heart-icon";
 
 export default {
   GlobeIcon,
@@ -168,4 +169,5 @@ export default {
   AchievementPointIcon,
   WalletIcon,
   StarEmptySlotIcon,
+  HeartIcon,
 };

@@ -6,7 +6,7 @@ import Animated, { withRepeat, withTiming, useAnimatedStyle, useSharedValue, Eas
 import Svg, { G, Path, Defs, LinearGradient, Stop, ClipPath } from "react-native-svg";
 
 const PODIUM_ROTATE_TIME = 70000;
-const OPACITY = 0.7;
+const DEFAULT_OPACITY = 0.7;
 
 interface IRaysProps {
   containerStyle?: ViewStyle;
@@ -16,6 +16,7 @@ interface IRaysProps {
   positionStyle?: ViewStyle;
   color?: string;
   style?: "default" | "alternate" | "thin";
+  opacity?: number;
 }
 
 const DEFAULT_POSITION_STYLE: ViewStyle = {
@@ -32,6 +33,7 @@ const Rays = ({
   positionStyle = DEFAULT_POSITION_STYLE,
   style = "default",
   duration = PODIUM_ROTATE_TIME,
+  opacity = DEFAULT_OPACITY,
 }: IRaysProps) => {
   const rotation = useSharedValue(initialRotation);
 
@@ -51,18 +53,18 @@ const Rays = ({
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      opacity: OPACITY,
+      opacity,
       ...positionStyle,
       transform: [{ rotate: `${rotation.value}deg` }],
     };
-  }, [style]);
+  }, [opacity, style]);
 
   return (
     <Animated.View style={wrapperStyle}>
       <Animated.View style={animatedStyle}>
         {style === "default" ? <PodiumRaysSvg /> : null}
         {style === "alternate" ? <RaysSvgAlternate color={color} /> : null}
-        {style === "thin" ? <RaysSvgThin /> : null}
+        {style === "thin" ? <RaysSvgThin color={color} /> : null}
       </Animated.View>
     </Animated.View>
   );
@@ -188,7 +190,7 @@ const PodiumRaysSvg = memo(() => (
   </Svg>
 ));
 
-const RaysSvgThin = memo(() => (
+const RaysSvgThin = memo(({ color = "#fff" }: Pick<IRaysProps, "color">) => (
   <Svg width={"100%"} height={"100%"} viewBox="0 0 477 477" fill="none">
     <Path d="M176.659 476.41h122.536l-61.268-238.396-61.268 238.396z" fill="url(#paint0_linear_1_18)" opacity={0.4} />
     <Path
@@ -215,8 +217,8 @@ const RaysSvgThin = memo(() => (
         y2={235.944}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint1_linear_1_18"
@@ -226,8 +228,8 @@ const RaysSvgThin = memo(() => (
         y2={231.961}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint2_linear_1_18"
@@ -237,8 +239,8 @@ const RaysSvgThin = memo(() => (
         y2={241.111}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint3_linear_1_18"
@@ -248,8 +250,8 @@ const RaysSvgThin = memo(() => (
         y2={244.397}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint4_linear_1_18"
@@ -259,8 +261,8 @@ const RaysSvgThin = memo(() => (
         y2={243.933}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint5_linear_1_18"
@@ -270,8 +272,8 @@ const RaysSvgThin = memo(() => (
         y2={240.467}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint6_linear_1_18"
@@ -281,8 +283,8 @@ const RaysSvgThin = memo(() => (
         y2={235.299}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint7_linear_1_18"
@@ -292,8 +294,8 @@ const RaysSvgThin = memo(() => (
         y2={231.457}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
     </Defs>
   </Svg>
