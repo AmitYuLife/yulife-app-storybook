@@ -6,7 +6,7 @@ import { AchievementPoints, AchievementSlot } from "@molecules";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { pushToScreen, showYuModal } from "@navigation/root";
 import { addCommasToNumber } from "@utils";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { IAchievementStatus } from "../achievement-card/achievement-card";
 
 export interface IAchievement {
@@ -72,6 +72,10 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
 
   const getSlot = useCallback(
     (slot: number): ISlot => {
+      if (isInspectingUser) {
+        return;
+      }
+
       const achievement = achievements.find((a) => a.slot === slot);
 
       if (achievement) {
@@ -86,17 +90,28 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
         onPress: () => goToAchievements(slot),
       };
     },
-    [achievements, onPress, goToAchievements]
+    [achievements, onPress, goToAchievements, isInspectingUser]
   );
+
+  const showAchievementPoints = useMemo(() => typeof points === "number", [points]);
 
   return (
     <>
       <Box w={132} bg="white" p={16} br={8} alignItems="center" borderWidth={1} borderColor="#E3E3E1">
-        <Box position="absolute" top={-12} left={0} right={0} alignItems="center">
-          <Box position="absolute" top={-1} borderWidth={1} borderColor="#E3E3E1" width={105} height={23} br={20} />
-          <AchievementPoints label={addCommasToNumber(points)} />
-        </Box>
-        <Pressable flexDirection="row" alignItems="center" mb={8} mt={8} onPress={() => goToAchievements()}>
+        {!showAchievementPoints ? null : (
+          <Box position="absolute" top={-12} left={0} right={0} alignItems="center">
+            <Box position="absolute" top={-1} borderWidth={1} borderColor="#E3E3E1" width={105} height={23} br={20} />
+            <AchievementPoints label={addCommasToNumber(points)} />
+          </Box>
+        )}
+
+        <Pressable
+          flexDirection="row"
+          alignItems="center"
+          mb={8}
+          mt={showAchievementPoints ? 8 : 0}
+          onPress={() => goToAchievements()}
+        >
           <TextTemplate type="l1b">{t("achievements")}</TextTemplate>
           <ArrowIcon width={14} />
         </Pressable>
