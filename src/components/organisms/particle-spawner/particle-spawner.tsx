@@ -1,9 +1,18 @@
-import { memo, ReactElement } from "react";
+import { memo, ReactElement, useMemo } from "react";
 import { toArray } from "@utils/array";
 import { Box } from "@atoms";
 import { Particle, ParticleProps } from "./subcomponents/particle";
+import { useFrameAdjuster } from "@hooks";
 
-type ParticleSpawnerProps = Pick<
+export type ParticleSpawnerDynamicCount = {
+  initialCount?: number; // Defaults to minCount
+  minCount?: number; // Defaults to 0
+  maxCount?: number; // Defaults to initial value
+  targetFps: number;
+  fpsDelta?: number; // Allow the fps to fluctuate by this value, default 3
+};
+
+export type ParticleSpawnerProps = Pick<
   ParticleProps,
   "radius" | "minDistance" | "colors" | "shootingSpeed" | "maxRotation"
 > & {
@@ -19,9 +28,15 @@ type ParticleSpawnerProps = Pick<
   particleSize: number | number[];
 
   /**
-   * Amount of particles to spawn
+   * Dynamically set the particles count based on device FPS
    */
-  count: number;
+  dynamicCount?: ParticleSpawnerDynamicCount;
+
+  /**
+   * Amount of particles to spawn
+   * If dynamicCount is absent, count is used, default - 10
+   */
+  count?: number;
 };
 
 const ParticleSpawner = ({
@@ -29,12 +44,33 @@ const ParticleSpawner = ({
   particleSize,
   radius,
   colors,
-  count,
+  count: countParam = 10,
+  dynamicCount,
   shootingSpeed = 1000,
   minDistance,
   maxRotation,
 }: ParticleSpawnerProps) => {
   const getDelay = () => Math.random() * Math.max(...toArray(shootingSpeed));
+
+  const frameAdjusterProps = useMemo(() => {
+    const dynamicCountInitialValue = dynamicCount?.initialCount ?? dynamicCount?.minCount ?? 0;
+
+    return dynamicCount
+      ? {
+          initialValue: dynamicCountInitialValue,
+          targetFps: dynamicCount.targetFps,
+          fpsDelta: dynamicCount.fpsDelta,
+          minValue: dynamicCount.minCount,
+          maxValue: dynamicCount.maxCount ?? dynamicCountInitialValue,
+        }
+      : {
+          initialValue: countParam,
+          minValue: countParam,
+          maxValue: countParam,
+        };
+  }, [dynamicCount, countParam]);
+
+  const count = useFrameAdjuster(frameAdjusterProps);
 
   const particles = Array.from({ length: count }, (_, i) => (
     <Particle
