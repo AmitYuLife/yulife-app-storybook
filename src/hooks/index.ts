@@ -40,6 +40,8 @@ export * from "./useModal";
 export * from "./usePrizeHintPopup";
 export * from "./useBoxProps";
 export * from "./animation/useBobbingAnimation";
+export * from "./animation/useFps";
+export * from "./animation/useFrameAdjuster";
 export * from "./useImagePreload";
 export * from "./useTimeout";
 export * from "./useFocusEffect";

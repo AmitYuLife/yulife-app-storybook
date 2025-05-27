@@ -2,8 +2,7 @@ import { memo } from "react";
 import { Box } from "@atoms";
 import { Colours } from "@styles";
 import { StyleSheet } from "react-native";
-import { ParticleSpawner } from "@organisms";
-import { ParticleInstanceProps } from "@organisms/particle-spawner/subcomponents/particle";
+import { ParticleInstanceProps, ParticleSpawner, ParticleSpawnerDynamicCount } from "@organisms";
 import { QuadStarIcon } from "@atoms/icon/quad-star-icon";
 
 export type StarsDecorationProps = {
@@ -14,7 +13,13 @@ export type StarsDecorationProps = {
   starSize?: number | number[];
 
   /**
-   * Amount of stars to render on screen.
+   * Dynamic amount of stars to render on screen.
+   * Count will fluctuate to keep the device FPS around the specified target
+   */
+  dynamicStarCount?: ParticleSpawnerDynamicCount;
+
+  /**
+   * A static amount of stars to render on screen.
    * After an animation finishes a new one will spawn in its place
    */
   starCount?: number;
@@ -55,6 +60,7 @@ const StarsDecoration = ({
   contentWidth,
   contentHeight,
   starSize = 10,
+  dynamicStarCount,
   starCount = 20,
   radius = 100,
   colors = ["#FCE93D", Colours.neutral.white],
@@ -73,6 +79,7 @@ const StarsDecoration = ({
     >
       <ParticleSpawner
         particleSize={starSize}
+        dynamicCount={dynamicStarCount}
         count={starCount}
         radius={radius}
         colors={colors}
