@@ -19,7 +19,7 @@ export const { closeQuitChallengeScreen, exitChallenge, startChallenge } = scree
 
 export const { goToYuScreenAndDismissIntro, startYumojiBuilder } = screens.yuscreen;
 
-export const { scrollFromID } = navigation.scrolling;
+export const { scrollFromID, scrollUntilIdVisible } = navigation.scrolling;
 
 export const donate =
   (type: IMPACT_DONATION, taps: number = 1) =>

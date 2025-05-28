@@ -1696,7 +1696,7 @@ export const CORE_REWARDS_MARKS_AND_SPENCER = {
     },
     loyaltyProgramme: [],
     name: {
-      "en-GB": "M&S",
+      "en-GB": "EXTRA LONG COUPON NAME M&S",
       "ja-JP": "エムアンドエス",
     },
     redemptionSteps: {
