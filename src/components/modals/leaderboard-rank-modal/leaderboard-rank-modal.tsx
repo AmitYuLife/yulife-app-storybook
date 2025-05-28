@@ -30,7 +30,7 @@ const LeaderboardRankModal = ({ leaderboardId, targetId, onListItemPress }: IPro
       return (
         <ListItem
           type="leaderboard"
-          onPress={() => onListItemPress(item.id, index + 1)}
+          onPress={() => onListItemPress(item.userId, index + 1)}
           uri={item?.avatar?.uri}
           score={item.score}
           theme={item.userId === targetId ? "highlighted" : null}
