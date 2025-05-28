@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.64.0] - 2025-05-28
+
+### Bugfixes
+
+- Bugfix ENG-4271: Inspecting user on leaderboard modal not working
+- Bugfix LCS-1363: Maximise yu progress showing 0/1 when disabled
+
+### Tasks
+
+- Task GS-1612: Hide achievement points
+- Task GS-1481: Show Challenge Specific Icons in Random Teaser
+- Task GS-1587: Purge Leaderboards Settings toggle
+- Task: Further reward screen UI fixes
+- Task: Fix storybook hook error
+- Task GS-1554: Purge Show Buffs toggle
+- Task: Rewards/wallet UI issues
+- Task LCS-1320: add loading state during OTP redeem
+
+### Chores
+
+- Chore - Updated translations
+- chore: DEVOP-4061: GitLab Component assume-aws-role-with-web-identity Update to v1.0.0
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Wallet Coupon Flow
+- Feat: LCS-1308: ParticleSpawner dynamic count
+- Feat: LCS-1308: Spotlight component
+- ISA-3282: Concurrent Employments Referral Page
+- Detox: testing event hero cards description colour matches the title across worlds
+- Detox: Quest Map Onboarding Modal
+
 ## [4.63.0] - 2025-05-21
 
 ### Features
