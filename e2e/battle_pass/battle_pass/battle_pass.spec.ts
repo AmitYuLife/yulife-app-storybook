@@ -25,13 +25,6 @@ Feature("I can view and use all battle pass features", async () => {
     When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
       Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
       Then("I should see no progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 60, 0), 2000));
-    });
-    When("I tap on the 'Purchased' tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 2500), async () => {
-      When("I tap on the 'Gift Cards' tab", when.tapID(ids.WALLET_CATEGORY_LABEL("Gift Cards"), 2500), async () => {
-        Then("I should see my wallet is still empty", then.idVisible(ids.EMPTY_WALLET_TITLE("Your wallet is ready to be filled!")));
-      });
-    });
-    When("I tap on to go back", when.tapID(ids.BACK_BUTTON, 2500), async () => {
       Then("I should see all impact cards available", then.impactCardsVisible);
     });
     When("I tap to donate to Clean the ocean", when.donate("ocean", 2), async () => {
@@ -52,7 +45,7 @@ Feature("I can view and use all battle pass features", async () => {
   Scenario("I can successfully level up and claim a mystery box as the first reward", scenario.start, () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
-        When("I login and navigate to the 'Quest' screen", given.logInAndGoToTab("quests", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+        Given("I login and navigate to the 'Quest' screen", given.logInAndGoToTab("quests", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
           When("I tap level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10)), async () => {
             Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll"), 2500));
           });
@@ -117,7 +110,7 @@ Feature("I can view and use all battle pass features", async () => {
   Scenario("I can successfully level up and claim an extra challenge power-up", scenario.start, () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
-        When("I login and go to the YuCoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+        Given("I login and go to the YuCoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
           Then("I see that I have only one challenge available for today", then.textVisible("Take a challenge (1 left today)"));
         });
       });
@@ -218,30 +211,40 @@ Feature("I can view and use all battle pass features", async () => {
 });
 
 Scenario("I can view, adjust and validate coupon values before completing checkout", scenario.start, () => {
-  Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-    Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+  Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
+    Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
+      Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+        Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+      });
+    });
   });
   When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
     Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
   });
   When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
     When("I tap on the 'Purchased' tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 2500), async () => {
-      Then("I should see both wallet categories", then.multipleIDVisible([ids.WALLET_CATEGORY_LABEL("Discounts"), ids.WALLET_CATEGORY_LABEL("Gift Cards")]));
-      Then("I should see the 'M&S' coupon available for purchase", then.idVisible(ids.WALLET_COUPON_CARD_TITLE("M&S"), 2000));
+      Then("I should see the 'M&S' coupon available for purchase", then.idVisible(ids.WALLET_CARD_TITLE("M&S"), 2000));
     });
   });
-  When("I tap the 'M&S' Coupon card", when.tapID(ids.WALLET_COUPON_CARD_TITLE("M&S"), 2000), async () => {
-    Then("I should see the correct discount info", then.idVisible(ids.WALLET_COUPON_ITEM_INFO("10%"), 2000));
+  When("I tap the 'M&S' Coupon card", when.tapID(ids.WALLET_CARD_TITLE("M&S"), 2000), async () => {
+    Then("I should see the correct discount info", then.textVisible("10%", 1500));
+    Then("I should see the correct Coupon name", then.textVisible(data.CORE_REWARDS_MARKS_AND_SPENCER.data.name["en-GB"]));
     Then("I should see the Coupon description", then.idVisible(ids.WALLET_COUPON_ITEM_DESCRIPTION("One time use"), 2000));
   });
-  When("I tap the voucher card to adjust its values", when.tapID(ids.WALLET_COUPON_ITEM_INFO("10%"), 2000), async () => {
+  When("I tap the voucher card to adjust its values", when.tapID(ids.WALLET_COUPON_ITEM_DESCRIPTION("One time use"), 2000), async () => {
     Then("I should see multiple available denominations", then.multipleIDVisible([ids.TEXT_TEMPLATE("£100", "b2b"), ids.TEXT_TEMPLATE("£5", "b2b")]));
     Then("I should see the coupon input field", then.idVisible(ids.CONTENT_ITEM_INPUT("coupon-input"), 2000));
     Then("I should see the currency info warning", then.idVisible(ids.TEXT_TEMPLATE("You can only redeem it in GBP (£).", "b2"), 2000));
+    Then("I should see the reward details info button", then.idVisible(ids.TERTIARY_BUTTON("How can my voucher be used"), 2000));
   });
-  When("I select the '£20' value pill", when.tapID(ids.TEXT_TEMPLATE("£20", "b2b"), 2000), async () => {
-    Then("I should see the minimum denomination error message", then.textVisible("Must be at least £50.", 2000));
-    Then("I should see that the checkout cta button is disabled", then.idVisible(ids.BUTTON_BASE("Checkout", true), 2000));
+  When("I tap the reward details info button", when.tapID(ids.TERTIARY_BUTTON("How can my voucher be used"), 2000), async () => {
+    Then("I should be on the reward details screen", then.textVisible(data.CORE_REWARDS_MARKS_AND_SPENCER.data.redemptionSteps.info["en-GB"]));
+  });
+  When("I tap to go back to the edit screen", when.tapID(ids.BACK_BUTTON, 2000), async () => {
+    When("I select the '£20' value pill", when.tapID(ids.TEXT_TEMPLATE("£20", "b2b"), 2000), async () => {
+      Then("I should see the minimum denomination error message", then.textVisible("Must be at least £50.", 2000));
+      Then("I should see that the checkout cta button is disabled", then.idVisible(ids.BUTTON_BASE("Checkout", true), 2000));
+    });
   });
   When("I select the '£100' value pill", when.tapID(ids.TEXT_TEMPLATE("£100", "b2b"), 2000), async () => {
     Then("I should see the correct discount amount", then.idVisible(ids.TEXT_TEMPLATE("-£10.00", "b2b"), 2000));

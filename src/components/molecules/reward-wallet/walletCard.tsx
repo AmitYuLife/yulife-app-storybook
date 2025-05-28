@@ -4,6 +4,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { memo } from "react";
 import { Image, StyleSheet } from "react-native";
 import { Style } from "@styles";
+import { WALLET_CARD_TITLE } from "@ids";
 
 const SHADOW_COLOR = "#E7E7EB";
 const BACKGROUND_COLOR = "#FFFFFF";
@@ -39,7 +40,7 @@ const WalletCard = <T,>({ item, onPress }: WalletCardProps<T>) => {
           <Box flex={1} p={10} alignItems="stretch" justifyContent="space-between" flexDirection="row">
             <Box flexDirection="column" justifyContent="space-around" flex={1}>
               <Box flexDirection="row" alignItems="center" justifyContent="space-between" pr={16}>
-                <TextTemplate color={TEXT_COLOR} type="b1b" numberOfLines={2}>
+                <TextTemplate color={TEXT_COLOR} type="b1b" numberOfLines={2} testID={WALLET_CARD_TITLE(item.title)}>
                   {item.title}
                 </TextTemplate>
               </Box>
