@@ -19,17 +19,19 @@ sonarcloud-check:
     - echo -e "\nsonar.projectVersion=${PACKAGE_VERSION}" >> sonar-project.properties
     - cat sonar-project.properties
     - sonar-scanner
-  only:
-    - develop
-    - /^release\/.*$/
-    - merge_requests
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH =~ /^release\/.*$/
 
 lint-bitrise:
   tags:
+    # Bitrise CLI doesn't build binary for arm64
     - linux_amd64
   stage: quality
   image: golang:1.17
-  cache: []
   script:
     # Install dependencies
     - apt-get update && apt-get install -y git jq rsync
@@ -42,5 +44,7 @@ lint-bitrise:
     - ./scripts/format-bitrise.sh
     # Fail the job if there are changes
     - git diff --exit-code bitrise.yml || (echo "Changes detected in bitrise.yml, failing the job." && false)
-  only:
-    - merge_requests
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - bitrise.yml

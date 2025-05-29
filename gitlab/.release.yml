@@ -1,8 +1,7 @@
 release-develop-to-uat:
-  extends: .generic-node
+  extends: .generic-node-arm64
   stage: release
   when: manual
-  cache: []
   script:
     # Install node
     - . "$NVM_DIR/nvm.sh" && nvm install -b
@@ -29,18 +28,18 @@ release-develop-to-uat:
     - git checkout develop
     - "npm version minor --commit-hooks false -m 'Release: bump version to %s'"
     - git push --no-verify
-  only:
-    refs:
-      - develop
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_COMMIT_BRANCH == "develop"
 
 # This creates a tag for the release branch which triggers the prod pipeline on bitrise
 release-production-build:
-  extends: .generic-node
+  extends: .generic-node-arm64
   stage: release
-  cache: []
   script:
     # Install node
-    - . "$NVM_DIR/nvm.sh" && nvm install -b
+    - nvm install -b
     # Switch from Gitlab SSH to Service User Basic Auth
     - git remote rm origin && git remote add origin https://oauth2:${GITLAB_TOKEN_RELEASE}@gitlab.com/$CI_PROJECT_PATH.git
     - git config --global user.email "$GITLAB_USER_EMAIL"
@@ -73,7 +72,6 @@ release-production-build:
 release-production-ios-internal:
   image: ruby:3.2
   stage: release
-  cache: []
   script:
     - ruby -v
     - gem install fastlane
@@ -85,7 +83,6 @@ release-production-ios-internal:
 release-production-product-and-tech:
   image: ruby:3.2
   stage: release
-  cache: []
   script:
     - ruby -v
     - gem install fastlane
@@ -98,7 +95,6 @@ release-production-product-and-tech:
 release-production-yucrew:
   image: ruby:3.2
   stage: release
-  cache: []
   script:
     - ruby -v
     - gem install fastlane
