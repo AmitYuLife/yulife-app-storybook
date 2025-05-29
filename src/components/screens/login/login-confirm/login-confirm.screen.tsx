@@ -1,11 +1,12 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { memo } from "react";
-import { LinkButton } from "@molecules";
+import { Button, LinkButton } from "@molecules";
 import { t } from "@locale";
 import { CaptchaInput, useCaptcha } from "@organisms/captcha-input";
 import LoginFormWrapper from "../subcomponents/login-form-wrapper";
 import { StyleSheet } from "react-native";
 import { Box, TextTemplate } from "@atoms";
+import { openInbox } from "react-native-email-link";
 
 interface IProps {
   email: string;
@@ -72,7 +73,8 @@ const LoginConfirmScreen = ({
           {t("screens.login_confirm.description")}
         </TextTemplate>
       </Box>
-      <Box ph={22} pb={24}>
+      <Button size="Large" onPress={() => openInbox()} translationKey="screens.login_confirm.open_email" />
+      <Box ph={22} pb={24} pt={16}>
         <LinkButton
           translationKey={isCooldownActive ? "screens.login_confirm.cooldown" : "screens.login_confirm.resend_link"}
           translationArgs={{

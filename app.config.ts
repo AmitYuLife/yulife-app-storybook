@@ -81,7 +81,7 @@ export default () => ({
     },
     infoPlist: {
       UIBackgroundModes: ["audio", "remote-notification"],
-      LSApplicationQueriesSchemes: ["http", "https"],
+      LSApplicationQueriesSchemes: ["http", "https", "mailto", "message", "ms-outlook", "googlegmail", "ymail"],
       WKCompanionAppBundleIdentifier: `${environmentConfig.app_package}.yuwatch`,
       UIViewControllerBasedStatusBarAppearance: true,
       CFBundlePackageType: "APPL",
@@ -211,6 +211,7 @@ export default () => ({
     "./plugins/yulife/with-yulife-debug-signing.plugin",
     "./plugins/react-native-navigation/with-react-native-navigation.plugin.js",
     ["@bugsnag/plugin-expo-eas-sourcemaps"],
+    "react-native-email-link",
     // This must be last, or build will fail with issues finding YuWatch target
     [
       "@bacons/apple-targets",

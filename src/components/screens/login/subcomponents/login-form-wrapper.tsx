@@ -36,7 +36,6 @@ export const LoginFormWrapper = ({
       BackgroundGradient={<UnauthorisedGradient />}
     >
       <ScrollView keyboardShouldPersistTaps={"handled"} showsVerticalScrollIndicator={false} style={styles.scrollView}>
-        <Pad height={32} />
         <Box pt={60} pb={40} px={30}>
           <TextTemplate type="h2" testID={LOGIN_SCREEN_HEADER}>
             {heading}
