@@ -16,6 +16,7 @@ import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Navigation } from "@navigation/main";
 import { IRewardContainerProps } from "../member/rewards/rewards.types";
 import NoStoreWalletButton from "@components/screens/member/rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
+import { isAndroid } from "@utils";
 
 const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPressWallet }: IRewardContainerProps) => {
   const { componentId } = useNavigation();
@@ -41,6 +42,14 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
       Navigation.pop(componentId);
     }
   }, [componentId, showNavigation]);
+
+  const topPadding = useMemo(() => {
+    if (isInnerScreen || showNavigation) {
+      return isAndroid() ? TOP_BAR.TOP_BAR_WITH_PAD : TOP_BAR.PADDING_TOP;
+    }
+
+    return Style.adjust(8);
+  }, [isInnerScreen, showNavigation]);
 
   if (!queryResult?.getMobileUnlockableBattlePassVouchers) {
     return (
@@ -72,28 +81,22 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
           onScroll={onScroll}
         >
           <Box>
-            <Box
-              right={0}
-              left={0}
-              bg={data.header.background.color}
-              pl={20}
-              pr={20}
-              pb={84}
-              pt={isInnerScreen || showNavigation ? TOP_BAR.PADDING_TOP : 0}
-            >
-              <Box position="absolute" right={0}>
-                <Image width={Style.adjust(240)} source={data.header.background.image} />
-              </Box>
-              <Box flex={1}>
-                <Box mt={8} w={230}>
-                  <TextTemplate color={"white"} type="h3">
-                    {data.header.heading}
-                  </TextTemplate>
+            <Box bg={data.header.background.color} pt={topPadding} disableAutoAdjust={true}>
+              <Box right={0} left={0} pl={20} pr={20} pb={84}>
+                <Box position="absolute" right={0}>
+                  <Image width={Style.adjust(240)} source={data.header.background.image} />
                 </Box>
-                <Box mt={8} w={230}>
-                  <TextTemplate color={"white"} type="l1">
-                    {data.header.description}
-                  </TextTemplate>
+                <Box flex={1}>
+                  <Box w={230}>
+                    <TextTemplate color={"white"} type="h3">
+                      {data.header.heading}
+                    </TextTemplate>
+                  </Box>
+                  <Box mt={8} w={230}>
+                    <TextTemplate color={"white"} type="l1">
+                      {data.header.description}
+                    </TextTemplate>
+                  </Box>
                 </Box>
               </Box>
             </Box>
