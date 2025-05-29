@@ -96,7 +96,7 @@ export const smoking_questions = {
       cigarettes: "Cigarettes",
       cta: "Next",
       description: "Tracking this helps you understand your usage patterns better.",
-      heading_1: "Let's start with understanding your habits...",
+      heading_1: "Let’s start with understanding your habits...",
       heading_2: "Which tobacco products do you use?",
       roll_ups: "Roll-ups",
     },
