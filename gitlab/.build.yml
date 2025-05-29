@@ -1,18 +1,17 @@
 build:e2e:
-  extends: .generic-node
+  extends: .generic-node-arm64
   stage: build
   interruptible: true
   script:
     # Install node
-    - . "$NVM_DIR/nvm.sh" && nvm install -b
+    - nvm install -b
     - corepack enable
     - export GITLAB_TOKEN="${CI_JOB_TOKEN}"
     - yarn install --frozen-lockfile --cache-folder .yarn/
     - yarn e2e:build
-    # Rebuild cache if needed
-    - !reference [.build_cache, script]
-  only:
-    refs:
-      - merge_requests
-    changes:
-      - e2e/**/*
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - e2e/**/*

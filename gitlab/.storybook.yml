@@ -1,7 +1,7 @@
 deploy:dev:storybook:
   extends:
     - .assume-aws-role-with-web-identity:uk-dev:app-components
-    - .generic-node
+    - .generic-node-arm64
   stage: release
   # Do not cancel this job if newer commit made
   interruptible: false
@@ -16,12 +16,14 @@ deploy:dev:storybook:
     # Install node
     - nvm install -b
     - corepack enable
+    - yarn install --frozen-lockfile
     - yarn build:storybook:web
     - aws s3 sync --delete ./storybook-static  "s3://$CLOUDFRONT_S3_BUCKET"
     - |
       DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,aliases:Aliases.Items}[?aliases && contains(aliases,'$CLOUDFRONT_DOMAIN')].id" --output text)
       echo "Invalidating Cloudfront Distribution $DISTRIBUTION_ID"
       aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
-  only:
-    refs:
-      - develop
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_COMMIT_BRANCH == "develop"

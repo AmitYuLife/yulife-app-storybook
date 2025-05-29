@@ -1,17 +1,17 @@
 test:
-  extends: .generic-node
+  extends: .generic-node-arm64
   stage: test
   interruptible: true
   script:
     # Install node
-    - . "$NVM_DIR/nvm.sh" && nvm install -b
+    - nvm install -b
     - corepack enable
     - export GITLAB_TOKEN="${CI_JOB_TOKEN}"
-    - yarn install --frozen-lockfile --cache-folder .yarn/
+    - yarn install --frozen-lockfile
     - yarn test
-    # Rebuild cache if needed
-    - !reference [.build_cache, script]
-  only:
-    - merge_requests
-    - develop
-    - /^release\/.*$/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH =~ /^release\/.*$/
