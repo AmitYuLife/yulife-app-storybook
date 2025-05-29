@@ -3,7 +3,7 @@ import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
 import { Style, TOP_BAR } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
-import { gql } from "@graphql/__generated";
+import { gql, MobileGameBattlePassReward } from "@graphql/__generated";
 import { ContentItemWrapper } from "@components/sdui";
 import { ProductGames } from "./_subcomponents/product-games";
 import { FutureGame } from "./_subcomponents/future-game";
@@ -17,14 +17,19 @@ import { Navigation } from "@navigation/main";
 import { IRewardContainerProps } from "../member/rewards/rewards.types";
 import NoStoreWalletButton from "@components/screens/member/rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
 import { isAndroid } from "@utils";
+import { useMutation } from "@apollo/client";
 
 const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPressWallet }: IRewardContainerProps) => {
   const { componentId } = useNavigation();
-  const [_, { data: queryResult }] = useQueryOnScreenSeen(
+  const [refetchUnlockables, { data: queryResult }] = useQueryOnScreenSeen(
     gql("GetMobileUnlockableBattlePassVouchersDocument"),
     componentId
   );
   const { onScroll } = useContext(RewardsManagerContext);
+
+  const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
+    onCompleted: () => refetchUnlockables().catch(),
+  });
 
   const calculated = useMemo(() => {
     return {
@@ -36,6 +41,35 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
       },
     };
   }, [queryResult?.getMobileUnlockableBattlePassVouchers?.header?.background?.color]);
+
+  const getClaimRewardCallback = useCallback(
+    (reward: MobileGameBattlePassReward, participationId: string) => {
+      if (reward.onPress) {
+        return reward.onPress;
+      }
+
+      return async () => {
+        try {
+          const result = await claimMobileGameBattlePassRewards({
+            variables: { rewardIds: [reward.id], participationId },
+          });
+
+          return result;
+        } catch {}
+      };
+    },
+    [claimMobileGameBattlePassRewards]
+  );
+
+  const games = useMemo(() => {
+    return (queryResult?.getMobileUnlockableBattlePassVouchers?.games || []).map((game) => ({
+      ...game,
+      rewards: game.rewards.map((reward) => ({
+        ...reward,
+        onPress: getClaimRewardCallback(reward, game.id),
+      })),
+    }));
+  }, [queryResult?.getMobileUnlockableBattlePassVouchers?.games, getClaimRewardCallback]);
 
   const onBack = useCallback(() => {
     if (showNavigation) {
@@ -102,7 +136,7 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
             </Box>
           </Box>
           <Box mt={-75}>
-            <ProductGames games={data.games} />
+            <ProductGames games={games} />
           </Box>
           {!data.futureGames.length
             ? null
