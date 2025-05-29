@@ -73,6 +73,12 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
     }
   }, [itemOffset, allRewardItems]);
 
+  useEffect(() => {
+    setMoreItems([]);
+    setItemOffset(shopfront?.rewardList?.list?.length || 0);
+    setAllFetched(false);
+  }, [shopfront?.rewardList?.list]);
+
   const handleEndReached = useCallback(async () => {
     if (allFetched || isFetchingMore) {
       return;
