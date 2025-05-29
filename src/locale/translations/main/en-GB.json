@@ -348,7 +348,8 @@
       "resend_link": "Didn’t get it? Send a new link.",
       "cooldown": "Send a new link in %{seconds}s...",
       "webview_title": "Preparing for liftoff...",
-      "error_title": "Something went wrong"
+      "error_title": "Something went wrong",
+      "open_email": "Open email app"
     },
     "login_password": {
       "heading": "Enter your password",
