@@ -1,5 +1,5 @@
-mutation ClaimMobileGameBattlePassRewards($rewardIds: [String!]!) {
-  claimMobileGameBattlePassRewards(rewardIds: $rewardIds) {
+mutation ClaimMobileGameBattlePassRewards($rewardIds: [String!]!, $participationId: String) {
+  claimMobileGameBattlePassRewards(rewardIds: $rewardIds, participationId: $participationId) {
     ...MobileGameBattlePassReward
   }
 }

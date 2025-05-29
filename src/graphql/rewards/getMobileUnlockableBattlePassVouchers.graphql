@@ -12,6 +12,7 @@ query GetMobileUnlockableBattlePassVouchers {
       }
     }
     games {
+      id
       title
       icon {
         ...RemoteImage
@@ -33,6 +34,7 @@ query GetMobileUnlockableBattlePassVouchers {
       ...ContentItemWrapper
     }
     futureGames {
+      id
       title
       description
       startDateCopy

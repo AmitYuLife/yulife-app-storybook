@@ -88,20 +88,21 @@ function goToRewardDetails({ componentId, rewardId }: { componentId: string; rew
 
 function mapRewardItemToBattlePassListItem(componentId: string) {
   return function (gameRewardItem: Props["rewards"][number]) {
+    const isClaimed = gameRewardItem.status === "claimed";
+
     return {
       ...gameRewardItem,
-      showButton: false,
+      ctaTextColour: gameRewardItem.backgroundColour,
       imageOverlay:
         gameRewardItem.status === "pending" ? <ImageOverlay backgroundColor={gameRewardItem.backgroundColour} /> : null,
-      background:
-        gameRewardItem.status === "claimed" ? (
-          <Box opacity={0.5}>
-            <GlowStarsIcon />
-          </Box>
-        ) : null,
+      background: isClaimed ? (
+        <Box opacity={0.5}>
+          <GlowStarsIcon />
+        </Box>
+      ) : null,
       onContainerPress:
         gameRewardItem.onContainerPress ||
-        (gameRewardItem.status === "claimed"
+        (isClaimed
           ? // defaults to going to reward details for goal_products
             () => goToRewardDetails({ componentId, rewardId: gameRewardItem.rewardId })
           : undefined),

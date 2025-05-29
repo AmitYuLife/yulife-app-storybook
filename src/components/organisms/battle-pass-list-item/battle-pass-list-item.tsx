@@ -45,6 +45,7 @@ export interface IBattlePassListItem {
   overlayIcon?: Source;
   battlePassType?: string;
   backgroundColour: string;
+  ctaTextColour?: string;
   onPress?: VoidFunctionOrSduiActionPayload;
   status?: "completed" | "claimed" | "pending" | null;
   imageOverlay?: ReactNode;
@@ -100,6 +101,7 @@ const BattlePassListItem = ({
   modalRewardImageComponent,
   tickColour,
   detailsTitle,
+  ctaTextColour = "#E30D76",
 }: IBattlePassListItem) => {
   const track = useTrack();
   const dispatch = useDispatch();
@@ -289,7 +291,7 @@ const BattlePassListItem = ({
               ) : (
                 <TextTemplate
                   type="l1b"
-                  color="#E30D76"
+                  color={ctaTextColour}
                   testID={COMPLETED_BATTLE_PASS_LIST_ITEM(buttonLabel, position)}
                 >
                   {buttonLabel}
