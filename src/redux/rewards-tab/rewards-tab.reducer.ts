@@ -32,7 +32,11 @@ export const reducer = createReducer(getInitialState(), (builder) => {
     if (action.payload.rewards) {
       state.settings = action.payload.rewards;
 
-      if (!state.settings.hasDonationBattlepass && !state.settings.hasVoucherStore) {
+      if (
+        !state.settings.hasDonationBattlepass &&
+        !state.settings.hasVoucherStore &&
+        !state.settings.hasUnlockableBattlepassVouchers
+      ) {
         state.selectedSection = RewardsSection.Unavailable;
       } else if (state.selectedSection === RewardsSection.Donations && !state.settings.hasDonationBattlepass) {
         state.selectedSection = RewardsSection.Store;
