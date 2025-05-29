@@ -6,6 +6,7 @@ import { FlashList } from "@shopify/flash-list";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { t } from "@locale";
+import { Alert } from "react-native";
 
 type Props = {
   initialDailySteps: number;
@@ -34,13 +35,15 @@ const ChallengeProgressDebugInfo = ({
   const onExportDataPress = useCallback(() => {
     dispatch(
       logMixpanelEventActionCreator("challenge_progress_debug_tools", {
-        initialDailySteps,
-        currentPedometerSteps,
-        progressCalculation,
+        initialDailySteps: initialDailySteps || 0,
+        currentPedometerSteps: currentPedometerSteps || 0,
+        progressCalculation: progressCalculation || 0,
         healthProvider,
         historySteps,
       })
     );
+
+    Alert.alert(t("success"));
   }, [dispatch, initialDailySteps, currentPedometerSteps, progressCalculation, healthProvider, historySteps]);
 
   return (
@@ -49,7 +52,7 @@ const ChallengeProgressDebugInfo = ({
         {t("screens.challenge_progress.debug_info.initial_steps", { healthProvider, steps: initialDailySteps })}
       </TextTemplate>
       <TextTemplate type="l1b">
-        {t("screens.challenge_progress.debug_info.current_pedometer_steps", { steps: currentPedometerSteps })}
+        {t("screens.challenge_progress.debug_info.current_pedometer_steps", { steps: currentPedometerSteps || 0 })}
       </TextTemplate>
       <TextTemplate type="l1b" color={progressCalculation < 0 ? "red" : Colours.neutral.n800}>
         {t("screens.challenge_progress.debug_info.progress", { progress: progressCalculation || 0 })}
