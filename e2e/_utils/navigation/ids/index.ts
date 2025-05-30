@@ -982,6 +982,8 @@ export const BOARD_SIZE_INPUT = "BOARD_SIZE_INPUT";
 export const TARGET_SCORE_INPUT = "TARGET_SCORE_INPUT";
 export const HAPTIC_TOGGLE = "HAPTIC_TOGGLE";
 export const START_GAME_BUTTON = "START_GAME_BUTTON";
+export const GAME_STATE_MODAL_IMAGE = "GAME_STATE_MODAL_IMAGE";
+
 // TestIds from API
 export const SCROLL_PICKER_CONFIRM_BUTTON = "scroll-picker-confirm-button-text-view";
 export const QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON = "undefined-text-view";

@@ -15,6 +15,7 @@ import { range } from "lodash";
 import { Colours } from "@styles";
 
 export type GlowDecorationProps = {
+  rings?: number;
   radius?: number;
   color?: string;
   duration?: number;
@@ -28,6 +29,7 @@ type FullGlowDecorationProps = GlowDecorationProps & {
 const GlowDecoration = ({
   contentWidth,
   contentHeight,
+  rings = 5,
   radius = 100,
   color = Colours.yellow.y100,
   duration = 4000,
@@ -48,7 +50,7 @@ const GlowDecoration = ({
       h={contentHeight}
     >
       <Svg width={radius * 2} height={radius * 2}>
-        {range(5).map((_, i, arr) => (
+        {range(rings).map((_, i, arr) => (
           <GlowCircle key={i} radius={radius} color={color} offset={i / arr.length} progress={progress} />
         ))}
       </Svg>

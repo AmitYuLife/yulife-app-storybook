@@ -6,12 +6,27 @@ import { Rays } from "@organisms";
 
 export type RaysDecorationProps = {
   opacity?: number;
+  color?: string;
+
+  /**
+   * Podium rotation time ms
+   */
+  duration?: number;
+  initialRotation?: number;
 };
 
-const RaysDecoration = ({ opacity }: RaysDecorationProps) => {
+const RaysDecoration = ({ opacity, color, duration, initialRotation }: RaysDecorationProps) => {
   return (
     <Box flex={1} style={StyleSheet.absoluteFillObject}>
-      <Rays backgroundColor="transparent" style="thin" containerStyle={styles.raysContainerStyle} opacity={opacity} />
+      <Rays
+        backgroundColor="transparent"
+        style="thin"
+        containerStyle={styles.raysContainerStyle}
+        opacity={opacity}
+        color={color}
+        duration={duration}
+        initialRotation={initialRotation}
+      />
     </Box>
   );
 };

@@ -1,10 +1,5 @@
 import { useCallback, useState } from "react";
 import * as Haptics from "expo-haptics";
-import { useDispatch } from "react-redux";
-import { updateGame2048HighScore } from "@redux/game-2048/game-2048.actions";
-import { showGameOverModal } from "../gameOver.modal";
-import { showGameVictoryModal } from "../gameVictory.modal";
-import { GameOptions } from "../gameContext";
 import { BoardFilled, Direction, Game2048, GameBoardSize, GameMode, GameValue } from "../game";
 import { ANIMATION_DURATION } from "../constants";
 import uuid from "react-native-uuid";
@@ -16,20 +11,12 @@ export interface IGameConfig {
   mode: GameMode;
   boardSize: GameBoardSize;
   enableHaptics?: boolean;
-  gameOptions?: GameOptions;
 }
 
-export const useGame = ({
-  finalScore,
-  mode,
-  boardSize,
-  enableHaptics: enableHapticsInitial,
-  gameOptions,
-}: IGameConfig) => {
+export const useGame = ({ finalScore, mode, boardSize, enableHaptics: enableHapticsInitial }: IGameConfig) => {
   const [gameInstance] = useState<Game2048>(new Game2048());
   const [gameId, setGameId] = useState<string>("");
   const [moveNumber, setMoveNumber] = useState(0);
-  const dispatch = useDispatch();
   const [state, setState] = useState<GameState>("inactive");
   const [enableHaptics, setEnableHaptics] = useState(enableHapticsInitial);
   const [startTimestamp, setStartTimestamp] = useState<null | number>(null);
@@ -59,8 +46,6 @@ export const useGame = ({
         if (err instanceof BoardFilled) {
           setState("failed");
           setEndTimestamp(Date.now());
-          showGameOverModal(memoizedStartGame);
-          dispatch({ type: updateGame2048HighScore, payload: gameInstance.getScore() });
         } else {
           throw err;
         }
@@ -69,8 +54,6 @@ export const useGame = ({
       if (gameInstance.getBoard().findIndex((cell) => cell.value >= finalScore) !== -1) {
         setState("won");
         setEndTimestamp(Date.now());
-        showGameVictoryModal(memoizedStartGame);
-        dispatch({ type: updateGame2048HighScore, payload: gameInstance.getScore() });
       }
 
       setMoveNumber(gameInstance.getMoveNumber());
@@ -90,6 +73,5 @@ export const useGame = ({
     setEnableHaptics,
     startTimestamp,
     endTimestamp,
-    gameOptions,
   };
 };

@@ -37,6 +37,15 @@ const meta: Meta<typeof Spotlight> = {
       url: "https://www.figma.com/design/dM98LkoC7KPL3UQjvuaj76/Smoking-Cessation-Spec?node-id=1-73117&m=dev",
     },
   },
+  args: {
+    wrapperProps: {
+      w: "100%",
+      h: "100%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
 };
 
 export default meta;

@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo } from "react";
+import { ForwardedRef, forwardRef, memo, useCallback, useEffect, useMemo } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 import { Button, Counter, Switch } from "@components/molecules";
 import { Colours, Style, templateTextStyles } from "@styles";
@@ -12,7 +12,7 @@ import {
 } from "react-native-gesture-handler";
 import { runOnJS } from "react-native-reanimated";
 import { theme } from "../constants";
-import { GameOptions, useGame2048Context } from "../gameContext";
+import { useGame2048Context } from "../gameContext";
 import Game2048Manager from "../gameManager";
 import Board from "./Board";
 import { TextTemplate } from "@atoms";
@@ -22,7 +22,7 @@ import { useSelector } from "react-redux";
 import { getGame2048HighScore } from "@redux/game-2048/game-2048.selectors";
 import GameTimer from "./game-timer";
 import { Direction, GameBoardSize, GameMode, GameValue } from "../game";
-import { GameSkin } from "../types";
+import { Game2048Options, GameEarlyExitHandle, GameSkin } from "../types";
 
 const RESTART_IMG = require("./assets/restart_icon.png");
 const STAR_IMG = require("@assets/icons/star.png");
@@ -37,29 +37,29 @@ interface IGameScreenWithStateProps extends IGameScreenProps {
   mode: GameMode;
   finalScore: GameValue;
   enableHaptics?: boolean;
-  gameOptions: GameOptions;
+  gameOptions: Game2048Options;
 }
 
-const GameScreenWithState = ({
-  boardSize,
-  mode,
-  finalScore,
-  enableHaptics,
-  skin,
-  gameOptions,
-}: IGameScreenWithStateProps) => {
-  return (
-    <Game2048Manager
-      boardSize={boardSize}
-      mode={mode}
-      finalScore={finalScore}
-      enableHaptics={enableHaptics}
-      gameOptions={gameOptions}
-    >
-      <GameScreen skin={skin} boardSize={boardSize} />
-    </Game2048Manager>
-  );
-};
+const GameScreenWithState = forwardRef(
+  (
+    { boardSize, mode, finalScore, enableHaptics, skin, gameOptions }: IGameScreenWithStateProps,
+    ref: ForwardedRef<GameEarlyExitHandle>
+  ) => {
+    return (
+      <Game2048Manager
+        ref={ref}
+        boardSize={boardSize}
+        skin={skin}
+        mode={mode}
+        finalScore={finalScore}
+        enableHaptics={enableHaptics}
+        gameOptions={gameOptions}
+      >
+        <GameScreen skin={skin} boardSize={boardSize} />
+      </Game2048Manager>
+    );
+  }
+);
 
 const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
   const { move, startGame, state: gameState, score, enableHaptics, toggleHaptics, gameOptions } = useGame2048Context();

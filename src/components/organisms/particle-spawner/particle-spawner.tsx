@@ -14,7 +14,7 @@ export type ParticleSpawnerDynamicCount = {
 
 export type ParticleSpawnerProps = Pick<
   ParticleProps,
-  "radius" | "minDistance" | "colors" | "shootingSpeed" | "maxRotation"
+  "radius" | "minDistance" | "colors" | "shootingSpeed" | "maxRotation" | "fadeOutStartFraction"
 > & {
   /**
    * Particle instance
@@ -49,6 +49,7 @@ const ParticleSpawner = ({
   shootingSpeed = 1000,
   minDistance,
   maxRotation,
+  fadeOutStartFraction,
 }: ParticleSpawnerProps) => {
   const getDelay = () => Math.random() * Math.max(...toArray(shootingSpeed));
 
@@ -82,6 +83,7 @@ const ParticleSpawner = ({
       minDistance={minDistance}
       radius={radius}
       maxRotation={maxRotation}
+      fadeOutStartFraction={fadeOutStartFraction}
       delay={getDelay()}
     />
   ));

@@ -117,7 +117,8 @@ export class Navigation {
     wrapperStyle?: ViewStyle,
     modalId?: string,
     closeOnBlur?: boolean,
-    onClose?: VoidFunctionOrSduiActionPayload
+    onClose?: VoidFunctionOrSduiActionPayload,
+    passProps?: Record<string, unknown>
   ) {
     if (modalId) {
       Logger.logEvent("screen_view", { name: modalId });
@@ -136,6 +137,7 @@ export class Navigation {
           },
         },
         passProps: {
+          ...(passProps || {}),
           children,
           withBlurBackground,
           wrapperStyle,

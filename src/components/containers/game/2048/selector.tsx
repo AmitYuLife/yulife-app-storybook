@@ -5,7 +5,7 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Image } from "expo-image";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { DEFAULT_GAME_CONFIG, theme } from "./constants";
+import { DEFAULT_GAME_CONFIG, DEFAULT_GAME_STATE_MODALS, theme } from "./constants";
 import { TextTemplate } from "@atoms";
 import {
   BOARD_SIZE_INPUT,
@@ -61,7 +61,7 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
   }, []);
 
   const finalScores = useMemo(() => {
-    const scores: GameValue[] = [512, 1024, 2048];
+    const scores: GameValue[] = [256, 512, 1024, 2048];
     return scores.map((score) => ({
       label: score.toString(),
       value: score,
@@ -80,6 +80,14 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
           finalScore,
           enableHaptics: hapticsEnabled,
           skin,
+          gameOptions: {
+            screens: {
+              overlays: Object.entries(DEFAULT_GAME_STATE_MODALS).map(([state, modalProps]) => ({
+                state,
+                ...modalProps,
+              })),
+            },
+          },
         },
       },
     });

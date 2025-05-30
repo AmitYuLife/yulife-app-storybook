@@ -1,5 +1,5 @@
+import { memo } from "react";
 import { Image } from "expo-image";
-import React, { memo } from "react";
 import { StyleSheet } from "react-native";
 import Animated, {
   BaseAnimationBuilder,
@@ -19,13 +19,14 @@ type CellProps = {
   x: number;
   y: number;
   cellWidth: number;
+  margin?: number;
   value: GameValue;
   skin: GameSkin;
   entering: BaseAnimationBuilder;
   exiting: BaseAnimationBuilder;
 };
 
-const Cell = ({ x, y, cellWidth, value, skin, entering, exiting }: CellProps) => {
+const Cell = ({ x, y, cellWidth, margin = MARGIN, value, skin, entering, exiting }: CellProps) => {
   const scale = useDerivedValue(() => withSequence(withTiming(1.15, TIMING), withTiming(1, TIMING)), [value]);
 
   const animatedTransformStyle = useAnimatedStyle(() => ({
@@ -33,8 +34,8 @@ const Cell = ({ x, y, cellWidth, value, skin, entering, exiting }: CellProps) =>
   }));
 
   const positionStyle = {
-    top: 2 * MARGIN + x * (cellWidth + 2 * MARGIN),
-    left: 2 * MARGIN + y * (cellWidth + 2 * MARGIN),
+    top: 2 * margin + x * (cellWidth + 2 * margin),
+    left: 2 * margin + y * (cellWidth + 2 * margin),
     width: cellWidth,
     height: cellWidth,
   };

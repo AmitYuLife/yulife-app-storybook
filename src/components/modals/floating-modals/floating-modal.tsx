@@ -93,6 +93,7 @@ const FloatingModal = ({
     () => ({ ...styles.wrapper, paddingTop, minHeight: height, ...wrapperStyle }),
     [wrapperStyle, paddingTop, height]
   );
+
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
       <View style={wrapperStyles} testID={testID}>
