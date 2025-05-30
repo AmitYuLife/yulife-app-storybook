@@ -80,7 +80,6 @@ export const CUSTOMER_8_TOGGLES = {
     userId: customer.CUSTOMER_8.data.customerId,
     features: {
       ...allTogglesTrue.data.features,
-      tempQuestMapLevelBubbleRedesign: true,
     },
   },
 } as IDatabaseItem;
