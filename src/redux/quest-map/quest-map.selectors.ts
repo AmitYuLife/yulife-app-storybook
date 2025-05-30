@@ -2,11 +2,7 @@ import { ROUTES } from "@navigation/constants";
 import { IReduxState } from "../_core/reducers";
 
 export const getShouldQuestMapAnimateOnboarding = (state: IReduxState) => {
-  return (
-    !state.questMap.seenQuestMapNewUserOnboardingAnimation &&
-    state.levels.level === 1 &&
-    state.user.features.tempQuestMapLevelBubbleEaseInAnimation
-  );
+  return !state.questMap.seenQuestMapNewUserOnboardingAnimation && state.levels.level === 1;
 };
 
 export const getShouldQuestMapAnimateOnboardingStart = (state: IReduxState) => {

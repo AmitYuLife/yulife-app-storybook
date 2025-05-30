@@ -66,7 +66,6 @@ export const features = [
   "showLeaderboardSearch",
   "canUpdateActivityHistory",
   "gameEnableExpoImageDiskCachingPolicy",
-  "tempQuestMapLevelBubbleEaseInAnimation",
   "tempQuestMapInterstitialModal",
   "tempShowUnsyncedDailyStepsPassiveActivities",
   "tempGameGetInAppMeditationFromServer",
