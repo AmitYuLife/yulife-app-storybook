@@ -4743,8 +4743,8 @@ export type HealthSmokingState = {
   customTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   defaultReasons: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   defaultTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
-  game2048Options?: Maybe<Game2048Options>;
   gameIntroModal?: Maybe<HealthSmokingGameIntroModal>;
+  gameOptions?: Maybe<Game2048Options>;
   headerButtonText?: Maybe<Scalars["String"]["output"]>;
   heading: Scalars["String"]["output"];
   isActive: Scalars["Boolean"]["output"];
@@ -6466,6 +6466,7 @@ export type Mutation = {
   reinviteEmployees?: Maybe<Scalars["Boolean"]["output"]>;
   /** Removes beneficiary from product */
   removeBeneficiaryFromProduct: CustomerProductBeneficiaries;
+  removeEmployeeRecognitionCampaignRecipients: Scalars["Boolean"]["output"];
   requestYuStoreQuote: Scalars["Boolean"]["output"];
   resetBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
   resetData?: Maybe<Scalars["Boolean"]["output"]>;
@@ -7038,6 +7039,11 @@ export type MutationRemoveBeneficiaryFromProductArgs = {
   productId: Scalars["ID"]["input"];
 };
 
+export type MutationRemoveEmployeeRecognitionCampaignRecipientsArgs = {
+  campaignId: Scalars["String"]["input"];
+  employeeIds: Array<Scalars["String"]["input"]>;
+};
+
 export type MutationRequestYuStoreQuoteArgs = {
   id?: InputMaybe<Scalars["String"]["input"]>;
   licenses?: InputMaybe<Scalars["Int"]["input"]>;
@@ -7347,7 +7353,10 @@ export type MutationUpdateCyclingMeasurementArgs = {
 
 export type MutationUpdateEmployeeRecognitionCampaignArgs = {
   campaignId: Scalars["String"]["input"];
-  title: Scalars["String"]["input"];
+  giftBackground?: InputMaybe<Scalars["String"]["input"]>;
+  giftMessage?: InputMaybe<Scalars["String"]["input"]>;
+  giftSticker?: InputMaybe<Scalars["String"]["input"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationUpdateLeaderboardConsentArgs = {
@@ -8181,7 +8190,6 @@ export type Query = {
   getYuScreenProductSurvey: YuScreenProductSurvey;
   getYuScreenV5?: Maybe<YuScreenV5>;
   getYuScreenV5Sections: Array<YuScreenSection>;
-  getYuStoreCSMs: Array<YuStoreImage>;
   getYuStoreCredit: EngagementDashboardYuStoreCredit;
   getYuStorePerks: Array<YuStorePerk>;
   getYuStoreProductDetails: YuStoreProduct;
@@ -10257,8 +10265,10 @@ export type TeamEmployeeRecognitionCampaign = {
   amount?: Maybe<Scalars["Int"]["output"]>;
   createdAt?: Maybe<Scalars["String"]["output"]>;
   giftBackground?: Maybe<Scalars["String"]["output"]>;
+  giftBackgroundId?: Maybe<Scalars["String"]["output"]>;
   giftMessage?: Maybe<Scalars["String"]["output"]>;
   giftSticker?: Maybe<Scalars["String"]["output"]>;
+  giftStickerId?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   recipientCount?: Maybe<Scalars["Int"]["output"]>;
   requestedById?: Maybe<Scalars["String"]["output"]>;
@@ -38012,7 +38022,7 @@ export type GetHealthSmokingStateQuery = {
       } | null;
       onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
-    game2048Options?: {
+    gameOptions?: {
       __typename?: "Game2048Options";
       timer?: {
         __typename?: "Game2048TimerOptions";
@@ -38243,7 +38253,7 @@ export type HealthSmokingStateFragment = {
     } | null;
     onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   } | null;
-  game2048Options?: {
+  gameOptions?: {
     __typename?: "Game2048Options";
     timer?: {
       __typename?: "Game2048TimerOptions";
@@ -38477,7 +38487,7 @@ export type StartSmokingStreakMutation = {
       } | null;
       onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
-    game2048Options?: {
+    gameOptions?: {
       __typename?: "Game2048Options";
       timer?: {
         __typename?: "Game2048TimerOptions";
@@ -38721,7 +38731,7 @@ export type UpdateSmokingStreakMutation = {
       } | null;
       onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
-    game2048Options?: {
+    gameOptions?: {
       __typename?: "Game2048Options";
       timer?: {
         __typename?: "Game2048TimerOptions";
@@ -65674,7 +65684,7 @@ export const HealthSmokingStateFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "game2048Options" },
+            name: { kind: "Name", value: "gameOptions" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -97327,7 +97337,7 @@ export const GetHealthSmokingStateDocument = {
           { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "game2048Options" },
+            name: { kind: "Name", value: "gameOptions" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -98061,7 +98071,7 @@ export const StartSmokingStreakDocument = {
           { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "game2048Options" },
+            name: { kind: "Name", value: "gameOptions" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -98855,7 +98865,7 @@ export const UpdateSmokingStreakDocument = {
           { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "game2048Options" },
+            name: { kind: "Name", value: "gameOptions" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
