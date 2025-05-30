@@ -1286,6 +1286,7 @@
       "error_title": "Algo salió mal",
       "heading": "¿Listo para ser tu mejor Yu? Vamos a verificar tu cuenta.",
       "login_with_password": "Inicie sesión con la contraseña en su lugar.",
+      "open_email": "Abrir la aplicación de correo electrónico",
       "resend_link": "¿No lo has recibido? Envíe un nuevo enlace.",
       "webview_title": "Preparándose para el despegue..."
     },

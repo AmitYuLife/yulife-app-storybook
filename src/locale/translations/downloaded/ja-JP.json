@@ -1286,6 +1286,7 @@
       "error_title": "エラーが発生しました",
       "heading": "アカウントの認証を完了してください。",
       "login_with_password": "パスワードでログインしてください。",
+      "open_email": "メール アプリを開く",
       "resend_link": "届いていない場合は、新しいリンクを送信できます。",
       "webview_title": "離陸の準備中..."
     },

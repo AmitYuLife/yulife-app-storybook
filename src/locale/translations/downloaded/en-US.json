@@ -1286,6 +1286,7 @@
       "error_title": "Something went wrong",
       "heading": "Ready to be your best Yu? Let's verify your account.",
       "login_with_password": "Log in with password instead",
+      "open_email": "Open email app",
       "resend_link": "Didn't get it? Send a new link.",
       "webview_title": "Preparing for launch..."
     },
