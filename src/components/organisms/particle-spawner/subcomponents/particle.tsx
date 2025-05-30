@@ -53,6 +53,11 @@ export type ParticleProps = {
    * Degrees to rotate the particle over the animation
    */
   maxRotation?: number;
+
+  /**
+   * Fade out start [0-1]. 0 - from the start, 0.5 in the middle of the animation
+   */
+  fadeOutStartFraction?: number;
 };
 
 export const Particle = ({
@@ -64,6 +69,7 @@ export const Particle = ({
   shootingSpeed,
   minDistance: minDistanceProp,
   maxRotation = 0,
+  fadeOutStartFraction = 0,
 }: ParticleProps) => {
   const progress = useSharedValue(0);
   const angle = useSharedValue(0);
@@ -110,7 +116,8 @@ export const Particle = ({
   const animatedStyle = useAnimatedStyle(() => {
     const translateX = Math.cos(angle.value) * distance.value * progress.value;
     const translateY = Math.sin(angle.value) * distance.value * progress.value;
-    const opacity = 1 - progress.value;
+
+    const opacity = getOpacityWorklet(progress.value, fadeOutStartFraction);
     const rotate = `${rotation.value}deg`;
 
     return {
@@ -147,4 +154,24 @@ export const Particle = ({
       {cloneElement(particleInstance, particleInstanceProps)}
     </Box>
   );
+};
+
+const getOpacityWorklet = (progress: number, fadeOutStartFraction: number): number => {
+  "worklet";
+
+  const clampedFraction = Math.max(0, Math.min(fadeOutStartFraction, 1));
+
+  if (clampedFraction === 1) {
+    return 1;
+  }
+
+  if (clampedFraction === 0) {
+    return 1 - progress;
+  }
+
+  if (progress < clampedFraction) {
+    return 1;
+  }
+
+  return 1 - (progress - clampedFraction) / (1 - clampedFraction);
 };

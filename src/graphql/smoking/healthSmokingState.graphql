@@ -231,7 +231,7 @@ fragment HealthSmokingState on HealthSmokingState {
     }
   }
   cravingsManaged
-  gameOptions {
+  game2048Options {
     timer {
       enableMinuteAdditionAnimation
       enableMinutePulseAnimation
@@ -245,6 +245,26 @@ fragment HealthSmokingState on HealthSmokingState {
         action {
           ...SduiAction
         }
+      }
+    }
+    screens {
+      overlays {
+        state
+        timer {
+          min
+          max
+        }
+        image {
+          ...VariableRemoteImage
+        }
+        displayImage
+        spotlight
+        copy {
+          title
+          info
+          description
+        }
+        allowRestart
       }
     }
   }

@@ -16,18 +16,6 @@ import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 const REFRESH_INTERVAL_MS = 250;
 const PULSE_INTERVAL_SECONDS = 60; // 1 minute
 
-const getHapticsImpactStyle = (seconds: number) => {
-  if (seconds >= 180) {
-    return Haptics.ImpactFeedbackStyle.Heavy;
-  }
-
-  if (seconds >= 120) {
-    return Haptics.ImpactFeedbackStyle.Medium;
-  }
-
-  return Haptics.ImpactFeedbackStyle.Light;
-};
-
 type GameTimerProps = {
   options: GameOptions["timer"];
 };
@@ -94,7 +82,7 @@ const GameTimer = ({ options = {} }: GameTimerProps) => {
     }
 
     if (enableMinuteHapticsImpact) {
-      Haptics.impactAsync(getHapticsImpactStyle(seconds));
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     }
   }, [
     getTimeElapsed,

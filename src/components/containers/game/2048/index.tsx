@@ -1,9 +1,9 @@
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import React, { memo, useCallback, useEffect, useMemo } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { StyleSheet, View } from "react-native";
 import { GameScreen } from "./components";
-import { DEFAULT_GAME_CONFIG, theme } from "./constants";
+import { DEFAULT_GAME_CONFIG, DEFAULT_GAME_OPTIONS, theme } from "./constants";
 import { TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
@@ -13,9 +13,8 @@ import { usePressedInWithDelay } from "@hooks";
 import { useCreateSduiActionDispatcher } from "@components/sdui/_hooks/useCreateSduiActionDispatcher";
 import { VoidFunction } from "@utils";
 import { SduiAction } from "@redux/user/user.types";
-import { GameOptions } from "@containers/game/2048/gameContext";
 import { cloneDeep, mergeWith } from "lodash";
-import { GameSkin } from "./types";
+import { Game2048Options, GameEarlyExitHandle, GameSkin } from "./types";
 import { GameBoardSize, GameMode, GameValue } from "./game";
 
 interface IGame2048Props {
@@ -28,7 +27,7 @@ interface IGame2048Props {
   gameIntroModal?: ShowGameIntroModalProps & {
     onDismiss?: SduiAction;
   };
-  gameOptions?: GameOptions;
+  game2048Options?: Game2048Options;
 }
 
 export const Game2048 = ({
@@ -39,20 +38,29 @@ export const Game2048 = ({
   enableHaptics = DEFAULT_GAME_CONFIG.enableHaptics,
   skin = "symbols",
   gameIntroModal,
-  gameOptions: gameOptionsParams,
+  game2048Options: gameOptionsParams,
 }: IGame2048Props) => {
+  const gameScreenRef = useRef<GameEarlyExitHandle>();
+
   const gameOptions = useMemo(
     () =>
       mergeWith(
         cloneDeep(gameOptionsParams || {}),
-        DEFAULT_GAME_CONFIG.gameOptions,
+        DEFAULT_GAME_OPTIONS,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (oldVal: any) => (oldVal === false ? oldVal : undefined)
-      ),
+      ) as Game2048Options,
     [gameOptionsParams]
   );
 
   const { createSduiActionDispatcher } = useCreateSduiActionDispatcher();
+
+  const onBackPress = useCallback(() => {
+    const earlyExitHandled = gameScreenRef.current?.onEarlyExit?.();
+    if (!earlyExitHandled) {
+      Navigation.pop(componentId);
+    }
+  }, [componentId]);
 
   const onDismiss = useCallback(() => {
     if (gameIntroModal?.onDismiss) {
@@ -93,6 +101,7 @@ export const Game2048 = ({
             </TextTemplate>
           </View>
           <GameScreen
+            ref={gameScreenRef}
             skin={skin}
             boardSize={boardSize}
             mode={mode}
@@ -107,7 +116,7 @@ export const Game2048 = ({
         backgroundColor={theme.backgroundSecondary}
         logo="yulife"
         color="white"
-        onLeftIconPress={() => Navigation.pop(componentId)}
+        onLeftIconPress={onBackPress}
       />
     </View>
   );

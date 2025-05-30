@@ -49,6 +49,11 @@ export type StarsDecorationProps = {
    * Degrees to rotate the star over the animation
    */
   maxRotation?: number;
+
+  /**
+   * Fade out start [0-1]. 0 - from the start, 0.5 in the middle of the animation
+   */
+  fadeOutStartFraction?: number;
 };
 
 type FullStarsDecorationProps = StarsDecorationProps & {
@@ -67,6 +72,7 @@ const StarsDecoration = ({
   shootingSpeed = [1000, 1400],
   minDistance = 50,
   maxRotation = 0,
+  fadeOutStartFraction = 0.3,
 }: FullStarsDecorationProps) => {
   return (
     <Box
@@ -86,6 +92,7 @@ const StarsDecoration = ({
         shootingSpeed={shootingSpeed}
         minDistance={minDistance}
         maxRotation={maxRotation}
+        fadeOutStartFraction={fadeOutStartFraction}
       >
         <ParticleStar />
       </ParticleSpawner>

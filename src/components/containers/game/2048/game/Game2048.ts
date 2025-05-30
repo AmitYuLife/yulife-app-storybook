@@ -304,7 +304,7 @@ export class Game2048 {
   }
 
   public getBoard(): BoardCell[] {
-    return this.board;
+    return [...this.board];
   }
 
   public getScore(): number {

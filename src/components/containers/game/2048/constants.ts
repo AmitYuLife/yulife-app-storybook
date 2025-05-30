@@ -2,20 +2,24 @@ import { Easing } from "react-native-reanimated";
 import { Colours, Style } from "@styles";
 import { IGameConfig } from "./hooks";
 import { GameValue } from "./game";
-import { GameSkin } from "./types";
+import { Game2048GameState, Game2048StateModal, GameSkin } from "./types";
+import { GameOptions } from "@containers/game/2048/gameContext";
+import { SpotlightProps } from "@organisms/spotlight/spotlight";
+import { t } from "@locale";
 
 export const DEFAULT_GAME_CONFIG: IGameConfig = {
   finalScore: 1024,
   mode: "normal",
   boardSize: 4,
   enableHaptics: true,
-  gameOptions: {
-    timer: {
-      enableMinutePulseAnimation: true,
-      enableMinuteAdditionAnimation: true,
-      enableMinuteHapticsImpact: true,
-      displayColor: Colours.neutral.white,
-    },
+};
+
+export const DEFAULT_GAME_OPTIONS: GameOptions = {
+  timer: {
+    enableMinutePulseAnimation: true,
+    enableMinuteAdditionAnimation: true,
+    enableMinuteHapticsImpact: true,
+    displayColor: Colours.neutral.white,
   },
 };
 
@@ -110,3 +114,45 @@ export const TILES: Record<GameSkin, Record<GameValue, string>> = {
 export const ANIMATION_DURATION = 200;
 
 export const EASING = Easing.elastic(0.8);
+
+export const DEFAULT_GAME_STATE_MODALS: Partial<Record<Game2048GameState, Game2048StateModal>> = {
+  [Game2048GameState.Win]: {
+    displayImage: "trophy",
+    allowRestart: true,
+    copy: {
+      title: t("2048.victory.title"),
+      info: t("2048.victory.info"),
+    },
+    spotlight: JSON.stringify({
+      rays: {
+        opacity: 0.4,
+      },
+      glow: {
+        radius: 120,
+        color: "#D2A935",
+        duration: 4000,
+      },
+      stars: {
+        starSize: 10,
+        dynamicStarCount: {
+          initialCount: 15,
+          minCount: 10,
+          maxCount: 30,
+        },
+        radius: 200,
+        shootingSpeed: [200, 1500],
+        minDistance: 100,
+        colors: ["#FFF", "#FCE93D"],
+        fadeOutStartFraction: 0.7,
+      },
+    } as SpotlightProps),
+  },
+  [Game2048GameState.Lose]: {
+    displayImage: "gameTiles",
+    allowRestart: true,
+    copy: {
+      title: t("2048.lost.title"),
+      info: t("2048.lost.info"),
+    },
+  },
+};

@@ -3,22 +3,25 @@ import { ZoomIn, ZoomOut } from "react-native-reanimated";
 import { useGame2048Context } from "../gameContext";
 import Cell from "./Cell";
 import { ANIMATION_DURATION } from "../constants";
-import { GameBoardSize } from "../game";
+import { BoardCell, GameBoardSize } from "../game";
 import { GameSkin } from "../types";
 import { useCellSize } from "../hooks";
 
 const enteringAnimation = ZoomIn.duration(ANIMATION_DURATION);
 const exitingAnimation = ZoomOut.duration(ANIMATION_DURATION);
 
-interface IProps {
+type CellsProps = {
   boardSize: GameBoardSize;
   skin: GameSkin;
-}
+};
 
-const Cells = ({ boardSize, skin }: IProps) => {
-  const { board } = useGame2048Context();
-  const cellWidth = useCellSize(boardSize);
+type CellsDisplayProps = CellsProps & {
+  board: BoardCell[];
+  cellSize: number;
+  margin?: number;
+};
 
+export const CellsDisplay = memo(({ skin, board, cellSize, margin }: CellsDisplayProps) => {
   return (
     <>
       {board.map(({ x, y, value, id }) => (
@@ -26,7 +29,8 @@ const Cells = ({ boardSize, skin }: IProps) => {
           key={id}
           x={x}
           y={y}
-          cellWidth={cellWidth}
+          cellWidth={cellSize}
+          margin={margin}
           value={value}
           skin={skin}
           entering={enteringAnimation}
@@ -35,6 +39,13 @@ const Cells = ({ boardSize, skin }: IProps) => {
       ))}
     </>
   );
+});
+
+const CellsWithContext = ({ boardSize, skin }: CellsProps) => {
+  const { board } = useGame2048Context();
+  const cellWidth = useCellSize(boardSize);
+
+  return <CellsDisplay boardSize={boardSize} skin={skin} board={board} cellSize={cellWidth} />;
 };
 
-export default memo(Cells);
+export default memo(CellsWithContext);

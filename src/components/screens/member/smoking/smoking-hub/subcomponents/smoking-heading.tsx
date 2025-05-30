@@ -58,7 +58,7 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState, navigateToCommitm
               name: ROUTES.game2048,
               passProps: {
                 gameIntroModal,
-                gameOptions: smokingState?.gameOptions,
+                game2048Options: smokingState?.game2048Options,
               },
             },
           });

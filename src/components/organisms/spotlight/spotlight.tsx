@@ -79,26 +79,6 @@ const Spotlight = ({
     };
   }, [origin, originOffsetX, originOffsetY, wrapperHeight, wrapperWidth]);
 
-  const wrapperPropsApplied = useMemo(() => {
-    const size: IBoxProps & ViewProps = {
-      width: "100%",
-      height: "100%",
-    };
-
-    if (!wrapperProps) {
-      return size;
-    }
-
-    if (wrapperProps.w || wrapperProps.width || wrapperProps.h || wrapperProps.height) {
-      return wrapperProps;
-    }
-
-    return {
-      ...size,
-      ...wrapperProps,
-    };
-  }, [wrapperProps]);
-
   if (DETOX_ENABLED) {
     return children;
   }
@@ -110,7 +90,7 @@ const Spotlight = ({
   );
 
   return (
-    <Box onLayout={onWrapperLayout} {...wrapperPropsApplied}>
+    <Box onLayout={onWrapperLayout} {...wrapperProps}>
       <Box position="absolute" {...originPositionForCenterDecorations}>
         {rays ? <RaysDecoration {...rays} /> : null}
       </Box>
@@ -121,7 +101,7 @@ const Spotlight = ({
       <Box position="absolute" style={{ zIndex: 2 }} {...originPositionForTopLeftDecorations}>
         {sparkle ? <SparkleDecoration contentWidth={wrapperWidth} contentHeight={wrapperHeight} {...sparkle} /> : null}
       </Box>
-      <Box flex={1} justifyContent="center" alignItems="center">
+      <Box justifyContent="center" alignItems="center">
         {shake ? (
           <ShakeDecoration {...(typeof shake === "object" ? shake : {})}>{childElement}</ShakeDecoration>
         ) : (

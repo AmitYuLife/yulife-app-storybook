@@ -3,6 +3,7 @@ import uuid from "react-native-uuid";
 import { GameState } from "./hooks";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { BoardCell, Direction } from "./game";
+import { GameSkin } from "@containers/game/2048/types";
 
 interface TimerOptions {
   enableMinuteAdditionAnimation?: boolean;
@@ -27,6 +28,7 @@ export interface GameOptions {
 export interface IGame2048Context {
   gameId: string;
   board: BoardCell[];
+  skin: GameSkin;
   score: number;
   move: (direction: Direction) => void;
   startGame: () => void;
@@ -41,6 +43,7 @@ export interface IGame2048Context {
 export const Game2048Context = createContext<IGame2048Context>({
   gameId: uuid.v4().toString(),
   board: [],
+  skin: "symbols",
   move: () => {
     // ignore
   },

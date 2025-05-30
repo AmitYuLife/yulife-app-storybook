@@ -4096,6 +4096,65 @@ export enum FitKitType {
   Yoga = "Yoga",
 }
 
+export enum Game2048GameState {
+  Exiting = "EXITING",
+  Lose = "LOSE",
+  Win = "WIN",
+}
+
+export type Game2048Options = {
+  __typename?: "Game2048Options";
+  screens?: Maybe<Game2048Screens>;
+  timer?: Maybe<Game2048TimerOptions>;
+};
+
+export type Game2048Screens = {
+  __typename?: "Game2048Screens";
+  overlays?: Maybe<Array<Game2048ScreensOverlay>>;
+};
+
+export type Game2048ScreensOverlay = {
+  __typename?: "Game2048ScreensOverlay";
+  allowRestart?: Maybe<Scalars["Boolean"]["output"]>;
+  copy?: Maybe<Game2048ScreensOverlayCopy>;
+  displayImage?: Maybe<Scalars["String"]["output"]>;
+  image?: Maybe<VariableRemoteImage>;
+  spotlight?: Maybe<Scalars["String"]["output"]>;
+  state: Game2048GameState;
+  timer?: Maybe<Game2048TimerValidation>;
+};
+
+export type Game2048ScreensOverlayCopy = {
+  __typename?: "Game2048ScreensOverlayCopy";
+  description?: Maybe<Scalars["String"]["output"]>;
+  info?: Maybe<Scalars["String"]["output"]>;
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type Game2048TimerOptions = {
+  __typename?: "Game2048TimerOptions";
+  displayColor?: Maybe<Scalars["String"]["output"]>;
+  enableMinuteAdditionAnimation?: Maybe<Scalars["Boolean"]["output"]>;
+  enableMinuteHapticsImpact?: Maybe<Scalars["Boolean"]["output"]>;
+  enableMinutePulseAnimation?: Maybe<Scalars["Boolean"]["output"]>;
+  triggers?: Maybe<Array<Game2048TimerTrigger>>;
+};
+
+export type Game2048TimerTrigger = {
+  __typename?: "Game2048TimerTrigger";
+  action?: Maybe<SduiAction>;
+  color?: Maybe<Scalars["String"]["output"]>;
+  pulseColor?: Maybe<Scalars["Boolean"]["output"]>;
+  repeat?: Maybe<Scalars["Boolean"]["output"]>;
+  seconds?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type Game2048TimerValidation = {
+  __typename?: "Game2048TimerValidation";
+  max?: Maybe<Scalars["Int"]["output"]>;
+  min?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type GameConsumable = {
   __typename?: "GameConsumable";
   activatedUntil?: Maybe<Scalars["String"]["output"]>;
@@ -4684,8 +4743,8 @@ export type HealthSmokingState = {
   customTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   defaultReasons: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   defaultTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
+  game2048Options?: Maybe<Game2048Options>;
   gameIntroModal?: Maybe<HealthSmokingGameIntroModal>;
-  gameOptions?: Maybe<HealthSmokingGameOptions>;
   headerButtonText?: Maybe<Scalars["String"]["output"]>;
   heading: Scalars["String"]["output"];
   isActive: Scalars["Boolean"]["output"];
@@ -37953,21 +38012,44 @@ export type GetHealthSmokingStateQuery = {
       } | null;
       onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
-    gameOptions?: {
-      __typename?: "HealthSmokingGameOptions";
+    game2048Options?: {
+      __typename?: "Game2048Options";
       timer?: {
-        __typename?: "HealthSmokingGameTimerOptions";
+        __typename?: "Game2048TimerOptions";
         enableMinuteAdditionAnimation?: boolean | null;
         enableMinutePulseAnimation?: boolean | null;
         enableMinuteHapticsImpact?: boolean | null;
         displayColor?: string | null;
         triggers?: Array<{
-          __typename?: "HealthSmokingGameTimerTrigger";
+          __typename?: "Game2048TimerTrigger";
           seconds?: number | null;
           repeat?: boolean | null;
           color?: string | null;
           pulseColor?: boolean | null;
           action?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }> | null;
+      } | null;
+      screens?: {
+        __typename?: "Game2048Screens";
+        overlays?: Array<{
+          __typename?: "Game2048ScreensOverlay";
+          state: Game2048GameState;
+          displayImage?: string | null;
+          spotlight?: string | null;
+          allowRestart?: boolean | null;
+          timer?: { __typename?: "Game2048TimerValidation"; min?: number | null; max?: number | null } | null;
+          image?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          copy?: {
+            __typename?: "Game2048ScreensOverlayCopy";
+            title?: string | null;
+            info?: string | null;
+            description?: string | null;
+          } | null;
         }> | null;
       } | null;
     } | null;
@@ -38161,21 +38243,44 @@ export type HealthSmokingStateFragment = {
     } | null;
     onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   } | null;
-  gameOptions?: {
-    __typename?: "HealthSmokingGameOptions";
+  game2048Options?: {
+    __typename?: "Game2048Options";
     timer?: {
-      __typename?: "HealthSmokingGameTimerOptions";
+      __typename?: "Game2048TimerOptions";
       enableMinuteAdditionAnimation?: boolean | null;
       enableMinutePulseAnimation?: boolean | null;
       enableMinuteHapticsImpact?: boolean | null;
       displayColor?: string | null;
       triggers?: Array<{
-        __typename?: "HealthSmokingGameTimerTrigger";
+        __typename?: "Game2048TimerTrigger";
         seconds?: number | null;
         repeat?: boolean | null;
         color?: string | null;
         pulseColor?: boolean | null;
         action?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      }> | null;
+    } | null;
+    screens?: {
+      __typename?: "Game2048Screens";
+      overlays?: Array<{
+        __typename?: "Game2048ScreensOverlay";
+        state: Game2048GameState;
+        displayImage?: string | null;
+        spotlight?: string | null;
+        allowRestart?: boolean | null;
+        timer?: { __typename?: "Game2048TimerValidation"; min?: number | null; max?: number | null } | null;
+        image?: {
+          __typename?: "VariableRemoteImage";
+          width: number;
+          height?: number | null;
+          image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        } | null;
+        copy?: {
+          __typename?: "Game2048ScreensOverlayCopy";
+          title?: string | null;
+          info?: string | null;
+          description?: string | null;
+        } | null;
       }> | null;
     } | null;
   } | null;
@@ -38372,21 +38477,44 @@ export type StartSmokingStreakMutation = {
       } | null;
       onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
-    gameOptions?: {
-      __typename?: "HealthSmokingGameOptions";
+    game2048Options?: {
+      __typename?: "Game2048Options";
       timer?: {
-        __typename?: "HealthSmokingGameTimerOptions";
+        __typename?: "Game2048TimerOptions";
         enableMinuteAdditionAnimation?: boolean | null;
         enableMinutePulseAnimation?: boolean | null;
         enableMinuteHapticsImpact?: boolean | null;
         displayColor?: string | null;
         triggers?: Array<{
-          __typename?: "HealthSmokingGameTimerTrigger";
+          __typename?: "Game2048TimerTrigger";
           seconds?: number | null;
           repeat?: boolean | null;
           color?: string | null;
           pulseColor?: boolean | null;
           action?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }> | null;
+      } | null;
+      screens?: {
+        __typename?: "Game2048Screens";
+        overlays?: Array<{
+          __typename?: "Game2048ScreensOverlay";
+          state: Game2048GameState;
+          displayImage?: string | null;
+          spotlight?: string | null;
+          allowRestart?: boolean | null;
+          timer?: { __typename?: "Game2048TimerValidation"; min?: number | null; max?: number | null } | null;
+          image?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          copy?: {
+            __typename?: "Game2048ScreensOverlayCopy";
+            title?: string | null;
+            info?: string | null;
+            description?: string | null;
+          } | null;
         }> | null;
       } | null;
     } | null;
@@ -38593,21 +38721,44 @@ export type UpdateSmokingStreakMutation = {
       } | null;
       onDismiss?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
-    gameOptions?: {
-      __typename?: "HealthSmokingGameOptions";
+    game2048Options?: {
+      __typename?: "Game2048Options";
       timer?: {
-        __typename?: "HealthSmokingGameTimerOptions";
+        __typename?: "Game2048TimerOptions";
         enableMinuteAdditionAnimation?: boolean | null;
         enableMinutePulseAnimation?: boolean | null;
         enableMinuteHapticsImpact?: boolean | null;
         displayColor?: string | null;
         triggers?: Array<{
-          __typename?: "HealthSmokingGameTimerTrigger";
+          __typename?: "Game2048TimerTrigger";
           seconds?: number | null;
           repeat?: boolean | null;
           color?: string | null;
           pulseColor?: boolean | null;
           action?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }> | null;
+      } | null;
+      screens?: {
+        __typename?: "Game2048Screens";
+        overlays?: Array<{
+          __typename?: "Game2048ScreensOverlay";
+          state: Game2048GameState;
+          displayImage?: string | null;
+          spotlight?: string | null;
+          allowRestart?: boolean | null;
+          timer?: { __typename?: "Game2048TimerValidation"; min?: number | null; max?: number | null } | null;
+          image?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          copy?: {
+            __typename?: "Game2048ScreensOverlayCopy";
+            title?: string | null;
+            info?: string | null;
+            description?: string | null;
+          } | null;
         }> | null;
       } | null;
     } | null;
@@ -65523,7 +65674,7 @@ export const HealthSmokingStateFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "gameOptions" },
+            name: { kind: "Name", value: "game2048Options" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -65555,6 +65706,61 @@ export const HealthSmokingStateFragmentDoc = {
                                 selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                               },
                             },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "screens" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "overlays" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "state" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "timer" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "min" } },
+                                  { kind: "Field", name: { kind: "Name", value: "max" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "image" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "displayImage" } },
+                            { kind: "Field", name: { kind: "Name", value: "spotlight" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "copy" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  { kind: "Field", name: { kind: "Name", value: "info" } },
+                                  { kind: "Field", name: { kind: "Name", value: "description" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "allowRestart" } },
                           ],
                         },
                       },
@@ -97121,7 +97327,7 @@ export const GetHealthSmokingStateDocument = {
           { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "gameOptions" },
+            name: { kind: "Name", value: "game2048Options" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -97153,6 +97359,61 @@ export const GetHealthSmokingStateDocument = {
                                 selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                               },
                             },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "screens" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "overlays" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "state" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "timer" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "min" } },
+                                  { kind: "Field", name: { kind: "Name", value: "max" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "image" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "displayImage" } },
+                            { kind: "Field", name: { kind: "Name", value: "spotlight" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "copy" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  { kind: "Field", name: { kind: "Name", value: "info" } },
+                                  { kind: "Field", name: { kind: "Name", value: "description" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "allowRestart" } },
                           ],
                         },
                       },
@@ -97800,7 +98061,7 @@ export const StartSmokingStreakDocument = {
           { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "gameOptions" },
+            name: { kind: "Name", value: "game2048Options" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -97832,6 +98093,61 @@ export const StartSmokingStreakDocument = {
                                 selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                               },
                             },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "screens" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "overlays" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "state" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "timer" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "min" } },
+                                  { kind: "Field", name: { kind: "Name", value: "max" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "image" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "displayImage" } },
+                            { kind: "Field", name: { kind: "Name", value: "spotlight" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "copy" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  { kind: "Field", name: { kind: "Name", value: "info" } },
+                                  { kind: "Field", name: { kind: "Name", value: "description" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "allowRestart" } },
                           ],
                         },
                       },
@@ -98539,7 +98855,7 @@ export const UpdateSmokingStreakDocument = {
           { kind: "Field", name: { kind: "Name", value: "cravingsManaged" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "gameOptions" },
+            name: { kind: "Name", value: "game2048Options" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -98571,6 +98887,61 @@ export const UpdateSmokingStreakDocument = {
                                 selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                               },
                             },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "screens" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "overlays" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "state" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "timer" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "min" } },
+                                  { kind: "Field", name: { kind: "Name", value: "max" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "image" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "displayImage" } },
+                            { kind: "Field", name: { kind: "Name", value: "spotlight" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "copy" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  { kind: "Field", name: { kind: "Name", value: "info" } },
+                                  { kind: "Field", name: { kind: "Name", value: "description" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "allowRestart" } },
                           ],
                         },
                       },
