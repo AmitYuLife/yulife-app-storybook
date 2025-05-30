@@ -27,7 +27,7 @@ interface IGame2048Props {
   gameIntroModal?: ShowGameIntroModalProps & {
     onDismiss?: SduiAction;
   };
-  game2048Options?: Game2048Options;
+  gameOptions?: Game2048Options;
 }
 
 export const Game2048 = ({
@@ -38,7 +38,7 @@ export const Game2048 = ({
   enableHaptics = DEFAULT_GAME_CONFIG.enableHaptics,
   skin = "symbols",
   gameIntroModal,
-  game2048Options: gameOptionsParams,
+  gameOptions: gameOptionsParams,
 }: IGame2048Props) => {
   const gameScreenRef = useRef<GameEarlyExitHandle>();
 

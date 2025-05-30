@@ -174,5 +174,5 @@ export interface HealthSmokingState {
   };
   gameIntroModal?: GameIntroModal;
   cravingsManaged?: number;
-  game2048Options?: Game2048Options;
+  gameOptions?: Game2048Options;
 }
