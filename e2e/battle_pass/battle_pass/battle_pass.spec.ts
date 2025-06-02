@@ -149,7 +149,7 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see the correct subtitle on the info modal", then.idVisible(ids.ITEM_DETAILS_SUBTITLE("Spend YuCoin to unlock a reward"), 2000));
     });
     When("I scroll down on the info modal", when.scrollFromID(ids.ITEM_DETAILS_SUBTITLE("Spend YuCoin to unlock a reward"), "up", "slow", 0.4), async () => {
-      Then("I should see the info for all the available extra challenges", then.extraChallengesModalVisible);
+      Then("I should see the info for all the available extra challenges", then.extraChallengesInfoModalVisible);
     });
     When("I tap the button 'Got it' to close the modal", when.tapID(ids.REWARDS_MODAL_INFO_BUTTON, 2000), async () => {
       Then("I should be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
@@ -168,13 +168,11 @@ Feature("I can view and use all battle pass features", async () => {
       });
     });
     When("I tap to open the spinning rewards chest", when.tapID(ids.CLAIM_REWARD_MODAL, 2000), async () => {
-      Then("I should see the random extra challenge reward", then.idVisible(ids.RADIO_BATTLE_PASS_REWARD_ITEM, 2000));
+      Then("I should see the random extra challenge reward", then.extraChallengeRewardModalVisible);
     });
-    When("I tap to select the extra challenge reward", when.tapID(ids.RADIO_BATTLE_PASS_REWARD_ITEM, 2000), async () => {
-      When("I tap to select the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
-        Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
-        Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
-      });
+    When("I tap to claim the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
+      Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
+      Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
     });
     When("I go back to the 'Quests' screen", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
       When("I tap on level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10)), async () => {

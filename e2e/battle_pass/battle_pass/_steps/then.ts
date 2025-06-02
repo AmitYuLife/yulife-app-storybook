@@ -2,7 +2,7 @@ import * as ids from "@ids";
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import { scrollFromID } from "_utils/navigation/scrolling";
-import { impactDonationImages } from "../_resources/constants";
+import { challengeTypes, impactDonationImages } from "../_resources/constants";
 import { IMPACT_DONATION } from "../_resources/types";
 import { expect } from "detox";
 
@@ -47,17 +47,21 @@ export const impactCardsVisible = async (waitTime = 2000) => {
   }
 };
 
-export const extraChallengesModalVisible = async () => {
-  const challengeTypes = [
-    "Extra brisk walk challenge",
-    "Extra long walk challenge",
-    "Extra meditation challenge",
-    "Extra workout challenge",
-    "Extra short stroll challenge",
-  ];
-
+export const extraChallengesInfoModalVisible = async () => {
   for (const type of challengeTypes) {
     const testID = ids.ITEM_DETAILS_REWARD(type);
     await expect(element(by.id(testID))).toBeVisible();
   }
+};
+
+export const extraChallengeRewardModalVisible = async () => {
+  for (const challenge of challengeTypes) {
+    try {
+      await expect(element(by.text(`You've won ${challenge}!`))).toBeVisible();
+      return;
+    } catch {
+      // Ignore and try next challenge
+    }
+  }
+  throw new Error("No matching challenge title found");
 };
