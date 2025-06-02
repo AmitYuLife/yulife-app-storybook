@@ -598,7 +598,6 @@ export const CUSTOMER_137_TOGGLES = {
       hasSmartPensionActive: true,
       enableProductGoals: true,
       useHalfModalsForQuestMap: true,
-      showQuestMapNotificationIcons: true,
       showGoalProductRewardMilestones: true,
     },
   },
