@@ -22,7 +22,7 @@ type GameTimerProps = {
 
 const GameTimer = ({ options = {} }: GameTimerProps) => {
   const { enableMinuteAdditionAnimation, enableMinutePulseAnimation, enableMinuteHapticsImpact } = options;
-  const { gameId, startTimestamp, endTimestamp } = useGame2048Context();
+  const { gameId, startTimestamp, endTimestamp, isExiting } = useGame2048Context();
   const { handleSduiActionWithParams } = useSduiCallbackFunctionOrReduxAction();
 
   const timerDisplayRef = useRef<TimerDisplayHandle>(null);
@@ -65,7 +65,7 @@ const GameTimer = ({ options = {} }: GameTimerProps) => {
     const lastPulseCount = Math.floor(lastTriggerActionsSeconds / PULSE_INTERVAL_SECONDS);
     const currentPulseCount = Math.floor(seconds / PULSE_INTERVAL_SECONDS);
 
-    const canTriggerMinuteActions = currentPulseCount > lastPulseCount;
+    const canTriggerMinuteActions = currentPulseCount > lastPulseCount && !endTimestampRef.current && !isExiting;
 
     if (!canTriggerMinuteActions) {
       return;
@@ -86,6 +86,7 @@ const GameTimer = ({ options = {} }: GameTimerProps) => {
     }
   }, [
     getTimeElapsed,
+    isExiting,
     lastTriggerActionsSeconds,
     enableMinutePulseAnimation,
     enableMinuteAdditionAnimation,
