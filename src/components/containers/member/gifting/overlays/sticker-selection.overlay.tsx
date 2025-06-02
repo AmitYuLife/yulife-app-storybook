@@ -36,6 +36,7 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
       bottom={0}
       pb={40}
       bg="white"
+      maxHeight={Style.DEVICE_HEIGHT * 0.8}
       borderTopRadius={16}
       pt={40}
       testID={P2P_STICKER_MODAL}
@@ -45,7 +46,7 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
           {t("screens.gifting.choose_sticker")}
         </TextTemplate>
       </Box>
-      <Box ph={16} mt={24} maxHeight={Style.DEVICE_HEIGHT * 0.5} overflow="hidden">
+      <Box ph={16} mt={24} overflow="hidden">
         <ScrollView
           scrollEnabled={stickerChunks.length > 2}
           showsVerticalScrollIndicator={false}
