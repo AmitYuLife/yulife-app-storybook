@@ -8,6 +8,7 @@ import {
   useImperativeHandle,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import { GameState, useGame } from "./hooks";
 import { Game2048Context } from "./gameContext";
@@ -55,6 +56,7 @@ const Game2048Manager = forwardRef(
     });
 
     const toggleHaptics = useCallback(() => setEnableHaptics((haptics) => !haptics), []);
+    const [isExiting, setIsExiting] = useState(false);
 
     const gameState = useMemo(
       () => ({
@@ -70,6 +72,7 @@ const Game2048Manager = forwardRef(
         toggleHaptics,
         startTimestamp,
         endTimestamp,
+        isExiting,
         gameOptions,
       }),
       [
@@ -85,6 +88,7 @@ const Game2048Manager = forwardRef(
         toggleHaptics,
         startTimestamp,
         endTimestamp,
+        isExiting,
         gameOptions,
       ]
     );
@@ -93,6 +97,7 @@ const Game2048Manager = forwardRef(
 
     useEffect(() => {
       lastHandledStateRef.current = null;
+      setIsExiting(false);
     }, [gameId]);
 
     const showModal = useCallback(
@@ -151,6 +156,7 @@ const Game2048Manager = forwardRef(
       const modalProps = findModalToDisplay(Game2048GameState.Exiting);
 
       if (modalProps) {
+        setIsExiting(true);
         showModal(modalProps);
       }
 

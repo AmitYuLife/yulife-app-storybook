@@ -38,6 +38,7 @@ export interface IGame2048Context {
   toggleHaptics: () => void;
   startTimestamp: number | null;
   endTimestamp: number | null;
+  isExiting: boolean;
   gameOptions?: GameOptions | null;
 }
 export const Game2048Context = createContext<IGame2048Context>({
@@ -59,6 +60,7 @@ export const Game2048Context = createContext<IGame2048Context>({
   },
   startTimestamp: null,
   endTimestamp: null,
+  isExiting: false,
   gameOptions: null,
 });
 
