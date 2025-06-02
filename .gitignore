@@ -95,9 +95,11 @@ ios-temp
 android-temp
 plugins/expo-apple-targets
 
+# Generated file
+.env.local
+# Used for local development, merged .env and .env.local.overrides into .env.local
+.env.local.overrides
 
-# this file changes whenever you run different environments and is just a copy of the environment specific .env file
-.env
 .secure_files/
 
 # ignore generated translation files

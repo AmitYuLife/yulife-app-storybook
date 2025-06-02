@@ -142,6 +142,11 @@ When new image assets are added, these should be run through [ImageOptim](https:
 
 ## Build app
 
+#### Local environment override
+
+To create local environment values override create a file in root directory `.env.local.overrides`
+When running `start:{ios|android}:local` an `.env.local` file will be generated merging `.env` and `.env.local.overrides` files.
+
 ### iOS
 
 Building the app using XCode is the only way to install a development build on a physical device. If you only need to develop using the simulator you can use the command line.
