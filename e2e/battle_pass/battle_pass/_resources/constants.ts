@@ -17,3 +17,11 @@ export const impactDonationImages: Record<IMPACT_DONATION, string> = {
 };
 
 export const locationModalTitle = "Choose your location!";
+
+export const challengeTypes = [
+  "Extra brisk walk challenge",
+  "Extra long walk challenge",
+  "Extra meditation challenge",
+  "Extra workout challenge",
+  "Extra short stroll challenge",
+];
