@@ -253,3 +253,16 @@ export const CUSTOMER_16 = createCustomerRecords({
     },
   ],
 });
+
+export const CUSTOMER_17 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Tomothy",
+    lastName: "Piigman",
+    dateOfBirth: moment().subtract(34, "years").toDate(),
+    status: "invited",
+  },
+} as IDatabaseItem;

@@ -12,6 +12,7 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { IS_DEVELOP } from "@utils";
 import { REGION } from "@locale";
 import Logger from "@services/logging/logger";
+import { WEBVIEW } from "@ids";
 
 export type AppHandBackPayload = {
   type: "otp";
@@ -101,6 +102,7 @@ export function WebViewScreen(props: Props) {
             onShouldStartLoadWithRequest={handleInsideLinks}
             onMessage={handlePostMessage}
             webviewDebuggingEnabled={IS_DEVELOP}
+            testID={WEBVIEW}
           />
         </KeyboardAvoidingView>
       </View>

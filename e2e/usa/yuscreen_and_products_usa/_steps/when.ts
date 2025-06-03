@@ -28,7 +28,10 @@ export const {
   textNotVisible,
   tapTextAtIndex,
   minimiseAndReopenApp,
+  terminateApp,
 } = navigation.common;
+
+export { followEmailLink } from "../../../admin/emails/_steps/when";
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
   const item = element(

@@ -165,3 +165,14 @@ export const BUSINESS_EMPLOYEE_14 = {
     employment_leave_date: moment().add(10, "years").toDate(),
   },
 } as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_17 = {
+  type,
+  modelName,
+  data: {
+    business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
+    customer_id: customers.CUSTOMER_17.data.customerId,
+    employment_start_date: moment().subtract(1, "year").toDate(),
+    employment_leave_date: moment().add(10, "years").toDate(),
+  },
+} as IDatabaseItem;

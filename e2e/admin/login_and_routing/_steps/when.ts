@@ -4,13 +4,16 @@ import { navigation } from "@navigation";
 import { screens } from "@appScreens";
 import { getLocalisedString as t } from "@i18n";
 
-export const { tapText, typeViaID, wait, reloadOnly, tapID, replaceTextViaID } = navigation.common;
+export const { tapText, typeViaID, wait, reloadOnly, tapID, replaceTextViaID, terminateApp } =
+  navigation.common;
 
 export const { swipeFromText, scrollUntilTextVisible } = navigation.scrolling;
 
 export const { loginOnly, skipHealthConnection } = navigation.login;
 
 export const { tapMenuItem } = screens.menu;
+
+export { followEmailLink } from "../../emails/_steps/when";
 
 export const tapOnLogin = async (): Promise<void> => {
   const target = element(by.id(ids.BUTTON_LOGIN(false)));
@@ -102,4 +105,52 @@ export const tapLetsGo = async (): Promise<void> => {
   const target = element(by.text("Let's go"));
   await waitFor(target).toExist().withTimeout(5000);
   await target.tap();
+};
+
+export const navigateAppOnboardingFlow = async () => {
+  await clickNewAccountCard();
+  await wait(5000)();
+  await clickWebFlowSubmitButton();
+  await wait(5000)();
+  await clickWebFlowSubmitButton();
+  await wait(5000)();
+  await clickThroughOnboardingConsentPage();
+  await wait(5000)();
+  await clickThroughMarkettingPreferences();
+  await wait(5000)();
+};
+
+const clickNewAccountCard = async () => {
+  const myWebView = web(by.id(ids.WEBVIEW));
+  await myWebView.element(by.web.id("employee-signup-new-account-card")).tap();
+};
+
+const clickWebFlowSubmitButton = async () => {
+  const myWebView = web(by.id(ids.WEBVIEW));
+  const submitButton = myWebView.element(by.web.cssSelector('button[type="submit"]'));
+  await submitButton.tap();
+};
+
+const clickThroughOnboardingConsentPage = async () => {
+  const myWebView = web(by.id(ids.WEBVIEW));
+  await myWebView.element(by.web.id("checkbox-privacy-notice-agreement")).tap();
+  await wait(2000)();
+  await element(by.id(ids.WEBVIEW)).swipe("up", "fast", 0.3);
+  await wait(3000)();
+  await myWebView.element(by.web.id("checkbox-end-user-license-agreement-eula")).tap();
+
+  await wait(2000)();
+
+  const continueButton = myWebView.element(by.web.cssSelector('button[role="primary"]'));
+
+  await continueButton.tap();
+};
+
+const clickThroughMarkettingPreferences = async () => {
+  const myWebView = web(by.id(ids.WEBVIEW));
+  await element(by.id(ids.WEBVIEW)).swipe("down", "fast");
+  await wait(4000)();
+  const continueButton = myWebView.element(by.web.cssSelector('button[role="primary"]'));
+
+  await continueButton.tap();
 };

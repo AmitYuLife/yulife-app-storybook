@@ -298,3 +298,13 @@ export const USER_16 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_17 = {
+  type,
+  modelName,
+  data: {
+    ...USER_1.data,
+    _id: generateRandomMongoId(),
+    userId: customers.CUSTOMER_17.data.customerId,
+  },
+} as IDatabaseItem;
