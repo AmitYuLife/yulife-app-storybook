@@ -1,5 +1,5 @@
 import { Box, Draggable } from "@atoms";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { memo, ReactNode, useCallback, useMemo, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, useWindowDimensions, View, ViewStyle } from "react-native";
 import LikertScaleLabels from "./likert-scale-labels";
@@ -33,46 +33,42 @@ type Props = {
 const LikertScale = ({ children, handleWidth, handleHeight, labelMax, labelMin, value, onChange }: Props) => {
   const left = useSharedValue(0);
   const { width: windowWidth } = useWindowDimensions();
+
+  const sectionWidth = useMemo(() => windowWidth / CONFIG.POINTS, [windowWidth]);
+  const breakpoints = useMemo(() => Array.from({ length: CONFIG.POINTS }, (_, i) => i * sectionWidth), [sectionWidth]);
+
   const [layout, setLayout] = useState<{
     width: number;
     height: number;
-    sectionWidth: number;
     offsetX: number;
-    breakpoints: number[];
   }>({
-    width: 0,
-    height: 0,
-    offsetX: 0,
-    breakpoints: [],
-    sectionWidth: 0,
+    width: Style.DEVICE_WIDTH - Style.adjust(CONFIG.WRAPPER_PADDING_HORIZONTAL) * 2,
+    height: Style.adjust(CONFIG.SCALE_HEIGHT),
+    offsetX: Style.adjust(CONFIG.WRAPPER_PADDING_HORIZONTAL),
   });
 
-  const handleLayout = useCallback((e: LayoutChangeEvent) => {
-    const width = e.nativeEvent.layout.width;
-    const height = e.nativeEvent.layout.height;
-    const offsetX = e.nativeEvent.layout.x;
-    const sectionWidth = windowWidth / CONFIG.POINTS;
-    const breakpoints = Array.from({ length: CONFIG.POINTS }, (_, i) => i * sectionWidth);
-
-    setLayout({
-      width,
-      height,
-      offsetX,
-      sectionWidth,
-      breakpoints,
-    });
-  }, []);
+  const handleLayout = useCallback(
+    ({ nativeEvent }: LayoutChangeEvent) => {
+      onChange?.(CONFIG.MID_POINT);
+      setLayout((current) => ({
+        width: nativeEvent.layout.width || current.width,
+        height: nativeEvent.layout.height || current.height,
+        offsetX: nativeEvent.layout.x ?? current.offsetX,
+      }));
+    },
+    [onChange]
+  );
 
   const handleChangeBreakpoint = useCallback((breakpointIndex: number) => onChange?.(breakpointIndex + 1), [onChange]);
 
   const tapBreakpoint = useCallback(
     (breakpoint: number, breakpointIndex: number) => {
       return () => {
-        left.value = withTiming(breakpoint + layout.sectionWidth / 2, { duration: 200 });
+        left.value = withTiming(breakpoint + sectionWidth / 2, { duration: 200 });
         handleChangeBreakpoint(breakpointIndex);
       };
     },
-    [layout.sectionWidth]
+    [sectionWidth, left, handleChangeBreakpoint]
   );
 
   const calculated = useMemo(() => {
@@ -86,13 +82,13 @@ const LikertScale = ({ children, handleWidth, handleHeight, labelMax, labelMin, 
 
   return (
     <View style={calculated.wrapperStyles}>
-      {layout.breakpoints.map((breakpoint, breakpointIndex) => (
+      {breakpoints.map((breakpoint, breakpointIndex) => (
         <Box
           key={breakpoint}
           position="absolute"
           left={breakpoint}
           height={handleHeight + CONFIG.LABELS_HEIGHT}
-          w={layout.sectionWidth}
+          w={sectionWidth}
           testID={SLIDABLE_POSITION(breakpointIndex)}
         >
           <Pressable
@@ -120,8 +116,8 @@ const LikertScale = ({ children, handleWidth, handleHeight, labelMax, labelMin, 
         <Draggable
           minOffsetX={layout.offsetX}
           maxOffsetX={layout.offsetX + layout.width}
-          sectionWidth={layout.sectionWidth}
-          breakpoints={layout.breakpoints}
+          sectionWidth={sectionWidth}
+          breakpoints={breakpoints}
           defaultIndex={Math.max(value - 1, 0) || 2}
           handleWidth={handleWidth}
           onChange={handleChangeBreakpoint}
