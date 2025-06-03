@@ -602,7 +602,11 @@ const routesForRegistration = [
   },
   {
     name: MODALS.viewAchievementModal,
-    component: require("../components/modals/achievements-modal/view-achievement-modal").default,
+    component: require("../components/modals/view-achievement-modal/view-achievement-modal").default,
+  },
+  {
+    name: MODALS.unlockedAchievementsModal,
+    component: require("../components/modals/unlocked-achievements-modal/unlocked-achievements-modal").default,
   },
 ];
 

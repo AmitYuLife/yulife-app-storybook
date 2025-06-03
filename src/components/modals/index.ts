@@ -26,4 +26,4 @@ export { default as SmokingStreakCelebrationModal } from "./smoking-streak-celeb
 export { default as SmokingOptOutModal } from "./smoking-opt-out/smoking-opt-out.modal";
 export { ScrollableContentOverlay } from "./scrollable-content-overlay/scrollable-content-overlay";
 export { default as BattlePassEndOfSeasonModal } from "./battle-pass-end-of-season-modal/battle-pass-end-of-season-modal";
-export { default as ViewAchievementModal } from "./achievements-modal/view-achievement-modal";
+export { default as ViewAchievementModal } from "./view-achievement-modal/view-achievement-modal";
