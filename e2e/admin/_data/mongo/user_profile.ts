@@ -121,3 +121,12 @@ export const USER_PROFILE_14 = {
     ...RECORD_DEFAULTS,
   },
 } as IDatabaseItem;
+
+export const USER_PROFILE_17 = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customers.CUSTOMER_17.data.customerId,
+    ...RECORD_DEFAULTS,
+  },
+} as IDatabaseItem;

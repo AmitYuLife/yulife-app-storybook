@@ -64,6 +64,8 @@ export const { swipeToID, swipeFromText, scrollUntilIdVisible, scrollUntilTextVi
 
 export { smokingTileVisible, smokingCardVisible, onSmokingHub } from "../../../health/_steps/then";
 
+export { hasReceivedOnboardingLinkEmail } from "../../../admin/login_and_routing/_steps/then";
+
 export const howToEnrollTexts = async () => {
   await expect(element(by.text(text.HowToEnroll))).toBeVisible();
   await expect(

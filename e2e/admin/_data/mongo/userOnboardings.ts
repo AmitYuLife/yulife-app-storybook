@@ -247,3 +247,15 @@ export const USER_ONBOARDING_14 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_17 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: users.USER_17.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    businessName: "Justice League",
+    performedSteps: {},
+  },
+} as IDatabaseItem;

@@ -77,6 +77,7 @@ export const YUMOJI_PROMPT_CTA = "yumoji-prompt-cta";
 export const YUMOJI_PROMPT_COPY = (copy: string) => `YUMOJI_PROMPY_COPY_${copy}`;
 export const BATTLE_PASS_SCREEN = "BATTLE_PASS_SCREEN";
 export const CHALLENGE_FAILED_SCREEEN = "CHALLENGE_FAILED_SCREEEN";
+export const WEBVIEW = "WEBVIEW";
 
 // buttons
 export const FULL_SCREEN_HERO_BUTTON = (label: string) => `FULL_SCREEN_HERO_BUTTON_${label}`;

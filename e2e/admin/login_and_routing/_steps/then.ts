@@ -8,9 +8,10 @@ import {
 import { navigation } from "@navigation";
 import { screens } from "@appScreens";
 import { getLocalisedString as t } from "@i18n";
-import { expect } from "detox";
+import { expect, element, by } from "detox";
 import { CUSTOMER_1 } from "../../_data";
 import { HealthDataSyncModalDesc } from "../_resources/const";
+import { readInbox } from "@yu-life/yulife-bdd-framework";
 
 export const { textVisible, textNotVisible, idVisible, wait, multipleTextVisible, idNotVisible } =
   navigation.common;
@@ -198,4 +199,24 @@ export const healthDataSyncComponent = async () => {
   await idVisible(ids.WARNING_BANNER(HealthDataSyncModalDesc))();
   await idVisible(ids.INFO_PANEL_BUTTON)();
   await idVisible(ids.PCP_LIST_DESCRIPTION)();
+};
+
+export const hasReceivedOnboardingLinkEmail = (email: string) => async () => {
+  const inbox = await readInbox(email, true);
+  const subject = inbox[0].subject;
+
+  if (subject !== "[detox] Your link to resume your journey and activate your membership") {
+    throw new Error("Email subject is incorrect");
+  }
+};
+
+export const newAccountCardVisible = async () => {
+  const myWebView = web(by.id(ids.WEBVIEW));
+  await expect(myWebView.element(by.web.id("employee-signup-new-account-card"))).toExist();
+};
+
+export const onboardingPasswordScreenVisible = async () => {
+  const myWebView = web(by.id(ids.WEBVIEW));
+  await expect(myWebView.element(by.web.id("create-password"))).toExist();
+  await expect(myWebView.element(by.web.id("confirm-password"))).toExist();
 };

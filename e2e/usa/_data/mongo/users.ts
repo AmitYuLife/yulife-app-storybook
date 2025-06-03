@@ -34,3 +34,13 @@ export const USER_USA_1 = {
     userId: customer.CUSTOMER_USA_1.data.customerId,
   },
 } as IDatabaseItem;
+
+export const USER_USA_2 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_USA_2.data.customerId,
+  },
+} as IDatabaseItem;
