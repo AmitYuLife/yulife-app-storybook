@@ -1,5 +1,7 @@
 import moment from "moment";
 import { BoxOption, InfoPanel, USProductData, YuScreenInfo } from "./types";
+import { CUSTOMER_USA_2, CUSTOMER_USA_4 } from "usa/_data";
+import { Gift } from "activity/p2p_gifting/_resources/types";
 
 //Onboarding US YU screen
 export const moreInsurance = "More insurance available";
@@ -135,3 +137,11 @@ export const CUSTOMER_1_MOMENTS_AND_REASONS = [
   "To save money",
   "To improve my health",
 ];
+
+export const GiftFromBizUsa2: Gift = {
+  recipientId: CUSTOMER_USA_4.customer.data.customerId,
+  yuCoinAmount: 100,
+  message: "A gift for you",
+  backgroundId: "yuniversal",
+  stickerId: "lantern",
+};

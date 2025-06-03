@@ -1,4 +1,9 @@
-import { generateRandomTransformedUuid, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import {
+  createBusinessRecords,
+  generateRandomTransformedUuid,
+  IDatabaseItem,
+  PricingTier,
+} from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_BACKGROUND_USA_1 } from "./business_background";
 
 const type = "postgres";
@@ -26,3 +31,9 @@ export const BUSINESS_ACCOUNT_USA_1 = {
     business_pricing_tier: "Mutual of Omaha",
   },
 } as IDatabaseItem;
+
+export const BUSINESS_ACCOUNT_USA_2_NPC = createBusinessRecords({
+  active: true,
+  businessAccountName: "FuBu Limited",
+  businessPricingTier: PricingTier.mutualOfOmaha,
+});

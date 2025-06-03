@@ -9,8 +9,6 @@ const modelName = "users";
 
 const USER_DATA_TEMPLATE = {
   data: {
-    _id: "",
-    userId: "",
     products: [
       {
         productId: generateRandomMongoId(),
