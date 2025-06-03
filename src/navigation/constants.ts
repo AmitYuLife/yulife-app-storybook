@@ -213,6 +213,7 @@ export const MODALS = {
   game2048Victory: "yulife.modals.game2048Victory",
   game2048Intro: "yulife.modals.game2048Intro",
   viewAchievementModal: "yulife.modals.viewAchievementModal",
+  unlockedAchievementsModal: "yulife.modals.unlockedAchievementsModal",
 
   // YuHealth
   healthPermission: "yulife.modals.healthPermission",
