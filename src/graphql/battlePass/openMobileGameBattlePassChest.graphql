@@ -1,5 +1,5 @@
-mutation openMobileGameBattlePassChest($rewardId: String!) {
-  openMobileGameBattlePassChest(rewardId: $rewardId) {
+mutation OpenMobileGameBattlePassChest($participationId: String, $rewardId: String!) {
+  openMobileGameBattlePassChest(participationId: $participationId, rewardId: $rewardId) {
     success
     chest {
       ...MobileGameBattlePassChestDetails

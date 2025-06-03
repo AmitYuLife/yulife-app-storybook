@@ -306,6 +306,7 @@ const BattlePassContainer = ({ showNavigation = false, onPressWallet, isInnerScr
       }
 
       return async () => {
+        // TODO: add participationId
         const result = await claimMobileGameBattlePassRewards({ variables: { rewardIds: [reward.id] } });
         dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
 

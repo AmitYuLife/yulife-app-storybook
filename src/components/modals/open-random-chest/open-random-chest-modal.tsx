@@ -27,6 +27,7 @@ interface IOpenRandomChestModalProps {
   overlayImage?: string;
   backgroundImage?: string;
   milestoneId: string;
+  participationId?: string;
 }
 
 const CHEST_PICK_STAGE_TYPES: Record<MobileGameChestCollectionType, (props: IPickStageProps) => ReactNode> = {
@@ -35,9 +36,14 @@ const CHEST_PICK_STAGE_TYPES: Record<MobileGameChestCollectionType, (props: IPic
   [MobileGameChestCollectionType.All]: AllPickRewardStage,
 };
 
-const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IOpenRandomChestModalProps) => {
+const OpenRandomChestModal = ({
+  participationId,
+  milestoneId,
+  backgroundImage,
+  overlayImage,
+}: IOpenRandomChestModalProps) => {
   const { data } = useQuery(gql("GetMobileGameBattlePassChestDetailsDocument"), {
-    variables: { milestoneId },
+    variables: { participationId, milestoneId },
     fetchPolicy: "network-only",
   });
 
@@ -84,14 +90,14 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
     setIsDetailsLoading(true);
     try {
       await openChest({
-        variables: { rewardId: data?.getMobileGameBattlePassChestDetails?.id },
+        variables: { rewardId: data?.getMobileGameBattlePassChestDetails?.id, participationId },
       });
 
       setStage(ChestStage.ingest);
     } finally {
       setIsDetailsLoading(false);
     }
-  }, [data?.getMobileGameBattlePassChestDetails?.id, openChest]);
+  }, [data?.getMobileGameBattlePassChestDetails?.id, openChest, participationId]);
 
   const onClosePress = useCallback(async () => {
     Navigation.dismissAllModals();
@@ -103,6 +109,7 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
         variables: {
           rewardId: data?.getMobileGameBattlePassChestDetails?.id,
           prizeIds: rewardIds,
+          participationId,
         },
       });
 
@@ -117,7 +124,7 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
       dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
       Navigation.dismissAllModals();
     },
-    [claimPrizes, data?.getMobileGameBattlePassChestDetails?.id, dispatch]
+    [claimPrizes, data?.getMobileGameBattlePassChestDetails?.id, dispatch, participationId]
   );
 
   const possibleItems = data?.getMobileGameBattlePassChestDetails?.possibleRewards;

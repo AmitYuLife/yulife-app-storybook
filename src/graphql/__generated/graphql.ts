@@ -4399,6 +4399,15 @@ export type GetPersonalContactDetailsResponse = {
   phone?: Maybe<Scalars["String"]["output"]>;
 };
 
+/** Represents the player's birthday information, including the day and month of birth. */
+export type GetPlayerBirthday = {
+  __typename?: "GetPlayerBirthday";
+  /** The day of the player's birth (1-31). */
+  dateOfBirthDay?: Maybe<Scalars["Int"]["output"]>;
+  /** The month of the player's birth (1-12). */
+  dateOfBirthMonth?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type GetProductYumojiPartResponse = {
   __typename?: "GetProductYumojiPartResponse";
   yumojiPartType: AvatarPartType;
@@ -6491,6 +6500,17 @@ export type Mutation = {
   setFeature?: Maybe<Scalars["Boolean"]["output"]>;
   setMemberReferralCode: Scalars["Boolean"]["output"];
   setPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  /**
+   * Sets the player's birthday information.
+   *
+   * Arguments:
+   *   - setPlayerBirthday: The day of the player's birth (1-31).
+   *   - dateOfBirthMonth: The month of the player's birth (1-12).
+   *
+   * Returns:
+   *   - Boolean indicating whether the operation was successful.
+   */
+  setPlayerBirthday: Scalars["Boolean"]["output"];
   /** Updates the shares of a beneficiary */
   setShareOfBenefitForProduct: CustomerProductBeneficiaries;
   setUserQuestProgress?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6978,6 +6998,7 @@ export type MutationNormalisePersonalProductStepArgs = {
 };
 
 export type MutationOpenMobileGameBattlePassChestArgs = {
+  participationId?: InputMaybe<Scalars["String"]["input"]>;
   rewardId: Scalars["String"]["input"];
 };
 
@@ -7158,6 +7179,11 @@ export type MutationSetMemberReferralCodeArgs = {
 export type MutationSetPasswordArgs = {
   password: Scalars["String"]["input"];
   reset?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type MutationSetPlayerBirthdayArgs = {
+  dateOfBirthDay: Scalars["Int"]["input"];
+  dateOfBirthMonth: Scalars["Int"]["input"];
 };
 
 export type MutationSetShareOfBenefitForProductArgs = {
@@ -8000,6 +8026,8 @@ export type Query = {
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
   getEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaignResponse;
+  getEmployeeRecognitionCampaignBillingAddresses?: Maybe<Array<Maybe<TeamEmployeeRecognitionCampaignBillingAddress>>>;
+  getEmployeeRecognitionCampaignPackages?: Maybe<TeamEmployeeRecognitionCampaignPackages>;
   getEmployeeRecognitionCampaignRecipients: TeamEmployeeRecognitionCampaignRecipientsResponse;
   getEmployeeRecognitionCampaignRecipientsByIds: TeamEmployeeRecognitionCampaignRecipientsByIdsResponse;
   getEmployeeRecognitionCampaigns: GetTeamEmployeeRecognitionCampaignsResponse;
@@ -8097,6 +8125,8 @@ export type Query = {
   getPersonalProductStepDetachedDocuments?: Maybe<ProductUnderwritingStep>;
   /** @Deprecated - Use the generic getPersonalProductStepDetached with FAQ stepId */
   getPersonalProductStepDetachedFaqs?: Maybe<ProductUnderwritingStep>;
+  /** Retrieves the current player's birthday information. */
+  getPlayerBirthday?: Maybe<GetPlayerBirthday>;
   getPotentialRewards: Array<PotentialReward>;
   getPricingConfigurations: Array<PricingConfiguration>;
   /** Query to get a customer's beneficiaries for a product */
@@ -8586,6 +8616,7 @@ export type QueryGetMobileGameBattlePassArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileGameBattlePassChestDetailsArgs = {
   milestoneId: Scalars["String"]["input"];
+  participationId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -10277,8 +10308,27 @@ export type TeamEmployeeRecognitionCampaign = {
   title: Scalars["String"]["output"];
 };
 
+export type TeamEmployeeRecognitionCampaignBillingAddress = {
+  __typename?: "TeamEmployeeRecognitionCampaignBillingAddress";
+  id: Scalars["String"]["output"];
+  label: Scalars["String"]["output"];
+};
+
+export type TeamEmployeeRecognitionCampaignPackage = {
+  __typename?: "TeamEmployeeRecognitionCampaignPackage";
+  amount: Scalars["Int"]["output"];
+  id: Scalars["String"]["output"];
+};
+
+export type TeamEmployeeRecognitionCampaignPackages = {
+  __typename?: "TeamEmployeeRecognitionCampaignPackages";
+  packages: Array<TeamEmployeeRecognitionCampaignPackage>;
+  rate: Scalars["Int"]["output"];
+};
+
 export type TeamEmployeeRecognitionCampaignRecipient = {
   __typename?: "TeamEmployeeRecognitionCampaignRecipient";
+  businessEmployeeId: Scalars["String"]["output"];
   email?: Maybe<Scalars["String"]["output"]>;
   firstName?: Maybe<Scalars["String"]["output"]>;
   fullName?: Maybe<Scalars["String"]["output"]>;
@@ -22423,6 +22473,7 @@ export type GetMobileAssetsWithVersionQuery = {
 };
 
 export type ClaimMobileGameBattlePassChestPrizesMutationVariables = Exact<{
+  participationId?: InputMaybe<Scalars["String"]["input"]>;
   rewardId: Scalars["String"]["input"];
   prizeIds: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
 }>;
@@ -22712,6 +22763,7 @@ export type GetMobileGameBattlePassQuery = {
 };
 
 export type GetMobileGameBattlePassChestDetailsQueryVariables = Exact<{
+  participationId?: InputMaybe<Scalars["String"]["input"]>;
   milestoneId: Scalars["String"]["input"];
 }>;
 
@@ -22927,6 +22979,7 @@ export type GetMobileUnlockableBattlePassTeasersQuery = {
 };
 
 export type OpenMobileGameBattlePassChestMutationVariables = Exact<{
+  participationId?: InputMaybe<Scalars["String"]["input"]>;
   rewardId: Scalars["String"]["input"];
 }>;
 
@@ -73413,6 +73466,11 @@ export const ClaimMobileGameBattlePassChestPrizesDocument = {
       variableDefinitions: [
         {
           kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
           variable: { kind: "Variable", name: { kind: "Name", value: "rewardId" } },
           type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
@@ -73435,6 +73493,11 @@ export const ClaimMobileGameBattlePassChestPrizesDocument = {
             kind: "Field",
             name: { kind: "Name", value: "claimMobileGameBattlePassChestPrizes" },
             arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "participationId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+              },
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "prizeIds" },
@@ -74613,6 +74676,11 @@ export const GetMobileGameBattlePassChestDetailsDocument = {
       variableDefinitions: [
         {
           kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
           variable: { kind: "Variable", name: { kind: "Name", value: "milestoneId" } },
           type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
@@ -74624,6 +74692,11 @@ export const GetMobileGameBattlePassChestDetailsDocument = {
             kind: "Field",
             name: { kind: "Name", value: "getMobileGameBattlePassChestDetails" },
             arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "participationId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+              },
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "milestoneId" },
@@ -75335,8 +75408,13 @@ export const OpenMobileGameBattlePassChestDocument = {
     {
       kind: "OperationDefinition",
       operation: "mutation",
-      name: { kind: "Name", value: "openMobileGameBattlePassChest" },
+      name: { kind: "Name", value: "OpenMobileGameBattlePassChest" },
       variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
         {
           kind: "VariableDefinition",
           variable: { kind: "Variable", name: { kind: "Name", value: "rewardId" } },
@@ -75350,6 +75428,11 @@ export const OpenMobileGameBattlePassChestDocument = {
             kind: "Field",
             name: { kind: "Name", value: "openMobileGameBattlePassChest" },
             arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "participationId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+              },
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "rewardId" },
