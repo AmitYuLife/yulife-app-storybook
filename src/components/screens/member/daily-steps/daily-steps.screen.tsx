@@ -156,7 +156,7 @@ const DailyStepsScreen = ({
       accessibilityElementsHidden={accessibilityElementsHidden}
     >
       <CentredScreen {...getScreenProps} testID={DAILY_STEPS_SCREEN}>
-        <Pad height={getPadHeight(hasEvents)} />
+        <Pad height={getPadHeight(hasEvents, currentLevel)} />
         <TouchableOpacityWithDelay
           onPress={onCoinPress}
           activeOpacity={1}
@@ -202,13 +202,14 @@ const DailyStepsScreen = ({
 
 export default memo(DailyStepsScreen);
 
-function getPadHeight(hasEvents: boolean) {
+function getPadHeight(hasEvents: boolean, currentLevel: number) {
   if (isIphoneX() || Style.isLargeScreen()) {
     return 110;
   }
 
   if (Platform.OS === "ios") {
-    return hasEvents ? 15 : 80;
+    const height = Style.isIphone8() && currentLevel > 1200 ? 30 : 15;
+    return hasEvents ? height : 80;
   }
 
   if (Style.DEVICE_HEIGHT <= media.DEVICES.Pixel2.height) {
