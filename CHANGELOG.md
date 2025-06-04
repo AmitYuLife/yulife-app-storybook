@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.65.0] - 2025-06-04
+
+### Features
+
+- Detox LCS-1022: Mutual of Omaha search features disabled if user receives gift from business
+- Feature LCS-1351: Open email app after magic link is sent
+
+### Bugfixes
+
+- Bugfix ENG-4211: Improve `LikertScale` component
+- Bugfix GS-1617: Reset Reward List and Pagination on Shopfront Update
+
+### Tasks
+
+- Task GS-1649: Create saga to fetch achievements on the client
+- Task GS-1647: Create Achievements graphql endpoints
+- Task: Generate .env.local when regenerate is called
+- Task GS-1645: Add fixed header to reward unlock container
+- Task CTE-197: send participationId for open random chest & claim
+- Task GS-1615: Create UnlockedAchievements modal
+- Task GS-1626: Fix lunar planet yucoin position
+- Task LCS-1372: purge showQuestMapNotificationIcons toggle from test data
+- Task GS-1506: YuHealth sensor missing steps
+- Task: Don't show unavailable reward screen if you have unlock pass
+- Task CTE-197: claim unlockable milestones
+- Task: Border radius on wallet header image
+- Task: Reward unlock container fixes
+- Task GS-1562: Add success message for debug challenge view
+- Task DEVOP-3549: Migrate pipelines to use ARM64 runners
+
+### Chores
+
+- Chore - Updated translations
+- Chore: Update local .env overrides
+- Chore - Updated translations
+
+### Extra
+
+- Detox: updated test for new button behaviour for slider questions
+- Detox LCS-1233 In-app Onboarding
+- Fix LCS-1343: Increase gifting drawer size
+- Detox: Random Challenge Reward Modal
+- Fix: LCS-1308: Game end modals content size
+- DEVOP-4070 - Remove sonarcloud
+- Feat: LCS-1365: Purge quest map archived toggles
+- Fix: LCS-1308: Use gameOptions instead of game2048Options
+- Feat: LCS-1308: Game 2048 game end overlays
+- Detox LCS-1329 Smoking bug fixes
+
 ## [4.64.0] - 2025-05-28
 
 ### Bugfixes
