@@ -480,6 +480,10 @@
         },
         "title": "Samsung Health"
       }
+    },
+    "unlocked_achievements": {
+      "description": "Lúcelos equipando con ellos a tu Yumoji.",
+      "title": "¡Nuevo logro desbloqueado! |||| ¡Has conseguido %{smart_count} nuevos logros!"
     }
   },
   "molecules": {

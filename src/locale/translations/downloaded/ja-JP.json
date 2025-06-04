@@ -480,6 +480,10 @@
         },
         "title": "Samsung Health"
       }
+    },
+    "unlocked_achievements": {
+      "description": "Yumoji に装備して自慢しよう。",
+      "title": "新しい成果が解除されました！ |||| %{smart_count} 件の新しい成果を獲得しました！"
     }
   },
   "molecules": {

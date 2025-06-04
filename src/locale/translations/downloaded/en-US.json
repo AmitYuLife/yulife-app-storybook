@@ -480,6 +480,10 @@
         },
         "title": "Samsung Health"
       }
+    },
+    "unlocked_achievements": {
+      "description": "Show them off by equipping them to your Yumoji.",
+      "title": "New achievement unlocked! |||| You've earned %{smart_count} new achievements!"
     }
   },
   "molecules": {
