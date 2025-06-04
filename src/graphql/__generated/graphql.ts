@@ -5868,7 +5868,7 @@ export type MobileGameUserAchievement = {
   icon: RemoteImage;
   id: Scalars["ID"]["output"];
   name: Scalars["String"]["output"];
-  points: Scalars["Int"]["output"];
+  points?: Maybe<Scalars["Int"]["output"]>;
   shortDescription?: Maybe<Scalars["String"]["output"]>;
   slot?: Maybe<Scalars["Int"]["output"]>;
   status: Scalars["String"]["output"];
@@ -6982,7 +6982,7 @@ export type MutationMarkInboxMessagesAsSeenArgs = {
 };
 
 export type MutationMarkMobileGameUserAchievementsViewedArgs = {
-  ids?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  ids: Array<Scalars["String"]["input"]>;
 };
 
 export type MutationMarkMobileNotificationsAsViewedByTypeArgs = {
@@ -7534,6 +7534,7 @@ export type MyAccountDetails = {
   lastName?: Maybe<Scalars["String"]["output"]>;
   nameVariants: Array<NameVariant>;
   secondaryEmail?: Maybe<Scalars["String"]["output"]>;
+  showPasswordField: Scalars["Boolean"]["output"];
 };
 
 export type MyAccountDetailsInput = {
@@ -12324,6 +12325,60 @@ export type UpdateUserAvatarResponse = {
   rewardAmount?: Maybe<Scalars["Int"]["output"]>;
   rewarded?: Maybe<Scalars["Boolean"]["output"]>;
   updated?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type MobileGameUserAchievementFragment = {
+  __typename?: "MobileGameUserAchievement";
+  id: string;
+  name: string;
+  status: string;
+  description: string;
+  shortDescription?: string | null;
+  type: string;
+  points?: number | null;
+  slot?: number | null;
+  icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type MobileGameUserAchievementsFragment = {
+  __typename?: "MobileGameUserAchievements";
+  achievementPoints?: number | null;
+  achievements: Array<{
+    __typename?: "MobileGameUserAchievement";
+    id: string;
+    name: string;
+    status: string;
+    description: string;
+    shortDescription?: string | null;
+    type: string;
+    points?: number | null;
+    slot?: number | null;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
+  equippedAchievements: Array<{
+    __typename?: "MobileGameUserAchievement";
+    id: string;
+    name: string;
+    status: string;
+    description: string;
+    shortDescription?: string | null;
+    type: string;
+    points?: number | null;
+    slot?: number | null;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
+  lockedAchievements: Array<{
+    __typename?: "MobileGameUserAchievement";
+    id: string;
+    name: string;
+    status: string;
+    description: string;
+    shortDescription?: string | null;
+    type: string;
+    points?: number | null;
+    slot?: number | null;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
 };
 
 export type YumojiRemoteFilesFragment = {
@@ -22432,6 +22487,151 @@ export type YuHealthOptionsFragment = {
   __typename?: "YuHealthOptions";
   dataType: YuHealthDataType;
   capabilities: Array<YuHealthCapability>;
+};
+
+export type GetMobileGameUserAchievementsQueryVariables = Exact<{
+  type?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type GetMobileGameUserAchievementsQuery = {
+  __typename?: "Query";
+  getMobileGameUserAchievements: {
+    __typename?: "MobileGameUserAchievements";
+    achievementPoints?: number | null;
+    achievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+    equippedAchievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+    lockedAchievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+  };
+};
+
+export type MarkMobileGameUserAchievementsViewedMutationVariables = Exact<{
+  ids: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
+}>;
+
+export type MarkMobileGameUserAchievementsViewedMutation = {
+  __typename?: "Mutation";
+  markMobileGameUserAchievementsViewed?: {
+    __typename?: "MobileGameUserAchievements";
+    achievementPoints?: number | null;
+    achievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+    equippedAchievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+    lockedAchievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+  } | null;
+};
+
+export type UpdateMobileGameUserAchievementMutationVariables = Exact<{
+  id: Scalars["String"]["input"];
+  slot?: InputMaybe<Scalars["Int"]["input"]>;
+}>;
+
+export type UpdateMobileGameUserAchievementMutation = {
+  __typename?: "Mutation";
+  updateMobileGameUserAchievement?: {
+    __typename?: "MobileGameUserAchievements";
+    achievementPoints?: number | null;
+    achievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+    equippedAchievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+    lockedAchievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+  } | null;
 };
 
 export type GetInboxMessagesQueryVariables = Exact<{ [key: string]: never }>;
@@ -46260,6 +46460,146 @@ export type YumojiRemotePartFragment = {
   remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
+export const RemoteImageFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RemoteImageFragment, unknown>;
+export const MobileGameUserAchievementFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievement" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievement" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "points" } },
+          { kind: "Field", name: { kind: "Name", value: "slot" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MobileGameUserAchievementFragment, unknown>;
+export const MobileGameUserAchievementsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievements" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievements" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "achievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "equippedAchievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "lockedAchievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievement" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievement" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "points" } },
+          { kind: "Field", name: { kind: "Name", value: "slot" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MobileGameUserAchievementsFragment, unknown>;
 export const UserProfileBadgeCountsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -46279,23 +46619,6 @@ export const UserProfileBadgeCountsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UserProfileBadgeCountsFragment, unknown>;
-export const RemoteImageFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<RemoteImageFragment, unknown>;
 export const MobileGameBattlePassProgressInfoFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -73268,6 +73591,358 @@ export const YumojiRemotePartFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<YumojiRemotePartFragment, unknown>;
+export const GetMobileGameUserAchievementsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileGameUserAchievements" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileGameUserAchievements" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "type" },
+                value: { kind: "Variable", name: { kind: "Name", value: "type" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievements" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievement" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievement" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "points" } },
+          { kind: "Field", name: { kind: "Name", value: "slot" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievements" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievements" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "achievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "equippedAchievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "lockedAchievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileGameUserAchievementsQuery, GetMobileGameUserAchievementsQueryVariables>;
+export const MarkMobileGameUserAchievementsViewedDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "MarkMobileGameUserAchievementsViewed" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "ids" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "markMobileGameUserAchievementsViewed" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "ids" },
+                value: { kind: "Variable", name: { kind: "Name", value: "ids" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievements" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievement" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievement" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "points" } },
+          { kind: "Field", name: { kind: "Name", value: "slot" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievements" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievements" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "achievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "equippedAchievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "lockedAchievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  MarkMobileGameUserAchievementsViewedMutation,
+  MarkMobileGameUserAchievementsViewedMutationVariables
+>;
+export const UpdateMobileGameUserAchievementDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateMobileGameUserAchievement" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "slot" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateMobileGameUserAchievement" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "slot" },
+                value: { kind: "Variable", name: { kind: "Name", value: "slot" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievements" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievement" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievement" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "points" } },
+          { kind: "Field", name: { kind: "Name", value: "slot" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievements" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievements" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "achievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "equippedAchievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "lockedAchievements" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateMobileGameUserAchievementMutation, UpdateMobileGameUserAchievementMutationVariables>;
 export const GetInboxMessagesDocument = {
   kind: "Document",
   definitions: [

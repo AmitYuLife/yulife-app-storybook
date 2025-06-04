@@ -1,0 +1,5 @@
+query GetMobileGameUserAchievements($type: String) {
+  getMobileGameUserAchievements(type: $type) {
+    ...MobileGameUserAchievements
+  }
+}

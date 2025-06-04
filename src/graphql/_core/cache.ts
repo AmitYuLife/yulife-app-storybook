@@ -75,6 +75,33 @@ const typePolicies: TypePolicies = {
       },
     },
   },
+  MobileGameUserAchievement: {
+    keyFields: ["id"],
+  },
+  MobileGameUserAchievements: {
+    fields: {
+      achievements: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
+      equippedAchievements: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
+      lockedAchievements: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
+      achievementPoints: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
+    },
+  },
 };
 
 let cache: InMemoryCache;

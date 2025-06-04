@@ -1,0 +1,12 @@
+fragment MobileGameUserAchievements on MobileGameUserAchievements {
+  achievements {
+    ...MobileGameUserAchievement
+  }
+  equippedAchievements {
+    ...MobileGameUserAchievement
+  }
+  lockedAchievements {
+    ...MobileGameUserAchievement
+  }
+  achievementPoints
+}

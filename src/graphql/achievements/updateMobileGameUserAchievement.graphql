@@ -1,0 +1,5 @@
+mutation UpdateMobileGameUserAchievement($id: String!, $slot: Int) {
+  updateMobileGameUserAchievement(id: $id, slot: $slot) {
+    ...MobileGameUserAchievements
+  }
+}
