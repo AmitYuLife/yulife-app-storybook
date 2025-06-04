@@ -30,7 +30,6 @@ export const features = [
   "logYuniversity",
   "showYuniversityMenuLink",
   "showAllLanguages",
-  "enableResumeInAppMeditation",
   "canFallbackToStepDetectorSensor",
   "enablePopToRootOnDateChange",
   "enableChallengeNoDataDefer",
