@@ -850,7 +850,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
       Then("I can see the slider question", then.idVisible(ids.TEXT_TEMPLATE("Yesterday, did you check social media multiple times, even when it may not have been appropriate (e.g., during a meeting, at dinner, etc.)?", "b2b")));
-      Then("I can see the next button is disabled as I have not moved the slider yet", then.idVisible(ids.BUTTON_BASE("Next", true)));
+      Then("I can see the next button is enabled before the slider is moved", then.idVisible(ids.BUTTON_BASE("Next", false)));
     });
     When("I swipe the slider to yes", when.swipeFromIDAtIndex(ids.CONTENT_ITEM_SLIDER, 1, "left", "slow", 0.4), async () => {
       Then("I can see the next button is enabled as I have moved the slider", then.idVisible(ids.BUTTON_BASE("Next", false)));
