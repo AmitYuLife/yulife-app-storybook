@@ -1,0 +1,14 @@
+fragment MobileGameUserAchievement on MobileGameUserAchievement {
+  id
+  name
+  status
+  description
+  shortDescription
+  id
+  type
+  points
+  slot
+  icon {
+    ...RemoteImage
+  }
+}
