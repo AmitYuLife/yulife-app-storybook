@@ -35,14 +35,13 @@ export default function* startChallengeIfActiveSaga() {
     const isMeditation = subtype.includes("meditation");
     const hasChallengeEnded = moment().isAfter(endDateTime);
     const isActiveMediaChallenge = videoPlayerIsActive && challengeId;
-    const shouldAutoCancelChallengeV1 = isActiveMediaChallenge && isMeditation;
-    const shouldAutoCancelChallengeV2 =
+    const shouldAutoCancelChallenge =
       (isActiveMediaChallenge && !isMeditation) || (isActiveMediaChallenge && isMeditation && hasChallengeEnded);
 
     // This will cancel any video related challenges that are not meditations
     // This is because only meditations current have a custom progress screen
     // So challenges like internal Fiit challenges will still be auto cancelled.
-    if (features?.enableResumeInAppMeditation ? shouldAutoCancelChallengeV2 : shouldAutoCancelChallengeV1) {
+    if (shouldAutoCancelChallenge) {
       try {
         yield Storage.removeItem(StorageKey.mediaPlayerProgress);
         yield call(cancelChallengeToggle, {
