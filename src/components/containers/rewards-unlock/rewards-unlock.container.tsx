@@ -157,7 +157,15 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
         )}
       </Box>
       {showNavigation ? (
-        <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP}>
+        <Box
+          position="absolute"
+          top={0}
+          w="100%"
+          pt={TOP_BAR.PADDING_TOP}
+          disableAutoAdjust={true}
+          h={TOP_BAR.TOP_BAR_WITH_PAD}
+          bg={data.header.background.color}
+        >
           <TopBarAbsolute type="white" leftIcon={LeftIcon.BACK} onPressLeftIcon={onBack} />
         </Box>
       ) : null}
