@@ -82,7 +82,7 @@
     "test:unit:watch": "jest --watch",
     "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
     "tsc": "tsc --noUnusedLocals --noUnusedParameters",
-    "regenerate": "./scripts/generate-native-projects.sh",
+    "regenerate": "yarn env:config:local && ./scripts/generate-native-projects.sh",
     "watch:schema": "./ios/Pods/Apollo/apollo-ios-cli fetch-schema",
     "watch:codegen": "./ios/Pods/Apollo/apollo-ios-cli generate",
     "watch:translations": "ts-node ./scripts/watch-translations.ts",
