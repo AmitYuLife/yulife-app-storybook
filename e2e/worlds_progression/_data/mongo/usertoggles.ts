@@ -252,7 +252,6 @@ export const CUSTOMER_89_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
       enableChallengeBonuses: true,
-      newChallengeList: true,
     },
   },
 } as IDatabaseItem;

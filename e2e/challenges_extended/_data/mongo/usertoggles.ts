@@ -32,7 +32,6 @@ export const CUSTOMER_34_TOGGLES = {
       useCoreChallengesService: true,
       useActiveChallengesService: true,
       showBrainGameSudoku: true,
-      newChallengeList: true,
       showSurge: true,
     },
   },
@@ -76,7 +75,6 @@ export const CUSTOMER_122_TOGGLES = {
       showBrainGameSudoku: true,
       enableChallengeBonuses: true,
       showFiit: true,
-      newChallengeList: true,
     },
   },
 } as IDatabaseItem;

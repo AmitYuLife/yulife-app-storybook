@@ -290,7 +290,6 @@ export const CUSTOMER_52_TOGGLES = {
       showPermissionSettings: true,
       showBrainGameSudoku: true,
       useNewLeaderboardServices: true,
-      newChallengeList: true,
       tempGameUseStreakSettings: true,
     },
   },
