@@ -222,6 +222,18 @@ export const CUSTOMER_15 = createCustomerRecords({
       products: [],
     },
   ],
+  userInfo: {
+    earnRate: 20,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 20,
+      },
+    ],
+  },
 });
 
 export const CUSTOMER_15_PUBLIC_ID_UPDATE = {
@@ -252,6 +264,24 @@ export const CUSTOMER_16 = createCustomerRecords({
       products: [],
     },
   ],
+  userInfo: {
+    isAvatarCreated: false,
+    earnRate: 20,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 20,
+      },
+    ],
+    referral: {
+      referredBy: CUSTOMER_15.customer.data.customerId,
+      businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+      awardAmount: 2000,
+    },
+  },
 });
 
 export const CUSTOMER_17 = {

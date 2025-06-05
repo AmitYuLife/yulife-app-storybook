@@ -3,6 +3,7 @@ import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import * as customers from "../postgres/customers";
 import { BUSINESS_EMPLOYEE_5 } from "../postgres/business_employees";
 import { BUSINESS_ACCOUNT_4 } from "../postgres/business";
+import { CUSTOMER_15 } from "../postgres/customers";
 
 const type = "mongo";
 const modelName = "users";
@@ -271,31 +272,6 @@ export const USER_14 = {
         type: "employer",
       },
     ],
-  },
-} as IDatabaseItem;
-
-export const USER_15 = {
-  type,
-  modelName,
-  data: {
-    ...USER_1.data,
-    _id: generateRandomMongoId(),
-    userId: customers.CUSTOMER_15.customer.data.customerId,
-  },
-} as IDatabaseItem;
-
-export const USER_16 = {
-  type,
-  modelName,
-  data: {
-    ...USER_1.data,
-    _id: generateRandomMongoId(),
-    userId: customers.CUSTOMER_16.customer.data.customerId,
-    referral: {
-      referredBy: USER_15.data.userId,
-      businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
-      awardAmount: 2000,
-    },
   },
 } as IDatabaseItem;
 
