@@ -46,4 +46,6 @@ export * from "./mongo/core_reward_user_restriction";
 export * from "./mongo/goal_rewards";
 export * from "./mongo/core_journeys";
 export * from "./mongo/core_journey_steps";
+export * from "./mongo/user_habit_tracking_state";
+export * from "./mongo/user_habit_tracking_actions";
 export * from "./mongo/user_journey_state";

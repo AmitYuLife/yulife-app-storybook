@@ -644,3 +644,18 @@ export const CUSTOMER_139_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_141_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_141.customer.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showGoals: true,
+      showPermissionSettings: true,
+      tempGameEnableReleaseYuHealthV4: true,
+    },
+  },
+} as IDatabaseItem;

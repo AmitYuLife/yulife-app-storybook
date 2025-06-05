@@ -6,7 +6,7 @@ import {
   generateRandomPostgresId,
 } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
-import { BUSINESS_ACCOUNT_14_NPC_ALTRA } from "./business";
+import { BUSINESS_ACCOUNT_13_GHI_REWARDS, BUSINESS_ACCOUNT_14_NPC_ALTRA } from "./business";
 
 const type = "postgres";
 const modelName = "customer";
@@ -623,6 +623,30 @@ export const CUSTOMER_140_NPC_ALTRA = createCustomerRecords({
       archived: false,
       employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
       products: [],
+    },
+  ],
+});
+
+export const CUSTOMER_141 = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  customerCoreSettings: [
+    {
+      domain: "game.smoking",
+      settings: {
+        isEnabled: true,
+      },
     },
   ],
 });

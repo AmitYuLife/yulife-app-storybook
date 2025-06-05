@@ -9,6 +9,7 @@ import { hqInfoCopy, moneyMasteryFWQDescriptionPage } from "./_resources/fixture
 import { getTranslation } from "_utils/translations/getTranslations";
 import { translations } from "@app/locale/translations";
 import { yuscreenImages } from "@images";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("Quizzes and questionnaires", async () => {
   Scenario("I encounter an error on quiz event without journey and Health Questionnaire is disabled", scenario.start, async () => {
@@ -939,6 +940,18 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I press the Consent and continue button ", when.tapID(ids.BUTTON_BASE("同意して次へ進む", false)), async () => {
       Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("このアドバイスを積極的に取り入れたい気持ちはどのくらいありますか?", "b2b")));
+    });
+  });
+
+  Scenario("I can login with correct login detail and see the connection setup for daily activities", scenario.start, async () => {
+    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_141.customer.data.customerId, data.BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id, data.BUSINESS_BACKGROUND_10.data.business_background_id]), async () => {
+      Given("I have entered a valid email address and valid password", given.loginOnly(data.CUSTOMER_141.customer, GENERIC_AUTH_PASSWORD, true), async () => {
+        When("I tap let's go", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN")), async () => {
+          When("I tap X to skip connection", when.tapID(ids.BUTTON_CLOSE), async () => {
+            Then("I can see the hero cards fin the correct order", then.checkEachHeroCard);
+          });
+        });
+      });
     });
   });
 });

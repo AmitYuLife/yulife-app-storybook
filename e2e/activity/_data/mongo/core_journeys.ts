@@ -1,5 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { CUSTOMER_44 } from "../postgres/customers";
+import * as customer from "../postgres/customers";
 
 const model = "core_journeys";
 
@@ -139,7 +140,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST = {
     requiresUserStateForAccess: false,
     uiAccess: [],
     accessRules: {
-      tags: [CUSTOMER_44.data.customerId],
+      tags: [CUSTOMER_44.data.customerId, customer.CUSTOMER_141.customer.data.customerId],
     },
     uiAccessCopy: {
       eventPanel: {
