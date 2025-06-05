@@ -11,7 +11,6 @@ import { useBackHandler } from "@hooks";
 import SudokuPracticeScreen from "./sudoku-practice.screen";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { delay } from "@utils/misc";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -25,7 +24,6 @@ interface IProps {
 
 const SUDOKU_ANIMATION_TIMEOUT = 2000;
 export const SudokuPracticeContainer = ({ componentId }: IProps) => {
-  const features = useSelector(getUserFeatures);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const { data } = useQuery(gql(`GetSudokuPracticeDocument`), { fetchPolicy: "network-only" });
   const board = data?.getSudokuPractice;
@@ -71,7 +69,6 @@ export const SudokuPracticeContainer = ({ componentId }: IProps) => {
       config={board.config}
       onGameComplete={onGameComplete}
       gameIdentifier={"practice"}
-      enableAnimations={!features.disableSudokuAnimations}
       detectCheats={false}
       savedState={undefined}
       invertHeader={!!yuniversalMap}

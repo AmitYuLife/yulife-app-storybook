@@ -1,6 +1,5 @@
 import React, { memo, useCallback } from "react";
 import CellView from "./cell-view";
-import CellViewPerformance from "./cell-view-performance";
 import { ISudokuPosition } from "./sudoku.interface";
 
 interface IProps {
@@ -16,7 +15,6 @@ interface IProps {
   isInitial?: boolean;
   isWrong?: boolean;
   isGameCompleted?: boolean;
-  enableAnimations?: boolean;
   isSameAsActive?: boolean;
   setSelected?: ({ row, column }: ISudokuPosition) => void;
   setSelectedCell?: ({ row, column }: ISudokuPosition) => void;
@@ -29,7 +27,6 @@ const Cell = ({
   isActive,
   isWrong,
   isAdjacentActive,
-  enableAnimations,
   isInitial,
   isGameCompleted,
   setSelected,
@@ -42,15 +39,12 @@ const Cell = ({
     setSelected({ row, column });
   }, [row, setSelected, column]);
 
-  const CellComponent = enableAnimations ? CellView : CellViewPerformance;
-
   return (
-    <CellComponent
+    <CellView
       row={row}
       column={column}
       value={value}
       isActive={isActive}
-      enableAnimations={enableAnimations}
       isInitial={isInitial}
       isWrong={isWrong}
       isGameCompleted={isGameCompleted}

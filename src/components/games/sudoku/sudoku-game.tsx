@@ -17,7 +17,7 @@ interface IProps {
 }
 
 export const SudokuGame = ({ invertHeader }: IProps) => {
-  const { lastPauseTime, unpause, enableAnimations } = useSudokuContext();
+  const { lastPauseTime, unpause } = useSudokuContext();
 
   const pauseModal = useMemo(() => {
     return (
@@ -43,24 +43,18 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
       </ScrollView>
 
       {lastPauseTime ? (
-        <>
-          {enableAnimations ? (
-            <AnimatedView
-              entering={FadeIn.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
-              exiting={FadeOut.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
-              style={styles.pauseContainer}
-            >
-              <AnimatedView
-                entering={SlideInDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
-                exiting={SlideOutDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
-              >
-                {pauseModal}
-              </AnimatedView>
-            </AnimatedView>
-          ) : (
-            <View style={styles.pauseContainer}>{pauseModal}</View>
-          )}
-        </>
+        <AnimatedView
+          entering={FadeIn.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
+          exiting={FadeOut.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
+          style={styles.pauseContainer}
+        >
+          <AnimatedView
+            entering={SlideInDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
+            exiting={SlideOutDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
+          >
+            {pauseModal}
+          </AnimatedView>
+        </AnimatedView>
       ) : null}
     </>
   );

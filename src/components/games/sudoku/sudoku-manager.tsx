@@ -48,7 +48,6 @@ interface IProps {
   initialBoard: ISodukuBoard;
   savedState?: ISudokuStore;
   gameIdentifier: string;
-  enableAnimations?: boolean;
   detectCheats?: boolean;
   onGameComplete: (data: ISudokuResults) => void;
   onStateUpdate?: (args: ISudokuStateChangedArgs) => void;
@@ -64,7 +63,6 @@ const SudokuManager = ({
   savedState,
   children,
   config = SUDOKU_DEFAULT_CONFIG,
-  enableAnimations = true,
   onStateUpdate,
   onGameComplete,
 }: IProps) => {
@@ -626,7 +624,6 @@ const SudokuManager = ({
       config,
       undo,
       board: sudokuState.board,
-      enableAnimations,
       pause,
       getHint,
       history: sudokuState.history,
@@ -668,7 +665,6 @@ const SudokuManager = ({
     sudokuState.hintsUsed,
     sudokuState.lastHintTime,
     sudokuState.lastPauseTime,
-    enableAnimations,
     pause,
     getHint,
     unpause,
