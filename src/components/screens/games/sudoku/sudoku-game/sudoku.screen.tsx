@@ -4,7 +4,6 @@ import { Colours, Style } from "@styles";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { useSelector } from "react-redux";
 import { ISudokuGameContainerProps, SudokuGameContainer } from "@components/games/sudoku/sudoku-game-container";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { LottieView } from "@molecules";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
@@ -16,7 +15,6 @@ interface IProps extends ISudokuGameContainerProps {
 
 export const SudokuScreen = ({ onBack, ...props }: IProps) => {
   const { yuniversalMap } = useSelector(getYuniversalProgress);
-  const features = useSelector(getUserFeatures);
 
   return (
     <>
@@ -39,7 +37,7 @@ export const SudokuScreen = ({ onBack, ...props }: IProps) => {
             backgroundColor="transparent"
             onLeftIconPress={onBack}
           />
-          <SudokuGameContainer {...props} enableAnimations={!features.disableSudokuAnimations} />
+          <SudokuGameContainer {...props} />
         </View>
       </View>
     </>

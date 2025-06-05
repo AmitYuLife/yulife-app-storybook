@@ -16,7 +16,6 @@ const Grid = () => {
   const {
     setSelectedCell: setSelected,
     isRowComplete,
-    enableAnimations,
     cellStatuses,
     selectedCell,
     endTime,
@@ -80,7 +79,6 @@ const Grid = () => {
                   isRowCompleted={isRowCompleted}
                   isGameCompleted={!!endTime}
                   key={`${rowIndex}-${columnIndex}`}
-                  enableAnimations={enableAnimations}
                   isAdjacentActive={isAdjacentActive}
                   isQuadrantActive={isQuadrantActive}
                   isColumnCompleted={isColumnCompleted}

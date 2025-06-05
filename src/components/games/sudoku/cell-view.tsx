@@ -25,7 +25,6 @@ export interface ICellViewProps {
   isSameAsActive: boolean;
   isGameCompleted: boolean;
   isAdjacentActive: boolean;
-  enableAnimations: boolean;
   isQuadrantActive: boolean;
   isColumnComplete: boolean;
 }
@@ -49,7 +48,6 @@ const CellView = ({
   isRowComplete,
   isSameAsActive,
   isGameCompleted,
-  enableAnimations,
   isAdjacentActive,
   isColumnComplete,
   isQuadrantActive,
@@ -101,16 +99,16 @@ const CellView = ({
       transform: [
         {
           scale: withDelay(
-            isActive || !enableAnimations ? 0 : SUDOKU_SAME_VALUE_CELL_DELAY_TIME,
+            isActive ? 0 : SUDOKU_SAME_VALUE_CELL_DELAY_TIME,
             withTiming(circleAnimationScale.value, {
-              duration: enableAnimations ? SUDOKU_CELL_TRANSITION_TIME : 0,
+              duration: SUDOKU_CELL_TRANSITION_TIME,
               easing: EASING_FUNCTION,
             })
           ),
         },
       ],
     };
-  }, [isActive, enableAnimations, isGameCompleted]);
+  }, [isActive, isGameCompleted]);
 
   const animatedBackgroundStyle = useAnimatedStyle(() => {
     if (!isGameCompleted) {
@@ -176,7 +174,6 @@ const CellView = ({
           isRowCompleted={isRowComplete}
           isColumnCompleted={isColumnComplete}
           isGameCompleted={isGameCompleted}
-          enableAnimations={enableAnimations}
         />
       </AnimatedView>
     </TouchableOpacityWithDelay>
