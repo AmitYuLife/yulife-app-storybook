@@ -60,6 +60,9 @@ Feature("Notification centre", async () => {
       Then("I can see I am on the notification centre modal", then.amOnNotificationModal);
       Then("I can see the email update reminder notification", then.idVisible(INBOX_MESSAGE_ITEM("Keep your YuLife access")));
       Then("I can NOT see the reward store grace period notification", then.idNotVisible(INBOX_MESSAGE_ITEM("Your store closes in 90 days")));
+      // The following message has been manually seeded here, hence it should be visible even if not relevant to this user
+      Then("I can see the confirm recovery reminder notification", then.idVisible(INBOX_MESSAGE_ITEM("Confirm your recovery email")));
+      Then("I can NOT see the other reward store grace period notification, as it is scheduled for a future date", then.idNotVisible(INBOX_MESSAGE_ITEM("Your store closes in 42 days")));
     });
   });
 });

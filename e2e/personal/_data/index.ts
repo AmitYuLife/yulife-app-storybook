@@ -13,7 +13,7 @@ export * from "./postgres/business_employee_info";
 export * from "./mongo/auths";
 export * from "./mongo/core_settings";
 export * from "./mongo/users";
-export * from "./mongo/user_profile"
+export * from "./mongo/user_profile";
 export * from "./mongo/usertoggles";
 export * from "./mongo/challenge";
 export * from "./mongo/user_game_state";
@@ -28,3 +28,4 @@ export * from "./mongo/social_groups";
 export * from "./mongo/social_group_leaderboards";
 export * from "./mongo/user_social_leaderboard_enrolments";
 export * from "./mongo/user_social_leaderboard_scores";
+export * from "./mongo/game_inbox_messages";
