@@ -344,7 +344,7 @@ workflows:
             # debug log
             set -x
             rm -rf android
-            EXPO_NO_DOTENV=1 npx expo prebuild --platform android
+            yarn env:config:local && EXPO_NO_DOTENV=1 npx expo prebuild --platform android
   android-production:
     before_run:
     - android-primary
@@ -545,7 +545,7 @@ workflows:
             yarn install --immutable
 
             # Generate native projects
-            EXPO_NO_DOTENV=1 npx expo prebuild --platform=ios
+            yarn env:config:local && EXPO_NO_DOTENV=1 npx expo prebuild --platform=ios
 
             # Install ruby version
             cd ios
@@ -1874,8 +1874,7 @@ workflows:
         inputs:
         - content: |
             #!/usr/bin/env bash
-
-            EXPO_NO_DOTENV=1 npx expo prebuild --platform=ios
+            yarn env:config:local && EXPO_NO_DOTENV=1 npx expo prebuild --platform android
     - script@1.2:
         title: Set BUNDLE_ID NOT NEEDED
         inputs:
