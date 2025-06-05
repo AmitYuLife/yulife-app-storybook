@@ -312,7 +312,6 @@ export const DEFAULT_TOGGLES = {
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
       showYumojiHeadwear: true,
-      newChallengeList: true,
       tempGameGoalWeekliesRefactor: true,
     },
   },
