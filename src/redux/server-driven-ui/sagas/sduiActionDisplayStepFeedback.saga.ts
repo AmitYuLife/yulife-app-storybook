@@ -32,8 +32,8 @@ type DisplayStepFeedbackPayload = {
 
 export function* sduiActionDisplayStepFeedback(action: SduiSagaAction) {
   const { dynamicData = {}, id: stepId } = action.contextPayload || {};
-  const stepIdStr = stepId ? stepId : "";
-  let journeyId;
+  const stepIdStr: string = stepId ? stepId : "";
+  let journeyId: string | undefined;
 
   try {
     const { data, isValid } = parseJSON(getServerPayload(action.payload));
@@ -93,19 +93,14 @@ export function* sduiActionDisplayStepFeedback(action: SduiSagaAction) {
       },
     });
   } catch (e) {
-    const errorMessage = e?.message;
     yield call(() =>
-      Logger.logMixpanelEvent("app_debug", {
+      Logger.error(e, {
         sdui: true,
         location: "sduiActionDisplayStepFeedback",
-        error: errorMessage,
+        ...(journeyId ? { journeyId } : {}),
+        ...(stepId ? { stepId } : {}),
       })
     );
-    Logger.error(errorMessage, {
-      location: "sduiActionDisplayStepFeedback",
-      ...(journeyId ? { journeyId } : {}),
-      ...(stepId ? { stepId } : {}),
-    });
   }
 }
 

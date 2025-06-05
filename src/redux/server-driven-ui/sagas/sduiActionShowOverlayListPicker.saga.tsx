@@ -36,10 +36,9 @@ export function* sduiActionShowOverlayListPicker({ payload }: SduiActionWithServ
       yield call(() => Navigation.showOverlayWithChild(child));
     } catch (e) {
       yield call(() =>
-        Logger.logMixpanelEvent("app_debug", {
+        Logger.error(e, {
           sdui: true,
           location: "sduiActionShowOverlayListPicker",
-          error: e?.message,
         })
       );
     }

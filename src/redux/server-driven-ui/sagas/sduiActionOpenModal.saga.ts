@@ -28,12 +28,10 @@ export function* sduiActionOpenModalSaga(action: SduiActionWithServerPayload) {
       })
     );
   } catch (e) {
-    const errorMessage = e?.message;
     yield call(() =>
-      Logger.logMixpanelEvent("app_debug", {
+      Logger.error(e, {
         sdui: true,
         location: "sduiActionOpenModalSaga",
-        error: errorMessage,
       })
     );
   }

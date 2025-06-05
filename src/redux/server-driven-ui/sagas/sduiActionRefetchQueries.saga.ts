@@ -25,12 +25,10 @@ export function* sduiActionRefetchQueriesSaga(action: SduiActionWithServerPayloa
       );
     }
   } catch (e) {
-    const errorMessage = e?.message;
     yield call(() =>
-      Logger.logMixpanelEvent("app_debug", {
+      Logger.error(e, {
         sdui: true,
         location: "sduiActionRefetchQueriesSaga",
-        error: errorMessage,
       })
     );
   }

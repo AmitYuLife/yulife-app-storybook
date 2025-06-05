@@ -27,10 +27,9 @@ export function* sduiActionOpenAlertDialogSaga(action: SduiActionWithServerPaylo
     }
   } catch (e) {
     yield call(() =>
-      Logger.logMixpanelEvent("app_debug", {
+      Logger.error(e, {
         sdui: true,
         location: "sduiActionOpenAlertDialogSaga",
-        error: e?.message,
       })
     );
   }

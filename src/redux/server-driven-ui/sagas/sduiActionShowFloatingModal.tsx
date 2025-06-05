@@ -47,9 +47,8 @@ export function* sduiActionShowFloatingModal({ payload }: SduiActionWithServerPa
       );
     } catch (e) {
       yield call(() =>
-        Logger.logMixpanelEvent("app_debug", {
+        Logger.error(e, {
           location: "sduiActionShowFloatingModal",
-          error: e?.message,
         })
       );
     }
