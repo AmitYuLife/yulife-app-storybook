@@ -7,6 +7,8 @@ export const { logInAndGoToTab, loginAsUser, loginOnly, loginToYuScreen } = navi
 
 export const { navigateViaID, navigateViaText } = navigation.common;
 
+export { authoriseFitkit, sendSteps } from "@socket";
+
 export const giveEngagementSurveyAccess =
   (tags: string[], userIdsToInvalidate: string[] = []) =>
   async () => {

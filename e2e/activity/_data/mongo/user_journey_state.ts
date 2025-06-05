@@ -482,3 +482,118 @@ export const USER_JOURNEY_STATE_04 = {
     updatedAt: "2024-04-23T10:42:19.959+0000",
   },
 } as IDatabaseItem;
+
+export const USER_JOURNEY_STATE_04_CUSTOMER_141 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journeyId: "health_questionnaire",
+    triggerSourceId: "initial",
+    userId: customer.CUSTOMER_141.customer.data.customerId,
+    __v: 0,
+    createdAt: "2024-04-23T10:42:19.959+0000",
+    requiresUserStateForAccess: true,
+    static: true,
+    published: true,
+    status: "pending",
+    steps: [
+      {
+        stepId: "health_questionnaire_initial",
+        animateProgressBar: false,
+        progressBarValue: undefined,
+        isAQuestion: false,
+      },
+      {
+        stepId: "health_questionnaire_consent",
+      },
+      {
+        stepId: CORE_JOURNEY_STEPS_19.data.externalId,
+        animateProgressBar: false,
+        progressBarValue: 0,
+        isAQuestion: true,
+      },
+      {
+        stepId: CORE_JOURNEY_STEPS_20.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 1,
+        isAQuestion: true,
+      },
+      {
+        stepId: CORE_JOURNEY_STEPS_21.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 2,
+        isAQuestion: true,
+      },
+      {
+        stepId: CORE_JOURNEY_STEPS_22.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 3,
+        isAQuestion: true,
+      },
+      {
+        stepId: CORE_JOURNEY_STEPS_23.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 4,
+        isAQuestion: true,
+      },
+      {
+        stepId: CORE_JOURNEY_STEPS_24.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 5,
+        isAQuestion: true,
+      },
+      {
+        stepId: CORE_JOURNEY_STEPS_25.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 6,
+        isAQuestion: true,
+      },
+      {
+        stepId: CORE_JOURNEY_STEPS_26.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 7,
+        isAQuestion: true,
+      },
+      {
+        stepId: "thank_you_submission_pulse",
+        animateProgressBar: false,
+        progressBarValue: undefined,
+        isAQuestion: false,
+      },
+    ],
+    uiAccess: {
+      eventPanel: {
+        alwaysOn: false,
+        validation: {
+          type: "object",
+          properties: {
+            dateNow: {
+              type: "string",
+              anyOf: [
+                {
+                  format: "date",
+                  formatMinimum: moment().subtract(7, "days").format("YYYY-MM-DD"),
+                  formatMaximum: moment().add(7, "days").format("YYYY-MM-DD"),
+                },
+                {
+                  format: "date",
+                  formatMinimum: "2024-05-06",
+                  formatMaximum: "2024-05-13",
+                },
+                {
+                  format: "date",
+                  formatMinimum: "2024-05-20",
+                  formatMaximum: "2024-05-27",
+                },
+              ],
+            },
+          },
+          required: ["dateNow"],
+          additionalProperties: false,
+        },
+      },
+    },
+    updatedAt: "2024-04-23T10:42:19.959+0000",
+  },
+} as IDatabaseItem;

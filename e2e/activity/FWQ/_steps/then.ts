@@ -32,6 +32,13 @@ export const {
 
 export const { scrollUntilTextVisible, scrollFromID } = navigation.scrolling;
 
+export {
+  notOnLoginScreen,
+  signupRewardVisible,
+  connectionSetupScreenVisible,
+  healthDataSyncComponent,
+} from "admin/login_and_routing/_steps/then";
+
 export const customerQuizModalVisible =
   (name: string, daysLeft: string, progress: number) => async () => {
     await textVisible(name)();
@@ -198,4 +205,30 @@ export const canSeeHQConsentScreen = (locale: "en-GB" | "ja-JP") => async () => 
   const { heading, headingType, button } = locales[locale];
   await idVisible(ids.TEXT_TEMPLATE(heading, headingType))();
   await idVisible(ids.BUTTON_BASE(button, false))();
+};
+
+export const checkEachHeroCard = async () => {
+  const heroCardData = [
+    {
+      id: ids.WARNING_BANNER(
+        "Looks like your health data isn’t syncing. Are you up to date on your permissions?"
+      ),
+    },
+    { id: ids.EVENT_CARD("Share your feedback") },
+    { id: ids.EVENT_HEADING("Your smoke-free journey", "#5A5A5C") },
+    { id: ids.EVENT_CARD("Daily health questions") },
+    { id: ids.EVENT_CARD("Automated QA Test Journey 500 YuCoin Flat Amount") },
+    { id: ids.EVENT_CARD("FTUE - test") },
+  ];
+
+  for (let i = 0; i < heroCardData.length; i++) {
+    const { id } = heroCardData[i];
+
+    if (i !== 0) {
+      const fromId = heroCardData[i - 1].id;
+      await scrollFromID(fromId, "left", "slow", 0.5)();
+    }
+
+    await idVisible(id)();
+  }
 };
