@@ -13,10 +13,9 @@ export function* sduiActionGenericNavigateBackToRoot({ payload }: SduiActionWith
       yield call(() => Navigation.popToRoot(data.routeId));
     } catch (e) {
       yield call(() =>
-        Logger.logMixpanelEvent("app_debug", {
+        Logger.error(e, {
           sdui: true,
           location: "sduiActionGenericNavigateBackToRoot",
-          error: e?.message,
         })
       );
     }

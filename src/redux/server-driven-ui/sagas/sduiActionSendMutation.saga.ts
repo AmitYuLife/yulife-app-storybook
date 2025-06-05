@@ -85,10 +85,9 @@ export function* sduiActionSendMutation(action: SduiSagaAction) {
     }
   } catch (e) {
     yield call(() =>
-      Logger.logMixpanelEvent("app_debug", {
+      Logger.error(e, {
         sdui: true,
         location: "sduiActionSendMutation",
-        error: e?.message,
       })
     );
   }
