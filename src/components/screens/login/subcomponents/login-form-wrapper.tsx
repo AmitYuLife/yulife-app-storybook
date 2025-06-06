@@ -11,7 +11,7 @@ import AnimalLoader from "@organisms/animal-loader/animal-loader";
 
 interface ILoginFormWrapperProps {
   onPressBack: () => void;
-  heading: string;
+  heading?: string;
   showFullScreenLoader?: boolean;
   /**
    * Variant of the login form wrapper. This only affects the background image.
@@ -36,11 +36,13 @@ export const LoginFormWrapper = ({
       BackgroundGradient={<UnauthorisedGradient />}
     >
       <ScrollView keyboardShouldPersistTaps={"handled"} showsVerticalScrollIndicator={false} style={styles.scrollView}>
-        <Box pt={60} pb={40} px={30}>
-          <TextTemplate type="h2" testID={LOGIN_SCREEN_HEADER}>
-            {heading}
-          </TextTemplate>
-        </Box>
+        {!heading ? null : (
+          <Box pt={60} pb={40} px={30}>
+            <TextTemplate type="h2" testID={LOGIN_SCREEN_HEADER}>
+              {heading}
+            </TextTemplate>
+          </Box>
+        )}
         {children}
         <Pad height={40} />
       </ScrollView>

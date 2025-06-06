@@ -1,10 +1,11 @@
-import React, { FC, memo } from "react";
+import { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { BUTTON_ICON, TertiaryButton } from "@molecules";
 import { Icon, Pad, TextTemplate } from "@atoms";
 import { REGION, region } from "@locale";
 import { Style } from "@styles";
 import { useTranslation } from "@hooks";
+import { TOP_BAR_HEIGHT } from "@organisms";
 
 type ServerListProps = {
   onPress: (r: REGION) => void;
@@ -19,8 +20,8 @@ export const ServerList: FC<ServerListProps> = memo(({ onPress, restrictToRegion
 
   return (
     <View style={styles.wrapper}>
-      <Pad height={100} />
-      <TextTemplate type="h1">{translations["screens.login.server_location.heading"]}</TextTemplate>
+      <Pad height={TOP_BAR_HEIGHT} />
+      <TextTemplate type="h2">{translations["screens.login.server_location.heading"]}</TextTemplate>
       <View style={styles.description}>
         <TextTemplate type="b2">{translations["screens.login.server_location.description"]}</TextTemplate>
       </View>
@@ -60,7 +61,7 @@ export const styles = StyleSheet.create({
     marginBottom: Style.adjust(16),
   },
   description: {
-    marginTop: Style.adjust(8),
+    marginTop: Style.adjust(16),
     marginBottom: Style.adjust(40),
   },
 });

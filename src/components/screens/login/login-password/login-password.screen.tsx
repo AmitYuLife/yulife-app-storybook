@@ -36,45 +36,47 @@ const LoginPasswordScreen = ({
 }: IProps) => {
   const disableSubmit = !!validationError || isSubmitting;
 
+  if (regionSelect) {
+    return (
+      <LoginFormWrapper onPressBack={onPressBack}>
+        <ServerList onPress={regionSelect.onSelect} restrictToRegions={regionSelect.restrictTo} />
+      </LoginFormWrapper>
+    );
+  }
+
   return (
     <LoginFormWrapper heading={t("screens.login_password.heading")} onPressBack={onPressBack}>
-      {regionSelect ? (
-        <ServerList onPress={regionSelect.onSelect} restrictToRegions={regionSelect.restrictTo} />
-      ) : (
-        <>
-          <TextInputPassword
-            testID={INPUT_LOGIN_PASSWORD(TextInput.Types.PASSWORD)}
-            errorMessage={validationError}
-            hasError={!!validationError}
-            returnKeyType="done"
-            onChange={onPasswordChange}
-            value={password}
-            onSubmitEditing={!isSubmitting && !disableSubmit ? onPressSubmit : undefined}
-            style={styles.input}
-            autoComplete="current-password"
-          />
+      <TextInputPassword
+        testID={INPUT_LOGIN_PASSWORD(TextInput.Types.PASSWORD)}
+        errorMessage={validationError}
+        hasError={!!validationError}
+        returnKeyType="done"
+        onChange={onPasswordChange}
+        value={password}
+        onSubmitEditing={!isSubmitting && !disableSubmit ? onPressSubmit : undefined}
+        style={styles.input}
+        autoComplete="current-password"
+      />
 
-          <Pad height={15} />
+      <Pad height={15} />
 
-          {!loginError ? null : (
-            <Box pl={30} pr={30} pb={10} pt={10}>
-              <TextTemplate type={"l2"} color={Colours.lightRed} textAlign="center">
-                {loginError}
-              </TextTemplate>
-            </Box>
-          )}
-
-          <Pad height={15} />
-
-          <Button
-            testID={BUTTON_LOGIN(disableSubmit)}
-            isLoading={isSubmitting}
-            disabled={disableSubmit}
-            translationKey={isSubmitting ? "screens.login_password.submitting" : "screens.login_password.cta_label"}
-            onPress={onPressSubmit}
-          />
-        </>
+      {!loginError ? null : (
+        <Box pl={30} pr={30} pb={10} pt={10}>
+          <TextTemplate type={"l2"} color={Colours.lightRed} textAlign="center">
+            {loginError}
+          </TextTemplate>
+        </Box>
       )}
+
+      <Pad height={15} />
+
+      <Button
+        testID={BUTTON_LOGIN(disableSubmit)}
+        isLoading={isSubmitting}
+        disabled={disableSubmit}
+        translationKey={isSubmitting ? "screens.login_password.submitting" : "screens.login_password.cta_label"}
+        onPress={onPressSubmit}
+      />
     </LoginFormWrapper>
   );
 };
