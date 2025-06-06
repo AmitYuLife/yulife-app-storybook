@@ -968,6 +968,7 @@ export type BusinessPerkListItem = {
   __typename?: "BusinessPerkListItem";
   accessCodeDetails?: Maybe<AccessCodes>;
   accessCodes?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  carrierId?: Maybe<Scalars["String"]["output"]>;
   eligibleEmployees?: Maybe<Scalars["Int"]["output"]>;
   name: Scalars["String"]["output"];
   nbrOfClaims?: Maybe<Scalars["Int"]["output"]>;
@@ -4316,6 +4317,11 @@ export type GetBusinessTagsResponse = {
   totalCount: Scalars["Int"]["output"];
 };
 
+export type GetBusinessYuCoinBalanceResponse = {
+  __typename?: "GetBusinessYuCoinBalanceResponse";
+  balance: Scalars["Int"]["output"];
+};
+
 export type GetCustomValuesResponse = {
   __typename?: "GetCustomValuesResponse";
   count: Scalars["Int"]["output"];
@@ -4397,15 +4403,6 @@ export type GetPersonalContactDetailsResponse = {
   firstName?: Maybe<Scalars["String"]["output"]>;
   lastName?: Maybe<Scalars["String"]["output"]>;
   phone?: Maybe<Scalars["String"]["output"]>;
-};
-
-/** Represents the player's birthday information, including the day and month of birth. */
-export type GetPlayerBirthday = {
-  __typename?: "GetPlayerBirthday";
-  /** The day of the player's birth (1-31). */
-  dateOfBirthDay?: Maybe<Scalars["Int"]["output"]>;
-  /** The month of the player's birth (1-12). */
-  dateOfBirthMonth?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type GetProductYumojiPartResponse = {
@@ -5876,10 +5873,17 @@ export type MobileGameUserAchievement = {
   viewed: Scalars["Boolean"]["output"];
 };
 
+export type MobileGameUserAchievementCategory = {
+  __typename?: "MobileGameUserAchievementCategory";
+  key: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+};
+
 export type MobileGameUserAchievements = {
   __typename?: "MobileGameUserAchievements";
   achievementPoints?: Maybe<Scalars["Int"]["output"]>;
   achievements: Array<MobileGameUserAchievement>;
+  categories: Array<MobileGameUserAchievementCategory>;
   equippedAchievements: Array<MobileGameUserAchievement>;
   lockedAchievements: Array<MobileGameUserAchievement>;
 };
@@ -6510,7 +6514,15 @@ export type Mutation = {
    * Returns:
    *   - Boolean indicating whether the operation was successful.
    */
-  setPlayerBirthday: Scalars["Boolean"]["output"];
+  setPlayerBirthday?: Maybe<PlayerBirthday>;
+  /**
+   * Sets the visibility of the player's birthday information.
+   * Arguments:
+   *   - isVisible: Boolean indicating whether the birthday should be visible.
+   * Returns:
+   *   - Boolean indicating whether the operation was successful.
+   */
+  setPlayerBirthdayVisibility?: Maybe<PlayerBirthday>;
   /** Updates the shares of a beneficiary */
   setShareOfBenefitForProduct: CustomerProductBeneficiaries;
   setUserQuestProgress?: Maybe<Scalars["Boolean"]["output"]>;
@@ -7186,6 +7198,10 @@ export type MutationSetPlayerBirthdayArgs = {
   dateOfBirthMonth: Scalars["Int"]["input"];
 };
 
+export type MutationSetPlayerBirthdayVisibilityArgs = {
+  isVisible: Scalars["Boolean"]["input"];
+};
+
 export type MutationSetShareOfBenefitForProductArgs = {
   productId: Scalars["ID"]["input"];
   shares: Array<BeneficiaryShareOfBenefit>;
@@ -7378,6 +7394,7 @@ export type MutationUpdateCyclingMeasurementArgs = {
 };
 
 export type MutationUpdateEmployeeRecognitionCampaignArgs = {
+  amount?: InputMaybe<Scalars["Int"]["input"]>;
   campaignId: Scalars["String"]["input"];
   giftBackground?: InputMaybe<Scalars["String"]["input"]>;
   giftMessage?: InputMaybe<Scalars["String"]["input"]>;
@@ -7757,6 +7774,19 @@ export type PersonalProductStepContinueModal = {
   subheading: Scalars["String"]["output"];
 };
 
+/** Represents the player's birthday information, including the day and month of birth. */
+export type PlayerBirthday = {
+  __typename?: "PlayerBirthday";
+  /** The day of the player's birth (1-31). */
+  dateOfBirthDay?: Maybe<Scalars["Int"]["output"]>;
+  /** The month of the player's birth (1-12). */
+  dateOfBirthMonth?: Maybe<Scalars["Int"]["output"]>;
+  /** The unique identifier for the player's birthday information. */
+  id: Scalars["ID"]["output"];
+  /** Represents the visibility status of the player's birthday information. */
+  isVisible?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
 export enum PolicyStatus {
   ClaimAdmitted = "CLAIM_ADMITTED",
   ClaimNotified = "CLAIM_NOTIFIED",
@@ -7995,6 +8025,7 @@ export type Query = {
   getBusinessTags: GetBusinessTagsResponse;
   getBusinessTagsForBusiness?: Maybe<Array<BusinessTag>>;
   getBusinessUsedMemberDataConnectionTypes: Array<ConnectionType>;
+  getBusinessYuCoinBalance: GetBusinessYuCoinBalanceResponse;
   getCSMBusinessAccessUsers: Array<BusinessAccessUser>;
   getCompanyEmployeeFieldSettings: CompanyEmployeeFieldSetting;
   getCompanySettings: Array<CompanySetting>;
@@ -8127,7 +8158,7 @@ export type Query = {
   /** @Deprecated - Use the generic getPersonalProductStepDetached with FAQ stepId */
   getPersonalProductStepDetachedFaqs?: Maybe<ProductUnderwritingStep>;
   /** Retrieves the current player's birthday information. */
-  getPlayerBirthday?: Maybe<GetPlayerBirthday>;
+  getPlayerBirthday?: Maybe<PlayerBirthday>;
   getPotentialRewards: Array<PotentialReward>;
   getPricingConfigurations: Array<PricingConfiguration>;
   /** Query to get a customer's beneficiaries for a product */
@@ -8215,6 +8246,7 @@ export type Query = {
   /** @Deprecated - RN client version >= 3.110 uses getYuCoinPowerInfo */
   getYuCoinPowerExplained: YuCoinPowerExplained;
   getYuCoinPowerInfo: YuCoinPowerExplainedScreen;
+  getYuCoinTopupRequests: TeamGetYuCoinTopupRequestsResponse;
   getYuScreen?: Maybe<YuScreen>;
   getYuScreenProductDetails: YuScreenProductDetails;
   getYuScreenProductList?: Maybe<YuScreenProductList>;
@@ -8950,6 +8982,13 @@ export type QueryGetWellbeingHubItemArgs = {
 /** Default types to be extended / root query */
 export type QueryGetYuCoinPowerInfoArgs = {
   productIds: Array<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetYuCoinTopupRequestsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
 };
 
 /** Default types to be extended / root query */
@@ -10396,6 +10435,12 @@ export type TeamFilterCopy = {
   value: Array<Scalars["String"]["output"]>;
 };
 
+export type TeamGetYuCoinTopupRequestsResponse = {
+  __typename?: "TeamGetYuCoinTopupRequestsResponse";
+  requests: Array<TeamYuCoinTopupRequest>;
+  totalCount: Scalars["Int"]["output"];
+};
+
 export type TeamGiftAsset = {
   __typename?: "TeamGiftAsset";
   backgroundColor?: Maybe<Scalars["String"]["output"]>;
@@ -10731,6 +10776,24 @@ export type TeamYAxisValue = {
   name: Scalars["String"]["output"];
   value: Scalars["Float"]["output"];
 };
+
+export type TeamYuCoinTopupRequest = {
+  __typename?: "TeamYuCoinTopupRequest";
+  createdAt?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  price?: Maybe<Scalars["Float"]["output"]>;
+  requestedBy: Scalars["String"]["output"];
+  status: TeamYuCoinTopupRequestStatus;
+  yucoin?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export enum TeamYuCoinTopupRequestStatus {
+  Cancelled = "CANCELLED",
+  Failed = "FAILED",
+  Invoiced = "INVOICED",
+  Paid = "PAID",
+  Pending = "PENDING",
+}
 
 export type TestBusinessInput = {
   archived?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -12379,6 +12442,7 @@ export type MobileGameUserAchievementsFragment = {
     slot?: number | null;
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
+  categories: Array<{ __typename?: "MobileGameUserAchievementCategory"; name: string; key: string }>;
 };
 
 export type YumojiRemoteFilesFragment = {
@@ -22534,6 +22598,7 @@ export type GetMobileGameUserAchievementsQuery = {
       slot?: number | null;
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
+    categories: Array<{ __typename?: "MobileGameUserAchievementCategory"; name: string; key: string }>;
   };
 };
 
@@ -22582,6 +22647,7 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       slot?: number | null;
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
+    categories: Array<{ __typename?: "MobileGameUserAchievementCategory"; name: string; key: string }>;
   } | null;
 };
 
@@ -22631,6 +22697,7 @@ export type UpdateMobileGameUserAchievementMutation = {
       slot?: number | null;
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
+    categories: Array<{ __typename?: "MobileGameUserAchievementCategory"; name: string; key: string }>;
   } | null;
 };
 
@@ -46556,6 +46623,17 @@ export const MobileGameUserAchievementsFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "key" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -73697,6 +73775,17 @@ export const GetMobileGameUserAchievementsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "key" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -73814,6 +73903,17 @@ export const MarkMobileGameUserAchievementsViewedDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "key" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -73938,6 +74038,17 @@ export const UpdateMobileGameUserAchievementDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "key" } },
+              ],
+            },
+          },
         ],
       },
     },
