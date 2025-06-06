@@ -144,4 +144,47 @@ Feature("Mood Monitor", async () => {
       Then("I should not see 'Today's check-ins title'", then.textNotVisible("Today's check-ins"));
     });
   });
+
+  Scenario("I can log in the day after ive completed the mood monitor and when I go to check in again I should see the initial step as normal", scenario.start, () => {
+    Given("I login as a user with the mood monitor enabled", given.logInAndGoToTab("yucoin", data.CUSTOMER_6, data.AUTH_6), async () => {
+      When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+        Then("I see the correct yucoin earned today so far", then.textVisible("200 YuCoin"));
+      });
+    });
+    When("I swipe down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.3), async () => {
+      Then("I should see 'Today's check-ins'", then.objCopyVisible(todaysCheckInsCopy));
+    });
+    When("I tap 'How am I feeling today?", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
+      Then("I should be on the Mood Monitor intro screen", then.objCopyVisible(moodMonitorIntro));
+    });
+    When("I tap Let's Go", when.tapID(ids.BUTTON_BASE("Let's Go")), async () => {
+      Then("I should see correct YuCoin reward amount on the progress bar", then.progressBarVisible(0, 300));
+      Then("I should be on the rested question screen", then.objCopyVisible(restedQuestion));
+    });
+    When("I tap 'Neutral'", when.tapID(ids.CHECK_BOX_STATE("3 - Neutral", false)), async () => {
+      Then("The 'Neutral' value should be selected", then.idVisible("CHECK_BOX_STATE_3 - Neutral_true"));
+    });
+    When("I tap 'Next'", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+      Then("I should be on the How has your day been? screen", then.objCopyVisible(dayQuestion));
+      Then("I should see correct YuCoin reward amount on the progress bar", then.progressBarVisible(100, 300));
+    });
+    When("I tap 'good'", when.tapID(ids.CHECK_BOX_STATE("4 - Good", false)), async () => {
+      Then("The 'Good' value should be selected", then.idVisible("CHECK_BOX_STATE_4 - Good_true"));
+    });
+    When("I tap 'next'", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I should be on the How are you feeling? screen", then.objCopyVisible(feelingQuestion, "SDUI_BODY_SCROLL"));
+      Then("I should see correct YuCoin reward amount on the progress bar", then.progressBarVisible(200, 300));
+    });
+    When("I tap 'Happy'", when.tapID(ids.RADIO_ITEM_SELECTED("Happy", false)), async () => {
+      Then("I should see the selected answer", then.idVisible("RADIO_ITEM_SELECTED_Happy_true"));
+    });
+    When("I tap 'next'", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+      Then("I should be on the final Mood Monitor Screen", then.objCopyVisible(moodMonitorFinalScreen, "SDUI_BODY_SCROLL"));
+      Then("I should see correct YuCoin reward amount on the progress bar", then.progressBarVisible(300, 300));
+    });
+    When("I tap see my mood history", when.tapIDAtIndex(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 0), async () => {
+      Then("I should see yesterday's date", then.textVisible(moment().subtract(1, "day").format("Do MMM")));
+      Then("I should see today's date", then.textVisible(moment().format("Do MMM")));
+    });
+  });
 });
