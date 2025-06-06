@@ -58,10 +58,6 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
   }, []);
 
   function getTitle() {
-    if (showChallengesHint) {
-      return t["sudoku.completed.title"];
-    }
-
     if (isPractice) {
       return t["sudoku.completed.practice_title"];
     }
@@ -122,25 +118,22 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
             </View>
           </View>
 
-          {showChallengesHint ? null : (
-            <View style={styles.headerWrapper}>
-              <View style={styles.header}>
-                <TextTemplate type="h2" textAlign="center">
-                  {t["sudoku.completed.title"]}
-                </TextTemplate>
-              </View>
-              <TextTemplate type="b2" textAlign="center">
-                {isPractice ? t["sudoku.completed.practice"] : t["sudoku.completed.sub2"]}
+          <View style={styles.headerWrapper}>
+            <View style={styles.header}>
+              <TextTemplate type="h2" textAlign="center">
+                {t["sudoku.completed.title"]}
               </TextTemplate>
             </View>
-          )}
+            <TextTemplate type="b2" textAlign="center">
+              {isPractice ? t["sudoku.completed.practice"] : t["sudoku.completed.sub2"]}
+            </TextTemplate>
+          </View>
 
           <View
             style={[
               styles.statsWrapper,
               {
-                marginTop: Style.adjust(showChallengesHint ? 0 : 40),
-                marginBottom: Style.adjust(showChallengesHint ? 40 : 0),
+                marginBottom: Style.adjust(showChallengesHint ? 20 : 0),
               },
             ]}
           >
@@ -173,6 +166,8 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
     </ScrollView>
   );
 };
+
+const LOTTIE_HEIGHT = Style.adjust(220);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -207,13 +202,14 @@ const styles = StyleSheet.create({
   },
   headerWrapper: {
     paddingHorizontal: Style.adjust(60),
+    marginBottom: Style.adjust(10),
   },
   buttonContainer: {
     marginTop: Style.adjust(10),
   },
   lottie: {
     width: Style.DEVICE_WIDTH,
-    height: Style.adjust(300),
+    height: LOTTIE_HEIGHT,
   },
   shine: {
     position: "absolute",
@@ -228,7 +224,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   rewardWrapper: {
-    height: Style.adjust(250),
+    height: LOTTIE_HEIGHT,
     alignItems: "center",
     justifyContent: "center",
   },
