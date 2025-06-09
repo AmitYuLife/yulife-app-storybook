@@ -79,4 +79,4 @@ export { default as RewardSearchListItem } from "./reward-search-list-item/rewar
 export { default as NameLevelMiniAvatar } from "./name-level-mini-avatar/name-level-mini-avatar";
 export { default as ParticleSpawner, ParticleSpawnerDynamicCount } from "./particle-spawner/particle-spawner";
 export { ParticleInstanceProps } from "./particle-spawner/subcomponents/particle";
-export { default as Spotlight } from "./spotlight/spotlight";
+export { default as Spotlight, SpotlightProps } from "./spotlight/spotlight";

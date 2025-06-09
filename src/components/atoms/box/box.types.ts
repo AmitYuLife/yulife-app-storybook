@@ -156,6 +156,11 @@ interface IBoxSpecialProps {
   borderLeftRadius?: number;
   borderRightRadius?: number;
   rounded?: boolean;
+
+  /**
+   * Quick prop to set borderWidth={1} borderColor={withBorder}
+   */
+  withBorder?: string;
 }
 
 export type IBoxProps = Partial<{

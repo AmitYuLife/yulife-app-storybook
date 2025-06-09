@@ -14,6 +14,7 @@ export const useBoxProps = ({
   disableAutoAdjust,
   borderRightRadius,
   borderBottomRadius,
+  withBorder,
   ...props
 }: IBoxProps) => {
   const style = useMemo((): Omit<ViewStyle, "overflow">[] => {
@@ -55,6 +56,12 @@ export const useBoxProps = ({
             borderBottomRightRadius: adjust(borderRightRadius),
           }
         : null),
+      ...(withBorder
+        ? {
+            borderWidth: 1,
+            borderColor: withBorder,
+          }
+        : null),
     };
 
     return [specialStyles, mappedStyles as ViewStyle, propStyle].filter(Boolean);
@@ -69,6 +76,7 @@ export const useBoxProps = ({
     borderRightRadius,
     propStyle,
     disableAutoAdjust,
+    withBorder,
   ]);
 
   const passProps = useMemo(() => {

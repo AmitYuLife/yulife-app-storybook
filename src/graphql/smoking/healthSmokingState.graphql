@@ -163,6 +163,7 @@ fragment HealthSmokingState on HealthSmokingState {
         value
         colour
       }
+      yuCoinAwarded
     }
     showMilestoneUnlocked
     milestoneUnlocked {

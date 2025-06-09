@@ -408,7 +408,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
           Then("I should see the You're doing great popup", then.youreDoingGreatPopupVisible(28));
         });
         When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
-          Then("I'm on the celebration screen", then.idVisible(ids.SMOKING_CELEBRATION_TITLE(modals[locale].celebration.heading)));
+          Then("I'm on the celebration screen", then.idVisible(ids.SMOKING_CELEBRATION_TITLE));
           Then("I should be on the celebration screen", then.objCopyVisible(modals[locale].celebration));
         });
         When("I press the button", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {

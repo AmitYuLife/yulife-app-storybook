@@ -22,6 +22,8 @@ export type Unpacked<T> = T extends Array<infer U>
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
 export type VoidFunction = () => void;
+export type VoidPromise = () => Promise<void>;
+export type VoidFunctionOrPromise = VoidFunction | VoidPromise;
 export const noop: VoidFunction = () => void 0;
 
 export type ConditionalValue = {

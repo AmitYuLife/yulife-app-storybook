@@ -8,7 +8,7 @@ export type ParticleSpawnerDynamicCount = {
   initialCount?: number; // Defaults to minCount
   minCount?: number; // Defaults to 0
   maxCount?: number; // Defaults to initial value
-  targetFps: number;
+  targetFps?: number;
   fpsDelta?: number; // Allow the fps to fluctuate by this value, default 3
 };
 

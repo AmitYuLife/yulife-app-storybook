@@ -1,123 +1,106 @@
-import React, { memo, useState, useCallback, useMemo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { ScrollView } from "react-native";
+import { initialWindowMetrics, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
-import { Button } from "@molecules";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { StreakIncreaseSection } from "./subcomponents/streak-increase-section";
-import { MilestoneUnlockedSection } from "./subcomponents/milestone-unlocked-section";
-import { SMOKING_CELEBRATION_NEXT_BUTTON } from "@ids";
-import { LastMilestoneCelebration } from "./subcomponents/last-milestone-celebration";
-import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
+import { t } from "@locale";
+import { VoidFunction, VoidFunctionOrPromise } from "@utils";
+import { default as SmokingCelebration, SmokingCelebrationProps } from "./subcomponents/smoking-celebration";
 
-type Page = "streakIncrease" | "milestoneUnlocked" | "lastMilestoneCelebration";
+type Page = "streakIncrease" | "milestone";
 
 interface ISmokingStreakCelebrationModalProps {
-  onPress: () => Promise<void>;
+  onClose: VoidFunctionOrPromise;
   smokingData: GetHealthSmokingStateQuery["getHealthSmokingState"];
+  closeOverlay?: VoidFunction; // Set from BlurredOverlay
 }
 
-const SmokingStreakCelebrationModal = ({ onPress, smokingData }: ISmokingStreakCelebrationModalProps) => {
+const SmokingStreakCelebrationModal = ({ onClose, smokingData, closeOverlay }: ISmokingStreakCelebrationModalProps) => {
+  const celebration = smokingData?.streakCheckInOverlay?.celebration;
   const [page, setPage] = useState<Page>("streakIncrease");
-  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(
-    smokingData?.streakCheckInOverlay?.lastMilestoneCelebration?.buttonAction
-  );
 
-  const handlePress = useCallback(() => {
-    if (page === "streakIncrease") {
-      if (smokingData?.streakCheckInOverlay?.showLastMilestoneCelebration) {
-        return setPage("lastMilestoneCelebration");
-      }
+  const milestoneData = useMemo(() => {
+    const { showMilestoneUnlocked, milestoneUnlocked, showLastMilestoneCelebration, lastMilestoneCelebration } =
+      smokingData?.streakCheckInOverlay || {};
 
-      if (smokingData?.streakCheckInOverlay?.showMilestoneUnlocked) {
-        return setPage("milestoneUnlocked");
-      }
-
-      return onPress();
+    if (showMilestoneUnlocked && milestoneUnlocked) {
+      return milestoneUnlocked;
     }
 
-    if (page === "milestoneUnlocked") {
-      return onPress();
+    if (showLastMilestoneCelebration && lastMilestoneCelebration) {
+      return lastMilestoneCelebration;
     }
 
-    if (page === "lastMilestoneCelebration") {
-      if (smokingData?.streakCheckInOverlay?.lastMilestoneCelebration?.buttonAction) {
-        handleSduiAction();
-      }
+    return null;
+  }, [smokingData?.streakCheckInOverlay]);
 
-      return onPress();
+  const onCtaPress = useCallback(async () => {
+    if (page === "streakIncrease" && milestoneData) {
+      setPage("milestone");
+      return;
     }
 
-    return onPress();
-  }, [smokingData, page, onPress, handleSduiAction]);
+    await onClose?.();
+    closeOverlay?.();
+  }, [closeOverlay, milestoneData, onClose, page]);
 
-  const [pageContent, cta] = useMemo(() => {
-    if (!smokingData) {
-      return [];
+  const smokingCelebrationPageData = useMemo(() => {
+    if (page === "streakIncrease" && celebration) {
+      return {
+        id: "celebration",
+        title: celebration.title,
+        daysHeading: t("screens.smoking_modals.days_title", { days: smokingData.currentStreak }),
+        yuCoin: celebration.yuCoinAwarded,
+        description: celebration.description,
+        tips: celebration.tips,
+        ctaLabel: celebration.cta,
+        onPress: onCtaPress,
+      } as SmokingCelebrationProps;
     }
 
-    const {
-      streakCheckInOverlay: { celebration, milestoneUnlocked, lastMilestoneCelebration },
-    } = smokingData;
-
-    switch (page) {
-      case "streakIncrease":
-        return [<StreakIncreaseSection key="streak-increase" smokingData={smokingData} />, celebration.cta];
-      case "milestoneUnlocked":
-        return [<MilestoneUnlockedSection key="milestone-unlocked" smokingData={smokingData} />, milestoneUnlocked.cta];
-      case "lastMilestoneCelebration":
-        return [
-          <LastMilestoneCelebration key="last-milestone-celebration" smokingData={smokingData} />,
-          lastMilestoneCelebration.cta,
-        ];
+    if (page === "milestone" && milestoneData) {
+      return {
+        id: "milestoneUnlocked",
+        title:
+          smokingData.currentStreak >= smokingData.maxStreak
+            ? t("screens.smoking_modals.all_milestones_passed")
+            : t("screens.smoking_modals.milestone_passed"),
+        daysHeading:
+          smokingData.currentStreak >= smokingData.maxStreak
+            ? t("screens.smoking_modals.milestones")
+            : t("screens.smoking_modals.milestone"),
+        image: milestoneData.image?.uri ? milestoneData.image : undefined,
+        description: milestoneData.description,
+        ctaLabel: milestoneData.cta,
+        onPress: onCtaPress,
+      } as SmokingCelebrationProps;
     }
-  }, [page, smokingData]);
+  }, [milestoneData, onCtaPress, page, smokingData.currentStreak, celebration]);
 
-  if (!pageContent) {
+  const insets = useSafeAreaInsets();
+
+  if (!smokingCelebrationPageData) {
+    onCtaPress();
     return null;
   }
 
   return (
-    <View style={styles.outerWrapper}>
-      <GenericHeadingPad />
-      <ScrollView>
-        <View style={styles.wrapper}>
-          <View style={styles.mainContentWrapper}>{pageContent}</View>
-        </View>
-      </ScrollView>
-      <View style={styles.buttonSection}>
-        <Button testID={SMOKING_CELEBRATION_NEXT_BUTTON} translatedLabel={cta} onPress={handlePress} />
-      </View>
-      <GenericHeadingAbsolute logo="yulife" onRightIconPress={onPress} rightIcon="CLOSE" />
-    </View>
+    <ScrollView
+      bounces={false}
+      showsVerticalScrollIndicator={false}
+      contentInsetAdjustmentBehavior="never"
+      contentContainerStyle={{ flexGrow: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}
+    >
+      <SmokingCelebration {...smokingCelebrationPageData} />
+    </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({
-  outerWrapper: {
-    flex: 1,
-  },
-  wrapper: {
-    flex: 1,
-    minHeight: Style.adjust(220),
-    justifyContent: "space-between",
-  },
-  closeWrapper: { position: "absolute", top: Style.adjust(16), right: Style.adjust(16) },
-  actionButtons: {
-    marginBottom: Style.adjust(24),
-  },
-  mainContentWrapper: {
-    flex: 1,
-    justifyContent: "center",
-    marginTop: Style.adjust(16),
-    paddingBottom: Style.adjust(32),
-    borderTopLeftRadius: Style.adjust(20),
-    borderTopRightRadius: Style.adjust(20),
-    backgroundColor: Colours.neutral.white,
-  },
-  buttonSection: {
-    marginBottom: Style.adjust(30),
-  },
-});
+const SmokingStreakCelebrationModalWithProviders = (props: ISmokingStreakCelebrationModalProps) => {
+  return (
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <SmokingStreakCelebrationModal {...props} />
+    </SafeAreaProvider>
+  );
+};
 
-export default memo(SmokingStreakCelebrationModal);
+export default memo(SmokingStreakCelebrationModalWithProviders);
