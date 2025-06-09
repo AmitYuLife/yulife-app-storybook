@@ -1,4 +1,4 @@
-import { Box } from "@atoms";
+import { Box, SkeletonLoading } from "@atoms";
 import { AchievementPoints } from "@components/molecules";
 import { t } from "@locale";
 import { MODALS, ROUTES } from "@navigation/constants";
@@ -22,6 +22,7 @@ interface IProps {
   achievementPoints: number;
   achievements: IAchievement[];
   slotsTaken: number;
+  selectedSlot?: number;
   categories: {
     value: string;
     isSelected: boolean;
@@ -29,7 +30,7 @@ interface IProps {
   }[];
 }
 
-const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, categories }: IProps) => {
+const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, selectedSlot, categories }: IProps) => {
   const renderItem = useCallback(
     ({ item }: { item: IAchievement }) => {
       return (
@@ -44,6 +45,7 @@ const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, categ
                   name: MODALS.viewAchievementModal,
                   passProps: {
                     slotsTaken,
+                    selectedSlot,
                     ...item,
                   },
                 },
@@ -53,7 +55,7 @@ const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, categ
         </Box>
       );
     },
-    [slotsTaken]
+    [slotsTaken, selectedSlot]
   );
 
   const showAchievementPoints = useMemo(() => typeof achievementPoints === "number", [achievementPoints]);
@@ -62,8 +64,8 @@ const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, categ
     <Box flex={1}>
       <GenericHeadingPad />
       <Box flex={1}>
-        <Box pt={8} pr={8} pb={8} style={styles.shadowBox}>
-          <ChipList chips={categories} />
+        <Box pt={8} pr={8} pb={8} mb={4} style={styles.shadowBox}>
+          <ChipList chips={categories} isLoading={categories.length === 0} />
         </Box>
         {!showAchievementPoints ? null : (
           <Box alignSelf="center" justifyContent="center" mt={24} mb={10}>
@@ -83,6 +85,8 @@ const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, categ
             data={achievements}
             numColumns={2}
             contentContainerStyle={styles.contentContainer}
+            ListEmptyComponent={<LoadingAchievementsScreen />}
+            scrollEnabled={achievements.length > 0}
           />
         </Box>
       </Box>
@@ -90,6 +94,14 @@ const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, categ
     </Box>
   );
 };
+
+const LoadingAchievementsScreen = () => (
+  <Box flexDirection="row" flexWrap="wrap" alignItems="center" justifyContent="center" gap={8} mt={16}>
+    {Array.from({ length: 8 }).map((_, index) => (
+      <SkeletonLoading key={index} w={164} h={196} />
+    ))}
+  </Box>
+);
 
 const styles = StyleSheet.create({
   contentContainer: {
