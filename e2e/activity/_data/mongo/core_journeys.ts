@@ -156,3 +156,47 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST = {
     yuCoinRewardAsFlatAmount: 500,
   },
 };
+
+export const CORE_JOURNEY_2 = {
+  type: "mongo",
+  modelName: model,
+  data: {
+    _id: generateRandomMongoId(),
+    journeyId: "engagement_survey_pulse",
+    name: "Engagement Survey: Pulse",
+    allAnswerKeys: ["one_thing_you_would_change", "recommend_workplace_pulse"],
+    published: true,
+    showHeroCard: true,
+    minAppVersion: ">=4.9.0",
+    staticJourney: false,
+    requiresUserStateForAccess: false,
+    uiAccess: [],
+    uiAccessCopy: {
+      eventPanel: {
+        title: {
+          "en-GB": "Share your feedback",
+          _id: "67e18b8f97e7765fda54996b",
+          "ja-JP": "アンケートのお願い",
+        },
+        description: {
+          "en-GB": "Earn YuCoin and help improve your workplace anonymously!",
+          _id: "67e18b8f97e7765fda54996c",
+          "ja-JP": "職場環境に関する匿名のアンケートに回答してYuCoinを獲得しましょう!",
+        },
+        image: "imgix::cms/1742835023215_employee-survey-hero-card-2024-12-11.png",
+      },
+    },
+    createdAt: {
+      $date: "2025-03-24T16:42:55.067Z",
+    },
+    updatedAt: {
+      $date: "2025-04-10T10:44:55.231Z",
+    },
+    __v: 0,
+    yuCoinRewardAsEarnRateMultiple: 30,
+    yuCoinRewardAsFlatAmount: 0,
+    accessRules: {
+      tags: [],
+    },
+  },
+};

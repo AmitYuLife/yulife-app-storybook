@@ -102,7 +102,7 @@ export const USER_JOURNEY_STATE_01 = {
         isAQuestion: true,
       },
       {
-        stepId: "thank_you_submission_pulse",
+        stepId: "health_questionnaire_submission",
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,
@@ -214,7 +214,7 @@ export const USER_JOURNEY_STATE_02 = {
         isAQuestion: true,
       },
       {
-        stepId: "thank_you_submission_pulse",
+        stepId: "health_questionnaire_submission",
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,
@@ -326,7 +326,7 @@ export const USER_JOURNEY_STATE_03 = {
         isAQuestion: true,
       },
       {
-        stepId: "thank_you_submission_pulse",
+        stepId: "health_questionnaire_submission",
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,
@@ -441,7 +441,7 @@ export const USER_JOURNEY_STATE_04 = {
         isAQuestion: true,
       },
       {
-        stepId: "thank_you_submission_pulse",
+        stepId: "health_questionnaire_submission",
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,
@@ -556,7 +556,7 @@ export const USER_JOURNEY_STATE_04_CUSTOMER_141 = {
         isAQuestion: true,
       },
       {
-        stepId: "thank_you_submission_pulse",
+        stepId: "health_questionnaire_submission",
         animateProgressBar: false,
         progressBarValue: undefined,
         isAQuestion: false,

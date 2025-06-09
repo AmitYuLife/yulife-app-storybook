@@ -232,3 +232,38 @@ export const checkEachHeroCard = async () => {
     await idVisible(id)();
   }
 };
+
+export const pulseSurveyIntroVisible = async () => {
+  await idVisible(ids.TEXT_TEMPLATE("Share your feedback!", "h3"))();
+  await idVisible(
+    ids.MARKDOWN(
+      "Help improve your workplace experience! Take a few minutes to fill in this anonymous survey."
+    )
+  )();
+  await idVisible(ids.CONTENT_ITEM_INFO_CARD("**Task**\n\nComplete the survey."))();
+  await idVisible(ids.CONTENT_ITEM_INFO_CARD("**Rewards**\n\nEarn 30 YuCoin!"))();
+  await idVisible(
+    ids.CONTENT_ITEM_INFO_CARD(
+      "**Why are we gathering feedback?**\n\nTo gather insights to enhance employee engagement and overall satisfaction. It is not intended to evaluate individual performance."
+    )
+  )();
+  await scrollFromID(
+    ids.CONTENT_ITEM_INFO_CARD("**Task**\n\nComplete the survey."),
+    "up",
+    "fast"
+  )();
+  await idVisible(
+    ids.WARNING_BANNER(
+      "Our lips are sealed! Your response is completely anonymous. Your employer won’t be able to see your individual answers."
+    )
+  )();
+  await idVisible(ids.BUTTON_BASE("Let’s go!", false))();
+};
+
+export const engagementSurveyHeroCardVisible = async () => {
+  await idVisible(ids.EVENT_CARD("Share your feedback"))();
+  await idVisible(ids.EVENT_HEADING("Share your feedback", "#5A5A5C"))();
+  await idVisible(
+    ids.EVENT_DESCRIPTION("Earn YuCoin and help improve your workplace anonymously!", "#5A5A5C")
+  )();
+};

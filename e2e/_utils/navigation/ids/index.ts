@@ -452,6 +452,8 @@ export const ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY =
   "SDUI_INPUT_enjoy_most_about_company_text-input";
 export const ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY =
   "SDUI_INPUT_one_change_to_improve_company_text-input";
+export const ENGAGEMENT_SURVEY_ONE_CHANGE_TO_MAKE_COMPANY_BETTER =
+  "SDUI_INPUT_one_thing_you_would_change_text-input";
 
 // FIB new
 export const PRODUCT_STEP_BODY_SCROLL_VIEW = `PRODUCT_STEP_BODY_SCROLL_VIEW`;

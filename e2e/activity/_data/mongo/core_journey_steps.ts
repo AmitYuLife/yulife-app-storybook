@@ -1,5 +1,6 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
+  CORE_JOURNEY_2,
   CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST,
   CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST,
 } from "./core_journeys";
@@ -876,8 +877,8 @@ export const CORE_JOURNEY_STEPS_10 = {
   data: {
     _id: "6627908b790eab650c2a6a01",
     journey: "66140199f9be413b16dd1c81",
-    stepId: "thank_you_submission_pulse",
-    name: "Thank you and submission",
+    stepId: "health_questionnaire_submission",
+    name: "health_questionnaire_submission",
     stepType: "post_submission_confirmation",
     template: "journey_template_yucoin_award",
     templateUi: {
@@ -2934,5 +2935,237 @@ export const CORE_JOURNEY_STEPS_CONSENT = {
       },
       showProgress: false,
     },
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_27 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: CORE_JOURNEY_2.data._id,
+    stepId: "pulse_intro_step",
+    name: "Introduction",
+    stepType: "initial",
+    template: "journey_template_intro",
+    templateUi: {
+      copy: {
+        heading: {
+          "en-GB": "Share your feedback!",
+          "ja-JP": "ご意見をお寄せください!",
+        },
+        description: {
+          "en-GB":
+            "Help improve your workplace experience! Take a few minutes to fill in this anonymous survey.",
+          "ja-JP": "職場環境の改善に関する匿名のアンケートにご協力をお願いいたします。",
+        },
+        ctaLabel: {
+          "en-GB": "Let’s go!",
+          "ja-JP": "始める",
+        },
+      },
+      questionsAmount: 2,
+      introBoxes: [
+        {
+          iconImageKey: "journeys/info-panel-document.png",
+          description: {
+            "en-GB": "Complete the survey.",
+            "ja-JP": "アンケートにご協力ください。",
+          },
+          heading: { "en-GB": "Task" },
+        },
+        {
+          iconImageKey: "journeys/info-panel-chest.png",
+          description: {
+            "en-GB": "Earn ${amount} YuCoin!",
+            "ja-JP": "${amount} YuCoinを獲得できます。",
+          },
+          heading: { "en-GB": "Rewards" },
+        },
+        {
+          iconImageKey: "journeys/info-panel-question-mark.png",
+          description: {
+            "en-GB":
+              "To gather insights to enhance employee engagement and overall satisfaction. It is not intended to evaluate individual performance.",
+            "ja-JP":
+              "従業員のエンゲージメントと総合的な満足度を高めるための知見を収集すること。個人の業績を評価するためのものではありません。",
+          },
+          heading: { "en-GB": "Why are we gathering feedback?" },
+        },
+      ],
+      infoBoxText: {
+        "en-GB":
+          "Our lips are sealed! Your response is completely anonymous. Your employer won’t be able to see your individual answers.",
+        "ja-JP": "回答は完全に匿名となります。雇用主に個人の回答が共有されることはありません。",
+      },
+    },
+    answerKeys: [],
+    temporaryProperties: [],
+    hooks: [],
+    events: [],
+    nextSteps: [{ stepId: "one_thing_you_would_change" }],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_28 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: CORE_JOURNEY_2.data._id,
+    stepId: "one_thing_you_would_change",
+    name: "What's the one thing you would change about your company to make your experience there better?",
+    stepType: "normal",
+    template: "journey_template_multi_line_text",
+    templateUi: {
+      copy: {
+        heading: {
+          "en-GB":
+            "What's the one thing you would change about ${companyName} to make your experience there better?",
+          "ja-JP": "${companyName}での体験をより良くするために、あなたが変えたいことは何ですか?",
+        },
+        ctaLabel: {
+          "en-GB": "Next",
+          "ja-JP": "次のページ",
+        },
+      },
+      input: {
+        answerKey: "one_thing_you_would_change",
+        heading: {
+          "en-GB": "E.g. more benefits, more days off, better compensation, etc.",
+          "ja-JP": "例: 福利厚生の充実、有給日数の増加、給与の引き上げなど",
+        },
+      },
+      showProgress: true,
+      category: {
+        name: {
+          "en-GB": "Overall",
+          "ja-JP": "全体",
+        },
+      },
+      progress: {
+        progressValue: 0,
+        progressTotal: 2,
+      },
+    },
+    answerKeys: ["one_thing_you_would_change"],
+    customValidation: {
+      isRequired: true,
+      minLength: 1,
+      maxLength: 1000,
+    },
+    temporaryProperties: [],
+    hooks: [],
+    events: [],
+    nextSteps: [{ stepId: "recommend_workplace_pulse" }],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_29 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: CORE_JOURNEY_2.data._id,
+    stepId: "recommend_workplace_pulse",
+    name: "How likely are you to recommend your company as a place to work?",
+    stepType: "normal",
+    template: "journey_template_choice",
+    templateUi: {
+      design: "default",
+      copy: {
+        heading: {
+          "en-GB":
+            "How likely are you to recommend ${companyName} as a place to work? (1 being very unlikely, 10 being very likely.)",
+          "ja-JP":
+            "${companyName}を職場として勧める可能性はどのくらいありますか? (1: 全く思わない, 10: 非常にそう思う)",
+        },
+        ctaLabel: {
+          "en-GB": "Next",
+          "ja-JP": "次のページ",
+        },
+      },
+      answerKey: "recommend_workplace_pulse",
+      options: Array.from({ length: 10 }, (_, i) => {
+        const val = (10 - i).toString();
+        return {
+          label: { "en-GB": val, "ja-JP": val },
+          value: val,
+        };
+      }),
+      showProgress: true,
+      category: {
+        name: {
+          "en-GB": "Overall",
+          "ja-JP": "全体",
+        },
+      },
+      progress: {
+        progressValue: 1,
+        progressTotal: 2,
+      },
+    },
+    answerKeys: ["recommend_workplace_pulse"],
+    customValidation: {
+      isRequired: true,
+    },
+    hooks: [
+      {
+        hook: "awardYucoin",
+        trigger: "onPreFill",
+      },
+    ],
+    temporaryProperties: [],
+    events: [],
+    nextSteps: [{ stepId: "thank_you_submission_pulse" }],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_30 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journey: CORE_JOURNEY_2.data._id,
+    stepId: "thank_you_submission_pulse",
+    name: "Thank you and submission",
+    stepType: "submission",
+    template: "journey_template_no_question",
+    templateUi: {
+      copy: {
+        heading: {
+          "en-GB": "Thank you for answering this survey.",
+          "ja-JP": "アンケートはこれで終了です！",
+        },
+        description: {
+          "en-GB": "Click below to submit your answers.",
+          "ja-JP": "以下のボタンをクリックして回答を送信してください。",
+        },
+        ctaLabel: {
+          "en-GB": "Submit",
+          "ja-JP": "送信",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 2,
+        progressTotal: 2,
+      },
+      category: {},
+    },
+    answerKeys: [],
+    temporaryProperties: [],
+    hooks: [
+      {
+        hook: "awardYucoin",
+        trigger: "onPreFill",
+      },
+      {
+        hook: "validateAccessRules",
+        trigger: "onPreSave",
+      },
+    ],
+    events: [],
+    nextSteps: [],
   },
 } as IDatabaseItem;
