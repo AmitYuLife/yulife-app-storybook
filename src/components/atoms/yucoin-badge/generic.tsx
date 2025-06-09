@@ -5,14 +5,17 @@ import { Colours } from "@styles";
 
 interface IProps {
   isGrayScale?: boolean;
+  width?: number;
+  height?: number;
+  margin?: number;
 }
 
 const DEFAULT_COLORS = ["#EDB720", "#F8CB31", "#EA9E2F", "#FFF48E", "#FFED44"];
 
-const GenericYucoin = ({ isGrayScale }: IProps) => {
+const GenericYucoin = ({ isGrayScale, width = 121, height = 126, margin = 9 }: IProps) => {
   const colors = isGrayScale ? Colours.toGrayScaleArray(DEFAULT_COLORS) : DEFAULT_COLORS;
   return (
-    <Svg style={styles.wrapper} width={121} height={126}>
+    <Svg style={[styles.wrapper, { margin }]} width={width} height={height} viewBox="0 0 121 126">
       <Path
         d="M119.986 64.3806C120.788 29.5951 94.5832 0.777897 61.455 0.015435C28.3267 -0.747028 0.820405 26.834 0.0179484 61.6194C-0.784508 96.4049 25.4207 125.222 58.549 125.985C91.6773 126.747 119.184 99.166 119.986 64.3806Z"
         fill={colors[0]}
@@ -89,7 +92,6 @@ const GenericYucoin = ({ isGrayScale }: IProps) => {
 const styles = StyleSheet.create({
   wrapper: {
     ...StyleSheet.absoluteFillObject,
-    margin: 9,
   },
 });
 

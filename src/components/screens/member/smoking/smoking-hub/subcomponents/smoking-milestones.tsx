@@ -39,7 +39,6 @@ const onCarouselItemPress = (item: HealthSmokingMilestoneCarousel) => {
   }
 
   const { image, popup } = item;
-  console.log(item);
 
   Navigation.showOverlayWithChild(
     <ScrollableContentOverlay

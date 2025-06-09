@@ -4658,6 +4658,7 @@ export type HealthSmokingCelebration = {
   description?: Maybe<Scalars["String"]["output"]>;
   tips?: Maybe<Array<HealthSmokingStateTip>>;
   title: Scalars["String"]["output"];
+  yuCoinAwarded?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type HealthSmokingGameIntroModal = {
@@ -38276,6 +38277,7 @@ export type GetHealthSmokingStateQuery = {
         description?: string | null;
         cta: string;
         chipsTitle: string;
+        yuCoinAwarded?: number | null;
         tips?: Array<{
           __typename?: "HealthSmokingStateTip";
           id: string;
@@ -38507,6 +38509,7 @@ export type HealthSmokingStateFragment = {
       description?: string | null;
       cta: string;
       chipsTitle: string;
+      yuCoinAwarded?: number | null;
       tips?: Array<{
         __typename?: "HealthSmokingStateTip";
         id: string;
@@ -38741,6 +38744,7 @@ export type StartSmokingStreakMutation = {
         description?: string | null;
         cta: string;
         chipsTitle: string;
+        yuCoinAwarded?: number | null;
         tips?: Array<{
           __typename?: "HealthSmokingStateTip";
           id: string;
@@ -38985,6 +38989,7 @@ export type UpdateSmokingStreakMutation = {
         description?: string | null;
         cta: string;
         chipsTitle: string;
+        yuCoinAwarded?: number | null;
         tips?: Array<{
           __typename?: "HealthSmokingStateTip";
           id: string;
@@ -65975,6 +65980,7 @@ export const HealthSmokingStateFragmentDoc = {
                           ],
                         },
                       },
+                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
                     ],
                   },
                 },
@@ -98043,6 +98049,7 @@ export const GetHealthSmokingStateDocument = {
                           ],
                         },
                       },
+                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
                     ],
                   },
                 },
@@ -98777,6 +98784,7 @@ export const StartSmokingStreakDocument = {
                           ],
                         },
                       },
+                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
                     ],
                   },
                 },
@@ -99571,6 +99579,7 @@ export const UpdateSmokingStreakDocument = {
                           ],
                         },
                       },
+                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
                     ],
                   },
                 },

@@ -635,6 +635,13 @@
       "cta": "Commit again",
       "cancel": "Not right now"
     },
+    "smoking_modals": {
+      "days_title": "Day %{days}",
+      "milestone_passed": "You’ve passed a",
+      "all_milestones_passed": "You’ve passed all your",
+      "milestone": "milestone!",
+      "milestones": "milestones!"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "As long as your wearable connects up to %{platform} we will sync up at the end of each day to reward you for all your steps.",

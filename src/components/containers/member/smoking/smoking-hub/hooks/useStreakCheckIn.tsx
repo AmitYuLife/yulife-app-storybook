@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { updateHealthSmokingStateAction } from "@redux/health-smoking/health-smoking.actions";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { gql } from "@graphql/__generated";
-import { showFloatingModal, SmokingStreakCheckInOverlay } from "@modals";
+import { GetHealthSmokingStateQuery, gql } from "@graphql/__generated";
+import { showFloatingModal, SmokingStreakCelebrationModal, SmokingStreakCheckInOverlay } from "@modals";
 import { Navigation } from "@navigation/main";
-import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { getRouteState } from "@redux/app/app.selectors";
 import { navigateToCommitmentScreen } from "../helpers/navigateToCommitmentScreen";
@@ -100,24 +99,11 @@ export const useStreakCheckIn = (
       dispatch(refreshUserProfileEvents());
       dispatch(refreshTotalCoins());
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
-
-      await showYuModal({
-        component: {
-          id: MODALS.smokingStreakCelebration,
-          name: MODALS.smokingStreakCelebration,
-          passProps: {
-            onPress: () => {
-              Navigation.dismissAllModals();
-              onSmokingStreakCelebrationClose();
-            },
-            smokingData: healthSmokingState,
-          },
-        },
-      });
+      showSmokingStreakCelebrationModal(healthSmokingState, onSmokingStreakCelebrationClose);
     } catch {
       setError(true);
     }
-  }, []);
+  }, [dismissOverlay, onSmokingStreakCelebrationClose]);
 
   const showSmokingCheckInOverlay = useCallback(
     // to prevent a race condition which occurs if the `smokingData` state is not updated by the time this function is called, pass the data to this function as an argument
@@ -175,3 +161,22 @@ export const useStreakCheckIn = (
     error,
   };
 };
+
+function showSmokingStreakCelebrationModal(
+  smokingData: GetHealthSmokingStateQuery["getHealthSmokingState"],
+  onClose: VoidFunction
+) {
+  Navigation.showOverlayWithChild(
+    <SmokingStreakCelebrationModal onClose={onClose} smokingData={smokingData} />,
+    true,
+    { flexDirection: "column-reverse" },
+    MODALS.smokingStreakCelebration,
+    false,
+    undefined,
+    {
+      blurType: "light",
+      blurAmount: 8,
+      backgroundColor: "rgba(0,0,0,.8)",
+    }
+  );
+}

@@ -57,6 +57,7 @@ export interface StreakCheckInOverlay {
       value: string;
       colour: string;
     }[];
+    yuCoinAwarded?: number;
   };
   showMilestoneUnlocked: boolean;
   milestoneUnlocked: {
