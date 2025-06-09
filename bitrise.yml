@@ -1874,7 +1874,7 @@ workflows:
         inputs:
         - content: |
             #!/usr/bin/env bash
-            yarn env:config:local && EXPO_NO_DOTENV=1 npx expo prebuild --platform android
+            yarn env:config:local && EXPO_NO_DOTENV=1 npx expo prebuild --platform ios
     - script@1.2:
         title: Set BUNDLE_ID NOT NEEDED
         inputs:
