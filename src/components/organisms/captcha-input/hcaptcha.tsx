@@ -60,7 +60,7 @@ export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, si
             debugInfo: null,
           });
         } else if (["challenge-closed", "challenge-expired", "cancel"].includes(event.nativeEvent.data)) {
-          event.reset();
+          event.reset?.();
           captchaRef?.current?.hide();
 
           rejectFunction?.(new CaptchaCancelledError("Captcha cancelled"));
