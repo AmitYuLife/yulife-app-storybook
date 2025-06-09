@@ -104,3 +104,18 @@ export const CUSTOMER_STORE_ACCESS_NEVER_SETTINGS = {
     },
   },
 } as IDatabaseItem;
+
+export const BUSINESS_1_PENSION_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "pensions",
+    entityId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    entityType: "business",
+    settings: {
+      enabledProviders: {
+        smartPension: true,
+      },
+    },
+  },
+} as IDatabaseItem;

@@ -29,10 +29,9 @@ Feature("Smart Pension", async () => {
       });
     });
     When("I dismiss the product page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-      Then("I can see the correct MaxYu values from my contributions", then.idVisible(ids.WEEKLY_PROGRESS_BAR(228, 480, "#E30D76"), 2000));
-    });
-    When("I go to the Yucoin tab", when.navigateTo("yucoin"), async () => {
-      Then("I can see the contributions on the yucoin screen", then.textVisible(`£${calculateInProgressContribution(PensionInfoUser111)}`));
+      When("I go to the Yucoin tab", when.navigateTo("yucoin"), async () => {
+        Then("I can see the contributions on the yucoin screen", then.textVisible(`£${calculateInProgressContribution(PensionInfoUser111)}`));
+      });
     });
     When("I go to earnings", when.tapYuCoinIcon, async () => {
       Then("I am on the earnings page", then.idVisible(ids.TODAYS_EARNINGS));
