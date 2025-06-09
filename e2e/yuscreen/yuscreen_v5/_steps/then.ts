@@ -69,9 +69,8 @@ export const inviteFriendSectionVisible = async () => {
 
 export const onInviteColleaguePage = async () => {
   await textVisibleAtIndex(constants.referralPageHeader, 0)();
-  await idVisible(ids.REFERRALS_INVITE_BUTTON)();
+  await scrollFromID(ids.REFERRALS_INVITE_BUTTON, "up", "fast", 0.5)();
   await textVisible(constants.referralListHeader)();
-  await scrollFromID(ids.REFERRALS_INVITE_BUTTON, "up", "fast")();
   await textVisible(constants.noReferralsMessage)();
 };
 
@@ -110,7 +109,7 @@ export const yuScreenV5WellbeingSectionVisible =
       await idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_ITEM(item.title, index.toString()))();
       await yuScreenV5WellbeingItemVisible(item, 500, sectionIndex)();
     });
-    await idVisibleAtIndex(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, sectionIndex)();
+    await idVisible(ids.WELLBEING_HUB_BUSINESS_ACCOUNT_DROP_DOWN, 2000)();
   };
 
 export const wellbeingHubCardsCorrectOrder = (items: YuScreenV5WellbeingItem[]) => async () => {
