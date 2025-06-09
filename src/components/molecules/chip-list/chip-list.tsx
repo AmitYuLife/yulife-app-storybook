@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { ListRenderItemInfo, StyleSheet, View, ViewStyle } from "react-native";
-import { FlatList, TextTemplate } from "@atoms";
+import { Box, FlatList, SkeletonLoading, TextTemplate } from "@atoms";
 import Pressable from "../pressable/pressable";
 import { Colours, Style } from "@styles";
 import { CHIP_LIST_ITEM } from "@ids";
@@ -14,9 +14,10 @@ export type ChipProps = {
 type ChipListProps = {
   chips: ChipProps[];
   style?: ViewStyle;
+  isLoading?: boolean;
 };
 
-const _ChipList = ({ chips, style }: ChipListProps) => {
+const _ChipList = ({ chips, style, isLoading }: ChipListProps) => {
   const flatlistStyle = useMemo(() => [styles.flatList, style], [style]);
 
   return (
@@ -32,10 +33,20 @@ const _ChipList = ({ chips, style }: ChipListProps) => {
         renderItem={renderItem}
         contentContainerStyle={flatlistStyle}
         ItemSeparatorComponent={Separator}
+        ListEmptyComponent={isLoading ? LoadingChipList : null}
+        scrollEnabled={!isLoading}
       />
     </View>
   );
 };
+
+const LoadingChipList = () => (
+  <Box flexDirection="row" gap={8} justifyContent="space-between">
+    {Array.from({ length: 6 }).map((_, index) => (
+      <SkeletonLoading w={100} h={30} key={index} />
+    ))}
+  </Box>
+);
 
 export const ChipList = memo(_ChipList);
 
