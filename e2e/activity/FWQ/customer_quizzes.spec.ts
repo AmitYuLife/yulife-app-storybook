@@ -943,7 +943,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
   });
 
-  Scenario("I can login with correct login detail and see the connection setup for daily activities", scenario.start, async () => {
+  Scenario("I can see the hero cards in the correct order", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_141.customer.data.customerId, data.BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id, data.BUSINESS_BACKGROUND_10.data.business_background_id]), async () => {
       Given("I have entered a valid email address and valid password", given.loginOnly(data.CUSTOMER_141.customer, GENERIC_AUTH_PASSWORD, true), async () => {
         When("I tap let's go", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN")), async () => {
@@ -952,6 +952,32 @@ Feature("Quizzes and questionnaires", async () => {
           });
         });
       });
+    });
+  });
+
+  Scenario("I can see and complete a Engagement Pulse Survey seeded from the DJB", scenario.start, async () => {
+    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_140_NPC_ALTRA.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see my YuCoin balance of 200, before I finish the survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      Then("I should see the survey's hero card", then.engagementSurveyHeroCardVisible);
+    });
+    When("I tap on the surveys hero card", when.tapID(ids.EVENT_CARD("Share your feedback")), async () => {
+      Then("I should see the survey's intro screen", then.pulseSurveyIntroVisible);
+    });
+    When("I press lets go ", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
+      Then("I should be on the first question", then.idVisible(ids.TEXT_TEMPLATE("What's the one thing you would change about your company to make your experience there better?", "h2")));
+    });
+    When("I type into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ONE_CHANGE_TO_MAKE_COMPANY_BETTER, "a".repeat(2)), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should see the second question", then.nextQuestionVisible("How likely are you to recommend your company as a place to work? (1 being very unlikely, 10 being very likely.)"));
+      });
+    });
+    When("I click 10", when.tapID(ids.CHECK_BOX_STATE("10", false)), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should see the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for answering this survey.", "h2")));
+      });
+    });
+    When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit")), async () => {
+      Then("I should see my YuCoin balance has increased by 30 coins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(230), 1500));
     });
   });
 });
