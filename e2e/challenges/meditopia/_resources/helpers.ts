@@ -29,15 +29,9 @@ export const START_MEDITATION_FAKE_TIME = async () => {
     "I login as a user on level 1 who has meditation unlocked",
     given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1),
     async () => {
-      When(
-        "I tap to close the quest map onboarding modal",
-        when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000),
-        async () => {
-          Then(
-            "I should see my current coin amount",
-            then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200))
-          );
-        }
+      Then(
+        "I should see my current coin amount",
+        then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200))
       );
     }
   );

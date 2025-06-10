@@ -3181,8 +3181,10 @@ export type CreateTeamSocialGroupInput = {
 
 export type CustomValue = {
   __typename?: "CustomValue";
+  assignedEmployeesCount: Scalars["Int"]["output"];
   description?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
+  /** @deprecated Use assignedEmployeesCount instead */
   numberOfPeople: Scalars["Int"]["output"];
   value: Scalars["String"]["output"];
 };
@@ -4186,6 +4188,7 @@ export type GameSettings = {
   blackListApps?: Maybe<BlackListApps>;
   blackListedNavBarTabs: Array<Scalars["String"]["output"]>;
   cyclingMeasurement: DistanceMeasurementType;
+  debugQueriesToolEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   debugToolsEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   hasEsgBattlepass?: Maybe<Scalars["Boolean"]["output"]>;
   maxStepsAnomalyWindowMs?: Maybe<Scalars["Int"]["output"]>;
@@ -23810,21 +23813,6 @@ export type GetQuestMapLevelQuery = {
       } | null> | null;
     } | null>;
   };
-};
-
-export type GetQuestMapOnboardingQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetQuestMapOnboardingQuery = {
-  __typename?: "Query";
-  getQuestMapOnboarding?: {
-    __typename?: "QuestMapOnboarding";
-    heroImage?: string | null;
-    heading?: string | null;
-    description?: string | null;
-    callToActionText: string;
-    backgroundColor?: string | null;
-    backgroundImage?: string | null;
-  } | null;
 };
 
 export type GetUnityRewardsQueryVariables = Exact<{
@@ -78052,36 +78040,6 @@ export const GetQuestMapLevelDocument = {
     },
   ],
 } as unknown as DocumentNode<GetQuestMapLevelQuery, GetQuestMapLevelQueryVariables>;
-export const GetQuestMapOnboardingDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetQuestMapOnboarding" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getQuestMapOnboarding" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "heroImage" } },
-                { kind: "Field", name: { kind: "Name", value: "heading" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-                { kind: "Field", name: { kind: "Name", value: "callToActionText" } },
-                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-                { kind: "Field", name: { kind: "Name", value: "backgroundImage" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetQuestMapOnboardingQuery, GetQuestMapOnboardingQueryVariables>;
 export const GetUnityRewardsDocument = {
   kind: "Document",
   definitions: [

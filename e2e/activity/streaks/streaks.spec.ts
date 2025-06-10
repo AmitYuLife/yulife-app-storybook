@@ -14,9 +14,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         Then("I should see the streak screen", then.onStartStreakFromHome);
       });
       When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
-        When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
-          Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-        });
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
       });
       When("I tap the level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
         When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {

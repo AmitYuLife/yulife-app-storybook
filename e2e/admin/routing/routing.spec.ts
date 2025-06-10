@@ -15,9 +15,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
       Then("I should see the daily steps screen", then.onDailySteps());
     });
     When("I tap quests in the tab", when.tapID(ids.NAV_BAR("quests")), async () => {
-      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
-        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      });
+      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
     });
     When("I tap leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
       Then("I should see that a leaderboard has not been set yet", then.checkCopyNoLeaderboard);
@@ -287,7 +285,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     });
     When("I minimise the app pressing the home button", when.minimiseApp, async () => {
       When("I follow the deep link", when.goToQuestsScreen, async () => {
-        Then("I should successfully be on the quest map onboarding modal", then.idVisible(ids.QUEST_MAP_ONBOARDING_CLOSE, 1000));
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
       });
     });
   });

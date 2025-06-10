@@ -21,8 +21,6 @@ import { first } from "lodash";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-map-helpers";
-import QuestMapOnboarding from "./quest-map-onboarding/index";
-import { useQuestMapOnboarding } from "./quest-map-onboarding/useQuestMapOnboarding";
 import { getQuestMapConfig } from "./quest-map.config";
 import { QuestMapLevel } from "./quest-map.interface";
 import QuestMapScreen from "./quest-map.screen";
@@ -47,13 +45,6 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
   });
 
   const currentLevel = useSelector(getCurrentLevel);
-
-  const { data: onboarding } = useQuery(gql("GetQuestMapOnboardingDocument"), {
-    fetchPolicy: "no-cache",
-    skip: currentLevel > 1,
-  });
-
-  const { showOnboarding, handleClose } = useQuestMapOnboarding();
 
   const [, { data: weeklies }] = useQueryOnScreenSeen(gql("GetMobileGameWeekliesDocument"), ROUTES.quests, undefined, {
     disabled: !features.showWeeklies,
@@ -284,25 +275,6 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
   const hideUnity = useCallback(() => {
     setUnity(null);
   }, []);
-
-  if (showOnboarding && onboarding?.getQuestMapOnboarding) {
-    const { heroImage, heading, description, callToActionText, backgroundColor, backgroundImage } =
-      onboarding.getQuestMapOnboarding;
-
-    return (
-      <QuestMapOnboarding
-        leftIcons={leftIcons}
-        handleClose={handleClose}
-        heroImage={heroImage}
-        heading={heading}
-        description={description}
-        callToActionText={callToActionText}
-        backgroundColor={backgroundColor}
-        backgroundImage={backgroundImage}
-        onLeftMenuPress={onLeftMenuPress}
-      />
-    );
-  }
 
   return (
     <>
