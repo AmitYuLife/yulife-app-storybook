@@ -7,10 +7,22 @@ export const metLifeGPWellbeingItem: YuScreenV5WellbeingItem = {
   img: "https://yulife-develop.imgix.net/perks/METLIFE_GP24.png?ixlib=js-3.2.1&fit=clip&fm=png&s=1ddea0de5b993bb05e2e9a04870ff01f",
 };
 
-export const metLifeGPWellbeingItemv2: YuScreenV5WellbeingItem = {
+export const metLyfeGPWellbeingItem: YuScreenV5WellbeingItem = {
   title: "MetLyfe GP25",
   desc: "Immediate access to a doctor by phone or video",
   img: "https://yulife-develop.imgix.net/perks/METLIFE_GP24.png?ixlib=js-3.2.1&fit=clip&fm=png&s=1ddea0de5b993bb05e2e9a04870ff01f",
+};
+
+export const yuniversityWellbeingItem: YuScreenV5WellbeingItem = {
+  title: "Yuniversity Courses",
+  desc: "Free Learning Material",
+  img: "https://yulife-develop.imgix.net/cms/1669639176057_Yuniversity@3x.png?ixlib=js-3.2.1&w=276&h=239.2&crop=fit&fit=clip&fm=png&dpr=3&s=423beccd8655b409d6a35a8af434ad1b",
+};
+
+export const fiitWellbeingItem: YuScreenV5WellbeingItem = {
+  title: "Fiit",
+  desc: "Claim your free year of access to Fiit",
+  img: "https://yulife-develop.imgix.net/cms/1639655759852_Screenshot%202021-12-16%20at%2011.55.50.png?ixlib=js-3.2.1&w=276&h=239.2&crop=fit&fit=clip&fm=png&dpr=3&s=1c5fd23b99f90c0cf32375d4bd750a1b",
 };
 
 export const yuMatterWellbeingItem: YuScreenV5WellbeingItem = {
