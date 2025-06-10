@@ -13,7 +13,7 @@ export interface IAchievement {
   id: string;
   name: string;
   description: string;
-  points: number;
+  points?: number;
   slot?: number | null;
   type: string;
   icon: {
@@ -32,7 +32,6 @@ interface ISlot {
 
 interface IProps {
   componentId: string;
-  // Making this props optional until we have the graphql query ready
   points?: number;
   achievements?: IAchievement[];
   isInspectingUser?: boolean;
@@ -72,10 +71,6 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
 
   const getSlot = useCallback(
     (slot: number): ISlot => {
-      if (isInspectingUser) {
-        return;
-      }
-
       const achievement = achievements.find((a) => a.slot === slot);
 
       if (achievement) {
@@ -87,7 +82,7 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
 
       return {
         icon: undefined,
-        onPress: () => goToAchievements(slot),
+        onPress: () => (isInspectingUser ? null : goToAchievements(slot)),
       };
     },
     [achievements, onPress, goToAchievements, isInspectingUser]

@@ -26,20 +26,23 @@ import { useAnimation } from "./use-animation";
 import { INITIAL_SCROLL, MIN_SECTIONS_HEIGHT, styles } from "./yu-screen.styles";
 import { YumojiPrompt } from "./yumoji-prompt";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { useUserFeatures } from "@hooks";
+import { IAchievement } from "@organisms/achievements-showcase/achievements-showcase";
 
 interface IProps {
   onNotificationPress: () => void;
+  showAchievements: boolean;
+  achievements: {
+    list: IAchievement[];
+    points?: number;
+  };
 }
 
-export const YuScreen: FC<IProps> = memo(({ onNotificationPress }) => {
+export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievements, showAchievements }) => {
   const { onLeftMenuPress } = useNavigation();
   const sections = useSelector(getYuScreenSections);
   const lastLayoutUpdate = useSelector(getYuScreenLastLayoutUpdate);
   const currentScreen = useSelector(getRouteState);
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
-
-  const { tempGameShowAchievements } = useUserFeatures();
 
   const dispatch = useDispatch();
   const [collapseHeader, setCollapseHeader] = useState(false);
@@ -157,9 +160,9 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress }) => {
   const sectionsStyle = useMemo(
     () => ({
       ...styles.sections,
-      paddingTop: tempGameShowAchievements ? Style.adjust(45) : 0,
+      paddingTop: showAchievements ? Style.adjust(45) : 0,
     }),
-    [tempGameShowAchievements]
+    [showAchievements]
   );
   return (
     <View style={memoizedStyles.wrapper}>
@@ -190,7 +193,8 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress }) => {
               yumojiOpacity={yumojiOpacity}
               yumojiScale={yumojiScale}
               headerHeight={headerHeight}
-              showAchievements={tempGameShowAchievements}
+              showAchievements={showAchievements}
+              achievements={achievements}
             />
             <View style={sectionsStyle} onLayout={handleLayout}>
               {sections.map(renderSection)}

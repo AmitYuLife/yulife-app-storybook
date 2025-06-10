@@ -1,12 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { Pressable, Yumoji } from "@molecules";
-import {
-  AchievementsShowcase,
-  GenericHeadingAbsolute,
-  GenericHeadingPad,
-  GiftSendPrompt,
-  NameLevelMiniAvatar,
-} from "@organisms";
+import { GenericHeadingAbsolute, GenericHeadingPad, GiftSendPrompt, NameLevelMiniAvatar } from "@organisms";
 import { Colours, Style, TOP_BAR } from "@styles";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { t } from "@locale";
@@ -15,7 +9,7 @@ import AverageStatsSection, { ActivityItems } from "./sections/average.stats.sec
 import StatsSection, { Section } from "./sections/stats.section";
 import { Box } from "@atoms";
 import { VoidFunction } from "@utils";
-import { useUserFeatures } from "@hooks";
+import AchievementsShowcase, { IAchievement } from "@organisms/achievements-showcase/achievements-showcase";
 
 const AVATAR_WIDTH = Style.adjust(160) * 0.95;
 const AVATAR_HEIGHT = Style.adjust(328) * 0.95;
@@ -37,6 +31,11 @@ export interface InspectProps {
   onYumojiPress: VoidFunction;
   onGiftPress?: VoidFunction;
   componentId?: string;
+  showAchievements: boolean;
+  achievements: {
+    list: IAchievement[];
+    points?: number;
+  };
 }
 
 const InspectScreen = ({
@@ -54,26 +53,25 @@ const InspectScreen = ({
   shortName,
   yuniversalMap,
   componentId,
+  achievements,
+  showAchievements,
 }: InspectProps) => {
   const actionButtonLabel = useMemo(
     () => (inspectOtherUser ? t("screens.inspect.duel.challenge_duel") : t("screens.inspect.duel.challenge_somebody")),
     [inspectOtherUser]
   );
 
-  // remove this when we merge the gql endpoints
-  const { tempGameShowAchievements } = useUserFeatures();
-
   return (
     <View style={styles.wrapper} testID={INSPECT_SCREEN}>
       <GenericHeadingPad />
       <ScrollView
-        bounces={!tempGameShowAchievements}
+        bounces={!showAchievements}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.containerStyle}
         testID={USER_INFO(`${userName} ${level}`)}
       >
         <Box ph={24}>
-          {tempGameShowAchievements ? (
+          {showAchievements ? (
             <Box flexDirection="row" pr={5} mt={12}>
               <Box width={"55%"}>
                 <NameLevelMiniAvatar
@@ -86,8 +84,8 @@ const InspectScreen = ({
                 <Box mt={24}>
                   <AchievementsShowcase
                     componentId={componentId}
-                    points={0}
-                    achievements={[]}
+                    points={achievements.points}
+                    achievements={achievements.list}
                     isInspectingUser={inspectOtherUser}
                   />
                 </Box>
@@ -140,7 +138,7 @@ const InspectScreen = ({
           <AverageStatsSection activity={activity} inspectOtherUser={inspectOtherUser} />
         </Box>
       </ScrollView>
-      {!tempGameShowAchievements ? null : <Box style={styles.shadowBox} width={"100%"} h={4} />}
+      {!showAchievements ? null : <Box style={styles.shadowBox} width={"100%"} h={4} />}
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={onClose} />
     </View>
   );

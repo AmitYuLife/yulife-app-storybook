@@ -22606,6 +22606,30 @@ export type GetMobileGameUserAchievementsQuery = {
   };
 };
 
+export type GetMobileGameUserEquippedAchievementsQueryVariables = Exact<{
+  userId: Scalars["String"]["input"];
+}>;
+
+export type GetMobileGameUserEquippedAchievementsQuery = {
+  __typename?: "Query";
+  getMobileGameUserEquippedAchievements: {
+    __typename?: "MobileGameUserEquippedAchievements";
+    achievementPoints?: number | null;
+    achievements: Array<{
+      __typename?: "MobileGameUserAchievement";
+      id: string;
+      name: string;
+      status: string;
+      description: string;
+      shortDescription?: string | null;
+      type: string;
+      points?: number | null;
+      slot?: number | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+  };
+};
+
 export type MarkMobileGameUserAchievementsViewedMutationVariables = Exact<{
   ids: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
 }>;
@@ -73785,6 +73809,97 @@ export const GetMobileGameUserAchievementsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileGameUserAchievementsQuery, GetMobileGameUserAchievementsQueryVariables>;
+export const GetMobileGameUserEquippedAchievementsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileGameUserEquippedAchievements" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "userId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileGameUserEquippedAchievements" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "userId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "userId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "achievements" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameUserAchievement" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievement" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "points" } },
+          { kind: "Field", name: { kind: "Name", value: "slot" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMobileGameUserEquippedAchievementsQuery,
+  GetMobileGameUserEquippedAchievementsQueryVariables
+>;
 export const MarkMobileGameUserAchievementsViewedDocument = {
   kind: "Document",
   definitions: [

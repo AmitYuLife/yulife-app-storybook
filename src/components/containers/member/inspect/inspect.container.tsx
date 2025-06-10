@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
 import { ROUTES } from "@navigation/constants";
 import { getCurrentUserId } from "@redux/user/user.selectors";
-import { useBackHandler, useTrack } from "@hooks";
+import { useBackHandler, useTrack, useUserFeatures } from "@hooks";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { gql } from "@graphql/__generated";
 import { onDuelPress } from "@utils/duels";
@@ -27,7 +27,7 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
 
   const currentUserId = useSelector(getCurrentUserId);
   const isOtherUser = userId !== currentUserId;
-
+  const { tempGameShowAchievements } = useUserFeatures();
   const track = useTrack();
 
   useBackHandler(onClose);
@@ -35,6 +35,21 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
   const [getDuels, { loading: duelsLoading, data: duelsData }] = useLazyQuery(gql("GetDuelsDocument"), {
     fetchPolicy: "network-only",
   });
+
+  const { data: achievements } = useQuery(gql("GetMobileGameUserEquippedAchievementsDocument"), {
+    fetchPolicy: "network-only",
+    variables: { userId },
+    skip: !tempGameShowAchievements,
+    notifyOnNetworkStatusChange: true,
+  });
+
+  const achievementsList = useMemo(
+    () => ({
+      points: achievements?.getMobileGameUserEquippedAchievements?.achievementPoints,
+      list: achievements?.getMobileGameUserEquippedAchievements?.achievements,
+    }),
+    [achievements?.getMobileGameUserEquippedAchievements]
+  );
 
   useEffect(() => {
     if (isOtherUser) {
@@ -191,6 +206,8 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
       shortName={current.shortName}
       inspectOtherUser={isOtherUser}
       componentId={_componentId}
+      achievements={achievementsList}
+      showAchievements={tempGameShowAchievements}
     />
   );
 };
