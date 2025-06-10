@@ -4,7 +4,7 @@ import LoginConfirmScreen from "@components/screens/login/login-confirm/login-co
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
-import { Alert, Platform } from "react-native";
+import { ActionSheetIOS, Alert, Platform } from "react-native";
 import DeviceInfo from "react-native-device-info";
 import { TOKEN_EXPIRATION } from "@services/constants";
 import { applyLoginSession } from "./login.helpers";
@@ -15,6 +15,7 @@ import { useCaptcha } from "@organisms/captcha-input";
 import { useSendMagicLink } from "./send-magic-link.hook";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
+import { isiOS } from "@utils/device";
 
 interface Props {
   componentId: string;
@@ -40,12 +41,17 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
   const [isRedeemingOtp, setIsRedeemingOtp] = useState(false);
 
   const otpRef = useRef<string>("");
+  const hasOpenedEmailAppRef = useRef(false);
 
   const showLoginWithPassword = props.regionResponses?.some((r) => r.hasSetPassword);
 
   const onNavigateBack = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
+
+  const setHasOpenedEmailApp = useCallback(() => {
+    hasOpenedEmailAppRef.current = true;
+  }, []);
 
   const { sendMagicLink, loading: isResending } = useSendMagicLink({
     email: props.email,
@@ -76,6 +82,11 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
 
     async function handleOTP(payload: { otp: string; email: string; region: REGION }) {
       setIsRedeemingOtp(true);
+
+      if (isiOS() && hasOpenedEmailAppRef.current) {
+        ActionSheetIOS.dismissActionSheet();
+        hasOpenedEmailAppRef.current = false;
+      }
 
       let result;
 
@@ -113,7 +124,6 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
               }
             },
           });
-          setIsRedeemingOtp(false);
           return;
         }
 
@@ -121,8 +131,6 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
           await applyLoginSession(result, props.region, componentId, dispatch);
         }
       } catch (error) {
-        setIsRedeemingOtp(false);
-
         Logger.error(error, {
           file: "login-confirm.container",
           region: payload.region,
@@ -134,6 +142,8 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
         Alert.alert(t("screens.login_confirm.error_title"), error.message, [
           { text: t("labels.cta.ok"), onPress: onNavigateBack },
         ]);
+      } finally {
+        setIsRedeemingOtp(false);
       }
     }
 
@@ -164,6 +174,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
           },
         })
       }
+      setHasOpenedEmailApp={setHasOpenedEmailApp}
     />
   );
 };

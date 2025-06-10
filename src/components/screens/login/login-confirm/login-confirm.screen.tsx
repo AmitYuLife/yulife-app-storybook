@@ -4,9 +4,10 @@ import { Button, LinkButton } from "@molecules";
 import { t } from "@locale";
 import { CaptchaInput, useCaptcha } from "@organisms/captcha-input";
 import LoginFormWrapper from "../subcomponents/login-form-wrapper";
-import { StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { Box, TextTemplate } from "@atoms";
-import { openInbox } from "react-native-email-link";
+import { openInbox, EmailException } from "react-native-email-link";
+import Logger from "@services/logging/logger";
 
 interface IProps {
   email: string;
@@ -17,6 +18,7 @@ interface IProps {
   onPressLoginWithPassword: () => void;
   onPressResend: () => void;
   captcha: ReturnType<typeof useCaptcha>;
+  setHasOpenedEmailApp: () => void;
 }
 
 const COOLDOWN_DURATION_SECONDS = 30;
@@ -30,11 +32,32 @@ const LoginConfirmScreen = ({
   onPressResend,
   isResending,
   isRedeemingOtp,
+  setHasOpenedEmailApp,
 }: IProps) => {
   const [lastResendTime, setLastResendTime] = useState<number>(Date.now());
   const [cooldownSeconds, setCooldownSeconds] = useState<number>(COOLDOWN_DURATION_SECONDS);
 
   const isCooldownActive = useMemo(() => cooldownSeconds > 0 || isResending, [cooldownSeconds, isResending]);
+
+  const handleOpenEmail = useCallback(async () => {
+    setHasOpenedEmailApp();
+
+    try {
+      await openInbox();
+    } catch (error) {
+      if (error instanceof EmailException) {
+        Alert.alert(
+          t("screens.login_confirm.no_email_app_installed.title"),
+          t("screens.login_confirm.no_email_app_installed.message")
+        );
+        return;
+      }
+
+      Logger.error(error, {
+        location: "login-confirm-screen.handleOpenEmail",
+      });
+    }
+  }, [setHasOpenedEmailApp]);
 
   const handleResend = useCallback(() => {
     if (isCooldownActive) {
@@ -73,7 +96,7 @@ const LoginConfirmScreen = ({
           {t("screens.login_confirm.description")}
         </TextTemplate>
       </Box>
-      <Button size="Large" onPress={() => openInbox()} translationKey="screens.login_confirm.open_email" />
+      <Button size="Large" onPress={handleOpenEmail} translationKey="screens.login_confirm.open_email" />
       <Box ph={22} pb={24} pt={16}>
         <LinkButton
           translationKey={isCooldownActive ? "screens.login_confirm.cooldown" : "screens.login_confirm.resend_link"}

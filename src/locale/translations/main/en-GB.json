@@ -349,7 +349,11 @@
       "cooldown": "Send a new link in %{seconds}s...",
       "webview_title": "Preparing for liftoff...",
       "error_title": "Something went wrong",
-      "open_email": "Open email app"
+      "open_email": "Open email app",
+      "no_email_app_installed": {
+        "title": "No email app installed",
+        "message": "If your email app isn’t recognised, try opening it manually."
+      }
     },
     "login_password": {
       "heading": "Enter your password",
