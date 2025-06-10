@@ -23,6 +23,8 @@ interface IProps {
   achievements: IAchievement[];
   slotsTaken: number;
   selectedSlot?: number;
+  onRefresh: () => void;
+  isLoading: boolean;
   categories: {
     value: string;
     isSelected: boolean;
@@ -30,7 +32,15 @@ interface IProps {
   }[];
 }
 
-const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, selectedSlot, categories }: IProps) => {
+const AchievementsScreen = ({
+  achievementPoints,
+  achievements,
+  slotsTaken,
+  selectedSlot,
+  categories,
+  onRefresh,
+  isLoading,
+}: IProps) => {
   const renderItem = useCallback(
     ({ item }: { item: IAchievement }) => {
       return (
@@ -65,7 +75,7 @@ const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, selec
       <GenericHeadingPad />
       <Box flex={1}>
         <Box pt={8} pr={8} pb={8} mb={4} style={styles.shadowBox}>
-          <ChipList chips={categories} isLoading={categories.length === 0} />
+          <ChipList chips={categories} isLoading={isLoading} />
         </Box>
         {!showAchievementPoints ? null : (
           <Box alignSelf="center" justifyContent="center" mt={24} mb={10}>
@@ -82,11 +92,13 @@ const AchievementsScreen = ({ achievementPoints, achievements, slotsTaken, selec
             estimatedItemSize={Style.adjust(164)}
             keyExtractor={keyExtractor}
             showsVerticalScrollIndicator={false}
-            data={achievements}
+            data={isLoading ? [] : achievements}
             numColumns={2}
             contentContainerStyle={styles.contentContainer}
             ListEmptyComponent={<LoadingAchievementsScreen />}
-            scrollEnabled={achievements.length > 0}
+            scrollEnabled={!isLoading}
+            refreshing={false}
+            onRefresh={onRefresh}
           />
         </Box>
       </Box>
