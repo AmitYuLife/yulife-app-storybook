@@ -18,7 +18,9 @@ import {
   pensionUnlinkedProductItem,
   certificateDetailsGLAUMAnya,
   certificateDetailsGIPUMAnya,
-  metLifeGPWellbeingItemv2,
+  metLyfeGPWellbeingItem,
+  yuniversityWellbeingItem,
+  fiitWellbeingItem,
 } from "./_resources/fixtures";
 import { yuscreenImages } from "@images";
 
@@ -37,28 +39,35 @@ Feature("I am able to use the yuscreen v5", async () => {
         Then("I should not see the YuMatter perk, as I need to set my location first", then.textNotVisible("YuMatter"));
       });
     });
-    When("I tap See all benefits", when.tapText("See all benefits"), async () => {
-      Then("I should be on the wellbeing hub, and see the location welcome modal", then.wellbeingHubLocationModalVisible);
+    When("I scroll to the bottom", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
+      When("I tap See all benefits", when.tapTextAtIndex("See all benefits", 0), async () => {
+        Then("I should be on the wellbeing hub, and see the location welcome modal", then.wellbeingHubLocationModalVisible);
+      });
     });
     When("I tap confirm selection", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
-      Then("I should see YuMatter", then.textVisibleAtIndex("YuMatter", 0));
-      Then("I can see the Wellbeing section is correct", then.yuScreenV5WellbeingSectionVisible([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem], 4000, 1));
-    });
-    When("I tap the YuMatter tab", when.tapText(yuMatterWellbeingItem.title), async () => {
-      Then("I should be on the YuMatter screen", then.textVisible("How does it work?"));
-    });
-    When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I tap the Beam tab", when.tapText(beamWellbeingItem.title), async () => {
-        Then("I should be on the Beam screen", then.textVisible("Donate to Beam"));
-      });
-    });
-    When("I tap to go back", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I tap to go back to Wellbeing Hub section of the yuscreen", when.tapID(ids.LEFT_HEADIND_BUTTON(undefined)), async () => {
-        When("I tap to see all benefits", when.tapText("See all benefits"), async () => {
-          Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000));
-          Then("I should see items in the expected order", then.wellbeingHubCardsCorrectOrder([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem]));
+      When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I scroll to the bottom of the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
+          When("I swipe down to see the perks", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.BOX_OPTION_TITLE("MetLife GP24"), "up"), async () => {
+            Then("I can see the Wellbeing section is correct", then.yuScreenV5WellbeingSectionVisible([metLifeGPWellbeingItem, metLyfeGPWellbeingItem, yuniversityWellbeingItem], 4000, 0));
+          });
         });
       });
+    });
+    When("I tap the MetLife tab", when.tapTextAtIndex(metLifeGPWellbeingItem.title, 0), async () => {
+      Then("I should be on the MetLife screen", then.textVisible("Test Item MetLife"));
+    });
+    When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
+      When("I tap the MetLyfe tab", when.tapTextAtIndex(metLyfeGPWellbeingItem.title, 0), async () => {
+        Then("I should be on the MetLyfe screen", then.textVisible("Test Item MetLyfe"));
+      });
+    });
+    When("I tap to go back to Wellbeing Hub section of the yuscreen", when.tapID(ids.BACK_BUTTON), async () => {
+      When("I tap to see all benefits", when.tapTextAtIndex("See all benefits", 0), async () => {
+        Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000));
+      });
+    });
+    When("I change to the wellbeing hub of my second employment", when.changeWellbeingHubSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name), async () => {
+      Then("I should see items in the expected order", then.wellbeingHubCardsCorrectOrder([metLifeGPWellbeingItem, metLyfeGPWellbeingItem, yuMatterWellbeingItem]));
     });
     When("I tap to go back to YuScreen", when.tapID(ids.BACK_BUTTON), async () => {
       When("I scroll to the bottom of the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
@@ -300,20 +309,24 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
   });
 
-  Scenario("As a user with two concurrent employments, I should see all of my companies' wellbeing hub benefits on my YuScreen", scenario.startWithoutWBHItems, async () => {
+  Scenario("As a user with concurrent employments, I should see all of my companies' wellbeing hub benefits on my YuScreen", scenario.startWithoutWBHItems, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Yuniversal", "I"));
     });
-    When("I tap See all benefits", when.tapTextAtIndex("See all benefits", 1), async () => {
-      When("I tap confirm selection", when.tapText("Confirm selection"), async () => {
-        When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-          Then("I can see the MetLyfe benefit from my first employment", then.yuScreenV5WellbeingItemVisible(metLifeGPWellbeingItemv2));
-        });
-      });
-    });
     When("I scroll to the bottom", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
-      When("I swipe down until the other employment's perks are visible", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.BOX_OPTION_TITLE("MetLife GP24"), "up"), async () => {
-        Then("I can see the MetLife benefit from my second employment", then.yuScreenV5WellbeingItemVisible(metLifeGPWellbeingItem, 2000));
+      When("I tap See all benefits", when.tapTextAtIndex("See all benefits", 0), async () => {
+        When("I tap confirm selection", when.tapText("Confirm selection"), async () => {
+          When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I scroll to the bottom", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
+              When("I swipe down until the other employment's perks are visible", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.BOX_OPTION_TITLE("MetLife GP24"), "up"), async () => {
+                Then("I can see one instance of the MetLife benefit, even though it's made available from multiple employments", then.yuScreenV5WellbeingItemVisible(metLifeGPWellbeingItem, 2000));
+                Then("I can see the MetLyfe benefit from my employment at 'Justice League'", then.yuScreenV5WellbeingItemVisible(metLyfeGPWellbeingItem));
+                Then("I can see the Yuniversity benefit from my employment at 'Miele Onboarding'", then.yuScreenV5WellbeingItemVisible(yuniversityWellbeingItem));
+                Then("I can not see the Fiit benefit, as I've reached the cap of 3 visible promoted items on the YuScreen'", then.idNotVisible(ids.TEXT_TEMPLATE(fiitWellbeingItem.title)));
+              });
+            });
+          });
+        });
       });
     });
     When("I go back to the Wellbeing Hub", when.goToWellbeingHub, async () => {
@@ -322,13 +335,15 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
     When("I change to the wellbeing hub of my second employment", when.changeWellbeingHubSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name), async () => {
       Then("I should be on the Wellbeing Hub screen of my second employment", then.idVisible(ids.WELLBEING_HUB_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name)));
-      Then("I should see the 'MetLyfe GP25' item", then.idVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItemv2.title)));
-      Then("I should not see the 'MetLife GP24' item", then.idNotVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItem.title)));
+      Then("I should see the 'MetLyfe GP25' item", then.idVisible(ids.TEXT_TEMPLATE(metLyfeGPWellbeingItem.title)));
+      Then("I should see the 'MetLife GP24' item, as it's available from multiple employments", then.idVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItem.title)));
     });
     When("I change to the wellbeing hub of my third employment", when.changeWellbeingHubSelectedBusiness(data.BUSINESS_ACCOUNT_6.data.business_account_name), async () => {
       Then("I should now be on the Wellbeing Hub screen of my third employment", then.idVisible(ids.WELLBEING_HUB_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_6.data.business_account_name)));
-      Then("I should see the 'MetLife GP24' item", then.idVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItem.title)));
-      Then("I should not see the 'MetLyfe GP25' item", then.idNotVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItemv2.title)));
+      Then("I should see the 'MetLife GP24' item again, as it's available from multiple employments", then.idVisible(ids.TEXT_TEMPLATE(metLifeGPWellbeingItem.title)));
+      Then("I should see the 'Yuniversity' item", then.idVisible(ids.TEXT_TEMPLATE(yuniversityWellbeingItem.title)));
+      Then("I should see the 'Fiit' item", then.idVisible(ids.TEXT_TEMPLATE(fiitWellbeingItem.title)));
+      Then("I should not see the 'MetLyfe GP25' item", then.idNotVisible(ids.TEXT_TEMPLATE(metLyfeGPWellbeingItem.title)));
     });
   });
 });

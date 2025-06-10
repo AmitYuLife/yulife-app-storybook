@@ -109,7 +109,6 @@ export const yuScreenV5WellbeingSectionVisible =
       await idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_ITEM(item.title, index.toString()))();
       await yuScreenV5WellbeingItemVisible(item, 500, sectionIndex)();
     });
-    await idVisible(ids.WELLBEING_HUB_BUSINESS_ACCOUNT_DROP_DOWN, 2000)();
   };
 
 export const wellbeingHubCardsCorrectOrder = (items: YuScreenV5WellbeingItem[]) => async () => {
