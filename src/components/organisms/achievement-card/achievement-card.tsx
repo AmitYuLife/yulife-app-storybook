@@ -20,7 +20,7 @@ export interface IAchievementCardProps {
   name: string;
   description: string;
   onPress: () => void;
-  points: number;
+  points?: number;
   status: string;
   icon: {
     uri?: string;
@@ -41,7 +41,14 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
     >
       {/* we need to change the type of the BoxOption component for children */}
       <>
-        <Box position="absolute" top={8} flexDirection="row" justifyContent="space-between" left={8} right={8}>
+        <Box
+          position="absolute"
+          top={8}
+          flexDirection="row"
+          justifyContent={showAchievementPoints ? "space-between" : "flex-end"}
+          left={8}
+          right={8}
+        >
           {!showAchievementPoints ? null : (
             <AchievementPoints
               label={addCommasToNumber(points)}

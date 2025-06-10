@@ -66,7 +66,7 @@ export const HeroHeaderForeground: FC<Props> = memo(
           <Animated.View style={memoizedStyles.achievements}>
             <AchievementsShowcase
               componentId={ROUTES.yuScreen}
-              points={achievements?.points || 0}
+              points={achievements?.points}
               achievements={achievements?.list}
             />
           </Animated.View>
