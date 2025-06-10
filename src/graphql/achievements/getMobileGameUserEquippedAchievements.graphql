@@ -1,0 +1,8 @@
+query GetMobileGameUserEquippedAchievements($userId: String!) {
+  getMobileGameUserEquippedAchievements(userId: $userId) {
+    achievements {
+      ...MobileGameUserAchievement
+    }
+    achievementPoints
+  }
+}

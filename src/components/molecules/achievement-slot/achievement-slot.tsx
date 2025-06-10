@@ -31,7 +31,7 @@ const AchievementSlot = ({ onPress, icon, showStarIcon }: IProps) => {
       {icon?.uri ? (
         <Image w={IMAGE_SIZE} h={IMAGE_SIZE} source={{ uri: icon.uri }} />
       ) : (
-        <>{showStarIcon ? <StarEmptySlotIcon /> : <AddIcon color="#464647" showBorder={false} />}</>
+        <>{showStarIcon && !icon ? <StarEmptySlotIcon /> : <AddIcon color="#464647" showBorder={false} />}</>
       )}
     </Pressable>
   );

@@ -14,10 +14,9 @@ interface Props {
   yumojiScale: Animated.Value;
   translateY: Animated.Value;
   headerHeight: Animated.Value;
-  // Making this prop optional until we have the graphql query ready
-  achievements?: {
+  achievements: {
     points?: number;
-    list?: IAchievement[];
+    list: IAchievement[];
   };
   showAchievements: boolean;
 }
