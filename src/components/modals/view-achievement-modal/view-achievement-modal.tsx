@@ -8,6 +8,10 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { t } from "@locale";
 import { addCommasToNumber } from "@utils";
+import { useMutation } from "@apollo/client";
+import { gql } from "@graphql/__generated";
+import { AchievementStatus } from "@organisms/achievement-card/achievement-card";
+
 interface IProps {
   id: string;
   name: string;
@@ -35,27 +39,43 @@ const ViewAchievementModal = ({
   status,
   shortDescription,
   slotsTaken,
-  // selectedSlot,
   isInspectingUser,
+  selectedSlot,
 }: IProps) => {
+  const [updateMobileGameUserAchievement, { loading }] = useMutation(gql("UpdateMobileGameUserAchievementDocument"));
   const insets = useSafeAreaInsets();
 
-  // uncomment when we add mutation
-  // const getSlot = useCallback((slot: number, selected: number) => {
-  //   if (selected) {
-  //     return { slot: selected };
-  //   }
+  const getSlot = useCallback((slot: number, selected: number) => {
+    if (status === AchievementStatus.equipped) {
+      return {};
+    }
 
-  //   if (slot < 4 && status === "unlocked") {
-  //     return { slot };
-  //   }
+    if (selected) {
+      return { slot: selected };
+    }
 
-  //   return {};
-  // }, []);
+    if (slot < 4 && status === AchievementStatus.unlocked) {
+      return { slot };
+    }
+
+    return {};
+  }, []);
 
   const onButtonPress = useCallback(async () => {
-    // const slot = slotsTaken + 1;
-
+    const slot = slotsTaken + 1;
+    await updateMobileGameUserAchievement({
+      variables: { id, ...getSlot(slot, selectedSlot) },
+      update: (cache, { data: { updateMobileGameUserAchievement: updatedData } }) => {
+        cache.writeQuery({
+          query: gql("GetMobileGameUserAchievementsDocument"),
+          data: {
+            getMobileGameUserAchievements: {
+              ...updatedData,
+            },
+          },
+        });
+      },
+    });
     onClose();
   }, [slotsTaken, id, status]);
 
@@ -86,7 +106,7 @@ const ViewAchievementModal = ({
             testID="id-baby"
             translatedLabel={status === "equipped" ? t("unequip") : t("equip")}
             onPress={onButtonPress}
-            isLoading={false}
+            isLoading={loading}
           />
         </Box>
       )}

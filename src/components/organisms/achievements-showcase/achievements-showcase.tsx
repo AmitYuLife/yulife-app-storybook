@@ -7,7 +7,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { pushToScreen, showYuModal } from "@navigation/root";
 import { addCommasToNumber } from "@utils";
 import { memo, useCallback, useMemo } from "react";
-import { IAchievementStatus } from "../achievement-card/achievement-card";
+import { AchievementStatus } from "../achievement-card/achievement-card";
 
 export interface IAchievement {
   id: string;
@@ -47,7 +47,7 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
           name: MODALS.viewAchievementModal,
           passProps: {
             ...achievement,
-            status: IAchievementStatus.equipped,
+            status: AchievementStatus.equipped,
             isInspectingUser,
           },
         },

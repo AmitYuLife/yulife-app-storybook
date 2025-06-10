@@ -9,7 +9,7 @@ import { memo, useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { ReactNode } from "react";
 
-export enum IAchievementStatus {
+export enum AchievementStatus {
   locked = "locked",
   unlocked = "unlocked",
   equipped = "equipped",
@@ -53,7 +53,7 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
             <AchievementPoints
               label={addCommasToNumber(points)}
               autoWidth={true}
-              locked={status === IAchievementStatus.locked}
+              locked={status === AchievementStatus.locked}
             />
           )}
           {STATUS_COMPONENTS[status]}
