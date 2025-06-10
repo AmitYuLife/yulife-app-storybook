@@ -1634,6 +1634,13 @@
       "reasons": "禁煙を決意した理由",
       "success": "完了"
     },
+    "smoking_modals": {
+      "all_milestones_passed": "あなたはすべての",
+      "days_title": "日 %{days}",
+      "milestone": "マイルストーン！",
+      "milestone_passed": "あなたは通過しました",
+      "milestones": "マイルストーン！"
+    },
     "streak": {
       "accessibility": {
         "streak_completed": "%{header} %{ribbonLabel} を達成しました。次の連続チャレンジ開始まであと %{time}",

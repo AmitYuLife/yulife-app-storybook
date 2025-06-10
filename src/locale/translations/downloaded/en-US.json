@@ -1634,6 +1634,13 @@
       "reasons": "Why I’m committed to this",
       "success": "Success"
     },
+    "smoking_modals": {
+      "all_milestones_passed": "You've passed all your",
+      "days_title": "Day %{days}",
+      "milestone": "milestone!",
+      "milestone_passed": "You've passed a",
+      "milestones": "milestones!"
+    },
     "streak": {
       "accessibility": {
         "streak_completed": "%{header} %{ribbonLabel} has been collected, begin your next streak in %{time}",

@@ -1634,6 +1634,13 @@
       "reasons": "Por qué me comprometo",
       "success": "Éxito"
     },
+    "smoking_modals": {
+      "all_milestones_passed": "Has aprobado todos tus",
+      "days_title": "Día %{days}",
+      "milestone": "¡Hito!",
+      "milestone_passed": "Has pasado un",
+      "milestones": "¡hitos!"
+    },
     "streak": {
       "accessibility": {
         "streak_completed": "%{header} %{ribbonLabel} ha sido recolectado, comienza tu próxima racha en %{time}",
