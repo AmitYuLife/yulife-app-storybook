@@ -13,10 +13,8 @@ import { questFTUEButton } from "./_resources/fixtures";
 Feature("As a user I can take a challenge", async () => {
   Scenario("I can take a challenge and cancel it", scenario.start, async () => {
     Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_1, data.AUTH_1), async () => {
-      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
-        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-        Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
-      });
+      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+      Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
       Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
@@ -46,11 +44,9 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0)));
     });
     When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
-      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
-        When("I tap the first level button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-          When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
-            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
-          });
+      When("I tap the first level button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+        When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+          Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
         });
       });
     });
@@ -69,10 +65,8 @@ Feature("As a user I can take a challenge", async () => {
 
   Scenario("I can fail a challenge", scenario.start, async () => {
     Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_1, data.AUTH_1), async () => {
-      When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
-        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-        Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
-      });
+      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+      Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
       When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
@@ -181,9 +175,7 @@ Feature("As a user I can take a challenge", async () => {
     });
     When("I tap Got it", when.tapText(t("Got it!"), 2000), async () => {
       When("I tap Take a challenge (1 left)", when.tapText(t(`Take a challenge (%{amount} left)`, { amount: 1 }), 2000), async () => {
-        When("I tap to close the quest map onboarding modal", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE, 2000), async () => {
-          Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
-        });
+        Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
       });
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {

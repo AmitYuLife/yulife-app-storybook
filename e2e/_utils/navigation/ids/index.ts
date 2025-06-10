@@ -662,7 +662,6 @@ export const HINT_LABEL = (label: string) => `HINT_LABEL_${label}`;
 export const HINT_VARIANT_IMAGE = (uri?: string) =>
   uri ? `HINT_VARIANT_IMAGE_${uri}` : "HINT_VARIANT_IMAGE_NONE";
 export const QUEST_MODAL_MAYBE_LATER = "quest-detail-modal-dismiss-button-text-view";
-export const QUEST_MAP_ONBOARDING_CLOSE = "quest-map-onboarding-close-button";
 export const LOCKED_QUEST_LEVEL_CTA = "quest-detail-modal-cta-button";
 
 // MEDITOPIA
