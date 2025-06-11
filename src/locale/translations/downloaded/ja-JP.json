@@ -1290,6 +1290,10 @@
       "error_title": "エラーが発生しました",
       "heading": "アカウントの認証を完了してください。",
       "login_with_password": "パスワードでログインしてください。",
+      "no_email_app_installed": {
+        "message": "メール アプリが認識されない場合は、手動で開いてみてください。",
+        "title": "メール アプリ が インストール されていません"
+      },
       "open_email": "メール アプリを開く",
       "resend_link": "届いていない場合は、新しいリンクを送信できます。",
       "webview_title": "離陸の準備中..."
