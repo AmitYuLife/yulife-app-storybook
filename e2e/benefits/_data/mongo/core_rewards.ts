@@ -471,7 +471,7 @@ export const CORE_REWARDS_URBAN_GHI_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "649bd68bf4e68234f8dd9f3b",
+    _id: generateRandomMongoId(),
     loyaltyProgramme: [],
     restrictions: {
       availableForLabels: ["649bd68bf4e68234f8dd9f3b_tease", "649bd68bf4e68234f8dd9f3b_claimable"],
@@ -588,12 +588,6 @@ export const CORE_REWARDS_URBAN_GHI_REWARDS = {
         "ja-JP": "リラックスするに値する！",
       },
     },
-    createdAt: {
-      $date: "2023-06-28T06:43:23.794Z",
-    },
-    updatedAt: {
-      $date: "2023-08-15T00:33:50.560Z",
-    },
     __v: 0,
   },
 } as IDatabaseItem;
@@ -602,7 +596,7 @@ export const CORE_REWARDS_BOOTS_GHI_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "64c8f5a1d4e9db6e99f5248f",
+    _id: generateRandomMongoId(),
     loyaltyProgramme: [],
     restrictions: {
       availableForLabels: ["64c8f5a1d4e9db6e99f5248f_tease", "64c8f5a1d4e9db6e99f5248f_claimable"],
@@ -727,12 +721,6 @@ export const CORE_REWARDS_BOOTS_GHI_REWARDS = {
         "ja-JP": "報酬を請求する",
       },
     },
-    createdAt: {
-      $date: "2023-08-01T12:08:01.850Z",
-    },
-    updatedAt: {
-      $date: "2023-08-15T00:33:50.492Z",
-    },
     __v: 0,
     redemptionUrl: "https://www.boots.com/",
   },
@@ -742,7 +730,7 @@ export const CORE_REWARDS_YORK_GHI_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "64c38f7ecb39c9d50a3c14ef",
+    _id: generateRandomMongoId(),
     loyaltyProgramme: [],
     restrictions: {
       availableForLabels: ["64c38f7ecb39c9d50a3c14ef_tease", "64c38f7ecb39c9d50a3c14ef_claimable"],
@@ -821,12 +809,6 @@ export const CORE_REWARDS_YORK_GHI_REWARDS = {
         availableForRewardsStore: true,
       },
     ],
-    createdAt: {
-      $date: "2023-07-28T09:50:54.885Z",
-    },
-    updatedAt: {
-      $date: "2023-08-15T00:33:50.657Z",
-    },
     __v: 0,
     copy: {
       offerHeading: {
@@ -858,7 +840,7 @@ export const CORE_REWARDS_BUPA_GHI_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "64a403a408975d03a0aa63ff",
+    _id: generateRandomMongoId(),
     loyaltyProgramme: [],
     restrictions: {
       availableForLabels: ["64a403a408975d03a0aa63ff_tease", "64a403a408975d03a0aa63ff_claimable"],
@@ -949,12 +931,6 @@ export const CORE_REWARDS_BUPA_GHI_REWARDS = {
         availableForRewardsStore: true,
       },
     ],
-    createdAt: {
-      $date: "2023-07-04T11:33:56.976Z",
-    },
-    updatedAt: {
-      $date: "2023-08-15T00:33:50.544Z",
-    },
     __v: 0,
     copy: {
       ctaLabel: {
@@ -1000,7 +976,7 @@ export const CORE_REWARDS_LIVING_DNA_GHI_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "64ad4e2d87cea9cd5185cd8f",
+    _id: generateRandomMongoId(),
     loyaltyProgramme: [],
     restrictions: {
       availableForLabels: ["64ad4e2d87cea9cd5185cd8f_tease", "64ad4e2d87cea9cd5185cd8f_claimable"],
@@ -1083,12 +1059,6 @@ export const CORE_REWARDS_LIVING_DNA_GHI_REWARDS = {
         availableForRewardsStore: true,
       },
     ],
-    createdAt: {
-      $date: "2023-07-11T12:42:21.228Z",
-    },
-    updatedAt: {
-      $date: "2023-08-15T00:33:50.547Z",
-    },
     __v: 0,
     copy: {
       offerHeading: {
@@ -1127,7 +1097,7 @@ export const CORE_REWARDS_GARMIN_GHI_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "64bf87537b74ab1ef759eece",
+    _id: generateRandomMongoId(),
     loyaltyProgramme: [],
     restrictions: {
       availableForLabels: ["64bf87537b74ab1ef759eece_tease", "64bf87537b74ab1ef759eece_claimable"],
@@ -1208,12 +1178,6 @@ export const CORE_REWARDS_GARMIN_GHI_REWARDS = {
         availableForRewardsStore: true,
       },
     ],
-    createdAt: {
-      $date: "2023-07-25T08:26:59.950Z",
-    },
-    updatedAt: {
-      $date: "2023-08-15T00:33:50.513Z",
-    },
     __v: 0,
     copy: {
       offerSubheading: {
@@ -1263,7 +1227,7 @@ export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "64b7b195a85859af773442e4",
+    _id: generateRandomMongoId(),
     loyaltyProgramme: [],
     restrictions: {
       availableForLabels: ["64b7b195a85859af773442e4_tease", "64b7b195a85859af773442e4_claimable"],
@@ -1371,12 +1335,6 @@ export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
         availableForRewardsStore: true,
       },
     ],
-    createdAt: {
-      $date: "2023-07-19T09:49:09.868Z",
-    },
-    updatedAt: {
-      $date: "2023-09-22T00:33:50.641Z",
-    },
     __v: 0,
     denominationUnit: {
       "en-GB": "Thriva Testing kit",
@@ -1426,7 +1384,7 @@ export const CORE_REWARDS_GOSH_GHI_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "6512f45770c344f66a694f54",
+    _id: generateRandomMongoId(),
     loyaltyProgramme: [],
     restrictions: {
       availableForLabels: ["alternativeClaim"],
@@ -1507,12 +1465,6 @@ export const CORE_REWARDS_GOSH_GHI_REWARDS = {
           "Su donación ayudará a prestar apoyo a los niños gravemente enfermos y a sus familias, ofreciéndoles la mejor oportunidad de desarrollar todo su potencial. Para saber más sobre el trabajo de GOSH y cómo su donación marcará la diferencia, haga clic [aquí](https://www.gosh.org/what-we-do/).",
       },
     },
-    createdAt: {
-      $date: "2023-09-26T15:10:15.997Z",
-    },
-    updatedAt: {
-      $date: "2023-10-17T05:37:05.896Z",
-    },
     __v: 0,
     denominationUnit: {
       "en-GB": "£ Donation to GOSH",
@@ -1528,7 +1480,7 @@ export const CORE_REWARDS_ORDO_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "6572cb3f8f7531b2fa7962db",
+    _id: generateRandomMongoId(),
     code: "ordo-discounts",
     rewardProviderId: "link",
     loyaltyProgramme: [],
@@ -1613,12 +1565,6 @@ export const CORE_REWARDS_ORDO_REWARDS = {
       isFeaturedOnWebsite: true,
     },
     claimType: "unlimited",
-    createdAt: {
-      $date: "2023-12-08T07:52:31.197Z",
-    },
-    updatedAt: {
-      $date: "2024-01-04T00:33:50.445Z",
-    },
     __v: 0,
     denominationUnit: {
       "en-GB": "Ordo discount",
@@ -1740,3 +1686,72 @@ export const CORE_REWARDS_AMAZUNG = {
     __v: 0,
   },
 } as IDatabaseItem;
+
+export const CORE_REWARDS_HOBBYCRAFT = {
+  type: "mongo",
+  modelName: "core_rewards",
+  data: {
+    _id: generateRandomMongoId(),
+    code: "hobbycraft",
+    rewardProviderId: "tillo",
+    loyaltyProgramme: [],
+    availableDenominations: [
+      {
+        yuCoin: 1000,
+        value: 10,
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 2500,
+        value: 25,
+        availableForRewardsStore: true,
+        availableForCoupons: true,
+        _id: generateRandomMongoId(),
+      },
+    ],
+    currencyCode: "GBP",
+    images: {
+      listItemImageKey: "imgixGlobal::cms/1739277776211_hobbycraft.jpg",
+      detailHeaderKey: "imgixGlobal::cms/1739277772441_hobbycraft.jpg",
+      websiteImageKey: "",
+      redemptionStepsFooter: "",
+    },
+    name: {
+      _id: generateRandomMongoId(),
+      "en-GB": "Hobbycraft",
+      "ja-JP": "ホビークラフト",
+    },
+    description: {
+      _id: generateRandomMongoId(),
+      "en-GB":
+        "Hobbycraft believe that nothing is as unique, personal or well-received as something that’s been lovingly handmade. With everything from art materials, craft kits, cookware and baking supplies, paper craft, knitting, stitching and haberdashery to ready-to-make jewellery and so much more, this reward is perfect for crafting lovers of all ages.",
+      "ja-JP":
+        "ホビークラフトは、愛情を込めて手作りされたものほど、ユニークで、個性的で、評判の良いものはないと信じています。画材、クラフトキット、調理器具、お菓子作り用品、ペーパークラフト、編み物、ステッチ、手芸用品から、すぐに作れるジュエリーまで、あらゆるものを取り揃えています。",
+    },
+    redemptionSteps: {
+      info: {
+        _id: generateRandomMongoId(),
+        "en-GB": "Online, In-store",
+        "ja-JP": "オンライン, 店頭",
+      },
+      steps: [],
+    },
+    termsAndConditionsUrl: "https://www.hobbycraft.co.uk/giftcards",
+    restrictions: {
+      availableForLabels: [],
+      restrictedForLabels: [],
+      locations: ["GB"],
+      level: 3,
+    },
+    tags: [],
+    website: {
+      isFeaturedOnWebsite: true,
+    },
+    claimType: "unlimited",
+    __v: 0,
+    archived: false,
+    sortOrder: 1.1,
+  },
+};

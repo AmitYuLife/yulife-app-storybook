@@ -212,4 +212,27 @@ Feature("Rewards should act correctly", async () => {
       });
     });
   });
+
+  Scenario("I can login and see the Tillo rewards store item for Hobbycraft", scenario.start, async () => {
+    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_131.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see that I have access to the rewards store", then.rewardsLocationModalVisible());
+    });
+    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+      Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5200)));
+      Then("I should see the 'Hobbycraft' reward from Tillo", then.rewardVisible(data.CORE_REWARDS_HOBBYCRAFT));
+    });
+    When("I click on the 'Hobbycraft' card", when.tapRewardInList(data.CORE_REWARDS_HOBBYCRAFT), async () => {
+      Then("I should see the 'Hobbycraft' reward page", then.onRewardScreen(data.CORE_REWARDS_HOBBYCRAFT));
+    });
+    When("I click on the 'Buy voucher with YuCoin' button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin", false)), async () => {
+      Then("I should see the denominations modal", then.denominationListVisible(data.CORE_REWARDS_HOBBYCRAFT, 5200));
+    });
+    When("I click on '£25 - 2,500 YuCoin' ", when.tapID(ids.TEXT_TEMPLATE("£25 - 2,500 YuCoin", undefined)), async () => {
+      Then("I should see the confirm modal", then.textVisible("Confirm purchase"));
+    });
+    When("I tap 'Confirm'", when.tapText("Confirm"), async () => {
+      Then("I should be on the purchase screen", then.onRewardPurchasedScreen(data.CORE_REWARDS_HOBBYCRAFT));
+      Then("I should see my updated YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(2700)));
+    });
+  });
 });
