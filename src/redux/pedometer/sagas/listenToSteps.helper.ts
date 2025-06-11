@@ -88,7 +88,7 @@ export default function* listenToSteps() {
       if (
         debugToolsEnabled &&
         activeLevel.challengeIsActive &&
-        activeLevel.yuHealth.dataType.includes(HealthDataType.steps)
+        activeLevel.yuHealth?.dataType?.includes(HealthDataType.steps)
       ) {
         yield put(updatePedometerForDebugSuccessAction(results));
       }
