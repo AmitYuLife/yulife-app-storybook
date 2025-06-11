@@ -12,6 +12,7 @@ export const { scrollFromID, swipeFromText } = navigation.scrolling;
 
 export const { tapMenuItem } = screens.menu;
 
-export const tapChallenge = (challenge: string) => async () => {
+export const tapChallenge = (challenge: string, waitTime?: number) => async () => {
+  await wait(waitTime)();
   await tapText(challenge)();
 };

@@ -301,9 +301,10 @@ Feature("As a user I can get past the login screen", async () => {
     });
   });
 
+  // @update -- Temp skip from nightly runs, test should be checked locally:
   // to get this to work locally you will need members running on port 3006
   // need to find a way to get this to happen on the runners but pushing to be checked locally for now
-  Scenario("A user can onboard through the app", scenario.start, async () => {
+  ScenarioSkip("A user can onboard through the app", scenario.start, async () => {
     When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
       When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_17.data.email), async () => {
         When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
