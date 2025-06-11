@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.66.0] - 2025-06-11
+
+### Features
+
+- Feature LCS-1397: Purge quest map onboarding
+
+### Bugfixes
+
+- Bugfix LCS-1279: Fix Missing Subheading on Yudoku Practice Completed Screen
+- Bugfix LCS-1284: Fix broken login UI for users within multiple regions
+
+### Tasks
+
+- Task: Fix error when doing non-steps challenge with debug tools enabled
+- Task GS-1681: Add graphql endpoint on view-achievement-modal
+- Task LCS-1351, LCS-1396: Improve `openInbox` error handling
+- Task GS-1678: Fetch achievements on yuscreen and inspect screen
+- Task GS-1675: Add graphql endpoint on AchievementsContainer
+- Task GS-1674: Add loading state on achievements screen
+- Task: Fix iOS build
+- Task GS-1673: Add loading state into ChipList component
+- Task GS-1662: Only fetch the achievements if toggle its enabled
+- Task GS-1657: Add categories into MobileGameUserAchievements graphql
+- Task GS-1583: Purge newChallengeList toggle
+- Task GS-1582: Purge disableSudokuAnimations
+- Task: Fix detox nightly build
+- Task ENG-4279: Switch to error method for logging SDUI errors in Mixpanel
+- Task GS-1586: Purge enableResumeInAppMeditation toggle
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox LCS-1007: can see and purchase reward Hobbycraft from the provider Tillo
+- Feat: LCS-997: Horizontal Number Display
+- Detox: Cycling Events
+- ISA-3372: Updated YuScreen Wellbeing Hub Items Display
+- Detox LCS-1183: seeded pulse engagement survey journey from DJB
+- Fix LCS-1252: optional captcha reset
+- Feat: LCS-1274: Update smoking stream celebration modal
+- Detox: Migrate smartPension to Settings
+- Detox LCS-1297: Mood monitor showing correct behaviour for next days check-in
+- Detox: Admin update to customers using ccr's to pass in users data
+- ISA-3362: Inbox Message Seeding Shows In-app Notifications
+- Detox LCS-1181: Hero cards priority order
+
 ## [4.65.0] - 2025-06-04
 
 ### Features
