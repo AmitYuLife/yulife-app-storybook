@@ -516,6 +516,21 @@ export const CPE_139_GHI = {
   },
 } as IDatabaseItem;
 
+export const CPE_139_REWARD_PASS = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "YUCPID0000011438",
+    customer_id: customer.CUSTOMER_139.data.customerId,
+    earn_rate: 0,
+    product_variant_id: "YuLife_RewardPass_01_01",
+    archived: false,
+    taken_up: true,
+    start_date: moment().format("YYYY-MM-DD"),
+    business_employee_id: employee.BUSINESS_EMPLOYEE_139.data.business_employee_id,
+  },
+} as IDatabaseItem;
+
 export const CPE_MAXIMISE_YU = {
   type,
   modelName,
