@@ -23,6 +23,7 @@ import {
   fiitWellbeingItem,
 } from "./_resources/fixtures";
 import { yuscreenImages } from "@images";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("I am able to use the yuscreen v5", async () => {
   Scenario("User can log in, User should see everything on the V5 YuScreen as nothing has been toggled off", scenario.start, async () => {
@@ -244,6 +245,7 @@ Feature("I am able to use the yuscreen v5", async () => {
         Then("I should see Life insurance", then.productCardVisible(lifeInsuranceProductItem));
         Then("I should see Critical illness insurance", then.productCardVisible(criticalIllnessProductItem));
         Then("I should see Pension", then.productCardVisible(pensionUnlinkedProductItem));
+        Then("I should not see the reward pass product", then.textNotVisible("Reward Pass Product"));
       });
     });
     When("I swipe back to the first product", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life insurance"), "right", "fast"), async () => {
