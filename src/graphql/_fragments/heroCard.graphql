@@ -4,11 +4,18 @@ fragment HeroCard on HeroCard {
     text
     icon
   }
+  theme {
+    backgroundColor
+    borderColor
+    fontColor
+    boldTextColor
+  }
   header {
     heading
     image {
       ...RemoteImage
     }
+    subheadingMargin
     subheading {
       text
       icon
@@ -28,7 +35,10 @@ fragment HeroCard on HeroCard {
         state
       }
     }
-    image
+    scaleRightImage
+    rightImage {
+      ...VariableRemoteImage
+    }
     backgroundImage {
       ...RemoteImage
     }

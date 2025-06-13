@@ -1,8 +1,9 @@
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { memo } from "react";
-import { Image, TextTemplate } from "@atoms";
+import { Image } from "@atoms";
 import { HeroCardFooter as HeroCardFooterProps } from "@utils/heroCards";
 import { Style } from "@styles";
+import Markdown from "@components/molecules/markdown/markdown";
 
 const HeroCardFooter = ({ left, right, fontColor }: HeroCardFooterProps) => {
   return (
@@ -17,11 +18,7 @@ const HeroCardFooter = ({ left, right, fontColor }: HeroCardFooterProps) => {
               suppressLoadingUi={true}
             />
           )}
-          {!left.text ? null : (
-            <TextTemplate type="l2b" color={fontColor}>
-              {left.text}
-            </TextTemplate>
-          )}
+          {!left.text ? null : <Markdown markdownStyles={getMarkdownStyles(fontColor)} text={left.text} />}
         </View>
       )}
       {!right.icon && !right.text ? null : (
@@ -34,11 +31,7 @@ const HeroCardFooter = ({ left, right, fontColor }: HeroCardFooterProps) => {
               suppressLoadingUi={true}
             />
           )}
-          {!right.text ? null : (
-            <TextTemplate type="l2b" color={fontColor}>
-              {right.text}
-            </TextTemplate>
-          )}
+          {!right.text ? null : <Markdown markdownStyles={getMarkdownStyles(fontColor)} text={right.text} />}
         </View>
       )}
     </View>
@@ -46,6 +39,39 @@ const HeroCardFooter = ({ left, right, fontColor }: HeroCardFooterProps) => {
 };
 
 export default memo(HeroCardFooter);
+
+const getMarkdownStyles = (fontColor: string, boldTextColor?: string, fontWeight?: number) => ({
+  paragraph: {
+    paddingTop: Style.adjust(4),
+    paddingBottom: 0,
+  },
+  text: {
+    fontSize: Style.adjust(14),
+    lineHeight: Style.adjust(16),
+    color: fontColor,
+    fontWeight,
+  },
+  imageWrapper: {
+    width: Style.adjust(16),
+  },
+  image: {
+    width: Style.adjust(16),
+    height: Style.adjust(16),
+    bottom: Style.adjust(
+      Platform.select({
+        ios: -6,
+        android: -2,
+      })
+    ),
+  },
+  ...(boldTextColor
+    ? {
+        strong: {
+          color: boldTextColor,
+        },
+      }
+    : {}),
+});
 
 const styles = StyleSheet.create({
   footerWrapper: {

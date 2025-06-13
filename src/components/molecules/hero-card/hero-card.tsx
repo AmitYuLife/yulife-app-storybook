@@ -6,7 +6,7 @@ import { Style } from "@styles";
 import { Box } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { HeroCard as HeroCardProps } from "@utils/heroCards";
-import { BANNER_IMAGE_DIMENSIONS, DEFAULT_THEME, HERO_CARD_PADDING, IMAGE_ASPECT_RATIO } from "./constants";
+import { HERO_CARD_HEIGHT, HERO_CARD_PADDING } from "./constants";
 import { HeroCardBadge, HeroCardBody, HeroCardFooter, HeroCardHeader } from "./subcomponents";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { HERO_CARD_BADGE_HEIGHT } from "@components/molecules/hero-card/subcomponents/hero-card-badge";
@@ -14,6 +14,7 @@ import { Image } from "expo-image";
 
 const HeroCard = ({
   badge,
+  theme,
   header,
   body,
   footer,
@@ -22,25 +23,31 @@ const HeroCard = ({
   onPress,
   width: cardWidth,
 }: HeroCardProps) => {
-  const { backgroundColor, borderColor, fontColor, boldTextColor } = body.backgroundImage
-    ? DEFAULT_THEME
-    : getTheme(currentLevel, yuniversalMap).dailyStepsScreen.eventPanel;
+  const { backgroundColor, borderColor, fontColor, boldTextColor } =
+    theme || getTheme(currentLevel, yuniversalMap).dailyStepsScreen.eventPanel;
 
-  const { width: imageWidth, height: imageHeight } = useMemo(() => {
-    if (body.backgroundImage) {
-      return BANNER_IMAGE_DIMENSIONS;
+  const { width: imageWidth, style: imageStyle } = useMemo(() => {
+    if (!body.rightImage) {
+      return {};
     }
 
-    const width = Math.min(cardWidth - Style.adjust(140), 170);
-    const height = width * IMAGE_ASPECT_RATIO;
+    let width = body.rightImage.width;
+    let height = body.rightImage.height ? Style.adjust(body.rightImage.height) : HERO_CARD_HEIGHT;
+    const image_aspect_ratio = height / Style.adjust(width);
 
-    return { width, height };
-  }, [body.backgroundImage, cardWidth]);
+    if (body.scaleRightImage) {
+      width = Math.min(cardWidth - Style.adjust(140), 170);
+      height = width * image_aspect_ratio;
+    }
 
-  const imageStyle = useMemo(
-    () => [styles.image, { width: imageWidth, height: imageHeight }],
-    [imageHeight, imageWidth]
-  );
+    if (height > HERO_CARD_HEIGHT) {
+      height = HERO_CARD_HEIGHT;
+      width = HERO_CARD_HEIGHT / image_aspect_ratio;
+    }
+
+    const style = [styles.image, { width, height }];
+    return { width, style };
+  }, [body.scaleRightImage, body.rightImage, cardWidth]);
 
   const hasFooter = footer?.left?.text || footer?.right?.text || footer?.left?.icon || footer?.right?.icon;
 
@@ -73,20 +80,20 @@ const HeroCard = ({
           <Box
             br={8}
             borderWidth={1}
-            height={148}
             overflow="hidden"
             style={[
               {
                 backgroundColor,
                 borderColor,
+                height: HERO_CARD_HEIGHT,
               },
             ]}
           >
             <ContainerComponent>
-              {body.image ? (
+              {body.rightImage ? (
                 <Box position="absolute" right={0} bottom={0} br={8}>
                   <Image
-                    source={{ uri: body.image }}
+                    source={body.rightImage.image}
                     style={imageStyle}
                     contentFit="contain"
                     contentPosition="right bottom"
@@ -98,7 +105,7 @@ const HeroCard = ({
                   {...header}
                   fontColor={fontColor}
                   boldTextColor={boldTextColor}
-                  textWidth={body.image ? cardWidth - imageWidth : cardWidth}
+                  textWidth={body.rightImage ? cardWidth - imageWidth : cardWidth}
                 />
               ) : null}
               {body ? <HeroCardBody {...body} cardWidth={cardWidth} cardPadding={HERO_CARD_PADDING} /> : null}

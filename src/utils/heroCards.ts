@@ -16,6 +16,7 @@ export enum HeroCardHeaderButtonState {
 export type HeroCardHeader = {
   heading: string;
   image?: { uri?: string };
+  subheadingMargin?: number;
   subheading?: { text?: string; icon?: string }[];
   button?: { text?: string; icon?: string; state: HeroCardHeaderButtonState; onPress?: () => void };
   fontColor?: string;
@@ -32,6 +33,13 @@ export enum HeroCardProgressMilestoneState {
   Emphasized = "EMPHASIZED",
 }
 
+export type HeroCardTheme = {
+  backgroundColor: string;
+  borderColor: string;
+  fontColor: string;
+  boldTextColor: string;
+};
+
 export type HeroCardBody = {
   progress?: {
     currentProgress: number;
@@ -42,7 +50,12 @@ export type HeroCardBody = {
     }[];
   };
   progressWidth?: number;
-  image?: string;
+  scaleRightImage?: boolean;
+  rightImage?: {
+    image: { uri?: string };
+    width: number;
+    height?: number;
+  };
   backgroundImage?: { uri?: string };
   cardWidth?: number;
   cardPadding?: number;
@@ -63,6 +76,7 @@ export type HeroCardFooter = {
 export type HeroCard = {
   id: string;
   badge?: HeroCardBadge;
+  theme?: HeroCardTheme;
   header?: HeroCardHeader;
   body?: HeroCardBody;
   footer?: HeroCardFooter;
@@ -102,8 +116,10 @@ export function mapHeroCard(item: GqlHeroCard): HeroCard {
       icon: item.badge?.icon,
       text: item.badge?.text,
     },
+    theme: item?.theme,
     header: {
       heading: item.header?.heading,
+      subheadingMargin: item.header?.subheadingMargin,
       subheading: item.header?.subheading,
       image: item.header?.image,
       button: {
@@ -121,7 +137,8 @@ export function mapHeroCard(item: GqlHeroCard): HeroCard {
           state: castMilestoneState(milestone.state),
         })),
       },
-      image: item.body?.image,
+      scaleRightImage: item.body?.scaleRightImage,
+      rightImage: item.body?.rightImage,
       backgroundImage: item.body?.backgroundImage,
     },
     onPress: item.onPress,

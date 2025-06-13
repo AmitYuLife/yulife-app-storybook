@@ -240,7 +240,7 @@ const RewardMilestone = memo(
       circleHorizontalOffset,
     } = progressBarValues;
 
-    const activeStarColor = milestoneMet ? Colours.forest.fp103 : Colours.neutral.n400;
+    const activeStarColor = milestoneMet ? Colours.forest.fp103 : Colours.neutral.n900;
 
     const checkColor = isDisabled ? Colours.neutral.n700 : Colours.neutral.white;
     const barColor = isDisabled ? Colours.neutral.n200 : Colours.primary.p400;
