@@ -4908,6 +4908,7 @@ export type HeroCard = {
   header: HeroCardHeader;
   id: Scalars["String"]["output"];
   onPress: SduiAction;
+  theme?: Maybe<HeroCardTheme>;
   type: HeroCardType;
 };
 
@@ -4927,8 +4928,11 @@ export type HeroCardBadge = {
 export type HeroCardBody = {
   __typename?: "HeroCardBody";
   backgroundImage?: Maybe<RemoteImage>;
+  /** @deprecated use rightImage for app version >=4.66.0 */
   image?: Maybe<Scalars["String"]["output"]>;
   progress?: Maybe<HeroCardProgress>;
+  rightImage?: Maybe<VariableRemoteImage>;
+  scaleRightImage?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type HeroCardFooter = {
@@ -4943,6 +4947,7 @@ export type HeroCardHeader = {
   heading: Scalars["String"]["output"];
   image?: Maybe<RemoteImage>;
   subheading?: Maybe<Array<HeroCardTextWithIcon>>;
+  subheadingMargin?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type HeroCardHeaderButton = {
@@ -5004,6 +5009,14 @@ export type HeroCardTextWithIcon = {
   __typename?: "HeroCardTextWithIcon";
   icon?: Maybe<Scalars["String"]["output"]>;
   text?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type HeroCardTheme = {
+  __typename?: "HeroCardTheme";
+  backgroundColor: Scalars["String"]["output"];
+  boldTextColor: Scalars["String"]["output"];
+  borderColor: Scalars["String"]["output"];
+  fontColor: Scalars["String"]["output"];
 };
 
 export enum HeroCardType {
@@ -20254,9 +20267,17 @@ export type HeroCardFragment = {
   __typename?: "HeroCard";
   id: string;
   badge?: { __typename?: "HeroCardBadge"; text?: string | null; icon?: string | null } | null;
+  theme?: {
+    __typename?: "HeroCardTheme";
+    backgroundColor: string;
+    borderColor: string;
+    fontColor: string;
+    boldTextColor: string;
+  } | null;
   header: {
     __typename?: "HeroCardHeader";
     heading: string;
+    subheadingMargin?: number | null;
     image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
     button?: {
@@ -20268,7 +20289,7 @@ export type HeroCardFragment = {
   };
   body?: {
     __typename?: "HeroCardBody";
-    image?: string | null;
+    scaleRightImage?: boolean | null;
     progress?: {
       __typename?: "HeroCardProgress";
       currentProgress: number;
@@ -20278,6 +20299,12 @@ export type HeroCardFragment = {
         progress: number;
         state: HeroCardProgressMilestoneState;
       }> | null;
+    } | null;
+    rightImage?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null;
     backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   } | null;
@@ -24856,9 +24883,17 @@ export type GetMobileHeroCardsQuery = {
     __typename?: "HeroCard";
     id: string;
     badge?: { __typename?: "HeroCardBadge"; text?: string | null; icon?: string | null } | null;
+    theme?: {
+      __typename?: "HeroCardTheme";
+      backgroundColor: string;
+      borderColor: string;
+      fontColor: string;
+      boldTextColor: string;
+    } | null;
     header: {
       __typename?: "HeroCardHeader";
       heading: string;
+      subheadingMargin?: number | null;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
       button?: {
@@ -24870,7 +24905,7 @@ export type GetMobileHeroCardsQuery = {
     };
     body?: {
       __typename?: "HeroCardBody";
-      image?: string | null;
+      scaleRightImage?: boolean | null;
       progress?: {
         __typename?: "HeroCardProgress";
         currentProgress: number;
@@ -24880,6 +24915,12 @@ export type GetMobileHeroCardsQuery = {
           progress: number;
           state: HeroCardProgressMilestoneState;
         }> | null;
+      } | null;
+      rightImage?: {
+        __typename?: "VariableRemoteImage";
+        width: number;
+        height?: number | null;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       } | null;
       backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null;
@@ -39678,9 +39719,17 @@ export type GetUserProfileQuery = {
       __typename?: "HeroCard";
       id: string;
       badge?: { __typename?: "HeroCardBadge"; text?: string | null; icon?: string | null } | null;
+      theme?: {
+        __typename?: "HeroCardTheme";
+        backgroundColor: string;
+        borderColor: string;
+        fontColor: string;
+        boldTextColor: string;
+      } | null;
       header: {
         __typename?: "HeroCardHeader";
         heading: string;
+        subheadingMargin?: number | null;
         image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
         subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
         button?: {
@@ -39692,7 +39741,7 @@ export type GetUserProfileQuery = {
       };
       body?: {
         __typename?: "HeroCardBody";
-        image?: string | null;
+        scaleRightImage?: boolean | null;
         progress?: {
           __typename?: "HeroCardProgress";
           currentProgress: number;
@@ -39702,6 +39751,12 @@ export type GetUserProfileQuery = {
             progress: number;
             state: HeroCardProgressMilestoneState;
           }> | null;
+        } | null;
+        rightImage?: {
+          __typename?: "VariableRemoteImage";
+          width: number;
+          height?: number | null;
+          image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
         } | null;
         backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       } | null;
@@ -63421,6 +63476,19 @@ export const HeroCardFragmentDoc = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "theme" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+                { kind: "Field", name: { kind: "Name", value: "fontColor" } },
+                { kind: "Field", name: { kind: "Name", value: "boldTextColor" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "header" },
             selectionSet: {
               kind: "SelectionSet",
@@ -63434,6 +63502,7 @@ export const HeroCardFragmentDoc = {
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "subheadingMargin" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },
@@ -63488,7 +63557,15 @@ export const HeroCardFragmentDoc = {
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "image" } },
+                { kind: "Field", name: { kind: "Name", value: "scaleRightImage" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "rightImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "backgroundImage" },
@@ -63562,6 +63639,26 @@ export const HeroCardFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
         ],
       },
     },
@@ -81834,6 +81931,26 @@ export const GetMobileHeroCardsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiAction" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
       selectionSet: {
@@ -81865,6 +81982,19 @@ export const GetMobileHeroCardsDocument = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "theme" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+                { kind: "Field", name: { kind: "Name", value: "fontColor" } },
+                { kind: "Field", name: { kind: "Name", value: "boldTextColor" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "header" },
             selectionSet: {
               kind: "SelectionSet",
@@ -81878,6 +82008,7 @@ export const GetMobileHeroCardsDocument = {
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "subheadingMargin" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },
@@ -81932,7 +82063,15 @@ export const GetMobileHeroCardsDocument = {
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "image" } },
+                { kind: "Field", name: { kind: "Name", value: "scaleRightImage" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "rightImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "backgroundImage" },
@@ -102068,6 +102207,26 @@ export const GetUserProfileDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemLottie" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLottie" } },
       selectionSet: {
@@ -102158,6 +102317,19 @@ export const GetUserProfileDocument = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "theme" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+                { kind: "Field", name: { kind: "Name", value: "fontColor" } },
+                { kind: "Field", name: { kind: "Name", value: "boldTextColor" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "header" },
             selectionSet: {
               kind: "SelectionSet",
@@ -102171,6 +102343,7 @@ export const GetUserProfileDocument = {
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "subheadingMargin" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },
@@ -102225,7 +102398,15 @@ export const GetUserProfileDocument = {
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "image" } },
+                { kind: "Field", name: { kind: "Name", value: "scaleRightImage" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "rightImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "backgroundImage" },

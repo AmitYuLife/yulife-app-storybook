@@ -11,11 +11,6 @@ import HeroCard from "./hero-card";
 import { CARD_WIDTH, INITIAL_PADDING, SNAP_TO_INTERVAL } from "./constants";
 import { HERO_CARD_BADGE_HEIGHT } from "@components/molecules/hero-card/subcomponents/hero-card-badge";
 
-enum HeroCardType {
-  event = "event",
-  healthPermission = "healthPermission",
-}
-
 const HeroCards = ({
   heroCards,
   healthPermissions,
@@ -27,8 +22,8 @@ const HeroCards = ({
   const { yuniversalMap } = useSelector(getYuniversalProgress);
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<HeroCardProps & { type?: HeroCardType }>) => {
-      if (item.type === HeroCardType.healthPermission) {
+    ({ item }: ListRenderItemInfo<HeroCardProps>) => {
+      if (item.id === "healthPermission") {
         return (
           <Box pt={HERO_CARD_BADGE_HEIGHT / 2} mh={-8}>
             <HealthPermissionPanel {...healthPermissions} width={SNAP_TO_INTERVAL} />
@@ -41,12 +36,12 @@ const HeroCards = ({
     [currentLevel, yuniversalMap, healthPermissions]
   );
 
-  const keyExtractor = useCallback((item: HeroCardProps & { type?: HeroCardType }, index: number) => {
-    return item.id ?? item.type ?? index.toString();
+  const keyExtractor = useCallback((item: HeroCardProps, index: number) => {
+    return item.id ?? index.toString();
   }, []);
 
   const data = useMemo(
-    () => [...(healthPermissions ? [{ type: HeroCardType.healthPermission }] : []), ...heroCards],
+    () => [...(healthPermissions ? [{ id: "healthPermission" }] : []), ...heroCards],
     [heroCards, healthPermissions]
   );
 

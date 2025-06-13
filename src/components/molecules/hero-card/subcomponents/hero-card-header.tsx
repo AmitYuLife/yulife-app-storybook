@@ -29,6 +29,7 @@ const Subheading = ({
       <Markdown
         text={text}
         markdownStyles={getMarkdownStyles(fontColor, boldTextColor, fontWeight)}
+        containerStyle={styles.markdownContainer}
         testID={EVENT_DESCRIPTION(text, fontColor)}
       />
     </Box>
@@ -37,11 +38,14 @@ const Subheading = ({
 
 const HeroCardBannerHeader = ({
   image,
+  subheadingMargin,
   subheading,
   fontColor,
   boldTextColor,
   textWidth,
 }: HeroCardHeaderProps & { fontColor: string; boldTextColor?: string; textWidth: number }) => {
+  const subheadingMarginTop = subheadingMargin ?? 8;
+
   return (
     <>
       <Box
@@ -74,7 +78,15 @@ const HeroCardBannerHeader = ({
           resizeMode="contain"
         />
       </Box>
-      <Box flex={1} flexDirection="row" alignItems="flex-start" gap={8} pt={8} pl={4} style={{ width: textWidth }}>
+      <Box
+        flex={1}
+        flexDirection="row"
+        alignItems="flex-start"
+        gap={8}
+        mt={subheadingMarginTop}
+        pl={4}
+        style={{ width: textWidth }}
+      >
         {subheading?.map(({ text, icon }, index) => (
           <Subheading
             key={index}
@@ -98,16 +110,16 @@ const HeroCardHeader = (
     return <HeroCardBannerHeader {...props} />;
   }
 
-  const { heading, subheading, button, fontColor, boldTextColor, textWidth } = props;
+  const { heading, subheadingMargin, subheading, button, fontColor, boldTextColor, textWidth } = props;
 
   const showCaret = !button?.text && !button?.icon;
-  const subheadingMarginTop = showCaret ? 8 : 4;
+  const subheadingMarginTop = subheadingMargin ?? 4;
 
   return (
     <>
       <Box flexDirection="row" justifyContent="space-between" gap={8} style={styles.headingWrapper}>
         <Box flexGrow={1} maxWidth={Style.DEVICE_WIDTH - Style.adjust(180)}>
-          <TextTemplate numberOfLines={1} type="b2b" color={fontColor} testID={EVENT_HEADING(heading, fontColor)}>
+          <TextTemplate numberOfLines={1} type="b1b" color={fontColor} testID={EVENT_HEADING(heading, fontColor)}>
             {heading}
           </TextTemplate>
         </Box>
@@ -238,5 +250,8 @@ const styles = StyleSheet.create({
   headingNegativeMargins: {
     marginLeft: -HERO_CARD_PADDING,
     marginTop: -HERO_CARD_PADDING,
+  },
+  markdownContainer: {
+    flex: 1,
   },
 });

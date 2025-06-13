@@ -97,8 +97,14 @@ type Story = StoryObj<typeof HeroCard>;
 const journeyArgs: Meta<typeof HeroCard>["args"] = {
   badge: undefined,
   body: {
-    image:
-      "https://yulife-local.imgix.net/illustrations/health-questionnaire-panel-2024-04-05-1.svg?ixlib=js-3.2.1&w=411&h=231&s=b6f95ef6e62017ca68619e922a6d9ae9",
+    scaleRightImage: true,
+    rightImage: {
+      image: {
+        uri: "https://yulife-local.imgix.net/illustrations/health-questionnaire-panel-2024-04-05-1.svg?ixlib=js-3.2.1&w=411&h=231&s=b6f95ef6e62017ca68619e922a6d9ae9",
+      },
+      width: 170,
+      height: 96,
+    },
   },
   header: {
     heading: "Journey",
