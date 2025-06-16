@@ -2,8 +2,12 @@ import {
   generateRandomMongoId,
   IDatabaseItem,
   generateRandomInbox,
+  createCustomerRecords,
+  generateRandomPostgresId,
 } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
+
+import { BUSINESS_ACCOUNT_1 } from "./business";
 
 const type = "postgres";
 const modelName = "customer";
@@ -415,3 +419,84 @@ export const CUSTOMER_141 = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_142 = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  customerCoreSettings: [
+    {
+      domain: "game.yuScreen",
+      settings: {
+        maximiseYu: {
+          displayScrollItems: false,
+          displayProgress: true,
+        },
+      },
+    },
+  ],
+});
+
+export const CUSTOMER_143 = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  customerCoreSettings: [
+    {
+      domain: "game.yuScreen",
+      settings: {
+        maximiseYu: {
+          displayScrollItems: true,
+          displayProgress: false,
+        },
+      },
+    },
+  ],
+});
+
+export const CUSTOMER_144 = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  customerCoreSettings: [
+    {
+      domain: "game.yuScreen",
+      settings: {
+        maximiseYu: {
+          displayScrollItems: false,
+          displayProgress: false,
+        },
+      },
+    },
+  ],
+});

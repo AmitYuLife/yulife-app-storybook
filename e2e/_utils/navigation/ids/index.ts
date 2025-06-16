@@ -828,6 +828,9 @@ export const MAXIMISE_TODAYS_EARNINGS = (current: number, max: number) =>
   `MAXIMISE_TODAYS_EARNINGS_${current}_${max}`;
 export const NUDGE_ITEM_IMAGE = (uri: string) => `NUDGE_ITEM_IMAGE_${uri}`;
 export const DONE_NUDGE_ICON = (text: string) => `DONE_NUDGE_ICON_${text}`;
+export const MAXIMISE_YU_COMPONENT = "MAXIMISE_YU_COMPONENT";
+export const MAXIMISE_YU = (showProgress: boolean, showItems: boolean) =>
+  `MAXIMISE_YU_progress_bar_${showProgress}_nudge_${showItems}`;
 
 // Smoking
 export const YUSCREEN_SMOKING_TILE = "YUSCREEN_SMOKING_TILE";
