@@ -97,7 +97,7 @@ sudo xcodebuild -license
 If you’re revisiting the project after a while and encountering issues, it’s a good idea to run the following command:
 
 ```su
-yarn upgrade
+yarn update
 ```
 
 This ensures that all dependencies are updated, installed, or removed as needed for the project to run smoothly.
