@@ -16,6 +16,7 @@ import GoldenSheenAnimation from "./golden-sheen-animation";
 import { Box } from "@atoms";
 import { BorderOpacityAnimation, StarOpacityAnimation } from "./animation";
 import { TOTAL_ANIMATION_DURATION } from "./animation/animation-constants";
+import { MAXIMISE_YU_COMPONENT, MAXIMISE_YU } from "@ids";
 
 export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximiseYuSection) => {
   const [showTransitionAnimation, setShowTransitionAnimation] = useState(false);
@@ -79,7 +80,7 @@ export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximi
   }
 
   return (
-    <Box key={sectionInstanceId}>
+    <Box key={sectionInstanceId} testID={MAXIMISE_YU_COMPONENT}>
       {showTransitionAnimation ? <BorderOpacityAnimation /> : null}
       <Box pb={12} pt={12}>
         {showTransitionAnimation ? <StarOpacityAnimation /> : null}
@@ -92,6 +93,7 @@ export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximi
           borderColor={showAnimation ? Colours.yellow.y100 : Colours.neutral.n150}
           overflow="hidden"
           bg={Colours.neutral.white}
+          testID={MAXIMISE_YU(showProgress, showItems)}
         >
           {showPersistentAnimation ? <GoldenSheenAnimation /> : null}
           {showProgress ? <TodayEarnings animate={showTransitionAnimation} progress={progress} /> : null}

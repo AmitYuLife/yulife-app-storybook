@@ -349,4 +349,22 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should not see the 'MetLyfe GP25' item", then.idNotVisible(ids.TEXT_TEMPLATE(metLyfeGPWellbeingItem.title)));
     });
   });
+
+  Scenario("As a user with displayScrollItems: false and displayProgress: true, the Maximise yu nudge should not be visible to me", scenario.start, async () => {
+    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_142.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see the progress bar but not the nudge", then.idVisible(ids.MAXIMISE_YU(true, false)));
+    });
+  });
+
+  Scenario("As a user with displayScrollItems: true and displayProgress: false, The Maximise yu progress bar should not be visible to me", scenario.start, async () => {
+    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_143.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see the progress is not visinle but the nudge is", then.idVisible(ids.MAXIMISE_YU(false, true)));
+    });
+  });
+
+  Scenario("As a user with displayScrollItems: false and displayProgress: false, I should not see the Maximise yu nudge or the progress bar", scenario.start, async () => {
+    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_144.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see the progress is not visinle but the nudge is", then.idNotVisible(ids.MAXIMISE_YU_COMPONENT));
+    });
+  });
 });
