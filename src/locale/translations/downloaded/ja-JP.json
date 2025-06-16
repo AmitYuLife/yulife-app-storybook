@@ -408,7 +408,7 @@
       "open_chest": "ボックスを開く",
       "select_one": "続行するには1つ選択してください",
       "title": "新アイテムを獲得しました",
-      "won_reward": "%{reward} を獲得しました！"
+      "won_reward": "%{reward}を獲得しました!"
     },
     "push_notifications": {
       "from_challenge": {
@@ -1274,7 +1274,7 @@
         "hide_keyboard": "キーボードを非表示にする"
       },
       "cta_label": "ログイン",
-      "disclaimer": "続行することで、当社の\n[プライバシーポリシー](%{privacyPolicyLink})および[エンドユーザーライセンス契約](%{eulaLink})に同意したことになります。",
+      "disclaimer": "続行することで、当社の[プライバシーポリシー](%{privacyPolicyLink})および[エンドユーザーライセンス契約](%{eulaLink})に同意したことになります。",
       "heading": "Welcome!",
       "help": "ログインにお困りですか?",
       "server_location": {
@@ -1291,12 +1291,12 @@
       "heading": "アカウントの認証を完了してください。",
       "login_with_password": "パスワードでログインしてください。",
       "no_email_app_installed": {
-        "message": "メール アプリが認識されない場合は、手動で開いてみてください。",
-        "title": "メール アプリ が インストール されていません"
+        "message": "メールアプリが認識されない場合は、手動でお試しください。",
+        "title": "メールアプリがインストールされていません"
       },
-      "open_email": "メール アプリを開く",
+      "open_email": "メールアプリを開く",
       "resend_link": "届いていない場合は、新しいリンクを送信できます。",
-      "webview_title": "離陸の準備中..."
+      "webview_title": "準備中です..."
     },
     "login_email": {
       "cta_label": "続ける",
@@ -1308,7 +1308,7 @@
       "secondary_cta_label": "ログイン",
       "session_expired_error_message": "セッションの有効期限が切れました。再度ログインしてください。",
       "slides": {
-        "rewards": "健康的な習慣を報酬に変えよう！"
+        "rewards": "健康的な習慣でリワードを獲得しましょう!"
       }
     },
     "login_password": {
@@ -1639,11 +1639,11 @@
       "success": "完了"
     },
     "smoking_modals": {
-      "all_milestones_passed": "あなたはすべての",
-      "days_title": "日 %{days}",
-      "milestone": "マイルストーン！",
-      "milestone_passed": "あなたは通過しました",
-      "milestones": "マイルストーン！"
+      "all_milestones_passed": "すべてのマイルストーンを",
+      "days_title": "%{days}日目",
+      "milestone": "達成しました!",
+      "milestone_passed": "マイルストーンを",
+      "milestones": "達成しました!"
     },
     "streak": {
       "accessibility": {
