@@ -1,4 +1,4 @@
-export type ContentLocationPlacement = "rewards" | "donate" | "wellbeing_hub";
+export type ContentLocationPlacement = "rewards" | "donate" | "wellbeing_hub" | "shopfront";
 
 export const getContentLocationQueryToRefetch = (from: ContentLocationPlacement) => {
   switch (from) {
@@ -8,6 +8,8 @@ export const getContentLocationQueryToRefetch = (from: ContentLocationPlacement)
       return ["GetMobileGameBattlePassFull"];
     case "wellbeing_hub":
       return ["GetWellbeingHubItems"];
+    case "shopfront":
+      return ["GetMobileGameShopfront"];
     default:
       return [];
   }
