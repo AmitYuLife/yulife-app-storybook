@@ -209,10 +209,10 @@ Feature("I can view and use the smoking cessation feature", async () => {
     });
     When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
       Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(7)));
-      Then("I should see the cravings button", then.idVisible(ids.SMOKING_HEADER_BUTTON));
+      Then("I should see the cravings button", then.idVisible(ids.SMOKING_HUB_CTA));
       Then("I can see my YuCoin Balance is 34,590 as my rewards have autoclaimed", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(34590)));
     });
-    When("I tap the craving button", when.tapID(ids.SMOKING_HEADER_BUTTON), async () => {
+    When("I tap the craving button", when.tapID(ids.SMOKING_HUB_CTA), async () => {
       Then("I should be on the Yunity Swipe settings screen", then.onYunitySwipe);
     });
     When("I go back", when.tapID(ids.LEFT_HEADIND_BUTTON("undefined")), async () => {

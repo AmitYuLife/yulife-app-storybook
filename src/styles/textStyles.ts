@@ -22,7 +22,9 @@ export type TemplateTextType =
   | "l4b"
   | "time"
   | "bigYuCoin"
-  | "big64";
+  | "big64"
+  | "big40"
+  | "big88";
 
 const defaultStyles = {
   fontFamily: Style.FONT_FAMILY_PRIMARY,
@@ -148,6 +150,20 @@ export const styleDefinitions = {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     fontSize: Style.adjust(64),
     lineHeight: Style.adjust(64),
+    letterSpacing: Style.getLetterSpacing(Style.adjust(1)),
+  },
+  big40: {
+    ...defaultStyles,
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    fontSize: Style.adjust(40),
+    lineHeight: Style.adjust(42),
+    letterSpacing: Style.getLetterSpacing(Style.adjust(1)),
+  },
+  big88: {
+    ...defaultStyles,
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    fontSize: Style.adjust(88),
+    lineHeight: Style.adjust(96),
     letterSpacing: Style.getLetterSpacing(Style.adjust(1)),
   },
 } as Record<TemplateTextType, NamedStyles>;

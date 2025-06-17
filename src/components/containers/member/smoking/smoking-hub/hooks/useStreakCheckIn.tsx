@@ -17,7 +17,6 @@ import { AppDataType } from "@redux/user/user.types";
 export const useStreakCheckIn = (
   smokingState: HealthSmokingState,
   onSmokingStreakCelebrationClose: VoidFunction,
-  onLapse: VoidFunction,
   setInitialSmokingState: (state: Partial<HealthSmokingState>) => void
 ) => {
   const [queryHealthSmokingState, { loading }] = useLazyQuery(gql("GetHealthSmokingStateDocument"), {
@@ -31,6 +30,7 @@ export const useStreakCheckIn = (
   const [dispatchStreakLapsedAction, setDispatchStreakLapsedAction] = useState(false);
   const [showCommitmentScreen, setShowCommitmentScreen] = useState(false);
   const isOverlayOpen = useRef(false);
+  const initialSmokingStateStreak = useRef<number | null>(null);
 
   const dismissOverlay = useCallback(async () => {
     isOverlayOpen.current = false;
@@ -56,7 +56,11 @@ export const useStreakCheckIn = (
         showSmokingCheckInOverlay(healthSmokingState as HealthSmokingState);
       }
 
-      setInitialSmokingState({ updatedToday: state.data?.getHealthSmokingState.updatedToday });
+      initialSmokingStateStreak.current = healthSmokingState.currentStreak;
+      setInitialSmokingState({
+        updatedToday: healthSmokingState.updatedToday,
+        currentStreak: healthSmokingState.currentStreak,
+      });
     } catch {
       setError(true);
     }
@@ -99,6 +103,17 @@ export const useStreakCheckIn = (
       dispatch(refreshUserProfileEvents());
       dispatch(refreshTotalCoins());
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
+
+      const yuCoinAwarded = healthSmokingState?.streakCheckInOverlay?.celebration?.yuCoinAwarded;
+      const initialStreakAfterMax =
+        initialSmokingStateStreak.current === null || initialSmokingStateStreak.current > healthSmokingState.maxStreak;
+      const currentStreakAfterMax = healthSmokingState.currentStreak > healthSmokingState.maxStreak;
+
+      if (initialStreakAfterMax && currentStreakAfterMax && !yuCoinAwarded) {
+        onSmokingStreakCelebrationClose();
+        return;
+      }
+
       showSmokingStreakCelebrationModal(healthSmokingState, onSmokingStreakCelebrationClose);
     } catch {
       setError(true);
@@ -126,7 +141,6 @@ export const useStreakCheckIn = (
             continueCta={currentSmokingData.streakCheckInOverlay.continueCta}
             onPressNo={onContinueStreakPress}
             onPressYes={() => {
-              onLapse();
               dismissOverlay();
               Navigation.push(ROUTES.smoking, {
                 component: {

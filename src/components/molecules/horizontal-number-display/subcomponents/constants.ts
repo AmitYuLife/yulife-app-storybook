@@ -1,42 +1,29 @@
-import { Style } from "@styles";
-import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Style, templateTextStyles } from "@styles";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
 type SupportedDistances = 0 | 1 | 2 | "default";
 type SupportedGapDistances = 1 | "default";
-
-export const BASE_NUMBER_STYLES = {
-  fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-  fontWeight: Platform.select({ ios: null, android: "normal" }) as null | "normal",
-};
 
 export const MAX_HEIGHT = Style.adjust(180);
 
 const NUMBER_STYLES = StyleSheet.create({
   0: {
-    ...BASE_NUMBER_STYLES,
-    fontSize: Style.adjust(88),
-    lineHeight: Style.adjust(96),
+    ...templateTextStyles.big88,
     width: Style.adjust(146),
     height: MAX_HEIGHT,
   },
   1: {
-    ...BASE_NUMBER_STYLES,
-    fontSize: Style.adjust(40),
-    lineHeight: Style.adjust(42),
+    ...templateTextStyles.big40,
     width: Style.adjust(52),
     height: Style.adjust(64),
   },
   2: {
-    ...BASE_NUMBER_STYLES,
-    fontSize: Style.adjust(28),
-    lineHeight: Style.adjust(32),
+    ...templateTextStyles.h2,
     width: Style.adjust(48),
     height: Style.adjust(48),
   },
   default: {
-    ...BASE_NUMBER_STYLES,
-    fontSize: Style.adjust(28),
-    lineHeight: Style.adjust(32),
+    ...templateTextStyles.h2,
     width: Style.adjust(40),
     height: Style.adjust(40),
   },

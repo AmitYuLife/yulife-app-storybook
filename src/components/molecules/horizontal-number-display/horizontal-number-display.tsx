@@ -22,8 +22,8 @@ const TARGET_NUMBER_STYLES = getNumberStyle(0);
 const ADJACENT_NUMBERS_TO_DISPLAY = 5;
 
 export type AnimationHandle = {
-  animate: (to: number) => Promise<void>;
-  jump: (to: number) => Promise<void>;
+  animate: ReturnType<typeof useHorizontalNumberDisplayAnimations>["animate"];
+  jump: ReturnType<typeof useHorizontalNumberDisplayAnimations>["jump"];
 };
 
 type HorizontalNumberDisplayProps = {
@@ -52,7 +52,7 @@ const HorizontalNumberDisplay = forwardRef<AnimationHandle, HorizontalNumberDisp
       minNumber = 1,
       maxNumber = ADJACENT_NUMBERS_TO_DISPLAY,
       mainColor = Colours.neutral.n850,
-      secondaryColor = "#E5BAFF",
+      secondaryColor = Colours.pastelViolet,
       displayWidth = 300,
       fadingSettings = DEFAULT_FADING_SETTINGS,
       disableFading = false,
@@ -60,29 +60,27 @@ const HorizontalNumberDisplay = forwardRef<AnimationHandle, HorizontalNumberDisp
     },
     ref
   ) => {
-    const [currentTarget, setCurrentTarget] = useState(initialTarget ?? target);
     const [canScroll, setCanScroll] = useState(false);
 
-    const { scrollPosition, stylesProgress, animate, jump } = useHorizontalNumberDisplayAnimations({
-      initialTarget: currentTarget,
+    const { currentTarget, scrollPosition, stylesProgress, animate, jump } = useHorizontalNumberDisplayAnimations({
+      initialTarget: initialTarget ?? target,
       displayWidth,
       minNumber,
-      updateCurrentTarget: setCurrentTarget,
     });
 
     useTimeout(() => setCanScroll(true), initialScrollDelay);
 
     useEffect(() => {
-      if (!canScroll || disableAutomaticScrolling || target === currentTarget) {
+      if (!canScroll || disableAutomaticScrolling) {
         return;
       }
 
-      animate(currentTarget, target);
-    }, [target, currentTarget, canScroll, animate, disableAutomaticScrolling]);
+      animate(target);
+    }, [target, canScroll, animate, disableAutomaticScrolling]);
 
     useImperativeHandle(ref, () => ({
-      animate: (to: number) => animate(currentTarget, to),
-      jump: (to: number) => jump(to),
+      animate,
+      jump,
     }));
 
     const numbers = useMemo(

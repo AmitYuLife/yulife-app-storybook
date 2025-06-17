@@ -5,7 +5,7 @@ const TIP_CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
 
 export const styles = StyleSheet.create({
   flatList: {
-    paddingHorizontal: Style.adjust(20),
+    paddingHorizontal: Style.adjust(24),
     paddingVertical: Style.adjust(16),
   },
   milestone: {
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     opacity: 1,
   },
   separator: {
-    width: Style.adjust(8),
+    width: Style.adjust(16),
   },
   popupDescription: {
     marginTop: Style.adjust(24),
