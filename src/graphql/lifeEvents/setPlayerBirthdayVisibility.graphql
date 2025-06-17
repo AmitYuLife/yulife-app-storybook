@@ -1,0 +1,5 @@
+mutation SetMobilePlayerBirthdayVisibility($isVisible: Boolean!) {
+  setMobilePlayerBirthdayVisibility(isVisible: $isVisible) {
+    ...LifeEvents
+  }
+}

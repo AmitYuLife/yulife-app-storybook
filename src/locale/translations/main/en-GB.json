@@ -689,11 +689,37 @@
     },
     "leaderboard_settings": {
       "title": "Leaderboards",
+      "title_with_birthday": "Leaderboards and birthday",
       "description": "Status and management of your access to app related leaderboards.",
-      "screen_description": "Status and management of your access to app related leaderboards. Please be aware – Opting out of a leaderboard might restrict your access to some features. ",
+      "description_with_birthday": "Management of your access to app-related leaderboards and birthday permissions.",
+      "screen_description": "Management of your access to app-related leaderboards. Please note: opting out of a leaderboard may restrict your access to some features.",
       "consented": "Other members of this leaderboard can see your name and activity.",
       "not_consented": "Allow other members of this leaderboard to see your name and activity.",
-      "item_title": "%{name} Leaderboard"
+      "item_title": "%{name} Leaderboard",
+      "birthday_visibility": {
+        "title": "Birthday notifications",
+        "error": "Oops! Something went wrong",
+        "consented": "Get a reminder on your friends’ birthdays, and your friends get a notification on your birthday.",
+        "not_consented": "Get a reminder on your friends’ birthdays, and your friends get a notification on your birthday.",
+        "turn_on": {
+          "heading": "Turn on birthday notifications?",
+          "subheading": "Get a reminder on your friends’ birthdays, and your friends get a notification on your birthday.",
+          "ctaLabel": "Yes, turn on",
+          "ctaLabelSecondary": "No, thanks",
+          "description": "Get a reminder on your friends’ birthdays, and your friends get a notification on your birthday.",
+          "confirm": "Yes, turn on"
+        },
+        "turn_off": {
+          "ctaLabel": "No, keep them on",
+          "ctaLabelSecondary": "Yes, turn off",
+          "heading": "Turn off birthday notifications?",
+          "subheading": "You won’t get friends’ birthday reminders, and your friends won’t get a notification on your birthday."
+        },
+        "not_set": {
+          "heading": "Update your birthday to turn on birthday notifications",
+          "ctaLabel": "Got it!"
+        }
+      }
     },
     "language_selector_settings": {
       "title": "Language",
