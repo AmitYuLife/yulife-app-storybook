@@ -105,7 +105,6 @@ function showPlaceholderModal(buttonOnPress: VoidFunction) {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: Style.adjust(24),
-    marginTop: Style.adjust(40),
     height: IMAGE_HEIGHT,
     borderRadius: Style.adjust(16),
     borderColor: "#FFD600",

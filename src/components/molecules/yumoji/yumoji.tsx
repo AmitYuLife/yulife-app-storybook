@@ -11,6 +11,7 @@ interface Props {
   width?: number;
   emptyHeight?: number;
   emptyWidth?: number;
+  emptyBodyColor?: string;
   suppressLoadingUi?: boolean;
 }
 
@@ -27,10 +28,11 @@ function _Yumoji({
   width = BODY_AVATAR_WIDTH,
   emptyHeight = EMPTY_BODY_AVATAR_HEIGHT,
   emptyWidth = EMPTY_BODY_AVATAR_WIDTH,
+  emptyBodyColor,
   suppressLoadingUi,
 }: Props) {
   if (!uri) {
-    return <EmptyMaleBody height={emptyHeight} width={emptyWidth} />;
+    return <EmptyMaleBody height={emptyHeight} width={emptyWidth} body={emptyBodyColor} />;
   }
 
   return (

@@ -22,7 +22,6 @@ export const SmokingTips: FC<Props> = memo(({ tips }) => (
       decelerationRate={DECELERATION_RATE}
       keyExtractor={keyExtractor}
       viewabilityConfig={VIEWABILITY_CONFIG}
-      style={tipCardStyles.wrapper}
       ItemSeparatorComponent={TipCardSeparator}
       contentContainerStyle={tipCardStyles.contentContainer}
     />

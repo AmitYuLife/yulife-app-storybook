@@ -4,9 +4,6 @@ import { StyleSheet } from "react-native";
 export const TIP_CARD_WIDTH = Style.adjust(270);
 
 export const styles = StyleSheet.create({
-  wrapper: {
-    marginTop: Style.adjust(40),
-  },
   card: {
     flexDirection: "row",
     paddingVertical: Style.adjust(16),

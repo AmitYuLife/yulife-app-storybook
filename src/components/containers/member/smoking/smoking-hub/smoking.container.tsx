@@ -1,9 +1,9 @@
-import React, { memo, useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.selectors";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { useIntroModal, useStreakCheckIn, useEditState, useOptOut } from "./hooks";
+import { useEditState, useIntroModal, useOptOut, useStreakCheckIn } from "./hooks";
 import GenericErrorScreen from "@components/screens/generic-error/generic-error.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { SmokingHubScreen } from "@screens";
@@ -17,18 +17,18 @@ type Props = {
 
 const SmokingContainer = (props: Props) => {
   const smokingState = useSelector(getHealthSmokingState);
-  const [shouldAnimatePlants, setShouldAnimatePlants] = React.useState(false);
-  const [lapsed, setLapsed] = React.useState(false);
+  const [lastStreakCheckInDoneAt, setLastStreakCheckInDoneAt] = useState<number>(null);
   const [initialSmokingState, setInitialSmokingState] = useState<Partial<HealthSmokingState>>({});
-  const animatePlants = useCallback(() => {
-    setShouldAnimatePlants(true);
+  const onSmokingStreakCelebrationClose = useCallback(() => {
+    setLastStreakCheckInDoneAt(Date.now());
   }, []);
-  const lapseUser = useCallback(() => setLapsed(true), []);
-  const { error, loading } = useStreakCheckIn(smokingState, animatePlants, lapseUser, setInitialSmokingState);
+  const { error, loading } = useStreakCheckIn(smokingState, onSmokingStreakCelebrationClose, setInitialSmokingState);
   const { showOptOutOverlay } = useOptOut(smokingState);
   const { editTriggers, editReasons } = useEditState(smokingState);
   const { showIntroModal } = useIntroModal(props.swiper);
   useNotificationForAutoClaimedYuCoin();
+
+  const navigateToCommitmentScreenAction = useCallback(() => navigateToCommitmentScreen(smokingState), [smokingState]);
 
   if (showIntroModal) {
     return null;
@@ -48,9 +48,8 @@ const SmokingContainer = (props: Props) => {
       showOptOutOverlay={showOptOutOverlay}
       editTriggers={editTriggers}
       editReasons={editReasons}
-      navigateToCommitmentScreen={navigateToCommitmentScreen}
-      shouldAnimatePlants={shouldAnimatePlants}
-      lapsed={lapsed}
+      navigateToCommitmentScreen={navigateToCommitmentScreenAction}
+      animationsEnabled={!!lastStreakCheckInDoneAt}
       initialSmokingState={initialSmokingState}
     />
   );

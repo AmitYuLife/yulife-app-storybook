@@ -86,6 +86,7 @@ export default {
   gray: "rgb(96,96,96)",
   midGray: "rgb(128,128,128)",
   heavyPink: "rgb(232, 49, 129)",
+  pastelViolet: "#E5BAFF",
   inkSubtle: "rgb(160,160,155)", // #A0A09B
   inkStrong: "rgb(70,70,71)", // #464647
   leaderboards: {

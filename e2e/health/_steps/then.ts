@@ -128,7 +128,7 @@ export const onSmokingHub =
 const checkSmokingHubHeader = (days: number, emptyAvatar: boolean) => async () => {
   await idVisible(ids.SMOKING_HEADER_DAYS(days))();
   emptyAvatar && (await idVisible(ids.EMPTY_AVATAR)());
-  await idVisible(ids.SMOKING_HEADER_BUTTON)();
+  await idVisible(ids.SMOKING_HUB_CTA)();
 };
 
 // commenting out as behaviour has changed, but also component is going to be changed soon so will be updated with the new one shortly
