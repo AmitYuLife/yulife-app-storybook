@@ -409,4 +409,30 @@ Scenario("I can send multiple people a YuCoin gift", scenario.start, async () =>
     Then("I am back on the leaderboard screen I started on", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));
     Then("My YuCoin amount is depleted by 300 yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(220)));
   });
+
+  Scenario("I should see the app inbox filter out a message sent from a missing/unknown user", scenario.start, async () => {
+    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_19, data.AUTH_19), async () => {
+      When("I trigger the 7 day auto claim worker", when.trigger7DayAutoClaim(moment().add(8, "days").toDate()), async () => {
+        Then("I should see my YuCoin balance before the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(450)));
+      });
+    });
+    When("I trigger the worker to send the logged in user a 100 yucoin gift", when.triggerGiftReceivedNotification(data.CUSTOMER_UNKNOWN, data.USER_UNKNOWN_GIFT_B), async () => {
+      When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+        Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+        Then("As more then 7 days has passed since I received the gift, I should see my YuCoin balance go up by 100 YuCoin because of the auto claim gift", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(550)));
+      });
+    });
+    When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I should see the 'Wow, its quiet in here!' notification as the gift sender is missing", then.idVisible(ids.NOTIFICATIONS_EMPTY, 2500));
+    });
+    When("I tap the X to close the notification center", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 2000), async () => {
+      When("I go to Today's Earnings", when.tapID(ids.STEPS_COUNT(0)), async () => {
+        Then("I see I've earned 300 yucoin today so far on the todays earnings screen", then.textVisible("300 YuCoin"));
+      });
+    });
+    When("I swipe right on the event card", when.scrollFromID(ids.YUCOIN_POWER("10"), "up", "fast"), async () => {
+      Then("I see I've earned 100 yucoin today from a received gift", then.idVisible(ids.ACTIVITY_LISTING("Gift received", "100")));
+      Then("I see I've earned 200 yucoin today from the Download bonus", then.idVisible(ids.ACTIVITY_LISTING("Download bonus", "200")));
+    });
+  });
 });

@@ -4,6 +4,7 @@ import { useTranslation } from "@hooks";
 import { Style } from "@styles";
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
+import { NOTIFICATIONS_EMPTY } from "@ids";
 
 const NotificationsEmpty = () => {
   const t = useTranslation(["screens.notifications.empty"]);
@@ -13,7 +14,7 @@ const NotificationsEmpty = () => {
       <View style={styles.icon}>
         <EnvelopeSvg size={Style.adjust(140)} />
       </View>
-      <TextTemplate textAlign="center" type="b2">
+      <TextTemplate textAlign="center" type="b2" testID={NOTIFICATIONS_EMPTY}>
         {t["screens.notifications.empty"]}
       </TextTemplate>
     </View>
