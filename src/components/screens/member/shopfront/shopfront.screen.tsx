@@ -18,6 +18,7 @@ import { RewardsListItem } from "../rewards/list/rewards-list.item";
 import { t } from "@locale";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
 import NoStoreWalletButton from "../rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
+import { isEmpty } from "lodash";
 
 export enum RewardListItemTypes {
   RewardStoreExpiryWarning = "RewardStoreExpiryWarning",
@@ -139,10 +140,14 @@ const ShopfrontScreen = ({
 
     return [
       ...(!hasVoucherStore ? [{ __typename: RewardListItemTypes.NoStoreWallet as const }] : []),
-      {
-        __typename: RewardListItemTypes.RewardsSectionHeader as const,
-        children: t("screens.rewards.list.reward_passes"),
-      },
+      ...(!isEmpty(rewardPassItems)
+        ? [
+            {
+              __typename: RewardListItemTypes.RewardsSectionHeader as const,
+              children: t("screens.rewards.list.reward_passes"),
+            },
+          ]
+        : []),
       ...rewardPassItems,
       { __typename: RewardListItemTypes.RewardStoreExpiryWarning as const },
       { __typename: RewardListItemTypes.RewardRecentlyUsedSection as const },
@@ -203,7 +208,7 @@ const ShopfrontScreen = ({
         contentLocation={shopfront?.rewardList.rewardStoreLocation}
         contentLocationLabel={shopfront?.rewardList.rewardStoreLocationLabel}
         onChangeContentLocationPress={handleStoreLocationPress}
-        placement="rewards"
+        placement="shopfront"
       />
     </Box>
   );

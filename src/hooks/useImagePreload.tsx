@@ -1,4 +1,5 @@
 import { prefetchImages } from "@atoms";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
 interface IImagePreloadArgs {
@@ -10,6 +11,11 @@ export const useImagePreload = ({ images }: IImagePreloadArgs) => {
 
   useEffect(() => {
     if (!images) {
+      return;
+    }
+
+    if (isEmpty(images)) {
+      setHasLoaded(true);
       return;
     }
 
