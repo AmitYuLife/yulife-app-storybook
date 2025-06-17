@@ -1,39 +1,90 @@
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Style } from "@styles";
-import React, { memo, useCallback } from "react";
+import { Colours, Style } from "@styles";
+import { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import { FlashList } from "@shopify/flash-list";
 import LeaderboardToggle, { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
-import colours from "@styles/colours";
 import { ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
+import BirthdayVisibilityToggle, {
+  IChangeBirthdayVisibilityProps,
+} from "../../../organisms/birthday-visibility-toggle/birthday-visibility-toggle";
+import { groupBy } from "lodash";
 
 interface ILeaderboardItem extends ISocialGroupLeaderboard {
   socialGroupId: string;
   socialGroupName: string;
 }
 
+export interface LifeEventsData {
+  birthday?: Birthday | null;
+  isBirthdayGiftingEnabled: boolean;
+}
+
+export interface Birthday {
+  isVisible?: boolean;
+  dateOfBirthDay?: number;
+  dateOfBirthMonth?: number;
+}
+
 interface IProps {
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
   leaderboards?: ILeaderboardItem[];
+  lifeEvents: LifeEventsData;
   onChangeConsent: (consentProps: IChangeConsentProps) => void;
+  onChangeBirthdayVisibility?: (props: IChangeBirthdayVisibilityProps) => void;
 }
 
-const LeaderboardSettings = ({ onChangeConsent, leaderboards, onLeftIconPress, onRightIconPress }: IProps) => {
+const LeaderboardSettings = ({
+  onChangeConsent,
+  leaderboards,
+  onLeftIconPress,
+  onRightIconPress,
+  lifeEvents: birthdayData,
+  onChangeBirthdayVisibility,
+}: IProps) => {
   const t = useTranslation(["screens.leaderboard_settings.title", "screens.leaderboard_settings.screen_description"]);
 
+  const allLeaderboardsDisabled = leaderboards.every((leaderboard) => !leaderboard.consent);
+  const flatLeaderboardListWithHeaders = leaderboards
+    ? Object.values(groupBy(leaderboards, "socialGroupId")).flatMap(([first, ...rest]) => [
+        first.socialGroupName,
+        first,
+        ...rest,
+      ])
+    : [];
+
   const renderItem = useCallback(
-    ({ item }: { item: ILeaderboardItem }) => {
-      const name = `${item.socialGroupName} ${item.name}`;
+    ({ item }: { item: string | ILeaderboardItem }) => {
+      const isSectionHeader = typeof item === "string";
+      if (isSectionHeader) {
+        return (
+          <Box
+            borderColor={Colours.neutral.n100}
+            borderWidth={1}
+            bg={Colours.neutral.n50}
+            alignItems="center"
+            justifyContent="center"
+            mh={-20}
+            pv={8}
+          >
+            <TextTemplate
+              color={Colours.inkSubtle}
+              type="b2"
+            >{`${item} ${t["screens.leaderboard_settings.title"]}`}</TextTemplate>
+          </Box>
+        );
+      }
+
       return (
         <LeaderboardToggle
           key={item.leaderboardId}
           socialGroupId={item.socialGroupId}
           leaderboardId={item.leaderboardId}
           consent={item.consent}
-          name={name}
+          name={item.name}
           onChangeConsent={onChangeConsent}
         />
       );
@@ -47,13 +98,20 @@ const LeaderboardSettings = ({ onChangeConsent, leaderboards, onLeftIconPress, o
       <FlashList
         showsVerticalScrollIndicator={false}
         estimatedItemSize={80}
-        data={leaderboards}
+        data={flatLeaderboardListWithHeaders}
         renderItem={renderItem}
         contentContainerStyle={styles.content}
         refreshing={false}
         ListHeaderComponent={
           <View style={styles.header}>
             <TextTemplate type="b2">{t["screens.leaderboard_settings.screen_description"]}</TextTemplate>
+            {birthdayData?.isBirthdayGiftingEnabled && (
+              <BirthdayVisibilityToggle
+                disabled={allLeaderboardsDisabled}
+                isVisible={birthdayData?.birthday?.isVisible ?? false}
+                onBirthdayVisibilityChange={onChangeBirthdayVisibility}
+              />
+            )}
           </View>
         }
         ListFooterComponent={<View style={styles.footer} />}
@@ -73,9 +131,6 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingVertical: Style.adjust(20),
-    borderBottomWidth: Style.adjust(1),
-    marginBottom: Style.adjust(10),
-    borderBottomColor: colours.slider.greyBar,
   },
   content: {
     paddingHorizontal: Style.adjust(20),

@@ -40,6 +40,8 @@ function SettingsContainer({ componentId }: IOwnProps) {
     gql(`UpdateUserNotificationsSettingsDocument`)
   );
   const notificationSettings = useQuery(gql(`GetUserNotificationsSettingsDocument`), graphqlFetchPolicy);
+  const { data: userLifeEventsData } = useQuery(gql("GetPlayerLifeEventsDocument"), graphqlFetchPolicy);
+
   const pushNotifications = useMemo(() => notificationSettings?.data?.pushNotifications || [], [notificationSettings]);
   const emailNotifications = useMemo(
     () => notificationSettings?.data?.emailNotifications || [],
@@ -137,8 +139,12 @@ function SettingsContainer({ componentId }: IOwnProps) {
       items: [
         {
           isVisible: !blackListedNavBarTabs.includes(ROUTES.leaderboard),
-          title: t("screens.leaderboard_settings.title"),
-          description: t("screens.leaderboard_settings.description"),
+          title: userLifeEventsData?.getPlayerLifeEvents?.isBirthdayGiftingEnabled
+            ? t("screens.leaderboard_settings.title_with_birthday")
+            : t("screens.leaderboard_settings.title"),
+          description: userLifeEventsData?.getPlayerLifeEvents?.isBirthdayGiftingEnabled
+            ? t("screens.leaderboard_settings.description_with_birthday")
+            : t("screens.leaderboard_settings.description"),
           onPress: () => {
             Navigation.push(ROUTES.settings, {
               component: {
@@ -216,7 +222,13 @@ function SettingsContainer({ componentId }: IOwnProps) {
         },
       ],
     }),
-    [activeProvider, blackListedNavBarTabs, cyclingMeasurement, features.tempGameEnableReleaseYuHealthV4]
+    [
+      activeProvider,
+      blackListedNavBarTabs,
+      cyclingMeasurement,
+      features.tempGameEnableReleaseYuHealthV4,
+      userLifeEventsData?.getPlayerLifeEvents?.isBirthdayGiftingEnabled,
+    ]
   );
 
   const connection = {

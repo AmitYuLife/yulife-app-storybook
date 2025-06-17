@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import LeaderboardSettingsScreen from "@screens/member/leaderboard-settings/leaderboard-settings.screen";
@@ -7,29 +7,48 @@ import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { showYuModal } from "@navigation/root";
 import { getSocialGroups } from "@redux/leaderboards/leaderboards.selectors";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
 import { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
 import { gql } from "@graphql/__generated";
 import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
+import sortBy from "lodash/sortBy";
+import { IChangeBirthdayVisibilityProps } from "../../../organisms/birthday-visibility-toggle/birthday-visibility-toggle";
+import Loading from "../../../atoms/loading/loading";
+import { Alert } from "react-native";
 
 interface IProps {
   componentId: string;
 }
 
 const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
-  const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"));
+  const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"), {
+    onError: () => {
+      Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
+    },
+  });
+  const [setPlayerBirthdayVisibilityMutation] = useMutation(gql("SetMobilePlayerBirthdayVisibilityDocument"), {
+    onError: () => {
+      Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
+    },
+  });
+  const { data, loading } = useQuery(gql("GetPlayerLifeEventsDocument"));
   const dispatch = useDispatch();
   const socialGroups = useSelector(getSocialGroups);
+  const allDataLoaded = !loading && !!socialGroups;
+  const lifeEventsData = data.getPlayerLifeEvents;
 
   const leaderboards = useMemo(
     () =>
-      socialGroups?.flatMap((socialGroup) =>
-        socialGroup.leaderboards?.map((leaderboard) => ({
-          ...leaderboard,
-          socialGroupId: socialGroup.socialGroupId,
-          socialGroupName: socialGroup.name,
-        }))
+      sortBy(
+        socialGroups?.flatMap((socialGroup) =>
+          socialGroup.leaderboards?.map((leaderboard) => ({
+            ...leaderboard,
+            socialGroupId: socialGroup.socialGroupId,
+            socialGroupName: socialGroup.name,
+          }))
+        ) || [],
+        "leaderboardId"
       ),
     [socialGroups]
   );
@@ -53,6 +72,67 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
       dismissModal();
     },
     [dismissModal, dispatch, updateConsentMutation]
+  );
+
+  const changeBirthdayVisibility = useCallback(
+    async (isVisible: boolean) => {
+      await setPlayerBirthdayVisibilityMutation({ variables: { isVisible } });
+      dispatch(queryYuScreenLayout());
+
+      dismissModal();
+    },
+    [dismissModal, dispatch, setPlayerBirthdayVisibilityMutation]
+  );
+
+  const onChangeBirthdayVisibility = useCallback(
+    ({ isVisible }: IChangeBirthdayVisibilityProps) => {
+      if (!lifeEventsData.birthday) {
+        showYuModal({
+          component: {
+            id: MODALS.info,
+            name: MODALS.info,
+            passProps: {
+              ctaLabel: t("screens.leaderboard_settings.birthday_visibility.not_set.ctaLabel"),
+              heading: t("screens.leaderboard_settings.birthday_visibility.not_set.heading"),
+              onPress: () => Navigation.dismissModal(MODALS.info),
+            },
+          },
+        });
+
+        return;
+      }
+
+      const passProps = isVisible
+        ? {
+            ctaLabel: t("screens.leaderboard_settings.birthday_visibility.turn_on.ctaLabel"),
+            ctaLabelSecondary: t("screens.leaderboard_settings.birthday_visibility.turn_on.ctaLabelSecondary"),
+            heading: t("screens.leaderboard_settings.birthday_visibility.turn_on.heading"),
+            onPress: () => {
+              changeBirthdayVisibility(isVisible);
+            },
+            onPressSecondary: dismissModal,
+            subheading: t("screens.leaderboard_settings.birthday_visibility.turn_on.subheading"),
+          }
+        : {
+            ctaLabel: t("screens.leaderboard_settings.birthday_visibility.turn_off.ctaLabel"),
+            ctaLabelSecondary: t("screens.leaderboard_settings.birthday_visibility.turn_off.ctaLabelSecondary"),
+            heading: t("screens.leaderboard_settings.birthday_visibility.turn_off.heading"),
+            onPress: () => Navigation.dismissModal(MODALS.generic),
+            onPressSecondary: () => {
+              changeBirthdayVisibility(isVisible);
+            },
+            subheading: t("screens.leaderboard_settings.birthday_visibility.turn_off.subheading"),
+          };
+
+      showYuModal({
+        component: {
+          id: MODALS.generic,
+          name: MODALS.generic,
+          passProps,
+        },
+      });
+    },
+    [lifeEventsData, dismissModal, changeBirthdayVisibility]
   );
 
   const onChangeConsent = useCallback(
@@ -92,12 +172,19 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
 
   const onRightIconPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.settings), []);
+
+  if (!allDataLoaded) {
+    return <Loading />;
+  }
+
   return (
     <LeaderboardSettingsScreen
       leaderboards={leaderboards}
       onLeftIconPress={onLeftIconPress}
       onChangeConsent={onChangeConsent}
       onRightIconPress={onRightIconPress}
+      onChangeBirthdayVisibility={onChangeBirthdayVisibility}
+      lifeEvents={lifeEventsData}
     />
   );
 };

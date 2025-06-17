@@ -5395,6 +5395,17 @@ export type LevelSlotMilestone = {
   target?: Maybe<MilestoneTarget>;
 };
 
+/** Represents the player's birthday information, and any associated feature flags. */
+export type LifeEvents = {
+  __typename?: "LifeEvents";
+  /** Birthday information. */
+  birthday?: Maybe<PlayerBirthday>;
+  /** The unique identifier for the player's life events. */
+  id: Scalars["ID"]["output"];
+  /** Is birthdays gifting feature enabled for the player. */
+  isBirthdayGiftingEnabled: Scalars["Boolean"]["output"];
+};
+
 export type LinearGradientOrientation = {
   __typename?: "LinearGradientOrientation";
   x: Scalars["Float"]["output"];
@@ -6459,6 +6470,7 @@ export type Mutation = {
   exportBusinessPerkClaims: Scalars["Boolean"]["output"];
   exportEmployees: Scalars["Boolean"]["output"];
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
+  finalizeEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
   getNewConnectionLink?: Maybe<Scalars["String"]["output"]>;
   getNewPensionConnectionLink?: Maybe<Scalars["String"]["output"]>;
   initiateCompanyJoin: InitiateCompanyJoinResult;
@@ -6520,9 +6532,17 @@ export type Mutation = {
   sendWellbeingHubItemDocuments: Scalars["Boolean"]["output"];
   setFeature?: Maybe<Scalars["Boolean"]["output"]>;
   setMemberReferralCode: Scalars["Boolean"]["output"];
+  /**
+   * Sets the visibility of the player's birthday information.
+   * Arguments:
+   *   - isVisible: Boolean indicating whether the birthday should be visible.
+   * Returns:
+   *   - Boolean indicating whether the operation was successful.
+   */
+  setMobilePlayerBirthdayVisibility?: Maybe<LifeEvents>;
   setPassword?: Maybe<Scalars["Boolean"]["output"]>;
   /**
-   * Sets the player's birthday information.
+   * Sets the player's life events information.
    *
    * Arguments:
    *   - setPlayerBirthday: The day of the player's birth (1-31).
@@ -6531,15 +6551,7 @@ export type Mutation = {
    * Returns:
    *   - Boolean indicating whether the operation was successful.
    */
-  setPlayerBirthday?: Maybe<PlayerBirthday>;
-  /**
-   * Sets the visibility of the player's birthday information.
-   * Arguments:
-   *   - isVisible: Boolean indicating whether the birthday should be visible.
-   * Returns:
-   *   - Boolean indicating whether the operation was successful.
-   */
-  setPlayerBirthdayVisibility?: Maybe<PlayerBirthday>;
+  setPlayerBirthday?: Maybe<LifeEvents>;
   /** Updates the shares of a beneficiary */
   setShareOfBenefitForProduct: CustomerProductBeneficiaries;
   setUserQuestProgress?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6922,6 +6934,10 @@ export type MutationExportYuCoinRedemptionReportArgs = {
   startDate?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type MutationFinalizeEmployeeRecognitionCampaignArgs = {
+  campaignId: Scalars["String"]["input"];
+};
+
 export type MutationGetNewConnectionLinkArgs = {
   name: Scalars["String"]["input"];
 };
@@ -7205,6 +7221,10 @@ export type MutationSetMemberReferralCodeArgs = {
   code: Scalars["String"]["input"];
 };
 
+export type MutationSetMobilePlayerBirthdayVisibilityArgs = {
+  isVisible: Scalars["Boolean"]["input"];
+};
+
 export type MutationSetPasswordArgs = {
   password: Scalars["String"]["input"];
   reset?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -7213,10 +7233,6 @@ export type MutationSetPasswordArgs = {
 export type MutationSetPlayerBirthdayArgs = {
   dateOfBirthDay: Scalars["Int"]["input"];
   dateOfBirthMonth: Scalars["Int"]["input"];
-};
-
-export type MutationSetPlayerBirthdayVisibilityArgs = {
-  isVisible: Scalars["Boolean"]["input"];
 };
 
 export type MutationSetShareOfBenefitForProductArgs = {
@@ -7731,6 +7747,7 @@ export type PerformedSteps = {
   leaderboardModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   manageAdminsModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   peopleModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
+  resourcesModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   twoFactorAuthModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   wellbeingHubModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
@@ -7798,10 +7815,8 @@ export type PlayerBirthday = {
   dateOfBirthDay?: Maybe<Scalars["Int"]["output"]>;
   /** The month of the player's birth (1-12). */
   dateOfBirthMonth?: Maybe<Scalars["Int"]["output"]>;
-  /** The unique identifier for the player's birthday information. */
-  id: Scalars["ID"]["output"];
   /** Represents the visibility status of the player's birthday information. */
-  isVisible?: Maybe<Scalars["Boolean"]["output"]>;
+  isVisible: Scalars["Boolean"]["output"];
 };
 
 export enum PolicyStatus {
@@ -8075,11 +8090,12 @@ export type Query = {
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
   getEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaignResponse;
-  getEmployeeRecognitionCampaignBillingAddresses?: Maybe<Array<Maybe<TeamEmployeeRecognitionCampaignBillingAddress>>>;
-  getEmployeeRecognitionCampaignPackages?: Maybe<TeamEmployeeRecognitionCampaignPackages>;
+  getEmployeeRecognitionCampaignBillingAddresses?: Maybe<Array<TeamEmployeeRecognitionCampaignBillingAddress>>;
   getEmployeeRecognitionCampaignRecipients: TeamEmployeeRecognitionCampaignRecipientsResponse;
   getEmployeeRecognitionCampaignRecipientsByIds: TeamEmployeeRecognitionCampaignRecipientsByIdsResponse;
+  getEmployeeRecognitionCampaignTopupPackages: TeamEmployeeRecognitionCampaignPackageResponse;
   getEmployeeRecognitionCampaigns: GetTeamEmployeeRecognitionCampaignsResponse;
+  getEmployeeRecognitionYuCoinAmountSuggestions: TeamEmployeeRecognitionYuCoinAmountSuggestionResponse;
   getEmployeesByEmployeeIds: GetEmployeesByEmployeeIdsResult;
   getEngagementDashboardActivitiesProgress: Array<EngagementDashboardActivity>;
   getEngagementDashboardClaimableActivitiesForCategory: EngagementDashboardClaimableActivityForCategory;
@@ -8174,8 +8190,8 @@ export type Query = {
   getPersonalProductStepDetachedDocuments?: Maybe<ProductUnderwritingStep>;
   /** @Deprecated - Use the generic getPersonalProductStepDetached with FAQ stepId */
   getPersonalProductStepDetachedFaqs?: Maybe<ProductUnderwritingStep>;
-  /** Retrieves the current player's birthday information. */
-  getPlayerBirthday?: Maybe<PlayerBirthday>;
+  /** Retrieves the current player's life events information. */
+  getPlayerLifeEvents?: Maybe<LifeEvents>;
   getPotentialRewards: Array<PotentialReward>;
   getPricingConfigurations: Array<PricingConfiguration>;
   /** Query to get a customer's beneficiaries for a product */
@@ -10377,10 +10393,11 @@ export type TeamEmployeeRecognitionCampaignPackage = {
   id: Scalars["String"]["output"];
 };
 
-export type TeamEmployeeRecognitionCampaignPackages = {
-  __typename?: "TeamEmployeeRecognitionCampaignPackages";
+export type TeamEmployeeRecognitionCampaignPackageResponse = {
+  __typename?: "TeamEmployeeRecognitionCampaignPackageResponse";
   packages: Array<TeamEmployeeRecognitionCampaignPackage>;
   rate: Scalars["Int"]["output"];
+  topupThreshold: Scalars["Int"]["output"];
 };
 
 export type TeamEmployeeRecognitionCampaignRecipient = {
@@ -10408,6 +10425,11 @@ export type TeamEmployeeRecognitionCampaignRecipientsResponse = {
 export type TeamEmployeeRecognitionCampaignResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignResponse";
   campaign: TeamEmployeeRecognitionCampaign;
+};
+
+export type TeamEmployeeRecognitionYuCoinAmountSuggestionResponse = {
+  __typename?: "TeamEmployeeRecognitionYuCoinAmountSuggestionResponse";
+  suggestions: Array<TeamYuCoinAmountSuggestion>;
 };
 
 export type TeamEmployeeSection = {
@@ -10479,6 +10501,7 @@ export enum TeamOnboardingStep {
   LeaderboardModalDismissed = "leaderboardModalDismissed",
   ManageAdminsModalDismissed = "manageAdminsModalDismissed",
   PeopleModalDismissed = "peopleModalDismissed",
+  ResourcesModalDismissed = "resourcesModalDismissed",
   TwoFactorAuthEnabled = "twoFactorAuthEnabled",
   TwoFactorAuthModalDismissed = "twoFactorAuthModalDismissed",
   WellbeingHubModalDismissed = "wellbeingHubModalDismissed",
@@ -10792,6 +10815,13 @@ export type TeamYAxisValue = {
   key?: Maybe<Scalars["String"]["output"]>;
   name: Scalars["String"]["output"];
   value: Scalars["Float"]["output"];
+};
+
+export type TeamYuCoinAmountSuggestion = {
+  __typename?: "TeamYuCoinAmountSuggestion";
+  amount: Scalars["Int"]["output"];
+  formattedApproximateValue: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
 };
 
 export type TeamYuCoinTopupRequest = {
@@ -20333,6 +20363,18 @@ export type MobileInventoryInfoFragment = {
   streakSaverCount: number;
 };
 
+export type LifeEventsFragment = {
+  __typename?: "LifeEvents";
+  id: string;
+  isBirthdayGiftingEnabled: boolean;
+  birthday?: {
+    __typename?: "PlayerBirthday";
+    dateOfBirthDay?: number | null;
+    dateOfBirthMonth?: number | null;
+    isVisible: boolean;
+  } | null;
+};
+
 export type MediaFragment = {
   __typename?: "Media";
   id: string;
@@ -28422,6 +28464,62 @@ export type SubmitSduiJourneyMutationVariables = Exact<{
 }>;
 
 export type SubmitSduiJourneyMutation = { __typename?: "Mutation"; submitSduiJourney?: boolean | null };
+
+export type GetPlayerLifeEventsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetPlayerLifeEventsQuery = {
+  __typename?: "Query";
+  getPlayerLifeEvents?: {
+    __typename?: "LifeEvents";
+    id: string;
+    isBirthdayGiftingEnabled: boolean;
+    birthday?: {
+      __typename?: "PlayerBirthday";
+      dateOfBirthDay?: number | null;
+      dateOfBirthMonth?: number | null;
+      isVisible: boolean;
+    } | null;
+  } | null;
+};
+
+export type SetPlayerBirthdayMutationVariables = Exact<{
+  dateOfBirthDay: Scalars["Int"]["input"];
+  dateOfBirthMonth: Scalars["Int"]["input"];
+}>;
+
+export type SetPlayerBirthdayMutation = {
+  __typename?: "Mutation";
+  setPlayerBirthday?: {
+    __typename?: "LifeEvents";
+    id: string;
+    isBirthdayGiftingEnabled: boolean;
+    birthday?: {
+      __typename?: "PlayerBirthday";
+      dateOfBirthDay?: number | null;
+      dateOfBirthMonth?: number | null;
+      isVisible: boolean;
+    } | null;
+  } | null;
+};
+
+export type SetMobilePlayerBirthdayVisibilityMutationVariables = Exact<{
+  isVisible: Scalars["Boolean"]["input"];
+}>;
+
+export type SetMobilePlayerBirthdayVisibilityMutation = {
+  __typename?: "Mutation";
+  setMobilePlayerBirthdayVisibility?: {
+    __typename?: "LifeEvents";
+    id: string;
+    isBirthdayGiftingEnabled: boolean;
+    birthday?: {
+      __typename?: "PlayerBirthday";
+      dateOfBirthDay?: number | null;
+      dateOfBirthMonth?: number | null;
+      isVisible: boolean;
+    } | null;
+  } | null;
+};
 
 export type ChangeUserLocaleMutationVariables = Exact<{
   locale: Scalars["String"]["input"];
@@ -63733,6 +63831,35 @@ export const MobileInventoryInfoFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MobileInventoryInfoFragment, unknown>;
+export const LifeEventsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "LifeEvents" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "birthday" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirthDay" } },
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirthMonth" } },
+                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<LifeEventsFragment, unknown>;
 export const MediaFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -85196,6 +85323,188 @@ export const SubmitSduiJourneyDocument = {
     },
   ],
 } as unknown as DocumentNode<SubmitSduiJourneyMutation, SubmitSduiJourneyMutationVariables>;
+export const GetPlayerLifeEventsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPlayerLifeEvents" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getPlayerLifeEvents" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "LifeEvents" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "LifeEvents" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "birthday" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirthDay" } },
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirthMonth" } },
+                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetPlayerLifeEventsQuery, GetPlayerLifeEventsQueryVariables>;
+export const SetPlayerBirthdayDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SetPlayerBirthday" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "dateOfBirthDay" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "dateOfBirthMonth" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "setPlayerBirthday" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "dateOfBirthDay" },
+                value: { kind: "Variable", name: { kind: "Name", value: "dateOfBirthDay" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "dateOfBirthMonth" },
+                value: { kind: "Variable", name: { kind: "Name", value: "dateOfBirthMonth" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "LifeEvents" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "LifeEvents" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "birthday" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirthDay" } },
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirthMonth" } },
+                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SetPlayerBirthdayMutation, SetPlayerBirthdayMutationVariables>;
+export const SetMobilePlayerBirthdayVisibilityDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SetMobilePlayerBirthdayVisibility" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "isVisible" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "setMobilePlayerBirthdayVisibility" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "isVisible" },
+                value: { kind: "Variable", name: { kind: "Name", value: "isVisible" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "LifeEvents" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "LifeEvents" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "birthday" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirthDay" } },
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirthMonth" } },
+                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  SetMobilePlayerBirthdayVisibilityMutation,
+  SetMobilePlayerBirthdayVisibilityMutationVariables
+>;
 export const ChangeUserLocaleDocument = {
   kind: "Document",
   definitions: [
