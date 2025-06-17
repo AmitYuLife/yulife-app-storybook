@@ -209,10 +209,8 @@ export const CUSTOMER_128_TOGGLES = {
     userId: customer.CUSTOMER_128_WELLBEING_ELIGIBILITY.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
-      showYuScreenWellbeingButton: true,
     },
   },
 } as IDatabaseItem;
@@ -225,10 +223,8 @@ export const CUSTOMER_129_TOGGLES = {
     userId: customer.CUSTOMER_129_WELLBEING_ELIGIBILITY.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
-      showYuScreenWellbeingButton: true,
     },
   },
 } as IDatabaseItem;
