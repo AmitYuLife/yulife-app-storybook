@@ -227,6 +227,7 @@ export const FOOTER_LEGAL_DISCLAIMER = "FOOTER_LEGAL_DISCLAIMER";
 export const VOUCHER_CODE_TITLE = (text: string) => `VOUCHER_CODE_TITLE_${text}`;
 export const VOUCHER_CODE = (code: string) => `VOUCHER_CODE_${code}`;
 export const ITEM_DETAILS_REWARD = (label: string) => `ITEM_DETAILS_REWARD_${label}`;
+export const NOTIFICATIONS_EMPTY = "NOTIFICATIONS_EMPTY";
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`;

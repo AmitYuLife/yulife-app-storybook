@@ -123,3 +123,18 @@ export const USER_16_GIFT_B = {
     autoClaimAfter: moment().subtract(1, "days").toDate(),
   },
 } as IDatabaseItem;
+
+export const USER_UNKNOWN_GIFT_B = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    fromUserId: customer.CUSTOMER_UNKNOWN.data.customerId,
+    toUserId: customer.CUSTOMER_19.data.customerId,
+    assetType: "yucoin",
+    amount: 100,
+    message: "Great work today!",
+    background: "forest",
+    sticker: "lantern",
+    autoClaimAfter: moment().subtract(1, "days").toDate(),
+  },
+} as IDatabaseItem;

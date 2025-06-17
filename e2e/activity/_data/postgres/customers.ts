@@ -650,3 +650,11 @@ export const CUSTOMER_141 = createCustomerRecords({
     },
   ],
 });
+
+export const CUSTOMER_UNKNOWN = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: "unknown",
+  },
+} as IDatabaseItem;
