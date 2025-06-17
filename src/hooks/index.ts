@@ -45,3 +45,5 @@ export * from "./animation/useFrameAdjuster";
 export * from "./useImagePreload";
 export * from "./useTimeout";
 export * from "./useFocusEffect";
+export * from "./useRecurringTimeout";
+export * from "./useTimer";
