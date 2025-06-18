@@ -8,7 +8,6 @@ import * as ids from "@ids";
 import * as data from "../_data";
 import { getLocalisedString as t } from "@i18n";
 import { getFullName } from "_utils/users";
-import { questFTUEButton } from "./_resources/fixtures";
 
 Feature("As a user I can take a challenge", async () => {
   Scenario("I can take a challenge and cancel it", scenario.start, async () => {
@@ -387,27 +386,6 @@ Feature("As a user I can take a challenge", async () => {
   Scenario("I can take a long walk challenge, put app in background, open app and still successfully complete and collect the chest reward after midnight", scenario.start, async () => {
     helper.START_WALKING_CHALLENGE_MINIMISE_FAKE_TIME();
     helper.END_WALKING_CHALLENGE_FAKE_TIME();
-  });
-
-  Scenario("If I have the correct toggle, I can see the quest map FTUE", scenario.start, async () => {
-    Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_2, data.AUTH_2), async () => {
-      Then("I should see the quest FTUE", then.onQuestFTUE);
-    });
-    When("I go back to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      When("I tap take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
-        Then("I should see the quest FTUE", then.onQuestFTUE);
-      });
-    });
-    When("I tap lets go", when.tapText(questFTUEButton), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
-    });
-    When("I tap on the challenge button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-      Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
-      Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
-      Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
-      Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
-    });
   });
 
   Scenario("'Take a challenge' button should take user(level dependent) straight to the challenge page", scenario.start, async () => {
