@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -16,27 +16,27 @@ type UseDistractionGameReturn = {
 
 export const useDistractionGame = ({ gameIntroModal, gameOptions }: Props): UseDistractionGameReturn => {
   const dispatch = useDispatch();
-  const [introModalShown, setIntroModalShown] = useState(false);
 
   const gameIntroModalSafe = useMemo(() => {
+    if (!gameIntroModal) {
+      return;
+    }
+
     const { image: introModalImage, ...introModal } = gameIntroModal || {};
-    return gameIntroModal && !introModalShown
-      ? {
-          ...introModal,
-          image: introModalImage?.image?.uri
-            ? {
-                uri: introModalImage.image.uri,
-                width: introModalImage.width,
-                height: introModalImage.height,
-              }
-            : undefined,
-        }
-      : undefined;
-  }, [gameIntroModal, introModalShown]);
+
+    return {
+      ...introModal,
+      image: introModalImage?.image?.uri
+        ? {
+            uri: introModalImage.image.uri,
+            width: introModalImage.width,
+            height: introModalImage.height,
+          }
+        : undefined,
+    };
+  }, [gameIntroModal]);
 
   const play = useCallback(() => {
-    setIntroModalShown(true);
-
     dispatch(
       logMixpanelEventActionCreator("button_pressed", {
         name: "distraction_game",
