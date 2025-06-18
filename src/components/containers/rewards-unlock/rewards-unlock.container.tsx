@@ -18,6 +18,7 @@ import { IRewardContainerProps } from "../member/rewards/rewards.types";
 import NoStoreWalletButton from "@components/screens/member/rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
 import { isAndroid } from "@utils";
 import { useMutation } from "@apollo/client";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPressWallet }: IRewardContainerProps) => {
   const { componentId } = useNavigation();
@@ -26,6 +27,8 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
     componentId
   );
   const { onScroll } = useContext(RewardsManagerContext);
+
+  const insets = useSafeAreaInsets();
 
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
     onCompleted: () => refetchUnlockables().catch(),
@@ -79,11 +82,15 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
 
   const topPadding = useMemo(() => {
     if (isInnerScreen || showNavigation) {
+      if (Style.isIphone13ProMax()) {
+        return insets.top;
+      }
+
       return isAndroid() ? TOP_BAR.TOP_BAR_WITH_PAD : TOP_BAR.PADDING_TOP;
     }
 
     return Style.adjust(8);
-  }, [isInnerScreen, showNavigation]);
+  }, [isInnerScreen, showNavigation, insets.top]);
 
   if (!queryResult?.getMobileUnlockableBattlePassVouchers) {
     return (
