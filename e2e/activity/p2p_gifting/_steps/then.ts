@@ -118,12 +118,18 @@ export const cycleThroughGiftMessages = async () => {
 };
 
 export const cycleThroughStickers = async () => {
+  const VISIBLE_PER_SCROLL = 9;
+
   for (let i = 0; i < P2P_GIFTING_STICKERS.length; i++) {
     const id = P2P_GIFTING_STICKERS[i];
     const testID = ids.P2P_STICKER_ITEMS(id);
-    await tapID(testID)();
-    if ((i + 1) % 6 === 0 && i !== P2P_GIFTING_STICKERS.length - 1) {
-      await scrollFromID(testID, "up", "fast", 0.14)();
+    await idVisible(testID)();
+
+    const isLastSticker = i === P2P_GIFTING_STICKERS.length - 1;
+
+    if (!isLastSticker && (i + 1) % VISIBLE_PER_SCROLL === 0) {
+      const scrollAnchorID = ids.P2P_STICKER_ITEMS(P2P_GIFTING_STICKERS[i]);
+      await scrollFromID(scrollAnchorID, "up", "fast", 0.14)();
     }
   }
 };
