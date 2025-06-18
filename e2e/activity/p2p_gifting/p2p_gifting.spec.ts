@@ -79,10 +79,8 @@ Feature("P2P gifting", async () => {
       });
     });
     When("I tap on the 'trophy' sticker", when.tapID(ids.P2P_STICKER_ITEMS("trophy"), 2000), async () => {
-      When("I tap to select the sticker", when.tapID(ids.CTA_SELECT, 1500), async () => {
-        Then("I am on the preview screen", then.onGiftingPreviewScreen(P2P_MESSAGES[4], P2P_GIFTING_AMOUNTS[4]));
-        Then("I should see the background slider", then.idVisible(ids.P2P_SLIDER, 1000));
-      });
+      Then("I am on the preview screen", then.onGiftingPreviewScreen(P2P_MESSAGES[4], P2P_GIFTING_AMOUNTS[4]));
+      Then("I should see the background slider", then.idVisible(ids.P2P_SLIDER, 1000));
     });
     When("I tap to select the ocean background", when.tapID(ids.P2P_SLIDER_ITEM("ocean"), 1500), async () => {
       When("I press to send the gift", when.tapID(ids.P2P_SEND_BUTTON, 1500), async () => {
@@ -144,6 +142,10 @@ Feature("P2P gifting", async () => {
     When("I tap to add a sticker", when.tapID(ids.P2P_STICKER, 2000), async () => {
       Then("I should see the stickers modal appear", then.idVisible(ids.P2P_STICKER_MODAL));
       Then(`I can see and select through all ${P2P_GIFTING_STICKERS.length} stickers`, then.cycleThroughStickers);
+    });
+    When("I tap the magic sticker", when.tapID(ids.P2P_STICKER_ITEMS("magic"), 2000), async () => {
+      Then("I should see the magic sticker selected", then.idVisible(ids.P2P_STICKER_ITEMS("magic"), 2000));
+      Then("I should see the slay message selected", then.idVisible(ids.P2P_MESSAGE("SLAY 💅"), 2000));
     });
   });
 
@@ -393,10 +395,8 @@ Scenario("I can send multiple people a YuCoin gift", scenario.start, async () =>
     });
   });
   When("I tap on the 'trophy' sticker", when.tapID(ids.P2P_STICKER_ITEMS("trophy"), 2000), async () => {
-    When("I tap to select the sticker", when.tapID(ids.CTA_SELECT, 1500), async () => {
-      Then("I am on the preview screen", then.onGiftingPreviewScreen(P2P_MESSAGES[4], P2P_GIFTING_AMOUNTS[3]));
-      Then("I should see the background slider", then.idVisible(ids.P2P_SLIDER, 1000));
-    });
+    Then("I am on the preview screen", then.onGiftingPreviewScreen(P2P_MESSAGES[4], P2P_GIFTING_AMOUNTS[3]));
+    Then("I should see the background slider", then.idVisible(ids.P2P_SLIDER, 1000));
   });
   When("I tap to select the ocean background", when.tapID(ids.P2P_SLIDER_ITEM("ocean"), 1500), async () => {
     When("I press to send the gift", when.tapID(ids.P2P_SEND_BUTTON, 1500), async () => {
