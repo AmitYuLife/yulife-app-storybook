@@ -1247,12 +1247,38 @@
       }
     },
     "leaderboard_settings": {
+      "birthday_visibility": {
+        "consented": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
+        "error": "Oops! Something went wrong",
+        "not_consented": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
+        "not_set": {
+          "ctaLabel": "Got it!",
+          "heading": "Update your birthday to enable birthday notifications"
+        },
+        "title": "Birthday notifications",
+        "turn_off": {
+          "ctaLabel": "No, keep them on",
+          "ctaLabelSecondary": "Yes, turn off",
+          "heading": "Disable birthday notifications?",
+          "subheading": "You won't get friends' birthday reminders, and your friends won't get a notification on your birthday."
+        },
+        "turn_on": {
+          "confirm": "Yes, turn on",
+          "ctaLabel": "Yes, turn on",
+          "ctaLabelSecondary": "No, thanks",
+          "description": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
+          "heading": "Enable birthday notifications?",
+          "subheading": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday."
+        }
+      },
       "consented": "Other members of this leaderboard can see your name and activity.",
       "description": "Status and management of your access to app related leaderboards.",
+      "description_with_birthday": "Management of your access to app-related leaderboards and birthday permissions.",
       "item_title": "%{name} Leaderboard",
       "not_consented": "Allow other members of this leaderboard to see your name and activity.",
-      "screen_description": "Status and management of your access to app related leaderboards. Please be aware – Opting out of a leaderboard might restrict your access to some features. ",
-      "title": "Leaderboards"
+      "screen_description": "Management of your access to app-related leaderboards. Please note: opting out of a leaderboard may restrict your access to some features.",
+      "title": "Leaderboards",
+      "title_with_birthday": "Leaderboards and birthday"
     },
     "level_locked": {
       "level": "Unlock at level %{level}",

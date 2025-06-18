@@ -1247,12 +1247,38 @@
       }
     },
     "leaderboard_settings": {
+      "birthday_visibility": {
+        "consented": "Recibe un recordatorio de los cumpleaños de tus amigos, y tus amigos recibirán una notificación de tu cumpleaños.",
+        "error": "¡Ay! Algo salió mal",
+        "not_consented": "Recibe un recordatorio de los cumpleaños de tus amigos, y tus amigos recibirán una notificación de tu cumpleaños.",
+        "not_set": {
+          "ctaLabel": "¡Entendido!",
+          "heading": "Actualiza tu fecha de cumpleaños para activar las notificaciones de cumpleaños"
+        },
+        "title": "Notificaciones de cumpleaños",
+        "turn_off": {
+          "ctaLabel": "No, mantenlos encendidos",
+          "ctaLabelSecondary": "Sí, apague",
+          "heading": "¿Desactivar las notificaciones de cumpleaños?",
+          "subheading": "No recibirás recordatorios de cumpleaños de tus amigos, y tus amigos no recibirán una notificación de tu cumpleaños."
+        },
+        "turn_on": {
+          "confirm": "Sí, encender",
+          "ctaLabel": "Sí, encender",
+          "ctaLabelSecondary": "No, gracias.",
+          "description": "Recibe un recordatorio de los cumpleaños de tus amigos, y tus amigos recibirán una notificación de tu cumpleaños.",
+          "heading": "¿Activar las notificaciones de cumpleaños?",
+          "subheading": "Recibe un recordatorio de los cumpleaños de tus amigos, y tus amigos recibirán una notificación de tu cumpleaños."
+        }
+      },
       "consented": "Otros miembros de esta clasificación pueden ver tu nombre y tu actividad.",
       "description": "Estado y gestión de tu acceso a las clasificaciones relacionadas con la aplicación.",
+      "description_with_birthday": "Gestión de tu acceso a tablas de clasificación y permisos de cumpleaños relacionados con la aplicación.",
       "item_title": "%{name} Clasificación",
       "not_consented": "Permite que otros miembros de esta clasificación vean tu nombre y tu actividad.",
-      "screen_description": "Estado y gestión de tu acceso a las clasificaciones de la aplicación. Ten en cuenta que la exclusión de una clasificación puede restringir tu acceso a algunas funciones.",
-      "title": "Clasificaciones"
+      "screen_description": "Gestión de su acceso a las tablas de clasificación de la aplicación. Ten en cuenta que la exclusión de una clasificación puede restringir tu acceso a algunas funciones.",
+      "title": "Clasificaciones",
+      "title_with_birthday": "Tablas de clasificación y cumpleaños"
     },
     "level_locked": {
       "level": "Desbloquear en nivel %{level}",
