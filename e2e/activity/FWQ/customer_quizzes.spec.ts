@@ -105,7 +105,9 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-        Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("Daily health questions")));
+        When("I scroll to see the HQ hero card", when.scrollFromID(ids.EVENT_CARD("Share your feedback"), "left", "slow", 0.5), async () => {
+          Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("Daily health questions")));
+        });
       });
     });
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
