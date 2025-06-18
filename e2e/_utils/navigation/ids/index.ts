@@ -272,8 +272,12 @@ export const CONTENT_ITEM_IMAGE = "CONTENT_ITEM_IMAGE";
 export const PURCHASED_ITEM = (name: string) => `PURCHASED_ITEM_${name}`;
 
 // leaderboard
-export const LEADERBOARD_NAME = (name: string, score: string, rank: number, type?: string) =>
-  `LEADERBOARD_NAME_${name}_${score}_${rank}${type ? `_${type}` : null}`;
+export const LEADERBOARD_NAME = (
+  name: string,
+  score: string | number,
+  rank: number,
+  type?: string
+) => `LEADERBOARD_NAME_${name}_${score}_${rank}${type ? `_${type}` : null}`;
 export const LEADERBOARD_SCREEN = "LEADERBOARD_SCREEN";
 export const LEADERBOARD_TOP_SCREEN = "LEADERBOARD_TOP_SCREEN";
 export const LEADERBOARD_INFO_BUTTON = "LEADERBOARD_INFO_BUTTON";
