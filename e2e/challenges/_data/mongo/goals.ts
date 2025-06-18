@@ -19,14 +19,15 @@ export const GOALS_2 = {
     illustrationImageKey: "cms/1652745617947_Walk of the worlds (1).png",
     illustrationBackgroundColor: "#FEFBE9",
     illustrationTextColor: "#5A5A5C",
-    startDateTime:  moment().subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss"),
+    startDateTime: moment().subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss"),
     endDateTime: moment().add(7, "day").format("YYYY-MM-DDTHH:mm:ss"),
     startOn: null,
     badgeBackgroundColor: "#FF5F5F",
     badgeImageKey: "cms/1649947633967_fire.png",
     badgeText: "NEW",
     badgeTextColor: "#FFFFFF",
-    description: "You've been selected to test our exciting new feature, The Events System! Complete challenges to hit milestones and earn extra YuCoin.",
+    description:
+      "You've been selected to test our exciting new feature, The Events System! Complete challenges to hit milestones and earn extra YuCoin.",
     descriptionTitle: "Challenge yourself",
     duration: 2880,
     faqText: "FAQ test",
@@ -34,18 +35,19 @@ export const GOALS_2 = {
       {
         imageKey: "personalProducts/policy-terms-conditions.svg",
         title: "Task",
-        description: "walk 500 steps over the next 2 days to win an extra YuCoin bounty."
+        description: "walk 500 steps over the next 2 days to win an extra YuCoin bounty.",
       },
       {
         imageKey: "cms/1651070115152_Chest.png",
         title: "Reward",
-        description: "Earn up to 1000 extra YuCoin by completing daily challenges. "
+        description: "Earn up to 1000 extra YuCoin by completing daily challenges. ",
       },
       {
         imageKey: "cms/1651069814232_Group 1483.png",
         title: "Feedback",
-        description: "We're activley developing this feature and would love to hear your feedback! You can contact us via the Chat button located in side menu on the main screen. "
-      }
+        description:
+          "We're activley developing this feature and would love to hear your feedback! You can contact us via the Chat button located in side menu on the main screen. ",
+      },
     ],
     tagImageKey: "cms/1649947806334_Vector.png",
   },
@@ -66,14 +68,15 @@ export const GOALS_3 = {
     illustrationImageKey: "cms/1652745617947_Walk of the worlds (1).png",
     illustrationBackgroundColor: "#FEFBE9",
     illustrationTextColor: "#5A5A5C",
-    startDateTime:  moment().subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss"),
+    startDateTime: moment().subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss"),
     endDateTime: moment().add(7, "day").format("YYYY-MM-DDTHH:mm:ss"),
     startOn: null,
     badgeBackgroundColor: "#FF5F5F",
     badgeImageKey: "cms/1649947633967_fire.png",
     badgeText: "NEW",
     badgeTextColor: "#FFFFFF",
-    description: "You've been selected to test our exciting new feature, The Events System! Complete cycling challenges to hit milestones and earn extra YuCoin.",
+    description:
+      "You've been selected to test our exciting new feature, The Events System! Complete cycling challenges to hit milestones and earn extra YuCoin.",
     descriptionTitle: "Ride and challenge yourself!",
     duration: 2880,
     faqText: "FAQ test",
@@ -81,18 +84,19 @@ export const GOALS_3 = {
       {
         imageKey: "personalProducts/policy-terms-conditions.svg",
         title: "Task",
-        description: "walk 500 steps over the next 2 days to win an extra YuCoin bounty."
+        description: "walk 500 steps over the next 2 days to win an extra YuCoin bounty.",
       },
       {
         imageKey: "cms/1651070115152_Chest.png",
         title: "Reward",
-        description: "Earn up to 1000 extra YuCoin by completing daily challenges. "
+        description: "Earn up to 1000 extra YuCoin by completing daily challenges. ",
       },
       {
         imageKey: "cms/1651069814232_Group 1483.png",
         title: "Feedback",
-        description: "We're activley developing this feature and would love to hear your feedback! You can contact us via the Chat button located in side menu on the main screen. "
-      }
+        description:
+          "We're activley developing this feature and would love to hear your feedback! You can contact us via the Chat button located in side menu on the main screen. ",
+      },
     ],
     tagImageKey: "cms/1649947806334_Vector.png",
   },
@@ -113,14 +117,15 @@ export const GOALS_4 = {
     illustrationImageKey: "cms/1652745617947_Walk of the worlds (1).png",
     illustrationBackgroundColor: "#FEFBE9",
     illustrationTextColor: "#5A5A5C",
-    startDateTime:  moment().subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss"),
+    startDateTime: moment().subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss"),
     endDateTime: moment().add(7, "day").format("YYYY-MM-DDTHH:mm:ss"),
     startOn: null,
     badgeBackgroundColor: "#FF5F5F",
     badgeImageKey: "cms/1649947633967_fire.png",
     badgeText: "NEW",
     badgeTextColor: "#FFFFFF",
-    description: "You've been selected to test our exciting new feature, The Events System! Complete four 3 star challenges to hit milestones and earn extra YuCoin.",
+    description:
+      "You've been selected to test our exciting new feature, The Events System! Complete four 3 star challenges to hit milestones and earn extra YuCoin.",
     descriptionTitle: "Challenge yourself with 3 star challenges!",
     duration: 2880,
     faqText: "FAQ test",
@@ -128,18 +133,19 @@ export const GOALS_4 = {
       {
         imageKey: "personalProducts/policy-terms-conditions.svg",
         title: "Task",
-        description: "walk 500 steps over the next 2 days to win an extra YuCoin bounty."
+        description: "walk 500 steps over the next 2 days to win an extra YuCoin bounty.",
       },
       {
         imageKey: "cms/1651070115152_Chest.png",
         title: "Reward",
-        description: "Earn up to 1000 extra YuCoin by completing daily challenges. "
+        description: "Earn up to 1000 extra YuCoin by completing daily challenges. ",
       },
       {
         imageKey: "cms/1651069814232_Group 1483.png",
         title: "Feedback",
-        description: "We're activley developing this feature and would love to hear your feedback! You can contact us via the Chat button located in side menu on the main screen. "
-      }
+        description:
+          "We're activley developing this feature and would love to hear your feedback! You can contact us via the Chat button located in side menu on the main screen. ",
+      },
     ],
     tagImageKey: "cms/1649947806334_Vector.png",
   },
@@ -160,14 +166,15 @@ export const GOALS_5 = {
     illustrationImageKey: "cms/1652745617947_Walk of the worlds (1).png",
     illustrationBackgroundColor: "#FEFBE9",
     illustrationTextColor: "#5A5A5C",
-    startDateTime:  moment().subtract(5, "day").format("YYYY-MM-DDTHH:mm:ss"),
+    startDateTime: moment().subtract(5, "day").format("YYYY-MM-DDTHH:mm:ss"),
     endDateTime: moment().add(5, "day").format("YYYY-MM-DDTHH:mm:ss"),
     startOn: null,
     badgeBackgroundColor: "#FF5F5F",
     badgeImageKey: "cms/1649947633967_fire.png",
     badgeText: "NEW",
     badgeTextColor: "#FFFFFF",
-    description: "You've been selected to test our exciting new feature, The Events System! Complete walking challenges to hit milestones and earn extra YuCoin.",
+    description:
+      "You've been selected to test our exciting new feature, The Events System! Complete walking challenges to hit milestones and earn extra YuCoin.",
     descriptionTitle: "Walk and challenge yourself!",
     duration: 2880,
     faqText: "FAQ test",
@@ -176,19 +183,52 @@ export const GOALS_5 = {
       {
         imageKey: "personalProducts/policy-terms-conditions.svg",
         title: "Task",
-        description: "walk 10000 steps over the next 2 days to win an extra YuCoin bounty."
+        description: "walk 10000 steps over the next 2 days to win an extra YuCoin bounty.",
       },
       {
         imageKey: "cms/1651070115152_Chest.png",
         title: "Reward",
-        description: "Earn up to 1000 extra YuCoin by completing daily challenges. "
+        description: "Earn up to 1000 extra YuCoin by completing daily challenges. ",
       },
       {
         imageKey: "cms/1651069814232_Group 1483.png",
         title: "Feedback",
-        description: "We're activley developing this feature and would love to hear your feedback! You can contact us via the Chat button located in side menu on the main screen. "
-      }
+        description:
+          "We're activley developing this feature and would love to hear your feedback! You can contact us via the Chat button located in side menu on the main screen. ",
+      },
     ],
     tagImageKey: "cms/1649947806334_Vector.png",
+  },
+} as IDatabaseItem;
+
+export const GOALS_TOURNAMENT = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    title: "Detox Team Tournament",
+    autoJoin: true,
+    illustrationImageKey: "events/banners/banner_cup_under_water.png",
+    illustrationBackgroundColor: "rgb(221, 246, 251)",
+    illustrationTextColor: "#464647",
+    status: "active",
+    type: "vs",
+    synchronousProgress: true,
+    descriptionTitle: "Step Showdown",
+    description:
+      "Gear up for an epic step-off in the Yuniverse! Teams will go toe-to-toe, with the highest average step count claiming the crown. Every step counts, so rally your squad, lace up those trainers, and let’s get moving. Will your team stride to victory, or will you be left in the dust?",
+    tags: [],
+    tagImageKey: "content/icons/yulife.png",
+    badgeImageKey: "events/info/flame.png",
+    backFill: true,
+    info: [],
+    startDateTime: moment().format("YYYY-MM-DD"),
+    endDateTime: moment().add(7, "days").format("YYYY-MM-DD"),
+    gracePeriodHours: 24,
+    participantsCount: 0,
+    disableTransactions: false,
+    autoClaimRewards: false,
+    skipAutoCompletion: false,
+    hideHint: false,
   },
 } as IDatabaseItem;

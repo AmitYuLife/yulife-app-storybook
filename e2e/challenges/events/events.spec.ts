@@ -1,11 +1,11 @@
 import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { tournamentEventDescription } from "./_resources/fixtures";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as ids from "@ids";
 import * as data from "../_data";
-import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can opt in and take an event", async () => {
   Scenario("I can take and complete a 3 star challenge event and hit all the event milestones, with the daily hero card toggle", scenario.start, async () => {
@@ -172,6 +172,21 @@ Feature("As a user I can opt in and take an event", async () => {
           Then("I should see the event card description has the correct yuniverse colour", then.idVisible(ids.EVENT_DESCRIPTION("4,000 / 10,000 steps", "#FFFFFF")));
         });
       });
+    });
+  });
+
+  Scenario("I can view the active Team vs Team tournament with the remaining days and current team standings", scenario.start, async () => {
+    Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_72, data.AUTH_72), async () => {
+      Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
+    });
+    When("I swipe right on the event card", when.scrollFromID(ids.EVENT_HEADING(data.GOALS_4.data.title, "#5A5A5C"), "left", "fast"), async () => {
+      Then("I should see the correct event title", then.idVisible(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#5A5A5C")));
+      Then("I should see the correct event description", then.idVisible(ids.EVENT_DESCRIPTION(tournamentEventDescription, "#5A5A5C")));
+    });
+    When("I tap on the event card", when.tapID(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#5A5A5C")), async () => {
+      Then("I should see the correct remaining days", then.textVisible("6 days left", 2000));
+      Then("I should see the correct event info", then.onEventDetailsScreen(data.GOALS_TOURNAMENT));
+      Then("I should see the current team standings and scores", then.assertTeamStandings(data.SOCIAL_GROUP_KNOCKOUT_TOURNAMENT_MATCH_UP));
     });
   });
 });
