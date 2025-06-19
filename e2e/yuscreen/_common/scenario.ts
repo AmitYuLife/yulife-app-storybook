@@ -9,7 +9,6 @@ beforeAll(async () => {
 
   dataManager.addData(dataToInsert as any);
   await dataManager.connect(API_URL, true);
-  await dataManager.resetData();
   await dataManager.reseed();
 });
 
