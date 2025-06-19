@@ -11,7 +11,7 @@ module.exports = {
     "@react-native",
     "plugin:storybook/recommended",
   ],
-  plugins: ["react", "@typescript-eslint", "deprecation", "rulesdir"],
+  plugins: ["react", "@typescript-eslint", "prettier", "deprecation", "rulesdir", "unused-imports"],
   env: {
     browser: true,
   },
@@ -27,7 +27,7 @@ module.exports = {
     "no-shadow": "off",
     "no-extra-boolean-cast": "warn",
     "react-native/no-inline-styles": "warn",
-    "prettier/prettier": "off",
+    "prettier/prettier": "error",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -42,6 +42,7 @@ module.exports = {
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "warn",
     "deprecation/deprecation": "warn",
+    "unused-imports/no-unused-imports": "error",
     "no-else-return": [
       "error",
       {
