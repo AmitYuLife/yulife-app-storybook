@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.67.0] - 2025-06-19
+
+### Bugfixes
+
+- Bugfix GS-1700: Fix achievement list on android 15 devices
+- Bugfix: move out the loading and restriction from gifting-manager scrollview
+- Bugfix GS-1692: Rewards header cropped on iphone 13 pro max
+
+### Tasks
+
+- Task: Add eslint-plugin-unused-imports plugin
+- Task GS-1699: Increase node memory for tests
+- Task GS-1693: Shopfront fixes
+- Task LCS-1400: Ease transition from launch to login
+- Task LCS-1113: Update smoking hero card
+
+### Chores
+
+- Chore - Updated translations
+- Chore: Update README to advise updating instead of upgrading
+- Chore - Updated translations
+
+### Extra
+
+- Feat: LCS-1312: Smoking tips design update
+- Detox LCS-1390: Testing all Yumoji builder facial hairs are visible including new Puff style
+- Detox: Remove redundant data reset when seeding
+- Bump axios from 1.9.0 to 1.10.0
+- Detox: Team Tournament Event
+- Detox: quick fix for failing HQ test due to hero card not being visible
+- Detox: Purge Quest Map Onboarding
+- Feat: LCS-1399: Distraction game modal appears every visit
+- Detox LCS-1343: updated new stickers layout for tests
+- Detox LCS-1369: Removed purged legacy YuScreen toggles from e2e
+- Feat: LCS-1353: Track 2048 game only while screen is active
+- Feat LCS-1388: Add birthday visibility toggle to settings
+- Feat: LCS-997: Smoking hub overhaul
+- Detox CTE-84: Testing app inbox filters out messages from deleted or unknown senders.
+- Detox LCS-1363: testing the different MaxYu game.yuScreen settings
+- Detox INS-4917: RewardPass products excluded from Yuscreen
+
 ## [4.66.0] - 2025-06-11
 
 ### Features
