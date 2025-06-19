@@ -36,13 +36,11 @@ export const covea_fib_01_1 = {
       buttonType: "tertiary",
       icon: {
         id: "personalProducts/policy-terms-conditions.svg",
-        uri:
-          "https://yulife-local.imgix.net/personalProducts/policy-terms-conditions.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=66be59019e750a30db2e3efb5ab70fee",
+        uri: "https://yulife-local.imgix.net/personalProducts/policy-terms-conditions.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=66be59019e750a30db2e3efb5ab70fee",
       },
       rightIcon: {
         id: "content/icons/right_arrow.svg",
-        uri:
-          "https://yulife-local.imgix.net/content/icons/right_arrow.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=f61782a69bde82bb65f61da34a8fd1d4",
+        uri: "https://yulife-local.imgix.net/content/icons/right_arrow.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=f61782a69bde82bb65f61da34a8fd1d4",
       },
     },
     {
@@ -55,8 +53,7 @@ export const covea_fib_01_1 = {
       __typename: "ContentItemInfoCard",
       image: {
         id: "personalProducts/signed-contract.png",
-        uri:
-          "https://yulife-local.imgix.net/personalProducts/signed-contract.png?ixlib=js-3.2.1&fit=clip&fm=png&s=072cd1e397ebad8b9e22b327641ddfba",
+        uri: "https://yulife-local.imgix.net/personalProducts/signed-contract.png?ixlib=js-3.2.1&fit=clip&fm=png&s=072cd1e397ebad8b9e22b327641ddfba",
         __typename: "RemoteImage",
       },
       styles: [
@@ -88,14 +85,12 @@ export const covea_fib_01_1 = {
       buttonType: "tertiary",
       icon: {
         id: "personalProducts/faqs.svg",
-        uri:
-          "https://yulife-local.imgix.net/personalProducts/faqs.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=d43312cb84e3668c8a912436037f0795",
+        uri: "https://yulife-local.imgix.net/personalProducts/faqs.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=d43312cb84e3668c8a912436037f0795",
         __typename: "RemoteImage",
       },
       rightIcon: {
         id: "content/icons/right_arrow.svg",
-        uri:
-          "https://yulife-local.imgix.net/content/icons/right_arrow.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=f61782a69bde82bb65f61da34a8fd1d4",
+        uri: "https://yulife-local.imgix.net/content/icons/right_arrow.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=f61782a69bde82bb65f61da34a8fd1d4",
       },
     },
     {

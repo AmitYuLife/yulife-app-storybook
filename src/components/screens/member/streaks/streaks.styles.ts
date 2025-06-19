@@ -56,5 +56,5 @@ export default StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: Style.adjust(15),
     top: TOP_BAR.PADDING_TOP + Style.adjust(4),
- }
+  },
 });

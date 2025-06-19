@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   imageWrapper: {
     height: TOP_HEIGHT,
   },
-  
+
   sectionBottomShadow: {
     borderBottomLeftRadius: BORDER_RADIUS,
     borderBottomRightRadius: BORDER_RADIUS,

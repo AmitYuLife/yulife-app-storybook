@@ -1,5 +1,5 @@
 export default {
-    v: require("../../../../../assets/icons/v.png")
+  v: require("../../../../../assets/icons/v.png"),
 };
 
 export { default as Coins } from "./coins";

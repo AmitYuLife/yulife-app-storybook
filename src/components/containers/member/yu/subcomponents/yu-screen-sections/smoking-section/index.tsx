@@ -47,7 +47,7 @@ export const SmokingSection = (props: ISmokingSection) => {
   if (!content) {
     return null;
   }
-  
+
   return (
     <View key={id} style={styles.wrapper}>
       <TouchableOpacity
