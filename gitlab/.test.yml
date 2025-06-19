@@ -2,6 +2,9 @@ test:
   extends: .generic-node-arm64
   stage: test
   interruptible: true
+  variables:
+    # Increase memory limit for node
+    NODE_OPTIONS: "--max_old_space_size=3072"
   script:
     # Install node
     - nvm install -b
