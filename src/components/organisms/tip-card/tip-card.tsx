@@ -1,7 +1,7 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { StyleProp, ViewStyle } from "react-native";
-import { Style } from "@styles";
-import { styles } from "./tip-card.styles";
+import { Colours } from "@styles";
+import { styles, TIP_CARD_ICON_SIZE, TIP_CARD_WIDTH } from "./tip-card.styles";
 import { Image as ImageType } from "@redux/_core/types";
 
 type TipCardParams = {
@@ -14,13 +14,19 @@ type TipCardParams = {
 
 export const TipCard = ({ id, title, description, icon, cardStyle }: TipCardParams) => {
   return (
-    <Box key={id} style={[styles.card, cardStyle]}>
-      {!icon ? null : (
-        <Image source={icon} suppressLoadingUi={true} width={Style.adjust(48)} height={Style.adjust(48)} />
-      )}
-      <Box style={styles.textWrapper} testID={id}>
-        {!title ? null : <TextTemplate type="l1b">{title}</TextTemplate>}
-        {!description ? null : <TextTemplate type="l1">{description}</TextTemplate>}
+    <Box key={id} w={TIP_CARD_WIDTH} p={16} withBorder={Colours.neutral.n150} br={8} style={cardStyle}>
+      <Box flexDirection="row" alignItems="center" gap={16}>
+        <Box gap={8} flexShrink={1} testID={id}>
+          {!title ? null : (
+            <TextTemplate type="b2b" color={Colours.darkPink}>
+              {title}
+            </TextTemplate>
+          )}
+          {!description ? null : <TextTemplate type="l2">{description}</TextTemplate>}
+        </Box>
+        {!icon ? null : (
+          <Image source={icon} suppressLoadingUi={true} width={TIP_CARD_ICON_SIZE} height={TIP_CARD_ICON_SIZE} />
+        )}
       </Box>
     </Box>
   );
