@@ -16,7 +16,6 @@ export function useFps(delay: number = 0, updateIntervalMs: number = 1000) {
   useFrameCallback((frame) => {
     const now = frame.timestamp;
 
-    // Initialize timing values
     if (lastUpdateAt.value === null) {
       lastUpdateAt.value = now + delay;
       windowStart.value = now;
@@ -24,20 +23,17 @@ export function useFps(delay: number = 0, updateIntervalMs: number = 1000) {
       return;
     }
 
-    // Reset window if it's been longer than updateIntervalMs since window start
-    if (now - windowStart.value >= updateIntervalMs) {
-      windowStart.value = now;
-      frameCount.value = 1;
-    } else {
-      frameCount.value++;
-    }
+    frameCount.value++;
 
-    // Update FPS at specified intervals
     if (now - lastUpdateAt.value >= updateIntervalMs) {
       const elapsed = now - windowStart.value;
       const currentFps = Math.round((frameCount.value * 1000) / elapsed);
       lastUpdateAt.value = now;
       runOnJS(updateFps)(currentFps);
+
+      // Reset window for next cycle
+      windowStart.value = now;
+      frameCount.value = 0;
     }
   });
 
