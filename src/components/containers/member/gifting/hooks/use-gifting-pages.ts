@@ -92,10 +92,6 @@ export const useGiftingPages = ({
   const pagesConfig = useMemo(() => Object.values(config).slice(showIntro ? 0 : 1), [config, showIntro]);
 
   useEffect(() => {
-    scrollViewRef.current?.scrollTo?.({ x: 0, animated: false });
-  }, [scrollViewRef.current]);
-
-  useEffect(() => {
     const needle = pagesConfig.findIndex((pagesConfigItem) => pagesConfigItem.id === page);
 
     scrollViewRef.current?.scrollTo?.({ x: needle * width, animated: true });

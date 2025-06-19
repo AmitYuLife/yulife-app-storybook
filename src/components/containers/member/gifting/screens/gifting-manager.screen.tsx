@@ -151,8 +151,18 @@ const GiftingManagerScreen = ({
   const displayCoin = isInSelectYuCoin && !isNil(selectedYuCoin);
   const fadeHeight = displayCoin ? 144 : 112;
 
-  return (
-    <Box flex={1}>
+  const showFade = useMemo(() => !(isInPreviewPage || isInSuccess), [isInPreviewPage, isInSuccess]);
+
+  const content = useMemo(() => {
+    if (hasReachedLimit) {
+      return <GiftingLimitReachedScreen />;
+    }
+
+    if (!isLoaded) {
+      return <GiftingLoadingScreen />;
+    }
+
+    return (
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
@@ -160,41 +170,51 @@ const GiftingManagerScreen = ({
         showsVerticalScrollIndicator={false}
         scrollEnabled={false}
       >
-        {hasReachedLimit ? (
-          <GiftingLimitReachedScreen />
-        ) : !isLoaded ? (
-          <GiftingLoadingScreen />
-        ) : (
-          <>
-            {showIntro ? <GiftingIntroScreen /> : null}
-            <GiftingSearchContainer />
-            <GiftingMessageScreen options={messagePresets} selectedMessage={selectedMessage} onSelect={selectMessage} />
-            <GiftingYuCoinContainer options={yuCoinOptions} selectedAmount={selectedYuCoin} onSelect={selectYuCoin} />
-            <GiftingMessagePreviewScreen
-              backgrounds={backgrounds}
-              stickers={stickers}
-              selectedBackground={selectedBackground}
-              selectedSticker={selectedSticker}
-              selectBackground={selectBackground}
-              selectSticker={selectSticker}
-              message={selectedMessage}
-              yuCoin={selectedYuCoin}
-              sendingState={sendingState}
-              setShowButton={setShowButton}
-              goToSuccess={goToSuccess}
-            />
-            <GiftingSuccessScreen selectedUsersCount={selectedUsersArray.length} />
-          </>
-        )}
+        {showIntro ? <GiftingIntroScreen /> : null}
+        <GiftingSearchContainer />
+        <GiftingMessageScreen options={messagePresets} selectedMessage={selectedMessage} onSelect={selectMessage} />
+        <GiftingYuCoinContainer options={yuCoinOptions} selectedAmount={selectedYuCoin} onSelect={selectYuCoin} />
+        <GiftingMessagePreviewScreen
+          backgrounds={backgrounds}
+          stickers={stickers}
+          selectedBackground={selectedBackground}
+          selectedSticker={selectedSticker}
+          selectBackground={selectBackground}
+          selectSticker={selectSticker}
+          message={selectedMessage}
+          yuCoin={selectedYuCoin}
+          sendingState={sendingState}
+          setShowButton={setShowButton}
+          goToSuccess={goToSuccess}
+        />
+        <GiftingSuccessScreen selectedUsersCount={selectedUsersArray.length} />
       </ScrollView>
-      {isInPreviewPage || isInSuccess ? null : (
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    hasReachedLimit,
+    isLoaded,
+    showIntro,
+    selectedUsersArray.length,
+    page,
+    selectedBackground,
+    selectedSticker,
+    selectedMessage,
+    selectedYuCoin,
+    sendingState,
+  ]);
+
+  return (
+    <Box flex={1}>
+      {content}
+      {showFade ? (
         <Box pointerEvents="none" position="absolute" bottom={0} h={fadeHeight} left={0} right={0}>
           <Box flex={1}>
             <Fade />
           </Box>
           <Box h={fadeHeight - 30} bg={Colours.neutral.white} />
         </Box>
-      )}
+      ) : null}
       <Box position="absolute" bottom={0} left={0} right={0} pb={24}>
         {showGiftingLimitReached ? <GiftingLimitReachedPanel page={page} /> : null}
         {displayCoin ? (
