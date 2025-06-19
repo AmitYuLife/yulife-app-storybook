@@ -10,6 +10,7 @@ import {
 import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling";
 import { scrollFromID } from "./when";
 export { yunityCorrect } from "worlds_progression/eotw/_steps/then";
+import { FACIAL_HAIR_ITEMS } from "../_resources/fixtures";
 
 export const {
   idVisible,
@@ -23,6 +24,7 @@ export const {
   textVisibleAtIndex,
   wait,
   idExist,
+  tapID,
 } = navigation.common;
 
 export const {
@@ -130,4 +132,22 @@ export const canSeeProductCertificate = (item: CertificateDetails) => async () =
   await idVisible(ids.CERTIFICATE_KEY_VALUES("Client name", item.clientName))();
   await idVisible(ids.CERTIFICATE_KEY_VALUES("Company name", item.companyName))();
   await idVisible(ids.CERTIFICATE_KEY_VALUES("Cover start date", item.coverStartDate))();
+};
+
+export const cycleThroughFacialHairOptions = async () => {
+  const VISIBLE_PER_SCROLL = 9;
+
+  for (let i = 0; i < FACIAL_HAIR_ITEMS.length; i++) {
+    const id = FACIAL_HAIR_ITEMS[i];
+    const testID = `YUMOJI_PART_ID_${id}`;
+    await idVisible(testID)();
+    await tapID(testID)();
+
+    const isLastItem = i === FACIAL_HAIR_ITEMS.length - 1;
+
+    if (!isLastItem && (i + 1) % VISIBLE_PER_SCROLL === 0) {
+      const scrollAnchorID = `YUMOJI_PART_ID_${FACIAL_HAIR_ITEMS[i]}`;
+      await scrollFromID(scrollAnchorID, "up", "fast", 0.2)();
+    }
+  }
 };

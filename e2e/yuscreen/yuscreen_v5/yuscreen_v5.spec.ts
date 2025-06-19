@@ -352,19 +352,40 @@ Feature("I am able to use the yuscreen v5", async () => {
 
   Scenario("As a user with displayScrollItems: false and displayProgress: true, the Maximise yu nudge should not be visible to me", scenario.start, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_142.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see the progress bar but not the nudge", then.idVisible(ids.MAXIMISE_YU(true, false)));
+      Then("I should see the progress bar is visible but the nudge is not visible", then.idVisible(ids.MAXIMISE_YU(true, false)));
     });
   });
 
   Scenario("As a user with displayScrollItems: true and displayProgress: false, The Maximise yu progress bar should not be visible to me", scenario.start, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_143.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see the progress is not visinle but the nudge is", then.idVisible(ids.MAXIMISE_YU(false, true)));
+      Then("I should see the progress is not visible but the nudge is visible", then.idVisible(ids.MAXIMISE_YU(false, true)));
     });
   });
 
   Scenario("As a user with displayScrollItems: false and displayProgress: false, I should not see the Maximise yu nudge or the progress bar", scenario.start, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_144.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see the progress is not visinle but the nudge is", then.idNotVisible(ids.MAXIMISE_YU_COMPONENT));
+      Then("I should see the progress bar and the nudge is not visible", then.idNotVisible(ids.MAXIMISE_YU_COMPONENT));
+    });
+  });
+
+  Scenario("I am able to see and select all the yumoji builder facial hair options", scenario.start, async () => {
+    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_144.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I can see the create yumoji card with the earnable reward as I have yet not made one", then.idVisible(ids.YUMOJI_PROMPT_COPY("Earn 100 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)\nwhen you create\nyour Yumoji.")));
+    });
+    When("I click on the Create Yumoji button", when.tapID(ids.YUMOJI_PROMPT_CTA), async () => {
+      When("I click on the male body", when.tapID(ids.MALE_BODY), async () => {
+        When("I click the continue button", when.tapID(ids.CTA_CONTINUE), async () => {
+          Then("I should be on the Facial Hair tab", then.idVisible(ids.CATEGORY_TYPE("facialHair")));
+        });
+      });
+    });
+    When("I click on the facial hair tab", when.tapID(ids.CATEGORY_TYPE("facialHair")), async () => {
+      Then("I can cycle through all the facial hair items", then.cycleThroughFacialHairOptions);
+    });
+    When("I save the yumoji", when.saveYumoji(false), async () => {
+      When("I tap to collect yucoin reward", when.tapID(ids.COLLECT_REWARD_CTA), async () => {
+        Then("I should see the yumoji", then.idVisible(ids.YUMOJI_EQUIPMENT));
+      });
     });
   });
 });
