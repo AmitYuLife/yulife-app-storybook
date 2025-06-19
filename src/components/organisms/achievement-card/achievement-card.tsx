@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(95),
   },
   wrapperStyle: {
-    width: Style.adjust(164),
+    width: "90%",
   },
   innerWrapperStyle: {
     alignItems: "center",

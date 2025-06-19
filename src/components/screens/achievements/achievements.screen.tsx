@@ -110,7 +110,7 @@ const AchievementsScreen = ({
 const LoadingAchievementsScreen = () => (
   <Box flexDirection="row" flexWrap="wrap" alignItems="center" justifyContent="center" gap={8} mt={16}>
     {Array.from({ length: 8 }).map((_, index) => (
-      <SkeletonLoading key={index} w={164} h={196} />
+      <SkeletonLoading key={index} w={"47%"} h={196} />
     ))}
   </Box>
 );
