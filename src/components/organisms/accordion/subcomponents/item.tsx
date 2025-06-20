@@ -1,11 +1,10 @@
-import React, { memo, useCallback, useContext, useMemo } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Image, Source, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { SduiAction } from "@graphql/__generated";
 import { useDispatch } from "react-redux";
-import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { DENTAL_TOOLTIP_INFO } from "@ids";
 
@@ -57,25 +56,13 @@ const HIT_SLOP = {
 const Info = memo(
   ({ info, infoIcon, leftText }: { info: Props["info"]; infoIcon: Source; leftText: Props["leftText"] }) => {
     const dispatch = useDispatch();
-    const { productId, stepId, dynamicData } = useContext(ProductStepContext);
-
-    const dynamicOnPress: any = useMemo(
-      () => ({
-        type: info?.onPress.type,
-        payload: { productId, stepId, dynamicData, serverPayload: info?.onPress.payload },
-      }),
-      [info, productId, stepId, dynamicData]
-    );
 
     const handlePress = useCallback(() => {
-      dispatch(
-        logMixpanelEventActionCreator("information_viewed", {
-          name: leftText,
-          cs_product: productId,
-        })
-      );
-      dispatch(dynamicOnPress);
-    }, [dynamicOnPress]);
+      dispatch(logMixpanelEventActionCreator("information_viewed", { name: leftText }));
+      if (info?.onPress) {
+        dispatch(info?.onPress);
+      }
+    }, [info?.onPress]);
 
     if (!info) {
       return null;

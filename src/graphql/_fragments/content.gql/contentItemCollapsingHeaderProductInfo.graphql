@@ -1,9 +1,0 @@
-fragment ContentItemCollapsingHeaderProductInfo on ContentItemCollapsingHeaderProductInfo {
-  id
-  answerKey
-  coverList {
-    ...ContentItemCoverListItem
-  }
-  type
-  expandOnComponentId
-}

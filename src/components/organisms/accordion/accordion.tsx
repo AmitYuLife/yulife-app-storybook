@@ -1,11 +1,10 @@
-import React, { ComponentProps, memo, useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { ComponentProps, memo, useEffect, useMemo, useRef, useState } from "react";
 import { Animated, DimensionValue, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Header } from "./subcomponents/header";
 import { Content } from "./subcomponents/content";
 import { Item } from "./subcomponents/item";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
-import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 import { Source } from "@atoms";
 
 interface Props {
@@ -23,7 +22,6 @@ const INITIAL_TICK = 0;
 
 export const Accordion = memo((props: Props) => {
   const { subheading, style, header, headerIcon, items, infoIcon } = props;
-  const { productId } = useContext(ProductStepContext);
   const [collapsed, setCollapsed] = useState(false);
   const collapseAnimatedValue = useRef(new Animated.Value(0)).current;
   const absoluteContentViewRef = useRef(null as View);
@@ -66,7 +64,6 @@ export const Accordion = memo((props: Props) => {
       logMixpanelEventActionCreator("accordion_interaction", {
         name: header,
         type: collapsed ? "expanded" : "closed",
-        cs_product: productId,
       })
     );
 

@@ -5,9 +5,6 @@ import { sduiActionNavigateSaga } from "./sduiActionNavigate.saga";
 import { sduiActionSetBottomTabSaga } from "./sduiActionSetBottomTab.saga";
 import { sduiActionOpenUrlSaga } from "./sduiActionOpenUrl.saga";
 import { sduiActionOpenSupportChatSaga } from "./sduiActionOpenSupportChat.saga";
-import { sduiActionProductUnderwritingStepPopSaga } from "./sduiActionProductUnderwritingStepPop.saga";
-import { sduiActionProductUnderwritingStepFinishSaga } from "./sduiActionProductUnderwritingStepFinish.saga";
-import { sduiActionProductUnderwritingStepPushSaga } from "./sduiActionProductUnderwritingStepPush.saga";
 import { sduiActionOpenModalSaga } from "./sduiActionOpenModal.saga";
 import { sduiActionOpenAlertDialogSaga } from "./sduiActionOpenAlertDialog.saga";
 import { sduiActionLogEventSaga } from "./sduiActionLogEvent.saga";
@@ -28,9 +25,6 @@ export default [
   takeLeading(SduiActionType.SduiActionSetBottomTab, sduiActionSetBottomTabSaga),
   takeLeading(SduiActionType.SduiActionOpenUrl, sduiActionOpenUrlSaga),
   takeLeading(SduiActionType.SduiActionOpenSupportChat, sduiActionOpenSupportChatSaga),
-  takeLeading(SduiActionType.SduiActionProductUnderwritingStepPop, sduiActionProductUnderwritingStepPopSaga),
-  takeLeading(SduiActionType.SduiActionProductUnderwritingStepFinish, sduiActionProductUnderwritingStepFinishSaga),
-  takeLeading(SduiActionType.SduiActionProductUnderwritingStepPush, sduiActionProductUnderwritingStepPushSaga),
   takeLeading(SduiActionType.SduiActionOpenModal, sduiActionOpenModalSaga),
   takeLeading(SduiActionType.SduiActionOpenAlertDialog, sduiActionOpenAlertDialogSaga),
   takeLeading(SduiActionType.SduiActionSendMutation, sduiActionSendMutation),

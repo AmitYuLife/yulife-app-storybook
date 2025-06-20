@@ -332,22 +332,6 @@ const routesForRegistration = [
     component: require("../components/containers/products/beneficiary/beneficiary.container").default,
   },
   {
-    name: ROUTES.productStep,
-    component: require("../components/containers/products/product-step/product-step.container").default,
-  },
-  {
-    name: ROUTES.productStepDetached,
-    component: require("../components/containers/products/product-step/product-step-detached.container").default,
-  },
-  {
-    name: ROUTES.productStepFaqs,
-    component: require("../components/containers/products/product-step/product-step.faqs.container").default,
-  },
-  {
-    name: ROUTES.productStepDocuments,
-    component: require("../components/containers/products/product-step/product-step.documents.container").default,
-  },
-  {
     name: ROUTES.productPaymentHistory,
     component: require("../components/containers/products/product-payment-history/product-payment-history.container")
       .default,
@@ -532,11 +516,6 @@ const routesForRegistration = [
   {
     name: MODALS.sduiStepFeedbackHalfModal,
     component: require("../components/modals/sdui-step-feedback-half-modal/sdui-step-feedback-half-modal.modal")
-      .default,
-  },
-  {
-    name: MODALS.personalProductStepContinue,
-    component: require("../components/modals/personal-product-step-continue/personal-product-step-continue.modal")
       .default,
   },
   {

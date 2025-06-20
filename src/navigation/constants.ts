@@ -72,14 +72,9 @@ export const ROUTES = {
   webView: "yulife.webView.WebView",
 
   // product
-  fib: "yulife.product.FibBrowse",
   productDetails: "yulife.product.ProductDetails",
-  beneficiary: "yulife.product.Beneficiary",
-  productStep: "yulife.product.ProductStep",
-  productStepDetached: "yulife.product.ProductStepDetached",
-  productStepFaqs: "yulife.product.ProductStepFaqs",
-  productStepDocuments: "yulife.product.ProductStepDocuments",
   productPaymentHistory: "yulife.product.ProductPaymentHistory",
+  beneficiary: "yulife.product.Beneficiary",
 
   // wellbeing hub
   wellbeingHubItems: "yulife.wellbeingHub.WellbeingHubItems",
@@ -187,7 +182,6 @@ export const MODALS = {
   blurredOverlay: "yulife.modals.blurredOverlay",
   consumableModal: "yulife.modals.consumableOverlay",
   surgeOverlay: "yulife.modals.surgeOverlay",
-  personalProductStepContinue: "yulife.product.ContinueJourney",
   switchToGoogleFit: "yulife.modals.switchToGoogleFit",
   whatsNew: "yulife.modals.whatsNew",
   collectEventReward: "yulife.modal.collectEventReward",

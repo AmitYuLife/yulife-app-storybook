@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Animated, ViewStyle, FlatList as RNFlatList } from "react-native";
 import { Loading, FlatList, TextTemplate } from "@atoms";
 import { Colours } from "@styles";
@@ -8,8 +8,6 @@ import { useLocalWorldState } from "../hooks";
 import { FLAT_LIST_ITEM } from "./yumoji-swipe-part.types";
 import { styles, ITEM_WIDTH } from "./yumoji-swipe-part.styles";
 import { renderItem } from "./renderItem";
-import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
-import { LOCAL_ANSWER_KEY } from "@components/containers/products/product-step/utils";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
 import { AvatarPartType, CoverType, YuWorld, gql } from "@graphql/__generated";
@@ -35,19 +33,8 @@ export const YumojiSwipePart = memo(
     const scrollToDefaultIndexDelay = useRef(null);
     const showSelectionDelay = useRef(null);
     const { selectedWorld, setSelectedWorld } = useLocalWorldState(selectedYuWorld);
-    const { dynamicData } = useContext(ProductStepContext);
 
     const dispatch = useDispatch();
-
-    useEffect(() => {
-      if (!dynamicData[LOCAL_ANSWER_KEY.WorldId]) {
-        const defaultWorldId = data?.getYumojiPartUrlSetSwiper.variants[0]?.worlds[0]?.worldId;
-
-        if (defaultWorldId) {
-          onChange(defaultWorldId);
-        }
-      }
-    }, [data, dynamicData, onChange]);
 
     const handleChangeWorld = useCallback(
       (id: YuWorld) => {

@@ -1,3 +1,0 @@
-fragment ContentItemGpDetails on ContentItemGpDetails {
-  id
-}
