@@ -53,7 +53,6 @@ export const features = [
   "gameEnableExpoImageDiskCachingPolicyInYumojiBuilder",
   "showWeeklies",
   "tempGameEnableAnimatedLeaderboardRays",
-  "showYucoinPowerButton",
   "enableSudokuCheatDetection",
   "tempGameEnableYumojiBuilderScaleAnimation",
   "tempGameEnableAvatarFrames",
