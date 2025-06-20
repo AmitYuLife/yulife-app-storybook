@@ -9,7 +9,6 @@ import { CHALLENGE_SUCCESS_SCREEN } from "@ids";
 import { IActiveLevel } from "@redux/levels/levels.types";
 import { Style } from "@styles";
 import { commonStyles } from "../challenge-failed/challenge-failed.screen.styles";
-import { useUserFeatures } from "@hooks";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
@@ -41,7 +40,6 @@ export default function ChallengeSuccessScreen({
   yuniversalMap,
 }: IProps) {
   const dispatch = useDispatch();
-  const { showYucoinPowerButton } = useUserFeatures();
   const { challengeSuccessScreen } = getTheme(level, yuniversalMap);
   const currentLevel = useSelector(getCurrentLevel);
   const showChallengesHint = currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
@@ -101,7 +99,7 @@ export default function ChallengeSuccessScreen({
           </View>
         ) : null}
         <Box gap={22} style={styles.ctaWrapper}>
-          {showYucoinPowerButton ? <YucoinPowerButtonMini onPress={onPressYucoinPowerButton} /> : null}
+          <YucoinPowerButtonMini onPress={onPressYucoinPowerButton} />
           <Button
             translationKey="labels.cta.collect"
             isLoading={loading}

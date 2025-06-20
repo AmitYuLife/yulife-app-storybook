@@ -9,7 +9,7 @@ import { Colours, Style } from "@styles";
 import { useDispatch } from "react-redux";
 import { MODALS } from "@navigation/constants";
 import { Image, Box, TextTemplate } from "@atoms";
-import { useBackHandler, useUserFeatures } from "@hooks";
+import { useBackHandler } from "@hooks";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { ChallengeDetailsMilestone } from "./challenge-details-milestone";
@@ -47,7 +47,6 @@ function ChallengeDetailsScreen({
   const dispatch = useDispatch();
   const bonusInfoButtonRef = useRef<View>();
   const scrollY = useRef(new Animated.Value(0));
-  const { showYucoinPowerButton } = useUserFeatures();
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
 
@@ -201,7 +200,7 @@ function ChallengeDetailsScreen({
             </View>
           )}
 
-          {!showYucoinPowerButton ? null : <YucoinPowerButton onPress={onPressYucoinPowerButton} />}
+          <YucoinPowerButton onPress={onPressYucoinPowerButton} />
         </Box>
       </Animated.ScrollView>
       <LinearGradient style={styles.footerWrapper} colors={SMOOTH_GRADIENT_COLORS}>
