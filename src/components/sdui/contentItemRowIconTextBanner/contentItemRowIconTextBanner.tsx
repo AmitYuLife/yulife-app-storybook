@@ -1,13 +1,12 @@
-import React, { memo, useContext, useMemo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { View } from "react-native";
 import { ContentItemRowIconTextBannerFragment as IContentItemRowIconTextBanner } from "@graphql/__generated";
 import { mapServerStyles } from "@components/sdui";
 import InfoPanel from "@components/molecules/info-panel/info-panel";
 import { useDispatch, useSelector } from "react-redux";
-import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { defaultSduiActionProps } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
+import { defaultSduiActionProps } from "../_utils/sduiEventActionCreator";
 import { YUGI_INFO_BANNER_IMAGE } from "@ids";
 
 export const ContentItemRowIconTextBanner = memo(
@@ -24,8 +23,7 @@ export const ContentItemRowIconTextBanner = memo(
   }: IContentItemRowIconTextBanner) => {
     const [visible, setVisible] = useState(true);
     const dispatch = useDispatch();
-    const { productId, stepId, dynamicData, isLoading: isInLoadingContext } = useContext(ProductStepContext);
-    const isLoading = useSelector(getSduiLoadingForKey(bannerButton?.id)) || isInLoadingContext;
+    const isLoading = useSelector(getSduiLoadingForKey(bannerButton?.id));
 
     const onClose = () => setVisible(false);
 
@@ -37,9 +35,6 @@ export const ContentItemRowIconTextBanner = memo(
                 type: containerActions.onPress.type,
                 payload: {
                   id: containerActions.id,
-                  productId,
-                  stepId,
-                  dynamicData,
                   serverPayload: containerActions.onPress.payload,
                 },
               });
@@ -57,7 +52,7 @@ export const ContentItemRowIconTextBanner = memo(
               }
             }
           : null,
-      [containerActions, dispatch, dynamicData, productId, stepId]
+      [containerActions, dispatch]
     );
 
     const button = useMemo(
@@ -72,9 +67,6 @@ export const ContentItemRowIconTextBanner = memo(
                   type: bannerButton.onPress.type,
                   payload: {
                     id: bannerButton.id,
-                    productId,
-                    stepId,
-                    dynamicData,
                     serverPayload: bannerButton.onPress.payload,
                   },
                 });
@@ -93,7 +85,7 @@ export const ContentItemRowIconTextBanner = memo(
               },
             }
           : null,
-      [bannerButton, dispatch, dynamicData, isLoading, productId, stepId]
+      [bannerButton, dispatch, isLoading]
     );
 
     if (!visible) {

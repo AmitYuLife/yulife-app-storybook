@@ -5,7 +5,7 @@ import { FlatList, TextTemplate } from "@atoms";
 import { IPageItem, Page } from "./page";
 import { Dismiss } from "./dismiss";
 import { useDispatch } from "react-redux";
-import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
+import { sduiEventActionCreator } from "@components/sdui/_utils/sduiEventActionCreator";
 import { useAnimatedStyle } from "react-native-reanimated";
 import { ProgressItems } from "./progress-items";
 import useStoryMaskAnimation from "./use-story-mask-animation";

@@ -6,8 +6,6 @@ export * from "./leaderboard";
 export * from "./logout";
 export * from "./memberPortal";
 export * from "./perkProvision";
-export * from "./personalProductDetached";
-export * from "./personalProductJourney";
 export * from "./personalProductPaymentHistory";
 export * from "./personalProductProductDetails";
 export * from "./quests";

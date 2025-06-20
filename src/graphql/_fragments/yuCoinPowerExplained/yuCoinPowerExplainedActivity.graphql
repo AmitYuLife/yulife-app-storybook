@@ -1,7 +1,0 @@
-fragment YuCoinPowerExplainedActivity on YuCoinPowerExplainedActivity {
-  icon {
-    ...RemoteImage
-  }
-  label
-  reward
-}

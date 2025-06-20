@@ -1,6 +1,0 @@
-fragment ContentItemAgePercentCoverPickerAgeOption on ContentItemAgePercentCoverPickerAgeOption {
-  age
-  contentItemAgePercentCoverPickerAgeOptions: options {
-    ...ContentItemAgePercentCoverPickerPercentOption
-  }
-}

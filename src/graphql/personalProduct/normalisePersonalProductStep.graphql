@@ -1,3 +1,0 @@
-mutation NormalisePersonalProductStep($productId: String!) {
-  normalisePersonalProductStep(productId: $productId)
-}

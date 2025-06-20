@@ -1,3 +1,0 @@
-mutation ResetPersonalProductStep($productId: String!) {
-  resetPersonalProductStep(productId: $productId)
-}

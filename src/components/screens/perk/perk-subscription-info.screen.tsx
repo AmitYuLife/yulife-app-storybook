@@ -2,14 +2,12 @@ import React, { memo, useMemo } from "react";
 import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
 import { Style } from "@styles";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
-import { Body } from "@components/containers/products/product-step/sections";
 import { ContentItemForm } from "@molecules";
-import { GetPersonalProductStepQuery } from "@graphql/__generated";
 import { IElement } from "@components/molecules/content-item-form/content-item-form";
 import { PERK_SCREEN } from "@ids";
-import { GetPerkSubscriptionInfoQuery } from "@graphql/__generated";
+import { GetPerkSubscriptionInfoQuery, GetSduiJourneyQuery } from "@graphql/__generated";
+import { Body } from "@components/sdui/_renderer/sections/body";
 
-type IBody = GetPersonalProductStepQuery["getPersonalProductStep"]["body"];
 interface IProps {
   handleBack: () => void;
   onSubmit: (formValues: Record<string, string>) => void;
@@ -30,7 +28,7 @@ const PerkSubscriptionInfoScreen = ({ handleBack, item, onSubmit, loading }: IPr
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContentContainerStyle}>
         <View style={styles.block} testID={PERK_SCREEN}>
-          <Body headerHeight={0} body={item.content as IBody} />
+          <Body isSafeAreaView={false} items={item.content as GetSduiJourneyQuery["getSduiJourney"]["body"]} />
           <ContentItemForm elements={getForm.elements as IElement[]} onSubmit={onSubmit} isLoading={loading} />
         </View>
       </ScrollView>

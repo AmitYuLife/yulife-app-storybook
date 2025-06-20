@@ -5,7 +5,7 @@ import { ContentItemButtonFragment as GqlButton, ContentItemButtonType } from "@
 import { Button, LinkButton, SecondaryButton, TertiaryButton } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { defaultSduiActionProps } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
+import { defaultSduiActionProps } from "../_utils/sduiEventActionCreator";
 import { useSduiValidField } from "../_hooks/useSduiValidField";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import { useSduiLoading } from "../_hooks/useSduiLoading";

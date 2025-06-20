@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { ContentItemLottie } from "@components/sdui";
 import { TEXT_TEMPLATE } from "@ids";
-import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
+import { sduiEventActionCreator } from "@components/sdui/_utils/sduiEventActionCreator";
 
 type ContextAwareGqlLottie = Omit<GqlLottie, "onAnimationEnd"> & { onAnimationEnd: () => void };
 interface Props {

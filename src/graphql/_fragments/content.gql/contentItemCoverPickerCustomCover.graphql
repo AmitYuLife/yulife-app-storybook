@@ -1,9 +1,0 @@
-fragment ContentItemCoverPickerCustomCover on ContentItemCoverPickerCustomCover {
-  contentItemCoverPickerCustomCoverTitle: title
-  button {
-    ...ContentItemButton
-  }
-  itemsPicker {
-    ...ContentItemScrollableItemsPicker
-  }
-}

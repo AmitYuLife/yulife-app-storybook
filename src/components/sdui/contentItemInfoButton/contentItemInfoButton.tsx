@@ -5,7 +5,7 @@ import { Image, TextTemplate, Loading } from "@atoms";
 import { TouchableWithDelay } from "@components/molecules";
 import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
-import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
+import { sduiEventActionCreator } from "../_utils/sduiEventActionCreator";
 
 type Props = Omit<GqlInfoButton, "onPress" | "answerKeys"> & {
   additionalInfo?: string;
