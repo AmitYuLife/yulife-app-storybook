@@ -41,7 +41,6 @@ export const allTogglesTrue = {
       showBrainGameSudoku: true,
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
-      showLeaderboardSearch: true,
       tempGameGoalWeekliesRefactor: true,
     },
   },
