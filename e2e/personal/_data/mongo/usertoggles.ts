@@ -33,7 +33,6 @@ export const CUSTOMER_LEAVER_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       useNewLeaderboardServices: true,
-      showLeaderboardSearch: true,
     },
   },
 } as IDatabaseItem;

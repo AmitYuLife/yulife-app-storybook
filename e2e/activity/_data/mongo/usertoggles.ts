@@ -119,7 +119,6 @@ export const CUSTOMER_16_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_16.data.customerId,
     features: {
-      showLeaderboardSearch: true,
       useNewLeaderboardServices: true,
       ...DEFAULT_TOGGLES.data.features,
     },
@@ -144,7 +143,6 @@ export const CUSTOMER_17_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       useNewLeaderboardServices: true,
-      showLeaderboardSearch: true,
       tempGameConfirmDuelScore: true,
     },
   },
@@ -161,7 +159,6 @@ export const CUSTOMER_18_TOGGLES = {
       hideSmartHealthScreen: false,
       hideYuMatterScreen: true,
       showDuels: true,
-      showLeaderboardSearch: true,
       useNewLeaderboardServices: true,
     },
   },
@@ -177,7 +174,6 @@ export const CUSTOMER_19_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
       useNewLeaderboardServices: true,
-      showLeaderboardSearch: true,
       tempGameEnablePreferredNames: true,
     },
   },
@@ -229,7 +225,6 @@ export const CUSTOMER_20_TOGGLES = {
       useCoreChallengesService: true,
       useActiveChallengesService: true,
       useNewLeaderboardServices: true,
-      showLeaderboardSearch: true,
     },
   },
 } as IDatabaseItem;
@@ -269,7 +264,6 @@ export const CUSTOMER_28_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       useNewLeaderboardServices: true,
-      showLeaderboardSearch: true,
     },
   },
 } as IDatabaseItem;
@@ -373,7 +367,6 @@ export const CUSTOMER_47_TOGGLES = {
       showDuels: true,
       showInspect: true,
       passiveCyclingEnabled: true,
-      showLeaderboardSearch: true,
       useNewLeaderboardServices: true,
     },
   },
@@ -390,7 +383,6 @@ export const CUSTOMER_50_TOGGLES = {
       showDuels: true,
       showInspect: true,
       passiveCyclingEnabled: true,
-      showLeaderboardSearch: true,
       useNewLeaderboardServices: true,
     },
   },
@@ -620,7 +612,6 @@ export const CUSTOMER_138_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_138.data.customerId,
     features: {
-      showLeaderboardSearch: true,
       useNewLeaderboardServices: true,
       ...DEFAULT_TOGGLES.data.features,
     },
@@ -638,7 +629,6 @@ export const CUSTOMER_139_TOGGLES = {
       hideSmartHealthScreen: false,
       hideYuMatterScreen: true,
       showDuels: true,
-      showLeaderboardSearch: true,
       useNewLeaderboardServices: true,
     },
   },
