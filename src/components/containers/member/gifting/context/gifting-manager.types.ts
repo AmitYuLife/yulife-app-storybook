@@ -35,12 +35,12 @@ export type YuCoinDenominationChoice = {
 };
 
 export enum GIFTING_PAGE {
-  INTRO,
-  SELECT_RECIPIENTS,
-  SELECT_MESSAGE,
-  SELECT_YU_COIN,
-  MESSAGE_PREVIEW,
-  SUCCESS,
+  INTRO = "intro",
+  SELECT_RECIPIENTS = "select_recipients",
+  SELECT_MESSAGE = "select_message",
+  SELECT_YU_COIN = "select_yu_coin",
+  MESSAGE_PREVIEW = "message_preview",
+  SUCCESS = "success",
 }
 
 type Props = {

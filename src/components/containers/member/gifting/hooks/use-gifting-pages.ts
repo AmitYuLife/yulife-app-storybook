@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useGiftingSubmit } from "../hooks/use-gifting-submit";
 import { VoidFunction } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import { t } from "@locale";
 import { UserSearchItem } from "@redux/_core/types";
 import { useNavigation } from "@navigation/navigation.context";
 import { Navigation } from "@navigation/main";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, useTimeout } from "@hooks";
 import { giftingShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { incrementOnboardingVisits } from "@redux/onboarding/onboarding.actions";
 import { getGiftingPagesConfig, GIFTING_PAGE } from "../context";
@@ -21,6 +21,8 @@ type Props = {
   selectedBackgroundId: string;
   selectedStickerId: string;
   onFinish: VoidFunction;
+  isGiftingPagesDataLoading: boolean;
+  startingPage?: GIFTING_PAGE;
 };
 
 export const useGiftingPages = ({
@@ -31,6 +33,8 @@ export const useGiftingPages = ({
   selectedBackgroundId,
   selectedStickerId,
   onFinish,
+  startingPage,
+  isGiftingPagesDataLoading,
 }: Props) => {
   const { width } = useWindowDimensions();
   const { componentId } = useNavigation();
@@ -51,7 +55,10 @@ export const useGiftingPages = ({
     stickerId: selectedStickerId,
   });
 
-  const [page, setPage] = useState<GIFTING_PAGE>(showIntro ? GIFTING_PAGE.INTRO : GIFTING_PAGE.SELECT_RECIPIENTS);
+  const [page, setPage] = useState<GIFTING_PAGE>(
+    startingPage ?? (showIntro ? GIFTING_PAGE.INTRO : GIFTING_PAGE.SELECT_RECIPIENTS)
+  );
+
   const config = useMemo(
     () =>
       getGiftingPagesConfig({
@@ -91,11 +98,14 @@ export const useGiftingPages = ({
   const goToSuccess = () => setPage(GIFTING_PAGE.SUCCESS);
   const pagesConfig = useMemo(() => Object.values(config).slice(showIntro ? 0 : 1), [config, showIntro]);
 
-  useEffect(() => {
-    const needle = pagesConfig.findIndex((pagesConfigItem) => pagesConfigItem.id === page);
-
-    scrollViewRef.current?.scrollTo?.({ x: needle * width, animated: true });
-  }, [pagesConfig, page, width]);
+  useTimeout(
+    () => {
+      const needle = pagesConfig.findIndex((pagesConfigItem) => pagesConfigItem.id === page);
+      scrollViewRef.current?.scrollTo?.({ x: width * needle, animated: true });
+    },
+    0,
+    !isGiftingPagesDataLoading
+  );
 
   useBackHandler(config[page].backPress);
 

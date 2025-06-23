@@ -22,9 +22,10 @@ import { keyBy, omit } from "lodash";
 
 type Props = {
   users?: UserSearchItem[];
+  startingPage?: GIFTING_PAGE;
 };
 
-const GiftingManager = ({ users }: Props) => {
+const GiftingManager = ({ users, startingPage }: Props) => {
   const [targetUsers, setTargetUsers] = useState<Record<string, UserSearchItem>>(keyBy(users, "id"));
 
   const onClose = useCallback(() => {
@@ -73,6 +74,8 @@ const GiftingManager = ({ users }: Props) => {
     selectedBackgroundId: selectedBackground?.id,
     selectedStickerId: selectedSticker?.id,
     onFinish: onClose,
+    startingPage,
+    isGiftingPagesDataLoading: loading,
   });
 
   useBackHandler(handlePressBack);
