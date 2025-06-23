@@ -215,7 +215,8 @@ export const checkEachHeroCard = async () => {
       ),
     },
     { id: ids.EVENT_CARD("Share your feedback") },
-    { id: ids.EVENT_HEADING("Your smoke-free journey", "#5A5A5C") },
+    { id: ids.EVENT_CARD("Share your feedback pulse") },
+    { id: ids.EVENT_CARD("Log your progress") },
     { id: ids.EVENT_CARD("Daily health questions") },
     { id: ids.EVENT_CARD("Automated QA Test Journey 500 YuCoin Flat Amount") },
     { id: ids.EVENT_CARD("FTUE - test") },
@@ -261,9 +262,9 @@ export const pulseSurveyIntroVisible = async () => {
 };
 
 export const engagementSurveyHeroCardVisible = async () => {
-  await idVisible(ids.EVENT_CARD("Share your feedback"))();
-  await idVisible(ids.EVENT_HEADING("Share your feedback", "#5A5A5C"))();
+  await idVisible(ids.EVENT_CARD("Share your feedback pulse"))();
+  await idVisible(ids.EVENT_HEADING("Share your feedback pulse", "#464647"))();
   await idVisible(
-    ids.EVENT_DESCRIPTION("Earn YuCoin and help improve your workplace anonymously!", "#5A5A5C")
+    ids.EVENT_DESCRIPTION("Earn YuCoin and help improve your workplace anonymously!", "#464647")
   )();
 };
