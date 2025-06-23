@@ -1,4 +1,4 @@
-import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
   BUSINESS_ACCOUNT_1,
   BUSINESS_ACCOUNT_2,
@@ -170,6 +170,7 @@ export const BUSINESS_EMPLOYEE_17 = {
   type,
   modelName,
   data: {
+    business_employee_id: generateRandomPostgresId(),
     business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
     customer_id: customers.CUSTOMER_17.data.customerId,
     employment_start_date: moment().subtract(1, "year").toDate(),

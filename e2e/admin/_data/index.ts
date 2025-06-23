@@ -1,8 +1,9 @@
 export * from "./postgres/business";
 export * from "./postgres/customers";
 export * from "./postgres/business_employees";
+export * from "./postgres/business_employee_info";
 
-export * from "./mongo/app_store_review_prompts"
+export * from "./mongo/app_store_review_prompts";
 export * from "./mongo/auths";
 export * from "./mongo/core_settings";
 export * from "./mongo/users";
@@ -17,8 +18,8 @@ export * from "./mongo/_templates";
 export * from "./mongo/feedback_forms";
 export * from "./mongo/feedback_submission";
 export * from "./mongo/rewards_ledgers";
-export * from "./mongo/userAward"
+export * from "./mongo/userAward";
 export * from "./mongo/userOnboardings";
 export * from "./mongo/user_coin_transactions";
 export * from "./mongo/social_groups";
-export * from "./mongo/social_group_leaderboards"
+export * from "./mongo/social_group_leaderboards";

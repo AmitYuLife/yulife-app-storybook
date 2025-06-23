@@ -306,20 +306,20 @@ Feature("As a user I can get past the login screen", async () => {
   // need to find a way to get this to happen on the runners but pushing to be checked locally for now
   ScenarioSkip("A user can onboard through the app", scenario.start, async () => {
     When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
-      When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_17.data.email), async () => {
+      When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.BUSINESS_EMPLOYEE_INFO_17.data.employment_email), async () => {
         When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
           When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
             When("I tap pass on the captcha", when.tapText("PASS"), async () => {
-              Then("I should have received the correct email", then.hasReceivedOnboardingLinkEmail(data.CUSTOMER_17.data.email));
+              Then("I should have received the correct email", then.hasReceivedOnboardingLinkEmail(data.BUSINESS_EMPLOYEE_INFO_17.data.employment_email));
             });
           });
         });
       });
     });
     When("I terminate the app", when.terminateApp, async () => {
-      When("I follow the email link", when.followEmailLink(data.CUSTOMER_17.data.email), async () => {
+      When("I follow the email link", when.followEmailLink(data.BUSINESS_EMPLOYEE_INFO_17.data.employment_email), async () => {
         When("I wait 15 seconds", when.wait(15000), async () => {
-          Then("Then I can see the cards to select if I an a new user or not", then.newAccountCardVisible);
+          Then("Then I can see the cards to select if I am a new user or not", then.newAccountCardVisible);
         });
       });
     });

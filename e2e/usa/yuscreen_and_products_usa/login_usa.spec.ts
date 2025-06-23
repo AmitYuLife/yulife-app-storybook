@@ -6,7 +6,7 @@ import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
 import { STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT, YUCOIN_POWER_INFO } from "@ids";
 import { AUTH_USA_1 } from "../_data/mongo/auths";
-import { BUSINESS_ACCOUNT_USA_1, CUSTOMER_USA_1, CUSTOMER_USA_2 } from "../_data";
+import { BUSINESS_ACCOUNT_USA_1, BUSINESS_EMPLOYEE_INFO_2, CUSTOMER_USA_1, CUSTOMER_USA_2 } from "../_data";
 import * as ids from "@ids";
 
 Feature("As a user I can get past the login screen and see the donate tab after selecting my location", async () => {
@@ -44,7 +44,7 @@ Feature("As a user I can get past the login screen and see the donate tab after 
   // commenting out for the time being as app going offline  - being investigated
   // ScenarioOnly("A US user can onboard through the app", scenario.start, async () => {
   //   When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
-  //     When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, CUSTOMER_USA_2.data.email), async () => {
+  //     When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, BUSINESS_EMPLOYEE_INFO_2.data.employment_email), async () => {
   //       When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
   //         When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
   //           When("I tap pass on the captcha", when.tapText("PASS"), async () => {
@@ -55,7 +55,7 @@ Feature("As a user I can get past the login screen and see the donate tab after 
   //     });
   //   });
   //   When("I terminate the app", when.terminateApp, async () => {
-  //     When("I follow the email link", when.followEmailLink(CUSTOMER_USA_2.data.email), async () => {
+  //     When("I follow the email link", when.followEmailLink(BUSINESS_EMPLOYEE_INFO_2.data.employment_email), async () => {
   //       When("I wait 15 seconds", when.wait(15000), async () => {
   //         Then("I should see no progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 3, 0), 2000));
   //         // Then("Then I can see the cards to select if I an a new user or not", then.newAccountCardVisible);

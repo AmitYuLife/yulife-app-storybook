@@ -289,7 +289,7 @@ export const CUSTOMER_17 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
+    email: null,
     firstName: "Tomothy",
     lastName: "Piigman",
     dateOfBirth: moment().subtract(34, "years").toDate(),
