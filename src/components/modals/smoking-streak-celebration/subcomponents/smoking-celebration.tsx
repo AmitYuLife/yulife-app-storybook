@@ -95,7 +95,7 @@ const SmokingCelebration = (props: SmokingCelebrationProps) => {
                     color={Colours.neutral.white}
                     type="big64"
                     textAlign="center"
-                    testID={SMOKING_CELEBRATION_DAYS}
+                    testID={SMOKING_CELEBRATION_DAYS(displayProps.daysHeading)}
                   >
                     {displayProps.daysHeading}
                   </TextTemplate>
@@ -117,7 +117,7 @@ const SmokingCelebration = (props: SmokingCelebrationProps) => {
                       color={Colours.neutral.white}
                       type="h3"
                       textAlign="center"
-                      testID={SMOKING_CELEBRATION_YUCOIN}
+                      testID={SMOKING_CELEBRATION_YUCOIN(displayProps.yuCoin)}
                     >
                       {displayProps.yuCoin}
                     </TextTemplate>
@@ -142,7 +142,7 @@ const SmokingCelebration = (props: SmokingCelebrationProps) => {
                   source={displayProps.image}
                   width={Style.adjust(CUSTOM_IMAGE_SIZE.w)}
                   height={Style.adjust(CUSTOM_IMAGE_SIZE.h)}
-                  testID={SMOKING_CELEBRATION_CUSTOM_IMAGE}
+                  testID={SMOKING_CELEBRATION_CUSTOM_IMAGE(displayProps.image.id)}
                   suppressLoadingUi={true}
                 />
               ) : (
