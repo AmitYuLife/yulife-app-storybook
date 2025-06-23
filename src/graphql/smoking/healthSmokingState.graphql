@@ -178,6 +178,14 @@ fragment HealthSmokingState on HealthSmokingState {
         title
         description
       }
+      tips {
+        id
+        title
+        description
+        icon {
+          ...RemoteImage
+        }
+      }
       days
       cta
     }
@@ -188,6 +196,14 @@ fragment HealthSmokingState on HealthSmokingState {
         ...RemoteImage
       }
       description
+      tips {
+        id
+        title
+        description
+        icon {
+          ...RemoteImage
+        }
+      }
       cta
       buttonAction {
         ...SduiAction

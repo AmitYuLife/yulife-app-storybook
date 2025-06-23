@@ -4261,6 +4261,7 @@ export type HealthSmokingMilestoneUnlocked = {
   image: RemoteImage;
   infoBox: HealthSmokingMilestoneUnlockedInfoBox;
   statistics: Array<Scalars["String"]["output"]>;
+  tips?: Maybe<Array<HealthSmokingStateTip>>;
   title: Scalars["String"]["output"];
 };
 
@@ -4872,6 +4873,7 @@ export type LastMilestoneCelebration = {
   cta: Scalars["String"]["output"];
   description: Scalars["String"]["output"];
   image: RemoteImage;
+  tips?: Maybe<Array<HealthSmokingStateTip>>;
   title: Scalars["String"]["output"];
 };
 
@@ -32179,6 +32181,13 @@ export type GetHealthSmokingStateQuery = {
           title?: string | null;
           description?: string | null;
         };
+        tips?: Array<{
+          __typename?: "HealthSmokingStateTip";
+          id: string;
+          title?: string | null;
+          description?: string | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        }> | null;
       };
       lastMilestoneCelebration?: {
         __typename?: "LastMilestoneCelebration";
@@ -32186,6 +32195,13 @@ export type GetHealthSmokingStateQuery = {
         description: string;
         cta: string;
         image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        tips?: Array<{
+          __typename?: "HealthSmokingStateTip";
+          id: string;
+          title?: string | null;
+          description?: string | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        }> | null;
         buttonAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
       } | null;
     };
@@ -32411,6 +32427,13 @@ export type HealthSmokingStateFragment = {
         title?: string | null;
         description?: string | null;
       };
+      tips?: Array<{
+        __typename?: "HealthSmokingStateTip";
+        id: string;
+        title?: string | null;
+        description?: string | null;
+        icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      }> | null;
     };
     lastMilestoneCelebration?: {
       __typename?: "LastMilestoneCelebration";
@@ -32418,6 +32441,13 @@ export type HealthSmokingStateFragment = {
       description: string;
       cta: string;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      tips?: Array<{
+        __typename?: "HealthSmokingStateTip";
+        id: string;
+        title?: string | null;
+        description?: string | null;
+        icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      }> | null;
       buttonAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
   };
@@ -32646,6 +32676,13 @@ export type StartSmokingStreakMutation = {
           title?: string | null;
           description?: string | null;
         };
+        tips?: Array<{
+          __typename?: "HealthSmokingStateTip";
+          id: string;
+          title?: string | null;
+          description?: string | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        }> | null;
       };
       lastMilestoneCelebration?: {
         __typename?: "LastMilestoneCelebration";
@@ -32653,6 +32690,13 @@ export type StartSmokingStreakMutation = {
         description: string;
         cta: string;
         image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        tips?: Array<{
+          __typename?: "HealthSmokingStateTip";
+          id: string;
+          title?: string | null;
+          description?: string | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        }> | null;
         buttonAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
       } | null;
     };
@@ -32891,6 +32935,13 @@ export type UpdateSmokingStreakMutation = {
           title?: string | null;
           description?: string | null;
         };
+        tips?: Array<{
+          __typename?: "HealthSmokingStateTip";
+          id: string;
+          title?: string | null;
+          description?: string | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        }> | null;
       };
       lastMilestoneCelebration?: {
         __typename?: "LastMilestoneCelebration";
@@ -32898,6 +32949,13 @@ export type UpdateSmokingStreakMutation = {
         description: string;
         cta: string;
         image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        tips?: Array<{
+          __typename?: "HealthSmokingStateTip";
+          id: string;
+          title?: string | null;
+          description?: string | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        }> | null;
         buttonAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
       } | null;
     };
@@ -55955,6 +56013,26 @@ export const HealthSmokingStateFragmentDoc = {
                           ],
                         },
                       },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "days" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
                     ],
@@ -55977,6 +56055,26 @@ export const HealthSmokingStateFragmentDoc = {
                         },
                       },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
                       {
                         kind: "Field",
@@ -83170,6 +83268,26 @@ export const GetHealthSmokingStateDocument = {
                           ],
                         },
                       },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "days" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
                     ],
@@ -83192,6 +83310,26 @@ export const GetHealthSmokingStateDocument = {
                         },
                       },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
                       {
                         kind: "Field",
@@ -83905,6 +84043,26 @@ export const StartSmokingStreakDocument = {
                           ],
                         },
                       },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "days" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
                     ],
@@ -83927,6 +84085,26 @@ export const StartSmokingStreakDocument = {
                         },
                       },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
                       {
                         kind: "Field",
@@ -84700,6 +84878,26 @@ export const UpdateSmokingStreakDocument = {
                           ],
                         },
                       },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "days" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
                     ],
@@ -84722,6 +84920,26 @@ export const UpdateSmokingStreakDocument = {
                         },
                       },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
                       {
                         kind: "Field",
