@@ -115,6 +115,30 @@ Feature("Referrals work as intended", async () => {
     });
     When("I scroll to the bottom", when.scrollFromID(ids.REFERRALS_QR_CODE, "up", "fast"), async () => {
       Then("I should see the referral for Reverald B", then.referralVisible(data.CUSTOMER_16.customer, moment().format("DD/MM/YYYY"), "2000"));
+      Then("I should see the users name written firstName lastName", then.idVisible(ids.REFERRALS_SCREEN_NAME("Reverald Bownus")));
+    });
+    When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
+      When("I press the hamburger menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
+        When("I press the menu item settings", when.tapID(ids.MENU_ITEM("Settings")), async () => {
+          Then("I should see language", then.idVisible(ids.TEXT_TEMPLATE("Language", "undefined")));
+        });
+      });
+    });
+    When("I press the back button", when.tapID(ids.TEXT_TEMPLATE("Language", "undefined")), async () => {
+      Then("I should see language", then.idVisible(ids.TEXT_TEMPLATE("🇯🇵 日本語 (JA)", "undefined")));
+    });
+    When("I select JA for language", when.tapID(ids.TEXT_TEMPLATE("🇯🇵 日本語 (JA)", "undefined")), async () => {
+      When("I press the hamburger menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
+        When("I press the menu item for invite", when.tapID(ids.MENU_ITEM("同僚を招待する")), async () => {
+          Then("I should see that my currently selected referral company is 'YU LIFE LTD'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_1.data.business_account_name)));
+        });
+      });
+    });
+    When("I change the selected business to 'Justice League' using the dropdown", when.changeReferralSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name), async () => {
+      Then("I should see that my currently selected referral company has changed to 'Justice League'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name)));
+    });
+    When("I scroll to the bottom", when.scrollFromID(ids.REFERRALS_QR_CODE, "up", "fast"), async () => {
+      Then("I should see the users name is now written lastName firstName", then.idVisible(ids.REFERRALS_SCREEN_NAME("Bownus Reverald")));
     });
   });
 });

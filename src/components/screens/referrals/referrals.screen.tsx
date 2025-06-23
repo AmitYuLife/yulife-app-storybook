@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
 import moment from "moment";
 import { GetReferralHistoryQuery, GetReferralInformationQuery } from "@graphql/__generated";
-import { REFERRALS_SCREEN } from "@ids";
+import { REFERRALS_SCREEN, REFERRALS_SCREEN_NAME } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { UserAvatarCoinCard } from "@molecules";
 import { Style } from "@styles";
@@ -83,7 +83,7 @@ const keyExtractor = (item: Item) => item.id;
 
 const renderItem = ({ item }: ListRenderItemInfo<Item>) => {
   return (
-    <View style={styles.listItem}>
+    <View style={styles.listItem} testID={REFERRALS_SCREEN_NAME(item.name)}>
       <UserAvatarCoinCard
         name={item.name}
         avatarUrl={item.avatarUrl}
