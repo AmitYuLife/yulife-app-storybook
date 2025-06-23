@@ -174,7 +174,7 @@ export const CORE_JOURNEY_2 = {
     uiAccessCopy: {
       eventPanel: {
         title: {
-          "en-GB": "Share your feedback",
+          "en-GB": "Share your feedback pulse",
           _id: "67e18b8f97e7765fda54996b",
           "ja-JP": "アンケートのお願い",
         },
