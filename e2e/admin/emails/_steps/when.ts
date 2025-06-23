@@ -32,6 +32,10 @@ export const {
   tapPurchasedReward,
 } = screens.rewards;
 
+export const { skipHealthConnection } = navigation.login;
+
+export { tapLetsGo } from "../../login_and_routing/_steps/when";
+
 export const followEmailLink = (emailAddress: string) => async () => {
   const email = await readEmailContent(emailAddress, true);
   const link = email.html

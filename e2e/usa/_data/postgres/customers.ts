@@ -25,7 +25,7 @@ export const CUSTOMER_USA_2 = {
   modelName: "customer",
   data: {
     customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
+    email: null,
     firstName: "Moo",
     lastName: "Customer",
     status: "invited",

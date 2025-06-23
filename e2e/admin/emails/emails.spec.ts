@@ -25,6 +25,16 @@ Feature("I receive the correct emails", async () => {
         Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
       });
     });
+    // new addition to test expired link message. Getting app error. Roger's investigating
+    //  When("I tap 'Let's go'", when.tapLetsGo, async () => {
+    //     When("I skip the health connection screen", when.skipHealthConnection, async () => {
+    //       When("I terminate the app", when.terminateApp, async () => {
+    //         When("I follow the email link", when.followEmailLink(data.CUSTOMER_6.data.email), async () => {
+    //           Then("I should see the sign up reward screen", then.rewardScreenVisible);
+    //         });
+    //       })
+    //     });
+    //   });
   });
 
   ScenarioSkip("I receive the correct email when redeeming a voucher reward", scenario.start, async () => {

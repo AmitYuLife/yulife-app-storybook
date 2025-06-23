@@ -30,3 +30,15 @@ export const USER_ONBOARDING_USA_1 = {
     inviteDate: moment().subtract(61, "d").toISOString(),
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_2 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_USA_2.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
+    businessName: "YU LIFE USA LTD",
+    performedSteps: {},
+  },
+} as IDatabaseItem;
