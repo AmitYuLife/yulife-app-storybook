@@ -70,11 +70,12 @@ const SmokingStreakCelebrationModal = ({ onClose, smokingData, closeOverlay }: I
             : t("screens.smoking_modals.milestone"),
         image: milestoneData.image?.uri ? milestoneData.image : undefined,
         description: milestoneData.description,
+        tips: milestoneData.tips,
         ctaLabel: milestoneData.cta,
         onPress: onCtaPress,
       } as SmokingCelebrationProps;
     }
-  }, [milestoneData, onCtaPress, page, smokingData.currentStreak, celebration]);
+  }, [page, celebration, milestoneData, smokingData.currentStreak, smokingData.maxStreak, onCtaPress]);
 
   const insets = useSafeAreaInsets();
 
