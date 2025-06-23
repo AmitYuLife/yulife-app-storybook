@@ -6,7 +6,7 @@ import { AnimationHandle, HorizontalNumberDisplay, Yumoji } from "@molecules";
 import SmokingStatsCard from "./smoking-stats-card/smoking-stats-card";
 import { useSelector } from "react-redux";
 import { getUserAvatar } from "@redux/user/user.selectors";
-import { YUMOJI_EQUIPMENT } from "@ids";
+import { SMOKING_HEADER_DAYS, YUMOJI_EQUIPMENT } from "@ids";
 import { runOnJS, SharedValue, useAnimatedStyle, useSharedValue, withDelay, withTiming } from "react-native-reanimated";
 import { createDeferredPromise } from "@utils/promise";
 
@@ -164,7 +164,12 @@ const SmokingHubStatus = forwardRef<AnimationHandle, SmokingHubStatusProps>(
     }));
 
     return (
-      <Box w={Style.DEVICE_WIDTH} h={HEADER_HEIGHT} overflow="hidden">
+      <Box
+        w={Style.DEVICE_WIDTH}
+        h={HEADER_HEIGHT}
+        overflow="hidden"
+        testID={SMOKING_HEADER_DAYS(smokingState.currentStreak)}
+      >
         {!smokingState.backgroundImage ? null : (
           <Box
             forceAnimated={true}

@@ -46,7 +46,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
         Then("I should be on the spend question", then.textVisible(smoking_questions[locale].weekly_expense.heading));
       });
     });
-    When("I enter an amount that's too long", when.typeViaID(ids.SMOKING_SPEND_INPUT, "400000.70"), async () => {
+    When("I enter an amount that's too long", when.typeViaID(ids.SMOKING_SPEND_INPUT, "40000000.70"), async () => {
       When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
         Then("I should still be on the spend question as my answer was invalid", then.textVisible(smoking_questions[locale].weekly_expense.heading));
       });
@@ -110,7 +110,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
     });
     When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
       When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
-        Then("I should be on the smoking cessation screen", then.onSmokingHub(locale, 0, true, "0", "0", CUSTOMER_1_SMOKING_TIPS, CUSTOMER_1_MOMENTS_AND_REASONS));
+        Then("I should be on the smoking cessation screen", then.onSmokingHub(locale, 0, true, "0", "0", CUSTOMER_1_MOMENTS_AND_REASONS));
       });
     });
     When("I exit the smoking hub", when.tapID(ids.BACK_BUTTON), async () => {

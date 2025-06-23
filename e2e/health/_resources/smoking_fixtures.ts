@@ -447,9 +447,10 @@ export const modals = {
       button_text: "Count me in",
     },
     celebration: {
-      heading: "You did it!",
+      heading: "You’ve passed all your",
+
       description:
-        "Congratulations on 28 days smoke-free!\nEvery day without a cigarette is a victory — keep shining.\n\nAny unclaimed YuCoin has been added to your account. ",
+        "Congratulations on 28 days smoke-free!\nEvery day without a cigarette is a victory — keep shining.",
     },
   },
 };
@@ -472,8 +473,8 @@ export const milestone_message = {
   },
 };
 
-export const smoking_heart_image = "smoking-cessation/icons-2024-07-26/heart.svg";
-export const smoking_wallet_image = "smoking-cessation/icons-2024-07-26/wallet.svg";
+export const smoking_heart_image = "smoking-cessation/icons-2025-06-14/heart.svg";
+export const smoking_wallet_image = "smoking-cessation/icons-2025-06-14/wallet.svg";
 
 export const smoking_opt_out = {
   "en-GB": {
