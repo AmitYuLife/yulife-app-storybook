@@ -115,7 +115,6 @@ export const CUSTOMER_5_TOGGLES = {
       showReferrals: true,
       yuScreenV3: true,
       tempGameEnableReferralQRCode: true,
-      tempAppMenuNewReferralOption: true,
       tempGameUseStreakSettings: true,
     },
   },
@@ -200,7 +199,6 @@ export const CUSTOMER_10_TOGGLES = {
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
       showDailyScreenCustomIcon: true,
-      tempAppMenuNewReferralOption: true,
     },
   },
 } as IDatabaseItem;
