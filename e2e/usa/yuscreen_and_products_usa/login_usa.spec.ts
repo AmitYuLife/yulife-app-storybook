@@ -43,7 +43,7 @@ Feature("As a user I can get past the login screen and see the donate tab after 
 
   // commenting out for the time being as app going offline  - being investigated
   // ScenarioOnly("A US user can onboard through the app", scenario.start, async () => {
-  //   When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+  //   When("I press `log in`", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
   //     When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, BUSINESS_EMPLOYEE_INFO_2.data.employment_email), async () => {
   //       When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
   //         When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {

@@ -7,7 +7,7 @@ import { markdownStyles, styles } from "./styles";
 import { memo, useCallback, useState } from "react";
 import LoopingCarousel from "./components/looping-carousel";
 import { FadeIn, SlideInDown } from "react-native-reanimated";
-import { FULL_SCREEN_HERO_BUTTON } from "@ids";
+import { LOGIN_HERO_CLAIM_ACCOUNT_BUTTON, LOGIN_HERO_LOGIN_BUTTON } from "@ids";
 import { useLoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
 
 const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }: FullScreenHeroProps) => {
@@ -59,7 +59,7 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
               onPress={primaryCta.onPress}
               translatedLabel={primaryCta.label}
               translationKey=""
-              testID={FULL_SCREEN_HERO_BUTTON(primaryCta.label)}
+              testID={LOGIN_HERO_CLAIM_ACCOUNT_BUTTON}
             />
             {secondaryCta ? (
               <TouchableOpacityWithDelay onPress={secondaryCta.onPress} delay={1000}>
@@ -69,7 +69,7 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
                     textAlign="center"
                     color={Colours.primary.p600}
                     decoration="underline"
-                    testID={FULL_SCREEN_HERO_BUTTON(secondaryCta.label)}
+                    testID={LOGIN_HERO_LOGIN_BUTTON}
                   >
                     {secondaryCta.label}
                   </TextTemplate>
