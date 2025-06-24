@@ -46,6 +46,9 @@ import {
   YUSCREEN_V5_USERNAME,
   YUSCREEN_V5_WORLD_AND_LEVEL,
   YUMOJI_YUSCREEN_V5,
+  ACTIVITY_PANEL_TITLE,
+  ACTIVITY_PANEL_REWARD,
+  EARN_RATE,
 } from "@ids";
 import moment from "moment";
 import { expect } from "detox";
@@ -317,41 +320,36 @@ export const onFacialHairScreen = (screen: string) => async () => {
   }
 };
 
-export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
-  const powerBoost = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`;
-  const baseYucoinPower = "Reach your rewards faster with YuCoin Power!";
-  const wellbeingEarn = "You can earn YuCoin for your wellbeing activities!";
-  const streakMultiple = (yuCoinPower * 30).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+export const yuCoinPowerInfoVisible = (earnRate: number) => async () => {
+  const mindfulnessMultiple = earnRate * 4;
+  const yucoinPowerUp = "Power up to earn more YuCoin";
+  const passiveRewards = ["Steps", "Mindfulness", "Cycling"];
 
-  await textVisibleAtIndex(`${yuCoinPower}`, 0)();
-  await textVisibleAtIndex(`${yuCoinPower}`, 1)();
-  await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
-  await textVisible(`${yuCoinPower * 8}`)();
-  await textVisible(`${yuCoinPower * 20}`)();
+  await idVisible(EARN_RATE(earnRate), 1000)();
+  await textVisible(yucoinPowerUp, 2000)();
+  await textVisible("Daily core activities", 1500)();
 
-  await textVisible(streakMultiple)();
-  await swipeFromText("Activities that earn YuCoin:", "down", "fast")();
+  for (const title of passiveRewards) {
+    await waitFor(element(by.id(ACTIVITY_PANEL_TITLE(title))))
+      .toBeVisible()
+      .withTimeout(3000);
+  }
 
-  if (yuCoinPower < 2) {
-    await textVisible(wellbeingEarn)();
-    await textVisible(baseYucoinPower)();
-    await textVisible("2000 steps")();
-    await textVisible("1.6km cycling")();
-    await textVisible("5 mindful minutes")();
-    await textVisible("complete 1 challenge")();
-    await textVisible("open 1 chest")();
-    await textVisible("complete 1 streak")();
-  } else {
-    await textVisible(baseYucoinPower)();
-    await textVisible(powerBoost)();
-    await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
-    await textVisible("2000 steps")();
-    await textVisible("1.6km cycling")();
-    await textVisible("15 mindful minutes")();
-    await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
-    await textVisible("complete 1 challenge")();
-    await textVisible("open 1 chest")();
-    await textVisible("complete 1 streak")();
+  await idVisible(ACTIVITY_PANEL_REWARD(`up to ${mindfulnessMultiple}`), 1500)();
+
+  const activeRewards = [
+    { title: "Chest", reward: Math.round(earnRate * 20) },
+    { title: "Streaks", reward: Math.round(earnRate * 30) },
+    { title: "Challenges", reward: `up to ${Math.round(earnRate * 8)}` },
+  ];
+
+  for (const item of activeRewards) {
+    await waitFor(element(by.id(ACTIVITY_PANEL_TITLE(item.title))))
+      .toBeVisible()
+      .withTimeout(3000);
+    await waitFor(element(by.id(ACTIVITY_PANEL_REWARD(item.reward))))
+      .toBeVisible()
+      .withTimeout(3000);
   }
 };
 

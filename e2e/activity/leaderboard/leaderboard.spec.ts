@@ -67,14 +67,14 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
           When("I tap settings", when.tapMenuItem("Settings"), async () => {
             When("I tap leaderboards", when.tapText("Leaderboards"), async () => {
-              Then("I can see the option for Steps leaderboards", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_C1.data.name} Steps`, true)));
+              Then("I can see the option for Steps leaderboards", then.idVisible(ids.SETTINGS_SWITCH("Steps", true)));
             });
           });
         });
       });
-      When("I tap the ID to switch consent off", when.tapID(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_C1.data.name} Steps`, true)), async () => {
+      When("I tap the ID to switch consent off", when.tapID(ids.SETTINGS_SWITCH("Steps", true)), async () => {
         When("I tap turn it off", when.tapID(ids.GENERIC_SCREEN_CTA("Turn it off")), async () => {
-          Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_C1.data.name} Steps`, false)));
+          Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH("Steps", false)));
         });
       });
       When("I tap close", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
