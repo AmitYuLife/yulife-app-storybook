@@ -87,6 +87,13 @@ Feature("Referrals work as intended", async () => {
       Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(referralImageURIOcean));
       Then("I should see the empty referral screen state", then.referralEmptyState);
     });
+    When("I tap the back button ", when.tapID(ids.LEFT_HEADIND_BUTTON("undefined")), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+        When("I scroll to the bottom", when.scrollFromID(ids.LEADERBOARD_INFO_BUTTON, "up", "fast"), async () => {
+          Then("I should see the leaderboard 'Invite a Colleague' section", then.idVisible(ids.LEADERBOARD_USER_REFERRAL));
+        });
+      });
+    });
   });
 
   Scenario("As a user with concurrent employments, I should be able to refer someone through any of my employments", scenario.start, async () => {
