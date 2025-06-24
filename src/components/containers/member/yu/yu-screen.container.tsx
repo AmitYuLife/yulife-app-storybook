@@ -2,13 +2,12 @@ import React, { useMemo } from "react";
 import { memo } from "react";
 import { YuScreen as YuScreenV5 } from "./subcomponents/yu-screen-v5/yu-screen";
 import { useSelector } from "react-redux";
-import { useTapBackTwiceToExit } from "@hooks";
+import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { IMainTabsProps as Props } from "@navigation/root";
 import { YuScreenContext } from "./context/yu-screen.context";
 import { getUserAvatar, getUserEarnRate, getUserFeatures } from "@redux/user/user.selectors";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 
 const YuScreenContainer = memo(({ componentId }: Props) => {
@@ -17,11 +16,17 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
   const earnRate = useSelector(getUserEarnRate);
   const { showNotificationCentre, tempGameShowAchievements } = useSelector(getUserFeatures);
 
-  const { data: achievements } = useQuery(gql("GetMobileGameUserAchievementsDocument"), {
-    fetchPolicy: "network-only",
-    skip: !tempGameShowAchievements,
-    notifyOnNetworkStatusChange: true,
-  });
+  const [, { data: achievements }] = useQueryOnScreenSeen(
+    gql("GetMobileGameUserAchievementsDocument"),
+    componentId,
+    {
+      fetchPolicy: "network-only",
+      notifyOnNetworkStatusChange: true,
+    },
+    {
+      disabled: !tempGameShowAchievements,
+    }
+  );
 
   const achievementsList = useMemo(
     () => ({
