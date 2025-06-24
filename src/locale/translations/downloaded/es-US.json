@@ -11,7 +11,7 @@
       "description": "Tu progreso en la partida actual se perderá.",
       "no": "Cancelar",
       "title": "¿Reiniciar el juego?",
-      "yes": "Reinicie"
+      "yes": "Reiniciar"
     },
     "subtext": "Desliza con el dedo para mover las fichas. Las fichas con el mismo número se vuelven una cuando se tocan. ¡Súmalas para alcanzar %{finalScore}!",
     "time": "Tiempo",
@@ -41,7 +41,7 @@
         "numerical": "numérico",
         "symbols": "símbolos"
       },
-      "title": "Piel del juego"
+      "title": "Diseño de juego"
     },
     "start_game": "Comenzar juego"
   },
