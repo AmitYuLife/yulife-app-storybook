@@ -18,7 +18,7 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
   const { showNotificationCentre, tempGameShowAchievements } = useSelector(getUserFeatures);
 
   const { data: achievements } = useQuery(gql("GetMobileGameUserAchievementsDocument"), {
-    fetchPolicy: "cache-only",
+    fetchPolicy: "network-only",
     skip: !tempGameShowAchievements,
     notifyOnNetworkStatusChange: true,
   });
@@ -26,7 +26,7 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
   const achievementsList = useMemo(
     () => ({
       points: achievements?.getMobileGameUserAchievements?.achievementPoints,
-      list: achievements?.getMobileGameUserAchievements?.equippedAchievements,
+      list: achievements?.getMobileGameUserAchievements?.equippedAchievements || [],
     }),
     [achievements?.getMobileGameUserAchievements]
   );
