@@ -3,6 +3,7 @@ import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Block, Image, TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { GetYuCoinPowerInfoQuery } from "@graphql/__generated";
+import { ACTIVITY_PANEL_REWARD, ACTIVITY_PANEL_TITLE } from "@ids";
 
 type IGetYuCoinPowerInfoSectionItems = GetYuCoinPowerInfoQuery["getYuCoinPowerInfo"]["sections"][0]["items"][0];
 interface IProps extends IGetYuCoinPowerInfoSectionItems {
@@ -32,13 +33,15 @@ const ActivityPanel = ({ title, milestone, rewardText, icon, isPoweredUp, style 
       <View style={iconStyle}>
         <Image width={Style.adjust(24)} height={Style.adjust(24)} source={icon} />
       </View>
-      <TextTemplate type="l1b">{title}</TextTemplate>
+      <TextTemplate type="l1b" testID={ACTIVITY_PANEL_TITLE(title)}>
+        {title}
+      </TextTemplate>
       <View style={styles.milestone}>
         <TextTemplate type="l1">{milestone}</TextTemplate>
       </View>
       <View style={styles.rewardWrapper}>
         <View style={styles.rewardText}>
-          <TextTemplate type="l1b" color={colours.colour}>
+          <TextTemplate type="l1b" color={colours.colour} testID={ACTIVITY_PANEL_REWARD(rewardText)}>
             {rewardText}
           </TextTemplate>
         </View>

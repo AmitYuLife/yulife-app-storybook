@@ -9,6 +9,7 @@ import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { SecondaryButton } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { addCommasToNumber } from "@utils";
+import { EARN_RATE } from "@ids";
 
 interface IProps {
   isPoweredUp?: boolean;
@@ -140,6 +141,7 @@ const YuCoinPowerCard = ({ isPoweredUp, yuCoinPower = 0, yuCoinAmount }: IProps)
             textAnchor="middle"
             letterSpacing={1}
             fill={selectedColours[15]}
+            testID={EARN_RATE(yuCoinPower)}
           >
             {yuCoinPower}
           </Text>

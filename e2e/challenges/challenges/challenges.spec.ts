@@ -169,12 +169,11 @@ Feature("As a user I can take a challenge", async () => {
     When("I tap 13", when.tapID(ids.YUCOIN_POWER("13")), async () => {
       Then("I am on the YuCoin Power overview screen", then.yuCoinPowerInfoVisible(data.USER_52.data.earnRate));
     });
-    When("I scroll down the page", when.scrollFromID(ids.YUCOIN_EXPLAINED_SCROLL_VIEW, "up", "fast"), async () => {
-      Then("I should see Got it!", then.textVisible("Got it!"));
-    });
-    When("I tap Got it", when.tapText(t("Got it!"), 2000), async () => {
-      When("I tap Take a challenge (1 left)", when.tapText(t(`Take a challenge (%{amount} left)`, { amount: 1 }), 2000), async () => {
-        Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
+    When("I close the YuCoin power info screen", when.tapID(ids.SCREEN_CLOSE, 1500), async () => {
+      When("I scroll down the todays earnings screen", when.scrollFromID(ids.YUCOIN_POWER("13"), "up", "fast"), async () => {
+        When("I tap Take a challenge (1 left)", when.tapText(t(`Take a challenge (%{amount} left)`, { amount: 1 }), 2000), async () => {
+          Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
+        });
       });
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
@@ -182,7 +181,9 @@ Feature("As a user I can take a challenge", async () => {
     });
     When("I click to go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
       When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-        Then("I should see the correct event for me to complete and the progress bar", then.eventToBeCompletedVisible(0, 0));
+        When("I swipe right on the event card", when.scrollFromID(ids.EVENT_HEADING("Detox Team Tournament", "#5A5A5C"), "left", "fast"), async () => {
+          Then("I should see the correct event for me to complete and the progress bar", then.eventToBeCompletedVisible(0, 0));
+        });
       });
     });
     When("I click on the challenge profiles viewed", when.tapChallenge("0 / 5 " + t("profiles viewed")), async () => {

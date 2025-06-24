@@ -732,11 +732,13 @@ export const USER_WORLD = (worldName: string) => `USER_WORLD_${worldName}`;
 export const USER_LEVEL = (level: number) => `USER_LEVEL_${level};`;
 
 // YUCOIN POWER
-export const EARN_RATE = (earnRate: number) => `EARN_RATE_${earnRate}`;
+export const EARN_RATE = (earnRate: number | string) => `EARN_RATE_${earnRate}`;
 export const YUCOIN_TITLE = "YUCOIN_TITLE";
 export const YUCOIN_POWER_TEXT = "YUCOIN_POWER_TEXT";
 export const ACTIVITY_LISTING = (activity: string, value: string | number) =>
   `ACTIVITY_LISTING_${activity}_${value}`;
+export const ACTIVITY_PANEL_TITLE = (title: string) => `ACTIVITY_PANEL_TITLE_${title}`;
+export const ACTIVITY_PANEL_REWARD = (amount: string | number) => `ACTIVITY_PANEL_REWARD_${amount}`;
 
 export const LIST_YUMOJI = (index: number) => `LIST_YUMOJI_${index}`;
 

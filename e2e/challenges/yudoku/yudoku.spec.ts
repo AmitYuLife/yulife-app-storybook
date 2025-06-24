@@ -258,11 +258,11 @@ Feature("Yudoku", async () => {
       });
     });
     When("I tap leaderboards", when.tapText("Leaderboards"), async () => {
-      Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_1.data.name} Yudoku`, true)));
+      Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH("Yudoku", true)));
     });
-    When("I tap the toggle", when.tapID(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_1.data.name} Yudoku`, true)), async () => {
+    When("I tap the toggle", when.tapID(ids.SETTINGS_SWITCH("Yudoku", true)), async () => {
       When("I tap turn it off", when.tapText("Turn it off"), async () => {
-        Then("I can see the option for Yudoku leaderboards is off ", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_1.data.name} Yudoku`, false)));
+        Then("I can see the option for Yudoku leaderboards is off ", then.idVisible(ids.SETTINGS_SWITCH("Yudoku", false)));
       });
     });
     When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Leaderboards")), async () => {
@@ -281,7 +281,7 @@ Feature("Yudoku", async () => {
       });
     });
     When("I tap leaderboards", when.tapText("Leaderboards"), async () => {
-      Then("I can see the option for Yudoku leaderboards is on", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_1.data.name} Yudoku`, true)));
+      Then("I can see the option for Yudoku leaderboards is on", then.idVisible(ids.SETTINGS_SWITCH("Yudoku", true)));
     });
     When("I close settings", when.tapID(ids.BUTTON_CLOSE_HEADER("Leaderboards")), async () => {
       When("I go to quests", when.navigateTo("quests"), async () => {
@@ -289,10 +289,12 @@ Feature("Yudoku", async () => {
           When("I tap the soduku challenge", when.tapSudoku, async () => {
             When("I complete the Yudoku", when.completeYudoku(false), async () => {
               When("I tap done", when.tapText("Done"), async () => {
-                When("I tap collect", when.tapText("Collect"), async () => {
-                  When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                    Then("I can see the slot for a completed yudoku", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)));
-                    Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"));
+                When("I scroll down the challenges info hint", when.scrollFromID(ids.HINT_VARIANT("challenges"), "up", "fast"), async () => {
+                  When("I tap collect", when.tapText("Collect"), async () => {
+                    When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+                      Then("I can see the slot for a completed yudoku", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)));
+                      Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"));
+                    });
                   });
                 });
               });
