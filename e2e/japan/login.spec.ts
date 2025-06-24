@@ -34,9 +34,10 @@ Feature("As a user I can get past the login screen", async () => {
       });
     });
     When("I go to the YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-      When("I scroll until I see all the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
+      When("I scroll until I see all the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PROTECTION_TITLE, "down"), async () => {
         Then("I should see the tall card for GHealth", then.idVisible(ids.YUSCREEN_V5_TALL_CARD("入院への備え")));
         Then("I should see the tall card for ExGL", then.idVisible(ids.YUSCREEN_V5_TALL_CARD("万一への備え")));
+        Then("I should see the product title written as '保障内容'", then.textVisible("保障内容"));
       });
     });
   });
