@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -8,8 +8,8 @@ import * as ids from "@ids";
 
 Feature("I receive the correct emails", async () => {
   Scenario("I should receive the correct magic link to access the App via the Login flow", scenario.start, async () => {
-    Then("I should be on the login page", then.idVisible(ids.FULL_SCREEN_HERO_BUTTON("Claim my account"), 2500));
-    When("I tap to begin the login flow", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+    Then("I should be on the login page", then.idVisible(ids.LOGIN_HERO_CLAIM_ACCOUNT_BUTTON, 2500));
+    When("I tap to begin the login flow", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
       Then("I should be on the email login screen", then.isOnLoginEmailScreen);
     });
     When("I enter my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_6.data.email), async () => {
@@ -59,8 +59,8 @@ Feature("I receive the correct emails", async () => {
   });
 
   Scenario("A user without a password set should be able to log into the app via the magic link in their email", scenario.start, async () => {
-    Then("I should be on the login page", then.idVisible(ids.FULL_SCREEN_HERO_BUTTON("Claim my account"), 2500));
-    When("I tap to begin the login flow", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+    Then("I should be on the login page", then.idVisible(ids.LOGIN_HERO_CLAIM_ACCOUNT_BUTTON, 2500));
+    When("I tap to begin the login flow", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
       Then("I should be on the email login screen", then.isOnLoginEmailScreen);
     });
     When("I enter my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_14.data.email), async () => {

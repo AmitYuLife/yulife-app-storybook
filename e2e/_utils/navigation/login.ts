@@ -7,9 +7,9 @@ import {
   BACK_BUTTON,
   BUTTON_BASE,
   SKIP_HEALTH_CONNECT_SCREEN_BUTTON,
-  FULL_SCREEN_HERO_BUTTON,
   LOGIN_SCREEN_HEADER,
   LOGIN_WITH_PASSWORD,
+  LOGIN_HERO_LOGIN_BUTTON,
 } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
@@ -34,10 +34,9 @@ export const loginAsUser =
     firstTime = true
   ) =>
   async () => {
-    const loginText = region === "Japan" ? "ログイン" : "Log in";
     console.log("CUSTOMER ID: ", customer.data.customerId);
     await selectRegionIfVisible(region)();
-    const loginButton = element(by.id(FULL_SCREEN_HERO_BUTTON(loginText)));
+    const loginButton = element(by.id(LOGIN_HERO_LOGIN_BUTTON));
     await loginButton.tap();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     await waitFor(loginField).toBeVisible().withTimeout(30000);
@@ -136,7 +135,7 @@ export const loginOnly =
   (customer: any, auth: any, fitkitAuth?: boolean, region = "United Kingdom") =>
   async () => {
     await selectRegionIfVisible(region)();
-    const loginButton = element(by.id(FULL_SCREEN_HERO_BUTTON("Log in")));
+    const loginButton = element(by.id(LOGIN_HERO_LOGIN_BUTTON));
     await loginButton.tap();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     await waitFor(loginField).toBeVisible().withTimeout(30000);

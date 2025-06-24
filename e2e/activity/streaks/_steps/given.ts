@@ -10,7 +10,7 @@ export { loginAsUser } from "../../_common/given";
 export const logInWithStreakScreen =
   (customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) =>
   async () => {
-    const loginButton = element(by.id(ids.FULL_SCREEN_HERO_BUTTON("Log in")));
+    const loginButton = element(by.id(ids.LOGIN_HERO_CLAIM_ACCOUNT_BUTTON));
     await loginButton.tap();
     const loginField = element(by.id(ids.INPUT_LOGIN_EMAIL));
     await waitFor(loginField).toBeVisible().withTimeout(30000);

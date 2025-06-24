@@ -10,7 +10,7 @@ import moment from "moment";
 
 Feature("As a user I can get past the login screen", async () => {
   Scenario("A locked account unlocks after 30 minutes since the last attempt", scenario.start, async () => {
-    When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+    When("I press `log in`", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
       When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_11.data.email), async () => {
         When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
           When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
@@ -42,7 +42,7 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("I cannot login with the wrong password for my email address", scenario.start, async () => {
-    When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+    When("I press `log in`", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
       When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_11.data.email), async () => {
         When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
           When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
@@ -142,7 +142,7 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
-    When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+    When("I press `log in`", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
       When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_11.data.email), async () => {
         When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
           When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
@@ -305,7 +305,7 @@ Feature("As a user I can get past the login screen", async () => {
   // to get this to work locally you will need members running on port 3006
   // need to find a way to get this to happen on the runners but pushing to be checked locally for now
   ScenarioSkip("A user can onboard through the app", scenario.start, async () => {
-    When("I press `log in`", when.tapID(ids.FULL_SCREEN_HERO_BUTTON("Log in")), async () => {
+    When("I press `log in`", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
       When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.BUSINESS_EMPLOYEE_INFO_17.data.employment_email), async () => {
         When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
           When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {

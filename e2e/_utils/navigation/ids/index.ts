@@ -81,7 +81,8 @@ export const CHALLENGE_FAILED_SCREEEN = "CHALLENGE_FAILED_SCREEEN";
 export const WEBVIEW = "WEBVIEW";
 
 // buttons
-export const FULL_SCREEN_HERO_BUTTON = (label: string) => `FULL_SCREEN_HERO_BUTTON_${label}`;
+export const LOGIN_HERO_CLAIM_ACCOUNT_BUTTON = "LOGIN_HERO_CLAIM_ACCOUNT_BUTTON"; // "Claim my account"
+export const LOGIN_HERO_LOGIN_BUTTON = "LOGIN_HERO_LOGIN_BUTTON"; // "Log in"
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
 export const LOGIN_WITH_PASSWORD = "screens.login_confirm.login_with_password-text-view";
 export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";
