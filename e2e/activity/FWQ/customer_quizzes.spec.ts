@@ -705,7 +705,7 @@ Feature("Quizzes and questionnaires", async () => {
         Then("I should see the engagement survey hero card", then.idVisibleAtIndex(ids.EVENT_CARD("Share your feedback"), 0));
         Then(
           "I should see the Engagement Survey hero card displaying the correct YuCoin reward — 300 YuCoin — based on the user's earn rate of 10 and the survey's 30* multiplier.",
-          then.idVisibleAtIndex(ids.EVENT_DESCRIPTION("Earn **300** YuCoin and help improve your workplace anonymously!", "#464647"), 0)
+          then.idVisibleAtIndex(ids.EVENT_DESCRIPTION("Earn **300** YuCoin and help improve your workplace anonymously!", "#5A5A5C"), 0)
         );
       });
       When("I click on the engagement survey hero card", when.tapIDAtIndex(ids.EVENT_CARD("Share your feedback"), 0), async () => {
