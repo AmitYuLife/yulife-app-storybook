@@ -12,7 +12,7 @@ interface IChestStagingStageProps {
   overlayImage?: string;
   onFinish?: () => void;
   stage: ChestStage.staging | ChestStage.ingest;
-  possibleItems: GetMobileGameBattlePassChestDetailsQuery["getMobileGameBattlePassChestDetails"]["possibleRewards"];
+  possibleItems: GetMobileGameBattlePassChestDetailsQuery["details"]["possibleRewards"];
 }
 
 export const ChestStagingStage = ({

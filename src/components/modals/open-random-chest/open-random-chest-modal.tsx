@@ -4,7 +4,7 @@ import { CloseSvg, Image } from "@atoms";
 import { Pressable } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { useMutation, useQuery } from "@apollo/client";
-import { gql, MobileGameChestCollectionType } from "@graphql/__generated";
+import { gql, MobileGameBattlePassType, MobileGameChestCollectionType } from "@graphql/__generated";
 import { Style } from "@styles";
 import ListPickReward from "./subcomponents/stages/pick-stages/list-pick-reward-stage";
 import { ChestStage, IPickStageProps } from "./open-random-chest.types";
@@ -52,14 +52,17 @@ const OpenRandomChestModal = ({
 
   const [openChest, { loading: openLoading }] = useMutation(gql("OpenMobileGameBattlePassChestDocument"));
   const [claimPrizes, { loading: claimLoading }] = useMutation(gql("ClaimMobileGameBattlePassChestPrizesDocument"), {
-    refetchQueries: [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId } }],
+    refetchQueries:
+      data?.details?.battlePassType === MobileGameBattlePassType.Unlockables
+        ? [{ query: gql("GetMobileUnlockableBattlePassVouchersDocument"), errorPolicy: "ignore" }]
+        : [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId }, errorPolicy: "ignore" }],
   });
 
   const [stage, setStage] = useState<ChestStage>(ChestStage.loading);
   const [isDetailsLoading, setIsDetailsLoading] = useState(false);
 
   const setNewStage = useCallback(() => {
-    const { openedRewards, possibleRewards, redeemedRewards } = data?.getMobileGameBattlePassChestDetails || {};
+    const { openedRewards, possibleRewards, redeemedRewards } = data?.details || {};
 
     setStage(ChestStage.staging);
     if (openedRewards?.length) {
@@ -79,25 +82,25 @@ const OpenRandomChestModal = ({
   }, [data]);
 
   useEffect(() => {
-    if (!data?.getMobileGameBattlePassChestDetails || stage !== "loading") {
+    if (!data?.details || stage !== "loading") {
       return;
     }
 
     setNewStage();
-  }, [data?.getMobileGameBattlePassChestDetails, setNewStage, stage]);
+  }, [data?.details, setNewStage, stage]);
 
   const onOpenPress = useCallback(async () => {
     setIsDetailsLoading(true);
     try {
       await openChest({
-        variables: { rewardId: data?.getMobileGameBattlePassChestDetails?.id, participationId },
+        variables: { rewardId: data?.details?.id, participationId },
       });
 
       setStage(ChestStage.ingest);
     } finally {
       setIsDetailsLoading(false);
     }
-  }, [data?.getMobileGameBattlePassChestDetails?.id, openChest, participationId]);
+  }, [data?.details?.id, openChest, participationId]);
 
   const onClosePress = useCallback(async () => {
     Navigation.dismissAllModals();
@@ -107,7 +110,7 @@ const OpenRandomChestModal = ({
     async (rewardIds: string[]) => {
       const result = await claimPrizes({
         variables: {
-          rewardId: data?.getMobileGameBattlePassChestDetails?.id,
+          rewardId: data?.details?.id,
           prizeIds: rewardIds,
           participationId,
         },
@@ -124,13 +127,13 @@ const OpenRandomChestModal = ({
       dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
       Navigation.dismissAllModals();
     },
-    [claimPrizes, data?.getMobileGameBattlePassChestDetails?.id, dispatch, participationId]
+    [claimPrizes, data?.details?.id, dispatch, participationId]
   );
 
-  const possibleItems = data?.getMobileGameBattlePassChestDetails?.possibleRewards;
-  const openedItems = data?.getMobileGameBattlePassChestDetails?.openedRewards;
-  const redeemedItems = data?.getMobileGameBattlePassChestDetails?.redeemedRewards;
-  const collectionType = data?.getMobileGameBattlePassChestDetails?.collectionType;
+  const possibleItems = data?.details?.possibleRewards;
+  const openedItems = data?.details?.openedRewards;
+  const redeemedItems = data?.details?.redeemedRewards;
+  const collectionType = data?.details?.collectionType;
 
   const contentNode = useMemo((): ReactNode => {
     if (stage === ChestStage.staging || stage === ChestStage.ingest) {
