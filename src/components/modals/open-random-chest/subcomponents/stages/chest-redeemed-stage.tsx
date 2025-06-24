@@ -8,7 +8,7 @@ import { Button } from "@components/molecules";
 import ChestHeaderText from "../chest-header-text";
 
 interface IChestRedeemedStageProps {
-  redeemedItems: GetMobileGameBattlePassChestDetailsQuery["getMobileGameBattlePassChestDetails"]["redeemedRewards"];
+  redeemedItems: GetMobileGameBattlePassChestDetailsQuery["details"]["redeemedRewards"];
   onClose?: () => void;
 }
 

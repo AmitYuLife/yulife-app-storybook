@@ -5250,6 +5250,7 @@ export type MobileGameBattlePassChestClaimResponse = {
 
 export type MobileGameBattlePassChestDetails = {
   __typename?: "MobileGameBattlePassChestDetails";
+  battlePassType: MobileGameBattlePassType;
   collectionType: MobileGameChestCollectionType;
   id: Scalars["String"]["output"];
   openedRewards: Array<MobileGameBattlePassChestPrize>;
@@ -5360,6 +5361,11 @@ export enum MobileGameBattlePassStatus {
   Active = "active",
   Completed = "completed",
   Finished = "finished",
+}
+
+export enum MobileGameBattlePassType {
+  Donations = "donations",
+  Unlockables = "unlockables",
 }
 
 export type MobileGameBattlePassUpdateInfo = {
@@ -9749,10 +9755,12 @@ export type TeamEmployeeRecognitionCampaign = {
   giftStickerId?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   recipientCount?: Maybe<Scalars["Int"]["output"]>;
+  requestedBy?: Maybe<Scalars["String"]["output"]>;
   requestedById?: Maybe<Scalars["String"]["output"]>;
   startsAt?: Maybe<Scalars["String"]["output"]>;
   status: EmployeeRecognitionCampaignStatus;
   title: Scalars["String"]["output"];
+  totalAmount?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type TeamEmployeeRecognitionCampaignBillingAddress = {
@@ -9776,6 +9784,7 @@ export type TeamEmployeeRecognitionCampaignPackageResponse = {
 
 export type TeamEmployeeRecognitionCampaignRecipient = {
   __typename?: "TeamEmployeeRecognitionCampaignRecipient";
+  avatar?: Maybe<Scalars["String"]["output"]>;
   businessEmployeeId: Scalars["String"]["output"];
   email?: Maybe<Scalars["String"]["output"]>;
   firstName?: Maybe<Scalars["String"]["output"]>;
@@ -10206,6 +10215,7 @@ export type TeamYuCoinTopupRequest = {
   requestedBy: Scalars["String"]["output"];
   status: TeamYuCoinTopupRequestStatus;
   yucoin?: Maybe<Scalars["Int"]["output"]>;
+  yucoinTransferStatus: YucoinTransferStatus;
 };
 
 export enum TeamYuCoinTopupRequestStatus {
@@ -11589,6 +11599,12 @@ export enum YuWorld {
   Ocean = "ocean",
 }
 
+export enum YucoinTransferStatus {
+  Completed = "COMPLETED",
+  PendingApproval = "PENDING_APPROVAL",
+  PendingTransfer = "PENDING_TRANSFER",
+}
+
 export type YumojiBuilderCategory = {
   __typename?: "YumojiBuilderCategory";
   children?: Maybe<Array<YumojiBuilderCategoryChild>>;
@@ -11930,6 +11946,7 @@ export type MobileBattlePassDonationTemplateFragment = {
 export type MobileGameBattlePassChestDetailsFragment = {
   __typename?: "MobileGameBattlePassChestDetails";
   id: string;
+  battlePassType: MobileGameBattlePassType;
   collectionType: MobileGameChestCollectionType;
   possibleRewards: Array<{
     __typename?: "MobileGameBattlePassChestItem";
@@ -20967,9 +20984,10 @@ export type GetMobileGameBattlePassChestDetailsQueryVariables = Exact<{
 
 export type GetMobileGameBattlePassChestDetailsQuery = {
   __typename?: "Query";
-  getMobileGameBattlePassChestDetails: {
+  details: {
     __typename?: "MobileGameBattlePassChestDetails";
     id: string;
+    battlePassType: MobileGameBattlePassType;
     collectionType: MobileGameChestCollectionType;
     possibleRewards: Array<{
       __typename?: "MobileGameBattlePassChestItem";
@@ -21189,6 +21207,7 @@ export type OpenMobileGameBattlePassChestMutation = {
     chest?: {
       __typename?: "MobileGameBattlePassChestDetails";
       id: string;
+      battlePassType: MobileGameBattlePassType;
       collectionType: MobileGameChestCollectionType;
       possibleRewards: Array<{
         __typename?: "MobileGameBattlePassChestItem";
@@ -41395,6 +41414,7 @@ export const MobileGameBattlePassChestDetailsFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "battlePassType" } },
           { kind: "Field", name: { kind: "Name", value: "collectionType" } },
           {
             kind: "Field",
@@ -65612,6 +65632,7 @@ export const GetMobileGameBattlePassChestDetailsDocument = {
         selections: [
           {
             kind: "Field",
+            alias: { kind: "Name", value: "details" },
             name: { kind: "Name", value: "getMobileGameBattlePassChestDetails" },
             arguments: [
               {
@@ -65708,6 +65729,7 @@ export const GetMobileGameBattlePassChestDetailsDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "battlePassType" } },
           { kind: "Field", name: { kind: "Name", value: "collectionType" } },
           {
             kind: "Field",
@@ -66454,6 +66476,7 @@ export const OpenMobileGameBattlePassChestDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "battlePassType" } },
           { kind: "Field", name: { kind: "Name", value: "collectionType" } },
           {
             kind: "Field",
