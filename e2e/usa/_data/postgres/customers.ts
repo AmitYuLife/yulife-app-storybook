@@ -6,7 +6,11 @@ import {
   generateRandomPostgresId,
 } from "@yu-life/yulife-bdd-framework";
 import moment = require("moment");
-import { BUSINESS_ACCOUNT_USA_1, BUSINESS_ACCOUNT_USA_2_NPC } from "./business";
+import {
+  BUSINESS_ACCOUNT_USA_1,
+  BUSINESS_ACCOUNT_USA_2_NPC,
+  BUSINESS_ACCOUNT_USA_3,
+} from "./business";
 
 export const CUSTOMER_USA_1 = {
   type: "postgres",
@@ -103,6 +107,43 @@ export const CUSTOMER_USA_4 = createCustomerRecords({
       archived: false,
       legalFirstName: "Barry",
       legalLastName: "White",
+      employmentEmail: generateRandomInbox(),
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+});
+
+export const CUSTOMER_USA_5 = createCustomerRecords({
+  archived: false,
+  firstName: "Chad",
+  lastName: "Smith",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  customerId: generateRandomPostgresId(),
+  userInfo: {
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 1,
+      },
+    ],
+    isAvatarCreated: false,
+    earnRate: 1,
+  },
+  userGameState: {
+    currentBalance: 0,
+  },
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_USA_3.business.data.businessAccountId,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      legalFirstName: "Chad",
+      legalLastName: "Smith",
       employmentEmail: generateRandomInbox(),
       employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
       products: [],

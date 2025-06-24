@@ -4,7 +4,7 @@ import { GenericHeadingPad, LeaderboardFloatingRank, NavBar, TopBar, UserReferra
 import { Colours, NAV_BAR, Style, TOP_BAR } from "@styles";
 import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { LEADERBOARD_SCROLL_LIST, NOTIF_CENTRE } from "@ids";
+import { LEADERBOARD_SCROLL_LIST, NOTIF_CENTRE, LEADERBOARD_USER_REFERRAL } from "@ids";
 import LeaderboardListFooterComponent from "./leaderboard-list-footer-componet";
 import LeaderboardListHeaderComponent from "./leaderboard-list-header-component";
 import LeaderboardListItem, { ISocialGroupLeaderboardListItem } from "./leaderboard-list-item";
@@ -263,7 +263,7 @@ export const LeaderboardScreen = ({
           onJoinLeaderboardPress={onJoinLeaderboardPress}
         />
         {!showReferral ? null : (
-          <View style={styles.referralFooterWrapper}>
+          <View style={styles.referralFooterWrapper} testID={LEADERBOARD_USER_REFERRAL}>
             <UserReferral referralAmount={referralAmount} onReferralsButtonPress={goToReferralInformation} />
           </View>
         )}

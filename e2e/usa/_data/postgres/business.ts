@@ -37,3 +37,9 @@ export const BUSINESS_ACCOUNT_USA_2_NPC = createBusinessRecords({
   businessAccountName: "FuBu Limited",
   businessPricingTier: PricingTier.mutualOfOmaha,
 });
+
+export const BUSINESS_ACCOUNT_USA_3 = createBusinessRecords({
+  active: true,
+  businessAccountName: "Trump Towers",
+  businessPricingTier: PricingTier.none,
+});
