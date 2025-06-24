@@ -27,7 +27,6 @@ import healthSmokingSagas from "../health-smoking/sagas";
 import rewardsTabSagas from "../rewards-tab/sagas";
 import battlePassSagas from "../battle-pass/sagas";
 import prizeSagas from "../prizes/sagas";
-import userAchievementsSaga from "../achievements/sagas";
 
 export default function* allSagas() {
   yield all([
@@ -59,6 +58,5 @@ export default function* allSagas() {
     ...rewardsTabSagas,
     ...battlePassSagas,
     ...prizeSagas,
-    ...userAchievementsSaga,
   ]);
 }
