@@ -6058,7 +6058,7 @@ export type Mutation = {
    * Arguments:
    *   - isVisible: Boolean indicating whether the birthday should be visible.
    * Returns:
-   *   - Boolean indicating whether the operation was successful.
+   *   - The modified life event data.
    */
   setMobilePlayerBirthdayVisibility?: Maybe<LifeEvents>;
   setPassword?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6066,11 +6066,9 @@ export type Mutation = {
    * Sets the player's life events information.
    *
    * Arguments:
-   *   - setPlayerBirthday: The day of the player's birth (1-31).
-   *   - dateOfBirthMonth: The month of the player's birth (1-12).
-   *
+   *   - setPlayerBirthday: The player's birth date.
    * Returns:
-   *   - Boolean indicating whether the operation was successful.
+   *   - The modified life event data.
    */
   setPlayerBirthday?: Maybe<LifeEvents>;
   /** Updates the shares of a beneficiary */
@@ -6743,8 +6741,7 @@ export type MutationSetPasswordArgs = {
 };
 
 export type MutationSetPlayerBirthdayArgs = {
-  dateOfBirthDay: Scalars["Int"]["input"];
-  dateOfBirthMonth: Scalars["Int"]["input"];
+  dateOfBirth: Scalars["String"]["input"];
 };
 
 export type MutationSetShareOfBenefitForProductArgs = {
@@ -7292,10 +7289,8 @@ export type PermittedBusiness = {
 /** Represents the player's birthday information, including the day and month of birth. */
 export type PlayerBirthday = {
   __typename?: "PlayerBirthday";
-  /** The day of the player's birth (1-31). */
-  dateOfBirthDay?: Maybe<Scalars["Int"]["output"]>;
-  /** The month of the player's birth (1-12). */
-  dateOfBirthMonth?: Maybe<Scalars["Int"]["output"]>;
+  /** The player's birth date. */
+  dateOfBirth: Scalars["String"]["output"];
   /** Represents the visibility status of the player's birthday information. */
   isVisible: Scalars["Boolean"]["output"];
 };
@@ -18284,12 +18279,7 @@ export type LifeEventsFragment = {
   __typename?: "LifeEvents";
   id: string;
   isBirthdayGiftingEnabled: boolean;
-  birthday?: {
-    __typename?: "PlayerBirthday";
-    dateOfBirthDay?: number | null;
-    dateOfBirthMonth?: number | null;
-    isVisible: boolean;
-  } | null;
+  birthday?: { __typename?: "PlayerBirthday"; dateOfBirth: string; isVisible: boolean } | null;
 };
 
 export type MediaFragment = {
@@ -26334,32 +26324,7 @@ export type GetPlayerLifeEventsQuery = {
     __typename?: "LifeEvents";
     id: string;
     isBirthdayGiftingEnabled: boolean;
-    birthday?: {
-      __typename?: "PlayerBirthday";
-      dateOfBirthDay?: number | null;
-      dateOfBirthMonth?: number | null;
-      isVisible: boolean;
-    } | null;
-  } | null;
-};
-
-export type SetPlayerBirthdayMutationVariables = Exact<{
-  dateOfBirthDay: Scalars["Int"]["input"];
-  dateOfBirthMonth: Scalars["Int"]["input"];
-}>;
-
-export type SetPlayerBirthdayMutation = {
-  __typename?: "Mutation";
-  setPlayerBirthday?: {
-    __typename?: "LifeEvents";
-    id: string;
-    isBirthdayGiftingEnabled: boolean;
-    birthday?: {
-      __typename?: "PlayerBirthday";
-      dateOfBirthDay?: number | null;
-      dateOfBirthMonth?: number | null;
-      isVisible: boolean;
-    } | null;
+    birthday?: { __typename?: "PlayerBirthday"; dateOfBirth: string; isVisible: boolean } | null;
   } | null;
 };
 
@@ -26373,12 +26338,7 @@ export type SetMobilePlayerBirthdayVisibilityMutation = {
     __typename?: "LifeEvents";
     id: string;
     isBirthdayGiftingEnabled: boolean;
-    birthday?: {
-      __typename?: "PlayerBirthday";
-      dateOfBirthDay?: number | null;
-      dateOfBirthMonth?: number | null;
-      isVisible: boolean;
-    } | null;
+    birthday?: { __typename?: "PlayerBirthday"; dateOfBirth: string; isVisible: boolean } | null;
   } | null;
 };
 
@@ -54016,8 +53976,7 @@ export const LifeEventsFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirthDay" } },
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirthMonth" } },
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
                 { kind: "Field", name: { kind: "Name", value: "isVisible" } },
               ],
             },
@@ -75184,8 +75143,7 @@ export const GetPlayerLifeEventsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirthDay" } },
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirthMonth" } },
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
                 { kind: "Field", name: { kind: "Name", value: "isVisible" } },
               ],
             },
@@ -75196,77 +75154,6 @@ export const GetPlayerLifeEventsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPlayerLifeEventsQuery, GetPlayerLifeEventsQueryVariables>;
-export const SetPlayerBirthdayDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "SetPlayerBirthday" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "dateOfBirthDay" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "dateOfBirthMonth" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "setPlayerBirthday" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "dateOfBirthDay" },
-                value: { kind: "Variable", name: { kind: "Name", value: "dateOfBirthDay" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "dateOfBirthMonth" },
-                value: { kind: "Variable", name: { kind: "Name", value: "dateOfBirthMonth" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "LifeEvents" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "LifeEvents" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "birthday" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirthDay" } },
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirthMonth" } },
-                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<SetPlayerBirthdayMutation, SetPlayerBirthdayMutationVariables>;
 export const SetMobilePlayerBirthdayVisibilityDocument = {
   kind: "Document",
   definitions: [
@@ -75316,8 +75203,7 @@ export const SetMobilePlayerBirthdayVisibilityDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirthDay" } },
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirthMonth" } },
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
                 { kind: "Field", name: { kind: "Name", value: "isVisible" } },
               ],
             },

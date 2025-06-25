@@ -1,8 +1,7 @@
 fragment LifeEvents on LifeEvents {
   id
   birthday {
-    dateOfBirthDay
-    dateOfBirthMonth
+    dateOfBirth
     isVisible
   }
   isBirthdayGiftingEnabled
