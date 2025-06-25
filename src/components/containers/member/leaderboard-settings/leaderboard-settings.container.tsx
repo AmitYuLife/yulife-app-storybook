@@ -36,7 +36,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
   const dispatch = useDispatch();
   const socialGroups = useSelector(getSocialGroups);
   const allDataLoaded = !loading && !!socialGroups;
-  const lifeEventsData = data.getPlayerLifeEvents;
+  const lifeEventsData = data?.getPlayerLifeEvents;
 
   const leaderboards = useMemo(
     () =>
@@ -86,7 +86,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
 
   const onChangeBirthdayVisibility = useCallback(
     ({ isVisible }: IChangeBirthdayVisibilityProps) => {
-      if (!lifeEventsData.birthday) {
+      if (!lifeEventsData?.birthday) {
         showYuModal({
           component: {
             id: MODALS.info,

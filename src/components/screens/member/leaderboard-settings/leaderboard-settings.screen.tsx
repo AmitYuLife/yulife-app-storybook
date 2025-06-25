@@ -31,7 +31,7 @@ interface IProps {
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
   leaderboards?: ILeaderboardItem[];
-  lifeEvents: LifeEventsData;
+  lifeEvents?: LifeEventsData;
   onChangeConsent: (consentProps: IChangeConsentProps) => void;
   onChangeBirthdayVisibility?: (props: IChangeBirthdayVisibilityProps) => void;
 }
@@ -41,7 +41,7 @@ const LeaderboardSettings = ({
   leaderboards,
   onLeftIconPress,
   onRightIconPress,
-  lifeEvents: birthdayData,
+  lifeEvents,
   onChangeBirthdayVisibility,
 }: IProps) => {
   const t = useTranslation(["screens.leaderboard_settings.title", "screens.leaderboard_settings.screen_description"]);
@@ -104,10 +104,10 @@ const LeaderboardSettings = ({
         ListHeaderComponent={
           <View style={styles.header}>
             <TextTemplate type="b2">{t["screens.leaderboard_settings.screen_description"]}</TextTemplate>
-            {birthdayData?.isBirthdayGiftingEnabled && (
+            {lifeEvents?.isBirthdayGiftingEnabled && (
               <BirthdayVisibilityToggle
                 disabled={allLeaderboardsDisabled}
-                isVisible={birthdayData?.birthday?.isVisible ?? false}
+                isVisible={lifeEvents?.birthday?.isVisible ?? false}
                 onBirthdayVisibilityChange={onChangeBirthdayVisibility}
               />
             )}
