@@ -1,0 +1,16 @@
+diff --git a/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaUtils.kt b/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaUtils.kt
+index 0203be6..99d8989 100644
+--- a/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaUtils.kt
++++ b/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaUtils.kt
+@@ -72,9 +72,9 @@ fun getSafeAreaInsets(view: View): EdgeInsets? {
+   val visibleRect = android.graphics.Rect()
+   view.getGlobalVisibleRect(visibleRect)
+   return EdgeInsets(
+-      top = max(windowInsets.top - visibleRect.top, 0f),
++      top = max(windowInsets.top, 0f),
+       right = max(min(visibleRect.left + view.width - windowWidth, 0f) + windowInsets.right, 0f),
+-      bottom = max(min(visibleRect.top + view.height - windowHeight, 0f) + windowInsets.bottom, 0f),
++      bottom = max(min(windowHeight - visibleRect.top + view.height, 0f) + windowInsets.bottom, 0f),
+       left = max(windowInsets.left - visibleRect.left, 0f))
+ }
+ 
