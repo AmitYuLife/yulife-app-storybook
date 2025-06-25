@@ -287,18 +287,6 @@ export const CUSTOMER_46 = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_PLI_2 = {
-  type,
-  modelName,
-  data: {
-    customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
-    firstName: "John",
-    lastName: "Doe",
-    status: "onboarded",
-  },
-} as IDatabaseItem;
-
 export const CUSTOMER_PLI_3 = {
   type,
   modelName,
@@ -656,5 +644,17 @@ export const CUSTOMER_UNKNOWN = {
   modelName: "customer",
   data: {
     customerId: "unknown",
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_142 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: "johndoe@dundermifflin.com",
+    firstName: "John",
+    lastName: "Doe",
+    status: "onboarded",
   },
 } as IDatabaseItem;

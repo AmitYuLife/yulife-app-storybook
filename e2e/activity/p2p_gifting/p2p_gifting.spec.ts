@@ -199,6 +199,29 @@ Feature("P2P gifting", async () => {
     });
   });
 
+  Scenario("I should be able to receive a gift as a non-fully onboarded employee", scenario.start, async () => {
+    Given("I login as a valid, non-onboarded employee", given.logInAndGoToTab("yu", data.CUSTOMER_142, data.AUTH_142), async () => {
+      When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_18, data.USER_18_GIFT_D), async () => {
+        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+      });
+    });
+    When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+    });
+    When("I open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I should see the gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
+    });
+    When("I tap the gift notification", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
+      Then("I should land on the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW("forest"), 2500));
+      Then("I can see the gift message", then.idVisible(ids.P2P_MESSAGE(data.USER_18_GIFT_D.data.message), 2500));
+    });
+    When("I tap to thank the sender", when.tapID(ids.P2P_THANK_THEM_MESSAGE, 2500), async () => {
+      Then("I should see the 'Already thanked' message", then.textVisible(getTranslation(locale).screens.gifting.already_thanked_them, 2500));
+      Then("I should see the correct gift amount", then.idVisible(ids.SENDER_GIFTING_AMOUNT(data.USER_18_GIFT_D.data.amount), 2500));
+    });
+  });
+
   Scenario("I should only see the notification center 'Thanks for the gift' dot once and not again when I reopen the notification center", scenario.start, async () => {
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_19, data.AUTH_19), async () => {
       When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_20, data.USER_20_GIFT_A), async () => {
