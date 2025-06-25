@@ -24,8 +24,7 @@ export interface LifeEventsData {
 
 export interface Birthday {
   isVisible?: boolean;
-  dateOfBirthDay?: number;
-  dateOfBirthMonth?: number;
+  dateOfBirth?: string;
 }
 
 interface IProps {

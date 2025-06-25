@@ -222,7 +222,6 @@ const documents = {
   GetSduiJourneyDocument: types.GetSduiJourneyDocument,
   SubmitSduiJourneyDocument: types.SubmitSduiJourneyDocument,
   GetPlayerLifeEventsDocument: types.GetPlayerLifeEventsDocument,
-  SetPlayerBirthdayDocument: types.SetPlayerBirthdayDocument,
   SetMobilePlayerBirthdayVisibilityDocument: types.SetMobilePlayerBirthdayVisibilityDocument,
   ChangeUserLocaleDocument: types.ChangeUserLocaleDocument,
   GetMediaDocument: types.GetMediaDocument,
@@ -1317,10 +1316,6 @@ export function gql(source: "SubmitSduiJourneyDocument"): typeof documents["Subm
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetPlayerLifeEventsDocument"): typeof documents["GetPlayerLifeEventsDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "SetPlayerBirthdayDocument"): typeof documents["SetPlayerBirthdayDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

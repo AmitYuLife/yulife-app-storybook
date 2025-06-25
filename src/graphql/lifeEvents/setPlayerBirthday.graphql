@@ -1,5 +1,0 @@
-mutation SetPlayerBirthday($dateOfBirthDay: Int!, $dateOfBirthMonth: Int!) {
-  setPlayerBirthday(dateOfBirthDay: $dateOfBirthDay, dateOfBirthMonth: $dateOfBirthMonth) {
-    ...LifeEvents
-  }
-}
