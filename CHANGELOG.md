@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.68.0] - 2025-06-25
+
+### Features
+
+- Feature LCS-1419: Rename licensing to new_ventures in GitLab templates
+
+### Bugfixes
+
+- Bugfix GS-1710: Dont fetch achievements based on appState changes
+
+### Tasks
+
+- Task GS-1715: Patch react-native-safe-area-context to fix issue on Android devices
+- Task LCS-1375 : Update GQL query
+- Task: Use useQueryOnScreenSeen instead of useQuery to fetch achievements
+- Task CTE-234: battle pass refetch for random chests based on type
+- Task: Don't use translated strings in testIds in FullScreenHero
+- Task GS-1666: Purge showYucoinPowerButton toggle
+
+### Chores
+
+- chore: DEVOP-4192: Remove nvm install script from GitLab pipelines
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Improve useFps hook
+
+### Extra
+
+- Fix NVS-1223: added missing optional changing
+- Detox GS-1383: Non Fully Onboarded Gift
+- Detox LCS-960: Leaderboard referral box always on for UK, JP, SA & US (excluding MoO tier)
+- Detox: YuCoin Power Info Screen
+- Detox LCS-1393: textVisible for copy Dai-ichi had concerns about
+- Detox LCS-1246: Removed purged tempAppMenuNewReferralOption toggles from e2e.
+- Detox: LCS-1242 purged showLeaderboardSearch from user toggles
+- Detox: LCS-1274 - Smoking Hub Changes
+- Detox LCS-1171: business leavers full name visible on public leaderboard
+- Detox: Fixed onboarding In App test
+- Feat LCS-1358: Handle new birthday notifications
+- Detox: all customer_quizzes_spec tests passing
+- Detox: LCS-1238 and LCS-1260 MOO testing
+- Feat: LCS-1312: Display tips on celebration modals
+- Detox LCS-1125: Ensure referral names display in correct format for en and ja locales
+- Purge: personal products
+
 ## [4.67.0] - 2025-06-19
 
 ### Bugfixes
