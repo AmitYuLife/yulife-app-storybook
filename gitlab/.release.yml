@@ -4,7 +4,7 @@ release-develop-to-uat:
   when: manual
   script:
     # Install node
-    - . "$NVM_DIR/nvm.sh" && nvm install -b
+    - nvm install -b
     - BRANCH_VERSION_MAJOR=$(node -p -e "require('./package.json').version.split('.')[0]")
     - BRANCH_VERSION_MINOR=$(node -p -e "require('./package.json').version.split('.')[1]")
     - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
