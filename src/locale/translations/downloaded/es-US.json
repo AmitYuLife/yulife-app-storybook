@@ -401,7 +401,7 @@
       }
     },
     "open_random_chest": {
-      "claim_all_subtitle": "¡Echa un vistazo a lo que has desbloqueado!",
+      "claim_all_subtitle": "¡Checa lo que has desbloqueado!",
       "claim_all_title": "¡Lotería!",
       "claim_reward": "Recoger recompensa",
       "open": "Abrir",
@@ -696,16 +696,16 @@
   "prizes": {
     "tooltips": {
       "power_up": {
-        "body": "Encuéntralo en tu inventario en las misiones.",
+        "body": "Encuéntralo en tu inventario en Misiones.",
         "title": "¡Power-up recogido!"
       },
       "purchase": {
         "body": "Encuéntralo en tu cartera.",
-        "title": "¡Recompensa cobrada!"
+        "title": "¡Recompensa recolectada!"
       },
       "yucoin": {
-        "body": "Véalo en la pantalla de YuCoin",
-        "title": "¡YuCoin cobrado!"
+        "body": "Velo en la pantalla de YuCoin",
+        "title": "¡YuCoin recolectado!"
       },
       "yumoji": {
         "body": "Pruébalo en tu Yumoji.",
@@ -763,19 +763,19 @@
     },
     "battle_pass": {
       "accessibility": {
-        "donate_button": "Dona %{amount} yu moneda a %{title}",
+        "donate_button": "Dona %{amount} YuCoin a %{title}",
         "donation_title": "Donación %{title}",
-        "progress_bar": "%{step} de %{steps} monedas yu gastadas para alcanzar el nivel %{level}",
+        "progress_bar": "%{step} de %{steps} YuCoin gastadas para alcanzar el nivel %{level}",
         "reward_item_details": "%{title} recompensa",
         "reward_level": "Nivel %{level} recompensa",
         "view_details": "Ver detalles de la recompensa %{title}",
-        "view_donation_leaderboard": "Ver %{title} en la clasificación"
+        "view_donation_leaderboard": "Ver %{title} en la Clasificación"
       },
       "claim_modal": {
         "buttons": {
           "claim_reward": "Recoger recompensa",
           "open_chest": "Abrir",
-          "select_reward": "Seleccione esta recompensa"
+          "select_reward": "Seleccionar esta recompensa"
         }
       },
       "leaderboard": {
@@ -795,7 +795,7 @@
         "go_to_next_season": "¡Felicidades por completar esta temporada! ¡Es hora de empezar la siguiente!",
         "go_to_next_season_button": "Continuar",
         "modal": {
-          "button_label": "Comienza la nueva temporada",
+          "button_label": "Comienzar la nueva temporada",
           "title": "%{name} ¡se ha completado!"
         },
         "staging": {
@@ -856,7 +856,7 @@
       "debug_info": {
         "cta": "Exportar datos",
         "current_pedometer_steps": "2. Pasos actuales del podómetro: %{steps}",
-        "history_steps": "4. Pasos de la historia del podómetro:",
+        "history_steps": "4. Pasos del historial del podómetro:",
         "initial_steps": "1. %{healthProvider} pasos iniciales: %{steps}",
         "progress": "3. Progreso (2 - 1): %{progress}"
       },
@@ -1042,7 +1042,7 @@
       "event_ended": "Evento finalizado",
       "reward_claimed": "Recolectado",
       "vs": {
-        "current_standings": "Clasificación actual"
+        "current_standings": "Posición actual"
       },
       "what_to_do": "Qué hacer"
     },
@@ -1149,7 +1149,7 @@
         },
         "set_coins": {
           "description": "%{smart_count} destinatario |||| %{smart_count} destinatarios",
-          "heading": "¡Regala un poco de tu YuCoin!"
+          "heading": "¡Agrega un poco de tu YuCoin como regalo!"
         }
       },
       "total_yu_coin": "YuCoin total"
@@ -1201,7 +1201,7 @@
       },
       "podium": {
         "communities_info": {
-          "content": "Las comunidades son grupos a los que estás asignado, como equipos organizativos o cohortes regionales. Puedes ver y filtrar las clasificaciones en función de estas agrupaciones.",
+          "content": "Las comunidades son grupos a los que estás asignado, como equipos organizacionales o cohortes regionales. Puedes ver y filtrar las clasificaciones en función de estas agrupaciones.",
           "heading": "Comunidades"
         },
         "cycling_info": {
@@ -1258,7 +1258,7 @@
         "title": "Notificaciones de cumpleaños",
         "turn_off": {
           "ctaLabel": "No, mantenlos encendidos",
-          "ctaLabelSecondary": "Sí, apague",
+          "ctaLabelSecondary": "Sí, apagarlos",
           "heading": "¿Desactivar las notificaciones de cumpleaños?",
           "subheading": "No recibirás recordatorios de cumpleaños de tus amigos, y tus amigos no recibirán una notificación de tu cumpleaños."
         },
@@ -1273,12 +1273,12 @@
       },
       "consented": "Otros miembros de esta clasificación pueden ver tu nombre y tu actividad.",
       "description": "Estado y gestión de tu acceso a las clasificaciones relacionadas con la aplicación.",
-      "description_with_birthday": "Gestión de tu acceso a tablas de clasificación y permisos de cumpleaños relacionados con la aplicación.",
+      "description_with_birthday": "Gestión de tu acceso a Clasificaciones y permisos de cumpleaños relacionados con la aplicación.",
       "item_title": "%{name} Clasificación",
       "not_consented": "Permite que otros miembros de esta clasificación vean tu nombre y tu actividad.",
-      "screen_description": "Gestión de su acceso a las tablas de clasificación de la aplicación. Ten en cuenta que la exclusión de una clasificación puede restringir tu acceso a algunas funciones.",
+      "screen_description": "Gestión de su acceso a las Clasificaciones de la aplicación. Ten en cuenta que la exclusión de una clasificación puede restringir tu acceso a algunas funciones.",
       "title": "Clasificaciones",
-      "title_with_birthday": "Tablas de clasificación y cumpleaños"
+      "title_with_birthday": "Clasificaciones y cumpleaños"
     },
     "level_locked": {
       "level": "Desbloquear en nivel %{level}",
@@ -1311,36 +1311,36 @@
       }
     },
     "login_confirm": {
-      "cooldown": "Enviar un nuevo enlace en %{seconds}s...",
-      "description": "Utilice el enlace del correo electrónico que acabamos de enviarle.",
+      "cooldown": "Enviar un nuevo enlace a %{seconds}s...",
+      "description": "Utiliza el enlace en el correo que acabamos de enviarte.",
       "error_title": "Algo salió mal",
       "heading": "¿Listo para ser tu mejor Yu? Vamos a verificar tu cuenta.",
-      "login_with_password": "Inicie sesión con la contraseña en su lugar.",
+      "login_with_password": "Inicia sesión con la contraseña en su lugar.",
       "no_email_app_installed": {
-        "message": "Si no se reconoce tu aplicación de correo electrónico, prueba a abrirla manualmente.",
-        "title": "No hay ninguna aplicación de correo electrónico instalada"
+        "message": "Si no se reconoce tu aplicación de correo, intenta abrirla manualmente.",
+        "title": "No hay ninguna app de correo electrónico instalada"
       },
-      "open_email": "Abrir la aplicación de correo electrónico",
-      "resend_link": "¿No lo has recibido? Envíe un nuevo enlace.",
+      "open_email": "Abrir la app de correo electrónico",
+      "resend_link": "¿No lo has recibido? Envía un nuevo enlace.",
       "webview_title": "Preparándose para el despegue..."
     },
     "login_email": {
       "cta_label": "Continuar",
-      "heading": "Hola a todos. ¿Cuál es tu correo electrónico?",
+      "heading": "¡Hola! ¿Cuál es tu correo electrónico?",
       "submitting": "Presentar..."
     },
     "login_hero": {
       "primary_cta_label": "Reclamar mi cuenta",
       "secondary_cta_label": "Iniciar sesión",
-      "session_expired_error_message": "Su sesión ha expirado. Por favor, conéctese de nuevo.",
+      "session_expired_error_message": "Tu sesión ha expirado. Por favor, inicia sesión de nuevo.",
       "slides": {
-        "rewards": "Convierta los hábitos saludables en recompensas"
+        "rewards": "Convierte los hábitos saludables en recompensas"
       }
     },
     "login_password": {
       "cta_label": "Continuar",
-      "heading": "Introduzca su contraseña",
-      "submitting": "Presentar..."
+      "heading": "Ingresa tu contraseña",
+      "submitting": "Presentando..."
     },
     "measurement_cycling_settings": {
       "description": "Cambia entre el sistema imperial (millas) y el métrico (kilómetros).",
@@ -1521,7 +1521,7 @@
       },
       "list": {
         "history": "Comprado",
-        "recently_used": "Utilizado recientemente",
+        "recently_used": "Usado recientemente",
         "reward_passes": "Tus pases de recompensa",
         "rewards": "Recompensas",
         "store": "Tienda"
@@ -1560,14 +1560,14 @@
         }
       },
       "search": {
-        "initial_state": "Busque descuentos, vales y suscripciones.",
-        "no_results": "No hemos encontrado la marca que busca.",
+        "initial_state": "Busca descuentos, vales y suscripciones.",
+        "no_results": "No encontramos la marca que buscas.",
         "placeholder": "Buscar todas las marcas",
         "subheading": "Buscar marcas",
         "title": "Tienda"
       },
       "storefront": {
-        "reward_location": "Sus recompensas se fijan en %{location}",
+        "reward_location": "Tus recompensas están configuradas en %{location}",
         "wallet": "Cartera"
       },
       "tabs": {
@@ -1582,16 +1582,16 @@
       },
       "wallet": {
         "cta": {
-          "see_more": "Más información"
+          "see_more": "Ver más"
         },
         "empty": {
           "discount": {
-            "heading": "Su cartera está lista para ser llenada.",
-            "subheading": "Empieza a coleccionar recompensas y las tendrás listas aquí."
+            "heading": "¡Tu cartera está lista para llenarse!",
+            "subheading": "Empieza a coleccionar recompensas y estarán listas aquí."
           },
           "voucher": {
-            "heading": "Su cartera está lista para ser llenada.",
-            "subheading": "Las recompensas canjeadas estarán listas para usted aquí"
+            "heading": "¡Tu cartera está lista para llenarse!",
+            "subheading": "Las recompensas canjeadas estarán listas para ti aquí"
           }
         },
         "title": "Cartera"
@@ -1605,7 +1605,7 @@
     },
     "settings": {
       "content_location": {
-        "description": "Seleccione su tienda preferida",
+        "description": "Selecciona la ubicación preferida de tu tienda",
         "label": "Ubicación de la tienda"
       },
       "email_notification": {
@@ -1667,9 +1667,9 @@
     "smoking_modals": {
       "all_milestones_passed": "Has aprobado todos tus",
       "days_title": "Día %{days}",
-      "milestone": "¡Hito!",
+      "milestone": "¡Meta!",
       "milestone_passed": "Has pasado un",
-      "milestones": "¡hitos!"
+      "milestones": "¡Metas!"
     },
     "streak": {
       "accessibility": {
@@ -1792,10 +1792,10 @@
     },
     "wellbeing_hub": {
       "category_all": "Todos",
-      "header_description": "Su centro de acceso rápido para explorar y disfrutar de sus ventajas de bienestar.",
+      "header_description": "Tu centro de acceso rápido para explorar y disfrutar de tus prestaciones de bienestar",
       "header_title": "Hola %{name}",
       "no_results": {
-        "description": "Actualmente no tiene prestaciones de bienestar. Es posible que pueda encontrarlas más adelante.",
+        "description": "Actualmente no tienes prestaciones de bienestar. Es posible que puedas encontrarlas más adelante.",
         "title": "Vuelve más tarde."
       },
       "send_documents": {
@@ -2176,7 +2176,7 @@
         "heartRate": "frecuencia cardiaca",
         "meditation": "meditación",
         "steps": "pasos",
-        "wheelchair_pushes": "empuje de sillas de ruedas",
+        "wheelchair_pushes": "empuje de silla de ruedas",
         "workouts": "entrenamientos"
       },
       "continue": "Conectémonos",
@@ -2197,7 +2197,7 @@
       "title": "¿Por qué necesito esto?"
     },
     "providers": {
-      "generic": "Proveedor de servicios sanitarios",
+      "generic": "Proveedor de servicios de salud",
       "googleFit": "Google Fit",
       "healthConnect": "Health Connect",
       "healthKit": "Salud",
