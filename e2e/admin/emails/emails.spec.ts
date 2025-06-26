@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioSkip, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -30,7 +30,7 @@ Feature("I receive the correct emails", async () => {
     //     When("I skip the health connection screen", when.skipHealthConnection, async () => {
     //       When("I terminate the app", when.terminateApp, async () => {
     //         When("I follow the email link", when.followEmailLink(data.CUSTOMER_6.data.email), async () => {
-    //           Then("I should see the sign up reward screen", then.rewardScreenVisible);
+    //           Then("I should see the warning that the link has expired", then.textVisible("This magic link has either expired or is invalid"));
     //         });
     //       })
     //     });

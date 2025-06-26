@@ -9,6 +9,7 @@ import { ConnectCheckList } from "@molecules";
 import { openGoogleFit } from "@services/app-link";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 import { t } from "@locale";
+import { FITKIT_CONNECT_BUTTON } from "@ids";
 
 interface IProps {
   connecting: boolean;
@@ -73,7 +74,7 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
         </>
       )}
       <Button
-        testID="fitkit-connect-button"
+        testID={FITKIT_CONNECT_BUTTON}
         isLoading={connecting}
         disabled={connecting}
         translatedLabel={connectButtonLabel}

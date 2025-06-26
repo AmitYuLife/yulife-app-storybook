@@ -170,6 +170,7 @@ export const REWARD_STORE_LOCATION_CONFIRM = "screens.rewards.list.welcome.confi
 export const HERO_IMAGE_CONFIRM_BUTTON = "hero-image-confirm-button";
 export const HERO_IMAGE_CANCEL_BUTTON = "hero-image-cancel-button";
 export const SURVEY_REWARD = (yucoin: string) => `SURVEY_REWARD_${yucoin}`;
+export const FITKIT_CONNECT_BUTTON = "FITKIT_CONNECT_BUTTON";
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;

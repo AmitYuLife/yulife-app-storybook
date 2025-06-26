@@ -1,4 +1,4 @@
-import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 
 import * as given from "./_steps/given";
 import * as then from "./_steps/then";
@@ -41,31 +41,35 @@ Feature("As a user I can get past the login screen and see the donate tab after 
     });
   });
 
-  // commenting out for the time being as app going offline  - being investigated
-  // ScenarioOnly("A US user can onboard through the app", scenario.start, async () => {
-  //   When("I press `log in`", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
-  //     When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, BUSINESS_EMPLOYEE_INFO_2.data.employment_email), async () => {
-  //       When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
-  //         When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
-  //           When("I tap pass on the captcha", when.tapText("PASS"), async () => {
-  //             Then("I should have received the correct email", then.hasReceivedOnboardingLinkEmail(CUSTOMER_USA_2.data.email));
-  //           });
-  //         });
-  //       });
-  //     });
-  //   });
-  //   When("I terminate the app", when.terminateApp, async () => {
-  //     When("I follow the email link", when.followEmailLink(BUSINESS_EMPLOYEE_INFO_2.data.employment_email), async () => {
-  //       When("I wait 15 seconds", when.wait(15000), async () => {
-  //         Then("I should see no progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 3, 0), 2000));
-  //         // Then("Then I can see the cards to select if I an a new user or not", then.newAccountCardVisible);
-  //       });
-  //     });
-  //   });
-  //   // When("I wait", when.wait(2000), async () => {
-  //   //   When("When I navigate through the onboarding flow as far as the password screen", when.navigateAppOnboardingFlow, async () => {
-  //   //     Then("I should see the password set screen", then.onboardingPasswordScreenVisible);
-  //   //   });
-  //   // });
-  // });
+  // skipping as test will fail on runners until we get members running alongside it
+  // to test locally, ensure members is also running
+  // Cris is looking into getting this working on the runners
+  ScenarioSkip("A US user can onboard through the app", scenario.start, async () => {
+    When("I press `log in`", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
+      When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, BUSINESS_EMPLOYEE_INFO_2.data.employment_email), async () => {
+        When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+          When("I tap the button to go to the next screen", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+            When("I tap pass on the captcha", when.tapText("PASS"), async () => {
+              Then("I should have received the correct email", then.hasReceivedOnboardingLinkEmail(BUSINESS_EMPLOYEE_INFO_2.data.employment_email));
+            });
+          });
+        });
+      });
+    });
+    When("I terminate the app", when.terminateApp, async () => {
+      When("I follow the email link", when.followEmailLink(BUSINESS_EMPLOYEE_INFO_2.data.employment_email), async () => {
+        When("I wait 15 seconds", when.wait(15000), async () => {
+          Then("I should see the signup reward screen", then.signupRewardVisible);
+        });
+      });
+    });
+    When("I have authorised fitkit", given.authoriseFitkit(), async () => {
+      When("I tap let's go", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN")), async () => {
+        Then("I should see a prompt to connect to the health app", then.idVisible(ids.FITKIT_CONNECT_BUTTON));
+      });
+    });
+    When("I tap to skip connection", when.tapID(ids.SKIP_HEALTH_CONNECT_SCREEN_BUTTON), async () => {
+      Then("I should see my total yucoin balance of 20", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20)));
+    });
+  });
 });
