@@ -5,7 +5,7 @@ import { useLazyQuery } from "@apollo/client";
 import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
 import { useNavigation } from "@navigation/navigation.context";
 import { IIcon } from "@organisms/top-bar/subcomponents/left";
-import { useImagePreload, useQueryOnScreenSeen, useUserFeatures } from "@hooks";
+import { useImagePreload, useQueryOnScreenSeen } from "@hooks";
 import { RewardOnPressArgs } from "../member/rewards/rewards.types";
 import { showYuModal } from "@navigation/root";
 import { RewardMilestoneDetails } from "@components/screens/member/rewards/list/subcomponents/reward-milestone-details";
@@ -32,7 +32,6 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
   const [allFetched, setAllFetched] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const tabsSettings = useSelector(getRewardsTabSettings);
-  const { tempGameShowCouponPrizeTemplates } = useUserFeatures();
 
   const [moreRewards, setMoreItems] = useState<IGetMobileRewardsListData["list"]>([]);
   const { hasVoucherStore } = tabsSettings || {};
@@ -95,16 +94,14 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
   }, [allFetched, isFetchingMore, getMoreRewards, itemOffset]);
 
   const onPressWallet = useCallback(() => {
-    const route = tempGameShowCouponPrizeTemplates ? ROUTES.wallet : ROUTES.purchases;
-
     Navigation.push(componentId, {
       component: {
-        id: route,
-        name: route,
+        id: ROUTES.wallet,
+        name: ROUTES.wallet,
       },
     });
     return;
-  }, [componentId, tempGameShowCouponPrizeTemplates]);
+  }, [componentId]);
 
   const handleStoreLocationPress = useCallback(() => {
     Navigation.dismissAllModals({ animations: { dismissModal: { enabled: false } } });
