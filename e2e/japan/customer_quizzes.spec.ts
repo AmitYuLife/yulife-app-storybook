@@ -187,19 +187,19 @@ Feature("Quizzes and questionnaires", async () => {
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'PWhat motivates you to do your best work' question", then.idVisible(ids.TEXT_TEMPLATE("能力を最大限に発揮するモチベーションとなるものは何ですか？", "h2")));
     });
-    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_WORK_MOTIVATION, "a".repeat(100)), async () => {
+    When("I type in 2 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_WORK_MOTIVATION, "a".repeat(2)), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("次のページ", false)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'What do you enjoy most about working at Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDでの仕事について、何が一番楽しいですか?", "h2")));
     });
-    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY, "a".repeat(100)), async () => {
+    When("I type in 2 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY, "a".repeat(2)), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("次のページ", false)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'the one thing you would change about Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDでの体験をより良くするために、あなたが変えたいことは何ですか?", "h2")));
     });
-    When("I type in 100 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY, "a".repeat(100)), async () => {
+    When("I type in 2 characters into the input", when.typeViaID(ids.ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY, "a".repeat(2)), async () => {
       Then("I should see the next button enabled", then.idVisible(ids.BUTTON_BASE("次のページ", false)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
@@ -207,7 +207,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
       Then("I should be on the 'the one thing you would change about Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDでの体験をより良くするために、あなたが変えたいことは何ですか?", "h2")));
-      Then("My last typed out answer should still be filled in", then.textVisible("a".repeat(100)));
+      Then("My last typed out answer should still be filled in", then.textVisible("a".repeat(2)));
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'How likely are you to recommend Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDを職場として勧める可能性はどのくらいありますか? (1: 全く思わない, 10: 非常にそう思う)", "b2b")));
