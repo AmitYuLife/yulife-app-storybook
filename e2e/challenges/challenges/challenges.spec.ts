@@ -166,8 +166,10 @@ Feature("As a user I can take a challenge", async () => {
     When("I tap the yucoin", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
       Then("I should be on today's earning screen and see the correct yucoin earn power", then.onTodaysEarnings(0, "0.0 / 9.6 km", 0, "78"));
     });
-    When("I tap 13", when.tapID(ids.YUCOIN_POWER("13")), async () => {
-      Then("I am on the YuCoin Power overview screen", then.yuCoinPowerInfoVisible(data.USER_52.data.earnRate));
+    When("I scroll up the today's earning screen", when.scrollFromID(ids.TODAYS_EARNINGS, "down", "fast", 0.4), async () => {
+      When("I tap 13", when.tapID(ids.YUCOIN_POWER("13")), async () => {
+        Then("I am on the YuCoin Power overview screen", then.yuCoinPowerInfoVisible(data.USER_52.data.earnRate));
+      });
     });
     When("I close the YuCoin power info screen", when.tapID(ids.SCREEN_CLOSE, 1500), async () => {
       When("I scroll down the todays earnings screen", when.scrollFromID(ids.YUCOIN_POWER("13"), "up", "fast"), async () => {

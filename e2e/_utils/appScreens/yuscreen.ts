@@ -325,7 +325,7 @@ export const yuCoinPowerInfoVisible = (earnRate: number) => async () => {
   const yucoinPowerUp = "Power up to earn more YuCoin";
   const passiveRewards = ["Steps", "Mindfulness", "Cycling"];
 
-  await idVisible(EARN_RATE(earnRate), 1000)();
+  await idVisible(EARN_RATE(earnRate.toString()), 1000)();
   await textVisible(yucoinPowerUp, 2000)();
   await textVisible("Daily core activities", 1500)();
 

@@ -55,6 +55,8 @@ Feature("Fiit in app", async () => {
     });
     When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
       Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS));
+    });
+    When("I scroll further down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast"), async () => {
       Then("I can see 1/1 challenges completed today", then.textVisible("Today's challenges (1/1)"));
       Then("I can see the fiit challenge completed today, with the correct duration", then.canSeeFiitCompleted(data.MEDIA_5));
     });
@@ -141,6 +143,8 @@ Feature("Fiit in app", async () => {
     });
     When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
       Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS));
+    });
+    When("I scroll further down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast"), async () => {
       Then("I can see 1/1 challenges completed today", then.textVisible("Today's challenges (1/1)"));
       Then("I can see the fiit challenge completed today, with the correct duration", then.canSeeFiitCompleted(data.MEDIA_7));
     });
