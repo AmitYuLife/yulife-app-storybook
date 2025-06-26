@@ -72,7 +72,6 @@ export const sendGiftUserFlow = (giftRecipient: IDatabaseItem) => async () => {
   await tapID(ids.P2P_NEXT_BUTTON, 2000)();
   await tapID(ids.P2P_STICKER, 2000)();
   await tapID(ids.P2P_STICKER_ITEMS("gift"), 2000)();
-  await tapID(ids.CTA_SELECT, 2000)();
   await tapID(ids.P2P_SEND_BUTTON, 2000)();
   await tapID(ids.CTA_GOT_IT, 2000)();
 };
