@@ -61,6 +61,7 @@ export enum SduiActionType {
   OpenMyAccount = "OPEN_MY_ACCOUNT",
   RefreshTotalCoins = "REFRESH_TOTAL_COINS",
   SduiActionDismissOverlay = "SDUI_ACTION_DISMISS_OVERLAY",
+  SduiActionDismissModal = "SDUI_ACTION_DISMISS_MODAL",
   SduiActionGenericNavigateBack = "SDUI_ACTION_GENERIC_NAVIGATE_BACK",
   SduiActionGenericNavigateBackToRoot = "SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT",
   SduiActionLogEvent = "SDUI_ACTION_LOG_EVENT",
