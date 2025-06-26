@@ -259,8 +259,8 @@
     },
     "consumables": {
       "activate_button": "Activate",
-      "already_active_end": "to use your power-up",
-      "already_active_start": "Your power-up is active. Come back in",
+      "already_active_end": "to use it until it expires.",
+      "already_active_start": "Your power-up is active. You have",
       "close": "Close",
       "empty": "Your inventory is empty. Head over to your seasonal rewards path to earn helpful items to aid you on your journey.",
       "go_to_rewards_button": "Go to rewards",

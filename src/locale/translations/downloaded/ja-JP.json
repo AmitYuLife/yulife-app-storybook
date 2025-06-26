@@ -259,8 +259,8 @@
     },
     "consumables": {
       "activate_button": "有効化する",
-      "already_active_end": "で使用できます",
-      "already_active_start": "パワーアップアイテムが有効です。あと",
+      "already_active_end": "期限が切れるまで 使用 できます。",
+      "already_active_start": "パワーアップ が アクティブ です。 あなた は",
       "close": "閉じる",
       "empty": "所有アイテムがありません。リワードからYuCoinを交換して、クエストの助けとなるアイテムを獲得しましょう。",
       "go_to_rewards_button": "リワードに進む",
@@ -1117,8 +1117,8 @@
         "title": "感謝を伝えよう!"
       },
       "limit_reached": {
-        "description": "今日送信できるギフトの上限に達しました。明日もう一度お試しください!",
-        "info": "1日に送信できるギフトの上限は%{smart_count}個までとなります。 |||| 1日に送信できるギフトの上限は%{smart_count}個までとなります。",
+        "description": "今日送信できるYuCoinギフトの上限に達しました。明日もう一度お試しください!",
+        "info": "1日に送信できるYuCoinギフトの上限は%{smart_count}個までとなります。 |||| 1日に送信できるYuCoinギフトの上限は%{smart_count}個までとなります。",
         "title": "また明日送りましょう"
       },
       "not_enough_coin": "YuCoinが不足しています。メッセージのみを送信してみましょう!",

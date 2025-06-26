@@ -259,8 +259,8 @@
     },
     "consumables": {
       "activate_button": "Activar",
-      "already_active_end": "para usar tu potenciador",
-      "already_active_start": "Tu potenciador está activo. Vuelve a entrar",
+      "already_active_end": "utilizarlo hasta que caduque.",
+      "already_active_start": "Tu potenciador está activo. Usted tiene",
       "close": "Cerrar",
       "empty": "Tu inventario está vacío. Dirígete a tu ruta de recompensas de temporada para conseguir objetos útiles que te ayuden en tu viaje.",
       "go_to_rewards_button": "Ir a recompensas",
