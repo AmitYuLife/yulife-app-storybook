@@ -119,7 +119,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
     When("I exit the smoking hub", when.tapID(ids.BACK_BUTTON), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
         When("I go to Today's Earnings", when.tapID(ids.STEPS_COUNT(0)), async () => {
-          Then("I see I've earned 250 yucoin today so far on the todays earnings screen", then.textVisible("250 YuCoin"));
+          Then("I see I've earned 251 yucoin today so far on the todays earnings screen", then.textVisible("251 YuCoin"));
         });
       });
     });

@@ -1,9 +1,8 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import * as customer from '../postgres/customers';
+import * as customer from "../postgres/customers";
 
 const type = "mongo";
 const modelName = "users";
-
 
 export const USER_FRY = {
   type,
@@ -21,8 +20,8 @@ export const USER_FRY = {
       },
     ],
     earnRate: 10,
-  }
-} as IDatabaseItem
+  },
+} as IDatabaseItem;
 
 export const USER_LEELA = {
   type,
@@ -40,8 +39,8 @@ export const USER_LEELA = {
       },
     ],
     earnRate: 10,
-  }
-} as IDatabaseItem
+  },
+} as IDatabaseItem;
 
 export const USER_BENDER = {
   type,
@@ -59,8 +58,8 @@ export const USER_BENDER = {
       },
     ],
     earnRate: 10,
-  }
-} as IDatabaseItem
+  },
+} as IDatabaseItem;
 
 export const USER_ZOIDBERG = {
   type,
@@ -78,8 +77,8 @@ export const USER_ZOIDBERG = {
       },
     ],
     earnRate: 10,
-  }
-} as IDatabaseItem
+  },
+} as IDatabaseItem;
 
 export const USER_ZAPP = {
   type,
@@ -93,12 +92,12 @@ export const USER_ZAPP = {
         productType: "Yulife",
         option: "epic",
         type: "employer",
-        earnRate: 10,
+        earnRate: 5,
       },
     ],
-    earnRate: 10,
-  }
-} as IDatabaseItem
+    earnRate: 5,
+  },
+} as IDatabaseItem;
 
 export const USER_AMY = {
   type,
@@ -116,8 +115,8 @@ export const USER_AMY = {
       },
     ],
     earnRate: 10,
-  }
-} as IDatabaseItem
+  },
+} as IDatabaseItem;
 
 export const USER_HERMES = {
   type,
@@ -135,8 +134,8 @@ export const USER_HERMES = {
       },
     ],
     earnRate: 10,
-  }
-} as IDatabaseItem
+  },
+} as IDatabaseItem;
 
 export const USER_KIF = {
   type,
@@ -154,5 +153,24 @@ export const USER_KIF = {
       },
     ],
     earnRate: 10,
-  }
-} as IDatabaseItem
+  },
+} as IDatabaseItem;
+
+export const USER_CALCULON = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_CALCULON.data.customerId,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  },
+} as IDatabaseItem;

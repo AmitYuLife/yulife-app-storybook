@@ -43,20 +43,21 @@ export const smokingTileVisible =
     await idVisible(ids.YUSCREEN_SMOKING_TILE_TITLE(titleCopy))();
   };
 
-export const smokingCelebrationPopupVisible = (days: number, yucoin: number) => async () => {
+export const smokingCelebrationPopupVisible = (days: number, yucoin?: number) => async () => {
   await wait(2000)();
   await idVisible(ids.SMOKING_CELEBRATION_TITLE)();
   await idVisible(ids.SMOKING_CELEBRATION_DAYS(`Day ${days}`))();
-  await idVisible(ids.SMOKING_CELEBRATION_YUCOIN(yucoin))();
-  await idVisible(ids.SMOKING_CELEBRATION_TIPS_CONTAINER)();
-  await idVisibleAtIndex(ids.SMOKING_TIP(`day_${days}`), 1)();
+  yucoin && days <= 28 && (await idVisible(ids.SMOKING_CELEBRATION_YUCOIN(yucoin))());
+  !yucoin && days > 28 && (await idNotVisible(ids.SMOKING_CELEBRATION_YUCOIN(0))());
+  days <= 28 && (await idVisible(ids.SMOKING_CELEBRATION_TIPS_CONTAINER)());
+  days <= 28 && (await idVisibleAtIndex(ids.SMOKING_TIP(`day_${days}`), 1)());
   await idVisible(ids.SMOKING_CELEBRATION_CTA)();
 };
 
 export const smokingCardVisible = (days: number, locale: string) => async () => {
-  const daysText = locale === "jp-JP" ? "日" : "days";
+  const daysText = locale === "ja-JP" ? "" : " days";
   await idVisible(ids.FLAT_LIST_EVENTS)();
-  await textVisible(`${days}/28 ${daysText}`)();
+  await textVisible(`${days}/28${daysText}`)();
 };
 
 export const onSmokingHub =
@@ -76,7 +77,8 @@ export const onSmokingHub =
     let heartText = "";
 
     switch (locale) {
-      case "jp-JP":
+      case "ja-JP":
+        console.log("in JP Switch");
         costText = `${totalCost} 円`;
         heartText = `${totalVolume}本`;
         break;
@@ -92,6 +94,7 @@ export const onSmokingHub =
     }
 
     // check header
+    console.log("LOCALE=", locale);
     await checkSmokingHubHeader(streakDays, emptyAvatar)();
     await idVisible(ids.SMOKING_CARD(smoking_heart_image, heartText))();
     await idVisible(ids.SMOKING_CARD(smoking_wallet_image, costText))();

@@ -1,7 +1,11 @@
-import { generateRandomInbox, generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import {
+  generateRandomInbox,
+  generateRandomMongoId,
+  IDatabaseItem,
+} from "@yu-life/yulife-bdd-framework";
 
-const type = "postgres"
-const modelName = "customer"
+const type = "postgres";
+const modelName = "customer";
 
 export const CUSTOMER_FRY = {
   type,
@@ -95,6 +99,18 @@ export const CUSTOMER_KIF = {
     email: generateRandomInbox(),
     firstName: "Kif",
     lastName: "Kroker",
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_CALCULON = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Calculon",
+    lastName: "Robot",
     status: "onboarded",
   },
 } as IDatabaseItem;

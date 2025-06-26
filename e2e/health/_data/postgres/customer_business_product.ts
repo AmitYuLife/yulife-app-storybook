@@ -7,120 +7,137 @@ const type = "postgres";
 const modelName = "customer_business_product";
 
 export const CBP_FRY = {
-    type,
-    modelName,
+  type,
+  modelName,
+  data: {
+    business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+    customer_product_id: cpe.CPE_FRY_RGL.data.customer_product_id,
+    category_id: 1,
+    start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+    archived: false,
     data: {
-        business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
-        customer_product_id: cpe.CPE_FRY_RGL.data.customer_product_id,
-        category_id: 1,
-        start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
-        archived: false,
-        data: {
-            salary: 60000,
-            country: "UK",
-            product_salary: "60000"
-        }
-    }
-} as IDatabaseItem
+      salary: 60000,
+      country: "UK",
+      product_salary: "60000",
+    },
+  },
+} as IDatabaseItem;
 
 export const CBP_LEELA = {
-    type,
-    modelName,
+  type,
+  modelName,
+  data: {
+    business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+    customer_product_id: cpe.CPE_LEELA_RGL.data.customer_product_id,
+    category_id: 1,
+    start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+    archived: false,
     data: {
-        business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
-        customer_product_id: cpe.CPE_LEELA_RGL.data.customer_product_id,
-        category_id: 1,
-        start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
-        archived: false,
-        data: {
-            salary: 60000,
-            country: "UK",
-            product_salary: "60000"
-        }
-    }
-} as IDatabaseItem
+      salary: 60000,
+      country: "UK",
+      product_salary: "60000",
+    },
+  },
+} as IDatabaseItem;
 
 export const CBP_ZOIDBERG = {
-    type,
-    modelName,
+  type,
+  modelName,
+  data: {
+    business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+    customer_product_id: cpe.CPE_ZOIDBERG_RGL.data.customer_product_id,
+    category_id: 1,
+    start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+    archived: false,
     data: {
-        business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
-        customer_product_id: cpe.CPE_ZOIDBERG_RGL.data.customer_product_id,
-        category_id: 1,
-        start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
-        archived: false,
-        data: {
-            salary: 45000,
-            country: "UK",
-            product_salary: "45000"
-        }
-    }
-} as IDatabaseItem
+      salary: 45000,
+      country: "UK",
+      product_salary: "45000",
+    },
+  },
+} as IDatabaseItem;
 
 export const CBP_ZAPP = {
-    type,
-    modelName,
+  type,
+  modelName,
+  data: {
+    business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+    customer_product_id: cpe.CPE_ZAPP_RGL.data.customer_product_id,
+    category_id: 1,
+    start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+    archived: false,
     data: {
-        business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
-        customer_product_id: cpe.CPE_ZAPP_RGL.data.customer_product_id,
-        category_id: 1,
-        start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
-        archived: false,
-        data: {
-            salary: 45000,
-            country: "UK",
-            product_salary: "45000"
-        }
-    }
-} as IDatabaseItem
+      salary: 45000,
+      country: "UK",
+      product_salary: "45000",
+    },
+  },
+} as IDatabaseItem;
 
 export const CBP_AMY = {
-    type,
-    modelName,
+  type,
+  modelName,
+  data: {
+    business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+    customer_product_id: cpe.CPE_AMY_RGL.data.customer_product_id,
+    category_id: 1,
+    start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+    archived: false,
     data: {
-        business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
-        customer_product_id: cpe.CPE_AMY_RGL.data.customer_product_id,
-        category_id: 1,
-        start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
-        archived: false,
-        data: {
-            salary: 60000,
-            country: "UK",
-            product_salary: "60000"
-        }
-    }
-} as IDatabaseItem
+      salary: 60000,
+      country: "UK",
+      product_salary: "60000",
+    },
+  },
+} as IDatabaseItem;
 
 export const CBP_HERMES = {
-    type,
-    modelName,
+  type,
+  modelName,
+  data: {
+    business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+    customer_product_id: cpe.CPE_HERMES_RGL.data.customer_product_id,
+    category_id: 1,
+    start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+    archived: false,
     data: {
-        business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
-        customer_product_id: cpe.CPE_HERMES_RGL.data.customer_product_id,
-        category_id: 1,
-        start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
-        archived: false,
-        data: {
-            salary: 60000,
-            country: "UK",
-            product_salary: "60000"
-        }
-    }
-} as IDatabaseItem
+      salary: 60000,
+      country: "UK",
+      product_salary: "60000",
+    },
+  },
+} as IDatabaseItem;
 
 export const CBP_KIF = {
-    type,
-    modelName,
+  type,
+  modelName,
+  data: {
+    business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+    customer_product_id: cpe.CPE_KIF_RGL.data.customer_product_id,
+    category_id: 1,
+    start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+    archived: false,
     data: {
-        business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
-        customer_product_id: cpe.CPE_KIF_RGL.data.customer_product_id,
-        category_id: 1,
-        start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
-        archived: false,
-        data: {
-            salary: 60000,
-            country: "UK",
-            product_salary: "60000"
-        }
-    }
-} as IDatabaseItem
+      salary: 60000,
+      country: "UK",
+      product_salary: "60000",
+    },
+  },
+} as IDatabaseItem;
+
+export const CBP_CALCULON = {
+  type,
+  modelName,
+  data: {
+    business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+    customer_product_id: cpe.CPE_CALCULON_RGL.data.customer_product_id,
+    category_id: 1,
+    start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+    archived: false,
+    data: {
+      salary: 45000,
+      country: "UK",
+      product_salary: "45000",
+    },
+  },
+} as IDatabaseItem;

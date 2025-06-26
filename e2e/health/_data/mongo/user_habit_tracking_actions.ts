@@ -94,3 +94,16 @@ export const USER_HABIT_SMOKING_ACTIONS_KIFF = {
     eventDate: moment().subtract(6, "days").format(),
   },
 } as IDatabaseItem;
+
+export const USER_HABIT_SMOKING_ACTIONS_CALCULON = {
+  type: "mongo",
+  modelName: "user_habit_tracking_actions",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.CUSTOMER_CALCULON.data.customerId,
+    type: "smoking",
+    action: "streak_continue",
+    state: state.USER_HABIT_SMOKING_STATE_CALCULON.data._id,
+    eventDate: moment().subtract(28, "days").format(),
+  },
+} as IDatabaseItem;
