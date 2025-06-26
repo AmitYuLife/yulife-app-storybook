@@ -101,8 +101,6 @@ export const MeGLCoverAmounts: coverAmounts = {
   coverAmountsText: constant.coverAmountsText,
   youText: constant.youText,
   youAmmount: "R 2,000,000",
-  increaseCoverText: constant.increaseYourCoverText,
-  increaseCoverTextImg: constant.pencilPersonImg,
 };
 
 export const MeGL_2_CoverAmounts: coverAmounts = {
@@ -110,7 +108,6 @@ export const MeGL_2_CoverAmounts: coverAmounts = {
   youText: constant.youText,
   youAmmount: "R 2,000,000",
   NOincreaseCoverText: constant.increaseYourCoverText,
-  NOincreaseCoverTextImg: constant.pencilPersonImg,
 };
 
 export const SpGL_2_CoverAmounts: coverAmounts = {

@@ -17,7 +17,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
       Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
       Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
     });
-    When("I swipe to see all of the product cards", when.swipeFromText("We’ve got you covered", "up", "fast"), async () => {
+    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
       Then("I can see the life cover product", then.productCardVisible(fixture.lifeCoverTallCard));
       Then("I can see the funeral cover product", then.productCardVisible(fixture.funeralCoverSquareCard));
       Then("I can see the income protection product", then.productCardVisible(fixture.incomeProtectionSquareCard));
@@ -29,7 +29,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
     });
     When("I swipe to back to the first cards", when.swipeFromText(fixture.funeralCoverSquareCard.title, "right", "fast"), async () => {
       When("I tap life cover card", when.tapText(fixture.MeGL.productName), async () => {
-        Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL, fixture.MeGLKeyInfo, true));
+        Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL, fixture.MeGLKeyInfo, true, fixture.MeGLCoverAmounts));
       });
     });
     When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
@@ -74,9 +74,9 @@ Feature("As a user I can get past the login screen and see all SA products", asy
       Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
       Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
     });
-    When("I swipe to see all of the product cards", when.swipeFromText("We’ve got you covered", "up", "fast"), async () => {
+    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
       When("I tap life cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 1), async () => {
-        Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_2, fixture.MeGLKeyInfo, true, null, fixture.Beneficiaries_MeGL_2));
+        Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_2, fixture.MeGLKeyInfo, true, fixture.MeGLCoverAmounts, fixture.Beneficiaries_MeGL_2));
       });
     });
     When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
@@ -97,7 +97,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
 
   Scenario("I can login and see the GCI product in the SA app", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_3, AUTH_SA_3, true, "South Africa", false), async () => {
-      When("I swipe to see all of the product cards", when.swipeFromText("We’ve got you covered", "up", "fast"), async () => {
+      When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
         Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`));
         Then("I can see the GCI product", then.productCardVisible(fixture.gciWideCard));
       });
@@ -121,11 +121,11 @@ Feature("As a user I can get past the login screen and see all SA products", asy
     Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_4, AUTH_SA_4, true, "South Africa", false), async () => {
       Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_4.data.firstName} ${CUSTOMER_SA_4.data.lastName}`));
     });
-    When("I swipe to see all of the product cards", when.swipeFromText("We’ve got you covered", "up", "fast"), async () => {
+    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
       Then("I can see the life assurace product", then.productCardVisible(fixture.groupLifeAssuranceOMWideCard));
     });
     When("I tap life assurance card", when.tapText(fixture.groupLifeAssuranceOMWideCard.name), async () => {
-      Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_OM, fixture.MeGL_OMKeyInfo, true, undefined, undefined, true));
+      Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_OM, fixture.MeGL_OMKeyInfo, true, fixture.MeGL_2_CoverAmounts, undefined, true));
     });
   });
 });
