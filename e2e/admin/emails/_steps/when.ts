@@ -22,6 +22,7 @@ export const {
   idVisible,
   typeViaPlaceholder,
   terminateApp,
+  wait,
 } = navigation.common;
 
 export const {
