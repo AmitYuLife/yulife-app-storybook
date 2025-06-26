@@ -1,6 +1,7 @@
 import { navigation } from "@utils";
 import { USProductData } from "../_resources/types";
 import * as ids from "@ids";
+export { authoriseFitkit } from "@socket";
 
 export const {
   scrollFromText,

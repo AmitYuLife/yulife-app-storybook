@@ -66,6 +66,12 @@ export { smokingTileVisible, smokingCardVisible, onSmokingHub } from "../../../h
 
 export { hasReceivedOnboardingLinkEmail } from "../../../admin/login_and_routing/_steps/then";
 
+export {
+  signupRewardVisible,
+  connectionSetupScreenVisible,
+  healthDataSyncComponent,
+} from "../../../admin/login_and_routing/_steps/then";
+
 export const howToEnrollTexts = async () => {
   await expect(element(by.text(text.HowToEnroll))).toBeVisible();
   await expect(
