@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.69.0] - 2025-06-26
+
+### Tasks
+
+- Task LCS-1139: magic link login error rethrow
+- Task GS-1672: update copy for active consumable
+
+### Chores
+
+- Chore - Updated translations
+
 ## [4.68.0] - 2025-06-25
 
 ### Features
