@@ -1,22 +1,18 @@
-import {
-  expectIsVisibleViaID,
-  expectIsVisibleViaText,
-  idVisible,
-  textVisible,
-  textVisibleAtIndex,
-} from "@navigation";
-import { DAILY_STEPS_SCREEN, TODAYS_YUCOIN, TODAYS_EARNINGS } from "@ids";
+import { expectIsVisibleViaID, expectIsVisibleViaText, idVisible, textVisible } from "@navigation";
+import { DAILY_STEPS_SCREEN, TODAYS_EARNINGS } from "@ids";
 import { getLocalisedString as t } from "@i18n";
 
-import { scrollUntilTextVisible, swipeFromText } from "_utils/navigation/scrolling";
+import { swipeFromText } from "_utils/navigation/scrolling";
 
-export const onDailySteps =
-  (steps = 0, yucoins = 0) =>
-  async () => {
-    await expectIsVisibleViaID(DAILY_STEPS_SCREEN);
+export const onDailySteps = (steps?: number, yucoins?: number) => async () => {
+  await expectIsVisibleViaID(DAILY_STEPS_SCREEN);
+  if (typeof steps === "number") {
     await expectIsVisibleViaText(`${steps} steps`, 5000);
+  }
+  if (typeof yucoins === "number") {
     await expectIsVisibleViaText(`${yucoins} YuCoin today`);
-  };
+  }
+};
 
 export const onDailyCycling =
   (cycling: string, yucoins = 0) =>
