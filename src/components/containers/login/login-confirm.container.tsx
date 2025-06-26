@@ -131,7 +131,14 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
           await applyLoginSession(result, props.region, componentId, dispatch);
         }
       } catch (error) {
-        Logger.error(error, {
+        let errorToLog = error;
+        const isNetworkError = /Network request failed/.test(error?.message || "");
+        if (isNetworkError) {
+          // our bugsnag logger filters out errors with that message - let's log it as a separate error
+          errorToLog = new Error("Login network error");
+        }
+
+        Logger.error(errorToLog, {
           file: "login-confirm.container",
           region: payload.region,
           loginUserSuccess: !!result,
