@@ -409,7 +409,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
     When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
       When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
         When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
-          Then("I should see the You're doing great popup", then.smokingCelebrationPopupVisible(28, 10));
+          Then("I should see the You're doing great popup and my yucoin earned is linked to my earn rate", then.smokingCelebrationPopupVisible(28, 5));
         });
       });
     });
@@ -420,7 +420,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
     });
     When("I press the button", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
       Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(28)));
-      Then("I should see my yucoin amount has automatically jumped up by 10", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(310)));
+      Then("I should see my yucoin amount has automatically jumped up by 10", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(305)));
     });
   });
 
@@ -641,6 +641,26 @@ Feature("I can view and use the smoking cessation feature", async () => {
     });
     When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
       Then("I should be on the smoking hub (and can see the milestones from a previous streak are still there despite this streak being less)", then.onSmokingHub(locale, 18, true, "7.80", "504", LEELA_MOMENTS_AND_REASONS, 25));
+    });
+  });
+
+  Scenario("I see the correct behaviours once I pass 28 days", scenario.start, async () => {
+    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_CALCULON, data.AUTH_CALCULON), async () => {
+      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Calculon Robot", "Forest", "212", true));
+    });
+    When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
+      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
+        When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
+          Then("I should see the You're doing great popup with the expected changes as I'm passed day 28", then.smokingCelebrationPopupVisible(29));
+        });
+      });
+    });
+    When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
+      Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(29)));
+      Then("I should see my yucoin amount has not jumped up by 10", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(300)));
+    });
+    When("I swipe to the bottom", when.swipeFromText("Your growth so far", "up", "fast"), async () => {
+      Then("I shouldn't see the sponsorship card", then.idNotVisible(ids.SMOKING_SPONSORSHIP_CARD_CTA));
     });
   });
 });

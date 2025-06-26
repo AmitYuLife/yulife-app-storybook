@@ -171,3 +171,31 @@ export const USER_HABIT_SMOKING_STATE_KIFF = {
     optedOut: false,
   },
 } as IDatabaseItem;
+
+export const USER_HABIT_SMOKING_STATE_CALCULON = {
+  type: "mongo",
+  modelName: "user_habit_tracking_state",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.CUSTOMER_CALCULON.data.customerId,
+    type: "smoking",
+    inputData: {
+      journeySessionId: uuid(),
+      currencySymbol: "£",
+      weeklyExpense: 5,
+      amountUsedPerDay: 8,
+      smokingType: "both",
+      triggers: ["celebrate", "financial stress"],
+      motivations: ["save_money", "improve_health"],
+    },
+    active: true,
+    archived: false,
+    streakStartedAt: moment().subtract(29, "days").toDate(),
+    lastUpdatedStreakAt: moment().subtract(1, "days").toDate(),
+    streakLength: 28,
+    claimedStreakDays: generateStreakDays(28),
+    previousStreaks: [],
+    optOutCount: 0,
+    optedOut: false,
+  },
+} as IDatabaseItem;
