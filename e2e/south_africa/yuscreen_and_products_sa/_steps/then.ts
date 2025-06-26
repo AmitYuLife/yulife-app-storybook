@@ -90,16 +90,10 @@ export const productCheck =
   ) =>
   async () => {
     await onProductPage(productPage)();
-    if (oldMutual) {
+    if (coverInfo) {
       await scrollUntilTextVisible(
         ids.PRODUCT_DETAILS_SCROLL_VIEW,
-        constant.beneficiaresText,
-        "down"
-      )();
-    } else if (coverInfo) {
-      await scrollUntilTextVisible(
-        ids.PRODUCT_DETAILS_SCROLL_VIEW,
-        constant.coverAmountsText,
+        constant.termsAndConditionsWarning,
         "down"
       )();
     } else if (beneficiarySection) {
