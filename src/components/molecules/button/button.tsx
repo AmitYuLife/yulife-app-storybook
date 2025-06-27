@@ -9,6 +9,7 @@ import { ButtonAnimation } from "./animation/button-animation";
 import { AnimateYuCoin } from "./animate-yu-coin/animate-yu-coin";
 import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "./button.use-title";
 import { BUTTON_BASE } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 
 type DefaultProps = {
   isLoading?: boolean;
@@ -103,7 +104,7 @@ function Button(props: IButtonProps) {
         contentWrapperStyle={contentWrapperStyle}
         contentTextStyle={contentTextStyle}
       />
-      {!animate ? null : <ButtonAnimation />}
+      {!animate || DETOX_ENABLED ? null : <ButtonAnimation />}
     </View>
   );
 }
