@@ -138,7 +138,10 @@ export const INFO_PANEL_CTA_NOTIFICATION_BUTTON = "INFO_PANEL_CTA_NOTIFICATION_B
 export const INSPECT_BUTTON = "INSPECT_BUTTON";
 export const TAKE_A_CHALLENGE_LEFT_BUTTON = "TAKE_CHALLENGE_LEFT";
 export const BUTTON_CLOSE_RIGHT_ID = "BUTTON_CLOSE_RIGHT_ID";
-export const LEFT_HEADIND_BUTTON = (header: any) => `LEFT_HEADIND_BUTTON${header}`;
+export const LEFT_HEADING_BUTTON = (heading?: React.ReactNode): string =>
+  typeof heading === "string" && heading.trim()
+    ? `LEFT_HEADING_BUTTON_${heading.trim().toUpperCase().replace(/\s+/g, "_")}`
+    : "LEFT_HEADING_BUTTON";
 export const SHOW_HIDE_BALANCE = "SHOW_HIDE_BALANCE";
 export const SDUI_SWITCH = (value: boolean) => `SDUI_SWITCH_${value}`;
 export const QUESTION_MARK_MODAL = "QUESTION_MARK_MODAL";

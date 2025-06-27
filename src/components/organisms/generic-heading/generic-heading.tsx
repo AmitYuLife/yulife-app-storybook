@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./generic-heading.styles";
 import { IGenericHeadingProps } from "./generic-heading.types";
 import { Logo } from "./subcomponents/logo";
-import { BUTTON_CLOSE_HEADER, LEFT_HEADIND_BUTTON } from "@ids";
+import { BUTTON_CLOSE_HEADER, LEFT_HEADING_BUTTON } from "@ids";
 import GenericHeaderRightIcon from "./subcomponents/generic-header-right-icon";
 import GenericHeaderLeftIcon from "./subcomponents/generic-header-left-icon";
 import { Box, TextTemplate } from "@atoms";
@@ -34,7 +34,7 @@ function GenericHeading(props: IGenericHeadingProps) {
             icon={leftIcon || LeftIcon.BACK}
             color={color}
             onPress={onLeftIconPress}
-            testID={leftIconTestID || LEFT_HEADIND_BUTTON(heading)}
+            testID={leftIconTestID || LEFT_HEADING_BUTTON(heading)}
             disabled={disabled}
           />
         )}

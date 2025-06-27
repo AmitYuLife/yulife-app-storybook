@@ -205,7 +205,7 @@ Feature("Quizzes and questionnaires", async () => {
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("次のページ")), async () => {
       Then("I should be on the 'How likely are you to recommend Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDを職場として勧める可能性はどのくらいありますか? (1: 全く思わない, 10: 非常にそう思う)", "b2b")));
     });
-    When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
+    When("I click on the back button symbol", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
       Then("I should be on the 'the one thing you would change about Biz' question", then.idVisible(ids.TEXT_TEMPLATE("YU LIFE LTDでの体験をより良くするために、あなたが変えたいことは何ですか?", "h2")));
       Then("My last typed out answer should still be filled in", then.textVisible("a".repeat(2)));
     });
