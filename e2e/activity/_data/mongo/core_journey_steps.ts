@@ -1,5 +1,6 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
+  CORE_JOURNEY_1,
   CORE_JOURNEY_2,
   CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST,
   CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST,
@@ -2937,6 +2938,50 @@ export const CORE_JOURNEY_STEPS_CONSENT = {
     },
   },
 } as IDatabaseItem;
+
+export const CORE_JOURNEY_STEP_WEIGHT = {
+  type: "mongo",
+  modelName: "core_journey_steps",
+  data: {
+    _id: generateRandomMongoId(),
+    answerKeys: ["dynamic_health.0.0.2"],
+    externalId: "dynamic_health.0.0.2",
+    journey: CORE_JOURNEY_1.data._id,
+    name: "dynamic_health.0.0.2",
+    stepId: "dynamic_health.0.0.2",
+    stepType: "normal",
+    template: "journey_template_weight",
+    templateUi: {
+      answerKey: "dynamic_health.0.0.2",
+      copy: {
+        heading: {
+          "en-GB": "What is your current weight?",
+          "ja-JP": "現在の体重はどのくらいですか?",
+          _id: "67dd739ef74e196e960464bf",
+        },
+        description: {
+          "en-GB": null,
+          "ja-JP": null,
+          _id: "67dd739ef74e196e960464c0",
+        },
+        ctaLabel: {
+          en: "Next",
+          "en-GB": "Next",
+          "en-US": "Next",
+          "en-ZA": "Next",
+          "ja-JP": "次へ",
+          "es-US": "Siguiente",
+          _id: "67dd739ef74e196e960464c1",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 10,
+      },
+    },
+  },
+};
 
 export const CORE_JOURNEY_STEPS_27 = {
   type,
