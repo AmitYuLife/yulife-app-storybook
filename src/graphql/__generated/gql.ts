@@ -141,7 +141,6 @@ const documents = {
   MobileUserWrappedFragmentDoc: types.MobileUserWrappedFragmentDoc,
   YuHealthOptionsFragmentDoc: types.YuHealthOptionsFragmentDoc,
   GetMobileGameUserAchievementsDocument: types.GetMobileGameUserAchievementsDocument,
-  GetMobileGameUserEquippedAchievementsDocument: types.GetMobileGameUserEquippedAchievementsDocument,
   MarkMobileGameUserAchievementsViewedDocument: types.MarkMobileGameUserAchievementsViewedDocument,
   UpdateMobileGameUserAchievementDocument: types.UpdateMobileGameUserAchievementDocument,
   GetInboxMessagesDocument: types.GetInboxMessagesDocument,
@@ -940,12 +939,6 @@ export function gql(source: "YuHealthOptionsFragmentDoc"): typeof documents["YuH
 export function gql(
   source: "GetMobileGameUserAchievementsDocument"
 ): typeof documents["GetMobileGameUserAchievementsDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "GetMobileGameUserEquippedAchievementsDocument"
-): typeof documents["GetMobileGameUserEquippedAchievementsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

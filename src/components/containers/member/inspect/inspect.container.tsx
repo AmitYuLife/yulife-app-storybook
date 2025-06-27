@@ -11,6 +11,7 @@ import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { gql } from "@graphql/__generated";
 import { onDuelPress } from "@utils/duels";
 import { useDispatch } from "react-redux";
+import { IAchievement } from "@organisms/achievements-showcase/achievements-showcase";
 
 interface IProps {
   componentId: string;
@@ -36,19 +37,13 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
     fetchPolicy: "network-only",
   });
 
-  const { data: achievements } = useQuery(gql("GetMobileGameUserEquippedAchievementsDocument"), {
-    fetchPolicy: "network-only",
-    variables: { userId },
-    skip: !tempGameShowAchievements,
-    notifyOnNetworkStatusChange: true,
-  });
-
+  // this will be added back when getMobileGameUserAchievements supports userId
   const achievementsList = useMemo(
-    () => ({
-      points: achievements?.getMobileGameUserEquippedAchievements?.achievementPoints,
-      list: achievements?.getMobileGameUserEquippedAchievements?.achievements,
+    (): { points: number | null; list: IAchievement[] } => ({
+      points: null,
+      list: [],
     }),
-    [achievements?.getMobileGameUserEquippedAchievements]
+    []
   );
 
   useEffect(() => {

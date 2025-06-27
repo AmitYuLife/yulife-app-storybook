@@ -1323,15 +1323,18 @@ export enum ContentInsetAdjustmentBehavior {
 export type ContentItem =
   | ContentItemAccordion
   | ContentItemAppDownloadPrompt
+  | ContentItemBeneficiariesSection
   | ContentItemBox
   | ContentItemBoxOptionCard
   | ContentItemButton
   | ContentItemChoice
+  | ContentItemCollapsingGenericHeader
   | ContentItemComparisonTableSelectPackage
   | ContentItemConfirm
   | ContentItemDatePicker
   | ContentItemDependants
   | ContentItemDropdownInput
+  | ContentItemFade
   | ContentItemForm
   | ContentItemHeaderBar
   | ContentItemHint
@@ -1350,8 +1353,11 @@ export type ContentItem =
   | ContentItemPerksComparison
   | ContentItemPill
   | ContentItemProcessingTimer
+  | ContentItemProductDetailsHeader
+  | ContentItemProductDetailsHoldingHeader
   | ContentItemProgressBar
   | ContentItemRadio
+  | ContentItemRewardsBanner
   | ContentItemRowIconTextBanner
   | ContentItemScale
   | ContentItemSectionHeading
@@ -5440,12 +5446,6 @@ export type MobileGameUserAchievements = {
   lockedAchievements: Array<MobileGameUserAchievement>;
 };
 
-export type MobileGameUserEquippedAchievements = {
-  __typename?: "MobileGameUserEquippedAchievements";
-  achievementPoints?: Maybe<Scalars["Int"]["output"]>;
-  achievements: Array<MobileGameUserAchievement>;
-};
-
 export type MobileGameUserWalletItem = {
   __typename?: "MobileGameUserWalletItem";
   description?: Maybe<Scalars["String"]["output"]>;
@@ -7585,7 +7585,6 @@ export type Query = {
   getMobileGameBattlePassRewardInfo: MobileGameBattlePassRewardInfo;
   getMobileGameRewardPassList: MobileGameRewardPassList;
   getMobileGameUserAchievements: MobileGameUserAchievements;
-  getMobileGameUserEquippedAchievements: MobileGameUserEquippedAchievements;
   getMobileGameUserWalletRewardItems: MobileGameUserWalletSections;
   getMobileGameUserWalletRewards: MobileGameUserWalletRewards;
   getMobileGameWeeklies: MobileGameWeeklies;
@@ -8119,11 +8118,6 @@ export type QueryGetMobileGameBattlePassRewardInfoArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileGameUserAchievementsArgs = {
   type?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetMobileGameUserEquippedAchievementsArgs = {
-  userId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -9773,7 +9767,7 @@ export type TeamEmployeeRecognitionCampaignPackage = {
 export type TeamEmployeeRecognitionCampaignPackageResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignPackageResponse";
   packages: Array<TeamEmployeeRecognitionCampaignPackage>;
-  rate: Scalars["Int"]["output"];
+  rate: Scalars["Float"]["output"];
   topupThreshold: Scalars["Int"]["output"];
 };
 
@@ -12223,6 +12217,7 @@ export type AbsoluteContentItemFragment = {
         }>;
       }
     | { __typename: "ContentItemAppDownloadPrompt" }
+    | { __typename: "ContentItemBeneficiariesSection" }
     | {
         __typename: "ContentItemBox";
         id: string;
@@ -12496,6 +12491,7 @@ export type AbsoluteContentItemFragment = {
           }> | null;
         }> | null;
       }
+    | { __typename: "ContentItemCollapsingGenericHeader" }
     | { __typename: "ContentItemComparisonTableSelectPackage" }
     | {
         __typename: "ContentItemConfirm";
@@ -12650,6 +12646,7 @@ export type AbsoluteContentItemFragment = {
           value?: string | null;
         } | null>;
       }
+    | { __typename: "ContentItemFade" }
     | {
         __typename: "ContentItemForm";
         elements?: Array<
@@ -13211,6 +13208,8 @@ export type AbsoluteContentItemFragment = {
     | { __typename: "ContentItemPerksComparison" }
     | { __typename: "ContentItemPill" }
     | { __typename: "ContentItemProcessingTimer" }
+    | { __typename: "ContentItemProductDetailsHeader" }
+    | { __typename: "ContentItemProductDetailsHoldingHeader" }
     | {
         __typename: "ContentItemProgressBar";
         id: string;
@@ -13316,6 +13315,7 @@ export type AbsoluteContentItemFragment = {
           } | null;
         }>;
       }
+    | { __typename: "ContentItemRewardsBanner" }
     | {
         __typename: "ContentItemRowIconTextBanner";
         id: string;
@@ -13877,6 +13877,8 @@ type ContentItem_ContentItemAccordion_Fragment = {
 
 type ContentItem_ContentItemAppDownloadPrompt_Fragment = { __typename: "ContentItemAppDownloadPrompt" };
 
+type ContentItem_ContentItemBeneficiariesSection_Fragment = { __typename: "ContentItemBeneficiariesSection" };
+
 type ContentItem_ContentItemBox_Fragment = {
   __typename: "ContentItemBox";
   id: string;
@@ -14154,6 +14156,8 @@ type ContentItem_ContentItemChoice_Fragment = {
   }> | null;
 };
 
+type ContentItem_ContentItemCollapsingGenericHeader_Fragment = { __typename: "ContentItemCollapsingGenericHeader" };
+
 type ContentItem_ContentItemComparisonTableSelectPackage_Fragment = {
   __typename: "ContentItemComparisonTableSelectPackage";
 };
@@ -14314,6 +14318,8 @@ type ContentItem_ContentItemDropdownInput_Fragment = {
     value?: string | null;
   } | null>;
 };
+
+type ContentItem_ContentItemFade_Fragment = { __typename: "ContentItemFade" };
 
 type ContentItem_ContentItemForm_Fragment = {
   __typename: "ContentItemForm";
@@ -14894,6 +14900,12 @@ type ContentItem_ContentItemPill_Fragment = { __typename: "ContentItemPill" };
 
 type ContentItem_ContentItemProcessingTimer_Fragment = { __typename: "ContentItemProcessingTimer" };
 
+type ContentItem_ContentItemProductDetailsHeader_Fragment = { __typename: "ContentItemProductDetailsHeader" };
+
+type ContentItem_ContentItemProductDetailsHoldingHeader_Fragment = {
+  __typename: "ContentItemProductDetailsHoldingHeader";
+};
+
 type ContentItem_ContentItemProgressBar_Fragment = {
   __typename: "ContentItemProgressBar";
   id: string;
@@ -15000,6 +15012,8 @@ type ContentItem_ContentItemRadio_Fragment = {
     } | null;
   }>;
 };
+
+type ContentItem_ContentItemRewardsBanner_Fragment = { __typename: "ContentItemRewardsBanner" };
 
 type ContentItem_ContentItemRowIconTextBanner_Fragment = {
   __typename: "ContentItemRowIconTextBanner";
@@ -15513,15 +15527,18 @@ type ContentItem_ContentItemYuCoinPower_Fragment = { __typename: "ContentItemYuC
 export type ContentItemFragment =
   | ContentItem_ContentItemAccordion_Fragment
   | ContentItem_ContentItemAppDownloadPrompt_Fragment
+  | ContentItem_ContentItemBeneficiariesSection_Fragment
   | ContentItem_ContentItemBox_Fragment
   | ContentItem_ContentItemBoxOptionCard_Fragment
   | ContentItem_ContentItemButton_Fragment
   | ContentItem_ContentItemChoice_Fragment
+  | ContentItem_ContentItemCollapsingGenericHeader_Fragment
   | ContentItem_ContentItemComparisonTableSelectPackage_Fragment
   | ContentItem_ContentItemConfirm_Fragment
   | ContentItem_ContentItemDatePicker_Fragment
   | ContentItem_ContentItemDependants_Fragment
   | ContentItem_ContentItemDropdownInput_Fragment
+  | ContentItem_ContentItemFade_Fragment
   | ContentItem_ContentItemForm_Fragment
   | ContentItem_ContentItemHeaderBar_Fragment
   | ContentItem_ContentItemHint_Fragment
@@ -15540,8 +15557,11 @@ export type ContentItemFragment =
   | ContentItem_ContentItemPerksComparison_Fragment
   | ContentItem_ContentItemPill_Fragment
   | ContentItem_ContentItemProcessingTimer_Fragment
+  | ContentItem_ContentItemProductDetailsHeader_Fragment
+  | ContentItem_ContentItemProductDetailsHoldingHeader_Fragment
   | ContentItem_ContentItemProgressBar_Fragment
   | ContentItem_ContentItemRadio_Fragment
+  | ContentItem_ContentItemRewardsBanner_Fragment
   | ContentItem_ContentItemRowIconTextBanner_Fragment
   | ContentItem_ContentItemScale_Fragment
   | ContentItem_ContentItemSectionHeading_Fragment
@@ -18479,6 +18499,7 @@ export type SduiSectionFragment = {
           }>;
         }
       | { __typename: "ContentItemAppDownloadPrompt" }
+      | { __typename: "ContentItemBeneficiariesSection" }
       | {
           __typename: "ContentItemBox";
           id: string;
@@ -18752,6 +18773,7 @@ export type SduiSectionFragment = {
             }> | null;
           }> | null;
         }
+      | { __typename: "ContentItemCollapsingGenericHeader" }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
       | {
           __typename: "ContentItemConfirm";
@@ -18906,6 +18928,7 @@ export type SduiSectionFragment = {
             value?: string | null;
           } | null>;
         }
+      | { __typename: "ContentItemFade" }
       | {
           __typename: "ContentItemForm";
           elements?: Array<
@@ -19467,6 +19490,8 @@ export type SduiSectionFragment = {
       | { __typename: "ContentItemPerksComparison" }
       | { __typename: "ContentItemPill" }
       | { __typename: "ContentItemProcessingTimer" }
+      | { __typename: "ContentItemProductDetailsHeader" }
+      | { __typename: "ContentItemProductDetailsHoldingHeader" }
       | {
           __typename: "ContentItemProgressBar";
           id: string;
@@ -19572,6 +19597,7 @@ export type SduiSectionFragment = {
             } | null;
           }>;
         }
+      | { __typename: "ContentItemRewardsBanner" }
       | {
           __typename: "ContentItemRowIconTextBanner";
           id: string;
@@ -20513,30 +20539,6 @@ export type GetMobileGameUserAchievementsQuery = {
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     categories: Array<{ __typename?: "MobileGameUserAchievementCategory"; name: string; key: string }>;
-  };
-};
-
-export type GetMobileGameUserEquippedAchievementsQueryVariables = Exact<{
-  userId: Scalars["String"]["input"];
-}>;
-
-export type GetMobileGameUserEquippedAchievementsQuery = {
-  __typename?: "Query";
-  getMobileGameUserEquippedAchievements: {
-    __typename?: "MobileGameUserEquippedAchievements";
-    achievementPoints?: number | null;
-    achievements: Array<{
-      __typename?: "MobileGameUserAchievement";
-      id: string;
-      name: string;
-      status: string;
-      description: string;
-      shortDescription?: string | null;
-      type: string;
-      points?: number | null;
-      slot?: number | null;
-      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    }>;
   };
 };
 
@@ -23042,6 +23044,7 @@ export type GetSduiJourneyQuery = {
           }>;
         }
       | { __typename: "ContentItemAppDownloadPrompt" }
+      | { __typename: "ContentItemBeneficiariesSection" }
       | {
           __typename: "ContentItemBox";
           id: string;
@@ -23315,6 +23318,7 @@ export type GetSduiJourneyQuery = {
             }> | null;
           }> | null;
         }
+      | { __typename: "ContentItemCollapsingGenericHeader" }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
       | {
           __typename: "ContentItemConfirm";
@@ -23469,6 +23473,7 @@ export type GetSduiJourneyQuery = {
             value?: string | null;
           } | null>;
         }
+      | { __typename: "ContentItemFade" }
       | {
           __typename: "ContentItemForm";
           elements?: Array<
@@ -24030,6 +24035,8 @@ export type GetSduiJourneyQuery = {
       | { __typename: "ContentItemPerksComparison" }
       | { __typename: "ContentItemPill" }
       | { __typename: "ContentItemProcessingTimer" }
+      | { __typename: "ContentItemProductDetailsHeader" }
+      | { __typename: "ContentItemProductDetailsHoldingHeader" }
       | {
           __typename: "ContentItemProgressBar";
           id: string;
@@ -24135,6 +24142,7 @@ export type GetSduiJourneyQuery = {
             } | null;
           }>;
         }
+      | { __typename: "ContentItemRewardsBanner" }
       | {
           __typename: "ContentItemRowIconTextBanner";
           id: string;
@@ -24672,6 +24680,7 @@ export type GetSduiJourneyQuery = {
             }>;
           }
         | { __typename: "ContentItemAppDownloadPrompt" }
+        | { __typename: "ContentItemBeneficiariesSection" }
         | {
             __typename: "ContentItemBox";
             id: string;
@@ -24945,6 +24954,7 @@ export type GetSduiJourneyQuery = {
               }> | null;
             }> | null;
           }
+        | { __typename: "ContentItemCollapsingGenericHeader" }
         | { __typename: "ContentItemComparisonTableSelectPackage" }
         | {
             __typename: "ContentItemConfirm";
@@ -25099,6 +25109,7 @@ export type GetSduiJourneyQuery = {
               value?: string | null;
             } | null>;
           }
+        | { __typename: "ContentItemFade" }
         | {
             __typename: "ContentItemForm";
             elements?: Array<
@@ -25660,6 +25671,8 @@ export type GetSduiJourneyQuery = {
         | { __typename: "ContentItemPerksComparison" }
         | { __typename: "ContentItemPill" }
         | { __typename: "ContentItemProcessingTimer" }
+        | { __typename: "ContentItemProductDetailsHeader" }
+        | { __typename: "ContentItemProductDetailsHoldingHeader" }
         | {
             __typename: "ContentItemProgressBar";
             id: string;
@@ -25765,6 +25778,7 @@ export type GetSduiJourneyQuery = {
               } | null;
             }>;
           }
+        | { __typename: "ContentItemRewardsBanner" }
         | {
             __typename: "ContentItemRowIconTextBanner";
             id: string;
@@ -26659,6 +26673,7 @@ export type GetPerkSubscriptionInfoQuery = {
     content: Array<
       | { __typename: "ContentItemAccordion" }
       | { __typename: "ContentItemAppDownloadPrompt" }
+      | { __typename: "ContentItemBeneficiariesSection" }
       | {
           __typename: "ContentItemBox";
           id: string;
@@ -26726,11 +26741,13 @@ export type GetPerkSubscriptionInfoQuery = {
           }> | null;
         }
       | { __typename: "ContentItemChoice" }
+      | { __typename: "ContentItemCollapsingGenericHeader" }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
       | { __typename: "ContentItemConfirm" }
       | { __typename: "ContentItemDatePicker" }
       | { __typename: "ContentItemDependants" }
       | { __typename: "ContentItemDropdownInput" }
+      | { __typename: "ContentItemFade" }
       | {
           __typename: "ContentItemForm";
           elements?: Array<
@@ -26882,8 +26899,11 @@ export type GetPerkSubscriptionInfoQuery = {
       | { __typename: "ContentItemPerksComparison" }
       | { __typename: "ContentItemPill" }
       | { __typename: "ContentItemProcessingTimer" }
+      | { __typename: "ContentItemProductDetailsHeader" }
+      | { __typename: "ContentItemProductDetailsHoldingHeader" }
       | { __typename: "ContentItemProgressBar" }
       | { __typename: "ContentItemRadio" }
+      | { __typename: "ContentItemRewardsBanner" }
       | { __typename: "ContentItemRowIconTextBanner" }
       | { __typename: "ContentItemScale" }
       | { __typename: "ContentItemSectionHeading" }
@@ -28746,6 +28766,7 @@ export type GetSduiStaticStepQuery = {
           }>;
         }
       | { __typename: "ContentItemAppDownloadPrompt" }
+      | { __typename: "ContentItemBeneficiariesSection" }
       | {
           __typename: "ContentItemBox";
           id: string;
@@ -29019,6 +29040,7 @@ export type GetSduiStaticStepQuery = {
             }> | null;
           }> | null;
         }
+      | { __typename: "ContentItemCollapsingGenericHeader" }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
       | {
           __typename: "ContentItemConfirm";
@@ -29173,6 +29195,7 @@ export type GetSduiStaticStepQuery = {
             value?: string | null;
           } | null>;
         }
+      | { __typename: "ContentItemFade" }
       | {
           __typename: "ContentItemForm";
           elements?: Array<
@@ -29734,6 +29757,8 @@ export type GetSduiStaticStepQuery = {
       | { __typename: "ContentItemPerksComparison" }
       | { __typename: "ContentItemPill" }
       | { __typename: "ContentItemProcessingTimer" }
+      | { __typename: "ContentItemProductDetailsHeader" }
+      | { __typename: "ContentItemProductDetailsHoldingHeader" }
       | {
           __typename: "ContentItemProgressBar";
           id: string;
@@ -29839,6 +29864,7 @@ export type GetSduiStaticStepQuery = {
             } | null;
           }>;
         }
+      | { __typename: "ContentItemRewardsBanner" }
       | {
           __typename: "ContentItemRowIconTextBanner";
           id: string;
@@ -30376,6 +30402,7 @@ export type GetSduiStaticStepQuery = {
             }>;
           }
         | { __typename: "ContentItemAppDownloadPrompt" }
+        | { __typename: "ContentItemBeneficiariesSection" }
         | {
             __typename: "ContentItemBox";
             id: string;
@@ -30649,6 +30676,7 @@ export type GetSduiStaticStepQuery = {
               }> | null;
             }> | null;
           }
+        | { __typename: "ContentItemCollapsingGenericHeader" }
         | { __typename: "ContentItemComparisonTableSelectPackage" }
         | {
             __typename: "ContentItemConfirm";
@@ -30803,6 +30831,7 @@ export type GetSduiStaticStepQuery = {
               value?: string | null;
             } | null>;
           }
+        | { __typename: "ContentItemFade" }
         | {
             __typename: "ContentItemForm";
             elements?: Array<
@@ -31364,6 +31393,8 @@ export type GetSduiStaticStepQuery = {
         | { __typename: "ContentItemPerksComparison" }
         | { __typename: "ContentItemPill" }
         | { __typename: "ContentItemProcessingTimer" }
+        | { __typename: "ContentItemProductDetailsHeader" }
+        | { __typename: "ContentItemProductDetailsHoldingHeader" }
         | {
             __typename: "ContentItemProgressBar";
             id: string;
@@ -31469,6 +31500,7 @@ export type GetSduiStaticStepQuery = {
               } | null;
             }>;
           }
+        | { __typename: "ContentItemRewardsBanner" }
         | {
             __typename: "ContentItemRowIconTextBanner";
             id: string;
@@ -34672,6 +34704,7 @@ export type GetYuScreenV5Query = {
                   }>;
                 }
               | { __typename: "ContentItemAppDownloadPrompt" }
+              | { __typename: "ContentItemBeneficiariesSection" }
               | {
                   __typename: "ContentItemBox";
                   id: string;
@@ -34945,6 +34978,7 @@ export type GetYuScreenV5Query = {
                     }> | null;
                   }> | null;
                 }
+              | { __typename: "ContentItemCollapsingGenericHeader" }
               | { __typename: "ContentItemComparisonTableSelectPackage" }
               | {
                   __typename: "ContentItemConfirm";
@@ -35099,6 +35133,7 @@ export type GetYuScreenV5Query = {
                     value?: string | null;
                   } | null>;
                 }
+              | { __typename: "ContentItemFade" }
               | {
                   __typename: "ContentItemForm";
                   elements?: Array<
@@ -35684,6 +35719,8 @@ export type GetYuScreenV5Query = {
               | { __typename: "ContentItemPerksComparison" }
               | { __typename: "ContentItemPill" }
               | { __typename: "ContentItemProcessingTimer" }
+              | { __typename: "ContentItemProductDetailsHeader" }
+              | { __typename: "ContentItemProductDetailsHoldingHeader" }
               | {
                   __typename: "ContentItemProgressBar";
                   id: string;
@@ -35789,6 +35826,7 @@ export type GetYuScreenV5Query = {
                     } | null;
                   }>;
                 }
+              | { __typename: "ContentItemRewardsBanner" }
               | {
                   __typename: "ContentItemRowIconTextBanner";
                   id: string;
@@ -36547,6 +36585,7 @@ export type GetYuScreenV5SectionsQuery = {
                 }>;
               }
             | { __typename: "ContentItemAppDownloadPrompt" }
+            | { __typename: "ContentItemBeneficiariesSection" }
             | {
                 __typename: "ContentItemBox";
                 id: string;
@@ -36820,6 +36859,7 @@ export type GetYuScreenV5SectionsQuery = {
                   }> | null;
                 }> | null;
               }
+            | { __typename: "ContentItemCollapsingGenericHeader" }
             | { __typename: "ContentItemComparisonTableSelectPackage" }
             | {
                 __typename: "ContentItemConfirm";
@@ -36974,6 +37014,7 @@ export type GetYuScreenV5SectionsQuery = {
                   value?: string | null;
                 } | null>;
               }
+            | { __typename: "ContentItemFade" }
             | {
                 __typename: "ContentItemForm";
                 elements?: Array<
@@ -37547,6 +37588,8 @@ export type GetYuScreenV5SectionsQuery = {
             | { __typename: "ContentItemPerksComparison" }
             | { __typename: "ContentItemPill" }
             | { __typename: "ContentItemProcessingTimer" }
+            | { __typename: "ContentItemProductDetailsHeader" }
+            | { __typename: "ContentItemProductDetailsHoldingHeader" }
             | {
                 __typename: "ContentItemProgressBar";
                 id: string;
@@ -37652,6 +37695,7 @@ export type GetYuScreenV5SectionsQuery = {
                   } | null;
                 }>;
               }
+            | { __typename: "ContentItemRewardsBanner" }
             | {
                 __typename: "ContentItemRowIconTextBanner";
                 id: string;
@@ -38762,6 +38806,7 @@ type YuScreenSection_SduiSection_Fragment = {
           }>;
         }
       | { __typename: "ContentItemAppDownloadPrompt" }
+      | { __typename: "ContentItemBeneficiariesSection" }
       | {
           __typename: "ContentItemBox";
           id: string;
@@ -39035,6 +39080,7 @@ type YuScreenSection_SduiSection_Fragment = {
             }> | null;
           }> | null;
         }
+      | { __typename: "ContentItemCollapsingGenericHeader" }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
       | {
           __typename: "ContentItemConfirm";
@@ -39189,6 +39235,7 @@ type YuScreenSection_SduiSection_Fragment = {
             value?: string | null;
           } | null>;
         }
+      | { __typename: "ContentItemFade" }
       | {
           __typename: "ContentItemForm";
           elements?: Array<
@@ -39750,6 +39797,8 @@ type YuScreenSection_SduiSection_Fragment = {
       | { __typename: "ContentItemPerksComparison" }
       | { __typename: "ContentItemPill" }
       | { __typename: "ContentItemProcessingTimer" }
+      | { __typename: "ContentItemProductDetailsHeader" }
+      | { __typename: "ContentItemProductDetailsHoldingHeader" }
       | {
           __typename: "ContentItemProgressBar";
           id: string;
@@ -39855,6 +39904,7 @@ type YuScreenSection_SduiSection_Fragment = {
             } | null;
           }>;
         }
+      | { __typename: "ContentItemRewardsBanner" }
       | {
           __typename: "ContentItemRowIconTextBanner";
           id: string;
@@ -63815,97 +63865,6 @@ export const GetMobileGameUserAchievementsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileGameUserAchievementsQuery, GetMobileGameUserAchievementsQueryVariables>;
-export const GetMobileGameUserEquippedAchievementsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetMobileGameUserEquippedAchievements" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "userId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getMobileGameUserEquippedAchievements" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "userId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "userId" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "achievements" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameUserAchievement" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameUserAchievement" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameUserAchievement" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "status" } },
-          { kind: "Field", name: { kind: "Name", value: "description" } },
-          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "points" } },
-          { kind: "Field", name: { kind: "Name", value: "slot" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "icon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetMobileGameUserEquippedAchievementsQuery,
-  GetMobileGameUserEquippedAchievementsQueryVariables
->;
 export const MarkMobileGameUserAchievementsViewedDocument = {
   kind: "Document",
   definitions: [
