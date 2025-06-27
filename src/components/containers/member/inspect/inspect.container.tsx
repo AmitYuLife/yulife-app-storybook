@@ -141,28 +141,12 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
           id: ROUTES.gifting,
           name: ROUTES.gifting,
           passProps: {
-            users: [
-              {
-                avatar: current.avatar,
-                id: userId,
-                name: current.fullName,
-                shortName: current.shortName,
-              },
-            ],
+            preselectedUserIds: [userId],
           },
         },
       });
     }
-  }, [
-    isGiftingEnabled,
-    userId,
-    currentUserId,
-    current?.avatar?.uri,
-    current?.fullName,
-    current?.shortName,
-    disabledReasonAction,
-    dispatch,
-  ]);
+  }, [isGiftingEnabled, isOtherUser, current, disabledReasonAction, userId, dispatch]);
 
   const handleLongPressYumoji = useCallback(() => {
     track("button_pressed", {
@@ -174,7 +158,7 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
     if (isOtherUser) {
       handleGiftNavigation();
     }
-  }, [isGiftingEnabled, currentUserId, userId, current?.avatar?.uri, current?.fullName, current?.shortName]);
+  }, [track, isOtherUser, handleGiftNavigation]);
 
   const handlePressGiftPrompt = useCallback(() => {
     track("button_pressed", {

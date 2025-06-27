@@ -20,7 +20,7 @@ import { updateYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-scree
 import { clearSeenQuestMapNewUserOnboardingAnimation } from "@redux/quest-map/quest-map.actions";
 import moment from "moment";
 import { queryHealthSmokingState } from "@redux/health-smoking/health-smoking.actions";
-import { getCurrentUserId, getUserAvatar, getUserName } from "@redux/user/user.selectors";
+import { getCurrentUserId } from "@redux/user/user.selectors";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -79,8 +79,6 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
   const { data } = useQuery(gql("GetDebugCodesDocument"), { fetchPolicy: "no-cache" });
 
   const currentUserId = useSelector(getCurrentUserId);
-  const userName = useSelector(getUserName);
-  const avatar = useSelector(getUserAvatar);
 
   const handleClose = useCallback((): void => {
     Navigation.popToRoot(componentId);
@@ -316,14 +314,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 id: ROUTES.gifting,
                 name: ROUTES.gifting,
                 passProps: {
-                  users: [
-                    {
-                      avatar: { uri: avatar?.avatarRemoteFiles?.pngMini },
-                      id: currentUserId,
-                      name: userName,
-                      shortName: userName,
-                    },
-                  ],
+                  preselectedUserIds: [currentUserId],
                 },
               },
             });
