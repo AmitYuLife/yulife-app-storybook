@@ -14,19 +14,32 @@ import {
   YuCoinDenominationChoice,
 } from "./context/gifting-manager.types";
 import { GiftingManagerContext } from "./context/gifting-manager.context";
-import { useBackHandler, useGiftOptions } from "@hooks";
+import { useBackHandler, useGiftOptions, useSocialGroupUserSearch } from "@hooks";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { UserSearchItem } from "@redux/_core/types";
 import { keyBy, omit } from "lodash";
+import { SocialGroupLeaderboardSearchType } from "../../../../graphql/__generated";
 
 type Props = {
-  users?: UserSearchItem[];
+  preselectedUserIds?: string[];
   startingPage?: GIFTING_PAGE;
 };
 
-const GiftingManager = ({ users, startingPage }: Props) => {
-  const [targetUsers, setTargetUsers] = useState<Record<string, UserSearchItem>>(keyBy(users, "id"));
+const GiftingManager = ({ preselectedUserIds, startingPage }: Props) => {
+  const { data: leaderboardUsers, loading: leaderboardUsersLoading } = useSocialGroupUserSearch({
+    searchType: SocialGroupLeaderboardSearchType.Gifting,
+    allowUnfilteredSearch: true,
+  });
+
+  const [targetUsers, setTargetUsers] = useState<Record<string, UserSearchItem>>(keyBy([], "id"));
+
+  useEffect(() => {
+    const preselectedUsers =
+      leaderboardUsers?.searchLeaderboardUser.filter((x) => (preselectedUserIds ?? []).includes(x.id)) ?? [];
+
+    setTargetUsers(keyBy(preselectedUsers, "id"));
+  }, [leaderboardUsers, preselectedUserIds]);
 
   const onClose = useCallback(() => {
     Keyboard.dismiss();
@@ -55,6 +68,8 @@ const GiftingManager = ({ users, startingPage }: Props) => {
     () => yuCoinOptions.filter((option) => userCoins >= option.id * selectedUsersArray.length),
     [yuCoinOptions, selectedUsersArray.length]
   );
+
+  const fullyLoaded = !loading && !leaderboardUsersLoading;
 
   const {
     handlePressBack,
@@ -146,8 +161,8 @@ const GiftingManager = ({ users, startingPage }: Props) => {
         textColor={textColor}
         headingTitle={heading.title}
         headingDescription={heading.description}
-        isLoaded={!loading}
-        hasReachedLimit={!loading && sendsRemainingToday < 1}
+        isLoaded={fullyLoaded}
+        hasReachedLimit={fullyLoaded && sendsRemainingToday < 1}
         sendingState={sendingState}
         goToSuccess={goToSuccess}
         page={page}
