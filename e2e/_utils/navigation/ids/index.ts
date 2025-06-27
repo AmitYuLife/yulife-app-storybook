@@ -1049,3 +1049,5 @@ export const NOTIFICATION_PINK_DOT_ARROW = (
   }`;
 export const P2P_THANK_THEM_HEART = (hasSaidThankYou: boolean) =>
   `HEART_${hasSaidThankYou ? "PINK_HEART_COLOURS" : "GREY_HEART_COLOURS"}`;
+
+export const TEXT = (id: string) => `${id}_TEXT`;
