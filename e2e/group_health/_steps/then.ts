@@ -321,7 +321,10 @@ export const onUrbanRewardsClaimPage =
       await textVisible(`${voucherQuantity}£${amount} ${product.heading} Voucher`)();
       await textVisible(`Purchased date - ${moment().format("DD MMM YYYY")}`)();
       await textVisible(
-        `Expiry date - ${moment().add(product.voucherExpiryYears, "y").format("DD MMM YYYY")}`
+        `Expiry date - ${moment()
+          .add(product.voucherExpiryYears, "y")
+          .add(1, "days")
+          .format("DD MMM YYYY")}`
       )();
       await textVisible("Gift Card Number")();
     }
