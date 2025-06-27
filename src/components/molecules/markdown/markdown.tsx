@@ -3,6 +3,7 @@ import React, { createContext, useContext, useMemo } from "react";
 import { StyleSheet, View, Image, StyleProp, ViewStyle, Linking } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 import getMarkdownStyles from "./markdown.styles";
+import { TEXT } from "@ids";
 
 interface IProps {
   text: string;
@@ -16,6 +17,7 @@ interface IExtras {
   style?: StyleProp<any>;
   isOrdered?: boolean;
   isParagraph?: boolean;
+  testID?: string;
 }
 
 const Markdown: React.FC<IProps> = ({ text, markdownStyles, containerStyle = {}, linkActions, testID }) => {
@@ -26,7 +28,7 @@ const Markdown: React.FC<IProps> = ({ text, markdownStyles, containerStyle = {},
   return (
     <MarkdownContext.Provider value={context}>
       <View style={containerStyle} testID={testID}>
-        {renderNodes(syntaxTree, null, null)}
+        {renderNodes(syntaxTree, null, null, TEXT(testID))}
       </View>
     </MarkdownContext.Provider>
   );
@@ -136,10 +138,12 @@ const MarkdownText = ({
   node,
   nodeKey: key,
   extras,
+  testID,
 }: {
   node: React.ReactElement;
   nodeKey: string;
   extras: IExtras;
+  testID?: string;
 }) => {
   const { styles } = useContext(MarkdownContext);
   const style = [styles.text].concat(extras?.style || []);
@@ -147,13 +151,13 @@ const MarkdownText = ({
   if (node.props) {
     return (
       <Text key={key} style={style}>
-        {renderNodes(node.props.children, key, extras)}
+        {renderNodes(node.props.children, key, extras, testID)}
       </Text>
     );
   }
 
   return (
-    <Text key={key} style={style}>
+    <Text testID={testID} key={key} style={style}>
       {node}
     </Text>
   );
@@ -223,11 +227,13 @@ const MarkdownNode = ({
   nodeKey,
   index,
   extras,
+  testID,
 }: {
   node: React.ReactElement;
   nodeKey: string;
   index: number;
   extras: IExtras;
+  testID?: string;
 }) => {
   const { styles } = useContext(MarkdownContext);
 
@@ -254,6 +260,7 @@ const MarkdownNode = ({
       if (node.props.className === "paragraph") {
         return (
           <MarkdownText
+            testID={testID}
             node={node}
             nodeKey={nodeKey}
             extras={{
@@ -285,14 +292,14 @@ const MarkdownNode = ({
     case "u":
       return <MarkdownText node={node} nodeKey={nodeKey} extras={concatStyles(extras, styles.u)} />;
     case undefined:
-      return <MarkdownText node={node} nodeKey={nodeKey} extras={extras} />;
+      return <MarkdownText testID={testID} node={node} nodeKey={nodeKey} extras={extras} />;
     default:
       return null;
   }
 };
 
-const renderNodes = (nodes: React.ReactElement[], key?: string, extras?: IExtras) =>
+const renderNodes = (nodes: React.ReactElement[], key?: string, extras?: IExtras, testID?: string) =>
   nodes.map((node, index) => {
     const newKey = key ? key + "_" + index : index + "";
-    return <MarkdownNode node={node} key={newKey} nodeKey={newKey} index={index} extras={extras} />;
+    return <MarkdownNode node={node} key={newKey} nodeKey={newKey} index={index} extras={extras} testID={testID} />;
   });
