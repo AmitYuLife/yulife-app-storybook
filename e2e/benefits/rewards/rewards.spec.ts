@@ -44,7 +44,7 @@ Feature("Rewards should act correctly", async () => {
     });
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
-      Then("I should see the locked bloom reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE));
+      Then("I should see the locked bloom reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id)));
     });
     When("I tap on the locked reward", when.tapRewardInList(data.CORE_REWARDS_BLOOM_UNAVAILABLE), async () => {
       Then("I should see an update in progress pop up ", then.textVisible("update in progress"));
@@ -52,8 +52,8 @@ Feature("Rewards should act correctly", async () => {
     When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
       Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.5), async () => {
-      Then("I should see the locked amazon reward", then.lockedRewardVisible(data.CORE_REWARDS_AMAZON_UNAVAILABLE));
+    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.3), async () => {
+      Then("I should see the locked amazon reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON_UNAVAILABLE.data._id)));
       Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1));
     });
   });
@@ -65,10 +65,8 @@ Feature("Rewards should act correctly", async () => {
     When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.3), async () => {
-      Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON));
-      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
-    });
+    Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON));
+    Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
     When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
       Then("I should be on the reward page", then.onRewardScreen(data.CORE_REWARDS_AMAZON));
     });
@@ -197,7 +195,7 @@ Feature("Rewards should act correctly", async () => {
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
-    When("I scroll down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.3), async () => {
+    When("I scroll down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.2), async () => {
       Then("I should see the 'Ultra Amazin' reward, only visible to those with store access level 4", then.rewardVisible(data.CORE_REWARDS_ULTRA_AMAZIN));
     });
   });
