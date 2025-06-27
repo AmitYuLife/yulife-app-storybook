@@ -3,9 +3,6 @@ query GetYuScreenProductDetails($customerProductId: String!) {
     containerStyles {
       ...SduiStyle
     }
-    footerStyles {
-      ...SduiStyle
-    }
     body {
       __typename
       ... on ContentItemProductDetailsHeader {
@@ -58,18 +55,6 @@ query GetYuScreenProductDetails($customerProductId: String!) {
       }
       ... on ContentItemBoxOptionCard {
         ...ContentItemBoxOptionCard
-      }
-    }
-    footer {
-      __typename
-      ... on ContentItemButton {
-        ...ContentItemButton
-      }
-      ... on ContentItemFade {
-        ...ContentItemFade
-      }
-      ... on ContentItemPad {
-        ...ContentItemPad
       }
     }
     header {
