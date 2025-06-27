@@ -290,6 +290,8 @@ const documents = {
   RestoreStreakDocument: types.RestoreStreakDocument,
   SendMagicLinkDocument: types.SendMagicLinkDocument,
   UpdateCyclingMeasurementDocument: types.UpdateCyclingMeasurementDocument,
+  CompleteGame2048Document: types.CompleteGame2048Document,
+  GetGame2048HighScoreDocument: types.GetGame2048HighScoreDocument,
   ClaimMobileGameWeeklyRewardsDocument: types.ClaimMobileGameWeeklyRewardsDocument,
   GetMobileGameWeekliesDocument: types.GetMobileGameWeekliesDocument,
   JoinWeeklyGoalDocument: types.JoinWeeklyGoalDocument,
@@ -1623,6 +1625,14 @@ export function gql(source: "SendMagicLinkDocument"): typeof documents["SendMagi
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "UpdateCyclingMeasurementDocument"): typeof documents["UpdateCyclingMeasurementDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "CompleteGame2048Document"): typeof documents["CompleteGame2048Document"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetGame2048HighScoreDocument"): typeof documents["GetGame2048HighScoreDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

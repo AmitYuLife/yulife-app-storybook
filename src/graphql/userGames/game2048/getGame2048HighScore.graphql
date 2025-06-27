@@ -1,0 +1,6 @@
+query GetGame2048HighScore($input: GetGame2048HighScoreInput!) {
+  getGame2048HighScore(input: $input) {
+    highScore
+    date
+  }
+}

@@ -16,7 +16,7 @@ import { GameBoardSize, GameMode, GameValue } from "./game";
 import { showGameStateModal } from "./gameState.modal";
 import { Game2048GameState, Game2048Options, Game2048StateModal, GameEarlyExitHandle, GameSkin } from "./types";
 import { DEFAULT_GAME_STATE_MODALS } from "@containers/game/2048/constants";
-import { updateGame2048HighScore } from "@redux/game-2048/game-2048.actions";
+import { completeGame2048 } from "@redux/game-2048/game-2048.actions";
 import { useDispatch } from "react-redux";
 
 interface IProps {
@@ -112,6 +112,11 @@ const Game2048Manager = forwardRef(
       [moveNumber, board, skin, startGame]
     );
 
+    const getSecondsElapsed = useCallback(() => {
+      const timeElapsedMs = startTimestamp ? (endTimestamp || Date.now()) - startTimestamp : 0;
+      return Math.floor(timeElapsedMs / 1000);
+    }, [startTimestamp, endTimestamp]);
+
     const findModalToDisplay = useCallback(
       (game2048GameState: Game2048GameState) =>
         (gameOptions?.screens?.overlays || []).find((overlay) => {
@@ -119,8 +124,7 @@ const Game2048Manager = forwardRef(
             return false;
           }
 
-          const timeElapsedMs = startTimestamp ? (endTimestamp || Date.now()) - startTimestamp : 0;
-          const secondsElapsed = Math.floor(timeElapsedMs / 1000);
+          const secondsElapsed = getSecondsElapsed();
 
           if (overlay.timer?.min && secondsElapsed < overlay.timer.min) {
             return false;
@@ -140,7 +144,14 @@ const Game2048Manager = forwardRef(
         return;
       }
 
-      dispatch({ type: updateGame2048HighScore, payload: score });
+      dispatch(
+        completeGame2048({
+          boardSize,
+          difficulty: mode,
+          score,
+          completedInSeconds: getSecondsElapsed(),
+        })
+      );
 
       lastHandledStateRef.current = state;
 
@@ -149,7 +160,7 @@ const Game2048Manager = forwardRef(
       if (modalProps) {
         showModal(modalProps);
       }
-    }, [state, gameId, findModalToDisplay, showModal, score]);
+    }, [state, gameId, findModalToDisplay, showModal, score, getSecondsElapsed, boardSize, mode]);
 
     // If user wants to leave early
     const onEarlyExit = useCallback((): boolean => {

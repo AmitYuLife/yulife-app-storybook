@@ -1229,6 +1229,13 @@ export type CompleteCompanyJoinResult = {
   redirectLink: Scalars["String"]["output"];
 };
 
+export type CompleteGame2048Input = {
+  boardSize: Scalars["Int"]["input"];
+  completedInSeconds: Scalars["Int"]["input"];
+  difficulty: Game2048Difficulty;
+  score: Scalars["Int"]["input"];
+};
+
 export type ConditionalValue = {
   __typename?: "ConditionalValue";
   conditions: Array<ConditionalValueCondition>;
@@ -3643,6 +3650,12 @@ export enum FitKitType {
   Yoga = "Yoga",
 }
 
+export enum Game2048Difficulty {
+  Extreme = "extreme",
+  Hard = "hard",
+  Normal = "normal",
+}
+
 export enum Game2048GameState {
   Exiting = "EXITING",
   Lose = "LOSE",
@@ -3715,6 +3728,12 @@ export type GameConsumable = {
 
 export type GameConsumableSearchOptions = {
   type?: InputMaybe<Array<GamePrizeType>>;
+};
+
+export type GameHighScore = {
+  __typename?: "GameHighScore";
+  date: Scalars["String"]["output"];
+  highScore: Scalars["Int"]["output"];
 };
 
 export enum GamePrizeType {
@@ -3886,6 +3905,11 @@ export type GetEmployeesByEmployeeIdsResultEmployee = {
   __typename?: "GetEmployeesByEmployeeIdsResultEmployee";
   fullName: Scalars["String"]["output"];
   id: Scalars["String"]["output"];
+};
+
+export type GetGame2048HighScoreInput = {
+  boardSize: Scalars["Int"]["input"];
+  difficulty: Game2048Difficulty;
 };
 
 export type GetGameConsumableResponse = {
@@ -5952,6 +5976,7 @@ export type Mutation = {
   clearUserProfileBadgeCount: UserProfileBadgeCounts;
   collectAward?: Maybe<Scalars["Boolean"]["output"]>;
   completeCompanyJoin: CompleteCompanyJoinResult;
+  completeGame2048?: Maybe<Scalars["Boolean"]["output"]>;
   completeGoal?: Maybe<Scalars["Boolean"]["output"]>;
   completeInAppYuniversityModuleChapter: Scalars["Boolean"]["output"];
   completeMobileGameBattlePassSeason?: Maybe<MobileGameBattlePass>;
@@ -6300,6 +6325,10 @@ export type MutationCollectAwardArgs = {
 
 export type MutationCompleteCompanyJoinArgs = {
   selfImportToken: Scalars["String"]["input"];
+};
+
+export type MutationCompleteGame2048Args = {
+  input: CompleteGame2048Input;
 };
 
 export type MutationCompleteGoalArgs = {
@@ -7549,6 +7578,7 @@ export type Query = {
   getEngagementDashboardLastMonthsActivityData: TeamAnalyticsDashboardWidget;
   getEngagementDashboardPeriod: EngagementDashboardPeriod;
   getEngagementDashboardTasks: Array<EngagementDashboardTask>;
+  getGame2048HighScore?: Maybe<GameHighScore>;
   getGameConsumables: GetGameConsumableResponse;
   getGift: Gift;
   getGiftingAssets: TeamGiftingAssets;
@@ -7980,6 +8010,11 @@ export type QueryGetEmployeesByEmployeeIdsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetEngagementDashboardClaimableActivitiesForCategoryArgs = {
   category: EngagementDashboardActivityCategory;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetGame2048HighScoreArgs = {
+  input: GetGame2048HighScoreInput;
 };
 
 /** Default types to be extended / root query */
@@ -33721,6 +33756,21 @@ export type UpdateCyclingMeasurementMutationVariables = Exact<{
 }>;
 
 export type UpdateCyclingMeasurementMutation = { __typename?: "Mutation"; updateCyclingMeasurement?: boolean | null };
+
+export type CompleteGame2048MutationVariables = Exact<{
+  input: CompleteGame2048Input;
+}>;
+
+export type CompleteGame2048Mutation = { __typename?: "Mutation"; completeGame2048?: boolean | null };
+
+export type GetGame2048HighScoreQueryVariables = Exact<{
+  input: GetGame2048HighScoreInput;
+}>;
+
+export type GetGame2048HighScoreQuery = {
+  __typename?: "Query";
+  getGame2048HighScore?: { __typename?: "GameHighScore"; highScore: number; date: string } | null;
+};
 
 export type ClaimMobileGameWeeklyRewardsMutationVariables = Exact<{
   rewardIds: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
@@ -87897,6 +87947,85 @@ export const UpdateCyclingMeasurementDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateCyclingMeasurementMutation, UpdateCyclingMeasurementMutationVariables>;
+export const CompleteGame2048Document = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CompleteGame2048" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "input" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "CompleteGame2048Input" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "completeGame2048" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: { kind: "Variable", name: { kind: "Name", value: "input" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CompleteGame2048Mutation, CompleteGame2048MutationVariables>;
+export const GetGame2048HighScoreDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetGame2048HighScore" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "input" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "GetGame2048HighScoreInput" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getGame2048HighScore" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: { kind: "Variable", name: { kind: "Name", value: "input" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "highScore" } },
+                { kind: "Field", name: { kind: "Name", value: "date" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetGame2048HighScoreQuery, GetGame2048HighScoreQueryVariables>;
 export const ClaimMobileGameWeeklyRewardsDocument = {
   kind: "Document",
   definitions: [

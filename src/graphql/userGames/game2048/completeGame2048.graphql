@@ -1,0 +1,3 @@
+mutation CompleteGame2048($input: CompleteGame2048Input!) {
+  completeGame2048(input: $input)
+}

@@ -16,6 +16,8 @@ import { SduiAction } from "@redux/user/user.types";
 import { cloneDeep, mergeWith } from "lodash";
 import { Game2048Options, GameEarlyExitHandle, GameSkin } from "./types";
 import { GameBoardSize, GameMode, GameValue } from "./game";
+import { useDispatch } from "react-redux";
+import { fetchGame2048HighScore } from "@redux/game-2048/game-2048.actions";
 
 interface IGame2048Props {
   componentId: string;
@@ -40,6 +42,7 @@ export const Game2048 = ({
   gameIntroModal,
   gameOptions: gameOptionsParams,
 }: IGame2048Props) => {
+  const dispatch = useDispatch();
   const gameScreenRef = useRef<GameEarlyExitHandle>();
 
   const gameOptions = useMemo(
@@ -71,6 +74,8 @@ export const Game2048 = ({
   const { handlePress: gameIntroModalSafeOnDismiss } = usePressedInWithDelay({ onPress: onDismiss, delay: 10000 });
 
   useEffect(() => {
+    dispatch(fetchGame2048HighScore({ boardSize, difficulty: mode }));
+
     if (!gameIntroModal) {
       return;
     }
