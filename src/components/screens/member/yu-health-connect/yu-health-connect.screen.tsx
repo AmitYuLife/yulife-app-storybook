@@ -59,8 +59,7 @@ const YuHealthConnectScreen = ({
   const { bottom } = useSafeAreaInsets();
 
   const wrapperStyles = useMemo(() => {
-    const extraPadding = Style.adjust(isAndroid() ? 15 : -10);
-    return [styles.wrapper, { bottom: bottom + extraPadding }];
+    return [styles.wrapper, { paddingBottom: bottom }];
   }, [bottom]);
 
   useBackHandler(() => {
