@@ -1,11 +1,12 @@
 import React, { useCallback } from "react";
-import { AppHandBackPayload, WebViewScreen } from "@components/screens/web-view/web-view.screen";
+import { WebViewScreen } from "@components/screens/web-view/web-view.screen";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { WebViewErrorBoundary } from "@components/screens/web-view/web-view.error-boundary";
 import { useBackHandler } from "@hooks";
 import { useDispatch } from "react-redux";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
+import { AppHandBackPayload } from "@app/hooks/useWebView";
 
 export interface WebViewContainerProps {
   uri: string;
