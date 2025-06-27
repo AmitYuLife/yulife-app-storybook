@@ -6,6 +6,7 @@ import styles from "./link-group.styles";
 interface ILink {
   translationKey: string;
   onPress: () => void;
+  testID?: string;
 }
 
 interface IProps {
@@ -14,9 +15,9 @@ interface IProps {
 
 const LinkGroup = ({ data }: IProps) => (
   <View style={styles.wrapper}>
-    {data.map(({ translationKey, onPress }, index) => (
+    {data.map(({ translationKey, onPress, testID }, index) => (
       <View key={index} style={styles.buttonWrapper}>
-        <LinkButton wrapperStyle={styles.button} translationKey={translationKey} onPress={onPress} />
+        <LinkButton wrapperStyle={styles.button} translationKey={translationKey} onPress={onPress} testID={testID} />
       </View>
     ))}
   </View>

@@ -1037,6 +1037,11 @@ export const P2P_SLIDER = "P2P_SLIDER";
 export const P2P_SLIDER_ITEM = (id: string) => `P2P_SLIDER_ITEM_${id}`;
 export const P2P_THANK_THEM_MESSAGE = "screens.gifting.thank_them";
 export const P2P_ALREADY_THANK_THEM_MESSAGE = "screens.gifting.already_thanked_them";
+export const SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP =
+  "screens.onboarding.fitkit.connect.button.skip";
+export const SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_PRIVACY =
+  "screens.onboarding.fitkit.connect.button.privacy";
+
 export const SENDER_GIFTING_AMOUNT = (amount: number) => `SENDER_GIFTING_AMOUNT_${amount}`;
 export const PINK_DOT = `PINK_DOT`;
 export const NOTIFICATION_PINK_DOT_ARROW = (

@@ -8,6 +8,7 @@ import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 import { CentredScreen } from "@molecules";
 import { StyleSheet } from "react-native";
+import { SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP, SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_PRIVACY } from "@ids";
 
 interface IProps {
   connecting: boolean;
@@ -53,10 +54,12 @@ const getLinks = (onSkip: () => void, onPrivacy: () => void, dismissButtonTransl
     {
       translationKey: dismissButtonTranslationKey || "screens.fitkit_connect.secondary_button_label",
       onPress: onSkip,
+      testID: SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP,
     },
     {
       translationKey: "screens.fitkit_connect.link_button_label",
       onPress: onPrivacy,
+      testID: SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_PRIVACY,
     },
   ];
 };
