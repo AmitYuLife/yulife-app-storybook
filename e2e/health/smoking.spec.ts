@@ -197,7 +197,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
         Then("I should be on the Yunity Swipe settings screen", then.onYunitySwipe);
       });
     });
-    When("I go back", when.tapID(ids.LEFT_HEADIND_BUTTON("undefined")), async () => {
+    When("I go back", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
       Then("I should be back on the yuscreen and see the smoking tile", then.idVisible(ids.SMOKING_TILE_BUTTON));
     });
     When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
@@ -219,7 +219,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
         Then("I should be on the Yunity Swipe settings screen", then.onYunitySwipe);
       });
     });
-    When("I go back", when.tapID(ids.LEFT_HEADIND_BUTTON("undefined")), async () => {
+    When("I go back", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
       Then("I should be back on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(7)));
     });
     When("I scroll to the bottom", when.swipeFromText("Your growth so far", "up", "fast"), async () => {

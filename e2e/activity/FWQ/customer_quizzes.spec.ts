@@ -124,7 +124,7 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
     When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
-      When("I go back to the yucoin tab", when.tapID(ids.LEFT_HEADIND_BUTTON("Today’s Earnings")), async () => {
+      When("I go back to the yucoin tab", when.tapID(ids.LEFT_HEADING_BUTTON("Today’s Earnings")), async () => {
         Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("Daily health questions")));
         Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("Earn **40**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7) by discovering more about your health.", "#464647")));
         Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON));
@@ -431,7 +431,7 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should be on the 'satisfied with your current role' question", then.idVisible(ids.TEXT_TEMPLATE("You are satisfied with your current role at Biz 13.", "b2b")));
       Then("I should see all check box's", then.canSeeEngagementSurveyAgreeCheckBoxes);
     });
-    When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
+    When("I click on the back button symbol", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
       Then("I should be on the 'access to a working environment' question", then.idVisible(ids.TEXT_TEMPLATE("You have access to a working environment where you can be at your best and most productive.", "b2b")));
       Then("I should see the checkbox for the first option is still selected", then.idVisible(ids.CHECK_BOX_STATE("Strongly agree", true)));
     });
@@ -571,7 +571,7 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should be on the 'How likely are you to recommend Biz' question", then.idVisible("TEXT_TEMPLATE_How likely are you to recommend Biz 13 as a place to work? (1 being very unlikely, 10 being very likely.)b2b"));
       Then("I should see all check box's", then.canSeeEngagementSurvey1To10CheckBoxes);
     });
-    When("I click on the back button symbol", when.tapID("LEFT_HEADIND_BUTTONnull"), async () => {
+    When("I click on the back button symbol", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
       Then("I should be back on the 'the one thing you would change about Biz' question", then.idVisible("TEXT_TEMPLATE_What's the one thing you would change about Biz 13 to make your experience there better?h2"));
       Then("My last typed out answer should still be filled in", then.textVisible("a".repeat(2)));
     });
