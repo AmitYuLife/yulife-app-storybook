@@ -68,7 +68,7 @@ Feature("As a user I can get past the login screen and see the donate tab after 
         Then("I should see a prompt to connect to the health app", then.idVisible(ids.FITKIT_CONNECT_BUTTON));
       });
     });
-    When("I tap to skip connection", when.tapID(ids.SKIP_HEALTH_CONNECT_SCREEN_BUTTON), async () => {
+    When("I tap to skip connection", when.tapID(ids.SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP), async () => {
       Then("I should see my total yucoin balance of 20", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20)));
     });
   });

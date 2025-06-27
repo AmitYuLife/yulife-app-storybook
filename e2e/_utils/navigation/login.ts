@@ -6,10 +6,10 @@ import {
   BUTTON_CLOSE,
   BACK_BUTTON,
   BUTTON_BASE,
-  SKIP_HEALTH_CONNECT_SCREEN_BUTTON,
   LOGIN_SCREEN_HEADER,
   LOGIN_WITH_PASSWORD,
   LOGIN_HERO_LOGIN_BUTTON,
+  SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP,
 } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
@@ -186,7 +186,7 @@ export const skipHealthConnection = async () => {
   } catch (err) {}
 
   try {
-    await navigateViaID(SKIP_HEALTH_CONNECT_SCREEN_BUTTON, 2000);
+    await navigateViaID(SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP, 2000);
   } catch (err) {}
 };
 
