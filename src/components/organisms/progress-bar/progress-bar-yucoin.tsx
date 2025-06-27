@@ -4,6 +4,7 @@ import { Colours, Style } from "@styles";
 import { ProgressBar } from "@molecules";
 import { TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { YuCoinAnimation } from "./yu-coin-animation/yu-coin-animation";
+import { DETOX_ENABLED } from "@services/socket";
 
 type Props = ComponentProps<typeof ProgressBar> & {
   yuCoin: number;
@@ -16,7 +17,7 @@ const YU_COIN_IMAGE_AND_TEXT_WIDTH = Style.adjust(58);
 export const ProgressBarYuCoin = memo(({ yuCoin, animateYuCoin, yucoinDisplayedAmount, ...props }: Props) => {
   return (
     <>
-      {!animateYuCoin ? null : <YuCoinAnimation />}
+      {!animateYuCoin || DETOX_ENABLED ? null : <YuCoinAnimation />}
       <ProgressBar {...props} childrenWidth={YU_COIN_IMAGE_AND_TEXT_WIDTH}>
         <View style={styles.wrapper}>
           <YuCoinMiniSvg style={styles.yuCoin} />

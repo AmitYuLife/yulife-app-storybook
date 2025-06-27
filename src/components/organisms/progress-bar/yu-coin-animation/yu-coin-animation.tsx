@@ -1,6 +1,5 @@
 import { LottieView } from "@components/molecules";
 import { SduiIdContext } from "@components/sdui/_context/SduiProvider";
-import { DETOX_ENABLED } from "@services/socket";
 import { Style } from "@styles";
 import Lottie from "lottie-react-native";
 import { RefObject, memo, useContext, useEffect, useRef } from "react";
@@ -22,7 +21,7 @@ export const YuCoinAnimation = memo(() => {
         ref={lottieRef}
         style={styles.coinBank}
         source={require("./coin-bank.json")}
-        autoPlay={!DETOX_ENABLED}
+        autoPlay={true}
         loop={false}
       />
     </View>
