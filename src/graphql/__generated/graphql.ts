@@ -3735,6 +3735,7 @@ export type GameSettings = {
   debugQueriesToolEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   debugToolsEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   hasEsgBattlepass?: Maybe<Scalars["Boolean"]["output"]>;
+  loggingEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   maxStepsAnomalyWindowMs?: Maybe<Scalars["Int"]["output"]>;
   rewards: GameSettingsRewards;
 };
@@ -8961,7 +8962,7 @@ export enum SduiActionType {
   QueryYuScreenSections = "QUERY_YU_SCREEN_SECTIONS",
   /** Generic: Refreshes the user's coin balance in the app */
   RefreshTotalCoins = "REFRESH_TOTAL_COINS",
-  /** Generic: Accepts client-side modal identifier, E.g: {"modalId":"yulife.modals.blurredOverlay"}; RN client version >= 4.69.0 */
+  /** Generic: Accepts client-side modal identifier, E.g: {"modalId":"yulife.modals.blurredOverlay"}; RN client version >= 4.70.0 */
   SduiActionDismissModal = "SDUI_ACTION_DISMISS_MODAL",
   /** Generic: Accepts client-side floating modal identifier, E.g: {"modalId":"yulife.modals.blurredOverlay"}; RN client version >= 4.2.0 */
   SduiActionDismissOverlay = "SDUI_ACTION_DISMISS_OVERLAY",
@@ -9781,7 +9782,7 @@ export type TeamEmployeeRecognitionCampaignPackage = {
 export type TeamEmployeeRecognitionCampaignPackageResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignPackageResponse";
   packages: Array<TeamEmployeeRecognitionCampaignPackage>;
-  rate: Scalars["Int"]["output"];
+  rate: Scalars["Float"]["output"];
   topupThreshold: Scalars["Int"]["output"];
 };
 
@@ -27097,25 +27098,6 @@ export type GetYuScreenProductDetailsQuery = {
         }>;
       }> | null;
     }> | null;
-    footerStyles?: Array<{
-      __typename?: "SduiStyle";
-      property: string;
-      value: string;
-      conditionalValue?: Array<{
-        __typename?: "ConditionalValue";
-        value: string;
-        conditions: Array<{
-          __typename?: "ConditionalValueCondition";
-          logicalOperator?: ConditionalValueLogicalOperator | null;
-          expressions: Array<{
-            __typename?: "ConditionalValueConditionExpression";
-            operand: ConditionalValueOperand;
-            comparisonOperator: ConditionalValueComparisonOperator;
-            value: string;
-          }>;
-        }>;
-      }> | null;
-    }> | null;
     body?: Array<
       | { __typename: "ContentItemAppDownloadPrompt" }
       | {
@@ -27900,120 +27882,6 @@ export type GetYuScreenProductDetailsQuery = {
             }> | null;
           }> | null;
         }
-    > | null;
-    footer?: Array<
-      | { __typename: "ContentItemAppDownloadPrompt" }
-      | { __typename: "ContentItemBeneficiariesSection" }
-      | { __typename: "ContentItemBoxOptionCard" }
-      | {
-          __typename: "ContentItemButton";
-          id: string;
-          label: string;
-          value?: string | null;
-          disabledState?: string | null;
-          borderColor?: string | null;
-          backgroundColor?: string | null;
-          textColor?: string | null;
-          buttonSize?: ContentItemButtonSize | null;
-          animate?: boolean | null;
-          animateYuCoin?: boolean | null;
-          contentItemButtonUri?: string | null;
-          buttonType?: ContentItemButtonType | null;
-          onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-          event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-          contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-          styles?: Array<{
-            __typename?: "SduiStyle";
-            property: string;
-            value: string;
-            conditionalValue?: Array<{
-              __typename?: "ConditionalValue";
-              value: string;
-              conditions: Array<{
-                __typename?: "ConditionalValueCondition";
-                logicalOperator?: ConditionalValueLogicalOperator | null;
-                expressions: Array<{
-                  __typename?: "ConditionalValueConditionExpression";
-                  operand: ConditionalValueOperand;
-                  comparisonOperator: ConditionalValueComparisonOperator;
-                  value: string;
-                }>;
-              }>;
-            }> | null;
-          }> | null;
-          containerStyles?: Array<{
-            __typename?: "SduiStyle";
-            property: string;
-            value: string;
-            conditionalValue?: Array<{
-              __typename?: "ConditionalValue";
-              value: string;
-              conditions: Array<{
-                __typename?: "ConditionalValueCondition";
-                logicalOperator?: ConditionalValueLogicalOperator | null;
-                expressions: Array<{
-                  __typename?: "ConditionalValueConditionExpression";
-                  operand: ConditionalValueOperand;
-                  comparisonOperator: ConditionalValueComparisonOperator;
-                  value: string;
-                }>;
-              }>;
-            }> | null;
-          }> | null;
-        }
-      | { __typename: "ContentItemChoice" }
-      | { __typename: "ContentItemCollapsingGenericHeader" }
-      | { __typename: "ContentItemFade"; id: string }
-      | { __typename: "ContentItemHeaderBar" }
-      | { __typename: "ContentItemHint" }
-      | { __typename: "ContentItemImage" }
-      | { __typename: "ContentItemImageChoice" }
-      | { __typename: "ContentItemInfoCard" }
-      | { __typename: "ContentItemKeyValueBox" }
-      | { __typename: "ContentItemLinearGradient" }
-      | { __typename: "ContentItemMarkdown" }
-      | {
-          __typename: "ContentItemPad";
-          id: string;
-          amount: number;
-          pointerEvents?: RnViewPointerEvents | null;
-          styles?: Array<{
-            __typename?: "SduiStyle";
-            property: string;
-            value: string;
-            conditionalValue?: Array<{
-              __typename?: "ConditionalValue";
-              value: string;
-              conditions: Array<{
-                __typename?: "ConditionalValueCondition";
-                logicalOperator?: ConditionalValueLogicalOperator | null;
-                expressions: Array<{
-                  __typename?: "ConditionalValueConditionExpression";
-                  operand: ConditionalValueOperand;
-                  comparisonOperator: ConditionalValueComparisonOperator;
-                  value: string;
-                }>;
-              }>;
-            }> | null;
-          }> | null;
-          dynamicStyles?: Array<{
-            __typename?: "SduiStyleDynamic";
-            property: string;
-            value: string;
-            defaultValue: string;
-          }> | null;
-        }
-      | { __typename: "ContentItemPerks" }
-      | { __typename: "ContentItemProcessingTimer" }
-      | { __typename: "ContentItemProductDetailsHeader" }
-      | { __typename: "ContentItemProductDetailsHoldingHeader" }
-      | { __typename: "ContentItemRewardsBanner" }
-      | { __typename: "ContentItemRowIconTextBanner" }
-      | { __typename: "ContentItemSelectedPackageCard" }
-      | { __typename: "ContentItemText" }
-      | { __typename: "ContentItemWrapper" }
-      | { __typename: "ContentItemYuCoinPower" }
     > | null;
     header?: Array<
       | { __typename: "ContentItemAppDownloadPrompt" }
@@ -77215,14 +77083,6 @@ export const GetYuScreenProductDetailsDocument = {
                 },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "footerStyles" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
-                  },
-                },
-                {
-                  kind: "Field",
                   name: { kind: "Name", value: "body" },
                   selectionSet: {
                     kind: "SelectionSet",
@@ -77411,40 +77271,6 @@ export const GetYuScreenProductDetailsDocument = {
                           selections: [
                             { kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBoxOptionCard" } },
                           ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "footer" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                      {
-                        kind: "InlineFragment",
-                        typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemButton" } },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemButton" } }],
-                        },
-                      },
-                      {
-                        kind: "InlineFragment",
-                        typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemFade" } },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemFade" } }],
-                        },
-                      },
-                      {
-                        kind: "InlineFragment",
-                        typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPad" } },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPad" } }],
                         },
                       },
                     ],
@@ -78580,12 +78406,6 @@ export const GetYuScreenProductDetailsDocument = {
           },
         ],
       },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ContentItemFade" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemFade" } },
-      selectionSet: { kind: "SelectionSet", selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }] },
     },
     {
       kind: "FragmentDefinition",
