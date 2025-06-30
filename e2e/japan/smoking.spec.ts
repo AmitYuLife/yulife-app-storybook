@@ -5,7 +5,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as given from "./_steps/given";
 import * as data from "./_data";
-import { CUSTOMER_2_SMOKING_TIPS, CUSTOMER_2_MOMENTS_AND_REASONS } from "./_resources/smoking_fixtures";
+import { CUSTOMER_2_SMOKING_TIPS, CUSTOMER_2_MOMENTS_AND_REASONS, PRODUCT_CARD_ILLUSTRATIONS } from "./_resources/smoking_fixtures";
 import { smoking_questions, milestone_message } from "../health/_resources/smoking_fixtures";
 
 const locale = process.env.TARGET_LOCALE || "ja-JP";
@@ -15,7 +15,12 @@ Feature("I can view and use the smoking cessation feature", async () => {
     Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "Japan", true), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
     });
+    When("I scroll down until I see the products", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_SQUARE_CARD("入院への備え"), "down"), async () => {
+      Then("I should see the image for the Compass icon card", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(PRODUCT_CARD_ILLUSTRATIONS.COMPASS)));
+      Then("I should see the image for the Candle icon card", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(PRODUCT_CARD_ILLUSTRATIONS.CANDLE)));
+    });
     When("I scroll down until I see the smoking tile", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
+      Then("I should see the image for the Lantern icon card", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(PRODUCT_CARD_ILLUSTRATIONS.LANTERN)));
       Then("I should see the initial smoking tile", then.smokingTileVisible("禁煙をお考えですか?"));
     });
     When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
