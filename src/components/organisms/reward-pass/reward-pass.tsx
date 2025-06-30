@@ -8,6 +8,7 @@ import RewardPassRewardImage from "./subcomponents/reward-pass-reward-image";
 import { RewardPassRewardLabel } from "./subcomponents/reward-pass-reward-label";
 import RewardPassLottieStars from "./subcomponents/reward-pass-lottie-stars/reward-pass-lottie-stars";
 import { Pressable } from "@components/molecules";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IRewardPassProps {
   label: string;
@@ -55,16 +56,20 @@ const RewardPass = ({
       <Box position="absolute" w="100%" h="100%" alignItems="center" justifyContent="center">
         <RawImage source={foregroundImage} style={styles.backgroundImage} contentFit="cover" />
       </Box>
-      <Box position="absolute" w="100%" h="100%" top={"-165%"} right="-44%">
-        <Rays
-          initialRotation={initialRaysRotation}
-          backgroundColor="transparent"
-          style="thin"
-          duration={RAYS_DURATION}
-          positionStyle={styles.rays}
-        />
-      </Box>
-      <RewardPassLottieStars delay={STARS_DELAY * index} />
+      {!DETOX_ENABLED ? (
+        <>
+          <Box position="absolute" w="100%" h="100%" top={"-165%"} right="-44%">
+            <Rays
+              initialRotation={initialRaysRotation}
+              backgroundColor="transparent"
+              style="thin"
+              duration={RAYS_DURATION}
+              positionStyle={styles.rays}
+            />
+          </Box>
+          <RewardPassLottieStars delay={STARS_DELAY * index} />
+        </>
+      ) : null}
       <Box position="absolute" w="100%" h="100%">
         {slots.map(({ x, y, images }, slotIndex) => (
           <RewardPassRewardImage
