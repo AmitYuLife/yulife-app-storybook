@@ -34,10 +34,17 @@ interface IProps {
   componentId: string;
   points?: number;
   achievements?: IAchievement[];
+  numberOfSlots?: number;
   isInspectingUser?: boolean;
 }
 
-const AchievementsShowcase = ({ points, achievements = [], componentId, isInspectingUser }: IProps) => {
+const AchievementsShowcase = ({
+  points,
+  achievements = [],
+  componentId,
+  isInspectingUser,
+  numberOfSlots = 1,
+}: IProps) => {
   const onPress = useCallback(
     async (achievement: IAchievement) => {
       await showYuModal({
@@ -111,7 +118,7 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
           <ArrowIcon width={14} />
         </Pressable>
         <Box gap={14}>
-          {Array.from({ length: 3 }).map((_, index) => (
+          {Array.from({ length: numberOfSlots }).map((_, index) => (
             <AchievementSlot key={index} {...getSlot(index + 1)} showStarIcon={isInspectingUser} />
           ))}
         </Box>

@@ -57,6 +57,7 @@ const AchievementsScreen = ({
                     slotsTaken,
                     selectedSlot,
                     ...item,
+                    onClose: () => Navigation.pop(ROUTES.achievements),
                   },
                 },
               })

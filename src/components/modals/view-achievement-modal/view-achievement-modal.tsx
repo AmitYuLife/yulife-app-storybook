@@ -11,6 +11,8 @@ import { addCommasToNumber } from "@utils";
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { AchievementStatus } from "@organisms/achievement-card/achievement-card";
+import { useSelector } from "react-redux";
+import { getCurrentUserId } from "@redux/user/user.selectors";
 
 interface IProps {
   id: string;
@@ -26,9 +28,9 @@ interface IProps {
   status: "locked" | "unlocked" | "equipped";
   slotsTaken: number;
   isInspectingUser?: boolean;
+  onClose?: () => void;
 }
-
-const onClose = () => Navigation.dismissModal(MODALS.viewAchievementModal);
+const onModalClose = () => Navigation.dismissModal(MODALS.viewAchievementModal);
 
 const ViewAchievementModal = ({
   id,
@@ -41,8 +43,10 @@ const ViewAchievementModal = ({
   slotsTaken,
   isInspectingUser,
   selectedSlot,
+  onClose,
 }: IProps) => {
   const [updateMobileGameUserAchievement, { loading }] = useMutation(gql("UpdateMobileGameUserAchievementDocument"));
+  const currentUserId = useSelector(getCurrentUserId);
   const insets = useSafeAreaInsets();
 
   const getSlot = useCallback((slot: number, selected: number) => {
@@ -65,19 +69,14 @@ const ViewAchievementModal = ({
     const slot = slotsTaken + 1;
     await updateMobileGameUserAchievement({
       variables: { id, ...getSlot(slot, selectedSlot) },
-      update: (cache, { data: { updateMobileGameUserAchievement: updatedData } }) => {
-        cache.writeQuery({
-          query: gql("GetMobileGameUserAchievementsDocument"),
-          data: {
-            getMobileGameUserAchievements: {
-              ...updatedData,
-            },
-          },
-        });
-      },
     });
-    onClose();
-  }, [slotsTaken, id, status]);
+
+    if (onClose) {
+      await onClose();
+    }
+
+    onModalClose();
+  }, [slotsTaken, id, status, selectedSlot, currentUserId, onClose]);
 
   const showAchievementPoints = useMemo(() => typeof points === "number", [points]);
 
@@ -110,7 +109,7 @@ const ViewAchievementModal = ({
           />
         </Box>
       )}
-      <GenericHeadingAbsolute onRightIconPress={onClose} />
+      <GenericHeadingAbsolute onRightIconPress={onModalClose} />
       {!showAchievementPoints ? null : (
         <Box position="absolute" top={insets.top} left={16}>
           <AchievementPoints autoWidth={true} label={addCommasToNumber(points)} locked={status === "locked"} />

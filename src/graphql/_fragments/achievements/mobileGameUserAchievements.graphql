@@ -1,4 +1,5 @@
 fragment MobileGameUserAchievements on MobileGameUserAchievements {
+  id
   achievements {
     ...MobileGameUserAchievement
   }
@@ -9,6 +10,7 @@ fragment MobileGameUserAchievements on MobileGameUserAchievements {
     ...MobileGameUserAchievement
   }
   achievementPoints
+  numberOfSlots
   categories {
     name
     key

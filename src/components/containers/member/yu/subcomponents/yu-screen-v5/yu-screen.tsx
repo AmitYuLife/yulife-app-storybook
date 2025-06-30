@@ -33,6 +33,7 @@ interface IProps {
   showAchievements: boolean;
   achievements: {
     list: IAchievement[];
+    numberOfSlots: number;
     points?: number;
   };
 }

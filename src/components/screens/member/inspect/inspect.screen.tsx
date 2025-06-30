@@ -35,6 +35,7 @@ export interface InspectProps {
   achievements: {
     list: IAchievement[];
     points?: number;
+    numberOfSlots?: number;
   };
 }
 
@@ -86,6 +87,7 @@ const InspectScreen = ({
                     componentId={componentId}
                     points={achievements.points}
                     achievements={achievements.list}
+                    numberOfSlots={achievements.numberOfSlots}
                     isInspectingUser={inspectOtherUser}
                   />
                 </Box>
