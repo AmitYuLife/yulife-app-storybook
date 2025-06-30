@@ -28,7 +28,7 @@ export function* sduiActionNavigateSaga({ payload }: ProductStepAction) {
   }
 
   if (isValid) {
-    const { routeId, props, isSduiStatic } = data;
+    const { routeId, props, isSduiStatic, options } = data;
     const otherProps = isPayloadObject ? { productId: payload.productId || data?.productId } : {};
 
     if (isSduiStatic && ![...preRegisteredRoutes, ...dynamicallyRegisteredRoutes].includes(routeId)) {
@@ -45,7 +45,7 @@ export function* sduiActionNavigateSaga({ payload }: ProductStepAction) {
           id: routeId,
           name: routeId,
           options: {
-            popGesture: false,
+            ...(options || {}),
           },
           passProps: {
             ...otherProps,
