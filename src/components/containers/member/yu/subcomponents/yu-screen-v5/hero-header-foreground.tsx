@@ -17,6 +17,7 @@ interface Props {
   achievements: {
     points?: number;
     list: IAchievement[];
+    numberOfSlots?: number;
   };
   showAchievements: boolean;
 }
@@ -67,6 +68,7 @@ export const HeroHeaderForeground: FC<Props> = memo(
               componentId={ROUTES.yuScreen}
               points={achievements?.points}
               achievements={achievements?.list}
+              numberOfSlots={achievements?.numberOfSlots}
             />
           </Animated.View>
         )}

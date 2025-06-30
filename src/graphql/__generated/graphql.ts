@@ -5444,7 +5444,9 @@ export type MobileGameUserAchievements = {
   achievements: Array<MobileGameUserAchievement>;
   categories: Array<MobileGameUserAchievementCategory>;
   equippedAchievements: Array<MobileGameUserAchievement>;
+  id: Scalars["ID"]["output"];
   lockedAchievements: Array<MobileGameUserAchievement>;
+  numberOfSlots?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type MobileGameUserWalletItem = {
@@ -8118,7 +8120,9 @@ export type QueryGetMobileGameBattlePassRewardInfoArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileGameUserAchievementsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
   type?: InputMaybe<Scalars["String"]["input"]>;
+  userId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -11792,7 +11796,9 @@ export type MobileGameUserAchievementFragment = {
 
 export type MobileGameUserAchievementsFragment = {
   __typename?: "MobileGameUserAchievements";
+  id: string;
   achievementPoints?: number | null;
+  numberOfSlots?: number | null;
   achievements: Array<{
     __typename?: "MobileGameUserAchievement";
     id: string;
@@ -20498,13 +20504,17 @@ export type YuHealthOptionsFragment = {
 
 export type GetMobileGameUserAchievementsQueryVariables = Exact<{
   type?: InputMaybe<Scalars["String"]["input"]>;
+  userId?: InputMaybe<Scalars["String"]["input"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
 }>;
 
 export type GetMobileGameUserAchievementsQuery = {
   __typename?: "Query";
   getMobileGameUserAchievements: {
     __typename?: "MobileGameUserAchievements";
+    id: string;
     achievementPoints?: number | null;
+    numberOfSlots?: number | null;
     achievements: Array<{
       __typename?: "MobileGameUserAchievement";
       id: string;
@@ -20553,7 +20563,9 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
   __typename?: "Mutation";
   markMobileGameUserAchievementsViewed?: {
     __typename?: "MobileGameUserAchievements";
+    id: string;
     achievementPoints?: number | null;
+    numberOfSlots?: number | null;
     achievements: Array<{
       __typename?: "MobileGameUserAchievement";
       id: string;
@@ -20603,7 +20615,9 @@ export type UpdateMobileGameUserAchievementMutation = {
   __typename?: "Mutation";
   updateMobileGameUserAchievement?: {
     __typename?: "MobileGameUserAchievements";
+    id: string;
     achievementPoints?: number | null;
+    numberOfSlots?: number | null;
     achievements: Array<{
       __typename?: "MobileGameUserAchievement";
       id: string;
@@ -40424,6 +40438,7 @@ export const MobileGameUserAchievementsFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "achievements" },
@@ -40449,6 +40464,7 @@ export const MobileGameUserAchievementsFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+          { kind: "Field", name: { kind: "Name", value: "numberOfSlots" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "categories" },
@@ -63626,6 +63642,16 @@ export const GetMobileGameUserAchievementsDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "userId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -63638,6 +63664,16 @@ export const GetMobileGameUserAchievementsDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "type" },
                 value: { kind: "Variable", name: { kind: "Name", value: "type" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "userId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "userId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
               },
             ],
             selectionSet: {
@@ -63694,6 +63730,7 @@ export const GetMobileGameUserAchievementsDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "achievements" },
@@ -63719,6 +63756,7 @@ export const GetMobileGameUserAchievementsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+          { kind: "Field", name: { kind: "Name", value: "numberOfSlots" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "categories" },
@@ -63822,6 +63860,7 @@ export const MarkMobileGameUserAchievementsViewedDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "achievements" },
@@ -63847,6 +63886,7 @@ export const MarkMobileGameUserAchievementsViewedDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+          { kind: "Field", name: { kind: "Name", value: "numberOfSlots" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "categories" },
@@ -63957,6 +63997,7 @@ export const UpdateMobileGameUserAchievementDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "achievements" },
@@ -63982,6 +64023,7 @@ export const UpdateMobileGameUserAchievementDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "achievementPoints" } },
+          { kind: "Field", name: { kind: "Name", value: "numberOfSlots" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "categories" },

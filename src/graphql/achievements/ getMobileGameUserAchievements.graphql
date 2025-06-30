@@ -1,5 +1,5 @@
-query GetMobileGameUserAchievements($type: String) {
-  getMobileGameUserAchievements(type: $type) {
+query GetMobileGameUserAchievements($type: String, $userId: String, $limit: Int) {
+  getMobileGameUserAchievements(type: $type, userId: $userId, limit: $limit) {
     ...MobileGameUserAchievements
   }
 }
