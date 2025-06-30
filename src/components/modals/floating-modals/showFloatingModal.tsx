@@ -29,17 +29,17 @@ export function showFloatingModal({
   ...modalArgs
 }: Args) {
   const modal = <FloatingModal {...modalArgs} />;
-  return Navigation.showOverlayWithChild(
-    modal,
+  return Navigation.showOverlayWithChild({
+    children: modal,
     withBlurBackground,
-    { flexDirection: "column-reverse", ...modalArgs.overlayStyle },
+    wrapperStyle: { flexDirection: "column-reverse", ...modalArgs.overlayStyle },
     modalId,
     closeOnBlur,
     onClose,
-    {
+    passProps: {
       blurType,
       blurAmount,
       backgroundColor: blurBackgroundColor,
-    }
-  );
+    },
+  });
 }

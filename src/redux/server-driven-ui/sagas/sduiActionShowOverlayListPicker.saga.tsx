@@ -32,8 +32,8 @@ export function* sduiActionShowOverlayListPicker({ payload }: SduiActionWithServ
           store.dispatch(i.onPress);
         },
       }));
-      const child = <ListPicker instruction={data.title} items={items} />;
-      yield call(() => Navigation.showOverlayWithChild(child));
+      const children = <ListPicker instruction={data.title} items={items} />;
+      yield call(() => Navigation.showOverlayWithChild({ children }));
     } catch (e) {
       yield call(() =>
         Logger.error(e, {

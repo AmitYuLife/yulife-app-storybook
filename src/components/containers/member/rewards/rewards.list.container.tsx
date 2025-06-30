@@ -112,20 +112,22 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
         const { target, progress, rewardQuantity, theme, image, overlayImage, modalTitle } = reward.teaseDetails || {};
         const { primaryColor, secondaryColor, overlayColor } = theme || {};
 
-        return Navigation.showOverlayWithChild(
-          <RewardMilestoneDetails
-            modalTitle={modalTitle}
-            target={target}
-            progress={progress}
-            rewardQuantity={rewardQuantity}
-            rewardTitle={reward.name}
-            primaryColor={primaryColor}
-            secondaryColor={secondaryColor}
-            overlayColor={overlayColor}
-            overlayImage={overlayImage}
-            rewardImage={image}
-          />
-        );
+        return Navigation.showOverlayWithChild({
+          children: (
+            <RewardMilestoneDetails
+              modalTitle={modalTitle}
+              target={target}
+              progress={progress}
+              rewardQuantity={rewardQuantity}
+              rewardTitle={reward.name}
+              primaryColor={primaryColor}
+              secondaryColor={secondaryColor}
+              overlayColor={overlayColor}
+              overlayImage={overlayImage}
+              rewardImage={image}
+            />
+          ),
+        });
       }
 
       return Navigation.push(componentId, {

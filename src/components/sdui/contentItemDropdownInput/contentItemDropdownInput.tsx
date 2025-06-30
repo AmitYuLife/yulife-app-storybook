@@ -40,8 +40,8 @@ export const ContentItemDropdownInputBase = memo((props: Props) => {
   );
 
   const onPress = useCallback(async () => {
-    const child = <ListPicker instruction={selectInstruction} items={listOptions} />;
-    await Navigation.showOverlayWithChild(child);
+    const children = <ListPicker instruction={selectInstruction} items={listOptions} />;
+    await Navigation.showOverlayWithChild({ children });
   }, [listOptions, selectInstruction]);
 
   const handleChanged = useCallback(

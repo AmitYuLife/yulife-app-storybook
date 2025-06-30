@@ -61,21 +61,23 @@ export const goToChallengesList = ({
   const ctaLabelSubmit = t("screens.challenge_next_modal.cta_submit");
   const ctaLabelReject = t("screens.challenge_next_modal.cta_reject");
 
-  return Navigation.showOverlayWithChild(
-    <QuestDetailModalContainer
-      name={name}
-      level={level}
-      onPressCta={() => {
-        Navigation.dismissOverlayWithChild();
-        goToQuestChallengesList();
-      }}
-      onPressClose={Navigation.dismissOverlayWithChild}
-      onPressCtaDismiss={Navigation.dismissOverlayWithChild}
-      ctaLabelSubmit={ctaLabelSubmit}
-      ctaLabelReject={ctaLabelReject}
-      heading={heading}
-    />
-  );
+  return Navigation.showOverlayWithChild({
+    children: (
+      <QuestDetailModalContainer
+        name={name}
+        level={level}
+        onPressCta={() => {
+          Navigation.dismissOverlayWithChild();
+          goToQuestChallengesList();
+        }}
+        onPressClose={Navigation.dismissOverlayWithChild}
+        onPressCtaDismiss={Navigation.dismissOverlayWithChild}
+        ctaLabelSubmit={ctaLabelSubmit}
+        ctaLabelReject={ctaLabelReject}
+        heading={heading}
+      />
+    ),
+  });
 };
 
 export const buildChestModalCopy = (isNext: boolean, level: number, name?: string) => {
@@ -107,19 +109,21 @@ export const showChestModal = ({
 }: Partial<QuestDetailModalContainerProps> & Partial<LegacyQuestModalProps> & { onPressCta: VoidFunction }) => {
   const { ctaLabel, heading } = buildChestModalCopy(isNext, level, name);
 
-  return Navigation.showOverlayWithChild(
-    <QuestDetailModalContainer
-      name={name}
-      level={level}
-      onPressCta={onPressCta}
-      onPressCtaDismiss={isNext ? Navigation.dismissOverlayWithChild : null}
-      onPressClose={Navigation.dismissOverlayWithChild}
-      ctaLabelSubmit={ctaLabel}
-      ctaLabelReject={!isNext ? null : t("screens.challenge_next_modal.cta_reject")}
-      heading={heading}
-      displayChestCard={true}
-    />
-  );
+  return Navigation.showOverlayWithChild({
+    children: (
+      <QuestDetailModalContainer
+        name={name}
+        level={level}
+        onPressCta={onPressCta}
+        onPressCtaDismiss={isNext ? Navigation.dismissOverlayWithChild : null}
+        onPressClose={Navigation.dismissOverlayWithChild}
+        ctaLabelSubmit={ctaLabel}
+        ctaLabelReject={!isNext ? null : t("screens.challenge_next_modal.cta_reject")}
+        heading={heading}
+        displayChestCard={true}
+      />
+    ),
+  });
 };
 
 export const showChallengeUnavailableModal = ({
@@ -130,16 +134,18 @@ export const showChallengeUnavailableModal = ({
   isYuniversalLevel: boolean;
   level: number;
 }) => {
-  return Navigation.showOverlayWithChild(
-    <QuestDetailModalContainer
-      level={level}
-      nextAvailableAt={nextAvailableAt}
-      onPressCta={Navigation.dismissOverlayWithChild}
-      onPressClose={Navigation.dismissOverlayWithChild}
-      heading={t("screens.level_locked.level", { level })}
-      ctaLabelSubmit={t("labels.cta.got_it")}
-    />
-  );
+  return Navigation.showOverlayWithChild({
+    children: (
+      <QuestDetailModalContainer
+        level={level}
+        nextAvailableAt={nextAvailableAt}
+        onPressCta={Navigation.dismissOverlayWithChild}
+        onPressClose={Navigation.dismissOverlayWithChild}
+        heading={t("screens.level_locked.level", { level })}
+        ctaLabelSubmit={t("labels.cta.got_it")}
+      />
+    ),
+  });
 };
 
 export const showLevelUnavailableModal = ({
@@ -148,16 +154,18 @@ export const showLevelUnavailableModal = ({
   onPressCta,
   onPressClose,
 }: Partial<QuestDetailModalContainerProps>) => {
-  return Navigation.showOverlayWithChild(
-    <QuestDetailModalContainer
-      name={name}
-      level={level}
-      onPressCta={onPressCta || Navigation.dismissOverlayWithChild}
-      onPressClose={onPressClose || Navigation.dismissOverlayWithChild}
-      heading={t(name ? "screens.level_locked.stage" : "screens.level_locked.level", { name, level })}
-      ctaLabelSubmit={t("labels.cta.got_it")}
-    />
-  );
+  return Navigation.showOverlayWithChild({
+    children: (
+      <QuestDetailModalContainer
+        name={name}
+        level={level}
+        onPressCta={onPressCta || Navigation.dismissOverlayWithChild}
+        onPressClose={onPressClose || Navigation.dismissOverlayWithChild}
+        heading={t(name ? "screens.level_locked.stage" : "screens.level_locked.level", { name, level })}
+        ctaLabelSubmit={t("labels.cta.got_it")}
+      />
+    ),
+  });
 };
 
 export const showLevelCompleteModal = (

@@ -40,48 +40,50 @@ const onCarouselItemPress = (item: HealthSmokingMilestoneCarousel) => {
 
   const { image, popup } = item;
 
-  Navigation.showOverlayWithChild(
-    <ScrollableContentOverlay
-      HeaderIcon={<Image source={image} width={Style.adjust(140)} height={Style.adjust(140)} />}
-      onPressClose={Navigation.dismissOverlayWithChild}
-      onPressCta={Navigation.dismissOverlayWithChild}
-      ctaLabel={popup.cta}
-      noMinHeight={true}
-      testId={SMOKING_MILESTONE_POPUP(item.id)}
-    >
-      <TextTemplate type="h1" textAlign="center">
-        {popup.title}
-      </TextTemplate>
-      {popup.description ? (
-        <View style={styles.popupDescription}>
-          <TextTemplate type="b2" textAlign="center">
-            {popup.description}
-          </TextTemplate>
-        </View>
-      ) : null}
-      {popup.tips?.length ? (
-        <Box mt={32} gap={15} style={styles.tipsContainer}>
-          {popup.tips.map((tip) => (
-            <TipCard
-              id={tip.id}
-              key={tip.id}
-              title={tip.title}
-              description={tip.description}
-              icon={tip.icon}
-              cardStyle={styles.tipCardStyles}
-            />
-          ))}
-        </Box>
-      ) : null}
-      {popup.label ? (
-        <View style={styles.popupLabel}>
-          <TextTemplate type="b2b" textAlign="center">
-            {popup.label}
-          </TextTemplate>
-        </View>
-      ) : null}
-    </ScrollableContentOverlay>
-  );
+  Navigation.showOverlayWithChild({
+    children: (
+      <ScrollableContentOverlay
+        HeaderIcon={<Image source={image} width={Style.adjust(140)} height={Style.adjust(140)} />}
+        onPressClose={Navigation.dismissOverlayWithChild}
+        onPressCta={Navigation.dismissOverlayWithChild}
+        ctaLabel={popup.cta}
+        noMinHeight={true}
+        testId={SMOKING_MILESTONE_POPUP(item.id)}
+      >
+        <TextTemplate type="h1" textAlign="center">
+          {popup.title}
+        </TextTemplate>
+        {popup.description ? (
+          <View style={styles.popupDescription}>
+            <TextTemplate type="b2" textAlign="center">
+              {popup.description}
+            </TextTemplate>
+          </View>
+        ) : null}
+        {popup.tips?.length ? (
+          <Box mt={32} gap={15} style={styles.tipsContainer}>
+            {popup.tips.map((tip) => (
+              <TipCard
+                id={tip.id}
+                key={tip.id}
+                title={tip.title}
+                description={tip.description}
+                icon={tip.icon}
+                cardStyle={styles.tipCardStyles}
+              />
+            ))}
+          </Box>
+        ) : null}
+        {popup.label ? (
+          <View style={styles.popupLabel}>
+            <TextTemplate type="b2b" textAlign="center">
+              {popup.label}
+            </TextTemplate>
+          </View>
+        ) : null}
+      </ScrollableContentOverlay>
+    ),
+  });
 };
 
 const renderItem = ({ item }: ListRenderItemInfo<HealthSmokingMilestoneCarousel>) => {

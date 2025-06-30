@@ -45,8 +45,8 @@ const SelectInput = ({
       onPress: () => onOptionPress(option),
     }));
 
-    const child = <ListPicker instruction={modalPlaceHolder} items={items} />;
-    await Navigation.showOverlayWithChild(child);
+    const children = <ListPicker instruction={modalPlaceHolder} items={items} />;
+    await Navigation.showOverlayWithChild({ children });
   }, [closeModal, onChange, options, modalPlaceHolder]);
 
   return (

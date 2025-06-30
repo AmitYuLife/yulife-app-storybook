@@ -180,17 +180,15 @@ function showSmokingStreakCelebrationModal(
   smokingData: GetHealthSmokingStateQuery["getHealthSmokingState"],
   onClose: VoidFunction
 ) {
-  Navigation.showOverlayWithChild(
-    <SmokingStreakCelebrationModal onClose={onClose} smokingData={smokingData} />,
-    true,
-    { flexDirection: "column-reverse" },
-    MODALS.smokingStreakCelebration,
-    false,
-    undefined,
-    {
+  Navigation.showOverlayWithChild({
+    children: <SmokingStreakCelebrationModal onClose={onClose} smokingData={smokingData} />,
+    wrapperStyle: { flexDirection: "column-reverse" },
+    modalId: MODALS.smokingStreakCelebration,
+    closeOnBlur: false,
+    passProps: {
       blurType: "light",
       blurAmount: 8,
       backgroundColor: "rgba(0,0,0,.8)",
-    }
-  );
+    },
+  });
 }
