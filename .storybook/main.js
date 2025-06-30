@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const CUSTOM_CONFIG = {
   resolve: {
     alias: {
+      "@app": path.resolve(__dirname, "../src"),
       "react-native$": "react-native-web",
       "@storybook/react-native": "@storybook/react",
       "@leanplum/react-native-sdk": path.join(__dirname, "/aliases/leanplum"),
