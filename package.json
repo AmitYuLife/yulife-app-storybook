@@ -175,6 +175,7 @@
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.3",
     "reselect": "^4.1.8",
+    "rive-react-native": "^9.3.4",
     "simple-markdown": "^0.7.3"
   },
   "devDependencies": {
