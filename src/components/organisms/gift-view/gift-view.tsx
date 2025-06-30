@@ -28,6 +28,7 @@ import {
   P2P_THANK_THEM_HEART,
 } from "@ids";
 import { GiftingHeartIcon } from "@atoms/icon/gifting-heart-icon";
+import { addCommasToNumber } from "@utils";
 
 const MAX_MESSAGE_LENGTH = 50;
 
@@ -206,7 +207,7 @@ const YuCoin = ({ yuCoinAmount }: Pick<Props, "yuCoinAmount">) => {
       entering={BounceIn.duration(1000)}
     >
       <TextTemplate type="bigYuCoin" color={Colours.primary.p600} testID={SENDER_GIFTING_AMOUNT(yuCoinAmount)}>
-        +{yuCoinAmount}
+        +{addCommasToNumber(yuCoinAmount)}
       </TextTemplate>
       <YuCoinTopNavIcon size={30} />
     </Box>
