@@ -63,7 +63,7 @@ export function useIntroModal(swiper: UseIntroModalProps) {
     };
 
     const start = async () => {
-      await Navigation.showOverlayWithChild(<FullScreenSwiper {...passedProps} />);
+      await Navigation.showOverlayWithChild({ children: <FullScreenSwiper {...passedProps} /> });
 
       if (Platform.OS === "android") {
         await Navigation.popToRoot(ROUTES.yuScreen);

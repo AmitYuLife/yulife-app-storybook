@@ -157,7 +157,7 @@ const YuHealthConnectContainer = ({
       />
     );
 
-    Navigation.showOverlayWithChild(modal, false);
+    Navigation.showOverlayWithChild({ children: modal, withBlurBackground: false });
   }, []);
 
   return (

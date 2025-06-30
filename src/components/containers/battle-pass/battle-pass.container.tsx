@@ -127,15 +127,17 @@ const BattlePassContainer = ({ showNavigation = false, onPressWallet, isInnerScr
 
     if (isAllRewardsClaimed && !state.current.isSeasonComplete && state.current.isEndOfSeasonModalEnabled) {
       state.current.isEndOfSeasonModalEnabled = false;
-      Navigation.showOverlayWithChild(
-        <BattlePassEndOfSeasonModal
-          title={t("screens.battle_pass.season_complete.modal.title", { name: battlePass?.title })}
-          onComplete={onComplete}
-          items={endOfSeasonInfo}
-          isLoading={isCompleteLoading || loading}
-        />,
-        false
-      );
+      Navigation.showOverlayWithChild({
+        children: (
+          <BattlePassEndOfSeasonModal
+            title={t("screens.battle_pass.season_complete.modal.title", { name: battlePass?.title })}
+            onComplete={onComplete}
+            items={endOfSeasonInfo}
+            isLoading={isCompleteLoading || loading}
+          />
+        ),
+        withBlurBackground: false,
+      });
     }
   }, [onComplete, battlePass?.title, isCompleteLoading, loading]);
 

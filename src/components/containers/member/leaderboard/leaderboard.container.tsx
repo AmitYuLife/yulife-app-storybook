@@ -242,7 +242,7 @@ export const LeaderboardContainer = () => {
       />
     );
 
-    Navigation.showOverlayWithChild(frameModal, false);
+    Navigation.showOverlayWithChild({ children: frameModal, withBlurBackground: false });
   }, [refetch]);
 
   const currentUserInfo = useMemo(

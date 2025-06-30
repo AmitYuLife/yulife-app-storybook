@@ -60,7 +60,7 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
       }
 
       if (item?.modal) {
-        return Navigation.showOverlayWithChild(<LockedModal item={item} />);
+        return Navigation.showOverlayWithChild({ children: <LockedModal item={item} /> });
       }
     },
     [updateUserAvatar]

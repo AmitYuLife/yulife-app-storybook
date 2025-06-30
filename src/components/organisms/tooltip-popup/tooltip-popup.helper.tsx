@@ -48,7 +48,7 @@ export const showTooltipPopupRelativeToView = ({
       </TooltipPopupWrapper>
     );
 
-    Navigation.showOverlayWithChild(infoView, false);
+    Navigation.showOverlayWithChild({ children: infoView, withBlurBackground: false });
   });
 };
 
@@ -64,7 +64,7 @@ export const showTooltipPopupRelativeToPoint = ({
     </TooltipPopupWrapper>
   );
 
-  Navigation.showOverlayWithChild(infoView, false);
+  Navigation.showOverlayWithChild({ children: infoView, withBlurBackground: false });
 };
 
 export const showInfoMessageTooltipPointRelative = ({

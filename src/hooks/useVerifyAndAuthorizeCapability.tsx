@@ -137,7 +137,7 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
           />
         );
 
-        Navigation.showOverlayWithChild(modal, false);
+        Navigation.showOverlayWithChild({ children: modal, withBlurBackground: false });
       });
     },
     [requestCapabilityPermissions]

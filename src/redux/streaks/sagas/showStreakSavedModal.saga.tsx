@@ -26,6 +26,6 @@ export default function* showStreakSavedModalSaga(dataPayload: ReturnType<typeof
         mutation: gql("RestoreStreakDocument"),
       })
     );
-    yield call(() => Navigation.showOverlayWithChild(frameModal, false));
+    yield call(() => Navigation.showOverlayWithChild({ children: frameModal, withBlurBackground: false }));
   }
 }

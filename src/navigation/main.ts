@@ -8,6 +8,16 @@ import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.ty
 
 const BLURRED_OVERLAY_COMPONENT_ID = MODALS.blurredOverlay;
 
+type NavigationShowOverlayWithChildArgs = {
+  children: ReactElement;
+  withBlurBackground?: boolean;
+  wrapperStyle?: ViewStyle;
+  modalId?: string;
+  closeOnBlur?: boolean;
+  onClose?: VoidFunctionOrSduiActionPayload;
+  passProps?: Record<string, unknown>;
+};
+
 export class Navigation {
   /** Makes the specified routes(tabs) as inaccessible */
   public static SUSPENDED_NAV_BAR_ROUTES: Set<string> = new Set([]);
@@ -111,15 +121,15 @@ export class Navigation {
     return NativeNavigation.dismissAllOverlays();
   };
 
-  public static showOverlayWithChild(
-    children: ReactElement,
+  public static showOverlayWithChild({
+    children,
     withBlurBackground = true,
-    wrapperStyle?: ViewStyle,
-    modalId?: string,
-    closeOnBlur?: boolean,
-    onClose?: VoidFunctionOrSduiActionPayload,
-    passProps?: Record<string, unknown>
-  ) {
+    wrapperStyle,
+    modalId,
+    closeOnBlur,
+    onClose,
+    passProps,
+  }: NavigationShowOverlayWithChildArgs) {
     if (modalId) {
       Logger.logEvent("screen_view", { name: modalId });
     }
