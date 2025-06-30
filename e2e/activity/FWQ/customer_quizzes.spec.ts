@@ -707,6 +707,7 @@ Feature("Quizzes and questionnaires", async () => {
           "I should see the Engagement Survey hero card displaying the correct YuCoin reward — 300 YuCoin — based on the user's earn rate of 10 and the survey's 30* multiplier.",
           then.idVisibleAtIndex(ids.EVENT_DESCRIPTION("Earn **300** YuCoin and help improve your workplace anonymously!", "#5A5A5C"), 0)
         );
+        Then("I should see the event card has the correct mountain colour", then.idVisibleAtIndex(ids.EVENT_CARD_COLOUR("#FFEFF1"), 0));
       });
       When("I click on the engagement survey hero card", when.tapIDAtIndex(ids.EVENT_CARD("Share your feedback"), 0), async () => {
         When("I click on the engagement survey hero card", when.fillOutEngagementSurvey, async () => {
@@ -975,6 +976,7 @@ Feature("Quizzes and questionnaires", async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_140_NPC_ALTRA.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see my YuCoin balance of 200, before I finish the survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
       Then("I should see the survey's hero card", then.engagementSurveyHeroCardVisible);
+      Then("I should see the event card has the correct forest colour", then.idVisibleAtIndex(ids.EVENT_CARD_COLOUR("#FFFFE5"), 0));
     });
     When("I tap on the surveys hero card", when.tapID(ids.EVENT_CARD("Share your feedback pulse")), async () => {
       Then("I should see the survey's intro screen", then.pulseSurveyIntroVisible);

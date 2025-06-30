@@ -263,8 +263,8 @@ export const pulseSurveyIntroVisible = async () => {
 
 export const engagementSurveyHeroCardVisible = async () => {
   await idVisible(ids.EVENT_CARD("Share your feedback pulse"))();
-  await idVisible(ids.EVENT_HEADING("Share your feedback pulse", "#464647"))();
+  await idVisible(ids.EVENT_HEADING("Share your feedback pulse", "#5A5A5C"))();
   await idVisible(
-    ids.EVENT_DESCRIPTION("Earn YuCoin and help improve your workplace anonymously!", "#464647")
+    ids.EVENT_DESCRIPTION("Earn YuCoin and help improve your workplace anonymously!", "#5A5A5C")
   )();
 };
