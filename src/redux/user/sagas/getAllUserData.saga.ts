@@ -11,6 +11,7 @@ import {
   getUserCoinLedgerSuccess,
   getUserFeaturesSuccess,
   getUserConnectionsSuccess,
+  updateUserTodayScreen,
 } from "../user.actions";
 import { AppDataType, IAppDataTypePayload, GetUserFeaturesPayload, GetUserConnectionsPayload } from "../user.types";
 import { Action } from "@reduxjs/toolkit";
@@ -67,6 +68,7 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Ac
   [AppDataType.dailyChallengeAmountAvailable]: getDailyChallengeAmountAvailableActionSuccess,
   [AppDataType.inventoryInfo]: getInventoryInfoSuccess,
   [AppDataType.challengesDoneToday]: getChallengesDoneTodayActionSuccess,
+  [AppDataType.todayScreen]: updateUserTodayScreen,
 };
 
 export default function* getAllUserDataSaga({

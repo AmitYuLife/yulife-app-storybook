@@ -1,8 +1,6 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 import { DailyStepsLoading } from "./subcontainers/daily-steps-loading";
 import { DailyStepsOnline } from "./subcontainers/daily-steps-online";
-import { bottomTabs, ROUTES } from "@navigation/constants";
-import { Navigation } from "@navigation/main";
 
 export interface IDailyStepsContentProps {
   isLoading?: boolean;
@@ -21,36 +19,12 @@ const DailyStepsContent = ({
   hasEvents,
   showHeroCards,
 }: IDailyStepsContentProps) => {
-  const onReferralsButtonPress = useCallback(
-    () =>
-      Navigation.push(ROUTES.dailySteps, {
-        component: {
-          id: ROUTES.referralInformation,
-          name: ROUTES.referralInformation,
-          passProps: {
-            sourceId: ROUTES.dailySteps,
-          },
-          options: {
-            bottomTabs,
-            sideMenu: {
-              left: {
-                enabled: false,
-                visible: false,
-              },
-            },
-          },
-        },
-      }),
-    []
-  );
-
   if (isLoading) {
     return <DailyStepsLoading />;
   }
 
   return (
     <DailyStepsOnline
-      onReferralsButtonPress={onReferralsButtonPress}
       isUnauthorised={isUnauthorised}
       isUnavailable={isUnavailable}
       hasEvents={hasEvents}

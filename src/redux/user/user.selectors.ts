@@ -63,6 +63,9 @@ export const getUserEvents = createSelector(reducer, userEvents);
 const userHeroCards = (state: State) => state.heroCards || [];
 export const getUserHeroCards = createSelector(reducer, userHeroCards);
 
+const userTodayScreen = (state: State) => state.todayScreen;
+export const getUserTodayScreen = createSelector(reducer, userTodayScreen);
+
 export const sessionTimestamp = (state: State) => state.sessionTimestamp;
 
 export const getUserActiveEvents = createSelector(getUserEvents, (events) =>

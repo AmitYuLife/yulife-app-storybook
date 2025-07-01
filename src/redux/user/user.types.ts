@@ -55,6 +55,13 @@ export interface IUserStore {
   supportConfig: {
     supportLevel: UserSupportLevel;
   };
+  todayScreen: {
+    button?: {
+      id: string;
+      label: string;
+      onPress?: SduiAction;
+    };
+  };
 }
 
 // Renaming can break older clients, AppDataType is used on server side SDUI actions SduiActionType.GetAllUserDataStart
@@ -72,6 +79,7 @@ export enum AppDataType {
   dailyChallengeAmountAvailable = "dailyChallengeAmountAvailable",
   inventoryInfo = "inventoryInfo",
   challengesDoneToday = "challengesDoneToday",
+  todayScreen = "todayScreen",
 }
 
 export type UserConnection = Connections & { isLoading?: boolean };
