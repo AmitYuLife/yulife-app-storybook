@@ -54,6 +54,7 @@ export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
 export const UPDATE_USER_GOAL = "UPDATE_USER_GOAL";
 export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
 export const GET_USER_SESSION_SUCCESS = "GET_USER_SESSION_SUCCESS";
+export const UPDATE_USER_TODAY_SCREEN = "UPDATE_USER_TODAY_SCREEN";
 
 export const refreshUserToken = createAction<null, "REFRESH_USER_TOKEN">(REFRESH_USER_TOKEN);
 
@@ -157,3 +158,7 @@ export const updateUserAvatarRemoteFiles: ActionCreatorWithOptionalPayload<Updat
 export const updateUserSurge = createAction<UserSurge, "UPDATE_USER_SURGE">(UPDATE_USER_SURGE);
 
 export const getUserSessionSuccess = createAction<null, "GET_USER_SESSION_SUCCESS">(GET_USER_SESSION_SUCCESS);
+
+export const updateUserTodayScreen = createAction<IUserStore["todayScreen"], "UPDATE_USER_TODAY_SCREEN">(
+  UPDATE_USER_TODAY_SCREEN
+);

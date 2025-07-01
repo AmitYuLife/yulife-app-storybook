@@ -1,0 +1,5 @@
+query GetUserTodayScreen {
+  getUserTodayScreen {
+    ...UserProfileTodayScreen
+  }
+}

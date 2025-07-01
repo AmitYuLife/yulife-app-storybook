@@ -1,0 +1,9 @@
+fragment UserProfileTodayScreen on UserProfileTodayScreen {
+  button {
+    id
+    label
+    onPress {
+      ...SduiAction
+    }
+  }
+}
