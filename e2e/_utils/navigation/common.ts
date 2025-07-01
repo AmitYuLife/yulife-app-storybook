@@ -259,6 +259,13 @@ export const typeViaID = (id: string, text: string) => async () => {
   await target.typeText(text);
 };
 
+export const typeViaIDAtIndex = (id: string, index: number, text: string) => async () => {
+  const target = element(by.id(id)).atIndex(index);
+  await expect(target).toBeVisible();
+  await target.tap();
+  await target.typeText(text);
+};
+
 export const typeViaPlaceholder = (placeholder: string, text: string) => async () => {
   const target = element(by.text(placeholder));
   await expect(target).toBeVisible();

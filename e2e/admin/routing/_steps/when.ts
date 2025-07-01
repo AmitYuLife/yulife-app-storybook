@@ -10,6 +10,8 @@ export const {
   dismissNotificationScreenIfVisible,
   terminateApp,
   minimiseApp,
+  typeViaID,
+  typeViaIDAtIndex,
 } = navigation.common;
 
 export const { tapMenuItem } = screens.menu;

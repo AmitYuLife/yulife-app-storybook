@@ -2,6 +2,7 @@ import { Box, Image, SkeletonLoading, TextTemplate } from "@atoms";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { Pressable } from "@components/molecules";
 import { IPressableProps } from "@components/molecules/pressable/pressable";
+import { REWARD_ITEM } from "@ids";
 import { Colours } from "@styles";
 import { memo } from "react";
 
@@ -41,7 +42,9 @@ const RewardSearchListItem = ({ label, imageUrl, isLoading, onPress, ...props }:
               source={{ uri: imageUrl }}
               bg={Colours.metallic.m200}
             />
-            <TextTemplate type="b2b">{label}</TextTemplate>
+            <TextTemplate type="b2b" testID={REWARD_ITEM(label)}>
+              {label}
+            </TextTemplate>
           </>
         )}
       </Box>

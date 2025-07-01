@@ -90,7 +90,6 @@ Feature("End of the world/Yuniverse", async () => {
     });
 
     // third challenge - long walk
-
     When("I complete a long walk challenge at level 251", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
       Then("I should see the correct number of yucoin earned and steps completed in the task", then.stepsChallengeDataCorrect(1, 96, 400 + 1200 + 2000));
     });
@@ -107,7 +106,7 @@ Feature("End of the world/Yuniverse", async () => {
       Then("I see the correct yucoin earned today so far", then.textVisible("422 YuCoin"));
       Then("I can see my total steps", then.textVisible("2000 / 12000 steps"));
     });
-    When("I swipe down the screen", when.swipeFromText("Today's challenges (3/4)", "up", "fast"), async () => {
+    When("I swipe down the screen", when.swipeFromText("Today's check-ins", "up", "fast"), async () => {
       Then("I can see 3/4 challenges completed today", then.textVisible("Today's challenges (3/4)"));
       Then("I can see my short stroll completed today", then.textVisible("Long Walk (3,600 steps)"));
       Then("I can see my short stroll completed today", then.textVisible("Brisk Walk (1,600 steps)"));
@@ -119,7 +118,6 @@ Feature("End of the world/Yuniverse", async () => {
     });
 
     // fourth challenge - meditation
-
     When("I complete a meditation challenge at level 1", when.selectAndCompleteMeditationChallenge(180), async () => {
       Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 48, 3));
     });
@@ -142,7 +140,7 @@ Feature("End of the world/Yuniverse", async () => {
       Then("I can see my total steps", then.textVisible("2000 / 12000 steps"));
       Then("I can see my total mins", then.textVisible("3 / 30 mindful mins"));
     });
-    When("I swipe down the screen", when.swipeFromText("Today's challenges (4/4)", "up", "fast"), async () => {
+    When("I swipe down the screen", when.swipeFromText("Today's check-ins", "up", "fast"), async () => {
       Then("I can see 4/4 challenges completed today", then.textVisible("Today's challenges (4/4)"));
       Then("I can see my mins completed today", then.textVisible("Meditation (3 mins)"));
       Then("I can see my short stroll completed today", then.textVisible("Long Walk (3,600 steps)"));

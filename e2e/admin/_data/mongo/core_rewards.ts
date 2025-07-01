@@ -148,6 +148,7 @@ export const CORE_REWARDS_BLOOM_UNAVAILABLE = {
     progression_level: "5",
     code: "YLBAW-GB",
     currencyCode: "GBP",
+    isLocked: true,
     link_type: "20% Your Next Order",
     denomination_type: "fixed",
     description:
@@ -171,7 +172,15 @@ export const CORE_REWARDS_BLOOM_UNAVAILABLE = {
       alertHeading: "Claim your discount",
       alertSubheading: "20% discount for all yulife members",
     },
-    availableDenominations: [],
+    availableDenominations: [
+      {
+        _id: generateRandomMongoId(),
+        yuCoin: 7750,
+        value: 10,
+        stock: 1,
+        availableForRewardsStore: false,
+      },
+    ],
     __v: 0,
   },
 } as IDatabaseItem;

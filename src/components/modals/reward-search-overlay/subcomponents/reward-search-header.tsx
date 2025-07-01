@@ -2,6 +2,7 @@ import { Box, CloseSvg } from "@atoms";
 import { SearchIcon } from "@atoms/icon/search-icon";
 import { WalletIcon } from "@atoms/icon/wallet-icon";
 import { Pressable, ShineButton } from "@components/molecules";
+import { REWARD_SEARCH_INPUT } from "@ids";
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
 import React, { memo, useCallback, useEffect, useRef } from "react";
@@ -109,6 +110,7 @@ const RewardSearchHeader = ({ value, onPressWallet, onChangeText, isOpen, ...pro
               autoCorrect={false}
               onChangeText={onChangeText}
               {...props}
+              testID={REWARD_SEARCH_INPUT}
             />
           </Box>
           <Box pointerEvents="none" position="absolute" pl={15} justifyContent="center" alignItems="center" h="100%">
