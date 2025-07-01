@@ -1,12 +1,11 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
-import { Icon, TextTemplate } from "@atoms";
+import { Box } from "@atoms";
 import { Picker } from "./subcomponents/picker";
 import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style } from "@styles";
-import { TouchableOpacityWithDelay } from "@components/molecules";
+import { ChipList, TouchableOpacityWithDelay } from "@components/molecules";
 import { Item } from "./flatlist-utils/types";
-import { SWITCH_ICON } from "@ids";
 
 interface IPicker {
   id: string;
@@ -19,30 +18,34 @@ interface Props {
   pickers: IPicker[];
   onConfirm: () => void;
   onCancel: () => void;
-  toggle?: () => void;
-  toggleLabel?: string;
   confirmLabel?: string;
   cancelLabel?: string;
+  chips?: Array<{ value: string; isSelected: boolean; onPress: () => void }>;
+  chipsScrollToIndex?: number;
+
+  /**
+   * @deprecated Use chips
+   */
+  toggle?: () => void;
+
+  /**
+   * @deprecated Use chips
+   */
+  toggleLabel?: string;
 }
 
 const ScrollPickerModal = (props: Props) => {
-  const { pickers, toggle, toggleLabel, onConfirm, onCancel, cancelLabel, confirmLabel } = props;
-  const hasToggle = toggle && toggleLabel;
+  const { pickers, chips, chipsScrollToIndex, onConfirm, onCancel, cancelLabel, confirmLabel } = props;
 
   return (
     <View style={styles.wrapper}>
       <TouchableOpacityWithDelay activeOpacity={1} style={styles.pressableBackground} onPress={onCancel} />
       <View style={styles.innerWrapper}>
-        {!hasToggle ? null : (
-          <TouchableOpacityWithDelay style={styles.toggleWrapper} onPress={toggle}>
-            <View style={styles.iconWrapper} testID={SWITCH_ICON}>
-              <Icon.SwitchIcon />
-            </View>
-            <TextTemplate type="b2b" color={Colours.primary.p600}>
-              {toggleLabel}
-            </TextTemplate>
-          </TouchableOpacityWithDelay>
-        )}
+        {chips?.length ? (
+          <Box pt={16}>
+            <ChipList chips={chips} scrollToIndex={chipsScrollToIndex} style={styles.chipListPadding} />
+          </Box>
+        ) : null}
         <View style={styles.pickerWrapper}>
           {pickers.map(({ onIndexChange, items, defaultIndex, id }, i) => (
             <Picker id={id} key={i} defaultIndex={defaultIndex} onIndexChange={onIndexChange} items={items} />
@@ -57,6 +60,9 @@ const ScrollPickerModal = (props: Props) => {
 export default ScrollPickerModal;
 
 const styles = StyleSheet.create({
+  chipListPadding: {
+    paddingHorizontal: Style.adjust(24),
+  },
   wrapper: {
     height: Style.DEVICE_HEIGHT,
     width: Style.DEVICE_WIDTH,

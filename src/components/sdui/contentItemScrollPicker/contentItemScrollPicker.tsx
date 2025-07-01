@@ -3,6 +3,7 @@ import { ScrollPickerModal } from "@components/modals";
 import { ContentItemScrollPickerFragment } from "@graphql/__generated";
 import { DisplayFormat, ScrollPicker, Wheel } from "./contentItemScrollPicker.types";
 import { SduiDispatchContext, SduiStateContext } from "../_context/SduiProvider";
+import { t } from "@locale";
 
 type Props = {
   configurationKey: string;
@@ -33,12 +34,23 @@ export const ContentItemScrollPicker = ({ configurationKey }: Props) => {
         id: wheel.answerKey,
         defaultIndex,
         items,
-        onIndexChange: (index: number) =>
+        onIndexChange: (index: number) => {
+          // Guard against invalid indices from overscroll
+          if (index < 0 || index >= items.length) {
+            return;
+          }
+
+          const selectedItem = items[index];
+          if (!selectedItem || selectedItem.value === undefined) {
+            return;
+          }
+
           setState((oldState) => ({
             ...oldState,
             ...(variant.answerKey ? { [variant.answerKey]: variant.id } : {}),
             [wheel.answerKey]: items[index].value,
-          })),
+          }));
+        },
       };
     });
   }, [scrollPicker]);
@@ -48,7 +60,6 @@ export const ContentItemScrollPicker = ({ configurationKey }: Props) => {
   }
 
   const { variants, activeVariantIndex, answerKey, displayFormat } = scrollPicker;
-  const variant = variants[activeVariantIndex];
 
   return (
     <>
@@ -57,19 +68,23 @@ export const ContentItemScrollPicker = ({ configurationKey }: Props) => {
           <ScrollPickerModal
             key={item.id}
             pickers={pickers}
-            toggle={() => {
-              dispatch({
-                type: "UPDATE_DYNAMIC_DATA",
-                payload: {
-                  [configurationKey]: {
-                    ...scrollPicker,
-                    activeVariantIndex: item.toggleIndex,
+            chipsScrollToIndex={i}
+            chips={variants.map((v, variantIndex) => ({
+              value: v.chipLabel,
+              isSelected: variantIndex === activeVariantIndex,
+              onPress: () => {
+                dispatch({
+                  type: "UPDATE_DYNAMIC_DATA",
+                  payload: {
+                    [configurationKey]: {
+                      ...scrollPicker,
+                      activeVariantIndex: variantIndex,
+                    },
                   },
-                },
-              });
-              setState({});
-            }}
-            toggleLabel={variant.toggleLabel}
+                });
+                setState({});
+              },
+            }))}
             onConfirm={() => {
               dispatch({
                 type: "UPDATE_DYNAMIC_DATA",
@@ -100,10 +115,11 @@ export const ContentItemScrollPicker = ({ configurationKey }: Props) => {
 };
 
 const buildScrollItemLabel = (wheel: Wheel, value: number) => {
-  const labelSuffix = value === wheel.suffixSingularValue ? wheel.suffixSingular : wheel.suffixPlural;
-  const suffixMax = wheel?.suffixMax && wheel.max === value ? wheel.suffixMax : "";
+  if (wheel.suffixTranslationKey) {
+    return t(wheel.suffixTranslationKey, { smart_count: value });
+  }
 
-  return `${value}${suffixMax} ${labelSuffix}`;
+  return `${value}`;
 };
 
 const buildDisplayButtonLabel = (data: Record<string, string | number>, displayFormat: DisplayFormat) => {
@@ -115,16 +131,9 @@ const buildDisplayButtonLabel = (data: Record<string, string | number>, displayF
     return activeFormat.reduce((str, i) => {
       const value = data[i.answerKey];
 
-      if (i.isDynamic) {
-        return `${str}${value}`;
-      }
-
-      if (i.singular && i.singularValue && value === i.singularValue) {
-        return `${str}${i.singular}`;
-      }
-
-      if (i.plural) {
-        return `${str}${i.plural}`;
+      if (i.smartCountTranslationKey) {
+        const translation = t(i.smartCountTranslationKey, { smart_count: value });
+        return str ? `${str} ${translation}` : translation;
       }
 
       return str;
