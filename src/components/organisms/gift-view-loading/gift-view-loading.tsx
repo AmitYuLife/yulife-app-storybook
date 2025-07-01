@@ -4,7 +4,7 @@ import { Box } from "@atoms";
 import { LottieView } from "@molecules";
 import { Style } from "@styles";
 import { ViewStyle } from "react-native";
-import SvgBackground from "./svg-background";
+import SvgBackground, { TRIANGLE_HEIGHT } from "./svg-background";
 import { DETOX_ENABLED } from "@services/socket";
 
 const LOTTIE_ANIMATION = require("./gifts-loader.json");
@@ -13,6 +13,8 @@ type Props = {
   showAnimation: boolean;
   setFinishedAnimation: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+const DEVICE_HEIGHT_WITH_OVERSHOOT = Style.DEVICE_HEIGHT + TRIANGLE_HEIGHT;
 
 const GiftViewLoading = ({ showAnimation, setFinishedAnimation }: Props) => {
   const lottieRef = useRef<Lottie>(null);
@@ -31,7 +33,7 @@ const GiftViewLoading = ({ showAnimation, setFinishedAnimation }: Props) => {
   }, []);
 
   return (
-    <Box w="100%" h={Style.DEVICE_HEIGHT} alignItems="center">
+    <Box w="100%" h={DEVICE_HEIGHT_WITH_OVERSHOOT} alignItems="center">
       <SvgBackground />
       {!showAnimation ? null : (
         <LottieView
@@ -51,7 +53,7 @@ const GiftViewLoading = ({ showAnimation, setFinishedAnimation }: Props) => {
 const lottieStyle: ViewStyle = {
   position: "absolute",
   width: Style.DEVICE_WIDTH,
-  height: Style.DEVICE_HEIGHT,
+  height: DEVICE_HEIGHT_WITH_OVERSHOOT,
 };
 
 export default memo(GiftViewLoading);

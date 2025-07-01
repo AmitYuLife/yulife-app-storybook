@@ -13,21 +13,24 @@ type Props = {
   goToSuccess: VoidFunction;
 };
 
+const CONFIG = {
+  STARTING_POINT: Style.DEVICE_HEIGHT + TRIANGLE_HEIGHT * 2,
+  ENDING_POINT: -TRIANGLE_HEIGHT,
+};
+
 export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, goToSuccess }: Props) => {
   const [finishedAnimation, setFinishedAnimation] = useState(false);
   const [minimumTimeReached, setMinimumTimeReached] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
-  const translateY = useSharedValue(Style.DEVICE_HEIGHT + TRIANGLE_HEIGHT);
+  const translateY = useSharedValue(CONFIG.STARTING_POINT);
 
   const onLoadingPress = useCallback(() => {
     setFinishedAnimation(true);
   }, []);
 
   const onCloseAlert = useCallback(() => {
-    translateY.value = withTiming(
-      Style.DEVICE_HEIGHT + TRIANGLE_HEIGHT,
-      { duration: 600, easing: Easing.inOut(Easing.ease) },
-      () => runOnJS(setShowButton)(true)
+    translateY.value = withTiming(CONFIG.STARTING_POINT, { duration: 600, easing: Easing.inOut(Easing.ease) }, () =>
+      runOnJS(setShowButton)(true)
     );
   }, [translateY, setShowButton]);
 
@@ -38,7 +41,7 @@ export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, go
       setFinishedAnimation(false);
       setMinimumTimeReached(false);
 
-      translateY.value = withTiming(0, { duration: 600, easing: Easing.inOut(Easing.ease) });
+      translateY.value = withTiming(CONFIG.ENDING_POINT, { duration: 600, easing: Easing.inOut(Easing.ease) });
 
       setTimeout(() => {
         setMinimumTimeReached(true);
