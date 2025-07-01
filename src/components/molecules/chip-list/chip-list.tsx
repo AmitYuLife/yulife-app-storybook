@@ -1,9 +1,12 @@
-import React, { memo, useMemo } from "react";
-import { ListRenderItemInfo, StyleSheet, View, ViewStyle } from "react-native";
+import React, { memo, useMemo, useRef } from "react";
+import { ListRenderItemInfo, StyleSheet, View, ViewStyle, FlatList as RNFlatList } from "react-native";
 import { Box, FlatList, SkeletonLoading, TextTemplate } from "@atoms";
 import Pressable from "../pressable/pressable";
 import { Colours, Style } from "@styles";
 import { CHIP_LIST_ITEM } from "@ids";
+import { FadeIn } from "react-native-reanimated";
+import { isNil } from "lodash";
+import { useScrollToIndex } from "@app/hooks/useScrollToIndex";
 
 export type ChipProps = {
   value: string;
@@ -15,14 +18,23 @@ type ChipListProps = {
   chips: ChipProps[];
   style?: ViewStyle;
   isLoading?: boolean;
+  scrollToIndex?: number;
 };
 
-const _ChipList = ({ chips, style, isLoading }: ChipListProps) => {
+const _ChipList = ({ chips, style, isLoading, scrollToIndex }: ChipListProps) => {
   const flatlistStyle = useMemo(() => [styles.flatList, style], [style]);
+  const flatListRef = useRef<RNFlatList<ChipProps>>(null);
+
+  const { handleScrollToIndexFailed } = useScrollToIndex(flatListRef, {
+    scrollToIndex,
+    dataLength: chips.length,
+    isLoading,
+  });
 
   return (
-    <View style={styles.wrapper}>
+    <Box h={50} forceAnimated={!isNil(scrollToIndex) && scrollToIndex >= 0} entering={FadeIn.duration(200)}>
       <FlatList
+        forwardRef={flatListRef}
         data={chips}
         horizontal={true}
         pagingEnabled={false}
@@ -35,8 +47,9 @@ const _ChipList = ({ chips, style, isLoading }: ChipListProps) => {
         ItemSeparatorComponent={Separator}
         ListEmptyComponent={isLoading ? LoadingChipList : null}
         scrollEnabled={!isLoading}
+        onScrollToIndexFailed={handleScrollToIndexFailed}
       />
-    </View>
+    </Box>
   );
 };
 

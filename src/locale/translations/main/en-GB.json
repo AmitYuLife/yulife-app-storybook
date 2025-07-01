@@ -11,6 +11,14 @@
     "date_picker_display": "DD / MM / YYYY",
     "month_full": "MMMM"
   },
+  "unit_of_measure": {
+    "kilograms": "%{smart_count}kg |||| %{smart_count}kg",
+    "centimeters": "%{smart_count}cm |||| %{smart_count}cm",
+    "feet": "%{smart_count}ft |||| %{smart_count}ft",
+    "inches": "%{smart_count}in |||| %{smart_count}in",
+    "stones": "%{smart_count}st |||| %{smart_count}st",
+    "pounds": "%{smart_count}lb |||| %{smart_count}lbs"
+  },
   "captcha_input": {
     "hcaptcha_disclaimer": "This app is protected by hCaptcha and its [Privacy Policy](https://www.hcaptcha.com/privacy) and [Terms of Service](https://www.hcaptcha.com/terms) apply."
   },
