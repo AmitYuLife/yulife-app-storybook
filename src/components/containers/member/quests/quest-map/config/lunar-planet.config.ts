@@ -479,7 +479,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     background: require("../episodes/lunar/mountain/lunar-mountain-5.webp"),
     topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 600,
-    episodeWidth: 374, // decreased with 1px to fix image moving to the left
+    episodeWidth: 375,
     snapOffsetY: 10,
     episodeKey: 94,
     bubbleOffsetY: -55,
