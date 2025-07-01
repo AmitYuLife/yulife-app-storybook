@@ -11,6 +11,7 @@ import { isEmpty } from "lodash";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
 import RewardSearchHeader from "./subcomponents/reward-search-header";
 import { t } from "@locale";
+import { REWARD_SEARCH_NO_RESULT } from "@ids";
 
 interface IRewardSearchOverlayProps {
   onClose: () => void;
@@ -110,7 +111,11 @@ const RewardSearchOverlay = ({
                   ) : (
                     <Box pt={40} pb={60} justifyContent="center" alignItems="center" w="100%" px={40}>
                       <MagnifyingGlass width={80} />
-                      <TextTemplate textAlign="center" type="b2">
+                      <TextTemplate
+                        textAlign="center"
+                        type="b2"
+                        testID={!isEmpty(searchTerm) && showResults ? REWARD_SEARCH_NO_RESULT : undefined}
+                      >
                         {!isEmpty(searchTerm) && showResults
                           ? t("screens.rewards.search.no_results")
                           : t("screens.rewards.search.initial_state")}

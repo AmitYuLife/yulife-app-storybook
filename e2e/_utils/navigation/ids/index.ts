@@ -80,6 +80,7 @@ export const YUMOJI_PROMPT_COPY = (copy: string) => `YUMOJI_PROMPY_COPY_${copy}`
 export const BATTLE_PASS_SCREEN = "BATTLE_PASS_SCREEN";
 export const CHALLENGE_FAILED_SCREEEN = "CHALLENGE_FAILED_SCREEEN";
 export const WEBVIEW = "WEBVIEW";
+export const REWARD_SEARCH_NO_RESULT = "REWARD_SEARCH_NO_RESULT";
 
 // buttons
 export const LOGIN_HERO_CLAIM_ACCOUNT_BUTTON = "LOGIN_HERO_CLAIM_ACCOUNT_BUTTON"; // "Claim my account"
@@ -174,6 +175,7 @@ export const HERO_IMAGE_CONFIRM_BUTTON = "hero-image-confirm-button";
 export const HERO_IMAGE_CANCEL_BUTTON = "hero-image-cancel-button";
 export const SURVEY_REWARD = (yucoin: string) => `SURVEY_REWARD_${yucoin}`;
 export const FITKIT_CONNECT_BUTTON = "FITKIT_CONNECT_BUTTON";
+export const SHINE_BUTTON = (label: string) => `SHINE_BUTTON_${label}`;
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -229,6 +231,7 @@ export const YUCOIN_LABEL = (yuCoin: string) => `YUCOIN_LABEL${yuCoin}`;
 export const DISMISS_BUTTON = "DISMISS_BUTTON";
 export const WARNING_BANNER = (text: string) => `WARNING_BANNER_${text}`;
 export const REWARDS_STORE_GAME_PROGRESS = "REWARDS_STORE_GAME_PROGRESS";
+export const REWARD_SEARCH_INPUT = "REWARD_SEARCH_INPUT";
 export const LOTTIE_VIEW = "LOTTIE_VIEW";
 export const FOOTER_LEGAL_DISCLAIMER = "FOOTER_LEGAL_DISCLAIMER";
 export const VOUCHER_CODE_TITLE = (text: string) => `VOUCHER_CODE_TITLE_${text}`;

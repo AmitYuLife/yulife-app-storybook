@@ -19,6 +19,7 @@ import { t } from "@locale";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
 import NoStoreWalletButton from "../rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
 import { isEmpty } from "lodash";
+import { REWARDS_SCREEN } from "@ids";
 
 export enum RewardListItemTypes {
   RewardStoreExpiryWarning = "RewardStoreExpiryWarning",
@@ -168,7 +169,7 @@ const ShopfrontScreen = ({
   }, [setIsSearchOpen]);
 
   return (
-    <Box bg="#FAFAFE" flex={1}>
+    <Box bg="#FAFAFE" flex={1} testID={REWARDS_SCREEN}>
       <Box bg="white">
         <GenericHeadingPad />
         {hasVoucherStore ? (

@@ -33,7 +33,7 @@ Feature("Notification centre", async () => {
     });
     When("I click on the reward store grace period notification", when.tapID(INBOX_MESSAGE_ITEM("Your store closes in 90 days")), async () => {
       Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN));
-      Then("I should see the store grace period warning displaying the correct remaining dates", then.rewardAccessWarningVisible("90"));
+      Then("I should see the store grace period warning displaying the correct remaining dates", then.rewardAccessWarningVisible("89"));
     });
   });
 

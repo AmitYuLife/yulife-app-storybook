@@ -1,13 +1,13 @@
 import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { translations } from "@app/locale/translations";
+import { getLocalisedString as t } from "@i18n";
 import * as scenario from "../_common/scenario";
+import * as consts from "./_resources/consts";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
-import * as consts from "./_resources/consts";
 import * as ids from "@ids";
-import { getLocalisedString as t } from "@i18n";
-import { translations } from "@app/locale/translations";
 
 Feature("As a user I can navigate through member routes correctly", async () => {
   Scenario("I can view the core screens of the app", scenario.start, async () => {
@@ -144,23 +144,28 @@ Feature("As a user I can navigate through member routes correctly", async () => 
       });
     });
     When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
-      Then("I should see a John Lewis reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
-      Then("I should see a locked reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE));
-      Then("I should see the Purchased tab", then.idVisible(ids.PURCHASED_TAB_BUTTON, 1500));
+      Then("I should land on the rewards store screen", then.idVisible(ids.REWARDS_SCREEN, 2000));
+      Then("I should see the Wallet button", then.idVisible(ids.SHINE_BUTTON("Wallet"), 1500));
+      Then("I should see the Rewards input search", then.idVisible(ids.REWARD_SEARCH_INPUT, 1500));
     });
-    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "slow", 0.2), async () => {
-      Then("I should see the rewards category list even when only 4 rewards are available", then.idVisible(ids.CHIP_LIST_ITEM("Entertainment"), 2000));
+    When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 2000), async () => {
+      Then("Wallet should be empty, as I have not purchases anything yet", then.idVisible(ids.EMPTY_WALLET_TITLE(consts.emptyWalletTitle), 1500));
     });
-    When("I tap the Purchased tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
-      When("I wait", when.wait(2500), async () => {
-        Then("the tab should be in an empty state, as I have not purchases anything", then.idVisible(ids.CHECK_REWARDS_BUTTON, 1500));
-      });
-    });
-    When("I tap 'check rewards", when.tapID(ids.CHECK_REWARDS_BUTTON), async () => {
+    When("I tap the back button", when.tapID(ids.BACK_BUTTON, 2000), async () => {
       Then("I should be back on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "slow", 0.2), async () => {
-      Then("I should still see the rewards category list", then.idVisible(ids.CHIP_LIST_ITEM("All"), 2000));
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.2), async () => {
+      Then("I should see a John Lewis reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
+      Then("I should see a locked reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id)));
+    });
+    When("I search for a reward that does not exist", when.typeViaIDAtIndex(ids.REWARD_SEARCH_INPUT, 0, "Oreo"), async () => {
+      Then("I should see the no results message", then.idVisible(ids.REWARD_SEARCH_NO_RESULT, 1500));
+    });
+    When("I close the overlay search screen", when.tapID(ids.SCREEN_CLOSE, 3000), async () => {
+      Then("I should land back on the rewards store screen", then.idVisible(ids.REWARDS_SCREEN, 2000));
+    });
+    When("I do a partial search for a valid reward", when.typeViaIDAtIndex(ids.REWARD_SEARCH_INPUT, 0, "Nero"), async () => {
+      Then("The reward item should appear on the search", then.idVisible(ids.REWARD_ITEM("Caffè Nero")));
     });
   });
 
