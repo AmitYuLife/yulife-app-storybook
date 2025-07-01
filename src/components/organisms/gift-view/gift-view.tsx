@@ -74,64 +74,66 @@ type Props = {
   showContent?: boolean;
 };
 
-const GiftView = ({
-  yuCoinAmount,
-  backgrounds,
-  selectBackground,
-  background,
-  message,
-  textColor,
-  onPressSticker,
-  stickers,
-  currentSticker,
-  sender,
-  hasSaidThankYou,
-  onThankYouPress,
-  onSendGift,
-  showContent = true,
-}: Props) => {
-  const wrapperStyle = useMemo(
-    () => (background?.backgroundColor ? { backgroundColor: background.backgroundColor } : {}),
-    [background]
-  );
+const GiftView = memo(
+  ({
+    yuCoinAmount,
+    backgrounds,
+    selectBackground,
+    background,
+    message,
+    textColor,
+    onPressSticker,
+    stickers,
+    currentSticker,
+    sender,
+    hasSaidThankYou,
+    onThankYouPress,
+    onSendGift,
+    showContent = true,
+  }: Props) => {
+    const wrapperStyle = useMemo(
+      () => (background?.backgroundColor ? { backgroundColor: background.backgroundColor } : {}),
+      [background]
+    );
 
-  return (
-    <View style={[styles.screen, wrapperStyle]} testID={P2P_GIFT_VIEW(background?.id)}>
-      <Background image={background?.image} />
-      <ScrollView showsVerticalScrollIndicator={false} style={[styles.scrollView, styles.safeArea]}>
-        <Sender sender={sender} textColor={textColor} />
-        {!showContent ? null : (
-          <>
-            <YuCoin yuCoinAmount={yuCoinAmount} />
-            <Sticker
-              onPressSticker={onPressSticker}
-              stickers={stickers}
-              currentSticker={currentSticker}
-              textColor={textColor}
-            />
-            <Message message={message} textColor={textColor} />
-            <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
-            <Box height={(message || "").length > MAX_MESSAGE_LENGTH ? NAV_BAR.DEFAULT_FULL_HEIGHT : 1} />
-          </>
+    return (
+      <View style={[styles.screen, wrapperStyle]} testID={P2P_GIFT_VIEW(background?.id)}>
+        <Background image={background?.image} />
+        <ScrollView showsVerticalScrollIndicator={false} style={[styles.scrollView, styles.safeArea]}>
+          <Sender sender={sender} textColor={textColor} />
+          {!showContent ? null : (
+            <>
+              <YuCoin yuCoinAmount={yuCoinAmount} />
+              <Sticker
+                onPressSticker={onPressSticker}
+                stickers={stickers}
+                currentSticker={currentSticker}
+                textColor={textColor}
+              />
+              <Message message={message} textColor={textColor} />
+              <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
+              <Box height={(message || "").length > MAX_MESSAGE_LENGTH ? NAV_BAR.DEFAULT_FULL_HEIGHT : 1} />
+            </>
+          )}
+        </ScrollView>
+        {!backgrounds?.length ? null : (
+          <Slider
+            title={t("screens.gifting.change_background")}
+            textColor={textColor}
+            items={backgrounds}
+            selectItem={selectBackground}
+            selectedItem={background}
+          />
         )}
-      </ScrollView>
-      {!backgrounds?.length ? null : (
-        <Slider
-          title={t("screens.gifting.change_background")}
-          textColor={textColor}
-          items={backgrounds}
-          selectItem={selectBackground}
-          selectedItem={background}
-        />
-      )}
-      {!onSendGift ? null : (
-        <Box width="100%" position="absolute" bottom={navBarStyles.getPositionBottom()}>
-          <Button translationKey={"screens.gifting.send_your_friend_a_gift"} onPress={onSendGift} />
-        </Box>
-      )}
-    </View>
-  );
-};
+        {!onSendGift ? null : (
+          <Box width="100%" position="absolute" bottom={navBarStyles.getPositionBottom()}>
+            <Button translationKey={"screens.gifting.send_your_friend_a_gift"} onPress={onSendGift} />
+          </Box>
+        )}
+      </View>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   screen: {
@@ -158,7 +160,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Background = ({ image }: { image: BackgroundAsset["image"] }) => {
+const Background = memo(({ image }: { image: BackgroundAsset["image"] }) => {
   if (!image?.uri) {
     return null;
   }
@@ -168,9 +170,9 @@ const Background = ({ image }: { image: BackgroundAsset["image"] }) => {
       <Image width={Style.DEVICE_WIDTH} suppressLoadingUi={true} source={image} resizeMode="cover" />
     </Box>
   );
-};
+});
 
-const Sender = ({ sender, textColor }: Pick<Props, "sender" | "textColor">) => {
+const Sender = memo(({ sender, textColor }: Pick<Props, "sender" | "textColor">) => {
   if (sender?.fullName || sender?.avatar?.uri) {
     return (
       <Box justifyContent="center" alignItems="center">
@@ -187,9 +189,9 @@ const Sender = ({ sender, textColor }: Pick<Props, "sender" | "textColor">) => {
   }
 
   return <Box height={62} />;
-};
+});
 
-const YuCoin = ({ yuCoinAmount }: Pick<Props, "yuCoinAmount">) => {
+const YuCoin = memo(({ yuCoinAmount }: Pick<Props, "yuCoinAmount">) => {
   if (!yuCoinAmount) {
     return null;
   }
@@ -212,56 +214,62 @@ const YuCoin = ({ yuCoinAmount }: Pick<Props, "yuCoinAmount">) => {
       <YuCoinTopNavIcon size={30} />
     </Box>
   );
+});
+
+const stickerConfig = {
+  hitSlop: { top: 20, bottom: 20, left: 20, right: 20 },
 };
 
-const Sticker = ({
-  textColor,
-  onPressSticker,
-  stickers,
-  currentSticker,
-}: Pick<Props, "currentSticker" | "onPressSticker" | "stickers" | "textColor">) => {
-  const StickerWrapper = onPressSticker ? Pressable : Box;
-  const stickerWrapperProps = onPressSticker ? { onPress: onPressSticker } : {};
+const Sticker = memo(
+  ({
+    textColor,
+    onPressSticker,
+    stickers,
+    currentSticker,
+  }: Pick<Props, "currentSticker" | "onPressSticker" | "stickers" | "textColor">) => {
+    const StickerWrapper = onPressSticker ? Pressable : Box;
+    const stickerWrapperProps = onPressSticker ? { onPress: onPressSticker, hitSlop: stickerConfig.hitSlop } : {};
 
-  return (
-    <Box
-      mt={32}
-      h={188}
-      w={"100%"}
-      justifyContent="center"
-      alignItems="center"
-      entering={ZoomIn.duration(1000)}
-      testID={P2P_STICKER}
-    >
-      <StickerWrapper style={styles.center} {...stickerWrapperProps}>
-        <Box position="absolute" h={188} justifyContent="center" alignItems="center">
-          {stickers?.length && !currentSticker ? (
-            <Box h={188} justifyContent="center" alignItems="center">
-              <AddIcon color={textColor} />
-              <Box mt={12}>
-                <TextTemplate color={textColor} type="b2b">
-                  {t("screens.gifting.add_sticker")}
-                </TextTemplate>
+    return (
+      <Box
+        mt={32}
+        h={188}
+        w={"100%"}
+        justifyContent="center"
+        alignItems="center"
+        entering={ZoomIn.duration(1000)}
+        testID={P2P_STICKER}
+      >
+        <StickerWrapper style={styles.center} {...stickerWrapperProps}>
+          <Box position="absolute" h={188} justifyContent="center" alignItems="center">
+            {stickers?.length && !currentSticker ? (
+              <Box h={188} justifyContent="center" alignItems="center">
+                <AddIcon color={textColor} />
+                <Box mt={12}>
+                  <TextTemplate color={textColor} type="b2b">
+                    {t("screens.gifting.add_sticker")}
+                  </TextTemplate>
+                </Box>
               </Box>
-            </Box>
-          ) : currentSticker ? (
-            <Box justifyContent="center" alignItems="center" mh={24} testID={P2P_STICKER_ITEMS(currentSticker.id)}>
-              <ItemDetailsReward
-                bubblesEnabled={false}
-                starsEnabled={currentSticker?.hasAnimatedStarsAround}
-                size={188}
-                starMultiplier={3}
-                source={currentSticker.image}
-              />
-            </Box>
-          ) : null}
-        </Box>
-      </StickerWrapper>
-    </Box>
-  );
-};
+            ) : currentSticker ? (
+              <Box justifyContent="center" alignItems="center" mh={24} testID={P2P_STICKER_ITEMS(currentSticker.id)}>
+                <ItemDetailsReward
+                  bubblesEnabled={false}
+                  starsEnabled={currentSticker?.hasAnimatedStarsAround}
+                  size={188}
+                  starMultiplier={3}
+                  source={currentSticker.image}
+                />
+              </Box>
+            ) : null}
+          </Box>
+        </StickerWrapper>
+      </Box>
+    );
+  }
+);
 
-const Message = ({ message, textColor }: Pick<Props, "message" | "textColor">) => {
+const Message = memo(({ message, textColor }: Pick<Props, "message" | "textColor">) => {
   if (!message) {
     return null;
   }
@@ -281,9 +289,9 @@ const Message = ({ message, textColor }: Pick<Props, "message" | "textColor">) =
       </TextTemplate>
     </Box>
   );
-};
+});
 
-const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankYou" | "onThankYouPress">) => {
+const Thanks = memo(({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankYou" | "onThankYouPress">) => {
   const scale = useSharedValue(1);
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -337,7 +345,7 @@ const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankY
       </Box>
     </Box>
   );
-};
+});
 
 const PINK_HEART_COLOURS = { colour: Colours.primary.p400, shadowColour: Colours.primary.p600 };
 const GREY_HEART_COLOURS = { colour: Colours.neutral.n150, shadowColour: Colours.neutral.n250 };
