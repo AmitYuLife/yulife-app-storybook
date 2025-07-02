@@ -62,7 +62,7 @@ export const HeroHeaderForeground: FC<Props> = memo(
             <YumojiAvatar uri={yumojiRemoteUrl} />
           </Animated.View>
         )}
-        {!showAchievements || !yumojiRemoteUrl ? null : (
+        {!showAchievements || !yumojiRemoteUrl || !achievements?.numberOfSlots ? null : (
           <Animated.View style={memoizedStyles.achievements}>
             <AchievementsShowcase
               componentId={ROUTES.yuScreen}

@@ -10,9 +10,9 @@ import { t } from "@locale";
 import { addCommasToNumber } from "@utils";
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
-import { AchievementStatus } from "@organisms/achievement-card/achievement-card";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
+import { AchievementStatus } from "@organisms/achievement-card/achievement-card";
 
 interface IProps {
   id: string;
@@ -23,10 +23,10 @@ interface IProps {
   };
   description: string;
   selectedSlot?: number;
+  slotsAvailable: number[];
   points: number;
   shortDescription: string;
   status: "locked" | "unlocked" | "equipped";
-  slotsTaken: number;
   isInspectingUser?: boolean;
   onClose?: () => void;
 }
@@ -40,7 +40,7 @@ const ViewAchievementModal = ({
   points,
   status,
   shortDescription,
-  slotsTaken,
+  slotsAvailable = [],
   isInspectingUser,
   selectedSlot,
   onClose,
@@ -49,26 +49,17 @@ const ViewAchievementModal = ({
   const currentUserId = useSelector(getCurrentUserId);
   const insets = useSafeAreaInsets();
 
-  const getSlot = useCallback((slot: number, selected: number) => {
-    if (status === AchievementStatus.equipped) {
-      return {};
-    }
-
-    if (selected) {
-      return { slot: selected };
-    }
-
-    if (slot < 4 && status === AchievementStatus.unlocked) {
-      return { slot };
-    }
-
-    return {};
-  }, []);
+  const hideButton = useMemo(
+    () =>
+      status === AchievementStatus.locked ||
+      isInspectingUser ||
+      (slotsAvailable.length === 0 && status === AchievementStatus.unlocked),
+    [status, isInspectingUser, slotsAvailable.length]
+  );
 
   const onButtonPress = useCallback(async () => {
-    const slot = slotsTaken + 1;
     await updateMobileGameUserAchievement({
-      variables: { id, ...getSlot(slot, selectedSlot) },
+      variables: { id, ...(status === AchievementStatus.equipped ? {} : { slot: selectedSlot }) },
     });
 
     if (onClose) {
@@ -76,7 +67,7 @@ const ViewAchievementModal = ({
     }
 
     onModalClose();
-  }, [slotsTaken, id, status, selectedSlot, currentUserId, onClose]);
+  }, [id, status, selectedSlot, currentUserId, onClose]);
 
   const showAchievementPoints = useMemo(() => typeof points === "number", [points]);
 
@@ -84,7 +75,7 @@ const ViewAchievementModal = ({
     <Box flex={1}>
       <GenericHeadingPad />
       <Box alignItems="center" justifyContent="center" p={38}>
-        <Image source={icon} width={Style.adjust(232)} height={Style.adjust(232)} />
+        <Image source={icon} width={Style.adjust(318)} height={Style.adjust(298)} />
         <Box mt={60} mb={16}>
           <TextTemplate type="h2">{name}</TextTemplate>
         </Box>
@@ -99,7 +90,7 @@ const ViewAchievementModal = ({
           </Box>
         )}
       </Box>
-      {status === "locked" || isInspectingUser ? null : (
+      {hideButton ? null : (
         <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">
           <Button
             testID="id-baby"

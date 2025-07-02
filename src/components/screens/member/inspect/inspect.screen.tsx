@@ -72,7 +72,7 @@ const InspectScreen = ({
         testID={USER_INFO(`${userName} ${level}`)}
       >
         <Box ph={24}>
-          {showAchievements ? (
+          {showAchievements && achievements.numberOfSlots > 0 ? (
             <Box flexDirection="row" pr={5} mt={12}>
               <Box width={"55%"}>
                 <NameLevelMiniAvatar

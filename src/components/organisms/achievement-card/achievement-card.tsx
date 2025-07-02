@@ -59,16 +59,14 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
           {STATUS_COMPONENTS[status]}
         </Box>
         <Box alignItems="center" justifyContent="center" mt={24}>
-          <Image h={95} w={95} style={styles.image} source={icon} />
-          <Box mt={4} gap={4}>
+          <Image h={120} w={112} style={styles.image} source={icon} />
+          <Box mt={8} gap={4}>
             <TextTemplate type="b2b" color="#464647" textAlign="center" numberOfLines={1}>
               {name}
             </TextTemplate>
-            {!description ? null : (
-              <TextTemplate type="l2b" color="#464647" textAlign="center" numberOfLines={1}>
-                {description}
-              </TextTemplate>
-            )}
+            <TextTemplate type="l2b" color="#464647" textAlign="center" numberOfLines={1}>
+              {description}
+            </TextTemplate>
           </Box>
         </Box>
       </>
