@@ -67,10 +67,10 @@ const authMiddleware = (r?: REGION) =>
     // get the authentication token from async storage if it exists
     const token = await getToken();
 
-    getClient().leaveBreadcrumb("Apollo request", { name: op.operationName }, "request");
-
     // We want to append the prefix with the current milliseconds to make the request ID unique
     const requestId = `${requestIdPrefix}_${getUserId()}_${moment().milliseconds()}_${requestCount}`;
+
+    getClient().leaveBreadcrumb("Apollo request", { name: op.operationName, requestId }, "request");
 
     requestCount++;
 
