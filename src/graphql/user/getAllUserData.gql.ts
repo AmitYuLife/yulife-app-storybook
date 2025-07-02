@@ -143,7 +143,7 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     fragment: UserProfileTodayScreenFragmentDoc,
     alias: "todayScreen",
     query: "getUserTodayScreen",
-    fragmentName: "UserTodayScreen",
+    fragmentName: "UserProfileTodayScreen",
   },
 ];
 
