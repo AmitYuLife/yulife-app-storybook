@@ -982,6 +982,7 @@ export const BATTLE_PASS_DESCRIPTION = (description: string) =>
   `BATTLE_PASS_DESCRIPTION_${description}`;
 export const RADIO_BATTLE_PASS_REWARD_ITEM = "RADIO_BATTLE_PASS_REWARD_ITEM";
 export const EMPTY_WALLET_TITLE = (title: string) => `EMPTY_WALLET_TITLE_${title}`;
+export const WALLET_ITEM_TITLE = (title: string) => `WALLET_ITEM_TITLE_${title}`;
 export const WALLET_CATEGORY_LABEL = (label: string) => `WALLET_CATEGORY_LABEL_${label}`;
 export const WALLET_ITEM_LABEL = (label: string) => `WALLET_ITEM_LABEL_${label}`;
 export const WALLET_CARD_TITLE = (title: string) => `WALLET_CARD_TITLE_${title}`;
