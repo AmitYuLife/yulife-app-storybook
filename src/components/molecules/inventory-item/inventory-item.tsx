@@ -9,7 +9,7 @@ import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip
 import { Colours, Style } from "@styles";
 import { Image } from "expo-image";
 import { memo, ReactNode, useCallback, useMemo, useRef } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Platform, Pressable, StyleSheet, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { usePressEffect } from "../../../hooks/usePressEffect";
 import InventoryItemPopover from "./inventory-item-popover";
@@ -85,6 +85,7 @@ const InventoryItem = ({
       style: {
         maxWidth: Style.DEVICE_WIDTH / 1.6,
       },
+      withModal: Platform.select({ ios: false, android: true }),
       children: (
         <InventoryItemPopover
           onClose={() => Navigation.dismissOverlay(MODALS.blurredOverlay)}
