@@ -38,13 +38,7 @@ interface IProps {
   isInspectingUser?: boolean;
 }
 
-const AchievementsShowcase = ({
-  points,
-  achievements = [],
-  componentId,
-  isInspectingUser,
-  numberOfSlots = 1,
-}: IProps) => {
+const AchievementsShowcase = ({ points, achievements = [], componentId, isInspectingUser, numberOfSlots }: IProps) => {
   const onPress = useCallback(
     async (achievement: IAchievement) => {
       await showYuModal({
