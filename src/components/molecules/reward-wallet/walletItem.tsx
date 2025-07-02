@@ -4,6 +4,7 @@ import { Colours, Style, TemplateTextType } from "@styles";
 import { memo } from "react";
 import { Image, StyleSheet } from "react-native";
 import WalletShine from "./wallet-shine";
+import { WALLET_ITEM_LABEL, WALLET_ITEM_TITLE } from "@ids";
 
 const BACKGROUND_COLOUR = "#FFD600";
 const SHADOW_COLOUR = "#FFB803";
@@ -46,13 +47,13 @@ const WalletItem = <T,>({ item, index, onPress }: WalletItemProps<T>) => (
       <Box style={styles.infoContainer}>
         {!item.label ? null : (
           <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
-            <TextTemplate color={TEXT_COLOUR} type="l2b">
+            <TextTemplate color={TEXT_COLOUR} type="l2b" testID={WALLET_ITEM_LABEL(item.label)}>
               {item.label}
             </TextTemplate>
           </Box>
         )}
         <Box>
-          <TextTemplate color={TEXT_COLOUR} type="h3" numberOfLines={2}>
+          <TextTemplate color={TEXT_COLOUR} type="h3" numberOfLines={2} testID={WALLET_ITEM_TITLE(item.title)}>
             {item.title}
           </TextTemplate>
         </Box>

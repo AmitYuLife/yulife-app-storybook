@@ -14,6 +14,7 @@ export {
 export const {
   tapText,
   tapID,
+  tapIDAtIndex,
   reloadAppToTab,
   tapYuCoinIcon,
   navigateViaText,

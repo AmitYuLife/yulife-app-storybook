@@ -16,6 +16,8 @@ Feature("Rewards should act correctly", async () => {
     });
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
+    });
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.3), async () => {
       Then("I should see the John Lewis Reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
     });
     When("I tap on the John Lewis reward", when.tapRewardInList(data.CORE_REWARDS_JOHN_LEWIS), async () => {
@@ -44,6 +46,8 @@ Feature("Rewards should act correctly", async () => {
     });
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
+    });
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.3), async () => {
       Then("I should see the locked bloom reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id)));
     });
     When("I tap on the locked reward", when.tapRewardInList(data.CORE_REWARDS_BLOOM_UNAVAILABLE), async () => {
@@ -63,12 +67,14 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
     });
     When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
-      Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
+      Then("I should be on the rewards store", then.idVisible(ids.REWARDS_SCREEN));
+      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
     });
-    Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON));
-    Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
-    When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
-      Then("I should be on the reward page", then.onRewardScreen(data.CORE_REWARDS_AMAZON));
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.5), async () => {
+      Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON));
+      When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
+        Then("I should be on the Amazon reward page", then.onRewardScreen(data.CORE_REWARDS_AMAZON));
+      });
     });
     When("I scroll to the bottom of the page", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast"), async () => {
       When("I tap the button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
@@ -121,8 +127,10 @@ Feature("Rewards should act correctly", async () => {
       });
     });
     When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I tap on the purchased tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
-        Then("I should see all three purchased Amazon vouchers", then.multiplePurchasedRewardVisible(["£36 Amazon voucher", "£24 Amazon voucher", "£12 Amazon voucher"]));
+      When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
+        When("I tap to open the Amazon wallet card", when.tapID(ids.WALLET_CARD_TITLE("Amazon"), 1000), async () => {
+          Then("I should see all three purchased Amazon vouchers", then.multiplePurchasedRewardVisible(["£36", "£24", "£12"]));
+        });
       });
     });
   });
@@ -133,6 +141,8 @@ Feature("Rewards should act correctly", async () => {
     });
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
+    });
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.4), async () => {
       Then("I should see the Broken Item Reward", then.rewardVisible(data.CORE_REWARDS_BROKEN));
     });
     When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_BROKEN), async () => {
@@ -157,16 +167,15 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
     });
     When("I dismiss the modal", when.tapText(locationModalButton, 2500), async () => {
-      When("I swipe down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast"), async () => {
-        When("I tap the Purchased history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
-          Then("I should see the nike reward I have previously purchased", then.purchasedRewardVisible(data.CORE_REWARDS_NIKE, 0));
-          Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-        });
+      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    });
+    When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
+      When("I tap on the Nike wallet card", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
+        Then("I should see the Nike reward has the correct label", then.idVisible(ids.WALLET_ITEM_LABEL("GIFT CARD")));
       });
     });
-    When("I tap this reward", when.tapPurchasedReward(data.CORE_REWARDS_NIKE, 0), async () => {
-      Then("I should be on the purchase screen for this reward", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE));
-      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    When("I tap on the Nike wallet card", when.tapID(ids.WALLET_ITEM_TITLE("£10"), 1000), async () => {
+      Then("I should see the correct reward info I have previously purchased", then.purchasedRewardVisible(data.CORE_REWARDS_NIKE, 0));
     });
   });
 
@@ -175,15 +184,14 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see the modal to select store location", then.textVisible("Current Location", 2000));
     });
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
-      When("I swipe down this page", when.swipeToText(ids.REWARDS_LIST_SCREEN, t("Purchased"), "up"), async () => {
-        When("I tap the Purchased history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
-          Then("I should see the nike reward I have previously purchased", then.purchasedRewardVisible(data.CORE_REWARDS_NIKE, 0));
+      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    });
+    When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
+      When("I tap on the Nike wallet card", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
+        When("I tap on the Nike wallet card", when.tapID(ids.WALLET_ITEM_TITLE("£10"), 1000), async () => {
           Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+          Then("I should be on the purchase screen for this reward and see US date format", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE, "en-US"));
         });
-      });
-      When("I tap this reward", when.tapPurchasedReward(data.CORE_REWARDS_NIKE, 0), async () => {
-        Then("I should be on the purchase screen for this reward and see US date format", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE, "en-US"));
-        Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
       });
     });
   });
@@ -195,7 +203,7 @@ Feature("Rewards should act correctly", async () => {
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
-    When("I scroll down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.2), async () => {
+    When("I scroll down this page", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.5), async () => {
       Then("I should see the 'Ultra Amazin' reward, only visible to those with store access level 4", then.rewardVisible(data.CORE_REWARDS_ULTRA_AMAZIN));
     });
   });
@@ -205,7 +213,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see that I have access to the rewards store, as is the default setting value", then.rewardsLocationModalVisible());
     });
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
-      When("I scroll down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.4), async () => {
+      When("I scroll down this page", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.4), async () => {
         Then("I should see the 'Amazung Prime' reward, as my storeAccessLevel resolved to the default setting value", then.rewardVisible(data.CORE_REWARDS_AMAZUNG));
       });
     });
