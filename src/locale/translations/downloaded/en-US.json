@@ -2068,6 +2068,14 @@
     }
   },
   "unequip": "Un-equip",
+  "unit_of_measure": {
+    "centimeters": "%{smart_count} in |||| %{smart_count} in",
+    "feet": "%{smart_count} ft |||| %{smart_count} ft",
+    "inches": "%{smart_count} in |||| %{smart_count} in",
+    "kilograms": "%{smart_count} lb |||| %{smart_count} lb",
+    "pounds": "%{smart_count} lb |||| %{smart_count} lbs",
+    "stones": "%{smart_count} lb |||| %{smart_count} lb"
+  },
   "user_other_app": "Or use the app",
   "user_referral": {
     "description": {

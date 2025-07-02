@@ -2068,6 +2068,14 @@
     }
   },
   "unequip": "Desequipar",
+  "unit_of_measure": {
+    "centimeters": "%{smart_count}cm |||| %{smart_count}cm",
+    "feet": "%{smart_count}ft |||| %{smart_count}ft",
+    "inches": "%{smart_count}in |||| %{smart_count}in",
+    "kilograms": "%{smart_count}kg |||| %{smart_count}kg",
+    "pounds": "%{smart_count}lb |||| %{smart_count}lbs",
+    "stones": "%{smart_count}st |||| %{smart_count}st"
+  },
   "user_other_app": "O usa la app",
   "user_referral": {
     "description": {

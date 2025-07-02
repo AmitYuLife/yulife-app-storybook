@@ -2068,6 +2068,14 @@
     }
   },
   "unequip": "装備解除",
+  "unit_of_measure": {
+    "centimeters": "%{smart_count}cm |||| %{smart_count}cm",
+    "feet": "%{smart_count}フィート |||| %{smart_count}フィート",
+    "inches": "%{smart_count}インチ |||| %{smart_count}インチ",
+    "kilograms": "%{smart_count}kg |||| %{smart_count}kg",
+    "pounds": "%{smart_count}ポンド |||| %{smart_count}ポンド",
+    "stones": "%{smart_count}ストーン |||| %{smart_count}ストーン"
+  },
   "user_other_app": "または専用アプリを使用してください",
   "user_referral": {
     "description": {
