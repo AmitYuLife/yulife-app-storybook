@@ -16,6 +16,7 @@ type NavigationShowOverlayWithChildArgs = {
   closeOnBlur?: boolean;
   onClose?: VoidFunctionOrSduiActionPayload;
   passProps?: Record<string, unknown>;
+  withModal?: boolean;
 };
 
 export class Navigation {
@@ -129,6 +130,7 @@ export class Navigation {
     closeOnBlur,
     onClose,
     passProps,
+    withModal = false,
   }: NavigationShowOverlayWithChildArgs) {
     if (modalId) {
       Logger.logEvent("screen_view", { name: modalId });
@@ -150,6 +152,7 @@ export class Navigation {
           ...(passProps || {}),
           children,
           withBlurBackground,
+          withModal,
           wrapperStyle,
           closeOnBlur,
           onClose,

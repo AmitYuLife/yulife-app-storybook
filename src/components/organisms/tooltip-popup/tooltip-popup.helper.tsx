@@ -12,6 +12,7 @@ interface PopoverProps {
   children: React.ReactNode | (({ onClose }: { onClose: () => void }) => ReactElement);
   style?: ViewStyle;
   beakPosition?: BeakPosition;
+  withModal?: boolean;
 }
 
 interface TooltipPointRelative {
@@ -36,6 +37,7 @@ export const showTooltipPopupRelativeToView = ({
   children,
   style,
   beakPosition = "autoVertical",
+  withModal = false,
 }: PopoverProps) => {
   viewRef?.current?.measure((_fx, _fy, width, height, pageX, pageY) => {
     const infoView = (
@@ -48,7 +50,7 @@ export const showTooltipPopupRelativeToView = ({
       </TooltipPopupWrapper>
     );
 
-    Navigation.showOverlayWithChild({ children: infoView, withBlurBackground: false });
+    Navigation.showOverlayWithChild({ children: infoView, withBlurBackground: false, withModal });
   });
 };
 

@@ -1,5 +1,5 @@
 import React, { cloneElement, ReactElement, useCallback, useEffect, useMemo, useRef } from "react";
-import { Animated, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, Modal, StyleSheet, View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
 import { BlurView, BlurViewProps } from "@react-native-community/blur";
 import { useBackHandler, usePressedInWithDelay } from "@hooks";
@@ -15,6 +15,8 @@ interface IProps extends Pick<BlurViewProps, "blurAmount" | "blurType"> {
   blurAmount?: number;
   backgroundColor?: string;
   onClose?: VoidFunctionOrSduiActionPayload;
+  // set withModal to true when you need to show the overlay on top of another modal (android specific)
+  withModal?: boolean;
 }
 
 const commonProps = {
@@ -31,6 +33,7 @@ const BlurredOverlay = ({
   blurAmount = 5,
   backgroundColor = "rgba(0,0,0,.5)",
   onClose,
+  withModal = false,
 }: IProps) => {
   const { handleSduiAction: handleOnClose } = useSduiCallbackFunctionOrReduxAction(onClose, () =>
     Navigation.dismissOverlay(MODALS.blurredOverlay)
@@ -74,13 +77,18 @@ const BlurredOverlay = ({
     return [styles.wrapper, { opacity, ...wrapperStyle }, { backgroundColor }];
   }, [backgroundColor, opacity, wrapperStyle]);
 
-  return (
-    <Animated.View testID="blur-provider.overlay-container" style={wrapperStyles} accessibilityViewIsModal={true}>
-      {!withBlurBackground ? null : <BlurView blurAmount={blurAmount} blurType={blurType} style={styles.blur} />}
-      <View style={styles.blur} onTouchStart={closeOnBlur ? handlePress : null} />
-      {cloneElement(children, { closeOverlay: handlePress })}
-    </Animated.View>
+  const Wrapper = useMemo(
+    () => (
+      <Animated.View testID="blur-provider.overlay-container" style={wrapperStyles} accessibilityViewIsModal={true}>
+        {!withBlurBackground ? null : <BlurView blurAmount={blurAmount} blurType={blurType} style={styles.blur} />}
+        <View style={styles.blur} onTouchStart={closeOnBlur ? handlePress : null} />
+        {cloneElement(children, { closeOverlay: handlePress })}
+      </Animated.View>
+    ),
+    [wrapperStyles, withBlurBackground, blurAmount, blurType, closeOnBlur, children, handlePress]
   );
+
+  return withModal ? <Modal transparent={true}>{Wrapper}</Modal> : Wrapper;
 };
 
 const styles = StyleSheet.create({
