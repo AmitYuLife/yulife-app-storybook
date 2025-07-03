@@ -7,6 +7,74 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.70.0] - 2025-07-03
+
+### Features
+
+- Feature NVS-1376: Replace ScrollPickerModal toggle with chips
+- Feature NVS-1108: Add Health Questionnaire button to Today Screen
+
+### Bugfixes
+
+- Bugfix GS-1719: Power up tooltip fix
+- Bugfix NVS-1108: Fix incorrect fragment name
+- Bugfix NVS-1067: Improve GiftView sticker responsiveness
+- Bugfix NVS-1064: Move MessagePreview sending animation starting point downwards to avoid peaking
+- Bugfix: Add @app alias on storybook config
+- Bugfix GS-1732: Spacing on YuHealth Connect Screen
+
+### Tasks
+
+- Task GS-1741: Improvements and fixes for achievements part 2
+- Task: Patch expo-device to support xcode 16.3+
+- Task: Use original size for mountain lunar assets
+- Task GS-1714: Improve un/equipping achievement on inspect screen
+- Task: Enable popGesture for iOS on sdui navigation
+- Task GS-1719: Use props for show overlay with child
+- Task GS-1713: Rive
+- Task: Format YuCoin amount on gift receive
+- Task DEVOP-4039: Fix deploy pipelines not always syncing all the files
+- Task GS-1720: Purge getUserEquippedAchievements
+- Task NVS-1429: Drive gifting user preselection only using user ids
+- Task ISA-3435: Reload app state when webview requests it
+- Task CTE-208: purge footer from product details
+- Task GS-1716: Open wallet even when coupons are disabled
+- Task: Enable unused-imports for .tsx files
+- Task ISA-3435: Add SDUI to dismiss modal
+- Task GS-1716: Decouple reward store & coupons
+
+### Chores
+
+- Chore - Updated translations
+- Chore: add requestId to apollo request breadcrumb
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Feat: NVS-1425: Show day 1 smoking celebration modal
+- Detox: Rewards Shopfront
+- Detox: Shopfront Routing
+- Detox: Skip Rays Animation
+- Detox NVS-1415: Engagement survey event card changing background colour depending on current world.
+- Detox NVS-715: Dai-ichi product cards showing correct images
+- Feat: NVS-1309: Track Game2048 high scores in DB
+- Detox: rewards game test fixes
+- Detox NVS-1424: updated LEFT_HEADING_BUTTON ID spelling and to not return undefined or null
+- Detox: Fitkit Connect Skip
+- Detox NVS-1437: Stop ProgressBarYuCoin animation on Detox
+- Detox NVS-1443: Create accurate matchers for markdown text
+- Detox: Unavailable Rewards
+- Detox NVS-1442: Create accurate detox identifiers for FitkitConnect screen buttons
+- Detox NVS-1439: Create weight step in detox core journey steps
+- Detox NVS-1441: Remove Button animation in detox
+- Detox: NVS-1285 Expired Link Message
+- Detox: LCS-977 - further Smoking Hub tests
+- Detox: Daily Screen Navigation
+- Detox: SA fixes and NVS-1360
+- Detox: NVS-1235 frictionless sign up
+- Detox: adjust JP gifting test for updated sticker selection flow
+
 ## [4.69.0] - 2025-06-26
 
 ### Tasks
