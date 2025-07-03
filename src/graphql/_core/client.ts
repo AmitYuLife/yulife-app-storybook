@@ -70,7 +70,11 @@ const authMiddleware = (r?: REGION) =>
     // We want to append the prefix with the current milliseconds to make the request ID unique
     const requestId = `${requestIdPrefix}_${getUserId()}_${moment().milliseconds()}_${requestCount}`;
 
-    getClient().leaveBreadcrumb("Apollo request", { name: op.operationName, requestId }, "request");
+    getClient().leaveBreadcrumb(
+      "Apollo request",
+      { name: op.operationName, requestId, retryCount: op.context?.retries || 0 },
+      "request"
+    );
 
     requestCount++;
 

@@ -90,5 +90,8 @@ export function* sduiActionSendMutation(action: SduiSagaAction) {
         location: "sduiActionSendMutation",
       })
     );
+
+    // adding this lets you interact with the X / back buttons if the mutation fails
+    yield put(setLoadingState({ __disabled: false }));
   }
 }
