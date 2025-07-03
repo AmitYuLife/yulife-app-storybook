@@ -25,7 +25,7 @@ const SmokingContainer = (props: Props) => {
   const { error, loading } = useStreakCheckIn(smokingState, onSmokingStreakCelebrationClose, setInitialSmokingState);
   const { showOptOutOverlay } = useOptOut(smokingState);
   const { editTriggers, editReasons } = useEditState(smokingState);
-  const { showIntroModal } = useIntroModal(props.swiper);
+  const { showIntroModal } = useIntroModal(props.swiper, smokingState);
   useNotificationForAutoClaimedYuCoin();
 
   const navigateToCommitmentScreenAction = useCallback(() => navigateToCommitmentScreen(smokingState), [smokingState]);
