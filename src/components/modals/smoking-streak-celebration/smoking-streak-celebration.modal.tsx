@@ -9,7 +9,7 @@ import { default as SmokingCelebration, SmokingCelebrationProps } from "./subcom
 type Page = "streakIncrease" | "milestone";
 
 interface ISmokingStreakCelebrationModalProps {
-  onClose: VoidFunctionOrPromise;
+  onClose?: VoidFunctionOrPromise;
   smokingData: GetHealthSmokingStateQuery["getHealthSmokingState"];
   closeOverlay?: VoidFunction; // Set from BlurredOverlay
 }

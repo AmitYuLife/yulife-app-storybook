@@ -1,9 +1,11 @@
-import { ROUTES } from "@navigation/constants";
 import { FullScreenSwiper } from "@organisms";
-import { useState, useCallback, useEffect, ComponentProps } from "react";
+import { useState, useCallback, useEffect, ComponentProps, useRef } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
-import { Platform } from "react-native";
+import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
+import { showSmokingStreakCelebrationModal } from "../helpers/showSmokingStreakCelebrationModal";
+import { GetHealthSmokingStateQuery } from "@graphql/__generated";
+import { useAsyncEffect } from "@hooks";
 
 export type UseIntroModalProps = Omit<ComponentProps<typeof FullScreenSwiper>, "close" | "button"> & {
   close: {
@@ -25,58 +27,59 @@ export type UseIntroModalProps = Omit<ComponentProps<typeof FullScreenSwiper>, "
   };
 };
 
-export function useIntroModal(swiper: UseIntroModalProps) {
+export function useIntroModal(swiper: UseIntroModalProps, smokingState?: HealthSmokingState) {
   const [showIntroModal, setShowIntroModal] = useState(!!swiper);
   const dispatch = useDispatch();
+  const smokingStateRef = useRef(smokingState);
 
-  const dismissOverlay = useCallback(
-    (sduiAction: { type: string; payload: string }) => () => {
-      if (sduiAction) {
-        dispatch(sduiAction);
-      }
+  const dismissOverlay = useCallback((sduiAction: { type: string; payload: string }) => {
+    if (sduiAction) {
+      dispatch(sduiAction);
+    }
 
-      Navigation.dismissAllOverlays();
-      setShowIntroModal(false);
-    },
-    []
-  );
+    Navigation.dismissAllOverlays();
+    setShowIntroModal(false);
+  }, []);
 
   useEffect(() => {
+    smokingStateRef.current = smokingState;
+  }, [smokingState]);
+
+  const fullScreenSwiperOnPress = useCallback(
+    (onPress: UseIntroModalProps["close" | "button"]["onPress"]) => {
+      dismissOverlay(onPress);
+
+      if (smokingStateRef.current?.streakCheckInOverlay?.celebration?.title) {
+        showSmokingStreakCelebrationModal(
+          smokingStateRef.current as GetHealthSmokingStateQuery["getHealthSmokingState"]
+        );
+      }
+    },
+    [dismissOverlay]
+  );
+
+  useAsyncEffect(async () => {
     if (!swiper) {
       return;
     }
 
-    const passedProps = {
+    const fullScreenSwiperProps = {
       ...swiper,
       close: !swiper.close
         ? null
         : {
             ...swiper.close,
-            onPress: dismissOverlay(swiper.close.onPress),
+            onPress: () => fullScreenSwiperOnPress(swiper.close.onPress),
           },
       button: !swiper.button
         ? null
         : {
             ...swiper.button,
-            onPress: dismissOverlay(swiper.button.onPress),
+            onPress: () => fullScreenSwiperOnPress(swiper.button.onPress),
           },
     };
 
-    const start = async () => {
-      await Navigation.showOverlayWithChild({ children: <FullScreenSwiper {...passedProps} /> });
-
-      if (Platform.OS === "android") {
-        await Navigation.popToRoot(ROUTES.yuScreen);
-        await Navigation.push(ROUTES.yuScreen, {
-          component: {
-            id: ROUTES.smoking,
-            name: ROUTES.smoking,
-          },
-        });
-      }
-    };
-
-    start();
+    await Navigation.showOverlayWithChild({ children: <FullScreenSwiper {...fullScreenSwiperProps} /> });
   }, []);
 
   return { showIntroModal };

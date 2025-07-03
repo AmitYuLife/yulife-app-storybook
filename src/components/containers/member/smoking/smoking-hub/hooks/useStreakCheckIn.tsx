@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { updateHealthSmokingStateAction } from "@redux/health-smoking/health-smoking.actions";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { GetHealthSmokingStateQuery, gql } from "@graphql/__generated";
-import { showFloatingModal, SmokingStreakCelebrationModal, SmokingStreakCheckInOverlay } from "@modals";
+import { gql } from "@graphql/__generated";
+import { showFloatingModal, SmokingStreakCheckInOverlay } from "@modals";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { getRouteState } from "@redux/app/app.selectors";
@@ -13,6 +13,7 @@ import { VoidFunction } from "@utils";
 import { getUserDataStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { AppDataType } from "@redux/user/user.types";
+import { showSmokingStreakCelebrationModal } from "../helpers/showSmokingStreakCelebrationModal";
 
 export const useStreakCheckIn = (
   smokingState: HealthSmokingState,
@@ -175,20 +176,3 @@ export const useStreakCheckIn = (
     error,
   };
 };
-
-function showSmokingStreakCelebrationModal(
-  smokingData: GetHealthSmokingStateQuery["getHealthSmokingState"],
-  onClose: VoidFunction
-) {
-  Navigation.showOverlayWithChild({
-    children: <SmokingStreakCelebrationModal onClose={onClose} smokingData={smokingData} />,
-    wrapperStyle: { flexDirection: "column-reverse" },
-    modalId: MODALS.smokingStreakCelebration,
-    closeOnBlur: false,
-    passProps: {
-      blurType: "light",
-      blurAmount: 8,
-      backgroundColor: "rgba(0,0,0,.8)",
-    },
-  });
-}
