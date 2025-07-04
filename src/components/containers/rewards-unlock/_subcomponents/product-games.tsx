@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const ProductGames = memo(({ games }: Props) =>
-  games.map((game) => <ProductGameItem key={game.title} {...game} />)
+  games.map((game) => <ProductGameItem key={game.id || game.title} {...game} />)
 );
