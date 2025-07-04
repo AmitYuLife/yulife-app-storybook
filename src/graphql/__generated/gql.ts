@@ -135,10 +135,10 @@ const documents = {
   UserFeatureFragmentDoc: types.UserFeatureFragmentDoc,
   UserPassiveChallengesEarnRateFragmentDoc: types.UserPassiveChallengesEarnRateFragmentDoc,
   UserProfileEventsFragmentDoc: types.UserProfileEventsFragmentDoc,
+  UserProfileTodayScreenFragmentDoc: types.UserProfileTodayScreenFragmentDoc,
   UserStatisticDetailsFragmentDoc: types.UserStatisticDetailsFragmentDoc,
   UserTodayActivitiesFragmentDoc: types.UserTodayActivitiesFragmentDoc,
   UserTodayActivityFragmentDoc: types.UserTodayActivityFragmentDoc,
-  UserProfileTodayScreenFragmentDoc: types.UserProfileTodayScreenFragmentDoc,
   MobileUserWrappedFragmentDoc: types.MobileUserWrappedFragmentDoc,
   YuHealthOptionsFragmentDoc: types.YuHealthOptionsFragmentDoc,
   GetMobileGameUserAchievementsDocument: types.GetMobileGameUserAchievementsDocument,
@@ -920,6 +920,10 @@ export function gql(source: "UserProfileEventsFragmentDoc"): typeof documents["U
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "UserProfileTodayScreenFragmentDoc"): typeof documents["UserProfileTodayScreenFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "UserStatisticDetailsFragmentDoc"): typeof documents["UserStatisticDetailsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -929,10 +933,6 @@ export function gql(source: "UserTodayActivitiesFragmentDoc"): typeof documents[
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "UserTodayActivityFragmentDoc"): typeof documents["UserTodayActivityFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "UserProfileTodayScreenFragmentDoc"): typeof documents["UserProfileTodayScreenFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -11,7 +11,6 @@ import {
   getUserCoinLedgerSuccess,
   getUserFeaturesSuccess,
   getUserConnectionsSuccess,
-  updateUserTodayScreen,
 } from "../user.actions";
 import { AppDataType, IAppDataTypePayload, GetUserFeaturesPayload, GetUserConnectionsPayload } from "../user.types";
 import { Action } from "@reduxjs/toolkit";
@@ -68,7 +67,7 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Ac
   [AppDataType.dailyChallengeAmountAvailable]: getDailyChallengeAmountAvailableActionSuccess,
   [AppDataType.inventoryInfo]: getInventoryInfoSuccess,
   [AppDataType.challengesDoneToday]: getChallengesDoneTodayActionSuccess,
-  [AppDataType.todayScreen]: updateUserTodayScreen,
+  [AppDataType.todayScreen]: null, // no-op, as we're relying on the Apollo cache (i.e. this is not stored in redux)
 };
 
 export default function* getAllUserDataSaga({

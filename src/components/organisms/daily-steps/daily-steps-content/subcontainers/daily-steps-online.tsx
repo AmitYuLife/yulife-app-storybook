@@ -6,7 +6,7 @@ import { ActivityList, Button, Counter, HeroCards, Panel, Pressable } from "@mol
 import { displaySecondsAsMinutes } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { NAV_BAR, Style, templateTextStyles } from "@styles";
-import { getUserHeroCards, getUserTodayScreen } from "@redux/user/user.selectors";
+import { getUserHeroCards } from "@redux/user/user.selectors";
 import { getDailyPanelSelector, getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import {
@@ -27,6 +27,8 @@ import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyPensionContribution } from "@redux/daily-pension/daily-pension.selectors";
 import { useUserFeatures } from "@hooks";
 import { IHealthPermissionPanelProps } from "@components/molecules/health-permission-panel/health-permission-panel";
+import { useQuery } from "@apollo/client";
+import { gql } from "@graphql/__generated";
 
 type DailyStepsOnlineProps = {
   isUnavailable?: boolean;
@@ -49,7 +51,9 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
   const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
-  const todayScreen = useSelector(getUserTodayScreen);
+
+  const { data: todayScreenData } = useQuery(gql("GetUserTodayScreenDocument"), { fetchPolicy: "cache-only" });
+  const todayScreen = todayScreenData?.getUserTodayScreen;
 
   const dispatch = useDispatch();
   const fitkit = useFitKit();

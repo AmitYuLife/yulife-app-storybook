@@ -158,7 +158,3 @@ export const updateUserAvatarRemoteFiles: ActionCreatorWithOptionalPayload<Updat
 export const updateUserSurge = createAction<UserSurge, "UPDATE_USER_SURGE">(UPDATE_USER_SURGE);
 
 export const getUserSessionSuccess = createAction<null, "GET_USER_SESSION_SUCCESS">(GET_USER_SESSION_SUCCESS);
-
-export const updateUserTodayScreen = createAction<IUserStore["todayScreen"], "UPDATE_USER_TODAY_SCREEN">(
-  UPDATE_USER_TODAY_SCREEN
-);
