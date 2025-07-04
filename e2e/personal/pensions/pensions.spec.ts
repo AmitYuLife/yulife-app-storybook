@@ -7,6 +7,7 @@ import * as ids from "@ids";
 import * as data from "../_data";
 import { PensionInfoUser111, PensionInfoUser114 } from "./_resources/fixtures";
 import { calculateDailyContribution, calculateInProgressContribution, calculatePensionModalAmount } from "./_resources/utils";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("Smart Pension", async () => {
   Scenario("I can see an active connected pension", scenario.start, () => {
@@ -18,10 +19,12 @@ Feature("Smart Pension", async () => {
       Then("I can see the slot has no yucoin icon", then.idNotVisible(ids.RIGHT_STATUS_ICON));
     });
     When("I swipe to the bottom", when.scrollFromID(ids.YUSCREEN, "up", "fast", 0.5), async () => {
-      Then("I cannot see the caoursel item", then.idNotVisible(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")));
+      Then("I cannot see the carousel item", then.idNotVisible(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")));
     });
-    When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")), async () => {
-      Then("I can see an active pension contribution page", then.canSeePensionContributionPage("active", PensionInfoUser111, "5"));
+    When("I scroll until I see the pension card", when.scrollFromID(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, "down", "fast", 0.15), async () => {
+      When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")), async () => {
+        Then("I can see an active pension contribution page", then.canSeePensionContributionPage("active", PensionInfoUser111, "5"));
+      });
     });
     When("I scroll down the screen", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
       When("I tap the piggy bank toggle", when.tapID(ids.SDUI_SWITCH(undefined)), async () => {
@@ -123,6 +126,28 @@ Feature("Smart Pension", async () => {
     });
     When("I tap manage", when.tapText("Manage"), async () => {
       Then("I am on the product page for the pension", then.onPensionProductPage);
+    });
+  });
+
+  Scenario("A user with an active, connected pension, but with smartPension setting disabled, should not see the pension feature", scenario.start, () => {
+    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_115.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the Yu tab", when.navigateTo("yu"), async () => {
+        Then("I do not see the onboarding screen as I have a connection", then.cannotSeePensionOnboarding);
+      });
+    });
+    When("I swipe to the bottom", when.scrollFromID(ids.YUSCREEN, "up", "fast", 0.5), async () => {
+      Then("I cannot see the carousel item", then.idNotVisible(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")));
+    });
+    When("I scroll to where the pension card would be", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "down", "fast", 0.15), async () => {
+      Then("I should not see an active pension contribution page", then.idNotVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")));
+    });
+    When("I go to the Yucoin tab", when.navigateTo("yucoin"), async () => {
+      When("I go to earnings", when.tapYuCoinIcon, async () => {
+        Then("I am on the earnings page", then.idVisible(ids.TODAYS_EARNINGS));
+      });
+    });
+    When("I scroll to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast"), async () => {
+      Then("I should not see the pension contribution section", then.textNotVisible("Pension contribution"));
     });
   });
 });
