@@ -1037,6 +1037,7 @@ export type BusinessSessionSettings = {
   eventManagementEnabled: Scalars["Boolean"]["output"];
   helpCentreLink?: Maybe<Scalars["String"]["output"]>;
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
+  isEmployeeRecognitionPaywallEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
   resourcesRedesignEnabled: Scalars["Boolean"]["output"];
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
@@ -7323,6 +7324,16 @@ export type PlayerBirthday = {
   __typename?: "PlayerBirthday";
   /** The player's birth date. */
   dateOfBirth: Scalars["String"]["output"];
+  /**
+   * The day of the player's birth (1-31).
+   * @deprecated Use dateOfBirth instead
+   */
+  dateOfBirthDay?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * The month of the player's birth (1-12).
+   * @deprecated Use dateOfBirth instead
+   */
+  dateOfBirthMonth?: Maybe<Scalars["Int"]["output"]>;
   /** Represents the visibility status of the player's birthday information. */
   isVisible: Scalars["Boolean"]["output"];
 };
@@ -10929,11 +10940,12 @@ export type UserProfileStatisticComparison = {
 export type UserProfileTodayScreen = {
   __typename?: "UserProfileTodayScreen";
   button?: Maybe<UserProfileTodayScreenButton>;
+  id: Scalars["ID"]["output"];
 };
 
 export type UserProfileTodayScreenButton = {
   __typename?: "UserProfileTodayScreenButton";
-  id: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
   label: Scalars["String"]["output"];
   onPress?: Maybe<SduiAction>;
 };
@@ -20485,6 +20497,17 @@ export type UserProfileEventsFragment = {
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
+export type UserProfileTodayScreenFragment = {
+  __typename?: "UserProfileTodayScreen";
+  id: string;
+  button?: {
+    __typename?: "UserProfileTodayScreenButton";
+    id: string;
+    label: string;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+};
+
 export type UserStatisticDetailsFragment = {
   __typename?: "UserStatisticDetails";
   id: string;
@@ -20525,16 +20548,6 @@ export type UserTodayActivityFragment = {
   milestones?: number | null;
   name?: string | null;
   score?: string | null;
-};
-
-export type UserProfileTodayScreenFragment = {
-  __typename?: "UserProfileTodayScreen";
-  button?: {
-    __typename?: "UserProfileTodayScreenButton";
-    id: string;
-    label: string;
-    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  } | null;
 };
 
 export type MobileUserWrappedFragment = {
@@ -33649,6 +33662,7 @@ export type GetUserProfileQuery = {
     }>;
     todayScreen: {
       __typename?: "UserProfileTodayScreen";
+      id: string;
       button?: {
         __typename?: "UserProfileTodayScreenButton";
         id: string;
@@ -33713,6 +33727,7 @@ export type GetUserTodayScreenQuery = {
   __typename?: "Query";
   getUserTodayScreen: {
     __typename?: "UserProfileTodayScreen";
+    id: string;
     button?: {
       __typename?: "UserProfileTodayScreenButton";
       id: string;
@@ -55322,6 +55337,53 @@ export const UserProfileEventsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UserProfileEventsFragment, unknown>;
+export const UserProfileTodayScreenFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserProfileTodayScreen" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileTodayScreen" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "button" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserProfileTodayScreenFragment, unknown>;
 export const UserStatisticDetailsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -55475,52 +55537,6 @@ export const UserTodayActivitiesFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UserTodayActivitiesFragment, unknown>;
-export const UserProfileTodayScreenFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "UserProfileTodayScreen" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileTodayScreen" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "button" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UserProfileTodayScreenFragment, unknown>;
 export const MobileUserWrappedFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -87581,6 +87597,7 @@ export const GetUserProfileDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "button" },
@@ -87806,6 +87823,7 @@ export const GetUserTodayScreenDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "button" },

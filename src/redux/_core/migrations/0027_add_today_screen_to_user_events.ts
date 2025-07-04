@@ -1,17 +1,10 @@
 import { PersistedState } from "redux-persist";
 import { IReduxState } from "../reducers";
 
-export default (state: PersistedState & IReduxState): PersistedState & IReduxState => ({
-  ...state,
-  user: {
-    ...state.user,
-    todayScreen: {
-      ...state.user?.todayScreen,
-      button: {
-        ...state.user?.todayScreen?.button,
-        id: "",
-        label: "",
-      },
-    },
-  },
-});
+type State = PersistedState & IReduxState;
+
+export default (state: State): State => {
+  // we decided not to store user.todayScreen in Redux and this change never reached production
+  // so we can just return the same state
+  return state;
+};

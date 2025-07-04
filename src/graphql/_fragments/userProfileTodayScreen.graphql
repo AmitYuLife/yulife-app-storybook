@@ -1,4 +1,5 @@
 fragment UserProfileTodayScreen on UserProfileTodayScreen {
+  id
   button {
     id
     label

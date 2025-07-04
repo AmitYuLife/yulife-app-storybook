@@ -16,7 +16,6 @@ import {
   getUserFeaturesSuccess as getUserFeaturesSuccessAction,
   getUserConnectionsSuccess as getUserConnectionsSuccessAction,
   getUserSessionSuccess,
-  updateUserTodayScreen as updateUserTodayScreenAction,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import {
@@ -83,12 +82,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   supportConfig: {
     supportLevel: null,
   },
-  todayScreen: {
-    button: {
-      id: "",
-      label: "",
-    },
-  },
 });
 
 const userReducer = createReducer(getInitialState(), (builder) => {
@@ -127,12 +120,6 @@ const userReducer = createReducer(getInitialState(), (builder) => {
     sessionCount: state.sessionCount + 1,
     sessionTimestamp: Date.now(),
   }));
-  builder.addCase(updateUserTodayScreenAction, (state, action) => {
-    return {
-      ...state,
-      todayScreen: action.payload,
-    };
-  });
   builder.addDefaultCase((state) => state);
 });
 
@@ -193,15 +180,6 @@ const updatePersistedState = (persistedState: IUserStore) => {
     newState.endPointsVersion = {
       getMobileCopy: "",
       getMobileAssets: "",
-    };
-  }
-
-  if (!persistedState.todayScreen) {
-    newState.todayScreen = {
-      button: {
-        id: "",
-        label: "",
-      },
     };
   }
 
@@ -281,7 +259,6 @@ const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload
   },
   events: payload.events,
   heroCards: payload.heroCards,
-  todayScreen: payload.todayScreen,
 });
 
 const updateUserProfileEvents = (state: IUserStore, events: IUserStore["events"]) => ({
