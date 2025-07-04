@@ -9,6 +9,7 @@ import { RewardPassRewardLabel } from "./subcomponents/reward-pass-reward-label"
 import RewardPassLottieStars from "./subcomponents/reward-pass-lottie-stars/reward-pass-lottie-stars";
 import { Pressable } from "@components/molecules";
 import { DETOX_ENABLED } from "@services/socket";
+import { REWARD_PASS } from "@ids";
 
 interface IRewardPassProps {
   label: string;
@@ -51,6 +52,7 @@ const RewardPass = ({
       enableAnimation={true}
       aspectRatio={344 / 180}
       onPress={handleSduiAction}
+      testID={REWARD_PASS(label)}
     >
       <RawImage source={backgroundImage} style={styles.backgroundImage} contentFit="cover" />
       <Box position="absolute" w="100%" h="100%" alignItems="center" justifyContent="center">
