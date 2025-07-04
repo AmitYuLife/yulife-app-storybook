@@ -995,6 +995,7 @@ export const PARTNER_REWARDS_INVENTORY_ITEMS_TITLE = (title: string) =>
 export const DONATION_LIST_AVATARS = (count: number) => `DONATION_LIST_AVATARS_${count}`;
 export const ITEM_DETAILS_SUBTITLE = (text: string) => `ITEM_DETAILS_SUBTITLE_${text}`;
 export const REWARDS_MODAL_INFO_BUTTON = "rewards.got-it";
+export const REWARD_PASS = (label: string) => `REWARD_PASS_${label}`;
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";
