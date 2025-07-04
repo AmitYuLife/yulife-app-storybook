@@ -16,6 +16,7 @@ import { useScrollToItem } from "@hooks";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 
 type Props = {
+  id?: string;
   title: string;
   icon?: {
     uri?: string;
