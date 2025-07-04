@@ -263,3 +263,26 @@ export const CUSTOMER_LEAVER_CONCURRENT_CREATEDAT_UPDATE = {
     createdAt: moment().subtract(1, "y").format("YYYY-MM-DD"),
   },
 };
+
+export const CUSTOMER_115 = createCustomerRecords({
+  archived: false,
+  firstName: "Bonnie",
+  lastName: "Clyde",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  customerId: generateRandomPostgresId(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      legalFirstName: "Bonnie",
+      legalLastName: "Clyde",
+      inviteCode: "TestPensionNoSetting01",
+      employmentEmail: generateRandomInbox(),
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+});
