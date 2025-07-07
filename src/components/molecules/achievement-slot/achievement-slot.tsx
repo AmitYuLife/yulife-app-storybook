@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const SIZE = 56;
-const IMAGE_SIZE = SIZE + 4;
+const IMAGE_SIZE = SIZE + 16;
 const AchievementSlot = ({ onPress, icon, showStarIcon }: IProps) => {
   return (
     <Pressable
