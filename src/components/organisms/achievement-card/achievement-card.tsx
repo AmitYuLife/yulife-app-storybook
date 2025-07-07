@@ -1,13 +1,11 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { CheckIcon } from "@atoms/icon/check-icon";
 import { LockIcon } from "@atoms/icon/lock-icon";
-import { t } from "@locale";
 import { AchievementPoints, BoxOption } from "@molecules";
 import { Style } from "@styles";
-import { addCommasToNumber } from "@utils";
-import { memo, useMemo } from "react";
+import { memo, useMemo, ReactNode } from "react";
 import { StyleSheet } from "react-native";
-import { ReactNode } from "react";
+import { addCommasToNumber } from "@utils";
 
 export enum AchievementStatus {
   locked = "locked",
@@ -58,16 +56,17 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
           )}
           {STATUS_COMPONENTS[status]}
         </Box>
-        <Box alignItems="center" justifyContent="center" mt={24}>
-          <Image h={120} w={112} style={styles.image} source={icon} />
-          <Box mt={8} gap={4}>
-            <TextTemplate type="b2b" color="#464647" textAlign="center" numberOfLines={1}>
-              {name}
-            </TextTemplate>
-            <TextTemplate type="l2b" color="#464647" textAlign="center" numberOfLines={1}>
-              {description}
-            </TextTemplate>
-          </Box>
+
+        <Box w={164} h={136} top={0} alignItems="center" justifyContent="center">
+          <Image w={164} h={136} source={icon} />
+        </Box>
+        <Box mt={4}>
+          <TextTemplate type="b2b" color="#464647" textAlign="center" numberOfLines={1}>
+            {name}
+          </TextTemplate>
+          <TextTemplate type="l2b" color="#464647" textAlign="center" numberOfLines={1}>
+            {description}
+          </TextTemplate>
         </Box>
       </>
     </BoxOption>
@@ -75,13 +74,8 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
 };
 
 const Equipped = () => (
-  <Box bg="#FFF2F2" flexDirection="row" alignItems="center" pl={8} pr={2} br={20} gap={4}>
-    <TextTemplate color="#E30D76" type="l3b">
-      {t("equipped")}
-    </TextTemplate>
-    <Box w={20} h={20} br={100} p={2} bg="#E30D76" alignItems="center" justifyContent="center">
-      <CheckIcon color="white" size={11} />
-    </Box>
+  <Box w={20} h={20} br={100} p={2} bg="#E30D76" alignItems="center" justifyContent="center">
+    <CheckIcon color="white" size={11} />
   </Box>
 );
 
@@ -99,15 +93,14 @@ const STATUS_COMPONENTS: Record<string, ReactNode> = {
 
 const styles = StyleSheet.create({
   image: {
-    height: Style.adjust(95),
+    height: Style.adjust(136),
   },
   wrapperStyle: {
     width: "90%",
   },
   innerWrapperStyle: {
     alignItems: "center",
-    justifyContent: "center",
-    padding: Style.adjust(8),
+    paddingHorizontal: Style.adjust(8),
   },
 });
 
