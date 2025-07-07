@@ -7,7 +7,8 @@ import { CaptchaInput, useCaptcha } from "@organisms/captcha-input";
 import { Colours, Style } from "@styles";
 import { t } from "@locale";
 import { LoginFormWrapper } from "../subcomponents/login-form-wrapper";
-import { StyleSheet } from "react-native";
+import { Keyboard, StyleSheet } from "react-native";
+import { useKeyboardListeners } from "@hooks";
 
 interface IProps {
   email: string;
@@ -32,6 +33,7 @@ const LoginEmailScreen = ({
 }: IProps) => {
   const [showEmailError, setShowEmailError] = useState(false);
 
+  const isShowingKeyboard = useKeyboardListeners();
   const disableSubmit = useMemo(() => !email || !!emailError || isSubmitting, [email, emailError, isSubmitting]);
 
   const handleSubmit = useCallback(() => {
@@ -42,6 +44,9 @@ const LoginEmailScreen = ({
 
     setShowEmailError(false);
     onPressSubmit();
+    if (isShowingKeyboard) {
+      Keyboard.dismiss();
+    }
   }, [onPressSubmit, emailError]);
 
   return (
