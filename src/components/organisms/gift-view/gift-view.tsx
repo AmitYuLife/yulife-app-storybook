@@ -29,6 +29,7 @@ import {
 } from "@ids";
 import { GiftingHeartIcon } from "@atoms/icon/gifting-heart-icon";
 import { addCommasToNumber } from "@utils";
+import { GiftClaimType } from "@graphql/__generated";
 
 const MAX_MESSAGE_LENGTH = 50;
 
@@ -64,6 +65,7 @@ type Props = {
   onPressSticker?: () => void;
   onThankYouPress?: () => void;
   onSendGift?: () => void;
+  claimType?: GiftClaimType;
   currentSticker: StickerAsset;
   sender?: {
     avatar?: {
@@ -84,6 +86,7 @@ const GiftView = memo(
     textColor,
     onPressSticker,
     stickers,
+    claimType = GiftClaimType.Player,
     currentSticker,
     sender,
     hasSaidThankYou,
@@ -95,6 +98,8 @@ const GiftView = memo(
       () => (background?.backgroundColor ? { backgroundColor: background.backgroundColor } : {}),
       [background]
     );
+
+    const isBusinessClaimType = claimType === GiftClaimType.Company;
 
     return (
       <View style={[styles.screen, wrapperStyle]} testID={P2P_GIFT_VIEW(background?.id)}>
@@ -111,7 +116,9 @@ const GiftView = memo(
                 textColor={textColor}
               />
               <Message message={message} textColor={textColor} />
-              <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
+              {!isBusinessClaimType ? (
+                <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
+              ) : null}
               <Box height={(message || "").length > MAX_MESSAGE_LENGTH ? NAV_BAR.DEFAULT_FULL_HEIGHT : 1} />
             </>
           )}
@@ -127,7 +134,12 @@ const GiftView = memo(
         )}
         {!onSendGift ? null : (
           <Box width="100%" position="absolute" bottom={navBarStyles.getPositionBottom()}>
-            <Button translationKey={"screens.gifting.send_your_friend_a_gift"} onPress={onSendGift} />
+            <Button
+              translationKey={
+                isBusinessClaimType ? "screens.gifting.spend_your_yucoin" : "screens.gifting.send_your_friend_a_gift"
+              }
+              onPress={onSendGift}
+            />
           </Box>
         )}
       </View>
@@ -172,7 +184,7 @@ const Background = memo(({ image }: { image: BackgroundAsset["image"] }) => {
   );
 });
 
-const Sender = memo(({ sender, textColor }: Pick<Props, "sender" | "textColor">) => {
+const Sender = memo(({ sender, textColor }: Pick<Props, "sender" | "textColor" | "claimType">) => {
   if (sender?.fullName || sender?.avatar?.uri) {
     return (
       <Box justifyContent="center" alignItems="center">

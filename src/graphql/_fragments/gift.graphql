@@ -1,19 +1,20 @@
 fragment Gift on Gift {
-    id
-    to {
-        ...GiftParticipant
-    }
-    from {
-        ...GiftParticipant
-    }
-    yuCoinAmount
-    message
-    background {
-        ...GiftBackgroundAsset
-    }
-    sticker {
-        ...GiftStickerAsset
-    }
-    hasBeenClaimed
-    hasSaidThankYou
+  id
+  to {
+    ...GiftParticipant
+  }
+  from {
+    ...GiftParticipant
+  }
+  yuCoinAmount
+  message
+  background {
+    ...GiftBackgroundAsset
+  }
+  sticker {
+    ...GiftStickerAsset
+  }
+  hasBeenClaimed
+  hasSaidThankYou
+  claimType
 }
