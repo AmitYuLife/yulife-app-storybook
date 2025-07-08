@@ -71,14 +71,21 @@ const AchievementsScreen = ({
   );
 
   const showAchievementPoints = useMemo(() => typeof achievementPoints === "number", [achievementPoints]);
+  const showCategories = useMemo(() => categories.length > 0, [categories]);
+  const contentContainerStyle = useMemo(
+    () => ({ paddingHorizontal: Style.adjust(8), paddingTop: Style.adjust(showCategories ? 12 : 24) }),
+    [showCategories]
+  );
 
   return (
     <Box flex={1}>
       <GenericHeadingPad />
       <Box flex={1}>
-        <Box pt={8} pr={8} pb={8} mb={4} style={styles.shadowBox}>
-          <ChipList chips={categories} isLoading={isLoading} />
-        </Box>
+        {!showCategories ? null : (
+          <Box pt={8} pr={8} pb={8} mb={4} style={styles.shadowBox}>
+            <ChipList chips={categories} isLoading={isLoading} />
+          </Box>
+        )}
         {!showAchievementPoints ? null : (
           <Box alignSelf="center" justifyContent="center" mt={24} mb={10}>
             <AchievementPoints
@@ -96,7 +103,7 @@ const AchievementsScreen = ({
             showsVerticalScrollIndicator={false}
             data={isLoading ? [] : achievements}
             numColumns={2}
-            contentContainerStyle={styles.contentContainer}
+            contentContainerStyle={contentContainerStyle}
             ListEmptyComponent={<LoadingAchievementsScreen />}
             scrollEnabled={!isLoading}
             refreshing={false}
@@ -118,10 +125,6 @@ const LoadingAchievementsScreen = () => (
 );
 
 const styles = StyleSheet.create({
-  contentContainer: {
-    paddingTop: Style.adjust(12),
-    paddingHorizontal: Style.adjust(8),
-  },
   shadowBox: {
     shadowColor: "rgba(0, 0, 0, 0.08)",
     shadowOffset: {
