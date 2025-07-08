@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -4040,6 +4041,7 @@ export type GetYumojiPartSetVariantWorldTitle = {
 export type Gift = {
   __typename?: "Gift";
   background: GiftAsset;
+  claimType: GiftClaimType;
   from: GiftParticipant;
   hasBeenClaimed: Scalars["Boolean"]["output"];
   hasSaidThankYou: Scalars["Boolean"]["output"];
@@ -4061,6 +4063,11 @@ export type GiftAsset = {
   previewImage?: Maybe<RemoteImage>;
   textColor: Scalars["String"]["output"];
 };
+
+export enum GiftClaimType {
+  Company = "COMPANY",
+  Player = "PLAYER",
+}
 
 export type GiftMessagePreset = {
   __typename?: "GiftMessagePreset";
@@ -18170,6 +18177,7 @@ export type GiftFragment = {
   message: string;
   hasBeenClaimed: boolean;
   hasSaidThankYou: boolean;
+  claimType: GiftClaimType;
   to: {
     __typename?: "GiftParticipant";
     id: string;
@@ -22444,6 +22452,7 @@ export type ClaimGiftMutation = {
     message: string;
     hasBeenClaimed: boolean;
     hasSaidThankYou: boolean;
+    claimType: GiftClaimType;
     to: {
       __typename?: "GiftParticipant";
       id: string;
@@ -22488,6 +22497,7 @@ export type GetGiftQuery = {
     message: string;
     hasBeenClaimed: boolean;
     hasSaidThankYou: boolean;
+    claimType: GiftClaimType;
     to: {
       __typename?: "GiftParticipant";
       id: string;
@@ -22532,6 +22542,7 @@ export type SendThanksForGiftMutation = {
     message: string;
     hasBeenClaimed: boolean;
     hasSaidThankYou: boolean;
+    claimType: GiftClaimType;
     to: {
       __typename?: "GiftParticipant";
       id: string;
@@ -53333,6 +53344,7 @@ export const GiftFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
           { kind: "Field", name: { kind: "Name", value: "hasSaidThankYou" } },
+          { kind: "Field", name: { kind: "Name", value: "claimType" } },
         ],
       },
     },
@@ -70342,6 +70354,7 @@ export const ClaimGiftDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
           { kind: "Field", name: { kind: "Name", value: "hasSaidThankYou" } },
+          { kind: "Field", name: { kind: "Name", value: "claimType" } },
         ],
       },
     },
@@ -70535,6 +70548,7 @@ export const GetGiftDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
           { kind: "Field", name: { kind: "Name", value: "hasSaidThankYou" } },
+          { kind: "Field", name: { kind: "Name", value: "claimType" } },
         ],
       },
     },
@@ -70729,6 +70743,7 @@ export const SendThanksForGiftDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
           { kind: "Field", name: { kind: "Name", value: "hasSaidThankYou" } },
+          { kind: "Field", name: { kind: "Name", value: "claimType" } },
         ],
       },
     },

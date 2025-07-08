@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect } from "react";
 import { Keyboard } from "react-native";
 import { useMutation, useQuery } from "@apollo/client";
-import { gql } from "@graphql/__generated";
+import { GiftClaimType, gql } from "@graphql/__generated";
 import { useBackHandler } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
@@ -17,6 +17,8 @@ type Props = {
 
 const GiftViewContainer = ({ giftId }: Props) => {
   const dispatch = useDispatch();
+  const [sendThanks, sendThanksResponse] = useMutation(gql(`SendThanksForGiftDocument`));
+
   const {
     data,
     loading: getGiftLoading,
@@ -31,7 +33,6 @@ const GiftViewContainer = ({ giftId }: Props) => {
   const [claimGift, claimGiftResponse] = useMutation(gql(`ClaimGiftDocument`), {
     onCompleted: () => dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] })),
   });
-  const [sendThanks, sendThanksResponse] = useMutation(gql(`SendThanksForGiftDocument`));
 
   const onClose = useCallback(() => {
     Keyboard.dismiss();
@@ -42,7 +43,8 @@ const GiftViewContainer = ({ giftId }: Props) => {
 
   useBackHandler(onClose);
 
-  const { id, background, from, message, sticker, yuCoinAmount, hasBeenClaimed, hasSaidThankYou } = data?.getGift || {};
+  const { id, background, from, message, sticker, yuCoinAmount, hasBeenClaimed, hasSaidThankYou, claimType } =
+    data?.getGift || {};
 
   useEffect(() => {
     (async () => {
@@ -54,18 +56,28 @@ const GiftViewContainer = ({ giftId }: Props) => {
         await claimGift({ variables: { giftId: id } });
       } catch {}
     })();
-  }, [id, hasBeenClaimed, claimGiftResponse?.loading]);
+  }, [id, hasBeenClaimed, claimGiftResponse?.loading, claimGift]);
 
   const textColor = background?.textColor || Colours.neutral.n800;
 
-  const handlePressReply = useCallback(() => {
+  const handlePressReply = useCallback(async () => {
+    if (claimType === GiftClaimType.Company) {
+      await Navigation.popToRoot(ROUTES.giftView, {
+        bottomTabs: {
+          currentTabIndex: 4,
+        },
+      });
+
+      return;
+    }
+
     Navigation.push(ROUTES.giftView, {
       component: {
         id: ROUTES.gifting,
         name: ROUTES.gifting,
       },
     });
-  }, []);
+  }, [claimType]);
 
   const handleSendThanks = useCallback(async () => {
     if (hasSaidThankYou || sendThanksResponse?.loading) {
@@ -94,6 +106,7 @@ const GiftViewContainer = ({ giftId }: Props) => {
       sender={from}
       background={background}
       sticker={sticker}
+      claimType={claimType}
     />
   );
 };

@@ -6,6 +6,7 @@ import GiftView from "@organisms/gift-view/gift-view";
 import { VoidFunction } from "@utils";
 import Pressable from "@components/molecules/pressable/pressable";
 import { useGiftViewLoadingAnimation } from "./hooks/use-gift-view-loading-animation";
+import { GiftClaimType } from "@graphql/__generated";
 
 type Props = {
   loading: boolean;
@@ -13,6 +14,7 @@ type Props = {
   onSendGift: VoidFunction;
   onClose: VoidFunction;
   onThankYouPress: VoidFunction;
+  claimType?: GiftClaimType;
   textColor: string;
   yuCoinAmount: number;
   message: string;
@@ -45,6 +47,7 @@ const GiftViewScreen = ({
   yuCoinAmount,
   message,
   sender,
+  claimType,
   background,
   sticker,
   hasSaidThankYou,
@@ -68,6 +71,7 @@ const GiftViewScreen = ({
         currentSticker={sticker}
         sender={sender}
         hasSaidThankYou={hasSaidThankYou}
+        claimType={claimType}
         onThankYouPress={onThankYouPress}
         onSendGift={onSendGift}
         showContent={showContent}
