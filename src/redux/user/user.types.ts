@@ -211,7 +211,7 @@ export type IUpdateUserProfilePayload = Partial<IUserStore> &
   IDailyStepsUpdateUserProfilePayload &
   DailyCyclingUpdateUserProfilePayload & {
     rewards: IRewardsTabStore["settings"];
-  } & { debugToolsEnabled: boolean };
+  } & { debugToolsEnabled: boolean; debugQueriesToolEnabled: boolean };
 
 export type ILoginUserPayload = { intercomHash: string } & IGetUserSuccessPayload;
 

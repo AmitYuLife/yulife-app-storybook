@@ -7,6 +7,7 @@ import { updateUserProfile } from "@redux/user/user.actions";
 
 export const getInitialState = (): IDebugStore => ({
   debugToolsEnabled: false,
+  debugQueriesToolEnabled: false,
   pedometerHistorySteps: [],
 });
 
@@ -17,6 +18,7 @@ const debugReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(updateUserProfile, (state, action) => ({
     ...state,
     debugToolsEnabled: action.payload.debugToolsEnabled,
+    debugQueriesToolEnabled: action.payload.debugQueriesToolEnabled,
   }));
 
   builder.addDefaultCase((state) => state);

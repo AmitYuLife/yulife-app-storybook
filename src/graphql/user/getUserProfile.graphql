@@ -16,6 +16,7 @@ query GetUserProfile {
         hasUnlockableBattlepassVouchers
       }
       debugToolsEnabled
+      debugQueriesToolEnabled
     }
     surge {
       endDateTime

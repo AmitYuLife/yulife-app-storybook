@@ -19,6 +19,7 @@ import { UserSupportLevel } from "@services/logging/types";
 import { getSupportLevel } from "@redux/user/user.selectors";
 import { sduiActionOpenSupportChat } from "@redux/server-driven-ui/sdui.actions";
 import { useCallback, useMemo } from "react";
+import { getDebugQueriesToolEnabled } from "@redux/debug/debug.selectors";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,8 @@ const MenuContainer = () => {
   const permissions = useSelector(getPushNotifications);
   const supportLevel = useSelector(getSupportLevel);
 
-  const { showReferrals, showHelperTools, showDebug } = useUserFeatures();
+  const { showReferrals, showDebug } = useUserFeatures();
+  const debugQueriesToolEnabled = useSelector(getDebugQueriesToolEnabled);
 
   const openSupport = useCallback(() => {
     const callback = () => {
@@ -142,7 +144,7 @@ const MenuContainer = () => {
         source: assets[LINKS.SETTINGS],
       },
       {
-        condition: showHelperTools,
+        condition: debugQueriesToolEnabled,
         label: t("screens.menu.tools.label"),
         onPress: handlePressLink(LINKS.TOOLS),
         source: assets[LINKS.SETTINGS],
@@ -160,7 +162,7 @@ const MenuContainer = () => {
         source: assets[LINKS.LOGOUT],
       },
     ],
-    [handlePressLink, showReferrals, showHelperTools, supportLevel]
+    [handlePressLink, showReferrals, debugQueriesToolEnabled, supportLevel]
   );
 
   return (

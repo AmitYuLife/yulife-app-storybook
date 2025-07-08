@@ -1039,7 +1039,6 @@ export type BusinessSessionSettings = {
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
   isEmployeeRecognitionPaywallEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
-  resourcesRedesignEnabled: Scalars["Boolean"]["output"];
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
   yuStoreEnabled: Scalars["Boolean"]["output"];
 };
@@ -5994,6 +5993,7 @@ export type Mutation = {
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
   createEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
+  createEmployeeRecognitionLead: Scalars["Boolean"]["output"];
   /**
    * Introduced to clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.10.0
    * Incremented feature toggle to V2 on RN version >= 4.16.0
@@ -9987,6 +9987,7 @@ export type TeamProduct = {
   productId: Scalars["String"]["output"];
   productTypeId: Scalars["String"]["output"];
   reviewDate?: Maybe<Scalars["String"]["output"]>;
+  rewardPassId?: Maybe<Scalars["String"]["output"]>;
   seatsLeft?: Maybe<Scalars["Int"]["output"]>;
   startDate?: Maybe<Scalars["String"]["output"]>;
 };
@@ -33485,6 +33486,7 @@ export type GetUserProfileQuery = {
       maxStepsAnomalyWindowMs?: number | null;
       blackListedNavBarTabs: Array<string>;
       debugToolsEnabled?: boolean | null;
+      debugQueriesToolEnabled?: boolean | null;
       blackListApps?: { __typename?: "BlackListApps"; steps?: Array<string | null> | null } | null;
       rewards: {
         __typename?: "GameSettingsRewards";
@@ -86940,6 +86942,7 @@ export const GetUserProfileDocument = {
                         },
                       },
                       { kind: "Field", name: { kind: "Name", value: "debugToolsEnabled" } },
+                      { kind: "Field", name: { kind: "Name", value: "debugQueriesToolEnabled" } },
                     ],
                   },
                 },
