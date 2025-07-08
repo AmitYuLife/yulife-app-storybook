@@ -1039,7 +1039,6 @@ export type BusinessSessionSettings = {
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
   isEmployeeRecognitionPaywallEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
-  resourcesRedesignEnabled: Scalars["Boolean"]["output"];
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
   yuStoreEnabled: Scalars["Boolean"]["output"];
 };
@@ -5994,6 +5993,7 @@ export type Mutation = {
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
   createEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
+  createEmployeeRecognitionLead: Scalars["Boolean"]["output"];
   /**
    * Introduced to clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.10.0
    * Incremented feature toggle to V2 on RN version >= 4.16.0
@@ -9987,6 +9987,7 @@ export type TeamProduct = {
   productId: Scalars["String"]["output"];
   productTypeId: Scalars["String"]["output"];
   reviewDate?: Maybe<Scalars["String"]["output"]>;
+  rewardPassId?: Maybe<Scalars["String"]["output"]>;
   seatsLeft?: Maybe<Scalars["Int"]["output"]>;
   startDate?: Maybe<Scalars["String"]["output"]>;
 };
@@ -33660,16 +33661,6 @@ export type GetUserProfileQuery = {
       }>;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
-    todayScreen: {
-      __typename?: "UserProfileTodayScreen";
-      id: string;
-      button?: {
-        __typename?: "UserProfileTodayScreenButton";
-        id: string;
-        label: string;
-        onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-      } | null;
-    };
   };
 };
 
@@ -87107,14 +87098,6 @@ export const GetUserProfileDocument = {
                     selections: [{ kind: "Field", name: { kind: "Name", value: "supportLevel" } }],
                   },
                 },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "todayScreen" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserProfileTodayScreen" } }],
-                  },
-                },
               ],
             },
           },
@@ -87587,36 +87570,6 @@ export const GetUserProfileDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "type" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "UserProfileTodayScreen" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileTodayScreen" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "button" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-              ],
-            },
-          },
         ],
       },
     },

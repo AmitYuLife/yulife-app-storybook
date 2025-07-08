@@ -44,6 +44,24 @@ interface IUserDataQuery {
   fragmentName: string;
 }
 
+/** converts the AppDataType to a short query name (q = query, making it easier to search for in the codebase) */
+const NAMING_MAP: Record<AppDataType, string> = {
+  [AppDataType.coinLedger]: "qCL",
+  [AppDataType.todayActivity]: "qTA",
+  [AppDataType.passiveChallengesEarnRate]: "qPCER",
+  [AppDataType.activeStreak]: "qAS",
+  [AppDataType.activeChallenge]: "qAC",
+  [AppDataType.dailyPension]: "qDP",
+  [AppDataType.hints]: "qH",
+  [AppDataType.socialGroups]: "qSG",
+  [AppDataType.features]: "qF",
+  [AppDataType.connections]: "qC",
+  [AppDataType.dailyChallengeAmountAvailable]: "qDCAA",
+  [AppDataType.inventoryInfo]: "qII",
+  [AppDataType.challengesDoneToday]: "qCDT",
+  [AppDataType.todayScreen]: "qTS",
+};
+
 // TODO: check if we can use AppDataType for alias
 // if alias is different getAllUserDataSaga() from getAllUserData.saga.ts will throw an error
 export const DATA_QUERIES: IUserDataQuery[] = [
@@ -152,7 +170,7 @@ export const generateQueryName = (types: AppDataType[]) => {
     return `GetAllUserData`;
   }
 
-  const queryNames = [...types].sort().map((type) => type.charAt(0).toUpperCase() + type.slice(1));
+  const queryNames = [...types].sort().map((type) => NAMING_MAP[type]);
   return `Get${queryNames.join("")}`;
 };
 
