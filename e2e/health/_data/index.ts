@@ -16,3 +16,4 @@ export * from "./mongo/user_coin_transactions";
 export * from "./mongo/core_settings";
 export * from "./mongo/user_habit_tracking_state";
 export * from "./mongo/user_habit_tracking_actions";
+export * from "./mongo/user_statistics";

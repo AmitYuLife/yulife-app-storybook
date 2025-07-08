@@ -10,6 +10,7 @@ interface IProps {
   textAfterValue?: string;
   textBeforeValue?: string;
   textStyle?: TextStyle;
+  testIDFn?: (value: number) => string;
 }
 
 interface IState {
@@ -46,9 +47,11 @@ class Counter extends React.PureComponent<IProps, IState> {
     const { textAfterValue = "", textBeforeValue = "", textStyle } = this.props;
     const { value } = this.state;
     const renderValue = `${textBeforeValue} ${addCommasToNumber(value)} ${textAfterValue}`.trim();
+    const { testIDFn } = this.props;
+    const resolvedTestID = testIDFn ?? VIEW_TOP_RIGHT_COIN_COUNTER;
 
     return (
-      <Text style={textStyle} testID={VIEW_TOP_RIGHT_COIN_COUNTER(value)}>
+      <Text style={textStyle} testID={resolvedTestID(value)}>
         {renderValue}
       </Text>
     );
