@@ -94,7 +94,9 @@ export type MixpanelEvent =
   | "yuhealth_available_providers_fetched"
   | "yuhealth_permissions_fetched"
   | "wrapped_screen_view"
-  | "challenge_progress_debug_tools";
+  | "challenge_progress_debug_tools"
+  | "achievement_view"
+  | "achievement_click";
 
 export enum UserSupportLevel {
   Basic = "basic",

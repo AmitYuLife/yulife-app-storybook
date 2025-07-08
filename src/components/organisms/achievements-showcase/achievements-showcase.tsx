@@ -8,6 +8,7 @@ import { pushToScreen, showYuModal } from "@navigation/root";
 import { addCommasToNumber } from "@utils";
 import { memo, useCallback, useMemo } from "react";
 import { AchievementStatus } from "../achievement-card/achievement-card";
+import { useTrack } from "@hooks";
 
 export interface IAchievement {
   id: string;
@@ -39,8 +40,15 @@ interface IProps {
 }
 
 const AchievementsShowcase = ({ points, achievements = [], componentId, isInspectingUser, numberOfSlots }: IProps) => {
+  const track = useTrack();
+
   const onPress = useCallback(
     async (achievement: IAchievement) => {
+      track("achievement_click", {
+        achievement_id: achievement.id,
+        achievement_name: achievement.name,
+        click_source: componentId,
+      });
       await showYuModal({
         component: {
           id: MODALS.viewAchievementModal,
@@ -53,11 +61,14 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
         },
       });
     },
-    [isInspectingUser]
+    [isInspectingUser, componentId, track]
   );
 
   const goToAchievements = useCallback(
-    (selectedSlot?: number) =>
+    (selectedSlot?: number) => {
+      track("achievement_view", {
+        view_source: componentId,
+      });
       pushToScreen(componentId, {
         component: {
           id: ROUTES.achievements,
@@ -66,8 +77,9 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
             selectedSlot,
           },
         },
-      }),
-    [componentId]
+      });
+    },
+    [componentId, track]
   );
 
   const getSlot = useCallback(
