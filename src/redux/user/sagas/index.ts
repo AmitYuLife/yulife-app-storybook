@@ -81,13 +81,16 @@ export default [
         AppDataType.activeChallenge,
         AppDataType.connections,
         AppDataType.challengesDoneToday,
+        AppDataType.todayScreen,
       ],
     })
   ),
   takeLatest([GET_USER_START, CHALLENGE_RESET_SUCCESS], getUserDataSaga),
   takeLatest(
     UPDATE_CURRENT_DATE,
-    generateUserDataSaga({ types: [AppDataType.activeStreak, AppDataType.challengesDoneToday] })
+    generateUserDataSaga({
+      types: [AppDataType.activeStreak, AppDataType.challengesDoneToday, AppDataType.todayScreen],
+    })
   ),
   takeLatest(UPDATE_CURRENT_DATE, getUserOnUpdatedDateSaga),
   takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),

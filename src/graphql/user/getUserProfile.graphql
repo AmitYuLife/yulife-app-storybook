@@ -62,8 +62,5 @@ query GetUserProfile {
     supportConfig {
       supportLevel
     }
-    todayScreen {
-      ...UserProfileTodayScreen
-    }
   }
 }
