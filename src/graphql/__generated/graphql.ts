@@ -33486,6 +33486,7 @@ export type GetUserProfileQuery = {
       maxStepsAnomalyWindowMs?: number | null;
       blackListedNavBarTabs: Array<string>;
       debugToolsEnabled?: boolean | null;
+      debugQueriesToolEnabled?: boolean | null;
       blackListApps?: { __typename?: "BlackListApps"; steps?: Array<string | null> | null } | null;
       rewards: {
         __typename?: "GameSettingsRewards";
@@ -86931,6 +86932,7 @@ export const GetUserProfileDocument = {
                         },
                       },
                       { kind: "Field", name: { kind: "Name", value: "debugToolsEnabled" } },
+                      { kind: "Field", name: { kind: "Name", value: "debugQueriesToolEnabled" } },
                     ],
                   },
                 },

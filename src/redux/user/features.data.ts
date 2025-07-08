@@ -57,7 +57,6 @@ export const features = [
   "tempGameEnableAvatarFrames",
   "showNewYuCoinExplained",
   "showDebug",
-  "showHelperTools",
   "showNotificationCentre",
   "showLeaderboardSearch",
   "canUpdateActivityHistory",

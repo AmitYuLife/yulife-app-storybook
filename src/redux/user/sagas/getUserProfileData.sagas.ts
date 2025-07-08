@@ -42,6 +42,7 @@ export default function* getUserProfileData(
             cyclingMeasurement: userProfile.getUserProfile.gameSettings.cyclingMeasurement,
           },
           debugToolsEnabled: userProfile.getUserProfile.gameSettings.debugToolsEnabled,
+          debugQueriesToolEnabled: userProfile.getUserProfile.gameSettings.debugQueriesToolEnabled,
         })
       );
     }

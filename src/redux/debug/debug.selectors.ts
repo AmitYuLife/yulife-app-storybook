@@ -9,3 +9,6 @@ export const getDebugPedometerHistorySteps = createSelector(reducer, pedometerHi
 
 const debugToolsEnabled = (state: State) => state.debugToolsEnabled;
 export const getDebugToolsEnabled = createSelector(reducer, debugToolsEnabled);
+
+const debugQueriesToolEnabled = (state: State) => state.debugQueriesToolEnabled;
+export const getDebugQueriesToolEnabled = createSelector(reducer, debugQueriesToolEnabled);
