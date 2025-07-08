@@ -16,7 +16,7 @@ import { useGame2048Context } from "../gameContext";
 import Game2048Manager from "../gameManager";
 import Board from "./Board";
 import { TextTemplate } from "@atoms";
-import { HAPTIC_TOGGLE } from "@ids";
+import { HAPTIC_TOGGLE, SMOKING_GAME_HIGH_SCORE } from "@ids";
 import { t } from "@locale";
 import { useSelector } from "react-redux";
 import { getGame2048HighScore } from "@redux/game-2048/game-2048.selectors";
@@ -157,7 +157,12 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
             </TextTemplate>
             <View style={styles.starContainer}>
               <Image source={STAR_IMG} style={styles.starIcon} />
-              <Counter duration={COUNTER_ANIMATION_SPEED} value={highScore} textStyle={styles.counter} />
+              <Counter
+                duration={COUNTER_ANIMATION_SPEED}
+                value={highScore}
+                textStyle={styles.counter}
+                testIDFn={SMOKING_GAME_HIGH_SCORE}
+              />
             </View>
           </View>
         )}

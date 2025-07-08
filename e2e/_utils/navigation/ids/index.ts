@@ -908,6 +908,7 @@ export const SMOKING_CELEBRATION_DESCRIPTION = `SMOKING_CELEBRATION_DESCRIPTION`
 export const SMOKING_CELEBRATION_TIPS_CONTAINER = `SMOKING_CELEBRATION_TIPS_CONTAINER`;
 export const SMOKING_CELEBRATION_CTA = `SMOKING_CELEBRATION_CTA`;
 export const SMOKING_TIP = (day: string) => `SMOKING_TIP_${day}`;
+export const SMOKING_GAME_HIGH_SCORE = (score: number) => `SMOKING_GAME_HIGH_SCORE_${score}`;
 
 // Smoking Questionnaire
 export const SMOKING_ANSWER_CIG = "smoking_cessation_question_type_choice_cigarettes";

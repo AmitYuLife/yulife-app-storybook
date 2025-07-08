@@ -107,8 +107,11 @@ Feature("I can view and use the smoking cessation feature", async () => {
     });
     When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
       When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
-        Then("I should be on the smoking cessation screen", then.onSmokingHub(locale, 0, true, "0", "0", FRY_MOMENTS_AND_REASONS));
+        Then("I should see the celebration screen", then.smokingCelebrationPopupVisible(1, 10));
       });
+    });
+    When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
+      Then("I should be on the smoking cessation screen", then.onSmokingHub(locale, 0, true, "0", "0", FRY_MOMENTS_AND_REASONS));
     });
     When("I exit the smoking hub", when.tapID(ids.BACK_BUTTON), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
@@ -195,6 +198,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
     When("I tap the craving button", when.tapID(ids.SMOKING_TILE_BUTTON), async () => {
       When("I wait", when.wait(5000), async () => {
         Then("I should be on the Yunity Swipe settings screen", then.onYunitySwipe);
+        Then("I should see my high score of 1284", then.idVisible(ids.SMOKING_GAME_HIGH_SCORE(1284)));
       });
     });
     When("I go back", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
@@ -397,8 +401,11 @@ Feature("I can view and use the smoking cessation feature", async () => {
     });
     When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
       When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
-        Then("I should be on the smoking cessation screen but can no longer see the opt out option", then.onSmokingHub(locale, 1, true, "0", "0", FRY_MOMENTS_AND_REASONS, 1, false));
+        Then("I should see the celebration screen", then.smokingCelebrationPopupVisible(1, 10));
       });
+    });
+    When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
+      Then("I should be on the smoking cessation screen but can no longer see the opt out option", then.onSmokingHub(locale, 1, true, "0", "0", FRY_MOMENTS_AND_REASONS, 1, false));
     });
   });
 
@@ -509,8 +516,11 @@ Feature("I can view and use the smoking cessation feature", async () => {
       Then("I should see the take your first steps button", then.textVisible("Take your first steps"));
     });
     When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-      Then("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW));
-      Then("I can see my YuCoin Balance is 1,260", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1260)));
+      When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
+        When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
+          Then("I can see my YuCoin Balance is 1,260", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1260)));
+        });
+      });
     });
     When("I scroll to the bottom", when.swipeFromText("Your growth so far", "up", "fast"), async () => {
       Then("I should see the opt out copy", then.idVisible(ids.SMOKING_HUB_OPT_OUT));
@@ -586,8 +596,11 @@ Feature("I can view and use the smoking cessation feature", async () => {
       Then("I should see the take your first steps button", then.textVisible("Take your first steps"));
     });
     When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-      Then("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW));
-      Then("I can see my YuCoin Balance is 1,270", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1270)));
+      When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
+        When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
+          Then("I can see my YuCoin Balance is 1,270", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1270)));
+        });
+      });
     });
   });
 
