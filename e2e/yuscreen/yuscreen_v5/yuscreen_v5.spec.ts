@@ -295,8 +295,7 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should see the policy details button", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)));
     });
     When("I tap Policy details button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)), async () => {
-      // @bug ISA-3476 -- Client name not shown in app certificates
-      // Then("I should see the digital cerficate", then.canSeeProductCertificate(certificateDetailsGLAUMAnya));
+      Then("I should see the digital cerficate", then.canSeeProductCertificate(certificateDetailsGLAUMAnya));
       Then("I should not see policy number", then.idNotVisible(ids.CERTIFICATE_KEY_VALUES("Policy number", certificateDetailsGLAUMAnya.policyNumber)));
     });
     When("I tap X to close the certficate", when.tapID(ids.SCREEN_CLOSE), async () => {

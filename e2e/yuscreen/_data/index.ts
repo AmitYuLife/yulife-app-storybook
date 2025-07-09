@@ -2,6 +2,7 @@ export * from "./postgres/business_background";
 export * from "./postgres/business";
 export * from "./postgres/customers";
 export * from "./postgres/business_employees";
+export * from "./postgres/business_employee_info";
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/customer_quote";
 export * from "./postgres/customer_policy";
@@ -17,7 +18,6 @@ export * from "./postgres/journey_progression";
 export * from "./postgres/customer_pension_connections";
 export * from "./postgres/customer_pension_contributions";
 
-
 export * from "./mongo/auths";
 export * from "./mongo/users";
 export * from "./mongo/user_profile";
@@ -32,4 +32,4 @@ export * from "./mongo/user_coin_transactions";
 export * from "./mongo/wellbeing_hub_items";
 export * from "./mongo/wellbeing_hub_category";
 export * from "./mongo/user_inventory";
-export * from "./mongo/goal_products"
+export * from "./mongo/goal_products";
