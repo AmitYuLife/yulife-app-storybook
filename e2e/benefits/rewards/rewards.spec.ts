@@ -241,4 +241,50 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see my updated YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(2700)));
     });
   });
+
+  Scenario("I can enter my mobile number when claiming a Bluelabel or Shoprite reward voucher", scenario.start, async () => {
+    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see that I have access to the rewards store", then.rewardsLocationModalVisible());
+    });
+    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+      Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(25200)));
+    });
+    When("I click on the 'MTN' reward", when.tapRewardInList(data.CORE_REWARDS_MTN), async () => {
+      Then("I should see the 'MTN' reward page", then.onRewardScreen(data.CORE_REWARDS_MTN));
+    });
+    When("I click on the 'Claim Reward' button", when.tapID(ids.BUTTON_BASE("Claim Reward", false)), async () => {
+      When("I click on 'Monthly 120MB Data' denomination", when.tapID(ids.TEXT_TEMPLATE("Monthly 120MB Data - 815 YuCoin", undefined)), async () => {
+        Then("I should be brought to the mobile number entry screen", then.idVisible(ids.TEXT_TEMPLATE("We need your mobile phone number to proceed:", "h3")));
+      });
+    });
+    When("I enter my mobile number", when.enterMobileNumber("0830012300"), async () => {
+      When("I tap 'Continue'", when.tapID(ids.BUTTON_BASE("Continue", false)), async () => {
+        Then("I should be on the final confirmation screen", then.idVisible(ids.TEXT_TEMPLATE("You're about to buy R 20 worth of mobile data for 815 YuCoin.", "h3")));
+      });
+    });
+    When("I close the claim modal", when.tapID(ids.SCREEN_CLOSE), async () => {
+      When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I click on the 'Checkers' reward", when.tapRewardInList(data.CORE_REWARDS_CHECKERS), async () => {
+          Then("I should see the 'Checkers' reward page", then.onRewardScreen(data.CORE_REWARDS_CHECKERS));
+        });
+      });
+    });
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast"), async () => {
+      Then("I should see the claim reward button", then.idVisible(ids.BUTTON_BASE("Claim Reward", false)));
+    });
+    When("I click on the 'Claim Reward' button", when.tapID(ids.BUTTON_BASE("Claim Reward", false)), async () => {
+      When("I click on 'Monthly 120MB Data' denomination", when.tapID(ids.TEXT_TEMPLATE("R 25 - 1,020 YuCoin", undefined)), async () => {
+        Then("I should be brought to the mobile number entry screen", then.idVisible(ids.TEXT_TEMPLATE("Let us know the mobile number associated with your Shoprite account:", "h3")));
+      });
+    });
+    When("I enter my mobile number", when.enterMobileNumber("0830012300"), async () => {
+      When("I tap 'Continue'", when.tapID(ids.BUTTON_BASE("Continue", false)), async () => {
+        Then("I should be on the final confirmation screen", then.idVisible(ids.TEXT_TEMPLATE("You're about to buy a R 25 saving voucher for 1,020 YuCoin.", "h3")));
+      });
+    });
+    When("I confirm the final modal", when.tapID(ids.BUTTON_BASE("Confirm", false)), async () => {
+      Then("I should see the claimed voucher entry", then.idVisible(ids.VOUCHER_CODE_TITLE("R 25 Checkers voucher")));
+      Then("I should see my updated YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(24180)));
+    });
+  });
 });

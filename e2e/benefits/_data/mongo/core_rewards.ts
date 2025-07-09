@@ -1764,3 +1764,325 @@ export const CORE_REWARDS_HOBBYCRAFT = {
     sortOrder: 1.1,
   },
 };
+
+export const CORE_REWARDS_CHECKERS = {
+  type: "mongo",
+  modelName: "core_rewards",
+  data: {
+    _id: generateRandomMongoId(),
+    loyaltyProgramme: [],
+    restrictions: {
+      availableForLabels: [],
+      restrictedForLabels: [],
+      locations: ["GB"],
+    },
+    tags: [
+      {
+        "en-GB": "Grocery",
+        "ja-JP": "食料品",
+        _id: generateRandomMongoId(),
+      },
+    ],
+    badge: {},
+    website: {
+      heading: "Checkers",
+      description: "Redeem gift vouchers on a wide range of groceries and homeware.",
+      imageAlt: "Checkers",
+      isFeaturedOnWebsite: true,
+    },
+    images: {
+      listItemImageKey: "imgixGlobal::cms/1732911257654_Checkers.png",
+      detailHeaderKey: "imgixGlobal::cms/1732911246802_Checkers@3x.jpg",
+      websiteImageKey: "imgixGlobal::cms/1681385492128_Checkers Website@2x.png",
+      redemptionStepsFooter: "",
+    },
+    rewardProviderId: "shoprite",
+    name: {
+      "en-GB": "Checkers",
+      "ja-JP": "チェッカーズ",
+      _id: generateRandomMongoId(),
+    },
+    code: "CHECKERS",
+    description: {
+      "en-GB":
+        "Defined by convenience, quality and freshness, Checkers offers groceries, outdoor, home, beauty, toys and more, as well as on-demand delivery through Checkers Sixty60.\n\nWith Checkers being part of the Shoprite Group, you will need to use the Shoprite App to redeem your voucher. You can use your voucher to pay at the till , buy airtime and data, pay your accounts or send money.\n\nIf you don't have the app already, simply:     \nDownload the Shoprite App from the App Store, open the app and select 'My Money Market Account', enter your cell number and passport number, and finally enter your name, surname and create a memorable 5 digit pin code.\n",
+      "ja-JP":
+        "利便性、品質、新鮮さを特徴とするチェッカーズは、食料品、アウトドア、家庭用品、美容品、玩具などのほか、「チェッカーズ・シックスティ60」によるオンデマンド・デリバリーも提供している。\n\nShopriteのアプリまたはUSSDを使えば、レジでの支払い、通信時間やデータの購入、口座への支払い、送金にバウチャーを使うことができる。",
+      _id: generateRandomMongoId(),
+    },
+    currencyCode: "ZAR",
+    termsAndConditionsUrl:
+      "https://www.termsconditions.co.za/content/dam/ShopriteGroup/Terms/PDFS/Money-Market-Account-Ts-Cs.pdf",
+    sortOrder: 2,
+    redemptionSteps: {
+      info: {
+        "en-GB": "How to redeem",
+        "ja-JP": "換金方法",
+        _id: generateRandomMongoId(),
+      },
+      steps: [
+        {
+          "en-GB": "Tap 'Claim Reward' below and select your voucher denomination.",
+          "ja-JP": "下の「報酬を請求する」をタップしてください。",
+          _id: generateRandomMongoId(),
+        },
+        {
+          "en-GB": "Input the cell number associated with your Shoprite app.",
+          "ja-JP": "デノミを選択してください。",
+          _id: generateRandomMongoId(),
+        },
+        {
+          "en-GB": "Sign in to your Shoprite app, select 'Pay Now', and then 'Pay In-Store'.",
+          "ja-JP":
+            "携帯電話番号を入力し、「Continue（続行）」をタップして「Confirm（確認）」をタップします。",
+          _id: generateRandomMongoId(),
+        },
+        {
+          "en-GB":
+            "Your voucher account balance should have updated in line with your YuCoin redemption.",
+          "ja-JP": "購入確認のテキストメッセージとEメールの両方が届きます。",
+          _id: generateRandomMongoId(),
+        },
+        {
+          "en-GB": "Select your voucher account.",
+          "ja-JP": "バウチャーはUSSDまたはShopriteアプリでご利用いただけます。",
+          _id: generateRandomMongoId(),
+        },
+        {
+          "en-GB": "Enter the voucher token pin into the keypad at the teller.",
+          "ja-JP":
+            "Shopriteアプリ：まだお持ちでない場合は、Shopriteアプリをダウンロードし、クーポンを取得する際に使用した携帯電話番号でサインアップしてください。バウチャーは自動的にアプリ内に表示されます。",
+          _id: generateRandomMongoId(),
+        },
+      ],
+    },
+    availableDenominations: [
+      {
+        yuCoin: 1020,
+        value: 25,
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 2040,
+        value: 50,
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 4080,
+        value: 100,
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 10200,
+        value: 250,
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 20400,
+        value: 500,
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+    ],
+    archived: false,
+    createdAt: {
+      $date: "2023-02-20T15:36:47.708Z",
+    },
+    updatedAt: {
+      $date: "2025-07-03T10:05:05.880Z",
+    },
+    __v: 0,
+    copy: {
+      ctaLabel: {
+        "en-GB": "Claim Reward",
+        "ja-JP": "報酬請求",
+        _id: generateRandomMongoId(),
+      },
+      offerHeading: {
+        "en-GB": "Checkers",
+        "ja-JP": "チェッカーズ",
+        _id: generateRandomMongoId(),
+      },
+      offerSubheading: {
+        "en-GB": null,
+        "ja-JP": "1,020YuCoinで25Rからのバウチャーをゲット",
+        _id: generateRandomMongoId(),
+      },
+    },
+    claimType: "unlimited",
+    failedClaimCount: 0,
+    isLocked: false,
+  },
+};
+
+export const CORE_REWARDS_MTN = {
+  type: "mongo",
+  modelName: "core_rewards",
+  data: {
+    _id: generateRandomMongoId(),
+    code: "mtn",
+    rewardProviderId: "bluelabelMobile",
+    loyaltyProgramme: [],
+    availableDenominations: [
+      {
+        yuCoin: 815,
+        value: 20,
+        displayName: {
+          "en-GB": "Monthly 120MB Data",
+          "ja-JP": "月間120MBデータ",
+          _id: generateRandomMongoId(),
+        },
+        providerProductId: "3444",
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 1220,
+        value: 30,
+        displayName: {
+          "en-GB": "Monthly 220MB Data",
+          "ja-JP": "月間350MBデータ",
+          _id: generateRandomMongoId(),
+        },
+        providerProductId: "3594",
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 3220,
+        value: 75,
+        displayName: {
+          "en-GB": "Monthly 600MB Data",
+          "ja-JP": "月間1GBデータ",
+          _id: generateRandomMongoId(),
+        },
+        providerProductId: "3641",
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+      {
+        yuCoin: 4000,
+        value: 99,
+        displayName: {
+          "en-GB": "Monthly 1.5GB Data",
+          _id: generateRandomMongoId(),
+          "ja-JP": "月間1.5GBデータ",
+        },
+        providerProductId: "2735",
+        availableForRewardsStore: true,
+        availableForCoupons: false,
+        _id: generateRandomMongoId(),
+      },
+    ],
+    currencyCode: "ZAR",
+    images: {
+      listItemImageKey: "imgixGlobal::cms/1706198815664_MTN Group@3x.png",
+      detailHeaderKey: "imgixGlobal::cms/1706197382434_MTN Group@3x.jpg",
+      websiteImageKey: "imgixGlobal::cms/1706860250131_MTN Group@3x website.png",
+      redemptionStepsFooter: "",
+    },
+    name: {
+      "en-GB": "MTN",
+      "ja-JP": "たかくてきぼうえきこうしょう",
+      _id: generateRandomMongoId(),
+    },
+    description: {
+      "en-GB":
+        "Africa's largest mobile network operator providing voice, data, fintech, digital, enterprise, wholesale and API services to more than 292 million customers in 19 markets.",
+      "ja-JP":
+        "音声、データ、フィンテック、デジタル、エンタープライズ、ホールセール、APIサービスを19市場で2億9,200万人以上の顧客に提供するアフリカ最大のモバイルネットワーク事業者。",
+      _id: generateRandomMongoId(),
+    },
+    copy: {
+      ctaLabel: {
+        "en-GB": "Claim Reward",
+        "ja-JP": "報酬を請求する",
+        _id: generateRandomMongoId(),
+      },
+      offerHeading: {
+        "en-GB": "MTN",
+        "ja-JP": "たかくてきぼうえきこうしょう",
+        _id: generateRandomMongoId(),
+      },
+      offerSubheading: {
+        "en-GB": "Get data bundles from 120MB for ${yuCoin} YuCoin",
+        "ja-JP": "100MBからのデータバンドルが840YuCoinでご利用いただけます。",
+        _id: generateRandomMongoId(),
+      },
+    },
+    redemptionSteps: {
+      info: {
+        "en-GB": "How to redeem",
+        "ja-JP": "換金方法",
+        _id: generateRandomMongoId(),
+      },
+      steps: [
+        {
+          "en-GB": "Tap 'Claim Reward' below.",
+          "ja-JP": "下の「報酬を請求する」をタップしてください。",
+          _id: generateRandomMongoId(),
+        },
+        {
+          "en-GB": "Select the MTN bundle of your choice.",
+          "ja-JP": "お好きなMTNバンドルをお選びください。",
+          _id: generateRandomMongoId(),
+        },
+        {
+          "en-GB": "Enter your mobile number where you would like the bundle to be loaded.",
+          "ja-JP": "バンドルが読み込まれる携帯電話番号を入力してください。",
+          _id: generateRandomMongoId(),
+        },
+        {
+          "en-GB":
+            "Your network provider will let you know when your bundle has been loaded successfully.",
+          "ja-JP":
+            "バンドルが正常に読み込まれると、ネットワークプロバイダーからお知らせが届きます。",
+          _id: generateRandomMongoId(),
+        },
+      ],
+    },
+    termsAndConditionsUrl: "https://www.mtn.com/legal/",
+    archived: false,
+    restrictions: {
+      availableForLabels: [],
+      restrictedForLabels: [],
+      locations: ["GB"],
+    },
+    tags: [
+      {
+        "en-GB": "Data",
+        "ja-JP": "データ",
+        _id: generateRandomMongoId(),
+      },
+    ],
+    website: {
+      heading: "MTN",
+      description: "Get data bundles with MTN",
+      imageAlt: "MTN",
+      isFeaturedOnWebsite: true,
+    },
+    claimType: "unlimited",
+    createdAt: {
+      $date: "2024-01-25T16:06:15.601Z",
+    },
+    updatedAt: {
+      $date: "2025-07-03T10:05:01.271Z",
+    },
+    __v: 0,
+    sortOrder: 1.5,
+    failedClaimCount: 0,
+    isLocked: false,
+  },
+};

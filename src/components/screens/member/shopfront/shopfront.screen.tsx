@@ -19,7 +19,7 @@ import { t } from "@locale";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
 import NoStoreWalletButton from "../rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
 import { isEmpty } from "lodash";
-import { REWARDS_SCREEN } from "@ids";
+import { REWARDS_SCREEN, SHOPFRONT_REWARDS_LIST } from "@ids";
 
 export enum RewardListItemTypes {
   RewardStoreExpiryWarning = "RewardStoreExpiryWarning",
@@ -185,6 +185,7 @@ const ShopfrontScreen = ({
       </Box>
       <FlashList
         data={listData}
+        testID={SHOPFRONT_REWARDS_LIST}
         renderItem={renderItem}
         onEndReachedThreshold={0.3}
         estimatedItemSize={128}
