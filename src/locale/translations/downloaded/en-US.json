@@ -1130,6 +1130,7 @@
         "title": "Send a gift"
       },
       "send_your_friend_a_gift": "Send your friends a gift!",
+      "spend_your_yucoin": "Spend your YuCoin",
       "success": {
         "description": "Your friend will receive a message in-app. |||| Your friends will receive a message in-app.",
         "title": "Your gift is on the way! |||| Your gifts are on the way!"
