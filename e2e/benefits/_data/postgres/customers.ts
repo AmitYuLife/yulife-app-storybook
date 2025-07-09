@@ -210,3 +210,26 @@ export const CUSTOMER_131 = createCustomerRecords({
     currentLevel: 2,
   },
 });
+
+export const CUSTOMER_132 = createCustomerRecords({
+  archived: false,
+  firstName: "Knight",
+  lastName: "Birdeye",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_16.business.data.businessAccountId,
+      legalFirstName: "Knight",
+      legalLastName: "Birdeye",
+      employmentEmail: generateRandomInbox(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  userGameState: {
+    currentBalance: 25000,
+    currentLevel: 5,
+  },
+});
