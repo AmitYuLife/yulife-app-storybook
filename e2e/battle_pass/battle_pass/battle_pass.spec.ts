@@ -174,10 +174,12 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
       Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
     });
-    When("I go back to the 'Quests' screen", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
-      When("I tap on level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10)), async () => {
-        When("I tap to check my inventory", when.tapID(ids.INVENTORY_BANNER, 2000), async () => {
-          Then("I should NOT be able to activate the second extra challenge power up", then.idVisible(ids.ACTIVATE_POWER_UP_BUTTON(false), 2000));
+    When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON, 2000), async () => {
+      When("I go to the 'Quests' screen", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        When("I tap on level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10)), async () => {
+          When("I tap to check my inventory", when.tapID(ids.INVENTORY_BANNER, 2000), async () => {
+            Then("I should NOT be able to activate the second extra challenge power up", then.idVisible(ids.ACTIVATE_POWER_UP_BUTTON(false), 2000));
+          });
         });
       });
     });

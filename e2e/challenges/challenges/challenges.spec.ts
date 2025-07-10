@@ -133,29 +133,29 @@ Feature("As a user I can take a challenge", async () => {
   Scenario("I can complete today's challenge and then the homepage button updates to invite a colleague through a link and a QR code", scenario.start, async () => {
     Given("I am on the quest tab as a user with a daily challenge", given.logInAndGoToTab("quests", data.CUSTOMER_35, data.AUTH_35), async () => {
       Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3280)));
-      When("I tap level 6", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
-        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
-        Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
-        Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
-        When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-          Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
-          When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-            Then("I should see the well done screen", then.onChallengeComplete(3050, 6));
-            When("I tap collect on the well done screen", when.tapText(t("Collect"), 5000), async () => {
-              Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
-              When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
-                Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7), 3000));
-                When("I tap yucoin in the tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-                  Then("I should see the Invite a colleague button", then.idVisible(ids.REFERRALS_BUTTON_HOMEPAGE));
-                  When("I tap on the invite button", when.tapID(ids.REFERRALS_BUTTON_HOMEPAGE), async () => {
-                    Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage);
-                  });
-                });
-              });
-            });
-          });
-        });
-      });
+    });
+    When("I tap level 6", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
+      Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
+      Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
+      Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
+    });
+    When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+      Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
+    });
+    When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+      Then("I should see the well done screen", then.onChallengeComplete(3050, 6));
+    });
+    When("I tap collect on the well done screen", when.tapText(t("Collect"), 5000), async () => {
+      Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
+    });
+    When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
+      Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7), 3000));
+    });
+    When("I tap yucoin in the tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+      Then("I should see the Invite a colleague button", then.idVisible(ids.REFERRALS_BUTTON_YUCOIN_SCREEN));
+    });
+    When("I tap on the invite button", when.tapID(ids.REFERRALS_BUTTON_YUCOIN_SCREEN), async () => {
+      Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage);
     });
   });
 

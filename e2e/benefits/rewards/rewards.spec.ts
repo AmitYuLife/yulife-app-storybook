@@ -56,7 +56,7 @@ Feature("Rewards should act correctly", async () => {
     When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
       Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.3), async () => {
+    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.3), async () => {
       Then("I should see the locked amazon reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON_UNAVAILABLE.data._id)));
       Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1));
     });
