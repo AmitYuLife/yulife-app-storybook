@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { Keyboard } from "react-native";
+import { Alert, Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { useGiftingPages } from "./hooks/use-gifting-pages";
@@ -14,32 +14,32 @@ import {
   YuCoinDenominationChoice,
 } from "./context/gifting-manager.types";
 import { GiftingManagerContext } from "./context/gifting-manager.context";
-import { useBackHandler, useGiftOptions, useSocialGroupUserSearch } from "@hooks";
+import { useBackHandler, useGiftOptions } from "@hooks";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { UserSearchItem } from "@redux/_core/types";
 import { keyBy, omit } from "lodash";
-import { SocialGroupLeaderboardSearchType } from "../../../../graphql/__generated";
+import { useQuery } from "@apollo/client";
+import { gql } from "@graphql/__generated";
 
 type Props = {
   preselectedUserIds?: string[];
   startingPage?: GIFTING_PAGE;
+  componentId: string;
 };
 
-const GiftingManager = ({ preselectedUserIds, startingPage }: Props) => {
-  const { data: leaderboardUsers, loading: leaderboardUsersLoading } = useSocialGroupUserSearch({
-    searchType: SocialGroupLeaderboardSearchType.Gifting,
-    allowUnfilteredSearch: true,
+const GiftingManager = ({ preselectedUserIds, startingPage, componentId }: Props) => {
+  const {
+    data: preSelectedUsersData,
+    loading: preSelectedUsersLoading,
+    error: preSelectedUsersError,
+  } = useQuery(gql("GetGiftingRecipientsDocument"), {
+    variables: { userIds: preselectedUserIds },
+    fetchPolicy: "no-cache",
+    skip: !preselectedUserIds?.length,
   });
 
   const [targetUsers, setTargetUsers] = useState<Record<string, UserSearchItem>>(keyBy([], "id"));
-
-  useEffect(() => {
-    const preselectedUsers =
-      leaderboardUsers?.searchLeaderboardUser.filter((x) => (preselectedUserIds ?? []).includes(x.id)) ?? [];
-
-    setTargetUsers(keyBy(preselectedUsers, "id"));
-  }, [leaderboardUsers, preselectedUserIds]);
 
   const onClose = useCallback(() => {
     Keyboard.dismiss();
@@ -47,6 +47,21 @@ const GiftingManager = ({ preselectedUserIds, startingPage }: Props) => {
 
     return true;
   }, []);
+
+  useEffect(() => {
+    if (preSelectedUsersError) {
+      Alert.alert(preSelectedUsersError.message);
+      onClose();
+      return;
+    }
+
+    if (preSelectedUsersData?.getGiftingRecipients?.length) {
+      const preselectedUsers =
+        preSelectedUsersData?.getGiftingRecipients.filter((x) => (preselectedUserIds ?? []).includes(x.id)) ?? [];
+
+      setTargetUsers(keyBy(preselectedUsers, "id"));
+    }
+  }, [preSelectedUsersLoading, preSelectedUsersError, preSelectedUsersData, componentId, preselectedUserIds, onClose]);
 
   const userCoins = useSelector(getTotalCoins);
   const selectedUsersArray = useMemo(() => Object.values(targetUsers), [targetUsers]);
@@ -69,7 +84,7 @@ const GiftingManager = ({ preselectedUserIds, startingPage }: Props) => {
     [yuCoinOptions, selectedUsersArray.length]
   );
 
-  const fullyLoaded = !loading && !leaderboardUsersLoading;
+  const fullyLoaded = !loading && !preSelectedUsersLoading;
 
   const {
     handlePressBack,
