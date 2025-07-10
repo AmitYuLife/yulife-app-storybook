@@ -1025,6 +1025,7 @@ export const SCROLL_PICKER_CONFIRM_BUTTON = "scroll-picker-confirm-button-text-v
 export const QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON = "undefined-text-view";
 export const ACTIVITY_FEED_BUTTON = "TAKE_CHALLENGE_LEFT-text-view";
 export const FOOTER_LABEL_TEXT = "footer-label-text";
+export const REFERRALS_BUTTON_YUCOIN_SCREEN = "REFERRALS";
 
 // P2P Gifting
 export const GIFTING_INTRO = "GIFTING_INTRO";
