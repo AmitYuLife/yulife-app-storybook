@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { showYuModal } from "@navigation/root";
+import { openMyAccount } from "@redux/user/user.actions";
 import { getSocialGroups } from "@redux/leaderboards/leaderboards.selectors";
 import { useMutation, useQuery } from "@apollo/client";
 import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
@@ -87,14 +88,18 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
   const onChangeBirthdayVisibility = useCallback(
     ({ isVisible }: IChangeBirthdayVisibilityProps) => {
       if (!lifeEventsData?.birthday) {
+        const handleNavigateToMyAccount = async () => {
+          await Navigation.dismissModal(MODALS.birthdayNotSet);
+          dispatch(openMyAccount());
+        };
+
         showYuModal({
           component: {
-            id: MODALS.info,
-            name: MODALS.info,
+            id: MODALS.birthdayNotSet,
+            name: MODALS.birthdayNotSet,
             passProps: {
-              ctaLabel: t("screens.leaderboard_settings.birthday_visibility.not_set.ctaLabel"),
-              heading: t("screens.leaderboard_settings.birthday_visibility.not_set.heading"),
-              onPress: () => Navigation.dismissModal(MODALS.info),
+              onPress: handleNavigateToMyAccount,
+              onClose: () => Navigation.dismissModal(MODALS.birthdayNotSet),
             },
           },
         });

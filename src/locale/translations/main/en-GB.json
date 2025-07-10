@@ -725,7 +725,8 @@
           "subheading": "You won’t get friends’ birthday reminders, and your friends won’t get a notification on your birthday."
         },
         "not_set": {
-          "heading": "Update your birthday to turn on birthday notifications",
+          "heading": "Tell us your birthday!",
+          "description": "Celebrate birthdays with all your in-app friends — update your birthday to turn on birthday notifications.",
           "ctaLabel": "Got it!"
         }
       }
