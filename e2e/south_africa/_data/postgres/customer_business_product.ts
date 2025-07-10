@@ -152,6 +152,6 @@ export const CBP_SA_1_OM_MEGL = {
     customer_product_id: CPE_OM_MeGL_SA_1.data.customer_product_id,
     category_id: 1,
     start_date: CPE_OM_MeGL_SA_1.data.start_date,
-    data: '{"jobTitle":"Director","benefitType":"Multiple of Salary","benefitAmount":2000000,"salary":1200000,"maritalStatus":"","spouseIndicator":0,"annualRiskSalary":1200000,"targetCover":4800000,"medicalUwRequired":true}',
+    data: '{"jobTitle":"Director","benefitType":"Multiple of Salary","benefitAmount":2000000,"salary":1200000,"maritalStatus":"","spouseIndicator":1,"annualRiskSalary":1200000,"targetCover":4800000,"medicalUwRequired":true}',
   },
 } as IDatabaseItem;

@@ -90,7 +90,13 @@ export const productCheck =
   ) =>
   async () => {
     await onProductPage(productPage)();
-    if (coverInfo) {
+    if (oldMutual) {
+      await scrollUntilTextVisible(
+        ids.PRODUCT_DETAILS_SCROLL_VIEW,
+        constant.coverAmountsText,
+        "down"
+      )();
+    } else if (coverInfo) {
       await scrollUntilTextVisible(
         ids.PRODUCT_DETAILS_SCROLL_VIEW,
         constant.termsAndConditionsWarning,
@@ -174,6 +180,7 @@ export const usefulLinksVisible = (beneficiaries: boolean, oldMutual: boolean) =
   await idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constant.makeClaimImg))();
   await textVisible(constant.makeClaimText)();
   !oldMutual && (await textVisible(constant.memberCertText)());
+  !oldMutual && (await textVisible(constant.memberCertDisclaimer)());
 };
 
 export const additionalInfoVisible = (info2: string) => async () => {
@@ -182,20 +189,38 @@ export const additionalInfoVisible = (info2: string) => async () => {
 };
 
 export const coverAmountsVisible = (product: coverAmounts) => async () => {
+  const coverLevels = [
+    "spouse",
+    "stillborn",
+    "child_0_12_months",
+    "child_0_5_years",
+    "child_1_5_years",
+    "child_6_13_years",
+    "child_14_21_years",
+    "child_14_plus",
+  ] as const;
   await textVisible(product.coverAmountsText)();
   await textVisible(product.youText)();
-  await textVisible(product.youAmmount)();
+  await textVisible(product.youAmount)();
   product.increaseCoverText && (await textVisible(product.increaseCoverText)());
   product.increaseCoverTextImg &&
     (await idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(product.increaseCoverTextImg))());
-  product.child_0_12_monthsText && (await textVisible(product.child_0_12_monthsText)());
-  product.child_0_12_ammount && (await textVisible(product.child_0_12_ammount)());
-  product.child_1_5_yearsText && (await textVisible(product.child_1_5_yearsText)());
-  product.child_1_5_ammount && (await textVisible(product.child_1_5_ammount)());
-  product.child_6_13_yearsText && (await textVisible(product.child_6_13_yearsText)());
-  product.child_6_13_ammount && (await textVisible(product.child_6_13_ammount)());
-  product.child_14_21_yearsText && (await textVisible(product.child_14_21_yearsText)());
-  product.child_14_21_ammount && (await textVisible(product.child_14_21_ammount)());
+
+  for (const level of coverLevels) {
+    const textKey = `${level}Text` as keyof typeof product;
+    const amountKey = `${level}Amount` as keyof typeof product;
+
+    const text = product[textKey];
+    const amount = product[amountKey];
+
+    if (text) {
+      await textVisible(text)();
+    }
+
+    if (amount) {
+      await textVisible(amount)();
+    }
+  }
   product.disclaimer_1 && (await textVisible(product.disclaimer_1)());
   product.disclaimer_2 && (await textVisible(product.disclaimer_2)());
   product.NOincreaseCoverText && (await textNotVisible(product.NOincreaseCoverText)());
