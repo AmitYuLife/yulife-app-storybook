@@ -100,41 +100,51 @@ export const MeGL_OMKeyInfo: keyInfo = {
 export const MeGLCoverAmounts: coverAmounts = {
   coverAmountsText: constant.coverAmountsText,
   youText: constant.youText,
-  youAmmount: "R 2,000,000",
+  youAmount: "R 2,000,000",
 };
 
 export const MeGL_2_CoverAmounts: coverAmounts = {
   coverAmountsText: constant.coverAmountsText,
   youText: constant.youText,
-  youAmmount: "R 2,000,000",
+  youAmount: "R 2,000,000",
   NOincreaseCoverText: constant.increaseYourCoverText,
+  spouseText: constant.spouseText,
+  spouseAmount: "R 100,000",
+  stillbornText: constant.stillborn26WeeksText,
+  stillbornAmount: "R 25,000",
+  child_0_5_yearsText: constant.child0_5YearsText,
+  child_0_5_yearsAmount: "R 30,000",
+  child_6_13_yearsText: constant.child6_13YearsText,
+  child_6_13_amount: "R 40,000",
+  child_14_plusText: constant.child14PlusText,
+  child_14_plusAmount: "R 50,000",
 };
 
 export const SpGL_2_CoverAmounts: coverAmounts = {
   coverAmountsText: constant.coverAmountsText,
   youText: constant.youText,
-  youAmmount: "R 2,000,000",
+  youAmount: "R 2,000,000",
 };
 
 export const GrFunCoverAmounts: coverAmounts = {
   coverAmountsText: constant.coverAmountsText,
   youText: constant.youText,
-  youAmmount: "R 50,000",
+  youAmount: "R 50,000",
   child_0_12_monthsText: constant.child0_12MonthsText,
-  child_0_12_ammount: "R 5,000",
+  child_0_12_amount: "R 5,000",
   child_1_5_yearsText: constant.child1_5YearsText,
-  child_1_5_ammount: "R 20,000",
+  child_1_5_amount: "R 20,000",
   child_6_13_yearsText: constant.child6_13YearsText,
-  child_6_13_ammount: "R 60,000",
+  child_6_13_amount: "R 60,000",
   child_14_21_yearsText: constant.child14_21YearsText,
-  child_14_21_ammount: "R 100,000",
+  child_14_21_amount: "R 100,000",
   disclaimer_1: constant.termsAndConditionsWarning,
 };
 
 export const GIPCoverAmounts: coverAmounts = {
   coverAmountsText: constant.coverAmountsText,
   youText: constant.currentSumAssured,
-  youAmmount: "R 75,000",
+  youAmount: "R 75,000",
   increaseCoverText: `${constant.increaseCoverToText} R 75,000`,
   increaseCoverTextImg: constant.pencilPersonImg,
   disclaimer_1: constant.GIPDisclaimer_1,
@@ -144,7 +154,7 @@ export const GIPCoverAmounts: coverAmounts = {
 export const TmpGIPCoverAmounts: coverAmounts = {
   coverAmountsText: constant.coverAmountsText,
   youText: constant.currentSumAssured,
-  youAmmount: "R 27,828",
+  youAmount: "R 27,828",
   increaseCoverText: `${constant.increaseCoverToText} R 27,827.80`,
   increaseCoverTextImg: constant.pencilPersonImg,
   disclaimer_1: constant.TemporaryIncomeDisclaimer_1,
@@ -154,7 +164,7 @@ export const TmpGIPCoverAmounts: coverAmounts = {
 export const LMPSCoverAmounts: coverAmounts = {
   coverAmountsText: constant.coverAmountsText,
   youText: constant.currentSumAssured,
-  youAmmount: "R 1,500,000",
+  youAmount: "R 1,500,000",
   increaseCoverText: `${constant.increaseCoverToText} R 4,800,000`,
   increaseCoverTextImg: constant.pencilPersonImg,
   disclaimer_1: constant.basisCover,
@@ -313,7 +323,7 @@ export const gciKeyInfo: keyInfo = {
 export const gciCoverAmounts: coverAmounts = {
   coverAmountsText: constant.coverAmountsText,
   youText: constant.currentSumAssured,
-  youAmmount: "R 30,000",
+  youAmount: "R 30,000",
   increaseCoverText: `${constant.increaseCoverToText} R 50,000`,
   increaseCoverTextImg: constant.pencilPersonImg,
   disclaimer_1: constant.gciDisclaimer,

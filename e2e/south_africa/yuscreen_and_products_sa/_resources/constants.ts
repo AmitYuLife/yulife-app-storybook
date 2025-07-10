@@ -47,7 +47,11 @@ export const child0_12MonthsText = "Child 0 - 12 months";
 export const child1_5YearsText = "Child 1 - 5 years";
 export const child6_13YearsText = "Child 6 - 13 years";
 export const child14_21YearsText = "Child 14 - 21 years";
-export const GrFunCoverAmmountsDisclaimer = "Repatriation cover maximum: R 20,000 per claim.";
+export const stillborn26WeeksText = "Stillborn 26 weeks +";
+export const child0_5YearsText = "Child 0 - 5 years";
+export const child14PlusText = "Child 14 years +";
+export const spouseText = "Spouse";
+export const GrFunCoverAmountsDisclaimer = "Repatriation cover maximum: R 20,000 per claim.";
 export const currentSumAssured = "Current sum assured";
 export const GIPDisclaimer_1 =
   "Your policy will continue to payout until you reach retirement/age.";
@@ -65,6 +69,8 @@ export const increaseCoverToText = "Increase cover to";
 export const editBeneficiariText = "Edit beneficiaries";
 export const makeClaimText = "Make a claim";
 export const memberCertText = "Member certificate";
+export const memberCertDisclaimer =
+  "Your password-protected member certificate can be accessed using the last 6 digits of your ID.";
 export const addBeneficiariesText = "Add a beneficiary";
 export const addBeneficiariesButtonText = "Add a Beneficiary";
 export const finishButton = "Finish";
