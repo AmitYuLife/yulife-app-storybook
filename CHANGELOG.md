@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.71.0] - 2025-07-10
+
+### Features
+
+- Feature NVS-1462: Remove todayScreen from Redux
+
+### Bugfixes
+
+- Bugfix GS-1755: Keyboard showing while login with email on ios
+
+### Tasks
+
+- Task GS-1460: Data tracking for achievement system
+- Task GS-1765: Remove categories from achievements
+- Task GS-1762: Gift receiver experience changes
+- Task GS-1597: Use debug queries enabled flag
+- Task NVS-1108: dont query user profile for today screen details
+- Task GS-1752: Purge tempGameEnableStreakSaver toggle
+- Task GS-1753: Increase achievement icon size
+- Task: use id as key for product-game-item
+- Task NVS-1464: retry logging and loading state for SDUI issues
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Invite Colleague Flow
+- Detox NVS-1398 & NVS-1391
+- Feat NVS-1417: Update no birthday set screen
+- ISA-3478: Fixed Name Missing on Member Certificate
+- ISA-3414: Shoprite and Bluelabel Reward Claiming with Mobile Number
+- Detox: Smoking Fixes and NVS-1425 & NVS-1309
+- Detox: Battle Pass Shopfront
+- ISA-3443: Active Pension Connections Hidden with Setting Disabled
+
 ## [4.70.0] - 2025-07-03
 
 ### Features
