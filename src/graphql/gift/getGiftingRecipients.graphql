@@ -1,0 +1,11 @@
+query GetGiftingRecipients($userIds: [String!]!) {
+  getGiftingRecipients(userIds: $userIds) {
+    id
+    name
+    shortName
+    avatar {
+      id
+      uri
+    }
+  }
+}

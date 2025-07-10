@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -7602,6 +7601,7 @@ export type Query = {
   getGameConsumables: GetGameConsumableResponse;
   getGift: Gift;
   getGiftingAssets: TeamGiftingAssets;
+  getGiftingRecipients: Array<SearchLeaderboardUser>;
   getGoalDetails?: Maybe<GoalDetails>;
   getGoalMilestoneDetails: GoalMilestoneDetails;
   getHealthSmokingState?: Maybe<HealthSmokingState>;
@@ -8046,6 +8046,11 @@ export type QueryGetGameConsumablesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetGiftArgs = {
   giftId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetGiftingRecipientsArgs = {
+  userIds: Array<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -22527,6 +22532,21 @@ export type GetGiftQuery = {
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     };
   };
+};
+
+export type GetGiftingRecipientsQueryVariables = Exact<{
+  userIds: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
+}>;
+
+export type GetGiftingRecipientsQuery = {
+  __typename?: "Query";
+  getGiftingRecipients: Array<{
+    __typename?: "SearchLeaderboardUser";
+    id: string;
+    name: string;
+    shortName: string;
+    avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
 };
 
 export type SendThanksForGiftMutationVariables = Exact<{
@@ -70554,6 +70574,64 @@ export const GetGiftDocument = {
     },
   ],
 } as unknown as DocumentNode<GetGiftQuery, GetGiftQueryVariables>;
+export const GetGiftingRecipientsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetGiftingRecipients" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "userIds" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getGiftingRecipients" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "userIds" },
+                value: { kind: "Variable", name: { kind: "Name", value: "userIds" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "shortName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "avatar" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetGiftingRecipientsQuery, GetGiftingRecipientsQueryVariables>;
 export const SendThanksForGiftDocument = {
   kind: "Document",
   definitions: [
