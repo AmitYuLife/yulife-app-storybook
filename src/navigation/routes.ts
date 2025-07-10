@@ -587,6 +587,10 @@ const routesForRegistration = [
     name: MODALS.unlockedAchievementsModal,
     component: require("../components/modals/unlocked-achievements-modal/unlocked-achievements-modal").default,
   },
+  {
+    name: MODALS.birthdayNotSet,
+    component: require("../components/modals/birthday-not-set/birthday-not-set.modal").default,
+  },
 ];
 
 export default routesForRegistration;
