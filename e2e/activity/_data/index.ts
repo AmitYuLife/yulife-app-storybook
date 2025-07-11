@@ -49,3 +49,4 @@ export * from "./mongo/core_journey_steps";
 export * from "./mongo/user_habit_tracking_state";
 export * from "./mongo/user_habit_tracking_actions";
 export * from "./mongo/user_journey_state";
+export * from "./mongo/social_group_player_life_event";
