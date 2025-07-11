@@ -25,6 +25,7 @@
     "detox:report": "open e2e-report/jest_html_reporters.html",
     "detox:screenshots": "yarn detox:test:base:uk e2e/screenshots/**/*.spec.ts",
     "detox:sa": "yarn detox:test:base:uk e2e/south_africa/**/*.spec.ts",
+    "detox:surveys": "yarn detox:test:base:uk e2e/surveys/**/*.spec.ts",
     "detox:usa": "yarn detox:test:base:uk e2e/usa/**/*.spec.ts",
     "detox:jp": "yarn detox:test:base:jp e2e/japan/*.spec.ts",
     "detox:worlds": "yarn detox:test:base:uk e2e/worlds_progression/eotw/*.spec.ts",
