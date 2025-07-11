@@ -1254,7 +1254,8 @@
         "not_consented": "同僚の誕生日に通知が届きます。また、ご自身の誕生日には同僚に通知が送信されます。",
         "not_set": {
           "ctaLabel": "OK",
-          "heading": "誕生日に関する通知をオンにするには、誕生日を更新してください"
+          "description": "Yumoji の すべての アプリ内 友達 と 一緒に 誕生日 を 祝う — 誕生日 を 更新 して 誕生日 通知 を 有効 に する。",
+          "heading": "生年月日を教えてください！"
         },
         "title": "誕生日に関する通知",
         "turn_off": {
@@ -1606,8 +1607,8 @@
     },
     "settings": {
       "content_location": {
-        "description": "希望のストアの場所を選択してください",
-        "label": "店舗の場所"
+        "description": "希望するストアの国/地域を選択してください",
+        "label": "ストアの国/地域"
       },
       "email_notification": {
         "label": "メールアドレス"

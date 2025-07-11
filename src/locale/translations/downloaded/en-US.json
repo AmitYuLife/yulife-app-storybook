@@ -1254,7 +1254,8 @@
         "not_consented": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
         "not_set": {
           "ctaLabel": "Got it!",
-          "heading": "Update your birthday to enable birthday notifications"
+          "description": "Celebrate birthdays with all your in-app friends — update your birthday to enable birthday notifications.",
+          "heading": "Share your birthday with us!"
         },
         "title": "Birthday notifications",
         "turn_off": {

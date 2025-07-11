@@ -1254,7 +1254,8 @@
         "not_consented": "Recibe un recordatorio de los cumpleaños de tus amigos, y tus amigos recibirán una notificación de tu cumpleaños.",
         "not_set": {
           "ctaLabel": "¡Entendido!",
-          "heading": "Actualiza tu fecha de cumpleaños para activar las notificaciones de cumpleaños"
+          "description": "Celebra los cumpleaños con todos tus amigos de la aplicación: actualiza tu fecha de cumpleaños para activar las notificaciones de cumpleaños.",
+          "heading": "Cuéntanos tu cumpleaños"
         },
         "title": "Notificaciones de cumpleaños",
         "turn_off": {
