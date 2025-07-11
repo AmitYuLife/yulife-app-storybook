@@ -1,5 +1,6 @@
 import { TextTemplate } from "@atoms";
 import { Switch, TouchableOpacityWithDelay } from "@components/molecules";
+import { BIRTHDAY_TOGGLE } from "@ids";
 import { t } from "@locale";
 import { Style } from "@styles";
 import { memo, useCallback } from "react";
@@ -20,7 +21,7 @@ const BirthdayVisibilityToggle = ({ onBirthdayVisibilityChange, isVisible, disab
   }, [isVisible, onBirthdayVisibilityChange]);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={BIRTHDAY_TOGGLE(isVisible)}>
       <TouchableOpacityWithDelay disabled={disabled} style={styles.nameWrapper} onPress={onToggle}>
         <TextTemplate type="b2">{t("screens.leaderboard_settings.birthday_visibility.title")}</TextTemplate>
         <TextTemplate type="l1">

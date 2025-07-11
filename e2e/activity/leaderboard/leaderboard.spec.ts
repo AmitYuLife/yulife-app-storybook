@@ -66,7 +66,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       When("I tap close", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
         When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
           When("I tap settings", when.tapMenuItem("Settings"), async () => {
-            When("I tap leaderboards", when.tapText("Leaderboards"), async () => {
+            When("I tap leaderboards", when.tapText("Leaderboards and birthday"), async () => {
               Then("I can see the option for Steps leaderboards", then.idVisible(ids.SETTINGS_SWITCH("Steps", true)));
             });
           });

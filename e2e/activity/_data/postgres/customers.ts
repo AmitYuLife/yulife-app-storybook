@@ -116,6 +116,7 @@ export const CUSTOMER_17 = {
     firstName: "Ryan",
     lastName: "Howard",
     status: "onboarded",
+    customer_provided_date_of_birth: moment().subtract(30, "years").subtract(4, "months"),
   },
 } as IDatabaseItem;
 
@@ -128,6 +129,7 @@ export const CUSTOMER_18 = {
     firstName: "Michael",
     lastName: "Scott",
     status: "onboarded",
+    customer_provided_date_of_birth: moment().subtract(30, "years"),
   },
 } as IDatabaseItem;
 
@@ -344,6 +346,7 @@ export const CUSTOMER_47 = {
     firstName: "Gill",
     lastName: "Stock",
     status: "onboarded",
+    customer_provided_date_of_birth: moment().subtract(30, "years").subtract(2, "months"),
   },
 } as IDatabaseItem;
 

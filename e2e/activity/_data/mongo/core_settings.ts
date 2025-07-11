@@ -115,6 +115,20 @@ export const BUSINESS_2_MAX_YU_SETTINGS = {
   },
 } as IDatabaseItem;
 
+export const BUSINESS_2_BIRTHDAY_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.lifeEvents",
+    entityId: BUSINESS_ACCOUNT_2.data.business_account_id,
+    entityType: "business",
+    settings: {
+      daysBetweenBirthdayChanges: 365,
+      isBirthdayGiftingEnabled: true,
+    },
+  },
+} as IDatabaseItem;
+
 export const BUSINESS_3_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {
