@@ -1,36 +1,26 @@
 import Logger from "@services/logging/logger";
-import { useEffect, useRef, useState } from "react";
-
-const LOTTIE_CACHE = new Map<string, any>();
+import { useEffect, useState } from "react";
 
 export function useGetLottieJson(uri: string) {
+  const [json, setJson] = useState(null);
   const [loading, setLoading] = useState(false);
-  const isFetching = useRef(false);
 
   useEffect(() => {
-    if (LOTTIE_CACHE.has(uri)) {
-      return;
-    }
-
-    if (uri && !isFetching.current) {
+    if (uri) {
       (async () => {
-        isFetching.current = true;
-
         try {
           setLoading(true);
           const response = await fetch(uri, { method: "GET" });
           const responseInJson = await response.json();
-          LOTTIE_CACHE.set(uri, responseInJson);
+          setJson(responseInJson);
         } catch (error) {
           Logger.error(error, { file: "useGetLottieJson" });
         } finally {
           setLoading(false);
         }
-
-        isFetching.current = false;
       })();
     }
   }, [uri]);
 
-  return { uri: LOTTIE_CACHE.get(uri), loading };
+  return { uri: json, loading };
 }
