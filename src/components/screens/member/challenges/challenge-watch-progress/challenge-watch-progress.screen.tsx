@@ -31,7 +31,14 @@ const ChallengesWatchProgress = ({ onCancel, onLeftMenuPress }: IChallengesWatch
 
   const onRefresh = useCallback(() => {
     dispatch(
-      getUserDataStart({ types: [AppDataType.activeChallenge, AppDataType.activeStreak, AppDataType.coinLedger] })
+      getUserDataStart({
+        types: [
+          AppDataType.activeChallenge,
+          AppDataType.activeStreak,
+          AppDataType.coinLedger,
+          AppDataType.challengesDoneToday,
+        ],
+      })
     );
   }, [dispatch]);
 
