@@ -23,7 +23,7 @@ app:
   - APP_VERSION: 0.0.1
   - BUNDLE_ID: com.yulife.develop
   - BITRISE_SCHEME: YuLife
-  - IPHONE_DEVICE: iPhone 11 Pro
+  - IPHONE_DEVICE: iPhone 15 Pro Max
     opts:
       is_expand: false
   - DETOX_TEST_TYPE: smoke
