@@ -429,14 +429,17 @@ Feature("Health questionnaires", async () => {
       });
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I the final slider question", then.idVisible(ids.TEXT_TEMPLATE("Do you use your personal or work mobile phone for work?", "b2b")));
+      When("I click on the 'Enter your weight'", when.tapID(ids.TEXT_TEMPLATE("Enter your weight", "l1b")), async () => {
+        Then("I should see Kilos (kg), Stones (st), Pounds (lbs) tab", then.canSeeWeightConversion);
+      });
     });
-    When("I click on the 'Back arrow' button", when.tapID(ids.BACK_BUTTON), async () => {
-      Then("I can see the multiple image question", then.idVisible(ids.TEXT_TEMPLATE("How do you typically maintain your social connections?", "b2b")));
-      Then("I can see the multiple selections are still highlighted ", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.1", true)));
-      Then("I can see the multiple selections are still highlighted ", then.idVisible(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.2", true)));
+    When("I click to enter my weight in pounds", when.tapID(ids.CHIP_LIST_ITEM("Pounds (lbs)")), async () => {
+      Then("I should see im on the lower bound of the slider 50 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("50lbs")));
     });
-    When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+    When("I swipe up fast on the weight picker scroller", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("50lbs"), "up", "fast", 1), async () => {
+      Then("I should see ive stopped on 72 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("72lbs")));
+    });
+    When("I tap select", when.tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON), async () => {
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
         Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
         Then(

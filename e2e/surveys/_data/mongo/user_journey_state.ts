@@ -409,7 +409,7 @@ export const USER_JOURNEY_STATE_04 = {
         isAQuestion: true,
       },
       {
-        stepId: steps.CORE_JOURNEY_STEPS_26.data.externalId,
+        stepId: steps.CORE_JOURNEY_STEP_WEIGHT.data.externalId,
         animateProgressBar: true,
         progressBarValue: 7,
         isAQuestion: true,

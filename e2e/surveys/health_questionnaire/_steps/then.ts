@@ -268,3 +268,9 @@ export const engagementSurveyHeroCardVisible = async () => {
     ids.EVENT_DESCRIPTION("Earn YuCoin and help improve your workplace anonymously!", "#5A5A5C")
   )();
 };
+
+export const canSeeWeightConversion = async () => {
+  await idVisible(ids.CHIP_LIST_ITEM("Kilos (kg)"))();
+  await idVisible(ids.CHIP_LIST_ITEM("Stones (st)"))();
+  await idVisible(ids.CHIP_LIST_ITEM("Pounds (lbs)"))();
+};
