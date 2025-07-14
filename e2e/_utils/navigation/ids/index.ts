@@ -1022,7 +1022,7 @@ export const START_GAME_BUTTON = "START_GAME_BUTTON";
 export const GAME_STATE_MODAL_IMAGE = "GAME_STATE_MODAL_IMAGE";
 
 // TestIds from API
-export const SCROLL_PICKER_CONFIRM_BUTTON = "scroll-picker-confirm-button-text-view";
+export const SCROLL_PICKER_CONFIRM_BUTTON = "scroll-picker-confirm-button";
 export const QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON = "undefined-text-view";
 export const ACTIVITY_FEED_BUTTON = "TAKE_CHALLENGE_LEFT-text-view";
 export const FOOTER_LABEL_TEXT = "footer-label-text";
