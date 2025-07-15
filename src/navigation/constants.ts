@@ -59,6 +59,9 @@ export const ROUTES = {
   sudokuCompleted: "yulife.brainGames.sodukuCompleted",
   sudokuLeaderboard: "yulife.brainGames.sudokuLeaderboard",
 
+  // breathing exercises
+  breathingExercise: "yulife.breathing.exercise",
+
   // settings
   cyclingMeasurement: "yulife.member.cyclingMeasurement",
   languageSelector: "yulife.member.languageSelector",

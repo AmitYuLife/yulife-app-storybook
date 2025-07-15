@@ -111,6 +111,8 @@
       "use": "Use",
       "copy": "Copy",
       "submit": "Submit",
+      "start": "Start",
+      "pause": "Pause",
       "later": "Later",
       "connect": "Connect",
       "connect_health_app": "Connect %{healthApp}",
@@ -258,6 +260,14 @@
     },
     "referrals": {
       "or": "OR"
+    },
+    "breathing_exercise": {
+      "length": "Length",
+      "mouth": "Mouth",
+      "nose": "Nose",
+      "inhale": "Inhale",
+      "exhale": "Exhale",
+      "hold": "Hold"
     },
     "today_earning": {
       "heading": {

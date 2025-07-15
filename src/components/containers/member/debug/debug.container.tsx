@@ -58,6 +58,7 @@ enum DebugCodes {
   wrapped = "wrapped",
   sendGiftToSelf = "send-gift-to-self",
   genericHeading = "generic-heading",
+  breathingExercise = "breathing-exercise",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -126,6 +127,27 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
               component: {
                 id: ROUTES.testJourney,
                 name: ROUTES.testJourney,
+              },
+            });
+
+          case DebugCodes.breathingExercise:
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.breathingExercise,
+                name: ROUTES.breathingExercise,
+                passProps: {
+                  lottieUri:
+                    "https://yulife-local.imgix.net/media/meditation/meditopia/lottie/florest-meditation-lottie-v2.1.json?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=9958acfe532576df1a4bed3eab6c5232",
+                  data: {
+                    id: "breathing_4_7_8",
+                    availableDurations: [60000, 120000, 180000],
+                    parts: [
+                      { id: "4_7_8_1", type: "Inhale", duration: 4000 },
+                      { id: "4_7_8_2", type: "Hold", duration: 7000 },
+                      { id: "4_7_8_3", type: "Exhale", duration: 8000 },
+                    ],
+                  },
+                },
               },
             });
 

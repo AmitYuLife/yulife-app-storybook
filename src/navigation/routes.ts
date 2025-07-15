@@ -257,6 +257,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/media/meditopia-media-list/meditopia-media-list.container")
       .default,
   },
+  {
+    name: ROUTES.breathingExercise,
+    component: require("../components/games/breathing/exercise/breathing-exercise.container").default,
+  },
   // fiit media category list
   {
     name: ROUTES.fiitMediaCategoryList,
