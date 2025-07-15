@@ -261,13 +261,13 @@ const BreathingExerciseContainer = ({ data, lottieUri }: Props) => {
         </Box>
       </Box>
       <Box position="absolute" bottom={24} left={0} right={0}>
-        <Box justifyContent="center" alignItems="center" px={24} pb={48}>
-          <Box mb={12}>
-            <TextTemplate type="b2b" color={Colours.neutral.white}>
-              {t("screens.breathing_exercise.length")}
-            </TextTemplate>
-          </Box>
-          {data.availableDurations.length > 1 ? (
+        {!hasStarted && data.availableDurations.length > 1 ? (
+          <Box justifyContent="center" alignItems="center" px={24} pb={48}>
+            <Box mb={12}>
+              <TextTemplate type="b2b" color={Colours.neutral.white}>
+                {t("screens.breathing_exercise.length")}
+              </TextTemplate>
+            </Box>
             <Box flexDirection="row" justifyContent="center" alignItems="center">
               {data.availableDurations.map((duration, index) => {
                 const { minutes } = displaySecondsAsMinutes(duration / 1000);
@@ -288,8 +288,9 @@ const BreathingExerciseContainer = ({ data, lottieUri }: Props) => {
                 );
               })}
             </Box>
-          ) : null}
-        </Box>
+          </Box>
+        ) : null}
+
         <Box justifyContent="center" alignItems="center" flex={1} mb={32}>
           <Box
             br={9}
