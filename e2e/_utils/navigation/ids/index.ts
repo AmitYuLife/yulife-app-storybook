@@ -154,6 +154,7 @@ export const LABELS_CTA_CONTINUE = "labels.cta.continue";
 export const REWARDS_LOCATION_CONFIRM = "screens.content_location.first_time.confirm";
 export const WELLBEING_HUB_LOCATION_CONFIRM = "screens.content_location.first_time.confirm";
 export const STORE_LOCATION_TAB_BUTTON = "STORE_LOCATION_TAB_BUTTON";
+export const STORE_LOCATION_CONFIRM_BUTTON = "screens.content_location.list.cta_button";
 export const PURCHASED_TAB_BUTTON = "PURCHASED_TAB_BUTTON";
 export const CONTENT_ITEM_BUTTON_IMAGE_NO_URL = "CONTENT_ITEM_BUTTON_IMAGE_";
 export const CONTENT_FORM_SUBMIT = "CONTENT_FORM_SUBMIT";
