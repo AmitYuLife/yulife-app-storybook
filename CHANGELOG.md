@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.72.0] - 2025-07-16
+
+### Tasks
+
+- Task: upgrade polyglot
+- Task CTE-273: hide length selection after start
+- Task CTE-273: breathing exercise
+- Revert "Merge branch 'task/cache-get-lottie' into 'develop'"
+- Task: cache remotely fetched lottie urls
+- Task GS-1778: Update ring planet slice for mountain
+- Task DEVOP-4099: Update detox tests to run with Postgres 17
+- Task DEVOPS-3695: Detox smoke test
+- Task GS-1774: Refetch challenges done today on watch progress screen
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox GS-1617: Different Region Rewards
+- Detox NVS-1376: testing weight pickers new pounds option
+- Purge GS-1750: Purge gameHideMeditationInternalContent toggle
+- Detox NVS-1223 Initial Birthday Tests
+- Detox NVS-1446: Decouple customer_quizzes tests from activity into standalone survey folder
+- Fix NVS-1222: Fixed issues with gift recipient users not being fetched
+
 ## [4.71.0] - 2025-07-10
 
 ### Features
