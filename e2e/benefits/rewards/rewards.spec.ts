@@ -203,7 +203,7 @@ Feature("Rewards should act correctly", async () => {
     When("I dismiss the modal", when.tapText(locationModalButton), async () => {
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
-    When("I scroll down this page", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.5), async () => {
+    When("I scroll down this page", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.7), async () => {
       Then("I should see the 'Ultra Amazin' reward, only visible to those with store access level 4", then.rewardVisible(data.CORE_REWARDS_ULTRA_AMAZIN));
     });
   });
@@ -285,6 +285,33 @@ Feature("Rewards should act correctly", async () => {
     When("I confirm the final modal", when.tapID(ids.BUTTON_BASE("Confirm", false)), async () => {
       Then("I should see the claimed voucher entry", then.idVisible(ids.VOUCHER_CODE_TITLE("R 25 Checkers voucher")));
       Then("I should see my updated YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(24180)));
+    });
+  });
+
+  Scenario("Rewards from different regions should not appear together when changing store location", scenario.start, async () => {
+    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
+      Then("I should see that I have access to the rewards store", then.rewardsLocationModalVisible());
+    });
+    When("I confirm the UK as my selected store location", when.tapText(locationModalButton), async () => {
+      Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
+    });
+    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
+      When("I tap settings", when.tapMenuItem("Settings"), async () => {
+        Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
+      });
+    });
+    When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
+      When("I tap on the 'Store location' option", when.tapID(ids.TEXT_TEMPLATE("Store location", undefined), 500), async () => {
+        When("I select Argentina as my preferred store location", when.tapID(ids.TEXT_TEMPLATE("Argentina", undefined), 500), async () => {
+          When("I confirm my store location", when.tapID(ids.STORE_LOCATION_CONFIRM_BUTTON, 500), async () => {
+            Then("I should be back on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
+          });
+        });
+      });
+    });
+    When("I close settings", when.tapID(ids.BUTTON_CLOSE_HEADER("Settings"), 500), async () => {
+      Then("I should be back on the reward store", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 2500));
+      Then("I should not see any UK-specific rewards", then.idNotVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AVIOS.data._id), 2500));
     });
   });
 });

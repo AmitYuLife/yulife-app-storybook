@@ -24,6 +24,8 @@ export const { tapText, reloadAppToTab, tapID } = navigation.common;
 
 export const { selectRegionIfVisible } = navigation.login;
 
+export const { tapMenuItem } = screens.menu;
+
 export const enterMobileNumber = (mobileNumber: string) => async () => {
   const mobileNumberInput = element(by.id(CONTENT_ITEM_INPUT("mobileNumber")));
   await waitFor(mobileNumberInput).toBeVisible().withTimeout(30000);
