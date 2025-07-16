@@ -188,10 +188,12 @@
       "not_really": "Not really",
       "ok": "Ok",
       "open": "Open",
+      "pause": "Pause",
       "quit": "Quit",
       "save": "Save",
       "select": "Select",
       "skip": "skip",
+      "start": "Start",
       "submit": "Submit",
       "use": "Use",
       "yeah": "Yeah!",
@@ -807,6 +809,14 @@
         "subtitle": "You completed the",
         "unclaimed_rewards": "Season finished! Claim your rewards, then on to the next adventure!"
       }
+    },
+    "breathing_exercise": {
+      "exhale": "Exhale",
+      "hold": "Hold",
+      "inhale": "Breath in",
+      "length": "Duration",
+      "mouth": "Mouth",
+      "nose": "Nasal"
     },
     "challenge_chest_modal": {
       "card": "A chest full of YuCoin!",

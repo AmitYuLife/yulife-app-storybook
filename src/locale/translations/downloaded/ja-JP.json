@@ -188,10 +188,12 @@
       "not_really": "そうでもない",
       "ok": "OK",
       "open": "開く",
+      "pause": "一時停止",
       "quit": "終了する",
       "save": "保存",
       "select": "選択",
       "skip": "スキップ",
+      "start": "開始",
       "submit": "送信する",
       "use": "使用する",
       "yeah": "はい!",
@@ -807,6 +809,14 @@
         "subtitle": "完了しました",
         "unclaimed_rewards": "今シーズンが完了しました! すべてのリワードを受け取って、次のシーズンを開始しましょう。"
       }
+    },
+    "breathing_exercise": {
+      "exhale": "吐く",
+      "hold": "保持",
+      "inhale": "吸い込んで",
+      "length": "長さ",
+      "mouth": "口",
+      "nose": "鼻"
     },
     "challenge_chest_modal": {
       "card": "ボーナスYuCoinを\nお楽しみに!",
