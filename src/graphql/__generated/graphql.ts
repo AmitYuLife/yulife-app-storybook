@@ -65,6 +65,7 @@ export type ApiConfigUrls = {
   appDeeplink: Scalars["String"]["output"];
   cookiePolicy: Scalars["String"]["output"];
   eula: Scalars["String"]["output"];
+  forgotPassword: Scalars["String"]["output"];
   helpCentre: Scalars["String"]["output"];
   manageImports: Scalars["String"]["output"];
   memberOnboardingPrivacyPolicy: Scalars["String"]["output"];
@@ -2951,12 +2952,16 @@ export type DefaultOnboardingDetails = {
   __typename?: "DefaultOnboardingDetails";
   /** Whether the user is eligible for the experimental "seamless" D2C onboarding flow */
   d2cOnboardingEnabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The user's date of birth, either from the users customer record or their business employee record */
+  dateOfBirth?: Maybe<Scalars["String"]["output"]>;
   /** The user's email address, either from the users customer record or their employee record */
   email?: Maybe<Scalars["String"]["output"]>;
   /** The user's first name, either from the users customer record or their employee record */
   firstName?: Maybe<Scalars["String"]["output"]>;
   /** The user's full name, either from the users customer record or their employee record with ordering as per locale */
   fullName?: Maybe<Scalars["String"]["output"]>;
+  /** Whether the user is required to provide a date of birth */
+  isDateOfBirthRequired?: Maybe<Scalars["Boolean"]["output"]>;
   /** The user's last name, either from the users customer record or their employee record */
   lastName?: Maybe<Scalars["String"]["output"]>;
   /** Whether the user is eligible for the new account claim via magic link flow */
@@ -6148,6 +6153,8 @@ export type Mutation = {
   updateCustomValue: Scalars["Boolean"]["output"];
   updateCyclingMeasurement?: Maybe<Scalars["Boolean"]["output"]>;
   updateEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
+  updateMemberDetails: Scalars["Boolean"]["output"];
+  /** @deprecated(reason: "Use updateMemberDetails instead") */
   updateMemberName: Scalars["Boolean"]["output"];
   updateMobileGameUserAchievement?: Maybe<MobileGameUserAchievements>;
   /**
@@ -6975,6 +6982,13 @@ export type MutationUpdateEmployeeRecognitionCampaignArgs = {
   giftMessage?: InputMaybe<Scalars["String"]["input"]>;
   giftSticker?: InputMaybe<Scalars["String"]["input"]>;
   title?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationUpdateMemberDetailsArgs = {
+  dateOfBirth?: InputMaybe<Scalars["String"]["input"]>;
+  firstName: Scalars["String"]["input"];
+  lastName: Scalars["String"]["input"];
+  nameVariants?: InputMaybe<Array<NameVariantInput>>;
 };
 
 export type MutationUpdateMemberNameArgs = {
@@ -11670,6 +11684,7 @@ export enum YuWorld {
 }
 
 export enum YucoinTransferStatus {
+  Cancelled = "CANCELLED",
   Completed = "COMPLETED",
   PendingApproval = "PENDING_APPROVAL",
   PendingTransfer = "PENDING_TRANSFER",
@@ -22047,6 +22062,7 @@ export type GetPublicYuApiConfigQuery = {
     urls: {
       __typename?: "APIConfigUrls";
       members: string;
+      forgotPassword: string;
       website: string;
       privacyPolicy: string;
       rewardsPolicy: string;
@@ -68837,6 +68853,7 @@ export const GetPublicYuApiConfigDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "members" } },
+                      { kind: "Field", name: { kind: "Name", value: "forgotPassword" } },
                       { kind: "Field", name: { kind: "Name", value: "website" } },
                       { kind: "Field", name: { kind: "Name", value: "privacyPolicy" } },
                       { kind: "Field", name: { kind: "Name", value: "rewardsPolicy" } },

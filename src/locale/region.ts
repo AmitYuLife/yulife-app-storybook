@@ -16,6 +16,7 @@ type RegionConfig = {
   hcaptchaSiteKey?: string;
   urls: {
     members: string;
+    forgotPassword: string;
     website: string;
     privacyPolicy: string;
     eula: string;

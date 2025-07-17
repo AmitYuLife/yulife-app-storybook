@@ -378,7 +378,11 @@
     "login_password": {
       "heading": "Enter your password",
       "cta_label": "Continue",
-      "submitting": "Submitting..."
+      "submitting": "Submitting...",
+      "forgot": {
+        "cta": "Forgot your password?",
+        "title": "Reset password"
+      }
     },
     "login_hero": {
       "primary_cta_label": "Claim my account",

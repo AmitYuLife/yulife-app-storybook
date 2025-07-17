@@ -7,6 +7,7 @@ query GetPublicYuAPIConfig {
     hcaptchaSiteKey
     urls {
       members
+      forgotPassword
       website
       privacyPolicy
       rewardsPolicy

@@ -1,14 +1,15 @@
 import * as React from "react";
 import { memo } from "react";
 import { Box, Pad, TextTemplate } from "@atoms";
-import { Button, TextInput } from "@molecules";
+import { Button, LinkButton, TextInput } from "@molecules";
 import { BUTTON_LOGIN, INPUT_LOGIN_PASSWORD } from "@ids";
 import { Colours, Style } from "@styles";
-import { REGION, t } from "@locale";
+import { region, REGION, t } from "@locale";
 import { ServerList } from "../subcomponents/server-list";
 import { TextInputPassword } from "@components/molecules/text-input/text-input-password";
 import LoginFormWrapper from "../subcomponents/login-form-wrapper";
 import { StyleSheet } from "react-native";
+import { handleOpenWebView } from "@navigation/utils";
 
 interface IProps {
   password: string;
@@ -35,6 +36,13 @@ const LoginPasswordScreen = ({
   regionSelect,
 }: IProps) => {
   const disableSubmit = !!validationError || isSubmitting;
+
+  const handleForgotPassword = React.useCallback(() => {
+    handleOpenWebView({
+      uri: region.getConfig("urls").forgotPassword,
+      title: t("screens.login_password.forgot.title"),
+    });
+  }, []);
 
   if (regionSelect) {
     return (
@@ -77,6 +85,11 @@ const LoginPasswordScreen = ({
         translationKey={isSubmitting ? "screens.login_password.submitting" : "screens.login_password.cta_label"}
         onPress={onPressSubmit}
       />
+      <LinkButton
+        wrapperStyle={styles.forgot}
+        translationKey="screens.login_password.forgot.cta"
+        onPress={handleForgotPassword}
+      />
     </LoginFormWrapper>
   );
 };
@@ -84,6 +97,11 @@ const LoginPasswordScreen = ({
 const styles = StyleSheet.create({
   input: {
     paddingHorizontal: Style.adjust(30),
+  },
+  forgot: {
+    alignSelf: "flex-start",
+    paddingLeft: Style.adjust(30),
+    marginTop: Style.adjust(24),
   },
 });
 
