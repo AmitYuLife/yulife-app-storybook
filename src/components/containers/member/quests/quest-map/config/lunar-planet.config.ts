@@ -496,6 +496,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   222: {
     background: require("../episodes/lunar/mountain/lunar-mountain-6.webp"),
+    lottieAspectRatio: 0.4765,
     topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 785,
     episodeKey: 95,

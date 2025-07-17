@@ -37,6 +37,12 @@ export interface IEpisodeConfig {
    * Image of the background of this episode
    */
   background: Source;
+
+  /**
+   * width / height ratio
+   * used to calculate the height of the image based on device width
+   */
+  lottieAspectRatio?: number;
   /**
    * Bubble offset Y - moves every bubble by this amount
    */

@@ -222,7 +222,9 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
           return 0;
         }
 
-        const lottieAspectRatio = episode?.episodeConfig.episodeWidth / episode?.episodeConfig?.episodeHeight;
+        const lottieAspectRatio =
+          episode.episodeConfig.lottieAspectRatio ||
+          episode?.episodeConfig.episodeWidth / episode?.episodeConfig?.episodeHeight;
         const finalepisodeHeight = Style.DEVICE_WIDTH * (1 / lottieAspectRatio);
 
         const unityHeight = episode.seperator
