@@ -729,7 +729,7 @@ workflows:
             yarn detox:build:translations
 
             # Run tests
-            command="TARGET_LOCALE=$TARGET_LOCALE yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs all"
+            command="TARGET_LOCALE=$TARGET_LOCALE yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs all --record-videos failing"
 
             # If SKIP_ASSERTIONS flag is set, prefix the command with its value
             [[ -n $SKIP_ASSERTIONS ]] && command="SKIP_ASSERTIONS=$SKIP_ASSERTIONS $command"
