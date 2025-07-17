@@ -3,7 +3,7 @@ import { Colours } from "@styles/index";
 import { ComponentProps } from "react";
 import { LeftIcon, IIcon } from "./subcomponents/left";
 import Right, { RightIconTypes } from "./subcomponents/right";
-import { LayoutChangeEvent } from "react-native";
+import { LayoutChangeEvent, TextStyle } from "react-native";
 import { TopBarType } from "@graphql/__generated";
 
 export type TopBarTypes = "default" | "white" | "desert" | "mountain" | "forest";
@@ -15,6 +15,21 @@ export enum TOP_BAR_TYPES {
   FOREST = "forest",
 }
 
+type NotificationBadgeProps = { count: number };
+
+type BadgeProps = {
+  [LeftIcon.NOTIFICATIONS]: NotificationBadgeProps;
+};
+
+export interface TopBarLeftProps {
+  icons?: IIcon[];
+  colour: string;
+  label: string;
+  badges: Record<string, boolean>;
+  badgeProps: Record<string, Record<string, number>>;
+  textStyle: TextStyle;
+}
+
 export type TopBarViewProps = {
   onPressLeftIcon?: () => void;
   onLayout?: (event: LayoutChangeEvent) => void;
@@ -22,6 +37,7 @@ export type TopBarViewProps = {
   name?: string;
   menuLabel?: string;
   badges: Record<string, boolean>;
+  badgeProps: BadgeProps;
   leftIcon?: LeftIcon;
   leftIcons?: IIcon[];
   middleLabel?: string;

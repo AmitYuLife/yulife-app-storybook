@@ -45,6 +45,8 @@ export const PADDING_BOTTOM = Platform.select({ ios: 0, android: 16 });
 export const LEFT_PADDING_TOP = Style.adjust(3);
 export const LOGO_PADDING_TOP = Style.adjust(12);
 export const TOP_BAR_WITH_PAD = HEIGHT + PADDING_TOP * getPaddingTopMultiplier() + PADDING_BOTTOM;
+export const MENU_ICON_MARGIN = Style.adjust(8);
+
 export default {
   HEIGHT,
   PADDING_TOP,

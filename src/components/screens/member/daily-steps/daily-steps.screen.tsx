@@ -27,6 +27,7 @@ import { handleTakeAChallengeCTA } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import Animated, { FadeIn } from "react-native-reanimated";
 import media from "@styles/media";
+import { MENU_ICON_MARGIN } from "@styles/top-bar.styles";
 
 const FADE_IN_ANIMATION_DURATION = 750;
 
@@ -106,7 +107,7 @@ const DailyStepsScreen = ({
       {
         icon: LeftIcon.MENU,
         onPress: onLeftMenuPress,
-        style: { marginRight: Style.adjust(16) },
+        style: { marginRight: MENU_ICON_MARGIN },
       },
       ...(onNotificationPress
         ? [
