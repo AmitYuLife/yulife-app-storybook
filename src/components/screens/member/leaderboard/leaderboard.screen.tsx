@@ -14,6 +14,7 @@ import { SocialGroupLeaderboardConfigId } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
+import { MENU_ICON_MARGIN } from "@styles/top-bar.styles";
 
 export interface ITop3 {
   top1?: string;
@@ -220,7 +221,7 @@ export const LeaderboardScreen = ({
       {
         icon: LeftIcon.MENU,
         onPress: onLeftMenuPress,
-        style: { marginRight: Style.adjust(16) },
+        style: { marginRight: MENU_ICON_MARGIN },
       },
       ...(onNotificationPress
         ? [

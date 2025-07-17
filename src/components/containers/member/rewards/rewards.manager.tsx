@@ -38,6 +38,7 @@ import {
 import { getRouteState } from "@redux/app/app.selectors";
 import { usePrizeHintPopup } from "@hooks";
 import ShopFrontContainer from "@components/containers/shopfront/shopfront.container";
+import { MENU_ICON_MARGIN } from "@styles/top-bar.styles";
 
 // TODO: remove the partial type
 const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNode> = {
@@ -244,7 +245,7 @@ const _RewardsTabManagerContainer = () => {
       {
         icon: LeftIcon.MENU,
         onPress: onLeftMenuPress,
-        style: { marginRight: Style.adjust(16) },
+        style: { marginRight: MENU_ICON_MARGIN },
       },
       ...(showNotificationCentre
         ? [

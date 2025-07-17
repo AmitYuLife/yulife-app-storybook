@@ -27,6 +27,7 @@ import { INITIAL_SCROLL, MIN_SECTIONS_HEIGHT, styles } from "./yu-screen.styles"
 import { YumojiPrompt } from "./yumoji-prompt";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { IAchievement } from "@organisms/achievements-showcase/achievements-showcase";
+import { MENU_ICON_MARGIN } from "@styles/top-bar.styles";
 
 interface IProps {
   onNotificationPress: () => void;
@@ -138,7 +139,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievements, s
       {
         icon: LeftIcon.MENU,
         onPress: onLeftMenuPress,
-        style: { marginRight: Style.adjust(16) },
+        style: { marginRight: MENU_ICON_MARGIN },
       },
       ...(onNotificationPress
         ? [
