@@ -269,7 +269,6 @@
   "expo": {
     "autolinking": {
       "exclude": [
-        "expo-keep-awake",
         "expo-font",
         "expo-asset"
       ]
