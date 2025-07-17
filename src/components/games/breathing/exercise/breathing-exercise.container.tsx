@@ -19,6 +19,8 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
 import { displaySecondsAsMinutes } from "@utils";
 import { t } from "@locale";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { useKeepAwake } from "expo-keep-awake";
 
 const OUTER_CIRCLE_SIZE = Style.adjust(280);
 const INNER_CIRCLE_SIZE = Style.adjust(120);
@@ -37,7 +39,8 @@ enum BreathingExerciseOptionPartType {
   Inhale = "Inhale",
 }
 
-const TRANSLATION_MAPPING: Record<BreathingExerciseOptionPartType, string> = {
+const TRANSLATION_MAPPING: Record<BreathingExerciseOptionPartType | "End", string> = {
+  End: "screens.breathing_exercise.end",
   [BreathingExerciseOptionPartType.Exhale]: "screens.breathing_exercise.exhale",
   [BreathingExerciseOptionPartType.Hold]: "screens.breathing_exercise.hold",
   [BreathingExerciseOptionPartType.Inhale]: "screens.breathing_exercise.inhale",
@@ -75,6 +78,9 @@ const BreathingExerciseContainer = ({ data, lottieUri }: Props) => {
   const progress = useSharedValue(0);
 
   const stage = data.parts[breathingStageIndex] || END_STAGE;
+
+  // Keep screen awake
+  useKeepAwake(componentId);
 
   const handleBack = useCallback(() => {
     Navigation.pop(componentId);
@@ -193,8 +199,10 @@ const BreathingExerciseContainer = ({ data, lottieUri }: Props) => {
       return;
     }
 
+    const nextBreathingExpansionSize = getNextBreathingExpansionSize(stage.type, breathingExpansionSize.current);
+
     breathingExpansion.value = withTiming(
-      getNextBreathingExpansionSize(stage.type, breathingExpansionSize.current),
+      nextBreathingExpansionSize,
       {
         duration: stage.duration,
         easing: Easing.linear,
@@ -203,6 +211,8 @@ const BreathingExerciseContainer = ({ data, lottieUri }: Props) => {
         runOnJS(handleNextStage)(finished);
       }
     );
+
+    breathingExpansionSize.current = nextBreathingExpansionSize;
   }, [stage, isPlaying]);
 
   const breathingExpansionStyle = useAnimatedStyle(() => ({
@@ -326,6 +336,8 @@ const BreathingExerciseContainer = ({ data, lottieUri }: Props) => {
       <GenericHeadingAbsolute
         logo="yulife"
         rightIcon="CLOSE"
+        leftIcon={LeftIcon.BACK}
+        onLeftIconPress={handleBack}
         onRightIconPress={handleClose}
         color={Colours.neutral.white}
         backgroundColor="transparent"

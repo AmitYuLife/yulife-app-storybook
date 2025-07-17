@@ -268,7 +268,8 @@
       "nose": "Nose",
       "inhale": "Inhale",
       "exhale": "Exhale",
-      "hold": "Hold"
+      "hold": "Hold",
+      "end": "End"
     },
     "today_earning": {
       "heading": {
