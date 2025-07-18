@@ -202,6 +202,7 @@
     "deleted_user_name": "同僚",
     "level": "レベル%{level}",
     "many_more": "+他多数",
+    "max_notification": "99 +",
     "off": "Off",
     "on": "On",
     "power": "Power",
@@ -811,6 +812,7 @@
       }
     },
     "breathing_exercise": {
+      "end": "終了",
       "exhale": "吐く",
       "hold": "保持",
       "inhale": "吸い込んで",
@@ -1351,6 +1353,10 @@
     },
     "login_password": {
       "cta_label": "続ける",
+      "forgot": {
+        "cta": "パスワードをお忘れですか?",
+        "title": "パスワード リセット"
+      },
       "heading": "パスワードを入力してください",
       "submitting": "送信中です..."
     },

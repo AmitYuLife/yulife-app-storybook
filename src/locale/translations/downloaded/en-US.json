@@ -202,6 +202,7 @@
     "deleted_user_name": "Your colleague",
     "level": "Level %{level}",
     "many_more": "+many more",
+    "max_notification": "99+",
     "off": "Off",
     "on": "On",
     "power": "Power",
@@ -811,6 +812,7 @@
       }
     },
     "breathing_exercise": {
+      "end": "End",
       "exhale": "Exhale",
       "hold": "Hold",
       "inhale": "Breath in",
@@ -1351,6 +1353,10 @@
     },
     "login_password": {
       "cta_label": "Continue",
+      "forgot": {
+        "cta": "Forgot your password?",
+        "title": "Reset password"
+      },
       "heading": "Enter your password",
       "submitting": "Submitting..."
     },
