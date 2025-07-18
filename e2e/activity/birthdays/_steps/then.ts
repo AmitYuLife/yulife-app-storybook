@@ -66,3 +66,9 @@ export const birthdayModalVisible = (isTurningOn: boolean) => async () => {
   await idVisible(ids.GENERIC_SCREEN_CTA(consts[`turn${mode}BirthdaysConfirm`]))();
   await idVisible(ids.GENERIC_SCREEN_CTA(consts[`turn${mode}BirthdaysDecline`]))();
 };
+
+export const onSetBirthdayModal = async () => {
+  await textVisible(consts.tellUsBirthdayHeader)();
+  await textVisible(consts.tellUsBirthdayDescription)();
+  await idVisible(ids.BUTTON_BASE("BIRTHDAY-NOT-SET-CTA"))();
+};

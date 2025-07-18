@@ -809,7 +809,7 @@ export const FIIT_MEDIA_PLAYER_CLOSE = MEDIA_PORTRAIT_CLOSE;
 
 // Notification Centre
 export const NOTIF_CENTRE = "NOTIFICATION_CENTRE";
-export const NOTIF_ICON_BADGE = (bool: boolean) => `NOTIF_ICON_BADGE_${bool}`;
+export const NOTIF_ICON_BADGE = (bool: boolean, count = 0) => `NOTIF_ICON_BADGE_${bool}_${count}`;
 export const INBOX_MESSAGE_ITEM = (title: string) => `INBOX_MESSAGE_ITEM_${title}`;
 export const HERO_IMAGE_MODAL = "HERO_IMAGE_MODAL";
 
