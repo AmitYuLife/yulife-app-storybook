@@ -44,11 +44,6 @@ export * from "./mongo/user_gift";
 export * from "./mongo/user_statistics";
 export * from "./mongo/core_reward_user_restriction";
 export * from "./mongo/goal_rewards";
-// commenting the below out as I believe the surveys have been moved now anyway
-// when leaving in getting an error about data doubling up (which raises concerns
-// about how they're being seeded in the surveys folder. Will investigate.)
-// export * from "./mongo/core_journeys";
-// export * from "./mongo/core_journey_steps";
 export * from "./mongo/user_habit_tracking_state";
 export * from "./mongo/user_habit_tracking_actions";
 export * from "./mongo/user_journey_state";

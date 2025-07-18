@@ -1,11 +1,8 @@
 import { navigation } from "@navigation";
 import { screens } from "@appScreens";
-export { progressBarVisible } from "activity/FWQ/_steps/then";
+export { progressBarVisible } from "surveys/engagement_survey/_steps/then";
 
-export const {
-  scrollUntilTextVisible,
-  scrollUntilIdVisible
-} = navigation.scrolling
+export const { scrollUntilTextVisible, scrollUntilIdVisible } = navigation.scrolling;
 
 export const {
   idVisible,
@@ -18,15 +15,10 @@ export const {
   tapID,
   idVisibleAtIndex,
   testMultipleIndexesVisibility,
-  objCopyVisible
+  objCopyVisible,
 } = navigation.common;
 
-export const {
-  onChallengeComplete,
-} = screens.challenges
+export const { onChallengeComplete } = screens.challenges;
 
-export const {
-  moodMonitorNudgeVisible,
-  completedMoodMonitorNudgeVisible,
-  maximiseYucoinVisible
-} = screens.yuscreen
+export const { moodMonitorNudgeVisible, completedMoodMonitorNudgeVisible, maximiseYucoinVisible } =
+  screens.yuscreen;

@@ -12,8 +12,6 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("yucoin", data.CUSTOMER_71, data.AUTH_71), async () => {
       Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
       Then("I should not see any cycling stats on the screen as I have cycled 0km so far today", then.idNotVisible(ids.CYCLING_COUNT("km")));
-    });
-    When("I swipe right on the event card", when.scrollFromID(ids.EVENT_HEADING("Share your feedback pulse", "#5A5A5C"), "left", "fast"), async () => {
       Then("I should see the correct cycling event for me to complete and the progress bar", then.cyclingEventToBeCompletedVisible(0, 0));
     });
     When("I click on the event challenge 10,000 rides", when.tapChallenge(t("%{currentValue} / %{targetValue} %{progressUnit}", { currentValue: 0, targetValue: "10,000", progressUnit: "rides" })), async () => {
@@ -44,10 +42,8 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
       });
     });
     When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I swipe right on the event card", when.scrollFromID(ids.EVENT_HEADING("Share your feedback pulse", "#5A5A5C"), "left", "fast"), async () => {
-        Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(2000, 0.2));
-        Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(210, data.USER_71.data.earnRate, data.GOAL_REWARD_MILESTONE_6.data.rewardValue));
-      });
+      Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(2000, 0.2));
+      Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(210, data.USER_71.data.earnRate, data.GOAL_REWARD_MILESTONE_6.data.rewardValue));
     });
     When("I have done 3 km today", when.addCyclingData(3000), async () => {
       When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
@@ -72,10 +68,8 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
       });
     });
     When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I swipe right on the event card", when.scrollFromID(ids.EVENT_HEADING("Share your feedback pulse", "#5A5A5C"), "left", "fast"), async () => {
-        Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(5000, 0.5));
-        Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(730, data.USER_71.data.earnRate, data.GOAL_REWARD_MILESTONE_7.data.rewardValue));
-      });
+      Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(5000, 0.5));
+      Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(730, data.USER_71.data.earnRate, data.GOAL_REWARD_MILESTONE_7.data.rewardValue));
     });
     When("I have done 5 km today", when.addCyclingData(5000), async () => {
       When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
