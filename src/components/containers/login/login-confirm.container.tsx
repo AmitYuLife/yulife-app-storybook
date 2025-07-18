@@ -43,9 +43,16 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
   const otpRef = useRef<string>("");
   const hasOpenedEmailAppRef = useRef(false);
 
+  const hasNavigatedAwayRef = useRef(false);
+
   const showLoginWithPassword = props.regionResponses?.some((r) => r.hasSetPassword);
 
   const onNavigateBack = useCallback(() => {
+    if (hasNavigatedAwayRef.current) {
+      return;
+    }
+
+    hasNavigatedAwayRef.current = true;
     Navigation.pop(componentId);
   }, [componentId]);
 
@@ -129,6 +136,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
 
         if (result.data?.loginUser?.token) {
           await applyLoginSession(result, props.region, componentId, dispatch);
+          hasNavigatedAwayRef.current = true;
         }
       } catch (error) {
         let errorToLog = error;
