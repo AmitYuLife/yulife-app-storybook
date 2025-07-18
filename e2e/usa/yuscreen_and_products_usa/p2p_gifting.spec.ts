@@ -23,7 +23,7 @@ Feature("P2P gifting", async () => {
     });
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
       Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
-      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true, 1), 2500));
     });
     When("I tap on nav leaderboard link", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
       Then("I can see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE("SG1")));

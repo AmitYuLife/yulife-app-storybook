@@ -17,3 +17,9 @@ export const turnOffBirthdaysDescription =
   "You won’t get friends’ birthday reminders, and your friends won’t get a notification on your birthday.";
 export const turnOffBirthdaysConfirm = "Yes, turn off-text-view";
 export const turnOffBirthdaysDecline = "No, keep them on-text-view";
+
+// tell us birthday modal
+
+export const tellUsBirthdayHeader = "Tell us your birthday!";
+export const tellUsBirthdayDescription =
+  "Celebrate birthdays with all your in-app friends — update your birthday to turn on birthday notifications.";

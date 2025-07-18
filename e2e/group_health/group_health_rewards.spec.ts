@@ -541,7 +541,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
     });
     When("I minise and reopen the app", when.minimiseAndReopenApp, async () => {
       Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
-      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true, 1), 2500));
     });
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
       Then("I can see my gHealth product notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You’ve got health insurance!"), 2500));

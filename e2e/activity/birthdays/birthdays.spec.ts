@@ -14,10 +14,10 @@ Feature("As a user I can see birthday notifications in the app if consented, and
       Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
         Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
         Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true));
-        Then("I can see I have a notification", then.idVisible(ids.NOTIF_ICON_BADGE(true)));
+        Then("I can see I have a notification", then.idVisible(ids.NOTIF_ICON_BADGE(true, 1)));
       });
     });
-    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true)), async () => {
+    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true, 1)), async () => {
       Then("I should see the birthday notification for Michael Scott", then.birthdayNotificationVisible(data.CUSTOMER_18));
     });
     When("I tap on the notification", when.tapBirthdayNotification(data.CUSTOMER_18), async () => {
@@ -88,12 +88,31 @@ Feature("As a user I can see birthday notifications in the app if consented, and
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_17, data.AUTH_17, true, "United Kingdon", false), async () => {
           Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
           Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Ryan Howard", "Forest", "2", false));
-          Then("I can see I now do have a notification", then.idVisible(ids.NOTIF_ICON_BADGE(true)));
+          Then("I can see I now do have a notification", then.idVisible(ids.NOTIF_ICON_BADGE(true, 1)));
         });
       });
     });
-    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true)), async () => {
+    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true, 1)), async () => {
       Then("I should see the birthday notification for Michael Scott", then.birthdayNotificationVisible(data.CUSTOMER_18));
+    });
+  });
+
+  Scenario("As a user without a birthday set, I am presented with a modal to do so when triggering the toggles", scenario.start, async () => {
+    Given("I trigger the nofitications", given.triggerBirthdayNotifications, async () => {
+      Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_19, data.AUTH_19), async () => {
+        Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+        Then("I can see I don't have a notification as I havn't consented", then.idVisible(ids.NOTIF_ICON_BADGE(false)));
+      });
+    });
+    When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
+      When("I tap settings", when.tapMenuItem("Settings"), async () => {
+        When("I tap leaderboards", when.tapText("Leaderboards and birthday"), async () => {
+          Then("I can see the Birthday toggle, currently set to false", then.birthdayToggleVisible(false));
+        });
+      });
+    });
+    When("I tap the toggle", when.tapID(ids.BIRTHDAY_TOGGLE(false)), async () => {
+      Then("I see the modal for setting my birthday", then.onSetBirthdayModal);
     });
   });
 });

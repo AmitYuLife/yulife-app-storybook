@@ -1,3 +1,6 @@
+// this file doesn't follow the way we create and store data. Advising this test is moved into the Surveys folder and the seed data
+// to be provided properly. Ulas to address when back
+
 import { generateRandomMongoId, generateRandomInbox } from "@yu-life/yulife-bdd-framework";
 import {
   CORE_JOURNEY_1,
@@ -5,7 +8,7 @@ import {
   CORE_JOURNEY_STEPS_09,
   CORE_JOURNEY_STEPS_10,
   CORE_JOURNEY_STEPS_CONSENT,
-} from "activity/_data";
+} from "surveys/_data";
 import moment from "moment";
 
 export const config = {
