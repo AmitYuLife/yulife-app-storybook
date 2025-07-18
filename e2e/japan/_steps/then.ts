@@ -6,7 +6,7 @@ import { getTranslation } from "_utils/translations/getTranslations";
 export {
   canSeeEngagementSurvey1To10CheckBoxes,
   canSeeEngagementSurveySupportedByCheckBoxes,
-} from "../../activity/FWQ/_steps/then";
+} from "surveys/engagement_survey/_steps/then";
 export { smokingTileVisible, smokingCardVisible, onSmokingHub } from "../../health/_steps/then";
 
 export const {
