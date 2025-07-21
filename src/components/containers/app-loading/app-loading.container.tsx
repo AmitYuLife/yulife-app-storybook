@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { useSafeAreaViewOffset } from "@hooks";
 import { TextTemplate } from "@atoms";
 import { Style } from "@styles";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   componentId: string;
@@ -18,7 +19,7 @@ interface IProps {
 
 export const AppLoadingContainer: React.FC<IProps> = ({ loadingText }) => {
   const [renderPersistor, setRenderPersistor] = React.useState(false);
-  const [animationEnded, setAnimationEnded] = React.useState(false);
+  const [animationEnded, setAnimationEnded] = React.useState(DETOX_ENABLED);
   const [persistorBoostrapped, setPersistorBoostrapped] = React.useState(false);
 
   React.useEffect(() => {

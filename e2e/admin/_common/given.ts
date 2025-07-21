@@ -1,7 +1,7 @@
 import { navigation } from "@navigation";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 
-export const { loginOnly, loginAsUser, logInAndGoToTab, selectRegionIfVisible } = navigation.login;
+export const { loginAsUser, logInAndGoToTab, selectRegionIfVisible } = navigation.login;
 
 export const { wait } = navigation.common;
 

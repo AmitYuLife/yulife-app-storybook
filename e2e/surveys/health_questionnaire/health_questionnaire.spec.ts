@@ -211,7 +211,7 @@ Feature("Health questionnaires", async () => {
   });
 
   Scenario("Once I complete the journey, press cta - I should see the HQ journey modal is gone", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "United Kingdom", false), async () => {
+    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "UK"), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
       Then("I should not see the event panel, as I have completed one before", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]));
     });
@@ -449,7 +449,7 @@ Feature("Health questionnaires", async () => {
       });
     });
     When("I close the app before I press the claim button", when.restartWithData, async () => {
-      Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_2, data.AUTH_2, true, "United Kingdom", false), async () => {
+      Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_2, data.AUTH_2, true, "UK"), async () => {
         Then("I should see my YuCoin balance gone up by 40", then.textVisible("240 YuCoin today"));
       });
     });

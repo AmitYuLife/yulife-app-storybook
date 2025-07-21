@@ -18,7 +18,7 @@ const translation = getTranslation(locale);
 
 Feature("P2P gifting", async () => {
   Scenario("I can send someone a YuCoin gift from the leaderboard", scenario.start, async () => {
-    Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18, true, "United Kingdom", true), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18, true, "UK"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
           Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));

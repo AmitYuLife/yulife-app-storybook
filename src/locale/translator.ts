@@ -69,8 +69,7 @@ class Translator {
     }
 
     translations[locale].setMomentLocale();
-
-    this.dict = new Polyglot({ locale, phrases });
+    this.dict = new Polyglot({ locale, phrases, allowMissing: DETOX_ENABLED });
   };
 
   public readonly getCurrentLocale = (): Language => {

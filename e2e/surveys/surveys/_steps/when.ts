@@ -40,5 +40,3 @@ export const {
   navigateTo,
   minimiseAndReopenApp,
 } = navigation.common;
-
-export const { loginOnly } = navigation.login;

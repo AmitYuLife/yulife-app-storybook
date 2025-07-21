@@ -570,13 +570,13 @@ workflows:
             set -x
 
             yarn detox:build -c ios.sim.release
-    - cache-push@2:
+    - save-cache@1:
         inputs:
-        - is_debug_mode: "true"
-        - cache_paths: |-
-            $BITRISE_SOURCE_DIR/ios/build/Build/Products/Release-iphonesimulator/YuLife.app
+        - paths: |-
+            $BITRISE_SOURCE_DIR/ios
             $BITRISE_SOURCE_DIR/node_modules
             $BITRISE_SOURCE_DIR/src/locale/translations/downloaded
+        - key: ios-detox-build-$BITRISE_GIT_BRANCH
     meta:
       bitrise.io:
         stack: osx-xcode-16.2.x
@@ -696,8 +696,9 @@ workflows:
     - API_REGION: UK
     - API_PORT: "5000"
     steps:
-    - cache-pull@2.7:
-        title: Bitrise.io Cache:Pull - iOS build + node_modules
+    - restore-cache@2:
+        inputs:
+        - key: ios-detox-build-$BITRISE_GIT_BRANCH
     - nvm@1: {}
     - script@1:
         title: Run Detox Tests
@@ -729,7 +730,7 @@ workflows:
             yarn detox:build:translations
 
             # Run tests
-            command="TARGET_LOCALE=$TARGET_LOCALE yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs all --record-videos failing"
+            command="TARGET_LOCALE=$TARGET_LOCALE yarn detox:run $DETOX_TEST_TYPE --running-from-ci -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs all --record-videos failing"
 
             # If SKIP_ASSERTIONS flag is set, prefix the command with its value
             [[ -n $SKIP_ASSERTIONS ]] && command="SKIP_ASSERTIONS=$SKIP_ASSERTIONS $command"
@@ -859,8 +860,9 @@ workflows:
       opts:
         is_expand: false
     steps:
-    - cache-pull@2.7:
-        title: Bitrise.io Cache:Pull - iOS build + node_modules
+    - restore-cache@2:
+        inputs:
+        - key: ios-detox-build-$BITRISE_GIT_BRANCH
     - nvm@1: {}
     - script@1:
         title: Run Detox Tests
@@ -886,7 +888,7 @@ workflows:
             # Set detox test device
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
+            yarn detox:run $DETOX_TEST_TYPE --running-from-ci -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
     - script@1:
         title: Collect logs
         is_always_run: true
@@ -1258,8 +1260,9 @@ workflows:
     - API_ENV_OVERWRITE: NODE_ENV=detox server__locale=ja-JP server__region=JP server__port=5003
     - API_PORT: "5003"
     steps:
-    - cache-pull@2.7:
-        title: Bitrise.io Cache:Pull - iOS build + node_modules
+    - restore-cache@2:
+        inputs:
+        - key: ios-detox-build-$BITRISE_GIT_BRANCH
     - nvm@1: {}
     - script@1:
         title: Run Detox Tests
@@ -1289,7 +1292,7 @@ workflows:
             sleep 5
             echo "starting the tests"
 
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs all
+            yarn detox:run $DETOX_TEST_TYPE --running-from-ci -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs all
     - script@1:
         title: Collect logs
         is_always_run: true
@@ -1428,8 +1431,9 @@ workflows:
     - API_ENV_OVERWRITE: NODE_ENV=detox server__locale=en-ZA server__region=SA server__port=5002
     - API_PORT: "5002"
     steps:
-    - cache-pull@2.7:
-        title: Bitrise.io Cache:Pull - iOS build + node_modules
+    - restore-cache@2:
+        inputs:
+        - key: ios-detox-build-$BITRISE_GIT_BRANCH
     - nvm@1: {}
     - script@1:
         title: Run Detox Tests
@@ -1455,7 +1459,7 @@ workflows:
             # Set detox test device
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs all
+            yarn detox:run $DETOX_TEST_TYPE --running-from-ci -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs all
     - script@1:
         title: Collect logs
         is_always_run: true
@@ -1527,6 +1531,7 @@ workflows:
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
+            envman add --key ALLURE_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/allure/index.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -1540,7 +1545,7 @@ workflows:
             Device|$IPHONE_DEVICE
             Test Type|$DETOX_TEST_TYPE
         - buttons: |+
-            View Results|${JEST_REPORT}
+            View Results|${ALLURE_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
 
@@ -1594,8 +1599,9 @@ workflows:
     - API_ENV_OVERWRITE: NODE_ENV=detox server__locale=en-US server__region=US server__port=5001
     - API_PORT: "5001"
     steps:
-    - cache-pull@2.7:
-        title: Bitrise.io Cache:Pull - iOS build + node_modules
+    - restore-cache@2:
+        inputs:
+        - key: ios-detox-build-$BITRISE_GIT_BRANCH
     - nvm@1: {}
     - script@1:
         title: Run Detox Tests
@@ -1625,7 +1631,7 @@ workflows:
             sleep 5
             echo "starting the tests"
 
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs all
+            yarn detox:run $DETOX_TEST_TYPE --running-from-ci -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs all
     - script@1:
         title: Collect logs
         is_always_run: true

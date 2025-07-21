@@ -38,8 +38,6 @@ export const {
   terminateApp,
 } = navigation.common;
 
-export const { loginOnly } = navigation.login;
-
 export const goToSmokingCessation = async () => {
   await device.launchApp({ url: "yulifeapp-detox://yulife/smoking" });
 };

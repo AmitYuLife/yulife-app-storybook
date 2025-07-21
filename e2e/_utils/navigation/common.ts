@@ -7,9 +7,11 @@ import { expect } from "detox";
 import { navigation } from "@utils";
 
 export const restart = async (locale = "en-GB", dm = dataManager) => {
+  console.log(`Restaring app...`);
   await device.terminateApp();
   await dm.reseed();
   await device.clearKeychain();
+  console.log(`Launching app...`);
   await device.launchApp({
     delete: true,
     languageAndLocale: {

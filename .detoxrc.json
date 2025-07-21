@@ -8,6 +8,22 @@
       "setupTimeout": 120000
     }
   },
+  "artifacts": {
+    "rootDir": "./e2e-report",
+    "plugins": {
+      "screenshot": {
+        "shouldTakeAutomaticSnapshots": true,
+        "keepOnlyFailedTestsArtifacts": false,
+        "takeWhen": {
+          "testStart": true,
+          "testFailure": true,
+          "testDone": true,
+          "appNotReady": true
+        }
+      },
+      "uiHierarchy": "enabled"
+    }
+  },
   "apps": {
     "ios.debug": {
       "type": "ios.app",
@@ -30,7 +46,7 @@
     "ios.simulator": {
       "type": "ios.simulator",
       "device": {
-        "type": "iPhone 15 Pro Max"
+        "type": "iPhone 16 Pro"
       }
     },
     "emulator": {

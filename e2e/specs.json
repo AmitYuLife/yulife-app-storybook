@@ -1,0 +1,158 @@
+{
+    "all": {
+        "region": "UK",
+        "specs": [
+            "**/*.spec.ts"
+        ]
+    },
+    "admin": {
+        "region": "UK",
+        "specs": [
+            "admin/appreview/*.spec.ts",
+            "admin/emails/*.spec.ts",
+            "admin/feedback_forms/*.spec.ts",
+            "admin/login_and_routing/*.spec.ts"
+        ]
+    },
+    "admin:2": {
+        "region": "UK",
+        "specs": [
+            "admin/referrals/*.spec.ts",
+            "admin/routing/*.spec.ts"
+        ]
+    },
+    "activity": {
+        "region": "UK",
+        "specs": [
+            "activity/cycling/*.spec.ts",
+            "activity/duels/*.spec.ts",
+            "activity/leaderboard/*.spec.ts"
+        ]
+    },
+    "activity:2": {
+        "region": "UK",
+        "specs": [
+            "activity/mood_monitor/*.spec.ts",
+            "activity/p2p_gifting/*.spec.ts",
+            "activity/steps/*.spec.ts",
+            "activity/streaks/*.spec.ts"
+        ]
+    },
+    "battle-pass": {
+        "region": "UK",
+        "specs": [
+            "battle_pass/**/*.spec.ts"
+        ]
+    },
+    "benefits": {
+        "region": "UK",
+        "specs": [
+            "benefits/**/*.spec.ts"
+        ]
+    },
+    "challenges": {
+        "region": "UK",
+        "specs": [
+            "challenges/challenges/*.spec.ts",
+            "challenges/events/*.spec.ts"
+        ]
+    },
+    "challenges:2": {
+        "region": "UK",
+        "specs": [
+            "challenges/meditopia/*.spec.ts",
+            "challenges/yudoku/*.spec.ts"
+        ]
+    },
+    "challenges-extended": {
+        "region": "UK",
+        "specs": [
+            "challenges_extended/**/*.spec.ts"
+        ]
+    },
+    "healthcheck": {
+        "region": "UK",
+        "specs": [
+            "healthcheck/healthcheck.spec.ts"
+        ]
+    },
+    "personal": {
+        "region": "UK",
+        "specs": [
+            "personal/**/*.spec.ts"
+        ]
+    },
+    "screenshots": {
+        "region": "UK",
+        "specs": [
+            "screenshots/**/*.spec.ts"
+        ]
+    },
+    "sa": {
+        "region": "SA",
+        "specs": [
+            "south_africa/**/*.spec.ts"
+        ]
+    },
+    "smoke": {
+        "region": "UK",
+        "specs": [
+            "activity/steps/*.spec.ts"
+        ]
+    },
+    "surveys": {
+        "region": "UK",
+        "specs": [
+            "surveys/**/*.spec.ts"
+        ]
+    },
+    "usa": {
+        "region": "US",
+        "specs": [
+            "usa/**/*.spec.ts"
+        ]
+    },
+    "jp": {
+        "region": "JP",
+        "specs": [
+            "japan/*.spec.ts"
+        ]
+    },
+    "worlds": {
+        "region": "UK",
+        "specs": [
+            "worlds_progression/eotw/*.spec.ts"
+        ]
+    },
+    "worlds:2": {
+        "region": "UK",
+        "specs": [
+            "worlds_progression/worlds/*.spec.ts",
+            "worlds_progression/worlds_extended/*.spec.ts"
+        ]
+    },
+    "yuscreen": {
+        "region": "UK",
+        "specs": [
+            "yuscreen/**/*.spec.ts"
+        ]
+    },
+    "group-health": {
+        "region": "UK",
+        "specs": [
+            "group_health/*.spec.ts"
+        ]
+    },
+    "group-health-two": {
+        "region": "UK",
+        "specs": [
+            "group_health_two/*.spec.ts"
+        ]
+    },
+    "health": {
+        "region": "UK",
+        "specs": [
+            "health/*.spec.ts"
+        ]
+    }
+}

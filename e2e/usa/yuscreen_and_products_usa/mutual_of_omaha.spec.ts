@@ -12,7 +12,7 @@ import { leaderboardCommunitiesMessage, wellbeingHubHeaderMessage } from "./_res
 
 Feature("Mutual of Omaha specific tests", async () => {
   Scenario("Various features are not visible for a MOO user", scenario.start, async () => {
-    Given("I login and go to the daily steps screen", given.logInAndGoToTab("leaderboard", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "United States"), async () => {
+    Given("I login and go to the daily steps screen", given.logInAndGoToTab("leaderboard", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
       Then("I should see my YuCoin balance is 10 for my first login, not 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10)));
       Then("I can't see the duels button", then.idNotVisible(ids.DUELS_BUTTON));
       Then("I can't see the search button", then.idNotVisible(ids.SEARCH_BUTTON));
@@ -37,7 +37,7 @@ Feature("Mutual of Omaha specific tests", async () => {
   });
 
   Scenario("Mentions of companies are not present for MOO users", scenario.start, async () => {
-    Given("I login and go to the daily steps screen", given.logInAndGoToTab("leaderboard", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "United States"), async () => {
+    Given("I login and go to the daily steps screen", given.logInAndGoToTab("leaderboard", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
       Then("I should see my YuCoin balance is 10 for my first login, not 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10)));
     });
     When("I tap the tooltip", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {

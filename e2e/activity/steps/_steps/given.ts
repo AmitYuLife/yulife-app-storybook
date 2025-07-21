@@ -1,2 +1,2 @@
 export { addStepsHistoricalDataMulitple } from "@socket";
-export { loginAsUser, loginOnly, loginToYuScreen } from "../../_common/given";
+export { loginAsUser, loginToYuScreen } from "../../_common/given";

@@ -46,7 +46,7 @@ export const {
   minimiseAndReopenApp,
 } = navigation.common;
 
-export const { loginOnly, fullRestartAndLogin } = navigation.login;
+export const { fullRestartAndLogin } = navigation.login;
 
 export const { searchLeaderboard, switchLeaderboard, triggerSearchTokens } = screens.leaderboard;
 

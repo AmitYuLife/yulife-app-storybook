@@ -14,14 +14,8 @@ export const notOnLoginScreen = async (): Promise<void> => {
 };
 
 export const signupRewardVisible = async () => {
-  const signupTitle = "Here’s a sprinkle of\nYuCoin for logging in";
-  const signupCopy =
-    "Earn more YuCoin in app and exchange them for vouchers from your favourite brands, donate to good causes, and more.";
-  const signupCTA = "Let's go";
-
-  await textVisible(signupTitle)();
-  await textVisible(signupCopy)();
-  await textVisible(signupCTA)();
+  await textVisible("200 YuCoin today")();
+  await textVisible("0 steps")();
 };
 
 export const connectionSetupScreenVisible = async () => {

@@ -85,7 +85,7 @@ Feature("As a user I can see birthday notifications in the app if consented, and
     });
     When("I close the app before I press the claim button", when.restartWithData, async () => {
       Given("I trigger the nofitications", given.triggerBirthdayNotifications, async () => {
-        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_17, data.AUTH_17, true, "United Kingdon", false), async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_17, data.AUTH_17, true), async () => {
           Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
           Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Ryan Howard", "Forest", "2", false));
           Then("I can see I now do have a notification", then.idVisible(ids.NOTIF_ICON_BADGE(true, 1)));

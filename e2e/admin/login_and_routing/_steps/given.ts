@@ -1,11 +1,19 @@
-import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN } from "@ids";
+import {
+  INPUT_LOGIN_EMAIL,
+  INPUT_LOGIN_PASSWORD,
+  BUTTON_LOGIN,
+  LOGIN_HERO_LOGIN_BUTTON,
+  LOGIN_SCREEN_HEADER,
+  LOGIN_WITH_PASSWORD,
+} from "@ids";
 import * as when from "./when";
-import { sendReduxEvent } from "@socket";
+import { authoriseFitkit, sendReduxEvent } from "@socket";
 import { AUTH_7, CUSTOMER_7, CUSTOMER_1, CUSTOMER_2 } from "../../_data";
 import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
 import { selectRegionIfVisible, wait } from "../../_common/given";
-import { skipHealthConnection } from "_utils/navigation/login";
+import { dismissNewLooksModalIfVisible, skipHealthConnection } from "_utils/navigation/login";
+import { navigateViaID, tapID, tapText } from "@utils";
 
 export {
   authoriseFitkit,
@@ -14,9 +22,32 @@ export {
   sendMindfulnessData,
   sendReduxEvent,
 } from "@socket";
-export { logInAndGoToTab, loginOnly, selectRegionIfVisible } from "../../_common/given";
+export { logInAndGoToTab, selectRegionIfVisible } from "../../_common/given";
 
 export { skipHealthConnection } from "_utils/navigation/login";
+
+export const performLogin =
+  (customer: any, auth: any, fitkitAuth?: boolean, region = "United Kingdom") =>
+  async () => {
+    await selectRegionIfVisible(region)();
+    const loginButton = element(by.id(LOGIN_HERO_LOGIN_BUTTON));
+    await loginButton.tap();
+    const loginField = element(by.id(INPUT_LOGIN_EMAIL));
+    await waitFor(loginField).toBeVisible().withTimeout(30000);
+    await loginField.tap();
+    await loginField.replaceText(customer.data.email);
+    await tapID(LOGIN_SCREEN_HEADER)();
+    await navigateViaID(BUTTON_LOGIN(false));
+    await tapText("PASS")();
+    await tapID(LOGIN_WITH_PASSWORD)();
+    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
+    await passwordField.tap();
+    await passwordField.replaceText(auth.data.password);
+    await tapID(LOGIN_SCREEN_HEADER)();
+    fitkitAuth && (await authoriseFitkit(fitkitAuth)());
+    await navigateViaID(BUTTON_LOGIN(false));
+    await dismissNewLooksModalIfVisible();
+  };
 
 export const enterValidCredentials =
   (user = CUSTOMER_7, auth = AUTH_7, region = "United Kingdom") =>

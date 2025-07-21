@@ -11,7 +11,7 @@ import {
   LOGIN_HERO_LOGIN_BUTTON,
   SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP,
 } from "@ids";
-import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { dataManager, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
   completeOnboardingIntro,
   navigateViaID,
@@ -20,48 +20,45 @@ import {
   textVisible,
   wait,
 } from "./common";
-import { authoriseFitkit } from "@socket";
+import { authoriseFitkit, EVENT, loginWithCredentials, socketServer } from "@socket";
 import { tapText } from "@navigation";
 import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
+import axios from "axios";
+import SocketClient from "_utils/socket/client";
 
+/**
+ * Skips the login / auth screen and places the app in a logged in state for speed
+ * @param customer
+ * @param auth
+ * @param fitkitAuth
+ * @param region
+ * @param firstTime
+ * @returns
+ */
 export const loginAsUser =
   (
     customer: IDatabaseItem,
     auth: IDatabaseItem,
     fitkitAuth = true,
-    region = "United Kingdom",
-    firstTime = true
+    region: "UK" | "US" | "SA" | "JP" = "UK"
   ) =>
   async () => {
-    console.log("CUSTOMER ID: ", customer.data.customerId);
-    await selectRegionIfVisible(region)();
-    const loginButton = element(by.id(LOGIN_HERO_LOGIN_BUTTON));
-    await loginButton.tap();
-    const loginField = element(by.id(INPUT_LOGIN_EMAIL));
-    await waitFor(loginField).toBeVisible().withTimeout(30000);
-    await loginField.tap();
-    await loginField.replaceText(customer.data.email);
-    await tapID(LOGIN_SCREEN_HEADER)();
-    await navigateViaID(BUTTON_LOGIN(false));
-    await tapText("PASS")();
-    await tapID(LOGIN_WITH_PASSWORD)();
-    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
-    await passwordField.tap();
-    await passwordField.replaceText(auth.data.password);
-    await tapID(LOGIN_SCREEN_HEADER)();
-    await authoriseFitkit(fitkitAuth)();
-    await navigateViaID(BUTTON_LOGIN(false));
+    // // wait for the app to load
+    await waitFor(element(by.id(LOGIN_HERO_LOGIN_BUTTON)));
 
-    if (firstTime) {
-      await wait(3000)();
-      await navigateViaID(BUTTON_BASE("SIGN_UP_REWARD_SCREEN"));
+    await loginWithCredentials(customer.data.email, auth.data.password, region)();
+
+    // wait for daily steps to load
+    await waitFor(element(by.label("YuCoin")));
+
+    if (fitkitAuth) {
+      // wait for the daily steps container to initialise
+      await wait(1_000)();
+
+      // auth fitkit
+      await authoriseFitkit(fitkitAuth)();
     }
-    await skipHealthConnection();
-    await dismissPLIModalIfVisible();
-    await dismissNewLooksModalIfVisible();
-    await dismissStreakIfVisible();
-    await dismissCyclingScreenIfVisible();
   };
 
 export const logInAndGoToTab =
@@ -70,11 +67,10 @@ export const logInAndGoToTab =
     customer: IDatabaseItem,
     auth: IDatabaseItem,
     fitkitAuth = true,
-    region = "United Kingdom",
-    firstTime = true
+    region: "UK" | "US" | "JP" | "SA" = "UK"
   ) =>
   async () => {
-    await loginAsUser(customer, auth, fitkitAuth, region, firstTime)();
+    await loginAsUser(customer, auth, fitkitAuth, region)();
     await navigateViaID(NAV_BAR(tab));
   };
 
@@ -131,29 +127,6 @@ export const dismissCyclingScreenIfVisible = async () => {
   } catch (e) {}
 };
 
-export const loginOnly =
-  (customer: any, auth: any, fitkitAuth?: boolean, region = "United Kingdom") =>
-  async () => {
-    await selectRegionIfVisible(region)();
-    const loginButton = element(by.id(LOGIN_HERO_LOGIN_BUTTON));
-    await loginButton.tap();
-    const loginField = element(by.id(INPUT_LOGIN_EMAIL));
-    await waitFor(loginField).toBeVisible().withTimeout(30000);
-    await loginField.tap();
-    await loginField.replaceText(customer.data.email);
-    await tapID(LOGIN_SCREEN_HEADER)();
-    await navigateViaID(BUTTON_LOGIN(false));
-    await tapText("PASS")();
-    await tapID(LOGIN_WITH_PASSWORD)();
-    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
-    await passwordField.tap();
-    await passwordField.replaceText(auth.data.password);
-    await tapID(LOGIN_SCREEN_HEADER)();
-    fitkitAuth && (await authoriseFitkit(fitkitAuth)());
-    await navigateViaID(BUTTON_LOGIN(false));
-    await dismissNewLooksModalIfVisible();
-  };
-
 export const continueLogin = async () => {
   await navigateViaText(t("Let's go"));
   await dismissStreakIfVisible();
@@ -195,12 +168,11 @@ export const fullRestartAndLogin =
     customer: IDatabaseItem,
     auth: IDatabaseItem,
     fitkitAuth = true,
-    region = "United Kingdom",
-    firstTime = true
+    region: "UK" | "US" | "JP" | "SA" = "UK"
   ) =>
   async () => {
     await device.terminateApp();
     await device.clearKeychain();
     await device.launchApp({ delete: true });
-    await loginAsUser(customer, auth, fitkitAuth, (region = "United Kingdom"), firstTime)();
+    await loginAsUser(customer, auth, fitkitAuth, region)();
   };

@@ -35,7 +35,7 @@ Feature("Miscellaneous surveys and surveys created through the DJB", async () =>
   });
 
   Scenario("Upon completing the 'Automated QA Test Journey 10 Multiplier' card, a user with an earn rate of 1 should receive YuCoin equal to 10 times their earn rate.", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "United Kingdom", false), async () => {
+    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "UK"), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Automated QA Test Journey 10 Multiplier", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
     });
     When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN"), async () => {
@@ -65,7 +65,7 @@ Feature("Miscellaneous surveys and surveys created through the DJB", async () =>
   });
 
   Scenario("Upon completing the 'Automated QA Test Journey 500 YuCoin Flat Amount' card, a user with an earn rate of 1 should receive YuCoin equal to a flat amount of 500.", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "United Kingdom", false), async () => {
+    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Automated QA Test Journey 10 Multiplier", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
     });
     When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN"), async () => {
@@ -98,11 +98,9 @@ Feature("Miscellaneous surveys and surveys created through the DJB", async () =>
 
   Scenario("I can see the hero cards in the correct order", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_7.customer.data.customerId, data.BUSINESS_ACCOUNT_4.data.business_account_id, data.BUSINESS_BACKGROUND_10.data.business_background_id]), async () => {
-      Given("I have entered a valid email address and valid password", given.loginOnly(data.CUSTOMER_7.customer, GENERIC_AUTH_PASSWORD, true), async () => {
-        When("I tap let's go", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN")), async () => {
-          When("I tap X to skip connection", when.tapID(ids.BUTTON_CLOSE), async () => {
-            Then("I can see the hero cards fin the correct order", then.checkEachHeroCard);
-          });
+      Given("I have entered a valid email address and valid password", given.loginAsUser(data.CUSTOMER_7.customer, GENERIC_AUTH_PASSWORD), async () => {
+        When("I am on the home screen", [], async () => {
+          Then("I can see the hero cards fin the correct order", then.checkEachHeroCard);
         });
       });
     });
