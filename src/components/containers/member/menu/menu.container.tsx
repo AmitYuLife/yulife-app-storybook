@@ -20,6 +20,7 @@ import { getSupportLevel } from "@redux/user/user.selectors";
 import { sduiActionOpenSupportChat } from "@redux/server-driven-ui/sdui.actions";
 import { useCallback, useMemo } from "react";
 import { getDebugQueriesToolEnabled } from "@redux/debug/debug.selectors";
+import { PUSH_NOTIFICATION_DENY_LIMIT } from "@redux/device/device.constants";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const MenuContainer = () => {
       dispatch(sduiActionOpenSupportChat());
     };
 
-    if (permissions.status !== PushPermissionsStatus.enabled) {
+    if (permissions.status !== PushPermissionsStatus.enabled && permissions.denyCount < PUSH_NOTIFICATION_DENY_LIMIT) {
       showYuModal({
         component: {
           id: MODALS.pushNotifications,

@@ -46,7 +46,6 @@ export const features = [
   "disableCheckPermission",
   "runLastUpdateQueryInSequence",
   "disableFitkitEventsLogging",
-  "gameDisableGamePushNotificationsModal",
   "enhanceConnectionLogging",
   "logReduxState",
   "gameEnableExpoImageDiskCachingPolicyInYumojiBuilder",
