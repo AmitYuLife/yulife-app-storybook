@@ -68,7 +68,7 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("I can login with correct login detail and see the connection setup for daily activities", scenario.start, async () => {
-    Given("I have entered a valid email address and valid password", given.loginOnly(data.CUSTOMER_2, data.AUTH_2, true), async () => {
+    Given("I have entered a valid email address and valid password", given.performLogin(data.CUSTOMER_2, data.AUTH_2, true), async () => {
       Then("I should not longer be on the login screen", then.notOnLoginScreen);
       Then("I should see the signup reward screen", then.signupRewardVisible);
     });
@@ -82,7 +82,7 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("I can login with correct login details and make it past the intro screens", scenario.start, async () => {
-    Given("I have entered a valid email address and valid password", given.loginOnly(data.CUSTOMER_7, data.AUTH_7, true), async () => {
+    Given("I have entered a valid email address and valid password", given.performLogin(data.CUSTOMER_7, data.AUTH_7, true), async () => {
       Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
       Then("I should see the sign up reward screen", then.rewardScreenVisible);
     });
@@ -202,14 +202,14 @@ Feature("As a user I can get past the login screen", async () => {
       });
     });
     When("I reload the app", when.reloadOnly, async () => {
-      When("I enter enter the correct details", when.loginOnly(data.CUSTOMER_11, data.AUTH_11), async () => {
+      When("I enter enter the correct details", given.performLogin(data.CUSTOMER_11, data.AUTH_11), async () => {
         Then("I should still see the account locked message", then.textVisible(t("Account is locked. Try again later.")));
       });
     });
   });
 
   Scenario("As an archived user, I should not be able to login", scenario.start, async () => {
-    Given("I login as an archived user", given.loginOnly(data.CUSTOMER_ARCHIVED, data.AUTH_ARCHIVED), async () => {
+    Given("I login as an archived user", given.performLogin(data.CUSTOMER_ARCHIVED, data.AUTH_ARCHIVED), async () => {
       When("I tap let's go", when.tapText("Let's go"), async () => {
         When("I tap skip this step", when.tapText("Skip this step"), async () => {
           Then("I should see 'Sorry'!", then.textVisible(t("Sorry!")));

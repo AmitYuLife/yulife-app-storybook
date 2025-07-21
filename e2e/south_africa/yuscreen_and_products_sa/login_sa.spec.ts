@@ -12,7 +12,7 @@ import * as ids from "@ids";
 
 Feature("As a user I can get past the login screen and see all SA products", async () => {
   Scenario("I can login and see MeGL/GrFun/GIP/TmpGIP/LSDC product slot and details", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_1, AUTH_SA_1, true, "South Africa"), async () => {
+    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_1, AUTH_SA_1, true, "SA"), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "SA Customer", "Mountain", "400", true));
       Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
       Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
@@ -69,7 +69,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
   });
 
   Scenario("I can login and see MeGL/SpGL/GrFun with dependents, product slot and details", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_2, AUTH_SA_2, true, "South Africa"), async () => {
+    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_2, AUTH_SA_2, true, "SA"), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Rei Buldo", "Mountain", "400", true));
       Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
       Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
@@ -96,7 +96,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
   });
 
   Scenario("I can login and see the GCI product in the SA app", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_3, AUTH_SA_3, true, "South Africa", false), async () => {
+    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_3, AUTH_SA_3, true, "SA"), async () => {
       When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
         Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`));
         Then("I can see the GCI product", then.productCardVisible(fixture.gciWideCard));
@@ -108,7 +108,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
   });
 
   Scenario("I can see the correct default country in the region selector for the SA app", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_3, AUTH_SA_3, true, "South Africa", false), async () => {
+    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_3, AUTH_SA_3, true, "SA"), async () => {
       Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`));
     });
     When("I navigate to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
@@ -118,7 +118,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
   });
 
   Scenario("I can see Old Mutual products and see the correct hero section", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_4, AUTH_SA_4, true, "South Africa", false), async () => {
+    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_4, AUTH_SA_4, true, "SA"), async () => {
       Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_4.data.firstName} ${CUSTOMER_SA_4.data.lastName}`));
     });
     When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {

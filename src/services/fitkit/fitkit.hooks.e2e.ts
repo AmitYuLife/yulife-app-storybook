@@ -1,13 +1,21 @@
 import mock from "@services/socket/socketClient";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FitKitState } from "./fitkit.types";
 
-let globalState = { loading: false, available: true, authorised: false } as FitKitState;
+let initialState = { loading: false, available: true, authorised: false } as FitKitState;
 
 export function useFitKit() {
-  const authorise = function (authorised = true) {
-    globalState = { ...globalState, authorised, available: authorised };
-  };
+  const [globalState, setGlobalState] = useState(initialState);
+
+  const authorise = useCallback(
+    (authorised = true) => {
+      // save this for next time useFitKit is called, we want it to persist globally
+      initialState = { ...initialState, authorised, available: authorised };
+      // if component is mounted, update the state
+      setGlobalState(initialState);
+    },
+    [setGlobalState]
+  );
 
   useEffect(() => {
     const cb = mock.onFitkitAuthorised(authorise);

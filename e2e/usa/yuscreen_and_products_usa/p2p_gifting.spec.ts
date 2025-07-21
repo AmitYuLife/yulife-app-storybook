@@ -12,7 +12,7 @@ const locale = process.env.TARGET_LOCALE || "en-US";
 
 Feature("P2P gifting", async () => {
   Scenario("As a user on the Mutual of Omaha pricing tier search features should be disabled.", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yucoin", data.CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "United States", true), async () => {
+    Given("I log in", given.logInAndGoToTab("yucoin", data.CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
       When("I trigger the issue coin to NPC Biz", when.triggerIssueCoinToNpcBiz(data.BUSINESS_ACCOUNT_USA_2_NPC.business.data.businessAccountId, 30000, "1234"), async () => {
         When("I trigger the business sending 100 YuCoin to the user", when.triggerSendGiftFromNpcBiz(data.BUSINESS_ACCOUNT_USA_2_NPC.business.data.businessAccountId, [GiftFromBizUsa2]), async () => {
           When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {

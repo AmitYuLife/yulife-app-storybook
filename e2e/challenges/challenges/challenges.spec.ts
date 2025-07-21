@@ -39,7 +39,7 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("Active challenge should be cancelled on logout", scenario.start, async () => {
-    Given("I login and go to the yucoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "United Kingdom", true), async () => {
+    Given("I login and go to the yucoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true), async () => {
       Then("I should see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0)));
     });
     When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
@@ -54,7 +54,7 @@ Feature("As a user I can take a challenge", async () => {
         Then("I should see the active challenge progress bar", then.idVisible(ids.CHALLENGE_PROGRESS_BAR, 3000));
       });
     });
-    When("I log out and log in again", when.fullRestartAndLogin(data.CUSTOMER_1, data.AUTH_1, true, "United Kingdom", false), async () => {
+    When("I log out and log in again", when.fullRestartAndLogin(data.CUSTOMER_1, data.AUTH_1, true, "UK"), async () => {
       Then("I should still see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0), 2000));
     });
     When("I tap the 'Back to challenge' button", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON, 1500), async () => {

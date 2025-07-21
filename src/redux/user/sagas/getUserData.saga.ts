@@ -29,6 +29,7 @@ export default function* getUserDataSaga() {
         },
       })
     );
+
     if (data && data.getCurrentUser === null && !errors) {
       yield call(expireSession);
       return;

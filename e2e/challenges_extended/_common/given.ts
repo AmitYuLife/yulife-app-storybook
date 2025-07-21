@@ -1,7 +1,3 @@
-import { navigation } from "@navigation"
+import { navigation } from "@navigation";
 
-export const {
-    logInAndGoToTab,
-    loginAsUser,
-    loginOnly,
-} = navigation.login
+export const { logInAndGoToTab, loginAsUser } = navigation.login;

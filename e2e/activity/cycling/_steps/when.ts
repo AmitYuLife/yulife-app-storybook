@@ -5,8 +5,7 @@ import { screens } from "@appScreens";
 export const { tapID, tapText, replaceTextByID, restartWithData, reloadAppToTab, wait } =
   navigation.common;
 
-export const { loginAsUser, continueLogin, continueLoginAfterSignupBonus, loginOnly } =
-  navigation.login;
+export const { loginAsUser, continueLogin, continueLoginAfterSignupBonus } = navigation.login;
 
 export const { scrollFromID, swipeFromText } = navigation.scrolling;
 

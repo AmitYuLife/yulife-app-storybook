@@ -21,13 +21,8 @@ export const {
   wait,
 } = navigation.common;
 
-export const {
-  loginAsUser,
-  continueLogin,
-  continueLoginAfterSignupBonus,
-  loginOnly,
-  loginToYuScreen,
-} = navigation.login;
+export const { loginAsUser, continueLogin, continueLoginAfterSignupBonus, loginToYuScreen } =
+  navigation.login;
 
 export const {
   scrollFromID,

@@ -9,7 +9,7 @@ import { getFullName } from "_utils/users";
 
 Feature("P2P gifting", async () => {
   Scenario("I should see 8 selectable messages", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
+    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
           Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
@@ -35,7 +35,7 @@ Feature("P2P gifting", async () => {
   });
 
   Scenario("I should see the gifting restriction messages fit the screen without being cut off.", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
+    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
           Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
@@ -56,7 +56,7 @@ Feature("P2P gifting", async () => {
   });
 
   Scenario("I should see the Thanks for the gift notification message with the users name the correct way round", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
+    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
       When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_A), async () => {
         Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
       });
@@ -70,7 +70,7 @@ Feature("P2P gifting", async () => {
   });
 
   Scenario("I should see the You received a gift! notification message with the users name the correct way round", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
+    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
       When("I trigger the 'You received a gift!' notification", when.triggerGiftReceivedNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_B), async () => {
         Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
       });

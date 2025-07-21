@@ -27,7 +27,7 @@ export const {
   restartWithoutDeleteTwoTimes,
 } = navigation.common;
 
-export const { loginOnly, loginAsUser } = navigation.login;
+export const { loginAsUser } = navigation.login;
 
 export const changeReferralSelectedBusiness = (businessName: string) => async () => {
   await tapID(ids.REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN)();

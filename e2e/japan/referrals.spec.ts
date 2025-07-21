@@ -8,7 +8,7 @@ import * as data from "./_data";
 
 Feature("JP: Referrals Page", async () => {
   Scenario("When I go to the leaderboard tab I should see the referrals section invite a colleague.", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("leaderboard", data.CUSTOMER_1, data.AUTH_1, true, "Japan"), async () => {
+    Given("I login", given.logInAndGoToTab("leaderboard", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
       When("I scroll to the bottom", when.scrollFromID(ids.LEADERBOARD_INFO_BUTTON, "up", "fast"), async () => {
         Then("I should see the leaderboard 'Invite a Colleague' section", then.idVisible(ids.LEADERBOARD_USER_REFERRAL));
       });

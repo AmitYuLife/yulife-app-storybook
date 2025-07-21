@@ -1,6 +1,6 @@
 import { navigation } from "@utils";
-import { loginOnly } from "_utils/navigation/login";
 import * as ids from "@ids";
+import { loginAsUser } from "_utils/navigation/login";
 export { sendSteps, addStepsHistoricalData } from "@socket";
 export { triggerSearchTokens } from "_utils/appScreens/leaderboard";
 
@@ -35,7 +35,7 @@ export const restartToDuelsRequest =
     await device.clearKeychain();
     await device.launchApp({ delete: true });
     await wait(waitTime)();
-    await loginOnly(customer, auth, fitkitAuth)();
+    await loginAsUser(customer, auth, fitkitAuth)();
     await navigateViaText("Let's go");
   };
 

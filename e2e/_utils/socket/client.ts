@@ -16,7 +16,19 @@ export default class SocketClient {
 
   public connect(url: string) {
     this.socket = io(url);
+    this.socket.on("connect_error", (err) => {
+      console.log(`connect_error due to ${err.message}`);
+    });
+    this.socket.on("connect", () => {
+      console.log(`connected to socket server`);
+    });
+    this.socket.onAny((event, payload) => console.log(`Received event: ${event}`, payload));
     this.socket.emit("CONNECTED");
+  }
+
+  // TODO: purge
+  public emit(event: string, payload: any) {
+    this.socket.emit(event, payload);
   }
 
   public emitTranslationKeysCleared() {
@@ -28,7 +40,11 @@ export default class SocketClient {
   }
 
   public onFitkitAuthorised(cb: Callback<FitkitAuthorised>) {
-    this.socket.on(EVENT.FITKIT_AUTHORISED, cb);
+    console.log(`Subscribing to fitkit authorised event (onFitkitAuthorised)....`);
+    this.socket.on(EVENT.FITKIT_AUTHORISED, (args) => {
+      console.log(`Fitkit authorised event called....`, args);
+      cb(args);
+    });
     return () => this.socket.off(EVENT.FITKIT_AUTHORISED, cb);
   }
 
@@ -58,6 +74,7 @@ export default class SocketClient {
   }
 
   public unsubscribe(event: EVENT, cb: any) {
+    console.log(`Unsubscribing from event: ${event}`);
     this.socket.off(event, cb);
   }
 }

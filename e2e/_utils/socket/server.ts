@@ -9,12 +9,12 @@ export class SocketServer {
     this.io = new Server(port);
     this.io.on("connect", (socket) => {
       socket.emit("WELCOME");
-      socket.on("TRANSLATION_KEY_USED", key => {
+      socket.on("TRANSLATION_KEY_USED", (key) => {
         this.USED_TRANSLATION_KEYS.add(key);
-      })
+      });
       socket.on("TRANSLATION_KEYS_CLEARED", () => {
         this.USED_TRANSLATION_KEYS.clear();
-      })
+      });
     });
 
     console.log(`Server started on port ${port}`); // tslint:disable-line
@@ -33,7 +33,6 @@ export class SocketServer {
 
   public emit = (event: MockedEvent) => {
     this.io.emit(event.name, event.payload);
-    console.log(`Sending event... ${event.name}`, event.payload);
   };
 }
 

@@ -121,3 +121,5 @@ dist
 
 !support/android
 !support/ios
+
+allure-*

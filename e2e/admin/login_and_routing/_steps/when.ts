@@ -9,7 +9,7 @@ export const { tapText, typeViaID, wait, reloadOnly, tapID, replaceTextViaID, te
 
 export const { swipeFromText, scrollUntilTextVisible } = navigation.scrolling;
 
-export const { loginOnly, skipHealthConnection } = navigation.login;
+export const { skipHealthConnection } = navigation.login;
 
 export const { tapMenuItem } = screens.menu;
 

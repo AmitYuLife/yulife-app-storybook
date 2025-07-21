@@ -11,7 +11,7 @@ const locale = process.env.TARGET_LOCALE || "ja-JP";
 Feature("Quizzes and questionnaires", async () => {
   Scenario("As a user that works at 1 company, I can traverse through the engagement survey until it is complete and I receive the correct amount of YuCoin.", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_2_SMOKING.data.customerId, data.BUSINESS_ACCOUNT_1.data.business_account_id]), async () => {
-      Given("I login as a user", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "Japan", true), async () => {
+      Given("I login as a user", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "JP"), async () => {
         Then("I should see my YuCoin balance of 8200, before I finish the Engagement Survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(8200)));
       });
     });
@@ -230,7 +230,7 @@ Feature("Quizzes and questionnaires", async () => {
 
   Scenario("If no business is available, when I can traverse through the engagement survey I will see a fallback '勤務先は' instead of the business name.", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_2_SMOKING.data.customerId]), async () => {
-      Given("I login as a user", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "Japan", true), async () => {
+      Given("I login as a user", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "JP"), async () => {
         When("I click on the engagement survey hero card", when.tapID(ids.EVENT_HEADING("アンケートのお願い", "#5A5A5C")), async () => {
           When("I start to fill out the survey", when.fillOutEngagementSurvey, async () => {
             Then("As a user who has no work business listed, I should see '勤務先は' provides adequate resources' ", then.idVisible(ids.TEXT_TEMPLATE("勤務先はメンタルヘルスをサポートする十分なリソースを提供している (カウンセリングサービスやストレスチェックなど)。", "b2b")));

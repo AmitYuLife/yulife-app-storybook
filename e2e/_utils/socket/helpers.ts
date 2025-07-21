@@ -12,6 +12,15 @@ export const authoriseFitkit =
     });
   };
 
+export const loginWithCredentials =
+  (email: string, password: string, region: "UK" | "US" | "JP" | "SA" = "UK") =>
+  async () => {
+    socketServer.emit({
+      name: EVENT.REDUX_EVENT,
+      payload: { type: "DETOX_LOGIN_WITH_CREDS", payload: { email, password, region } },
+    });
+  };
+
 export const sendSteps =
   (amount = 20, waitTime?: number) =>
   async (): Promise<void> => {

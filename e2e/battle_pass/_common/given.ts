@@ -1,7 +1,7 @@
 import { navigation } from "@navigation";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 
-export const { logInAndGoToTab, loginAsUser, loginOnly } = navigation.login;
+export const { logInAndGoToTab, loginAsUser } = navigation.login;
 
 export const triggerGenerateBattlePassSeason = (businessIds: string[]) => async () => {
   await dataManager.triggerWorkerTask("GENERATE_DONATIONS_BATTLE_PASS_SEASON", {
