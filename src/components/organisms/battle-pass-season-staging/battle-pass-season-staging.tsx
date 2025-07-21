@@ -1,8 +1,6 @@
 import { Box, TextTemplate } from "@atoms";
 import { t } from "@locale";
-import { Style } from "@styles";
 import { memo, useContext, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
 import { RewardsManagerContext } from "@components/containers/member/rewards/rewards.manager.context";
 import { RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
 
@@ -12,9 +10,10 @@ const BattlePassSeasonStaging = () => {
   useEffect(() => {
     dispatch({ type: RewardsManagerActionTypes.SET_END_OF_SEASON, payload: true });
   }, []);
+
   return (
-    <View style={styles.container}>
-      <Box style={styles.contentContainer} gap={40}>
+    <Box flex={1} justifyContent="center" alignItems="center" bg="#290163">
+      <Box px={20} gap={40}>
         <Box justifyContent="center" alignItems="center">
           <TextTemplate color="white" textAlign="center" type="h2">
             {t("screens.battle_pass.season_complete.staging.title")}
@@ -24,13 +23,8 @@ const BattlePassSeasonStaging = () => {
           </TextTemplate>
         </Box>
       </Box>
-    </View>
+    </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
-  contentContainer: { paddingHorizontal: Style.adjust(20) },
-});
 
 export default memo(BattlePassSeasonStaging);
