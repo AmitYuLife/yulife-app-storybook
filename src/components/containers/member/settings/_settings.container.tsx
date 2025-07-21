@@ -264,9 +264,6 @@ function SettingsContainer({ componentId }: IOwnProps) {
             setIsTimeModalVisible(false);
           }
         },
-        onTimePress: () => {
-          return;
-        },
       })),
       title: t("screens.settings.email_notification.label"),
       name: "email",

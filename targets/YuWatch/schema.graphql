@@ -7,11 +7,15 @@ directive @apollo_client_ios_localCacheMutation on QUERY | MUTATION | SUBSCRIPTI
 A directive used by the Apollo iOS code generation engine to generate custom import statements in operation or fragment definition files. An import statement to import a module with the name provided in the `module` argument will be added to the generated definition file.
 """
 directive @import(
-  """The name of the module to import."""
+  """
+  The name of the module to import.
+  """
   module: String!
 ) repeatable on QUERY | MUTATION | SUBSCRIPTION | FRAGMENT_DEFINITION
 
-"""Attach extra information to a given type."""
+"""
+Attach extra information to a given type.
+"""
 directive @typePolicy(
   """
   A selection set containing fields used to compute the cache key of an object. Referenced fields must have non-nullable scalar types. Order is important.
@@ -23,10 +27,14 @@ directive @typePolicy(
 Directs the executor to defer this fragment when the `if` argument is true or undefined.
 """
 directive @defer(
-  """Deferred when true or undefined."""
+  """
+  Deferred when true or undefined.
+  """
   if: Boolean
 
-  """Unique name"""
+  """
+  Unique name
+  """
   label: String
 ) on FRAGMENT_SPREAD | INLINE_FRAGMENT
 
@@ -305,7 +313,9 @@ enum ActiveChallengeSourceType {
   watch
 }
 
-"""@Deprecated - Use MobileQuestChallenge instead"""
+"""
+@Deprecated - Use MobileQuestChallenge instead
+"""
 type Challenge {
   id: String
   userId: String
@@ -390,7 +400,9 @@ type MapMilestoneLogEntry {
   completed: Int
 }
 
-"""@Deprecated - Use MapMilestoneLogEntry instead"""
+"""
+@Deprecated - Use MapMilestoneLogEntry instead
+"""
 type MilestoneLogEntry {
   id: String
   data: MilestoneTarget
@@ -719,7 +731,9 @@ enum AvatarPartType {
   jacket
 }
 
-"""Different cover types"""
+"""
+Different cover types
+"""
 enum CoverType {
   common
   rare
@@ -794,7 +808,9 @@ type TeamWellbeingHubContent {
 }
 
 enum SduiActionType {
-  """Generic: Logs an event to mixpanel from the client"""
+  """
+  Generic: Logs an event to mixpanel from the client
+  """
   SDUI_ACTION_LOG_EVENT
 
   """
@@ -812,16 +828,24 @@ enum SduiActionType {
   """
   SDUI_ACTION_OPEN_MODAL
 
-  """Generic: Accepts client-side route constant as payload."""
+  """
+  Generic: Accepts client-side route constant as payload.
+  """
   SDUI_ACTION_SET_BOTTOM_TAB
 
-  """Generic: Opens a URL, accepts a URI as payload"""
+  """
+  Generic: Opens a URL, accepts a URI as payload
+  """
   SDUI_ACTION_OPEN_URL
 
-  """Generic: Opens the intercom chat"""
+  """
+  Generic: Opens the intercom chat
+  """
   SDUI_ACTION_OPEN_SUPPORT_CHAT
 
-  """Generic: Opens client side alert dialog"""
+  """
+  Generic: Opens client side alert dialog
+  """
   SDUI_ACTION_OPEN_ALERT_DIALOG
 
   """
@@ -829,7 +853,9 @@ enum SduiActionType {
   """
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH
 
-  """Product UW specific step: Finishes the journey"""
+  """
+  Product UW specific step: Finishes the journey
+  """
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH
 
   """
@@ -837,16 +863,24 @@ enum SduiActionType {
   """
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP
 
-  """Backwards compatible yulife-rn-client specific"""
+  """
+  Backwards compatible yulife-rn-client specific
+  """
   OPEN_MY_ACCOUNT
 
-  """Generic: Send GQL Mutation; RN client version >= 3.55.0"""
+  """
+  Generic: Send GQL Mutation; RN client version >= 3.55.0
+  """
   SDUI_ACTION_SEND_MUTATION
 
-  """Generic: Navigate back; RN client version >= 3.55.0"""
+  """
+  Generic: Navigate back; RN client version >= 3.55.0
+  """
   SDUI_ACTION_GENERIC_NAVIGATE_BACK
 
-  """Generic: Navigate back; RN client version >= 3.65.0"""
+  """
+  Generic: Navigate back; RN client version >= 3.65.0
+  """
   SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT
 
   """
@@ -859,10 +893,14 @@ enum SduiActionType {
   """
   SDUI_ACTION_OPEN_MAGIC_LINK
 
-  """Generic: Refreshes the user's coin balance in the app"""
+  """
+  Generic: Refreshes the user's coin balance in the app
+  """
   REFRESH_TOTAL_COINS
 
-  """Generic: Sets dynamic styles; RN client version >= 3.101"""
+  """
+  Generic: Sets dynamic styles; RN client version >= 3.101
+  """
   SDUI_ACTION_UPDATE_DYNAMIC_STYLES
 
   """
@@ -880,22 +918,34 @@ enum SduiActionType {
   """
   SDUI_ACTION_DISMISS_OVERLAY
 
-  """Generic: Fetch all user data"""
+  """
+  Generic: Fetch all user data
+  """
   GET_ALL_USER_DATA_START
 
-  """YuScreenV5: refetches content for specific sections"""
+  """
+  YuScreenV5: refetches content for specific sections
+  """
   QUERY_YU_SCREEN_SECTIONS
 
-  """Generic: Sets SDUI redux state"""
+  """
+  Generic: Sets SDUI redux state
+  """
   SDUI_ACTION_SET_LOADING_STATE
 
-  """Generic: Open immediate user feedback. RN client version >= 4.46.0"""
+  """
+  Generic: Open immediate user feedback. RN client version >= 4.46.0
+  """
   SDUI_ACTION_DISPLAY_STEP_FEEDBACK
 
-  """TextInput: Sets dynamic styles onChange. RN client version >= 4.50.0"""
+  """
+  TextInput: Sets dynamic styles onChange. RN client version >= 4.50.0
+  """
   SDUI_ACTION_SET_DYNAMIC_STYLES_ON_VALUE_CHANGE
 
-  """Generic: Refetches queries in the app. RN client version >= 4.52.0"""
+  """
+  Generic: Refetches queries in the app. RN client version >= 4.52.0
+  """
   SDUI_ACTION_REFETCH_QUERIES
 }
 
@@ -970,13 +1020,17 @@ enum ContentInsetAdjustmentBehavior {
   always
 }
 
-"""Default types to be extended / root query"""
+"""
+Default types to be extended / root query
+"""
 type Query {
   aNumber: Int
   getDebugCodes: [String]
   getMobilePaymentCardSetup: MobilePaymentCardSetup!
 
-  """Get user stripe payment details"""
+  """
+  Get user stripe payment details
+  """
   getPaymentDetails: GetPaymentDetailsResponse
   getAPIVersion: APIDetails
   getPublicYuAPIConfig: APIConfig!
@@ -984,7 +1038,9 @@ type Query {
   getCustomerMatcherFields(options: CustomerMatchingRuleOptionsInput): [CustomerMatcherField!]!
   getSudokuLeaderboard(date: String!, difficulty: SudokuDifficulty, limit: Int): [SudokuLeaderboardItem!]
 
-  """@Deprecated - RN client version >= 3.110 uses getYuCoinPowerInfo"""
+  """
+  @Deprecated - RN client version >= 3.110 uses getYuCoinPowerInfo
+  """
   getYuCoinPowerExplained: YuCoinPowerExplained!
   getActivityHistoryWithLevels(monthsAgo: Int, isFullActivity: Boolean): [ActivityHistory]
   getAdBanners(place: String): [AdBanner]
@@ -1015,8 +1071,15 @@ type Query {
   getMobileGameBattlePass(socialGroupId: String): MobileGameBattlePass
   getMobileGameBattlePassChestDetails(milestoneId: String!): MobileGameBattlePassChestDetails!
   getMobileGameBattlePassRewardInfo(milestoneId: String!): MobileGameBattlePassRewardInfo!
-  getMobileBattlePassDonationTemplates(socialGroupId: String, templateIds: [String!]): [MobileBattlePassDonationTemplate!]!
-  getMobileBattlePassDonationProgressDetails(leaderboardId: String!, templateId: String!, forDate: String): MobileBattlePassDonationProgressDetails!
+  getMobileBattlePassDonationTemplates(
+    socialGroupId: String
+    templateIds: [String!]
+  ): [MobileBattlePassDonationTemplate!]!
+  getMobileBattlePassDonationProgressDetails(
+    leaderboardId: String!
+    templateId: String!
+    forDate: String
+  ): MobileBattlePassDonationProgressDetails!
   getMobileUnlockableBattlePassTeasers: MobileUnlockableBattlePassTeasers!
   getMobileGameRewardPassList: MobileGameRewardPassList!
   getSudokuBoard(date: String): SudokuBoardResponse
@@ -1033,31 +1096,49 @@ type Query {
   getEmailNotificationsSettings: [NotificationSettingsProps]
   mobileUpgradeRequired: MobileUpgradeRequired
 
-  """Get all of a specific user's duels."""
+  """
+  Get all of a specific user's duels.
+  """
   getDuels: [Duel]
 
-  """Get all the available duel templates."""
+  """
+  Get all the available duel templates.
+  """
   getDuelTemplates: DuelTemplates
 
-  """Get the details of the users associated with a duel."""
+  """
+  Get the details of the users associated with a duel.
+  """
   getDuellerDetails(opponentId: String!): DuellerDetails
 
-  """Get duels happening today"""
+  """
+  Get duels happening today
+  """
   getDuelsToday: [Duel]
 
-  """Get duels happening tomorrow"""
+  """
+  Get duels happening tomorrow
+  """
   getDuelsTomorrow: [Duel]
 
-  """Get duel invitations"""
+  """
+  Get duel invitations
+  """
   getDuelInvitations: [Duel]
 
-  """Get completed duels"""
+  """
+  Get completed duels
+  """
   getDuelsCompleted: [DuelsCompletedResponse]
 
-  """Search for the name of someone you can invite to a duel."""
+  """
+  Search for the name of someone you can invite to a duel.
+  """
   searchForDuelOpponent(query: String!, limit: Int): [DuelSearchResult]
 
-  """Get the names and avatars of the people you've most recently duelled."""
+  """
+  Get the names and avatars of the people you've most recently duelled.
+  """
   getRecentDuelOpponents(limit: Int): [DuelSearchResult]
   pendingFeedbackForm(supportedTypes: [FeedbackFormQuestionType]): FeedbackForm
   pendingAppStoreReview: AppStoreReviewPrompt
@@ -1072,7 +1153,9 @@ type Query {
   getMobileHints: [Hint!]
   getInboxMessages: GetInboxMessages!
 
-  """Get user inventory"""
+  """
+  Get user inventory
+  """
   getInventory(itemType: InventoryItemType): [InventoryItem!]!
   getLeaderboard(sortBy: String, leaderboardId: String, limit: Int, targetId: ID): [LeaderboardItem]
   getQuestMapLevelList: [QuestMapLevelListItem!]!
@@ -1099,18 +1182,41 @@ type Query {
   """
   getPersonalProductStepDetachedDocuments(productId: String!, os: OS): ProductUnderwritingStep
 
-  """Supported RN version >= 4.9.0"""
-  getMobileQuestLevelChallengeContent(level: Int!, yuniversalMap: Int, levelSlotTemplateId: String!, contentTags: [String!]!): [QuestMapLevelChallengeContent]
+  """
+  Supported RN version >= 4.9.0
+  """
+  getMobileQuestLevelChallengeContent(
+    level: Int!
+    yuniversalMap: Int
+    levelSlotTemplateId: String!
+    contentTags: [String!]!
+  ): [QuestMapLevelChallengeContent]
 
-  """Supported RN version >= 4.9.0"""
-  getMobileQuestLevelChallengeDetails(level: Int!, yuniversalMap: Int, levelSlotTemplateId: String!): QuestMapLevelChallengeDetails!
+  """
+  Supported RN version >= 4.9.0
+  """
+  getMobileQuestLevelChallengeDetails(
+    level: Int!
+    yuniversalMap: Int
+    levelSlotTemplateId: String!
+  ): QuestMapLevelChallengeDetails!
   referralInformation(limit: Int, offset: Int, businessAccountId: String): UserReferralInformation!
   getReferralHistory(limit: Int, offset: Int, businessAccountId: String): UserReferralHistory!
   getReferralOnboardingPopover: ReferralOnboardingPopover!
   getReferralRewardAmount: ReferralRewardAmount!
-  getMobileSocialGroupLeaderboardItems(leaderboardId: String!, targetId: String, limit: Int, filter: SocialGroupLeaderboardItemsFilter): [SocialGroupLeaderboardItem!]!
+  getMobileSocialGroupLeaderboardItems(
+    leaderboardId: String!
+    targetId: String
+    limit: Int
+    filter: SocialGroupLeaderboardItemsFilter
+  ): [SocialGroupLeaderboardItem!]!
   getMobileSocialGroupLeaderboards: [SocialGroupLeaderboardGroup!]!
-  searchLeaderboardUser(searchType: SocialGroupLeaderboardSearchType, name: String!, socialGroupId: ID, socialGroupLeaderboardId: ID): [SearchLeaderboardUser!]!
+  searchLeaderboardUser(
+    searchType: SocialGroupLeaderboardSearchType
+    name: String!
+    socialGroupId: ID
+    socialGroupLeaderboardId: ID
+  ): [SearchLeaderboardUser!]!
   getStatistics(userId: String): UserProfileStatisticComparison
   getUserSurge: Surge
   getTodayEarnings: TodayEarnings!
@@ -1122,10 +1228,14 @@ type Query {
   wellbeingHubCategories(os: OS, businessAccountId: String): [WellbeingHubCategory!]!
   getMobileUserWrapped(wrappedId: String!): MobileUserWrapped!
 
-  """Get total coins for user to refresh coin amount"""
+  """
+  Get total coins for user to refresh coin amount
+  """
   getTotalCoins: Int!
 
-  """Get user streak details"""
+  """
+  Get user streak details
+  """
   getStreakDetails: StreakDetailsQueryResponse
   getYuScreenV5: YuScreenV5
   getYuScreenV5Sections(ids: [String!]!): [YuScreenSection!]!
@@ -1133,23 +1243,35 @@ type Query {
   getYuScreenProductDetails(customerProductId: String!): YuScreenProductDetails!
   getProductPaymentHistory(customerProductId: String!): YuScreenProductPaymentHistory!
 
-  """Query to get a customer's beneficiaries for a product"""
+  """
+  Query to get a customer's beneficiaries for a product
+  """
   getProductBeneficiaries(productId: ID): CustomerProductBeneficiaries!
   getMedicalPractices(nameOrPostcode: String): [MedicalPractice] @deprecated(reason: "Purged")
 
-  """Gets the avatar part svg."""
+  """
+  Gets the avatar part svg.
+  """
   getAvatarPart(partId: String): AvatarPart
 
-  """Gets all the avatar parts svg."""
+  """
+  Gets all the avatar parts svg.
+  """
   listAvatarParts(bodyType: AvatarBodyType, partType: AvatarPartType): [AvatarPart]
 
-  """Gets all the colours for a particular partType."""
+  """
+  Gets all the colours for a particular partType.
+  """
   getAvatarColors(colorSchemeIds: [String], partType: AvatarPartType): [AvatarColor]
 
-  """Returns the urls for every single avatar part"""
+  """
+  Returns the urls for every single avatar part
+  """
   getYumojiRemoteParts: YumojiRemoteParts!
 
-  """Used for personal products when needed to try on a new armour piece"""
+  """
+  Used for personal products when needed to try on a new armour piece
+  """
   getYumojiRemoteFittingRoom(customerProductId: String!, coverType: CoverType!): YumojiRemoteFittingRoom!
 
   """
@@ -1158,13 +1280,19 @@ type Query {
   """
   getYumojiPartUrlSet(partType: AvatarPartType): GetYumojiPartSet!
 
-  """Used for personal products when needing the part assets on their own"""
+  """
+  Used for personal products when needing the part assets on their own
+  """
   getYumojiPartUrlSetSwiper(partType: AvatarPartType): GetYumojiPartSet!
 
-  """Gets yumoji part type (e.g. Chest) associated to a product"""
+  """
+  Gets yumoji part type (e.g. Chest) associated to a product
+  """
   getProductYumojiPart(customerProductId: String!): GetProductYumojiPartResponse!
 
-  """Gets the default avatar/current avatar for the user"""
+  """
+  Gets the default avatar/current avatar for the user
+  """
   getYumojiBuilderInitialParts(bodyType: AvatarBodyType): [YumojiBuilderPart!]!
 
   """
@@ -1175,7 +1303,12 @@ type Query {
   """
   Gets all yumoji items that should be displayed in the list under a category in the yumoji builder
   """
-  getYumojiBuilderItemsForCategory(categoryId: String!, bodyType: AvatarBodyType!, partId: String, colorSchemeId: String): YumojiBuilderItemsForCategory!
+  getYumojiBuilderItemsForCategory(
+    categoryId: String!
+    bodyType: AvatarBodyType!
+    partId: String
+    colorSchemeId: String
+  ): YumojiBuilderItemsForCategory!
   getCustomerProductFromProductId(productId: String!): CustomerProductData
   getSduiJourney(journeyId: String!, dynamicId: String): JourneyData
   getSduiStaticStep(stepId: String!, journeyId: String, dynamicId: String): StaticStepData
@@ -1183,7 +1316,8 @@ type Query {
   getMagicLink(goToMyAccount: Boolean, site: MagicLinkSite, redirectUrl: String): String
   getIntercomHash(method: IntercomHashMethod!): String
   get2FASecret: TwoFASecretResponse
-  getBusinessAccessPermissions: [BusinessAccessPermission!]! @deprecated(reason: "Use getBusinessAccessUserPermissions instead")
+  getBusinessAccessPermissions: [BusinessAccessPermission!]!
+    @deprecated(reason: "Use getBusinessAccessUserPermissions instead")
   getBusinessAccessUserPermissions: GetBusinessAccessUserPermissionsResult!
   getBusinessAccessUser(accountAccessId: String!): BusinessAccessUser!
   getBusinessOwnerName: String
@@ -1194,7 +1328,9 @@ type Query {
   getDailyPensionContribution: DailyPensionContribution!
   getCurrentUser: User
 
-  """Fetch the data that will be used to populate the onboarding journey"""
+  """
+  Fetch the data that will be used to populate the onboarding journey
+  """
   getDefaultOnboardingDetails: DefaultOnboardingDetails
 
   """
@@ -1203,16 +1339,24 @@ type Query {
   getMyAccountDetails: MyAccountDetails!
   findUserAddress(postcode: String!): [ShippingAddress]
 
-  """Get user personal contact details"""
+  """
+  Get user personal contact details
+  """
   getContactDetails(contactDetailType: CustomerContactDetailType): GetPersonalContactDetailsResponse
 
-  """Get QR code for users to scan & be redirected to the app store"""
+  """
+  Get QR code for users to scan & be redirected to the app store
+  """
   getAppQRCode: String!
 
-  """Get the current Url progress"""
+  """
+  Get the current Url progress
+  """
   getMemberOnboardingYuCoinProgress(url: String!): MemberOnboardingYuCoinProgress
 
-  """Get the users rewards with image to show featured"""
+  """
+  Get the users rewards with image to show featured
+  """
   getMemberFeaturedRewards: [String!]!
   getActiveEmployments: [EmployerListItem!]!
   getUserDocuments: [DocumentLink!]!
@@ -1222,9 +1366,26 @@ type Query {
   getBulkMemberUploadTemplateURL(uploadType: BulkMemberUploadType!, localDate: String, dataFormatId: String): String!
   getBulkMemberImportFormats: [BulkMemberImportFormat!]!
   getBulkMemberImport(businessMemberDataImportId: ID!, query: String): BulkMemberImport!
-  getBulkMemberImports(offset: Int, limit: Int, importType: BulkMemberImportTypeFilter, orderBy: OrderBy): BulkMemberImportsResponse!
-  getBulkMemberImportPreviewIssues(businessMemberDataImportId: ID!, limit: Int, offset: Int, filter: BulkMemberImportPreviewIssuesFilterInput): BulkMemberImportPreviewIssues!
-  getBulkMemberImportPreviewResult(businessMemberDataImportId: ID!, limit: Int, offset: Int, filter: BulkMemberImportPreviewResultFilterInput, excludeRowsWithErrors: Boolean, onlyRowsWithErrors: Boolean): BulkMemberImportPreviewResult!
+  getBulkMemberImports(
+    offset: Int
+    limit: Int
+    importType: BulkMemberImportTypeFilter
+    orderBy: OrderBy
+  ): BulkMemberImportsResponse!
+  getBulkMemberImportPreviewIssues(
+    businessMemberDataImportId: ID!
+    limit: Int
+    offset: Int
+    filter: BulkMemberImportPreviewIssuesFilterInput
+  ): BulkMemberImportPreviewIssues!
+  getBulkMemberImportPreviewResult(
+    businessMemberDataImportId: ID!
+    limit: Int
+    offset: Int
+    filter: BulkMemberImportPreviewResultFilterInput
+    excludeRowsWithErrors: Boolean
+    onlyRowsWithErrors: Boolean
+  ): BulkMemberImportPreviewResult!
   getBulkMemberImportFileWithErrorsURL(importId: String!): String!
   getHrisConnections(page: Int, perPage: Int): HrisConnectionsResult!
   getHrisConnection(connectionId: String!): HrisConnection
@@ -1240,20 +1401,40 @@ type Query {
   getMobileGameUserWalletRewards: MobileGameUserWalletRewards!
   getMobileGameUserWalletRewardItems(rewardId: String!, type: String, offset: Int): MobileGameUserWalletSections!
   getPotentialRewards(limit: Int!): [PotentialReward!]!
-  getOrganisationAdvisers(orderBy: OrderBy, searchString: String, isArchived: Boolean, offset: Int, limit: Int): OrganisationAdvisersResponse
+  getOrganisationAdvisers(
+    orderBy: OrderBy
+    searchString: String
+    isArchived: Boolean
+    offset: Int
+    limit: Int
+  ): OrganisationAdvisersResponse
   getAdviser(accountAccessId: String!): GetAdviserResult!
   getAdviserAccess: GetAdviserAccessResult!
   getAvailableClientConnections: GetAvailableClientConnectionsResult!
   getAdviserDashboard: GetAdviserDashboardResult!
-  getAccessRequestsForAdviser(accountAccessId: ID!, limit: Int, offset: Int, state: BusinessAccessRequestState, orderBy: OrderBy): GetAccessRequestsForAdviserResult!
-  getAccessRequestsForBusiness(limit: Int, offset: Int, state: BusinessAccessRequestState, orderBy: OrderBy): GetAccessRequestsForBusinessResult
+  getAccessRequestsForAdviser(
+    accountAccessId: ID!
+    limit: Int
+    offset: Int
+    state: BusinessAccessRequestState
+    orderBy: OrderBy
+  ): GetAccessRequestsForAdviserResult!
+  getAccessRequestsForBusiness(
+    limit: Int
+    offset: Int
+    state: BusinessAccessRequestState
+    orderBy: OrderBy
+  ): GetAccessRequestsForBusinessResult
   getAdvisersForBusiness(limit: Int, offset: Int, orderBy: OrderBy): GetAdvisersForBusinessResult
   getAdviserForBusiness(accountAccessId: String!): GetAdviserForBusinessResult
   getMonthlyActiveUsersPercentage(timePeriod: Int!): MonthlyActiveUsersPercentage!
   getTeamAnalyticsPeriods: [TeamAnalyticsTimePeriod!]!
   getTeamAdoptionData: [TeamAnalyticsDashboardWidget!]!
   getTeamYuScoreData: YuScore!
-  getTeamDidYouKnowInsights(key: TeamDidYouKnowInsightsKey!, numberOfMonths: Int): TeamAnalyticsDashboardDidYouKnowSummary!
+  getTeamDidYouKnowInsights(
+    key: TeamDidYouKnowInsightsKey!
+    numberOfMonths: Int
+  ): TeamAnalyticsDashboardDidYouKnowSummary!
   getTeamAnalyticsSummaryCard(key: TeamSummaryCardKey!, timePeriod: Int!): TeamAnalyticsDashboardWidget!
   getTeamAnalyticsBarChart(key: TeamAnalyticsBarChartKey!, timePeriod: Int!): TeamAnalyticsDashboardWidget!
   getTeamAnalyticsLineChart(key: TeamAnalyticsLineChartKey!, timePeriod: Int!): TeamAnalyticsDashboardWidget!
@@ -1267,11 +1448,31 @@ type Query {
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult!
   getMembersOrCsmWithPermission(permission: BusinessAccessPermission!): GetMembersOrCsmWithPermissionResult!
   getEmployeesByEmployeeIds(businessEmployeeIds: [String!], limit: Int): GetEmployeesByEmployeeIdsResult!
-  getTeamEmployees(limit: Int, offset: Int, search: String, showActive: Boolean, orderBy: OrderBy, status: [String], products: [String], tags: [String], customValues: [GetTeamEmployeesCustomValue]): EmployeesList!
-  peopleWelcomeModalDismissed: Boolean @deprecated(reason: "This field is deprecated and will be removed in a future version. Replaced with PerformedSteps.homeModalDismissed.")
+  getTeamEmployees(
+    limit: Int
+    offset: Int
+    search: String
+    showActive: Boolean
+    orderBy: OrderBy
+    status: [String]
+    products: [String]
+    tags: [String]
+    customValues: [GetTeamEmployeesCustomValue]
+  ): EmployeesList!
+  peopleWelcomeModalDismissed: Boolean
+    @deprecated(
+      reason: "This field is deprecated and will be removed in a future version. Replaced with PerformedSteps.homeModalDismissed."
+    )
   getPeopleFilters: TeamFilter!
   getBusinessSession: BusinessSession!
-  getBusinessAccessAdmins(limit: Int, offset: Int, search: String, status: String, orderBy: OrderBy, permissions: [BusinessAccessPermission!]): GetBusinessAccessAdmins!
+  getBusinessAccessAdmins(
+    limit: Int
+    offset: Int
+    search: String
+    status: String
+    orderBy: OrderBy
+    permissions: [BusinessAccessPermission!]
+  ): GetBusinessAccessAdmins!
   getUninvitedEmployeeCount: Int!
   getImgixUploadURL(fileName: String!): ImgixUploadInfo
   getActiveAndInactiveCount: ActiveAndInactiveCount!
@@ -1284,14 +1485,31 @@ type Query {
   getCompanySettings: [CompanySetting!]!
   getPricingConfigurations: [PricingConfiguration!]!
   getCustomValueTypes: getCustomValueTypesResponse!
-  getCustomValues(customValueType: CustomValueType!, limit: Int, offset: Int, search: String, orderBy: OrderBy): GetCustomValuesResponse!
+  getCustomValues(
+    customValueType: CustomValueType!
+    limit: Int
+    offset: Int
+    search: String
+    orderBy: OrderBy
+  ): GetCustomValuesResponse!
   getGiftingAssets: TeamGiftingAssets!
-  getEmployeeRecognitionCampaigns(limit: Int, offset: Int, orderBy: OrderBy): GetTeamEmployeeRecognitionCampaignsResponse!
-  getEmployeeRecognitionCampaignRecipients(campaignId: String!, limit: Int, offset: Int, orderBy: OrderBy): TeamEmployeeRecognitionCampaignRecipientsResponse!
+  getEmployeeRecognitionCampaigns(
+    limit: Int
+    offset: Int
+    orderBy: OrderBy
+  ): GetTeamEmployeeRecognitionCampaignsResponse!
+  getEmployeeRecognitionCampaignRecipients(
+    campaignId: String!
+    limit: Int
+    offset: Int
+    orderBy: OrderBy
+  ): TeamEmployeeRecognitionCampaignRecipientsResponse!
   getEngagementDashboardPeriod: EngagementDashboardPeriod!
   getYuStoreCredit: EngagementDashboardYuStoreCredit!
   getEngagementDashboardActivitiesProgress: [EngagementDashboardActivity!]!
-  getEngagementDashboardClaimableActivitiesForCategory(category: EngagementDashboardActivityCategory!): EngagementDashboardClaimableActivityForCategory!
+  getEngagementDashboardClaimableActivitiesForCategory(
+    category: EngagementDashboardActivityCategory!
+  ): EngagementDashboardClaimableActivityForCategory!
   getEngagementDashboardLastMonthsActivityData: TeamAnalyticsDashboardWidget!
   getEngagementDashboardDownloadRate: TeamAnalyticsDashboardWidget!
   getEngagementDashboardTasks: [EngagementDashboardTask!]!
@@ -1301,8 +1519,17 @@ type Query {
   getTeamMemberBeneficiaries(businessEmployeeId: String!): TeamEmployeeBeneficiaries!
   getTeamMemberProfile(businessEmployeeId: String!): TeamEmployeeProfile!
   getTeamMemberFields(businessEmployeeId: String): TeamEmployeeFields!
-  getTeamAssignProductFields(businessEmployeeId: String, productId: String, categoryId: String, filterOutAssignedProducts: Boolean): [TeamEmployeeSection!]!
-  getTeamCreateAssignProductFields(productId: String, categoryId: String, filterProductIds: [String]): GetTeamCreateAssignProductFieldsResult!
+  getTeamAssignProductFields(
+    businessEmployeeId: String
+    productId: String
+    categoryId: String
+    filterOutAssignedProducts: Boolean
+  ): [TeamEmployeeSection!]!
+  getTeamCreateAssignProductFields(
+    productId: String
+    categoryId: String
+    filterProductIds: [String]
+  ): GetTeamCreateAssignProductFieldsResult!
   getPerformedSteps: PerformedSteps
   getBusinessPerk(perkEligibilityId: String!): BusinessPerkItem!
   getBusinessPerks(wellbeingToolType: WellbeingToolType, orderBy: OrderBy): GetBusinessPerksResponse!
@@ -1332,7 +1559,12 @@ type Mutation {
   testPushNotification(title: String, body: String!, token: String!, os: OperatingSystem!, link: String): Boolean
   testDuelPushNotifications(type: DuelTestType): Boolean
   testDeactivateTeamLeaversByDate(businessAccountId: String!, date: String): Boolean
-  testToggleEquippedBuffedItem(productVariantId: String!, buffType: String!, buffApplicableFor: String!, buffValue: Float!): Boolean
+  testToggleEquippedBuffedItem(
+    productVariantId: String!
+    buffType: String!
+    buffApplicableFor: String!
+    buffValue: Float!
+  ): Boolean
   testSendSampleEmails(template: String!, customerId: String!, variables: String!): Boolean
   testCreateEngagementDashboardPeriod(businessAccountId: String!, date: String): EngagementDashboardPeriod!
   setUserQuestProgress(currentLevel: Int!, yuniversalMap: Int, yuniversalLevel: Int): Boolean
@@ -1347,7 +1579,10 @@ type Mutation {
   updateMobileGameUserAchievement(id: String!, slot: Int): MobileGameUserAchievements
   markMobileGameUserAchievementsViewed(ids: [String!]): MobileGameUserAchievements
   claimMobileGameBattlePassRewards(rewardIds: [String!]!): [MobileGameBattlePassReward!]!
-  submitMobileGameBattlePassDonations(goalId: String!, donations: [MobileGameBattlePassDonationSubmission!]!): MobileGameBattlePassUpdateInfo!
+  submitMobileGameBattlePassDonations(
+    goalId: String!
+    donations: [MobileGameBattlePassDonationSubmission!]!
+  ): MobileGameBattlePassUpdateInfo!
   completeMobileGameBattlePassSeason(goalId: String!, startNew: Boolean, socialGroupId: String): MobileGameBattlePass
   openMobileGameBattlePassChest(rewardId: String!): MobileGameBattlePassChestOpenResponse!
   claimMobileGameBattlePassChestPrizes(rewardId: String, prizeIds: [String!]!): MobileGameBattlePassChestClaimResponse!
@@ -1359,17 +1594,41 @@ type Mutation {
   addDeviceToken(deviceToken: String!, os: OS!, deviceId: String!, subscribed: Boolean!): DeviceResponse
   updateUserNotificationsSettings(type: UserNotificationsType!, isActive: Boolean!, time: String): Boolean
 
-  """Send a duel invitation to the given opponent(s)."""
-  inviteToDuel(opponentUserIds: [String!], startDateTime: String!, duration: Int!, yucoin: Int!, requestLocation: String, leaderboardPlacement: Int): Duel
+  """
+  Send a duel invitation to the given opponent(s).
+  """
+  inviteToDuel(
+    opponentUserIds: [String!]
+    startDateTime: String!
+    duration: Int!
+    yucoin: Int!
+    requestLocation: String
+    leaderboardPlacement: Int
+  ): Duel
 
-  """Accept or decline a duel invitation."""
-  respondToDuel(duelId: String!, startDateTime: String!, hasAccepted: Boolean!, requestLocation: String, leaderboardPlacement: Int): Duel
+  """
+  Accept or decline a duel invitation.
+  """
+  respondToDuel(
+    duelId: String!
+    startDateTime: String!
+    hasAccepted: Boolean!
+    requestLocation: String
+    leaderboardPlacement: Int
+  ): Duel
   confirmDuelsScore(date: String!): ConfirmDuelsScoreResponse!
   syncDuelScore(input: SyncDuelsScoreInput!): SyncDuelScoreResponse!
   submitFeedbackForm(id: ID!, answers: [AnswerInput]): SubmitFeedbackFormResponse!
   addUserFeedback(rating: Int!, comment: String, metric: Metric): AddUserFeedbackResponse
   submitAppStoreReviewAction(id: ID!, action: AppStoreReviewPromptAction!): Boolean!
-  sendGiftToRecipients(recipientIds: [ID!]!, yuCoinAmount: Int!, messagePresetId: String!, deduplicationKey: String!, backgroundId: String, stickerId: String): SendGiftToRecipientsResponse!
+  sendGiftToRecipients(
+    recipientIds: [ID!]!
+    yuCoinAmount: Int!
+    messagePresetId: String!
+    deduplicationKey: String!
+    backgroundId: String
+    stickerId: String
+  ): SendGiftToRecipientsResponse!
   claimGift(giftId: ID!): Gift!
   sendThanksForGift(giftId: ID!): Gift!
   completeGoal(participationId: String!): Boolean
@@ -1383,9 +1642,15 @@ type Mutation {
   claimSmokingStreakIncreaseReward(streakDay: Int!, claimAllUpToStreakDay: Boolean): HealthSmokingState
   markInboxMessagesAsSeen(messageIds: [ID!]!): Boolean
   updateQuestMapLevelChallenge(levelSlotId: String!, payload: ChallengePayload, contentId: String): ActiveResponse
-  createQuestMapLevelChallenge(levelSlotId: String!, contentId: String, createdBySource: ActiveChallengeSourceType): ActiveResponse
+  createQuestMapLevelChallenge(
+    levelSlotId: String!
+    contentId: String
+    createdBySource: ActiveChallengeSourceType
+  ): ActiveResponse
 
-  """contentId is deprecated starting with 3.108 client version"""
+  """
+  contentId is deprecated starting with 3.108 client version
+  """
   cancelQuestMapLevelChallenge(levelSlotId: String!, contentId: String): Challenge
   submitUnity(levelId: String!): Boolean
   toggleChallengePause(levelSlotId: String!, paused: Boolean!): Int!
@@ -1408,19 +1673,33 @@ type Mutation {
   Incremented feature toggle to V2 on RN version >= 4.16.0
   Incremented feature toggle to V3 on RN version >= 4.23.0
   """
-  createMobileQuestLevelChallenge(contentId: String, levelSlotTemplateId: String!, level: Int!, yuniversalMap: Int, createdBySource: ActiveChallengeSourceType): ActiveChallengeResponse
+  createMobileQuestLevelChallenge(
+    contentId: String
+    levelSlotTemplateId: String!
+    level: Int!
+    yuniversalMap: Int
+    createdBySource: ActiveChallengeSourceType
+  ): ActiveChallengeResponse
 
   """
   Used by clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.16.0
   Incremented feature toggle to V2 on RN version >= 4.16.0
   Incremented feature toggle to V3 on RN version >= 4.23.0
   """
-  updateMobileQuestLevelChallenge(challengeId: ID!, payload: ChallengePayload, contentId: String): ActiveChallengeResponse
+  updateMobileQuestLevelChallenge(
+    challengeId: ID!
+    payload: ChallengePayload
+    contentId: String
+  ): ActiveChallengeResponse
 
-  """Supported RN version >= 4.10.0"""
+  """
+  Supported RN version >= 4.10.0
+  """
   cancelMobileQuestLevelChallenge(challengeId: ID!): MobileQuestChallenge
 
-  """Supported RN version >= 4.10.0"""
+  """
+  Supported RN version >= 4.10.0
+  """
   toggleMobileQuestLevelChallengePause(challengeId: ID!, paused: Boolean!): Int!
   updateMobileSocialLeaderboardConsents(consents: [SocialLeaderboardConstent]!): Boolean
   updateCyclingMeasurement(measurement: DistanceMeasurementType!): Boolean
@@ -1431,10 +1710,14 @@ type Mutation {
   sendWellbeingHubItemDocuments(itemId: String!, email: String!): Boolean!
   markMobileUserWrappedAsViewed(wrappedId: String!): MarkMobileUserWrappedResponse!
 
-  """Allows the current user to equip an item"""
+  """
+  Allows the current user to equip an item
+  """
   equipItem(itemType: InventoryItemType!, itemId: String): EquipItemResponse
 
-  """Restore user streak"""
+  """
+  Restore user streak
+  """
   restoreStreak: RestoreStreakResponse!
 
   """
@@ -1442,13 +1725,19 @@ type Mutation {
   """
   updateBeneficiaryForProduct(beneficiary: CustomerBeneficiaryUpdate): CustomerProductBeneficiaries!
 
-  """Updates the shares of a beneficiary"""
+  """
+  Updates the shares of a beneficiary
+  """
   setShareOfBenefitForProduct(productId: ID!, shares: [BeneficiaryShareOfBenefit!]!): CustomerProductBeneficiaries!
 
-  """Removes beneficiary from product"""
+  """
+  Removes beneficiary from product
+  """
   removeBeneficiaryFromProduct(productId: ID!, beneficiaryId: ID!): CustomerProductBeneficiaries!
 
-  """Allows the current user to update his yumoji."""
+  """
+  Allows the current user to update his yumoji.
+  """
   updateUserAvatar(avatar: UserAvatarInput): updateUserAvatarResponse
   updateUserAvatarParts(avatar: [UserAvatarPartUpdate]): updateUserAvatarResponse
   submitSduiJourney(journeyId: String!, stepId: String!, action: SubmitSduiJourneyAction!, data: String!): Boolean
@@ -1461,16 +1750,57 @@ type Mutation {
   changeBusinessPassword(oldPassword: String!, password: String!): Boolean
   createBusinessPassword(otp: String!, password: String!): Boolean
   resetBusinessPassword(otp: String!, password: String!, twoFactorToken: String): Boolean
-  loginBusiness(password: String!, email: String!, method: LoginMethod, source: LoginBusinessSource, twoFactorToken: String, twoFactorSecret: String): BusinessPayload
-  loginUser(uniqueDeviceId: String, password: String!, email: String!, method: LoginMethod, tokenExpiration: Int, intercomHashMethod: IntercomHashMethod): UserPayload
-  sendMagicLinkWithInviteCode(companyCode: String!, customerCode: String!, lastName: String, dob: String, email: String, referralCode: String, captchaResponse: CaptchaResponse): SendMagicLinkWithInviteCodeResponse!
-  attachToAccountWithCredentials(uniqueDeviceId: String, password: String!, email: String!, intercomHashMethod: IntercomHashMethod, referralCode: String): UserPayload
-  sendMagicLink(email: String!, referralCode: String, companyCode: String, isResetPasswordRequest: Boolean, captchaResponse: CaptchaResponse): StartSessionResponse
+  loginBusiness(
+    password: String!
+    email: String!
+    method: LoginMethod
+    source: LoginBusinessSource
+    twoFactorToken: String
+    twoFactorSecret: String
+  ): BusinessPayload
+  loginUser(
+    uniqueDeviceId: String
+    password: String!
+    email: String!
+    method: LoginMethod
+    tokenExpiration: Int
+    intercomHashMethod: IntercomHashMethod
+  ): UserPayload
+  sendMagicLinkWithInviteCode(
+    companyCode: String!
+    customerCode: String!
+    lastName: String
+    dob: String
+    email: String
+    referralCode: String
+    captchaResponse: CaptchaResponse
+  ): SendMagicLinkWithInviteCodeResponse!
+  attachToAccountWithCredentials(
+    uniqueDeviceId: String
+    password: String!
+    email: String!
+    intercomHashMethod: IntercomHashMethod
+    referralCode: String
+  ): UserPayload
+  sendMagicLink(
+    email: String!
+    referralCode: String
+    companyCode: String
+    isResetPasswordRequest: Boolean
+    captchaResponse: CaptchaResponse
+  ): StartSessionResponse
   sendMagicLinkForClaimingAccount(email: String!): SendMagicLinkForClaimingAccountResponse
   sendBusinessMagicLink(email: String!): BusinessMagicLinkResponse
-  sendMagicLinkForPrimaryEmailReset(targetEmail: String, captchaResponse: CaptchaResponse): SendMagicLinkForPrimaryEmailResetResponse
+  sendMagicLinkForPrimaryEmailReset(
+    targetEmail: String
+    captchaResponse: CaptchaResponse
+  ): SendMagicLinkForPrimaryEmailResetResponse
   sendMagicLinkForPrimaryEmailResetToUser(businessEmployeeId: String): SendMagicLinkForPrimaryEmailResetToUserResponse
-  resetUserPrimaryEmail(newEmail: String!, otp: String!, captchaResponse: CaptchaResponse): ResetUserPrimaryEmailResponse
+  resetUserPrimaryEmail(
+    newEmail: String!
+    otp: String!
+    captchaResponse: CaptchaResponse
+  ): ResetUserPrimaryEmailResponse
   validateBusinessClaim(policyId: String!, captchaResponse: CaptchaResponse): ValidateBusinessClaimKeyResponse!
   enable2FA(token: String!, secret: String!): Boolean!
   disable2FA(token: String, password: String): Boolean!
@@ -1480,7 +1810,13 @@ type Mutation {
   createBusinessOrganisationUser(userInput: CreateOrganisationUserInput!): CreateOrganisationUserResponses!
   makeBusinessAccessUserSoleOwner(accountAccessId: String!): Boolean!
   inviteBusinessAccessUser(accountAccessId: String!): Boolean!
-  updateAccessUserBySection(accountAccessId: String!, basicInfo: AccessUserInput, permissions: [BusinessAccessPermission!], businessTags: [String], archiveUser: Boolean): Boolean
+  updateAccessUserBySection(
+    accountAccessId: String!
+    basicInfo: AccessUserInput
+    permissions: [BusinessAccessPermission!]
+    businessTags: [String]
+    archiveUser: Boolean
+  ): Boolean
   updateProfileBySection(contactInfo: ProfileContactInfoInput, personalInfo: ProfilePersonalInfoInput): Boolean!
   claimBusinessAccount(policyId: String!, accessUser: ClaimAccountInput!, captchaResponse: CaptchaResponse): Boolean!
   createBusinessEarlyAccessSelfRegistration: Boolean!
@@ -1502,9 +1838,20 @@ type Mutation {
   updateSecondaryEmail(email: String!): Boolean!
   unsubscribeFromEmails(email: String!): Boolean!
   completeSignup: Boolean!
-  initiateCompanyJoin(code: String!, captchaResponse: CaptchaResponse!, employmentEmail: String, legalFirstName: String, legalLastName: String, dateOfBirth: String): InitiateCompanyJoinResult!
+  initiateCompanyJoin(
+    code: String!
+    captchaResponse: CaptchaResponse!
+    employmentEmail: String
+    legalFirstName: String
+    legalLastName: String
+    dateOfBirth: String
+  ): InitiateCompanyJoinResult!
   completeCompanyJoin(selfImportToken: String!): CompleteCompanyJoinResult!
-  startMembersBulkUpload(uploadType: BulkMemberUploadType!, fileName: String!, dataFormatId: String): BulkMemberImportStart!
+  startMembersBulkUpload(
+    uploadType: BulkMemberUploadType!
+    fileName: String!
+    dataFormatId: String
+  ): BulkMemberImportStart!
   processMembersBulkUpload(importId: String!, action: BulkUploadProcessType!): Boolean
   createSupportRequest(message: String!): Boolean
   exchangeMergeDevLinkPublicToken(publicToken: String!): ExchangeMergeDevLinkPublicTokenResult!
@@ -1515,11 +1862,21 @@ type Mutation {
   collectAward(awardId: String!): Boolean
   updateMobileRewardStoreLocation(location: String!): Boolean
   sendAdviserFeedback(message: String!): Boolean!
-  updateAdviserBySection(accountAccessId: String!, contactInfo: AdviserContactInfoInput, personalInfo: AdviserPersonalInfoInput, permissions: [BusinessAccessOrganisationPermission!]): Boolean!
+  updateAdviserBySection(
+    accountAccessId: String!
+    contactInfo: AdviserContactInfoInput
+    personalInfo: AdviserPersonalInfoInput
+    permissions: [BusinessAccessOrganisationPermission!]
+  ): Boolean!
   inviteAdviser(accountAccessId: String!): Boolean!
   sendAccessRequestsForAdviser(accountAccessId: ID!, clientConnectionRequests: [ClientConnectionRequests!]): Boolean!
   actionAdviserAccessRequest(accessRequestId: ID!, action: BusinessAccessRequestState!): Boolean
-  updateAdviserForBusinessBySection(accountAccessId: String!, contactInfo: AdviserContactInfoInput, personalInfo: AdviserPersonalInfoInput, permissions: [BusinessAccessPermission!]): Boolean!
+  updateAdviserForBusinessBySection(
+    accountAccessId: String!
+    contactInfo: AdviserContactInfoInput
+    personalInfo: AdviserPersonalInfoInput
+    permissions: [BusinessAccessPermission!]
+  ): Boolean!
   suggestAnalyticsImprovement(message: String!): Boolean!
   transferBusinessAccess(accessId: ID!): BusinessPayload!
   switchBusinessAccess(businessAccountId: ID!): BusinessPayload!
@@ -1529,7 +1886,13 @@ type Mutation {
   deactivateEmployees(employees: [EmployeeInput]!): EmployeeBulkProcessResult
   exportEmployees(type: ExportEmployeesType!): Boolean!
   exportYuCoinRedemptionReport(startDate: String, endDate: String): Boolean!
-  inviteEmployeesByFilter(search: String, status: [String!], products: [String!], tags: [String!], excludeEmployeeIds: [String!]): Boolean!
+  inviteEmployeesByFilter(
+    search: String
+    status: [String!]
+    products: [String!]
+    tags: [String!]
+    excludeEmployeeIds: [String!]
+  ): Boolean!
   createBusinessTag(businessTag: BusinessTagInput!): BusinessTag!
   updateBusinessTag(businessTagId: String!, businessTag: BusinessTagInput!): Boolean!
   archiveBusinessTag(businessTagId: String!): ID!
@@ -1542,7 +1905,12 @@ type Mutation {
   refreshEngagementDashboardActivities: Boolean!
   acknowledgeEngagementPeriodWrapUp(periodId: String!): Boolean!
   claimEngagementDashboardTask(id: ID!): EngagementDashboardTaskClaim!
-  assignProductToTeamMember(businessEmployeeId: String!, input: AssignProductInput, filterOutAssignedProducts: Boolean, shouldIgnoreWarnings: Boolean): AssignProductToTeamMemberResult!
+  assignProductToTeamMember(
+    businessEmployeeId: String!
+    input: AssignProductInput
+    filterOutAssignedProducts: Boolean
+    shouldIgnoreWarnings: Boolean
+  ): AssignProductToTeamMemberResult!
   createTeamMember(teamMember: CreateTeamMemberInput!): CreateTeamMemberResult!
   reactivateTeamEmployee(businessEmployeeId: String!): Boolean!
   updateTeamMember(teamMember: UpdateTeamMemberInput!): UpdateTeamMemberProfileResult!
@@ -2118,13 +2486,19 @@ type YuProductCertificate {
   """
   condition: [ProductDescriptionValuePair!]!
 
-  """Customer name"""
+  """
+  Customer name
+  """
   customerFullName: String!
 
-  """Business name"""
+  """
+  Business name
+  """
   companyName: String!
 
-  """Customer join date"""
+  """
+  Customer join date
+  """
   customerJoinDate: String!
 }
 
@@ -3220,19 +3594,27 @@ type ContentItemRowIconTextBannerContainerActions {
 type ContentItemRowIconTextBanner {
   id: ID!
 
-  """determines client-side style template e.g. error for red"""
+  """
+  determines client-side style template e.g. error for red
+  """
   type: ContentItemRowIconTextBannerType!
   markdown: String!
   icon: RemoteImage!
   styles: [SduiStyle!]
 
-  """RN client version >= 3.45.0"""
+  """
+  RN client version >= 3.45.0
+  """
   titleMarkdown: String
 
-  """RN client version >= 3.45.0"""
+  """
+  RN client version >= 3.45.0
+  """
   showCloseIcon: Boolean
 
-  """RN client version >= 3.45.0"""
+  """
+  RN client version >= 3.45.0
+  """
   button: ContentItemButton
 
   """
@@ -3334,7 +3716,9 @@ type ContentItemYuCoinPower {
   """
   marginHorizontal: Int
 
-  """RN client version >=3.47.0"""
+  """
+  RN client version >=3.47.0
+  """
   interactive: Boolean
   inactive: Boolean
 }
@@ -3580,7 +3964,53 @@ type ContentItemScale {
   options: [ContentItemScaleOption!]!
 }
 
-union ContentItem = ContentItemMarkdown | ContentItemBox | ContentItemButton | ContentItemPaymentButton | ContentItemImage | ContentItemForm | ContentItemText | ContentItemTextInput | ContentItemTextAreaInput | ContentItemSliderInput | ContentItemRowIconTextBanner | ContentItemLottie | ContentItemPad | ContentItemRadio | ContentItemHeaderBar | ContentItemChoice | ContentItemImageChoice | ContentItemProcessingTimer | ContentItemProgressBar | ContentItemTextGroup | ContentItemAccordion | ContentItemTable | ContentItemSelectedPackageCard | ContentItemSectionHeading | ContentItemInfoCard | ContentItemDropdownInput | ContentItemLinearGradient | ContentItemYuCoinPower | ContentItemComparisonTableSelectPackage | ContentItemPerks | ContentItemPill | ContentItemDatePicker | ContentItemSexPicker | ContentItemDependants | ContentItemSelectScheme | ContentItemKeyValueBox | ContentItemMedia | ContentItemWrapper | ContentItemBoxOptionCard | ContentItemStages | ContentItemMarkdownBlock | ContentItemSwitch | ContentItemShowHideBalance | ContentItemHint | ContentItemScale | ContentItemConfirm
+union ContentItem =
+    ContentItemMarkdown
+  | ContentItemBox
+  | ContentItemButton
+  | ContentItemPaymentButton
+  | ContentItemImage
+  | ContentItemForm
+  | ContentItemText
+  | ContentItemTextInput
+  | ContentItemTextAreaInput
+  | ContentItemSliderInput
+  | ContentItemRowIconTextBanner
+  | ContentItemLottie
+  | ContentItemPad
+  | ContentItemRadio
+  | ContentItemHeaderBar
+  | ContentItemChoice
+  | ContentItemImageChoice
+  | ContentItemProcessingTimer
+  | ContentItemProgressBar
+  | ContentItemTextGroup
+  | ContentItemAccordion
+  | ContentItemTable
+  | ContentItemSelectedPackageCard
+  | ContentItemSectionHeading
+  | ContentItemInfoCard
+  | ContentItemDropdownInput
+  | ContentItemLinearGradient
+  | ContentItemYuCoinPower
+  | ContentItemComparisonTableSelectPackage
+  | ContentItemPerks
+  | ContentItemPill
+  | ContentItemDatePicker
+  | ContentItemSexPicker
+  | ContentItemDependants
+  | ContentItemSelectScheme
+  | ContentItemKeyValueBox
+  | ContentItemMedia
+  | ContentItemWrapper
+  | ContentItemBoxOptionCard
+  | ContentItemStages
+  | ContentItemMarkdownBlock
+  | ContentItemSwitch
+  | ContentItemShowHideBalance
+  | ContentItemHint
+  | ContentItemScale
+  | ContentItemConfirm
 
 type AbsoluteContentItem {
   isBackground: Boolean
@@ -3739,6 +4169,7 @@ enum UserNotificationsType {
   surges
   marketing
   emailMarketing
+  birthdays
 }
 
 type DeviceResponse {
@@ -3768,7 +4199,9 @@ type MobileUpgradeRequired {
   isDismissable: Boolean!
 }
 
-"""The name of a duel opponent, separated into first name and last name."""
+"""
+The name of a duel opponent, separated into first name and last name.
+"""
 type DuelOpponentName {
   firstName: String @deprecated(reason: "Use shortName instead")
   lastName: String @deprecated(reason: "Use fullName instead")
@@ -4912,7 +5345,9 @@ type ProductUnderwritingStep {
   stepData: String
   introStep: Boolean
 
-  """Content displayed inside the scrollview area"""
+  """
+  Content displayed inside the scrollview area
+  """
   body: [ContentPersonalProductItem]
 
   """
@@ -4930,13 +5365,19 @@ type ProductUnderwritingStep {
   """
   absolute: [AbsoluteContentPersonalItem]
 
-  """Container styles go here. Not supported by detached steps."""
+  """
+  Container styles go here. Not supported by detached steps.
+  """
   containerStyles: [SduiStyle!]
 
-  """Footer styles go here. Not supported by detached steps."""
+  """
+  Footer styles go here. Not supported by detached steps.
+  """
   footerStyles: [SduiStyle!]
 
-  """Web styles go here."""
+  """
+  Web styles go here.
+  """
   webStyles: [SduiStyle!]
 }
 
@@ -5179,7 +5620,8 @@ type ContentItemAgePercentCoverPicker {
   options: [ContentItemAgePercentCoverPickerAgeOption!]!
   percentsToDefault: [Int!]!
   topHeading: String
-  restictedPercentInfoCardText: ContentItemMarkdown @deprecated(reason: "replaced with correctly spelled field restrictedPercentInfoCardText")
+  restictedPercentInfoCardText: ContentItemMarkdown
+    @deprecated(reason: "replaced with correctly spelled field restrictedPercentInfoCardText")
   restrictedPercentInfoCardText: ContentItemMarkdown
   costPayoutBenefitHeading: String
   costPayoutBenefitPayoutSchedule: String
@@ -5388,7 +5830,62 @@ type ContentItemPerksComparison {
 """
 For detached steps, ContentItemMarkdown is only supported by RN client version >=3.25.0
 """
-union ContentPersonalProductItem = ContentItemMarkdown | ContentItemLottie | ContentItemText | ContentItemTextInput | ContentItemProgressBar | ContentItemHeaderBar | ContentItemRadio | ContentItemInfoCard | ContentItemInfoButton | ContentItemButton | ContentItemMultiButton | ContentItemPad | ContentItemImage | ContentItemOverlay | ContentItemPersonalProductInfo | ContentItemYugiConfirm | ContentItemDatePicker | ContentItemScrollPicker | ContentItemMultiSelect | ContentItemPersonalProductReviewItem | ContentItemPersonalProductDocuments | ContentItemPersonalProductFaqs | ContentItemPackageCards | ContentItemSelectedPackageCard | ContentItemProcessingTimer | ContentItemPersonalProductPreview | ContentItemCoverPicker | ContentItemAgePercentCoverPicker | ContentItemScrollableItemsPicker | ContentItemConfirm | ContentItemCollapsingHeaderProductInfo | ContentItemList | ContentItemRowIconTextBanner | ContentItemFullScreenSwiper | ContentItemFullScreenLottieSwiper | ContentItemGpDetails | ContentItemPackageCardPower | ContentItemPersonalProductSelectPaymentButton | ContentItemSearchPostcode | ContentItemForm | ContentItemSelectedPackageAccordion | ContentItemFade | ContentItemSelectedPackageCards | ContentItemYuCoinPower | ContentItemProgressSteps | ContentItemCostPayoutBenefitCard | ContentItemCollapsingHeaderAgePercentProductInfo | ContentItemPerks | ContentItemAppDownloadPrompt | ContentItemPerksComparison | ContentItemDropdownInput | ContentItemRewardsBanner | ContentItemHint | ContentItemChoice | ContentItemImageChoice
+union ContentPersonalProductItem =
+    ContentItemMarkdown
+  | ContentItemLottie
+  | ContentItemText
+  | ContentItemTextInput
+  | ContentItemProgressBar
+  | ContentItemHeaderBar
+  | ContentItemRadio
+  | ContentItemInfoCard
+  | ContentItemInfoButton
+  | ContentItemButton
+  | ContentItemMultiButton
+  | ContentItemPad
+  | ContentItemImage
+  | ContentItemOverlay
+  | ContentItemPersonalProductInfo
+  | ContentItemYugiConfirm
+  | ContentItemDatePicker
+  | ContentItemScrollPicker
+  | ContentItemMultiSelect
+  | ContentItemPersonalProductReviewItem
+  | ContentItemPersonalProductDocuments
+  | ContentItemPersonalProductFaqs
+  | ContentItemPackageCards
+  | ContentItemSelectedPackageCard
+  | ContentItemProcessingTimer
+  | ContentItemPersonalProductPreview
+  | ContentItemCoverPicker
+  | ContentItemAgePercentCoverPicker
+  | ContentItemScrollableItemsPicker
+  | ContentItemConfirm
+  | ContentItemCollapsingHeaderProductInfo
+  | ContentItemList
+  | ContentItemRowIconTextBanner
+  | ContentItemFullScreenSwiper
+  | ContentItemFullScreenLottieSwiper
+  | ContentItemGpDetails
+  | ContentItemPackageCardPower
+  | ContentItemPersonalProductSelectPaymentButton
+  | ContentItemSearchPostcode
+  | ContentItemForm
+  | ContentItemSelectedPackageAccordion
+  | ContentItemFade
+  | ContentItemSelectedPackageCards
+  | ContentItemYuCoinPower
+  | ContentItemProgressSteps
+  | ContentItemCostPayoutBenefitCard
+  | ContentItemCollapsingHeaderAgePercentProductInfo
+  | ContentItemPerks
+  | ContentItemAppDownloadPrompt
+  | ContentItemPerksComparison
+  | ContentItemDropdownInput
+  | ContentItemRewardsBanner
+  | ContentItemHint
+  | ContentItemChoice
+  | ContentItemImageChoice
 
 type PersonalProductStepContinueModal {
   id: ID!
@@ -5691,7 +6188,10 @@ type UserProfileNotification {
   hasAppReview: Boolean!
   hasDailyScreenCustomIcon: Boolean! @deprecated(reason: "not used, will be purged when 4.36 is no longer supported")
   hasYuScreenNotification: Boolean!
-  hasAdBanners: Boolean! @deprecated(reason: "We use hero cards now, instead of ad banners. Safe to remove this field when we stop supporting 4.57")
+  hasAdBanners: Boolean!
+    @deprecated(
+      reason: "We use hero cards now, instead of ad banners. Safe to remove this field when we stop supporting 4.57"
+    )
   hasUnreadInboxMessages: Boolean!
 }
 
@@ -6052,7 +6552,14 @@ type HeroCardSection {
   content: HeroCardSectionContent
 }
 
-union YuScreenSection = SduiSection | ProductCardCarouselSection | WellbeingHubSection | ReferralSection | MaximiseYuSection | SmokingSection | HeroCardSection
+union YuScreenSection =
+    SduiSection
+  | ProductCardCarouselSection
+  | WellbeingHubSection
+  | ReferralSection
+  | MaximiseYuSection
+  | SmokingSection
+  | HeroCardSection
 
 type YuScreenV5YumojiPromptButton {
   onPress: SduiAction!
@@ -6200,7 +6707,33 @@ type ContentItemBeneficiariesSection {
   styles: [SduiStyle!]
 }
 
-union YuScreenProductDetailsContentItem = ContentItemProductDetailsHeader | ContentItemProductDetailsHoldingHeader | ContentItemPad | ContentItemCollapsingGenericHeader | ContentItemText | ContentItemButton | ContentItemBeneficiariesSection | ContentItemRowIconTextBanner | ContentItemKeyValueBox | ContentItemImage | ContentItemPerks | ContentItemLinearGradient | ContentItemProcessingTimer | ContentItemSelectedPackageCard | ContentItemAppDownloadPrompt | ContentItemFade | ContentItemHeaderBar | ContentItemInfoCard | ContentItemMarkdown | ContentItemYuCoinPower | ContentItemWrapper | ContentItemRewardsBanner | ContentItemHint | ContentItemBoxOptionCard | ContentItemChoice | ContentItemImageChoice
+union YuScreenProductDetailsContentItem =
+    ContentItemProductDetailsHeader
+  | ContentItemProductDetailsHoldingHeader
+  | ContentItemPad
+  | ContentItemCollapsingGenericHeader
+  | ContentItemText
+  | ContentItemButton
+  | ContentItemBeneficiariesSection
+  | ContentItemRowIconTextBanner
+  | ContentItemKeyValueBox
+  | ContentItemImage
+  | ContentItemPerks
+  | ContentItemLinearGradient
+  | ContentItemProcessingTimer
+  | ContentItemSelectedPackageCard
+  | ContentItemAppDownloadPrompt
+  | ContentItemFade
+  | ContentItemHeaderBar
+  | ContentItemInfoCard
+  | ContentItemMarkdown
+  | ContentItemYuCoinPower
+  | ContentItemWrapper
+  | ContentItemRewardsBanner
+  | ContentItemHint
+  | ContentItemBoxOptionCard
+  | ContentItemChoice
+  | ContentItemImageChoice
 
 type ContentItemCollapsingGenericHeader {
   id: ID!
@@ -6219,23 +6752,35 @@ type AbsoluteYuScreenProductDetailsContentItem {
 }
 
 type YuScreenProductDetails {
-  """Content displayed inside the scrollview area"""
+  """
+  Content displayed inside the scrollview area
+  """
   body: [YuScreenProductDetailsContentItem!]
   absolute: [AbsoluteYuScreenProductDetailsContentItem!]
 
-  """Container styles go here"""
+  """
+  Container styles go here
+  """
   containerStyles: [SduiStyle!]
 
-  """Supported RN version 3.48.0"""
+  """
+  Supported RN version 3.48.0
+  """
   footer: [YuScreenProductDetailsContentItem!]
 
-  """Supported RN version 3.48.0"""
+  """
+  Supported RN version 3.48.0
+  """
   footerStyles: [SduiStyle!]
 
-  """Supported RN version 3.48.0"""
+  """
+  Supported RN version 3.48.0
+  """
   header: [YuScreenProductDetailsContentItem!]
 
-  """Supported RN version 4.51.0"""
+  """
+  Supported RN version 4.51.0
+  """
   contentInsetAdjustmentBehavior: ContentInsetAdjustmentBehavior
 }
 
@@ -6254,16 +6799,24 @@ type YuScreenProductPaymentHistoryInfoPanel {
   markdown: String!
   remoteImage: RemoteImage
 
-  """RN client version >= 3.45.0"""
+  """
+  RN client version >= 3.45.0
+  """
   type: ContentItemRowIconTextBannerType!
 
-  """RN client version >= 3.45.0"""
+  """
+  RN client version >= 3.45.0
+  """
   titleMarkdown: String
 
-  """RN client version >= 3.45.0"""
+  """
+  RN client version >= 3.45.0
+  """
   showCloseIcon: Boolean
 
-  """RN client version >= 3.45.0"""
+  """
+  RN client version >= 3.45.0
+  """
   button: ProductPaymentHistoryInfoPanelButton
 
   """
@@ -6316,42 +6869,66 @@ type CustomerProductBeneficiaries {
 }
 
 type Practicioner {
-  """Practicioner unique code"""
+  """
+  Practicioner unique code
+  """
   organisationCode: String
 
-  """Practicioner name"""
+  """
+  Practicioner name
+  """
   name: String
 
-  """Medical practice unique code where practicioner practice"""
+  """
+  Medical practice unique code where practicioner practice
+  """
   parentOrganisationCode: String
 }
 
 type MedicalPractice {
-  """Medical practice unique code"""
+  """
+  Medical practice unique code
+  """
   organisationCode: String
 
-  """Medical practice name"""
+  """
+  Medical practice name
+  """
   name: String
 
-  """Medical practice address line 1"""
+  """
+  Medical practice address line 1
+  """
   address1: String
 
-  """Medical practice address line 2"""
+  """
+  Medical practice address line 2
+  """
   address2: String
 
-  """Medical practice address line 3"""
+  """
+  Medical practice address line 3
+  """
   address3: String
 
-  """Medical practice address line 4"""
+  """
+  Medical practice address line 4
+  """
   address4: String
 
-  """Medical practice address line 5"""
+  """
+  Medical practice address line 5
+  """
   address5: String
 
-  """Medical practice postcode"""
+  """
+  Medical practice postcode
+  """
   postCode: String
 
-  """List of practicioners available for a practice"""
+  """
+  List of practicioners available for a practice
+  """
   practicioners: [Practicioner]
 }
 
@@ -6969,7 +7546,9 @@ type InAppMeditation {
   date: String
 }
 
-"""Describes the user information required during the onboarding process"""
+"""
+Describes the user information required during the onboarding process
+"""
 type DefaultOnboardingDetails {
   """
   The user's first name, either from the users customer record or their employee record
@@ -7400,7 +7979,14 @@ type BulkMemberImportUnknownRow {
   issues: [BulkMemberImportIssueRow!]!
 }
 
-union BulkMemberImportImportRow = BulkMemberImportInsertRow | BulkMemberImportUpdateRow | BulkMemberImportLeaverRow | BulkMemberImportMissingRow | BulkMemberImportSkippedRow | BulkMemberImportNoOpRow | BulkMemberImportUnknownRow
+union BulkMemberImportImportRow =
+    BulkMemberImportInsertRow
+  | BulkMemberImportUpdateRow
+  | BulkMemberImportLeaverRow
+  | BulkMemberImportMissingRow
+  | BulkMemberImportSkippedRow
+  | BulkMemberImportNoOpRow
+  | BulkMemberImportUnknownRow
 
 type BulkMemberImportPreviewResult {
   rows: [BulkMemberImportImportRow!]!
@@ -7421,7 +8007,8 @@ type BulkMemberImportFormat {
 type BulkMemberImportsResponse {
   bulkImports: [BulkMemberImport!]!
   bulkImportCount: Int!
-  hasBulkImports: Boolean! @deprecated(reason: "Will no longer be used once the portal onboarding experience is complete")
+  hasBulkImports: Boolean!
+    @deprecated(reason: "Will no longer be used once the portal onboarding experience is complete")
 }
 
 type UserSupportConfig {
@@ -8918,13 +9505,17 @@ type AvailablePerk {
   name: String!
 }
 
-"""@Deprecated(reason: "To be removed with the EmployeePerkInfo type")"""
+"""
+@Deprecated(reason: "To be removed with the EmployeePerkInfo type")
+"""
 type PerkImage {
   perkId: String!
   url: String!
 }
 
-"""@Deprecated(reason: "Use 'perkClaims' and 'availablePerks' instead")"""
+"""
+@Deprecated(reason: "Use 'perkClaims' and 'availablePerks' instead")
+"""
 type EmployeePerkInfo {
   images: [PerkImage]
   claims: [PerkClaim]
@@ -8942,7 +9533,9 @@ type TeamEmployeeProfile {
   perkClaims: [PerkClaim!]
   availablePerks: [AvailablePerk!]
 
-  """@Deprecated(reason: "Use 'perkClaims' and 'availablePerks' instead")"""
+  """
+  @Deprecated(reason: "Use 'perkClaims' and 'availablePerks' instead")
+  """
   perks: EmployeePerkInfo
 }
 

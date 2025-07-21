@@ -11,6 +11,8 @@ import BirthdayVisibilityToggle, {
   IChangeBirthdayVisibilityProps,
 } from "../../../organisms/birthday-visibility-toggle/birthday-visibility-toggle";
 import { groupBy } from "lodash";
+import { INotificationsSectionItem } from "../settings/settings.screen";
+import NotificationsItem from "../settings/items/notifications-item";
 
 interface ILeaderboardItem extends ISocialGroupLeaderboard {
   socialGroupId: string;
@@ -31,6 +33,7 @@ interface IProps {
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
   leaderboards?: ILeaderboardItem[];
+  inboxNotificationsSettings?: INotificationsSectionItem[];
   lifeEvents?: LifeEventsData;
   onChangeConsent: (consentProps: IChangeConsentProps) => void;
   onChangeBirthdayVisibility?: (props: IChangeBirthdayVisibilityProps) => void;
@@ -43,6 +46,7 @@ const LeaderboardSettings = ({
   onRightIconPress,
   lifeEvents,
   onChangeBirthdayVisibility,
+  inboxNotificationsSettings,
 }: IProps) => {
   const t = useTranslation(["screens.leaderboard_settings.title", "screens.leaderboard_settings.screen_description"]);
 
@@ -111,6 +115,7 @@ const LeaderboardSettings = ({
                 onBirthdayVisibilityChange={onChangeBirthdayVisibility}
               />
             )}
+            {renderInboxNotificationSettings(inboxNotificationsSettings)}
           </View>
         }
         ListFooterComponent={<View style={styles.footer} />}
@@ -120,6 +125,16 @@ const LeaderboardSettings = ({
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
       />
+    </View>
+  );
+};
+
+const renderInboxNotificationSettings = (items: INotificationsSectionItem[]) => {
+  return (
+    <View>
+      {items.map((item) => (
+        <NotificationsItem {...item} key={item.id} />
+      ))}
     </View>
   );
 };

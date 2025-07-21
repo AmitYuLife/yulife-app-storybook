@@ -11,18 +11,31 @@ import { getSocialGroups } from "@redux/leaderboards/leaderboards.selectors";
 import { useMutation, useQuery } from "@apollo/client";
 import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
 import { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
-import { gql } from "@graphql/__generated";
+import { GetInboxNotificationsSettingsDocument, gql } from "@graphql/__generated";
 import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
 import sortBy from "lodash/sortBy";
 import { IChangeBirthdayVisibilityProps } from "../../../organisms/birthday-visibility-toggle/birthday-visibility-toggle";
 import Loading from "../../../atoms/loading/loading";
 import { Alert } from "react-native";
+import Logger from "../../../../services/logging/logger";
 
 interface IProps {
   componentId: string;
 }
 
 const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
+  const [updateNotification] = useMutation(gql(`UpdateUserNotificationsSettingsDocument`), {
+    refetchQueries: [{ query: GetInboxNotificationsSettingsDocument }],
+    awaitRefetchQueries: true,
+    onError: (err) => {
+      Logger.error(err, { message: "Failed to update notification settings" });
+      Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
+    },
+  });
+  const inboxNotificationSettingsData = useQuery(gql(`GetInboxNotificationsSettingsDocument`), {
+    fetchPolicy: "cache-and-network",
+  });
+
   const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"), {
     onError: () => {
       Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
@@ -34,6 +47,33 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
     },
   });
   const { data, loading } = useQuery(gql("GetPlayerLifeEventsDocument"));
+
+  const inboxNotificationsSettings = useMemo(() => {
+    return inboxNotificationSettingsData?.data?.inboxNotifications ?? [];
+  }, [inboxNotificationSettingsData]);
+
+  const inboxNotificationItems = useMemo(
+    () =>
+      inboxNotificationsSettings.map((n) => ({
+        ...n,
+        title: "",
+        description: n.description ?? "",
+        onSwitchPress: async () => {
+          try {
+            await updateNotification({
+              variables: {
+                type: n.type,
+                isActive: !n.isActive,
+              },
+            });
+          } catch (e) {
+            Logger.error(e, { message: "Failed to update inbox notification settings" });
+          }
+        },
+      })),
+    [inboxNotificationsSettings, updateNotification]
+  );
+
   const dispatch = useDispatch();
   const socialGroups = useSelector(getSocialGroups);
   const allDataLoaded = !loading && !!socialGroups;
@@ -190,6 +230,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
       onRightIconPress={onRightIconPress}
       onChangeBirthdayVisibility={onChangeBirthdayVisibility}
       lifeEvents={lifeEventsData}
+      inboxNotificationsSettings={inboxNotificationItems}
     />
   );
 };

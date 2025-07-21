@@ -2,6 +2,7 @@ import { SETTINGS_SCREEN, SETTINGS_SCREEN_SCROLL } from "@ids";
 import * as React from "react";
 import { PureComponent } from "react";
 import { ScrollView, View } from "react-native";
+import { sortBy } from "lodash";
 import ConnectionsItem from "./items/connections-item";
 import NotificationsItem from "./items/notifications-item";
 import GameSettingsItem from "./items/game-settings-item";
@@ -26,7 +27,7 @@ export type INotificationsSectionItem = NotificationSettingsProps & {
   name: string;
   description: string;
   onSwitchPress: () => void;
-  onTimePress: () => void;
+  onTimePress?: () => void;
 };
 
 export interface IGameSettingsItem {
@@ -106,7 +107,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
       <View key={index} style={styles.wrapper}>
         <SettingsHeader title={section.title} />
         <View style={styles.notificationsItemsWrapper}>
-          {section.items.map((item, i) => (
+          {sortBy(section.items, (item) => !!item.alertTimestamp).map((item, i) => (
             <NotificationsItem {...item} key={i} />
           ))}
         </View>

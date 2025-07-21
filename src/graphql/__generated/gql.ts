@@ -233,6 +233,7 @@ const documents = {
   SubmitFeedbackFormDocument: types.SubmitFeedbackFormDocument,
   UpdateMemberConsentDocument: types.UpdateMemberConsentDocument,
   GetPotentialRewardsDocument: types.GetPotentialRewardsDocument,
+  GetInboxNotificationsSettingsDocument: types.GetInboxNotificationsSettingsDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
   GetMobileWhatsNewModalDocument: types.GetMobileWhatsNewModalDocument,
@@ -1366,6 +1367,12 @@ export function gql(source: "UpdateMemberConsentDocument"): typeof documents["Up
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetPotentialRewardsDocument"): typeof documents["GetPotentialRewardsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetInboxNotificationsSettingsDocument"
+): typeof documents["GetInboxNotificationsSettingsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
