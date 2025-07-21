@@ -14,6 +14,7 @@ import {
   markAppAsInstalled as markAppAsInstalledAction,
   setPushPermissions as setPushPermissionsAction,
   updateCurrentDate as updateCurrentDateAction,
+  denyPushNotification as denyPushNotificationAction,
 } from "./device.actions";
 import moment from "moment";
 import { DATE_FORMAT } from "@utils";
@@ -44,6 +45,10 @@ export const getInitialState = (): IDeviceStore => {
     pushNotifications: {
       requested: false,
       status: PushPermissionsStatus.notyet,
+      /**
+       * Used to prevent spamming users with MODALS.pushNotifications.
+       */
+      denyCount: 0,
     },
   };
 };
@@ -55,6 +60,7 @@ const deviceReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(markAppAsInstalledAction, (state) => markAppAsInstalled(state));
   builder.addCase(setPushPermissionsAction, (state, action) => setPushPermissions(state, action.payload));
   builder.addCase(updateCurrentDateAction, (state, action) => updateCurrentDate(state, action.payload));
+  builder.addCase(denyPushNotificationAction, (state) => denyPushNotification(state));
 
   builder.addDefaultCase((state) => state);
 });
@@ -95,6 +101,14 @@ const setPushPermissions = (state: IDeviceStore, pushPermissions: SetPushPermiss
 const updateCurrentDate = (state: IDeviceStore, payload: string): IDeviceStore => ({
   ...state,
   currentDate: payload,
+});
+
+const denyPushNotification = (state: IDeviceStore) => ({
+  ...state,
+  pushNotifications: {
+    ...state.pushNotifications,
+    denyCount: (state.pushNotifications?.denyCount ?? 0) + 1,
+  },
 });
 
 export default deviceReducer;

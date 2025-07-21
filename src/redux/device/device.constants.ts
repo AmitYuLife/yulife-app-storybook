@@ -1,0 +1,1 @@
+export const PUSH_NOTIFICATION_DENY_LIMIT = 2;

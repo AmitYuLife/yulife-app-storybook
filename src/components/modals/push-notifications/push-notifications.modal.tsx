@@ -3,7 +3,7 @@ import { PureComponent } from "react";
 import { Linking } from "react-native";
 import { Navigation } from "@navigation/main";
 import { connect } from "react-redux";
-import { requirePushEnabled } from "@redux/device/device.actions";
+import { requirePushEnabled, denyPushNotification } from "@redux/device/device.actions";
 import { IPushNotification, PushPermissionsStatus } from "@redux/device/device.types";
 import { GenericScreen } from "@screens";
 import Logger from "@services/logging/logger";
@@ -38,6 +38,8 @@ class PushNotificationsModal extends PureComponent<Props> {
     if (callback) {
       callback();
     }
+
+    this.props.denyPushNotification();
 
     Navigation.dismissModal(componentId);
   };
@@ -93,6 +95,7 @@ class PushNotificationsModal extends PureComponent<Props> {
 
 const mapDispatchToProps = {
   requirePushEnabled,
+  denyPushNotification,
 };
 
 export default connect<null, ConnectedDispatch>(null, mapDispatchToProps)(PushNotificationsModal);

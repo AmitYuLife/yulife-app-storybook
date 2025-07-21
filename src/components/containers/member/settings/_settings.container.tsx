@@ -16,6 +16,8 @@ import { t, getCurrentLocale } from "@locale";
 import { useUserFeatures } from "@hooks";
 import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
 import { UserConnection } from "@redux/user/user.types";
+import { getPushNotifications } from "@redux/device/device.selectors";
+import { PushPermissionsStatus } from "@redux/device/device.types";
 
 interface IOwnProps {
   componentId: string;
@@ -39,10 +41,14 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const [updateNotification, { loading: notificationLoading }] = useMutation(
     gql(`UpdateUserNotificationsSettingsDocument`)
   );
+
+  const notificationPermissions = useSelector(getPushNotifications);
+
   const notificationSettings = useQuery(gql(`GetUserNotificationsSettingsDocument`), graphqlFetchPolicy);
   const { data: userLifeEventsData } = useQuery(gql("GetPlayerLifeEventsDocument"), graphqlFetchPolicy);
 
   const pushNotifications = useMemo(() => notificationSettings?.data?.pushNotifications || [], [notificationSettings]);
+
   const emailNotifications = useMemo(
     () => notificationSettings?.data?.emailNotifications || [],
     [notificationSettings]
@@ -279,13 +285,35 @@ function SettingsContainer({ componentId }: IOwnProps) {
       isVisible: features.showNotifications,
       items: pushNotifications.map((n) => ({
         ...n,
+        isActive: notificationPermissions.status === PushPermissionsStatus.enabled ? n.isActive : false,
         onSwitchPress: async () => {
           try {
-            updateQueryCache(n.type, !n.isActive);
+            const newActiveState =
+              notificationPermissions.status !== PushPermissionsStatus.enabled ? true : !n.isActive;
+
+            // if user has push permission enabled already, no need to show modal.
+            if (newActiveState && notificationPermissions.status !== PushPermissionsStatus.enabled) {
+              showYuModal({
+                component: {
+                  id: MODALS.pushNotifications,
+                  name: MODALS.pushNotifications,
+                  passProps: {
+                    permissions: notificationPermissions,
+                  },
+                },
+              });
+            }
+
+            // Check for when permission is disabled, but notification data in query is still active
+            if (n.isActive === newActiveState) {
+              return;
+            }
+
+            updateQueryCache(n.type, newActiveState);
             await updateNotification({
               variables: {
                 type: n.type,
-                isActive: !n.isActive,
+                isActive: newActiveState,
                 time: n.alertTimestamp,
               },
             });
@@ -309,7 +337,14 @@ function SettingsContainer({ componentId }: IOwnProps) {
       title: t("screens.settings.push_notifications.label"),
       name: "notifications",
     }),
-    [features.showNotifications, notificationLoading, pushNotifications, updateNotification, updateQueryCache]
+    [
+      features.showNotifications,
+      notificationLoading,
+      pushNotifications,
+      updateNotification,
+      updateQueryCache,
+      notificationPermissions,
+    ]
   );
 
   const pickers = useMemo(() => {

@@ -16,12 +16,12 @@ export interface IDeviceStore {
 export interface IPushNotification {
   requested: boolean;
   status: PushPermissionsStatus;
+  denyCount: number;
 }
 
 export enum PushPermissionsStatus {
   denied = "denied",
   enabled = "enabled",
-  later = "later",
   notyet = "notyet",
 }
 
