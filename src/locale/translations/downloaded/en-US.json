@@ -1260,39 +1260,42 @@
       }
     },
     "leaderboard_settings": {
-      "birthday_visibility": {
-        "consented": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
-        "error": "Oops! Something went wrong",
-        "not_consented": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
-        "not_set": {
-          "ctaLabel": "Got it!",
-          "description": "Celebrate birthdays with all your in-app friends — update your birthday to enable birthday notifications.",
-          "heading": "Share your birthday with us!"
-        },
-        "title": "Birthday notifications",
-        "turn_off": {
-          "ctaLabel": "No, keep them on",
-          "ctaLabelSecondary": "Yes, turn off",
-          "heading": "Disable birthday notifications?",
-          "subheading": "You won't get friends' birthday reminders, and your friends won't get a notification on your birthday."
-        },
-        "turn_on": {
-          "confirm": "Yes, turn on",
-          "ctaLabel": "Yes, turn on",
-          "ctaLabelSecondary": "No, thanks",
-          "description": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
-          "heading": "Enable birthday notifications?",
-          "subheading": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday."
-        }
-      },
-      "consented": "Other members of this leaderboard can see your name and activity.",
+      "title": "Leaderboards",
+      "title_with_birthday": "Leaderboards and birthday",
       "description": "Status and management of your access to app related leaderboards.",
       "description_with_birthday": "Management of your access to app-related leaderboards and birthday permissions.",
-      "item_title": "%{name} Leaderboard",
-      "not_consented": "Allow other members of this leaderboard to see your name and activity.",
       "screen_description": "Management of your access to app-related leaderboards. Please note: opting out of a leaderboard may restrict your access to some features.",
-      "title": "Leaderboards",
-      "title_with_birthday": "Leaderboards and birthday"
+      "consented": "Other members of this leaderboard can see your name and activity.",
+      "not_consented": "Allow other members of this leaderboard to see your name and activity.",
+      "item_title": "%{name} Leaderboard",
+      "birthday_visibility": {
+        "title": "Share your birthday?",
+        "error": "Oops! Something went wrong",
+        "consented": "Notify your friends on your birthday.",
+        "not_consented": "Notify your friends on your birthday.",
+        "turn_on": {
+          "heading": "Turn on birthday sharing?",
+          "subheading": "Notify your friends on your birthday.",
+          "ctaLabel": "Yes, share",
+          "ctaLabelSecondary": "No, thanks",
+          "description": "Notify your friends on your birthday.",
+          "confirm": "Yes, turn on"
+        },
+        "turn_off": {
+          "ctaLabel": "No, keep sharing",
+          "ctaLabelSecondary": "Yes, stop sharing",
+          "heading": "Stop sharing your birthday?",
+          "subheading": "Stop notifying your friends on your birthday."
+        },
+        "not_set": {
+          "heading": "Tell us your birthday!",
+          "description": "For your friends to be notified on your birthday, update your birthdate in Settings.",
+          "ctaLabel": "Update birthday!"
+        }
+      },
+      "birthday_notifications": {
+        "title": "Birthday notifications"
+      }
     },
     "level_locked": {
       "level": "Unlock at level %{level}",

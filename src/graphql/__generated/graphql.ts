@@ -7627,6 +7627,7 @@ export type Query = {
   getInAppYuniversityCourseModuleDetails: InAppYuniversityCourseModuleDetails;
   getInAppYuniversityCourses: InAppYuniversityCourses;
   getInboxMessages: GetInboxMessages;
+  getInboxNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getIntercomHash?: Maybe<Scalars["String"]["output"]>;
   /** Get user inventory */
   getInventory: Array<InventoryItem>;
@@ -10782,6 +10783,8 @@ export type UserFeature = {
 };
 
 export enum UserNotificationsType {
+  Birthdays = "birthdays",
+  BirthdaysInbox = "birthdaysInbox",
   ChallengeCompletion = "challengeCompletion",
   DailyChallengeReminder = "dailyChallengeReminder",
   Duels = "duels",
@@ -10842,7 +10845,6 @@ export type UserProfile = {
   supportConfig?: Maybe<UserSupportConfig>;
   surge?: Maybe<Surge>;
   tabNotifications: Array<MobileTabs>;
-  todayScreen: UserProfileTodayScreen;
 };
 
 export type UserProfileAvatar = {
@@ -11592,7 +11594,10 @@ export type YuStorePerkProduct = {
   images: YuStoreProductImages;
   includesVAT?: Maybe<Scalars["Boolean"]["output"]>;
   isDisplayOnly?: Maybe<Scalars["Boolean"]["output"]>;
+  licenceDuration?: Maybe<Scalars["Int"]["output"]>;
+  /** @deprecated Use licenceDuration with licenceDurationUnit instead */
   licenceDurationMonths?: Maybe<Scalars["Int"]["output"]>;
+  licenceDurationUnit?: Maybe<Scalars["String"]["output"]>;
   name: Scalars["String"]["output"];
   perkId: Scalars["String"]["output"];
   platform: Array<YuStorePlatform>;
@@ -26683,6 +26688,22 @@ export type GetPotentialRewardsQuery = {
     name: string;
     logo: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
+};
+
+export type GetInboxNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetInboxNotificationsSettingsQuery = {
+  __typename?: "Query";
+  inboxNotifications?: Array<{
+    __typename?: "NotificationSettingsProps";
+    id: string;
+    type: UserNotificationsType;
+    name: string;
+    isActive: boolean;
+    isAvailable: boolean;
+    order: number;
+    description?: string | null;
+  } | null> | null;
 };
 
 export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
@@ -76089,6 +76110,38 @@ export const GetPotentialRewardsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPotentialRewardsQuery, GetPotentialRewardsQueryVariables>;
+export const GetInboxNotificationsSettingsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetInboxNotificationsSettings" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "inboxNotifications" },
+            name: { kind: "Name", value: "getInboxNotificationsSettings" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "isActive" } },
+                { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
+                { kind: "Field", name: { kind: "Name", value: "order" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetInboxNotificationsSettingsQuery, GetInboxNotificationsSettingsQueryVariables>;
 export const GetUserNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [
