@@ -1,11 +1,7 @@
 import React, { FC, useState, useCallback, memo, useMemo, useEffect, useRef } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  challengeStartAction,
-  clearChallengeStartErrorAction,
-  updateChallengeAppButton,
-} from "@redux/levels/levels.actions";
+import { challengeStartAction, clearChallengeStartErrorAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
@@ -26,7 +22,6 @@ import { handleInternalContentChallenge, onPressChallengeTile } from "@utils/cha
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
 import { getMobileQuestLevelDetails } from "@graphql/challenges/getChallengeDetails.gql";
-import { t } from "@locale";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 type Slot = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
@@ -48,7 +43,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const { tempGameEnableReleaseYuHealthV4, gameHideWorkoutInternalContent } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV4 } = useUserFeatures();
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
@@ -104,24 +99,6 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
           },
         })
       );
-
-      const lowerCaseLevelSlotTemplateId = slot.levelSlotTemplateId.toLowerCase();
-
-      const isWorkout = lowerCaseLevelSlotTemplateId.includes("workout");
-
-      if (isWorkout && gameHideWorkoutInternalContent) {
-        const label = isWorkout
-          ? "screens.challenge_progress.workout_with_other_apps"
-          : "screens.challenge_progress.how_meditate_with_other_apps_label";
-        dispatch(
-          updateChallengeAppButton({
-            appButton: {
-              title: t(label),
-              tutorialUrl: slot.details.tutorialUrl,
-            },
-          })
-        );
-      }
     } catch (e) {
       setError();
       setSubmittingState(false);

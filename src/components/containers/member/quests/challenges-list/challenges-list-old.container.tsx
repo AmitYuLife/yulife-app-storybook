@@ -1,11 +1,7 @@
 import React, { FC, useState, useCallback, memo, useMemo, useEffect } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  challengeStartAction,
-  clearChallengeStartErrorAction,
-  updateChallengeAppButton,
-} from "@redux/levels/levels.actions";
+import { challengeStartAction, clearChallengeStartErrorAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
@@ -16,13 +12,12 @@ import { ROUTES } from "@navigation/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
-import { usePopToQuestsRootOnNewDate, useUserFeatures, useConsumableModal, useScreenReaderChange } from "@hooks";
+import { usePopToQuestsRootOnNewDate, useConsumableModal, useScreenReaderChange } from "@hooks";
 import { getActiveChallengeState, getCreateChallengeError } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
 import { getMobileQuestLevelDetails } from "@graphql/challenges/getChallengeDetails.gql";
-import { t } from "@locale";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 interface IProps {
@@ -45,7 +40,6 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
   const [submitting, setSubmittingState] = useState(false);
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
-  const features = useUserFeatures();
   const isScreenReaderEnabled = useScreenReaderChange();
 
   usePopToQuestsRootOnNewDate(level);
@@ -104,24 +98,6 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
           },
         })
       );
-
-      const lowerCaseLevelSlotTemplateId = slot.levelSlotTemplateId.toLowerCase();
-
-      const isWorkout = lowerCaseLevelSlotTemplateId.includes("workout");
-
-      if (isWorkout && features?.gameHideWorkoutInternalContent) {
-        const label = isWorkout
-          ? "screens.challenge_progress.workout_with_other_apps"
-          : "screens.challenge_progress.how_meditate_with_other_apps_label";
-        dispatch(
-          updateChallengeAppButton({
-            appButton: {
-              title: t(label),
-              tutorialUrl: slot.details.tutorialUrl,
-            },
-          })
-        );
-      }
     } catch (e) {
       setError();
       setSubmittingState(false);
