@@ -12,19 +12,35 @@ const init = async () => {
   const [_, __, ...args] = process.argv;
 
   let [specName, ...restArgs] = args;
+  let region: "UK" | "SA" | "US" | "JP" = "UK";
+  let specList: string[];
   const specNames = Object.keys(specs).sort();
 
-  if (!specName) {
-    specName = await select({ message: "Which spec do you want to run?", choices: specNames });
-  }
+  // direct path to spec provided
+  if (specName?.includes(".ts")) {
+    // TODO: we should prompt for region here
+    const exists = existsSync(specName);
+    if (!exists) {
+      throw new Error(`Spec "${specName}" does not exist`);
+    }
+    specList = [specName];
+  } else {
+    // Otherwise a preset from specs.json
+    if (!specName) {
+      specName = await select({ message: "Which spec do you want to run?", choices: specNames });
+    }
 
-  if (!specs[specName]) {
-    throw new Error(`Spec "${specName}" is not present in specs.json`);
+    if (!specs[specName]) {
+      throw new Error(`Spec "${specName}" is not present in specs.json`);
+    }
+
+    region = specs[specName].region;
+    specList = specs[specName].specs.map((spec) => `e2e/${spec}`);
   }
 
   // set our API URL and region
-  const TARGET_LOCALE = mapRegionToTargetLocale(specs[specName].region);
-  const API_URL = `http://localhost:${mapRegionToPort(specs[specName].region)}/`;
+  const TARGET_LOCALE = mapRegionToTargetLocale(region);
+  const API_URL = `http://localhost:${mapRegionToPort(region)}/`;
 
   if (!args.includes(CI_ARG)) {
     await assertBundlerIsRunning();
@@ -52,7 +68,7 @@ const init = async () => {
         "--json",
         "--outputFile=e2e-report/results.json",
         ...restArgs.filter((arg) => ![CI_ARG].includes(arg)),
-        specs[specName].specs.map((spec) => `e2e/${spec}`).join(" "),
+        specList.join(" "),
       ].join(" "),
       { stdio: "inherit" }
     );
