@@ -52,7 +52,6 @@ export const features = [
   "showWeeklies",
   "tempGameEnableAnimatedLeaderboardRays",
   "enableSudokuCheatDetection",
-  "tempGameEnableYumojiBuilderScaleAnimation",
   "tempGameEnableAvatarFrames",
   "showNewYuCoinExplained",
   "showDebug",
