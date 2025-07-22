@@ -46,15 +46,14 @@ const ChallengeProgressDebugInfoWrapper = () => {
 
   const { initialPedometerResult } = useSelector(getActiveLevel);
   const historySteps = useSelector(getDebugPedometerHistorySteps);
-  const firstHistoryStep = first(historySteps)?.steps || 0;
 
   return (
     <ChallengeProgressDebugInfo
       historySteps={historySteps}
       healthProvider={healthProvider}
       initialDailySteps={initialPedometerResult}
-      currentPedometerSteps={firstHistoryStep}
-      progressCalculation={firstHistoryStep - initialPedometerResult}
+      currentPedometerSteps={first(historySteps)}
+      progressCalculation={first(historySteps) - initialPedometerResult}
     />
   );
 };
