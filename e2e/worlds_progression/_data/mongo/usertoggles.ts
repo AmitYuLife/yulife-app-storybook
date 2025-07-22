@@ -236,7 +236,6 @@ export const CUSTOMER_81_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
-      showWeeklies: true,
       showGoals: true,
     },
   },
