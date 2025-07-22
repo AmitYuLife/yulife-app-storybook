@@ -347,11 +347,11 @@ Feature("As a user I can take a challenge", async () => {
     });
     When("I send the mindfulness data", when.sendMindfulnessData(500), async () => {
       When("I start a meditation challenge", when.startMeditationChallengeFromQuests(175), async () => {
-        Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation")));
+        Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation"), 1000));
       });
     });
     When("I close and reopen the app", when.closeAndReopenApp, async () => {
-      Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation")));
+      Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation"), 3000));
     });
     When("I wait for the challenge to complete", when.wait(50000), async () => {
       Then("I should see the Collect button", then.idVisible(ids.CTA_COLLECT));
