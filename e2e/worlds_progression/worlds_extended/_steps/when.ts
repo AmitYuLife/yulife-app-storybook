@@ -96,28 +96,15 @@ export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async (
   await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(2))).tap({ x: x, y: y });
 };
 
-export const selectAndCompleteMeditationChallengeWithoutMedia =
-  (mindfulnessdata: number) => async () => {
-    await navigateViaID(ids.CHALLENGE_TILE("Meditation"));
-    await navigateViaText(t("Take challenge"));
-    await tapText(t("maybe later"))();
-    await sendMindfulnessData(mindfulnessdata, 75000)();
-    await waitFor(element(by.text(t("Collect"))))
-      .toBeVisible()
-      .withTimeout(5000);
-    await navigateViaText(t("Collect"));
-  };
-
 export const selectAndCompleteMeditationChallengeWithMedia =
   (mindfulnessdata: number) => async () => {
     await navigateViaID(ids.CHALLENGE_TILE("Meditation"));
-    await navigateViaText(t("Take challenge"));
-    await swipeFromText(t("Or use an app"), "up", "slow")();
-    await tapText(t("Use a different app"))();
-    await tapText(t("maybe later"))();
+    await navigateViaText("Take challenge");
+    await swipeFromText("Or use an app", "up", "slow")();
+    await tapText("Use a different app")();
     await sendMindfulnessData(mindfulnessdata, 75000)();
-    await waitFor(element(by.text(t("Collect"))))
+    await waitFor(element(by.text("Collect")))
       .toBeVisible()
       .withTimeout(5000);
-    await navigateViaText(t("Collect"));
+    await navigateViaText("Collect");
   };
