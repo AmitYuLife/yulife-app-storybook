@@ -8,13 +8,14 @@ import { updateUserProfile } from "@redux/user/user.actions";
 export const getInitialState = (): IDebugStore => ({
   debugToolsEnabled: false,
   debugQueriesToolEnabled: false,
+  historySteps: [],
   pedometerHistorySteps: [],
 });
 
 const debugReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(updatePedometerForDebugSuccessAction, (state, action) => pedometerUpdate(state, action.payload));
-  builder.addCase(challengeStartSuccessAction, (state) => ({ ...state, pedometerHistorySteps: [] }));
-  builder.addCase(challengeResetSuccessAction, (state) => ({ ...state, pedometerHistorySteps: [] }));
+  builder.addCase(challengeStartSuccessAction, (state) => ({ ...state, pedometerHistorySteps: [], historySteps: [] }));
+  builder.addCase(challengeResetSuccessAction, (state) => ({ ...state, pedometerHistorySteps: [], historySteps: [] }));
   builder.addCase(updateUserProfile, (state, action) => ({
     ...state,
     debugToolsEnabled: action.payload.debugToolsEnabled,
@@ -24,9 +25,9 @@ const debugReducer = createReducer(getInitialState(), (builder) => {
   builder.addDefaultCase((state) => state);
 });
 
-const pedometerUpdate = (state: IDebugStore, { steps }: PedometerResponse): IDebugStore => ({
+const pedometerUpdate = (state: IDebugStore, { steps, stepsBeforeSubscribe }: PedometerResponse): IDebugStore => ({
   ...state,
-  pedometerHistorySteps: [steps, ...state.pedometerHistorySteps],
+  historySteps: [{ steps, stepsBeforeSubscribe }, ...state.historySteps],
 });
 
 export default debugReducer;
