@@ -109,7 +109,7 @@ export const BUSINESS_1_PENSION_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {
     _id: generateRandomMongoId(),
-    domain: "pensions",
+    domain: "pension",
     entityId: BUSINESS_ACCOUNT_1.data.business_account_id,
     entityType: "business",
     settings: {
@@ -124,7 +124,7 @@ export const BUSINESS_3_PENSION_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {
     _id: generateRandomMongoId(),
-    domain: "pensions",
+    domain: "pension",
     entityId: BUSINESS_ACCOUNT_3.data.business_account_id,
     entityType: "business",
     settings: {
