@@ -13,7 +13,7 @@ import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
 import { selectRegionIfVisible, wait } from "../../_common/given";
 import { dismissNewLooksModalIfVisible, skipHealthConnection } from "_utils/navigation/login";
-import { navigateViaID, tapID, tapText } from "@utils";
+import { navigateViaID, tapID, tapText } from "_utils/navigation/common";
 
 export {
   authoriseFitkit,
