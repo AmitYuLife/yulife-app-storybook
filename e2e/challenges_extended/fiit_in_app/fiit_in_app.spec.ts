@@ -131,7 +131,7 @@ Feature("Fiit in app", async () => {
       });
     });
     When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
-      When("I tap 'Collect'", when.tapText("Collect"), async () => {
+      When("I tap 'Collect'", when.tapText("Collect", 3000), async () => {
         Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1));
       });
     });

@@ -162,7 +162,7 @@ export const CORE_JOURNEY_2 = {
   modelName: model,
   data: {
     _id: generateRandomMongoId(),
-    journeyId: "engagement_survey_pulse",
+    journeyId: `engagement_survey_pulse_${Date.now}`,
     name: "Engagement Survey: Pulse",
     allAnswerKeys: ["one_thing_you_would_change", "recommend_workplace_pulse"],
     published: true,
