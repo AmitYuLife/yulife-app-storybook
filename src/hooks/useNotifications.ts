@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { parseJSON, appVersionSatisfies } from "@utils";
 import { gql, UserProfileBadgeCountType } from "@graphql/__generated";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { sortBy } from "lodash";
+import { isNumber, sortBy } from "lodash";
 
 type MessageWithSource = Message & {
   source: "leanplum" | "api";
@@ -73,7 +73,7 @@ export const useNotifications = () => {
     if (!loading && messages.length > 0 && fetchedFromLeanplum) {
       markAllMessagesAsSeen().catch();
     }
-  }, [loading, messages, fetchedFromLeanplum, markAllMessagesAsSeen]);
+  }, [loading, messages, markAllMessagesAsSeen]);
 
   /**
    * Fetches messages from Leanplum (from device local storage) and sets them to the state
@@ -102,13 +102,7 @@ export const useNotifications = () => {
 
     setFetchedFromLeanplum(true);
     setLeanplumMessages(mappedMessages);
-  }, [appInbox?.data?.maximumAgeOfMessageInDays, setFetchedFromLeanplum, setLeanplumMessages]);
-
-  const fetchNotifications = useCallback(async () => {
-    Logger.leanplum?.refreshInbox?.();
-    await fetchMessagesFromLeanplum();
-    await fetchMessagesFromApi();
-  }, [fetchMessagesFromLeanplum, fetchMessagesFromApi]);
+  }, [appInbox, setFetchedFromLeanplum, setLeanplumMessages]);
 
   /**
    * When a message is opened
@@ -144,19 +138,26 @@ export const useNotifications = () => {
     [dispatch, markInboxMessagesAsSeen, fetchMessagesFromApi]
   );
 
+  useEffect(() => {
+    if (isNumber(appInbox?.data?.maximumAgeOfMessageInDays)) {
+      Logger.leanplum?.refreshInbox?.();
+      fetchMessagesFromLeanplum();
+    }
+  }, [appInbox?.data?.maximumAgeOfMessageInDays, fetchMessagesFromLeanplum]);
+
   // initial load
   useEffect(() => {
-    fetchNotifications().catch();
-  }, [fetchNotifications]);
+    fetchMessagesFromApi().catch();
+  }, []);
 
   return useMemo(
     () => ({
       messages,
       onOpen,
       isInitialized: fetchedFromLeanplum && !loading,
-      fetchNotifications,
+      fetchNotifications: fetchMessagesFromApi,
       maximumAgeOfMessageInDays: appInbox?.data?.maximumAgeOfMessageInDays,
     }),
-    [onOpen, fetchedFromLeanplum, messages, fetchNotifications, loading, appInbox?.data?.maximumAgeOfMessageInDays]
+    [onOpen, fetchedFromLeanplum, messages, fetchMessagesFromApi, loading, appInbox?.data?.maximumAgeOfMessageInDays]
   );
 };
