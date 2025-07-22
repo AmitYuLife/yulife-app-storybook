@@ -66,9 +66,14 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
 
   const goToAchievements = useCallback(
     (selectedSlot?: number) => {
+      if (isInspectingUser) {
+        return;
+      }
+
       track("achievement_view", {
         view_source: componentId,
       });
+
       pushToScreen(componentId, {
         component: {
           id: ROUTES.achievements,
@@ -79,7 +84,7 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
         },
       });
     },
-    [componentId, track]
+    [componentId, track, isInspectingUser]
   );
 
   const getSlot = useCallback(
