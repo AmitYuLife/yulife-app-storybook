@@ -823,6 +823,7 @@ workflows:
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
+            envman add --key ALLURE_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/allure/index.html"
             envman add --key SCREENSHOTS_REPORT --value $(echo "https://$REPORT_DNS_NAME/screenshots/$S3_PATH/index.html" | sed -e 's/ /%20/g')
     - slack@3:
         inputs:
@@ -838,7 +839,7 @@ workflows:
             Test Type|$DETOX_TEST_TYPE
             Locale|$TARGET_LOCALE
         - buttons: |-
-            View Results|${JEST_REPORT}
+            View Results|${ALLURE_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
             Screenshots|${SCREENSHOTS_REPORT}
@@ -960,6 +961,7 @@ workflows:
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
+            envman add --key ALLURE_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/allure/index.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -973,7 +975,7 @@ workflows:
             Device|$IPHONE_DEVICE
             Test Type|$DETOX_TEST_TYPE
         - buttons: |+
-            View Results|${JEST_REPORT}
+            View Results|${ALLURE_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
 
@@ -1364,6 +1366,7 @@ workflows:
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
+            envman add --key ALLURE_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/allure/index.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -1377,7 +1380,7 @@ workflows:
             Device|$IPHONE_DEVICE
             Test Type|$DETOX_TEST_TYPE
         - buttons: |+
-            View Results|${JEST_REPORT}
+            View Results|${ALLURE_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
 
@@ -1703,6 +1706,7 @@ workflows:
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
+            envman add --key ALLURE_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/allure/index.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -1716,7 +1720,7 @@ workflows:
             Device|$IPHONE_DEVICE
             Test Type|$DETOX_TEST_TYPE
         - buttons: |+
-            View Results|${JEST_REPORT}
+            View Results|${ALLURE_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
 
