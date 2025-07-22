@@ -8691,15 +8691,15 @@
   resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
   integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
 
-"@yu-life/react-native-fitkit@1.0.39":
-  version "1.0.39"
-  resolved "https://gitlab.com/api/v4/projects/7775989/packages/npm/@yu-life/react-native-fitkit/-/@yu-life/react-native-fitkit-1.0.39.tgz#b3f60782d5a7620209fb496569d6f3f48c98c2cb"
-  integrity sha1-s/YHgtWnYgIJ+0lladbz9IyYwss=
+"@yu-life/react-native-fitkit@1.0.41":
+  version "1.0.41"
+  resolved "https://gitlab.com/api/v4/projects/7775989/packages/npm/@yu-life/react-native-fitkit/-/@yu-life/react-native-fitkit-1.0.41.tgz#cfeb4e8502b2d22fbdde9302d87c84d1b0611f6d"
+  integrity sha1-z+tOhQKy0i+93pMC2HyE0bBhH20=
 
-"@yu-life/react-native-yu-health@^1.3.9":
-  version "1.3.9"
-  resolved "https://gitlab.com/api/v4/projects/52134022/packages/npm/@yu-life/react-native-yu-health/-/@yu-life/react-native-yu-health-1.3.9.tgz#22e37fe464341d0c959df9942db86003c990f77f"
-  integrity sha1-IuN/5GQ0HQyVnfmULbhgA8mQ938=
+"@yu-life/react-native-yu-health@^1.3.12":
+  version "1.3.12"
+  resolved "https://gitlab.com/api/v4/projects/52134022/packages/npm/@yu-life/react-native-yu-health/-/@yu-life/react-native-yu-health-1.3.12.tgz#2fd092c78cf571ea67be67b554746a0aa88409e4"
+  integrity sha1-L9CSx4z1cepnvme1VHRqCqiECeQ=
 
 "@yu-life/react-native-yu-watch@^1.0.2":
   version "1.0.2"

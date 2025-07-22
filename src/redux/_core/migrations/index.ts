@@ -26,6 +26,7 @@ import addYuniversalMapToLevelActiveState from "./0024_add_yuniversal_map_active
 import removeTabNotifications from "./0025_remove_tab_notifications";
 import removeHasAdBanner from "./0026_remove_has_ad_banner";
 import addTodayScreenToUserEvents from "./0027_add_today_screen_to_user_events";
+import addDebugPedometerStepsBeforeSubscribe from "./0028_debug_pedometer_steps_before_subscribe";
 
 export const migrations = {
   "0": initial,
@@ -56,4 +57,5 @@ export const migrations = {
   "25": removeTabNotifications,
   "26": removeHasAdBanner,
   "27": addTodayScreenToUserEvents,
+  "28": addDebugPedometerStepsBeforeSubscribe,
 };
