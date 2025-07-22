@@ -1260,28 +1260,31 @@
       }
     },
     "leaderboard_settings": {
+      "birthday_notifications": {
+        "title": "Notificaciones de cumpleaños"
+      },
       "birthday_visibility": {
         "consented": "Recibe un recordatorio de los cumpleaños de tus amigos, y tus amigos recibirán una notificación de tu cumpleaños.",
         "error": "¡Ay! Algo salió mal",
         "not_consented": "Recibe un recordatorio de los cumpleaños de tus amigos, y tus amigos recibirán una notificación de tu cumpleaños.",
         "not_set": {
-          "ctaLabel": "¡Entendido!",
-          "description": "Celebra los cumpleaños con todos tus amigos de la aplicación: actualiza tu fecha de cumpleaños para activar las notificaciones de cumpleaños.",
+          "ctaLabel": "¡Actualización de cumpleaños!",
+          "description": "Para que tus amigos reciban una notificación el día de tu cumpleaños, actualiza tu fecha de nacimiento en Ajustes.",
           "heading": "Cuéntanos tu cumpleaños"
         },
-        "title": "Notificaciones de cumpleaños",
+        "title": "¿Compartir tu cumpleaños?",
         "turn_off": {
           "ctaLabel": "No, mantenlos encendidos",
           "ctaLabelSecondary": "Sí, apagarlos",
-          "heading": "¿Desactivar las notificaciones de cumpleaños?",
-          "subheading": "No recibirás recordatorios de cumpleaños de tus amigos, y tus amigos no recibirán una notificación de tu cumpleaños."
+          "heading": "¿Dejar de compartir tu cumpleaños?",
+          "subheading": "Deja de avisar a tus amigos el día de tu cumpleaños."
         },
         "turn_on": {
           "confirm": "Sí, encender",
           "ctaLabel": "Sí, encender",
           "ctaLabelSecondary": "No, gracias.",
           "description": "Recibe un recordatorio de los cumpleaños de tus amigos, y tus amigos recibirán una notificación de tu cumpleaños.",
-          "heading": "¿Activar las notificaciones de cumpleaños?",
+          "heading": "¿Activar el uso compartido de cumpleaños?",
           "subheading": "Recibe un recordatorio de los cumpleaños de tus amigos, y tus amigos recibirán una notificación de tu cumpleaños."
         }
       },
