@@ -1,4 +1,5 @@
 {
+  "extends": "detox-allure2-adapter/preset-detox",
   "testRunner": {
     "args": {
       "$0": "jest",
@@ -11,7 +12,9 @@
   "artifacts": {
     "rootDir": "./e2e-report",
     "plugins": {
+      "log": "failing",
       "screenshot": {
+        "enabled": true,
         "shouldTakeAutomaticSnapshots": true,
         "keepOnlyFailedTestsArtifacts": false,
         "takeWhen": {

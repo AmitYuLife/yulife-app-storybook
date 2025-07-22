@@ -4,14 +4,15 @@ import * as then from "./_steps/then";
 import * as scenario from "../admin/_common/scenario";
 import * as data from "../admin/_data";
 import * as ids from "@ids";
-import * as allure from "allure-js-commons";
 
 Feature("[HEALTH-CHECK TEST] - As a user I can get past the login screen", async () => {
   Scenario("I can login with correct login detail and see the connection setup for daily activities", scenario.start, async () => {
     Given("I have entered a valid email address and valid password", navigation.login.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
-      Then("I should not longer be on the login screen", then.notOnLoginScreen);
-      Then("I should see the signup reward screen", then.signupRewardVisible);
-      Then("I can see the health sync component", then.healthDataSyncComponent);
+      When("I do something", [], () => {
+        Then("I should not longer be on the login screen", then.notOnLoginScreen);
+        Then("I should see the signup reward screen", then.signupRewardVisible);
+        Then("I can see the health sync component", then.healthDataSyncComponent);
+      });
     });
     When("I tap on the rewards tab", navigation.common.tapText("Rewards"), async () => {
       // Will fail because balance is 200

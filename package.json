@@ -189,7 +189,7 @@
     "babel-plugin-react-native-web": "^0.18.10",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "detox": "^20.40.2",
-    "detox-allure2-adapter": "^1.0.0-alpha.1",
+    "detox-allure2-adapter": "^1.0.0-alpha.26",
     "dotenv": "16",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
