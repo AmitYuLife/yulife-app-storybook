@@ -656,12 +656,16 @@ export const unlockedLevelHalfModalVisible = (reward: string, levels: string) =>
   await moreRewardsAheadModalVisible(true)();
 };
 
-export const moreRewardsAheadModalVisible = (modalView: boolean) => async () => {
-  const headerText = modalView ? constants.moreRewardsAheadHeader : constants.getMoreRewardsHeader;
-  await textVisible(headerText)();
-  await textVisible(constants.moreRewardsAheadText)();
-  await textVisible(constants.learnMoreButton)();
-};
+export const moreRewardsAheadModalVisible =
+  (modalView: boolean, learnMore = true) =>
+  async () => {
+    const headerText = modalView
+      ? constants.moreRewardsAheadHeader
+      : constants.getMoreRewardsHeader;
+    await textVisible(headerText)();
+    await textVisible(constants.moreRewardsAheadText)();
+    learnMore && (await textVisible(constants.learnMoreButton)());
+  };
 
 export const ghiRewardsTeaseVisible = async () => {
   await textVisible(constants.rewardsTeaseHeader)();
@@ -744,11 +748,11 @@ const carouselImageVisible =
   };
 
 export const genericLevelHalfModalVisible =
-  (gameActive: boolean, level: number, gameLevel: string) => async () => {
+  (gameActive: boolean, level: number, gameLevel: string, learnMore: boolean) => async () => {
     await idVisible(ids.QUEST_DETAIL_HALF_MODAL(constants.lockedLevelText(level)))();
     await idVisible(ids.CHALLENGE_LOCKED_ICON)();
     await textNotVisible(`${gameLevel} Levels completed`)();
-    gameActive && (await moreRewardsAheadModalVisible(true)());
+    gameActive && (await moreRewardsAheadModalVisible(true, learnMore)());
   };
 
 export const moreRewardsAheadNotVisible = (modalView: boolean) => async () => {
