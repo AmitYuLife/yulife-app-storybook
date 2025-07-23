@@ -6,9 +6,8 @@ import { Menu } from "../assets";
 import { Text } from "@atoms/index";
 import { Style, TOP_BAR, Colours } from "@styles/index";
 import { t } from "@locale";
-import NotificationIcon from "@molecules/notification/notification-icon";
+import NotificationSvg from "@atoms/notification/notification-svg";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { TopBarLeftProps } from "../top-bar.helpers";
 
 export enum LeftIcon {
   MENU = "Menu",
@@ -26,7 +25,15 @@ export interface IIcon {
   testID?: string;
 }
 
-const Left = ({ icons = [], colour, label, textStyle, badges, badgeProps }: TopBarLeftProps) => {
+interface Props {
+  icons?: IIcon[];
+  colour: string;
+  label: string;
+  badges: Record<string, boolean>;
+  textStyle: TextStyle;
+}
+
+const Left = ({ icons = [], colour, label, textStyle, badges }: Props) => {
   const filteredIcons = useMemo(() => icons?.filter((icon) => icon.onPress), [icons]);
 
   return (
@@ -41,7 +48,7 @@ const Left = ({ icons = [], colour, label, textStyle, badges, badgeProps }: TopB
           accessibilityLabel={getAccessibilityLabel(icon)}
           accessibilityRole={"button"}
         >
-          <Icon icon={icon} colour={colour} hasBadge={badges[icon]} badgeProps={badgeProps[icon]} />
+          <Icon icon={icon} colour={colour} hasBadge={badges[icon]} />
           <MenuLabel label={label} textStyle={textStyle} />
         </TouchableOpacityWithDelay>
       ))}
@@ -75,17 +82,7 @@ const getAccessibilityLabel = (iconType: LeftIcon) => {
   return iconType;
 };
 
-function Icon({
-  icon,
-  colour = "#333333",
-  hasBadge,
-  badgeProps,
-}: {
-  icon: LeftIcon;
-  colour: string;
-  hasBadge: boolean;
-  badgeProps: Record<string, number>;
-}) {
+function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: string; hasBadge: boolean }) {
   switch (icon) {
     case LeftIcon.MENU:
       return (
@@ -103,7 +100,7 @@ function Icon({
     case LeftIcon.NOTIFICATIONS:
       return (
         <View style={styles.iconHeight} testID={NOTIF_ICON_BADGE(hasBadge)}>
-          <NotificationIcon badgeCount={badgeProps.count} />
+          <NotificationSvg color={colour} hasBadge={hasBadge} />
           {hasBadge ? <Badge /> : null}
         </View>
       );

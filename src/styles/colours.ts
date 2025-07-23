@@ -108,11 +108,7 @@ export default {
     body: "rgb(226, 1, 119)",
     border: "white",
   },
-  notification: {
-    badge: {
-      background: "#FF3636",
-    },
-  },
+
   slider: {
     inactive: "#BFBFC2",
     greyBar: "#E7E7EB",
