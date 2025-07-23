@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -47,7 +47,6 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
         Then("I should see Angela Martin", then.textVisible("Angela Martin"));
       });
     });
-    // @TODO solution for dynamic text - mocked data should be fine?
     When("I tap a Angela Martin", when.tapText("Angela Martin"), async () => {
       Then("I should be on the start duel screen", then.multipleTextVisible(["The matchup:", "Set the duel"]));
     });
@@ -64,7 +63,6 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
     When("I tap send duel request", when.tapID(ids.SEND_DUEL_REQUEST_BUTTON, 1500), async () => {
       Then("I should see a confirmation modal", then.textVisible("Confirm invitation?"));
     });
-    // @TODO solution for Alerts tapText - do not accept testID or translation key
     When("I tap confirm", when.tapText("Confirm"), async () => {
       Then("I should see the correct amount deducted from my YuCoin total from the top bar", then.textVisible("195"));
       Then("I should be on the duels hub", then.idVisible(ids.DUELS_HUB));
@@ -80,10 +78,11 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
     When("I accept the duel", when.tapID(ids.CTA_ACCEPT, 1500), async () => {
       Then("I should see the are you sure iOS modal", then.textVisible("Are you sure?"));
     });
-    // @TODO solution for Alerts tapText - do not accept testID or translation key
     When("I tap confirm", when.tapText("Confirm", 2000, true), async () => {
-      When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
-        Then("I should see the duels button", then.idVisible(ids.DUELS_BUTTON, 2000));
+      When("I to dismiss the referrals pop up", when.tapID(ids.DAILYSTEP_SCREEN_COIN, 2000), async () => {
+        When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
+          Then("I should see the duels button", then.idVisible(ids.DUELS_BUTTON, 2000));
+        });
       });
     });
     When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 1500), async () => {

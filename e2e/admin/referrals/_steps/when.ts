@@ -25,6 +25,7 @@ export const {
   restartWithData,
   restartWithoutDelete,
   restartWithoutDeleteTwoTimes,
+  reloadOnly,
 } = navigation.common;
 
 export const { loginAsUser } = navigation.login;
