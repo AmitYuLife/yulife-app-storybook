@@ -10,6 +10,7 @@ import { TextInputPassword } from "@components/molecules/text-input/text-input-p
 import LoginFormWrapper from "../subcomponents/login-form-wrapper";
 import { StyleSheet } from "react-native";
 import { handleOpenWebView } from "@navigation/utils";
+import { LinkButtonSpacing } from "../subcomponents/link-button-spacing";
 
 interface IProps {
   password: string;
@@ -85,11 +86,14 @@ const LoginPasswordScreen = ({
         translationKey={isSubmitting ? "screens.login_password.submitting" : "screens.login_password.cta_label"}
         onPress={onPressSubmit}
       />
-      <LinkButton
-        wrapperStyle={styles.forgot}
-        translationKey="screens.login_password.forgot.cta"
-        onPress={handleForgotPassword}
-      />
+      <LinkButtonSpacing>
+        <LinkButton
+          translationKey="screens.login_password.forgot.cta"
+          onPress={handleForgotPassword}
+          underline={true}
+          wrapperStyle={styles.linkButton}
+        />
+      </LinkButtonSpacing>
     </LoginFormWrapper>
   );
 };
@@ -98,10 +102,8 @@ const styles = StyleSheet.create({
   input: {
     paddingHorizontal: Style.adjust(30),
   },
-  forgot: {
+  linkButton: {
     alignSelf: "flex-start",
-    paddingLeft: Style.adjust(30),
-    marginTop: Style.adjust(24),
   },
 });
 
