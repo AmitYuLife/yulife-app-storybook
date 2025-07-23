@@ -12,7 +12,7 @@ const init = async () => {
   const [_, __, ...args] = process.argv;
 
   let [specName, ...restArgs] = args;
-  let region: "UK" | "SA" | "US" | "JP" = "UK";
+  let region: "UK" | "SA" | "US" | "JP" = (process.env.REGION as "UK" | "SA" | "US" | "JP") || "UK";
   let specList: string[];
   const specNames = Object.keys(specs).sort();
 
