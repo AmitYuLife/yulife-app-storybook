@@ -1,7 +1,7 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
-import { BUSINESS_EMPLOYEE_141 } from "./business_employees";
-import { CUSTOMER_141 } from "./customers";
+import { BUSINESS_EMPLOYEE_139, BUSINESS_EMPLOYEE_141 } from "./business_employees";
+import { CUSTOMER_139, CUSTOMER_141 } from "./customers";
 
 export const GENERIC_EMPLOYEE_INFO = {
   archived: false,
@@ -48,5 +48,20 @@ export const BUSINESS_EMPLOYEE_INFO_1 = {
     legal_first_name: CUSTOMER_141.data.firstName,
     legal_last_name: CUSTOMER_141.data.lastName,
     employment_email: CUSTOMER_141.data.email,
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_INFO_139 = {
+  type: "postgres",
+  modelName: "business_employee_info",
+  data: {
+    ...GENERIC_EMPLOYEE_INFO,
+    baseSalary: 100000,
+    business_employee_id: BUSINESS_EMPLOYEE_139.data.business_employee_id,
+    date_of_birth: moment().subtract(25, "years").toDate(),
+    legalIdentifier: "AA127108C",
+    legal_first_name: CUSTOMER_139.data.firstName,
+    legal_last_name: CUSTOMER_139.data.lastName,
+    employment_email: CUSTOMER_139.data.email,
   },
 } as IDatabaseItem;
