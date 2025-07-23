@@ -35,7 +35,6 @@ import { useNavigation } from "@navigation/navigation.context";
 import { Navigation } from "@navigation/main";
 import { NOTIF_CENTRE } from "@ids";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { MENU_ICON_MARGIN } from "@styles/top-bar.styles";
 
 const QuestsContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
@@ -57,7 +56,7 @@ const QuestsContainer = () => {
       {
         icon: LeftIcon.MENU,
         onPress: onLeftMenuPress,
-        style: { marginRight: MENU_ICON_MARGIN },
+        style: { marginRight: Style.adjust(16) },
       },
       ...(features.showNotificationCentre
         ? [

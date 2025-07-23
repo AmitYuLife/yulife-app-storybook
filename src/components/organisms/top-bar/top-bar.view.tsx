@@ -10,7 +10,6 @@ const TopBarView = ({
   leftIcon = LeftIcon.MENU,
   onPressLeftIcon,
   badges,
-  badgeProps,
   leftIcons = [
     {
       icon: leftIcon,
@@ -30,14 +29,7 @@ const TopBarView = ({
 
   return (
     <View pointerEvents="box-none" style={styles.wrapper} onLayout={onLayout}>
-      <Left
-        badges={badges}
-        badgeProps={badgeProps}
-        label={menuLabel}
-        icons={leftIcons}
-        colour={colour}
-        textStyle={textStyle}
-      />
+      <Left badges={badges} label={menuLabel} icons={leftIcons} colour={colour} textStyle={textStyle} />
       <Center name={name} timer={timer} logoColour={logoColour} colour={colour} textStyle={textStyle} />
       <Right icon={rightIcon} shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} />
     </View>
