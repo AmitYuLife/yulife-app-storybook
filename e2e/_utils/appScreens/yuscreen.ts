@@ -376,12 +376,14 @@ export const unlockedYumojiItemsVisible =
     scrollFromItemTab && (await scrollFromID(CATEGORY_TYPE("hairStyle"), "left", "fast")());
 
     await tapID(CATEGORY_TYPE("chest"), 3000)();
-    await scrollUntilIdVisible(
-      AVATAR_BUILDER_LIST,
-      YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
-      "down"
-    )();
-    await scrollFromID(AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
+    if (itemWorld !== "forest") {
+      await scrollUntilIdVisible(
+        AVATAR_BUILDER_LIST,
+        YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
+        "down"
+      )();
+      await scrollFromID(AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
+    }
     await idVisible(
       YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
       5000
@@ -390,12 +392,14 @@ export const unlockedYumojiItemsVisible =
       (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`), 3000)());
 
     await tapID(CATEGORY_TYPE("pants"), 3000)();
-    await scrollUntilIdVisible(
-      AVATAR_BUILDER_LIST,
-      YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
-      "down"
-    )();
-    await scrollFromID(AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
+    if (itemWorld !== "forest") {
+      await scrollUntilIdVisible(
+        AVATAR_BUILDER_LIST,
+        YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
+        "down"
+      )();
+      await scrollFromID(AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
+    }
     await idVisible(
       YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
       4000
@@ -404,11 +408,13 @@ export const unlockedYumojiItemsVisible =
       (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`), 3000)());
 
     await tapID(CATEGORY_TYPE("boots"), 3000)();
-    await scrollUntilIdVisible(
-      AVATAR_BUILDER_LIST,
-      YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
-      "down"
-    )();
+    if (itemWorld !== "forest") {
+      await scrollUntilIdVisible(
+        AVATAR_BUILDER_LIST,
+        YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
+        "down"
+      )();
+    }
     await idVisible(
       YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
       4000
