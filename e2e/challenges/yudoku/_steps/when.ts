@@ -1,15 +1,5 @@
+import * as ids from "@ids";
 import { navigation } from "@utils";
-import {
-  CELL_ROW_COLUMN,
-  CHALLENGE_SET_SCROLL,
-  LEADERBOARD_SWITCH,
-  SUDOKU_COMPLETED_SCREEN_SCROLL,
-  SUDOKU_HINT,
-  SUDOKU_NUMBER_INPUT,
-  SUDOKU_PAUSE,
-  SUDOKU_STAGING_SCREEN_SCROLL,
-  SUDOKU_UNDO_BUTTON,
-} from "@ids";
 import { screens } from "@appScreens";
 import { SocialGroupLeaderboard } from "../_resources/types";
 export { minimiseAndReopenApp, reloadOnly } from "@utils";
@@ -31,7 +21,7 @@ export const { scrollUntilTextVisible, scrollUntilIdVisible, swipeFromText, scro
 export const { tapMenuItem } = screens.menu;
 
 export const tapSudoku = async () => {
-  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Yudoku", "down")();
+  await scrollUntilTextVisible(ids.CHALLENGE_SET_SCROLL, "Yudoku", "down")();
   await tapText("Yudoku")();
 };
 
@@ -49,21 +39,20 @@ export const tapJoinLeaderboardFromYudoku = async () => {
 };
 
 export const tapJoinLeaderboardButton = async () => {
-  await swipeFromText("Join the daily Yudoku leaderboard?", "up", "fast")();
-  await tapText("Join the Leaderboard")();
+  await tapID(ids.JOIN_DAILY_SODOKU_LEADERBOARD, 2000)();
 };
 
 export const tapStartGame = async () => {
-  await scrollUntilTextVisible(SUDOKU_STAGING_SCREEN_SCROLL, "Start game", "down")();
+  await scrollUntilTextVisible(ids.SUDOKU_STAGING_SCREEN_SCROLL, "Start game", "down")();
   await tapText("Start game")();
 };
 
 export const tapSudokuHint = async () => {
-  await tapID(SUDOKU_HINT)();
+  await tapID(ids.SUDOKU_HINT)();
 };
 
 export const tapSudokuPause = async () => {
-  await tapID(SUDOKU_PAUSE)();
+  await tapID(ids.SUDOKU_PAUSE)();
 };
 
 export const tapResumeGame = async () => {
@@ -75,7 +64,7 @@ export const tapResumeSudoku = async () => {
 };
 
 export const tapCollect = async () => {
-  await scrollUntilTextVisible(SUDOKU_COMPLETED_SCREEN_SCROLL, "Collect", "down")();
+  await scrollUntilTextVisible(ids.SUDOKU_COMPLETED_SCREEN_SCROLL, "Collect", "down")();
   await tapText("Collect")();
 };
 
@@ -88,7 +77,7 @@ export const tapUseAHint = async () => {
 };
 
 export const tapUndo = async () => {
-  await tapID(SUDOKU_UNDO_BUTTON)();
+  await tapID(ids.SUDOKU_UNDO_BUTTON)();
 };
 
 export const tapExitChallenge = async () => {
@@ -103,12 +92,12 @@ export const completeYudoku =
     }
     await dismissNotificationScreenIfVisible();
     await wait(9000)();
-    await tapID(CELL_ROW_COLUMN(8, 6, 0))();
-    await tapID(SUDOKU_NUMBER_INPUT(4))();
-    await tapID(CELL_ROW_COLUMN(8, 7, 0))();
-    await tapID(SUDOKU_NUMBER_INPUT(7))();
-    await tapID(CELL_ROW_COLUMN(8, 8, 0))();
-    await tapID(SUDOKU_NUMBER_INPUT(8))();
+    await tapID(ids.CELL_ROW_COLUMN(8, 6, 0))();
+    await tapID(ids.SUDOKU_NUMBER_INPUT(4))();
+    await tapID(ids.CELL_ROW_COLUMN(8, 7, 0))();
+    await tapID(ids.SUDOKU_NUMBER_INPUT(7))();
+    await tapID(ids.CELL_ROW_COLUMN(8, 8, 0))();
+    await tapID(ids.SUDOKU_NUMBER_INPUT(8))();
     await wait(3000)();
     if (shouldCollect) {
       await tapCollect();
@@ -119,12 +108,12 @@ export const completeYudoku =
 export const completeYudokuPractice = (answersArr) => async () => {
   for (let i = 0; i < answersArr.length; i++) {
     const { row, column, value, answer } = answersArr[i];
-    await tapID(CELL_ROW_COLUMN(row, column, value))();
-    await tapID(SUDOKU_NUMBER_INPUT(answer))();
+    await tapID(ids.CELL_ROW_COLUMN(row, column, value))();
+    await tapID(ids.SUDOKU_NUMBER_INPUT(answer))();
   }
 };
 
 export const tapLeaderboardConsentSwitch =
   (leaderboard: SocialGroupLeaderboard, consent: boolean) => async () => {
-    await tapID(LEADERBOARD_SWITCH(leaderboard.type, consent))();
+    await tapID(ids.LEADERBOARD_SWITCH(leaderboard.type, consent))();
   };
