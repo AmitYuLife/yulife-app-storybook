@@ -1000,6 +1000,10 @@ export const DONATION_LIST_AVATARS = (count: number) => `DONATION_LIST_AVATARS_$
 export const ITEM_DETAILS_SUBTITLE = (text: string) => `ITEM_DETAILS_SUBTITLE_${text}`;
 export const REWARDS_MODAL_INFO_BUTTON = "rewards.got-it";
 export const REWARD_PASS = (label: string) => `REWARD_PASS_${label}`;
+export const DONATION_END_OF_SEASON_BUTTON = "battle-pass-end-of-season-button";
+export const END_OF_SEASON_TITLE = (title: string) => `END_OF_SEASON_TITLE_${title}`;
+export const END_OF_SEASON_ITEM_TITLE = (title: string) => `END_OF_SEASON_ITEM_TITLE_${title}`;
+export const END_OF_SEASON_ITEM_SCORE = (score: string) => `END_OF_SEASON_ITEM_SCORE_${score}`;
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";

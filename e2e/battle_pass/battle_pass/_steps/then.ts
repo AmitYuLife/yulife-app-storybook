@@ -3,7 +3,7 @@ import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import { scrollFromID } from "_utils/navigation/scrolling";
 import { challengeTypes, impactDonationImages } from "../_resources/constants";
-import { IMPACT_DONATION } from "../_resources/types";
+import { EndOfSeasonItems, IMPACT_DONATION } from "../_resources/types";
 import { expect } from "detox";
 
 export const {
@@ -65,3 +65,12 @@ export const extraChallengeRewardModalVisible = async () => {
   }
   throw new Error("No matching challenge title found");
 };
+
+export const assertEndOfSeasonItems =
+  (items: EndOfSeasonItems, waitTime = 2000) =>
+  async () => {
+    for (const { title, score } of items) {
+      await idVisible(ids.END_OF_SEASON_ITEM_TITLE(title), waitTime)();
+      await idVisible(ids.END_OF_SEASON_ITEM_SCORE(score), waitTime)();
+    }
+  };

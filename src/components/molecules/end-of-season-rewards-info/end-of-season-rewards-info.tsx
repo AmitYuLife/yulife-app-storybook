@@ -1,4 +1,5 @@
 import { Box, Image, TextTemplate } from "@atoms";
+import { END_OF_SEASON_ITEM_SCORE, END_OF_SEASON_ITEM_TITLE } from "@ids";
 import { Colours, Style } from "@styles";
 import { memo } from "react";
 
@@ -19,12 +20,14 @@ const EndOfSeasonRewardsInfo = ({ items }: IProps) => {
         <Box key={title} flexDirection="row" justifyContent="space-between" alignItems="center">
           <Box flexDirection="row" alignItems="center" gap={12} flex={0.8}>
             <Image source={icon} width={Style.adjust(32)} height={Style.adjust(32)} />
-            <TextTemplate type="l2" numberOfLines={1}>
+            <TextTemplate type="l2" numberOfLines={1} testID={END_OF_SEASON_ITEM_TITLE(title)}>
               {title}
             </TextTemplate>
           </Box>
           <Box alignItems="center">
-            <TextTemplate type="b2b">{score}</TextTemplate>
+            <TextTemplate type="b2b" testID={END_OF_SEASON_ITEM_SCORE(score)}>
+              {score}
+            </TextTemplate>
           </Box>
         </Box>
       ))}
