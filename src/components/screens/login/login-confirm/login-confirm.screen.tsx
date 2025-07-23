@@ -8,6 +8,7 @@ import { Alert, StyleSheet } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { openInbox, EmailException } from "react-native-email-link";
 import Logger from "@services/logging/logger";
+import { LinkButtonSpacing } from "../subcomponents/link-button-spacing";
 
 interface IProps {
   email: string;
@@ -97,7 +98,7 @@ const LoginConfirmScreen = ({
         </TextTemplate>
       </Box>
       <Button size="Large" onPress={handleOpenEmail} translationKey="screens.login_confirm.open_email" />
-      <Box ph={22} pb={24} pt={16}>
+      <LinkButtonSpacing>
         <LinkButton
           translationKey={isCooldownActive ? "screens.login_confirm.cooldown" : "screens.login_confirm.resend_link"}
           translationArgs={{
@@ -116,7 +117,7 @@ const LoginConfirmScreen = ({
             underline={true}
           />
         ) : null}
-      </Box>
+      </LinkButtonSpacing>
       <CaptchaInput {...captcha} />
     </LoginFormWrapper>
   );
