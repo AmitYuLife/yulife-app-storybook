@@ -20,6 +20,7 @@ const jestConfig: JestConfigWithTsJest = {
       /** @type {import('jest-allure2-reporter').ReporterOptions} */
       {
         extends: "detox-allure2-adapter/preset-allure",
+        resultsDir: "e2e-report/allure-results",
         testCase: {
           labels: {
             // if we want to go by behaviour

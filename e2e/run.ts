@@ -6,7 +6,9 @@ import { existsSync } from "fs";
 import path from "path";
 import axios from "axios";
 
-const CI_ARG = "--running-from-ci";
+const CI = process.env.CI;
+const ALLURE_HISTORY_FOLDER_LOCATION =
+  process.env.ALLURE_HISTORY_FOLDER_LOCATION || "./e2e-report/allure-report/history";
 
 const init = async () => {
   const [_, __, ...args] = process.argv;
@@ -42,7 +44,7 @@ const init = async () => {
   const TARGET_LOCALE = mapRegionToTargetLocale(region);
   const API_URL = `http://localhost:${mapRegionToPort(region)}/`;
 
-  if (!args.includes(CI_ARG)) {
+  if (!CI) {
     await assertBundlerIsRunning();
   }
 
@@ -50,6 +52,8 @@ const init = async () => {
 
   console.log(`API URL: ${API_URL}`);
   console.log(`TARGET_LOCALE: ${TARGET_LOCALE}`);
+
+  // Clean up any e2e-report/ios.* folders
 
   try {
     execSync(
@@ -67,19 +71,30 @@ const init = async () => {
         "info",
         "--json",
         "--outputFile=e2e-report/results.json",
-        ...restArgs.filter((arg) => ![CI_ARG].includes(arg)),
+        ...restArgs,
         specList.join(" "),
       ].join(" "),
       { stdio: "inherit" }
     );
   } finally {
-    await execSync("rm -rf allure-report || true");
-    await execSync("rm -rf e2e-report/allure || true");
-    await execSync("yarn allure generate -o ./e2e-report/allure");
+    // If we have a history folder that's provided, we want to copy it across to the report so we can identify flaky tests
+    if (ALLURE_HISTORY_FOLDER_LOCATION) {
+      try {
+        await execSync(
+          `cp -r ${ALLURE_HISTORY_FOLDER_LOCATION} ./e2e-report/allure-results/history || echo '${ALLURE_HISTORY_FOLDER_LOCATION} does not exist'`
+        );
+      } catch (e) {
+        console.error(`Error copying history folder: ${e}`);
+      }
+    }
 
-    if (!args.includes(CI_ARG)) {
+    await execSync(
+      "yarn allure generate ./e2e-report/allure-results --clean -o ./e2e-report/allure-report"
+    );
+
+    if (!CI) {
       console.log(`Viewing report.... cmd + c to close.`);
-      await execSync("yarn allure open ./e2e-report/allure");
+      await execSync("yarn allure open ./e2e-report/allure-report");
     }
   }
 };

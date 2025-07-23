@@ -6,7 +6,9 @@
       "config": "e2e/jest.config.ts"
     },
     "jest": {
-      "setupTimeout": 120000
+      "setupTimeout": 120000,
+      "retryAfterCircusRetries": true,
+      "retryTimes": 2
     }
   },
   "artifacts": {
