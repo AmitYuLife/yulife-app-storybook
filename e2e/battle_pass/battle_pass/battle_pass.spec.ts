@@ -1,5 +1,5 @@
 import { Given, When, Then, Feature, Scenario, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
-import { couponsTermsAndConditions } from "./_resources/fixtures";
+import { couponsTermsAndConditions, endOfSeasonHarmonyTitle, EndOfSeasonMockItems } from "./_resources/fixtures";
 import { outOfCoinsMessage } from "./_resources/constants";
 import { BUSINESS_THE_BEAR, BUSINESS_ACCOUNT_2 } from "battle_pass/_data";
 import * as scenario from "../_common/scenario";
@@ -27,7 +27,7 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see no progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 60, 0), 2000));
       Then("I should see all impact cards available", then.impactCardsVisible);
     });
-    When("I tap to donate to Clean the ocean", when.donate("ocean", 2), async () => {
+    When("I donate to Feed families", when.donate("meal", 2), async () => {
       Then("I should see progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(40, 60, 0), 2000));
     });
     When("I donate to complete the level", when.donate("ocean"), async () => {
@@ -38,6 +38,36 @@ Feature("I can view and use all battle pass features", async () => {
         Then("I should see the first reward is now available to claim", then.idVisible(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", 1), 2000));
         Then("I should see my updated coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85140)));
         Then("I should see level 2 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
+      });
+    });
+    When("I tap to claim my first reward", when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", 1), 2000), async () => {
+      When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
+        Then("I should see 6 items available to claim", then.idVisible(ids.CLAIMED_REWARD_ITEMS(6), 2000));
+      });
+    });
+    When("I tap to claim my prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
+      Then("I should be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+    });
+    When("I donate to Clean the ocean and complete the next level", when.donate("ocean", 5), async () => {
+      When("I tap to claim my prize", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
+        When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
+          When("I tap to claim the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
+            Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
+          });
+        });
+      });
+    });
+    When("I donate to 'Provide water' and complete the season", when.donate("water", 6), async () => {
+      When("I tap to claim my prize", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
+        Then("I should see the end of season modal with the correct title", then.textVisible(endOfSeasonHarmonyTitle, 2000));
+        Then("I should see the end of season action button", then.idVisible(ids.DONATION_END_OF_SEASON_BUTTON, 2000));
+      });
+    });
+    When("I terminate the app", when.terminateApp, async () => {
+      When("I follow the deep link to the rewards store", when.goToRewardStore, async () => {
+        When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
+          Then("I should see the updated end of season modal values", then.assertEndOfSeasonItems(EndOfSeasonMockItems));
+        });
       });
     });
   });
@@ -74,7 +104,7 @@ Feature("I can view and use all battle pass features", async () => {
         Then("I should see the active season description", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("3 rewards remaining"), 2000));
       });
     });
-    When("I tap donate to 'Plant a tree' twice", when.donate("tree", 2), async () => {
+    When("I donate to 'Plant a tree' twice", when.donate("tree", 2), async () => {
       When("I tap donate to 'Provide water' and complete my first level", when.donate("water", 1), async () => {
         Then("I should NOT see the insufficient balance error message", then.textNotVisible(outOfCoinsMessage, 2000));
         Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
@@ -91,10 +121,12 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
       Then("I should see the correct remaining rewards count", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("2 rewards remaining"), 2000));
     });
-    When("I minimise the app", when.minimiseApp, async () => {
-      When("I follow the deep link to donations", when.goToDonationsScreen, async () => {
-        Then("I should successfully be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
-        Then("I should see my avatar being first on the 'Plant trees' donations list", then.idVisibleAtIndex(ids.DONATION_LIST_AVATARS(1), 0, 2000));
+    When("I terminate the app", when.terminateApp, async () => {
+      When("I follow the deep link to the rewards store", when.goToRewardStore, async () => {
+        When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
+          Then("I should successfully be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+          Then("I should see my avatar being first on the 'Plant trees' donations list", then.idVisibleAtIndex(ids.DONATION_LIST_AVATARS(1), 0, 2000));
+        });
       });
     });
     When("I tap on my 'trees' leaderboard avatar", when.tapIDAtIndex(ids.DONATION_LIST_AVATARS(1), 0, 2000), async () => {

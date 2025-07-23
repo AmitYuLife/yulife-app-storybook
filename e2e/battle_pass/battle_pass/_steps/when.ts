@@ -13,6 +13,8 @@ export const {
   navigateViaID,
   tapIDAtIndex,
   minimiseApp,
+  restartWithoutDelete,
+  terminateApp,
 } = navigation.common;
 
 export const { closeQuitChallengeScreen, exitChallenge, startChallenge } = screens.challenges;
@@ -29,6 +31,6 @@ export const donate =
     }
   };
 
-export const goToDonationsScreen = async () => {
-  await device.launchApp({ url: "yulifeapp-detox://yulife/rewards?tab=donations" });
+export const goToRewardStore = async () => {
+  await device.launchApp({ url: "yulifeapp-detox://yulife/rewards" });
 };
