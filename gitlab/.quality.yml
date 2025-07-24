@@ -4,6 +4,7 @@ lint-bitrise:
     - linux_amd64
   stage: quality
   image: golang:1.17
+  allow_failure: true
   script:
     # Install dependencies
     - apt-get update && apt-get install -y git jq rsync

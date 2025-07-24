@@ -2,8 +2,14 @@ import { pathsToModuleNameMapper } from "ts-jest";
 import { compilerOptions } from "./tsconfig.json";
 import type { JestConfigWithTsJest } from "ts-jest";
 import { mapValues } from "lodash";
+import { readFile } from "fs/promises";
+import type { ReporterOptions } from "jest-allure2-reporter";
 
 const pathObj = pathsToModuleNameMapper(compilerOptions.paths);
+
+let count = 0;
+
+const fileCache = {} as Record<string, string[]>;
 
 /** @type {import('@jest/types').Config.InitialOptions} */
 const jestConfig: JestConfigWithTsJest = {
@@ -22,6 +28,13 @@ const jestConfig: JestConfigWithTsJest = {
         extends: "detox-allure2-adapter/preset-allure",
         resultsDir: "e2e-report/allure-results",
         testCase: {
+          // Bit of a hack, but we need to order by duration in order to maintain the order of the BDD
+          start: () => 0,
+          // ... so we just increment the count
+          stop: () => {
+            count++;
+            return count;
+          },
           labels: {
             // if we want to go by behaviour
             epic: ({ testCase }) =>

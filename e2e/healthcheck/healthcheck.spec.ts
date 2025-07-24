@@ -15,11 +15,18 @@ Feature("[HEALTH-CHECK TEST] - As a user I can get past the login screen", async
       });
     });
     When("I tap on the rewards tab", navigation.common.tapText("Rewards"), async () => {
-      // Will fail because balance is 200
-      Then("[FAIL CASE - DO NOT FIX] - I should see my total yucoin balance of 1", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1)));
+      When("I confirm my location selection", navigation.common.tapText("Confirm selection"), async () => {
+        // Should fail, do not fix
+        Then("I should see my total yucoin balance of 1", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1)));
+      });
     });
-    When("[FIL WHEN CASE - DO NOT FIX] - I tap on something that doesn't exist", navigation.common.tapText("This is not a valid text"), async () => {
-      Then("[FAIL CASE - DO NOT FIX] - I should see an error message", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1)));
+    When("I tap on the quest tab", navigation.common.tapText("Quests"), async () => {
+      Then("I should see the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+    });
+    // Should fail, do not fix
+    When("I tap on something that doesn't exist", navigation.common.tapText("This is not a valid text"), async () => {
+      // Should fail, do not fix
+      Then("I should see an error message", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1)));
     });
   });
 });

@@ -447,6 +447,50 @@ workflows:
               --source-control-repository https://gitlab.com/yu-life/yulife-rn-client/ \
               --source-control-revision $BITRISE_GIT_COMMIT \
               --builder-name $TRIGGERING_USER_NAME
+  combine-overnight-detox-reports:
+    steps:
+    - activate-ssh-key@4.1:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@8.0:
+        inputs:
+        - reset_repository: "Yes"
+    - nvm@1: {}    
+    - script@1:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            pip install --upgrade pip
+            pip install --upgrade setuptools
+
+            # install awscli
+            brew install awscli
+
+            ls e2e
+
+            # Pull the last report if it exists
+            npm i -g ts-node
+            npm i -g allure-commandline
+            ts-node  ./e2e/combineOvernightReports.ts
+    - slack@3:
+        is_always_run: false
+        inputs:
+        - api_token: ""
+        - channel: qa-alerts
+        - text: Detox overnight run report ready
+        - from_username: Detox
+        - pretext: ""
+        - fields: Results|https://detox.develop.uk.yulife.engineering/reports/develop-summary/index.html
+        - buttons: View Results|https://detox.develop.uk.yulife.engineering/reports/develop-summary/index.html
+        - from_username_on_error: Detox
+        - pretext_on_error: '*Detox tests failed!* :cry:'
+        - is_debug_mode: "yes"
+        - title_link: https://detox.develop.uk.yulife.engineering/reports/develop-summary/index.html
+        - webhook_url: $SLACK_WEBHOOK_URL
   ios-UAT:
     before_run:
     - ios-primary
