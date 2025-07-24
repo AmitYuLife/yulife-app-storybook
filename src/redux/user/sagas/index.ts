@@ -100,7 +100,7 @@ export default [
   takeLatest(OPEN_MY_ACCOUNT, openMyAccountSaga),
   takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
-  takeLatest([REFRESH_USER_PROFILE, UPDATE_APP_STATE], getUserProfileData),
+  takeLatest([LOGIN_USER_SUCCESS, REFRESH_USER_PROFILE, UPDATE_APP_STATE], getUserProfileData),
   takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], clearMobileTabsUnreadBadgeCounts),
   takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS, UPDATE_USER_PROFILE_HERO_CARDS], showEventFinishDialog),
   takeLatest(SET_DEVICE_LOCALE, changeUserLocaleSaga),
