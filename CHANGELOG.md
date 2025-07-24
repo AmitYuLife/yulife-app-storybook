@@ -7,6 +7,65 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.73.0] - 2025-07-24
+
+### Features
+
+- Feature NVS-1447: Implement forget password workflow
+
+### Bugfixes
+
+- Bugfix GS-1602: Add denyCount for push notifications
+- Bugfix: Fix overlapping lunar images
+
+### Tasks
+
+- Task NVS-1447: Improve Login screens' link buttons spacing consistency
+- Revert "Task GS-1796: Get initial steps before subscribe"
+- Task GS-1802: Only call GetInboxMessages and ClearUserProfileBadgeCount once
+- Task GS-1796: Get initial steps before subscribe
+- Task GS-1798: Dont allow user to go to the achievements screen when inspecting a user
+- Task GS-1746: Migrate Show Weeklies toggles to settings
+- Task NVS-1477: Split birthday consent
+- Task GS-1793: Fix season staging background
+- Task: update intercom again
+- Task ISA-3568: Record videos on failed detox tests
+- Task CTE-273: breathing exercise fixes
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore: allow REGION to be set for single runs
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore DEVOPS-3695: Add detox health-check test
+
+### Improvements
+
+- CTE-295: improve allure reporting with detox
+- CTE-285: Improve detox
+
+### Extra
+
+- Detox Health and Group Health Two fixes
+- Detox: Referrals Spec Flow
+- CTE-298: Track allure history for detox runs
+- Detox: Donations End of Season
+- Detox YuScreen Fixes
+- Revert NVS-1377: notification icon
+- Purge GS-1667: Purge tempGameEnableYumojiBuilderScaleAnimation
+- Detox: Pension Business Domain
+- CTE-294: upgrade detox to latest version
+- CTE-293: Swap out jest for allure reports
+- Detox Login Fixes 22/07
+- CTE-286: allow specific spec file to be run
+- Detox: Surveys Journey
+- Purge GS-1598: Delete game hide workout internal content
+- Detox NVS-1446: removal of survey related data from activity
+- Detox NVS-1417 and Gifting Fixes
+- Fix NVS-1470: safer back navigation from login confirm
+- NVS-1377: Badge icon animation
+
 ## [4.72.0] - 2025-07-16
 
 ### Tasks
