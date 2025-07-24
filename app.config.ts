@@ -43,6 +43,17 @@ const appNameWithVersion = (() => {
   return environmentConfig.app_name.replace(/\)$/, ` v${appVersioning.full})`);
 })();
 
+const buildAndroid15OnLocal = (() => {
+  if (process.env.ENV === "dev" || process.env.ENV === "develop") {
+    return {
+      targetSdkVersion: 35,
+      compileSdkVersion: 35,
+    };
+  }
+
+  return {};
+})();
+
 export default () => ({
   name: "YuLife",
   platforms: ["ios", "android"],
@@ -156,6 +167,7 @@ export default () => ({
         android: {
           extraProguardRules: proguardRules,
           useLegacyPackaging: true,
+          ...buildAndroid15OnLocal,
         },
       },
     ],
