@@ -163,7 +163,7 @@ export const CORE_JOURNEY_2 = {
   data: {
     _id: generateRandomMongoId(),
     journeyId: `engagement_survey_pulse_${Date.now}`,
-    name: "Engagement Survey: Pulse",
+    name: "Engagement Survey: Detox Pulse",
     allAnswerKeys: ["one_thing_you_would_change", "recommend_workplace_pulse"],
     published: true,
     showHeroCard: true,
