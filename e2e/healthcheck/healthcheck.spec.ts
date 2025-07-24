@@ -5,7 +5,7 @@ import * as scenario from "../admin/_common/scenario";
 import * as data from "../admin/_data";
 import * as ids from "@ids";
 
-Feature("[HEALTH-CHECK TEST] - As a user I can get past the login screen", async () => {
+Feature("As a user I can perform a quick healthcheck of the app for testing purposes", async () => {
   Scenario("I can login with correct login detail and see the connection setup for daily activities", scenario.start, async () => {
     Given("I have entered a valid email address and valid password", navigation.login.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
       When("I do something", [], () => {
