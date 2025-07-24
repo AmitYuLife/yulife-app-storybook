@@ -202,7 +202,6 @@
     "deleted_user_name": "同僚",
     "level": "レベル%{level}",
     "many_more": "+他多数",
-    "max_notification": "99 +",
     "off": "Off",
     "on": "On",
     "power": "Power",
@@ -1180,7 +1179,7 @@
       }
     },
     "language_selector_settings": {
-      "description": "言語を選択",
+      "description": "言語の選択",
       "setting_language_loading_message": "%{value}をメイン言語として初期化中...",
       "title": "言語"
     },
