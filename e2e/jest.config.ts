@@ -26,6 +26,7 @@ const jestConfig: JestConfigWithTsJest = {
         extends: "detox-allure2-adapter/preset-allure",
         resultsDir: "e2e-report/allure-results",
         testCase: {
+          descriptionHtml: (args) => getStepDescriptionHtml(args),
           // Bit of a hack, but we need to order by duration in order to maintain the order of the BDD
           start: () => 0,
           // ... so we just increment the count
@@ -92,6 +93,33 @@ const jestConfig: JestConfigWithTsJest = {
 export default jestConfig;
 
 const fileCache = {} as Record<string, string[]>;
+
+function getStepDescriptionHtml({ value, testCaseMetadata, ...rest }) {
+  try {
+    const { fileName, lineNumber } = testCaseMetadata.sourceLocation;
+    if (!fileCache[fileName]) {
+      fileCache[fileName] = readFileSync(fileName, "utf8").split("\n");
+    }
+
+    const filePath = fileName.split("yulife-rn-client/")?.[1];
+
+    return [
+      `<pre>`,
+      `<a href="javascript:void(0)" onclick="navigator.clipboard.writeText('${filePath}:${lineNumber}')">📋 ${filePath}:${lineNumber}</a>`,
+      `<br/>`,
+      "<code>",
+      ...fileCache[fileName].slice(Math.max(lineNumber - 3, 0), lineNumber - 1),
+      `<mark>${fileCache[fileName][lineNumber - 1]}</mark>`,
+      ...fileCache[fileName].slice(
+        lineNumber + 1,
+        Math.min(lineNumber + 2, fileCache[fileName].length)
+      ),
+      "</code></pre>",
+    ].join("\n");
+  } catch (e) {
+    return value;
+  }
+}
 
 function getBDDDescription({ value, testCase, testStepMetadata }) {
   try {
