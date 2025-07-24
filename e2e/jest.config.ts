@@ -2,14 +2,12 @@ import { pathsToModuleNameMapper } from "ts-jest";
 import { compilerOptions } from "./tsconfig.json";
 import type { JestConfigWithTsJest } from "ts-jest";
 import { mapValues } from "lodash";
-import { readFile } from "fs/promises";
+import { readFileSync } from "fs";
 import type { ReporterOptions } from "jest-allure2-reporter";
 
 const pathObj = pathsToModuleNameMapper(compilerOptions.paths);
 
 let count = 0;
-
-const fileCache = {} as Record<string, string[]>;
 
 /** @type {import('@jest/types').Config.InitialOptions} */
 const jestConfig: JestConfigWithTsJest = {
@@ -57,6 +55,14 @@ const jestConfig: JestConfigWithTsJest = {
                 .join(" >> "),
           },
         },
+        testStep: {
+          displayName: (args) => {
+            if (args.value.startsWith("before")) {
+              return getBDDDescription(args);
+            }
+            return args.value;
+          },
+        },
       },
     ],
   ],
@@ -84,3 +90,30 @@ const jestConfig: JestConfigWithTsJest = {
 };
 
 export default jestConfig;
+
+const fileCache = {} as Record<string, string[]>;
+
+function getBDDDescription({ value, testCase, testStepMetadata }) {
+  try {
+    const { fileName, lineNumber } = testStepMetadata.sourceLocation;
+    if (!fileCache[fileName]) {
+      fileCache[fileName] = readFileSync(fileName, "utf8").split("\n");
+    }
+
+    // take the previous 5 lines
+    const candidateLines = fileCache[fileName]
+      .slice(Math.max(lineNumber - 5, 0), lineNumber)
+      .map((l) => l.replace(/  /g, "")) // trim spaces
+      .filter((l) => l.startsWith("Given") || l.startsWith("When") || l.startsWith("Feature"))
+      .reverse();
+
+    // can't find it in code, return the value instead
+    if (candidateLines.length === 0) {
+      return value;
+    }
+
+    return candidateLines[0].split(",")[0].replace(/"/g, "").replace("(", " ");
+  } catch (e) {
+    return testCase?.ancestorTitles?.slice(-1)?.[0] || value;
+  }
+}
