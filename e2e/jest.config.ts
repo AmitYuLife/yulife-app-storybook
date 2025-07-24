@@ -9,6 +9,8 @@ const pathObj = pathsToModuleNameMapper(compilerOptions.paths);
 
 let count = 0;
 
+const timestamp = Date.now();
+
 /** @type {import('@jest/types').Config.InitialOptions} */
 const jestConfig: JestConfigWithTsJest = {
   testRunner: "jest-circus/runner",
@@ -28,11 +30,11 @@ const jestConfig: JestConfigWithTsJest = {
         testCase: {
           descriptionHtml: (args) => getStepDescriptionHtml(args),
           // Bit of a hack, but we need to order by duration in order to maintain the order of the BDD
-          start: () => 0,
-          // ... so we just increment the count
+          start: () => timestamp,
+          // ... so we just increment the count, but keep the times
           stop: () => {
             count++;
-            return count;
+            return timestamp + count;
           },
           labels: {
             // if we want to go by behaviour
