@@ -1,14 +1,15 @@
-import { execSync, fork } from "child_process";
+import { ChildProcess, execSync, spawn } from "child_process";
 import specs from "./specs.json";
 import { select } from "@inquirer/prompts";
-import { readFile } from "fs/promises";
 import { existsSync } from "fs";
-import path from "path";
 import axios from "axios";
+import liveServer from "live-server";
 
 const CI = process.env.CI;
 const ALLURE_HISTORY_FOLDER_LOCATION =
   process.env.ALLURE_HISTORY_FOLDER_LOCATION || "./e2e-report/allure-report/history";
+
+let server: ChildProcess;
 
 const init = async () => {
   const [_, __, ...args] = process.argv;
@@ -53,8 +54,6 @@ const init = async () => {
   console.log(`API URL: ${API_URL}`);
   console.log(`TARGET_LOCALE: ${TARGET_LOCALE}`);
 
-  // Clean up any e2e-report/ios.* folders
-
   try {
     execSync(
       [
@@ -93,11 +92,45 @@ const init = async () => {
     );
 
     if (!CI) {
-      console.log(`Viewing report.... cmd + c to close.`);
-      await execSync("yarn allure open ./e2e-report/allure-report");
+      if (!server) {
+        server = await liveServer.start({
+          root: "./e2e-report/allure-report",
+          file: "index.html",
+          port: 3015,
+          logLevel: 0,
+        });
+      }
+
+      console.log(["", "", "======================", ""].join("\n"));
+      console.log(`Successfully ran ${specName}!`);
+      console.log(`Report opened at http://localhost:3015`);
+      console.log(["", "", "======================", ""].join("\n"));
+
+      try {
+        const choice = await select({
+          message: "What would you like to do next?",
+          choices: ["replay the test", "exit"],
+        });
+        if (choice === "exit") {
+          process.exit(0);
+        }
+
+        if (choice === "replay the test") {
+          await init();
+        }
+      } catch (e) {}
     }
   }
 };
+
+["SIGINT", "SIGTERM", "exit"].forEach((signal) => {
+  process.on(signal, () => {
+    if (liveServer) {
+      liveServer.kill();
+    }
+    process.exit(0);
+  });
+});
 
 init();
 
