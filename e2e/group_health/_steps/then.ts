@@ -365,11 +365,9 @@ export const groupHealthRewardsPurchasedVisible =
   (product?: GHI_REWARD_CLAIM_PAGE_DETAILS, waitTime?: number) => async () => {
     const prod = product ? product.heading : "GOSH";
 
-    await textVisible(moment().format("DD"))();
-    await textVisible(moment().format("MMM"))();
     switch (true) {
       case prod === "Boots":
-        await textVisible("£5 Boots voucher", waitTime)();
+        await textVisible("Boots Voucher", waitTime)();
         break;
       case prod === "Urban":
         await textVisible("1 £10 Urban Voucher", waitTime)();
@@ -390,8 +388,7 @@ export const groupHealthRewardsPurchasedVisible =
         await textVisible("0 YuCoin")();
         break;
       case prod === "GOSH":
-        await textVisible("100 £ Donation to GOSH", waitTime)();
-        await textVisible("0 YuCoin")();
+        await textVisible("GOSH", waitTime)();
         break;
     }
   };

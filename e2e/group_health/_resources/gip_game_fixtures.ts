@@ -6,7 +6,7 @@ export const product_page = {
     },
     buttons: {
       how_this_works_button: "How does this work?",
-      eap_button: "Employee Assistance Program",
+      eap_button: "Employee Assistance Programme",
       vgp_button: "Virtual GP service",
     },
   },
