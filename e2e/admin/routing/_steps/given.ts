@@ -17,3 +17,7 @@ export const loginAsUser = (
 ) => {
   return navigation.login.loginAsUser(customer, auth, fitkitAuth, region);
 };
+
+export const allowNotifications = async () => {
+  await device.launchApp({ permissions: { notifications: "YES" } });
+};

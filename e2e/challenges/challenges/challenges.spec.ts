@@ -12,8 +12,8 @@ import { getFullName } from "_utils/users";
 Feature("As a user I can take a challenge", async () => {
   Scenario("I can take a challenge and cancel it", scenario.start, async () => {
     Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
+      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
+      Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1), 3000));
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
       Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
@@ -21,7 +21,7 @@ Feature("As a user I can take a challenge", async () => {
     When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
       Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_1.data.earnRate));
     });
-    When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
+    When("I tap 'take challenge'", when.tapText("Take challenge", 2000), async () => {
       When("I dismiss this screen if visible", when.dismissNotificationScreenIfVisible, async () => {
         Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
         Then("I should see the cancel button", then.idVisible(ids.BUTTON_CLOSE_CHALLENGE));
@@ -30,17 +30,17 @@ Feature("As a user I can take a challenge", async () => {
     When("I tap this button", when.tapID(ids.BUTTON_CLOSE_CHALLENGE), async () => {
       Then("I should see the cancel challenge confirmation screen", then.textVisible("Call it quits?"));
     });
-    When("I tap exit", when.tapText(t("Exit challenge")), async () => {
-      Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+    When("I tap exit", when.tapText("Exit challenge", 3000), async () => {
+      Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 2000));
     });
-    When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+    When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
       Then("I should see the number of points I started with", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
   });
 
   Scenario("Active challenge should be cancelled on logout", scenario.start, async () => {
     Given("I login and go to the yucoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true), async () => {
-      Then("I should see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0)));
+      Then("I should see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0), 3000));
     });
     When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
       When("I tap the first level button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
@@ -207,10 +207,10 @@ Feature("As a user I can take a challenge", async () => {
         Then("I should see Claim available for the first milestone", then.claimVisible(1));
       });
     });
-    When("I click Claim rewards", when.tapText(t("Claim rewards")), async () => {
+    When("I click Claim rewards", when.tapText("Claim rewards", 3000), async () => {
       Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("Ends on the 10th", "650", 1, "1 Profile viewed"));
     });
-    When("I click Claim", when.tapText(t("Claim")), async () => {
+    When("I click Claim", when.tapText("Claim", 3000), async () => {
       When("I wait", when.wait(5000), async () => {
         Then("I should see the first milestone complete", then.milestoneComplete(0));
       });

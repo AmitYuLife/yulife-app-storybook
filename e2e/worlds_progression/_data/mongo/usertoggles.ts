@@ -236,6 +236,8 @@ export const CUSTOMER_81_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
+      // TODO: Remove once 'showWeeklies' is fully migrated to settings
+      showWeeklies: true,
       showGoals: true,
     },
   },

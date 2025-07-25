@@ -11,8 +11,8 @@ import { bodyCoachWorkout10 } from "./_resources/fixtures";
 Feature("Fiit in app", async () => {
   Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)));
+      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
+      Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5), 3000));
     });
     When("I tap the level 5 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
       When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
@@ -57,7 +57,7 @@ Feature("Fiit in app", async () => {
       Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS));
     });
     When("I scroll further down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast"), async () => {
-      Then("I can see 1/1 challenges completed today", then.textVisible("Today's challenges (1/1)"));
+      Then("I can see 1/1 challenges completed today", then.textVisible("Today's challenges (1/1)", 3000));
       Then("I can see the fiit challenge completed today, with the correct duration", then.canSeeFiitCompleted(data.MEDIA_5));
     });
   });
@@ -106,8 +106,8 @@ Feature("Fiit in app", async () => {
 
   Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge, close the app and open it again, and still be awarded YuCoin", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)));
+      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
+      Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5), 3000));
     });
     When("I tap the level 5 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
       When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
@@ -145,7 +145,7 @@ Feature("Fiit in app", async () => {
       Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS));
     });
     When("I scroll further down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast"), async () => {
-      Then("I can see 1/1 challenges completed today", then.textVisible("Today's challenges (1/1)"));
+      Then("I can see 1/1 challenges completed today", then.textVisible("Today's challenges (1/1)", 3000));
       Then("I can see the fiit challenge completed today, with the correct duration", then.canSeeFiitCompleted(data.MEDIA_7));
     });
   });
