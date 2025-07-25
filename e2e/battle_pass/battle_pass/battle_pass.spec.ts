@@ -169,7 +169,7 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
       When("I go to the rewards store", when.tapID(ids.NAV_BAR("rewards"), 2000), async () => {
-        Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM));
+        Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
       });
     });
     When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {

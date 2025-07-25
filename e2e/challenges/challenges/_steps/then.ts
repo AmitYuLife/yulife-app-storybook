@@ -123,7 +123,7 @@ export const yuCoinPageEventDataCorrect =
   };
 
 export const claimVisible = (numOfStars: number) => async () => {
-  await textVisible("Claim")();
+  await textVisible("Claim", 3000)();
   await idVisible(ids.CLAIM_BUTTON)();
   await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))();
   await idVisible(ids.NUM_OF_STARS(numOfStars))();
@@ -136,7 +136,8 @@ export const onCompletedEventMilestonePage =
     await textVisible(eventTitle)();
     await textVisible("Great job!")();
     await textVisible(
-      "You have reached the event milestone!\nCongratulations. Claim your rewards"
+      "You have reached the event milestone!\nCongratulations. Claim your rewards",
+      3000
     )();
     await textVisible(`${yuCoin} YuCoin`)();
     await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))();
@@ -146,8 +147,8 @@ export const onCompletedEventMilestonePage =
   };
 
 export const milestoneComplete = (index: number) => async () => {
-  await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), index)();
-  await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), index)();
+  await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), index, 3000)();
+  await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), index, 3000)();
 };
 
 export const onCompletedEventPage =

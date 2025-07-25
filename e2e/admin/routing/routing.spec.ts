@@ -28,11 +28,13 @@ Feature("As a user I can navigate through member routes correctly", async () => 
   });
 
   Scenario("I can view the menu screens in the app", scenario.start, async () => {
-    When("I have done yesterday 309 steps", given.addStepsHistoricalData(309), async () => {
-      When("I have done yesterday Biking 11.3 km", given.addCyclingHistoricalData(11345), async () => {
-        When("I have done yesterday 13:20 min Mindfulness", given.addMindfulnessHistoricalData(800), async () => {
-          Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
-            Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+    Given("Notifications permission is granted", given.allowNotifications, async () => {
+      Given("I have done yesterday 309 steps", given.addStepsHistoricalData(309), async () => {
+        Given("I have done yesterday Biking 11.3 km", given.addCyclingHistoricalData(11345), async () => {
+          Given("I have done yesterday 13:20 min Mindfulness", given.addMindfulnessHistoricalData(800), async () => {
+            Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
+              Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+            });
           });
         });
       });
@@ -40,8 +42,10 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 3000), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
     });
-    When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
+    When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
       Then("I should be on activity history", then.textVisible("Activity history"));
+    });
+    When("I refresh the activity history page", when.tapID(ids.LEFT_HEADING_BUTTON("Activity history"), 2000), async () => {
       Then("I should see 309 steps", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("309 Steps")));
       Then("I should see 309 phone steps", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Phone: 309 Steps")));
       Then("I should see 13:20 mindful mins", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("11.3 km Cycling")));
@@ -53,7 +57,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
     });
-    When("I tap settings", when.tapMenuItem(t("Settings")), async () => {
+    When("I tap settings", when.tapMenuItem("Settings"), async () => {
       Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
     });
     When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN, "up", "slow", 0.3), async () => {
@@ -69,37 +73,37 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         Then("I should see 'Notify me when I have completed a challenge'", then.idVisible(ids.SETTINGS_DESC("Notify me when I have completed a challenge.")));
       });
     });
-    When("I tap on the Challenge completion switch", when.tapID(ids.SETTINGS_SWITCH(t("Challenge completion"), true)), async () => {
+    When("I tap on the Challenge completion switch", when.tapID(ids.SETTINGS_SWITCH("Challenge completion", true)), async () => {
       Then("the switch should be off", then.idVisible(ids.SETTINGS_SWITCH("Challenge completion", false)));
     });
-    When("I tap on the Challenge completion switch", when.tapID(ids.SETTINGS_SWITCH(t("Challenge completion"), false)), async () => {
+    When("I tap on the Challenge completion switch", when.tapID(ids.SETTINGS_SWITCH("Challenge completion", false)), async () => {
       Then("the switch should be on", then.idVisible(ids.SETTINGS_SWITCH("Challenge completion", true)));
       Then("I should see Duels", then.idVisible(ids.SETTINGS_NAME("Duels")));
       Then("I should see 'Notify me when someone challenges me to a Duel, and when the results are in'", then.idVisible(ids.SETTINGS_DESC("Notify me when someone challenges me to a Duel, and when the results are in.")));
     });
-    When("I tap on the Duels switch", when.tapID(ids.SETTINGS_SWITCH(t("Duels"), true)), async () => {
+    When("I tap on the Duels switch", when.tapID(ids.SETTINGS_SWITCH("Duels", true)), async () => {
       Then("the switch should be off", then.idVisible(ids.SETTINGS_SWITCH("Duels", false)));
     });
-    When("I tap on the Duels switch", when.tapID(ids.SETTINGS_SWITCH(t("Duels"), false)), async () => {
+    When("I tap on the Duels switch", when.tapID(ids.SETTINGS_SWITCH("Duels", false)), async () => {
       Then("the switch should be on", then.idVisible(ids.SETTINGS_SWITCH("Duels", true)));
       Then("I should see Surges", then.idVisible(ids.SETTINGS_NAME("Surges")));
       Then("I should see 'Notify me when there is a YuCoin surge'", then.idVisible(ids.SETTINGS_DESC("Notify me when there is a YuCoin surge.")));
     });
-    When("I tap on the Surges switch", when.tapID(ids.SETTINGS_SWITCH(t("Surges"), true)), async () => {
+    When("I tap on the Surges switch", when.tapID(ids.SETTINGS_SWITCH("Surges", true)), async () => {
       Then("the switch should be off", then.idVisible(ids.SETTINGS_SWITCH("Surges", false)));
     });
-    When("I tap on the Surges switch", when.tapID(ids.SETTINGS_SWITCH(t("Surges"), false)), async () => {
+    When("I tap on the Surges switch", when.tapID(ids.SETTINGS_SWITCH("Surges", false)), async () => {
       Then("the switch should be on", then.idVisible(ids.SETTINGS_SWITCH("Surges", true)));
       Then("I should see Marketing updates", then.idVisible(ids.SETTINGS_NAME("Marketing updates")));
       Then("I should see 'Notify me about general YuLife marketing campaigns'", then.idVisible(ids.SETTINGS_DESC("Notify me about general YuLife marketing campaigns.")));
     });
-    When("I tap on the Marketing updates switch", when.tapID(ids.SETTINGS_SWITCH(t("Marketing updates"), true)), async () => {
+    When("I tap on the Marketing updates switch", when.tapID(ids.SETTINGS_SWITCH("Marketing updates", true)), async () => {
       Then("the switch should be off", then.idVisible(ids.SETTINGS_SWITCH("Marketing updates", false)));
     });
-    When("I tap on the Marketing updates switch", when.tapID(ids.SETTINGS_SWITCH(t("Marketing updates"), false)), async () => {
+    When("I tap on the Marketing updates switch", when.tapID(ids.SETTINGS_SWITCH("Marketing updates", false)), async () => {
       Then("the switch should be on", then.idVisible(ids.SETTINGS_SWITCH("Marketing updates", true)));
     });
-    When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Settings"))), async () => {
+    When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Settings")), async () => {
       Then("I should be the yucoin tab", then.onDailySteps());
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {

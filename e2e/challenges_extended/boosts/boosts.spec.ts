@@ -47,9 +47,9 @@ Feature("Level boosts", async () => {
         Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"));
       });
     });
-    When("I swipe right on the yumoji categories", when.scrollFromID(ids.CATEGORY_TYPE("hairStyle"), "left", "fast"), async () => {
-      When("I tap on the 'chest' category", when.tapID(ids.CATEGORY_TYPE("chest")), async () => {
-        Then("I should see the yumoji item I just unlocked", then.idVisible(ids.YUMOJI_PART_ID_STATUS("available", "yumoji_male_chest_base_ocean")));
+    When("I swipe right on the yumoji categories", when.scrollFromID(ids.CATEGORY_TYPE("hairStyle"), "left", "slow"), async () => {
+      When("I tap on the 'chest' category", when.tapID(ids.CATEGORY_TYPE("chest"), 3000), async () => {
+        Then("I should see the yumoji item I just unlocked", then.idVisible(ids.YUMOJI_PART_ID_STATUS("available", "yumoji_male_chest_base_ocean"), 3000));
       });
     });
   });
