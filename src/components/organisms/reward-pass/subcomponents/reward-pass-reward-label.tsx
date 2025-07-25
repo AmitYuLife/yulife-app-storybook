@@ -1,6 +1,7 @@
 import { Box, RawImage, TextTemplate } from "@atoms";
 import { IBoxProps } from "@atoms/box/box.types";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
+import { REWARD_STORE_TEASER } from "@ids";
 import { Style } from "@styles";
 import { StyleSheet } from "react-native";
 
@@ -16,7 +17,7 @@ export const RewardPassRewardLabel = ({ label, iconUrl, ...props }: IRewardPassR
         <RawImage source={iconUrl} style={styles.icon} />
       </Box>
 
-      <TextTemplate type="l1b" color="white">
+      <TextTemplate type="l1b" color="white" testID={REWARD_STORE_TEASER(label)}>
         {label}
       </TextTemplate>
 
