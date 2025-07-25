@@ -103,7 +103,7 @@ function getStepDescriptionHtml({ value, testCaseMetadata, ...rest }) {
       fileCache[fileName] = readFileSync(fileName, "utf8").split("\n");
     }
 
-    const filePath = fileName.split("yulife-rn-client/")?.[1];
+    const filePath = fileName.split("/e2e/")?.[1] || fileName;
 
     return [
       `<pre>`,
