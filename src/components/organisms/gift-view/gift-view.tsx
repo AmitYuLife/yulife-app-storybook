@@ -51,11 +51,13 @@ type BackgroundAsset = {
   };
   backgroundColor: string;
   textColor?: string;
+  yuCoinTextColor?: string;
 };
 
 type Props = {
   yuCoinAmount: number;
   textColor: string;
+  yuCoinTextColor: string;
   backgrounds?: BackgroundAsset[];
   selectBackground?: (key: BackgroundAsset) => void;
   background?: BackgroundAsset;
@@ -79,6 +81,7 @@ type Props = {
 const GiftView = memo(
   ({
     yuCoinAmount,
+    yuCoinTextColor,
     backgrounds,
     selectBackground,
     background,
@@ -108,7 +111,7 @@ const GiftView = memo(
           <Sender sender={sender} textColor={textColor} />
           {!showContent ? null : (
             <>
-              <YuCoin yuCoinAmount={yuCoinAmount} />
+              <YuCoin yuCoinAmount={yuCoinAmount} yuCoinTextColor={yuCoinTextColor} />
               <Sticker
                 onPressSticker={onPressSticker}
                 stickers={stickers}
@@ -203,30 +206,32 @@ const Sender = memo(({ sender, textColor }: Pick<Props, "sender" | "textColor" |
   return <Box height={62} />;
 });
 
-const YuCoin = memo(({ yuCoinAmount }: Pick<Props, "yuCoinAmount">) => {
-  if (!yuCoinAmount) {
-    return null;
-  }
+const YuCoin = memo(
+  ({ yuCoinAmount, yuCoinTextColor = Colours.primary.p600 }: Pick<Props, "yuCoinAmount" | "yuCoinTextColor">) => {
+    if (!yuCoinAmount) {
+      return null;
+    }
 
-  return (
-    <Box
-      mt={54}
-      w={Style.DEVICE_WIDTH}
-      disableAutoAdjust={true}
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="row"
-      gap={4}
-      ph={24}
-      entering={BounceIn.duration(1000)}
-    >
-      <TextTemplate type="bigYuCoin" color={Colours.primary.p600} testID={SENDER_GIFTING_AMOUNT(yuCoinAmount)}>
-        +{addCommasToNumber(yuCoinAmount)}
-      </TextTemplate>
-      <YuCoinTopNavIcon size={30} />
-    </Box>
-  );
-});
+    return (
+      <Box
+        mt={54}
+        w={Style.DEVICE_WIDTH}
+        disableAutoAdjust={true}
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="row"
+        gap={4}
+        ph={24}
+        entering={BounceIn.duration(1000)}
+      >
+        <TextTemplate type="bigYuCoin" color={yuCoinTextColor} testID={SENDER_GIFTING_AMOUNT(yuCoinAmount)}>
+          +{addCommasToNumber(yuCoinAmount)}
+        </TextTemplate>
+        <YuCoinTopNavIcon size={30} />
+      </Box>
+    );
+  }
+);
 
 const stickerConfig = {
   hitSlop: { top: 20, bottom: 20, left: 20, right: 20 },

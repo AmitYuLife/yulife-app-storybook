@@ -50,6 +50,7 @@ export const GiftingMessagePreviewScreen = ({
   });
 
   const textColor = selectedBackground?.textColor || Colours.neutral.n800;
+  const yuCoinTextColor = selectedBackground?.yuCoinTextColor || Colours.primary.p600;
 
   const showStickerSelectionOverlay = useGiftingStickerSelectionOverlay({
     stickers,
@@ -69,6 +70,7 @@ export const GiftingMessagePreviewScreen = ({
     <Box flex={1} disableAutoAdjust={true} width={Style.DEVICE_WIDTH} bg="red">
       <GiftView
         yuCoinAmount={yuCoin?.id}
+        yuCoinTextColor={yuCoinTextColor}
         textColor={textColor}
         backgrounds={backgrounds}
         selectBackground={selectBackground}

@@ -1,6 +1,7 @@
 fragment GiftBackgroundAsset on GiftAsset {
     id
     textColor
+    yuCoinTextColor
     backgroundColor
     image {
         ...RemoteImage
