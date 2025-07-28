@@ -151,3 +151,15 @@ export const cycleThroughFacialHairOptions = async () => {
     }
   }
 };
+
+export const checkEmptyAchievementSlots = (slots: number) => async () => {
+  for (let i = 1; i <= slots; i++) {
+    idVisible(ids.ACHIEVEMENT_EMPTY_SLOT(ids.ACHIEVEMENT_SLOT(i)), 1500);
+  }
+};
+
+export const assertAllLockedAchievements = async () => {
+  for (const name of constants.ACHIEVEMENTS) {
+    idVisible(ids.ACHIEVEMENT_CARD(name, "locked"), 2000);
+  }
+};

@@ -3,6 +3,7 @@ import { AddIcon } from "@atoms/icon/add-icon";
 import { memo } from "react";
 import { Image } from "@atoms";
 import { StarEmptySlotIcon } from "@atoms/icon/star-empty-slot-icon";
+import { ACHIEVEMENT_EMPTY_SLOT } from "@ids";
 
 interface IProps {
   onPress: () => void;
@@ -11,11 +12,12 @@ interface IProps {
     uri?: string;
     id: string;
   };
+  testID?: string;
 }
 
 const SIZE = 56;
 const IMAGE_SIZE = SIZE + 16;
-const AchievementSlot = ({ onPress, icon, showStarIcon }: IProps) => {
+const AchievementSlot = ({ onPress, icon, showStarIcon, testID }: IProps) => {
   return (
     <Pressable
       w={SIZE}
@@ -27,11 +29,18 @@ const AchievementSlot = ({ onPress, icon, showStarIcon }: IProps) => {
       alignItems="center"
       justifyContent="center"
       onPress={onPress}
+      testID={testID}
     >
       {icon?.uri ? (
         <Image w={IMAGE_SIZE} h={IMAGE_SIZE} source={{ uri: icon.uri }} />
       ) : (
-        <>{showStarIcon && !icon ? <StarEmptySlotIcon /> : <AddIcon color="#464647" showBorder={false} />}</>
+        <>
+          {showStarIcon && !icon ? (
+            <StarEmptySlotIcon />
+          ) : (
+            <AddIcon color="#464647" showBorder={false} testID={ACHIEVEMENT_EMPTY_SLOT(testID)} />
+          )}
+        </>
       )}
     </Pressable>
   );

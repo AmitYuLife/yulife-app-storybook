@@ -7,6 +7,7 @@ type Props = {
   width?: number;
   height?: number;
   showBorder?: boolean;
+  testID?: string;
 };
 
 export const AddIcon = memo(
@@ -15,8 +16,9 @@ export const AddIcon = memo(
     width = Style.adjust(68),
     height = Style.adjust(68),
     showBorder = true,
+    testID,
   }: Props) => (
-    <Svg width={width} height={height} viewBox="0 0 68 68">
+    <Svg width={width} height={height} viewBox="0 0 68 68" testID={testID}>
       {!showBorder ? null : (
         <>
           <Path

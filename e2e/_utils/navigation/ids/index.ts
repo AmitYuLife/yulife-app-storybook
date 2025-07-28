@@ -408,6 +408,11 @@ export const YUSCREEN_V5_CTA_BUTTON = (product: string) =>
 
 export const CAROUSEL_CARD_BUTTON = (cardTitle: string) => `CAROUSEL_CARD_BUTTON_${cardTitle}`;
 export const YUSCREEN_V5_PRODUCT_CARD_LOGO = "YUSCREEN_V5_PRODUCT_CARD_LOGO";
+export const ACHIEVEMENTS_SHOWCASE = "ACHIEVEMENTS_SHOWCASE";
+export const ACHIEVEMENT_SLOT = (index: number) => `ACHIEVEMENT_SLOT_${index}`;
+export const ACHIEVEMENT_EMPTY_SLOT = (achievementSlot: string) => `${achievementSlot}_EMPTY`;
+export const ACHIEVEMENT_CARD = (name: string, status: "unlocked" | "locked" | "equipped") =>
+  `ACHIEVEMENT_CARD_${name}_${status}`;
 
 // PRODUCT DETAILS
 export const PRODUCT_DETAILS_SCROLL_VIEW = "PRODUCT_DETAILS_SCROLL_VIEW";

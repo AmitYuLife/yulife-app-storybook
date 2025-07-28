@@ -6,6 +6,7 @@ import { Style } from "@styles";
 import { memo, useMemo, ReactNode } from "react";
 import { StyleSheet } from "react-native";
 import { addCommasToNumber } from "@utils";
+import { ACHIEVEMENT_CARD } from "@ids";
 
 export enum AchievementStatus {
   locked = "locked",
@@ -36,6 +37,7 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
       innerHeight={Style.adjust(196)}
       wrapperStyle={styles.wrapperStyle}
       innerWrapperStyle={styles.innerWrapperStyle}
+      testID={ACHIEVEMENT_CARD(name, status as AchievementStatus)}
     >
       {/* we need to change the type of the BoxOption component for children */}
       <>

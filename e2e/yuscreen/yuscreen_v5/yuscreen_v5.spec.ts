@@ -374,4 +374,15 @@ Feature("I am able to use the yuscreen v5", async () => {
       });
     });
   });
+
+  Scenario("I am able to view locked achievements", scenario.start, async () => {
+    Given("I log in as a user", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
+      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Forest", "401"));
+      Then("I should see the achievements showcase panel", then.idVisible(ids.ACHIEVEMENTS_SHOWCASE));
+      Then("I should see 3 placeholder slots for achievements", then.checkEmptyAchievementSlots(3));
+    });
+    When("I tap on the first empty achievement slot", when.tapID(ids.ACHIEVEMENT_SLOT(1)), async () => {
+      Then("I should see all available achievements in a locked state", then.assertAllLockedAchievements);
+    });
+  });
 });
