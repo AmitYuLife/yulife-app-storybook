@@ -9,6 +9,7 @@ import { addCommasToNumber } from "@utils";
 import { memo, useCallback, useMemo } from "react";
 import { AchievementStatus } from "../achievement-card/achievement-card";
 import { useTrack } from "@hooks";
+import { ACHIEVEMENT_SLOT, ACHIEVEMENTS_SHOWCASE } from "@ids";
 
 export interface IAchievement {
   id: string;
@@ -110,7 +111,16 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
 
   return (
     <>
-      <Box w={132} bg="white" p={16} br={8} alignItems="center" borderWidth={1} borderColor="#E3E3E1">
+      <Box
+        w={132}
+        bg="white"
+        p={16}
+        br={8}
+        alignItems="center"
+        borderWidth={1}
+        borderColor="#E3E3E1"
+        testID={ACHIEVEMENTS_SHOWCASE}
+      >
         {!showAchievementPoints ? null : (
           <Box position="absolute" top={-12} left={0} right={0} alignItems="center">
             <Box position="absolute" top={-1} borderWidth={1} borderColor="#E3E3E1" width={105} height={23} br={20} />
@@ -130,7 +140,12 @@ const AchievementsShowcase = ({ points, achievements = [], componentId, isInspec
         </Pressable>
         <Box gap={14}>
           {Array.from({ length: numberOfSlots }).map((_, index) => (
-            <AchievementSlot key={index} {...getSlot(index + 1)} showStarIcon={isInspectingUser} />
+            <AchievementSlot
+              key={index}
+              {...getSlot(index + 1)}
+              showStarIcon={isInspectingUser}
+              testID={ACHIEVEMENT_SLOT(index + 1)}
+            />
           ))}
         </Box>
       </Box>
