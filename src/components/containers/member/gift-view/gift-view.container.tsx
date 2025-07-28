@@ -59,6 +59,7 @@ const GiftViewContainer = ({ giftId }: Props) => {
   }, [id, hasBeenClaimed, claimGiftResponse?.loading, claimGift]);
 
   const textColor = background?.textColor || Colours.neutral.n800;
+  const yuCoinTextColor = background?.yuCoinTextColor || Colours.primary.p600;
 
   const handlePressReply = useCallback(async () => {
     if (claimType === GiftClaimType.Company) {
@@ -102,6 +103,7 @@ const GiftViewContainer = ({ giftId }: Props) => {
       onClose={onClose}
       textColor={textColor}
       yuCoinAmount={yuCoinAmount}
+      yuCoinTextColor={yuCoinTextColor}
       message={message}
       sender={from}
       background={background}

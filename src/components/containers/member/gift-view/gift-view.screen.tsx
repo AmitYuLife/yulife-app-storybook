@@ -17,6 +17,7 @@ type Props = {
   claimType?: GiftClaimType;
   textColor: string;
   yuCoinAmount: number;
+  yuCoinTextColor: string;
   message: string;
   hasSaidThankYou: boolean;
   background: {
@@ -45,6 +46,7 @@ const GiftViewScreen = ({
   onClose,
   textColor,
   yuCoinAmount,
+  yuCoinTextColor,
   message,
   sender,
   claimType,
@@ -65,6 +67,7 @@ const GiftViewScreen = ({
     <Box flex={1}>
       <GiftView
         yuCoinAmount={yuCoinAmount}
+        yuCoinTextColor={yuCoinTextColor}
         textColor={textColor}
         background={background}
         message={message}

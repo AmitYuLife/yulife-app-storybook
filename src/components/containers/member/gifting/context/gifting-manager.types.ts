@@ -14,6 +14,7 @@ export type GiftingBackgroundAsset = {
   image: Image;
   previewImage?: Image;
   textColor?: string;
+  yuCoinTextColor?: string;
   backgroundColor: string;
 };
 

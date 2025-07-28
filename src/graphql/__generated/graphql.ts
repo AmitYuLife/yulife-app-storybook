@@ -264,18 +264,6 @@ export type AddUserFeedbackResponse = {
   message?: Maybe<Scalars["String"]["output"]>;
 };
 
-export type Adviser = {
-  __typename?: "Adviser";
-  accessTo: Array<Scalars["String"]["output"]>;
-  accountAccessId: Scalars["String"]["output"];
-  email?: Maybe<Scalars["String"]["output"]>;
-  fullName: Scalars["String"]["output"];
-  id: Scalars["String"]["output"];
-  isActive: Scalars["Boolean"]["output"];
-  isOwner: Scalars["Boolean"]["output"];
-  status: BusinessAccessUserStatus;
-};
-
 export type AdviserAccessRequest = {
   __typename?: "AdviserAccessRequest";
   businessAccountName?: Maybe<Scalars["String"]["output"]>;
@@ -284,37 +272,6 @@ export type AdviserAccessRequest = {
   name?: Maybe<Scalars["String"]["output"]>;
   permissions?: Maybe<Array<BusinessAccessPermission>>;
   requestedAt: Scalars["String"]["output"];
-};
-
-export type AdviserContactInfoInput = {
-  businessPhone?: InputMaybe<Scalars["String"]["input"]>;
-  email?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type AdviserCount = {
-  __typename?: "AdviserCount";
-  archived: Scalars["Int"]["output"];
-  unarchived: Scalars["Int"]["output"];
-};
-
-export type AdviserDashboardBusinessAccess = {
-  __typename?: "AdviserDashboardBusinessAccess";
-  businessAccountId: Scalars["String"]["output"];
-  businessAccountName: Scalars["String"]["output"];
-};
-
-export type AdviserPersonalInfoInput = {
-  firstName?: InputMaybe<Scalars["String"]["input"]>;
-  jobTitle?: InputMaybe<Scalars["String"]["input"]>;
-  lastName?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type AdviserWithBusinessAccess = {
-  __typename?: "AdviserWithBusinessAccess";
-  email: Scalars["String"]["output"];
-  id: Scalars["String"]["output"];
-  name: Scalars["String"]["output"];
-  permissions?: Maybe<Array<Scalars["String"]["output"]>>;
 };
 
 export type AnalyticsConfiguration = {
@@ -548,6 +505,7 @@ export type BulkMemberImport = {
   connectionName?: Maybe<Scalars["String"]["output"]>;
   connectionType?: Maybe<Scalars["String"]["output"]>;
   createdAt: Scalars["String"]["output"];
+  dataFormatName?: Maybe<Scalars["String"]["output"]>;
   hasClientResolvableErrors?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["ID"]["output"];
   importType: BulkMemberImportType;
@@ -592,6 +550,7 @@ export type BulkMemberImportFieldUpdate = {
 
 export type BulkMemberImportFormat = {
   __typename?: "BulkMemberImportFormat";
+  allowTemplateDownload?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["ID"]["output"];
   name: Scalars["String"]["output"];
 };
@@ -859,6 +818,7 @@ export enum BusinessAccessPermission {
   ManageEngagementDashboard = "manageEngagementDashboard",
   ManageExternalIntegrations = "manageExternalIntegrations",
   ManageLeaderboards = "manageLeaderboards",
+  ManageSurveys = "manageSurveys",
   ManageTags = "manageTags",
   ManageWellbeingHub = "manageWellbeingHub",
   ViewBeneficiaries = "viewBeneficiaries",
@@ -868,7 +828,16 @@ export enum BusinessAccessPermission {
   ViewExternalIntegrations = "viewExternalIntegrations",
   ViewProducts = "viewProducts",
   ViewResources = "viewResources",
+  ViewSurveys = "viewSurveys",
   ViewWellbeingTools = "viewWellbeingTools",
+}
+
+export enum BusinessAccessPermissionCategory {
+  BenefitManagement = "benefitManagement",
+  EmployeeData = "employeeData",
+  Engagement = "engagement",
+  Other = "other",
+  PortalAdmin = "portalAdmin",
 }
 
 export enum BusinessAccessRequestState {
@@ -1182,13 +1151,6 @@ export type ClaimAccountViaMagicLinkResponse = {
   intercomHash: Scalars["String"]["output"];
   token: Scalars["String"]["output"];
   user: User;
-};
-
-export type Client = {
-  __typename?: "Client";
-  id: Scalars["ID"]["output"];
-  name: Scalars["String"]["output"];
-  permissions?: Maybe<Array<ReadableBusinessAccessPermission>>;
 };
 
 export type ClientConnectionRequests = {
@@ -3758,6 +3720,7 @@ export type GameSettings = {
   cyclingMeasurement: DistanceMeasurementType;
   debugQueriesToolEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   debugToolsEnabled?: Maybe<Scalars["Boolean"]["output"]>;
+  enabledHealthProviders: Array<HealthProvider>;
   hasEsgBattlepass?: Maybe<Scalars["Boolean"]["output"]>;
   loggingEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   maxStepsAnomalyWindowMs?: Maybe<Scalars["Int"]["output"]>;
@@ -3769,77 +3732,6 @@ export type GameSettingsRewards = {
   hasDonationBattlepass: Scalars["Boolean"]["output"];
   hasUnlockableBattlepassVouchers: Scalars["Boolean"]["output"];
   hasVoucherStore: Scalars["Boolean"]["output"];
-};
-
-export type GetAccessRequestsForAdviserResult = {
-  __typename?: "GetAccessRequestsForAdviserResult";
-  accessRequests?: Maybe<Array<AdviserAccessRequest>>;
-  permissions?: Maybe<Array<TeamPortalPermission>>;
-  totalCount: Scalars["Int"]["output"];
-};
-
-export type GetAccessRequestsForBusinessResult = {
-  __typename?: "GetAccessRequestsForBusinessResult";
-  accessRequests?: Maybe<Array<AdviserAccessRequest>>;
-  totalCount: Scalars["Int"]["output"];
-};
-
-export type GetAdviserAccessResult = {
-  __typename?: "GetAdviserAccessResult";
-  clients?: Maybe<Array<Client>>;
-};
-
-export type GetAdviserDashboardResult = {
-  __typename?: "GetAdviserDashboardResult";
-  businessAccesses?: Maybe<Array<AdviserDashboardBusinessAccess>>;
-  businessOrganisationOwnerName?: Maybe<Array<Scalars["String"]["output"]>>;
-};
-
-export type GetAdviserForBusinessResult = {
-  __typename?: "GetAdviserForBusinessResult";
-  advisoryFirm: Scalars["String"]["output"];
-  businessPhone?: Maybe<Scalars["String"]["output"]>;
-  email: Scalars["String"]["output"];
-  firstName: Scalars["String"]["output"];
-  fullName: Scalars["String"]["output"];
-  isOrganisationOwner: Scalars["Boolean"]["output"];
-  jobTitle?: Maybe<Scalars["String"]["output"]>;
-  lastName: Scalars["String"]["output"];
-  permissions?: Maybe<Array<ReadableBusinessAccessPermission>>;
-  status: BusinessAccessUserStatus;
-};
-
-export type GetAdviserResult = {
-  __typename?: "GetAdviserResult";
-  businessPhone?: Maybe<Scalars["String"]["output"]>;
-  clients?: Maybe<Array<Client>>;
-  email: Scalars["String"]["output"];
-  firstName: Scalars["String"]["output"];
-  fullName: Scalars["String"]["output"];
-  isOrganisationOwner: Scalars["Boolean"]["output"];
-  jobTitle?: Maybe<Scalars["String"]["output"]>;
-  lastName: Scalars["String"]["output"];
-  organisationPermissions?: Maybe<Array<ReadableBusinessAccessOrganisationPermission>>;
-  status?: Maybe<BusinessAccessUserStatus>;
-};
-
-export type GetAdvisersForBusinessResult = {
-  __typename?: "GetAdvisersForBusinessResult";
-  advisers: Array<AdviserWithBusinessAccess>;
-  totalCount: Scalars["Int"]["output"];
-};
-
-export type GetAvailableClientConnectionsBusiness = {
-  __typename?: "GetAvailableClientConnectionsBusiness";
-  businessAccountId: Scalars["String"]["output"];
-  businessAccountName?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type GetAvailableClientConnectionsResult = {
-  __typename?: "GetAvailableClientConnectionsResult";
-  businesses?: Maybe<Array<GetAvailableClientConnectionsBusiness>>;
-  maxRequestsPerBatch: Scalars["Int"]["output"];
-  permissions?: Maybe<Array<TeamPortalPermission>>;
 };
 
 export type GetBusinessAccessAdmins = {
@@ -4066,6 +3958,7 @@ export type GiftAsset = {
   image: RemoteImage;
   previewImage?: Maybe<RemoteImage>;
   textColor: Scalars["String"]["output"];
+  yuCoinTextColor: Scalars["String"]["output"];
 };
 
 export enum GiftClaimType {
@@ -4232,6 +4125,13 @@ export type GroupPremiumEmployeeInput = {
   joinDate?: InputMaybe<Scalars["String"]["input"]>;
   leaveDate?: InputMaybe<Scalars["String"]["input"]>;
 };
+
+export enum HealthProvider {
+  GoogleFit = "googleFit",
+  HealthConnect = "healthConnect",
+  HealthKit = "healthKit",
+  SamsungHealth = "samsungHealth",
+}
 
 export type HealthSmokingCelebration = {
   __typename?: "HealthSmokingCelebration";
@@ -5956,7 +5856,6 @@ export type Mutation = {
   __typename?: "Mutation";
   aNumber?: Maybe<Scalars["Int"]["output"]>;
   acknowledgeEngagementPeriodWrapUp: Scalars["Boolean"]["output"];
-  actionAdviserAccessRequest?: Maybe<Scalars["Boolean"]["output"]>;
   activateGameConsumable: ActivateGameConsumableResponse;
   addDeviceToken?: Maybe<DeviceResponse>;
   addEmployeeRecognitionCampaignRecipients: Scalars["Boolean"]["output"];
@@ -5999,7 +5898,6 @@ export type Mutation = {
   confirmPaymentCard: ConfirmedPaymentCard;
   createBusinessAccessUser: BusinessAccessUser;
   createBusinessEarlyAccessSelfRegistration: Scalars["Boolean"]["output"];
-  createBusinessOrganisationUser: CreateOrganisationUserResponses;
   createBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
@@ -6038,7 +5936,6 @@ export type Mutation = {
   getNewConnectionLink?: Maybe<Scalars["String"]["output"]>;
   getNewPensionConnectionLink?: Maybe<Scalars["String"]["output"]>;
   initiateCompanyJoin: InitiateCompanyJoinResult;
-  inviteAdviser: Scalars["Boolean"]["output"];
   inviteBusinessAccessUser: Scalars["Boolean"]["output"];
   inviteEmployees?: Maybe<EmployeeBulkProcessResult>;
   inviteEmployeesByFilter: Scalars["Boolean"]["output"];
@@ -6080,8 +5977,6 @@ export type Mutation = {
   respondToDuel?: Maybe<Duel>;
   /** Restore user streak */
   restoreStreak: RestoreStreakResponse;
-  sendAccessRequestsForAdviser: Scalars["Boolean"]["output"];
-  sendAdviserFeedback: Scalars["Boolean"]["output"];
   sendBusinessMagicLink?: Maybe<BusinessMagicLinkResponse>;
   sendGiftToRecipients: SendGiftToRecipientsResponse;
   sendMagicLink?: Maybe<StartSessionResponse>;
@@ -6144,8 +6039,6 @@ export type Mutation = {
   unsubscribeFromEmails: Scalars["Boolean"]["output"];
   updateAccessUser?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
-  updateAdviserBySection: Scalars["Boolean"]["output"];
-  updateAdviserForBusinessBySection: Scalars["Boolean"]["output"];
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
   updateBeneficiaryForProduct: CustomerProductBeneficiaries;
   updateBusinessTag: Scalars["Boolean"]["output"];
@@ -6193,11 +6086,6 @@ export type Mutation = {
 
 export type MutationAcknowledgeEngagementPeriodWrapUpArgs = {
   periodId: Scalars["String"]["input"];
-};
-
-export type MutationActionAdviserAccessRequestArgs = {
-  accessRequestId: Scalars["ID"]["input"];
-  action: BusinessAccessRequestState;
 };
 
 export type MutationActivateGameConsumableArgs = {
@@ -6379,10 +6267,6 @@ export type MutationCreateBusinessAccessUserArgs = {
   accessUser: CreateAccessUserInput;
 };
 
-export type MutationCreateBusinessOrganisationUserArgs = {
-  userInput: CreateOrganisationUserInput;
-};
-
 export type MutationCreateBusinessPasswordArgs = {
   otp: Scalars["String"]["input"];
   password: Scalars["String"]["input"];
@@ -6519,10 +6403,6 @@ export type MutationInitiateCompanyJoinArgs = {
   employmentEmail?: InputMaybe<Scalars["String"]["input"]>;
   legalFirstName?: InputMaybe<Scalars["String"]["input"]>;
   legalLastName?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type MutationInviteAdviserArgs = {
-  accountAccessId: Scalars["String"]["input"];
 };
 
 export type MutationInviteBusinessAccessUserArgs = {
@@ -6704,15 +6584,6 @@ export type MutationRespondToDuelArgs = {
   leaderboardPlacement?: InputMaybe<Scalars["Int"]["input"]>;
   requestLocation?: InputMaybe<Scalars["String"]["input"]>;
   startDateTime: Scalars["String"]["input"];
-};
-
-export type MutationSendAccessRequestsForAdviserArgs = {
-  accountAccessId: Scalars["ID"]["input"];
-  clientConnectionRequests?: InputMaybe<Array<ClientConnectionRequests>>;
-};
-
-export type MutationSendAdviserFeedbackArgs = {
-  message: Scalars["String"]["input"];
 };
 
 export type MutationSendBusinessMagicLinkArgs = {
@@ -6937,20 +6808,6 @@ export type MutationUpdateAccessUserBySectionArgs = {
   basicInfo?: InputMaybe<AccessUserInput>;
   businessTags?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   permissions?: InputMaybe<Array<BusinessAccessPermission>>;
-};
-
-export type MutationUpdateAdviserBySectionArgs = {
-  accountAccessId: Scalars["String"]["input"];
-  contactInfo?: InputMaybe<AdviserContactInfoInput>;
-  permissions?: InputMaybe<Array<BusinessAccessOrganisationPermission>>;
-  personalInfo?: InputMaybe<AdviserPersonalInfoInput>;
-};
-
-export type MutationUpdateAdviserForBusinessBySectionArgs = {
-  accountAccessId: Scalars["String"]["input"];
-  contactInfo?: InputMaybe<AdviserContactInfoInput>;
-  permissions?: InputMaybe<Array<BusinessAccessPermission>>;
-  personalInfo?: InputMaybe<AdviserPersonalInfoInput>;
 };
 
 export type MutationUpdateBeneficiaryForProductArgs = {
@@ -7229,12 +7086,6 @@ export type OptionsForGift = {
 export type OrderBy = {
   column: Scalars["String"]["input"];
   order: Scalars["String"]["input"];
-};
-
-export type OrganisationAdvisersResponse = {
-  __typename?: "OrganisationAdvisersResponse";
-  adviserCount: AdviserCount;
-  advisers: Array<Adviser>;
 };
 
 export type PassiveChallenge = {
@@ -7518,21 +7369,13 @@ export type Query = {
   findUserAddress?: Maybe<Array<Maybe<ShippingAddress>>>;
   get2FASecret?: Maybe<TwoFaSecretResponse>;
   getAPIVersion?: Maybe<ApiDetails>;
-  getAccessRequestsForAdviser: GetAccessRequestsForAdviserResult;
-  getAccessRequestsForBusiness?: Maybe<GetAccessRequestsForBusinessResult>;
   getActiveAndInactiveCount: ActiveAndInactiveCount;
   getActiveEmployments: Array<EmployerListItem>;
   getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
-  getAdviser: GetAdviserResult;
-  getAdviserAccess: GetAdviserAccessResult;
-  getAdviserDashboard: GetAdviserDashboardResult;
-  getAdviserForBusiness?: Maybe<GetAdviserForBusinessResult>;
-  getAdvisersForBusiness?: Maybe<GetAdvisersForBusinessResult>;
   getAnalyticsConfiguration: AnalyticsConfiguration;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
-  getAvailableClientConnections: GetAvailableClientConnectionsResult;
   getAvailablePermissions: Array<TeamPortalPermission>;
   /** Gets all the colours for a particular partType. */
   getAvatarColors?: Maybe<Array<Maybe<AvatarColor>>>;
@@ -7641,6 +7484,7 @@ export type Query = {
   getMemberOnboardingYuCoinProgress?: Maybe<MemberOnboardingYuCoinProgress>;
   getMembersOrCsmWithPermission: GetMembersOrCsmWithPermissionResult;
   getMergeDevLinkToken: Scalars["String"]["output"];
+  getMessagingConnectionAuthorisationUrl: Scalars["String"]["output"];
   getMobileAssets: Array<RemoteImage>;
   getMobileAssetsWithVersion: MobileAssets;
   getMobileAvailableContentLocations: Array<MobileUserContentLocation>;
@@ -7680,7 +7524,6 @@ export type Query = {
   getMyAccountDetails: MyAccountDetails;
   getOnboardingConfiguration?: Maybe<GetOnboardingConfigurationResult>;
   getOptionsForGift: OptionsForGift;
-  getOrganisationAdvisers?: Maybe<OrganisationAdvisersResponse>;
   getPassiveChallengesLastUpdate: PassiveChallengesLastUpdate;
   /** Get user stripe payment details */
   getPaymentDetails?: Maybe<GetPaymentDetailsResponse>;
@@ -7834,23 +7677,6 @@ export type QueryFindUserAddressArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetAccessRequestsForAdviserArgs = {
-  accountAccessId: Scalars["ID"]["input"];
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  orderBy?: InputMaybe<OrderBy>;
-  state?: InputMaybe<BusinessAccessRequestState>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetAccessRequestsForBusinessArgs = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  orderBy?: InputMaybe<OrderBy>;
-  state?: InputMaybe<BusinessAccessRequestState>;
-};
-
-/** Default types to be extended / root query */
 export type QueryGetActivityHistoryWithLevelsArgs = {
   isFullActivity?: InputMaybe<Scalars["Boolean"]["input"]>;
   monthsAgo?: InputMaybe<Scalars["Int"]["input"]>;
@@ -7859,23 +7685,6 @@ export type QueryGetActivityHistoryWithLevelsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetAdBannersArgs = {
   place?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetAdviserArgs = {
-  accountAccessId: Scalars["String"]["input"];
-};
-
-/** Default types to be extended / root query */
-export type QueryGetAdviserForBusinessArgs = {
-  accountAccessId: Scalars["String"]["input"];
-};
-
-/** Default types to be extended / root query */
-export type QueryGetAdvisersForBusinessArgs = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  orderBy?: InputMaybe<OrderBy>;
 };
 
 /** Default types to be extended / root query */
@@ -7898,6 +7707,11 @@ export type QueryGetBulkMemberImportArgs = {
 /** Default types to be extended / root query */
 export type QueryGetBulkMemberImportFileWithErrorsUrlArgs = {
   importId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBulkMemberImportFormatsArgs = {
+  shouldFormat?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -8257,15 +8071,6 @@ export type QueryGetMobileUserWrappedArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMonthlyActiveUsersPercentageArgs = {
   timePeriod: Scalars["Int"]["input"];
-};
-
-/** Default types to be extended / root query */
-export type QueryGetOrganisationAdvisersArgs = {
-  isArchived?: InputMaybe<Scalars["Boolean"]["input"]>;
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  orderBy?: InputMaybe<OrderBy>;
-  searchString?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -8803,6 +8608,8 @@ export type ReadableBusinessAccessOrganisationPermission = {
 
 export type ReadableBusinessAccessPermission = {
   __typename?: "ReadableBusinessAccessPermission";
+  categoryKey: BusinessAccessPermissionCategory;
+  categoryTitle: Scalars["String"]["output"];
   description: Scalars["String"]["output"];
   key: BusinessAccessPermission;
   title: Scalars["String"]["output"];
@@ -9983,6 +9790,8 @@ export type TeamPortalOption = {
 
 export type TeamPortalPermission = {
   __typename?: "TeamPortalPermission";
+  categoryKey: BusinessAccessPermissionCategory;
+  categoryTitle: Scalars["String"]["output"];
   description: Scalars["String"]["output"];
   key: BusinessAccessPermission;
   title: Scalars["String"]["output"];
@@ -10783,8 +10592,8 @@ export type UserFeature = {
 };
 
 export enum UserNotificationsType {
-  Birthdays = "birthdays",
   BirthdaysInbox = "birthdaysInbox",
+  BirthdaysPush = "birthdaysPush",
   ChallengeCompletion = "challengeCompletion",
   DailyChallengeReminder = "dailyChallengeReminder",
   Duels = "duels",
@@ -18221,6 +18030,7 @@ export type GiftFragment = {
     __typename?: "GiftAsset";
     id: string;
     textColor: string;
+    yuCoinTextColor: string;
     backgroundColor: string;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
@@ -18237,6 +18047,7 @@ export type GiftBackgroundAssetFragment = {
   __typename?: "GiftAsset";
   id: string;
   textColor: string;
+  yuCoinTextColor: string;
   backgroundColor: string;
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
@@ -22497,6 +22308,7 @@ export type ClaimGiftMutation = {
       __typename?: "GiftAsset";
       id: string;
       textColor: string;
+      yuCoinTextColor: string;
       backgroundColor: string;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
@@ -22542,6 +22354,7 @@ export type GetGiftQuery = {
       __typename?: "GiftAsset";
       id: string;
       textColor: string;
+      yuCoinTextColor: string;
       backgroundColor: string;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
@@ -22602,6 +22415,7 @@ export type SendThanksForGiftMutation = {
       __typename?: "GiftAsset";
       id: string;
       textColor: string;
+      yuCoinTextColor: string;
       backgroundColor: string;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
@@ -22979,6 +22793,7 @@ export type GetOptionsForGiftQuery = {
       __typename?: "GiftAsset";
       id: string;
       textColor: string;
+      yuCoinTextColor: string;
       backgroundColor: string;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
@@ -53283,6 +53098,7 @@ export const GiftBackgroundAssetFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinTextColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           {
             kind: "Field",
@@ -53474,6 +53290,7 @@ export const GiftFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinTextColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           {
             kind: "Field",
@@ -70328,6 +70145,7 @@ export const ClaimGiftDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinTextColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           {
             kind: "Field",
@@ -70522,6 +70340,7 @@ export const GetGiftDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinTextColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           {
             kind: "Field",
@@ -70775,6 +70594,7 @@ export const SendThanksForGiftDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinTextColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           {
             kind: "Field",
@@ -72280,6 +72100,7 @@ export const GetOptionsForGiftDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinTextColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           {
             kind: "Field",
