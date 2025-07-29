@@ -1,0 +1,149 @@
+# Check out https://docs.codemagic.io/yaml/building-a-react-native-app/ for more information
+# Cheat sheet: https://docs.codemagic.io/codemagic-yaml-cheatsheet.html
+# https://blog.codemagic.io/codemagic-yaml-cheatsheet/
+definitions:
+  scripts:
+    - &install_rn_app_node_dependencies
+      name: Install dependencies
+      script: |
+        corepack enable
+        yarn install --frozen-lockfile
+    - &build_tsc
+      name: Build TSC
+      script: |
+        yarn tsc
+    - &replace_package_version_codes
+      name: Replace package version codes
+      script: |
+        node ./scripts/replace-package-versionCodes.js "$PROJECT_BUILD_NUMBER"
+    - &generate_native_projects
+      name: Generate native projects
+      script: |
+        EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM"
+  slack_notify_engineering: &slack_notify_engineering
+    slack:
+      channel: "#alerts-engineering"
+      # TODO: Check with the team if we want to receive builds notifications
+      notify_on_build_start: false # To receive a notification when a build starts
+      notify:
+        success: true
+        failure: false # To not receive a notification when a build fails
+  develop_branch_trigger: &develop_branch_trigger
+    events:
+      - push
+    branch_patterns:
+      - pattern: "develop"
+        include: false # TODO: Enable once we migrate to codemagic
+        source: false # TODO: Enable once we migrate to codemagic
+    cancel_previous_builds: false # Set to `true` to automatically cancel outdated webhook builds
+
+workflows:
+  react-native-android-develop:
+    name: React Native Android (develop)
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    environment:
+      node: v18.20.7
+      android_signing:
+        - yulife-react-native-android
+      groups:
+        # List of env vars available on yulife-rn-client group
+        # GITLAB_TOKEN: necessary to run yarn install
+        - yulife-rn-client
+      vars:
+        BITRISE_BUILD_NUMBER: $PROJECT_BUILD_NUMBER # TODO: Swap environment variable name once migrated to codemagic
+        BUNDLE_ID: "com.yulife.release" # TODO: Override for UAT/Production
+        DISPLAY_NAME: "YuLife (develop)" # TODO: Override for UAT/Production
+        ENVFILE: ".env.develop" # TODO: Override for UAT/Production
+        PLATFORM: android
+    scripts:
+      - *install_rn_app_node_dependencies
+      - *build_tsc
+      - *replace_package_version_codes
+      - *generate_native_projects
+      - name: Set Android SDK location and Java memory
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
+          echo "org.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=512m" >> "$CM_BUILD_DIR/android/gradle.properties"
+      - name: Build Android release
+        script: |
+          cd android
+          ./gradlew assembleRelease --project-prop splitApks=true
+      - name: Upload Android sourcemaps to Bugsnag
+        script: |
+          APP_VERSION=$(cat package.json | jq -r '.version')
+          BUGSNAG_API_KEY=$(grep '^BUGSNAG_API_KEY=' .env | cut -d '=' -f2- | tr -d '"')
+          npx bugsnag-source-maps upload-react-native \
+            --api-key "$BUGSNAG_API_KEY" \
+            --platform android \
+            --source-map android/app/build/generated/sourcemaps/react/release/index.android.bundle.map \
+            --bundle android/app/build/generated/assets/createBundleReleaseJsAndAssets/index.android.bundle \
+            --app-version "$APP_VERSION"
+            --app-version-code "$PROJECT_BUILD_NUMBER"
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+    publishing:
+      <<: *slack_notify_engineering
+    triggering:
+      <<: *develop_branch_trigger
+
+  react-native-ios-develop:
+    name: React Native iOS (develop)
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    environment:
+      node: v18.20.7
+      ruby: 3.2.2
+      xcode: 16.2
+      ios_signing:
+        bundle_identifier: com.yulife.develop
+        distribution_type: ad_hoc
+        certificates:
+          - yulife-react-native-ios
+      groups:
+        # List of env vars available on yulife-rn-client group
+        # GITLAB_TOKEN: necessary to run yarn install
+        - yulife-rn-client
+      vars:
+        BITRISE_BUILD_NUMBER: $PROJECT_BUILD_NUMBER # TODO: Swap environment variable name once migrated to codemagic
+        BUNDLE_ID: "com.yulife.develop" # TODO: Override for UAT/Production
+        DISPLAY_NAME: "YuLife (develop)" # TODO: Override for UAT/Production
+        ENVFILE: ".env.develop" # TODO: Override for UAT/Production
+        PLATFORM: ios
+        XCODE_SCHEME: "YuLife"
+        XCODE_WORKSPACE: "YuLife.xcworkspace"
+    scripts:
+      - *install_rn_app_node_dependencies
+      - *build_tsc
+      - *replace_package_version_codes
+      - *generate_native_projects
+      - name: Install CocoaPods dependencies (needs refinement)
+        script: |
+          cd ios
+          bundle install
+          ENABLE_YUWATCH=1 bundle exec pod install --repo-update
+          # TODO: Add pod install--deployment once we have a way to test it
+      - name: Set watch display name
+        script: |
+          ./scripts/set-watch-display-name.sh "$DISPLAY_NAME"
+      - name: Log info.plist
+        script: |
+          cat ios/YuLife/Info.plist
+      - name: Set up provisioning profiles settings on Xcode project
+        script: |
+          xcode-project use-profiles --project ios/*.xcodeproj
+      - name: Build ipa for distribution
+        script: |
+          xcode-project build-ipa \
+            --workspace "$CM_BUILD_DIR/ios/$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME" \
+            --archive-flags="-destination 'generic/platform=iOS'"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      <<: *slack_notify_engineering
+    triggering:
+      <<: *develop_branch_trigger
