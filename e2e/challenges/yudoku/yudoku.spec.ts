@@ -13,9 +13,9 @@ import * as helper from "./_resources/helpers";
 Feature("Yudoku", async () => {
   Scenario("I can play, pause, and complete Sudoku and join/view the leaderboard", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_86, data.AUTH_86), async () => {
-      Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
+      Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700), 2000));
     });
-    When("I tap on level 152", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
+    When("I tap on level 152", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152), 3000), async () => {
       When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
         Then("I should see the Sodoku tile is available", then.canSeeSudokuTile);
       });

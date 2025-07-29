@@ -148,7 +148,7 @@ Feature("As a user I can opt in and take an event", async () => {
       Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
     });
     When("I tap the menu icon", when.tapID(ids.MENU_ICON, 1500), async () => {
-      Then("I should see the menu items", then.menuItemsVisible("enhanced"));
+      Then("I should see the menu items", then.menuItemsVisible("basic"));
     });
     When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
       Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 3000));

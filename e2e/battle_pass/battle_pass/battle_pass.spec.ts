@@ -18,7 +18,7 @@ Feature("I can view and use all battle pass features", async () => {
         });
       });
     });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
+    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
       Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
       Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
     });

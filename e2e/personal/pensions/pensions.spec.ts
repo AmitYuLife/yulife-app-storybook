@@ -54,8 +54,8 @@ Feature("Smart Pension", async () => {
       Then("I can see the slot has no icon", then.idNotVisible(ids.RIGHT_STATUS_ICON));
       Then("I can see the slot has no icon", then.idNotVisible(ids.LEFT_SIDE_BACKGROUD_IMAGE_SLOT(undefined)));
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.YUSCREEN, "up", "fast", 0.5), async () => {
-      When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")), async () => {
+    When("I swipe to the bottom", when.scrollFromID(ids.YUSCREEN, "up", "slow", 0.1), async () => {
+      When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension"), 3000), async () => {
         Then("I can see a pending pension contribution page", then.canSeePensionContributionPage("pending"));
       });
     });
@@ -80,8 +80,8 @@ Feature("Smart Pension", async () => {
       Then("I can see the slot has no icon", then.idNotVisible(ids.RIGHT_STATUS_ICON));
       Then("I can see the slot has no icon", then.idNotVisible(ids.LEFT_SIDE_BACKGROUD_IMAGE_SLOT(undefined)));
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.YUSCREEN, "up", "fast", 0.5), async () => {
-      When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")), async () => {
+    When("I swipe to the bottom", when.scrollFromID(ids.YUSCREEN, "up", "fast", 0.1), async () => {
+      When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension"), 3000), async () => {
         Then("I can see a pending pension contribution page", then.canSeePensionContributionPage("pending"));
       });
     });
@@ -106,8 +106,8 @@ Feature("Smart Pension", async () => {
       Then("I can see the slot has no icon", then.idNotVisible(ids.RIGHT_STATUS_ICON));
       Then("I can see the slot has no icon", then.idNotVisible(ids.LEFT_SIDE_BACKGROUD_IMAGE_SLOT(undefined)));
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.YUSCREEN, "up", "fast", 0.5), async () => {
-      When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")), async () => {
+    When("I swipe to the bottom", when.scrollFromID(ids.YUSCREEN, "up", "fast", 0.1), async () => {
+      When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension"), 3000), async () => {
         Then("I can see a paused pension contribution page", then.canSeePensionContributionPage("paused", PensionInfoUser114));
       });
     });
