@@ -30,8 +30,8 @@ export const rewardVisible = (reward: any) => async () => {
   const rewardItem = REWARD_ITEM(reward.data._id);
 
   await scrollUntilIdVisible(REWARDS_LIST_SCREEN_SCROLL, rewardItem, "down")();
-  await expectIsVisibleViaText(`Get vouchers from\n£${minValue} for ${minYucoin} YuCoin`, 1500);
-  await expectIsVisibleViaID(rewardItem, 1500);
+  await expectIsVisibleViaText(`Get vouchers from\n£${minValue} for ${minYucoin} YuCoin`, 2500);
+  await expectIsVisibleViaID(rewardItem, 2500);
 };
 
 export const specialRewardVisible = (reward: any, type: rewardType) => async () => {

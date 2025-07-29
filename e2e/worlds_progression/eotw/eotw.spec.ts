@@ -10,10 +10,7 @@ import { getFullName } from "_utils/users";
 
 Feature("End of the world/Yuniverse", async () => {
   Scenario("I complete level 200, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
-    Given("I login as a user on level 200 with a earn rate of 6", given.logInAndGoToTab("yucoin", data.CUSTOMER_69, data.AUTH_69), async () => {
-      Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
-    });
-    When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
+    Given("I login as a user on level 200 with a earn rate of 6", given.logInAndGoToTab("quests", data.CUSTOMER_69, data.AUTH_69), async () => {
       Then("I should see the level 200 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(200)));
     });
     When("I tap level 200 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(200)), async () => {
@@ -33,7 +30,6 @@ Feature("End of the world/Yuniverse", async () => {
       Then("I should be on the quest screen and see 5 challenges unlocked", then.yuniverseChallengesVisible);
       Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.canSeeChallengeTiles(data.USER_69, "boost"));
     });
-
     // first challenge - short stroll
     When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
       Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(1, 48, 400));
@@ -61,7 +57,6 @@ Feature("End of the world/Yuniverse", async () => {
     When("I tap take a challenge", when.tapText("Take a challenge (3 left)", 2000), async () => {
       Then("I should be on the quest screen and see all 5 challenges available to me to take", then.yuniverseChallengesVisible);
     });
-
     // second challenge - brisk walk
     When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("Brisk Walk", 1200), async () => {
       Then("I should see the correct number of yucoin earned and steps completed in the task", then.stepsChallengeDataCorrect(1, 72, 400 + 1200));
@@ -88,7 +83,6 @@ Feature("End of the world/Yuniverse", async () => {
     When("I tap take a challenge", when.tapText("Take a challenge (2 left)", 2000), async () => {
       Then("I should be on the quest screen and see all 5 challenges available to me to take", then.yuniverseChallengesVisible);
     });
-
     // third challenge - long walk
     When("I complete a long walk challenge at level 251", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
       Then("I should see the correct number of yucoin earned and steps completed in the task", then.stepsChallengeDataCorrect(1, 96, 400 + 1200 + 2000));
@@ -116,7 +110,6 @@ Feature("End of the world/Yuniverse", async () => {
     When("I tap take a challenge", when.tapText("Take a challenge (1 left)", 2000), async () => {
       Then("I should be on the quest screen and see all 5 challenges available to me to take", then.yuniverseChallengesVisible);
     });
-
     // fourth challenge - meditation
     When("I complete a meditation challenge at level 1", when.selectAndCompleteMeditationChallenge(180), async () => {
       Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 48, 3));

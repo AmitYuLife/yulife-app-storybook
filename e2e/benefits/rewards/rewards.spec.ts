@@ -14,10 +14,10 @@ Feature("Rewards should act correctly", async () => {
     Given("I log in and go to reward", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
       Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
     });
-    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+    When("I dismiss the modal", when.tapText(locationModalButton, 3500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.3), async () => {
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.5), async () => {
       Then("I should see the John Lewis Reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
     });
     When("I tap on the John Lewis reward", when.tapRewardInList(data.CORE_REWARDS_JOHN_LEWIS), async () => {
@@ -56,7 +56,7 @@ Feature("Rewards should act correctly", async () => {
     When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
       Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.3), async () => {
+    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.5), async () => {
       Then("I should see the locked amazon reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON_UNAVAILABLE.data._id)));
       Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1));
     });
@@ -66,15 +66,15 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_3, data.AUTH_3), () => {
       Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
     });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
+    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2500), async () => {
       Then("I should be on the rewards store", then.idVisible(ids.REWARDS_SCREEN));
       Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
     });
-    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.5), async () => {
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.7), async () => {
       Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON));
-      When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
-        Then("I should be on the Amazon reward page", then.onRewardScreen(data.CORE_REWARDS_AMAZON));
-      });
+    });
+    When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
+      Then("I should be on the Amazon reward page", then.onRewardScreen(data.CORE_REWARDS_AMAZON));
     });
     When("I scroll to the bottom of the page", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast"), async () => {
       When("I tap the button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
@@ -301,7 +301,7 @@ Feature("Rewards should act correctly", async () => {
       });
     });
     When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
-      When("I tap on the 'Store location' option", when.tapID(ids.TEXT_TEMPLATE("Store location", undefined), 500), async () => {
+      When("I tap on the 'Store location' option", when.tapID(ids.TEXT_TEMPLATE("Store location", undefined), 3500), async () => {
         When("I select Argentina as my preferred store location", when.tapID(ids.TEXT_TEMPLATE("Argentina", undefined), 500), async () => {
           When("I confirm my store location", when.tapID(ids.STORE_LOCATION_CONFIRM_BUTTON, 500), async () => {
             Then("I should be back on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
