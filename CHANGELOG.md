@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.74.0] - 2025-07-30
+
+### Bugfixes
+
+- Bugfix NVS-1495: Allow YuCoin text colour in gift preview to change depending on the background
+
+### Tasks
+
+- Task DEVOPS-3698: Codemagic RN app develop build
+- Task NVS-1502: Use more generic worker to grant journey access
+- Task GS-1756: Enable target SDK 35
+- Task GS-1756: Disable edge to edge for target SDK 35
+- Task GS-1797: Fetch user profile after login
+- Task: add proper label before all hooks
+- Task GS-1806: Enable android 15 for only local and development environment
+- Task: combine detox reports and push up to develop
+
+### Improvements
+
+- Detox: local improvements
+
+### Extra
+
+- Detox GS-1461: Achievements Screen
+- Detox: Reward and Pension Nav
+- Detox GS-1462: Locked Achievements
+- Detox: Rewards Game Fixes
+- Detox: Weeklies Settings
+- Detox P2P Fixes First Pass
+- Detox: fix history times
+- Detox: Add code block and original spec file
+- Detox: Rename Journey
+- Detox: Remove Journeys from Activity
+- Detox: Yudoku Fixes - change way to navigate to challenge
+- Detox add birthdays to specs.json
+
 ## [4.73.0] - 2025-07-24
 
 ### Features
