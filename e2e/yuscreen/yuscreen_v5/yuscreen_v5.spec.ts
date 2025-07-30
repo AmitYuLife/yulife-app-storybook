@@ -274,7 +274,7 @@ Feature("I am able to use the yuscreen v5", async () => {
 
   Scenario("I can click on a product and see all the information such as the digital certificate", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_141, data.AUTH_141), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Anya Forgar", "Mountain", "800"));
+      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Anya Forgar", "Mountain", "810"));
     });
     When("I scroll down to the Powerful protection section on YuScreen", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
       Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE));
@@ -383,6 +383,40 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
     When("I tap on the first empty achievement slot", when.tapID(ids.ACHIEVEMENT_SLOT(1)), async () => {
       Then("I should see all available achievements in a locked state", then.assertAllLockedAchievements);
+    });
+  });
+
+  Scenario("I can successfully unlock, equip and unequip an achivement badge", scenario.start, async () => {
+    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_141, data.AUTH_141), async () => {
+      Then("I should see the achievements showcase panel", then.idVisible(ids.ACHIEVEMENTS_SHOWCASE));
+      Then("I should see the 3 empty slots for achivements", then.checkEmptyAchievementSlots(3));
+    });
+    When("I navigate to the Quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
+      When("I tap on level 810", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(810), 2000), async () => {
+        When("I scroll through the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
+          Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+        });
+      });
+    });
+    When("I tap the Yudoku challenge", when.tapSudoku, async () => {
+      When("I complete the Yudoku", when.completeYudoku(3000), async () => {
+        When("I tap to collect the reward", when.tapCollect, async () => {
+          When("I return to the YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+            Then("I should still see the 3 empty achivement slots", then.checkEmptyAchievementSlots(3));
+          });
+        });
+      });
+    });
+    When("I tap on the first available achievement slot", when.tapID(ids.ACHIEVEMENT_SLOT(1)), async () => {
+      Then("I should now see the 'Zenith of the Mind' achievement unlocked", then.idVisible(ids.ACHIEVEMENT_CARD(constants.zenith_of_the_mind_achievement, "unlocked"), 2000));
+    });
+    When("I equip the 'Zenith of the Mind achievement' achivement", when.tapAchievementCard(constants.zenith_of_the_mind_achievement, "equip"), async () => {
+      Then("I should see the first slot filled on the achivement panel", then.idNotVisible(ids.ACHIEVEMENT_EMPTY_SLOT(ids.ACHIEVEMENT_SLOT(1))));
+    });
+    When("I tap the first occupied achievement slot", when.tapID(ids.ACHIEVEMENT_SLOT(1), 3000), async () => {
+      When("I unequip the 'Zenith of the Mind achievement' achivement badge", when.tapID("unequip", 3000), async () => {
+        Then("I should see the first slot on the achievements panel is now empty", then.idVisible(ids.ACHIEVEMENT_EMPTY_SLOT(ids.ACHIEVEMENT_SLOT(1)), 3000));
+      });
     });
   });
 });

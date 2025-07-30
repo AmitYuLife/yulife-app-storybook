@@ -32,6 +32,7 @@ export const {
   tapYuCoinIcon,
   reloadOnly,
   tapTextAtIndex,
+  dismissNotificationScreenIfVisible,
 } = navigation.common;
 
 export const { logInAndGoToTab } = navigation.login;
@@ -88,4 +89,39 @@ export const changeWellbeingHubSelectedBusiness = (businessName: string) => asyn
   await tapID(ids.WELLBEING_HUB_BUSINESS_ACCOUNT_DROP_DOWN)();
   await tapID(ids.GENERIC_SELECTOR_ITEM(businessName))();
   await tapID(ids.GENERIC_SELECTOR_CONFIRM)();
+};
+
+export const tapSudoku = async () => {
+  await scrollUntilTextVisible(ids.CHALLENGE_SET_SCROLL, "Yudoku", "down")();
+  await tapText("Yudoku")();
+};
+
+export const completeYudoku =
+  (endWait = 0) =>
+  async () => {
+    await scrollUntilTextVisible(ids.SUDOKU_STAGING_SCREEN_SCROLL, "Start game", "down")();
+    await tapText("Start game")();
+    await dismissNotificationScreenIfVisible();
+    await wait(9000)();
+    await tapID(ids.CELL_ROW_COLUMN(8, 6, 0))();
+    await tapID(ids.SUDOKU_NUMBER_INPUT(4))();
+    await tapID(ids.CELL_ROW_COLUMN(8, 7, 0))();
+    await tapID(ids.SUDOKU_NUMBER_INPUT(7))();
+    await tapID(ids.CELL_ROW_COLUMN(8, 8, 0))();
+    await tapID(ids.SUDOKU_NUMBER_INPUT(8))();
+    await wait(3000)();
+    await wait(endWait)();
+  };
+
+export const tapCollect = async () => {
+  await tapText("Done")();
+  await wait(3000)();
+
+  await scrollUntilTextVisible(ids.SUDOKU_COMPLETED_SCREEN_SCROLL, "Collect", "down")();
+  await tapText("Collect")();
+};
+
+export const tapAchievementCard = (card: string, cta: "equip" | "unequip") => async () => {
+  await tapID(ids.ACHIEVEMENT_CARD(card, "unlocked"))();
+  await tapID(cta)();
 };

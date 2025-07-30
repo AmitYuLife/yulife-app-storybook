@@ -92,6 +92,6 @@ export const USER_GAME_STATE_141 = {
     userId: customer.CUSTOMER_141.data.customerId,
     currentBalance: 18000,
     currentStreak: 0,
-    currentLevel: 800,
+    currentLevel: 810,
   },
 } as IDatabaseItem;

@@ -10,11 +10,18 @@ export const yumojiCreateCopy =
 export const certificateImageURI =
   "https://yulife-develop.imgix.net/duotone/certificate-2022-01-31.svg?ixlib=js-3.2.1&w=72&h=72&s=3dd7b668bfb2dd9a76fa4cd0eab89cd2";
 
+export const ascent_of_the_mind_achievement = "Ascent of the Mind";
+export const zenith_of_the_mind_achievement = "Zenith of the Mind";
+export const tones_of_being_achievement = "Tones of Being";
+export const pathfinder_achievement = "Pathfinder";
+export const champion_of_champions_achievement = "Champion of Champions";
+export const oathkeeper_achievement = "Oathkeeper";
+
 export const ACHIEVEMENTS: string[] = [
-  "Ascent of the Mind",
-  "Zenith of the Mind",
-  "Tones of Being",
-  "Pathfinder",
-  "Champion of Champions",
-  "Oathkeeper",
+  ascent_of_the_mind_achievement,
+  zenith_of_the_mind_achievement,
+  tones_of_being_achievement,
+  pathfinder_achievement,
+  champion_of_champions_achievement,
+  oathkeeper_achievement,
 ];
