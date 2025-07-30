@@ -33,3 +33,4 @@ export * from "./mongo/wellbeing_hub_items";
 export * from "./mongo/wellbeing_hub_category";
 export * from "./mongo/user_inventory";
 export * from "./mongo/goal_products";
+export * from "./mongo/game_sudoku_board";

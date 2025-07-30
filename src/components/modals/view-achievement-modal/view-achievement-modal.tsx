@@ -6,7 +6,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Style } from "@styles";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
-import { t } from "@locale";
 import { addCommasToNumber } from "@utils";
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
@@ -93,8 +92,7 @@ const ViewAchievementModal = ({
       {hideButton ? null : (
         <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">
           <Button
-            testID="id-baby"
-            translatedLabel={status === "equipped" ? t("unequip") : t("equip")}
+            translationKey={status === "equipped" ? "unequip" : "equip"}
             onPress={onButtonPress}
             isLoading={loading}
           />
