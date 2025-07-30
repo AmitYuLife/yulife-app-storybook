@@ -7,6 +7,7 @@ module.exports = (app) => {
     async (config) => {
       fs.symlinkSync("../support/ios/Gemfile", "./ios/Gemfile", "file");
       fs.symlinkSync("../support/ios/Gemfile.lock", "./ios/Gemfile.lock", "file");
+      fs.symlinkSync("../support/ios/Podfile.lock", "./ios/Podfile.lock", "file");
       fs.symlinkSync("../support/ios/.ruby-version", "./ios/.ruby-version", "file");
       fs.symlinkSync("../support/ios/patches", "./ios/patches", "file");
 

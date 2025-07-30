@@ -454,7 +454,7 @@ workflows:
     - git-clone@8.0:
         inputs:
         - reset_repository: "Yes"
-    - nvm@1: {}    
+    - nvm@1: {}
     - script@1:
         inputs:
         - content: |
@@ -2111,16 +2111,6 @@ workflows:
 
             # write your script here
             node ./scripts/replace-package-versionCodes.js $BITRISE_BUILD_NUMBER
-    - script@1.2:
-        title: Generate native projects
-        inputs:
-        - content: |
-            #!/usr/bin/env bash
-            yarn env:config:local && EXPO_NO_DOTENV=1 npx expo prebuild --platform ios
-    - script@1.2:
-        title: Set BUNDLE_ID NOT NEEDED
-        inputs:
-        - content: ./scripts/set-bundle-identifier.sh $BUNDLE_ID
     - certificate-and-profile-installer@1.10:
         is_always_run: true
     - install-react-native@0.10:
@@ -2134,28 +2124,23 @@ workflows:
             # fail if any commands fails
             set -ex
 
-            cd ios
-            asdf install ruby $(cat .ruby-version)
-            asdf global ruby $(cat .ruby-version)
+            asdf install ruby $(cat support/ios/.ruby-version)
+            asdf global ruby $(cat support/ios/.ruby-version)
     - script:
         inputs:
         - content: |
             #!/bin/bash
             envman add --key NO_FLIPPER --value 1
-    - script:
+    - script@1:
+        title: Install iOS native dependencies
         inputs:
         - content: |
             #!/bin/bash
+            rm -rf ios
+            EXPO_NO_DOTENV=1 npx expo prebuild --platform ios --no-install
             cd ios
             bundle install
-    - script:
-        inputs:
-        - content: |
-            #!/bin/bash
-            yarn
-            rm -rf ios
-            EXPO_NO_DOTENV=1 yarn regenerate
-            yarn pod:install
+            ENABLE_YUWATCH=1 bundle exec pod install --repo-update --deployment
     - script@1.2:
         title: Set watch display name
         inputs:

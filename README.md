@@ -28,7 +28,7 @@ If you are having trouble starting the apps, ensure you have followed the instal
 
 ### Ruby
 
-Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in .ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 3.2.2:
+Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in support/ios/.ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 3.2.2:
 
 ```
 brew install rbenv
