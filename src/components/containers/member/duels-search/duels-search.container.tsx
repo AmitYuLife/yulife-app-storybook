@@ -9,17 +9,17 @@ import RecentOpponents from "./subcomponents/recent-opponents";
 import { useQuery } from "@apollo/client";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
-import { useBackHandler, useDebouncedQuery, useUserFeatures } from "@hooks";
+import { useBackHandler, useSocialGroupUserSearch, useUserFeatures } from "@hooks";
 import { FindAFriend, SearchInput } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
 import { showYuModal } from "@navigation/root";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { t } from "@locale";
 import { showExistingDuelAlert, validDuels } from "@utils/duels";
-import { SearchForDuelOpponentQuery, gql } from "@graphql/__generated";
+import { SearchLeaderboardUserQuery, SocialGroupLeaderboardSearchType, gql } from "@graphql/__generated";
 import SearchList from "./subcomponents/search-list";
 
-export type SearchedOpponent = SearchForDuelOpponentQuery["searchForDuelOpponent"][number] & {
+export type SearchedOpponent = SearchLeaderboardUserQuery["searchLeaderboardUser"][number] & {
   onPress: () => Promise<void>;
 };
 
@@ -30,10 +30,8 @@ function navigateBack() {
 }
 
 function keyExtractor(item: SearchedOpponent, index: number) {
-  return `${item.customerId} - ${index}`;
+  return `${item.id} - ${index}`;
 }
-
-const DEBOUNCE = 750;
 
 const goToReferralInformation = async () => {
   await Navigation.push(ROUTES.leaderboard, {
@@ -78,12 +76,11 @@ function _DuelsSearchContainer() {
   const queryText = useRef("");
 
   useBackHandler(navigateBack);
-  const [search, { loading, data, networkStatus }] = useDebouncedQuery(
-    gql("SearchForDuelOpponentDocument"),
-    { fetchPolicy: "cache-and-network" },
-    DEBOUNCE,
-    { query: "" }
-  );
+
+  const { data, loading, handleChangeText, networkStatus } = useSocialGroupUserSearch({
+    searchType: SocialGroupLeaderboardSearchType.Leaderboard,
+    allowUnfilteredSearch: true,
+  });
 
   const getDuels = useQuery(gql("GetDuelsDocument"), {
     fetchPolicy: "cache-and-network",
@@ -116,19 +113,19 @@ function _DuelsSearchContainer() {
 
   const onChangeText = useCallback(
     (text: string) => {
-      search({ query: text });
+      handleChangeText(text);
       queryText.current = text;
     },
-    [search]
+    [handleChangeText]
   );
 
   const onRefresh = useCallback(async () => {
-    search({ query: queryText.current });
-  }, [queryText.current]);
+    handleChangeText(queryText.current);
+  }, [handleChangeText]);
 
-  const opponents = (data?.searchForDuelOpponent || []).map((opponent) => ({
+  const opponents = (data?.searchLeaderboardUser || []).map((opponent) => ({
     ...opponent,
-    onPress: () => onPress(opponent.customerId, "search_list"),
+    onPress: () => onPress(opponent.id, "search_list"),
   }));
 
   return (
@@ -143,7 +140,7 @@ function _DuelsSearchContainer() {
         networkStatus={networkStatus}
         onRefresh={onRefresh}
         emptyElement={
-          opponents.length || !queryText.current ? null : (
+          opponents.length || !queryText.current || loading ? null : (
             <View style={styles.emptyComponentWrapper}>
               <FindAFriend
                 loading={loading}

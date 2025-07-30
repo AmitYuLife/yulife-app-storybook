@@ -22252,21 +22252,6 @@ export type RespondToDuelMutation = {
   respondToDuel?: { __typename?: "Duel"; id?: string | null } | null;
 };
 
-export type SearchForDuelOpponentQueryVariables = Exact<{
-  query: Scalars["String"]["input"];
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-}>;
-
-export type SearchForDuelOpponentQuery = {
-  __typename?: "Query";
-  searchForDuelOpponent?: Array<{
-    __typename?: "DuelSearchResult";
-    fullName?: string | null;
-    customerId?: string | null;
-    avatar?: string | null;
-  } | null> | null;
-};
-
 export type SyncDuelScoreMutationVariables = Exact<{
   input: SyncDuelsScoreInput;
 }>;
@@ -69949,57 +69934,6 @@ export const RespondToDuelDocument = {
     },
   ],
 } as unknown as DocumentNode<RespondToDuelMutation, RespondToDuelMutationVariables>;
-export const SearchForDuelOpponentDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "SearchForDuelOpponent" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "query" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "searchForDuelOpponent" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "query" },
-                value: { kind: "Variable", name: { kind: "Name", value: "query" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "limit" },
-                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "fullName" } },
-                { kind: "Field", name: { kind: "Name", value: "customerId" } },
-                { kind: "Field", name: { kind: "Name", value: "avatar" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<SearchForDuelOpponentQuery, SearchForDuelOpponentQueryVariables>;
 export const SyncDuelScoreDocument = {
   kind: "Document",
   definitions: [

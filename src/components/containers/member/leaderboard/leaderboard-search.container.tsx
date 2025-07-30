@@ -1,11 +1,11 @@
 import { UserSearchScreen } from "@components/screens";
-import { gql } from "@graphql/__generated";
-import { useDebouncedQuery, useUserFeatures } from "@hooks";
+import { SocialGroupLeaderboardSearchType } from "@graphql/__generated";
+import { useSocialGroupUserSearch, useUserFeatures } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 import { UserSearchItem } from "@redux/_core/types";
 import { addLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.actions";
 import { getLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.selectors";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback } from "react";
 import { Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,18 +22,16 @@ export interface ILeaderboardSearchContainerProps {
 const LeaderboardSearchContainer = ({
   heading,
   subHeading,
-  socialGroupId,
-  socialGroupLeaderboardId,
   onItemPress,
   referralAmount,
 }: ILeaderboardSearchContainerProps) => {
   const dispatch = useDispatch();
-  const [isSearchTextEmpty, setSearchTextEmpty] = useState(true);
-  const [isSearching, setIsSearching] = useState(false);
   const recentSearch = useSelector(getLeaderboardRecentSearch);
   const { showReferrals } = useUserFeatures();
-  const [searchLeaderboardUser, { data, loading }] = useDebouncedQuery(gql("SearchLeaderboardUserDocument"), {
-    fetchPolicy: "network-only",
+
+  const { isFilteredSearch, data, loading, handleChangeText } = useSocialGroupUserSearch({
+    searchType: SocialGroupLeaderboardSearchType.Leaderboard,
+    allowUnfilteredSearch: true,
   });
 
   const handlePress = useCallback(
@@ -54,32 +52,17 @@ const LeaderboardSearchContainer = ({
     Navigation.pop(ROUTES.leaderboardSearch);
   }, []);
 
-  const handleChangeText = useCallback(
-    (text: string) => {
-      setSearchTextEmpty(text.length < 1);
-
-      if (text.length < 1) {
-        setIsSearching(false);
-        return;
-      }
-
-      setIsSearching(true);
-      searchLeaderboardUser({ name: text, socialGroupId, socialGroupLeaderboardId });
-    },
-    [searchLeaderboardUser, socialGroupId, socialGroupLeaderboardId]
-  );
-
   return (
     <UserSearchScreen
-      data={isSearchTextEmpty ? recentSearch : data?.searchLeaderboardUser || []}
-      loading={isSearching && loading}
+      data={!isFilteredSearch ? recentSearch : data?.searchLeaderboardUser || []}
+      loading={loading}
       heading={heading}
       subheading={subHeading}
       onItemPress={handlePress}
       onChangeText={handleChangeText}
       onClose={onClose}
       referralAmount={referralAmount}
-      isFilteredSearch={true}
+      isFilteredSearch={isFilteredSearch}
       showReferral={showReferrals}
     />
   );
