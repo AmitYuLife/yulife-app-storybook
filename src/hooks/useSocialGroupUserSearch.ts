@@ -9,9 +9,12 @@ interface IProps {
 
 export const useSocialGroupUserSearch = ({ searchType, allowUnfilteredSearch = false }: IProps) => {
   const [isFilteredSearch, setIsFilteredSearch] = useState(false);
-  const [searchSocialGroupUser, { data, loading }] = useDebouncedQuery(gql("SearchLeaderboardUserDocument"), {
-    fetchPolicy: "network-only",
-  });
+  const [searchSocialGroupUser, { data, loading, networkStatus }] = useDebouncedQuery(
+    gql("SearchLeaderboardUserDocument"),
+    {
+      fetchPolicy: "network-only",
+    }
+  );
 
   useEffect(() => {
     searchSocialGroupUser({ name: "", ...(searchType ? { searchType } : {}) });
@@ -34,5 +37,6 @@ export const useSocialGroupUserSearch = ({ searchType, allowUnfilteredSearch = f
     data,
     loading,
     handleChangeText,
+    networkStatus,
   };
 };

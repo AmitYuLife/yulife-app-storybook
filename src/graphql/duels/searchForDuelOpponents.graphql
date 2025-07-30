@@ -1,7 +1,0 @@
-query SearchForDuelOpponent($query: String!, $limit: Int) {
-  searchForDuelOpponent(query: $query, limit: $limit) {
-    fullName
-    customerId
-    avatar
-  }
-}
