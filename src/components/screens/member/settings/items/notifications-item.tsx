@@ -10,15 +10,25 @@ import { SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH } from "@ids";
 import { t } from "@locale";
 import { noop } from "@utils";
 
-const NotificationsItem: FC<INotificationsSectionItem> = ({
+type Props = Pick<
+  INotificationsSectionItem,
+  "id" | "isActive" | "name" | "description" | "onSwitchPress" | "onTimePress" | "alertTimestamp"
+> & {
+  testID?: string;
+  disabled?: boolean;
+};
+
+const NotificationsItem: FC<Props> = ({
   isActive,
   name,
   description,
   onSwitchPress,
   onTimePress,
   alertTimestamp,
+  testID,
+  disabled,
 }) => (
-  <View style={styles.wrapper}>
+  <View style={[styles.wrapper, disabled ? styles.disabled : undefined]} testID={testID}>
     {alertTimestamp && <View style={styles.seperator} />}
     <View style={styles.container}>
       <View style={styles.nameWrapper}>
@@ -29,7 +39,7 @@ const NotificationsItem: FC<INotificationsSectionItem> = ({
           {description}
         </TextTemplate>
       </View>
-      <Switch onPress={onSwitchPress} value={isActive} testID={SETTINGS_SWITCH(name, isActive)} />
+      <Switch onPress={disabled ? noop : onSwitchPress} value={isActive} testID={SETTINGS_SWITCH(name, isActive)} />
     </View>
     {!alertTimestamp ? null : (
       <>

@@ -1,18 +1,16 @@
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
-import { memo, useCallback } from "react";
+import { ComponentProps, memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import { FlashList } from "@shopify/flash-list";
 import LeaderboardToggle, { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
 import { ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
-import BirthdayVisibilityToggle, {
-  IChangeBirthdayVisibilityProps,
-} from "../../../organisms/birthday-visibility-toggle/birthday-visibility-toggle";
 import { groupBy } from "lodash";
 import { INotificationsSectionItem } from "../settings/settings.screen";
 import NotificationsItem from "../settings/items/notifications-item";
+import { BIRTHDAY_TOGGLE } from "@ids";
 
 interface ILeaderboardItem extends ISocialGroupLeaderboard {
   socialGroupId: string;
@@ -36,7 +34,7 @@ interface IProps {
   inboxNotificationsSettings?: INotificationsSectionItem[];
   lifeEvents?: LifeEventsData;
   onChangeConsent: (consentProps: IChangeConsentProps) => void;
-  onChangeBirthdayVisibility?: (props: IChangeBirthdayVisibilityProps) => void;
+  onChangeBirthdayVisibility?: (props: { isVisible: boolean }) => void;
 }
 
 const LeaderboardSettings = ({
@@ -48,7 +46,13 @@ const LeaderboardSettings = ({
   onChangeBirthdayVisibility,
   inboxNotificationsSettings,
 }: IProps) => {
-  const t = useTranslation(["screens.leaderboard_settings.title", "screens.leaderboard_settings.screen_description"]);
+  const t = useTranslation([
+    "screens.leaderboard_settings.title",
+    "screens.leaderboard_settings.screen_description",
+    "screens.leaderboard_settings.birthday_visibility.title",
+    "screens.leaderboard_settings.birthday_visibility.consented",
+    "screens.leaderboard_settings.birthday_visibility.not_consented",
+  ]);
 
   const allLeaderboardsDisabled = leaderboards.every((leaderboard) => !leaderboard.consent);
   const flatLeaderboardListWithHeaders = leaderboards
@@ -107,15 +111,25 @@ const LeaderboardSettings = ({
         refreshing={false}
         ListHeaderComponent={
           <View style={styles.header}>
-            <TextTemplate type="b2">{t["screens.leaderboard_settings.screen_description"]}</TextTemplate>
-            {lifeEvents?.isBirthdayGiftingEnabled && (
-              <BirthdayVisibilityToggle
-                disabled={allLeaderboardsDisabled}
-                isVisible={lifeEvents?.birthday?.isVisible ?? false}
-                onBirthdayVisibilityChange={onChangeBirthdayVisibility}
-              />
-            )}
-            {renderInboxNotificationSettings(inboxNotificationsSettings)}
+            <Box pb={16}>
+              <TextTemplate type="b2">{t["screens.leaderboard_settings.screen_description"]}</TextTemplate>
+            </Box>
+            {renderInboxNotificationSettings([
+              lifeEvents?.isBirthdayGiftingEnabled
+                ? {
+                    id: "birthday-visibility",
+                    isActive: lifeEvents?.birthday?.isVisible ?? false,
+                    disabled: allLeaderboardsDisabled,
+                    name: t["screens.leaderboard_settings.birthday_visibility.title"],
+                    testID: BIRTHDAY_TOGGLE(lifeEvents?.birthday?.isVisible ?? false),
+                    description: lifeEvents?.birthday?.isVisible
+                      ? t["screens.leaderboard_settings.birthday_visibility.consented"]
+                      : t["screens.leaderboard_settings.birthday_visibility.not_consented"],
+                    onSwitchPress: () => onChangeBirthdayVisibility({ isVisible: !lifeEvents?.birthday?.isVisible }),
+                  }
+                : null,
+              ...inboxNotificationsSettings,
+            ])}
           </View>
         }
         ListFooterComponent={<View style={styles.footer} />}
@@ -129,12 +143,16 @@ const LeaderboardSettings = ({
   );
 };
 
-const renderInboxNotificationSettings = (items: INotificationsSectionItem[]) => {
+const renderInboxNotificationSettings = (items: ComponentProps<typeof NotificationsItem>[]) => {
   return (
     <View>
-      {items.map((item) => (
-        <NotificationsItem {...item} key={item.id} />
-      ))}
+      {items.map((item) => {
+        if (!item) {
+          return null;
+        }
+
+        return <NotificationsItem {...item} key={item.id} />;
+      })}
     </View>
   );
 };
