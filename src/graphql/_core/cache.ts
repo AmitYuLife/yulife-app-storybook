@@ -75,6 +75,13 @@ const typePolicies: TypePolicies = {
       },
     },
   },
+  MobileBattlePassDonationTemplate: {
+    fields: {
+      leaderboards: {
+        merge: incomingMergeStrategy,
+      },
+    },
+  },
 };
 
 let cache: InMemoryCache;

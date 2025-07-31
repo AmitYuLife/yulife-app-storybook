@@ -1,11 +1,5 @@
 query GetInboxNotificationsSettings {
   inboxNotifications: getInboxNotificationsSettings {
-    id
-    type
-    name
-    isActive
-    isAvailable
-    order
-    description
+    ...NotificationSettingsProps
   }
 }

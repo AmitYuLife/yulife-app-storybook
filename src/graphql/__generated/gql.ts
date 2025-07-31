@@ -112,6 +112,7 @@ const documents = {
   MediaFragmentDoc: types.MediaFragmentDoc,
   MobileGameRewardPassFragmentDoc: types.MobileGameRewardPassFragmentDoc,
   MobileWeeklyActivityProgressFragmentDoc: types.MobileWeeklyActivityProgressFragmentDoc,
+  NotificationSettingsPropsFragmentDoc: types.NotificationSettingsPropsFragmentDoc,
   UserProfileNotificationFragmentDoc: types.UserProfileNotificationFragmentDoc,
   UserWalletItemFragmentDoc: types.UserWalletItemFragmentDoc,
   UserWalletRewardFragmentDoc: types.UserWalletRewardFragmentDoc,
@@ -124,8 +125,10 @@ const documents = {
   SduiStyleFragmentDoc: types.SduiStyleFragmentDoc,
   SduiStyleDynamicFragmentDoc: types.SduiStyleDynamicFragmentDoc,
   VariableRemoteImageFragmentDoc: types.VariableRemoteImageFragmentDoc,
+  SocialGroupLeaderboardEnrollmentFragmentDoc: types.SocialGroupLeaderboardEnrollmentFragmentDoc,
   SocialGroupFragmentDoc: types.SocialGroupFragmentDoc,
   SocialGroupLeaderboardFragmentDoc: types.SocialGroupLeaderboardFragmentDoc,
+  SocialGroupLeaderboardEnrollmentGroupFragmentDoc: types.SocialGroupLeaderboardEnrollmentGroupFragmentDoc,
   SocialGroupLeaderboardItemFragmentDoc: types.SocialGroupLeaderboardItemFragmentDoc,
   UserFragmentDoc: types.UserFragmentDoc,
   UserActiveChallengeFragmentDoc: types.UserActiveChallengeFragmentDoc,
@@ -221,6 +224,7 @@ const documents = {
   InventoryItemFragmentDoc: types.InventoryItemFragmentDoc,
   GetSduiJourneyDocument: types.GetSduiJourneyDocument,
   SubmitSduiJourneyDocument: types.SubmitSduiJourneyDocument,
+  GetLeaderboardSettingsDocument: types.GetLeaderboardSettingsDocument,
   GetPlayerLifeEventsDocument: types.GetPlayerLifeEventsDocument,
   SetMobilePlayerBirthdayVisibilityDocument: types.SetMobilePlayerBirthdayVisibilityDocument,
   ChangeUserLocaleDocument: types.ChangeUserLocaleDocument,
@@ -233,6 +237,7 @@ const documents = {
   UpdateMemberConsentDocument: types.UpdateMemberConsentDocument,
   GetPotentialRewardsDocument: types.GetPotentialRewardsDocument,
   GetInboxNotificationsSettingsDocument: types.GetInboxNotificationsSettingsDocument,
+  GetUserLeaderboardEnrollmentsDocument: types.GetUserLeaderboardEnrollmentsDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
   GetMobileWhatsNewModalDocument: types.GetMobileWhatsNewModalDocument,
@@ -822,6 +827,12 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
+  source: "NotificationSettingsPropsFragmentDoc"
+): typeof documents["NotificationSettingsPropsFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
   source: "UserProfileNotificationFragmentDoc"
 ): typeof documents["UserProfileNotificationFragmentDoc"];
 /**
@@ -873,11 +884,23 @@ export function gql(source: "VariableRemoteImageFragmentDoc"): typeof documents[
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(
+  source: "SocialGroupLeaderboardEnrollmentFragmentDoc"
+): typeof documents["SocialGroupLeaderboardEnrollmentFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "SocialGroupFragmentDoc"): typeof documents["SocialGroupFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "SocialGroupLeaderboardFragmentDoc"): typeof documents["SocialGroupLeaderboardFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "SocialGroupLeaderboardEnrollmentGroupFragmentDoc"
+): typeof documents["SocialGroupLeaderboardEnrollmentGroupFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1317,6 +1340,10 @@ export function gql(source: "SubmitSduiJourneyDocument"): typeof documents["Subm
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "GetLeaderboardSettingsDocument"): typeof documents["GetLeaderboardSettingsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "GetPlayerLifeEventsDocument"): typeof documents["GetPlayerLifeEventsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -1368,6 +1395,12 @@ export function gql(source: "GetPotentialRewardsDocument"): typeof documents["Ge
 export function gql(
   source: "GetInboxNotificationsSettingsDocument"
 ): typeof documents["GetInboxNotificationsSettingsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetUserLeaderboardEnrollmentsDocument"
+): typeof documents["GetUserLeaderboardEnrollmentsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
