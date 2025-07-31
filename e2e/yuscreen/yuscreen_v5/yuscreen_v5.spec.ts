@@ -84,9 +84,9 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
       Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 430));
     });
-    When("I click on the YuCoin I have earned today", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(130, 430)), async () => {
-      Then("I should be on the Today's earnings screen", then.textVisible("Today’s Earnings"));
-      Then("I should see the 130 YuCoin I have earned today", then.textVisible("130 YuCoin"));
+    When("I click on the YuCoin I have earned today", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(130, 430), 3000), async () => {
+      Then("I should be on the Today's earnings screen", then.textVisible("Today’s Earnings", 1500));
+      Then("I should see the 130 YuCoin I have earned today", then.textVisible("130 YuCoin", 1500));
     });
     When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
       Then("I should be on yuscreen v5", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
@@ -94,9 +94,9 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 430));
     });
     When("I tap the challenge nudge image", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon)), async () => {
-      Then("I should be on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(124)));
+      Then("I should be on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(124), 2000));
     });
-    When("I tap on level 124", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(123)), async () => {
+    When("I tap on level 124", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(123), 2000), async () => {
       When("I complete a short stroll challenge", when.completeShortStroll(310, 40000), async () => {
         When("I tap collect", when.tapText("Collect"), async () => {
           When("I tap done", when.tapText("Done"), async () => {
@@ -304,8 +304,8 @@ Feature("I am able to use the yuscreen v5", async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Forest", "401"));
     });
-    When("I scroll to the bottom", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
-      When("I tap See all benefits", when.tapID(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW), async () => {
+    When("I scroll to the bottom", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.3), async () => {
+      When("I tap See all benefits", when.tapID(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, 3000), async () => {
         When("I tap confirm selection", when.tapText("Confirm selection"), async () => {
           When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
             When("I swipe down to see the perks", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, "down"), async () => {

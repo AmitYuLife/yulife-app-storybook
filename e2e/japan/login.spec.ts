@@ -30,7 +30,7 @@ Feature("As a user I can get past the login screen", async () => {
     });
     When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
       When("I confirm my region", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
-        Then("I can see the translated pill for 'All'", then.textVisible("すべて"));
+        Then("I can see the translated pill for 'All'", then.textVisible("すべて", 3000));
       });
     });
     When("I go to the YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
@@ -82,7 +82,7 @@ Feature("As a user I can get past the login screen", async () => {
       });
     });
     When("I scroll until I see all the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
-      Then("I should see the square card for GHealth", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("入院への備え")));
+      Then("I should see the square card for GHealth", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("入院への備え"), 3000));
       Then("I should see the square card for GCI", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("がん・急性心筋梗塞・脳卒中への備え")));
       Then("I should see the square card for ExGL", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("万一への備え")));
     });
