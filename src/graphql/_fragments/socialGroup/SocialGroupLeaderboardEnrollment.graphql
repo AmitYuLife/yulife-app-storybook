@@ -1,0 +1,6 @@
+fragment SocialGroupLeaderboardEnrollment on SocialGroupLeaderboardEnrollment {
+  leaderboardId
+  name
+  consent
+  leaderboardConfigId
+}

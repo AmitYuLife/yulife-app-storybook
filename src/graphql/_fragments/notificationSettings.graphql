@@ -1,0 +1,10 @@
+fragment NotificationSettingsProps on NotificationSettingsProps {
+  id
+  type
+  name
+  alertTimestamp
+  isActive
+  isAvailable
+  order
+  description
+}

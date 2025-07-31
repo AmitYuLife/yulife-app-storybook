@@ -1,0 +1,7 @@
+fragment SocialGroupLeaderboardEnrollmentGroup on SocialGroupLeaderboardEnrollmentGroup {
+  socialGroupId
+  name
+  leaderboards {
+    ...SocialGroupLeaderboardEnrollment
+  }
+}

@@ -6,15 +6,18 @@ import { Box, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import { FlashList } from "@shopify/flash-list";
 import LeaderboardToggle, { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
-import { ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
 import { groupBy } from "lodash";
 import { INotificationsSectionItem } from "../settings/settings.screen";
 import NotificationsItem from "../settings/items/notifications-item";
 import { BIRTHDAY_TOGGLE } from "@ids";
 
-interface ILeaderboardItem extends ISocialGroupLeaderboard {
+interface ILeaderboardEnrollment {
   socialGroupId: string;
   socialGroupName: string;
+  leaderboardId: string;
+  name: string;
+  consent: boolean;
+  leaderboardConfigId: string;
 }
 
 export interface LifeEventsData {
@@ -30,7 +33,7 @@ export interface Birthday {
 interface IProps {
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
-  leaderboards?: ILeaderboardItem[];
+  leaderboards?: ILeaderboardEnrollment[];
   inboxNotificationsSettings?: INotificationsSectionItem[];
   lifeEvents?: LifeEventsData;
   onChangeConsent: (consentProps: IChangeConsentProps) => void;
@@ -64,7 +67,7 @@ const LeaderboardSettings = ({
     : [];
 
   const renderItem = useCallback(
-    ({ item }: { item: string | ILeaderboardItem }) => {
+    ({ item }: { item: string | ILeaderboardEnrollment }) => {
       const isSectionHeader = typeof item === "string";
       if (isSectionHeader) {
         return (
@@ -96,7 +99,7 @@ const LeaderboardSettings = ({
         />
       );
     },
-    [onChangeConsent]
+    [onChangeConsent, t]
   );
 
   return (

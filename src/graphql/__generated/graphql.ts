@@ -7600,6 +7600,7 @@ export type Query = {
   getUserDebugData: DebugData;
   getUserDocuments: Array<DocumentLink>;
   getUserFeatures: Array<UserFeature>;
+  getUserLeaderboardEnrollments: Array<SocialGroupLeaderboardEnrollmentGroup>;
   getUserLeaderboards?: Maybe<Array<Maybe<Leaderboard>>>;
   getUserMobileConsent?: Maybe<MobileConsent>;
   getUserNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
@@ -9069,6 +9070,21 @@ export enum SocialGroupLeaderboardConfigId {
   Dailysudoku = "dailysudoku",
   Steps30days = "steps30days",
 }
+
+export type SocialGroupLeaderboardEnrollment = {
+  __typename?: "SocialGroupLeaderboardEnrollment";
+  consent: Scalars["Boolean"]["output"];
+  leaderboardConfigId: SocialGroupLeaderboardConfigId;
+  leaderboardId: Scalars["ID"]["output"];
+  name: Scalars["String"]["output"];
+};
+
+export type SocialGroupLeaderboardEnrollmentGroup = {
+  __typename?: "SocialGroupLeaderboardEnrollmentGroup";
+  leaderboards: Array<SocialGroupLeaderboardEnrollment>;
+  name: Scalars["String"]["output"];
+  socialGroupId: Scalars["ID"]["output"];
+};
 
 export type SocialGroupLeaderboardGroup = {
   __typename?: "SocialGroupLeaderboardGroup";
@@ -18295,6 +18311,18 @@ export type MobileWeeklyActivityProgressFragment = {
   iconUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
+export type NotificationSettingsPropsFragment = {
+  __typename?: "NotificationSettingsProps";
+  id: string;
+  type: UserNotificationsType;
+  name: string;
+  alertTimestamp?: string | null;
+  isActive: boolean;
+  isAvailable: boolean;
+  order: number;
+  description?: string | null;
+};
+
 export type UserProfileNotificationFragment = {
   __typename?: "UserProfileNotification";
   id: string;
@@ -20064,6 +20092,14 @@ export type VariableRemoteImageFragment = {
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
+export type SocialGroupLeaderboardEnrollmentFragment = {
+  __typename?: "SocialGroupLeaderboardEnrollment";
+  leaderboardId: string;
+  name: string;
+  consent: boolean;
+  leaderboardConfigId: SocialGroupLeaderboardConfigId;
+};
+
 export type SocialGroupFragment = {
   __typename?: "SocialGroupLeaderboardGroup";
   socialGroupId: string;
@@ -20093,6 +20129,19 @@ export type SocialGroupLeaderboardFragment = {
   leaderboardConfigId: SocialGroupLeaderboardConfigId;
   icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type SocialGroupLeaderboardEnrollmentGroupFragment = {
+  __typename?: "SocialGroupLeaderboardEnrollmentGroup";
+  socialGroupId: string;
+  name: string;
+  leaderboards: Array<{
+    __typename?: "SocialGroupLeaderboardEnrollment";
+    leaderboardId: string;
+    name: string;
+    consent: boolean;
+    leaderboardConfigId: SocialGroupLeaderboardConfigId;
+  }>;
 };
 
 export type SocialGroupLeaderboardItemFragment = {
@@ -26272,6 +26321,41 @@ export type SubmitSduiJourneyMutationVariables = Exact<{
 
 export type SubmitSduiJourneyMutation = { __typename?: "Mutation"; submitSduiJourney?: boolean | null };
 
+export type GetLeaderboardSettingsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetLeaderboardSettingsQuery = {
+  __typename?: "Query";
+  userLeaderboardEnrollments: Array<{
+    __typename?: "SocialGroupLeaderboardEnrollmentGroup";
+    socialGroupId: string;
+    name: string;
+    leaderboards: Array<{
+      __typename?: "SocialGroupLeaderboardEnrollment";
+      leaderboardId: string;
+      name: string;
+      consent: boolean;
+      leaderboardConfigId: SocialGroupLeaderboardConfigId;
+    }>;
+  }>;
+  inboxNotifications?: Array<{
+    __typename?: "NotificationSettingsProps";
+    id: string;
+    type: UserNotificationsType;
+    name: string;
+    alertTimestamp?: string | null;
+    isActive: boolean;
+    isAvailable: boolean;
+    order: number;
+    description?: string | null;
+  } | null> | null;
+  playerLifeEvents?: {
+    __typename?: "LifeEvents";
+    id: string;
+    isBirthdayGiftingEnabled: boolean;
+    birthday?: { __typename?: "PlayerBirthday"; dateOfBirth: string; isVisible: boolean } | null;
+  } | null;
+};
+
 export type GetPlayerLifeEventsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetPlayerLifeEventsQuery = {
@@ -26499,11 +26583,30 @@ export type GetInboxNotificationsSettingsQuery = {
     id: string;
     type: UserNotificationsType;
     name: string;
+    alertTimestamp?: string | null;
     isActive: boolean;
     isAvailable: boolean;
     order: number;
     description?: string | null;
   } | null> | null;
+};
+
+export type GetUserLeaderboardEnrollmentsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetUserLeaderboardEnrollmentsQuery = {
+  __typename?: "Query";
+  getUserLeaderboardEnrollments: Array<{
+    __typename?: "SocialGroupLeaderboardEnrollmentGroup";
+    socialGroupId: string;
+    name: string;
+    leaderboards: Array<{
+      __typename?: "SocialGroupLeaderboardEnrollment";
+      leaderboardId: string;
+      name: string;
+      consent: boolean;
+      leaderboardConfigId: SocialGroupLeaderboardConfigId;
+    }>;
+  }>;
 };
 
 export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
@@ -26515,9 +26618,9 @@ export type GetUserNotificationsSettingsQuery = {
     id: string;
     type: UserNotificationsType;
     name: string;
+    alertTimestamp?: string | null;
     isActive: boolean;
     isAvailable: boolean;
-    alertTimestamp?: string | null;
     order: number;
     description?: string | null;
   } | null> | null;
@@ -26526,6 +26629,7 @@ export type GetUserNotificationsSettingsQuery = {
     id: string;
     type: UserNotificationsType;
     name: string;
+    alertTimestamp?: string | null;
     isActive: boolean;
     isAvailable: boolean;
     order: number;
@@ -54218,6 +54322,29 @@ export const MobileWeeklyActivityProgressFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MobileWeeklyActivityProgressFragment, unknown>;
+export const NotificationSettingsPropsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "NotificationSettingsProps" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "NotificationSettingsProps" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "alertTimestamp" } },
+          { kind: "Field", name: { kind: "Name", value: "isActive" } },
+          { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
+          { kind: "Field", name: { kind: "Name", value: "order" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<NotificationSettingsPropsFragment, unknown>;
 export const UserProfileNotificationFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -54628,6 +54755,66 @@ export const SocialGroupFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SocialGroupFragment, unknown>;
+export const SocialGroupLeaderboardEnrollmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "consent" } },
+          { kind: "Field", name: { kind: "Name", value: "leaderboardConfigId" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SocialGroupLeaderboardEnrollmentFragment, unknown>;
+export const SocialGroupLeaderboardEnrollmentGroupFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardEnrollmentGroup" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollmentGroup" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "socialGroupId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "consent" } },
+          { kind: "Field", name: { kind: "Name", value: "leaderboardConfigId" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SocialGroupLeaderboardEnrollmentGroupFragment, unknown>;
 export const UserFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -75017,6 +75204,127 @@ export const SubmitSduiJourneyDocument = {
     },
   ],
 } as unknown as DocumentNode<SubmitSduiJourneyMutation, SubmitSduiJourneyMutationVariables>;
+export const GetLeaderboardSettingsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetLeaderboardSettings" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "userLeaderboardEnrollments" },
+            name: { kind: "Name", value: "getUserLeaderboardEnrollments" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollmentGroup" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "inboxNotifications" },
+            name: { kind: "Name", value: "getInboxNotificationsSettings" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "NotificationSettingsProps" } }],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "playerLifeEvents" },
+            name: { kind: "Name", value: "getPlayerLifeEvents" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "LifeEvents" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "consent" } },
+          { kind: "Field", name: { kind: "Name", value: "leaderboardConfigId" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardEnrollmentGroup" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollmentGroup" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "socialGroupId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "NotificationSettingsProps" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "NotificationSettingsProps" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "alertTimestamp" } },
+          { kind: "Field", name: { kind: "Name", value: "isActive" } },
+          { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
+          { kind: "Field", name: { kind: "Name", value: "order" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "LifeEvents" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "birthday" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
+                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetLeaderboardSettingsQuery, GetLeaderboardSettingsQueryVariables>;
 export const GetPlayerLifeEventsDocument = {
   kind: "Document",
   definitions: [
@@ -75881,14 +76189,85 @@ export const GetInboxNotificationsSettingsDocument = {
             name: { kind: "Name", value: "getInboxNotificationsSettings" },
             selectionSet: {
               kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "NotificationSettingsProps" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "NotificationSettingsProps" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "NotificationSettingsProps" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "alertTimestamp" } },
+          { kind: "Field", name: { kind: "Name", value: "isActive" } },
+          { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
+          { kind: "Field", name: { kind: "Name", value: "order" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetInboxNotificationsSettingsQuery, GetInboxNotificationsSettingsQueryVariables>;
+export const GetUserLeaderboardEnrollmentsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserLeaderboardEnrollments" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserLeaderboardEnrollments" },
+            selectionSet: {
+              kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "isActive" } },
-                { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
-                { kind: "Field", name: { kind: "Name", value: "order" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollmentGroup" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "consent" } },
+          { kind: "Field", name: { kind: "Name", value: "leaderboardConfigId" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardEnrollmentGroup" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollmentGroup" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "socialGroupId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardEnrollment" } },
               ],
             },
           },
@@ -75896,7 +76275,7 @@ export const GetInboxNotificationsSettingsDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<GetInboxNotificationsSettingsQuery, GetInboxNotificationsSettingsQueryVariables>;
+} as unknown as DocumentNode<GetUserLeaderboardEnrollmentsQuery, GetUserLeaderboardEnrollmentsQueryVariables>;
 export const GetUserNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [
@@ -75913,16 +76292,7 @@ export const GetUserNotificationsSettingsDocument = {
             name: { kind: "Name", value: "getUserNotificationsSettings" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "isActive" } },
-                { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
-                { kind: "Field", name: { kind: "Name", value: "alertTimestamp" } },
-                { kind: "Field", name: { kind: "Name", value: "order" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-              ],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "NotificationSettingsProps" } }],
             },
           },
           {
@@ -75931,17 +76301,27 @@ export const GetUserNotificationsSettingsDocument = {
             name: { kind: "Name", value: "getEmailNotificationsSettings" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "isActive" } },
-                { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
-                { kind: "Field", name: { kind: "Name", value: "order" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-              ],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "NotificationSettingsProps" } }],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "NotificationSettingsProps" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "NotificationSettingsProps" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "alertTimestamp" } },
+          { kind: "Field", name: { kind: "Name", value: "isActive" } },
+          { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
+          { kind: "Field", name: { kind: "Name", value: "order" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
         ],
       },
     },

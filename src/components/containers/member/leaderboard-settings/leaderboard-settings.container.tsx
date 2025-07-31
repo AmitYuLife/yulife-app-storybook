@@ -2,16 +2,19 @@ import { memo, useCallback, useMemo } from "react";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import LeaderboardSettingsScreen from "@screens/member/leaderboard-settings/leaderboard-settings.screen";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { showYuModal } from "@navigation/root";
 import { openMyAccount } from "@redux/user/user.actions";
-import { getSocialGroups } from "@redux/leaderboards/leaderboards.selectors";
 import { useMutation, useQuery } from "@apollo/client";
 import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
 import { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
-import { GetInboxNotificationsSettingsDocument, gql } from "@graphql/__generated";
+import {
+  GetInboxNotificationsSettingsDocument,
+  GetUserLeaderboardEnrollmentsDocument,
+  gql,
+} from "@graphql/__generated";
 import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
 import sortBy from "lodash/sortBy";
 import Loading from "../../../atoms/loading/loading";
@@ -31,11 +34,14 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
       Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
     },
   });
-  const inboxNotificationSettingsData = useQuery(gql(`GetInboxNotificationsSettingsDocument`), {
+
+  const { data, loading } = useQuery(gql("GetLeaderboardSettingsDocument"), {
     fetchPolicy: "cache-and-network",
   });
 
   const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"), {
+    refetchQueries: [{ query: GetUserLeaderboardEnrollmentsDocument }],
+    awaitRefetchQueries: true,
     onError: () => {
       Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
     },
@@ -45,11 +51,10 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
       Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
     },
   });
-  const { data, loading } = useQuery(gql("GetPlayerLifeEventsDocument"));
 
   const inboxNotificationsSettings = useMemo(() => {
-    return inboxNotificationSettingsData?.data?.inboxNotifications ?? [];
-  }, [inboxNotificationSettingsData]);
+    return data?.inboxNotifications ?? [];
+  }, [data?.inboxNotifications]);
 
   const inboxNotificationItems = useMemo(
     () =>
@@ -74,14 +79,11 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
   );
 
   const dispatch = useDispatch();
-  const socialGroups = useSelector(getSocialGroups);
-  const allDataLoaded = !loading && !!socialGroups;
-  const lifeEventsData = data?.getPlayerLifeEvents;
 
   const leaderboards = useMemo(
     () =>
       sortBy(
-        socialGroups?.flatMap((socialGroup) =>
+        data?.userLeaderboardEnrollments?.flatMap((socialGroup) =>
           socialGroup.leaderboards?.map((leaderboard) => ({
             ...leaderboard,
             socialGroupId: socialGroup.socialGroupId,
@@ -90,7 +92,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
         ) || [],
         "leaderboardId"
       ),
-    [socialGroups]
+    [data?.userLeaderboardEnrollments]
   );
 
   const dismissModal = useCallback(() => {
@@ -126,7 +128,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
 
   const onChangeBirthdayVisibility = useCallback(
     ({ isVisible }: { isVisible: boolean }) => {
-      if (!lifeEventsData?.birthday) {
+      if (!data?.playerLifeEvents?.birthday) {
         const handleNavigateToMyAccount = async () => {
           await Navigation.dismissModal(MODALS.birthdayNotSet);
           dispatch(openMyAccount());
@@ -176,7 +178,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
         },
       });
     },
-    [lifeEventsData, dismissModal, changeBirthdayVisibility]
+    [data?.playerLifeEvents?.birthday, dismissModal, dispatch, changeBirthdayVisibility]
   );
 
   const onChangeConsent = useCallback(
@@ -217,7 +219,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
   const onRightIconPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.settings), []);
 
-  if (!allDataLoaded) {
+  if (loading) {
     return <Loading />;
   }
 
@@ -228,7 +230,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
       onChangeConsent={onChangeConsent}
       onRightIconPress={onRightIconPress}
       onChangeBirthdayVisibility={onChangeBirthdayVisibility}
-      lifeEvents={lifeEventsData}
+      lifeEvents={data?.playerLifeEvents}
       inboxNotificationsSettings={inboxNotificationItems}
     />
   );
