@@ -6,8 +6,6 @@ import { Image, TextTemplate } from "@atoms";
 import { Colours, NAV_BAR, Style } from "@styles";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { ISocialGroupLeaderboardListItem } from "@components/screens/member/leaderboard/leaderboard-list-item";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
@@ -100,22 +98,10 @@ const BattlePassLeaderboardScreen = ({
   }, [currentUserInfo?.position]);
 
   const renderItem = useCallback(
-    ({ item, index }: ListRenderItemInfo<ISocialGroupLeaderboardListItem>) => {
+    ({ item }: ListRenderItemInfo<ISocialGroupLeaderboardListItem>) => {
       return (
         <ListItem
           type="leaderboard"
-          onPress={() =>
-            Navigation.push(ROUTES.battlePassLeaderboard, {
-              component: {
-                id: ROUTES.inspect,
-                name: ROUTES.inspect,
-                passProps: {
-                  userId: item.userId,
-                  leaderboardPlacement: index + 1,
-                },
-              },
-            })
-          }
           uri={item?.avatar?.uri}
           score={item.score}
           showYuCoin={true}
