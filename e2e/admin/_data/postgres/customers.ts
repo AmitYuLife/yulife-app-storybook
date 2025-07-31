@@ -77,7 +77,7 @@ export const CUSTOMER_5 = {
   modelName,
   data: {
     customerId: generateRandomMongoId(),
-    email: "barry@jl.com",
+    email: generateRandomInbox(),
     firstName: "Barry",
     lastName: "Allen",
     status: "onboarded",

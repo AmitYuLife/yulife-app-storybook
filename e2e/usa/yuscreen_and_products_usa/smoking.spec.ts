@@ -5,8 +5,8 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as given from "./_steps/given";
 import * as data from "../_data";
-import { CUSTOMER_1_SMOKING_TIPS, CUSTOMER_1_MOMENTS_AND_REASONS } from "./_resources/fixture";
-import { smoking_questions, milestone_message } from "../../health/_resources/smoking_fixtures";
+import { CUSTOMER_1_MOMENTS_AND_REASONS } from "./_resources/fixture";
+import { smoking_questions } from "../../health/_resources/smoking_fixtures";
 
 const locale = process.env.TARGET_LOCALE || "en-US";
 
