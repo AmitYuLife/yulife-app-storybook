@@ -4,7 +4,7 @@ import { IReduxState } from "../_core/reducers";
 type State = IReduxState["debugReducer"];
 const reducer = (state: IReduxState) => state.debugReducer;
 
-const pedometerHistorySteps = (state: State) => state.pedometerHistorySteps;
+const pedometerHistorySteps = (state: State) => state.historySteps;
 export const getDebugPedometerHistorySteps = createSelector(reducer, pedometerHistorySteps);
 
 const debugToolsEnabled = (state: State) => state.debugToolsEnabled;
