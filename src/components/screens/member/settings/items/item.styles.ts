@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   } as ViewStyle,
+  disabled: {
+    opacity: 0.5,
+  } as ViewStyle,
 });
 
 export default styles;

@@ -14,7 +14,6 @@ import { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-t
 import { GetInboxNotificationsSettingsDocument, gql } from "@graphql/__generated";
 import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
 import sortBy from "lodash/sortBy";
-import { IChangeBirthdayVisibilityProps } from "../../../organisms/birthday-visibility-toggle/birthday-visibility-toggle";
 import Loading from "../../../atoms/loading/loading";
 import { Alert } from "react-native";
 import Logger from "../../../../services/logging/logger";
@@ -126,7 +125,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
   );
 
   const onChangeBirthdayVisibility = useCallback(
-    ({ isVisible }: IChangeBirthdayVisibilityProps) => {
+    ({ isVisible }: { isVisible: boolean }) => {
       if (!lifeEventsData?.birthday) {
         const handleNavigateToMyAccount = async () => {
           await Navigation.dismissModal(MODALS.birthdayNotSet);
