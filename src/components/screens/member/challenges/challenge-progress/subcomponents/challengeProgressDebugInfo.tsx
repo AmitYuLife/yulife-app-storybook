@@ -6,20 +6,21 @@ import { FlashList } from "@shopify/flash-list";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { t } from "@locale";
-import { Alert } from "react-native";
+import { Alert, Platform } from "react-native";
+import { IPedometerHistoryEntry } from "@redux/debug/debug.types";
 
 type Props = {
   initialDailySteps: number;
   currentPedometerSteps: number;
   progressCalculation: number;
   healthProvider: string;
-  historySteps: number[];
+  historySteps: IPedometerHistoryEntry[];
 };
 
-const keyExtractor = (item: number, index: number) => `${index}-${item.toString()}`;
+const keyExtractor = (item: IPedometerHistoryEntry, index: number) => `${index}-${item.steps.toString()}`;
 
-const renderItem = ({ item }: { item: number }) => (
-  <TextTemplate type="l1b">{t("smart_count.steps", { smart_count: item })}</TextTemplate>
+const renderItem = ({ item }: { item: IPedometerHistoryEntry }) => (
+  <TextTemplate type="l1b">{t("smart_count.steps", { smart_count: item.steps })}</TextTemplate>
 );
 
 const ChallengeProgressDebugInfo = ({
@@ -29,17 +30,27 @@ const ChallengeProgressDebugInfo = ({
   healthProvider,
   historySteps,
 }: Props) => {
-  const flashListRef = useRef<FlashList<number>>();
+  const flashListRef = useRef<FlashList<IPedometerHistoryEntry>>();
   const dispatch = useDispatch();
 
   const onExportDataPress = useCallback(() => {
+    const reducedHistorySteps = (historySteps || []).reverse().reduce(
+      (acc, item) => {
+        acc.historySteps.push(item.steps);
+        acc.stepsBeforeSubscribe.push(item.stepsBeforeSubscribe);
+        return acc;
+      },
+      { historySteps: [], stepsBeforeSubscribe: [] }
+    );
+
     dispatch(
       logMixpanelEventActionCreator("challenge_progress_debug_tools", {
         initialDailySteps: initialDailySteps || 0,
         currentPedometerSteps: currentPedometerSteps || 0,
         progressCalculation: progressCalculation || 0,
         healthProvider,
-        historySteps,
+        historySteps: reducedHistorySteps.historySteps,
+        stepsBeforeSubscribe: Platform.select({ ios: [], android: reducedHistorySteps.stepsBeforeSubscribe }),
       })
     );
 
