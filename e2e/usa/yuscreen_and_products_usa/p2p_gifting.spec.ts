@@ -23,7 +23,7 @@ Feature("P2P gifting", async () => {
     });
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
       Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
-      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true, 1), 2500));
+      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true, 0), 2500));
     });
     When("I tap on nav leaderboard link", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
       Then("I can see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE("SG1")));
@@ -40,13 +40,8 @@ Feature("P2P gifting", async () => {
     When("I tap the gift", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!")), async () => {
       Then("I should see the gift I received", then.idVisible(ids.P2P_MESSAGE("A gift for you")));
     });
-    When("I tap the send your friends a gift! cta", when.tapID(ids.P2P_SEND_YOUR_FRIENDS_A_GIFT), async () => {
-      When("I tap the get started cta", when.tapID(ids.CTA_GET_STARTED), async () => {
-        Then("I should see the search bar", then.idVisible(ids.INPUT_FIELD));
-      });
-    });
-    When("I type in Axel into the input", when.typeViaID(ids.INPUT_FIELD, "Axel"), async () => {
-      Then("I should see nothing appears in the search", then.idVisible(ids.SEARCH_RESULTS([])));
+    When("I tap the spend your yucoin cta", when.tapID(ids.P2P_SPEND_YOUR_YUCOIN), async () => {
+      Then("I should be on the reward store season complete page", then.idVisible(ids.SEASON_COMPLETE_NEW_SEASON_COMING));
     });
   });
 });

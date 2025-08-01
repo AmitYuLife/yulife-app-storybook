@@ -302,8 +302,7 @@ Feature("P2P gifting - UK", async () => {
     });
   });
 
-  // Skipping for time being as worker doesn't run, probably needs a name change / setting up correctly
-  // will address in future fixes
+  // Worker fixed, but needs updating for the altered 'Spend your YuCoin' flow in the gift review screen
   ScenarioSkip("I should see gift auto claim notification in the app inbox for a gift sent from a business", scenario.start, async () => {
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_140_NPC_ALTRA.customer, GENERIC_AUTH_PASSWORD), async () => {
       When("I trigger the issue coin to NPC Biz", when.triggerIssueCoinToNpcBiz(data.BUSINESS_ACCOUNT_14_NPC_ALTRA.business.data.businessAccountId, 30000, "1234"), async () => {
