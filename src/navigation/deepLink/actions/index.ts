@@ -12,6 +12,7 @@ export * from "./quests";
 export * from "./referralInformation";
 export * from "./rewardDetails";
 export * from "./rewards";
+export * from "./rewardsUnlock";
 export * from "./settings";
 export * from "./signupConfirm";
 export * from "./smoking";
