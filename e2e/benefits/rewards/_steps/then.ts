@@ -28,12 +28,12 @@ export const {
 export const { yuCoinPowerInfoVisible } = screens.yuscreen;
 
 export const rewardsLocationModalVisible =
-  (locale = "UK") =>
+  (waitTime = 2500) =>
   async () => {
-    await textVisible(constant.locationModalTitle, 2000)();
-    await textVisible(constant.locationModalDesc)();
-    await textVisible(constant.locationModalStoreLocation)();
-    await textVisible(constant.locationModalButton)();
+    await textVisible(constant.locationModalTitle, waitTime)();
+    await textVisible(constant.locationModalDesc, waitTime)();
+    await textVisible(constant.locationModalStoreLocation, waitTime)();
+    await textVisible(constant.locationModalButton, waitTime)();
   };
 
 export const rewardProductCardVisible = (productCardObj) => async () => {

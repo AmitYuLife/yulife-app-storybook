@@ -43,10 +43,10 @@ export const INSPECT_USER =
             );
           }
         );
-        When("I close inspect view", when.tapID(ids.SCREEN_CLOSE), async () => {
+        When("I close inspect view", when.tapID(ids.SCREEN_CLOSE, 2000), async () => {
           Then(
             "I should be back on the leaderboard LB4",
-            then.textVisibleAtIndex(getFullName(customer), 0)
+            then.textVisibleAtIndex(getFullName(customer), 0, 3000)
           );
         });
       }

@@ -73,12 +73,12 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
       Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
     });
     When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
-      When("I tap done", when.tapText(t("Done")), async () => {
+      When("I tap done", when.tapText("Done", 1500), async () => {
         Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
         Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17780)));
       });
     });
-    When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+    When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 1500), async () => {
       Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"));
     });
     When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", { noOfChallenges: "3" }), 2000), async () => {
@@ -89,7 +89,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
       Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17900)));
     });
     When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"));
+      Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)", 1500));
     });
     When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", { noOfChallenges: "2" }), 2000), async () => {
       Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
@@ -99,15 +99,15 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
       Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18080)));
     });
     When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"));
+      Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)", 1500));
     });
     When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", { noOfChallenges: "1" }), 2000), async () => {
       Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
     });
     When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallengeWithMedia(180), async () => {
-      Then("I should see the level 201 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
-      Then("I should see level 201 has 3 stars", then.idVisible(ids.LEVEL_STAR_COUNT(3)));
-      Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18120)));
+      Then("I should see the level 201 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201), 1500));
+      Then("I should see level 201 has 3 stars", then.idVisible(ids.LEVEL_STAR_COUNT(3), 1500));
+      Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18120), 1500));
     });
     When("I tap level 201", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
       Then("I should see all the challenges I completed along with the yucoin awarded", then.challengesAndYuCoinsAwardedVisible);

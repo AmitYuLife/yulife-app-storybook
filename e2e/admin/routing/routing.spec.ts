@@ -46,10 +46,10 @@ Feature("As a user I can navigate through member routes correctly", async () => 
       Then("I should be on activity history", then.textVisible("Activity history"));
     });
     When("I refresh the activity history page", when.tapID(ids.LEFT_HEADING_BUTTON("Activity history"), 2000), async () => {
-      Then("I should see 309 steps", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("309 Steps")));
-      Then("I should see 309 phone steps", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Phone: 309 Steps")));
-      Then("I should see 13:20 mindful mins", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("11.3 km Cycling")));
-      Then("I should see 11.3 km cycled", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("13 Mindful mins")));
+      Then("I should see 309 steps", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("309 Steps"), 1500));
+      Then("I should see 309 phone steps", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Phone: 309 Steps"), 1500));
+      Then("I should see 13 mindful mins", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("13 Mindful mins"), 1500));
+      Then("I should see 11.3 km cycled", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("11.3 km Cycling"), 1500));
     });
     When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Activity history")), async () => {
       Then("I should be the yucoin tab", then.onDailySteps());

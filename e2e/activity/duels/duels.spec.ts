@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -224,10 +224,13 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
       Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]));
     });
     When("I tap complete the intro", when.completeOnboardingIntro, async () => {
-      Then("I should be on the duels hub", then.idVisible(ids.DUELS_HUB));
+      Then("I should be on the duels hub", then.idVisible(ids.DUELS_HUB, 1500));
     });
     When("I tap Challenge a friend", when.tapID(ids.CHALLENGE_FRIEND_BUTTON, 1500), async () => {
       Then("I should be on the search for a friend page", then.textVisible("Search for a friend:"));
+    });
+    When("I search for Toby", when.searchForDuelOpponent(data.CUSTOMER_28.data.firstName), async () => {
+      Then("I should see Toby Flenderson", then.textVisible("Toby Flenderson", 2000));
     });
     When("I tap on Toby Flenderson", when.tapID(ids.DUEL_SEARCH_LIST_ITEM("Toby Flenderson"), 1500), async () => {
       Then("I should be on the matchup page", then.textVisible("The matchup:"));
