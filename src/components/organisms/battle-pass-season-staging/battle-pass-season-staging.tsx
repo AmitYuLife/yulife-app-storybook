@@ -3,6 +3,7 @@ import { t } from "@locale";
 import { memo, useContext, useEffect } from "react";
 import { RewardsManagerContext } from "@components/containers/member/rewards/rewards.manager.context";
 import { RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
+import { SEASON_COMPLETE_NEW_SEASON_COMING } from "@ids";
 
 const BattlePassSeasonStaging = () => {
   const { dispatch } = useContext(RewardsManagerContext);
@@ -15,7 +16,7 @@ const BattlePassSeasonStaging = () => {
     <Box flex={1} justifyContent="center" alignItems="center" bg="#290163">
       <Box px={20} gap={40}>
         <Box justifyContent="center" alignItems="center">
-          <TextTemplate color="white" textAlign="center" type="h2">
+          <TextTemplate color="white" textAlign="center" type="h2" testID={SEASON_COMPLETE_NEW_SEASON_COMING}>
             {t("screens.battle_pass.season_complete.staging.title")}
           </TextTemplate>
           <TextTemplate type="b2" color="white" textAlign="center">

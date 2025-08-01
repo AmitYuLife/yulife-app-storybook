@@ -92,16 +92,16 @@ export const trigger7DayAutoClaim = (from?: Date) => async () => {
 
 export const triggerIssueCoinToNpcBiz =
   (businessAccountId: string, yuCoinAmount: number, invoiceId: string) => async () => {
-    await dataManager.triggerWorkerTask("ISSUE_YUCOIN_TO_BUSINESS_NPC", {
-      businessAccountId,
+    await dataManager.triggerWorkerTask("ISSUE_YUCOIN_TO_NPC", {
+      npcId: businessAccountId,
       yuCoinAmount,
       invoiceId,
     });
   };
 
 export const triggerSendGiftFromNpcBiz = (businessAccountId: string, gifts: Gift[]) => async () => {
-  await dataManager.triggerWorkerTask("SEND_GIFTS_FROM_BUSINESS_NPC", {
-    businessAccountId,
+  await dataManager.triggerWorkerTask("SEND_GIFTS_FROM_NPC", {
+    npcId: businessAccountId,
     gifts,
   });
 };

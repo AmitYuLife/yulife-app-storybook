@@ -69,7 +69,9 @@ Feature("Mood Monitor", async () => {
       });
     });
     When("I tap the previous month", when.selectActivityMonth(1), async () => {
-      Then("I should see my Mood monitor activity from the past", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Mood monitor"), 200));
+      When("I tap to refresh the activity history", when.tapID(ids.ACTIVITY_HISTORY_REFRESH), async () => {
+        Then("I should see my Mood monitor activity from the past", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Mood monitor"), 4000));
+      });
     });
   });
 

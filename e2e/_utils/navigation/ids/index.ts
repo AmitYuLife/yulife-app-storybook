@@ -21,6 +21,7 @@ export const ACTIVITY_HISTORY_SCREEN = "ACTIVITY_HISTORY_SCREEN";
 export const ACTIVITY_HISTORY_SCREEN_SCROLL = "ACTIVITY_HISTORY_SCREEN_SCROLL";
 export const ACTIVITY_HISTORY_CHALLENGE_VALUE = (title: string) =>
   `ACTIVITY_HISTORY_CHALLENGE_VALUE_${title}`;
+export const ACTIVITY_HISTORY_REFRESH = "LEFT_HEADING_BUTTON_ACTIVITY_HISTORY";
 export const STATS_SCREEN = "STATS_SCREEN";
 export const SETTINGS_SCREEN = "SETTINGS_SCREEN";
 export const SETTINGS_SCREEN_SCROLL = "SETTINGS_SCREEN_SCROLL";
@@ -1011,6 +1012,7 @@ export const DONATION_END_OF_SEASON_BUTTON = "battle-pass-end-of-season-button";
 export const END_OF_SEASON_TITLE = (title: string) => `END_OF_SEASON_TITLE_${title}`;
 export const END_OF_SEASON_ITEM_TITLE = (title: string) => `END_OF_SEASON_ITEM_TITLE_${title}`;
 export const END_OF_SEASON_ITEM_SCORE = (score: string) => `END_OF_SEASON_ITEM_SCORE_${score}`;
+export const SEASON_COMPLETE_NEW_SEASON_COMING = "SEASON_COMPLETE_NEW_SEASON_COMING";
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";
@@ -1054,6 +1056,7 @@ export const P2P_GIFTING_AMOUNT = (label: string) => `P2P_GIFTING_AMOUNT_${label
 export const P2P_SEND_BUTTON = "screens.gifting.send";
 export const P2P_SEND_YOUR_OWN_MESSAGE = "screens.gifting.send_your_own_message";
 export const P2P_SEND_YOUR_FRIENDS_A_GIFT = "screens.gifting.send_your_friend_a_gift";
+export const P2P_SPEND_YOUR_YUCOIN = "screens.gifting.spend_your_yucoin-text-view";
 export const P2P_STICKER_ITEMS = (id: string) => `P2P_STICKER_ITEMS_${id}`;
 export const P2P_STICKER = "P2P_STICKER";
 export const P2P_STICKER_MODAL = "P2P_STICKER_MODAL";
