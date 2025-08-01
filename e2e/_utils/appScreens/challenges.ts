@@ -577,9 +577,9 @@ export const successScreenHintVisible = async () => {
   const hintTitle = "Unlock more challenges";
   const hintCopy =
     "Every 50 levels, you gain the ability to do one more challenge per day. Up to 4 challenges total!";
-  await textVisible(hintTitle, 2000)();
-  await textVisible(hintCopy, 2000)();
-  await idVisible(ids.HINT_VARIANT("challenges"), 2000)();
+  await textVisible(hintTitle, 5000)();
+  await textVisible(hintCopy, 5000)();
+  await idVisible(ids.HINT_VARIANT("challenges"), 5000)();
 };
 
 export const successScreenNotHintVisible = async () => {

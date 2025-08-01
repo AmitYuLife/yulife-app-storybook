@@ -106,5 +106,5 @@ export const selectAndCompleteMeditationChallengeWithMedia =
     await waitFor(element(by.text("Collect")))
       .toBeVisible()
       .withTimeout(5000);
-    await navigateViaText("Collect");
+    await navigateViaText("Collect"), 2000;
   };

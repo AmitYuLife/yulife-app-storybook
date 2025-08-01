@@ -176,17 +176,20 @@ Feature("Fiit in app", async () => {
         Then("The video is playing", then.isVideoPaused(false));
       });
     });
-    When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
-      Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible);
+    When("I pause the video", when.pauseVideo(true), async () => {
+      Then("I can see the video is paused", then.isVideoPaused(true));
     });
-    When("I tap 'Collect'", when.tapText("Collect"), async () => {
+    When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
+    });
+    When("I tap 'Collect'", when.tapText("Collect", 3000), async () => {
       Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1));
     });
-    When("I tap 'Done'", when.tapText("Done"), async () => {
+    When("I tap 'Done'", when.tapText("Done", 2000), async () => {
       Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
     });
     When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
-      Then("I should see 314 YuCoin today have been earnt today", then.canSeeYuCoinEarntToday(314));
+      Then("I should see that 314 YuCoin have been earned today", then.canSeeYuCoinEarntToday(314));
     });
   });
 });
