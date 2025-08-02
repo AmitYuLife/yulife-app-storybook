@@ -1260,7 +1260,7 @@
     },
     "leaderboard_settings": {
       "birthday_notifications": {
-        "title": "誕生日通知"
+        "title": "誕生日に関する通知"
       },
       "birthday_visibility": {
         "consented": "同僚の誕生日に通知が届きます。また、ご自身の誕生日には同僚に通知が送信されます。",
