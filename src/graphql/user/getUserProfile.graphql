@@ -17,6 +17,7 @@ query GetUserProfile {
       }
       debugToolsEnabled
       debugQueriesToolEnabled
+      enabledHealthProviders
     }
     surge {
       endDateTime

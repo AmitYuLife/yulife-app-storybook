@@ -29,8 +29,8 @@ export const YU_HEALTH_ALL_CAPABILITIES = [
   HealthProviderCapability.ACTIVITIES,
 ];
 
-// Supported providers
-export const SUPPORTED_PROVIDERS = [
+// Supported providers in this app version
+export const CLIENT_SUPPORTED_PROVIDERS = [
   HealthProvider.googleFit,
   HealthProvider.healthKit,
   HealthProvider.samsungHealth,

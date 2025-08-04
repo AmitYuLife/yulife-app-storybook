@@ -57,6 +57,9 @@ export const getUserNotification = createSelector(reducer, userNotification);
 const blackListedNavBarTabs = (state: State) => state.blackListedNavBarTabs || [];
 export const getBlackListedNavBarTabs = createSelector(reducer, blackListedNavBarTabs);
 
+const enabledHealthProviders = (state: State) => state.enabledHealthProviders;
+export const getEnabledHealthProviders = createSelector(reducer, enabledHealthProviders);
+
 const userEvents = (state: State) => state.events || [];
 export const getUserEvents = createSelector(reducer, userEvents);
 

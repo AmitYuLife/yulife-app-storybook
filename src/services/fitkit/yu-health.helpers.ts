@@ -5,6 +5,7 @@ import { processYuHealthResult } from "./helpers/sampleToAggregatedData";
 import {
   BucketSize,
   HealthDataType,
+  HealthProvider,
   IAggregateQueryRequest,
   IAggregateQueryResponse,
   ISampleQueryParams,
@@ -14,7 +15,7 @@ import {
 } from "@yu-life/react-native-yu-health";
 import { IFetchActivityResponse } from "@services/fitkit/fitkit.helpers";
 import { IFetchActivityRequest } from "./fitkit.types";
-import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
+import { ChallengesPayload, HealthProvider as GqlHealthProvider, PassiveChallengeType } from "@graphql/__generated";
 
 interface IYuHealthAggregateQuery {
   params: IAggregateQueryRequest;
@@ -197,3 +198,14 @@ export const fetchYuHealthStepsData = async ({
 
   return { stepsResults };
 };
+
+export const GQL_HEALTH_PROVIDER_TO_API_MAP = Object.freeze({
+  [GqlHealthProvider.GoogleFit]: HealthProvider.googleFit,
+  [GqlHealthProvider.HealthConnect]: HealthProvider.healthConnect,
+  [GqlHealthProvider.HealthKit]: HealthProvider.healthKit,
+  [GqlHealthProvider.SamsungHealth]: HealthProvider.samsungHealth,
+});
+
+export const API_HEALTH_PROVIDER_TO_GQL_MAP = Object.freeze(
+  Object.fromEntries(Object.entries(GQL_HEALTH_PROVIDER_TO_API_MAP).map(([key, value]) => [value, key]))
+);

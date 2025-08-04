@@ -42,6 +42,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   features: {},
   connections: [],
   blackListedNavBarTabs: [],
+  enabledHealthProviders: [],
   earnRate: 0,
   surge: {
     endDateTime: "",
@@ -259,6 +260,7 @@ const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload
   },
   events: payload.events,
   heroCards: payload.heroCards,
+  enabledHealthProviders: payload.enabledHealthProviders,
 });
 
 const updateUserProfileEvents = (state: IUserStore, events: IUserStore["events"]) => ({

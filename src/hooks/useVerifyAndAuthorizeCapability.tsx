@@ -1,9 +1,11 @@
 import HealthPermissionModal from "@components/modals/health-permission/health-permission.modal";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
+import { getEnabledHealthProviders } from "@redux/user/user.selectors";
 import { setYuHealthStatus, yuHealthPermissionsRequested } from "@redux/yu-health/yu-health.actions";
 import { getActiveProvider, getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
+import { API_HEALTH_PROVIDER_TO_GQL_MAP } from "@services/fitkit/yu-health.helpers";
 import Logger from "@services/logging/logger";
 import { openSettingsAlert, shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
 import {
@@ -28,6 +30,7 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
   const dispatch = useDispatch();
   const providerAvailabilities = useSelector(getProviderAvailabilities);
   const activeProvider = useSelector(getActiveProvider);
+  const enabledHealthProviders = useSelector(getEnabledHealthProviders);
 
   /**
    * Handle unsupported capability
@@ -39,6 +42,10 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
       const availableProviders = Object.entries(providerStatuses)
         .filter(([provider]) => {
           return providerAvailabilities[provider] === HealthProviderAvailability.available;
+        })
+        .filter(([provider]) => {
+          const gqlProvider = API_HEALTH_PROVIDER_TO_GQL_MAP[provider];
+          return enabledHealthProviders.includes(gqlProvider);
         })
         .filter(([_, capabilities]) => {
           return capabilities.includes(capability);
