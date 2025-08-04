@@ -341,7 +341,7 @@ const BattlePassContainer = ({ showNavigation = false, onPressWallet, isInnerScr
   );
 
   if (battlePass === null) {
-    return <BattlePassSeasonStaging />;
+    return <BattlePassSeasonStaging showNavigation={showNavigation} onBackPress={onBack} />;
   }
 
   if (loading || !battlePass) {
