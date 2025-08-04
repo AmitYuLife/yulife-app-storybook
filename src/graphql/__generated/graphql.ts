@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -33459,6 +33460,7 @@ export type GetUserProfileQuery = {
       blackListedNavBarTabs: Array<string>;
       debugToolsEnabled?: boolean | null;
       debugQueriesToolEnabled?: boolean | null;
+      enabledHealthProviders: Array<HealthProvider>;
       blackListApps?: { __typename?: "BlackListApps"; steps?: Array<string | null> | null } | null;
       rewards: {
         __typename?: "GameSettingsRewards";
@@ -87231,6 +87233,7 @@ export const GetUserProfileDocument = {
                       },
                       { kind: "Field", name: { kind: "Name", value: "debugToolsEnabled" } },
                       { kind: "Field", name: { kind: "Name", value: "debugQueriesToolEnabled" } },
+                      { kind: "Field", name: { kind: "Name", value: "enabledHealthProviders" } },
                     ],
                   },
                 },

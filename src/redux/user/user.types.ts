@@ -22,6 +22,7 @@ export interface IUserStore {
   features: IFeature;
   earnRate: number;
   blackListedNavBarTabs: string[];
+  enabledHealthProviders: HealthProvider[];
   surge: UserSurge;
   avatar: {
     isAvatarCreated?: boolean;
@@ -207,11 +208,18 @@ export type IGetUserSuccessPayload = IUserGetUserSuccessPayload &
 
 export type IPassiveChallengesEarnRateSuccessPayload = IDailyStepsGetUserSuccessPayload;
 
+export enum HealthProvider {
+  GoogleFit = "googleFit",
+  HealthConnect = "healthConnect",
+  HealthKit = "healthKit",
+  SamsungHealth = "samsungHealth",
+}
+
 export type IUpdateUserProfilePayload = Partial<IUserStore> &
   IDailyStepsUpdateUserProfilePayload &
   DailyCyclingUpdateUserProfilePayload & {
     rewards: IRewardsTabStore["settings"];
-  } & { debugToolsEnabled: boolean; debugQueriesToolEnabled: boolean };
+  } & { debugToolsEnabled: boolean; debugQueriesToolEnabled: boolean; enabledHealthProviders: HealthProvider[] };
 
 export type ILoginUserPayload = { intercomHash: string } & IGetUserSuccessPayload;
 

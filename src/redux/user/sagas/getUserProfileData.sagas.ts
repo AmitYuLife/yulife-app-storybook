@@ -43,6 +43,7 @@ export default function* getUserProfileData(
           },
           debugToolsEnabled: userProfile.getUserProfile.gameSettings.debugToolsEnabled,
           debugQueriesToolEnabled: userProfile.getUserProfile.gameSettings.debugQueriesToolEnabled,
+          enabledHealthProviders: userProfile.getUserProfile.gameSettings.enabledHealthProviders,
         })
       );
     }
