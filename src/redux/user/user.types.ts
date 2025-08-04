@@ -56,6 +56,7 @@ export interface IUserStore {
   supportConfig: {
     supportLevel: UserSupportLevel;
   };
+  dataSaverModeEnabled: boolean;
 }
 
 // Renaming can break older clients, AppDataType is used on server side SDUI actions SduiActionType.GetAllUserDataStart

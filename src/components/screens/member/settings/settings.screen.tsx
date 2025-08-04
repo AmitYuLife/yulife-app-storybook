@@ -36,6 +36,8 @@ export interface IGameSettingsItem {
   description: string;
   value: DistanceMeasurementType | string;
   onPress: () => void;
+  type?: "toggle" | "screen";
+  isActive?: boolean;
 }
 
 export interface IConnectionsSectionItem {
@@ -132,7 +134,20 @@ export default class SettingsScreen extends PureComponent<IProps> {
     <View key={index} style={styles.wrapper}>
       <SettingsHeader title={section.title} />
       <View style={styles.notificationsItemsWrapper}>
-        {section.items.map((item) => (!item.isVisible ? null : <GameSettingsItem key={item.title} {...item} />))}
+        {section.items.map((item) =>
+          !item.isVisible ? null : item.type === "toggle" ? (
+            <NotificationsItem
+              key={item.title}
+              id={item.title}
+              name={item.title}
+              description={item.description}
+              onSwitchPress={item.onPress}
+              isActive={item.isActive}
+            />
+          ) : (
+            <GameSettingsItem key={item.title} {...item} />
+          )
+        )}
       </View>
     </View>
   );
