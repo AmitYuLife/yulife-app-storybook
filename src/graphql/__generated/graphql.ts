@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -551,6 +552,7 @@ export type BulkMemberImportFieldUpdate = {
 export type BulkMemberImportFormat = {
   __typename?: "BulkMemberImportFormat";
   allowTemplateDownload?: Maybe<Scalars["Boolean"]["output"]>;
+  allowedFileUploadExtensions: Array<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   name: Scalars["String"]["output"];
 };
@@ -1004,6 +1006,7 @@ export type BusinessSessionSettings = {
   earlyAccessEnabled: Scalars["Boolean"]["output"];
   employeeRecognitionEnabled: Scalars["Boolean"]["output"];
   enableTagRestriction: Scalars["Boolean"]["output"];
+  engagementSurveysEnabled: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
   helpCentreLink?: Maybe<Scalars["String"]["output"]>;
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
@@ -2815,7 +2818,6 @@ export enum CustomerMatcherVariation {
 }
 
 export type CustomerMatchingRuleFieldOverrides = {
-  activeB2bProducts?: InputMaybe<CustomerMatchingRuleFieldOverridesInput>;
   baseSalary?: InputMaybe<CustomerMatchingRuleFieldOverridesInput>;
   baseSalaryCurrency?: InputMaybe<CustomerMatchingRuleFieldOverridesInput>;
   businessTagIds?: InputMaybe<CustomerMatchingRuleFieldOverridesInput>;
@@ -7339,17 +7341,6 @@ export type ProductPerk = {
   perkId: Scalars["String"]["output"];
 };
 
-export type ProductsQuery = {
-  __typename?: "ProductsQuery";
-  productVersionIds?: Maybe<StringQuery>;
-  total?: Maybe<NumberQuery>;
-};
-
-export type ProductsQueryInput = {
-  productVersionIds?: InputMaybe<StringQueryInput>;
-  total?: InputMaybe<NumberQueryInput>;
-};
-
 export type ProfileContactInfoInput = {
   businessPhone?: InputMaybe<Scalars["String"]["input"]>;
   email?: InputMaybe<Scalars["String"]["input"]>;
@@ -8929,7 +8920,6 @@ export type SearchLeaderboardUser = {
 
 export type SearchQuery = {
   __typename?: "SearchQuery";
-  activeB2bProducts?: Maybe<ProductsQuery>;
   baseSalary?: Maybe<NumberQuery>;
   baseSalaryCurrency?: Maybe<StringQuery>;
   businessEmployeeId?: Maybe<StringQuery>;
@@ -8953,7 +8943,6 @@ export type SearchQuery = {
 };
 
 export type SearchQueryInput = {
-  activeB2bProducts?: InputMaybe<ProductsQueryInput>;
   businessEmployeeId?: InputMaybe<StringQueryInput>;
   businessTagIds?: InputMaybe<StringQueryInput>;
   businessUnit?: InputMaybe<StringQueryInput>;
@@ -9081,6 +9070,7 @@ export type SocialGroupLeaderboardEnrollment = {
 
 export type SocialGroupLeaderboardEnrollmentGroup = {
   __typename?: "SocialGroupLeaderboardEnrollmentGroup";
+  id: Scalars["ID"]["output"];
   leaderboards: Array<SocialGroupLeaderboardEnrollment>;
   name: Scalars["String"]["output"];
   socialGroupId: Scalars["ID"]["output"];

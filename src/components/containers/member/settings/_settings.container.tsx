@@ -3,8 +3,8 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useSelector, useDispatch } from "react-redux";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { updateConnectionStart } from "@redux/user/user.actions";
-import { getBlackListedNavBarTabs, getUserConnections } from "@redux/user/user.selectors";
+import { updateConnectionStart, updateUserProfileDataSaverMode } from "@redux/user/user.actions";
+import { getBlackListedNavBarTabs, getUserConnections, getUserDataSaverModeEnabled } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 import { gql, NotificationSettingsProps } from "@graphql/__generated";
@@ -32,6 +32,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const features = useUserFeatures();
   const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
   const activeProvider = useSelector(getActiveProvider);
+  const dataSaverModeEnabled = useSelector(getUserDataSaverModeEnabled);
 
   const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false);
   const [modalDate, setModalDate] = useState<string>(null);
@@ -144,6 +145,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       isVisible: true,
       items: [
         {
+          type: "screen",
           isVisible: !blackListedNavBarTabs.includes(ROUTES.leaderboard),
           title: userLifeEventsData?.getPlayerLifeEvents?.isBirthdayGiftingEnabled
             ? t("screens.leaderboard_settings.title_with_birthday")
@@ -161,6 +163,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
           },
         },
         {
+          type: "screen",
           isVisible: true,
           title: t("screens.permissions.title"),
           description: t("screens.permissions.description"),
@@ -186,6 +189,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
           },
         },
         {
+          type: "screen",
           isVisible: true,
           title: t("screens.measurement_cycling_settings.title"),
           description: t("screens.measurement_cycling_settings.description"),
@@ -200,6 +204,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
           },
         },
         {
+          type: "screen",
           isVisible: true,
           title: t("screens.language_selector_settings.title"),
           description: t("screens.language_selector_settings.description"),
@@ -214,6 +219,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
           },
         },
         {
+          type: "screen",
           isVisible: true,
           title: t("screens.settings.content_location.label"),
           description: t("screens.settings.content_location.description"),
@@ -226,6 +232,16 @@ function SettingsContainer({ componentId }: IOwnProps) {
             });
           },
         },
+        {
+          isVisible: true,
+          title: t("screens.settings.data_saver.label"),
+          type: "toggle",
+          isActive: dataSaverModeEnabled,
+          description: t("screens.settings.data_saver.description"),
+          onPress: () => {
+            dispatch(updateUserProfileDataSaverMode(!dataSaverModeEnabled));
+          },
+        },
       ],
     }),
     [
@@ -234,6 +250,8 @@ function SettingsContainer({ componentId }: IOwnProps) {
       cyclingMeasurement,
       features.tempGameEnableReleaseYuHealthV4,
       userLifeEventsData?.getPlayerLifeEvents?.isBirthdayGiftingEnabled,
+      dataSaverModeEnabled,
+      dispatch,
     ]
   );
 

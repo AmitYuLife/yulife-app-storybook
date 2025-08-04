@@ -631,6 +631,10 @@
       "content_location": {
         "label": "Store location",
         "description": "Select your preferred store location"
+      },
+      "data_saver": {
+        "label": "Data saver",
+        "description": "This setting enables lower video quality for workout videos"
       }
     },
     "smoking_hub": {

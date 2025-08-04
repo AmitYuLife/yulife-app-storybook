@@ -68,3 +68,6 @@ export const sessionTimestamp = (state: State) => state.sessionTimestamp;
 export const getUserActiveEvents = createSelector(getUserEvents, (events) =>
   events.filter((event) => event.status !== UserProfileEventStatus.Completed)
 );
+
+const userDataSaverModeEnabled = (state: State) => state.dataSaverModeEnabled;
+export const getUserDataSaverModeEnabled = createSelector(reducer, userDataSaverModeEnabled);

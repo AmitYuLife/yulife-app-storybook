@@ -8,6 +8,7 @@ import {
   updateUserProfile as updateUserProfileAction,
   updateUserProfileEvents as updateUserProfileEventsAction,
   updateUserProfileHeroCards as updateUserProfileHeroCardsAction,
+  updateUserProfileDataSaverMode as updateUserProfileDataSaverModeAction,
   removeUserProfileEvent as removeUserProfileEventAction,
   updateUserGoal as updateUserGoalAction,
   updateUserAvatarRemoteFiles,
@@ -82,6 +83,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   supportConfig: {
     supportLevel: null,
   },
+  dataSaverModeEnabled: false,
 });
 
 const userReducer = createReducer(getInitialState(), (builder) => {
@@ -120,6 +122,9 @@ const userReducer = createReducer(getInitialState(), (builder) => {
     sessionCount: state.sessionCount + 1,
     sessionTimestamp: Date.now(),
   }));
+  builder.addCase(updateUserProfileDataSaverModeAction, (state, action) =>
+    updateUserProfileDataSaverMode(state, action.payload)
+  );
   builder.addDefaultCase((state) => state);
 });
 
@@ -315,6 +320,11 @@ const getUserFeaturesSuccess = (state: IUserStore, payload: GetUserFeaturesPaylo
 const getUserConnectionsSuccess = (state: IUserStore, payload: GetUserConnectionsPayload) => ({
   ...state,
   connections: payload.connections || [],
+});
+
+const updateUserProfileDataSaverMode = (state: IUserStore, payload: boolean) => ({
+  ...state,
+  dataSaverModeEnabled: payload,
 });
 
 export default userReducer;
