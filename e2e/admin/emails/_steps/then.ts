@@ -1,6 +1,6 @@
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
-import { readInbox } from "@yu-life/yulife-bdd-framework";
+import { IDatabaseItem, readInbox } from "@yu-life/yulife-bdd-framework";
 import { expect } from "detox";
 import * as ids from "@ids";
 
@@ -59,6 +59,15 @@ export const hasReceivedNikeEmail = (email: string) => async () => {
   const subject = inbox[0].subject;
 
   if (subject !== "[detox] Your link to your Nike voucher") {
+    throw new Error("Email subject is incorrect");
+  }
+};
+
+export const hasReceivedGiftedEmail = (email: string, sender: IDatabaseItem) => async () => {
+  const inbox = await readInbox(email, true);
+  const subject = inbox[0].subject;
+
+  if (subject !== `[detox] ${sender.data.firstName} ${sender.data.lastName} sent you a gift`) {
     throw new Error("Email subject is incorrect");
   }
 };

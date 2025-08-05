@@ -23,3 +23,4 @@ export * from "./mongo/userOnboardings";
 export * from "./mongo/user_coin_transactions";
 export * from "./mongo/social_groups";
 export * from "./mongo/social_group_leaderboards";
+export * from "./mongo/user_gift";
