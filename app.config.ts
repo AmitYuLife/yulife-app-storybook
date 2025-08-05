@@ -221,5 +221,6 @@ export default () => ({
         appleTeamId: environmentConfig.apple_team_id,
       },
     ],
+    "./plugins/rive/with-rive.plugin.js",
   ],
 });
