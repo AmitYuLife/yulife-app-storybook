@@ -889,7 +889,7 @@ workflows:
 
             # If current brnach is develop (TODO) sync the current folder to "develop"
             if [ "$BITRISE_GIT_BRANCH" = "develop" ]; then
-              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress
+              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress --delete
             fi
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$DETOX_TEST_TYPE/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
@@ -1056,7 +1056,7 @@ workflows:
 
             # If current brnach is develop (TODO) sync the current folder to "develop"
             if [ "$BITRISE_GIT_BRANCH" = "develop" ]; then
-              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress
+              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress --delete
             fi
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$DETOX_TEST_TYPE/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
@@ -1503,7 +1503,7 @@ workflows:
 
             # If current brnach is develop (TODO) sync the current folder to "develop"
             if [ "$BITRISE_GIT_BRANCH" = "develop" ]; then
-              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress
+              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress --delete
             fi
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$DETOX_TEST_TYPE/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
@@ -1700,7 +1700,7 @@ workflows:
 
             # If current brnach is develop (TODO) sync the current folder to "develop"
             if [ "$BITRISE_GIT_BRANCH" = "develop" ]; then
-              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress
+              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress --delete
             fi
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$DETOX_TEST_TYPE/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
@@ -1901,7 +1901,7 @@ workflows:
 
             # If current brnach is develop (TODO) sync the current folder to "develop"
             if [ "$BITRISE_GIT_BRANCH" = "develop" ]; then
-              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress
+              aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$DETOX_TEST_TYPE/develop" --no-progress --delete
             fi
 
             envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$DETOX_TEST_TYPE/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
