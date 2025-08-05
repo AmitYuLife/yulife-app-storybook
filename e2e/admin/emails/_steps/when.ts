@@ -1,6 +1,6 @@
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
-import { readEmailContent } from "@yu-life/yulife-bdd-framework";
+import { dataManager, IDatabaseItem, readEmailContent } from "@yu-life/yulife-bdd-framework";
 
 export const {
   scrollFromText,
@@ -23,6 +23,7 @@ export const {
   typeViaPlaceholder,
   terminateApp,
   wait,
+  minimiseAndReopenApp,
 } = navigation.common;
 
 export const {
@@ -70,3 +71,20 @@ export const followEmailLink = (emailAddress: string) => async () => {
     url: deeplink,
   });
 };
+
+export const triggerGiftReceivedEmail =
+  (customer: IDatabaseItem, gift: IDatabaseItem) => async () => {
+    await dataManager.triggerEvent("gift_sent_to_users", {
+      fromUserId: customer.data.customerId,
+      transactionId: gift.data._id,
+      source: "business",
+      gifts: [
+        {
+          senderId: gift.data.fromUserId,
+          recipientId: gift.data.toUserId,
+          id: gift.data._id,
+          yuCoinAmount: gift.data.amount,
+        },
+      ],
+    });
+  };
