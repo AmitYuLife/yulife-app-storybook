@@ -11,7 +11,7 @@ export const PlayGround = () => {
       <GenericHeadingPad />
       <View style={styles.container} />
 
-      <GenericHeadingAbsolute heading={"Playground"} onLeftIconPress={() => Navigation.popToRoot(ROUTES.debug)} />
+      <GenericHeadingAbsolute heading={"Playground"} onLeftIconPress={() => Navigation.pop(ROUTES.debugPlayground)} />
     </ScrollView>
   );
 };
