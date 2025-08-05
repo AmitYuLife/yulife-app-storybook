@@ -11,7 +11,13 @@ function ensureDirectoryExists(directory) {
 }
 
 function moveAnimationFilesToNative(assetsPath, xcodeProject) {
-  const animationFiles = fs.readdirSync(TARGETS_DIR);
+  const animationFiles = fs.readdirSync(TARGETS_DIR).filter((file) => file.endsWith(".riv"));
+
+  if (animationFiles.length === 0) {
+    console.log("No .riv files found in assets/rive directory");
+    return;
+  }
+
   const mainTarget = xcodeProject.getFirstTarget().uuid;
   const mainGroup = xcodeProject.getFirstProject().firstProject.mainGroup;
 
