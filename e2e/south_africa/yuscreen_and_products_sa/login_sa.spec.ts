@@ -17,7 +17,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
       Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
       Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
     });
-    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
+    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_BENEFICIARIES_BUTTON("tall", "Life Cover"), "down"), async () => {
       Then("I can see the life cover product", then.productCardVisible(fixture.lifeCoverTallCard));
       Then("I can see the funeral cover product", then.productCardVisible(fixture.funeralCoverSquareCard));
       Then("I can see the income protection product", then.productCardVisible(fixture.incomeProtectionSquareCard));
@@ -25,7 +25,6 @@ Feature("As a user I can get past the login screen and see all SA products", asy
     When("I swipe to see more cards", when.swipeFromText(fixture.funeralCoverSquareCard.title, "left", "fast"), async () => {
       Then("I can see the lump sum disability product", then.productCardVisible(fixture.lumpSumDisabilitySquareCard));
       Then("I can see the temporary income protection product", then.productCardVisible(fixture.tempIncomeProtectionSquareCard, 1));
-      Then("I should see the button for the wellbeing section", then.idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW));
     });
     When("I swipe to back to the first cards", when.swipeFromText(fixture.funeralCoverSquareCard.title, "right", "fast"), async () => {
       When("I tap life cover card", when.tapText(fixture.MeGL.productName), async () => {
@@ -74,7 +73,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
       Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
       Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
     });
-    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
+    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PROTECTION_TITLE, "down"), async () => {
       When("I tap life cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 1), async () => {
         Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_2, fixture.MeGLKeyInfo, true, fixture.MeGLCoverAmounts, fixture.Beneficiaries_MeGL_2));
       });
@@ -126,6 +125,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
     });
     When("I tap life assurance card", when.tapText(fixture.groupLifeAssuranceOMWideCard.name), async () => {
       Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_OM, fixture.MeGL_OMKeyInfo, true, fixture.MeGL_2_CoverAmounts, undefined, true));
+      Then("I should see the new copy under 'Increase Cover button' for SA product details pages", then.idVisible(ids.MARKDOWN("Approval of your cover increase request is subject to medical underwriting.")));
     });
   });
 });
