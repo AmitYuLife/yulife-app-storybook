@@ -1,3 +1,7 @@
 {
-  "recommendations": ["redhat.vscode-yaml", "dbaeumer.vscode-eslint"]
+  "recommendations": [
+    "redhat.vscode-yaml",
+    "dbaeumer.vscode-eslint",
+    "timonwong.shellcheck"
+  ]
 }

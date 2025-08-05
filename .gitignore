@@ -123,3 +123,4 @@ dist
 !support/ios
 
 allure-*
+artifacts/
