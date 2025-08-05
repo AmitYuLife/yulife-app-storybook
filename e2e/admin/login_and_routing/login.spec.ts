@@ -21,13 +21,15 @@ Feature("As a user I can get past the login screen", async () => {
         });
       });
     });
+    // the below is the extent we can test forgotten passwords in-app until we can find a way to run members alongside the detox runners
     When("I tap to login with password instead", when.tapID(ids.LOGIN_WITH_PASSWORD), async () => {
-      When("I put in the wrong password", when.typeViaID(ids.INPUT_LOGIN_PASSWORD("Password"), "wrongpass"), async () => {
-        When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
-          When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
-            Then("I should not see the account locked text as it shouldn't be locked anymore", then.textNotVisible(t("Account is locked. Try again later.")));
-            Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
-          });
+      Then("I can see the option for if I've forgotten my password", then.textVisible("Forgot your password?"));
+    });
+    When("I put in the wrong password", when.typeViaID(ids.INPUT_LOGIN_PASSWORD("Password"), "wrongpass"), async () => {
+      When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
+        When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+          Then("I should not see the account locked text as it shouldn't be locked anymore", then.textNotVisible(t("Account is locked. Try again later.")));
+          Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
         });
       });
     });
