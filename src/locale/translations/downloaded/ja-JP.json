@@ -1628,6 +1628,10 @@
         "description": "希望するストアの国/地域を選択してください",
         "label": "ストアの国/地域"
       },
+      "data_saver": {
+        "description": "この設定により、ワークアウトビデオの画質が低下します。",
+        "label": "データ セーバー"
+      },
       "email_notification": {
         "label": "メールアドレス"
       },

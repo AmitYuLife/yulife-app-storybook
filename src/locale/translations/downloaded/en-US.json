@@ -1628,6 +1628,10 @@
         "description": "Select your preferred store location",
         "label": "Store location"
       },
+      "data_saver": {
+        "description": "This setting allows for lower video quality in workout videos",
+        "label": "Data saver"
+      },
       "email_notification": {
         "label": "Email"
       },

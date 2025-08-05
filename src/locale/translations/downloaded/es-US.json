@@ -1628,6 +1628,10 @@
         "description": "Selecciona la ubicación preferida de tu tienda",
         "label": "Ubicación de la tienda"
       },
+      "data_saver": {
+        "description": "Este ajuste permite una calidad de vídeo inferior para los vídeos de entrenamiento",
+        "label": "Ahorro de datos"
+      },
       "email_notification": {
         "label": "Email"
       },
