@@ -61,7 +61,6 @@ export const allTogglesTrue = {
       showBrainGameSudoku: true,
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
-      tempGameGoalWeekliesRefactor: true,
     },
   },
 } as IDatabaseItem;
@@ -296,7 +295,6 @@ export const DEFAULT_TOGGLES = {
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
       showYumojiHeadwear: true,
-      tempGameGoalWeekliesRefactor: true,
     },
   },
 } as IDatabaseItem;
