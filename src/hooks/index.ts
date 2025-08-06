@@ -47,3 +47,4 @@ export * from "./useTimeout";
 export * from "./useFocusEffect";
 export * from "./useRecurringTimeout";
 export * from "./useTimer";
+export * from "./useGetVideoAvailableQualities";
