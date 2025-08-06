@@ -2,7 +2,7 @@ import { NOTIF_CENTRE, YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 import { ROUTES } from "@navigation/constants";
 import { useNavigation } from "@navigation/navigation.context";
 import { NameLevelMiniAvatar, NavBar, TopBar } from "@organisms";
-import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
+import { TOP_BAR_TYPES, TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
 import { SduiActionType } from "@redux/_core/types";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
@@ -31,14 +31,10 @@ import { IAchievement } from "@organisms/achievements-showcase/achievements-show
 interface IProps {
   onNotificationPress: () => void;
   showAchievements: boolean;
-  achievements: {
-    list: IAchievement[];
-    numberOfSlots: number;
-    points?: number;
-  };
+  achievement: IAchievement;
 }
 
-export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievements, showAchievements }) => {
+export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, showAchievements }) => {
   const { onLeftMenuPress } = useNavigation();
   const sections = useSelector(getYuScreenSections);
   const lastLayoutUpdate = useSelector(getYuScreenLastLayoutUpdate);
@@ -118,19 +114,22 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievements, s
 
   const memoizedStyles = useMemo(
     () => ({
-      wrapper: { ...styles.wrapper, backgroundColor: colours.ground },
+      wrapper: { ...styles.wrapper, backgroundColor: achievement?.backgroundColor || colours.ground },
       yumojiPromptWrapper: { ...styles.yumojiPromptWrapper, opacity: yumojiOpacity },
       gradientWrapper: { ...styles.gradientWrapper, opacity: gradientOpacity },
       headerScaffold: { ...styles.headerScaffold, marginTop: yumojiRemoteUrl ? 0 : Style.adjust(8) },
       bouncingHeaderWrapper: { transform: [{ translateY: headerY }] },
       bottomPad: { ...styles.bottomPad, height: Math.max(MIN_SECTIONS_HEIGHT - sectionsHeight, 0) },
     }),
-    [colours, yumojiRemoteUrl, sectionsHeight]
+    [colours, yumojiRemoteUrl, sectionsHeight, achievement]
   );
 
   const [dynamicTopBarType, nameAndLevelColour] = useMemo(
-    () => (collapseHeader ? [TOP_BAR_TYPES.DEFAULT, Colours.neutral.n800] : [topBarType, colours.nameAndLevelText]),
-    [collapseHeader, topBarType, colours]
+    () =>
+      collapseHeader
+        ? [TOP_BAR_TYPES.DEFAULT, Colours.neutral.n800]
+        : [(achievement?.topBarType as TopBarTypes) || topBarType, achievement?.textColor || colours.nameAndLevelText],
+    [collapseHeader, topBarType, colours, achievement]
   );
 
   const leftIcons = useMemo(
@@ -161,7 +160,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievements, s
   const sectionsStyle = useMemo(
     () => ({
       ...styles.sections,
-      paddingTop: showAchievements ? Style.adjust(45) : 0,
+      paddingTop: showAchievements ? Style.adjust(24) : 0,
     }),
     [showAchievements]
   );
@@ -174,6 +173,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievements, s
           imageSize={backgroundImageSize}
           colours={colours}
           disperseClouds={collapseHeader}
+          achievement={achievement}
         />
         <View style={styles.innerWrapper} testID={YUSCREEN}>
           <Animated.ScrollView
@@ -186,6 +186,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievements, s
             contentInsetAdjustmentBehavior="never"
             overScrollMode="never"
             alwaysBounceVertical={false}
+            bounces={!achievement?.backgroundImage?.uri}
           >
             <View style={memoizedStyles.headerScaffold} />
             <HeroHeaderForeground
@@ -195,7 +196,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievements, s
               yumojiScale={yumojiScale}
               headerHeight={headerHeight}
               showAchievements={showAchievements}
-              achievements={achievements}
+              achievement={achievement}
             />
             <View style={sectionsStyle} onLayout={handleLayout}>
               {sections.map(renderSection)}
@@ -219,7 +220,6 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievements, s
             </Animated.View>
           )}
         </Animated.View>
-
         <Animated.View pointerEvents="none" style={memoizedStyles.gradientWrapper}>
           <HeroHeaderGradient />
         </Animated.View>

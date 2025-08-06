@@ -14,16 +14,12 @@ interface Props {
   yumojiScale: Animated.Value;
   translateY: Animated.Value;
   headerHeight: Animated.Value;
-  achievements: {
-    points?: number;
-    list: IAchievement[];
-    numberOfSlots?: number;
-  };
+  achievement: IAchievement;
   showAchievements: boolean;
 }
 
 export const HeroHeaderForeground: FC<Props> = memo(
-  ({ platformImage, yumojiOpacity, yumojiScale, translateY, headerHeight, achievements, showAchievements }) => {
+  ({ platformImage, yumojiOpacity, yumojiScale, translateY, headerHeight, achievement, showAchievements }) => {
     const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
     const memoizedStyles = useMemo(
@@ -38,9 +34,9 @@ export const HeroHeaderForeground: FC<Props> = memo(
         },
         achievements: {
           ...styles.yumojiWrapper,
-          left: Style.adjust(20),
+          left: Style.adjust(24),
           right: "auto",
-          bottom: Style.adjust(Style.isIphone13ProMax() ? -40 : -30),
+          bottom: 0,
           opacity: yumojiOpacity,
           transform: [{ scale: yumojiScale }],
         } as ViewStyle,
@@ -52,7 +48,11 @@ export const HeroHeaderForeground: FC<Props> = memo(
       <Animated.View style={memoizedStyles.container}>
         <View style={styles.bottomHider}>
           <Animated.View style={memoizedStyles.wrapper}>
-            <Image style={styles.platformImage} source={platformImage} {...PLATFORM_SIZE} />
+            <Image
+              style={styles.platformImage}
+              source={showAchievements ? require("@assets/yuscreen/platforms/clouds.png") : platformImage}
+              {...PLATFORM_SIZE}
+            />
             <View style={styles.platformFill} />
             <View style={styles.offsetFill} />
           </Animated.View>
@@ -62,14 +62,9 @@ export const HeroHeaderForeground: FC<Props> = memo(
             <YumojiAvatar uri={yumojiRemoteUrl} />
           </Animated.View>
         )}
-        {!showAchievements || !yumojiRemoteUrl || !achievements?.numberOfSlots ? null : (
+        {!showAchievements || !yumojiRemoteUrl ? null : (
           <Animated.View style={memoizedStyles.achievements}>
-            <AchievementsShowcase
-              componentId={ROUTES.yuScreen}
-              points={achievements?.points}
-              achievements={achievements?.list}
-              numberOfSlots={achievements?.numberOfSlots}
-            />
+            <AchievementsShowcase componentId={ROUTES.yuScreen} achievement={achievement} />
           </Animated.View>
         )}
       </Animated.View>

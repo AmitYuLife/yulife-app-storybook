@@ -6,12 +6,15 @@ import { toCapitalLetter } from "@utils";
 
 interface IProps {
   selectedSlot?: number;
+  currentViewedUserId?: string;
+  isInspectingUser?: boolean;
 }
 
-const AchievementsContainer = ({ selectedSlot }: IProps) => {
+const AchievementsContainer = ({ selectedSlot, currentViewedUserId, isInspectingUser }: IProps) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const { data, loading, refetch } = useQuery(gql("GetMobileGameUserAchievementsDocument"), {
     fetchPolicy: "network-only",
+    ...(currentViewedUserId ? { variables: { userId: currentViewedUserId } } : {}),
   });
 
   const allAchievements = useMemo(() => {
@@ -62,6 +65,7 @@ const AchievementsContainer = ({ selectedSlot }: IProps) => {
       categories={achievementsCategories}
       isLoading={filteredAchievements.length === 0 || loading}
       onRefresh={refetch}
+      isInspectingUser={isInspectingUser}
     />
   );
 };

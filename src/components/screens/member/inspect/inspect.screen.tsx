@@ -1,15 +1,16 @@
 import React, { memo, useMemo } from "react";
 import { Pressable, Yumoji } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad, GiftSendPrompt, NameLevelMiniAvatar } from "@organisms";
-import { Colours, Style, TOP_BAR } from "@styles";
-import { Platform, ScrollView, StyleSheet, View } from "react-native";
+import { Style } from "@styles";
+import { Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { t } from "@locale";
 import { INSPECT_SCREEN, YUMOJI, USER_INFO } from "@ids";
 import AverageStatsSection, { ActivityItems } from "./sections/average.stats.section";
 import StatsSection, { Section } from "./sections/stats.section";
-import { Box } from "@atoms";
+import { Box, Image } from "@atoms";
 import { VoidFunction } from "@utils";
 import AchievementsShowcase, { IAchievement } from "@organisms/achievements-showcase/achievements-showcase";
+import { PLATFORM_SIZE } from "@components/containers/member/yu/subcomponents/yu-screen-v5/yu-screen.styles";
 
 const AVATAR_WIDTH = Style.adjust(160) * 0.95;
 const AVATAR_HEIGHT = Style.adjust(328) * 0.95;
@@ -32,12 +33,16 @@ export interface InspectProps {
   onGiftPress?: VoidFunction;
   componentId?: string;
   showAchievements: boolean;
-  achievements: {
-    list: IAchievement[];
-    points?: number;
-    numberOfSlots?: number;
-  };
+  achievement: IAchievement;
+  currentViewedUserId: string;
 }
+
+const BACKGROUNDS_STYLES = {
+  position: "absolute",
+  left: 0,
+  right: 0,
+  ...PLATFORM_SIZE,
+} as ViewStyle;
 
 const InspectScreen = ({
   general,
@@ -54,13 +59,27 @@ const InspectScreen = ({
   shortName,
   yuniversalMap,
   componentId,
-  achievements,
+  achievement,
   showAchievements,
+  currentViewedUserId,
 }: InspectProps) => {
   const actionButtonLabel = useMemo(
     () => (inspectOtherUser ? t("screens.inspect.duel.challenge_duel") : t("screens.inspect.duel.challenge_somebody")),
     [inspectOtherUser]
   );
+
+  const imagesStyles = useMemo(() => {
+    return {
+      backgroundImage: {
+        ...BACKGROUNDS_STYLES,
+        bottom: Style.adjust(46),
+      },
+      clouds: {
+        ...BACKGROUNDS_STYLES,
+        bottom: Style.adjust(46),
+      },
+    };
+  }, []);
 
   return (
     <View style={styles.wrapper} testID={INSPECT_SCREEN}>
@@ -71,65 +90,81 @@ const InspectScreen = ({
         contentContainerStyle={styles.containerStyle}
         testID={USER_INFO(`${userName} ${level}`)}
       >
-        <Box ph={24}>
-          {showAchievements && achievements.numberOfSlots > 0 ? (
-            <Box flexDirection="row" pr={5} mt={12}>
-              <Box width={"55%"}>
-                <NameLevelMiniAvatar
-                  name={userName}
-                  level={level}
-                  yuniversalMap={yuniversalMap}
-                  showYumoji={false}
-                  hideDisplayedLevel={!!(inspectOtherUser && yuniversalMap)}
+        {showAchievements ? (
+          <Box flexDirection="row" ph={24} pt={12} pr={5} mb={58} bg={achievement?.backgroundColor} maxHeight={338}>
+            {achievement?.backgroundImage?.uri ? (
+              <>
+                <Image
+                  style={imagesStyles.backgroundImage}
+                  source={{ uri: achievement?.backgroundImage?.uri }}
+                  {...PLATFORM_SIZE}
                 />
-                <Box mt={24}>
-                  <AchievementsShowcase
-                    componentId={componentId}
-                    points={achievements.points}
-                    achievements={achievements.list}
-                    numberOfSlots={achievements.numberOfSlots}
-                    isInspectingUser={inspectOtherUser}
-                  />
-                </Box>
-              </Box>
-              <Box testID={YUMOJI} mt={16}>
-                <Pressable delay={1000} onLongPress={onYumojiPress}>
-                  <Yumoji
-                    width={AVATAR_WIDTH}
-                    height={AVATAR_HEIGHT}
-                    emptyWidth={EMPTY_AVATAR_WIDTH}
-                    emptyHeight={EMPTY_AVATAR_HEIGHT}
-                    uri={yumoji}
-                  />
-                </Pressable>
+                <Image
+                  style={imagesStyles.clouds}
+                  source={require("@assets/yuscreen/platforms/clouds.png")}
+                  {...PLATFORM_SIZE}
+                />
+                <Box bg="white" h={47} position="absolute" bottom={0} left={0} right={0} />
+              </>
+            ) : null}
+
+            <Box width={"55%"}>
+              <NameLevelMiniAvatar
+                textColour={achievement?.textColor}
+                name={userName}
+                level={level}
+                yuniversalMap={yuniversalMap}
+                showYumoji={false}
+                hideDisplayedLevel={!!(inspectOtherUser && yuniversalMap)}
+              />
+              <Box mt={72}>
+                <AchievementsShowcase
+                  componentId={componentId}
+                  achievement={achievement}
+                  isInspectingUser={inspectOtherUser}
+                  currentViewedUserId={currentViewedUserId}
+                />
               </Box>
             </Box>
-          ) : (
-            <>
-              <Box alignItems="center" mt={24}>
-                <NameLevelMiniAvatar
-                  name={userName}
-                  level={level}
-                  yuniversalMap={yuniversalMap}
-                  showYumoji={false}
-                  centerContent={true}
-                  hideDisplayedLevel={!!(inspectOtherUser && yuniversalMap)}
+            <Box testID={YUMOJI} pt={5}>
+              <Pressable delay={1000} onLongPress={onYumojiPress}>
+                <Yumoji
+                  width={AVATAR_WIDTH}
+                  height={AVATAR_HEIGHT}
+                  emptyWidth={EMPTY_AVATAR_WIDTH}
+                  emptyHeight={EMPTY_AVATAR_HEIGHT}
+                  uri={yumoji}
                 />
-              </Box>
-              <View style={styles.yumojiWrapper} testID={YUMOJI}>
-                <Pressable delay={1000} onLongPress={onYumojiPress}>
-                  <Yumoji
-                    width={AVATAR_WIDTH}
-                    height={AVATAR_HEIGHT}
-                    emptyWidth={EMPTY_AVATAR_WIDTH}
-                    emptyHeight={EMPTY_AVATAR_HEIGHT}
-                    uri={yumoji}
-                  />
-                </Pressable>
-              </View>
-            </>
-          )}
+              </Pressable>
+            </Box>
+          </Box>
+        ) : (
+          <>
+            <Box alignItems="center" mt={24}>
+              <NameLevelMiniAvatar
+                name={userName}
+                level={level}
+                yuniversalMap={yuniversalMap}
+                showYumoji={false}
+                centerContent={true}
+                hideDisplayedLevel={!!(inspectOtherUser && yuniversalMap)}
+              />
+            </Box>
+            <View style={styles.yumojiWrapper} testID={YUMOJI}>
+              <Pressable delay={1000} onLongPress={onYumojiPress}>
+                <Yumoji
+                  width={AVATAR_WIDTH}
+                  height={AVATAR_HEIGHT}
+                  emptyWidth={EMPTY_AVATAR_WIDTH}
+                  emptyHeight={EMPTY_AVATAR_HEIGHT}
+                  uri={yumoji}
+                />
+              </Pressable>
+            </View>
+          </>
+        )}
 
+        <Box ph={24}>
           {onGiftPress ? (
             <Box mt={16}>
               <GiftSendPrompt name={shortName} onPress={onGiftPress} />
@@ -140,7 +175,7 @@ const InspectScreen = ({
           <AverageStatsSection activity={activity} inspectOtherUser={inspectOtherUser} />
         </Box>
       </ScrollView>
-      {!showAchievements ? null : <Box style={styles.shadowBox} width={"100%"} h={4} />}
+
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={onClose} />
     </View>
   );
@@ -151,7 +186,6 @@ export default memo(InspectScreen);
 const styles = StyleSheet.create({
   wrapper: {
     height: Style.DEVICE_HEIGHT,
-    backgroundColor: Colours.neutral.n50,
   },
   containerStyle: {
     paddingBottom: Style.adjust(Platform.select({ ios: 20, android: 50 })),
@@ -160,18 +194,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: Style.adjust(10),
     marginTop: Style.adjust(16),
-  },
-  shadowBox: {
-    position: "absolute",
-    top: TOP_BAR.TOP_BAR_WITH_PAD,
-    shadowColor: "rgba(0, 0, 0, 0.08)",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 4,
-    backgroundColor: "white",
   },
 });
