@@ -39,7 +39,7 @@ export const HeroHeaderBackground: FC<Props> = memo(
         {!colours.cloud || achievement?.backgroundImage ? null : (
           <AnimatedClouds colour={colours.cloud} dispersed={disperseClouds} />
         )}
-        {image && imageSize ? (
+        {(image && imageSize) || achievement?.backgroundImage ? (
           <Image
             style={imageSize}
             source={achievement?.backgroundImage ? { uri: achievement?.backgroundImage?.uri } : image}
