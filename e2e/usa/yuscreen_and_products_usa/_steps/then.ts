@@ -18,12 +18,14 @@ import {
   SPONSOR_LOGO_IMAGE,
   WELLBEING_HUB_SCREEN,
   TEXT_TEMPLATE,
+  ITEM_DETAILS_REWARD,
 } from "@ids";
 import * as text from "../_resources/fixture";
 import { BUSINESS_ACCOUNT_USA_1 } from "usa/_data";
 import { BoxOption, USProductData, YuScreenInfo } from "../_resources/types";
 import { expect } from "detox";
 import moment from "moment";
+import { usMysteryBoxRewards } from "../_resources/constants";
 
 export const {
   idVisible,
@@ -175,4 +177,10 @@ export const wellbeingHubScreenVisible = (customer: any) => async () => {
   await textVisible("All")();
   await idVisible(TEXT_TEMPLATE("Smart Health"))();
   await textVisible("Immediate access to a GP by phone or video")();
+};
+
+export const checkUsMysteryBoxRewardsVisible = async () => {
+  for (const reward of usMysteryBoxRewards) {
+    await idVisible(ITEM_DETAILS_REWARD(reward))();
+  }
 };

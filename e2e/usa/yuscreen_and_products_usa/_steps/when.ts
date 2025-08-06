@@ -1,6 +1,7 @@
 import { navigation } from "@utils";
 import { USProductData } from "../_resources/types";
 import * as ids from "@ids";
+import { swipeFromIDAtIndex, swipeFromTextAtIndex } from "_utils/navigation/scrolling";
 export { authoriseFitkit } from "@socket";
 
 export const {
@@ -40,6 +41,7 @@ export {
 
 export { triggerSearchTokens } from "_utils/appScreens/leaderboard";
 export { followEmailLink } from "../../../admin/emails/_steps/when";
+export { donate } from "../../../battle_pass/battle_pass/_steps/when";
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
   const item = element(
@@ -164,4 +166,23 @@ export const attemptToTapSlot = (productCard: USProductData) => async () => {
       await tapText(productCard.boxTitle)();
     }
   }
+};
+
+export const mysteryRewardUsPreviewScrollToBottom = async () => {
+  await scrollFromID(
+    ids.ITEM_DETAILS_SUBTITLE("Spend YuCoin to unlock a reward"),
+    "up",
+    "fast",
+    1
+  )();
+  await wait(3000)();
+  await swipeFromIDAtIndex(ids.ITEM_DETAILS_REWARD("Legs"), 0, "up", "fast")();
+  await wait(3000)();
+  await swipeFromIDAtIndex(ids.ITEM_DETAILS_REWARD("Boots"), 8, "up", "fast")();
+  await wait(3000)();
+  await swipeFromIDAtIndex(ids.ITEM_DETAILS_REWARD("Mask"), 0, "up", "fast")();
+  await wait(3000)();
+  await swipeFromIDAtIndex(ids.ITEM_DETAILS_REWARD("Extra long walk challenge"), 0, "up", "fast")();
+  await wait(3000)();
+  await swipeFromIDAtIndex(ids.ITEM_DETAILS_REWARD("Streak Saver"), 0, "up", "fast")();
 };

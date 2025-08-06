@@ -12,6 +12,7 @@ import {
   BATTLE_PASS_LIST_IMAGE_UNLOCKED,
   CLAIMED_BATTLE_PASS_LIST_ITEM,
   COMPLETED_BATTLE_PASS_LIST_ITEM,
+  BATTLE_PASS_LIST_ITEM_TITLE,
 } from "@ids";
 import Logger from "@services/logging/logger";
 import { usePressEffect, useTrack } from "@hooks";
@@ -238,7 +239,7 @@ const BattlePassListItem = ({
           </Box>
         )}
         {teaser ? (
-          <Box mb={5} style={icon.style}>
+          <Box mb={5} style={icon.style} testID={BATTLE_PASS_LIST_ITEM_TITLE(title)}>
             <Image
               source={teaser.background}
               width={Style.adjust(icon.width || 130)}
