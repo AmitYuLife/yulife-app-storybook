@@ -38,7 +38,7 @@ import { DETOX_ENABLED } from "@services/socket";
 import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
+import { useAppState, useBackHandler, useGetLottieJson, useGetVideoAvailableQualities } from "@hooks";
 import { getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/__generated";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
@@ -46,6 +46,8 @@ import { t } from "@locale";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { ChallengeSubmissionStatus } from "@redux/levels/levels.types";
+import { useNetInfoInstance } from "@react-native-community/netinfo";
+import { getUserDataSaverModeEnabled } from "@redux/user/user.selectors";
 export interface IVideoPlayerProps {
   source: string;
   poster?: string;
@@ -116,12 +118,25 @@ const VideoPlayer = ({
   const lottieRef = useRef<Lottie>();
   const opacity = useRef(new Animated.Value(1)).current;
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
+  const dataSaverModeEnabled = useSelector(getUserDataSaverModeEnabled);
+
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
   const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(lottie?.uri);
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
 
   const activeLevel = useSelector(getActiveLevel);
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
+
+  const {
+    netInfo: { type: connectionType },
+  } = useNetInfoInstance();
+
+  const { qualities, loading: qualitiesLoading } = useGetVideoAvailableQualities({
+    source,
+    videoSourceType,
+    connectionType,
+    dataSaverModeEnabled,
+  });
 
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -383,6 +398,7 @@ const VideoPlayer = ({
           showNotificationControls={true}
           viewType={ViewType.TEXTURE}
           useTextureView={true}
+          maxBitRate={qualities.bitRate}
           style={
             !state.isMusicControlMounted
               ? styles.backgroundVideo
@@ -511,7 +527,7 @@ const VideoPlayer = ({
           />
         </View>
       )}
-      {!state.loading && !lottieUriLoading ? null : <AvPlayerLoading />}
+      {!state.loading && !lottieUriLoading && !qualitiesLoading ? null : <AvPlayerLoading />}
 
       {!state.durationInSeconds ? null : (
         <Animated.View style={styles.topbarWrapper}>
