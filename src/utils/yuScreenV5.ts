@@ -90,6 +90,7 @@ const WORLD_BACKGROUNDS: IWorldBackground[] = [
 
 const YUNIVERSAL_BACKGROUND: IWorldBackground = {
   infoBar: INFO_BARS.wave,
+  imageSize: BACKGROUND_IMAGE_SIZE,
   colours: {
     sky: "#3D0139",
     nameAndLevelText: "#FFFFFF",
