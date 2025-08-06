@@ -6,6 +6,7 @@ import {
 } from "@yu-life/react-native-yu-health";
 import {
   refreshProviderAvailability,
+  resetYuHealthState,
   setActiveYuHealthProvider,
   setYuHealthStatus,
   updateCapabilityStatuses,
@@ -60,6 +61,11 @@ const yuHealthReducer = createReducer(getInitialYuHealthState(), (builder) => {
     state.isUnavailable = Object.values(action.payload).every(
       (availability) => availability === HealthProviderAvailability.not_available
     );
+  });
+
+  builder.addCase(resetYuHealthState, (state) => {
+    state.providerAvailabilities = undefined;
+    state.status = YuHealthStatus.loading;
   });
 });
 

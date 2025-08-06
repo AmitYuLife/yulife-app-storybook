@@ -82,7 +82,7 @@ const DailyStepsContainer = () => {
   useTapBackTwiceToExit(componentId);
 
   const contentProps = useMemo((): IDailyStepsContentProps => {
-    const isLoading = status !== YuHealthStatus.ready;
+    const isLoading = status !== YuHealthStatus.ready && status !== YuHealthStatus.providerless;
     const isUnavailable = isYuHealthUnavailable || !activeProvider;
     const isUnauthorised = !isLoading && capabilityStatuses?.STEP_COUNT !== HealthPermissionStatus.granted;
     const showHeroCards = isYuHealthUnavailable || isUnauthorised || heroCards?.length > 0;

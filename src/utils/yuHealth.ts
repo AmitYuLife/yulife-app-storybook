@@ -7,7 +7,7 @@ import {
   HealthProviderCapability,
 } from "@yu-life/react-native-yu-health";
 import { Alert, Linking } from "react-native";
-import { isAndroid } from "./device";
+import { isiOS } from "./device";
 import { t } from "@locale";
 import { YuHealthOptions as YuHealthOptionsRedux } from "@redux/_core/types";
 import { fetchFitkitActivityData, fetchFitkitStepsData } from "@services/fitkit/fitkit.helpers";
@@ -71,13 +71,17 @@ export const getRecommendedProvider = ({
     return null;
   }
 
+  if (isiOS()) {
+    return HealthProvider.healthKit;
+  }
+
   for (const recommended of PROVIDER_RECOMMENDED_ORDER) {
     if (providerAvailabilities[recommended] === HealthProviderAvailability.available) {
       return recommended;
     }
   }
 
-  return isAndroid() ? HealthProvider.googleFit : HealthProvider.healthKit;
+  return null;
 };
 
 const CAPABILITY_TRANSLATIONS: Record<HealthProviderCapability, string> = {

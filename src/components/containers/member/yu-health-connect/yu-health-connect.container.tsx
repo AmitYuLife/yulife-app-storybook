@@ -15,7 +15,12 @@ import {
   getRecommendedProvider,
   joinCapabilities,
 } from "@utils";
-import { HealthProvider, HealthProviderCapability, getCapabilities } from "@yu-life/react-native-yu-health";
+import {
+  HealthProvider,
+  HealthProviderAvailability,
+  HealthProviderCapability,
+  getCapabilities,
+} from "@yu-life/react-native-yu-health";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -25,6 +30,8 @@ interface IYuHealthConnectContainerProps {
   unsupportedCapabilities?: HealthProviderCapability[];
   availableProviders?: HealthProvider[];
 }
+
+const LOADING_STATES = [YuHealthStatus.loading, YuHealthStatus.authorising];
 
 const YuHealthConnectContainer = ({
   componentId,
@@ -40,7 +47,7 @@ const YuHealthConnectContainer = ({
   const [selectedProvider, setSelectedProvider] = useState<HealthProvider>();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
 
-  const isLoading = yuHealthStatus !== YuHealthStatus.ready;
+  const isLoading = LOADING_STATES.includes(yuHealthStatus);
 
   useEffect(() => {
     if (!selectedProvider && activeProvider) {
@@ -160,13 +167,18 @@ const YuHealthConnectContainer = ({
     Navigation.showOverlayWithChild({ children: modal, withBlurBackground: false });
   }, []);
 
+  const hasNoProviders = useMemo(() => {
+    return !Object.values(providerAvailabilities || {}).some((value) => value === HealthProviderAvailability.available);
+  }, [providerAvailabilities]);
+
   return (
     <YuHealthConnectScreen
       isLoading={isLoading}
       onConnect={onConnect}
+      hasNoProviders={hasNoProviders}
       onChangeProvider={onChangeProvider}
       onOpenExplanation={onOpenExplanation}
-      activeProvider={selectedProvider}
+      selectedProvider={selectedProvider}
       onCancel={() => onFinish(false)}
       body={bodyCopy}
     />

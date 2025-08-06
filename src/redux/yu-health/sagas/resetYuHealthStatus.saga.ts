@@ -1,7 +1,6 @@
 import { put } from "redux-saga/effects";
-import { setYuHealthStatus } from "../yu-health.actions";
-import { YuHealthStatus } from "../yu-health.types";
+import { resetYuHealthState } from "../yu-health.actions";
 
 export default function* resetYuHealthStatusSaga() {
-  yield put(setYuHealthStatus(YuHealthStatus.loading));
+  yield put(resetYuHealthState());
 }
