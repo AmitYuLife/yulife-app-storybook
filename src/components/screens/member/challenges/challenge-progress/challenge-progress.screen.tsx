@@ -27,6 +27,7 @@ const empty_uri = {
 };
 interface IChallengeProgressScreenProps extends IConnectedScreenProps {
   challengeType: IActiveLevel["subtype"];
+  startDateTime: string;
   endDateTime: string;
   userProgress: number;
   progressTargets: number[];
@@ -40,6 +41,7 @@ interface IChallengeProgressScreenProps extends IConnectedScreenProps {
 
 function ChallengeProgressScreen({
   challengeType,
+  startDateTime,
   endDateTime,
   onDismissPress,
   onLeftMenuPress,
@@ -137,7 +139,7 @@ function ChallengeProgressScreen({
       </View>
       {debugToolsEnabled && unit === "steps" ? (
         <Box mt={40} ml={16}>
-          <ChallengeProgressDebugInfoWrapper />
+          <ChallengeProgressDebugInfoWrapper startDateTime={startDateTime} />
         </Box>
       ) : null}
 

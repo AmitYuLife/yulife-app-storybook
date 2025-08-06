@@ -10,7 +10,11 @@ import { t } from "@locale";
 import { first } from "lodash";
 import { getDebugPedometerHistorySteps } from "@redux/debug/debug.selectors";
 
-const ChallengeProgressDebugInfoWrapper = () => {
+type IProps = {
+  startDateTime: string;
+};
+
+const ChallengeProgressDebugInfoWrapper = ({ startDateTime }: IProps) => {
   const { tempGameEnableReleaseYuHealthV4 } = useUserFeatures();
 
   const fitkitHealthApp = useSelector(getFitkitHealthApp);
@@ -55,6 +59,7 @@ const ChallengeProgressDebugInfoWrapper = () => {
       initialDailySteps={initialPedometerResult}
       currentPedometerSteps={firstHistoryStep}
       progressCalculation={firstHistoryStep - initialPedometerResult}
+      startDateTime={startDateTime}
     />
   );
 };

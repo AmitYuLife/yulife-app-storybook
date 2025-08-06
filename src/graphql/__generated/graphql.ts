@@ -1077,6 +1077,12 @@ export type Challenge = {
   yuniversalMap?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type ChallengeDebugData = {
+  healthProviderEntries: Array<InputMaybe<Scalars["Int"]["input"]>>;
+  pedometerEntries: Array<InputMaybe<Scalars["Int"]["input"]>>;
+  startDateTime: Scalars["String"]["input"];
+};
+
 export type ChallengeDetails = {
   __typename?: "ChallengeDetails";
   id?: Maybe<Scalars["String"]["output"]>;
@@ -5992,6 +5998,7 @@ export type Mutation = {
   startMembersBulkUpload: BulkMemberImportStart;
   startSmokingStreak?: Maybe<HealthSmokingState>;
   submitAppStoreReviewAction: Scalars["Boolean"]["output"];
+  submitChallengeDebugData?: Maybe<Scalars["Boolean"]["output"]>;
   submitFeedbackForm: SubmitFeedbackFormResponse;
   submitMobileGameBattlePassDonations: MobileGameBattlePassUpdateInfo;
   submitMobileQuestLevelSudokuSolution?: Maybe<MobileQuestChallenge>;
@@ -6661,6 +6668,10 @@ export type MutationStartMembersBulkUploadArgs = {
 export type MutationSubmitAppStoreReviewActionArgs = {
   action: AppStoreReviewPromptAction;
   id: Scalars["ID"]["input"];
+};
+
+export type MutationSubmitChallengeDebugDataArgs = {
+  debugData: ChallengeDebugData;
 };
 
 export type MutationSubmitFeedbackFormArgs = {
@@ -22063,6 +22074,12 @@ export type SetUserQuestProgressMutationVariables = Exact<{
 }>;
 
 export type SetUserQuestProgressMutation = { __typename?: "Mutation"; setUserQuestProgress?: boolean | null };
+
+export type SubmitChallengeDebugDataMutationVariables = Exact<{
+  debugData: ChallengeDebugData;
+}>;
+
+export type SubmitChallengeDebugDataMutation = { __typename?: "Mutation"; submitChallengeDebugData?: boolean | null };
 
 export type SubmitUserDebugDataMutationVariables = Exact<{
   id?: InputMaybe<Scalars["String"]["input"]>;
@@ -69374,6 +69391,42 @@ export const SetUserQuestProgressDocument = {
     },
   ],
 } as unknown as DocumentNode<SetUserQuestProgressMutation, SetUserQuestProgressMutationVariables>;
+export const SubmitChallengeDebugDataDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitChallengeDebugData" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "debugData" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ChallengeDebugData" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitChallengeDebugData" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "debugData" },
+                value: { kind: "Variable", name: { kind: "Name", value: "debugData" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitChallengeDebugDataMutation, SubmitChallengeDebugDataMutationVariables>;
 export const SubmitUserDebugDataDocument = {
   kind: "Document",
   definitions: [
