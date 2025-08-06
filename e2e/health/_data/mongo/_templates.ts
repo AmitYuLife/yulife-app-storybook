@@ -67,7 +67,6 @@ export const DEFAULT_TOGGLES = {
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
       showYumojiHeadwear: true,
-      tempGameGoalWeekliesRefactor: true,
     },
   },
 } as IDatabaseItem;

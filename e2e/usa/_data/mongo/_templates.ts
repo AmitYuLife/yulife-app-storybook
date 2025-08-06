@@ -42,7 +42,6 @@ export const allTogglesTrue = {
       showBrainGameSudoku: true,
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
-      tempGameGoalWeekliesRefactor: true,
       tempGameUseSettingsConfigForQuestMapV3: true,
     },
   },
