@@ -201,6 +201,7 @@ const QuestsContainer = () => {
           userProgress={activeLevel.score}
           onLeftMenuPress={onLeftMenuPress}
           challengeType={activeLevel.subtype}
+          startDateTime={activeLevel.startDateTime}
           endDateTime={activeLevel.endDateTime}
           hideExternalLinks={hideExternalLinks}
           progressTargets={activeLevel.milestones.map((item) => item.target[getUnitTarget(activeLevel.subtype)])}

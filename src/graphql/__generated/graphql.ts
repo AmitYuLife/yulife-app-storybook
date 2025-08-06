@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -801,12 +800,6 @@ export enum BulkUploadStatus {
   Pending = "pending",
 }
 
-export enum BusinessAccessOrganisationPermission {
-  ManageAdvisers = "manageAdvisers",
-  ManageClientConnections = "manageClientConnections",
-  ViewClientDashboard = "viewClientDashboard",
-}
-
 export enum BusinessAccessPermission {
   AddEmployee = "addEmployee",
   BulkUploadEmployees = "bulkUploadEmployees",
@@ -981,8 +974,6 @@ export type BusinessSessionAccount = {
   id: Scalars["String"]["output"];
   jobTitle?: Maybe<Scalars["String"]["output"]>;
   lastName?: Maybe<Scalars["String"]["output"]>;
-  organisationName?: Maybe<Scalars["String"]["output"]>;
-  userType?: Maybe<AccountUserType>;
 };
 
 export type BusinessSessionBusiness = {
@@ -1084,6 +1075,12 @@ export type Challenge = {
   userId?: Maybe<Scalars["String"]["output"]>;
   yuCoinAwarded?: Maybe<Scalars["Int"]["output"]>;
   yuniversalMap?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type ChallengeDebugData = {
+  healthProviderEntries: Array<InputMaybe<Scalars["Int"]["input"]>>;
+  pedometerEntries: Array<InputMaybe<Scalars["Int"]["input"]>>;
+  startDateTime: Scalars["String"]["input"];
 };
 
 export type ChallengeDetails = {
@@ -2234,6 +2231,7 @@ export type ContentItemScale = {
   labelMin?: Maybe<Scalars["String"]["output"]>;
   options: Array<ContentItemScaleOption>;
   styles?: Maybe<Array<SduiStyle>>;
+  thumbnail?: Maybe<RemoteImage>;
 };
 
 export type ContentItemScaleOption = {
@@ -2617,16 +2615,6 @@ export type CreateAccessUserInput = {
   permissions?: InputMaybe<Array<BusinessAccessPermission>>;
 };
 
-export type CreateOrganisationUserInput = {
-  businessPhone: Scalars["String"]["input"];
-  clientConnectionRequests?: InputMaybe<Array<ClientConnectionRequests>>;
-  email: Scalars["String"]["input"];
-  firstName: Scalars["String"]["input"];
-  jobTitle?: InputMaybe<Scalars["String"]["input"]>;
-  lastName: Scalars["String"]["input"];
-  permissions?: InputMaybe<Array<BusinessAccessOrganisationPermission>>;
-};
-
 export type CreateOrganisationUserResponses = {
   __typename?: "CreateOrganisationUserResponses";
   accountAccessId: Scalars["String"]["output"];
@@ -2863,12 +2851,6 @@ export type CustomerProductBeneficiaries = {
   __typename?: "CustomerProductBeneficiaries";
   beneficiaries?: Maybe<Array<CustomerBeneficiary>>;
   id: Scalars["ID"]["output"];
-};
-
-export type CustomerProductData = {
-  __typename?: "CustomerProductData";
-  customerProductId?: Maybe<Scalars["String"]["output"]>;
-  status: YuProductStatus;
 };
 
 export type DailyPensionContribution = {
@@ -3744,7 +3726,6 @@ export type GetBusinessAccessAdmins = {
 
 export type GetBusinessAccessUserPermissionsResult = {
   __typename?: "GetBusinessAccessUserPermissionsResult";
-  businessAccessOrganisationPermission?: Maybe<Array<Maybe<BusinessAccessOrganisationPermission>>>;
   businessAccessPermission?: Maybe<Array<Maybe<BusinessAccessPermission>>>;
 };
 
@@ -3883,7 +3864,6 @@ export type GetProductYumojiPartResponse = {
 
 export type GetReadableBusinessAccessUserPermissionResult = {
   __typename?: "GetReadableBusinessAccessUserPermissionResult";
-  businessAccessOrganisationPermission?: Maybe<Array<ReadableBusinessAccessOrganisationPermission>>;
   businessAccessPermission?: Maybe<Array<ReadableBusinessAccessPermission>>;
 };
 
@@ -5357,6 +5337,8 @@ export type MobileGameRewardPassSlot = {
 
 export type MobileGameUserAchievement = {
   __typename?: "MobileGameUserAchievement";
+  backgroundColor: Scalars["String"]["output"];
+  backgroundImage: RemoteImage;
   description: Scalars["String"]["output"];
   icon: RemoteImage;
   id: Scalars["ID"]["output"];
@@ -5365,6 +5347,8 @@ export type MobileGameUserAchievement = {
   shortDescription?: Maybe<Scalars["String"]["output"]>;
   slot?: Maybe<Scalars["Int"]["output"]>;
   status: Scalars["String"]["output"];
+  textColor: Scalars["String"]["output"];
+  topBarType: Scalars["String"]["output"];
   type: Scalars["String"]["output"];
   viewed: Scalars["Boolean"]["output"];
 };
@@ -6014,6 +5998,7 @@ export type Mutation = {
   startMembersBulkUpload: BulkMemberImportStart;
   startSmokingStreak?: Maybe<HealthSmokingState>;
   submitAppStoreReviewAction: Scalars["Boolean"]["output"];
+  submitChallengeDebugData?: Maybe<Scalars["Boolean"]["output"]>;
   submitFeedbackForm: SubmitFeedbackFormResponse;
   submitMobileGameBattlePassDonations: MobileGameBattlePassUpdateInfo;
   submitMobileQuestLevelSudokuSolution?: Maybe<MobileQuestChallenge>;
@@ -6683,6 +6668,10 @@ export type MutationStartMembersBulkUploadArgs = {
 export type MutationSubmitAppStoreReviewActionArgs = {
   action: AppStoreReviewPromptAction;
   id: Scalars["ID"]["input"];
+};
+
+export type MutationSubmitChallengeDebugDataArgs = {
+  debugData: ChallengeDebugData;
 };
 
 export type MutationSubmitFeedbackFormArgs = {
@@ -7409,7 +7398,6 @@ export type Query = {
   getCustomValueTypes: GetCustomValueTypesResponse;
   getCustomValues: GetCustomValuesResponse;
   getCustomerMatcherFields: Array<CustomerMatcherField>;
-  getCustomerProductFromProductId?: Maybe<CustomerProductData>;
   getDailyPensionContribution: DailyPensionContribution;
   getDebugCodes?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
   /** Fetch the data that will be used to populate the onboarding journey */
@@ -7800,11 +7788,6 @@ export type QueryGetCustomValuesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetCustomerMatcherFieldsArgs = {
   options?: InputMaybe<CustomerMatchingRuleOptionsInput>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetCustomerProductFromProductIdArgs = {
-  productId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -8589,14 +8572,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type ReadableBusinessAccessOrganisationPermission = {
-  __typename?: "ReadableBusinessAccessOrganisationPermission";
-  description: Scalars["String"]["output"];
-  key: BusinessAccessOrganisationPermission;
-  title: Scalars["String"]["output"];
-  tooltip?: Maybe<Scalars["String"]["output"]>;
-};
 
 export type ReadableBusinessAccessPermission = {
   __typename?: "ReadableBusinessAccessPermission";
@@ -9660,6 +9635,7 @@ export type TeamEmployeeRecognitionCampaignPackage = {
 
 export type TeamEmployeeRecognitionCampaignPackageResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignPackageResponse";
+  minTopupAmount: Scalars["Int"]["output"];
   packages: Array<TeamEmployeeRecognitionCampaignPackage>;
   rate: Scalars["Float"]["output"];
   topupThreshold: Scalars["Int"]["output"];
@@ -10840,6 +10816,7 @@ export type UserStatisticsSection = {
 
 export type UserSupportConfig = {
   __typename?: "UserSupportConfig";
+  basicSupportResponseDays?: Maybe<Scalars["Int"]["output"]>;
   supportLevel?: Maybe<UserSupportLevel>;
 };
 
@@ -22032,6 +22009,12 @@ export type SetUserQuestProgressMutationVariables = Exact<{
 }>;
 
 export type SetUserQuestProgressMutation = { __typename?: "Mutation"; setUserQuestProgress?: boolean | null };
+
+export type SubmitChallengeDebugDataMutationVariables = Exact<{
+  debugData: ChallengeDebugData;
+}>;
+
+export type SubmitChallengeDebugDataMutation = { __typename?: "Mutation"; submitChallengeDebugData?: boolean | null };
 
 export type SubmitUserDebugDataMutationVariables = Exact<{
   id?: InputMaybe<Scalars["String"]["input"]>;
@@ -69283,6 +69266,42 @@ export const SetUserQuestProgressDocument = {
     },
   ],
 } as unknown as DocumentNode<SetUserQuestProgressMutation, SetUserQuestProgressMutationVariables>;
+export const SubmitChallengeDebugDataDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitChallengeDebugData" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "debugData" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ChallengeDebugData" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitChallengeDebugData" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "debugData" },
+                value: { kind: "Variable", name: { kind: "Name", value: "debugData" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitChallengeDebugDataMutation, SubmitChallengeDebugDataMutationVariables>;
 export const SubmitUserDebugDataDocument = {
   kind: "Document",
   definitions: [

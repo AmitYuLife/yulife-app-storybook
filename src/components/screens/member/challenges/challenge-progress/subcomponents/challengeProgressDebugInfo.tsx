@@ -8,6 +8,8 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { t } from "@locale";
 import { Alert, Platform } from "react-native";
 import { IPedometerHistoryEntry } from "@redux/debug/debug.types";
+import { useMutation } from "@apollo/client";
+import { gql } from "@graphql/__generated";
 
 type Props = {
   initialDailySteps: number;
@@ -15,6 +17,7 @@ type Props = {
   progressCalculation: number;
   healthProvider: string;
   historySteps: IPedometerHistoryEntry[];
+  startDateTime: string;
 };
 
 const keyExtractor = (item: IPedometerHistoryEntry, index: number) => `${index}-${item.steps.toString()}`;
@@ -29,11 +32,14 @@ const ChallengeProgressDebugInfo = ({
   progressCalculation,
   healthProvider,
   historySteps,
+  startDateTime,
 }: Props) => {
   const flashListRef = useRef<FlashList<IPedometerHistoryEntry>>();
   const dispatch = useDispatch();
 
-  const onExportDataPress = useCallback(() => {
+  const [submitChallengeDebugData] = useMutation(gql("SubmitChallengeDebugDataDocument"));
+
+  const onExportDataPress = useCallback(async () => {
     const reducedHistorySteps = (historySteps || []).reverse().reduce(
       (acc, item) => {
         acc.historySteps.push(item.steps);
@@ -42,6 +48,16 @@ const ChallengeProgressDebugInfo = ({
       },
       { historySteps: [], stepsBeforeSubscribe: [] }
     );
+
+    await submitChallengeDebugData({
+      variables: {
+        debugData: {
+          startDateTime,
+          healthProviderEntries: Platform.select({ ios: [], android: reducedHistorySteps.stepsBeforeSubscribe }),
+          pedometerEntries: reducedHistorySteps.historySteps,
+        },
+      },
+    });
 
     dispatch(
       logMixpanelEventActionCreator("challenge_progress_debug_tools", {
@@ -55,7 +71,16 @@ const ChallengeProgressDebugInfo = ({
     );
 
     Alert.alert(t("success"));
-  }, [dispatch, initialDailySteps, currentPedometerSteps, progressCalculation, healthProvider, historySteps]);
+  }, [
+    dispatch,
+    initialDailySteps,
+    currentPedometerSteps,
+    progressCalculation,
+    healthProvider,
+    historySteps,
+    startDateTime,
+    submitChallengeDebugData,
+  ]);
 
   return (
     <Box width={250} bg={"white"} br={10} p={10} gap={5}>
