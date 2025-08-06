@@ -41,15 +41,6 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
     skip: !tempGameShowAchievements,
   });
 
-  const achievementsList = useMemo(
-    () => ({
-      points: achievements?.getMobileGameUserAchievements?.achievementPoints,
-      list: achievements?.getMobileGameUserAchievements?.equippedAchievements,
-      numberOfSlots: achievements?.getMobileGameUserAchievements?.numberOfSlots,
-    }),
-    [achievements?.getMobileGameUserAchievements]
-  );
-
   useEffect(() => {
     if (isOtherUser) {
       getDuels();
@@ -189,8 +180,9 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
       shortName={current.shortName}
       inspectOtherUser={isOtherUser}
       componentId={_componentId}
-      achievements={achievementsList}
+      achievement={achievements?.getMobileGameUserAchievements?.equippedAchievements[0]}
       showAchievements={tempGameShowAchievements}
+      currentViewedUserId={userId}
     />
   );
 };

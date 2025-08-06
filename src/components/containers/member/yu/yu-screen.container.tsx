@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { memo } from "react";
 import { YuScreen as YuScreenV5 } from "./subcomponents/yu-screen-v5/yu-screen";
 import { useSelector } from "react-redux";
-import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
+import { useImagePreload, useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { IMainTabsProps as Props } from "@navigation/root";
 import { YuScreenContext } from "./context/yu-screen.context";
 import { getUserAvatar, getUserEarnRate, getUserFeatures } from "@redux/user/user.selectors";
@@ -25,14 +25,13 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
     }
   );
 
-  const achievementsList = useMemo(
-    () => ({
-      points: achievements?.getMobileGameUserAchievements?.achievementPoints,
-      list: achievements?.getMobileGameUserAchievements?.equippedAchievements || [],
-      numberOfSlots: achievements?.getMobileGameUserAchievements?.numberOfSlots,
-    }),
-    [achievements?.getMobileGameUserAchievements]
+  const achievementsBackgroundsImages = useMemo(
+    () =>
+      achievements?.getMobileGameUserAchievements?.achievements.map((achievement) => achievement.backgroundImage.uri),
+    [achievements]
   );
+
+  useImagePreload({ images: achievementsBackgroundsImages });
 
   const yumojiRemoteUrl = avatar.avatarRemoteFiles?.pngFull;
   const onNotificationPress = showNotificationCentre
@@ -51,7 +50,7 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
       <YuScreenContext.Provider value={{ earnRate, yumojiRemoteUrl }}>
         <YuScreenV5
           onNotificationPress={onNotificationPress}
-          achievements={achievementsList}
+          achievement={achievements?.getMobileGameUserAchievements?.equippedAchievements[0]}
           showAchievements={tempGameShowAchievements}
         />
       </YuScreenContext.Provider>

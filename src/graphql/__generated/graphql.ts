@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -801,12 +800,6 @@ export enum BulkUploadStatus {
   Pending = "pending",
 }
 
-export enum BusinessAccessOrganisationPermission {
-  ManageAdvisers = "manageAdvisers",
-  ManageClientConnections = "manageClientConnections",
-  ViewClientDashboard = "viewClientDashboard",
-}
-
 export enum BusinessAccessPermission {
   AddEmployee = "addEmployee",
   BulkUploadEmployees = "bulkUploadEmployees",
@@ -981,8 +974,6 @@ export type BusinessSessionAccount = {
   id: Scalars["String"]["output"];
   jobTitle?: Maybe<Scalars["String"]["output"]>;
   lastName?: Maybe<Scalars["String"]["output"]>;
-  organisationName?: Maybe<Scalars["String"]["output"]>;
-  userType?: Maybe<AccountUserType>;
 };
 
 export type BusinessSessionBusiness = {
@@ -2234,6 +2225,7 @@ export type ContentItemScale = {
   labelMin?: Maybe<Scalars["String"]["output"]>;
   options: Array<ContentItemScaleOption>;
   styles?: Maybe<Array<SduiStyle>>;
+  thumbnail?: Maybe<RemoteImage>;
 };
 
 export type ContentItemScaleOption = {
@@ -2617,16 +2609,6 @@ export type CreateAccessUserInput = {
   permissions?: InputMaybe<Array<BusinessAccessPermission>>;
 };
 
-export type CreateOrganisationUserInput = {
-  businessPhone: Scalars["String"]["input"];
-  clientConnectionRequests?: InputMaybe<Array<ClientConnectionRequests>>;
-  email: Scalars["String"]["input"];
-  firstName: Scalars["String"]["input"];
-  jobTitle?: InputMaybe<Scalars["String"]["input"]>;
-  lastName: Scalars["String"]["input"];
-  permissions?: InputMaybe<Array<BusinessAccessOrganisationPermission>>;
-};
-
 export type CreateOrganisationUserResponses = {
   __typename?: "CreateOrganisationUserResponses";
   accountAccessId: Scalars["String"]["output"];
@@ -2863,12 +2845,6 @@ export type CustomerProductBeneficiaries = {
   __typename?: "CustomerProductBeneficiaries";
   beneficiaries?: Maybe<Array<CustomerBeneficiary>>;
   id: Scalars["ID"]["output"];
-};
-
-export type CustomerProductData = {
-  __typename?: "CustomerProductData";
-  customerProductId?: Maybe<Scalars["String"]["output"]>;
-  status: YuProductStatus;
 };
 
 export type DailyPensionContribution = {
@@ -3744,7 +3720,6 @@ export type GetBusinessAccessAdmins = {
 
 export type GetBusinessAccessUserPermissionsResult = {
   __typename?: "GetBusinessAccessUserPermissionsResult";
-  businessAccessOrganisationPermission?: Maybe<Array<Maybe<BusinessAccessOrganisationPermission>>>;
   businessAccessPermission?: Maybe<Array<Maybe<BusinessAccessPermission>>>;
 };
 
@@ -3883,7 +3858,6 @@ export type GetProductYumojiPartResponse = {
 
 export type GetReadableBusinessAccessUserPermissionResult = {
   __typename?: "GetReadableBusinessAccessUserPermissionResult";
-  businessAccessOrganisationPermission?: Maybe<Array<ReadableBusinessAccessOrganisationPermission>>;
   businessAccessPermission?: Maybe<Array<ReadableBusinessAccessPermission>>;
 };
 
@@ -5357,6 +5331,8 @@ export type MobileGameRewardPassSlot = {
 
 export type MobileGameUserAchievement = {
   __typename?: "MobileGameUserAchievement";
+  backgroundColor: Scalars["String"]["output"];
+  backgroundImage: RemoteImage;
   description: Scalars["String"]["output"];
   icon: RemoteImage;
   id: Scalars["ID"]["output"];
@@ -5365,6 +5341,8 @@ export type MobileGameUserAchievement = {
   shortDescription?: Maybe<Scalars["String"]["output"]>;
   slot?: Maybe<Scalars["Int"]["output"]>;
   status: Scalars["String"]["output"];
+  textColor: Scalars["String"]["output"];
+  topBarType: Scalars["String"]["output"];
   type: Scalars["String"]["output"];
   viewed: Scalars["Boolean"]["output"];
 };
@@ -7409,7 +7387,6 @@ export type Query = {
   getCustomValueTypes: GetCustomValueTypesResponse;
   getCustomValues: GetCustomValuesResponse;
   getCustomerMatcherFields: Array<CustomerMatcherField>;
-  getCustomerProductFromProductId?: Maybe<CustomerProductData>;
   getDailyPensionContribution: DailyPensionContribution;
   getDebugCodes?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
   /** Fetch the data that will be used to populate the onboarding journey */
@@ -7800,11 +7777,6 @@ export type QueryGetCustomValuesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetCustomerMatcherFieldsArgs = {
   options?: InputMaybe<CustomerMatchingRuleOptionsInput>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetCustomerProductFromProductIdArgs = {
-  productId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -8589,14 +8561,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type ReadableBusinessAccessOrganisationPermission = {
-  __typename?: "ReadableBusinessAccessOrganisationPermission";
-  description: Scalars["String"]["output"];
-  key: BusinessAccessOrganisationPermission;
-  title: Scalars["String"]["output"];
-  tooltip?: Maybe<Scalars["String"]["output"]>;
-};
 
 export type ReadableBusinessAccessPermission = {
   __typename?: "ReadableBusinessAccessPermission";
@@ -9660,6 +9624,7 @@ export type TeamEmployeeRecognitionCampaignPackage = {
 
 export type TeamEmployeeRecognitionCampaignPackageResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignPackageResponse";
+  minTopupAmount: Scalars["Int"]["output"];
   packages: Array<TeamEmployeeRecognitionCampaignPackage>;
   rate: Scalars["Float"]["output"];
   topupThreshold: Scalars["Int"]["output"];
@@ -10840,6 +10805,7 @@ export type UserStatisticsSection = {
 
 export type UserSupportConfig = {
   __typename?: "UserSupportConfig";
+  basicSupportResponseDays?: Maybe<Scalars["Int"]["output"]>;
   supportLevel?: Maybe<UserSupportLevel>;
 };
 
@@ -11700,6 +11666,11 @@ export type MobileGameUserAchievementFragment = {
   type: string;
   points?: number | null;
   slot?: number | null;
+  viewed: boolean;
+  backgroundColor: string;
+  textColor: string;
+  topBarType: string;
+  backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
@@ -11718,6 +11689,11 @@ export type MobileGameUserAchievementsFragment = {
     type: string;
     points?: number | null;
     slot?: number | null;
+    viewed: boolean;
+    backgroundColor: string;
+    textColor: string;
+    topBarType: string;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
   equippedAchievements: Array<{
@@ -11730,6 +11706,11 @@ export type MobileGameUserAchievementsFragment = {
     type: string;
     points?: number | null;
     slot?: number | null;
+    viewed: boolean;
+    backgroundColor: string;
+    textColor: string;
+    topBarType: string;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
   lockedAchievements: Array<{
@@ -11742,6 +11723,11 @@ export type MobileGameUserAchievementsFragment = {
     type: string;
     points?: number | null;
     slot?: number | null;
+    viewed: boolean;
+    backgroundColor: string;
+    textColor: string;
+    topBarType: string;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
   categories: Array<{ __typename?: "MobileGameUserAchievementCategory"; name: string; key: string }>;
@@ -20481,6 +20467,11 @@ export type GetMobileGameUserAchievementsQuery = {
       type: string;
       points?: number | null;
       slot?: number | null;
+      viewed: boolean;
+      backgroundColor: string;
+      textColor: string;
+      topBarType: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     equippedAchievements: Array<{
@@ -20493,6 +20484,11 @@ export type GetMobileGameUserAchievementsQuery = {
       type: string;
       points?: number | null;
       slot?: number | null;
+      viewed: boolean;
+      backgroundColor: string;
+      textColor: string;
+      topBarType: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     lockedAchievements: Array<{
@@ -20505,6 +20501,11 @@ export type GetMobileGameUserAchievementsQuery = {
       type: string;
       points?: number | null;
       slot?: number | null;
+      viewed: boolean;
+      backgroundColor: string;
+      textColor: string;
+      topBarType: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     categories: Array<{ __typename?: "MobileGameUserAchievementCategory"; name: string; key: string }>;
@@ -20532,6 +20533,11 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       type: string;
       points?: number | null;
       slot?: number | null;
+      viewed: boolean;
+      backgroundColor: string;
+      textColor: string;
+      topBarType: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     equippedAchievements: Array<{
@@ -20544,6 +20550,11 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       type: string;
       points?: number | null;
       slot?: number | null;
+      viewed: boolean;
+      backgroundColor: string;
+      textColor: string;
+      topBarType: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     lockedAchievements: Array<{
@@ -20556,6 +20567,11 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       type: string;
       points?: number | null;
       slot?: number | null;
+      viewed: boolean;
+      backgroundColor: string;
+      textColor: string;
+      topBarType: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     categories: Array<{ __typename?: "MobileGameUserAchievementCategory"; name: string; key: string }>;
@@ -20584,6 +20600,11 @@ export type UpdateMobileGameUserAchievementMutation = {
       type: string;
       points?: number | null;
       slot?: number | null;
+      viewed: boolean;
+      backgroundColor: string;
+      textColor: string;
+      topBarType: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     equippedAchievements: Array<{
@@ -20596,6 +20617,11 @@ export type UpdateMobileGameUserAchievementMutation = {
       type: string;
       points?: number | null;
       slot?: number | null;
+      viewed: boolean;
+      backgroundColor: string;
+      textColor: string;
+      topBarType: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     lockedAchievements: Array<{
@@ -20608,6 +20634,11 @@ export type UpdateMobileGameUserAchievementMutation = {
       type: string;
       points?: number | null;
       slot?: number | null;
+      viewed: boolean;
+      backgroundColor: string;
+      textColor: string;
+      topBarType: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
     categories: Array<{ __typename?: "MobileGameUserAchievementCategory"; name: string; key: string }>;
@@ -40471,6 +40502,18 @@ export const MobileGameUserAchievementFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "points" } },
           { kind: "Field", name: { kind: "Name", value: "slot" } },
+          { kind: "Field", name: { kind: "Name", value: "viewed" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "topBarType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -40575,6 +40618,18 @@ export const MobileGameUserAchievementsFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "points" } },
           { kind: "Field", name: { kind: "Name", value: "slot" } },
+          { kind: "Field", name: { kind: "Name", value: "viewed" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "topBarType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -63913,6 +63968,18 @@ export const GetMobileGameUserAchievementsDocument = {
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "points" } },
           { kind: "Field", name: { kind: "Name", value: "slot" } },
+          { kind: "Field", name: { kind: "Name", value: "viewed" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "topBarType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -64043,6 +64110,18 @@ export const MarkMobileGameUserAchievementsViewedDocument = {
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "points" } },
           { kind: "Field", name: { kind: "Name", value: "slot" } },
+          { kind: "Field", name: { kind: "Name", value: "viewed" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "topBarType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -64180,6 +64259,18 @@ export const UpdateMobileGameUserAchievementDocument = {
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "points" } },
           { kind: "Field", name: { kind: "Name", value: "slot" } },
+          { kind: "Field", name: { kind: "Name", value: "viewed" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "topBarType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },

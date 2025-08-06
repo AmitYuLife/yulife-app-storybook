@@ -25,6 +25,7 @@ interface IProps {
   selectedSlot?: number;
   onRefresh: () => void;
   isLoading: boolean;
+  isInspectingUser?: boolean;
   categories: {
     value: string;
     isSelected: boolean;
@@ -40,6 +41,7 @@ const AchievementsScreen = ({
   categories,
   onRefresh,
   isLoading,
+  isInspectingUser,
 }: IProps) => {
   const renderItem = useCallback(
     ({ item }: { item: IAchievement }) => {
@@ -55,6 +57,7 @@ const AchievementsScreen = ({
                   id: MODALS.viewAchievementModal,
                   name: MODALS.viewAchievementModal,
                   passProps: {
+                    isInspectingUser,
                     slotsAvailable,
                     selectedSlot: slot,
                     ...item,
@@ -67,7 +70,7 @@ const AchievementsScreen = ({
         </Box>
       );
     },
-    [slotsAvailable, selectedSlot]
+    [slotsAvailable, selectedSlot, isInspectingUser]
   );
 
   const showAchievementPoints = useMemo(() => typeof achievementPoints === "number", [achievementPoints]);

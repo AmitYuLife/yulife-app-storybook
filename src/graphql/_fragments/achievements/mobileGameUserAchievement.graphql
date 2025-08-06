@@ -8,6 +8,13 @@ fragment MobileGameUserAchievement on MobileGameUserAchievement {
   type
   points
   slot
+  viewed
+  backgroundColor
+  textColor
+  topBarType
+  backgroundImage {
+    ...RemoteImage
+  }
   icon {
     ...RemoteImage
   }
