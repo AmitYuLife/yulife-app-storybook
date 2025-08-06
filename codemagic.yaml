@@ -19,14 +19,14 @@ definitions:
     - &generate_native_projects
       name: Generate native projects
       script: |
-        EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM"
+        EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --clean --no-install
     - &install_cocoapods_dependencies
       name: Install CocoaPods dependencies
       script: |
         cd ios
+        bundle config frozen true
         bundle install
-        bundle exec pod install --repo-update
-        # TODO: Add pod install--deployment once we have a way to test it
+        bundle exec pod install --repo-update --deployment
     - &set_ios_provisioning_profiles
       name: Set up provisioning profiles settings on Xcode project
       script: |
