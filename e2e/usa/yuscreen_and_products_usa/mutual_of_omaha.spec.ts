@@ -1,10 +1,9 @@
 import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
-
 import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
-import { CUSTOMER_USA_4 } from "../_data";
+import { BUSINESS_ACCOUNT_USA_2_NPC, CUSTOMER_USA_4 } from "../_data";
 import * as ids from "@ids";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 import { idVisible } from "@utils";
@@ -50,6 +49,24 @@ Feature("Mutual of Omaha specific tests", async () => {
             Then("I should see the updated copy for the wellbeing hub that doesn't mention companies", then.textVisible(wellbeingHubHeaderMessage));
           });
         });
+      });
+    });
+  });
+
+  Scenario("As a user on the US region, I should be able to get US rewards", scenario.start, async () => {
+    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_ACCOUNT_USA_2_NPC.business.data.businessAccountId]), async () => {
+      Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
+        Given("I login and go to the rewards screen", given.logInAndGoToTab("rewards", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+          Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+        });
+        When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
+          Then("I should see the first item 'Mystery Box'", then.idVisible(ids.BATTLE_PASS_LIST_ITEM_TITLE("Mystery Box"), 1500));
+        });
+      });
+    });
+    When("I tap on the 'Mystery Box'", when.tapID(ids.BATTLE_PASS_LIST_ITEM_TITLE("Mystery Box"), 3000), async () => {
+      When("I scroll to the bottom of the rewards'", when.mysteryRewardUsPreviewScrollToBottom, async () => {
+        Then("I should be able to see the US related rewards such as `Starbucks US voucher'", then.checkUsMysteryBoxRewardsVisible);
       });
     });
   });

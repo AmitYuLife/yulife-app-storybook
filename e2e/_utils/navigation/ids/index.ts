@@ -875,6 +875,8 @@ export const SMOKING_CAROUSEL_LIST_ITEM_CTA = (id: string) =>
   `SMOKING_CAROUSEL_LIST_ITEM_CTA_${id}`;
 export const BATTLE_PASS_LIST = "BATTLE_PASS_LIST";
 export const BATTLE_PASS_LIST_ITEM = (id: number) => `BATTLE_PASS_LIST_ITEM_${id}`;
+export const BATTLE_PASS_LIST_ITEM_TITLE = (title: string) =>
+  `BATTLE_PASS_LIST_ITEM_TITLE_${title}`;
 export const BATTLE_PASS_LIST_IMAGE_LOCKED = (id: string) => `BATTLE_PASS_LIST_ITEM_${id}_LOCKED`;
 export const BATTLE_PASS_LIST_IMAGE_UNLOCKED = (id: string) =>
   `BATTLE_PASS_LIST_ITEM_${id}_UNLOCKED`;
