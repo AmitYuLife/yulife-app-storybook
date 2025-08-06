@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import Animated from "react-native-reanimated";
 import { useLoadingAnimation } from "./useLoadingAnimation";
 import { IBoxProps } from "@atoms/box/box.types";
@@ -12,4 +12,4 @@ const SkeletonLoading: FC<IBoxProps> = (props) => {
   return <Animated.View {...boxProps} style={[loadingAnimation, boxProps.style]} />;
 };
 
-export default SkeletonLoading;
+export default memo(SkeletonLoading);

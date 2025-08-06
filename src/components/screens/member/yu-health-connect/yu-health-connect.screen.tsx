@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { TextTemplate } from "@atoms";
+import { TextTemplate, SkeletonLoading } from "@atoms";
 import { Button, InfoPanel, SecondaryButton } from "@molecules";
 import { Style, TOP_BAR } from "@styles";
 import { MODALS } from "@navigation/constants";
@@ -12,9 +12,9 @@ import { HealthProvider } from "@yu-life/react-native-yu-health";
 import HealthProviderActivities from "@components/molecules/health-provider-activities/health-provider-activities";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { HEALTH_PROVIDER_OPTIONS, SupportedHealthTypes } from "@services/yuHealth/supported-health-types";
-import { isAndroid } from "@utils";
 import { YugiHealthConnectIcon } from "@atoms/icon/yugi-health-connect-icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { isiOS } from "@utils";
 
 interface IYuHealthConnectScreenProps {
   body?: string;
@@ -22,8 +22,9 @@ interface IYuHealthConnectScreenProps {
   onCancel: () => void;
   onConnect: () => void;
   onChangeProvider: () => void;
+  hasNoProviders?: boolean;
   onOpenExplanation: () => void;
-  activeProvider: HealthProvider;
+  selectedProvider: HealthProvider;
 }
 
 const YuHealthConnectScreen = ({
@@ -31,17 +32,19 @@ const YuHealthConnectScreen = ({
   onCancel,
   isLoading,
   onConnect,
-  activeProvider,
+  selectedProvider,
+  hasNoProviders,
   onChangeProvider,
   onOpenExplanation,
 }: IYuHealthConnectScreenProps) => {
-  const options = useMemo(() => HEALTH_PROVIDER_OPTIONS[activeProvider], [activeProvider]);
+  const options = useMemo(() => HEALTH_PROVIDER_OPTIONS[selectedProvider], [selectedProvider]);
 
   const t = useTranslation([
     "yu_health.connect.not_available",
     "yu_health.connect.title",
     "yu_health.connect.why",
     "yu_health.connect.button",
+    "yu_health.connect.no_providers",
   ]);
 
   const onModalClose = useCallback(() => {
@@ -67,6 +70,22 @@ const YuHealthConnectScreen = ({
     return true;
   });
 
+  const healthItemContent = useMemo(() => {
+    if (isiOS()) {
+      return null;
+    }
+
+    if (isLoading) {
+      return <SkeletonLoading height={80} br={12} bg="#f0f0f0" />;
+    }
+
+    if (hasNoProviders || !selectedProvider) {
+      return <InfoPanel markdown={t["yu_health.connect.no_providers"]} type="error" showIcon={true} />;
+    }
+
+    return <HealthProviderItem provider={selectedProvider} onPress={onChangeProvider} />;
+  }, [selectedProvider, hasNoProviders, isLoading, onChangeProvider, t]);
+
   return (
     <>
       <GenericHeadingPad />
@@ -86,7 +105,7 @@ const YuHealthConnectScreen = ({
             </View>
 
             <Box gap={14}>
-              {isAndroid() ? <HealthProviderItem provider={activeProvider} onPress={onChangeProvider} /> : null}
+              {healthItemContent}
               <HealthProviderActivities supportedTypes={options?.supportedTypes} />
 
               {hasUnsupportedTypes ? (
@@ -97,7 +116,12 @@ const YuHealthConnectScreen = ({
 
           <Box gap={2} mt={10}>
             <SecondaryButton translationKey="yu_health.connect.why" onPress={onOpenExplanation} />
-            <Button isLoading={isLoading} translationKey="yu_health.connect.button" onPress={onConnect} />
+            <Button
+              isLoading={isLoading}
+              disabled={isLoading || hasNoProviders}
+              translationKey="yu_health.connect.button"
+              onPress={onConnect}
+            />
           </Box>
         </View>
       </ScrollView>
