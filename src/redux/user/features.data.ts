@@ -44,7 +44,6 @@ export const features = [
   "yuScreenV4",
   "shouldQueryHourlyActivity",
   "disableCheckPermission",
-  "runLastUpdateQueryInSequence",
   "disableFitkitEventsLogging",
   "enhanceConnectionLogging",
   "logReduxState",

@@ -38,35 +38,6 @@ export default function* getPassiveSinceLastUpdateAndroid(
   const queryCycling = cyclingLastUpdate && fineLocationGranted && cyclingPermissionGranted;
   const queryMeditation = meditationLastUpdate && meditationPermissionGranted;
 
-  if (userFeatures.runLastUpdateQueryInSequence) {
-    const steps: ChallengesPayload[] = yield call(
-      getSteps,
-      stepsLastUpdate,
-      endDateSteps,
-      stepsBlackListApps,
-      userFeatures,
-      metaData
-    );
-    const meditation: ChallengesPayload[] = yield call(
-      getMeditation,
-      queryMeditation,
-      meditationLastUpdate,
-      endDateMeditation,
-      userFeatures,
-      metaData
-    );
-    const cycling: ChallengesPayload[] = yield call(
-      getCycling,
-      queryCycling,
-      cyclingLastUpdate,
-      endDateCycling,
-      userFeatures,
-      metaData
-    );
-
-    return [...cycling, ...meditation, ...steps];
-  }
-
   const [steps, meditation, cycling]: ChallengesPayload[][] = yield all([
     call(getSteps, stepsLastUpdate, endDateSteps, stepsBlackListApps, userFeatures, metaData),
     call(getMeditation, queryMeditation, meditationLastUpdate, endDateMeditation, userFeatures, metaData),
