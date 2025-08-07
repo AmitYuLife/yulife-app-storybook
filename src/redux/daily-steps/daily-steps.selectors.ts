@@ -21,9 +21,6 @@ const dailyStepsSyncSelector = ({ isServerFetchedThisSession, serverSteps, isSyn
 });
 export const getDailyStepsSyncState = createSelector(reducer, dailyStepsSyncSelector);
 
-const maxStepsAnomalyWindowMs = (state: State) => state.maxStepsAnomalyWindowMs;
-export const getMaxStepsAnomalyWindowMs = createSelector(reducer, maxStepsAnomalyWindowMs);
-
 const blackListApps = (state: State) => state.blackListApps;
 export const getStepsBlackListApps = createSelector(reducer, blackListApps);
 

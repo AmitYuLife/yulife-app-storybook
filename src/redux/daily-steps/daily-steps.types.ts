@@ -44,11 +44,6 @@ export interface IDailyStepsStore {
   lastUpdated: string;
   /**
    * @description
-   * Max window time in ms to detect spikes on pedometer reads
-   */
-  maxStepsAnomalyWindowMs: number;
-  /**
-   * @description
    * Steps data from these apps  will be filtered/ignored
    */
   blackListApps: string[];
@@ -58,7 +53,7 @@ export interface IDailyStepsStore {
 export type IDailyStepsGetUserSuccessPayload = { passiveSteps: Pick<IDailyStepsStore, "exchangeRate"> };
 
 export type IDailyStepsUpdateUserProfilePayload = {
-  stepsGameSettings: Pick<IDailyStepsStore, "maxStepsAnomalyWindowMs" | "blackListApps">;
+  stepsGameSettings: Pick<IDailyStepsStore, "blackListApps">;
 };
 
 export type IDailyStepsFromRemotePayload = { challenge: Challenge; sentSteps: number; currentBalance: number };

@@ -5,7 +5,6 @@ query GetUserProfile {
     }
     gameSettings {
       cyclingMeasurement
-      maxStepsAnomalyWindowMs
       blackListedNavBarTabs
       blackListApps {
         steps

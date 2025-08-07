@@ -33493,7 +33493,6 @@ export type GetUserProfileQuery = {
     gameSettings: {
       __typename?: "GameSettings";
       cyclingMeasurement: DistanceMeasurementType;
-      maxStepsAnomalyWindowMs?: number | null;
       blackListedNavBarTabs: Array<string>;
       debugToolsEnabled?: boolean | null;
       debugQueriesToolEnabled?: boolean | null;
@@ -87342,7 +87341,6 @@ export const GetUserProfileDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "cyclingMeasurement" } },
-                      { kind: "Field", name: { kind: "Name", value: "maxStepsAnomalyWindowMs" } },
                       { kind: "Field", name: { kind: "Name", value: "blackListedNavBarTabs" } },
                       {
                         kind: "Field",
