@@ -69,6 +69,7 @@
       "title": "YuCoinが不足しています"
     }
   },
+  "all_achievements": "全ての実績",
   "apple_health": "Apple ヘルスケア",
   "button": "ボタン",
   "captcha_input": {
@@ -2218,6 +2219,7 @@
     "connect": {
       "body": "サービスと連携することで、日々の活動に対してリワードを獲得できます。設定はいつでも変更が可能です。",
       "button": "連携する",
+      "no_providers": "デバイスに 健康 プロバイダー が 見つかりません でした。",
       "not_available": "一部の機能はご利用いただけない場合があります。YuCoin獲得のチャンスを見逃さないよう、他のサービスをお試しください。",
       "title": "連携に関する設定",
       "unsupported": " %{capabilities}は%{provider}ではサポートされていません。アクセスしてYuCoinを獲得するには、切り替えをご検討ください:",

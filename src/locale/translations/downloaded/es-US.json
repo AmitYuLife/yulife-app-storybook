@@ -69,6 +69,7 @@
       "title": "No hay suficiente YuCoin"
     }
   },
+  "all_achievements": "Todos los logros",
   "apple_health": "Salud",
   "button": "Botón",
   "captcha_input": {
@@ -2218,6 +2219,7 @@
     "connect": {
       "body": "Conecta un servicio para que podamos recompensarte por tus actividades diarias. Puedes ajustarlo en la configuración de tu dispositivo en cualquier momento.",
       "button": "Conectémonos",
+      "no_providers": "No hemos podido encontrar ningún proveedor sanitario en tu dispositivo.",
       "not_available": "Algunas características pueden no estar disponibles para ti. Podrías perderte de ganar YuCoin. Puedes probar otro servicio",
       "title": "Configuración de la conexión",
       "unsupported": "Lamentablemente %{capabilities} no es compatible con %{provider}. Para acceder a este y la capacidad de ganar YuCoin considera cambiarte a:",
