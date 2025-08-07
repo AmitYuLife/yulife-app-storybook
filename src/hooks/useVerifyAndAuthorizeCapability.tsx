@@ -7,7 +7,7 @@ import { getActiveProvider, getProviderAvailabilities } from "@redux/yu-health/y
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 import { API_HEALTH_PROVIDER_TO_GQL_MAP } from "@services/fitkit/yu-health.helpers";
 import Logger from "@services/logging/logger";
-import { openSettingsAlert, shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
+import { shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
 import {
   HealthPermissionStatus,
   HealthProvider,
@@ -17,10 +17,13 @@ import {
   hasPermission,
   hasPermissions,
   requestPermissions,
+  requestSystemPermission,
 } from "@yu-life/react-native-yu-health";
 import { isEmpty } from "lodash";
 import { useCallback, useMemo } from "react";
+import { Alert, Linking } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "./useTranslation";
 
 interface IVerifyAndAuthorizeCapabilityProps {
   componentId: string;
@@ -30,6 +33,13 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
   const dispatch = useDispatch();
   const providerAvailabilities = useSelector(getProviderAvailabilities);
   const activeProvider = useSelector(getActiveProvider);
+  const t = useTranslation([
+    "yu_health.connect.system_permission_needed.title",
+    "yu_health.connect.system_permission_needed.body",
+    "yu_health.connect.system_permission_needed.cancel",
+    "yu_health.connect.system_permission_needed.button",
+  ]);
+
   const enabledHealthProviders = useSelector(getEnabledHealthProviders);
 
   /**
@@ -94,6 +104,24 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
     return { capabilitiesToRequest, requiresSystemPermission };
   }, []);
 
+  const openSystemPermission = useCallback(() => {
+    Alert.alert(
+      t["yu_health.connect.system_permission_needed.title"],
+      t["yu_health.connect.system_permission_needed.body"],
+      [
+        {
+          text: t["yu_health.connect.system_permission_needed.cancel"],
+        },
+        {
+          text: t["yu_health.connect.system_permission_needed.button"],
+          onPress: () => {
+            Linking.openSettings();
+          },
+        },
+      ]
+    );
+  }, [t]);
+
   /**
    * Makes the system & provider permission request
    */
@@ -104,9 +132,11 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
       );
 
       if (requiresSystemPermission) {
-        // This will only be true if the user has denied the permission and we can't ask for it again
-        openSettingsAlert();
-        return false;
+        const permissions = await requestSystemPermission(capabilities);
+        if (!isEmpty(permissions.notGrantedCapabilities)) {
+          openSystemPermission();
+          return false;
+        }
       }
 
       if (capabilitiesToRequest.length > 0) {
@@ -123,7 +153,7 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
       // No permission request was made because all permissions are granted
       return true;
     },
-    [dispatch, getCapabilitiesRequiringAuthorization]
+    [dispatch, getCapabilitiesRequiringAuthorization, openSystemPermission]
   );
 
   const handlePermissionRequestModal = useCallback(
@@ -207,9 +237,8 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
         return await handlePermissionRequestModal(requestCapabilities?.capabilitiesToRequest);
       }
 
-      if (!isEmpty(requestCapabilities)) {
-        const result = await requestCapabilityPermissions(capabilities);
-        return Object.values(result).map(shouldContinueWithPermissionStatus).every(Boolean);
+      if (!isEmpty(requestCapabilities.capabilitiesToRequest) || requestCapabilities.requiresSystemPermission) {
+        return await requestCapabilityPermissions(capabilities);
       }
 
       return true;
