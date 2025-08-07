@@ -14,7 +14,6 @@ export const features = [
   "hideFeedbackModals",
   "showDuels",
   "yuScreenV3",
-  "limitPedometerSteps",
   "showReferrals",
   "useActiveChallengesService",
   "waitForStepsSync",

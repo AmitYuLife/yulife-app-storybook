@@ -35,7 +35,6 @@ export default function* getUserProfileData(
           blackListedNavBarTabs: userProfile.getUserProfile.gameSettings?.blackListedNavBarTabs,
           rewards: userProfile.getUserProfile.gameSettings?.rewards,
           stepsGameSettings: {
-            maxStepsAnomalyWindowMs: userProfile.getUserProfile.gameSettings.maxStepsAnomalyWindowMs,
             blackListApps: userProfile.getUserProfile.gameSettings.blackListApps.steps,
           },
           cyclingGameSettings: {

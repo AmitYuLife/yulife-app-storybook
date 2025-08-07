@@ -12,15 +12,14 @@ import {
 } from "../pedometer.actions";
 import { stepsChannel, NEXT_DAY_STARTED } from "../pedometer.channels";
 import { stepsChannel as yuHealthStepsChannel } from "../yu-health.pedometer.channels";
-import { getLastUpdated, getSteps } from "../pedometer.selectors";
-import { getMaxStepsAnomalyWindowMs, getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
+import { getSteps } from "../pedometer.selectors";
+import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getActiveLevel } from "@redux/levels/levels.selectors";
 import { updatePedometerForDebugSuccessAction } from "@redux/debug/debug.actions";
 import { getDebugToolsEnabled } from "@redux/debug/debug.selectors";
 import { HealthDataType } from "@yu-life/react-native-yu-health";
 
 const ERROR_NOT_AUTHORISED = "Pedometer not authorised";
-const STEPS_PER_MILLISECONDS_LIMIT = 2;
 
 type StepChannel = ReturnType<typeof stepsChannel> | ReturnType<typeof yuHealthStepsChannel>;
 
@@ -35,9 +34,6 @@ export default function* listenToSteps() {
   const channel: StepChannel = features.tempGameEnableReleaseYuHealthV4
     ? yield call(yuHealthStepsChannel, startOfDay, stepsBlackListApps, features.disableUserEntries)
     : yield call(stepsChannel, startOfDay, stepsBlackListApps, features.canFallbackToStepDetectorSensor);
-  const maxStepsAnomalyWindowMs: ReturnType<typeof getMaxStepsAnomalyWindowMs> = yield select(
-    getMaxStepsAnomalyWindowMs
-  );
 
   while (isRunning) {
     try {
@@ -68,20 +64,6 @@ export default function* listenToSteps() {
         );
       }
 
-      // Check pedometer limit if toggle is enabled
-      let areValidSteps = true;
-      if (features.limitPedometerSteps) {
-        const lastUpdated: ReturnType<typeof getLastUpdated> = yield select(getLastUpdated);
-        const timeSinceLastUpdate = moment(results.endTime).diff(moment(lastUpdated), "milliseconds");
-        /**
-         * If the pedometer repeats a genuine value assume it's legit
-         */
-        if (timeSinceLastUpdate < maxStepsAnomalyWindowMs) {
-          const stepsPerMilliseconds = (results.steps - currentSteps) / Math.max(1, timeSinceLastUpdate);
-          areValidSteps = stepsPerMilliseconds < STEPS_PER_MILLISECONDS_LIMIT;
-        }
-      }
-
       const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
       const debugToolsEnabled: ReturnType<typeof getDebugToolsEnabled> = yield select(getDebugToolsEnabled);
 
@@ -93,7 +75,7 @@ export default function* listenToSteps() {
         yield put(updatePedometerForDebugSuccessAction(results));
       }
 
-      if (results.steps !== currentSteps && areValidSteps) {
+      if (results.steps !== currentSteps) {
         yield put(updatePedometerSuccessAction(results));
       } else {
         yield put(updatePedometerNoNewDataAction());

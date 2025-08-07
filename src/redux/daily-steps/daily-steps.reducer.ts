@@ -29,8 +29,6 @@ import {
 import { createReducer } from "@reduxjs/toolkit";
 import { rehydrateAction } from "@redux/persist/persist.actions";
 
-const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
-
 export const getInitialState = (): IDailyStepsStore => ({
   dailySteps: 0,
   serverSteps: 0,
@@ -45,7 +43,6 @@ export const getInitialState = (): IDailyStepsStore => ({
   isSyncing: false,
   isServerFetchedThisSession: false,
   lastUpdated: moment().startOf("day").format(),
-  maxStepsAnomalyWindowMs: MAX_ANOMALY_DETECTION_WINDOW_MS,
   blackListApps: [],
   showPanel: false,
 });
@@ -106,7 +103,6 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
 
 const updateUserProfilePayload = (state: IDailyStepsStore, res: IDailyStepsUpdateUserProfilePayload) => ({
   ...state,
-  maxStepsAnomalyWindowMs: res?.stepsGameSettings?.maxStepsAnomalyWindowMs,
   blackListApps: res?.stepsGameSettings?.blackListApps || [],
 });
 
