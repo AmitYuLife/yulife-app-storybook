@@ -6,7 +6,6 @@ import {
   HealthProviderAvailability,
   HealthProviderCapability,
 } from "@yu-life/react-native-yu-health";
-import { Alert, Linking } from "react-native";
 import { isiOS } from "./device";
 import { t } from "@locale";
 import { YuHealthOptions as YuHealthOptionsRedux } from "@redux/_core/types";
@@ -36,24 +35,6 @@ export const CLIENT_SUPPORTED_PROVIDERS = [
   HealthProvider.samsungHealth,
   // HealthProvider.healthConnect,
 ];
-
-/**
- * Open settings when user has declined system permission
- */
-export const openSettingsAlert = () => async () => {
-  // TODO: Localise this, get copy. We currently don't do this with fitkit, and ignore the system permission
-  Alert.alert("System permission needed", "Please open YuLife settings and enable the permission", [
-    {
-      text: "Close",
-    },
-    {
-      text: "Open settings",
-      onPress: () => {
-        Linking.openSettings();
-      },
-    },
-  ]);
-};
 
 export const PROVIDER_RECOMMENDED_ORDER = [
   HealthProvider.googleFit,
