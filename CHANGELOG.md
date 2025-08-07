@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.75.0] - 2025-08-07
+
+### Bugfixes
+
+- Bugfix CTE-309: sync allure overwrite old
+- Bugfix GS-1796: Fix pod file lock
+
+### Tasks
+
+- Task GS-1814: Store challenge data on server
+- Task GS-1849: Fix achievements background on Yuniversal
+- Task: Respect lockfiles for iOS builds on Codemagic
+- Task GS-1829: Purge Game Goal Weeklies Refactor Toggle
+- Task GS-1836: Achievements V2
+- Task GS-1843: Set video quality to the lowest if data saver mode is enabled
+- Task: YuHealth robustness
+- Task GS-1848: Update AchievementSlot component
+- Task GS-1845: Update StarEmptySlotIcon with the new design
+- Task: Fix assets/rive folder not existing
+- Task DEVOPS-4056: Detox codemagic
+- Task GS-1839: Plugin to move rive assets to native folders
+- Task GS-1837: Season end fix
+- Task GS-1824: Add Data Saver Mode into userProfile gameSettings
+- Task: Conditional YuHealth providers
+- Task GS-1796: new arch fixes
+- Task GS-1826: rewards unlock deeplink
+- Task GS-1592: Allow opting out of donation leaderboards
+- Task GS-1819: Disable inspect on donate leaderboard
+- Task GS-1796: Get initial steps before subscribe
+- Task NVS-1477: use notification-item for birthday toggles
+- Task: Add podfile lock
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore GS-1813: Use searchLeaderboardUser for duels
+
+### Extra
+
+- Detox NVS-977: User on the US region, should get US rewards instead of UK rewards
+- Detox NVS:1384: Added assertion for new copy under Increase Cover button SA + fixes
+- Detox GS-1671: Gifting Email Flow
+- Detox NVS-1447 reset password link visible
+- Detox: Duels User Search
+- Detox: Fixes for p2p gifting workers
+- Detox: YuScreen Navigation
+
 ## [4.74.0] - 2025-07-30
 
 ### Bugfixes
