@@ -138,15 +138,10 @@ export const queryFitKitAggregatedData = async ({
   aggregationType,
   metaData = {},
 }: AggregatedQueryArgs): Promise<QueryFitKitByTypesResponse> => {
-  const {
-    disableUserEntries = true,
-    loggingEnabled = false,
-    runOnNewThread = false,
-  } = features || {
+  const { disableUserEntries = true, loggingEnabled = false } = features || {
     disableUserEntries: true,
     loggingEnabled: false,
     cyclingAggregationMin: false,
-    runOnNewThread: false,
   };
 
   try {
@@ -165,7 +160,7 @@ export const queryFitKitAggregatedData = async ({
       startTime,
       blackListApps,
       types: fitKitTypes.map(mapGqlFitKitTypeToFitKitType),
-      runOnNewThread,
+      runOnNewThread: true,
     };
 
     if (loggingEnabled) {
