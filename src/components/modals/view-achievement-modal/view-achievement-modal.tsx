@@ -21,11 +21,10 @@ interface IProps {
     id: string;
   };
   description: string;
-  selectedSlot?: number;
-  slotsAvailable: number[];
   points: number;
   shortDescription: string;
   status: "locked" | "unlocked" | "equipped";
+  currentRoute: string;
   isInspectingUser?: boolean;
   onClose?: () => void;
 }
@@ -39,34 +38,26 @@ const ViewAchievementModal = ({
   points,
   status,
   shortDescription,
-  slotsAvailable = [],
+  currentRoute,
   isInspectingUser,
-  selectedSlot,
-  onClose,
 }: IProps) => {
   const [updateMobileGameUserAchievement, { loading }] = useMutation(gql("UpdateMobileGameUserAchievementDocument"));
   const currentUserId = useSelector(getCurrentUserId);
   const insets = useSafeAreaInsets();
 
-  const hideButton = useMemo(
-    () =>
-      status === AchievementStatus.locked ||
-      isInspectingUser ||
-      (slotsAvailable.length === 0 && status === AchievementStatus.unlocked),
-    [status, isInspectingUser, slotsAvailable.length]
-  );
+  const hideButton = useMemo(() => status === AchievementStatus.locked || isInspectingUser, [status, isInspectingUser]);
 
   const onButtonPress = useCallback(async () => {
-    await updateMobileGameUserAchievement({
-      variables: { id, ...(status === AchievementStatus.equipped ? {} : { slot: selectedSlot }) },
-    });
-
-    if (onClose) {
-      await onClose();
+    if (currentRoute) {
+      Navigation.pop(currentRoute);
     }
 
+    await updateMobileGameUserAchievement({
+      variables: { id, ...(status === AchievementStatus.equipped ? {} : { slot: 1 }) },
+    });
+
     onModalClose();
-  }, [id, status, selectedSlot, currentUserId, onClose]);
+  }, [id, status, currentUserId, currentRoute, isInspectingUser]);
 
   const showAchievementPoints = useMemo(() => typeof points === "number", [points]);
 
