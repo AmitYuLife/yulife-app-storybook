@@ -2221,6 +2221,12 @@
       "button": "Conectémonos",
       "no_providers": "No hemos podido encontrar ningún proveedor sanitario en tu dispositivo.",
       "not_available": "Algunas características pueden no estar disponibles para ti. Podrías perderte de ganar YuCoin. Puedes probar otro servicio",
+      "system_permission_needed": {
+        "body": "Abra la configuración de YuLife y active el permiso",
+        "button": "Abrir ajustes",
+        "cancel": "Cerrar",
+        "title": "Permiso del sistema necesario"
+      },
       "title": "Configuración de la conexión",
       "unsupported": "Lamentablemente %{capabilities} no es compatible con %{provider}. Para acceder a este y la capacidad de ganar YuCoin considera cambiarte a:",
       "why": "¿Por qué tengo que hacer esto?"

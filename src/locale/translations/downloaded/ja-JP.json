@@ -2221,6 +2221,12 @@
       "button": "連携する",
       "no_providers": "デバイスに 健康 プロバイダー が 見つかりません でした。",
       "not_available": "一部の機能はご利用いただけない場合があります。YuCoin獲得のチャンスを見逃さないよう、他のサービスをお試しください。",
+      "system_permission_needed": {
+        "body": "YuLife設定を開き、許可を有効にしてください。",
+        "button": "設定を開く",
+        "cancel": "閉じる",
+        "title": "システムのアクセス許可が必要"
+      },
       "title": "連携に関する設定",
       "unsupported": " %{capabilities}は%{provider}ではサポートされていません。アクセスしてYuCoinを獲得するには、切り替えをご検討ください:",
       "why": "連携することのメリット"

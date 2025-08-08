@@ -2221,6 +2221,12 @@
       "button": "Let's connect",
       "no_providers": "We couldn't locate any health providers on your device.",
       "not_available": "Some features may not be available to you. You might miss out on YuCoin. You can try another service",
+      "system_permission_needed": {
+        "body": "Please open YuLife settings and enable the permission",
+        "button": "Open settings",
+        "cancel": "Close",
+        "title": "System permission required"
+      },
       "title": "Connection setup",
       "unsupported": "Sadly %{capabilities} is unsupported by %{provider}. To access this and the ability to earn YuCoin consider switching:",
       "why": "Why do I need to do this?"
