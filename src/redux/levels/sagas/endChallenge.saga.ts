@@ -49,12 +49,7 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
         const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
         const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, stepsBlackListApps, features);
 
-        if (
-          result.value === 0 &&
-          !payload?.skipDefer &&
-          (features.enableChallengeNoDataDefer || debugToolsEnabled) &&
-          !isEmpty(active.fitKitTypes)
-        ) {
+        if (result.value === 0 && !payload?.skipDefer && debugToolsEnabled && !isEmpty(active.fitKitTypes)) {
           yield spawn(async () => {
             logEmptyResultDebugData({
               features,
