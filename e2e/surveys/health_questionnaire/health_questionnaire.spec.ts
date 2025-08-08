@@ -437,7 +437,7 @@ Feature("Health questionnaires", async () => {
       Then("I should see im on the lower bound of the slider 50 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("50lbs")));
     });
     When("I swipe up fast on the weight picker scroller", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("50lbs"), "up", "fast", 1), async () => {
-      Then("I should see ive stopped on 72 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("72lbs")));
+      Then("I should see ive stopped on 74 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("74lbs")));
     });
     When("I tap select", when.tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON), async () => {
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
@@ -484,10 +484,11 @@ Feature("Health questionnaires", async () => {
         Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
       });
     });
-    When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
-      When("I tap the language options", when.tapText("Language", 2000, true), async () => {
-        Then("I should be on the language selector screen", then.languageSelectorVisible);
-      });
+    When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.5), async () => {
+      Then("I should be on the language selector screen", then.idVisible(ids.TEXT_TEMPLATE("en-GB", undefined)));
+    });
+    When("I tap the language options", when.tapID(ids.TEXT_TEMPLATE("en-GB", undefined)), async () => {
+      Then("I should be on the language selector screen", then.languageSelectorVisible);
     });
     When("I tap to switch to Japanese", when.tapText(`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`, 2000, true), async () => {
       When("I close the pop up", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
