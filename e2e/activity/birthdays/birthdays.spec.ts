@@ -9,15 +9,15 @@ import * as consts from "./_resources/constants";
 import { P2P_GIFTING_AMOUNTS, P2P_MESSAGES } from "activity/p2p_gifting/_resources/constants";
 
 Feature("As a user I can see birthday notifications in the app if consented, and send gifts accordingly", async () => {
-  Scenario("I can when it's other users birthdays and send them a gift", scenario.start, async () => {
+  Scenario("I can see when it's other users birthdays and send them a gift", scenario.start, async () => {
     Given("I trigger the nofitications", given.triggerBirthdayNotifications, async () => {
       Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
         Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
         Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true));
-        Then("I can see I have a notification", then.idVisible(ids.NOTIF_ICON_BADGE(true, 1)));
+        Then("I can see I have a notification", then.idVisible(ids.NOTIF_ICON_BADGE(true)));
       });
     });
-    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true, 1)), async () => {
+    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true)), async () => {
       Then("I should see the birthday notification for Michael Scott", then.birthdayNotificationVisible(data.CUSTOMER_18));
     });
     When("I tap on the notification", when.tapBirthdayNotification(data.CUSTOMER_18), async () => {
@@ -53,11 +53,12 @@ Feature("As a user I can see birthday notifications in the app if consented, and
     When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
       When("I tap settings", when.tapMenuItem("Settings"), async () => {
         When("I tap leaderboards", when.tapText("Leaderboards and birthday"), async () => {
-          Then("I can see the Birthday toggle, currently set to true", then.birthdayToggleVisible(true));
+          Then("I can see the see birthdays toggle, currently set to true", then.seeBirthdayToggleVisible(true));
+          Then("I can see the share birthday toggle, currently set to true", then.shareBirthdayToggleVisible(true));
         });
       });
     });
-    When("I tap the toggle", when.tapID(ids.BIRTHDAY_TOGGLE(true)), async () => {
+    When("I tap the toggle", when.tapID(ids.SETTINGS_SWITCH("Share your birthday?", true)), async () => {
       Then("I see the modal for turning off birthdays", then.birthdayModalVisible(false));
     });
   });
@@ -73,26 +74,30 @@ Feature("As a user I can see birthday notifications in the app if consented, and
     When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
       When("I tap settings", when.tapMenuItem("Settings"), async () => {
         When("I tap leaderboards", when.tapText("Leaderboards and birthday"), async () => {
-          Then("I can see the Birthday toggle, currently set to false", then.birthdayToggleVisible(false));
+          Then("I can see the see birthdays toggle, currently set to false", then.seeBirthdayToggleVisible(false));
+          Then("I can see the share birthday toggle, currently set to false", then.shareBirthdayToggleVisible(false));
         });
       });
     });
-    When("I tap the toggle", when.tapID(ids.BIRTHDAY_TOGGLE(false)), async () => {
+    When("I tap the toggle to share my birthday", when.tapID(ids.SETTINGS_SWITCH("Share your birthday?", false)), async () => {
       Then("I see the modal for turning on birthdays", then.birthdayModalVisible(true));
     });
     When("I tap to turn on birthdays", when.tapID(ids.GENERIC_SCREEN_CTA(consts.turnOnBirthdaysConfirm)), async () => {
-      Then("I can see the Birthday toggle is now set to true", then.birthdayToggleVisible(true));
+      Then("I can see the share birthday toggle is now set to true", then.shareBirthdayToggleVisible(true));
+    });
+    When("I tap the toggle to see birthdays", when.tapID(ids.SETTINGS_SWITCH("Birthdays", false)), async () => {
+      Then("I can see the see birthdays toggle is now set to true", then.seeBirthdayToggleVisible(true));
     });
     When("I close the app before I press the claim button", when.restartWithData, async () => {
       Given("I trigger the nofitications", given.triggerBirthdayNotifications, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_17, data.AUTH_17, true), async () => {
           Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
           Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Ryan Howard", "Forest", "2", false));
-          Then("I can see I now do have a notification", then.idVisible(ids.NOTIF_ICON_BADGE(true, 1)));
+          Then("I can see I now do have a notification", then.idVisible(ids.NOTIF_ICON_BADGE(true)));
         });
       });
     });
-    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true, 1)), async () => {
+    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true)), async () => {
       Then("I should see the birthday notification for Michael Scott", then.birthdayNotificationVisible(data.CUSTOMER_18));
     });
   });
@@ -107,11 +112,12 @@ Feature("As a user I can see birthday notifications in the app if consented, and
     When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
       When("I tap settings", when.tapMenuItem("Settings"), async () => {
         When("I tap leaderboards", when.tapText("Leaderboards and birthday"), async () => {
-          Then("I can see the Birthday toggle, currently set to false", then.birthdayToggleVisible(false));
+          Then("I can see the see birthdays toggle, currently set to false", then.seeBirthdayToggleVisible(false));
+          Then("I can see the share birthday toggle, currently set to false", then.shareBirthdayToggleVisible(false));
         });
       });
     });
-    When("I tap the toggle", when.tapID(ids.BIRTHDAY_TOGGLE(false)), async () => {
+    When("I tap the toggle to share my birthday", when.tapID(ids.SETTINGS_SWITCH("Share your birthday?", false)), async () => {
       Then("I see the modal for setting my birthday", then.onSetBirthdayModal);
     });
   });

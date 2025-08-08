@@ -44,10 +44,16 @@ export {
   onGiftingSuccessScreen,
 } from "../../p2p_gifting/_steps/then";
 
-export const birthdayToggleVisible = (consented: boolean) => async () => {
-  await textVisible(consts.birthdaysToggleTitle)();
-  await textVisible(consts.birthdaysToggleDescription)();
-  await idVisible(ids.BIRTHDAY_TOGGLE(consented))();
+export const seeBirthdayToggleVisible = (consented: boolean) => async () => {
+  await textVisible(consts.seeBirthdaysToggleTitle)();
+  await textVisible(consts.seeBirthdaysToggleDescription)();
+  await idVisible(ids.SETTINGS_SWITCH("Birthdays", consented))();
+};
+
+export const shareBirthdayToggleVisible = (consented: boolean) => async () => {
+  await textVisible(consts.shareBirthdaysToggleTitle)();
+  await textVisible(consts.shareBirthdaysToggleDescription)();
+  await idVisible(ids.SETTINGS_SWITCH("Share your birthday?", consented))();
 };
 
 export const birthdayNotificationVisible = (user: typeof CUSTOMER_18) => async () => {
