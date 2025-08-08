@@ -113,10 +113,6 @@ const QuestsContainer = () => {
   }, [activeLevel, dispatch, hasShownDeferModal]);
 
   useEffect(() => {
-    if (!features?.enableChallengeNoDataDefer) {
-      return;
-    }
-
     const hasChallengeEnded = moment().isAfter(activeLevel.endDateTime);
     const shouldShowDeferModal =
       activeLevel?.challengeIsActive &&
@@ -134,14 +130,7 @@ const QuestsContainer = () => {
         },
       });
     }
-  }, [
-    activeLevel,
-    activeLevel.endDeferCount,
-    activeModal,
-    currentRoute,
-    features.enableChallengeNoDataDefer,
-    hasShownDeferModal,
-  ]);
+  }, [activeLevel, activeLevel.endDeferCount, activeModal, currentRoute, hasShownDeferModal]);
 
   const handleResetChallenge = useCallback(
     (wasSuccessful = false) => {

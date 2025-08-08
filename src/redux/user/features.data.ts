@@ -31,7 +31,6 @@ export const features = [
   "showAllLanguages",
   "canFallbackToStepDetectorSensor",
   "enablePopToRootOnDateChange",
-  "enableChallengeNoDataDefer",
   "tempGameEnableReleaseYuHealthV4",
   "enableBikingHand",
   "enableBikingMountain",
