@@ -30,13 +30,20 @@ yarn detox:build:translations
 ##############################
 # Run detox test
 ##############################
-yarn detox:run "${DETOX_TEST_TYPE:-healthcheck}" -c ios.sim.release \
---take-screenshots all \
---artifacts-location ./e2e-report \
---loglevel "${DETOX_LOG_LEVEL:=warn}" \
---debug-synchronization 200 \
---record-logs all \
---record-videos failing
+# Set the test type argument based on DETOX_TEST_TYPE
+TEST_TYPE_ARG="${DETOX_TEST_TYPE:-healthcheck}"
+if [[ "$DETOX_TEST_TYPE" == "base" ]]; then
+  # If DETOX_TEST_TYPE is base, do not pass test type and use spec file
+  TEST_TYPE_ARG="${DETOX_SPEC_FILE:-}"
+fi
+
+yarn detox:run "$TEST_TYPE_ARG" -c ios.sim.release \
+  --take-screenshots all \
+  --artifacts-location ./e2e-report \
+  --loglevel "${DETOX_LOG_LEVEL:=warn}" \
+  --debug-synchronization 200 \
+  --record-logs all \
+  --record-videos failing
 ##############################
 # Save exit code for slack notification title in the upload detox report script (upload_detox_report.sh)
 ##############################

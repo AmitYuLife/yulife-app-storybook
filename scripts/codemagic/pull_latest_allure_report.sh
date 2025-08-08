@@ -3,7 +3,13 @@
 # Exit on error, undefined variable, or pipe failure
 set -euo pipefail
 # Enables debug output
-set -x  
+set -x
+
+# If DETOX_TEST_TYPE is base, skip step
+if [[ "$DETOX_TEST_TYPE" == "base" ]]; then
+  echo "Skipping step because DETOX_TEST_TYPE is base"
+  exit 0
+fi
 
 ##############################
 # Make dir if not exists
