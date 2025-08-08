@@ -21,8 +21,6 @@ interface IAchievement extends Omit<IAchievementCardProps, "onPress"> {
 interface IProps {
   achievementPoints: number;
   achievements: IAchievement[];
-  slotsAvailable: number[];
-  selectedSlot?: number;
   onRefresh: () => void;
   isLoading: boolean;
   isInspectingUser?: boolean;
@@ -36,8 +34,6 @@ interface IProps {
 const AchievementsScreen = ({
   achievementPoints,
   achievements,
-  slotsAvailable,
-  selectedSlot,
   categories,
   onRefresh,
   isLoading,
@@ -45,7 +41,6 @@ const AchievementsScreen = ({
 }: IProps) => {
   const renderItem = useCallback(
     ({ item }: { item: IAchievement }) => {
-      const slot = !selectedSlot && slotsAvailable.length > 0 ? slotsAvailable[0] : selectedSlot;
       return (
         <Box mb={16} flex={1} alignItems="center">
           <AchievementCard
@@ -58,10 +53,8 @@ const AchievementsScreen = ({
                   name: MODALS.viewAchievementModal,
                   passProps: {
                     isInspectingUser,
-                    slotsAvailable,
-                    selectedSlot: slot,
+                    currentRoute: ROUTES.achievements,
                     ...item,
-                    onClose: selectedSlot ? () => Navigation.pop(ROUTES.achievements) : undefined,
                   },
                 },
               })
@@ -70,7 +63,7 @@ const AchievementsScreen = ({
         </Box>
       );
     },
-    [slotsAvailable, selectedSlot, isInspectingUser]
+    [isInspectingUser]
   );
 
   const showAchievementPoints = useMemo(() => typeof achievementPoints === "number", [achievementPoints]);
