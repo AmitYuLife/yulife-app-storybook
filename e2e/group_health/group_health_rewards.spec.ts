@@ -22,7 +22,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
     });
     When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
       When("I scroll to see the product", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance"), "down"), async () => {
-        When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
+        When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance"), 3000), async () => {
           Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
           Then("I should see the more rewards ahead modal as this employee has the feature toggle on", then.moreRewardsAheadModalVisible(false));
           Then("I shouldn't see the group health rewards heading as the feature toggle is hiding them", then.textNotVisible(constants.groupHealthRewardsHeading));
