@@ -232,3 +232,22 @@ EOF
 curl -X POST "${ALERTS_E2E_SLACK_WEBHOOK_URL}" \
      -H 'Content-Type: application/json' \
      --data-raw "${PAYLOAD}"
+
+
+# Post to Gitlab if build was triggered by a comment on a MR
+# The environment variable GITLAB_DISCUSSION_URL will be set if the build was triggered by a comment on a MR
+# Build GitLab MR comment payload (bullet‑list style)
+GITLAB_PAYLOAD=$(cat <<EOF
+{
+  "body": "**🤖 Codemagic Detox Test Results**  \n> ${STATUS_TEXT}\n\n- **Branch:** \`${CM_BRANCH}\`\n- **Results:** ${E2E_RESULTS}\n- **Device:** ${IPHONE_DEVICE}\n- **Test Type:** ${DETOX_TEST_TYPE}\n- **Locale:** ${TARGET_LOCALE}\n\n🔗 [View Results](${ALLURE_REPORT_URL})  \n🔗 [View Job](${BUILD_URL})  \n🔗 [Screenshots](${SCREENSHOTS_REPORT_URL})"
+}
+EOF
+)
+
+# Post to GitLab MR
+if [[ -n "${GITLAB_DISCUSSION_URL:-}" ]]; then
+  curl -X POST "${GITLAB_DISCUSSION_URL}" \
+       -H 'Content-Type: application/json' \
+       -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+       --data-raw "${GITLAB_PAYLOAD}"
+fi

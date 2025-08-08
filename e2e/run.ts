@@ -11,11 +11,13 @@ const ALLURE_HISTORY_FOLDER_LOCATION =
 
 let server: ChildProcess;
 
+type Region = "UK" | "SA" | "US" | "JP";
+
 const init = async () => {
   const [_, __, ...args] = process.argv;
 
   let [specName, ...restArgs] = args;
-  let region: "UK" | "SA" | "US" | "JP" = (process.env.REGION as "UK" | "SA" | "US" | "JP") || "UK";
+  let region: Region = (process.env.REGION as Region) || "UK";
   let specList: string[];
   const specNames = Object.keys(specs).sort();
 
@@ -42,8 +44,9 @@ const init = async () => {
   }
 
   // set our API URL and region
-  const TARGET_LOCALE = mapRegionToTargetLocale(region);
-  const API_URL = `http://localhost:${mapRegionToPort(region)}/`;
+  const TARGET_LOCALE = process.env.TARGET_LOCALE || mapRegionToTargetLocale(region);
+  const API_REGION = process.env.API_REGION as Region || region;
+  const API_URL = `http://localhost:${mapRegionToPort(API_REGION)}/`;
 
   if (!CI) {
     await assertBundlerIsRunning();
@@ -165,7 +168,7 @@ async function assertAPIIsRunning(apiUrl: string) {
   }
 }
 
-function mapRegionToPort(region: "UK" | "SA" | "US" | "JP") {
+function mapRegionToPort(region: Region) {
   switch (region) {
     case "UK":
       return 5000;
@@ -178,7 +181,7 @@ function mapRegionToPort(region: "UK" | "SA" | "US" | "JP") {
   }
 }
 
-function mapRegionToTargetLocale(region: "UK" | "SA" | "US" | "JP") {
+function mapRegionToTargetLocale(region: Region) {
   switch (region) {
     case "UK":
       return "en-GB";
