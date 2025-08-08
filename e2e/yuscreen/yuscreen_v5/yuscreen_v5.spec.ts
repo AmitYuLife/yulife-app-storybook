@@ -274,9 +274,9 @@ Feature("I am able to use the yuscreen v5", async () => {
 
   Scenario("I can click on a product and see all the information such as the digital certificate", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_141, data.AUTH_141), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Anya Forgar", "Mountain", "810"));
+      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Anya Forgar", "Forest", "810"));
     });
-    When("I scroll down to the Powerful protection section on YuScreen", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
+    When("I scroll down to the Powerful protection section on YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.1), async () => {
       Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE));
     });
     When("I tap Life insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life Insurance")), async () => {

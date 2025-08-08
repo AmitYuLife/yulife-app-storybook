@@ -1,5 +1,12 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
-import { BUTTON_CLOSE_HEADER, COUNTDOWN_UNIT, DAILYSTEP_SCREEN_COIN, NAV_BAR } from "@ids";
+import {
+  BUTTON_CLOSE_HEADER,
+  COUNTDOWN_UNIT,
+  DAILYSTEP_SCREEN_COIN,
+  LETS_GO_BUTTON_DUEL_ONBOARDING,
+  NAV_BAR,
+  NEXT_BUTTON_DUEL_ONBOARDING,
+} from "@ids";
 import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
 import { getLocalisedString as t } from "@i18n";
@@ -338,12 +345,18 @@ export const tryCatchTextVisible =
     }
   };
 
-export const completeOnboardingIntro = async () => {
-  await navigateViaText("Next");
-  await navigateViaText("Next");
-  await wait(1000)();
-  await navigateViaText("Let's go");
-};
+export const completeOnboardingIntro =
+  (waitTime = 2500) =>
+  async () => {
+    const steps = [
+      NEXT_BUTTON_DUEL_ONBOARDING,
+      NEXT_BUTTON_DUEL_ONBOARDING,
+      LETS_GO_BUTTON_DUEL_ONBOARDING,
+    ];
+    for (const step of steps) {
+      await navigateViaID(step, waitTime);
+    }
+  };
 
 export const completedTodayStreakCopyVisible =
   (dayNum: number, waitTime = 3000) =>

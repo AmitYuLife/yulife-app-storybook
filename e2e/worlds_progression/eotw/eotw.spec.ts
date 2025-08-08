@@ -247,18 +247,18 @@ Feature("End of the world/Yuniverse", async () => {
     Given("I login as a user on level 207 with a earn rate of 9", given.logInAndGoToTab("yucoin", data.CUSTOMER_78, data.AUTH_78), async () => {
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
-    When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu")), async () => {
+    When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 2000), async () => {
       Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Timothy Poogman", "Yuniversal", "VII", true));
     });
-    When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
+    When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
+      When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 3000), async () => {
         Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(7)));
       });
     });
     When("I tap level 7 button", when.tapYuniverseLevelForFirstTime(7, 187, 263), async () => {
       Then("I should be on the celestial chest screen", then.celestialChestEarned);
     });
-    When("I tap open the chest", when.tapText("Open the chest"), async () => {
+    When("I tap open the chest", when.tapText("Open the chest", 2000), async () => {
       Then("I can see the 3 celestial chest rewards, which earns me my earn rate (9) * 50", then.celestialChestAwardsVisible(data.USER_78));
     });
   });

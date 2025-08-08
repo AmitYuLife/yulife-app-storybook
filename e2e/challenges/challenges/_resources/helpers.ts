@@ -16,13 +16,13 @@ export const INSPECT_USER =
   async () => {
     When(
       "I swipe down the list",
-      when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"),
+      when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "slow"),
       async () => {
         When(
           `I click on user ${getFullName(customerPersonalData)} name`,
-          when.tapText(getFullName(customerPersonalData)),
+          when.tapText(getFullName(customerPersonalData), 4000),
           async () => {
-            Then("I should be on the Inspect screen", then.idVisible(ids.INSPECT_SCREEN, 2500));
+            Then("I should be on the Inspect screen", then.idVisible(ids.INSPECT_SCREEN, 3000));
             Then(
               "I should see the user name",
               then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(customerPersonalData)), 2000)

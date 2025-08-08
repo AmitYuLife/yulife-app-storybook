@@ -57,10 +57,12 @@ Feature("I can view and use all battle pass features", async () => {
         });
       });
     });
-    When("I donate to 'Provide water' and complete the season", when.donate("water", 6), async () => {
-      When("I tap to claim my prize", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
-        Then("I should see the end of season modal with the correct title", then.textVisible(endOfSeasonHarmonyTitle, 2000));
-        Then("I should see the end of season action button", then.idVisible(ids.DONATION_END_OF_SEASON_BUTTON, 2000));
+    When("I scroll up the donations list", when.scrollFromID(ids.IMPACT_DONATION_TITLE("Feed families"), "down", "slow", 0.3), async () => {
+      When("I donate to 'Provide water' and complete the season", when.donate("water", 6), async () => {
+        When("I tap to claim my prize", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
+          Then("I should see the end of season modal with the correct title", then.textVisible(endOfSeasonHarmonyTitle, 2000));
+          Then("I should see the end of season action button", then.idVisible(ids.DONATION_END_OF_SEASON_BUTTON, 2000));
+        });
       });
     });
     When("I terminate the app", when.terminateApp, async () => {
