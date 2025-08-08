@@ -38,7 +38,6 @@ export const features = [
   "enableBikingSpinning",
   "enableBikingStationary",
   "enableBikingUtility",
-  "runOnNewThread",
   "yuScreenV4",
   "shouldQueryHourlyActivity",
   "disableCheckPermission",
