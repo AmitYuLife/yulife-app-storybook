@@ -29,6 +29,7 @@ import { useUserFeatures } from "@hooks";
 import { IHealthPermissionPanelProps } from "@components/molecules/health-permission-panel/health-permission-panel";
 import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
+// import { YUCOIN_SCREEN_CTA_BUTTON } from "@ids";
 
 type DailyStepsOnlineProps = {
   isUnavailable?: boolean;
@@ -209,7 +210,7 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
         </View>
       ) : null}
       {!showChallengeButton && !hideButtons && todayScreen?.button?.onPress ? (
-        <View style={styles.buttonWrapper}>
+        <View style={styles.buttonWrapper} testID="DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON">
           <Button
             size="Large"
             translatedLabel={todayScreen.button.label}

@@ -111,3 +111,27 @@ export const CUSTOMER_7 = createCustomerRecords({
     },
   ],
 });
+
+export const CUSTOMER_8 = createCustomerRecords({
+  archived: false,
+  firstName: "Knight",
+  lastName: "Birdeye",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+      legalFirstName: "Knight",
+      legalLastName: "Birdeye",
+      employmentEmail: generateRandomInbox(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  userGameState: {
+    currentBalance: 25000,
+    currentStreak: 0,
+    currentLevel: 55,
+  },
+});

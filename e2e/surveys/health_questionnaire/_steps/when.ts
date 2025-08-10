@@ -42,6 +42,9 @@ export const {
   minimiseAndReopenApp,
 } = navigation.common;
 
+export const { startChallenge } = screens.challenges;
+export { sendSteps } from "@socket";
+
 export const cycleThroughEngagementSurveyAgreeCheckBoxes = async () => {
   await tapID(ids.CHECK_BOX_STATE("Agree", false))();
   await tapID(ids.CHECK_BOX_STATE("Neutral", false))();
