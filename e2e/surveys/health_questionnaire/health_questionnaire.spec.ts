@@ -9,6 +9,8 @@ import { hqInfoCopy } from "../_resources/fixtures";
 import { getTranslation } from "_utils/translations/getTranslations";
 import { translations } from "@app/locale/translations";
 import { yuscreenImages } from "@images";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
+import * as helper from "./_resources/helpers";
 
 Feature("Health questionnaires", async () => {
   Scenario("I should see the Health Questionnaire available in Japanese", scenario.start, async () => {
@@ -504,6 +506,31 @@ Feature("Health questionnaires", async () => {
     });
     When("I press the Consent and continue button ", when.tapID(ids.BUTTON_BASE("同意して次へ進む", false)), async () => {
       Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("このアドバイスを積極的に取り入れたい気持ちはどのくらいありますか?", "b2b")));
+    });
+  });
+
+  Scenario("I should see the YuScreen CTA update, starting with 'Take a challenge (2 left today)', decreasing to '1 left today'. Once all challenges are done, the CTA should change to 'Check in on your health', and finally update to 'Invite a colleague'", scenario.start, async () => {
+    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_8.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see the YuScreen CTA 'Take a challenge (2 left today)'", then.textVisible("Take a challenge (2 left today)", 3000));
+    });
+    helper.takeChallengeFromYuCoinScreen("Take a challenge (1 left today)", true)();
+    helper.takeChallengeFromYuCoinScreen("Check in on your health (+4 YuCoin)", false)();
+    When("I tap to check in on your health", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
+      Then("I can see the getting to know yu title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
+    });
+    When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
+      When("I press lets go", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
+        When("I press the Consent and continue button", when.tapID(ids.BUTTON_BASE("Consent and continue", false)), async () => {
+          Then("I can see the new designed advice/goal question with the banner with an image on top", then.idVisible(ids.HINT_LABEL("Health advice and tips")));
+        });
+      });
+    });
+    When("I select 'I'm interested in it'", when.tapID(ids.CONTENT_ITEM_CHOICE("dynamic_advice.1.2.15_choice")), async () => {
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        When("I click claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
+          Then("I should see the YuScreen CTA 'Invite a colleague'", then.textVisible("Invite a colleague"));
+        });
+      });
     });
   });
 });
