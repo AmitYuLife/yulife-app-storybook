@@ -1,9 +1,7 @@
+import * as ids from "@ids";
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
-import * as ids from "@ids";
-import * as constants from "../_resources/constants";
 import { sendSteps, sendMindfulnessData, addCyclingData, sendReduxEvent } from "@socket";
-import { yuscreenImages } from "@images";
 
 export const {
   scrollFromText,
@@ -33,6 +31,7 @@ export const {
   reloadOnly,
   tapTextAtIndex,
   dismissNotificationScreenIfVisible,
+  restartWithoutDelete,
 } = navigation.common;
 
 export const { logInAndGoToTab } = navigation.login;
