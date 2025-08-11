@@ -8,7 +8,7 @@ export const EARTH_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     snapOffsetY: 30,
     episodeKey: 66,
     episodeWidth: 375,
-    episodeHeight: 792,
+    episodeHeight: 812,
     bubbleOffsetY: -10,
     snapPosition: "center",
     ...createLevelsCoordinatesTemplate(1),
@@ -143,7 +143,7 @@ export const EARTH_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   9: {
     background: require("../episodes/earth/ocean/earth-ocean-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.WHITE,
-    episodeHeight: 1004,
+    episodeHeight: 1009,
     episodeWidth: 375,
     snapOffsetY: 80,
     episodeKey: 74,
@@ -282,7 +282,7 @@ export const EARTH_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   17: {
     background: require("../episodes/earth/desert/earth-desert-1-lineless.webp"),
 
-    episodeHeight: 1016,
+    episodeHeight: 1009,
     snapOffsetY: 70,
     episodeKey: 82,
     episodeWidth: 375,
@@ -384,7 +384,7 @@ export const EARTH_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   23: {
     background: require("../episodes/earth/desert/earth-desert-7.webp"),
-    episodeHeight: 713,
+    episodeHeight: 776,
     episodeKey: 88,
     episodeWidth: 375,
     snapPosition: "center",
@@ -395,13 +395,13 @@ export const EARTH_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
       background: require("../episodes/earth/earth-desert-seperator.webp"),
     },
     levels: {
-      143: { x: 375 / 2 - 88, y: 812 / 2 + 88 * 0.45 },
-      144: { x: 375 / 2 + 88, y: 812 / 2 + 88 * 0.45 },
-      145: { x: 375 / 2, y: 812 / 2 - 88 * 0.4 },
-      146: { x: 375 / 2 - 88, y: 812 / 2 - 88 * 1.3 },
-      147: { x: 375 / 2 + 88, y: 812 / 2 - 88 * 1.3 },
-      148: { x: 375 / 2, y: 812 / 2 - 88 * 2.15 },
-      149: { x: 375 / 2, y: 812 / 2 - 88 * 3.2 },
+      143: { x: 375 / 2 - 88, y: 812 / 2 + 88 * 1.05 },
+      144: { x: 375 / 2 + 88, y: 812 / 2 + 88 * 1.05 },
+      145: { x: 375 / 2, y: 812 / 2 + 88 * 0.2 },
+      146: { x: 375 / 2 - 88, y: 812 / 2 - 88 * 0.7 },
+      147: { x: 375 / 2 + 88, y: 812 / 2 - 88 * 0.7 },
+      148: { x: 375 / 2, y: 812 / 2 - 88 * 1.55 },
+      149: { x: 375 / 2, y: 812 / 2 - 88 * 2.6 },
     },
   },
   24: {
@@ -546,7 +546,7 @@ export const EARTH_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   32: {
     background: require("../episodes/earth/mountain/earth-mountain-8.webp"),
     topBarType: TOP_BAR_TYPES.MOUNTAIN,
-    episodeHeight: 691,
+    episodeHeight: 720,
     episodeKey: 97,
     episodeWidth: 375,
     snapPosition: "center",
