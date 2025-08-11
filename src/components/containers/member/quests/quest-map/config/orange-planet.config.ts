@@ -143,7 +143,7 @@ export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   105: {
     background: require("../episodes/orange/ocean/orange-ocean-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.DESERT,
-    episodeHeight: 1004,
+    episodeHeight: 1009,
     episodeWidth: 375,
     snapOffsetY: 80,
     episodeKey: 74,
@@ -282,7 +282,7 @@ export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   113: {
     background: require("../episodes/orange/desert/orange-desert-1-lineless.webp"),
 
-    episodeHeight: 1016,
+    episodeHeight: 1009,
     snapOffsetY: 70,
     episodeKey: 82,
     episodeWidth: 375,
