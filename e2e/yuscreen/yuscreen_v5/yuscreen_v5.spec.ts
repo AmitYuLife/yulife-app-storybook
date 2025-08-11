@@ -379,9 +379,9 @@ Feature("I am able to use the yuscreen v5", async () => {
     Given("I log in as a user", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Forest", "401"));
       Then("I should see the achievements showcase panel", then.idVisible(ids.ACHIEVEMENTS_SHOWCASE));
-      Then("I should see 3 placeholder slots for achievements", then.checkEmptyAchievementSlots(3));
+      Then("I should see the placeholder achievement slot", then.checkEmptyAchievementSlots(1));
     });
-    When("I tap on the first empty achievement slot", when.tapID(ids.ACHIEVEMENT_SLOT(1)), async () => {
+    When("I tap on the empty achievement slot", when.tapID(ids.ACHIEVEMENT_SLOT(1)), async () => {
       Then("I should see all available achievements in a locked state", then.assertAllLockedAchievements);
     });
   });
@@ -389,7 +389,7 @@ Feature("I am able to use the yuscreen v5", async () => {
   Scenario("I can successfully unlock, equip and unequip an achivement badge", scenario.start, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_141, data.AUTH_141), async () => {
       Then("I should see the achievements showcase panel", then.idVisible(ids.ACHIEVEMENTS_SHOWCASE));
-      Then("I should see the 3 empty slots for achivements", then.checkEmptyAchievementSlots(3));
+      Then("I should see the empty achivement slot", then.checkEmptyAchievementSlots(1));
     });
     When("I navigate to the Quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
       When("I tap on level 810", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(810), 2000), async () => {
@@ -402,16 +402,30 @@ Feature("I am able to use the yuscreen v5", async () => {
       When("I complete the Yudoku", when.completeYudoku(3000), async () => {
         When("I tap to collect the reward", when.tapCollect, async () => {
           When("I return to the YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-            Then("I should still see the 3 empty achivement slots", then.checkEmptyAchievementSlots(3));
+            Then("I should still see the achivement slot empty", then.checkEmptyAchievementSlots(1));
           });
         });
       });
     });
-    When("I tap on the first available achievement slot", when.tapID(ids.ACHIEVEMENT_SLOT(1)), async () => {
+    When("I restart the app", when.restartWithoutDelete, async () => {
+      When("I tap to dissmiss the referrals pop-up", when.tapID(ids.MENU_ICON, 5000), async () => {
+        When("I tap to close the menu", when.tapID(ids.BUTTON_CLOSE, 2000), async () => {
+          Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true, 0), 3000));
+        });
+      });
+    });
+    When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I can see the achievement unlocked message", then.textVisible("Zenith of the Mind unlocked!", 2500));
+    });
+    When("I tap to open the notification message", when.tapID(ids.NOTIFICATION_PINK_DOT_ARROW("Zenith of the Mind unlocked!", true, true), 2500), async () => {
       Then("I should now see the 'Zenith of the Mind' achievement unlocked", then.idVisible(ids.ACHIEVEMENT_CARD(constants.zenith_of_the_mind_achievement, "unlocked"), 2000));
     });
     When("I equip the 'Zenith of the Mind achievement' achivement", when.tapAchievementCard(constants.zenith_of_the_mind_achievement, "equip"), async () => {
-      Then("I should see the first slot filled on the achivement panel", then.idNotVisible(ids.ACHIEVEMENT_EMPTY_SLOT(ids.ACHIEVEMENT_SLOT(1))));
+      When("I close the notification centre", when.tapID(ids.SCREEN_CLOSE, 2500), async () => {
+        When("I go back to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 2500), async () => {
+          Then("I should now see the achivement slot filled", then.idVisible(ids.ACHIEVEMENT_SLOT(1), 2500));
+        });
+      });
     });
     When("I tap the first occupied achievement slot", when.tapID(ids.ACHIEVEMENT_SLOT(1), 3000), async () => {
       When("I unequip the 'Zenith of the Mind achievement' achivement badge", when.tapID("unequip", 3000), async () => {
