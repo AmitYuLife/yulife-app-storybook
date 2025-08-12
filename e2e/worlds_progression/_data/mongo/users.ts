@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import * as customer from '../postgres/customers';
+import * as customer from "../postgres/customers";
 
 const type = "mongo";
 const modelName = "users";
@@ -43,23 +43,23 @@ export const USER_2 = {
 } as IDatabaseItem;
 
 export const USER_3 = {
-    type,
-    modelName,
-    data: {
-      _id: generateRandomMongoId(),
-      userId: customer.CUSTOMER_3.data.customerId,
-      earnRate: 20,
-      products: [
-        {
-          productId: generateRandomMongoId(),
-          productType: "Yulife",
-          option: "epic",
-          earnRate: 20,
-          type: "employer",
-        },
-      ],
-    },
-  } as IDatabaseItem;
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_3.data.customerId,
+    earnRate: 20,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        earnRate: 20,
+        type: "employer",
+      },
+    ],
+  },
+} as IDatabaseItem;
 
 export const USER_7 = {
   type,
@@ -373,5 +373,15 @@ export const USER_95 = {
     earnRate: 10,
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;
+
+export const USER_96 = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_96.data.customerId,
   },
 } as IDatabaseItem;
