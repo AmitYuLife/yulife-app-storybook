@@ -526,4 +526,53 @@ Feature("End of the world/Yuniverse", async () => {
       Then("I should see level 801 unlocked in the purple planet", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(801)));
     });
   });
+
+  Scenario("I can complete level 1200 and progress in Yuniverse VI successfully", scenario.start, () => {
+    Given("I login as a user who has 4 challenges available", given.logInAndGoToTab("yucoin", data.CUSTOMER_96, data.AUTH_96), async () => {
+      Then("I should see the 'Take a challenge (4 left today)' button", then.textVisible("Take a challenge (4 left today)", 4000));
+    });
+    When("I tap the take a challenge button", when.tapText("Take a challenge (4 left today)", 2000), async () => {
+      Then("I should see the level 1200 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1200), 2000));
+    });
+    When("I tap the level 1200 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1200)), async () => {
+      Then("I should see that I have reached Yunity", then.yunityCorrect("Mountain"));
+      Then("I should see the correct rewards for this level", then.mountainTwoRewardsVisible());
+    });
+    When("I tap 'Claim rewards'", when.tapText("Claim rewards", 4000), async () => {
+      Then("I should see the YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2000));
+      Then("I should see the correct amount of challenges left", then.textVisible("Take a challenge (4 left today)", 3000));
+      Then("I should see the correct amount of YuCoin displayed", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20500), 3000));
+    });
+    When("I tap to take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
+      Then("I should see the boosted values for challenges", then.canSeeChallengeTiles(data.USER_96, "boost"));
+    });
+    When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
+      Then("I should see the correct challenge details on screen", then.stepsChallengeDataCorrect(1, 80, 400));
+    });
+    When("I tap collect", when.tapText("Collect", 3000), async () => {
+      When("I tap done", when.tapText("Done", 3000), async () => {
+        Then("I should see the YuCoin counter updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20500 + 80), 3000));
+        Then("I should be returned to the Yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)));
+      });
+    });
+    When("I tap on the second Yuniverse level", when.tapYuniverseLevelForFirstTime(2, 186, 692), async () => {
+      Then("I should see a message that the next level its not yet available", then.nextYuniversalStageLocked("2"));
+    });
+    When("I tap got it on the timer modal", when.tapID(ids.SCROLLABLE_CONTENT_CTA, 2000), async () => {
+      When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+        Then("I should see that now I have 3 challenges left", then.textVisible("Take a challenge (3 left today)"));
+        Then("I should see the correct number of steps done today", then.stepsDoneToday(400));
+        Then("I should see the correct number of boosted YuCoin earned today", then.yucoinTodayEarnedWithSurge(500, 80));
+      });
+    });
+    When("I go to the today's earnings screen", when.tapText("400 steps", 4000), async () => {
+      Then("I see the correct YuCoin earned today", then.textVisible("580 YuCoin", 2000));
+      Then("I can see the total number of steps so far", then.textVisible("400 / 12000 steps", 2000));
+    });
+    When("I go a step back", when.tapID(ids.BACK_BUTTON, 3000), async () => {
+      When("I go to the Yu screen", when.tapID(ids.NAV_BAR("yu"), 2000), async () => {
+        Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "El Lunar", "Yuniversal", "II", true));
+      });
+    });
+  });
 });
