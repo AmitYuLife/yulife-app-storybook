@@ -7,6 +7,7 @@ import {
   BUSINESS_ACCOUNT_3,
   BUSINESS_ACCOUNT_5,
 } from "../postgres/business";
+import { CUSTOMER_73 } from "../postgres/customers";
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
   type: "mongo",
@@ -189,6 +190,19 @@ export const BUSINESS_ACCOUNT_13_GHI_REWARDS_SETTINGS = {
     entityType: "business",
     settings: {
       isQuestionnaireEnabled: false,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_73_GAME_GOALS_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.goals",
+    entityId: CUSTOMER_73.data.customerId,
+    entityType: "user",
+    settings: {
+      createOnboardingGoalEvent: true,
     },
   },
 } as IDatabaseItem;

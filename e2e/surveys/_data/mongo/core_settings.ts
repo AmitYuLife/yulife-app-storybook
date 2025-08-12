@@ -6,6 +6,7 @@ import {
   BUSINESS_ACCOUNT_2,
   BUSINESS_ACCOUNT_3,
   BUSINESS_ACCOUNT_4,
+  CUSTOMER_3,
 } from "surveys/_data";
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
@@ -62,6 +63,19 @@ export const BUSINESS_ACCOUNT_4_SETTINGS = {
     entityType: "business",
     settings: {
       isQuestionnaireEnabled: false,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_3_GAME_GOALS_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.goals",
+    entityId: CUSTOMER_3.data.customerId,
+    entityType: "user",
+    settings: {
+      createOnboardingGoalEvent: true,
     },
   },
 } as IDatabaseItem;
