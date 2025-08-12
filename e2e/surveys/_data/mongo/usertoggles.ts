@@ -58,7 +58,6 @@ export const CUSTOMER_3_TOGGLES = {
       useNewLeaderboardServices: true,
       showNotifications: true,
       showNotificationCentre: true,
-      showFTUE: true,
       showCommunityGoals: true,
       showGoals: true,
     },

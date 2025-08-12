@@ -6,21 +6,18 @@ const type = "mongo";
 const modelName = "usertoggles";
 
 export const CUSTOMER_73_TOGGLES = {
-    type,
-    modelName,
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_73.data.customerId,
-        features: {
-            ...allTogglesTrue.data.features,
-            
-            useNewLeaderboardServices: true,
-            showNotifications: true,
-            showNotificationCentre: true,
-            showFTUE:true,
-            showCommunityGoals: true,
-            showGoals: true,
-            
-        },
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_73.data.customerId,
+    features: {
+      ...allTogglesTrue.data.features,
+      useNewLeaderboardServices: true,
+      showNotifications: true,
+      showNotificationCentre: true,
+      showCommunityGoals: true,
+      showGoals: true,
     },
+  },
 } as IDatabaseItem;
