@@ -35,7 +35,7 @@ Feature("As a user I can get past the login screen and see the donate tab after 
     When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
       Then("I see the rewards location modal", then.idVisible(ids.REWARD_LOCATION_MODAL));
     });
-    When("I tap to confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+    When("I tap to confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
       Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
       Then("I should see no progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 3, 0), 2000));
     });

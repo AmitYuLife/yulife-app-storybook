@@ -6,16 +6,14 @@ import * as then from "./_steps/then";
 import * as ids from "@ids";
 import * as data from "../_data";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
-import { getLocalisedString as t } from "@i18n";
-import { locationModalButton } from "./_resources/constants";
 
 Feature("Rewards should act correctly", async () => {
   Scenario("I cannot redeem a reward if I don't have enough coin", scenario.start, () => {
     Given("I log in and go to reward", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
+      Then("I should see the modal to select store location", then.rewardsLocationModalVisible(4000));
     });
-    When("I dismiss the modal", when.tapText(locationModalButton, 3500), async () => {
-      Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
+      Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 3000));
     });
     When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.5), async () => {
       Then("I should see the John Lewis Reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
@@ -44,7 +42,7 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
       Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
     });
-    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
     When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.3), async () => {
@@ -139,7 +137,7 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_4, data.AUTH_4), async () => {
       Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
     });
-    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
     When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.4), async () => {
@@ -166,7 +164,7 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
       Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
     });
-    When("I dismiss the modal", when.tapText(locationModalButton, 2500), async () => {
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
@@ -183,7 +181,7 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
       Then("I should see the modal to select store location", then.textVisible("Current Location", 2000));
     });
-    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
@@ -200,7 +198,7 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
       Then("I should see that I have access to the rewards store, even though one of my employments does not", then.rewardsLocationModalVisible());
     });
-    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
     When("I scroll down this page", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.7), async () => {
@@ -212,7 +210,7 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_130.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see that I have access to the rewards store, as is the default setting value", then.rewardsLocationModalVisible());
     });
-    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       When("I scroll down this page", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.4), async () => {
         Then("I should see the 'Amazung Prime' reward, as my storeAccessLevel resolved to the default setting value", then.rewardVisible(data.CORE_REWARDS_AMAZUNG));
       });
@@ -223,7 +221,7 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_131.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see that I have access to the rewards store", then.rewardsLocationModalVisible());
     });
-    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5200)));
       Then("I should see the 'Hobbycraft' reward from Tillo", then.rewardVisible(data.CORE_REWARDS_HOBBYCRAFT));
     });
@@ -246,7 +244,7 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see that I have access to the rewards store", then.rewardsLocationModalVisible());
     });
-    When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(25200)));
     });
     When("I click on the 'MTN' reward", when.tapRewardInList(data.CORE_REWARDS_MTN), async () => {
@@ -292,7 +290,7 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
       Then("I should see that I have access to the rewards store", then.rewardsLocationModalVisible());
     });
-    When("I confirm the UK as my selected store location", when.tapText(locationModalButton), async () => {
+    When("I confirm the UK as my selected store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {

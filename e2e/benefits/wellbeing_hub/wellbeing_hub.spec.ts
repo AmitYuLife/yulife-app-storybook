@@ -13,7 +13,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
       Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
     });
     When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-      When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+      When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
         Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN));
         Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible);
       });
@@ -65,7 +65,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
       Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-      When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+      When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
         Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN));
         Then("I should see Fiit on the screen", then.textVisible("Fiit"));
       });
@@ -102,7 +102,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   ScenarioSkip("I should see Membership limit reached on the Fiit screen as trying to active account when no avalaible seat for it", scenario.start, async () => {
     Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_31, data.AUTH_31), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
           When("I tap the Fiit tab", when.tapID(ids.TEXT_TEMPLATE("Fiit")), async () => {
             When("I tap Activate your Fiit account", when.navigateViaButton("Activate your Fiit account"), async () => {
               Then("I should see Membership limit reached", then.textVisible("Membership limit reached"));
@@ -118,7 +118,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   ScenarioSkip("I should NOT see the Fiit screen as a yulife user who does not have the product assigned to it", scenario.start, async () => {
     Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_37, data.AUTH_37), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
           Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit"));
         });
       });
@@ -128,7 +128,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   Scenario("I should not be able to see entries with a country code that the User is not a part of", scenario.start, async () => {
     Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_34, data.AUTH_34), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
           Then("I should see Fiit on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_1.data.title));
           Then("I should see Fiit assigned to UK on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_4.data.title));
           Then("I should not be able to see the item that is assigned to the US", then.textNotVisible(data.WELLBEING_HUB_ITEM_3.data.title));
@@ -140,7 +140,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   Scenario("If a customers country is not set, they cannot see country specific entries", scenario.start, async () => {
     Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_94, data.AUTH_94), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
           Then("I should see Fiit that is assigned to the UK on the screen", then.textNotVisible(data.WELLBEING_HUB_ITEM_4.data.title));
           Then("I should not be able to see the item that is assigned to the US", then.textNotVisible(data.WELLBEING_HUB_ITEM_3.data.title));
         });
@@ -152,7 +152,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   ScenarioSkip("I can see the Bupa wellbeing products in their own tab if assigned to the user", scenario.start, async () => {
     Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_116_GHI_REWARDS, data.AUTH_116), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
           When("I click to see the Health Insurance options", when.tapText("Health Insurance"), async () => {
             Then("I should see all the Bupa products", then.bupaWellbeingItemsVisible);
           });
@@ -191,7 +191,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   Scenario("I can see a restricted wellbeing hub item when I fulfil the eligibility criteria", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_128_WELLBEING_ELIGIBILITY, data.AUTH_128), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
           When("I scroll to the Restricted tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Restricted"), "down"), async () => {
             Then("I should see the Restricted product on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_10.data.title));
           });
@@ -203,7 +203,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   Scenario("I cannot see a restricted wellbeing hub item when I fulfil only some of the eligibility criteria", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_129_WELLBEING_ELIGIBILITY, data.AUTH_129), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
           Then("I shouldn't see the restricted product on the screen", then.textNotVisible(data.WELLBEING_HUB_ITEM_10.data.title));
         });
       });

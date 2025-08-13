@@ -50,7 +50,7 @@ Feature("As a user I can get past the login screen", async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
         Then("I should see the the Wellbeing Hub location modal appear", then.idVisible(ids.WELLBEING_HUB_LOCATION_CONFIRM));
       });
-      When("I confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+      When("I confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
         Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN));
         Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible);
       });

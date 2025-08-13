@@ -44,8 +44,8 @@ Feature("Mutual of Omaha specific tests", async () => {
     });
     When("I click to close this screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
       When("I open the hamburger menu", when.tapID(ids.MENU_ICON_BADGE(false)), async () => {
-        When("I click the Wellbeing Hub", when.tapText("Wellbeing Hub"), async () => {
-          When("I confirm my location", when.tapText("Confirm selection", 2000), async () => {
+        When("I click the Wellbeing Hub", when.tapText("Wellbeing Hub", 3000), async () => {
+          When("I confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
             Then("I should see the updated copy for the wellbeing hub that doesn't mention companies", then.textVisible(wellbeingHubHeaderMessage));
           });
         });
