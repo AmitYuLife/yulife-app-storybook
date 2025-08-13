@@ -46,7 +46,6 @@ export const CUSTOMER_111_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
-      showOnboardingPensionModal: true,
     },
   },
 } as IDatabaseItem;
@@ -60,7 +59,6 @@ export const CUSTOMER_112_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
-      showOnboardingPensionModal: true,
     },
   },
 } as IDatabaseItem;
@@ -74,7 +72,6 @@ export const CUSTOMER_113_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
-      showOnboardingPensionModal: true,
     },
   },
 } as IDatabaseItem;
@@ -88,7 +85,6 @@ export const CUSTOMER_114_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
-      showOnboardingPensionModal: true,
     },
   },
 } as IDatabaseItem;
