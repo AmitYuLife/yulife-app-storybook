@@ -78,7 +78,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
     When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
       When("I wait 10 seconds", when.wait(10000), async () => {
         Then("I should see the first day streak screen", then.textVisible("First day done!"));
-        Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, constants.groupHealthRewardCarouselNames[0], "5 / 5"));
+        Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, constants.groupHealthRewardCarouselNames[0], 5, 5));
       });
     });
     When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
@@ -378,9 +378,9 @@ Feature("I am able to see GHI Rewards in App", async () => {
     });
   });
 
-  Scenario("I can succesfully be active in both the GIP and GH games at the same time", scenario.start, async () => {
+  Scenario("I can successfully be active in both the GIP and GH games at the same time", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_141, data.AUTH_141), async () => {
-      When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+      When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
         When("I click on the teaser for the rewards game", when.tapID(ids.REWARD_STORE_TEASER("Prevention Pass")), async () => {
           Then("I can see the GIP game is visible", then.battlePassGameVisible("GIP", locale, 0));
         });
@@ -403,9 +403,9 @@ Feature("I am able to see GHI Rewards in App", async () => {
       });
     });
     When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
-      When("I wait 10 seconds", when.wait(10000), async () => {
-        Then("I should see the first day streak screen", then.textVisible("First day done!"));
-        Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, unlock_tab_GIP[locale].carousel_cards[0].card_title, "1 / 1"));
+      When("I wait 10 seconds", when.wait(5000), async () => {
+        Then("I should see the first day streak screen", then.textVisible("First day done!", 3000));
+        Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, unlock_tab_GIP[locale].carousel_cards[0].card_title, 1, 1));
       });
     });
     When("I close the screen", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
@@ -422,7 +422,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
 
   Scenario("I can unlock the Bupa reward in the GIP game", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_142, data.AUTH_142), async () => {
-      When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+      When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
         When("I click on the teaser for the rewards game", when.tapID(ids.REWARD_STORE_TEASER("Wellbeing Pass")), async () => {
           Then("I can see the GIP game is visible", then.battlePassGameVisible("GIP", locale, 0));
         });
@@ -442,7 +442,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
     When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
       When("I wait 10 seconds", when.wait(10000), async () => {
         Then("I should see the first day streak screen", then.textVisible("First day done!"));
-        Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, unlock_tab_GIP[locale].carousel_cards[0].card_title, "1 / 1"));
+        Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, unlock_tab_GIP[locale].carousel_cards[0].card_title, 1, 1));
       });
     });
     When("I close the screen", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
@@ -471,7 +471,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
     });
     When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
       When("I go to the rewards screen", when.tapID(ids.NAV_BAR("rewards")), async () => {
-        When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+        When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
           When("I click on the teaser for the rewards game", when.tapID(ids.REWARD_STORE_TEASER("Wellbeing Pass")), async () => {
             Then("I can see the GIP game is visible", then.battlePassGameVisible("GIP", locale, 174));
           });
@@ -492,7 +492,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
     When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
       When("I wait 10 seconds", when.wait(10000), async () => {
         Then("I should see the first day streak screen", then.textVisible("First day done!"));
-        Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, `1 x ${unlock_tab_GIP[locale].carousel_cards[5].card_title}`, "175 / 175"));
+        Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, `1 x ${unlock_tab_GIP[locale].carousel_cards[5].card_title}`, 175, 175));
       });
     });
     When("I close the screen", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
@@ -571,7 +571,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
       When("I wait 5 seconds", when.wait(5000), async () => {
         When("I dismiss the popup if it's there", when.dismissStreakPopupIfVisible, async () => {
           When("I go to the rewards screen", when.tapID(ids.NAV_BAR("rewards")), async () => {
-            When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+            When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
               When("I click on the teaser for the rewards game", when.tapID(ids.REWARD_STORE_TEASER("Wellbeing Pass")), async () => {
                 Then("I can see the GIP game is visible and has updated as I have unlocked a reward", then.battlePassGameVisible("GIP", locale, 225));
               });

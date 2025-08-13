@@ -740,14 +740,42 @@ export const rewardStoreGameProgressVisible =
   };
 
 export const rewardGameStreakModalVisible =
-  (unlocked: boolean, reward: string, levels: string) => async () => {
-    const modalHeader = unlocked
+  (unlocked: boolean, rewardTitle: string, completed = 1, total = 1) =>
+  async () => {
+    const header = unlocked
       ? constants.streakModalGameHeaderUnlocked
       : constants.streakModalGameHeaderTease;
 
-    await textVisible(modalHeader)();
-    await textVisible(reward)();
-    await textVisible(`${levels} Levels completed`)();
+    await textVisible(header)();
+    // Guard reward title availability (handles en vs en-GB)
+    if (!rewardTitle) {
+      throw new Error("rewardTitle missing");
+    }
+    await textVisible(rewardTitle, 3000)();
+
+    // Accepts "1/1", "1 / 1", "1 of 1" or "1 levels completed"
+    // Try the exact combined string first, then fall back.
+    const candidates: string[] = [
+      `${completed} / ${total} Levels completed`,
+      `${completed}/${total} Levels completed`,
+      `${completed} of ${total} Levels completed`,
+      `${completed} / ${total} levels completed`,
+      `${completed}/${total} levels completed`,
+      `${completed} of ${total} levels completed`,
+      `${completed} / ${total}`,
+      `${completed}/${total}`,
+      `${completed} of ${total}`,
+      `${completed} Levels completed`,
+      `${completed} levels completed`,
+    ];
+
+    for (const txt of candidates) {
+      try {
+        await textVisible(txt, 2000)();
+        return;
+      } catch (_) {}
+    }
+    throw new Error(`Could not find pager/completion text. Tried: ${candidates.join(" | ")}`);
   };
 
 export const carouselCardVisible = (card: CAROUSEL_CARD, unlocked: boolean) => async () => {

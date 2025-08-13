@@ -256,7 +256,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
     });
     When("I tap 'got it'", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
       When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
-        When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
+        When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
           Then("I should not see the GH game progress component", then.idNotVisible(ids.REWARDS_STORE_GAME_PROGRESS));
           Then("I should not see any group health rewards", then.groupHealthRewardsNotVisible());
         });

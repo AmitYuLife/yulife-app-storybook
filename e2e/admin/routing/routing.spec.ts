@@ -21,7 +21,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
       Then("I should see that a leaderboard has not been set yet", then.checkCopyNoLeaderboard);
     });
     When("I tap rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
-      When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
+      When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2500), async () => {
         Then("I should be on rewards", then.idVisible(ids.REWARDS_SCREEN, 1500));
       });
     });
@@ -147,7 +147,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
       });
     });
-    When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
+    When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2500), async () => {
       Then("I should land on the rewards store screen", then.idVisible(ids.REWARDS_SCREEN, 2000));
       Then("I should see the Wallet button", then.idVisible(ids.SHINE_BUTTON("Wallet"), 1500));
       Then("I should see the Rewards input search", then.idVisible(ids.REWARD_SEARCH_INPUT, 1500));
