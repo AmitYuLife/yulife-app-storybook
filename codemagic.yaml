@@ -428,15 +428,6 @@ workflows:
         DETOX_TEST_TYPE: personal
         TARGET_LOCALE: ja-JP
 
-  ios-detox-screenshots:
-    <<: *ios_detox_base_test
-    name: iOS Detox Screenshots Test
-    environment:
-      <<: *ios_detox_base_environment
-      vars:
-        <<: *ios_detox_base_env_vars
-        DETOX_TEST_TYPE: screenshots
-
   ios-detox-sa:
     <<: *ios_detox_base_test
     name: iOS Detox SA Test
@@ -588,3 +579,27 @@ workflows:
       - name: Combine Overnight Reports
         script: |
           ./scripts/codemagic/combine-overnight-detox-reports.sh
+
+  detox-overnight-scheduler:
+    name: Detox Overnight Scheduler
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    environment:
+      # CODEMAGIC_API_TOKEN environment variable is available on yulife-rn-client group
+      <<: *ios_detox_base_environment
+      vars:
+        <<: *ios_detox_base_env_vars
+    scripts:
+      # Build app for detox nightly tests
+      - *install_rn_app_node_dependencies
+      - *build_tsc
+      - *replace_package_version_codes
+      - *generate_native_projects
+      - *install_cocoapods_dependencies
+      - *set_ios_provisioning_profiles
+      - name: Build app for detox
+        script: |
+          ./scripts/codemagic/detox_build.sh
+      - name: Run Overnight Scheduler
+        script: |
+          node ./scripts/codemagic/run_overnight_scheduler.js
