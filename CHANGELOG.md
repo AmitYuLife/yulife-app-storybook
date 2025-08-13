@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.76.0] - 2025-08-13
+
+### Tasks
+
+- Task DEVOPS-4092: Create overnight codemagic scheduler job
+- Task GS-1854: Update orange planet slices
+- Task: Update earth slices
+- Task DEVOPS-4099: Changes for codemagic runs from MR comments
+- Task GS-1855: Update equip/unequip flow for the achievements
+- Task: YuHealth permission fixes
+
+### Chores
+
+- Chore GS-1828: Move showFTUE to core_settings
+- Chore GS-1748: Purge challenge no data defer modal
+- Chore - Updated translations
+- Chore GS-1816: Purge last update query in sequence
+
+### Extra
+
+- Purge GS-1663: Purge showOnboardingPensionModal
+- Detox Fixes: HQ Fix - weight picker swipe inconsistency between local and nightly tests
+- Detox: Reward Game Streak Modals
+- Detox GS-1489: Yuniverse VII
+- Detox GS-1539: Achievement Notification - Single Slot Flow
+- Detox NVS-1108: YuCoin screen cta button flow
+- Purge GS-1603: Keep runOnNewThread to true
+- Detox: Duels Intro
+- Detox Fixes: HQ fix - Language selector moved out of the scroll view on settings tab
+- Detox NVS-1477 Birthday Toggles + Birthday Fixes
+- Purge GS-1747: Purge limitPedometerSteps & maxStepsAnomalyWindowMs
+
 ## [4.75.0] - 2025-08-07
 
 ### Bugfixes
