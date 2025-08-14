@@ -29,7 +29,7 @@ import { useUserFeatures } from "@hooks";
 import { IHealthPermissionPanelProps } from "@components/molecules/health-permission-panel/health-permission-panel";
 import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
-// import { YUCOIN_SCREEN_CTA_BUTTON } from "@ids";
+import Box from "@atoms/box/box";
 
 type DailyStepsOnlineProps = {
   isUnavailable?: boolean;
@@ -84,6 +84,11 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
 
   const locale = getCurrentLocale();
   const yuCoinTodayText = useMemo(() => `${t("yu_coin.camel_case")} ${t("period.today")}`, [locale]);
+
+  const eventStyleBottom = useMemo(
+    () => NAV_BAR.getPositionBottom({ additionalBottom: hideButtons ? Style.adjust(75) : Style.adjust(145) }),
+    [hideButtons]
+  );
 
   const navigateToTodayEarnings = useCallback(() => {
     if (!features.tempGameEnableReleaseYuHealthV4) {
@@ -188,7 +193,7 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
           />
         </View>
       </Pressable>
-      <View style={styles.aboveButton}>
+      <Box position="absolute" bottom={eventStyleBottom}>
         {showHeroCards ? (
           <HeroCards heroCards={heroCards} healthPermissions={healthPermissions} />
         ) : showPanel ? (
@@ -198,7 +203,7 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
             onClose={closePanel}
           />
         ) : null}
-      </View>
+      </Box>
       {showChallengeButton && !hideButtons ? (
         <View style={styles.buttonWrapper}>
           <Button
@@ -231,10 +236,6 @@ const styles = {
   } as ViewStyle,
   activityListWrapper: {
     marginTop: isShort ? 0 : Style.adjust(8),
-  } as ViewStyle,
-  aboveButton: {
-    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(145) }),
-    position: "absolute",
   } as ViewStyle,
   buttonWrapper: {
     left: 0,
