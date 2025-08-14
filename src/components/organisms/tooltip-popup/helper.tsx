@@ -43,7 +43,7 @@ export const getStaticPosition = (
   const showTooltipBellow = anchorY - Style.getSafeAreaStart() < viewHeight;
   const showToolTipRight = Style.DEVICE_WIDTH - anchorX > viewWidth;
 
-  const autoVerticalTop = {
+  const autoVerticalBottom = {
     top: anchorY + BEAK_WIDTH,
     left: Math.max(0, Math.min(anchorX - viewWidth / 2, Style.DEVICE_WIDTH - viewWidth)),
     beakLeft: anchorX + BEAK_ROTATION_MARGIN - BEAK_HEIGHT / 2,
@@ -51,7 +51,7 @@ export const getStaticPosition = (
     beakTransform: [{ rotate: "90deg" }],
   };
 
-  const autoVerticalBottom = {
+  const autoVerticalTop = {
     top: anchorY - viewHeight - BEAK_WIDTH,
     left: Math.max(0, Math.min(anchorX - viewWidth / 2, Style.DEVICE_WIDTH - viewWidth)),
     beakLeft: anchorX + BEAK_ROTATION_MARGIN - BEAK_HEIGHT / 2,
