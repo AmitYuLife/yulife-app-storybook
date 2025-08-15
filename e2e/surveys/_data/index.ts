@@ -21,3 +21,5 @@ export * from "./mongo/core_journey_steps";
 export * from "./mongo/user_habit_tracking_state";
 export * from "./mongo/user_habit_tracking_actions";
 export * from "./mongo/user_journey_state";
+// commenting out until I add data here in next MR - using as placeholder
+// export * from "./mongo/core_journey_instances";
