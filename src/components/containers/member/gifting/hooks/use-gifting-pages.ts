@@ -47,7 +47,7 @@ export const useGiftingPages = ({
     () => reduxDispatch(incrementOnboardingVisits({ key: "giftingIntroShownCount" })),
     [reduxDispatch]
   );
-  const { handleSubmit, sendingState } = useGiftingSubmit({
+  const { handleSubmit, sendingState, errorMessage } = useGiftingSubmit({
     selectedUsers,
     amount: selectedYuCoinId,
     messagePresetId: selectedMessage,
@@ -118,6 +118,7 @@ export const useGiftingPages = ({
     page,
     ctaTranslationKey: config[page].cta,
     sendingState,
+    errorMessage,
     goToSuccess,
   };
 };

@@ -58,6 +58,7 @@ type Props = {
   isLoaded: boolean;
   hasReachedLimit: boolean;
   sendingState: GiftSendingStates;
+  errorMessage: string;
   goToSuccess: VoidFunction;
   page: GIFTING_PAGE;
 };
@@ -91,6 +92,7 @@ const GiftingManagerScreen = ({
   isLoaded,
   hasReachedLimit,
   sendingState,
+  errorMessage,
   goToSuccess,
   page,
 }: Props) => {
@@ -184,6 +186,7 @@ const GiftingManagerScreen = ({
           message={selectedMessage}
           yuCoin={selectedYuCoin}
           sendingState={sendingState}
+          errorMessage={errorMessage}
           setShowButton={setShowButton}
           goToSuccess={goToSuccess}
         />

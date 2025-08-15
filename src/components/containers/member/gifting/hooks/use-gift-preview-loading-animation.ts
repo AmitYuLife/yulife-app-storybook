@@ -11,6 +11,7 @@ type Props = {
   sendingState: GiftSendingStates;
   setShowButton: React.Dispatch<React.SetStateAction<boolean>>;
   goToSuccess: VoidFunction;
+  errorMessage: string;
 };
 
 const CONFIG = {
@@ -18,7 +19,7 @@ const CONFIG = {
   ENDING_POINT: -TRIANGLE_HEIGHT,
 };
 
-export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, goToSuccess }: Props) => {
+export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, goToSuccess, errorMessage }: Props) => {
   const [finishedAnimation, setFinishedAnimation] = useState(false);
   const [minimumTimeReached, setMinimumTimeReached] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
@@ -50,17 +51,17 @@ export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, go
   }, [sendingState, translateY, setShowButton]);
 
   useEffect(() => {
-    if (sendingState === GiftSendingStates.ERROR && minimumTimeReached) {
+    if (errorMessage && minimumTimeReached) {
       setShowAnimation(false);
 
-      Alert.alert(t("screens.gifting.gift_view_error.heading"), t("screens.gifting.gift_view_error.description"), [
+      Alert.alert(t("screens.gifting.gift_view_error.heading"), errorMessage, [
         {
           onPress: onCloseAlert,
           text: t("labels.cta.got_it"),
         },
       ]);
     }
-  }, [sendingState, minimumTimeReached, onCloseAlert]);
+  }, [minimumTimeReached, onCloseAlert, errorMessage]);
 
   useEffect(() => {
     if (sendingState === GiftSendingStates.SENT && finishedAnimation) {

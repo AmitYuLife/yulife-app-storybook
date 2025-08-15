@@ -8,6 +8,7 @@ import { useCallback, useState } from "react";
 import uuid from "react-native-uuid";
 import { useDispatch } from "react-redux";
 import { GiftSendingStates } from "../context/gifting-manager.types";
+import { t } from "@locale";
 
 type Props = {
   selectedUsers: UserSearchItem[];
@@ -20,9 +21,13 @@ type Props = {
 export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, backgroundId, stickerId }: Props) => {
   const [sendGift] = useMutation(gql("SendGiftToRecipientsDocument"));
   const [sendingState, setSendingState] = useState<GiftSendingStates>(null);
+  const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(async () => {
+    setSendingState(GiftSendingStates.SENDING);
+    setErrorMessage("");
+
     try {
       const variables = {
         yuCoinAmount: amount,
@@ -33,7 +38,6 @@ export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, backg
         deduplicationKey: uuid.v4().toString(),
       };
 
-      setSendingState(GiftSendingStates.SENDING);
       const result = await sendGift({ variables });
 
       if (result?.data?.sendGiftToRecipients?.success?.length) {
@@ -42,6 +46,7 @@ export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, backg
       }
     } catch (e) {
       setSendingState(GiftSendingStates.ERROR);
+      setErrorMessage(e?.message || t("screens.gifting.gift_view_error.description"));
       Logger.error(e, { location: "gifting-use-submit" });
     }
   }, [selectedUsers, amount, messagePresetId, sendGift, dispatch, backgroundId, stickerId]);
@@ -49,5 +54,6 @@ export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, backg
   return {
     sendingState,
     handleSubmit,
+    errorMessage,
   };
 };
