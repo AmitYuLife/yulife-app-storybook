@@ -135,20 +135,19 @@ export const canSeeProductCertificate = (item: CertificateDetails) => async () =
 };
 
 export const cycleThroughFacialHairOptions = async () => {
-  const VISIBLE_PER_SCROLL = 9;
+  const SCROLLER_ID = "AVATAR_BUILDER_LIST";
 
-  for (let i = 0; i < FACIAL_HAIR_ITEMS.length; i++) {
-    const id = FACIAL_HAIR_ITEMS[i];
+  for (const id of FACIAL_HAIR_ITEMS) {
     const testID = `YUMOJI_PART_ID_${id}`;
+
+    try {
+      await scrollUntilIdVisible(SCROLLER_ID, testID, "down", 0.5, 0.5, 150, 0)();
+    } catch {
+      await scrollUntilIdVisible(SCROLLER_ID, testID, "up", 0.5, 0.5, 150, 0)();
+    }
+
     await idVisible(testID)();
     await tapID(testID)();
-
-    const isLastItem = i === FACIAL_HAIR_ITEMS.length - 1;
-
-    if (!isLastItem && (i + 1) % VISIBLE_PER_SCROLL === 0) {
-      const scrollAnchorID = `YUMOJI_PART_ID_${FACIAL_HAIR_ITEMS[i]}`;
-      await scrollFromID(scrollAnchorID, "up", "fast", 0.2)();
-    }
   }
 };
 
