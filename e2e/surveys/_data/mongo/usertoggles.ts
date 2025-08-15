@@ -1,7 +1,13 @@
 import * as customer from "../postgres/customers";
 import { allTogglesTrue, DEFAULT_TOGGLES } from "./_templates";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_4 } from "../postgres/business";
+import {
+  BUSINESS_ACCOUNT_1,
+  BUSINESS_ACCOUNT_2,
+  BUSINESS_ACCOUNT_3,
+  BUSINESS_ACCOUNT_4,
+  BUSINESS_ACCOUNT_5,
+} from "../postgres/business";
 
 const type = "mongo";
 const modelName = "usertoggles";
@@ -95,17 +101,6 @@ export const CUSTOMER_5_TOGGLES = {
   },
 } as IDatabaseItem;
 
-export const BUSINESS_4_USER_TOGGLES = {
-  type: "mongo",
-  modelName: "usertoggles",
-  data: {
-    _id: generateRandomMongoId(),
-    businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
-    toggleType: "business",
-    features: { showGoals: true },
-  },
-} as IDatabaseItem;
-
 export const CUSTOMER_7_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",
@@ -118,5 +113,60 @@ export const CUSTOMER_7_TOGGLES = {
       showPermissionSettings: true,
       tempGameEnableReleaseYuHealthV4: true,
     },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_1_USER_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    toggleType: "business",
+    features: { tempUseCoreJourneyInstances: true },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_2_USER_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
+    toggleType: "business",
+    features: { tempUseCoreJourneyInstances: true },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_3_USER_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
+    toggleType: "business",
+    features: { tempUseCoreJourneyInstances: true },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_4_USER_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    toggleType: "business",
+    features: { showGoals: true, tempUseCoreJourneyInstances: true },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_5_USER_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    businessAccountId: BUSINESS_ACCOUNT_5.business.data.businessAccountId,
+    toggleType: "business",
+    features: { tempUseCoreJourneyInstances: true },
   },
 } as IDatabaseItem;

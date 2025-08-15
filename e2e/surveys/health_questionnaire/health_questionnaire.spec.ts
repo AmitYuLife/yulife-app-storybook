@@ -215,7 +215,7 @@ Feature("Health questionnaires", async () => {
   Scenario("Once I complete the journey, press cta - I should see the HQ journey modal is gone", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "UK"), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
-      Then("I should not see the event panel, as I have completed one before", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]));
+      Then("I should not see the event panel, as I have completed one before", then.textNotVisible("Daily health questions"));
     });
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
       Then("I see the 0 yucoin earned today so far", then.textVisible("0 YuCoin"));
@@ -326,7 +326,7 @@ Feature("Health questionnaires", async () => {
       Then("I should not see the HQ Let's go! button", then.textNotVisible("Let's go!"));
     });
     When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
-      Then("I should not see the event panel", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]));
+      Then("I should not see the event panel", then.textNotVisible("Daily health questions"));
       Then("I should see my YuCoin balance of 4, after I finish the HQ", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(4)));
       Then("I should see '4 YuCoin Today' due to finishing HQ", then.textVisible("4 YuCoin today"));
     });

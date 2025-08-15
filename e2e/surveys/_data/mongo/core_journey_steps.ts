@@ -1,10 +1,10 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
-  CORE_JOURNEY_1,
   CORE_JOURNEY_2,
   CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST,
   CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST,
 } from "./core_journeys";
+import { CORE_JOURNEY_INSTANCE_HQ_ID } from "./core_journey_instances";
 
 const modelName = "core_journey_steps";
 const type = "mongo";
@@ -14,7 +14,7 @@ export const CORE_JOURNEY_STEPS_01 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a69f1",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.1.7.26",
     name: "dynamic_health.1.7.26",
     externalId: "dynamic_health.1.7.26",
@@ -101,7 +101,7 @@ export const CORE_JOURNEY_STEPS_02 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a69f2",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.1.7.29",
     name: "dynamic_health.1.7.29",
     externalId: "dynamic_health.1.7.29",
@@ -184,7 +184,7 @@ export const CORE_JOURNEY_STEPS_03 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a69f3",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.1.4.1",
     name: "dynamic_health.1.4.1",
     externalId: "dynamic_health.1.4.1",
@@ -287,7 +287,7 @@ export const CORE_JOURNEY_STEPS_04 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a69f4",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.1.6.10",
     name: "dynamic_health.1.6.10",
     externalId: "dynamic_health.1.6.10",
@@ -370,7 +370,7 @@ export const CORE_JOURNEY_STEPS_05 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a69f5",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.1.8.12",
     name: "dynamic_health.1.8.12",
     externalId: "dynamic_health.1.8.12",
@@ -484,7 +484,7 @@ export const CORE_JOURNEY_STEPS_06 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a69f6",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.7.11",
     name: "dynamic_health.2.7.11",
     externalId: "dynamic_health.2.7.11",
@@ -586,7 +586,7 @@ export const CORE_JOURNEY_STEPS_07 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a69f7",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.7.3",
     name: "dynamic_health.2.7.3",
     externalId: "dynamic_health.2.7.3",
@@ -689,7 +689,7 @@ export const CORE_JOURNEY_STEPS_08 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a69f8",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.7.14",
     name: "dynamic_health.2.7.14",
     externalId: "dynamic_health.2.7.14",
@@ -782,7 +782,7 @@ export const CORE_JOURNEY_STEPS_09 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a69fd",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "health_questionnaire_initial",
     name: "health_questionnaire_initial",
     template: "journey_template_intro",
@@ -877,7 +877,7 @@ export const CORE_JOURNEY_STEPS_10 = {
   modelName,
   data: {
     _id: "6627908b790eab650c2a6a01",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "health_questionnaire_submission",
     name: "health_questionnaire_submission",
     stepType: "post_submission_confirmation",
@@ -931,7 +931,7 @@ export const CORE_JOURNEY_STEPS_11 = {
   modelName,
   data: {
     _id: "6630d7310860d967cba8d7ad",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.1.1",
     name: "dynamic_health.2.1.1",
     externalId: "dynamic_health.2.1.1",
@@ -1049,7 +1049,7 @@ export const CORE_JOURNEY_STEPS_12 = {
   modelName,
   data: {
     _id: "6630d7310860d967cba8d7ae",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.1.11",
     name: "dynamic_health.2.1.11",
     externalId: "dynamic_health.2.1.11",
@@ -1155,7 +1155,7 @@ export const CORE_JOURNEY_STEPS_13 = {
   modelName,
   data: {
     _id: "6630d7310860d967cba8d7af",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.6.27",
     name: "dynamic_health.2.6.27",
     externalId: "dynamic_health.2.6.27",
@@ -1285,7 +1285,7 @@ export const CORE_JOURNEY_STEPS_14 = {
   modelName,
   data: {
     _id: "6630d7310860d967cba8d7b0",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.11.1",
     name: "dynamic_health.2.11.1",
     externalId: "dynamic_health.2.11.1",
@@ -1416,7 +1416,7 @@ export const CORE_JOURNEY_STEPS_15 = {
   modelName,
   data: {
     _id: "6630d7310860d967cba8d7b1",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.8.1",
     name: "dynamic_health.2.8.1",
     externalId: "dynamic_health.2.8.1",
@@ -1546,7 +1546,7 @@ export const CORE_JOURNEY_STEPS_16 = {
   modelName,
   data: {
     _id: "6630d7310860d967cba8d7b3",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.1.7.30",
     name: "dynamic_health.1.7.30",
     externalId: "dynamic_health.1.7.30",
@@ -1640,7 +1640,7 @@ export const CORE_JOURNEY_STEPS_17 = {
   modelName,
   data: {
     _id: "6630d7310860d967cba8d7b4",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.1.1.8",
     name: "dynamic_health.1.1.8",
     externalId: "dynamic_health.1.1.8",
@@ -1746,7 +1746,7 @@ export const CORE_JOURNEY_STEPS_18 = {
   modelName,
   data: {
     _id: "6630d7310860d967cba8d7b5",
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.0.0.1",
     name: "dynamic_health.0.0.1",
     externalId: "dynamic_health.0.0.1",
@@ -2038,7 +2038,7 @@ export const CORE_JOURNEY_STEPS_19 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
 
     stepId: "dynamic_advice.1.2.15",
     name: "dynamic_advice.1.2.15",
@@ -2144,7 +2144,7 @@ export const CORE_JOURNEY_STEPS_20 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.1.1.216",
     name: "dynamic_health.1.1.216",
     stepType: "normal",
@@ -2308,7 +2308,7 @@ export const CORE_JOURNEY_STEPS_21 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.1.1.222",
     name: "dynamic_health.1.1.222",
     stepType: "normal",
@@ -2485,7 +2485,7 @@ export const CORE_JOURNEY_STEPS_22 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.1.31",
     name: "dynamic_health.2.1.31",
     stepType: "normal",
@@ -2565,7 +2565,7 @@ export const CORE_JOURNEY_STEPS_23 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.11.8",
     name: "dynamic_health.2.11.8",
     stepType: "normal",
@@ -2659,7 +2659,7 @@ export const CORE_JOURNEY_STEPS_24 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.9.3",
     name: "dynamic_health.2.9.3",
     stepType: "normal",
@@ -2745,7 +2745,7 @@ export const CORE_JOURNEY_STEPS_25 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.8.109",
     name: "dynamic_health.2.8.109",
     stepType: "normal",
@@ -2834,7 +2834,7 @@ export const CORE_JOURNEY_STEPS_26 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     stepId: "dynamic_health.2.9.11",
     name: "dynamic_health.2.9.11",
     stepType: "normal",
@@ -2911,7 +2911,7 @@ export const CORE_JOURNEY_STEPS_CONSENT = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: "66140199f9be413b16dd1c81",
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     name: "health_questionnaire_consent",
     stepId: "health_questionnaire_consent",
     stepType: "normal",
@@ -2946,7 +2946,7 @@ export const CORE_JOURNEY_STEP_WEIGHT = {
     _id: generateRandomMongoId(),
     answerKeys: ["dynamic_health.0.0.2"],
     externalId: "dynamic_health.0.0.2",
-    journey: CORE_JOURNEY_1.data._id,
+    journey: CORE_JOURNEY_INSTANCE_HQ_ID,
     name: "dynamic_health.0.0.2",
     stepId: "dynamic_health.0.0.2",
     stepType: "normal",

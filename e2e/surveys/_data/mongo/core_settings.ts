@@ -14,19 +14,6 @@ const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
   modelName: "core_settings",
 };
 
-export const BUSINESS_1_HQ_SETTINGS = {
-  ...MODEL_DEFAULTS,
-  data: {
-    _id: generateRandomMongoId(),
-    domain: "game.healthQuestionnaire",
-    entityId: BUSINESS_ACCOUNT_1.data.business_account_id,
-    entityType: "business",
-    settings: {
-      isQuestionnaireEnabled: true,
-    },
-  },
-} as IDatabaseItem;
-
 export const BUSINESS_3_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {
@@ -35,34 +22,7 @@ export const BUSINESS_3_SETTINGS = {
     entityId: BUSINESS_ACCOUNT_3.data.business_account_id,
     entityType: "business",
     settings: {
-      isQuestionnaireEnabled: true,
       isMoodMonitorEnabled: false,
-    },
-  },
-} as IDatabaseItem;
-
-export const BUSINESS_5_SETTINGS = {
-  ...MODEL_DEFAULTS,
-  data: {
-    _id: generateRandomMongoId(),
-    domain: "game.healthQuestionnaire",
-    entityId: BUSINESS_ACCOUNT_2.data.business_account_id,
-    entityType: "business",
-    settings: {
-      isQuestionnaireEnabled: true,
-    },
-  },
-} as IDatabaseItem;
-
-export const BUSINESS_ACCOUNT_4_SETTINGS = {
-  ...MODEL_DEFAULTS,
-  data: {
-    _id: generateRandomMongoId(),
-    domain: "game.healthQuestionnaire",
-    entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
-    entityType: "business",
-    settings: {
-      isQuestionnaireEnabled: false,
     },
   },
 } as IDatabaseItem;
