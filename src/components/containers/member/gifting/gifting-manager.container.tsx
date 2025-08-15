@@ -95,6 +95,7 @@ const GiftingManager = ({ preselectedUserIds, startingPage, componentId }: Props
     page,
     ctaTranslationKey,
     sendingState,
+    errorMessage,
     goToSuccess,
   } = useGiftingPages({
     maxRecipientsPerGiftRequest,
@@ -178,6 +179,7 @@ const GiftingManager = ({ preselectedUserIds, startingPage, componentId }: Props
         headingDescription={heading.description}
         isLoaded={fullyLoaded}
         hasReachedLimit={fullyLoaded && sendsRemainingToday < 1}
+        errorMessage={errorMessage}
         sendingState={sendingState}
         goToSuccess={goToSuccess}
         page={page}

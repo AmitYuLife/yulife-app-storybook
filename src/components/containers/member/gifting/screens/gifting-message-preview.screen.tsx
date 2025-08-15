@@ -26,6 +26,7 @@ type Props = {
   message: GiftingChoice;
   yuCoin: YuCoinDenominationChoice;
   sendingState: GiftSendingStates;
+  errorMessage: string;
   setShowButton: React.Dispatch<React.SetStateAction<boolean>>;
   goToSuccess: VoidFunction;
 };
@@ -40,6 +41,7 @@ export const GiftingMessagePreviewScreen = ({
   selectSticker,
   selectedSticker,
   sendingState,
+  errorMessage,
   setShowButton,
   goToSuccess,
 }: Props) => {
@@ -47,6 +49,7 @@ export const GiftingMessagePreviewScreen = ({
     sendingState,
     setShowButton,
     goToSuccess,
+    errorMessage,
   });
 
   const textColor = selectedBackground?.textColor || Colours.neutral.n800;
