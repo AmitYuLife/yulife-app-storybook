@@ -9,7 +9,7 @@ export const getContentLocationQueryToRefetch = (from: ContentLocationPlacement)
     case "wellbeing_hub":
       return ["GetWellbeingHubItems"];
     case "shopfront":
-      return ["GetMobileGameShopfront"];
+      return ["GetMobileGameShopfront", "GetMobileRewardsListItems"];
     default:
       return [];
   }
