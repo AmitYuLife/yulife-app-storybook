@@ -1,10 +1,10 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { CORE_JOURNEY_INSTANCE_HQ_ID } from "../../_resources/constants";
 import {
-  CORE_JOURNEY_2,
-  CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST,
-  CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST,
-} from "./core_journeys";
-import { CORE_JOURNEY_INSTANCE_HQ_ID } from "./core_journey_instances";
+  CORE_JOURNEY_INSTANCE_FOR_REWARD_MULTIPLIER_TEST,
+  CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST,
+  CORE_JOURNEY_INSTANCE_2,
+} from "./core_journey_instances";
 
 const modelName = "core_journey_steps";
 const type = "mongo";
@@ -1826,7 +1826,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_1 = {
   modelName,
   data: {
     _id: generateRandomMongoId,
-    journey: CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST.data._id,
+    journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_MULTIPLIER_TEST.data._id,
     stepId: "initial",
     name: "initial",
     stepType: "initial",
@@ -1887,7 +1887,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_2 = {
   modelName,
   data: {
     _id: generateRandomMongoId,
-    journey: CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST.data._id,
+    journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_MULTIPLIER_TEST.data._id,
     stepId: "submission",
     name: "submission",
     stepType: "submission",
@@ -1932,7 +1932,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
   modelName,
   data: {
     _id: generateRandomMongoId,
-    journey: CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST.data._id,
+    journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST.data._id,
     stepId: "initial",
     name: "initial",
     stepType: "initial",
@@ -1993,7 +1993,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_2 = {
   modelName,
   data: {
     _id: generateRandomMongoId,
-    journey: CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST.data._id,
+    journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST.data._id,
     stepId: "submission",
     name: "submission",
     stepType: "submission",
@@ -2988,7 +2988,7 @@ export const CORE_JOURNEY_STEPS_27 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: CORE_JOURNEY_2.data._id,
+    journey: CORE_JOURNEY_INSTANCE_2.data._id,
     stepId: "pulse_intro_step",
     name: "Introduction",
     stepType: "initial",
@@ -3057,7 +3057,7 @@ export const CORE_JOURNEY_STEPS_28 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: CORE_JOURNEY_2.data._id,
+    journey: CORE_JOURNEY_INSTANCE_2.data._id,
     stepId: "one_thing_you_would_change",
     name: "What's the one thing you would change about your company to make your experience there better?",
     stepType: "normal",
@@ -3111,7 +3111,7 @@ export const CORE_JOURNEY_STEPS_29 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: CORE_JOURNEY_2.data._id,
+    journey: CORE_JOURNEY_INSTANCE_2.data._id,
     stepId: "recommend_workplace_pulse",
     name: "How likely are you to recommend your company as a place to work?",
     stepType: "normal",
@@ -3171,7 +3171,7 @@ export const CORE_JOURNEY_STEPS_30 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    journey: CORE_JOURNEY_2.data._id,
+    journey: CORE_JOURNEY_INSTANCE_2.data._id,
     stepId: "thank_you_submission_pulse",
     name: "Thank you and submission",
     stepType: "submission",
