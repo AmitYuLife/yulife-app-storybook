@@ -1,0 +1,18 @@
+export const ENGAGEMENT_SURVEY_QUESTIONS = [
+  "You have an acceptable workload within your standard working hours.",
+  "You feel supported by the company or managers in taking paid leave.",
+  "Biz 13 provides adequate resources to support your mental health (e.g., counselling services, stress checks).",
+  "You frequently feel stressed at work due to your job responsibilities.",
+  "You have access to a working environment where you can be at your best and most productive.",
+  "You are satisfied with your current role at Biz 13.",
+  "You are satisfied with the level of reward and appreciation for your contributions.",
+  "Your opinions are heard and valued by your manager.",
+  "The level of collaboration and teamwork is high in my team.",
+  "The level of collaboration and teamwork is high between teams.",
+  "You receive clear and timely communication from senior leadership about important decisions.",
+  "You have trust in the senior leadership team.",
+  "Based on your current role, you are satisfied with the opportunities for professional growth and skill development at Biz 13.",
+  "You receive constructive feedback and coaching from your manager to help you grow in your role.",
+  "You see yourself continuing to work at Biz 13 for the next 3+ years?",
+  "Your growth and development in the company is supported by:",
+];
