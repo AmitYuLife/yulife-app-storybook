@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, WhenSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, WhenSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "../activity/_common/given";
 import * as when from "./_steps/when";
@@ -8,7 +8,8 @@ import * as ids from "@ids";
 
 const locale = process.env.TARGET_LOCALE || "ja-JP";
 
-Feature("Quizzes and questionnaires", async () => {
+// @UPDATE - PRODUCT_GOALS_PURGE
+FeatureSkip("Quizzes and questionnaires", async () => {
   Scenario("As a user that works at 1 company, I can traverse through the engagement survey until it is complete and I receive the correct amount of YuCoin.", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_2_SMOKING.data.customerId, data.BUSINESS_ACCOUNT_1.data.business_account_id]), async () => {
       Given("I login as a user", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "JP"), async () => {

@@ -5,7 +5,6 @@ import {
   BUSINESS_ACCOUNT_3,
   BUSINESS_ACCOUNT_5,
   BUSINESS_ACCOUNT_13_GHI_REWARDS,
-  BUSINESS_ACCOUNT_10_GHI_REWARDS,
 } from "../postgres/business";
 import * as user from "./users";
 
@@ -435,40 +434,6 @@ export const USER_ONBOARDING_90 = {
       personalLifeIntro: true,
       newYumojiBuilder: true,
       firstAppOpen: true,
-    },
-  },
-} as IDatabaseItem;
-
-export const USER_ONBOARDING_130 = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_130.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
-    businessName: "Bonus Onboarding Ltd.",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-      firstAppOpen: true,
-      yuScreenOnboarding: true,
-    },
-  },
-} as IDatabaseItem;
-
-export const USER_ONBOARDING_137 = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_137.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id,
-    businessName: "Bonus Onboarding Ltd.",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-      firstAppOpen: true,
-      yuScreenOnboarding: true,
     },
   },
 } as IDatabaseItem;

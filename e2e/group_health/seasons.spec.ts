@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -10,7 +10,8 @@ import * as fixtures from "./_resources/fixtures";
 import { getLocalisedString as t } from "@i18n";
 import moment from "moment";
 
-Feature("Seasons work as expected in the GHI Rewards Game", async () => {
+// @UPDATE - PRODUCT_GOALS_PURGE
+FeatureSkip("Seasons work as expected in the GHI Rewards Game", async () => {
   Scenario("Rewards transfer as expected between seasons", scenario.start, async () => {
     Given("I run the worker to create the next season", given.createNextSeasonParticipations, async () => {
       When("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_137_GHI_REWARDS, data.AUTH_137), async () => {

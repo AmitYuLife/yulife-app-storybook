@@ -554,30 +554,6 @@ export const CUSTOMER_DENTAL_RENEW_2 = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_130_GHI_LEAVER = {
-  type: "postgres",
-  modelName: "customer",
-  data: {
-    customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
-    firstName: "Graham",
-    lastName: "Carey",
-    status: "onboarded",
-  },
-} as IDatabaseItem;
-
-export const CUSTOMER_137_GHI_REWARDS = {
-  type: "postgres",
-  modelName: "customer",
-  data: {
-    customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
-    firstName: "Brendan",
-    lastName: "Galloway",
-    status: "onboarded",
-  },
-} as IDatabaseItem;
-
 export const CUSTOMER_138 = {
   type: "postgres",
   modelName: "customer",

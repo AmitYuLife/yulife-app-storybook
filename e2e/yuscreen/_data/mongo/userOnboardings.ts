@@ -5,10 +5,9 @@ import {
   BUSINESS_ACCOUNT_4,
   BUSINESS_ACCOUNT_5,
   BUSINESS_ACCOUNT_6,
-  BUSINESS_ACCOUNT_GHI_8,
   BUSINESS_ACCOUNT_GDent_9,
 } from "../postgres/business";
-import * as user from './users';
+import * as user from "./users";
 
 const type = "mongo";
 const modelName = "user_onboardings";
@@ -98,38 +97,6 @@ export const USER_ONBOARDING_53 = {
     userId: user.USER_53.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-      firstAppOpen: true,
-    },
-  },
-} as IDatabaseItem;
-
-export const USER_ONBOARDING_GHI = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_GHI.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
-    businessName: "GHI Onboarding Ltd.",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-      firstAppOpen: true,
-    },
-  },
-} as IDatabaseItem;
-
-export const USER_ONBOARDING_GHI_STARTED = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_GHI_STARTED.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
-    businessName: "GHI Onboarding Ltd.",
     performedSteps: {
       personalLifeIntro: true,
       newYumojiBuilder: true,
@@ -375,7 +342,7 @@ export const USER_ONBOARDING_109 = {
       personalLifeIntro: true,
       newYumojiBuilder: true,
       yuScreenOnboarding: true,
-      passiveCycling: true
+      passiveCycling: true,
     },
   },
 } as IDatabaseItem;
@@ -392,7 +359,7 @@ export const USER_ONBOARDING_110 = {
     performedSteps: {
       personalLifeIntro: true,
       newYumojiBuilder: true,
-      passiveCycling: true
+      passiveCycling: true,
     },
   },
 } as IDatabaseItem;
@@ -474,12 +441,12 @@ export const USER_ONBOARDING_MAXIMISE_YU = {
     businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
     businessName: BUSINESS_ACCOUNT_4.data.business_account_name,
     performedSteps: {
-    personalLifeIntro: true,
-    newYumojiBuilder: true,
-    firstAppOpen: true,
-    yuScreenOnboarding: true,
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
+    },
   },
-},
 } as IDatabaseItem;
 
 export const USER_ONBOARDING_140 = {
@@ -491,12 +458,12 @@ export const USER_ONBOARDING_140 = {
     businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
     businessName: BUSINESS_ACCOUNT_4.data.business_account_name,
     performedSteps: {
-    personalLifeIntro: true,
-    newYumojiBuilder: true,
-    firstAppOpen: true,
-    yuScreenOnboarding: true,
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
+    },
   },
-},
 } as IDatabaseItem;
 
 export const USER_ONBOARDING_141 = {
@@ -508,11 +475,10 @@ export const USER_ONBOARDING_141 = {
     businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
     businessName: BUSINESS_ACCOUNT_4.data.business_account_name,
     performedSteps: {
-    personalLifeIntro: true,
-    newYumojiBuilder: true,
-    firstAppOpen: true,
-    yuScreenOnboarding: true,
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
+    },
   },
-},
 } as IDatabaseItem;
-

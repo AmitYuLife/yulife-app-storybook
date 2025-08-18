@@ -347,28 +347,6 @@ export const AUTH_90 = {
   },
 } as IDatabaseItem;
 
-export const AUTH_130 = {
-  type: "mongo",
-  modelName: "authpassword",
-  data: {
-    ...AUTH_TEMPLATE.data,
-    lastIp: "35.176.60.222",
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_130_GHI_LEAVER.data.customerId,
-  },
-} as IDatabaseItem;
-
-export const AUTH_137 = {
-  type: "mongo",
-  modelName: "authpassword",
-  data: {
-    ...AUTH_TEMPLATE.data,
-    lastIp: "35.176.60.222",
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
-  },
-} as IDatabaseItem;
-
 export const AUTH_138 = {
   type,
   modelName,

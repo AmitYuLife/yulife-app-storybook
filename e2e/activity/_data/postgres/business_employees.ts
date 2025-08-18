@@ -3,7 +3,6 @@ import * as customer from "./customers";
 import moment from "moment";
 import {
   BUSINESS_ACCOUNT_1,
-  BUSINESS_ACCOUNT_10_GHI_REWARDS,
   BUSINESS_ACCOUNT_13_GHI_REWARDS,
   BUSINESS_ACCOUNT_2,
   BUSINESS_ACCOUNT_3,
@@ -319,28 +318,6 @@ export const BUSINESS_EMPLOYEE_89 = {
   data: {
     business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
     customer_id: customer.CUSTOMER_89.data.customerId,
-    employment_start_date: moment().subtract(8, "months").toDate(),
-    employment_leave_date: moment().add(10, "years").toDate(),
-  },
-} as IDatabaseItem;
-
-export const BUSINESS_EMPLOYEE_130 = {
-  type: "postgres",
-  modelName: "business_employee",
-  data: {
-    business_account_id: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
-    customer_id: customer.CUSTOMER_130_GHI_LEAVER.data.customerId,
-    employment_start_date: moment().subtract(8, "months").toDate(),
-    employment_leave_date: moment().subtract(1, "weeks").toDate(),
-  },
-} as IDatabaseItem;
-
-export const BUSINESS_EMPLOYEE_137 = {
-  type: "postgres",
-  modelName: "business_employee",
-  data: {
-    business_account_id: BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id,
-    customer_id: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
     employment_start_date: moment().subtract(8, "months").toDate(),
     employment_leave_date: moment().add(10, "years").toDate(),
   },

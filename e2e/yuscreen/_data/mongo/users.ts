@@ -1,5 +1,5 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import * as customer from '../postgres/customers';
+import * as customer from "../postgres/customers";
 
 const type = "mongo";
 const modelName = "users";
@@ -135,46 +135,6 @@ export const USER_53 = {
     earnRate: 1,
   },
 } as IDatabaseItem;
-
-export const USER_GHI = {
-  type,
-  modelName,
-  data: {
-    ...USER_DATA_TEMPLATE.data,
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_GHI.data.customerId,
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 10,
-      },
-    ],
-    earnRate: 10,
-  }
-}
-
-export const USER_GHI_STARTED = {
-  type,
-  modelName,
-  data: {
-    ...USER_DATA_TEMPLATE.data,
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_GHI_STARTED.data.customerId,
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 10,
-      },
-    ],
-    earnRate: 10,
-  }
-}
 
 export const USER_93 = {
   type,
@@ -392,7 +352,6 @@ export const USER_139 = {
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
 } as IDatabaseItem;
-
 
 export const USER_MAXIMISE_YU = {
   type,

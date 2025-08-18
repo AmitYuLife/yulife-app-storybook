@@ -218,34 +218,3 @@ export const CPE_DENTAL_RENEW_2 = {
     taken_up: true,
   },
 } as IDatabaseItem;
-
-export const CPE_130_GHI_LEAVER = {
-  type,
-  modelName,
-  data: {
-    customerId: customer.CUSTOMER_130_GHI_LEAVER.data.customerId,
-    customer_product_id: "YUCPID0000011414",
-    earn_rate: 0,
-    start_date: moment().subtract(1, "y").format("YYYY-MM-DD"),
-    end_date: moment().subtract(1, "weeks").format("YYYY-MM-DD"),
-    is_banned_from_product: false,
-    archived: false,
-    taken_up: true,
-    product_variant_id: "Bupa_GHealth_01_01",
-  },
-} as IDatabaseItem;
-
-export const CPE_137_GHI_REWARDS = {
-  type,
-  modelName,
-  data: {
-    customerId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
-    customer_product_id: "YUCPID0000011428",
-    earn_rate: 0,
-    start_date: moment().subtract(1, "years").format("YYYY-MM-DD"),
-    is_banned_from_product: false,
-    archived: false,
-    taken_up: true,
-    product_variant_id: "Bupa_GHealth_01_01",
-  },
-} as IDatabaseItem;

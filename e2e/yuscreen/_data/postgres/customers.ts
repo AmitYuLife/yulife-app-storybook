@@ -96,30 +96,6 @@ export const CUSTOMER_53 = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_GHI = {
-  type,
-  modelName,
-  data: {
-    customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
-    firstName: "Teddy",
-    lastName: "Group",
-    status: "onboarded",
-  },
-} as IDatabaseItem;
-
-export const CUSTOMER_GHI_STARTED = {
-  type,
-  modelName,
-  data: {
-    customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
-    firstName: "Paul",
-    lastName: "Starter",
-    status: "onboarded",
-  },
-} as IDatabaseItem;
-
 export const CUSTOMER_93 = {
   type,
   modelName,

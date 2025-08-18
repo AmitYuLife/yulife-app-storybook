@@ -11,7 +11,6 @@ import {
   BUSINESS_ACCOUNT_6,
   BUSINESS_ACCOUNT_7,
   BUSINESS_ACCOUNT_GDent_9,
-  BUSINESS_ACCOUNT_GHI_8,
 } from "./business";
 import moment from "moment";
 
@@ -74,30 +73,6 @@ export const BUSINESS_EMPLOYEE_53 = {
     customer_id: customer.CUSTOMER_53.data.customerId,
     employment_start_date: moment().subtract(1, "year").toDate(),
     employment_leave_date: moment().add(10, "years").toDate(),
-    business_employee_id: generateRandomMongoId(),
-  },
-} as IDatabaseItem;
-
-export const BUSINESS_EMPLOYEE_GHI = {
-  type: "postgres",
-  modelName: "business_employee",
-  data: {
-    business_account_id: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
-    customer_id: customer.CUSTOMER_GHI.data.customerId,
-    employment_start_date: moment().subtract(1, "year").toDate(),
-    employment_leave_date: moment().add(10, "weeks").toDate(),
-    business_employee_id: generateRandomMongoId(),
-  },
-} as IDatabaseItem;
-
-export const BUSINESS_EMPLOYEE_GHI_STARTED = {
-  type: "postgres",
-  modelName: "business_employee",
-  data: {
-    business_account_id: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
-    customer_id: customer.CUSTOMER_GHI_STARTED.data.customerId,
-    employment_start_date: moment().subtract(1, "d").toDate(),
-    employment_leave_date: moment().add(10, "weeks").toDate(),
     business_employee_id: generateRandomMongoId(),
   },
 } as IDatabaseItem;
