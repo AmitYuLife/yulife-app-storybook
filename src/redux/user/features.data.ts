@@ -27,7 +27,6 @@ export const features = [
   "enableDebugTool",
   "loggingEnabled",
   "logYuniversity",
-  "showYuniversityMenuLink",
   "showAllLanguages",
   "canFallbackToStepDetectorSensor",
   "enablePopToRootOnDateChange",
