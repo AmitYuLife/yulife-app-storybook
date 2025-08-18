@@ -12,7 +12,6 @@ export * from "./mongo/usertoggles";
 export * from "./mongo/_templates";
 export * from "./mongo/userOnboardings";
 export * from "./mongo/goals";
-export * from "./mongo/goal_products";
 export * from "./mongo/goal_reward_milestones";
 export * from "./mongo/goal_invitation";
 export * from "./mongo/goal_events";

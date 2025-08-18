@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -11,7 +11,8 @@ import { getLocalisedString as t } from "@i18n";
 import moment from "moment";
 import * as helpers from "./_resources/helpers";
 
-Feature("I am able to see GHI Rewards in App", async () => {
+// @UPDATE - PRODUCT_GOALS_PURGE
+FeatureSkip("I am able to see GHI Rewards in App - Edge Cases and Tests around the game", async () => {
   Scenario("Users can not still see vouchers they didn't use after they have left a company with the game active", scenario.start, async () => {
     Given("I deactivated the cbp for the expired product", given.archiveAndCreateNextSeason(moment().format("YYYY-MM-DD")), async () => {
       When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_130_GHI_LEAVER, data.AUTH_130), async () => {

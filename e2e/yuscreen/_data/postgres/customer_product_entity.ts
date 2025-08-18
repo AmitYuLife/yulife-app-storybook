@@ -133,40 +133,6 @@ export const CPE_53_GIP = {
   },
 } as IDatabaseItem;
 
-export const CPE_GHI_FUTURE = {
-  type,
-  modelName,
-  data: {
-    customer_product_id: "YUCPID0000011375",
-    customer_id: customer.CUSTOMER_GHI.data.customerId,
-    earn_rate: 10,
-    start_date: moment().add(1, "week").format("YYYY-MM-DD"),
-    end_date: "2199-12-31",
-    is_banned_from_product: false,
-    archived: false,
-    taken_up: true,
-    product_variant_id: "Bupa_GHealth_01_01",
-    business_employee_id: employee.BUSINESS_EMPLOYEE_GHI.data.business_employee_id,
-  },
-} as IDatabaseItem;
-
-export const CPE_GHI_STARTED = {
-  type,
-  modelName,
-  data: {
-    customer_product_id: "YUCPID0000011376",
-    customer_id: customer.CUSTOMER_GHI_STARTED.data.customerId,
-    earn_rate: 10,
-    start_date: "2023-05-05",
-    end_date: "2199-12-31",
-    is_banned_from_product: false,
-    archived: false,
-    taken_up: true,
-    product_variant_id: "Bupa_GHealth_01_01",
-    business_employee_id: employee.BUSINESS_EMPLOYEE_GHI_STARTED.data.business_employee_id,
-  },
-} as IDatabaseItem;
-
 export const CPE_93_GDent = {
   type,
   modelName,

@@ -72,19 +72,6 @@ export const CUSTOMER_53_TOGGLES = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_GHI_PRODUCT_TOGGLES = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_GHI.data.customerId,
-    features: {
-      ...DEFAULT_TOGGLES.data.features,
-      showFiit: true,
-    },
-  },
-} as IDatabaseItem;
-
 export const CUSTOMER_93_TOGGLES = {
   type,
   modelName,

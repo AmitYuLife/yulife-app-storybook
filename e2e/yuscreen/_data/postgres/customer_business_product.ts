@@ -9,11 +9,9 @@ import {
   BUSINESS_PRODUCT_4_GCI,
   BUSINESS_PRODUCT_4_GDental,
   BUSINESS_PRODUCT_4_GDental_CHOICE,
-  BUSINESS_PRODUCT_4_GHI,
   BUSINESS_PRODUCT_4_GIP,
   BUSINESS_PRODUCT_4_RGL,
   BUSINESS_PRODUCT_5_WB,
-  BUSINESS_PRODUCT_8_GHI,
   BUSINESS_PRODUCT_9_GDent,
   BUSINESS_PRODUCT_12_REWARD_PASS,
 } from "./business_product";
@@ -150,32 +148,6 @@ export const CGP_53_GIP = {
       salary: 100000,
       country: "UK",
     },
-  },
-} as IDatabaseItem;
-
-export const CBP_GHI_FUTURE = {
-  type,
-  modelName,
-  data: {
-    business_product_id: BUSINESS_PRODUCT_8_GHI.product.data.product_id,
-    customer_product_id: cpe.CPE_GHI_FUTURE.data.customer_product_id,
-    category_id: "1",
-    start_date: "2023-04-26",
-    archived: false,
-    data: '{"salary":10000,"workplacePostcode":"NW1 1LX","country":"GB","jobTitle":"Software Engineer","dateOfBirth":"2000-01-21","firstName":"Sarah","lastName":"Smith","sexAtBirth":"F","addressLineOne":"57 Market St","addressLineTwo":"Huddersfield","addressPostCode":"HD3 4HX","title":"Mrs"}',
-  },
-} as IDatabaseItem;
-
-export const CBP_GHI_STARTED = {
-  type,
-  modelName,
-  data: {
-    business_product_id: BUSINESS_PRODUCT_8_GHI.product.data.product_id,
-    customer_product_id: cpe.CPE_GHI_STARTED.data.customer_product_id,
-    category_id: "1",
-    start_date: "2023-04-26",
-    archived: false,
-    data: '{"salary":10000,"workplacePostcode":"NW1 1LX","country":"GB","jobTitle":"Software Engineer","dateOfBirth":"2000-01-21","firstName":"Sarah","lastName":"Smith","sexAtBirth":"F","addressLineOne":"57 Market St","addressLineTwo":"Huddersfield","addressPostCode":"HD3 4HX","title":"Mrs"}',
   },
 } as IDatabaseItem;
 
@@ -499,23 +471,6 @@ export const CGP_139_GDENT = {
     customer_product_id: cpe.CPE_139_GDent.data.customer_product_id,
     category_id: 1,
     start_date: customers.CUSTOMER_139.data.start_date,
-    data: {
-      date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
-      salary: 100000,
-      country: "UK",
-    },
-  },
-} as IDatabaseItem;
-
-export const CBP_139_GHI = {
-  type,
-  modelName,
-  data: {
-    business_product_id: BUSINESS_PRODUCT_4_GHI.product.data.product_id,
-    customer_product_id: cpe.CPE_139_GHI.data.customer_product_id,
-    category_id: "1",
-    start_date: moment().format("YYYY-MM-DD"),
-    archived: false,
     data: {
       date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
       salary: 100000,
