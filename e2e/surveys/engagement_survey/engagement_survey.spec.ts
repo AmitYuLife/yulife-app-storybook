@@ -10,9 +10,8 @@ import * as helper from "./_steps/helpers";
 import { ENGAGEMENT_SURVEY_QUESTIONS } from "./_resources/constants";
 
 Feature("Engagement Surveys", async () => {
-  // UPDATE - THIS NEEDS AN API CHANGE TO WORK - TESTED LOCALLY, BUT WON'T GET IN BEFORE THE RUNNERS TONIGHT SO LOOKING TO SKIP FOR TONIGHT
-  ScenarioSkip("As a user that works at 2 companies, I can traverse through the engagement survey until it is complete and I receive the correct amount of YuCoin for English.", scenario.start, async () => {
-    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_5.data.customerId, data.BUSINESS_ACCOUNT_4.data.business_account_id, data.BUSINESS_BACKGROUND_10.data.business_background_id]), async () => {
+  Scenario("As a user that works at 2 companies, I can traverse through the engagement survey until it is complete and I receive the correct amount of YuCoin for English.", scenario.start, async () => {
+    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess("engagement_survey_deep_dive", data.BUSINESS_ACCOUNT_4.data.business_account_id), async () => {
       Given("I login as a user", given.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
         Then("I should see my YuCoin balance of 200, before I finish the Engagement Survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
       });
@@ -234,7 +233,7 @@ Feature("Engagement Surveys", async () => {
       Then("I should see my YuCoin balance increase by 300 YuCoins for completing the survey to make a total of 500 YuCoins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(500), 1500));
     });
     // This part is testing the invalidation flow for a user who has already completed the survey and once they complete a second time receive no reward
-    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_5.data.customerId, data.BUSINESS_ACCOUNT_4.data.business_account_id], [data.CUSTOMER_5.data.customerId]), async () => {
+    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess("engagement_survey_deep_dive", data.BUSINESS_ACCOUNT_4.data.business_account_id, [data.CUSTOMER_5.data.customerId]), async () => {
       When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
         When("I click on the engagement survey hero card", when.tapIDAtIndex(ids.EVENT_CARD("Share your feedback"), 0), async () => {
           When("I swipe to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
@@ -293,27 +292,24 @@ Feature("Engagement Surveys", async () => {
     });
   });
 
-  // @UPDATE - SKIPPING FOR NOW AS WITHOUT BUSINESS THE WORKER DOESN"T SEEM TO BE WORKING - FIXING TOMORROW
+  // @UPDATE - SKIPPING FOR NOW AS AWAITING CHANGES FOR NEW STRUCTURE
   ScenarioSkip("If no business is available, when I can traverse through the engagement survey I will see a fallback 'your company' instead of the business name.", scenario.start, async () => {
-    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_4.data.customerId]), async () => {
-      Given("I login as a user", given.loginAsUser(data.CUSTOMER_4, data.AUTH_4), async () => {
-        Then("I should see the engagement survey hero card", then.idVisibleAtIndex(ids.EVENT_CARD("Share your feedback"), 0));
-        Then(
-          "I should see the Engagement Survey hero card displaying the correct YuCoin reward — 300 YuCoin — based on the user's earn rate of 10 and the survey's 30* multiplier.",
-          then.idVisibleAtIndex(ids.EVENT_DESCRIPTION("Earn **300** YuCoin and help improve your workplace anonymously!", "#5A5A5C"), 0)
-        );
-        Then("I should see the event card has the correct forest colour", then.idVisibleAtIndex(ids.EVENT_CARD_COLOUR("#FFFFE5"), 0));
-      });
-      When("I click on the engagement survey hero card", when.tapIDAtIndex(ids.EVENT_CARD("Share your feedback"), 0), async () => {
-        When("I click on the engagement survey hero card", when.fillOutEngagementSurvey, async () => {
-          Then("As a user who has no work business listed, I should see 'your company' provides adequate resources' ", then.idVisible(ids.TEXT_TEMPLATE("your company provides adequate resources to support your mental health (e.g., counselling services, stress checks).", "b2b")));
-        });
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_6.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see the engagement survey hero card", then.idVisibleAtIndex(ids.EVENT_CARD("Share your feedback"), 0));
+      Then(
+        "I should see the Engagement Survey hero card displaying the correct YuCoin reward — 300 YuCoin — based on the user's earn rate of 10 and the survey's 30* multiplier.",
+        then.idVisibleAtIndex(ids.EVENT_DESCRIPTION("Earn **300** YuCoin and help improve your workplace anonymously!", "#5A5A5C"), 0)
+      );
+      Then("I should see the event card has the correct forest colour", then.idVisibleAtIndex(ids.EVENT_CARD_COLOUR("#FFFFE5"), 0));
+    });
+    When("I click on the engagement survey hero card", when.tapIDAtIndex(ids.EVENT_CARD("Share your feedback"), 0), async () => {
+      When("I click on the engagement survey hero card", when.fillOutEngagementSurvey, async () => {
+        Then("As a user who has no work business listed, I should see 'your company' provides adequate resources' ", then.idVisible(ids.TEXT_TEMPLATE("your company provides adequate resources to support your mental health (e.g., counselling services, stress checks).", "b2b")));
       });
     });
   });
 
-  // SKIPPING BUT ADDING TO FIXES FOR TOMORROW
-  ScenarioSkip("I can see and complete a Engagement Pulse Survey seeded from the DJB", scenario.start, async () => {
+  Scenario("I can see and complete a Engagement Pulse Survey seeded from the DJB", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_6.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see my YuCoin balance of 200, before I finish the survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
       Then("I should see the survey's hero card", then.engagementSurveyHeroCardVisible);

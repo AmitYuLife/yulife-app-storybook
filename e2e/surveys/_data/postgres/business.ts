@@ -87,3 +87,8 @@ export const BUSINESS_ACCOUNT_5 = createBusinessRecords({
   active: true,
   businessAccountName: "Altra Capital Limited",
 });
+
+export const BUSINESS_ACCOUNT_6 = createBusinessRecords({
+  active: true,
+  businessAccountName: "Test Corp",
+});

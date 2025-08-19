@@ -70,21 +70,6 @@ export const CUSTOMER_3_TOGGLES = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_4_TOGGLES = {
-  type: "mongo",
-  modelName: "usertoggles",
-  data: {
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_4.data.customerId,
-    features: {
-      ...allTogglesTrue.data.features,
-      showReferrals: true,
-      tempGameEnableReferralQRCode: true,
-      tempShowReferralOnLeaderboard: true,
-    },
-  },
-} as IDatabaseItem;
-
 export const CUSTOMER_5_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",

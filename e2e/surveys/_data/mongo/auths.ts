@@ -39,17 +39,6 @@ export const AUTH_3 = {
   },
 } as IDatabaseItem;
 
-export const AUTH_4 = {
-  type,
-  modelName,
-  data: {
-    ...AUTH_TEMPLATE.data,
-    lastIp: "35.176.60.222",
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_4.data.customerId,
-  },
-} as IDatabaseItem;
-
 export const AUTH_5 = {
   type: "mongo",
   modelName: "authpassword",

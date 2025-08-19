@@ -2989,7 +2989,7 @@ export const CORE_JOURNEY_STEPS_27 = {
   data: {
     _id: generateRandomMongoId(),
     journey: CORE_JOURNEY_INSTANCE_2.data._id,
-    stepId: "pulse_intro_step",
+    stepId: "pulse_intro_step_seeded",
     name: "Introduction",
     stepType: "initial",
     template: "journey_template_intro",
@@ -3048,7 +3048,7 @@ export const CORE_JOURNEY_STEPS_27 = {
     temporaryProperties: [],
     hooks: [],
     events: [],
-    nextSteps: [{ stepId: "one_thing_you_would_change" }],
+    nextSteps: [{ stepId: "one_thing_you_would_change_seeded" }],
   },
 } as IDatabaseItem;
 
@@ -3058,7 +3058,7 @@ export const CORE_JOURNEY_STEPS_28 = {
   data: {
     _id: generateRandomMongoId(),
     journey: CORE_JOURNEY_INSTANCE_2.data._id,
-    stepId: "one_thing_you_would_change",
+    stepId: "one_thing_you_would_change_seeded",
     name: "What's the one thing you would change about your company to make your experience there better?",
     stepType: "normal",
     template: "journey_template_multi_line_text",
@@ -3102,7 +3102,7 @@ export const CORE_JOURNEY_STEPS_28 = {
     temporaryProperties: [],
     hooks: [],
     events: [],
-    nextSteps: [{ stepId: "recommend_workplace_pulse" }],
+    nextSteps: [{ stepId: "recommend_workplace_pulse_seeded" }],
   },
 } as IDatabaseItem;
 
@@ -3112,7 +3112,7 @@ export const CORE_JOURNEY_STEPS_29 = {
   data: {
     _id: generateRandomMongoId(),
     journey: CORE_JOURNEY_INSTANCE_2.data._id,
-    stepId: "recommend_workplace_pulse",
+    stepId: "recommend_workplace_pulse_seeded",
     name: "How likely are you to recommend your company as a place to work?",
     stepType: "normal",
     template: "journey_template_choice",
@@ -3162,7 +3162,7 @@ export const CORE_JOURNEY_STEPS_29 = {
     ],
     temporaryProperties: [],
     events: [],
-    nextSteps: [{ stepId: "thank_you_submission_pulse" }],
+    nextSteps: [{ stepId: "thank_you_submission_pulse_seeded" }],
   },
 } as IDatabaseItem;
 
@@ -3172,7 +3172,7 @@ export const CORE_JOURNEY_STEPS_30 = {
   data: {
     _id: generateRandomMongoId(),
     journey: CORE_JOURNEY_INSTANCE_2.data._id,
-    stepId: "thank_you_submission_pulse",
+    stepId: "thank_you_submission_pulse_seeded",
     name: "Thank you and submission",
     stepType: "submission",
     template: "journey_template_no_question",
@@ -3210,6 +3210,118 @@ export const CORE_JOURNEY_STEPS_30 = {
         trigger: "onPreSave",
       },
     ],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_31 = {
+  type,
+  modelName,
+  data: {
+    _id: "68a33e77c451a6150464b020",
+    journey: "68a33e77c451a6150464b01f",
+    stepId: "68a33e77c451a6150464b020",
+    stepType: "initial",
+    template: "survey_template_intro",
+    answerKeys: [],
+    hooks: [],
+    temporaryProperties: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_32 = {
+  type,
+  modelName,
+  data: {
+    _id: "68a33e77c451a6150464b021",
+    journey: "68a33e77c451a6150464b01f",
+    stepId: "68a33e77c451a6150464b021",
+    stepType: "normal",
+    template: "survey_template_scale",
+    templateUi: {
+      categoryName: "Wellbeing",
+      scaleType: "agree",
+      title: "Maintaining work-life balance is important to you.",
+      isRequired: true,
+    },
+    answerKeys: [],
+    hooks: [],
+    temporaryProperties: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_33 = {
+  type,
+  modelName,
+  data: {
+    _id: "68a33e77c451a6150464b022",
+    journey: "68a33e77c451a6150464b01f",
+    stepId: "68a33e77c451a6150464b022",
+    stepType: "normal",
+    template: "survey_template_scale",
+    templateUi: {
+      categoryName: "Wellbeing",
+      scaleType: "agree",
+      title: "You have an acceptable workload within your standard working hours.",
+      isRequired: true,
+    },
+    answerKeys: [],
+    hooks: [],
+    temporaryProperties: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_34 = {
+  type,
+  modelName,
+  data: {
+    _id: "68a33e77c451a6150464b03a",
+    journey: "68a33e77c451a6150464b01f",
+    stepId: "68a33e77c451a6150464b03a",
+    stepType: "normal",
+    template: "survey_template_nps",
+    templateUi: {
+      categoryName: "Overall",
+      title:
+        "How likely are you to recommend Waelchi Group as a place to work? (0 being very unlikely, 10 being very likely.)",
+      isRequired: true,
+    },
+    answerKeys: [],
+    hooks: [],
+    temporaryProperties: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const CORE_JOURNEY_STEPS_35 = {
+  type,
+  modelName,
+  data: {
+    _id: "68a33e77c451a6150464b03b",
+    journey: "68a33e77c451a6150464b01f",
+    stepId: "68a33e77c451a6150464b03b",
+    stepType: "post_submission_confirmation",
+    template: "survey_template_reward",
+    answerKeys: [],
+    hooks: [
+      {
+        hook: "validateAccessRules",
+        trigger: "onPreSave",
+      },
+      {
+        hook: "awardYucoin",
+        trigger: "onPreFill",
+      },
+    ],
+    temporaryProperties: [],
     events: [],
     nextSteps: [],
   },

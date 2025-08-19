@@ -48,18 +48,6 @@ export const CUSTOMER_3 = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_4 = {
-  type: "postgres",
-  modelName: "customer",
-  data: {
-    customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
-    firstName: "Razer",
-    lastName: "Jett",
-    status: "onboarded",
-  },
-} as IDatabaseItem;
-
 export const CUSTOMER_5 = {
   type: "postgres",
   modelName: "customer",
