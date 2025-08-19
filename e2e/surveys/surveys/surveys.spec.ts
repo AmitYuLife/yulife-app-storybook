@@ -97,7 +97,7 @@ Feature("Miscellaneous surveys and surveys created through the DJB", async () =>
   });
 
   Scenario("I can see the hero cards in the correct order", scenario.start, async () => {
-    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_7.customer.data.customerId, data.BUSINESS_ACCOUNT_4.data.business_account_id, data.BUSINESS_BACKGROUND_10.data.business_background_id]), async () => {
+    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess("engagement_survey_deep_dive", data.BUSINESS_ACCOUNT_4.data.business_account_id), async () => {
       Given("I have entered a valid email address and valid password", given.loginAsUser(data.CUSTOMER_7.customer, GENERIC_AUTH_PASSWORD), async () => {
         When("I am on the home screen", [], async () => {
           Then("I can see the hero cards fin the correct order", then.checkEachHeroCard);

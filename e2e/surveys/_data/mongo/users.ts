@@ -72,16 +72,6 @@ export const USER_3 = {
   },
 } as IDatabaseItem;
 
-export const USER_4 = {
-  type: "mongo",
-  modelName: "users",
-  data: {
-    ...USER_DATA_TEMPLATE.data,
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_4.data.customerId,
-  },
-} as IDatabaseItem;
-
 export const USER_5 = {
   type: "mongo",
   modelName: "users",

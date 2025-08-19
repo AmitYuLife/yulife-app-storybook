@@ -1,6 +1,6 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, WhenSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, WhenSkip, FeatureSkip, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
-import * as given from "../activity/_common/given";
+import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "./_data";
@@ -9,9 +9,9 @@ import * as ids from "@ids";
 const locale = process.env.TARGET_LOCALE || "ja-JP";
 
 // @UPDATE - PRODUCT_GOALS_PURGE
-FeatureSkip("Quizzes and questionnaires", async () => {
-  Scenario("As a user that works at 1 company, I can traverse through the engagement survey until it is complete and I receive the correct amount of YuCoin.", scenario.start, async () => {
-    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_2_SMOKING.data.customerId, data.BUSINESS_ACCOUNT_1.data.business_account_id]), async () => {
+Feature("Quizzes and questionnaires", async () => {
+  ScenarioSkip("As a user that works at 1 company, I can traverse through the engagement survey until it is complete and I receive the correct amount of YuCoin.", scenario.start, async () => {
+    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess("engagement_survey_deep_dive", data.BUSINESS_ACCOUNT_1.data.business_account_id), async () => {
       Given("I login as a user", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "JP"), async () => {
         Then("I should see my YuCoin balance of 8200, before I finish the Engagement Survey", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(8200)));
       });
@@ -226,18 +226,6 @@ FeatureSkip("Quizzes and questionnaires", async () => {
     });
     When("I click on the 'Claim' button", when.tapID(ids.BUTTON_BASE("受け取る")), async () => {
       Then("I should see my YuCoin balance increase by 30 YuCoins for completing the survey to make a total of 8500 YuCoins", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(8230)));
-    });
-  });
-
-  Scenario("If no business is available, when I can traverse through the engagement survey I will see a fallback '勤務先は' instead of the business name.", scenario.start, async () => {
-    Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess([data.CUSTOMER_2_SMOKING.data.customerId]), async () => {
-      Given("I login as a user", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "JP"), async () => {
-        When("I click on the engagement survey hero card", when.tapID(ids.EVENT_HEADING("アンケートのお願い", "#5A5A5C")), async () => {
-          When("I start to fill out the survey", when.fillOutEngagementSurvey, async () => {
-            Then("As a user who has no work business listed, I should see '勤務先は' provides adequate resources' ", then.idVisible(ids.TEXT_TEMPLATE("勤務先はメンタルヘルスをサポートする十分なリソースを提供している (カウンセリングサービスやストレスチェックなど)。", "b2b")));
-          });
-        });
-      });
     });
   });
 });

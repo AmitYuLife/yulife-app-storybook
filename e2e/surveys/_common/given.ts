@@ -10,11 +10,11 @@ export const { navigateViaID, navigateViaText } = navigation.common;
 export { authoriseFitkit, sendSteps } from "@socket";
 
 export const giveEngagementSurveyAccess =
-  (tags: string[], userIdsToInvalidate: string[] = []) =>
+  (journeyId: string, businessAccountId: string, userIdsToInvalidate: string[] = []) =>
   async () => {
     await dataManager.triggerWorkerTask("GIVE_ACCESS_TO_CORE_JOURNEY", {
-      journeyId: "engagement_survey_deep_dive",
-      tags,
+      journeyId,
+      businessAccountId,
       userIdsToInvalidate,
     });
   };
