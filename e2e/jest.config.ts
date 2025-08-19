@@ -28,6 +28,10 @@ const jestConfig: JestConfigWithTsJest = {
         extends: "detox-allure2-adapter/preset-allure",
         resultsDir: "e2e-report/allure-results",
         testCase: {
+          // historyId: (args) => {
+          //   console.log(args, "package name");
+          //   return `${args.package.name}:${args.file.path}:${args.test.fullName}`;
+          // },
           descriptionHtml: (args) => getStepDescriptionHtml(args),
           // Bit of a hack, but we need to order by duration in order to maintain the order of the BDD
           start: () => timestamp,
@@ -56,6 +60,11 @@ const jestConfig: JestConfigWithTsJest = {
               testCase?.ancestorTitles
                 ?.filter((t) => t.startsWith("Given") || t.startsWith("When"))
                 .join(" >> "),
+            package: ({ testFileMetadata }) => {
+              const filepath =
+                testFileMetadata?.sourceLocation?.fileName?.split("e2e/")?.[1] || "unknown";
+              return filepath?.replace(/\//g, ".");
+            },
           },
         },
         testStep: {
@@ -86,6 +95,7 @@ const jestConfig: JestConfigWithTsJest = {
           useSteps: true,
           deviceLogs: true,
           deviceScreenshots: true,
+          deviceVideos: true,
         },
       ],
     ],
