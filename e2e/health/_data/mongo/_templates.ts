@@ -23,7 +23,6 @@ export const DEFAULT_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: generateRandomMongoId(),
     features: {
-      showNotifications: true,
       showStreaks: true,
       showCounter: true,
       showBuildNumber: true,

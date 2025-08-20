@@ -46,7 +46,6 @@ export const CUSTOMER_2_TOGGLES = {
       statsShowCyclingBestScoreCard: true,
       statsShowCyclingGraphCard: true,
       showSettings: true,
-      showNotifications: true,
       showTodayEarningsScreen: true,
       showGoals: true,
       yuScreenV3: true,
@@ -109,7 +108,6 @@ export const CUSTOMER_37_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_37.data.customerId,
     features: {
-      showNotifications: true,
       showStreaks: true,
       showCounter: true,
       showBuildNumber: true,

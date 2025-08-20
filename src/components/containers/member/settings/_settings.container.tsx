@@ -48,7 +48,10 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const notificationSettings = useQuery(gql(`GetUserNotificationsSettingsDocument`), graphqlFetchPolicy);
   const { data: userLifeEventsData } = useQuery(gql("GetPlayerLifeEventsDocument"), graphqlFetchPolicy);
 
-  const pushNotifications = useMemo(() => notificationSettings?.data?.pushNotifications || [], [notificationSettings]);
+  const pushNotifications = useMemo(
+    () => notificationSettings?.data?.pushNotifications || { id: "", notifications: [], visible: false },
+    [notificationSettings]
+  );
 
   const emailNotifications = useMemo(
     () => notificationSettings?.data?.emailNotifications || [],
@@ -62,7 +65,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   const updateQueryCache = useCallback(
     (type: string, isActive: boolean, time?: string) => {
-      const updatedPushNotifications = pushNotifications.map((i) => ({
+      const updatedPushNotifications = pushNotifications?.notifications?.map((i) => ({
         ...i,
         isActive: i.type === type ? isActive : i.isActive,
         alertTimestamp: i.type === type && time ? time : i.alertTimestamp,
@@ -74,7 +77,11 @@ function SettingsContainer({ componentId }: IOwnProps) {
       client.writeQuery({
         query: gql("GetUserNotificationsSettingsDocument"),
         data: {
-          pushNotifications: updatedPushNotifications,
+          pushNotifications: {
+            notifications: updatedPushNotifications,
+            visible: pushNotifications.visible,
+            id: pushNotifications.id,
+          },
           emailNotifications: updatedEmailNotifications,
         },
       });
@@ -297,8 +304,8 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   const notification = useMemo(
     () => ({
-      isVisible: features.showNotifications,
-      items: pushNotifications.map((n) => ({
+      isVisible: pushNotifications.visible,
+      items: pushNotifications?.notifications?.map((n) => ({
         ...n,
         isActive: notificationPermissions.status === PushPermissionsStatus.enabled ? n.isActive : false,
         onSwitchPress: async () => {
@@ -352,14 +359,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       title: t("screens.settings.push_notifications.label"),
       name: "notifications",
     }),
-    [
-      features.showNotifications,
-      notificationLoading,
-      pushNotifications,
-      updateNotification,
-      updateQueryCache,
-      notificationPermissions,
-    ]
+    [notificationLoading, pushNotifications, updateNotification, updateQueryCache, notificationPermissions]
   );
 
   const pickers = useMemo(() => {

@@ -3,7 +3,6 @@
 
 export const features = [
   "showLanguageTool",
-  "showNotifications",
   "showStreaks",
   "disableUserEntries",
   "showConnections",
