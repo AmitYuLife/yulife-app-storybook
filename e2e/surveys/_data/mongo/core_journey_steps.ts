@@ -1827,7 +1827,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_1 = {
   data: {
     _id: generateRandomMongoId,
     journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_MULTIPLIER_TEST.data._id,
-    stepId: "initial",
+    stepId: "initial_multiplier",
     name: "initial",
     stepType: "initial",
     template: "journey_template_choice",
@@ -1876,7 +1876,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_1 = {
     events: [],
     nextSteps: [
       {
-        stepId: "submission",
+        stepId: "submission_multiplier",
       },
     ],
   },
@@ -1888,7 +1888,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_2 = {
   data: {
     _id: generateRandomMongoId,
     journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_MULTIPLIER_TEST.data._id,
-    stepId: "submission",
+    stepId: "submission_multiplier",
     name: "submission",
     stepType: "submission",
     template: "journey_template_no_question",
@@ -1933,7 +1933,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
   data: {
     _id: generateRandomMongoId,
     journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST.data._id,
-    stepId: "initial",
+    stepId: "initial_flat",
     name: "initial",
     stepType: "initial",
     template: "journey_template_choice",
@@ -1982,7 +1982,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
     events: [],
     nextSteps: [
       {
-        stepId: "submission",
+        stepId: "submission_flat",
       },
     ],
   },
@@ -1994,7 +1994,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_2 = {
   data: {
     _id: generateRandomMongoId,
     journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST.data._id,
-    stepId: "submission",
+    stepId: "submission_flat",
     name: "submission",
     stepType: "submission",
     template: "journey_template_no_question",

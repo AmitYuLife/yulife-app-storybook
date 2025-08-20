@@ -83,7 +83,7 @@ export const CUSTOMER_7 = createCustomerRecords({
   preferredContentLocation: "GB",
   employments: [
     {
-      businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+      businessAccountId: BUSINESS_ACCOUNT_5.business.data.businessAccountId,
       businessEmployeeId: generateRandomPostgresId(),
       archived: false,
       employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
