@@ -74,8 +74,10 @@ export const checkEachHeroCard = async () => {
     { id: ids.EVENT_CARD("Share your feedback") },
     { id: ids.EVENT_CARD("Share your feedback pulse") },
     { id: ids.EVENT_CARD("Log your progress") },
-    { id: ids.EVENT_CARD("Daily health questions") },
     { id: ids.EVENT_CARD("Automated QA Test Journey 500 YuCoin Flat Amount") },
+    { id: ids.EVENT_CARD("Getting to know yu!") },
+    // @UPDATE - HQ not showing for this user - will investigate
+    // { id: ids.EVENT_CARD("Daily health questions") },
     { id: ids.EVENT_CARD("FTUE - test") },
   ];
 

@@ -33,6 +33,14 @@ export const CORE_JOURNEY_INSTANCE_FOR_REWARD_MULTIPLIER_TEST = {
     },
     yuCoinRewardAsEarnRateMultiple: 10,
     yuCoinRewardAsFlatAmount: 0,
+    steps: [
+      {
+        stepId: "initial_multiplier",
+      },
+      {
+        stepId: "submission_multiplier",
+      },
+    ],
   },
 };
 
@@ -51,7 +59,7 @@ export const CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST = {
     requiresUserStateForAccess: false,
     uiAccess: [],
     accessRules: {
-      tags: [customer.CUSTOMER_1, customer.CUSTOMER_7.customer.data.customerId],
+      tags: [customer.CUSTOMER_1.data.customerId, customer.CUSTOMER_7.customer.data.customerId],
     },
     uiAccessCopy: {
       eventPanel: {
@@ -65,6 +73,14 @@ export const CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST = {
     },
     yuCoinRewardAsEarnRateMultiple: 0,
     yuCoinRewardAsFlatAmount: 500,
+    steps: [
+      {
+        stepId: "initial_flat",
+      },
+      {
+        stepId: "submission_flat",
+      },
+    ],
   },
 };
 
