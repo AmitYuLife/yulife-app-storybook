@@ -10,6 +10,7 @@ import {
   LOGIN_WITH_PASSWORD,
   LOGIN_HERO_LOGIN_BUTTON,
   SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP,
+  DAILY_STEPS_SCREEN,
 } from "@ids";
 import { dataManager, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
@@ -52,7 +53,7 @@ export const loginAsUser =
     await loginWithCredentials(customer.data.email, auth.data.password, region)();
 
     // wait for daily steps to load
-    await waitFor(element(by.label("YuCoin")))
+    await waitFor(element(by.id(DAILY_STEPS_SCREEN)))
       .toBeVisible()
       .withTimeout(5_000);
 
