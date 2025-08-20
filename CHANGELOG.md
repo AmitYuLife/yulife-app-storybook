@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.77.0] - 2025-08-20
+
+### Bugfixes
+
+- Bugfix NVS-1579: Surface public gifting error message
+
+### Tasks
+
+- Task: fix detox login flakiness
+- Task GS-1830: Purge show notifications toggle
+- Task CTE-0: pin hcaptcha version
+- Task GS-1831: Purge showYuniversityMenuLink
+- Task: Fix reward store refetch when changing content location
+- Task ENG-4119: Event tile blocking daily activity
+- Task GS-1835: Fix tooltip static position
+
+### Chores
+
+- Chore: Added custom package name for better splitting
+
+### Extra
+
+- Fix: detox other languages
+- Detox surveys fixes after core_journey_instances changes
+- Detox/further core journeys fixes
+- Detox core_journey_instances fix part 1
+- Detox Fixes: Product Goals Purge
+- Detox Fixes: tweaked cycleThroughFacialHairOptions function as test was failing due to visibility
+- Detox HQ fixes - move to core_journey_instances
+
 ## [4.76.0] - 2025-08-13
 
 ### Tasks
