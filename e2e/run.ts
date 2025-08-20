@@ -45,7 +45,7 @@ const init = async () => {
 
   // set our API URL and region
   const TARGET_LOCALE = process.env.TARGET_LOCALE || mapRegionToTargetLocale(region);
-  const API_REGION = process.env.API_REGION as Region || region;
+  const API_REGION = (process.env.API_REGION as Region) || region;
   const API_URL = `http://localhost:${mapRegionToPort(API_REGION)}/`;
 
   if (!CI) {
@@ -128,8 +128,8 @@ const init = async () => {
 
 ["SIGINT", "SIGTERM", "exit"].forEach((signal) => {
   process.on(signal, () => {
-    if (liveServer) {
-      liveServer.kill();
+    if (server?.kill) {
+      server.kill();
     }
     process.exit(0);
   });
