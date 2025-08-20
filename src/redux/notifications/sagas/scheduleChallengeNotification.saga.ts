@@ -36,8 +36,8 @@ export default function* scheduleChallengeNotificationSaga({ payload }: Action) 
   try {
     const { data }: ApolloQueryResult<GetUserNotificationsSettingsQuery> = yield call(getUserNotificationsSettings);
 
-    if (data?.pushNotifications?.length) {
-      const challengeCompletion = data.pushNotifications.find(
+    if (data?.pushNotifications?.notifications?.length) {
+      const challengeCompletion = data.pushNotifications.notifications.find(
         (item) => item.type === UserNotificationsType.ChallengeCompletion
       );
 

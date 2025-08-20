@@ -1,6 +1,10 @@
 query GetUserNotificationsSettings {
-  pushNotifications: getUserNotificationsSettings {
-    ...NotificationSettingsProps
+  pushNotifications: getMobileUserNotificationsSettings {
+    id
+    notifications {
+      ...NotificationSettingsProps
+    }
+    visible
   }
   emailNotifications: getEmailNotificationsSettings {
     ...NotificationSettingsProps

@@ -482,6 +482,12 @@ export type AvatarRemoteFilesImageArgs = {
   options?: InputMaybe<AvatarRemoteFileOption>;
 };
 
+export type BasicProductInformation = {
+  baseSalaryRequired?: InputMaybe<Scalars["Boolean"]["input"]>;
+  carrier?: InputMaybe<Scalars["String"]["input"]>;
+  productCode?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 export type BeneficiaryShareOfBenefit = {
   beneficiaryId: Scalars["ID"]["input"];
   percentage: Scalars["Float"]["input"];
@@ -1002,10 +1008,35 @@ export type BusinessSessionSettings = {
   helpCentreLink?: Maybe<Scalars["String"]["output"]>;
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
   isEmployeeRecognitionPaywallEnabled: Scalars["Boolean"]["output"];
+  newAddEmployeeEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
   yuStoreEnabled: Scalars["Boolean"]["output"];
 };
+
+export type BusinessSurveyCampaign = {
+  __typename?: "BusinessSurveyCampaign";
+  count: Scalars["Int"]["output"];
+  rows?: Maybe<Array<BusinessSurveyCampaignRow>>;
+};
+
+export type BusinessSurveyCampaignRow = {
+  __typename?: "BusinessSurveyCampaignRow";
+  accountAccessId: Scalars["String"]["output"];
+  archivedAt?: Maybe<Scalars["String"]["output"]>;
+  campaignName: Scalars["String"]["output"];
+  createdAt?: Maybe<Scalars["String"]["output"]>;
+  endLocalDate?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  publishedAt?: Maybe<Scalars["String"]["output"]>;
+  status: BusinessSurveyCampaignRowStatus;
+};
+
+export enum BusinessSurveyCampaignRowStatus {
+  Complete = "complete",
+  Draft = "draft",
+  Live = "live",
+}
 
 export type BusinessTag = {
   __typename?: "BusinessTag";
@@ -1307,6 +1338,7 @@ export type ContentItem =
   | ContentItemFade
   | ContentItemForm
   | ContentItemHeaderBar
+  | ContentItemHeroLayout
   | ContentItemHint
   | ContentItemImage
   | ContentItemImageChoice
@@ -1684,6 +1716,12 @@ export type ContentItemHeaderBar = {
   rightIcon?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type ContentItemHeroLayout = {
+  __typename?: "ContentItemHeroLayout";
+  children: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+};
+
 export type ContentItemHint = {
   __typename?: "ContentItemHint";
   description: Scalars["String"]["output"];
@@ -1696,6 +1734,7 @@ export type ContentItemHint = {
 
 export type ContentItemImage = {
   __typename?: "ContentItemImage";
+  altText?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   image?: Maybe<RemoteImage>;
   onPress?: Maybe<SduiAction>;
@@ -2680,8 +2719,8 @@ export type CreateTeamMemberResultProduct = {
 
 export type CreateTeamSocialGroupInput = {
   description?: InputMaybe<Scalars["String"]["input"]>;
+  eligibility?: InputMaybe<Array<SearchQueryInput>>;
   name: Scalars["String"]["input"];
-  query: SearchQueryInput;
 };
 
 export type CustomValue = {
@@ -3259,7 +3298,7 @@ export type EmployeePerkInfo = {
 export enum EmployeeRecognitionCampaignStatus {
   Completed = "COMPLETED",
   Draft = "DRAFT",
-  Pending = "PENDING",
+  Processing = "PROCESSING",
 }
 
 export type EmployeeRecognitionRecipientById = {
@@ -5755,6 +5794,13 @@ export type MobileUserContentLocation = {
   label: Scalars["String"]["output"];
 };
 
+export type MobileUserNotificationsSettings = {
+  __typename?: "MobileUserNotificationsSettings";
+  id: Scalars["ID"]["output"];
+  notifications: Array<NotificationSettingsProps>;
+  visible: Scalars["Boolean"]["output"];
+};
+
 export type MobileUserWrapped = {
   __typename?: "MobileUserWrapped";
   bestYudokuTime: Scalars["Int"]["output"];
@@ -5885,6 +5931,7 @@ export type Mutation = {
   createBusinessAccessUser: BusinessAccessUser;
   createBusinessEarlyAccessSelfRegistration: Scalars["Boolean"]["output"];
   createBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  createBusinessSurveyCampaign: Scalars["ID"]["output"];
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
   createEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
@@ -6252,11 +6299,17 @@ export type MutationConfirmPaymentCardArgs = {
 
 export type MutationCreateBusinessAccessUserArgs = {
   accessUser: CreateAccessUserInput;
+  password: Scalars["String"]["input"];
 };
 
 export type MutationCreateBusinessPasswordArgs = {
   otp: Scalars["String"]["input"];
   password: Scalars["String"]["input"];
+};
+
+export type MutationCreateBusinessSurveyCampaignArgs = {
+  name: Scalars["String"]["input"];
+  presetId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationCreateBusinessTagArgs = {
@@ -6791,6 +6844,7 @@ export type MutationUnsubscribeFromEmailsArgs = {
 
 export type MutationUpdateAccessUserArgs = {
   accessUser: AccessUserInput;
+  password: Scalars["String"]["input"];
 };
 
 export type MutationUpdateAccessUserBySectionArgs = {
@@ -7383,6 +7437,7 @@ export type Query = {
   getBusinessPerk: BusinessPerkItem;
   getBusinessPerks: GetBusinessPerksResponse;
   getBusinessSession: BusinessSession;
+  getBusinessSurveyCampaigns?: Maybe<BusinessSurveyCampaign>;
   getBusinessTag: BusinessTag;
   getBusinessTags: GetBusinessTagsResponse;
   getBusinessTagsForBusiness?: Maybe<Array<BusinessTag>>;
@@ -7496,6 +7551,7 @@ export type Query = {
   getMobileUnlockableBattlePassVouchers?: Maybe<MobileUnlockableBattlePassVouchers>;
   getMobileUserActivityHistory?: Maybe<Array<Maybe<UserActivityHistory>>>;
   getMobileUserContentLocation?: Maybe<GetMobileUserContentLocation>;
+  getMobileUserNotificationsSettings?: Maybe<MobileUserNotificationsSettings>;
   getMobileUserWrapped: MobileUserWrapped;
   getMobileWhatsNewModal?: Maybe<MobileWhatsNewModal>;
   getMonthlyActiveUsersPercentage: MonthlyActiveUsersPercentage;
@@ -7751,6 +7807,13 @@ export type QueryGetBusinessPerkArgs = {
 export type QueryGetBusinessPerksArgs = {
   orderBy?: InputMaybe<OrderBy>;
   wellbeingToolType?: InputMaybe<WellbeingToolType>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBusinessSurveyCampaignsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  search?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -8196,6 +8259,7 @@ export type QueryGetTeamMemberBeneficiariesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetTeamMemberFieldsArgs = {
   businessEmployeeId?: InputMaybe<Scalars["String"]["input"]>;
+  products?: InputMaybe<Array<InputMaybe<BasicProductInformation>>>;
 };
 
 /** Default types to be extended / root query */
@@ -9898,8 +9962,10 @@ export type TeamSettingValue = {
 export type TeamSocialGroup = {
   __typename?: "TeamSocialGroup";
   description?: Maybe<Scalars["String"]["output"]>;
+  eligibility?: Maybe<Array<SearchQuery>>;
   isActive?: Maybe<Scalars["Boolean"]["output"]>;
   name: Scalars["String"]["output"];
+  /** @deprecated Use eligibility (array type) instead */
   query?: Maybe<SearchQuery>;
   socialGroupId: Scalars["String"]["output"];
 };
@@ -10334,9 +10400,9 @@ export type UpdateTeamMemberProfileResult = {
 
 export type UpdateTeamSocialGroupInput = {
   description?: InputMaybe<Scalars["String"]["input"]>;
+  eligibility?: InputMaybe<Array<SearchQueryInput>>;
   isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
   name?: InputMaybe<Scalars["String"]["input"]>;
-  query?: InputMaybe<SearchQueryInput>;
 };
 
 export type User = {
@@ -12619,6 +12685,7 @@ export type AbsoluteContentItemFragment = {
         onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
       }
+    | { __typename: "ContentItemHeroLayout" }
     | {
         __typename: "ContentItemHint";
         id: string;
@@ -14295,6 +14362,8 @@ type ContentItem_ContentItemHeaderBar_Fragment = {
   onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
+type ContentItem_ContentItemHeroLayout_Fragment = { __typename: "ContentItemHeroLayout" };
+
 type ContentItem_ContentItemHint_Fragment = {
   __typename: "ContentItemHint";
   id: string;
@@ -15456,6 +15525,7 @@ export type ContentItemFragment =
   | ContentItem_ContentItemFade_Fragment
   | ContentItem_ContentItemForm_Fragment
   | ContentItem_ContentItemHeaderBar_Fragment
+  | ContentItem_ContentItemHeroLayout_Fragment
   | ContentItem_ContentItemHint_Fragment
   | ContentItem_ContentItemImage_Fragment
   | ContentItem_ContentItemImageChoice_Fragment
@@ -18916,6 +18986,7 @@ export type SduiSectionFragment = {
           onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         }
+      | { __typename: "ContentItemHeroLayout" }
       | {
           __typename: "ContentItemHint";
           id: string;
@@ -23560,6 +23631,7 @@ export type GetSduiJourneyQuery = {
           onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         }
+      | { __typename: "ContentItemHeroLayout" }
       | {
           __typename: "ContentItemHint";
           id: string;
@@ -25196,6 +25268,7 @@ export type GetSduiJourneyQuery = {
             onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           }
+        | { __typename: "ContentItemHeroLayout" }
         | {
             __typename: "ContentItemHint";
             id: string;
@@ -26651,17 +26724,22 @@ export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: 
 
 export type GetUserNotificationsSettingsQuery = {
   __typename?: "Query";
-  pushNotifications?: Array<{
-    __typename?: "NotificationSettingsProps";
+  pushNotifications?: {
+    __typename?: "MobileUserNotificationsSettings";
     id: string;
-    type: UserNotificationsType;
-    name: string;
-    alertTimestamp?: string | null;
-    isActive: boolean;
-    isAvailable: boolean;
-    order: number;
-    description?: string | null;
-  } | null> | null;
+    visible: boolean;
+    notifications: Array<{
+      __typename?: "NotificationSettingsProps";
+      id: string;
+      type: UserNotificationsType;
+      name: string;
+      alertTimestamp?: string | null;
+      isActive: boolean;
+      isAvailable: boolean;
+      order: number;
+      description?: string | null;
+    }>;
+  } | null;
   emailNotifications?: Array<{
     __typename?: "NotificationSettingsProps";
     id: string;
@@ -26893,6 +26971,7 @@ export type GetPerkSubscriptionInfoQuery = {
           > | null;
         }
       | { __typename: "ContentItemHeaderBar" }
+      | { __typename: "ContentItemHeroLayout" }
       | { __typename: "ContentItemHint" }
       | {
           __typename: "ContentItemImage";
@@ -29220,6 +29299,7 @@ export type GetSduiStaticStepQuery = {
           onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         }
+      | { __typename: "ContentItemHeroLayout" }
       | {
           __typename: "ContentItemHint";
           id: string;
@@ -30856,6 +30936,7 @@ export type GetSduiStaticStepQuery = {
             onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           }
+        | { __typename: "ContentItemHeroLayout" }
         | {
             __typename: "ContentItemHint";
             id: string;
@@ -35194,6 +35275,7 @@ export type GetYuScreenV5Query = {
                     payload?: string | null;
                   } | null;
                 }
+              | { __typename: "ContentItemHeroLayout" }
               | {
                   __typename: "ContentItemHint";
                   id: string;
@@ -37071,6 +37153,7 @@ export type GetYuScreenV5SectionsQuery = {
                 onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
                 onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
               }
+            | { __typename: "ContentItemHeroLayout" }
             | {
                 __typename: "ContentItemHint";
                 id: string;
@@ -39292,6 +39375,7 @@ type YuScreenSection_SduiSection_Fragment = {
           onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         }
+      | { __typename: "ContentItemHeroLayout" }
       | {
           __typename: "ContentItemHint";
           id: string;
@@ -76423,10 +76507,23 @@ export const GetUserNotificationsSettingsDocument = {
           {
             kind: "Field",
             alias: { kind: "Name", value: "pushNotifications" },
-            name: { kind: "Name", value: "getUserNotificationsSettings" },
+            name: { kind: "Name", value: "getMobileUserNotificationsSettings" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "NotificationSettingsProps" } }],
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "notifications" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "NotificationSettingsProps" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "visible" } },
+              ],
             },
           },
           {

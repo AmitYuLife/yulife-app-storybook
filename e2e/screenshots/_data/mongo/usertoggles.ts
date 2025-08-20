@@ -14,7 +14,6 @@ export const CUSTOMER_73_TOGGLES = {
     features: {
       ...allTogglesTrue.data.features,
       useNewLeaderboardServices: true,
-      showNotifications: true,
       showNotificationCentre: true,
       showCommunityGoals: true,
       showGoals: true,

@@ -23,7 +23,6 @@ export const allTogglesTrue = {
     _id: generateRandomMongoId(),
     userId: generateRandomMongoId(),
     features: {
-      showNotifications: true,
       showStreaks: true,
       showCounter: true,
       showBuildNumber: true,
@@ -116,7 +115,6 @@ export const allTogglesTrueFor_PLI = {
     _id: generateRandomMongoId(),
     userId: generateRandomMongoId(),
     features: {
-      showNotifications: true,
       showStreaks: true,
       showCounter: true,
       showBuildNumber: true,
@@ -167,7 +165,6 @@ export const mediaContentToggle = {
     _id: generateRandomMongoId(),
     userId: generateRandomMongoId(),
     features: {
-      showNotifications: true,
       showStreaks: true,
       showCounter: true,
       showBuildNumber: true,
@@ -218,7 +215,6 @@ export const allTogglesTrueFor_PLI_V4 = {
     _id: generateRandomMongoId(),
     userId: generateRandomMongoId(),
     features: {
-      showNotifications: true,
       showBuildNumber: true,
       showSettings: true,
       familyIncomeBenefits: true,
@@ -251,7 +247,6 @@ export const DEFAULT_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: generateRandomMongoId(),
     features: {
-      showNotifications: true,
       showStreaks: true,
       showCounter: true,
       showBuildNumber: true,
