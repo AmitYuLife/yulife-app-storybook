@@ -11,6 +11,7 @@ import { gql } from "@graphql/__generated";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { getContentLocationQueryToRefetch, ContentLocationPlacement } from "@utils/contentLocation";
 import { REWARD_LOCATION_MODAL } from "@ids";
+import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
 
 type Props = {
   isActive: boolean;
@@ -30,7 +31,7 @@ const _FirstTimeContentLocationSelection = (props: Props) => {
   ]);
 
   const [updateContentLocation] = useMutation(gql("UpdateMobileUserContentLocationDocument"), {
-    refetchQueries: getContentLocationQueryToRefetch(placement),
+    refetchQueries: filterRefetchQueries(getContentLocationQueryToRefetch(placement)),
   });
 
   const handleConfirmPress = useCallback(async () => {

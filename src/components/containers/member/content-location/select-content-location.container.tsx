@@ -12,6 +12,7 @@ import { useTranslation } from "@hooks";
 import { gql } from "@graphql/__generated";
 import InfoPanel from "@components/molecules/info-panel/info-panel";
 import { getContentLocationQueryToRefetch, ContentLocationPlacement } from "@utils/contentLocation";
+import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
 
 interface IProps {
   placement: ContentLocationPlacement;
@@ -33,7 +34,10 @@ const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
   });
 
   const [updateMobileUserContentLocation, { loading }] = useMutation(gql("UpdateMobileUserContentLocationDocument"), {
-    refetchQueries: ["GetMobileAvailableContentLocations", ...getContentLocationQueryToRefetch(placement)],
+    refetchQueries: filterRefetchQueries([
+      "GetMobileAvailableContentLocations",
+      ...getContentLocationQueryToRefetch(placement),
+    ]),
   });
 
   useEffect(() => {
