@@ -1,5 +1,4 @@
 import { Box, TextTemplate } from "@atoms";
-import { BATTLE_PASS_LIST_ITEM } from "@ids";
 import { t } from "@locale";
 import { Colours } from "@styles";
 import { memo } from "react";
@@ -30,7 +29,6 @@ export const LevelComponent = memo((props: Props) => {
       alignItems="center"
       justifyContent="center"
       bg="rgba(0,0,0,0.1)"
-      testID={BATTLE_PASS_LIST_ITEM(props.position)}
     >
       <TextTemplate
         type="l1b"

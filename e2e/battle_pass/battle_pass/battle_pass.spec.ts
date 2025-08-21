@@ -120,7 +120,7 @@ Feature("I can view and use all battle pass features", async () => {
     When("I tap to claim my prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
       Then("I should be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
       Then("I should see level 2 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
-      Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
+      Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(1), 2000));
       Then("I should see the correct remaining rewards count", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("2 rewards remaining"), 2000));
     });
     When("I terminate the app", when.terminateApp, async () => {
@@ -205,7 +205,7 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see the random extra challenge reward", then.extraChallengeRewardModalVisible);
     });
     When("I tap to claim the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
-      Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
+      Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(2), 2000));
       Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
     });
     When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON, 2000), async () => {
