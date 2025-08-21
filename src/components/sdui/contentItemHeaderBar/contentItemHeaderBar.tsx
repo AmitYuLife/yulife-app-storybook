@@ -45,6 +45,10 @@ export const ContentItemHeaderBar = memo((props: Props) => {
   const colorGuard = color || Colours.neutral.n800;
 
   const backHandler = useCallback(() => {
+    if (isSduiLoading) {
+      return false;
+    }
+
     if (onLeftIconPress) {
       handleLeftIconPress();
       return true;
@@ -56,7 +60,7 @@ export const ContentItemHeaderBar = memo((props: Props) => {
     }
 
     return true;
-  }, [handleLeftIconPress, handleRightIconPress]);
+  }, [handleLeftIconPress, handleRightIconPress, isSduiLoading]);
 
   useBackHandler(backHandler);
   const { updateBus } = useSduiActionUpdateBus();
