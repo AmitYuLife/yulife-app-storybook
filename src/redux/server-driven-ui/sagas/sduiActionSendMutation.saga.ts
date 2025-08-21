@@ -40,6 +40,7 @@ const buildMutation = (data: IParsedJson): MutationRequest => {
       client().mutate({
         ...args,
         mutation: gql(data.customMutation),
+        awaitRefetchQueries: true,
       });
   }
 };
@@ -53,13 +54,14 @@ export function* sduiActionSendMutation(action: SduiSagaAction) {
   const serverParsedPayload = isValid ? data : SERVER_PARSED_PAYLOAD_FALLBACK;
 
   try {
-    yield put(setLoadingState({ __disabled: true }));
     const currentMutation = buildMutation(serverParsedPayload);
 
     if (!currentMutation) {
       // unsupported mutation
       return;
     }
+
+    yield put(setLoadingState({ __disabled: true }));
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { mutation: _, customMutation: __, refetchQueries, responseGetterPath, ...otherProps } = serverParsedPayload;
