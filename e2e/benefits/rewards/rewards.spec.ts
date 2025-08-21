@@ -207,6 +207,7 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("As a user with multiple employments, if one of my employments does not have reward store settings explicitly set, my overall store access should resolve to the default values", scenario.start, async () => {
+    // storeAccessLevel has been purged as a concept, but this scenario still serves as a test for concurrent employments settings conflict resolutions
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_130.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see that I have access to the rewards store, as is the default setting value", then.rewardsLocationModalVisible());
     });
