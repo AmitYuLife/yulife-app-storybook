@@ -3,7 +3,7 @@ import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
-import { BUSINESS_ACCOUNT_USA_2_NPC, CUSTOMER_USA_4 } from "../_data";
+import { BUSINESS_ACCOUNT_USA_2_NPC, CUSTOMER_USA_3, CUSTOMER_USA_4, CUSTOMER_USA_5 } from "../_data";
 import * as ids from "@ids";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 import { idVisible } from "@utils";
@@ -68,6 +68,15 @@ Feature("Mutual of Omaha specific tests", async () => {
       When("I scroll to the bottom of the rewards'", when.mysteryRewardUsPreviewScrollToBottom, async () => {
         Then("I should be able to see the US related rewards such as `Starbucks US voucher'", then.checkUsMysteryBoxRewardsVisible);
       });
+    });
+  });
+
+  Scenario("Restricted goals work on the MoO pricing tier", scenario.start, async () => {
+    Given("I login as a non-MoO pricing tier user and go to the YuCoin screen", given.logInAndGoToTab("yucoin", CUSTOMER_USA_5.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+      Then("I should see the event card 'step to it! - MoO Restriction test' ", then.idVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 2000));
+    });
+    When("I log out and log in again with a MoO pricing tier user", when.fullRestartAndLogin(CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+      Then("I should NOT see the event card 'step to it! - MoO Restriction test' ", then.idNotVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 2000));
     });
   });
 });

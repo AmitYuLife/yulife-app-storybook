@@ -33,6 +33,8 @@ export const {
   terminateApp,
 } = navigation.common;
 
+export const { fullRestartAndLogin } = navigation.login;
+
 export {
   triggerGiftReceivedNotification,
   triggerIssueCoinToNpcBiz,
