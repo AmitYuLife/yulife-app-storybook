@@ -4545,10 +4545,10 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@hcaptcha/react-native-hcaptcha@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@hcaptcha/react-native-hcaptcha/-/react-native-hcaptcha-2.0.0.tgz#f719edc25b6164c8f922edc0cdd5b51e42aff5b4"
-  integrity sha512-OZRAAwBPAGUqQocYERU7XsEj0tI/bwDZZDDVsxLNk1lvVQI853+d7C8G8zpHUQuo6/iqgmHnjSePRKoMBCEkZQ==
+"@hcaptcha/react-native-hcaptcha@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@hcaptcha/react-native-hcaptcha/-/react-native-hcaptcha-2.0.5.tgz#783f61785a2d2f19992adecb8daa0e37e74378a4"
+  integrity sha512-6iFJlQFTO8V/byeOyH85gUpa4rP4zWd26pOctei9Ag++9i+tN+8U0Tyff8L2M0oVUEIMhaqh4TA6w8nDcIrkyQ==
   dependencies:
     "@babel/core" "^7.26.5"
     "@babel/preset-env" "^7.26.5"

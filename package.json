@@ -66,7 +66,7 @@
     "@bugsnag/plugin-react-native-navigation": "^7.19.0",
     "@dotlottie/react-player": "^1.6.19",
     "@expo/config-plugins": "~8.0.0",
-    "@hcaptcha/react-native-hcaptcha": "2.0.0",
+    "@hcaptcha/react-native-hcaptcha": "2.0.5",
     "@intercom/intercom-react-native": "^8.6.0",
     "@leanplum/react-native-sdk": "^2.3.0",
     "@lottiefiles/react-lottie-player": "^3.5.3",
