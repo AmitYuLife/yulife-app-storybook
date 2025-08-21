@@ -83,7 +83,14 @@ export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, si
   return (
     <Box pl={40} pr={40} pt={0}>
       <Markdown text={t("captcha_input.hcaptcha_disclaimer")} markdownStyles={markdownStyles} />
-      <ConfirmHcaptcha siteKey={siteKey} size={size} onMessage={onMessage} ref={captchaRef} hasBackdrop={false} />
+      <ConfirmHcaptcha
+        siteKey={siteKey}
+        size={size}
+        onMessage={onMessage}
+        ref={captchaRef}
+        hasBackdrop={false}
+        useSafeAreaView={false}
+      />
     </Box>
   );
 });
