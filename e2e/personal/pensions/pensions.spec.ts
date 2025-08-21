@@ -22,7 +22,7 @@ Feature("Smart Pension", async () => {
       Then("I cannot see the carousel item", then.idNotVisible(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")));
     });
     When("I scroll until I see the pension card", when.scrollFromID(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, "down", "fast", 0.15), async () => {
-      When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")), async () => {
+      When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension"), 3000), async () => {
         Then("I can see an active pension contribution page", then.canSeePensionContributionPage("active", PensionInfoUser111, "5"));
       });
     });
