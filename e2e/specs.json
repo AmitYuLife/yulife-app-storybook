@@ -112,5 +112,9 @@
   "health": {
     "region": "UK",
     "specs": ["health/*.spec.ts"]
+  },
+  "reward-passes": {
+    "region": "UK",
+    "specs": ["reward_passes/**/*.spec.ts"]
   }
 }

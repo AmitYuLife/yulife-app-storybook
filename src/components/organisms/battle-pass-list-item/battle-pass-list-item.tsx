@@ -13,6 +13,7 @@ import {
   CLAIMED_BATTLE_PASS_LIST_ITEM,
   COMPLETED_BATTLE_PASS_LIST_ITEM,
   BATTLE_PASS_LIST_ITEM_TITLE,
+  BATTLE_PASS_LIST_ITEM,
 } from "@ids";
 import Logger from "@services/logging/logger";
 import { usePressEffect, useTrack } from "@hooks";
@@ -232,6 +233,7 @@ const BattlePassListItem = ({
         onPress={handleContainerPress}
         disabled={!enableModal}
         accessibilityHint={t("screens.battle_pass.accessibility.view_details", { title })}
+        testID={BATTLE_PASS_LIST_ITEM(position)}
       >
         {!background ? null : (
           <Box position="absolute" top={0} left={0}>
@@ -315,7 +317,7 @@ const BattlePassListItem = ({
           <View
             pointerEvents="none"
             style={battlePassListItemStyles.claimedOverlay}
-            testID={CLAIMED_BATTLE_PASS_LIST_ITEM}
+            testID={CLAIMED_BATTLE_PASS_LIST_ITEM(position)}
           />
           <View pointerEvents="none" style={battlePassListItemStyles.claimedWrapper}>
             <SuccessIcon size={24} colour={tickColour || "#956AFF"} checked={true} />
