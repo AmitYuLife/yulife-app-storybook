@@ -1,4 +1,4 @@
-import { Given, When, Then, Feature, Scenario, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Given, When, Then, Feature, Scenario } from "@yu-life/yulife-bdd-framework";
 import { couponsTermsAndConditions, endOfSeasonHarmonyTitle, EndOfSeasonMockItems } from "./_resources/fixtures";
 import { outOfCoinsMessage } from "./_resources/constants";
 import { BUSINESS_THE_BEAR, BUSINESS_ACCOUNT_2 } from "battle_pass/_data";
@@ -131,11 +131,11 @@ Feature("I can view and use all battle pass features", async () => {
         });
       });
     });
-    When("I tap on my 'trees' leaderboard avatar", when.tapIDAtIndex(ids.DONATION_LIST_AVATARS(1), 0, 2000), async () => {
+    When("I tap the 'Plant trees' donation list item", when.tapID(ids.IMPACT_DONATION_TITLE("Plant trees")), async () => {
       Then("I should see the correct donated amount and position for the 'trees' leaderboard", then.idVisible(ids.LEADERBOARD_NAME("Carmy Berzatto", "40", 1, "#464647")));
     });
     When("I tap to go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR, 2000), async () => {
-      When("I tap on the 'water' leaderboard avatar", when.tapIDAtIndex(ids.DONATION_LIST_AVATARS(1), 1, 2000), async () => {
+      When("I tap the 'Provide water' donation list item", when.tapID(ids.IMPACT_DONATION_TITLE("Provide water")), async () => {
         Then("I should also see correct donated amount for the 'water' leaderboard", then.idVisible(ids.LEADERBOARD_NAME("Carmy Berzatto", "20", 1, "#464647")));
       });
     });
