@@ -1,4 +1,4 @@
-import React, { ComponentProps } from "react";
+import React, { ComponentProps, RefObject } from "react";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import TopBar from "./top-bar";
 import { TOP_BAR } from "@styles";
@@ -12,6 +12,7 @@ interface Props {
   rightIcon?: RightIconTypes;
   hasWhiteBackground?: boolean;
   type?: ComponentProps<typeof TopBar>["type"];
+  leftRef?: RefObject<View>;
   name?: ComponentProps<typeof TopBar>["name"];
   menuLabel?: ComponentProps<typeof TopBar>["menuLabel"];
   timer?: ComponentProps<typeof TopBar>["timer"];
@@ -26,6 +27,7 @@ export const TopBarAbsolute = (props: Props) => {
     hasShadow,
     rightIcon,
     type,
+    leftRef,
     menuLabel,
     timer,
     skipFetchingNotifications,
@@ -42,6 +44,7 @@ export const TopBarAbsolute = (props: Props) => {
         rightIcon={rightIcon}
         leftIcon={leftIcon}
         onPressLeftIcon={onPressLeftIcon}
+        leftRef={leftRef}
         timer={timer}
         skipFetchingNotifications={skipFetchingNotifications}
       />

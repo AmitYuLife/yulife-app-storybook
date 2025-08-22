@@ -1,9 +1,9 @@
 import { padNum } from "@utils";
 import { Colours } from "@styles/index";
-import { ComponentProps } from "react";
+import { ComponentProps, RefObject } from "react";
 import { LeftIcon, IIcon } from "./subcomponents/left";
 import Right, { RightIconTypes } from "./subcomponents/right";
-import { LayoutChangeEvent } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 import { TopBarType } from "@graphql/__generated";
 
 export type TopBarTypes = "default" | "white" | "desert" | "mountain" | "forest";
@@ -23,6 +23,7 @@ export type TopBarViewProps = {
   menuLabel?: string;
   badges: Record<string, boolean>;
   leftIcon?: LeftIcon;
+  leftRef?: RefObject<View>;
   leftIcons?: IIcon[];
   middleLabel?: string;
   type?: TopBarTypes;

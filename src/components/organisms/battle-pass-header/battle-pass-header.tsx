@@ -1,4 +1,4 @@
-import { memo, RefObject } from "react";
+import { memo, RefObject, useRef } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { BattlePassList, BattlePassProgressBar } from "@organisms";
@@ -7,12 +7,13 @@ import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pas
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
 import { Box, TextTemplate } from "@atoms";
-import { useScrollToItem } from "@hooks";
+import { usePrizeHintPopup, useScrollToItem } from "@hooks";
 import { BATTLE_PASS_DESCRIPTION, BATTLE_PASS_TITLE } from "@ids";
 import { IBoxProps } from "@atoms/box/box.types";
 import { ShineButton } from "@components/molecules";
 import { WalletIcon } from "@atoms/icon/wallet-icon";
 import { t } from "@locale";
+import { ROUTES } from "@navigation/constants";
 
 interface IBattlePassHeaderProps extends IBoxProps {
   title: string;
@@ -38,10 +39,17 @@ const BattlePassHeader = ({
   onPressWallet,
   ...props
 }: IBattlePassHeaderProps) => {
+  const walletRef = useRef<View>(null);
   const { activeListRef, scrollToReward } = useScrollToItem({
     items,
     ref: listRef,
     scrollToDependencies: [progressStatus.level],
+  });
+
+  usePrizeHintPopup({
+    routeIds: [ROUTES.purchases],
+    isEnabled: true,
+    viewRef: walletRef,
   });
 
   return (
@@ -58,11 +66,13 @@ const BattlePassHeader = ({
           </TextTemplate>
         </Box>
         {onPressWallet ? (
-          <ShineButton
-            icon={<WalletIcon size={22} />}
-            label={t("screens.rewards.storefront.wallet")}
-            onPress={onPressWallet}
-          />
+          <Box viewRef={walletRef}>
+            <ShineButton
+              icon={<WalletIcon size={22} />}
+              label={t("screens.rewards.storefront.wallet")}
+              onPress={onPressWallet}
+            />
+          </Box>
         ) : null}
       </Box>
       <BattlePassList

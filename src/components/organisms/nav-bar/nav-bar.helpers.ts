@@ -1,3 +1,4 @@
+import { ROUTES } from "@navigation/constants";
 import { Colours } from "@styles";
 
 export interface INavBarColourScheme {
@@ -20,7 +21,7 @@ export interface IIconProps {
 }
 
 export interface ILabel {
-  id: string;
+  id: keyof typeof ROUTES;
   name: string;
   onPress: () => void;
 }

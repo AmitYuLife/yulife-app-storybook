@@ -26,12 +26,18 @@ import { IRewardContainerProps, RewardsManagerActionTypes } from "@components/co
 import FirstTimeContentLocationSelection from "@components/screens/member/content-location/first-time-content-location-selection";
 import { Navigation } from "@navigation/main";
 import { isEmpty } from "lodash";
-import { prizesAwarded } from "@redux/prizes/prizes.actions";
 import { BattlePassEndOfSeasonModal } from "@components/modals";
 import { t } from "@locale";
+import { prizesAwarded } from "@redux/prizes/prizes.actions";
+import { getModalState } from "@redux/app/app.selectors";
 
-const BattlePassContainer = ({ showNavigation = false, onPressWallet, isInnerScreen }: IRewardContainerProps) => {
+const BattlePassContainer = ({
+  showNavigation = false,
+  onPressWallet: propOnPressWallet,
+  isInnerScreen,
+}: IRewardContainerProps) => {
   const { componentId } = useNavigation();
+  const activeModal = useSelector(getModalState);
   const { onScroll, dispatch: rewardsManagerDispatch } = useContext(RewardsManagerContext);
 
   const onBack = useCallback(() => {
@@ -39,6 +45,20 @@ const BattlePassContainer = ({ showNavigation = false, onPressWallet, isInnerScr
       Navigation.pop(componentId);
     }
   }, [componentId, showNavigation]);
+
+  const onPressWallet = useCallback(() => {
+    if (propOnPressWallet) {
+      propOnPressWallet();
+      return;
+    }
+
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.wallet,
+        name: ROUTES.wallet,
+      },
+    });
+  }, [componentId, propOnPressWallet]);
 
   const state = useRef<{
     donationUpdates: Record<string, number>;
@@ -120,6 +140,11 @@ const BattlePassContainer = ({ showNavigation = false, onPressWallet, isInnerScr
   }, [completeMobileGameBattlePassSeason, refetch]);
 
   const showEndOfSeasonModal = useCallback(() => {
+    if (activeModal) {
+      // Wait for the previous modal (usually chest) to be closed before opening
+      return;
+    }
+
     const isAllRewardsClaimed = state.current.battlePass?.rewards.every((r) => r.status === "claimed");
     const endOfSeasonInfo = (state.current.templates || []).map((item) => ({
       ...item.endOfSeasonInfo,
@@ -127,6 +152,7 @@ const BattlePassContainer = ({ showNavigation = false, onPressWallet, isInnerScr
 
     if (isAllRewardsClaimed && !state.current.isSeasonComplete && state.current.isEndOfSeasonModalEnabled) {
       state.current.isEndOfSeasonModalEnabled = false;
+
       Navigation.showOverlayWithChild({
         children: (
           <BattlePassEndOfSeasonModal
@@ -139,11 +165,11 @@ const BattlePassContainer = ({ showNavigation = false, onPressWallet, isInnerScr
         withBlurBackground: false,
       });
     }
-  }, [onComplete, battlePass?.title, isCompleteLoading, loading]);
+  }, [onComplete, battlePass?.title, isCompleteLoading, activeModal, loading]);
 
   useEffect(() => {
     showEndOfSeasonModal();
-  }, [battlePass?.rewards]);
+  }, [battlePass?.rewards, showEndOfSeasonModal]);
 
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
     refetchQueries: [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId } }],

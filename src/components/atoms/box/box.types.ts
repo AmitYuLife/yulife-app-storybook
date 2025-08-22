@@ -1,5 +1,5 @@
-import { Component, ReactNode } from "react";
-import { ViewStyle } from "react-native";
+import { Component, ReactNode, RefObject } from "react";
+import { View, ViewStyle } from "react-native";
 import { AnimatedRef, BaseAnimationBuilder } from "react-native-reanimated";
 
 export const PROPERTY_MAP = {
@@ -125,7 +125,7 @@ interface IBoxSpecialProps {
   style?: ViewStyle;
   children?: ReactNode;
   disableAutoAdjust?: boolean;
-  animatedRef?: AnimatedRef<Component>;
+  viewRef?: AnimatedRef<Component> | RefObject<View>;
 
   /**
    * Applies flex-direction and align-items center
