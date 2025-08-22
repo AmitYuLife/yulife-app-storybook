@@ -6,6 +6,7 @@ import { mapServerStyles } from "../_utils/mapServerStyles";
 export const ContentItemMarkdown = memo((props: GqlMarkdown) => {
   return (
     <HeadingAndCopy
+      testID={props.id}
       title={props.title}
       markdown={props.parsedMarkdown}
       wrapperStyle={mapServerStyles(props.styles)}

@@ -18,7 +18,7 @@ interface IProps {
 }
 
 const HeadingAndCopy = (props: IProps) => {
-  const { markdown, markdownContainerStyle, title, titleType = "h3", wrapperStyle } = props;
+  const { markdown, markdownContainerStyle, title, titleType = "h3", wrapperStyle, testID } = props;
   const titleMarginTop = !title ? {} : { marginTop: Style.adjust(30) };
 
   const safeMarkdownStyles = useMemo(() => {
@@ -29,7 +29,7 @@ const HeadingAndCopy = (props: IProps) => {
   }, [props.markdownStyles]);
 
   return (
-    <View style={[styles.wrapper, titleMarginTop, wrapperStyle]} testID={MARKDOWN(props.markdown)}>
+    <View style={[styles.wrapper, titleMarginTop, wrapperStyle]} testID={testID || MARKDOWN(markdown)}>
       {!title ? null : <TextTemplate type={titleType}>{title}</TextTemplate>}
       <Markdown
         text={markdown}
