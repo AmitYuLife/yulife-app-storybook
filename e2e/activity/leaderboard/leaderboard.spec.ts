@@ -9,8 +9,10 @@ import * as data from "../_data";
 import {
   DefaultStepsLeaderboard,
   DefaultYudokuLeaderboard,
+  User143ImpactPassLeaderboardItem,
   User16LeaderboardItem,
   User17LeaderboardItem,
+  User18ImpactPassLeaderboardItem,
   User18LeaderboardItem,
   User20LeaderboardItem,
   User39LeaderboardItem,
@@ -450,6 +452,42 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       When("I select to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
         Then("I can see my user with their updated steps", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Lead Erboard", "200", 2, "leaderboard"), 0));
         Then("I can see another user with their steps that have still tapered out", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0, 1500));
+      });
+    });
+  });
+
+  Scenario("I should not be able to search for, or send a gift to a user who has opted-out of all leaderboards, but has donated and is visible on the ESG leaderboard.", scenario.start, async () => {
+    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([data.BUSINESS_ACCOUNT_2.data.business_account_id]), async () => {
+      Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
+        Given("I login", given.logInAndGoToTab("rewards", data.CUSTOMER_18, data.AUTH_18), async () => {
+          Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+        });
+      });
+    });
+    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
+      Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
+      Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520)));
+    });
+    When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
+      Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+      Then("I should 2 avatar on the 'Plant trees' donations list", then.idVisibleAtIndex(ids.DONATION_LIST_AVATARS(2), 0, 2000));
+    });
+    When("I tap on my 'trees' leaderboard avatar", when.tapIDAtIndex(ids.DONATION_LIST_AVATARS(2), 0, 2000), async () => {
+      Then("I should see Monkey D Luffy in 1st position for the 'trees' leaderboard", then.impactPassLeaderboardVisible([User143ImpactPassLeaderboardItem], 2000));
+      Then("I should see myself Michael Scott in 2nd position for the 'trees' leaderboard", then.impactPassLeaderboardVisible([User18ImpactPassLeaderboardItem], 2000));
+    });
+    When("I tap to go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR, 2000), async () => {
+      When("I to go back again", when.tapID(ids.BACK_BUTTON, 2000), async () => {
+        Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
+      });
+    });
+    When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
+      Then("I should be back on the leaderboard", then.leaderboardVisible([User18LeaderboardItem], 2000));
+      Then("I should not see Monkey D Luffy listed on the 'steps' leaderboard as he has opted out", then.idNotVisible(ids.LEADERBOARD_EMPLOYEE_NAME("Monkey D Luffy")));
+    });
+    When("I tap on the search icon", when.tapID(ids.SEARCH_BUTTON, 2000), async () => {
+      When("I search for Monkey D Luffy who hasn't consented to the leaderboard", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_143)), async () => {
+        Then("I should not see any user", then.searchReferralVisible);
       });
     });
   });

@@ -609,3 +609,24 @@ export const CUSTOMER_141_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_143_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_143.data.customerId,
+    businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
+    features: {
+      ...allTogglesTrue.data.features,
+      useNewLeaderboardServices: true,
+      showYucoinPowerButton: true,
+      tempEnableYuScreenV5: true,
+      showRewardsProducts: true,
+      showGoalProductRewardMilestones: true,
+      enableProductGoals: true,
+      tempGameBattlePassNewService: true,
+      enableChallengeBonuses: true,
+    },
+  },
+} as IDatabaseItem;

@@ -472,3 +472,18 @@ export const USER_ONBOARDING_142 = {
     archived: false,
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_143 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_143.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
+    businessName: "Justice League",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+    },
+  },
+} as IDatabaseItem;

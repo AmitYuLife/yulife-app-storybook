@@ -7,7 +7,11 @@ import {
   leaderboardConsentDesc,
   leaderboardConsentHeading,
 } from "../_resources/constants";
-import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types";
+import {
+  ImpactPassLeaderboard,
+  SocialGroupLeaderboard,
+  UserLeaderboardListItem,
+} from "../_resources/types";
 
 export const {
   textVisible,
@@ -72,6 +76,19 @@ export const leaderboardVisible =
 
     for (const { name, rank, score } of customers) {
       await idVisibleAtIndex(ids.LEADERBOARD_NAME(name, score, rank, "leaderboard"), 0, 3000)();
+    }
+  };
+
+export const impactPassLeaderboardVisible =
+  (customers: ImpactPassLeaderboard[], waitTime?: number) => async () => {
+    await wait(waitTime)();
+    if (device.name.includes("(iPhone SE (3rd generation))")) {
+      await swipeFromText("Steps", "up", "fast")();
+    }
+
+    for (const { name, rank, score } of customers) {
+      const scoreStr = String(score);
+      await idVisibleAtIndex(ids.LEADERBOARD_NAME(name, scoreStr, rank, "leaderboard"), 0, 3000)();
     }
   };
 

@@ -130,6 +130,19 @@ export const BUSINESS_2_BIRTHDAY_SETTINGS = {
   },
 } as IDatabaseItem;
 
+export const BUSINESS_2_GAME_BATTLEPASS_DONATIONS_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.battlePass.donations",
+    entityId: BUSINESS_ACCOUNT_2.data.business_account_id,
+    entityType: "business",
+    settings: {
+      isEnabled: true,
+    },
+  },
+} as IDatabaseItem;
+
 export const BUSINESS_3_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {

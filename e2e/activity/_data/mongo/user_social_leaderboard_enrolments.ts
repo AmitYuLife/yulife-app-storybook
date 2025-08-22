@@ -20,6 +20,7 @@ import {
   SOCIAL_GROUP_LEADERBOARD_C4_STEPS,
   SOCIAL_GROUP_LEADERBOARD_CONSENT_STEPS,
   SOCIAL_GROUP_LEADERBOARD_LOCKED_STEPS,
+  SOCIAL_GROUP_LEADERBOARD_TREES_IMPACT,
   SOCIAL_GROUP_LEADERBOARD_U1_STEPS,
 } from "./social_group_leaderboards";
 import { USER_20, USER_39, USER_40, USER_44, USER_71 } from "./users";
@@ -76,6 +77,19 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_18_C1_STEPS = {
     isLocked: false,
     userId: customer.CUSTOMER_18.data.customerId,
     socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id,
+  },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_18_TREES_IMPACT = {
+  type: "mongo",
+  modelName: "user_social_leaderboard_enrolments",
+  data: {
+    _id: generateRandomMongoId(),
+    consent: true,
+    archived: false,
+    isLocked: false,
+    userId: customer.CUSTOMER_18.data.customerId,
+    socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_TREES_IMPACT.data._id,
   },
 } as IDatabaseItem;
 
@@ -610,5 +624,31 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_139_CONSENT_STEPS = {
     isLocked: false,
     userId: customer.CUSTOMER_139.data.customerId,
     socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_CONSENT_STEPS.data._id,
+  },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_143_C1_STEPS = {
+  type: "mongo",
+  modelName: "user_social_leaderboard_enrolments",
+  data: {
+    _id: generateRandomMongoId(),
+    consent: false,
+    archived: false,
+    isLocked: false,
+    userId: customer.CUSTOMER_143.data.customerId,
+    socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id,
+  },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_143_TREES_IMPACT = {
+  type: "mongo",
+  modelName: "user_social_leaderboard_enrolments",
+  data: {
+    _id: generateRandomMongoId(),
+    consent: true,
+    archived: false,
+    isLocked: false,
+    userId: customer.CUSTOMER_143.data.customerId,
+    socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_TREES_IMPACT.data._id,
   },
 } as IDatabaseItem;
