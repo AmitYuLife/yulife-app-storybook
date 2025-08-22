@@ -37,9 +37,7 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
     yield spawn(() => Logger.logMixpanelEvent("end_challenge_triggered", { ...metaData, location: payload.location }));
   }
 
-  const activeLevelChallenge = active.levelSlotId || active.id;
-
-  if (activeLevelChallenge) {
+  if (active.id) {
     if (active.isCompleted) {
       yield put(challengeEndSuccessAction(null));
     } else {

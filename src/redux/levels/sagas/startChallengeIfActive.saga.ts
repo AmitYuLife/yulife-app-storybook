@@ -17,7 +17,6 @@ export default function* startChallengeIfActiveSaga() {
       subtype,
       yuHealth,
       endDateTime,
-      levelSlotId,
       fitKitTypes,
       startDateTime,
       createdBySource,
@@ -31,7 +30,7 @@ export default function* startChallengeIfActiveSaga() {
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
     const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
 
-    const challengeId = levelSlotId || id;
+    const challengeId = id;
     const isMeditation = subtype.includes("meditation");
     const hasChallengeEnded = moment().isAfter(endDateTime);
     const isActiveMediaChallenge = videoPlayerIsActive && challengeId;
@@ -72,7 +71,6 @@ export default function* startChallengeIfActiveSaga() {
       yield call(startChallenge, {
         subtype,
         endDateTime,
-        levelSlotId,
         fitKitTypes,
         startDateTime,
         videoPlayerIsActive,

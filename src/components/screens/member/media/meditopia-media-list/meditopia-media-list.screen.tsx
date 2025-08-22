@@ -24,7 +24,6 @@ interface IProps {
   onRightIconPress: () => void;
   handleOtherMeditationApp: (appName: string, button?: IButton) => void;
   otherAppLoading: string;
-  levelSlotId: string;
   logo: Source;
   buttons: IButton[];
   moreInformationPress: () => void;
@@ -42,7 +41,6 @@ const MeditopiaMediaListScreen = ({
   onRightIconPress,
   handleOtherMeditationApp,
   otherAppLoading,
-  levelSlotId,
   logo,
   buttons,
   promotionReward,
@@ -57,7 +55,6 @@ const MeditopiaMediaListScreen = ({
         name: ROUTES.mediaPlayer,
         passProps: {
           video,
-          levelSlotId,
           onLeftIconPress: () => Navigation.popTo(ROUTES.meditopiaMediaList),
           eventType: "mindfullness",
           orientation: "portrait",

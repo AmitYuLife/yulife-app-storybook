@@ -126,7 +126,6 @@ export function* startTrackingTime(endDateTime: string) {
 }
 
 type Args = {
-  levelSlotId: string;
   startDateTime: string;
   endDateTime: string;
   challengeId: string;

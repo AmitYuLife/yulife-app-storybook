@@ -16,14 +16,12 @@ type IInternalContent =
 
 interface IProps extends IInternalContent {
   componentId: string;
-  levelSlotId: string;
   levelSlotTemplateId: string;
   reward: number;
   level: number;
 }
 
 const FiitMediaListContainer = ({
-  levelSlotId,
   contentMediaTags,
   title,
   providerLogo,
@@ -79,7 +77,6 @@ const FiitMediaListContainer = ({
         name: ROUTES.mediaPlayer,
         passProps: {
           video,
-          levelSlotId,
           onLeftIconPress: () => Navigation.popTo(ROUTES.fiitMediaList),
           eventType: "workout",
           orientation: "landscape",

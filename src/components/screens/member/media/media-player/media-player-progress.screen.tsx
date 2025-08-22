@@ -112,7 +112,6 @@ const MediaPlayerProgressScreen = ({
       logMixpanelEventActionCreator("media_challenge_resume", {
         progress: videoProgress?.seconds,
         duration: videoToResume?.duration,
-        levelSlotId: activeLevel?.levelSlotId,
         id: activeLevel?.id,
         level: activeLevel?.level,
         yuniversalMap: activeLevel.yuniversalMap,
@@ -120,7 +119,6 @@ const MediaPlayerProgressScreen = ({
       })
     );
   }, [
-    activeLevel?.levelSlotId,
     activeLevel?.id,
     activeLevel?.level,
     activeLevel?.yuniversalMap,
@@ -171,7 +169,6 @@ const MediaPlayerProgressScreen = ({
           orientation: "portrait",
           eventType: "mindfullness",
           level: activeLevel?.level,
-          levelSlotId: activeLevel?.levelSlotId,
           levelSlotTemplateId: activeLevel?.levelSlotTemplateId,
           yuniversalMap: activeLevel?.yuniversalMap,
           startTimeInSeconds: activeVideoProgress.seconds,
@@ -186,7 +183,6 @@ const MediaPlayerProgressScreen = ({
   }, [
     activeLevel?.level,
     activeLevel?.yuniversalMap,
-    activeLevel?.levelSlotId,
     activeLevel?.levelSlotTemplateId,
     activeVideo,
     activeVideoProgress,

@@ -14,7 +14,6 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       challenge: { startDateTime, endDateTime: remoteEndDateTime, id },
       levelSlot: { subtype, fitKitTypes, shouldEndOnLastGoalAchieved, yuHealth },
     },
-    levelSlotId,
     videoDuration,
     videoPlayerIsActive,
   } = payload;
@@ -36,7 +35,6 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
 
     yield call(startChallenge, {
       endDateTime,
-      levelSlotId,
       startDateTime,
       subtype,
       fitKitTypes,

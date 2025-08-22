@@ -1,7 +1,6 @@
 mutation SubmitMobileQuestLevelSudokuSolution($results: MobileQuestSudokuSubmission!) {
   submitMobileQuestLevelSudokuSolution(results: $results) {
     level
-    levelSlotId
     startDateTime
     status
     endDateTime

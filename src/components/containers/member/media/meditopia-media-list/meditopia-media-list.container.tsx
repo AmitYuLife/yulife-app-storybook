@@ -24,7 +24,6 @@ interface IProps extends IInternalContent {
   componentId: string;
   createChallenge: (hideExternalLinks?: boolean) => void;
   yuHealth: YuHealthOptions;
-  levelSlotId: string;
   fitKitTypes: FitKitType[];
   tutorialUrl: string;
   level: number;
@@ -33,7 +32,6 @@ interface IProps extends IInternalContent {
 
 const MeditopiaMediaListContainer = ({
   createChallenge,
-  levelSlotId,
   fitKitTypes,
   componentId,
   yuHealth,
@@ -182,7 +180,6 @@ const MeditopiaMediaListContainer = ({
       logo={logo}
       buttons={buttons}
       description={description}
-      levelSlotId={levelSlotId}
       loading={isLoading}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}

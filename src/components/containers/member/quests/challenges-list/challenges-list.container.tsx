@@ -91,7 +91,6 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
 
       dispatch(
         challengeStartAction({
-          levelSlotId: slot.id,
           createMobileQuestLevelChallengeVariables: {
             level,
             levelSlotTemplateId: slot.levelSlotTemplateId,

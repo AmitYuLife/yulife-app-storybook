@@ -2,7 +2,6 @@ fragment UserActiveChallenge on ActiveChallenge {
   challenge {
     id
     level
-    levelSlotId
     levelSlotTemplateId
     status
     endDateTime

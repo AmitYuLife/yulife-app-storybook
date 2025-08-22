@@ -18,18 +18,11 @@ import client from "@graphql/_core/client";
 
 export default function* startChallengeSaga({ payload }: ReturnType<typeof challengeStartAction>) {
   try {
-    const { levelSlotId, challengeStartSuccessPayload, createMobileQuestLevelChallengeVariables } = payload;
+    const { challengeStartSuccessPayload, createMobileQuestLevelChallengeVariables } = payload;
 
-    const {
-      endDateTime,
-      challengeIsActive,
-      levelSlotId: activeLevelSlotId,
-      id,
-    }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
+    const { endDateTime, challengeIsActive, id }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
-    const activeChallengeId = activeLevelSlotId || id;
-
-    if (activeChallengeId || challengeIsActive || Boolean(endDateTime)) {
+    if (id || challengeIsActive || Boolean(endDateTime)) {
       yield put(challengeCancelAction());
       const { challengeResetFail } = yield race({
         challengeResetSuccess: take(CHALLENGE_RESET_SUCCESS),
@@ -66,7 +59,6 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
               yuHealth: toYuHealthReduxType(levelSlot.yuHealth),
             },
           },
-          levelSlotId,
           staleTimestamp,
           ...challengeStartSuccessPayload,
         })

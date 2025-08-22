@@ -27,6 +27,7 @@ import removeTabNotifications from "./0025_remove_tab_notifications";
 import removeHasAdBanner from "./0026_remove_has_ad_banner";
 import addTodayScreenToUserEvents from "./0027_add_today_screen_to_user_events";
 import addDebugPedometerStepsBeforeSubscribe from "./0028_debug_pedometer_steps_before_subscribe";
+import removeLevelSlotId from "./0029_remove_level_slot_id";
 
 export const migrations = {
   "0": initial,
@@ -58,4 +59,5 @@ export const migrations = {
   "26": removeHasAdBanner,
   "27": addTodayScreenToUserEvents,
   "28": addDebugPedometerStepsBeforeSubscribe,
+  "29": removeLevelSlotId,
 };

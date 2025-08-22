@@ -216,7 +216,6 @@ const getLevelProps = (
               name: MODALS.EOTWChest,
               passProps: {
                 level: currentLevel,
-                levelId: level.id,
                 yuniversalLevel,
                 assets,
                 yuniversalMap,

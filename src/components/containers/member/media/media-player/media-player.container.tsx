@@ -33,7 +33,6 @@ interface ITrackingInfo {
 
 export interface IMediaPlayerContainerProps {
   video: IVideo;
-  levelSlotId: string;
   // to be used for challengeStartAction
   levelSlotTemplateId: string;
   onLeftIconPress: () => void;
@@ -54,7 +53,6 @@ type PromiseRef = {
 
 const MediaPlayerContainer = ({
   video,
-  levelSlotId,
   levelSlotTemplateId,
   onLeftIconPress,
   eventType,
@@ -96,7 +94,6 @@ const MediaPlayerContainer = ({
     if (shouldCreateChallenge) {
       dispatch(
         challengeStartAction({
-          levelSlotId,
           challengeStartSuccessPayload: {
             videoPlayerIsActive: true,
             videoDuration: video.duration,
@@ -111,7 +108,7 @@ const MediaPlayerContainer = ({
         };
       });
     }
-  }, [dispatch, levelSlotId, video, level, levelSlotTemplateId, yuniversalMap, shouldCreateChallenge]);
+  }, [dispatch, video, level, levelSlotTemplateId, yuniversalMap, shouldCreateChallenge]);
 
   useEffect(() => {
     if (!createChallengeLoading) {

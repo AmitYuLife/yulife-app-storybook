@@ -87,7 +87,6 @@ const toActiveChallenge = (
   endDateTime: activeChallenge?.challenge?.endDateTime || "",
   level: activeChallenge?.challenge?.level || null,
   yuniversalMap: activeChallenge?.challenge?.yuniversalMap || null,
-  levelSlotId: activeChallenge?.challenge?.levelSlotId || "",
   levelSlotTemplateId: activeChallenge?.challenge?.levelSlotTemplateId || "",
   createdBySource: toChallengeSourceType(activeChallenge?.challenge?.createdBySource),
   milestones: activeChallenge?.levelSlot?.milestones || [],

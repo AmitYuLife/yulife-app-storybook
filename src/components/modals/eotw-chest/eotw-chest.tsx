@@ -10,7 +10,6 @@ interface IProps {
   level: number;
   yuniversalLevel?: number;
   yuniversalMap?: number;
-  levelId: string;
   assets: IUnityData;
   avatar: ImageSourcePropType;
   onPressCta: () => void;

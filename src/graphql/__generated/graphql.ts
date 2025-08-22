@@ -329,6 +329,7 @@ export type AssignProductSelectedProductInformation = {
   productCode?: Maybe<Scalars["String"]["output"]>;
   productId?: Maybe<Scalars["String"]["output"]>;
   productName?: Maybe<Scalars["String"]["output"]>;
+  salaryRequirements?: Maybe<SalaryRequirements>;
 };
 
 export type AssignProductToTeamMemberResult = {
@@ -484,7 +485,7 @@ export type AvatarRemoteFilesImageArgs = {
 
 export type BasicProductInformation = {
   baseSalaryRequired?: InputMaybe<Scalars["Boolean"]["input"]>;
-  carrier?: InputMaybe<Scalars["String"]["input"]>;
+  carrierId?: InputMaybe<Scalars["String"]["input"]>;
   productCode?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -1014,28 +1015,91 @@ export type BusinessSessionSettings = {
   yuStoreEnabled: Scalars["Boolean"]["output"];
 };
 
-export type BusinessSurveyCampaign = {
+export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
   __typename?: "BusinessSurveyCampaign";
-  count: Scalars["Int"]["output"];
-  rows?: Maybe<Array<BusinessSurveyCampaignRow>>;
-};
-
-export type BusinessSurveyCampaignRow = {
-  __typename?: "BusinessSurveyCampaignRow";
-  accountAccessId: Scalars["String"]["output"];
   archivedAt?: Maybe<Scalars["String"]["output"]>;
   campaignName: Scalars["String"]["output"];
-  createdAt?: Maybe<Scalars["String"]["output"]>;
+  createdAt: Scalars["String"]["output"];
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   publishedAt?: Maybe<Scalars["String"]["output"]>;
-  status: BusinessSurveyCampaignRowStatus;
+  status: BusinessSurveyCampaignStatus;
+  steps: Array<BusinessSurveyStep>;
 };
 
-export enum BusinessSurveyCampaignRowStatus {
+export type BusinessSurveyCampaignBase = {
+  archivedAt?: Maybe<Scalars["String"]["output"]>;
+  campaignName: Scalars["String"]["output"];
+  createdAt: Scalars["String"]["output"];
+  endLocalDate?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  publishedAt?: Maybe<Scalars["String"]["output"]>;
+  status: BusinessSurveyCampaignStatus;
+};
+
+export type BusinessSurveyCampaignSearchResults = {
+  __typename?: "BusinessSurveyCampaignSearchResults";
+  count: Scalars["Int"]["output"];
+  rows?: Maybe<Array<BusinessSurveyCampaignSearchResultsEntry>>;
+};
+
+export type BusinessSurveyCampaignSearchResultsEntry = BusinessSurveyCampaignBase & {
+  __typename?: "BusinessSurveyCampaignSearchResultsEntry";
+  archivedAt?: Maybe<Scalars["String"]["output"]>;
+  campaignName: Scalars["String"]["output"];
+  createdAt: Scalars["String"]["output"];
+  endLocalDate?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  publishedAt?: Maybe<Scalars["String"]["output"]>;
+  status: BusinessSurveyCampaignStatus;
+};
+
+export enum BusinessSurveyCampaignStatus {
   Complete = "complete",
   Draft = "draft",
   Live = "live",
+}
+
+export type BusinessSurveyPreset = {
+  __typename?: "BusinessSurveyPreset";
+  backgroundImage: RemoteImage;
+  hasNpsQuestion?: Maybe<Scalars["Boolean"]["output"]>;
+  presetId: BusinessSurveyPresetId;
+  title: Scalars["String"]["output"];
+};
+
+export enum BusinessSurveyPresetId {
+  EngagementSurvey = "EngagementSurvey",
+  None = "None",
+  QuickEngagementSurvey = "QuickEngagementSurvey",
+}
+
+export type BusinessSurveyStep = {
+  __typename?: "BusinessSurveyStep";
+  category?: Maybe<Scalars["String"]["output"]>;
+  description?: Maybe<Scalars["String"]["output"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  isRequired?: Maybe<Scalars["Boolean"]["output"]>;
+  type: BusinessSurveyStepTemplateType;
+};
+
+export type BusinessSurveyStepInput = {
+  category?: InputMaybe<Scalars["String"]["input"]>;
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  heading?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  isRequired?: InputMaybe<Scalars["Boolean"]["input"]>;
+  type: BusinessSurveyStepTemplateType;
+};
+
+export enum BusinessSurveyStepTemplateType {
+  Intro = "intro",
+  MultipleChoice = "multipleChoice",
+  Nps = "nps",
+  OpenAnswer = "openAnswer",
+  Reward = "reward",
+  Scale = "scale",
 }
 
 export type BusinessTag = {
@@ -1228,6 +1292,20 @@ export type CompleteGame2048Input = {
   completedInSeconds: Scalars["Int"]["input"];
   difficulty: Game2048Difficulty;
   score: Scalars["Int"]["input"];
+};
+
+export enum ConditionalOperator {
+  Equals = "EQUALS",
+  Exists = "EXISTS",
+  NotEquals = "NOT_EQUALS",
+  NotExists = "NOT_EXISTS",
+}
+
+export type ConditionalRequired = {
+  __typename?: "ConditionalRequired";
+  fieldName: Scalars["String"]["output"];
+  operator: ConditionalOperator;
+  value?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type ConditionalValue = {
@@ -4613,6 +4691,13 @@ export type HrisImportEventsResult = {
   records: Array<HrisConnectionImportEvent>;
 };
 
+export type HrisIntegration = {
+  __typename?: "HrisIntegration";
+  id: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+  squareImage: Scalars["String"]["output"];
+};
+
 export type HrisPreviewImport = {
   __typename?: "HrisPreviewImport";
   createdAt: Scalars["String"]["output"];
@@ -6075,6 +6160,7 @@ export type Mutation = {
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
   updateBeneficiaryForProduct: CustomerProductBeneficiaries;
+  updateBusinessSurveyCampaign: BusinessSurveyCampaign;
   updateBusinessTag: Scalars["Boolean"]["output"];
   updateCompanySettings: Scalars["Boolean"]["output"];
   updateCustomValue: Scalars["Boolean"]["output"];
@@ -6308,8 +6394,8 @@ export type MutationCreateBusinessPasswordArgs = {
 };
 
 export type MutationCreateBusinessSurveyCampaignArgs = {
-  name: Scalars["String"]["input"];
-  presetId?: InputMaybe<Scalars["String"]["input"]>;
+  name?: InputMaybe<Scalars["String"]["input"]>;
+  presetId?: InputMaybe<BusinessSurveyPresetId>;
 };
 
 export type MutationCreateBusinessTagArgs = {
@@ -6857,6 +6943,11 @@ export type MutationUpdateAccessUserBySectionArgs = {
 
 export type MutationUpdateBeneficiaryForProductArgs = {
   beneficiary?: InputMaybe<CustomerBeneficiaryUpdate>;
+};
+
+export type MutationUpdateBusinessSurveyCampaignArgs = {
+  campaign: UpdateBusinessSurveyCampaignInput;
+  campaignId: Scalars["ID"]["input"];
 };
 
 export type MutationUpdateBusinessTagArgs = {
@@ -7410,6 +7501,7 @@ export type Query = {
   getAnalyticsConfiguration: AnalyticsConfiguration;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
+  getAvailableHrisIntegrations?: Maybe<Array<HrisIntegration>>;
   getAvailablePermissions: Array<TeamPortalPermission>;
   /** Gets all the colours for a particular partType. */
   getAvatarColors?: Maybe<Array<Maybe<AvatarColor>>>;
@@ -7437,7 +7529,9 @@ export type Query = {
   getBusinessPerk: BusinessPerkItem;
   getBusinessPerks: GetBusinessPerksResponse;
   getBusinessSession: BusinessSession;
-  getBusinessSurveyCampaigns?: Maybe<BusinessSurveyCampaign>;
+  getBusinessSurveyCampaign?: Maybe<BusinessSurveyCampaign>;
+  getBusinessSurveyCampaigns: BusinessSurveyCampaignSearchResults;
+  getBusinessSurveyPresets: Array<BusinessSurveyPreset>;
   getBusinessTag: BusinessTag;
   getBusinessTags: GetBusinessTagsResponse;
   getBusinessTagsForBusiness?: Maybe<Array<BusinessTag>>;
@@ -7810,9 +7904,16 @@ export type QueryGetBusinessPerksArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetBusinessSurveyCampaignArgs = {
+  campaignId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetBusinessSurveyCampaignsArgs = {
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderByColumn?: InputMaybe<Scalars["String"]["input"]>;
+  orderByDirection?: InputMaybe<Scalars["String"]["input"]>;
   search?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -8816,6 +8917,12 @@ export type RewardsProductsListItemAction = {
   sduiAction?: Maybe<SduiAction>;
 };
 
+export type SalaryRequirements = {
+  __typename?: "SalaryRequirements";
+  baseSalaryRequired?: Maybe<Scalars["Boolean"]["output"]>;
+  productSalaryRequired?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
 export type SampleDebugData = {
   endTime: Scalars["String"]["input"];
   source?: InputMaybe<SampleDebugDataSource>;
@@ -9607,10 +9714,12 @@ export type TeamEmployeeField = {
   fieldType?: Maybe<TeamPortalFieldType>;
   isSensitive?: Maybe<Scalars["Boolean"]["output"]>;
   label: Scalars["String"]["output"];
+  mutuallyExclusiveWith?: Maybe<Array<Scalars["String"]["output"]>>;
   name: Scalars["String"]["output"];
   options?: Maybe<Array<TeamPortalOption>>;
   placeholder?: Maybe<Scalars["String"]["output"]>;
   required?: Maybe<Scalars["Boolean"]["output"]>;
+  requiredIf?: Maybe<Array<ConditionalRequired>>;
   selectedOption?: Maybe<Scalars["String"]["output"]>;
   tooltip?: Maybe<Scalars["String"]["output"]>;
   value?: Maybe<Scalars["String"]["output"]>;
@@ -9825,6 +9934,7 @@ export enum TeamPortalFieldType {
   Text = "text",
   ToastInfo = "toastInfo",
   Toggle = "toggle",
+  Unauthorised = "unauthorised",
 }
 
 export type TeamPortalOption = {
@@ -10351,6 +10461,12 @@ export type UnityRewardsIntro = {
   cta?: Maybe<Scalars["String"]["output"]>;
   heading: Scalars["String"]["output"];
   subHeading?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type UpdateBusinessSurveyCampaignInput = {
+  campaignName?: InputMaybe<Scalars["String"]["input"]>;
+  endLocalDate?: InputMaybe<Scalars["String"]["input"]>;
+  steps?: InputMaybe<Array<BusinessSurveyStepInput>>;
 };
 
 export type UpdateContactDetailsInput = {
@@ -20258,7 +20374,6 @@ export type UserActiveChallengeFragment = {
     __typename?: "Challenge";
     id?: string | null;
     level?: number | null;
-    levelSlotId?: string | null;
     levelSlotTemplateId?: string | null;
     status?: string | null;
     endDateTime?: string | null;
@@ -21456,7 +21571,6 @@ export type SubmitMobileQuestLevelSudokuSolutionMutation = {
   submitMobileQuestLevelSudokuSolution?: {
     __typename?: "MobileQuestChallenge";
     level: number;
-    levelSlotId?: string | null;
     startDateTime: string;
     status: string;
     endDateTime: string;
@@ -21514,7 +21628,6 @@ export type CreateMobileQuestLevelChallengeMutation = {
       id: string;
       level: number;
       yuniversalMap?: number | null;
-      levelSlotId?: string | null;
       levelSlotTemplateId: string;
       status: string;
       startDateTime: string;
@@ -21919,7 +22032,6 @@ export type UpdateMobileQuestLevelChallengeMutation = {
       __typename?: "MobileQuestChallenge";
       id: string;
       level: number;
-      levelSlotId?: string | null;
       status: string;
       endDateTime: string;
       createdAt?: number | null;
@@ -55066,7 +55178,6 @@ export const UserActiveChallengeFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "level" } },
-                { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
                 { kind: "Field", name: { kind: "Name", value: "levelSlotTemplateId" } },
                 { kind: "Field", name: { kind: "Name", value: "status" } },
                 { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
@@ -67130,7 +67241,6 @@ export const SubmitMobileQuestLevelSudokuSolutionDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "level" } },
-                { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
                 { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
                 { kind: "Field", name: { kind: "Name", value: "status" } },
                 { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
@@ -67306,7 +67416,6 @@ export const CreateMobileQuestLevelChallengeDocument = {
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "level" } },
                       { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
-                      { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
                       { kind: "Field", name: { kind: "Name", value: "levelSlotTemplateId" } },
                       { kind: "Field", name: { kind: "Name", value: "status" } },
                       { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
@@ -68762,7 +68871,6 @@ export const UpdateMobileQuestLevelChallengeDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "level" } },
-                      { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
                       { kind: "Field", name: { kind: "Name", value: "status" } },
                       { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
                       { kind: "Field", name: { kind: "Name", value: "createdAt" } },

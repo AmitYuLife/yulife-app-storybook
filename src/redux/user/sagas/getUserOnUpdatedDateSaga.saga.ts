@@ -8,8 +8,7 @@ import { AppDataType } from "../user.types";
 export default function* getUserOnUpdatedDateSaga() {
   const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
-  const challengeId = activeLevel.levelSlotId || activeLevel.id;
-  const hasNoActiveChallenge = !challengeId;
+  const hasNoActiveChallenge = !activeLevel.id;
   if (hasNoActiveChallenge) {
     yield call(getUserDataSaga);
     yield call(getAllUserDataSaga, {

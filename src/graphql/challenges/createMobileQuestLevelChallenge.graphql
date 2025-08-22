@@ -19,7 +19,6 @@ mutation CreateMobileQuestLevelChallenge(
       id
       level
       yuniversalMap
-      levelSlotId
       levelSlotTemplateId
       status
       startDateTime

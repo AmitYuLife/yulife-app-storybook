@@ -16,7 +16,6 @@ const DEFAULT_SUDOKU_STORE: ISudokuStore = {
   penalties: [],
   lastHintTime: null,
   lastPauseTime: null,
-  levelSlotId: "",
   challengeId: "",
 };
 

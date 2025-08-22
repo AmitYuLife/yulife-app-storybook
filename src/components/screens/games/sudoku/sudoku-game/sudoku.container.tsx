@@ -156,7 +156,6 @@ export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
                 });
                 Logger.error(err, {
                   challengeId: sudokuState.challengeId,
-                  levelSlotId: sudokuState.levelSlotId,
                   date: sudokuState.date,
                 });
               },
@@ -169,15 +168,7 @@ export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
         })();
       });
     },
-    [
-      dispatch,
-      onPause,
-      showSubmissionError,
-      submitSudokuSolution,
-      sudokuState.date,
-      sudokuState.levelSlotId,
-      sudokuState.challengeId,
-    ]
+    [dispatch, onPause, showSubmissionError, submitSudokuSolution, sudokuState.date, sudokuState.challengeId]
   );
 
   const onGameComplete = useCallback(

@@ -83,23 +83,19 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     const stateGameIdentifier = sudokuState?.gameIdentifier;
     const gameIdentifier = `${currentDate}_${SudokuDifficulty.Easy}`;
 
-    const stateLevelSlotId = sudokuState?.levelSlotId;
-    const currentLevelSlotId = slot?.id;
-
-    const shouldReset = stateGameIdentifier !== gameIdentifier || stateLevelSlotId !== currentLevelSlotId;
+    const shouldReset = stateGameIdentifier !== gameIdentifier;
 
     if (isScreenActive && shouldReset) {
       dispatch(
         sudokuReset({
           gameIdentifier,
-          levelSlotId: slot?.id,
           startTime: null,
           date: currentDate,
           challengeId: activeLevel.id,
         })
       );
     }
-  }, [currentDate, isScreenActive, activeLevel.id, sudokuState?.gameIdentifier, sudokuState?.levelSlotId, slot?.id]);
+  }, [currentDate, isScreenActive, activeLevel.id, sudokuState?.gameIdentifier, slot?.id]);
 
   const board = first(data?.getSudokuBoard?.boards);
 
@@ -108,7 +104,6 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
 
     dispatch(
       challengeStartAction({
-        levelSlotId: slot.id,
         createMobileQuestLevelChallengeVariables: {
           level,
           levelSlotTemplateId: slot.levelSlotTemplateId,
@@ -132,7 +127,6 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED && challengeIdentifier) {
       dispatch(
         sudokuReset({
-          levelSlotId: slot.id,
           startTime: new Date(),
           gameIdentifier: `${currentDate}_${SudokuDifficulty.Easy}`,
           date: currentDate,
@@ -140,7 +134,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
         })
       );
 
-      Logger.logEvent("start_sudoku_game", { challengeId: activeLevel.id, levelSlotId: slot.id });
+      Logger.logEvent("start_sudoku_game", { challengeId: activeLevel.id });
 
       Navigation.push(componentId, {
         component: {

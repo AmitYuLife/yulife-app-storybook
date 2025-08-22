@@ -51,7 +51,6 @@ export interface IActiveLevel {
   isLoading: boolean;
   level: number;
   yuniversalMap?: number | null;
-  levelSlotId: string;
   fitKitTypes: FitKitType[];
   createdBySource: ChallengeSourceType;
   shouldEndOnLastGoalAchieved: boolean;
@@ -155,7 +154,6 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
   | "fitKitTypes"
   | "yuHealth"
   | "endDateTime"
-  | "levelSlotId"
   | "createdBySource"
   | "milestones"
   | "rating"
@@ -182,7 +180,6 @@ export type ChallengeEndSuccessPayload = { incomingData: ChallengeIncomingData }
 export type UpdateChallengeAppButtonPayload = Pick<IActiveLevel, "appButton">;
 
 export type ChallengeStartActionPayload = {
-  levelSlotId: string;
   challengeStartSuccessPayload?: Record<string, string | boolean | number>;
   createMobileQuestLevelChallengeVariables: {
     levelSlotTemplateId: string;
@@ -201,7 +198,6 @@ export type ChallengeStartPayload = {
       endDateTime?: string;
       level?: number | null;
       yuniversalMap?: number | null;
-      levelSlotId?: string | null;
       levelSlotTemplateId?: string | null;
     };
     levelSlot?: {
@@ -217,7 +213,6 @@ export type ChallengeStartPayload = {
     additionalChallengePeriodDisabled?: boolean;
     challengeDataQueryRetryLimit?: number;
   };
-  levelSlotId: string;
   videoPlayerIsActive?: boolean;
   videoDuration?: number;
   staleTimestamp: string;
