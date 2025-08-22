@@ -436,9 +436,9 @@ Feature("P2P gifting - UK", async () => {
         Then("I see I've earned 300 yucoin today so far on the todays earnings screen", then.textVisible("300 YuCoin"));
       });
     });
-    When("I swipe right on the event card", when.scrollFromID(ids.YUCOIN_POWER("10"), "up", "fast"), async () => {
-      Then("I see I've earned 100 yucoin today from a received gift", then.idVisible(ids.ACTIVITY_LISTING("Gift received", "100")));
-      Then("I see I've earned 200 yucoin today from the Download bonus", then.idVisible(ids.ACTIVITY_LISTING("Download bonus", "200")));
+    When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast"), async () => {
+      Then("I see I've earned 100 yucoin today from a received gift", then.idVisible(ids.ACTIVITY_LISTING("Gift received", "100"), 2000));
+      Then("I see I've earned 200 yucoin today from the Download bonus", then.idVisible(ids.ACTIVITY_LISTING("Download bonus", "200"), 2000));
     });
   });
 });

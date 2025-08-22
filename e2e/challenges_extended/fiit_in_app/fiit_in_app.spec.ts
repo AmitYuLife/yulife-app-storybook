@@ -176,7 +176,7 @@ Feature("Fiit in app", async () => {
         Then("The video is playing", then.isVideoPaused(false));
       });
     });
-    When("I pause the video", when.pauseVideo(true), async () => {
+    When("I pause the video", when.pauseVideo(false), async () => {
       Then("I can see the video is paused", then.isVideoPaused(true));
     });
     When("I close and reopen the app", when.minimiseAndReopenApp, async () => {

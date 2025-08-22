@@ -109,16 +109,20 @@ Feature("I am able to use the yuscreen v5", async () => {
         });
       });
     });
-    When("I send 12000 steps and reload the yuscreen tab", when.sendPassiveStepsAndReloadToTab(12000), async () => {
+    When("I send 12000 steps and reload the yuscreen tab", when.sendPassiveStepsAndReloadToTab(12000, 3000), async () => {
       Then("I should see the meditation nudge", then.meditationNudeVisible());
       Then("I should see the updated YuCoin earned of 220/430", then.maximiseYucoinVisible(220, 430));
     });
     When("I send 45 mindful minutes and reload the yuscreen tab", when.sendPassiveMindulnessAndReloadToTab(2700), async () => {
-      Then("I should see the cycling nudge", then.cyclingNudgeVisible());
-      Then("I should see the updated YuCoin earned of 260/430", then.maximiseYucoinVisible(260, 430));
+      When("I wait", when.wait(3000), async () => {
+        Then("I should see the cycling nudge", then.cyclingNudgeVisible());
+        Then("I should see the updated YuCoin earned of 260/430", then.maximiseYucoinVisible(260, 430));
+      });
     });
     When("I send 10km of cycling and reload the yuscreen tab", when.sendPassiveCyclingAndReloadToTab(10000), async () => {
-      Then("I should see the updated YuCoin earned of 320/430", then.maximiseYucoinVisible(320, 430));
+      When("I wait", when.wait(3000), async () => {
+        Then("I should see the updated YuCoin earned of 320/430", then.maximiseYucoinVisible(320, 430));
+      });
     });
     When("I swipe left on the completed challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
       Then("I should see the done steps nudge icon", then.completedWalkingNudgeVisible());
