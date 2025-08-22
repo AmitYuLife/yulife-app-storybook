@@ -12,8 +12,9 @@ import {
   CUSTOMER_50,
   CUSTOMER_51,
   CUSTOMER_73,
+  CUSTOMER_143,
 } from "../../_data";
-import { SocialGroupLeaderboard, UserLeaderboardListItem } from "./types";
+import { ImpactPassLeaderboard, SocialGroupLeaderboard, UserLeaderboardListItem } from "./types";
 
 const highlightedColour = "#464647";
 const notHighlitedColour = "#5C5757";
@@ -50,6 +51,14 @@ export const User18LeaderboardItem: UserLeaderboardListItem = {
   score: "800",
   rank: 4,
   highlightColour: notHighlitedColour,
+};
+
+// Michael impact pass leaderboard
+export const User18ImpactPassLeaderboardItem: ImpactPassLeaderboard = {
+  name: `${CUSTOMER_18.data.firstName} ${CUSTOMER_18.data.lastName}`,
+  score: "10",
+  rank: 2,
+  type: "leaderboard",
 };
 
 // Oscar
@@ -107,4 +116,12 @@ export const User73LeaderboardLB1Item: UserLeaderboardListItem = {
   name: `${CUSTOMER_73.data.firstName} ${CUSTOMER_73.data.lastName}`,
   score: "25,000",
   rank: 1,
+};
+
+// Monkey D Luffy impact pass leaderboard
+export const User143ImpactPassLeaderboardItem: ImpactPassLeaderboard = {
+  name: `${CUSTOMER_143.data.firstName} ${CUSTOMER_143.data.lastName}`,
+  score: "20",
+  rank: 1,
+  type: "leaderboard",
 };

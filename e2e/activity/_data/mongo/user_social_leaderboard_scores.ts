@@ -24,7 +24,7 @@ import {
   USER_73,
   USER_90,
   USER_139,
-  USER_5,
+  USER_143,
 } from "./users";
 import { CUSTOMER_84 } from "../postgres/customers";
 import {
@@ -41,6 +41,7 @@ import {
   SOCIAL_GROUP_LEADERBOARD_CONSENT_STEPS,
   SOCIAL_GROUP_LEADERBOARD_BA3_STEPS,
   SOCIAL_GROUP_LEADERBOARD_U1_STEPS,
+  SOCIAL_GROUP_LEADERBOARD_TREES_IMPACT,
 } from "./social_group_leaderboards";
 
 const globalLeaversStepsId = "55366dfe40f828ef2775a91c";
@@ -61,21 +62,6 @@ export const USER_SOCIAL_LEADERBOARD_SCORE_71 = {
 } as IDatabaseItem;
 
 // Daily Step Scores for Users with Enrolments
-
-export const USER_18_STEPS_SCORE = {
-  type: "mongo",
-  modelName: "user_social_leaderboard_scores",
-  data: {
-    _id: generateRandomMongoId(),
-    leaderboardConfigId: "STEPS_30_DAYS",
-    userId: USER_18.data.userId,
-    value: 800,
-    activeLeaderboards: [
-      SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id,
-      SOCIAL_GROUP_LEADERBOARD_C4_STEPS.data._id,
-    ],
-  },
-};
 
 export const USER_16_STEPS_SCORE = {
   type: "mongo",
@@ -100,6 +86,38 @@ export const USER_17_STEPS_SCORE = {
       SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id,
       SOCIAL_GROUP_LEADERBOARD_C4_STEPS.data._id,
     ],
+  },
+};
+
+export const USER_18_STEPS_SCORE = {
+  type: "mongo",
+  modelName: "user_social_leaderboard_scores",
+  data: {
+    _id: generateRandomMongoId(),
+    leaderboardConfigId: "STEPS_30_DAYS",
+    userId: USER_18.data.userId,
+    value: 800,
+    activeLeaderboards: [
+      SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id,
+      SOCIAL_GROUP_LEADERBOARD_C4_STEPS.data._id,
+    ],
+  },
+};
+
+export const USER_18_TREES_IMPACT_SCORE = {
+  type: "mongo",
+  modelName: "user_social_leaderboard_scores",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_18.data.userId,
+    leaderboardConfigId: "CALENDAR_MONTHLY_TREES_GOAL_IMPACT",
+    value: 10,
+    date: moment().startOf("month").format("YYYY-MM-DD"),
+    createdAt: {
+      $date: moment().format("YYYY-MM-DD"),
+    },
+    activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_TREES_IMPACT.data._id],
+    hadActiveLeaderboardsSet: true,
   },
 };
 
@@ -359,5 +377,22 @@ export const USER_139_STEPS_SCORE = {
       SOCIAL_GROUP_LEADERBOARD_ACTIVE_STEPS.data._id,
       SOCIAL_GROUP_LEADERBOARD_CONSENT_STEPS.data._id,
     ],
+  },
+};
+
+export const USER_143_TREES_IMPACT_SCORE = {
+  type: "mongo",
+  modelName: "user_social_leaderboard_scores",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_143.data.userId,
+    leaderboardConfigId: "CALENDAR_MONTHLY_TREES_GOAL_IMPACT",
+    value: 20,
+    date: moment().startOf("month").format("YYYY-MM-DD"),
+    createdAt: {
+      $date: moment().format("YYYY-MM-DD"),
+    },
+    activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_TREES_IMPACT.data._id],
+    hadActiveLeaderboardsSet: true,
   },
 };

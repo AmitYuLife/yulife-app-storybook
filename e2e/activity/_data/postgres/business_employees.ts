@@ -355,3 +355,15 @@ export const BUSINESS_EMPLOYEE_142 = {
     employment_leave_date: moment().add(10, "years").toDate(),
   },
 } as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_143 = {
+  type: "postgres",
+  modelName: "business_employee",
+  data: {
+    business_employee_id: generateRandomPostgresId(),
+    business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
+    customer_id: customer.CUSTOMER_143.data.customerId,
+    employment_start_date: moment().subtract(13, "months").toDate(),
+    employment_leave_date: moment().add(10, "years").toDate(),
+  },
+} as IDatabaseItem;

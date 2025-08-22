@@ -6,7 +6,11 @@ import {
   generateRandomPostgresId,
 } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
-import { BUSINESS_ACCOUNT_13_GHI_REWARDS, BUSINESS_ACCOUNT_14_NPC_ALTRA } from "./business";
+import {
+  BUSINESS_ACCOUNT_13_GHI_REWARDS,
+  BUSINESS_ACCOUNT_14_NPC_ALTRA,
+  BUSINESS_ACCOUNT_2,
+} from "./business";
 
 const type = "postgres";
 const modelName = "customer";
@@ -634,6 +638,18 @@ export const CUSTOMER_142 = {
     email: "johndoe@dundermifflin.com",
     firstName: "John",
     lastName: "Doe",
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_143 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Monkey D",
+    lastName: "Luffy",
     status: "onboarded",
   },
 } as IDatabaseItem;

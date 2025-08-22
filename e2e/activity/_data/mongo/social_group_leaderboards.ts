@@ -220,3 +220,14 @@ export const SOCIAL_GROUP_LEADERBOARD_ARCHIVED_STEPS = {
     leaderboardConfigId: "STEPS_30_DAYS",
   },
 } as IDatabaseItem;
+
+export const SOCIAL_GROUP_LEADERBOARD_TREES_IMPACT = {
+  type: "mongo",
+  modelName: "social_group_leaderboards",
+  data: {
+    _id: generateRandomMongoId(),
+    socialGroup: social_group.SOCIAL_GROUP_C1.data._id,
+    archived: false,
+    leaderboardConfigId: "CALENDAR_MONTHLY_TREES_GOAL_IMPACT",
+  },
+} as IDatabaseItem;
