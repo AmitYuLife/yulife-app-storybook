@@ -101,14 +101,6 @@
     "region": "UK",
     "specs": ["yuscreen/**/*.spec.ts"]
   },
-  "group-health": {
-    "region": "UK",
-    "specs": ["group_health/*.spec.ts"]
-  },
-  "group-health-two": {
-    "region": "UK",
-    "specs": ["group_health_two/*.spec.ts"]
-  },
   "health": {
     "region": "UK",
     "specs": ["health/*.spec.ts"]
