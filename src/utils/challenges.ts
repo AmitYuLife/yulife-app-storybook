@@ -176,7 +176,6 @@ export const handleInternalContentChallenge = ({
           passProps: {
             createChallenge,
             levelSlot,
-            levelSlotId: levelSlot.id,
             fitKitTypes: levelSlot.fitKitTypes,
             tutorialUrl: levelSlot.details.tutorialUrl,
             yuHealth: levelSlot.yuHealth,
@@ -196,7 +195,6 @@ export const handleInternalContentChallenge = ({
           name: ROUTES.fiitMediaCategoryList,
           passProps: {
             createChallenge,
-            levelSlotId: levelSlot.id,
             fitKitTypes: levelSlot.fitKitTypes,
             tutorialUrl: levelSlot.details.tutorialUrl,
             content: internalContent,

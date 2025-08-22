@@ -36,7 +36,7 @@ interface IQuestMapContainerProps {
 }
 
 const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMapContainerProps) => {
-  const { yuniversalLevel } = useSelector(getYuniversalProgress);
+  const { yuniversalLevel, yuniversalMap } = useSelector(getYuniversalProgress);
   const features = useUserFeatures();
 
   const { data, loading: isLoading } = useQuery(gql("GetQuestMapDocument"), {
@@ -52,12 +52,10 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
   });
 
   const dispatch = useDispatch();
-  const [levelId, setLevelId] = useState<string>(null);
   const [unity, setUnity] = useState<number | null>(null);
 
   const challengesStatus = useSelector(getChallengesStatus);
   const [repeatedUnity, setRepeatedUnity] = useState(false);
-  const { yuniversalMap } = useSelector(getYuniversalProgress);
 
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
   const isScreenReaderEnabled = useScreenReaderChange();
@@ -81,14 +79,12 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
 
   const handleSetUnity = useCallback((itemLevel: QuestMapLevel) => {
     setUnity(itemLevel.level);
-    setLevelId(itemLevel.id);
     setRepeatedUnity(true);
   }, []);
 
   const handleSubmitUnity = useCallback(
     (itemLevel: QuestMapLevel) => {
       setUnity(itemLevel.level);
-      setLevelId(itemLevel.id);
       dispatch(submitUnityAction({ levelId: itemLevel.id }));
       setRepeatedUnity(false);
     },
@@ -304,7 +300,15 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
           onLeftMenuPress={onLeftMenuPress}
         />
       )}
-      {unity ? <Unity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} /> : null}
+      {unity ? (
+        <Unity
+          level={unity}
+          yuniversalLevel={yuniversalLevel}
+          yuniversalMap={yuniversalMap}
+          repeatedUnity={repeatedUnity}
+          onSkip={hideUnity}
+        />
+      ) : null}
     </>
   );
 };

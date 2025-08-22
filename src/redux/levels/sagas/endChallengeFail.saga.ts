@@ -6,9 +6,7 @@ export default function* endChallengeFail() {
   yield delay(1000);
   const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
-  const activeChallenge = active.id || active.levelSlotId;
-
-  if (!active.isCompleted && activeChallenge) {
+  if (!active.isCompleted && active.id) {
     yield put(challengeEndAction({ location: "endChallengeFail" }));
   }
 }

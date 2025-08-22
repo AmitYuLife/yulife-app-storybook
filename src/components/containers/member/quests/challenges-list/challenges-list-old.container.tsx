@@ -90,7 +90,6 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
 
       dispatch(
         challengeStartAction({
-          levelSlotId: slot.id,
           createMobileQuestLevelChallengeVariables: {
             levelSlotTemplateId: slot.levelSlotTemplateId,
             yuniversalMap,
@@ -154,7 +153,6 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
               name: ROUTES.meditopiaMediaList,
               passProps: {
                 createChallenge,
-                levelSlotId: slot.id,
                 fitKitTypes: slot.fitKitTypes,
                 tutorialUrl: slot.details.tutorialUrl,
                 ...internalContent[0],
@@ -173,7 +171,6 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
               name: ROUTES.fiitMediaCategoryList,
               passProps: {
                 createChallenge,
-                levelSlotId: slot.id,
                 fitKitTypes: slot.fitKitTypes,
                 tutorialUrl: slot.details.tutorialUrl,
                 content: internalContent,

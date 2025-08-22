@@ -42,12 +42,12 @@ export default function* scheduleChallengeNotificationSaga({ payload }: Action) 
       );
 
       if (challengeCompletion?.isActive) {
-        const { endDateTime, levelSlotId, id } = createQuestMapLevelChallenge.challenge;
+        const { endDateTime, id } = createQuestMapLevelChallenge.challenge;
         const details = getNotificationTitleAndMessage();
 
         yield call(() =>
           ExpoNotification.scheduleNotificationAsync({
-            identifier: levelSlotId || id,
+            identifier: id,
             trigger: {
               ...expoDefaultNotificationTrigger,
               date: moment(addSecondsToChallengeEndDateTime(endDateTime)).toDate(),

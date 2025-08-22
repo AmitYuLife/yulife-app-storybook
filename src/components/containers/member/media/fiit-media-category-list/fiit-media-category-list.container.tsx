@@ -23,7 +23,6 @@ type IButton = IInternalContent["buttons"][number];
 interface IProps {
   componentId: string;
   createChallenge: (hideExternalLinks?: boolean) => void;
-  levelSlotId: string;
   fitKitTypes: FitKitType[];
   tutorialUrl: string;
   yuHealth: YuHealthOptions;
@@ -35,7 +34,6 @@ interface IProps {
 
 const FiitMediaCategoryListContainer = ({
   createChallenge,
-  levelSlotId,
   fitKitTypes,
   content,
   reward,
@@ -143,14 +141,13 @@ const FiitMediaCategoryListContainer = ({
             logo: headerContent.logo,
             providerLogo: item.providerLogo,
             reward,
-            levelSlotId,
             level,
             levelSlotTemplateId,
           },
         },
       });
     },
-    [dispatch, headerContent, level, levelSlotId, levelSlotTemplateId, reward]
+    [dispatch, headerContent, level, levelSlotTemplateId, reward]
   );
 
   const moreInformationPress = useCallback(() => {

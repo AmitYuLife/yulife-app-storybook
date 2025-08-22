@@ -88,23 +88,14 @@ const QuestsContainer = () => {
     const videoProgressStorage = await Storage.getItem(StorageKey.mediaPlayerProgress);
     setHasVideoProgressStorage(Boolean(videoProgressStorage));
 
-    const hasActiveChallengeOnState = activeLevel.levelSlotId || activeLevel.id;
-
-    if (!challengeIsActive && hasActiveChallengeOnState && !activeLevel.status) {
+    if (!challengeIsActive && activeLevel.id && !activeLevel.status) {
       const isStillInProgress = moment().isBefore(activeLevel.endDateTime);
 
       if (!isStillInProgress) {
         dispatch(challengeEndAction({ location: "quests.container" }));
       }
     }
-  }, [
-    activeLevel.endDateTime,
-    activeLevel.levelSlotId,
-    activeLevel.id,
-    activeLevel.status,
-    challengeIsActive,
-    dispatch,
-  ]);
+  }, [activeLevel.endDateTime, activeLevel.id, activeLevel.status, challengeIsActive, dispatch]);
 
   useEffect(() => {
     if (!activeLevel?.challengeIsActive && hasShownDeferModal) {

@@ -31,8 +31,7 @@ export const getActiveLevel = createSelector(reducer, getActiveLevelSelector);
 const getActiveLevelSubtypeSelector = (state: State) => state.active?.subtype;
 export const getActiveLevelSubtype = createSelector(reducer, getActiveLevelSubtypeSelector);
 
-const getHasNotificationSelector = (state: State) =>
-  !!state.active.levelSlotId || !!state.active.id || !!state.active.status;
+const getHasNotificationSelector = (state: State) => !!state.active.id || !!state.active.status;
 export const getHasNotification = createSelector(reducer, getHasNotificationSelector);
 
 const getChallengeIsActiveSelector = (state: State) => state.active.challengeIsActive;

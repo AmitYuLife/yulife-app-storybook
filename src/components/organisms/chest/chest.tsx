@@ -33,7 +33,9 @@ export interface ChestItemType {
 }
 
 interface IProps {
-  levelId: string;
+  level: number;
+  yuniversalLevel?: number;
+  yuniversalMap?: number;
   chestType: ChestType;
   items: ChestItemType[];
   chestState: CHEST_STATE;
@@ -52,7 +54,16 @@ const CHEST_CARDS_FADE_IN_DURATION = 500;
 const CHEST_CARDS_ANIMATION_OFFSET = 200;
 const CHEST_CARD_OSCILLATION_DURATION = 2500;
 
-const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestState, currentPlanet }) => {
+const Chest: FC<IProps> = ({
+  level,
+  yuniversalLevel,
+  yuniversalMap,
+  chestType,
+  items,
+  chestState,
+  setChestState,
+  currentPlanet,
+}) => {
   const dispatch = useDispatch();
 
   const location = useMemo(() => {
@@ -210,7 +221,9 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
           logMixpanelEventActionCreator("information_viewed", {
             name: tooltip?.title,
             location,
-            levelId,
+            level,
+            yuniversalLevel,
+            yuniversalMap,
           })
         );
       }),
@@ -232,7 +245,7 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
           } as ViewStyle)
       ),
     }),
-    [items, cardXs, infoClose, dispatch, location, levelId]
+    [items, cardXs, infoClose, dispatch, location, level, yuniversalLevel, yuniversalMap]
   );
 
   const openingChestLottieWrapper = useMemo(

@@ -64,7 +64,6 @@ export const getInitialState = (): ILevelsStore => ({
     isCompleted: false, // for meditation, when goal reached
     isLoading: false,
     level: null,
-    levelSlotId: "",
     fitKitTypes: [],
     milestones: [],
     milestonesLog: [],
@@ -191,7 +190,6 @@ const getActiveChallengeSuccess = (state: ILevelsStore, data: GetActiveChallenge
     endDateTime: data?.endDateTime || "",
     level: data?.level,
     yuniversalMap: data?.yuniversalMap,
-    levelSlotId: data?.levelSlotId || "",
     levelSlotTemplateId: data?.levelSlotTemplateId || "",
     milestones: data?.milestones || [],
     rating: data?.rating || state.active.rating || 0,
@@ -255,7 +253,6 @@ const challengeStartSuccess = (
     endDateTime: addSecondsToChallengeEndDateTime(challenge.endDateTime),
     level: challenge.level,
     yuniversalMap: challenge.yuniversalMap,
-    levelSlotId: challenge.levelSlotId,
     levelSlotTemplateId: challenge.levelSlotTemplateId,
     milestones: levelSlot.milestones,
     startDateTime: challenge.startDateTime,
@@ -324,7 +321,6 @@ const challengeEndSuccess = (state: ILevelsStore, data: ChallengeEndSuccessPaylo
     endDeferCount: 0,
     videoPlayerIsActive: false,
     id: null,
-    levelSlotId: null,
     levelSlotTemplateId: null,
     challengeSubmissionStatus: ChallengeSubmissionStatus.Success,
     submissionErrorCount: 0,
@@ -386,7 +382,7 @@ const challengeEndDeferred = (state: ILevelsStore) => {
 };
 
 const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILevelsStore => {
-  const activeChallengeId = state.active.levelSlotId || state.active.id;
+  const activeChallengeId = state.active.id;
 
   if (
     state.active.shouldEndOnLastGoalAchieved ||

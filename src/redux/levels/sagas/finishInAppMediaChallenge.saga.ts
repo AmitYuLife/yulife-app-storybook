@@ -44,7 +44,6 @@ export default function* finishInAppMediaChallengeSaga({
     const inAppMeditation: IAppDailyMeditationProps = yield select(getInAppDailyMeditation);
 
     const payloadToSend = {
-      levelSlotId: activeLevel.levelSlotId,
       contentId: video.id,
       payload: { value: video.duration },
       challengeId: activeLevel.id,
@@ -89,7 +88,7 @@ export default function* finishInAppMediaChallengeSaga({
 
     yield put(
       logMixpanelEventActionCreator("media_challenge_end", {
-        levelSlotId: activeLevel.levelSlotId,
+        challengeId: activeLevel.id,
         level: activeLevel.level,
         levelSlotTemplateId: activeLevel.levelSlotTemplateId,
         duration: video.duration,

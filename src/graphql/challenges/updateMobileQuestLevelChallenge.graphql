@@ -3,7 +3,6 @@ mutation UpdateMobileQuestLevelChallenge($challengeId: ID!, $contentId: String, 
     challenge {
       id
       level
-      levelSlotId
       status
       endDateTime
       createdAt
