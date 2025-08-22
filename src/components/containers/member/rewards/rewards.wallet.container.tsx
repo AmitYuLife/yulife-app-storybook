@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/client/react/hooks";
 import { Box } from "@atoms";
 import { gql, MobileGameUserWalletReward, SduiAction } from "@graphql/__generated";
 import { t } from "@locale";
-import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -17,7 +16,11 @@ import WalletItemLoading from "./subcomponents/wallet-item-loading";
 import { Style } from "@styles";
 import { StyleSheet } from "react-native";
 
-function RewardsWalletContainer() {
+interface IRewardsWalletContainerProps {
+  componentId: string;
+}
+
+function RewardsWalletContainer({ componentId }: IRewardsWalletContainerProps) {
   const dispatch = useDispatch();
 
   const {
@@ -66,7 +69,7 @@ function RewardsWalletContainer() {
   }, [inventoryCards?.getMobileGameUserWalletRewards?.rewards?.length, loading]);
 
   const handleBackPress = useCallback(() => {
-    Navigation.popToRoot(ROUTES.rewards);
+    Navigation.pop(componentId);
   }, []);
 
   const calculatedData = useMemo(() => {

@@ -25,7 +25,6 @@ import { IHighlightedTabOptions } from "@redux/app/app.types";
 import { usePrizeHintPopup } from "@hooks";
 import { DETOX_ENABLED } from "@services/socket";
 
-const TOOLTIP_DELAY = 1000;
 const hasUnreadBadgeCount = (value: number) => (value || 0) > 0;
 
 const NavBarView = (props: NavBarProps) => {
@@ -163,9 +162,8 @@ const NavBarListItemAnimated = memo(
     const isAnimatingRef = useRef(false);
 
     usePrizeHintPopup({
-      routeId: id,
+      routeIds: [id],
       isEnabled: !isAnimatingRef.current && isVisible && !DETOX_ENABLED,
-      delay: TOOLTIP_DELAY,
       viewRef: itemRef,
     });
 

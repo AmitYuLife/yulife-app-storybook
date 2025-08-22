@@ -1,11 +1,10 @@
 import { highlightNavbarTabs } from "@redux/app/app.actions";
 import { ROUTES } from "@navigation/constants";
-import { prizeTypeExplained, prizesAwarded } from "../prizes.actions";
 import { GamePrizeType } from "@graphql/__generated";
-import { put, select } from "redux-saga/effects";
-import { getExplainedPrizeTypes } from "../prizes.selectors";
+import { put } from "redux-saga/effects";
 import { t } from "@locale";
 import { isEmpty } from "lodash";
+import { prizeTypeExplained, prizesAwarded } from "../prizes.actions";
 
 interface PrizeTypeOption {
   tab: string;
@@ -36,6 +35,7 @@ const getPrizeTypeOptions = (prize: GamePrizeType): PrizeTypeOption => {
         tooltipBody: t("prizes.tooltips.yucoin.body"),
       };
     case GamePrizeType.CoreReward:
+    case GamePrizeType.Coupon:
       return {
         tab: ROUTES.purchases,
         tooltipHeader: t("prizes.tooltips.purchase.title"),
@@ -46,9 +46,7 @@ const getPrizeTypeOptions = (prize: GamePrizeType): PrizeTypeOption => {
 
 export default function* highlightPrizeSaga({ payload }: ReturnType<typeof prizesAwarded>) {
   const tabsToHighlight: Partial<Record<GamePrizeType, PrizeTypeOption>> = {};
-  const explainedPrizeTypes: Partial<Record<GamePrizeType, boolean>> = yield select(getExplainedPrizeTypes);
 
-  // TODO: Multiple prize support - currently only 1 prize is claimable at once so this is okay)
   let shownTooltipPrizeType: GamePrizeType;
 
   for (const prizeType of payload.prizeTypes) {
@@ -56,27 +54,26 @@ export default function* highlightPrizeSaga({ payload }: ReturnType<typeof prize
       continue;
     }
 
-    const { tab, ...copy } = getPrizeTypeOptions(prizeType) ?? {};
-    const showTooltip = !explainedPrizeTypes[prizeType] && !shownTooltipPrizeType;
+    const prizeOptions = getPrizeTypeOptions(prizeType);
 
+    const { tab, ...copy } = prizeOptions ?? {};
     if (!tab) {
       continue;
     }
 
     tabsToHighlight[prizeType] = {
       tab,
-      ...(showTooltip ? copy : {}),
+      ...copy,
     };
 
-    if (showTooltip) {
-      shownTooltipPrizeType = prizeType;
-    }
+    shownTooltipPrizeType = prizeType;
   }
 
   if (!isEmpty(Object.keys(tabsToHighlight))) {
+    const tabsArray = Object.values(tabsToHighlight);
     yield put(
       highlightNavbarTabs({
-        tabs: Object.values(tabsToHighlight),
+        tabs: tabsArray,
       })
     );
   }

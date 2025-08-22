@@ -18,6 +18,7 @@ const TopBarContainer = (props: TopBarContainerProps) => {
     leftIcons,
     name,
     menuLabel,
+    leftRef,
     leftIcon,
     middleLabel,
     type,
@@ -50,6 +51,7 @@ const TopBarContainer = (props: TopBarContainerProps) => {
       onPressLeftIcon={onPressLeftIcon}
       timer={timer}
       name={name}
+      leftRef={leftRef}
       badges={badges}
       menuLabel={menuLabel}
       leftIcon={leftIcon}

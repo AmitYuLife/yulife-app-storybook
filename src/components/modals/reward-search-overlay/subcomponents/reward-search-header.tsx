@@ -96,7 +96,7 @@ const RewardSearchHeader = ({ value, onPressWallet, onChangeText, isOpen, ...pro
 
   return (
     <Box forceAnimated={true} pt={0} px={20} flexDirection="row" gap={10} w="100%">
-      <Box flex={1} flexDirection="row" w="100%" gap={10} onLayout={onLayoutWrapper} animatedRef={wrapperRef}>
+      <Box flex={1} flexDirection="row" w="100%" gap={10} onLayout={onLayoutWrapper} viewRef={wrapperRef}>
         <Box flex={1}>
           <Box forceAnimated={true} style={inputWrapperStyle} flex={1} flexDirection="row">
             <TextInput

@@ -134,7 +134,11 @@ const _RewardsTabManagerContainer = () => {
   }, [activeTabs.length]);
 
   const routeState = useSelector(getRouteState);
-  usePrizeHintPopup({ routeId: ROUTES.purchases, isEnabled: routeState === ROUTES.rewards, viewRef: purchasesIconRef });
+  usePrizeHintPopup({
+    routeIds: [ROUTES.purchases],
+    isEnabled: routeState === ROUTES.rewards,
+    viewRef: purchasesIconRef,
+  });
 
   const bodyStyle = useAnimatedStyle(() => {
     const height = interpolate(
