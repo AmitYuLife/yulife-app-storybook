@@ -1,12 +1,12 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip, WhenSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as ids from "@ids";
 import * as scenario from "./_steps/scenario";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as given from "./_steps/given";
 import * as data from "./_data";
-import { CUSTOMER_2_SMOKING_TIPS, CUSTOMER_2_MOMENTS_AND_REASONS, PRODUCT_CARD_ILLUSTRATIONS } from "./_resources/smoking_fixtures";
-import { smoking_questions, milestone_message } from "../health/_resources/smoking_fixtures";
+import { CUSTOMER_2_MOMENTS_AND_REASONS, PRODUCT_CARD_ILLUSTRATIONS } from "./_resources/smoking_fixtures";
+import { smoking_questions, milestone_message } from "../smoking_cessation/_resources/smoking_fixtures";
 
 const locale = process.env.TARGET_LOCALE || "ja-JP";
 

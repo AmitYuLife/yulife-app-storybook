@@ -3,28 +3,21 @@ import { screens } from "@appScreens";
 import {
   ONBOARDING_SCREEN,
   V4_YUSCREEN,
-  CONTENT_SMALL_IMAGE_CARD_URL,
-  CONTENT_MIDDLE_ITEM_IMAGE,
-  PCP_LIST_DESCRIPTION,
-  INFO_PANEL_IMAGE,
   RIGHT_SIDE_IMAGE_BOX_OPTION,
   BOX_OPTION_TITLE,
   BOX_OPTION_DESCRIPTION,
   YUSCREEN_SCROLL_VIEW,
-  COUNTDOWN_COMPONENT,
   LEFT_SIDE_BACKGROUD_IMAGE_SLOT,
   LEFT_SIDE_TEXT_SLOT_POWER,
   CAROUSEL_CARD,
-  SPONSOR_LOGO_IMAGE,
   WELLBEING_HUB_SCREEN,
   TEXT_TEMPLATE,
   ITEM_DETAILS_REWARD,
 } from "@ids";
 import * as text from "../_resources/fixture";
 import { BUSINESS_ACCOUNT_USA_1 } from "usa/_data";
-import { BoxOption, USProductData, YuScreenInfo } from "../_resources/types";
+import { BoxOption, YuScreenInfo } from "../_resources/types";
 import { expect } from "detox";
-import moment from "moment";
 import { usMysteryBoxRewards } from "../_resources/constants";
 
 export const {
@@ -64,7 +57,11 @@ export const {
 export const { swipeToID, swipeFromText, scrollUntilIdVisible, scrollUntilTextVisible } =
   navigation.scrolling;
 
-export { smokingTileVisible, smokingCardVisible, onSmokingHub } from "../../../health/_steps/then";
+export {
+  smokingTileVisible,
+  smokingCardVisible,
+  onSmokingHub,
+} from "../../../smoking_cessation/_steps/then";
 
 export { hasReceivedOnboardingLinkEmail } from "../../../admin/login_and_routing/_steps/then";
 

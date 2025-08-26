@@ -1,6 +1,6 @@
 import { navigation } from "@navigation";
 import { screens } from "@appScreens";
-export { progressBarVisible } from "surveys/engagement_survey/_steps/then";
+export { progressBarVisible } from "engagement_surveys/legacy_engagement_surveys/_steps/then";
 
 export const { scrollUntilTextVisible, scrollUntilIdVisible } = navigation.scrolling;
 
