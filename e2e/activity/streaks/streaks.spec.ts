@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, WhenSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -9,7 +9,7 @@ import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can use the streaks functionality", async () => {
   Scenario("I can start a new streak and complete a challenge", scenario.start, async () => {
-    Given("I login", given.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
+    Given("I login", given.logInWithStreakScreen(data.CUSTOMER_5, data.AUTH_5), async () => {
       When("I tap the streak button", when.tapText("0/5"), async () => {
         Then("I should see the streak screen", then.onStartStreakFromHome);
       });

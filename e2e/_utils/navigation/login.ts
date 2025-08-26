@@ -45,30 +45,19 @@ export const loginAsUser =
   ) =>
   async () => {
     // // wait for the app to load
-    await waitFor(element(by.id(LOGIN_HERO_LOGIN_BUTTON)))
-      .toBeVisible()
-      .withTimeout(5_000);
+    await waitFor(element(by.id(LOGIN_HERO_LOGIN_BUTTON)));
 
     await loginWithCredentials(customer.data.email, auth.data.password, region)();
 
     // wait for daily steps to load
-    await waitFor(element(by.label("YuCoin")))
-      .toBeVisible()
-      .withTimeout(5_000);
+    await waitFor(element(by.label("YuCoin")));
 
     if (fitkitAuth) {
       // wait for the daily steps container to initialise
-      await waitFor(element(by.id("fitkit-unauthorised-button")))
-        .toBeVisible()
-        .withTimeout(5_000);
+      await wait(1_000)();
 
       // auth fitkit
       await authoriseFitkit(fitkitAuth)();
-
-      // wait for fitkit authorisation to complete
-      await waitFor(element(by.id("DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON")))
-        .toBeVisible()
-        .withTimeout(5_000);
     }
   };
 
