@@ -6,8 +6,12 @@ import { getTranslation } from "_utils/translations/getTranslations";
 export {
   canSeeEngagementSurvey1To10CheckBoxes,
   canSeeEngagementSurveySupportedByCheckBoxes,
-} from "surveys/engagement_survey/_steps/then";
-export { smokingTileVisible, smokingCardVisible, onSmokingHub } from "../../health/_steps/then";
+} from "engagement_surveys/legacy_engagement_surveys/_steps/then";
+export {
+  smokingTileVisible,
+  smokingCardVisible,
+  onSmokingHub,
+} from "../../smoking_cessation/_steps/then";
 
 export const {
   idVisible,

@@ -2,7 +2,7 @@ export { authoriseFitkit, sendSteps, addCyclingData, sendMindfulnessData } from 
 import { sendReduxEvent } from "@socket";
 import { navigation } from "@navigation";
 export { selectRegionIfVisible } from "_utils/navigation/login";
-export { giveEngagementSurveyAccess } from "../../surveys/_common/given";
+export { giveEngagementSurveyAccess } from "../../engagement_surveys/_common/given";
 
 export const { logInAndGoToTab, loginAsUser } = navigation.login;
 
