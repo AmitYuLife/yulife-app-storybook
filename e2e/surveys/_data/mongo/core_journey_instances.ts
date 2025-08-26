@@ -1,6 +1,7 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import * as customer from "../postgres/customers";
 import { BUSINESS_ACCOUNT_5 } from "../postgres/business";
+import { CORE_JOURNEY_INSTANCE_HQ_ID } from "../../_resources/constants";
 
 const model = "core_journey_instances";
 
@@ -205,6 +206,88 @@ export const CORE_JOURNEY_INSTANCE_3 = {
     accessRules: {
       tags: [BUSINESS_ACCOUNT_5.business.data.businessAccountId],
     },
+    archived: false,
+  },
+};
+
+export const CORE_JOURNEY_INSTANCE_HEALTH_QUESTIONNAIRE = {
+  type: "mongo",
+  modelName: model,
+  data: {
+    _id: CORE_JOURNEY_INSTANCE_HQ_ID,
+    journeyId: "health_questionnaire",
+    minAppVersion: ">=4.11.0",
+    name: "Health Questionnaire",
+    published: true,
+    requiresUserStateForAccess: true,
+    showHeroCard: true,
+    uiAccess: [
+      {
+        isFirstJourney: true,
+        daysSinceJourneyAccessGranted: {
+          or: [
+            {
+              operator: "between",
+              min: 0,
+              max: 6,
+            },
+            {
+              operator: "between",
+              min: 13,
+              max: 20,
+            },
+            {
+              operator: "between",
+              min: 27,
+              max: 34,
+            },
+          ],
+        },
+      },
+      {
+        isFirstJourney: false,
+        daysSinceJourneyAccessGranted: {
+          or: [
+            {
+              operator: "between",
+              min: 6,
+              max: 12,
+            },
+            {
+              operator: "between",
+              min: 20,
+              max: 26,
+            },
+            {
+              operator: "between",
+              min: 34,
+              max: 40,
+            },
+          ],
+        },
+      },
+    ],
+    uiAccessCopy: {
+      eventPanel: {
+        title: {
+          "en-GB": "Daily health questions",
+          "ja-JP": "健康チェックの質問",
+        },
+        description: {
+          "en-GB": "Earn **${amount}**${yuCoin} by discovering more about your health.",
+          "ja-JP": "健康に関する質問への回答で\n**${amount}**${yuCoin}をプレゼント。",
+        },
+        image: "journeys/banner-yugi-coin-2025-04-17.svg",
+        backgroundImage: "journeys/banner-gradient-2025-02-24.svg",
+        titleImage: {
+          "en-GB": "journeys/health-questionnaire/banner-title-2025-04-17.svg",
+          "ja-JP": "journeys/health-questionnaire/banner-title-jp-2025-04-17.svg",
+        },
+      },
+    },
+    yuCoinRewardAsFlatAmount: 0,
+    yuCoinRewardAsEarnRateMultiple: 4,
+    isStaticJourney: true,
     archived: false,
   },
 };
