@@ -60,4 +60,15 @@ export const translations: Record<Language, Translation> = {
       require("moment").locale("ja");
     },
   },
+  "ar-SA": {
+    name: "العربية",
+    intercomLanguage: "ar",
+    flag: "🇸🇦",
+    isEnabled: false,
+    load: () => require("./downloaded/ar-SA.json"),
+    setMomentLocale: () => {
+      require("moment/locale/ar-sa");
+      require("moment").locale("ar-sa");
+    },
+  },
 };
