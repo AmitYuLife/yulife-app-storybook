@@ -33,8 +33,8 @@ export const USER_ONBOARDING_PREVENTION_PASS_01: IDatabaseItem = {
     ...DEFAULT_DATA,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_PREVENTION_PASS_01.data.userId,
-    businessAccountId: business.BUSINESS_PREVENTION_PASS.data.business_account_id,
-    businessName: business.BUSINESS_PREVENTION_PASS.data.business_account_name,
+    businessAccountId: business.BUSINESS_PREVENTION_PASS.data.businessAccountId,
+    businessName: business.BUSINESS_PREVENTION_PASS.data.businessAccountName,
   },
 };
 
@@ -45,7 +45,31 @@ export const USER_ONBOARDING_PREVENTION_PASS_02: IDatabaseItem = {
     ...DEFAULT_DATA,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_PREVENTION_PASS_02.data.customerId,
-    businessAccountId: business.BUSINESS_PREVENTION_PASS.data.business_account_id,
-    businessName: business.BUSINESS_PREVENTION_PASS.data.business_account_name,
+    businessAccountId: business.BUSINESS_PREVENTION_PASS.data.businessAccountId,
+    businessName: business.BUSINESS_PREVENTION_PASS.data.businessAccountName,
+  },
+};
+
+export const USER_ONBOARDING_WELLBEING_PASS_01: IDatabaseItem = {
+  type,
+  modelName,
+  data: {
+    ...DEFAULT_DATA,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_WELLBEING_PASS_01.data.customerId,
+    businessAccountId: business.BUSINESS_WELLBEING_PASS.data.businessAccountId,
+    businessName: business.BUSINESS_WELLBEING_PASS.data.businessAccountName,
+  },
+};
+
+export const USER_ONBOARDING_WELLBEING_PASS_02: IDatabaseItem = {
+  type,
+  modelName,
+  data: {
+    ...DEFAULT_DATA,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_WELLBEING_PASS_02.data.customerId,
+    businessAccountId: business.BUSINESS_WELLBEING_PASS.data.businessAccountId,
+    businessName: business.BUSINESS_WELLBEING_PASS.data.businessAccountName,
   },
 };

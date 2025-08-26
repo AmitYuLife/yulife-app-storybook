@@ -5,12 +5,12 @@ import * as battlePassSeason from "./battle_pass_seasons";
 const type = "mongo" as const;
 const modelName = "battle_pass_season_milestones" as const;
 
-export const BATTLE_PASS_SEASON_MILESTONE_01: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_01: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 1,
     archived: false,
     info: {
@@ -19,12 +19,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_01: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_02: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_02: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 5,
     archived: false,
     info: {
@@ -33,12 +33,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_02: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_03: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_03: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 25,
     archived: false,
     info: {
@@ -47,12 +47,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_03: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_04: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_04: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 75,
     archived: false,
     info: {
@@ -61,12 +61,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_04: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_05: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_05: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 125,
     archived: false,
     info: {
@@ -75,12 +75,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_05: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_06: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_06: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 175,
     archived: false,
     info: {
@@ -89,12 +89,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_06: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_07: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_07: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 225,
     archived: false,
     info: {
@@ -103,12 +103,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_07: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_08: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_08: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 275,
     archived: false,
     info: {
@@ -117,12 +117,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_08: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_09: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_09: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 325,
     archived: false,
     info: {
@@ -131,12 +131,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_09: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_10: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_10: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 375,
     archived: false,
     info: {
@@ -145,12 +145,12 @@ export const BATTLE_PASS_SEASON_MILESTONE_10: IDatabaseItem = {
   },
 };
 
-export const BATTLE_PASS_SEASON_MILESTONE_11: IDatabaseItem = {
+export const BATTLE_PASS_PREVENTION_SEASON_MILESTONE_11: IDatabaseItem = {
   type,
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    battlePassSeasonId: battlePassSeason.BATTLE_PASS_SEASON_01.data._id.toString(),
+    battlePassSeasonId: battlePassSeason.BATTLE_PASS_PREVENTION_SEASON_01.data._id.toString(),
     targetValue: 500,
     archived: false,
     info: {
