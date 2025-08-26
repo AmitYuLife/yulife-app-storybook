@@ -1,0 +1,2251 @@
+{
+  "2048": {
+    "current_score": "النتيجة الحالية",
+    "high_score": "أعلى نتيجة",
+    "lost": {
+      "info": "لا تستسلم",
+      "title": "لم يتبق لديك مساحة!"
+    },
+    "restart": "إعادة تشغيل اللعبة",
+    "restart_dialog": {
+      "description": "سيتم فقد تقدمك في اللعبة الحالية",
+      "no": "إلغاء",
+      "title": "إعادة تشغيل اللعبة؟",
+      "yes": "إعادة تشغيل"
+    },
+    "subtext": "اسحب لتحريك المربعات. المربعات ذات الأرقام المتشابهة تندمج في واحدة عند لمسها. اجمعها للوصول إلى %{finalScore}!",
+    "time": "الوقت",
+    "title": "انضم إلى المربعات والوصول إلى %{finalScore}",
+    "vibration": "اهتزاز",
+    "victory": {
+      "info": "أنت مذهل",
+      "title": "تهانينا!"
+    }
+  },
+  "2048_selector": {
+    "difficulty": {
+      "label": "الصعوبة",
+      "options": {
+        "extreme": "متطرف",
+        "hard": "صعب",
+        "normal": "عادي"
+      },
+      "title": "صعوبة اللعبة"
+    },
+    "final_score": "النقاط النهائية",
+    "haptics": "اهتزاز",
+    "size": "حجم اللوحة",
+    "skin": {
+      "label": "جلد",
+      "options": {
+        "numerical": "رقمي",
+        "symbols": "رموز"
+      },
+      "title": "جلد اللعبة"
+    },
+    "start_game": "ابدأ اللعبة"
+  },
+  "achievements": "إنجازات",
+  "activity_types": {
+    "cycling": {
+      "plural": "الدراجات"
+    },
+    "meditation": {
+      "plural": "دقائق التأمل",
+      "short": "%{min} دقيقة",
+      "singular": "دقيقة التأمل"
+    },
+    "pension": {
+      "plural": "مدخرات"
+    },
+    "steps": {
+      "plural": "خطوات",
+      "singular": "خطوة"
+    }
+  },
+  "alerts": {
+    "not_enough_coins": {
+      "body": "اكسب المزيد وعد لاحقًا!",
+      "title": "غير كافٍ من يوكوين"
+    }
+  },
+  "all_achievements": "كل الإنجازات",
+  "apple_health": "آبل الصحة",
+  "button": "زر",
+  "captcha_input": {
+    "hcaptcha_disclaimer": "تتم حماية هذا التطبيق بواسطة hCaptcha وتطبق [سياسة الخصوصية](https://www.hcaptcha.com/privacy) و[شروط الخدمة](https://www.hcaptcha.com/terms) الخاصة بها."
+  },
+  "communities": "المجتمعات",
+  "config": {
+    "ios": {
+      "plist": {
+        "ns_camera_usage_description": "إرسال الصور لحل مشاكل التطبيق",
+        "ns_health_share_usage_description": "نستخدم بيانات خطواتك وتأملاتك حتى نتمكن من التحقق من إكمال التحديات",
+        "ns_health_update_usage_description": "نحتاج إلى القدرة على كتابة بيانات خطواتك وتأملاتك حتى نتمكن من تحديث التحديات المكتملة",
+        "ns_location_always_usage_description": "نحتاج إلى إمكانية الوصول لحركة موقعك لتتبع التحديات الخطوية",
+        "ns_motion_usage_description": "نستخدم عداد الخطوات لديك لمتابعة عدد الخطوات التي قمت بها خلال اليوم.",
+        "ns_photo_library_add_usage_description": "لحفظ هذه الصورة سيحتاج YuLife إلى القدرة على الإضافة إلى صورك.",
+        "ns_photo_library_usage_description": "إرسال الصور لحل مشاكل التطبيق"
+      }
+    }
+  },
+  "coupons": "كوبونات",
+  "create_challenge_error": "عذرًا، حدثت مشكلة في بدء التحدي الخاص بك.\nيرجى المحاولة مرة أخرى!",
+  "device_not_supported": "الجهاز غير مدعوم",
+  "equip": "تَجْهِيز",
+  "equipped": "مُجَهَّز",
+  "format": {
+    "date_picker_display": "DD / MM / YYYY",
+    "date_readable": "DD MMM YYYY",
+    "date_readable_short": "DD MMM",
+    "date_short": "DD/MM/YYYY",
+    "date_time_readable": "HH:mm D مَم YYYY",
+    "date_time_readable_short": "HH:mm D مَم",
+    "duration": "د[د] ث[ث]",
+    "duration_long": "ساع[س] دق[د] ثوا[ث]",
+    "month_full": "MMMM",
+    "time_short": "HH:mm"
+  },
+  "generic_heading": {
+    "left_icon": {
+      "close": {
+        "accessibility_label": "إغلاق"
+      }
+    },
+    "right_icon": {
+      "close": {
+        "accessibility_label": "إغلاق"
+      },
+      "coins": {
+        "accessibility_label": "العملات"
+      },
+      "done": {
+        "accessibility_label": "تم"
+      },
+      "edit": {
+        "accessibility_label": "تعديل"
+      },
+      "plus": {
+        "accessibility_label": "بلاس"
+      },
+      "save": {
+        "accessibility_label": "حفظ"
+      },
+      "settings": {
+        "accessibility_label": "الإعدادات"
+      }
+    }
+  },
+  "google_fit": "جوجل فيت",
+  "hints": {
+    "unlock_more_challenges": {
+      "description": "كل 50 مستوى، تحصل على القدرة لتنفيذ تحدي واحد إضافي يوميًا. حتى 4 تحديات بشكل إجمالي!",
+      "title": "افتح تحديات أكثر"
+    }
+  },
+  "history": "تاريخ",
+  "labels": {
+    "accessibility": {
+      "hide": "إخفاء",
+      "show": "عرض"
+    },
+    "account": "حساب",
+    "amount": "المبلغ",
+    "copied": "تم النسخ!",
+    "cta": {
+      "accept": "قبول",
+      "allow": "السماح",
+      "ask_later": "اسألني لاحقًا",
+      "back": "عودة",
+      "cancel": "إلغاء",
+      "claim": "استلم",
+      "close": "إغلاق",
+      "collect": "جمع",
+      "confirm": "تأكيد",
+      "connect": "اتصل",
+      "connect_health_app": "اتصل بـ%{healthApp}",
+      "continue": "تابع",
+      "cool": "رائع!",
+      "copy": "نسخ",
+      "decline": "رفض",
+      "dismiss": "تجاهل",
+      "done": "تم",
+      "exit": "خروج",
+      "get_started": "ابدأ",
+      "give_feedback": "إعطاء ملاحظات",
+      "go_back": "الرجوع",
+      "got_it": "فهمت",
+      "great": "رائع!",
+      "invite": "دعوة زميل",
+      "join": "انضم",
+      "later": "لاحقًا",
+      "learn_more": "اعرف أكثر",
+      "lets_go": "لنذهب",
+      "loading": "جار التحميل...",
+      "next": "التالي",
+      "no": "لا",
+      "no_thanks": "لا، شكرًا",
+      "not_now": "ليس الآن",
+      "not_really": "ليس حقاً",
+      "ok": "موافق",
+      "open": "افتح",
+      "pause": "إيقاف",
+      "quit": "إنهاء",
+      "save": "حفظ",
+      "select": "اختر",
+      "skip": "تخطي",
+      "start": "ابدأ",
+      "submit": "إرسال",
+      "use": "استخدام",
+      "yeah": "نعم!",
+      "yes": "نعم"
+    },
+    "deleted_user_name": "زميلك",
+    "level": "المستوى %{level}",
+    "many_more": "+العديد من المزيد",
+    "off": "إيقاف",
+    "on": "تشغيل",
+    "power": "القوة",
+    "quest_map": "خريطة",
+    "spend": "إنفاق",
+    "time": {
+      "days": "أيام",
+      "hours": "ساعات",
+      "mins": "دقائق"
+    },
+    "to_level": "إلى المستوى",
+    "unknown": "غير معروف",
+    "vs": "ضد",
+    "world_name": {
+      "desert": "صحراء",
+      "forest": "غابة",
+      "mountain": "جبل",
+      "ocean": "محيط"
+    },
+    "you": "أنت"
+  },
+  "leaderboard": "قائمة المتصدرين",
+  "meditation": "تأمل",
+  "meditation_progress": {
+    "paused": "تم إيقاف التأمل مؤقتًا",
+    "resume": "استئناف التأمل"
+  },
+  "modals": {
+    "active_buffs": {
+      "tap_anywhere": "انقر في أي مكان للإغلاق"
+    },
+    "add_beneficiary": {
+      "confirmation": {
+        "title": "هل أنت متأكد أنك تريد حذف هذا المستفيد؟"
+      },
+      "default_confirmation": {
+        "title": "هل ترغب في أن يكون هؤلاء المستفيدين الافتراضيين لمنتجات أخرى مستقبلاً؟"
+      },
+      "delete_beneficiary_label": "حذف المستفيد",
+      "title": "تفاصيل المستفيد"
+    },
+    "battle_pass": {
+      "completed": {
+        "button_label": "استلام المكافآت",
+        "description": "لقد أكملت هذا الموسم! \n\n استلم جميع مكافآتك حتى تتمكن من بدء موسم جديد.",
+        "title": "تهانينا!"
+      },
+      "finished": {
+        "button_label": "أبدأ الموسم الجديد",
+        "description": "لقد أكملت هذا الموسم! \n\n ابدأ موسمًا جديدًا لفتح المزيد من المكافآت الرائعة!",
+        "title": "تهانينا!"
+      },
+      "out_of_coin": {
+        "description": "رصيدك لا يكفي لإتمام هذه الشراء. \n \n جرب إنهاء بعض التحديات لكسب المزيد من العملات.",
+        "title": "يا للهول!"
+      }
+    },
+    "consumables": {
+      "activate_button": "تنشيط",
+      "already_active_end": "للاستخدام حتى انتهاء صلاحيته.",
+      "already_active_start": "قوتك الخاصة نشطة. لديك",
+      "close": "إغلاق",
+      "empty": "مخزونك فارغ. توجه إلى مسار مكافآت المواسم للحصول على عناصر مفيدة لمساعدتك في رحلتك.",
+      "go_to_rewards_button": "اذهب إلى المكافآت",
+      "popover_confirm": "رائع",
+      "subtitle": "اختر قوة لتعشيقها",
+      "title": "المخزون"
+    },
+    "duels": {
+      "dialog_helpers": {
+        "alternative_name": "زميلك",
+        "description_already_accepted": "سوف تتم المبارزة الخاصة بك مع %{name} في %{duelStart}. يمكنك تحديهم في مباراة إعادة بعد ذلك، أو تحدي صديق آخر الآن.",
+        "description_not_accepted": "لقد دعوت بالفعل %{name} إلى المبارزة. انتظر ردهم أو تحدَّ صديقًا آخر الآن.",
+        "title_already_accepted": "لقد بدأ بالفعل!",
+        "title_not_accepted": "انتظر لحظة!"
+      },
+      "duel_intro": {
+        "button": "تحديد التحدي",
+        "heading": "المواجهة:"
+      },
+      "duel_invite": {
+        "confirm_invitation": {
+          "heading": "تأكيد الدعوة؟",
+          "subheading": "إذا قُبلت، سيتم إضافتها إلى قائمة المبارزات القادمة لديك وستبدأ غداً"
+        },
+        "not_enought_yucoin": {
+          "heading": "غير كافٍ من يوكوين",
+          "subheading": "قم بالمزيد من التحديات وعد لاحقًا!"
+        }
+      },
+      "duel_options": {
+        "bragging_rights_option": "حقوق المفاخرة",
+        "button_label": "إرسال طلب مبارزة",
+        "colleague": "زميل",
+        "header": "تقوم بتحدي **%{name}** في مبارزة. من يسجل أكبر عدد من الخطوات خلال التحدي، يفوز!",
+        "instruction": "ما الهدف من المنازلة؟",
+        "select_wager": "اختر رهانًا",
+        "subheader_1": "يبدأ النزال غدًا ويستمر طوال اليوم. ستظهر النتائج التي تُعلن الفائز في صباح اليوم التالي.",
+        "subheader_2": "ما الهدف من المنازلة؟",
+        "your_wager": "رهانك"
+      },
+      "duel_respond": {
+        "heading": "هل أنت متأكد؟",
+        "subheading": "تذكر، إذا قبلت هذا التحدي، قد تخسر %{yucoin} يوكوين. هل أنت متأكد أنك تريد المتابعة؟",
+        "subheading_no_yucoin": "هذه المبارزة فقط للفخر، لذا لن تكسب أو تخسر أي يوكوين. هل أنت سعيد بالمتابعة؟"
+      },
+      "duel_response_intro": {
+        "bragging_rights": "حقوق المفاخرة",
+        "collegue": "زميل",
+        "heading": "دعاك إلى مبارزة لمدة يوم واحد!",
+        "yucoin_heading": "دعاك إلى مبارزة لمدة يوم واحد مقابل %{yucoin}!"
+      },
+      "hub": {
+        "active_tab": "نشطة",
+        "all_day_steps": "%{userScore} خطوات",
+        "br": "البرازيل",
+        "challenge_friend_button": "تحدَّ صديقك",
+        "completed_tab": "المنتهي",
+        "confirm_duel_steps": "تأكيد خطواتك",
+        "duel_confirming": "جارٍ التأكيد...",
+        "duel_syncing": "جاري المزامنة...",
+        "invitations_declined": "مرفوض",
+        "invitations_invited": "مدعو",
+        "invitations_respond": "رد",
+        "invitations_title": "الدعوات",
+        "last_know_step": "آخر عدد للخطوات المعروفة:",
+        "score": "%{opponentScore} ضد %{userScore} خطوات",
+        "steps": "خطوات",
+        "steps_today": "خطوات اليوم",
+        "sync_duel_steps": "زامن خطواتك",
+        "synced": "متزامن",
+        "today_empty": "أنت لا تتبارز مع أي شخص اليوم.",
+        "today_title": "مباريات اليوم",
+        "tomorrow_title": "مبارزات الغد",
+        "waiting_for_opponent_steps_sync": "في انتظار مزامنة خطوات %{opponentName}",
+        "waiting_user_steps_sync": "في انتظار مزامنة خطوات المستخدم",
+        "you_drew": "تعادلتم",
+        "you_lost": "لقد خسرت",
+        "you_won": "انت فزت!"
+      },
+      "intro": {
+        "subtitle_1": "هل تريد مواجهة وجهاً لوجه؟ اختر صديقاً من القائمة العلوية وتحداه إلى مبارزة!",
+        "subtitle_2": "هل تشعر بالثقة؟ نافس من أجل يو كوين أو حق التفاخر!",
+        "subtitle_3": "ستبدأ المنافسة في اليوم التالي وسيكون لديك ٢٤ ساعة لتسجيل أكبر عدد ممكن من الخطوات!",
+        "title_1": "تحدَّ صديقك",
+        "title_2": "حدد الرهان",
+        "title_3": "تفوق على خصمك"
+      },
+      "search": {
+        "friends_not_found": "لم نتمكن من العثور على الصديق الذي تبحث عنه.\nحثه للانضمام إلى لوحة المتصدرين أو دعوته إلى التطبيق!",
+        "item_duel": "مبارزة >",
+        "recent_opponents": "حالياً",
+        "title": "ابحث عن صديق:"
+      }
+    },
+    "generic_connection_error": {
+      "offline": {
+        "heading": "أنت غير متصل",
+        "subheading": "تحقق من اتصالك بالإنترنت"
+      }
+    },
+    "generic_modal": {
+      "cancel_challenge": {
+        "cta_label": "إنهاء التحدي",
+        "heading": "هل ترغب بالانسحاب؟",
+        "subheading": "سيتم فقد تقدمك الحالي ولكن يمكنك المحاولة مرة أخرى في أي وقت"
+      },
+      "on_media_challenge_end_error": {
+        "cta_label": "قائمة المهام",
+        "heading": "يبدو أن يوجي \nوجد خطأً!",
+        "subheading": "يمكنك المحاولة مرة أخرى لاحقًا، أو الاتصال بنا من خلال الدردشة داخل التطبيق - نحن ودودون!"
+      },
+      "on_meditopia_error": {
+        "cta_label": "أعد المحاولة",
+        "cta_label_secondary": "قائمة المهام",
+        "heading": "عذرًا، هناك خطأ ما.",
+        "subheading": "تعذر علينا تحميل الوسائط. يرجى التحقق من اتصالك وحاول مرة أخرى. إذا استمر ظهور هذه الرسالة تواصل معنا عبر الدردشة."
+      },
+      "yumoji_builder": {
+        "cta_label": "احفظ التغييرات",
+        "heading": "يو تبدو رائعاً!",
+        "subheading": "هل تريد حفظ هذه التغييرات؟"
+      }
+    },
+    "leaderboards": {
+      "frame_select": {
+        "confirm": "تأكيد",
+        "heading": "إطار قائمة المتصدرين",
+        "no_frames": " لا تتوفر إطارات رمزية",
+        "subheading": "اختر إطارًا لاستعراض إنجازاتك"
+      },
+      "invite": {
+        "cta_label": "قبول الدعوة",
+        "cta_label_secondary": "رفض الدعوة",
+        "heading_after_name": "قائمة المتصدرين",
+        "heading_before_name": "انضم",
+        "subheading_after_name": "اللوحة وفكنهم عرض تقدمهم أيضًا.",
+        "subheading_before_name": "بقبول الدعوة ستشارك خطواتك ويوكوين مع الأعضاء الآخرين في"
+      }
+    },
+    "open_random_chest": {
+      "claim_all_subtitle": "اكتشف ما الذي فتحته!",
+      "claim_all_title": "الجائزة الكبرى!",
+      "claim_reward": "استلام المكافأة",
+      "open": "افتح",
+      "open_chest": "افتح الصندوق",
+      "select_one": "اختر واحدًا للاستمرار",
+      "title": "لقد حصلت على مكافأة!",
+      "won_reward": "لقد ربحت %{reward}!"
+    },
+    "push_notifications": {
+      "from_challenge": {
+        "cta_label": "بالتأكيد",
+        "cta_label_secondary": "ربما لاحقًا",
+        "heading": "لا تفوت الفرصة",
+        "subheading": "هل تريد منا أن ننبهك عندما تكمل تحديًا؟"
+      },
+      "to_settings": {
+        "cta_label": "الانتقال إلى الإعدادات",
+        "heading": "إشعار",
+        "subheading": "للحصول على الإشعارات، يجب عليك الذهاب إلى إعدادات النظام وتشغيلها."
+      },
+      "turn_notification_on": {
+        "heading": "تشغيل الإشعارات",
+        "subheading": "قم بتشغيل الإشعار حتى نتمكن من إعلامك عند وجود رد على رسالتك"
+      }
+    },
+    "reward_info": {
+      "got_it": "فهمت",
+      "unlock_multiple_rewards": "استخدم YuCoin لفتح المكافأة",
+      "unlock_reward": "استخدم YuCoin لفتح هذه المكافأة"
+    },
+    "smoking_streak_lapsed": {
+      "page_1": {
+        "cta": "التالي",
+        "info": "سيتم إعادة تعيين تقدمك، لكن ابق عينيك على الهدف. %{goal} يوم بدون تدخين هو هدفنا الحقيقي. نحن هنا لمساعدتك!",
+        "info_title": "لا تنظر للخلف الآن",
+        "text_1": "الإقلاع عن التدخين صعب، ومن الطبيعي أن تواجه انتكاسات. أنت بشري!",
+        "text_2": "ما يهم هو إدراك مدى تقدمك والاستمرار في المضي قدمًا.",
+        "title": "لا بأس، الجميع يسير بخطى خاصة."
+      },
+      "page_2": {
+        "cta": "التالي",
+        "markdown": "لقد قطعت شوطًا طويلاً بالفعل، يمكنك فعل ذلك مرة أخرى. نحن نؤمن بك.\n\nلنبدأ من جديد بعقلية متجددة.\n\n**متى كانت آخر مرة دخنت؟**",
+        "title": "لنواصل السير!"
+      }
+    },
+    "step_feedback": {
+      "next": "التالي"
+    },
+    "streak_saver": {
+      "body": "لقد فاتك يوم، لكننا جميعًا نستحق فرصة أخرى — استمر في تحقيق تلك التحديات!",
+      "button": "فهمت!",
+      "inventory_item": "قاذفات التعاقب",
+      "title": "التسلسل محفوظ!"
+    },
+    "switch_to_google_fit": {
+      "button_label": "التبديل إلى جوجل فيت",
+      "checklist_info_card": {
+        "description": "يدعم جميع الأنشطة لتجربة كاملة والمكافآت",
+        "list": {
+          "label_1": "خطوات",
+          "label_2": "تأمل",
+          "label_3": "تطبيقات الأطراف الثالثة"
+        },
+        "title": "Google Fit"
+      },
+      "heading": "تنبيه!",
+      "subheading": "لا يقوم تطبيق Samsung Health حاليًا بمزامنة البيانات التي نحتاجها لمكافأتك على جلستك. لمزامنة دقائق الوعي والتطبيقات من الأطراف الثالثة، يرجى التبديل إلى Google Fit."
+    },
+    "switch_to_samsung_health": {
+      "checklist_info_card": {
+        "description": "لا يدعم جميع الأنشطة للحصول على تجربة كاملة والمكافآت",
+        "list": {
+          "label_1": "خطوات",
+          "label_2": "تأمل",
+          "label_3": "تطبيقات الأطراف الثالثة"
+        },
+        "title": "سامسونج للصحة"
+      }
+    },
+    "unlocked_achievements": {
+      "description": "اعرضها من خلال تجهيزها على نوموجي الخاص بك.",
+      "title": "إنجاز جديد تم فتحه! |||| لقد حصلت على %{smart_count} من الإنجازات الجديدة!"
+    }
+  },
+  "molecules": {
+    "coin_confetti": {
+      "accessibility_label": " بلس %{coins} يوكوين"
+    },
+    "inventory_banner": {
+      "subtitle": "افتح لعرض عناصر الأغراض الخاصة بك",
+      "title": "المخزون"
+    },
+    "inventory_item": {
+      "activated": "مفعل",
+      "quantity": "%{quantity}x"
+    },
+    "multi_factor_pricing": {
+      "cover_picker": {
+        "choose_custom": "أو اختر نسبة مئوية مخصصة"
+      }
+    },
+    "package_type": {
+      "not_equipped": "غير مُجَهَّز"
+    },
+    "reward_item_content": {
+      "link_group": {
+        "label_1": "الأحكام والشروط",
+        "label_2": "سياسة المكافآت"
+      },
+      "titles": {
+        "description": "وصف",
+        "how_to_redeem": "كيفية الاسترداد"
+      }
+    },
+    "yucoin_power_button": {
+      "button_label": "يحسن من مكافآت التحدي الخاصة بك!",
+      "power": "الطاقة",
+      "yucoin": "يوقوين"
+    }
+  },
+  "navbar": {
+    "leaderboard": {
+      "accessibility_label": "افتح قائمة المتصدرين",
+      "accessibility_text_value": "٤ من ٥",
+      "label": "قائمة المتصدرين"
+    },
+    "quest": {
+      "accessibility_label": "افتح المهمة",
+      "accessibility_text_value": "٢ من ٥",
+      "label": "المهام"
+    },
+    "rewards": {
+      "accessibility_label": "افتح المكافآت",
+      "accessibility_text_value": "٥ من ٥",
+      "label": "المكافآت"
+    },
+    "yu": {
+      "accessibility_label": "افتح شاشة yu",
+      "accessibility_text_value": "٣ من ٥",
+      "label": "يو"
+    },
+    "yucoin": {
+      "accessibility_label": "افتح يوقوين",
+      "accessibility_text_value": "١ من ٥",
+      "label": "يوقوين"
+    }
+  },
+  "overlays": {
+    "business_account": {
+      "button_label": "اختر",
+      "title": "العضويات"
+    },
+    "leaderboard_community": {
+      "button_label": "عرض قائمة المتصدرين"
+    }
+  },
+  "period": {
+    "month": "شهر",
+    "today": "اليوم"
+  },
+  "permissions": {
+    "android": {
+      "activity_recognition": {
+        "description": "مطلوب من تطبيق يولايف للحصول على بيانات النشاط من هاتفك.",
+        "requirement": "مطلوب لـ: خطوات، دقائق الانتباه والمسافة بالدراجة",
+        "title": "التعرف الجسدي"
+      },
+      "activity_recognition_samsung_health": {
+        "description": "مطلوب من تطبيق يولايف للحصول على بيانات النشاط من هاتفك.",
+        "requirement": "مطلوب لـ: الخطوات",
+        "title": "التعرف الجسدي"
+      },
+      "alert": {
+        "accept": "تفعيل",
+        "activity": {
+          "message": "لتوفير المكافآت لك، ستحتاج إلى السماح لتطبيق يو لايف بقراءة نشاطك البدني.",
+          "multiple_items_message": "لتوفير المكافآت لك، ستحتاج إلى السماح لتطبيق يو لايف بقراءة نشاطك البدني.",
+          "title": "الحيز"
+        },
+        "default": {
+          "message": "لاستخدام تطبيق Yulife، يُرجى تمكين إذن جديد.",
+          "multiple_items_message": "لاستخدام تطبيق Yulife، يرجى تمكين إذن جديد.",
+          "title": "البدء"
+        },
+        "deny": "ربما لاحقًا",
+        "location": {
+          "message": "إذا كنت ترغب في الحصول على مكافأة لقاء ركوب الدراجات باستخدام تطبيق YuLife، ستحتاج إلى تمكين خدمات الموقع.",
+          "multiple_items_message": "الموقع مطلوب فقط إذا كنت ترغب في الحصول على مكافأة لقاء ركوب الدراجات.",
+          "title": "البدء"
+        }
+      },
+      "distance_read": {
+        "description": "مطلوب لتطبيق YuLife للحصول على بيانات ركوب الدراجات/الدراجات الهوائية التي يتم تتبعها في حساب Google Fit الخاص بك.",
+        "requirement": "يحتاج: التعرف الجسدي، الموقع",
+        "title": "مسافة ركوب الدراجات"
+      },
+      "fitness_activity_read": {
+        "description": "مطلوب لتطبيق YuLife لقراءة بيانات الخطوات التي يتم تتبعها في حساب Google Fit الخاص بك.",
+        "requirement": "يحتاج: التعرف الجسدي",
+        "title": "خطوات"
+      },
+      "health_connect": {
+        "cycling": {
+          "description": "مطلوب لتطبيق YuLife للحصول على بيانات مسافة ركوب الدراجات التي يتم تتبعها عن طريق Health Connect.",
+          "requirement": "يتطلب: المسافة",
+          "title": "ركوب الدراجات"
+        },
+        "exercise": {
+          "description": "مطلوب لتطبيق YuLife للحصول على بيانات التمارين الرياضية (مثل Fiit) التي يتم تتبعها عن طريق Health Connect.",
+          "requirement": "يتطلب: تمارين",
+          "title": "التمارين"
+        },
+        "meditation": {
+          "description": "الاتصال الصحي لا يدعم التأمل. للحصول على المكافأة، يرجى التحول إلى Google Fit.",
+          "title": "دقائق التأمل"
+        },
+        "steps": {
+          "description": "مطلوب لتطبيق YuLife لقراءة بيانات الخطوات التي يتم تتبعها عن طريق Health Connect.",
+          "requirement": "يتطلب: الخطوات",
+          "title": "خطوات"
+        }
+      },
+      "location": {
+        "description": "مطلوب من تطبيق يولايف للحصول على بيانات النشاط من هاتفك.",
+        "requirement": "مطلوب لـ: المسافة بالدراجة",
+        "title": "الموقع"
+      },
+      "mindfulness_read": {
+        "description": "مطلوب من تطبيق YuLife لمزامنة دقائق التأمل الذهني من جلسات التأمل الخاصة بك إلى حساب Google Fit الخاص بك.",
+        "requirement": "يحتاج: التعرف الجسدي",
+        "title": "دقائق التأمل"
+      },
+      "samsung_cycling": {
+        "description": "ركوب الدراجات غير مدعوم من تطبيق سامسونج الصحي. للحصول على المكافأة، يرجى التحول إلى Google Fit.",
+        "descriptionSupported": "مطلوب لتطبيق YuLife للحصول على بيانات ركوب الدراجات/الدراجات الهوائية التي يتم تتبعها في حساب Samsung Health الخاص بك.",
+        "title": "ركوب الدراجات (غير مدعوم)",
+        "titleSupported": "ركوب الدراجات"
+      },
+      "samsung_mindful": {
+        "description": "تطبيق سامسونج الصحي لا يدعم التأمل. للحصول على المكافأة، يرجى التحول إلى Google Fit.",
+        "title": "دقائق التأمل (غير مدعوم)"
+      },
+      "samsung_steps_count": {
+        "description": "مطلوب لتطبيق YuLife لقراءة بيانات الخطوات التي يتم تتبعها في حساب Samsung Health الخاص بك.",
+        "requirement": "يحتاج: التعرف الجسدي",
+        "title": "عدد الخطوات"
+      },
+      "samsung_steps_count_trend": {
+        "description": "مطلوب لتطبيق YuLife لقراءة بيانات الخطوات التي يتم تتبعها في حساب Samsung Health الخاص بك.",
+        "requirement": "يحتاج: التعرف الجسدي",
+        "title": "توجهات عد خطوات اليومية"
+      },
+      "workouts_read": {
+        "description": "مطلوب لتطبيق YuLife للحصول على بيانات التمارين الرياضية (مثل Fiit) التي يتم تتبعها في حساب Google Fit الخاص بك.",
+        "requirement": "يحتاج: التعرف الجسدي",
+        "title": "التمارين"
+      }
+    },
+    "ios": {
+      "cycling_read": {
+        "description": "مطلوب لتطبيق YuLife للحصول على بيانات ركوب الدراجات/الدراجات الهوائية التي يتم تتبعها في حساب Apple Health الخاص بك.",
+        "title": "مسافة ركوب الدراجات"
+      },
+      "mindfulness_read": {
+        "description": "مطلوب من تطبيق YuLife لمزامنة دقائق التأمل الذهني من جلسات التأمل الخاصة بك إلى حساب Apple Health الخاص بك.",
+        "title": "دقائق التأمل"
+      },
+      "motion_and_fitness": {
+        "description": "مطلوب لتطبيق يو لايف لمكافأتك على أنشطتك اليومية",
+        "title": "الحركة واللياقة"
+      },
+      "steps_read": {
+        "description": "مطلوب لتطبيق YuLife لقراءة بيانات الخطوات التي يتم تتبعها في حساب Apple Health الخاص بك.",
+        "title": "خطوات"
+      },
+      "workouts_read": {
+        "description": "مطلوب لتطبيق YuLife للحصول على بيانات التمارين الرياضية (مثل Fiit) التي يتم تتبعها في حساب Apple Health الخاص بك.",
+        "title": "التمارين"
+      }
+    }
+  },
+  "placeholder": {
+    "account_number": "رقم الحساب",
+    "email": "البريد الإلكتروني",
+    "first_name": "الاسم الأول",
+    "group_name": "اسم المجموعة",
+    "last_name": "اللقب",
+    "password": "كلمة المرور",
+    "phone_number": "رقم الهاتف",
+    "relation": "علاقة"
+  },
+  "prizes": {
+    "tooltips": {
+      "power_up": {
+        "body": "اعثر عليها في مخزونك في المهام.",
+        "title": "تم جمع التعزيز!"
+      },
+      "purchase": {
+        "body": "تجدها في محفظتك.",
+        "title": "تم جمع المكافأة!"
+      },
+      "yucoin": {
+        "body": "انظر على شاشة يوكوين",
+        "title": "تم جمع عملة يوكوين!"
+      },
+      "yumoji": {
+        "body": "جربه على يوموجي الخاص بك.",
+        "title": "تجميع كائن يوموجي!"
+      }
+    }
+  },
+  "push_notification": {
+    "challenge_completed": {
+      "message": "انتهى الوقت! تفقد كيف كان أداؤك في التحدي الأخير.",
+      "title": "التحدي المكتمل"
+    }
+  },
+  "samsung_health": "سامسونج للصحة",
+  "save_image": {
+    "blocked": {
+      "confirm_label": "فتح إعدادات التطبيق",
+      "description": "يرجى التحقق من الأذونات والتأكد من أن تطبيق YuLife لديه حق الوصول إلى الصور.",
+      "description_android": "يرجى التحقق من الأذونات والتأكد من أن تطبيق YuLife لديه حق الوصول إلى الوسائط.",
+      "title": "غير قادر على الحفظ"
+    },
+    "error": {
+      "description": "يرجى التحقق من الأذونات والتأكد من أن تطبيق YuLife لديه حق الوصول إلى الصور.",
+      "description_android": "يرجى التحقق من الأذونات والتأكد من أن تطبيق YuLife لديه حق الوصول إلى الوسائط.",
+      "title": "غير قادر على الحفظ"
+    },
+    "image_saved": {
+      "description": "ستجد الصورة في تطبيق الصور.",
+      "title": "تم حفظ الصورة"
+    },
+    "no_permission": {
+      "confirm_label": "تأكيد",
+      "description": "نحتاج إلى إذنك لحفظ الصورة على جهازك",
+      "title": "يتطلب إذن"
+    },
+    "save_button": "احفظ كصورة",
+    "unavailable": {
+      "description": "هذه الميزة غير متاحة على جهازك",
+      "title": "غير قادر على الحفظ"
+    }
+  },
+  "screens": {
+    "achievements": {
+      "achievements_points": "%{achievementPoints} نقاط الإنجازات"
+    },
+    "activity_history": {
+      "empty_message": "يبدو أنك لم تكمل أي أنشطة بعد. ابدأ رحلة صحتك اليوم مع بعض التحديات."
+    },
+    "activity_history_levels": {
+      "header_left": "التاريخ",
+      "header_level": "المستوى",
+      "header_mid": "النشاط والتقدم",
+      "header_right": "يوقوين",
+      "heading": "تاريخ النشاط"
+    },
+    "battle_pass": {
+      "accessibility": {
+        "donate_button": "تبرع بـ %{amount} عملة يوكوين إلى %{title}",
+        "donation_title": "تبرع %{title}",
+        "progress_bar": "تم إنفاق %{step} من %{steps} عملة يو للوصول إلى المستوى %{level}",
+        "reward_item_details": "المكافأة %{title}",
+        "reward_level": "مكافأة المستوى %{level}",
+        "view_details": "عرض تفاصيل المكافأة %{title}",
+        "view_donation_leaderboard": "عرض قائمة المتصدرين %{title}"
+      },
+      "claim_modal": {
+        "buttons": {
+          "claim_reward": "استلام المكافأة",
+          "open_chest": "افتح",
+          "select_reward": "اختر هذه المكافأة"
+        }
+      },
+      "leaderboard": {
+        "month_switcher": {
+          "title": "الأشهر"
+        }
+      },
+      "level_up": {
+        "accessibility_title": "ارفع المستوى! تم الوصول إلى المستوى %{level}",
+        "title": "ارفع المستوى!"
+      },
+      "season_complete": {
+        "claim_rewards": {
+          "claim_action": "استلم مكافآتك أعلاه!",
+          "claim_button": "استلام المكافآت"
+        },
+        "go_to_next_season": "تهانينا على إكمال هذا الموسم! حان الوقت لبدء الموسم التالي!",
+        "go_to_next_season_button": "استمرار",
+        "modal": {
+          "button_label": "ابدأ الموسم الجديد",
+          "title": "%{name} قد انتهى!"
+        },
+        "staging": {
+          "description": "استمر في مواجهة تحدياتك اليومية حيث تنتظرك مكافآت مثيرة!",
+          "go_to_purchases": "الانتقال إلى المشتريات",
+          "go_to_store": "اذهب إلى متجر المكافآت",
+          "title": "موسم جديد قادم!"
+        },
+        "subtitle": "لقد أنهيت",
+        "unclaimed_rewards": "انتهى الموسم! احصل على مكافآتك، ثم تابع إلى المغامرة التالية!"
+      }
+    },
+    "breathing_exercise": {
+      "end": "إنهاء",
+      "exhale": "زفر",
+      "hold": "امسك",
+      "inhale": "استنشق",
+      "length": "المدة",
+      "mouth": "فم",
+      "nose": "أنف"
+    },
+    "challenge_chest_modal": {
+      "card": "صندوق مليء بعملة يوكوين!",
+      "cta_label_is_next": "هيا",
+      "heading_is_completed": "تحصل على %{yucoin} يوقوين",
+      "heading_is_next": "على وشك الحصول عليها! اقبل التحدي لفتح الجائزة الخاصة بك.",
+      "heading_is_not_next_level": "افتح عند المستوى %{level}",
+      "heading_is_not_next_stage": "افتح عند %{name}"
+    },
+    "challenge_details": {
+      "accessibility": {
+        "star_rating": "التقييم: %{activeStars} نجمة |||| التقييم: %{activeStars} نجوم"
+      }
+    },
+    "challenge_failed": {
+      "footer": "لماذا لا تحاول مرة أخرى؟",
+      "heading": "لقد كنت قريب جدًا!",
+      "stage": "المرحلة %{level}"
+    },
+    "challenge_list": {
+      "accessibility": {
+        "description": "%{heading} %{reward} يوكوين %{duration}"
+      },
+      "level_boosted": "تعزيز",
+      "level_completed": "المكتمل",
+      "level_locked": "مغلق"
+    },
+    "challenge_next_modal": {
+      "cta_reject": "ربما لاحقًا",
+      "cta_submit": "لنبدأ!",
+      "heading": "على وشك الحصول عليها! اقبل التحدي لفتح الجائزة الخاصة بك.",
+      "tease": "استمر في الترقية لفتح المكافآت"
+    },
+    "challenge_no_data": {
+      "buttons": {
+        "cancel_challenge": "إلغاء التحدي",
+        "faq": "الأسئلة الشائعة",
+        "open_apple_health": "افتح تطبيق آبل الصحة",
+        "retry": "حاول المزامنة مرة أخرى"
+      },
+      "cant_open_apple_health_body": "يرجى محاولة فتح تطبيق Apple Health يدويًا للتحقق من بياناتك",
+      "cant_open_apple_health_title": "هناك خطأ ما",
+      "description": "بيانات التحدي النشط مفقودة. تأكد من أن أنشطة التحدي قد تم مزامنتها ضمن تطبيق الصحة الخاص بك. إذا واجهت مشكلة، يمكنك دائمًا الإلغاء والمحاولة مرة أخرى.",
+      "title": "عذرًا! التحدي النشط الخاص بك لم يتزامن بعد."
+    },
+    "challenge_progress": {
+      "debug_info": {
+        "cta": "تصدير البيانات",
+        "current_pedometer_steps": "2. عدد خطوات عداد الخطى الحالي: %{steps}",
+        "history_steps": "4. خطوات سجل عداد الخطى:",
+        "initial_steps": "١. خطوات أولية من %{healthProvider}: %{steps}",
+        "progress": "٣. التقدم (٢ - ١): %{progress}"
+      },
+      "external_app_links": {
+        "different_app_cta_label": "أنا أستخدم تطبيقاً مختلفاً",
+        "fiit": {
+          "heading": "ابدأ مع Fiit",
+          "subheading": "أكمل أي درس Fiit للحصول على مكافأة"
+        },
+        "heading": "اختر تطبيقًا للبدء",
+        "subheading": "يمكنك استخدام أي تطبيق يزامن دقائق اليقظة الذهنية إلى %{syncApp}"
+      },
+      "how_meditate_with_other_apps_label": "كيف أقوم بالتأمل باستخدام تطبيقات أخرى",
+      "workout_with_other_apps": "كيف أقوم بالتمرين باستخدام تطبيقات أخرى"
+    },
+    "challenge_progress_watch": {
+      "body": "إذا كنت ترغب في بدء تحدٍ من هاتفك، يمكنك إلغاء التحدي النشط على ساعتك أو من هنا.",
+      "button": "إلغاء التحدي",
+      "resync": "إعادة المزامنة مع الساعة",
+      "title": "التحدي جارٍ!"
+    },
+    "challenges": {
+      "animated_chest": {
+        "link_button_label": "لاحقًا"
+      },
+      "details": {
+        "bonus_info_popup": {
+          "cta_label": "فهمت",
+          "text": "هذا التعزيز يمنحك كمية ثابتة إضافية من عملات اليوكوين لهذه التحدي."
+        },
+        "boosted_badge": "تعزيز",
+        "cta_label": "خذ التحدي",
+        "extra_yucoin": "يوقوين إضافي",
+        "loading": "جار التحميل...",
+        "set_up_label": "إعداد البرنامج التعليمي",
+        "surge_badge": "زيادة: %{multiplier}x"
+      },
+      "history": {
+        "completed_challenges": "التحديات المكتملة",
+        "full_button_label": "كامل تاريخ النشاط",
+        "menu_label": "خريطة",
+        "sudoku_leaderboard": {
+          "default": "قائمة Yudoku للمتصدرين (%{date})",
+          "jp": "لوحة الصدارة لرقم الألغاز (%{date})"
+        },
+        "sudoku_leaderboard_today": "اليوم",
+        "summary": "ملخص المستوى %{level}",
+        "summary_named": "ملخص %{levelName}",
+        "unlock_banner_description_bold": "تحدي إضافي واحد في اليوم",
+        "unlock_banner_description_end": "وافتح إجمالي أربعة تحديات يومية",
+        "unlock_banner_description_start": "بعد الوصول إلى المستويات ٥٠ و١٠٠ و١٥٠، يمكنك بدء",
+        "unlock_banner_title": "افتح تحديات إضافية"
+      },
+      "progress": {
+        "open_fit_app": "افتح تطبيق فيت",
+        "secondary_button_fiit_label": "افتح فيت",
+        "secondary_button_meditation_label": "افتح تطبيق التأمل"
+      }
+    },
+    "challenge_success": {
+      "footer": "أحسنت",
+      "stage": "المرحلة %{level}"
+    },
+    "challenge_unavailable": {
+      "level": "لقد أكملت للتو مستوى",
+      "next": "التالي سيكون متاحًا في %{timeRemaining}",
+      "stage": "لقد أكملت للتو مرحلة"
+    },
+    "challenge_unavailable_modal": {
+      "next_available_at": "سيكون هذا المستوى متاحًا في %{text}"
+    },
+    "collect_reward_modal": {
+      "cta": "استلم",
+      "description": "لقد وصلت إلى مرحلة الحدث!\nتهانينا. احصل على مكافآتك",
+      "description_title": "عمل رائع!",
+      "title": "حدث %{event}"
+    },
+    "content_location": {
+      "first_time": {
+        "confirm": "تأكيد الاختيار",
+        "current_location": "الموقع الحالي",
+        "description": "استمتع بتجربة YuLife مصممة لمنطقتك. لا تقلق، يمكنك دائمًا تغيير موقعك لاحقًا إذا لزم الأمر.",
+        "heading": "اختر موقعك!"
+      },
+      "list": {
+        "cta_button": "تأكيد الاختيار",
+        "rewards_info_box": "سيؤدي تغيير موقع المتجر إلى تغيير عملة القسائم. لن تتأثر القسائم التي تم شراؤها بالفعل.",
+        "title": "اختر موقعك!"
+      }
+    },
+    "daily": {
+      "challenge_button": {
+        "back_to_challenge": "العودة إلى التحدي",
+        "take_challenge": "خذ تحديًا (%{challenges} متبقي اليوم)"
+      },
+      "daily_passive": {
+        "coins": {
+          "accessibility_label": "%{coins} يو كوين تم ربحها اليوم"
+        },
+        "cycling": {
+          "accessibility_label": ", %{cycling} ركوب الدراجات"
+        },
+        "mindfulness": {
+          "accessibility_label": ", %{mindfulness} دقائق ذهنية"
+        },
+        "pension": {
+          "accessibility_label": ", %{contribution} مساهمة التقاعد"
+        },
+        "steps": {
+          "accessibility_label": "%{steps} خطوات"
+        }
+      },
+      "disconnected": {
+        "unauthorised": {
+          "body": "يبدو أن بياناتك الصحية لا تتزامن. هل لديك الأذونات المحدثة؟",
+          "button": "تحقق من أذوناتي",
+          "title": "لا يمكننا مكافأتك حاليًا"
+        },
+        "unavailable": {
+          "body": "لكسب يُكوين مقابل خطواتك وأكثر، نحتاج منك تحديث أذوناتك.",
+          "button": "اتصل بتطبيقك الصحي",
+          "title": "احصل على مكافأة لنشاطك!"
+        }
+      },
+      "fitkit": {
+        "help": {
+          "faq_uri": "https://faq.yulife.com/ar/articles/2813117-connecting-health-apps-to-yulife",
+          "title": "مساعدة"
+        },
+        "unauthorised": {
+          "android": {
+            "is_samsung_message": "من أجل مكافأتك على نشاطك اليومي، سنحتاج إلى الاتصال بتطبيق الصحة. اضغط أدناه للبدء!",
+            "message": "من أجل مكافأتك على نشاطك اليومي، سنحتاج إلى الاتصال بتطبيق Google Fit. اضغط أدناه للبدء!"
+          },
+          "button_label": "نعم، لنقم بالاتصال",
+          "ios": {
+            "first_time_message": "من أجل مكافأتك على نشاطك اليومي، سنحتاج إلى الاتصال بتطبيق Apple Health. اضغط أدناه للبدء!",
+            "motion_unauthorised_button_label": "فتح الأذونات",
+            "motion_unauthorised_message": "يرجى تحديث أذونات الحركة واللياقة لكي تحصل على مكافآت مقابل خطواتك و ممارسة اليقظة الذهنية.",
+            "post_prompt_button_label": "الحصول على المساعدة في الاتصال",
+            "post_prompt_message": "لم نتلق أي بيانات من Apple Health اليوم. يرجى المحاولة مرة أخرى خلال بضع دقائق أو الضغط أدناه لحل المشكلة."
+          }
+        },
+        "unavailable": {
+          "heading": "الجهاز غير مدعوم",
+          "subheading_android": "يتطلب جهازك خدمات Google Play لاستخدام هذا التطبيق.",
+          "subheading_ios": "يتطلب جهازك Apple Healthkit لاستخدام هذا التطبيق."
+        }
+      },
+      "join_event": {
+        "description": "انضم إلى الحدث للمشاركة",
+        "title": "جاهز للانضمام؟"
+      },
+      "offline": {
+        "heading": "أنت غير متصل",
+        "subheading": "ستتحدث خطواتك عند الاتصال بالإنترنت آخر تحديث: %{lastUpdate}"
+      },
+      "panel": {
+        "description": "الحدث التالي سيبدأ قريبًا.",
+        "title": "ابقَ على اطلاعٍ!"
+      },
+      "streak": {
+        "accessibility_label": "سلسلة متتابعة %{currentStreak} من أصل %{maxStreak} أيام"
+      },
+      "surge": {
+        "accessibility_label": "تنشيط %{multiplier} مرات، %{time} متبقية"
+      },
+      "today_yu_coin": {
+        "accessibility_label": "اليوم يوكوين"
+      }
+    },
+    "eotw_chest": {
+      "beginning_button": "بداية جديدة",
+      "claim_button": "استلام المكافآت",
+      "open_chest_button": "افتح الصندوق",
+      "space_travel_text": "أنت بالضبط حيث كنت، تطفو فوق عالمك، لكنه لم يعد وحيدًا.",
+      "title": "لقد كسبت",
+      "travel_button": "سفر"
+    },
+    "event": {
+      "claim_all_rewards_button": "استلم الكل",
+      "close_event_button": "إغلاق الحدث",
+      "event_ended": "حدث انتهى",
+      "reward_claimed": "استُلم",
+      "vs": {
+        "current_standings": "الترتيب الحالي"
+      },
+      "what_to_do": "ما يجب القيام به"
+    },
+    "event_close_modal": {
+      "cancel_button": "احتفظ به الآن",
+      "confirm_button": "إخفاء عن العرض",
+      "description": "إذا كنت لا تريد رؤية لوحة الحدث بعد الآن، يمكنك إخفاؤها لبقية مدة الحدث. لن يؤثر ذلك على أي من إنجازاتك أو المكافآت التي حصلت عليها.",
+      "title": "إغلاق الحدث"
+    },
+    "event_completed": {
+      "description": "لقد جمعت جميع مكافآت الإنجاز. عمل جيد! \n سيُغلق هذا الحدث.",
+      "description_title": "عمل رائع!",
+      "multiple_events_title": "بعض أحداثك قد انتهت",
+      "title": "انتهاء حدث %{event}"
+    },
+    "event_fail": {
+      "description": "سارع للحجز في الحدث القادم واربح جوائز كبرى.",
+      "multiple_events_title": "انتهى بعض أحداثك",
+      "title": "انتهى حدث%{event}"
+    },
+    "feedback": {
+      "heading": "التعليقات",
+      "subheading": "أخبرنا بما تفكر فيه"
+    },
+    "fiit_media_category_list": {
+      "promotion": {
+        "button_label": "مزيد من المعلومات",
+        "description": "استمتع بفيت؟ يحصل أعضاء يولي على تجربة مجانية بالإضافة إلى خصم 25% على أول دفعة.",
+        "title": "Fiit: تمارين وخطط لياقة"
+      }
+    },
+    "fiit_media_list": {
+      "description": "دروس مجانية مقدمة من",
+      "startChallengeButtonLabel": "ابدأ الحصة",
+      "title": "%{title} الفصول"
+    },
+    "fitkit_connect": {
+      "android_alert": {
+        "confirm_label": "نعم - أنا جاهز",
+        "download_label": "تنزيل جوجل فيت",
+        "message": "قبل الاتصال، تأكد من تحميل تطبيق Google Fit على جهازك.",
+        "title": "جاهز للاتصال بـGoogle Fit؟"
+      },
+      "android_heading": "اتصال بـGoogle Fit",
+      "connect_button": "لنقم بالاتصال",
+      "connect_health_app": "اتصل بتطبيق صحي حتى نتمكن من مكافأتك على أنشطتك اليومية",
+      "connect_message": "اتصل بـ%{healthAppName} حتى نتمكن من مكافأتك على أنشطتك اليومية. يمكنك ضبط هذا في إعدادات جهازك في أي وقت.",
+      "ios_heading": "مزامنة مع آبل الصحة",
+      "link_button_label": "إشعار الخصوصية",
+      "samsung_heading": "اتصل بتطبيق صحي",
+      "secondary_button_label": "تخطى هذه الخطوة",
+      "unavailable_android": "يتطلب جهازك خدمات Google Play لاستخدام هذا التطبيق.",
+      "unavailable_heading": "الجهاز غير مدعوم",
+      "unavailable_ios": "يتطلب جهازك Apple Healthkit لاستخدام هذا التطبيق."
+    },
+    "generic_error": {
+      "heading": "غير قادر على التحميل",
+      "subheading": "لم نتمكن من تحميل هذه الصفحة."
+    },
+    "gifting": {
+      "add_sticker": "أضف ملصق",
+      "already_thanked_them": "لقد شكرتهم!",
+      "change_background": "تغيير الخلفية",
+      "choose_sticker": "اختر ملصق",
+      "gift_view_error": {
+        "description": "لا تقلق — يمكنك المحاولة مرة أخرى لاحقاً.",
+        "heading": "يبدو أن هناك خطأ ما!"
+      },
+      "here_is": "ها هو",
+      "intro": {
+        "description": "شارك أصدقائك بالتقدير من خلال إرسال التمنيات الطيبة وبعض YuCoin.",
+        "title": "انشروا الفرح!"
+      },
+      "limit_reached": {
+        "description": "مؤسف، لقد وصلنا لحدنا اليوم. يمكنك منافسة سانتا بأعداد هداياك! سنحضر لك المزيد من ورق التغليف غدًا.",
+        "info": "لقد وصلت إلى الحد الأقصى اليومي المسموح لإرسال %{smart_count} هدية. |||| لقد وصلت إلى الحد الأقصى اليومي المسموح لإرسال %{smart_count} هدايا.",
+        "title": "أرسل المزيد من الهدايا غدًا"
+      },
+      "not_enough_coin": "ليس لديك ما يكفي من YuCoin. حاول إرسال رسالة بمفردها!",
+      "no_yu_coin": "فقط الرسالة",
+      "send": "أرسل الآن",
+      "send_prompt": {
+        "button": "لننطلق!",
+        "description": "أظهر **%{name}** أنك تقدرهم بهدية صغيرة من يوكوين.",
+        "title": "أرسل هدية"
+      },
+      "send_your_friend_a_gift": "أرسل هدية لأصدقائك!",
+      "spend_your_yucoin": "أنفق اليوكوين الخاص بك",
+      "success": {
+        "description": "سيستلم صديقك رسالة داخل التطبيق. |||| سيستلم أصدقاؤك رسالة داخل التطبيق.",
+        "title": "هديةك في طريقها إليك! |||| هداياك في طريقها إليك!"
+      },
+      "thank_them": "اشكرهم",
+      "top_bar": {
+        "message_preview": {
+          "heading": "معاينة الرسالة"
+        },
+        "select_message": {
+          "description": "%{smart_count} مستلم |||| %{smart_count} مستلمون",
+          "heading": "اختر رسالتك"
+        },
+        "select_target": {
+          "description": "اختر حتى %{smart_count} صديق! |||| اختر حتى %{smart_count} أصدقاء!",
+          "heading": "من ترغب في إرسال هذا إليه؟"
+        },
+        "set_coins": {
+          "description": "%{smart_count} مستلم |||| %{smart_count} مستلمون",
+          "heading": "أضف بعض عملات اليوكوين الخاصة بك كهدية!"
+        }
+      },
+      "total_yu_coin": "إجمالي يوقوين"
+    },
+    "info_modal": {
+      "other_wearables": {
+        "heading": "طالما أن جهازك المتعلق يمكنه الاتصال بـ %{platform} سنقوم بالمزامنة في نهاية كل يوم لمكافأتك على جميع خطواتك",
+        "item": "أجهزة قابلة للارتداء الأخرى"
+      }
+    },
+    "inspect": {
+      "duel": {
+        "challenge_duel": "تحدي للمبارزة",
+        "challenge_somebody": "تحدي شخص ما"
+      }
+    },
+    "language_selector_settings": {
+      "description": "حدد لغتك",
+      "setting_language_loading_message": "تهيئة %{value} كلغتك الرئيسية ...",
+      "title": "اللغة"
+    },
+    "leaderboard": {
+      "invites": {
+        "subheading": "من خلال تشغيل لوحة المتصدرين، فإنك تختار مشاركة بياناتك الأخيرة لمدى %{days} يوم عن %{metric} مع أعضاء آخرين في لوحة المتصدرين. يمكن إيقاف هذه الميزة في أي وقت."
+      },
+      "list": {
+        "empty_leaderboard": "يرجى الانتظار بينما نقوم بإعداد لوحة المتصدرين الخاصة بك",
+        "heading": "قوائم المتصدرين"
+      },
+      "metrics": {
+        "coins": {
+          "plural": "عملات",
+          "singular": "عملة"
+        },
+        "distance": {
+          "plural": "ركوب الدراجات"
+        },
+        "meditation": {
+          "plural": "دقائق التأمل",
+          "singular": "دقيقة التأمل"
+        },
+        "steps": {
+          "plural": "خطوات",
+          "singular": "خطوة"
+        }
+      },
+      "pad": {
+        "title": "استمر في السحب للتحديث"
+      },
+      "podium": {
+        "communities_info": {
+          "content": "المجتمعات هي مجموعات يتم تعيينها لك، مثل فرق تنظيمية أو مجموعات إقليمية. يمكنك عرض وتصفية لوحات الصدارة بناءً على هذه التجميعات.",
+          "heading": "المجتمعات"
+        },
+        "cycling_info": {
+          "content": "قائمة المتصدرين الشهرية المتجددة حيث يتم احتساب المسافة التي تقطعها بالدراجة ضمن ترتيبك. يضاف كل يوم المسافة التي قطعتها إلى مجموعك الكلي. ومع بداية كل يوم جديد، تتم إزالة الخطوات من أقدم يوم تلقائيًا، لضمان أن يعكس ترتيبك أحدث نشاطاتك خلال إطار زمني مدته 30 يومًا.",
+          "heading": "قائمة المتصدرين لركوب الدراجات"
+        },
+        "duels_button": "مبارزات",
+        "info_copy": "تُضبط لوحات الصدارة على نظام متداول %{days} يوم. هذا يعني أنها تعرض سجل %{metric} الخاص بك فقط للأيام الـ %{days} الماضية.\n\nللوصول إلى مرتبة أعلى على لوحة الصدارة، حاول القيام بأكثر مما فعلته قبل %{days} يوماً!",
+        "info_heading": "عن قوائم المتصدرين",
+        "opting_info": {
+          "content": "قم بزيارة قائمة الإعدادات لاختيار الاشتراك أو إلغاء الاشتراك بأي لوحة معلومات للتحكم في رحلتك.",
+          "heading": "الاشتراك الداخلي والخارجي"
+        },
+        "steps": "%{days} يوم %{metric}",
+        "steps_info": {
+          "content": "هذه لوحة الأوائل المتحركة لمدة 30 يومًا، حيث تغذي خطواتك اليومية وصولك إلى الشهرة. يتم كل يوم إضافة خطواتك إلى مجموعك الكبير بينما يتم تدوير خطواتك القديمة خارج لوحة الأوائل.",
+          "heading": "قائمة المتصدرين الخطوات"
+        },
+        "yudoku_info": {
+          "content": "تُكشف لوحة الصدارة اليومية هذه عن أحدث أوقات يودوكو المذهلة. ضعوا قبعات التفكير واستعدوا لنرى من يمكنه الوصول إلى القمة اليوم في لعبة يودوكو!",
+          "heading": "قائمة Yudoku للمتصدرين"
+        }
+      },
+      "search": {
+        "friends_not_found": "لم نتمكن من العثور على الصديق الذي تبحث عنه.\nيمكنك دعوته باستخدام الزر أدناه:",
+        "friends_not_found_no_referrals": "لم نتمكن من العثور على الصديق الذي تبحث عنه.",
+        "loading_state": "جاري البحث عن النتائج ...",
+        "sub_heading": "البحث في قوائم المتصدرين"
+      },
+      "turn_board_off": {
+        "ctaLabel": "ابقَ تشغيله!",
+        "ctaLabelSecondary": "أوقفه",
+        "heading": "أوقفه؟",
+        "subheading": "هذا يعني أنك لن تتمكن من الوصول إلى قائمة المتصدرين هذه"
+      },
+      "turn_board_on": {
+        "confirm": "انضم إلى قائمة المتصدرين",
+        "ctaLabel": "نعم",
+        "ctaLabelSecondary": "لا، شكراً",
+        "description": "من خلال الانضمام إلى لوحة المتصدرين، فإنك توافق على مشاركة تفاصيل نشاطك مع باقي أعضاء لوحة المتصدرين. يمكنك الانسحاب في أي وقت عبر قائمة الإعدادات.",
+        "heading": "انضم إلى قائمة المتصدرين؟",
+        "subheading": "من خلال الانضمام إلى لوحة المتصدرين، فإنك توافق على مشاركة تفاصيل نشاطك مع باقي أعضاء هذه اللوحة.\n\nيمكنك الانسحاب في أي وقت عبر النقر على اسم لوحة المتصدرين وتعديل إعداداتك."
+      }
+    },
+    "leaderboard_settings": {
+      "birthday_notifications": {
+        "title": "إشعارات عيد الميلاد"
+      },
+      "birthday_visibility": {
+        "consented": "إشعار أصدقائك في عيد ميلادك",
+        "error": "عذرًا! حدث خطأ ما",
+        "not_consented": "إشعار أصدقائك في عيد ميلادك",
+        "not_set": {
+          "ctaLabel": "تحديث تاريخ الميلاد!",
+          "description": "لتنبيه أصدقائك في يوم ميلادك، قم بتحديث تاريخ ميلادك في الإعدادات.",
+          "heading": "أخبرنا بتاريخ ميلادك!"
+        },
+        "title": "شاركنا تاريخ ميلادك؟",
+        "turn_off": {
+          "ctaLabel": "لا، أبقهم مفعلين",
+          "ctaLabelSecondary": "نعم، أوقفه",
+          "heading": "إيقاف مشاركة تاريخ ميلادك؟",
+          "subheading": "إيقاف إشعار أصدقائك في عيد ميلادك"
+        },
+        "turn_on": {
+          "confirm": "نعم، شغله",
+          "ctaLabel": "نعم، شغله",
+          "ctaLabelSecondary": "لا، شكرًا",
+          "description": "إشعار أصدقائك في عيد ميلادك",
+          "heading": "تفعيل مشاركة تاريخ الميلاد؟",
+          "subheading": "إشعار أصدقائك في عيد ميلادك"
+        }
+      },
+      "consented": "يمكن لأعضاء آخرين في لوحة المتصدرين هذه رؤية اسمك ونشاطك.",
+      "description": "حالة وإدارة وصولك إلى لوحات المتصدرين ذات الصلة بالتطبيق.",
+      "description_with_birthday": "إدارة وصولك إلى لوحات المتصدرين المتصلة بالتطبيق وصلاحيات عيد الميلاد.",
+      "item_title": "قائمة المتصدرين %{name}",
+      "not_consented": "السماح لأعضاء آخرين في لوحة المتصدرين هذه برؤية اسمك ونشاطك.",
+      "screen_description": "إدارة وصولك إلى لوحات المتصدرين ذات الصلة بالتطبيق. يرجى ملاحظة: قد يؤدي عدم الانضمام إلى لوحة المتصدرين إلى تقييد وصولك إلى بعض الميزات.",
+      "title": "إعدادات قوائم المتصدرين",
+      "title_with_birthday": "لوائح المتصدرين وتاريخ الميلاد"
+    },
+    "level_locked": {
+      "level": "افتح عند المستوى %{level}",
+      "stage": "افتح عند %{name}"
+    },
+    "locked_reward_modal": {
+      "cta": "فهمت!",
+      "heading": "ارفع المستوى لفتح",
+      "hint": {
+        "descriptionMarkdown": "Doing challenges everyday will get you unlocking more rewards faster.\n\n__**اكتشف المزيد**__",
+        "label": "المزيد من المكافآت في الطريق!"
+      },
+      "progress_status": "%{progress} / %{target} مستويات مكتملة"
+    },
+    "login": {
+      "accessibility": {
+        "alert_error_default_message": "حدث خطأ",
+        "alert_error_title": "فشل تسجيل الدخول",
+        "hide_keyboard": "إخفاء لوحة المفاتيح"
+      },
+      "cta_label": "تسجيل الدخول",
+      "disclaimer": "بالمتابعة، فإنك توافق على\n[سياسة الخصوصية](%{privacyPolicyLink}) و [اتفاقية ترخيص المستخدم النهائي](%{eulaLink}).",
+      "heading": "مرحبا!",
+      "help": "تحتاج مساعدة لتسجيل الدخول؟",
+      "server_location": {
+        "description": "وجدنا أكثر من حساب لك. يرجى اختيار المنطقة التي ترغب في مواصلة رحلتك لتسجيل الدخول فيها.",
+        "heading": "اختر منطقتك",
+        "long": "يرجى اختيار موقع شركتك",
+        "short": "موقع الشركة"
+      }
+    },
+    "login_confirm": {
+      "cooldown": "إرسال رابط جديد في %{seconds}s...",
+      "description": "استخدِم الرابط الموجود في البريد الإلكتروني الذي أرسلناه لك للتو.",
+      "error_title": "هناك خطأ ما",
+      "heading": "مستعد أن تكون أفضل نسخة منك؟ لنتحقق من حسابك.",
+      "login_with_password": "تسجيل الدخول باستخدام كلمة المرور بدلاً من ذلك.",
+      "no_email_app_installed": {
+        "message": "إذا لم يتم التعرف على تطبيق البريد الإلكتروني الخاص بك، حاول فتحه يدويًا.",
+        "title": "لا يوجد تطبيق بريد إلكتروني مثبت"
+      },
+      "open_email": "افتح تطبيق البريد الإلكتروني",
+      "resend_link": "لم يصلك الرابط؟ أرسل رابطًا جديدًا.",
+      "webview_title": "التهيئة لعملية الإقلاع..."
+    },
+    "login_email": {
+      "cta_label": "تابع",
+      "heading": "مرحبًا! ما هو بريدك الإلكتروني؟",
+      "submitting": "جارٍ الإرسال..."
+    },
+    "login_hero": {
+      "primary_cta_label": "استرداد حسابي",
+      "secondary_cta_label": "تسجيل الدخول",
+      "session_expired_error_message": "لقد انتهت صلاحية جلستك. الرجاء تسجيل الدخول مرة أخرى.",
+      "slides": {
+        "rewards": "حوِّل العادات الصحية إلى مكافآت!"
+      }
+    },
+    "login_password": {
+      "cta_label": "تابع",
+      "forgot": {
+        "cta": "نسيت كلمة المرور الخاصة بك؟",
+        "title": "إعادة تعيين كلمة المرور"
+      },
+      "heading": "أدخل كلمة المرور الخاصة بك",
+      "submitting": "جارٍ الإرسال..."
+    },
+    "measurement_cycling_settings": {
+      "description": "التغيير بين النظام الإمبراطوري (الأميال) والمتر بالنسبة للكيلومترات",
+      "imperial": {
+        "description": "سيتم عرض المسافة بالأميال \"ميل\"",
+        "title": "النظام الإمبراطوري"
+      },
+      "metric": {
+        "description": "سيتم عرض المسافة بالكيلومترات \"كم\"",
+        "title": "النظام المتري"
+      },
+      "title": "قياس (ركوب الدراجة)"
+    },
+    "media_list": {
+      "different_app_cta_label": "استخدم تطبيقًا مختلفًا",
+      "different_app_section_label": "أو استخدم تطبيقًا",
+      "video_duration_reward_label": "%{formattedDuration} • اكسب %{reward}"
+    },
+    "meditopia_media_list": {
+      "startChallengeButtonLabel": "ابدأ الجلسة"
+    },
+    "menu": {
+      "activity_history": {
+        "label": "تاريخ النشاط"
+      },
+      "chat": {
+        "label": "دردشة"
+      },
+      "invite_a_colleague": {
+        "label": "دعوة زميل"
+      },
+      "logout": {
+        "alert_description": "تقدُّمك وYuCoin سيكونان في انتظارك عند تسجيل دخولك مرة أخرى. هل أنت متأكد أنك تريد تسجيل الخروج من YuLife؟",
+        "alert_log_out_button": "تسجيل الخروج",
+        "alert_title": "تسجيل الخروج؟",
+        "label": "تسجيل الخروج"
+      },
+      "my_account": {
+        "label": "حسابي"
+      },
+      "settings": {
+        "label": "الإعدادات"
+      },
+      "support": {
+        "label": "الدعم"
+      },
+      "tools": {
+        "label": "الأدوات"
+      },
+      "version": {
+        "accessibility_label": "إصدار التطبيق yu life %{version}"
+      },
+      "wellbeing_hub": {
+        "label": "مركز الرفاهية"
+      }
+    },
+    "no_access": {
+      "heading": "عذراً!",
+      "subheading": "لا يمكنك استخدام هذا التطبيق في الوقت الحالي."
+    },
+    "notifications": {
+      "deleted_disclaimer": "أصغِ...فقط لتعلم، رسائلنا تختفي بعد %{days} يومًا. لكن لا تقلق، سيكون هناك المزيد!",
+      "empty": "رائع، هنا هدوء تام! استمر في التحقق وسترى بعض التحديثات المثيرة قريباً.",
+      "headers": {
+        "last_7": "آخر 7 أيام",
+        "today": "اليوم"
+      },
+      "title": "الإشعارات"
+    },
+    "offline": {
+      "heading": "أنت غير متصل",
+      "subheading": "تحقق من اتصالك بالإنترنت."
+    },
+    "permissions": {
+      "connect_health_app": "اتصل بمقدم الرعاية الصحية",
+      "description": "حالة وإدارة أذونات الحساب ومستوى النظام.",
+      "heading": "أذونات",
+      "health_section": {
+        "android_header": "أذونات Google Fit",
+        "header": "أذونات النظام",
+        "ios_header": "أذونات آبل الصحة",
+        "samsung_header": "أذونات سامسونج للصحة"
+      },
+      "info_message": "إدارة الأذونات للحصول على المكافآت كاملة مع YuCoin لأنشطتك",
+      "open_apple_health": "أذونات آبل الصحة",
+      "status_ask_permissions": "\"الإذن غير متصل\"\nللإتصال، استخدم زر \"الإتصال\". يرجى [زيارة الأسئلة المتداولة](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) لمزيد من المساعدة.",
+      "status_disconnected": "\"الحالة: غير متصل\"\nلإعادة الاتصال تحقق من إعدادات هاتفك. يرجى [زيارة الأسئلة المتداولة](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) لمزيد من المساعدة.",
+      "status_unknown": "\"الحالة: غير معروف\"\nلا يمكننا تحديد حالة الإذن. ربما كل شيء يعمل بشكل صحيح.",
+      "switch_button": "تغيير مقدم الرعاية الصحية",
+      "switch_to_google_fit": {
+        "button_label": "استخدم Google Fit",
+        "description": "لا يقوم تطبيق Samsung Health حاليًا بمزامنة جميع البيانات التي نحتاجها لمكافأتك على أنشطتك. لمزامنة دقائق الوعي، ركوب الدراجات والتطبيقات من الأطراف الثالثة، يرجى التبديل إلى Google Fit.",
+        "title": "جوجل فيت"
+      },
+      "system_section": {
+        "header": "أذونات النظام",
+        "secondary_button": "إعدادات النظام"
+      },
+      "title": "أذونات النشاط"
+    },
+    "products": {
+      "beneficiary": {
+        "add": {
+          "message": "يبدو أنك لم تقم بتعيين المستفيدين بعد. انقر أدناه للبدء.",
+          "title": "إضافة المستفيدين"
+        },
+        "edit": {
+          "message": "عيّن النسبة المخصصة لكل مستفيد. يجب أن يكون المجموع 100٪.",
+          "title": "تحرير المستفيدين"
+        },
+        "error": "عذراً! يرجى التحقق جيداً من النسب المئوية الخاصة بك. يجب أن يصل المجموع إلى 100٪.",
+        "labels": {
+          "add": "إضافة المستفيد",
+          "skip": "تخطي الآن"
+        }
+      }
+    },
+    "quests": {
+      "accessibility": {
+        "buttons_label": {
+          "isDone": "المستوى %{level}، مكتمل",
+          "isNext": "المستوى %{level}",
+          "locked": "المستوى %{level}، مغلق",
+          "locked_chest": "المستوى %{level}، الصندوق مغلق",
+          "nextAvailableAt": "المستوى %{level}، سيفتح خلال %{nextAvailableTimer}"
+        }
+      },
+      "level": {
+        "pending": "في"
+      }
+    },
+    "referrals": {
+      "or": "أو"
+    },
+    "reset_password": {
+      "cta_label": "أرسل لي رابط سحري",
+      "heading": "هل تحتاج إلى مساعدة؟",
+      "subheading": "لا توجد مشكلة! أدخل بريدك الإلكتروني الخاص بحسابك وسنرسل لك رابطًا سحريًا مباشرةً إلى بريدك الوارد، لا كلمة مرور مَنَ الْمُرُورِ مُطْلُوبَة!",
+      "submitting": "جارٍ الإرسال ..."
+    },
+    "reset_password_submitted": {
+      "cta_label": "العودة إلى تسجيل الدخول",
+      "heading": "إرسال البريد الإلكتروني",
+      "subheading": "تحقق من صندوق الوارد الخاص بك! إذا كانت %{email} تتطابق مع سجلاتنا، فإن بريد استعادة كلمة المرور في الطريق. إذا لم تستلم البريد الإلكتروني، يرجى التواصل مع support@yulife.com."
+    },
+    "rewards": {
+      "accessibility": {
+        "change_store_location": "تغيير موقع المتجر",
+        "view_purchases": "عرض المكافآت المُستلمة"
+      },
+      "chips": {
+        "all": "الكل"
+      },
+      "confirmed": {
+        "card_states": {
+          "failed": "فشل الشراء",
+          "pending": "الشراء معلق",
+          "refunded": "تم استرداد عملية الشراء"
+        },
+        "label_cta": {
+          "get_voucher": "استلام القسيمة",
+          "need_help": "هل تحتاج إلى مساعدة؟ تحدث إلينا",
+          "other_rewards": "عرض المكافآت الأخرى",
+          "rewards_policy": "سياسة المكافآت"
+        },
+        "purchased_date": "تاريخ الشراء",
+        "valid_until": "صالح حتى"
+      },
+      "details": {
+        "error": {
+          "loyalty_programme": "يجب عليك اختيار برنامج ولاء",
+          "valid_account_number": "الرجاء إدخال رقم حساب صالح"
+        }
+      },
+      "expiry_warning": {
+        "body": "عذرًا لرؤيتك تذهب، ولكن لا يزال لديك **%{daysLeft} أيام** لاستبدال عملاتك المكتسبة بشق الأنفس!",
+        "title": "سينتهي الوصول إلى المكافآت قريباً"
+      },
+      "list": {
+        "history": "تم الشراء",
+        "recently_used": "الاستخدامات الأخيرة",
+        "reward_passes": "تذكيرات المكافآت الخاصة بك",
+        "rewards": "المكافآت",
+        "store": "المتجر"
+      },
+      "purchases": {
+        "avios_confirmed": {
+          "message": "ستظهر نقاط AVIOS الخاصة بك %{amount} في حسابك في غضون بضعة أيام. سنقوم بإرسال بريد إلكتروني إليك بمجرد توافرها هناك.",
+          "title": "تم إرسال الأفيوس"
+        },
+        "empty": {
+          "cta_label": "تحقق من المكافآت",
+          "heading": "إنه فارغ",
+          "subheading": "اشترِ قسيمة وستظهر هنا"
+        },
+        "locked_reward": {
+          "cta_label": "العودة إلى المكافآت",
+          "heading": "التحديث جارٍ",
+          "subheading": "نحن نقوم بتحديث تجربة مكافآت %{rewardName} الخاصة بك، تحقق مرة أخرى قريباً!"
+        },
+        "no_purchases": {
+          "cta_label": "اذهب إلى المكافآت",
+          "subheading": "الأجواء هنا هادئة. انتقل إلى مسار المكافآت الموسمية الخاصة بك لكسب قسائم وخصومات حصرية!"
+        },
+        "not_enough_coins": {
+          "heading": "غير كافٍ من العملات",
+          "subheading": "اكسب المزيد وعد لاحقًا!"
+        },
+        "offline": {
+          "heading": "أنت غير متصل",
+          "subheading": "تحقق من اتصالك بالإنترنت"
+        },
+        "voucher_not_available": {
+          "cta_label": "تحقق من المكافآت الأخرى",
+          "heading": "القسيمة غير متاحة حاليًا",
+          "subheading": "يرجى العودة لاحقًا."
+        }
+      },
+      "search": {
+        "initial_state": "ابحث عن الخصومات والقسائم والاشتراكات.",
+        "no_results": "لم نتمكن من العثور على العلامة التجارية التي تبحث عنها.",
+        "placeholder": "البحث في جميع العلامات التجارية",
+        "subheading": "بحث عن العلامات التجارية",
+        "title": "المتجر"
+      },
+      "storefront": {
+        "reward_location": "الجوائز الخاصة بك محسوبة على %{location}",
+        "wallet": "محفظة"
+      },
+      "tabs": {
+        "donations": "تبرع",
+        "premium": "افتح",
+        "store": "المتجر"
+      },
+      "unavailable": {
+        "purchase_history": "عرض سجل الشراء",
+        "subtitle": "على الرغم من أنك لم تعد قادرًا على المطالبة بالمكافآت، لا يزال بإمكانك كسب يو كوين والحفاظ على عاداتك الصحية من خلال خوض التحديات!\\n\\nالانضمام إلى شركة أخرى مع يو لايف سيعيد لك الوصول إلى المكافآت، وستتمكن من إنفاق يو كوين المجمعة مرة أخرى.",
+        "title": "المكافآت مغلقة حالياً!"
+      },
+      "wallet": {
+        "cta": {
+          "see_more": "رؤية المزيد"
+        },
+        "empty": {
+          "discount": {
+            "heading": "محفظتك جاهزة ليتم تعبئتها!",
+            "subheading": "ابدأ في جمع المكافآت وسوف تكون جاهزة هنا."
+          },
+          "voucher": {
+            "heading": "محفظتك جاهزة ليتم تعبئتها!",
+            "subheading": "ستكون المكافآت المستردة جاهزة لك هنا"
+          }
+        },
+        "title": "محفظة"
+      }
+    },
+    "rewards_unlock": {
+      "empty": {
+        "description": "يمكنك لا تزال استرداد المكافآت في متجرك داخل التطبيق عن طريق كسب YuCoin! إذا كان لديك أي أسئلة، تواصل معنا في الدردشة داخل التطبيق.",
+        "heading": "هذه المكافآت غير متاحة لك حاليًا"
+      }
+    },
+    "settings": {
+      "content_location": {
+        "description": "اختر موقع المتجر المفضل لديك",
+        "label": "موقع المتجر"
+      },
+      "data_saver": {
+        "description": "هذا الإعداد يمكّن جودة فيديو أقل لفيديوهات التمارين",
+        "label": "موفير البيانات"
+      },
+      "email_notification": {
+        "label": "إشعار البريد الإلكتروني"
+      },
+      "fitness_trackers": {
+        "label": "أجهزة تتبع اللياقة البدنية",
+        "last_sync": "آخر مزامنة في %{date}",
+        "not_connected": "غير متصل",
+        "title": "قم بتوصيل جهاز تعقب اللياقة البدنية الخاص بك للحصول على مكافآت مقابل خطوات يومية إضافية. لا تنسَ الاحتفاظ بهاتفك معك أثناء التحديات!"
+      },
+      "game_settings": "إعدادات اللعبة",
+      "heading": "الإعدادات",
+      "info": {
+        "heading": "ستقوم تطبيق يو لايف بجمع عدد خطواتك والمسافة التي تقطعها بالدراجة من تطبيق الصحة على هاتفك وجهاز %{connection} الخاص بك. سنقدم لكم يو كوَن للجهاز الذي يسجل أعلى النتائج!"
+      },
+      "push_notifications": {
+        "label": "إشعارات الدفع",
+        "reminder_time": "وقت التذكير"
+      },
+      "tracker_info": {
+        "heading": "ستقوم تطبيق يو لايف بجمع المسافة التي تقطعها بالدراجة من تطبيق الصحة الموجود على هاتفك وتطبيق %{connection} الخاص بك. سنقدم لك يو كوَن للتطبيق الذي يسجل أعلى النتائج!"
+      }
+    },
+    "signup_reward": {
+      "description": "اكسب المزيد من عملات يوكوين في التطبيق واستبدلها بقسائم من علامتك المفضلة أو تبرع لأعمال خيرية والمزيد.",
+      "title": "إليك قليل من\nعملات يو كوين مقابل تسجيل الدخول"
+    },
+    "smoking_commitment": {
+      "avoided": "%{totalAvoided} سجائر تم تجنبها",
+      "cancel": "ليس الآن",
+      "cta": "تعهد مرة أخرى",
+      "saved": "%{totalSaved} محفوظ",
+      "text_1": "قد يكون البدء من جديد صعبًا، لكننا معك في كل خطوة.",
+      "text_2": "خذ لحظة للتركيز على حافزك وتقدير تقدمك حتى الآن",
+      "title": "جاهز لمحاولة أخرى؟ لنبدأ.",
+      "why": "لماذا أنت ملتزم بهذا"
+    },
+    "smoking_edit_modal": {
+      "other": {
+        "reasons": "أضف دافعاً آخر",
+        "triggers": "أضف لحظة أخرى"
+      }
+    },
+    "smoking_hub": {
+      "distraction_game_button_label": "لعب لعبة تشتت الشغف",
+      "edit": "تعديل",
+      "moments_to_monitor": "لحظات لمراقبة نفسي",
+      "placeholder": {
+        "sponsorship": {
+          "cta": "أدخلني",
+          "description": "ستتمكن من طلب الدعم من أصدقائك على شكل يوكوين. عند إتمام 28 يومًا بلا تدخين، سنرسل يوكوين المدعوم إلى حسابك.\n\nنحن حاليًا نقوم بالإعداد. سنخطرك عندما يصبح جاهزًا!",
+          "title": "الرعايات قريباً"
+        }
+      },
+      "reasons": "لماذا أنا ملتزم بهذا",
+      "success": "نجاح"
+    },
+    "smoking_modals": {
+      "all_milestones_passed": "لقد تجاوزت جميع",
+      "days_title": "يوم %{days}",
+      "milestone": "إنجاز!",
+      "milestone_passed": "لقد تجاوزت",
+      "milestones": "الإنجازات!"
+    },
+    "streak": {
+      "accessibility": {
+        "streak_completed": "%{header} %{ribbonLabel} قد تم جمعها، ابدأ سلسلتك التالية في %{time}",
+        "streak_start": "%{header} %{subHeader} %{streakCompleted} من أصل %{streakMax} أيام مكتملة."
+      },
+      "completion": {
+        "next_streak": "ابدأ السلسلة التالية الخاصة بك في"
+      },
+      "cta_label_collect": "جمع %{reward} %{type}",
+      "cta_label_take_challenge": "خذ تحديًا",
+      "heading": "تقدم رائع",
+      "heading_completed": "ابدأ سلسلتك!",
+      "heading_completed_today_streak": {
+        "day1": "اليوم الأول انتهى!",
+        "day2": "يومان مرتا!",
+        "day3": "لقد تجاوزت الجزء الأصعب!",
+        "day4": "التحدي الأخير!",
+        "day5": "كسرت السلسلة!"
+      },
+      "heading_start_streak_day": {
+        "day1": "ابدأ سلسلتك",
+        "day2": "بداية جيدة",
+        "day3": "واصِل المسيرة",
+        "day4": "تابع العمل الجيد",
+        "day5": "أغلق سلسلتك"
+      },
+      "subheading_collected": "أحسنت! لقد تم جمع المكافأة.",
+      "subheading_completed": "لقد أنجزتها!",
+      "subheading_instructions": "أكمل تحديات %{streakMax} يومًا إضافية على التوالي لتحصل على مكافأة %{reward} يوكوين.",
+      "subheading_instructions_first_day": "أكمل تحديات %{streakMax} يومًا على التوالي لتحصل على مكافأة %{reward} يوكوين.",
+      "subheading_instructions_today": "أكمل تحديًا اليوم لتحصل على مكافأة %{reward} يوكوين.",
+      "subheading_today_streak_done": {
+        "day1": "بداية رائعة! استمر في ذلك لكسب %{reward} يوكوين.",
+        "day2": "أنت في طريقك للحصول على مكافأة %{reward} من يوكوين.",
+        "day3": "يومان فقط إضافيان وسوف تفوز بـ%{reward} يوكوين.",
+        "day4": "أنت على بعد يوم واحد فقط من الحصول على %{reward} يوكوين.",
+        "day5": "%{reward} يوقوين"
+      }
+    },
+    "today_earning": {
+      "activity_feed": {
+        "daily_core_activities": {
+          "accessibility": {
+            "accessibility_label": "معلومات الأنشطة الأساسية اليومية"
+          },
+          "question_mark": {
+            "toast": {
+              "title": "الانتقال إلى الإعدادات"
+            }
+          }
+        }
+      },
+      "alert": {
+        "never_ask_again": {
+          "cta_label": "فتح إعدادات التطبيق",
+          "message": "للأسف، نحن غير قادرين على تفعيل الأذونات، ستحتاج إلى إعطاء أذونات الموقع من خلال إعدادات النظام",
+          "title": "خطأ في الأذونات"
+        }
+      },
+      "heading": {
+        "title": "أرباح اليوم"
+      },
+      "toast": {
+        "google_fit_location_permission": {
+          "accessibility": {
+            "accessibility_label": "لكسب يو كوين من ركوب الدراجة، نحن بحاجة إلى إذن الموقع لجمع بيانات نشاط ركوب الدراجة والاتصال بغوغل فيت."
+          },
+          "cta_label": "امنح الإذن",
+          "message": "لكسب اليوكوين من ركوب الدراجة، نحن بحاجة إلى إذن الموقع لجمع بيانات نشاط ركوب الدراجة والاتصال بغوغل فيت."
+        },
+        "system_location_permission": {
+          "accessibility": {
+            "accessibility_label": "لجمع بيانات نشاط ركوب الدراجة وكسب اليو كوين، نحن بحاجة إلى إذن الموقع."
+          },
+          "cta_label": "امنح الإذن",
+          "message": "لجمع بيانات نشاط ركوب الدراجة وكسب اليوكوين، نحن بحاجة إلى إذن الموقع."
+        },
+        "use_google_fit": {
+          "cta_label": "الاتصال بـGoogle Fit",
+          "message": "لا يدعم Samsung Health جميع الأنشطة الأساسية. للحصول على التجربة الكاملة والمكافآت، يُفضل استخدام Google Fit."
+        }
+      },
+      "yucoin_header": {
+        "coins": {
+          "accessibility": {
+            "accessibility_label": "%{coins} يو كوين تم ربحها اليوم"
+          },
+          "earned_today": "لقد ربحت اليوم"
+        },
+        "yucoin_power": {
+          "accessibility": {
+            "accessibility_label": "%{power} يوقوين باور"
+          }
+        }
+      }
+    },
+    "update_mobile": {
+      "cta_label": "تحديث تطبيقي"
+    },
+    "video_player": {
+      "error_message": "حدث خطأ ما.\nيرجى المحاولة مرة أخرى",
+      "one_moment_please": "لحظة واحدة من فضلك",
+      "session_complete": "الجلسة مكتملة.",
+      "video_type": {
+        "mindfullness": "تأمل",
+        "workout": "التمارين"
+      }
+    },
+    "weekly_quests": {
+      "accept_challenge": "اقبل التحدي",
+      "claimable_activity": "تم! استلم مكافأتك.",
+      "claimed_activity": "أحسنت! تأكد من العودة الأسبوع المقبل.",
+      "come_back_in": "عُد بعد",
+      "in_progress": "قيد التنفيذ",
+      "pick_challenge": "اختر تحديك",
+      "quest_resets_in": "المهام تعيد الضبط في",
+      "reward": "المكافأة",
+      "title": "المهمة الأسبوعية"
+    },
+    "wellbeing_hub": {
+      "category_all": "الكل",
+      "header_description": "مركز الوصول السريع لاستكشاف وتمتع بمزايا رفاهيتك.",
+      "header_title": "مرحبًا %{name}",
+      "no_results": {
+        "description": "لا توجد لديك حاليًا أي فوائد صحية. قد تتمكن من العثور عليها هنا في وقت لاحق.",
+        "title": "تحقق مرة أخرى لاحقًا!"
+      },
+      "send_documents": {
+        "description": "الرجاء إدخال عنوان البريد الإلكتروني الذي تريد إرسال المستند(ات) إليه:",
+        "error": "عذرًا! حدث خطأ ما.",
+        "input_placeholder": "أدخل عنوان البريد الإلكتروني",
+        "send_button": "إرسال البريد الإلكتروني",
+        "success": "تم إرسال البريد الإلكتروني",
+        "title": "إرسال المستندات عبر البريد الإلكتروني"
+      }
+    },
+    "wrapped": {
+      "ending": {
+        "share_error": "حدثت مشكلة في المشاركة",
+        "share_unavailable": "التشارك غير متاح على هذا الجهاز",
+        "subtitle": "استعدوا لعام آخر من المرح",
+        "title": "شكرًا لكل ما تفعله!"
+      },
+      "error": "عذرًا! حدث خطأ ما",
+      "sharable_card": {
+        "best_yudoku_time": "أفضل يودوكو",
+        "challenges_completed": "التحديات",
+        "title": "استعراض العام لـ%{firstName}",
+        "total_steps": "إجمالي الخطوات",
+        "yucoin_earned": "يوقوين المكتسبة"
+      },
+      "stage_1": {
+        "in_date": "في عام 2024!",
+        "subtitle": "التحديات",
+        "subtitle_single": "التحدي",
+        "title": "انظر إلى ذلك!",
+        "you_completed": "لقد أنهيت"
+      },
+      "stage_2": {
+        "challenges": {
+          "BRISK_WALK_001": "المشي السريع",
+          "LONG_WALK_001": "نزهات طويلة",
+          "MEDITATION_001": "تأملات",
+          "SHORT_STROLL_001": "جولات قصيرة",
+          "WORKOUT_007": "التمارين",
+          "YUDOKU_001": "يودوكوس"
+        },
+        "line_1": "لنغوص أعمق قليلاً!",
+        "line_2": "هذه جميع الأنواع المختلفة",
+        "line_3": "المغامرات التي خضتها:"
+      },
+      "stage_3": {
+        "collected": "لقد جمعت...",
+        "steps": "خطوات",
+        "subtitle": "لقد دمرتها!",
+        "title": "في عام 2024 مشيت...",
+        "yucoin_amount": "%{amount} يوقوين"
+      },
+      "stage_4": {
+        "best_time": "أفضل وقت",
+        "games_played": "الألعاب التي تم لعبها",
+        "subtitle": "لقد قمت بتدريب عقلك جيدًا!",
+        "title": "يودوكو",
+        "total_time_played": "إجمالي الوقت المُلعَب"
+      },
+      "staging": {
+        "title": "حان الوقت"
+      },
+      "title": "قيد المراجعة"
+    },
+    "yu_coin_power_explained": {
+      "heading": "يوقوين باور",
+      "no_products": {
+        "description": "يُعزز قوة يو كوين الخاصة بك من كمية يو كوين التي تكسبها من كل نشاط. ابق على اطلاع على الفرص لزيادة مستوى قوة يو كوين خاصتك في المستقبل!",
+        "title": "قوة لزيادة ربحك من يوكوين"
+      }
+    },
+    "yumoji_builder": {
+      "award_modal": {
+        "heading": "عمل رائع!\nيوموجيك جاهز للمغامرة."
+      },
+      "create": {
+        "link": "سأفعل هذا لاحقًا",
+        "title": "أنشئ رمزك اليموجي لتدخل إلى الينيفيرس"
+      },
+      "edit": {
+        "title": "اختر نوع الجسم"
+      },
+      "exit_modal": {
+        "cta_label_secondary": "استمر في التحرير",
+        "heading": "الخروج من منشئ يوموجي؟",
+        "subheading": "هل أنت متأكد أنك تريد الخروج؟ سوف تفقد أي تغييرات غير محفوظة."
+      },
+      "heading": "تحرير يموجي الخاص بك"
+    },
+    "yu": {
+      "products_survey": {
+        "text_area_placeholder": "وصف أي شيء آخر ترغب في رؤيته هنا..."
+      }
+    }
+  },
+  "setup_tutorial": "إعداد الدليل التعليمي",
+  "smart_count": {
+    "kilometers": "%{smart_count} كيلومتر |||| %{smart_count} كيلومترات",
+    "minutes": "%{smart_count} دقيقة |||| %{smart_count} دقائق",
+    "seconds": "%{smart_count} ثواني |||| %{smart_count} ثانية",
+    "steps": "%{smart_count} خطوة |||| %{smart_count} خطوات"
+  },
+  "success": "نجاح",
+  "sudoku": {
+    "cancel": {
+      "message": {
+        "default": "تقدمك الحالي سيضيع وإذا أكملت يودوكو اليوم لن تُحتسب في لوحة المتصدرين",
+        "jp": "تقدمك الحالي سيضيع وإذا أكملت لغز الأرقام اليوم لن يُحتسب في لوحة المتصدرين"
+      }
+    },
+    "completed": {
+      "collect": "جمع",
+      "continue": "استمرار",
+      "practice": {
+        "default": "الآن! جرّب تحدي يوكودو اليومي لكسب يوكوين",
+        "jp": "الآن! جرّب تحدي الأرقام اليومي لكسب يوكوين"
+      },
+      "practice_title": {
+        "default": "ممارسة يودوكو",
+        "jp": "ممارسة لغز الأرقام"
+      },
+      "sub1": {
+        "default": "لقد أكملت لعبة سودوكو اليومية الخاصة بك.",
+        "jp": "لقد أكملت لغز الأرقام اليومية الخاص بك."
+      },
+      "sub2": "عد غدًا لجولة جديدة.",
+      "title": "عمل رائع!"
+    },
+    "difficulty": {
+      "easy": "سهل",
+      "hard": "صعب",
+      "medium": "متوسط"
+    },
+    "error": {
+      "cancel": "إلغاء",
+      "continue": "استمرار",
+      "message": {
+        "default": "حدث خطأ أثناء إرسال نتائج اليودوكو الخاصة بك",
+        "jp": "حدث خطأ أثناء إرسال نتائج لعبة الأرقام الخاصة بك"
+      },
+      "retry": "إعادة المحاولة للإرسال",
+      "title": "لم نتمكن من إرسال النتائج"
+    },
+    "game": {
+      "undo": "تراجع"
+    },
+    "help": {
+      "1": {
+        "default": "القواعد الأساسية لليودوكو:",
+        "jp": "القواعد الأساسية للغز الأرقام:"
+      },
+      "2": {
+        "default": "شبكة يومدوكو تتكون من خلايا 9x9.",
+        "jp": "شبكة اللغز الرقمي تتكون من خلايا 9x9."
+      },
+      "3": "يسمح لك فقط باستخدام الأرقام من 1 إلى 9.",
+      "4": "في كل كتلة 3x3، يمكن استخدام الأرقام من 1 إلى 9 فقط.",
+      "5": "يجب أن تحتوي كل عمود رأسي على الأرقام من 1 إلى 9 فقط.",
+      "6": "وبالمثل يجب أن تحتوي كل صف أفقي على الأرقام من 1 إلى 9 فقط.",
+      "7": "لا يمكن تكرار أي رقم في الكتلة 3×3 أو العمود العمودي أو الصف الأفقي.",
+      "outline": {
+        "default": "للعب يودوكو – قم بملء شبكة ٩x٩ بالأرقام من ١ إلى ٩، بحيث يظهر كل رقم مرة واحدة فقط في كل صف، وكل عمود، وكل مجموعة ٣x٣. الهدف هو أن تكون الشبكة مكتملة وصحيحة بنهاية اللعبة.",
+        "jp": "للعب اللغز الرقمي – قم بملء شبكة ٩x٩ بالأرقام من ١ إلى ٩، بحيث يظهر كل رقم مرة واحدة فقط في كل صف، وكل عمود، وكل مجموعة ٣x٣. الهدف هو أن تكون الشبكة مكتملة وصحيحة بنهاية اللعبة."
+      },
+      "title": {
+        "default": "كيفية لعب يودوكو",
+        "jp": "كيفية لعب لغز الأرقام"
+      }
+    },
+    "hint_popup": {
+      "cta": "استخدم تلميحًا",
+      "message": "في كل مرة تستخدم فيها زر التلميح، ستفقد ٣٠ ثانية من وقتك.",
+      "title": "التلميحات"
+    },
+    "leaderboard_consent": {
+      "confirm": "انضم إلى قائمة المتصدرين",
+      "description": "من خلال الانضمام إلى لوحة المتصدرين، فإنك توافق على مشاركة تفاصيل نشاطك مع باقي أعضاء هذه اللوحة. يمكنك الانسحاب في أي وقت عبر قائمة الإعدادات.",
+      "title": {
+        "default": "انضم إلى قائمة Yudoku اليومية؟",
+        "jp": "انضم إلى قائمة الصدارة اليومية لرقم الألغاز؟"
+      }
+    },
+    "leaderboard": {
+      "empty_description": {
+        "default": "أكمل سودوكو وضع نفسك في المرتبة الأولى على لوحة المتصدرين اليوم!",
+        "jp": "أكمل لغز الأرقام وضع نفسك في المرتبة الأولى على لوحة المتصدرين اليوم!"
+      },
+      "start": "ابدأ اللعبة",
+      "title": {
+        "default": "اليودوكو اليومي",
+        "jp": "لغز الأرقام اليومية"
+      }
+    },
+    "pause": {
+      "difficulty": "الصعوبة",
+      "mistakes": "أخطاء",
+      "resume": "استئناف اللعبة",
+      "time": "الوقت",
+      "title": "إيقاف"
+    },
+    "progress": {
+      "paused": {
+        "default": "تم إيقاف يودوكو مؤقتاً",
+        "jp": "لغز الأرقام متوقف"
+      },
+      "resume": "استئناف اللعبة"
+    },
+    "staging": {
+      "alreadyDone": {
+        "default": "يمكنك حل يودوكو واحد فقط في اليوم.\nالعودة غداً!",
+        "jp": "يمكنك حل لغز الأرقام واحد فقط في اليوم. \nالعودة غداً!"
+      },
+      "continueGame": "استكمال اللعبة",
+      "dailyLeaderboard": "قائمة المتصدرين اليومية",
+      "howToPlay": "كيف ألعب؟",
+      "joinDailyLeaderboard": "انضم إلى قائمة المتصدرين اليومية",
+      "practiceGame": "لعبة تدريبية",
+      "secondAttemptDisclaimer": "نظرًا لأنها ليست محاولتك الأولى اليوم، لن يُدرج وقتك في قائمة المتصدرين ولن يحتسب ضمن أفضل أوقاتك الشخصية.",
+      "startGame": "ابدأ اللعبة",
+      "todaysLeaderboard": "قائمة المتصدرين اليوم"
+    },
+    "stats": {
+      "hints": "تلميحات",
+      "mistakes": "أخطاء",
+      "notApplicable": "غير متاح",
+      "paused": "موقوف مؤقتا",
+      "personalBest": "أفضل تسجيل شخصي",
+      "reward": "المكافأة",
+      "todaysTime": "وقت اليوم",
+      "unranked": "غير مصنف"
+    },
+    "title": {
+      "default": "يودوكو",
+      "jp": "لغز الأرقام"
+    }
+  },
+  "test_keys": {
+    "test_key": "هذه مجموعة من سلاسل اختبار التوطين للتحقق من عملية الترجمة."
+  },
+  "time_units": {
+    "day": "يوم",
+    "days": "أيام",
+    "hour": "ساعة",
+    "hours": "ساعات",
+    "less_than_minute": "أقل من دقيقة",
+    "minute": "دقيقة",
+    "minutes": "دقائق",
+    "second": "الثانية",
+    "seconds": "الثواني",
+    "short_day": "يوم",
+    "short_days": "يوم",
+    "short_hour": "س",
+    "short_hours": "س",
+    "short_minute": "د",
+    "short_minutes": "د",
+    "short_second": "ث",
+    "short_seconds": "ث"
+  },
+  "top_bar": {
+    "menu": {
+      "icon": {
+        "accessibility_label": "القائمة"
+      }
+    },
+    "total_bank": {
+      "icon": {
+        "accessibility_label": "%{coins} يوكوين للإنفاق"
+      }
+    }
+  },
+  "unequip": "إلغاء تجهيز",
+  "unit_of_measure": {
+    "centimeters": "%{smart_count} سنتيمتر |||| %{smart_count} سنتيمترات",
+    "feet": "%{smart_count} قدم |||| %{smart_count} أقدام",
+    "inches": "%{smart_count} بوصة |||| %{smart_count} بوصات",
+    "kilograms": "%{smart_count} كيلوغرام |||| %{smart_count} كيلوغرامات",
+    "pounds": "%{smart_count} رطل |||| %{smart_count} أرطال",
+    "stones": "%{smart_count} ستون |||| %{smart_count} ستونات"
+  },
+  "user_other_app": "أو استخدم التطبيق",
+  "user_referral": {
+    "description": {
+      "action": "لكل صديق يقوم بالتسجيل!",
+      "amount": "%{yuCoinValue} يوقوين",
+      "reward": "ستربح"
+    },
+    "list_item": "اربح **%{yuCoinValue} يو كوين** عن كل صديق تقوم بدعوته إلى تطبيق يو لايف.",
+    "recent": "حديث",
+    "search_placeholder": "ابحث عن أصدقاء",
+    "title": "لا ترى أصدقاءك؟"
+  },
+  "validator": {
+    "email": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "password": "يرجى إدخال كلمة مرور"
+  },
+  "watch": {
+    "common": {
+      "close": "إغلاق",
+      "retry": "إعادة المحاولة",
+      "steps": "خطوات",
+      "yucoin": "يوقوين"
+    },
+    "screens": {
+      "challenge_cancel": {
+        "confirm": "تأكيد",
+        "label": "هل أنت متأكد أنك تريد إلغاء تحديك؟"
+      },
+      "challenge_failed": {
+        "explanation": "كنت على بعد %d خطوات فقط من ربح %d يوكوين!"
+      },
+      "challenge_list": {
+        "error": "حدث خطأ ما!",
+        "title": "التحديات"
+      },
+      "challenge_preview": {
+        "buttonError": "عفوًا!",
+        "buttonText": "خذ التحدي"
+      },
+      "challenge_start_fail": {
+        "errors": {
+          "challenge_on_phone": "يوجد تحدي جاري على هاتفك بالفعل!",
+          "generic_error": "حدث خطأ ما!",
+          "has_unity_left": "تحقق من هاتفك للمتابعة!",
+          "no_challenges_left": "قد أكملت بالفعل جميع التحديات المتاحة لليوم"
+        }
+      },
+      "challenge_submit_error": {
+        "message": "حدثت مشكلة أثناء إرسال نتائجك"
+      },
+      "challenge_success": {
+        "youGot": "لقد ربحت"
+      },
+      "home": {
+        "yucoin_today": "يوقوين اليوم"
+      },
+      "offline": {
+        "label": "أنت غير متصل!",
+        "text": "تحقق من الشبكة"
+      },
+      "onboarding": {
+        "notAvailable": "ستكون تطبيق يو لايف على ساعة آبل متاح قريبًا! انتظروا المفاجآت!",
+        "open_on_phone": "يرجى فتح تطبيق YuLife على هاتفك.",
+        "pedometer": "يرجى منح التطبيق إذن لتتبع خطواتك!",
+        "systemPermissionNeeded": "يرجى تمكين إذن الحركة واللياقة في الإعدادات"
+      },
+      "settings": {
+        "logout": "تسجيل الخروج",
+        "logout_confirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+        "title": "الإعدادات"
+      }
+    }
+  },
+  "yu_coin": {
+    "amount": "%{amount} يوقوين",
+    "camel_case": "يوقوين",
+    "lower_case": "يوقوين",
+    "lower_case_amount": "%{amount} يوقوين"
+  },
+  "yucoin_power": {
+    "description": "الأرباح المحتملة من يوكوين",
+    "power": "الطاقة",
+    "tool_tip": {
+      "description": "اكسب هذا القدر من YuCoin كل شهر عن طريق إكمال جميع التحديات اليومية الأربعة (يُفتح تحدٍ إضافي كل 50 مستوى)، وتحقيق أقصى نقطة في الأنشطة الأساسية اليومية، وفتح الصناديق، واستكمال السلسلات.",
+      "title": "أرباح محتملة من يوكوين"
+    },
+    "yucoin": "يوقوين"
+  },
+  "yu_health": {
+    "activitySelection": {
+      "optional": "اختياري",
+      "recommended": "موصى به",
+      "title": "أنشطة لكسب يوكوين"
+    },
+    "activityTypes": {
+      "cycling": "ركوب الدراجات",
+      "meditation": "تأمل",
+      "steps": "خطوات"
+    },
+    "capabilitiesRequest": {
+      "body": "للاستمرار، نحتاج إلى أذوناتك لل",
+      "cancel": "إلغاء",
+      "capabilities": {
+        "calories": "السعرات الحرارية",
+        "cycling": "ركوب الدراجات",
+        "heartRate": "معدل ضربات القلب",
+        "meditation": "تأمل",
+        "steps": "خطوات",
+        "wheelchair_pushes": "دفع الكرسي المتحرك",
+        "workouts": "التمارين"
+      },
+      "continue": "لنتصل",
+      "header": "مطلوب الأذونات",
+      "join": "و"
+    },
+    "connect": {
+      "body": "اتصل بخدمة حتى نتمكن من مكافأتك على أنشطتك اليومية. يمكنك ضبط هذا في إعدادات جهازك في أي وقت.",
+      "button": "لنقم بالاتصال",
+      "no_providers": "لم نتمكن من العثور على أي مقدمي خدمات صحية على جهازك.",
+      "not_available": "بعض الميزات قد لا تكون متاحة لك. قد تفوتك فرصة الحصول على YuCoin. يمكنك تجربة خدمة أخرى",
+      "system_permission_needed": {
+        "body": "يرجى فتح إعدادات YuLife وتمكين الإذن",
+        "button": "فتح الإعدادات",
+        "cancel": "إلغاء",
+        "title": "مطلوب إذن النظام"
+      },
+      "title": "إعداد الاتصال",
+      "unsupported": "للأسف %{capabilities} غير مدعم من قبل %{provider}. للوصول إلى هذا والقدرة على كسب YuCoin، ضع في اعتبارك التبديل:",
+      "why": "لماذا يجب أن أفعل هذا؟"
+    },
+    "explanation": {
+      "body": "نحتاج هذا حتى نعرف متى يتم مكافأتك على نشاطك، جميعًا أثناء تتبع تقدمك. كن مطمئنًا، بياناتك دائمًا محمية معنا.",
+      "button": "فهمت!",
+      "title": "لماذا أحتاج هذا؟"
+    },
+    "providers": {
+      "generic": "مزود الرعاية الصحية",
+      "googleFit": "جوجل فيت",
+      "healthConnect": "اتصال صحي",
+      "healthKit": "آبل الصحة",
+      "samsungHealth": "سامسونج للصحة"
+    },
+    "select": {
+      "choose": "اختر خدمة",
+      "confirm": "تأكيد"
+    }
+  }
+}
