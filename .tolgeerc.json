@@ -1,7 +1,7 @@
 {
   "projectId": "3082",
   "mainLocale": "en-GB",
-  "translatedLocales": ["en-US", "ja-JP", "es-US"],
+  "translatedLocales": ["en-US", "ja-JP", "es-US", "ar-SA"],
   "mirroredLocales": ["en-ZA"],
   "structureDelimiter": ".",
   "upload": {
