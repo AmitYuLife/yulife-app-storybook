@@ -10,6 +10,8 @@ import { region } from "@locale";
 import { Platform } from "react-native";
 import moment from "moment";
 
+const MAX_EVENTS_PER_SECOND = 10;
+
 class LoggerInstance {
   private userId = "";
   private updatingUser: boolean = false;
@@ -19,6 +21,8 @@ class LoggerInstance {
   private appVersionRegex = /(\d+.\d+).(\d+)/;
   private bugsnag: BugsnagClient;
   public leanplum: LeanplumClient;
+  private eventRates: Map<string, { count: number; resetTime: number }> = new Map();
+  private disabledEvents: Set<string> = new Set();
 
   constructor() {
     this.bugsnag = getBugsnagClient();
@@ -115,6 +119,10 @@ class LoggerInstance {
       return;
     }
 
+    if (this.shouldSuppressEvent(event)) {
+      return;
+    }
+
     const data = this.addDefaultEventProperties(metadata);
     const isUserLoggedIn = await Intercom.isUserLoggedIn();
     Mixpanel.trackWithProperties(event, data);
@@ -140,8 +148,36 @@ class LoggerInstance {
     }
   };
 
+  private shouldSuppressEvent = (event: string): boolean => {
+    if (this.disabledEvents.has(event)) {
+      return true;
+    }
+
+    const now = moment().valueOf();
+    const rateLimit = this.eventRates.get(event);
+
+    if (!rateLimit || now > rateLimit.resetTime) {
+      this.eventRates.set(event, { count: 1, resetTime: now + 1000 });
+      return false;
+    }
+
+    if (rateLimit.count >= MAX_EVENTS_PER_SECOND) {
+      this.disabledEvents.add(event);
+      this.bugsnag.notify(new Error(`Rate limited logging event: ${event}`));
+      return true;
+    }
+
+    rateLimit.count++;
+    return false;
+  };
+
   public logMixpanelEvent = (event: MixpanelEvent, metadata: MixpanelEventMetadata = {}) => {
     if (!this.initialised) {
+      return;
+    }
+
+    if (this.shouldSuppressEvent(event)) {
+      // Event is rate limited, skip logging
       return;
     }
 
