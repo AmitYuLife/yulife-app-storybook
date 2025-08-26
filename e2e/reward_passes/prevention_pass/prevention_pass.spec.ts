@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as commonWhen from "../_common/when";
 import * as given from "./_steps/given";
@@ -134,7 +134,7 @@ Feature("Prevention pass", async () => {
       When("I go to the reward pass screen", when.tapText("Prevention Pass"), async () => {
         Then("I should see the next reward progress bar", then.textVisible("0 / 1 levels", 500));
         Then("I should see how many levels I have to complete in total", then.textVisible("Complete 500 levels", 500));
-        Then("I should see how many days I have left", then.textVisible(`${moment(data.BATTLE_PASS_SEASON_01.data.endLocalDate).diff(moment(), "days")} days left`, 500));
+        Then("I should see how many days I have left", then.textVisible(`${moment(data.BATTLE_PASS_PREVENTION_SEASON_01.data.endLocalDate).diff(moment(), "days")} days left`, 500));
 
         When("I scroll to the bottom of the page", when.swipeFromText("Prevention pass", "up", "fast"), async () => {
           When("I click on the first FAQ", when.tapID("game_mechanics_faqs_how_do_i_level"), async () => {

@@ -15,7 +15,7 @@ export const USER_ENTITY_PREVENTION_PASS_01: IDatabaseItem = {
     products: [],
     businesses: [
       {
-        businessAccountId: business.BUSINESS_PREVENTION_PASS.data.business_account_id,
+        businessAccountId: business.BUSINESS_PREVENTION_PASS.data.businessAccountId,
         businessPricingTierId: "Epic",
       },
     ],
@@ -32,7 +32,41 @@ export const USER_ENTITY_PREVENTION_PASS_02: IDatabaseItem = {
     products: [],
     businesses: [
       {
-        businessAccountId: business.BUSINESS_PREVENTION_PASS.data.business_account_id,
+        businessAccountId: business.BUSINESS_PREVENTION_PASS.data.businessAccountId,
+        businessPricingTierId: "Epic",
+      },
+    ],
+  },
+};
+
+export const USER_ENTITY_WELLBEING_PASS_01: IDatabaseItem = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_WELLBEING_PASS_01.data.customerId,
+    cohortIds: [],
+    products: [],
+    businesses: [
+      {
+        businessAccountId: business.BUSINESS_WELLBEING_PASS.data.businessAccountId,
+        businessPricingTierId: "Epic",
+      },
+    ],
+  },
+};
+
+export const USER_ENTITY_WELLBEING_PASS_02: IDatabaseItem = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_WELLBEING_PASS_02.data.customerId,
+    cohortIds: [],
+    products: [],
+    businesses: [
+      {
+        businessAccountId: business.BUSINESS_WELLBEING_PASS.data.businessAccountId,
         businessPricingTierId: "Epic",
       },
     ],

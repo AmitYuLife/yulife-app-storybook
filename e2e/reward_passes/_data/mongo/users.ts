@@ -44,3 +44,23 @@ export const USER_PREVENTION_PASS_02: IDatabaseItem = {
     userId: customer.CUSTOMER_PREVENTION_PASS_02.data.customerId,
   },
 };
+
+export const USER_WELLBEING_PASS_01: IDatabaseItem = {
+  type,
+  modelName,
+  data: {
+    ...DEFAULT_DATA,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_WELLBEING_PASS_01.data.customerId,
+  },
+};
+
+export const USER_WELLBEING_PASS_02: IDatabaseItem = {
+  type,
+  modelName,
+  data: {
+    ...DEFAULT_DATA,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_WELLBEING_PASS_02.data.customerId,
+  },
+};

@@ -14,7 +14,7 @@ import LinearGradient from "react-native-linear-gradient";
 import { LevelComponent } from "./level-component";
 import { DETOX_ENABLED } from "@services/socket";
 import { ImageSource } from "expo-image";
-import { HALF_MODAL_CTA } from "@ids";
+import { HALF_MODAL_CTA, ITEM_DETAILS_HALF_MODAL_TITLE } from "@ids";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import ItemDetailsItemReward from "@organisms/item-details/item-details-item-reward";
 
@@ -112,7 +112,7 @@ const ItemDetailsHalfModal = ({
           <View style={styles.contentContainer}>
             <Box gap={10} center={true} px={20}>
               <Box px={32} accessible={true}>
-                <TextTemplate textAlign="center" type="h2">
+                <TextTemplate testID={ITEM_DETAILS_HALF_MODAL_TITLE(title)} textAlign="center" type="h2">
                   {title}
                 </TextTemplate>
               </Box>

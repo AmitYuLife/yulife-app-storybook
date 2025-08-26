@@ -6,14 +6,18 @@ import moment from "moment";
 const type = "postgres" as const;
 const modelName = "business_employee" as const;
 
+const DEFAULT_DATA = {
+  employmentStartDate: moment().subtract(3, "months").toDate(),
+  employmentLeaveDate: moment().add(10, "years").toDate(),
+};
+
 export const BUSINESS_EMPLOYEE_PREVENTION_PASS_01: IDatabaseItem = {
   type,
   modelName,
   data: {
-    business_account_id: business.BUSINESS_PREVENTION_PASS.data.business_account_id,
-    customer_id: customer.CUSTOMER_PREVENTION_PASS_01.data.customerId,
-    employment_start_date: moment().subtract(3, "months").toDate(),
-    employment_leave_date: moment().add(10, "years").toDate(),
+    ...DEFAULT_DATA,
+    businessAccountId: business.BUSINESS_PREVENTION_PASS.data.businessAccountId,
+    customerId: customer.CUSTOMER_PREVENTION_PASS_01.data.customerId,
   },
 };
 
@@ -21,9 +25,28 @@ export const BUSINESS_EMPLOYEE_PREVENTION_PASS_02: IDatabaseItem = {
   type,
   modelName,
   data: {
-    business_account_id: business.BUSINESS_PREVENTION_PASS.data.business_account_id,
-    customer_id: customer.CUSTOMER_PREVENTION_PASS_02.data.customerId,
-    employment_start_date: moment().subtract(3, "months").toDate(),
-    employment_leave_date: moment().add(10, "years").toDate(),
+    ...DEFAULT_DATA,
+    businessAccountId: business.BUSINESS_PREVENTION_PASS.data.businessAccountId,
+    customerId: customer.CUSTOMER_PREVENTION_PASS_02.data.customerId,
+  },
+};
+
+export const BUSINESS_EMPLOYEE_WELLBEING_PASS_01: IDatabaseItem = {
+  type,
+  modelName,
+  data: {
+    ...DEFAULT_DATA,
+    businessAccountId: business.BUSINESS_WELLBEING_PASS.data.businessAccountId,
+    customerId: customer.CUSTOMER_WELLBEING_PASS_01.data.customerId,
+  },
+};
+
+export const BUSINESS_EMPLOYEE_WELLBEING_PASS_02: IDatabaseItem = {
+  type,
+  modelName,
+  data: {
+    ...DEFAULT_DATA,
+    businessAccountId: business.BUSINESS_WELLBEING_PASS.data.businessAccountId,
+    customerId: customer.CUSTOMER_WELLBEING_PASS_02.data.customerId,
   },
 };
