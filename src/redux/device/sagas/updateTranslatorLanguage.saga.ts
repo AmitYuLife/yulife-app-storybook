@@ -1,4 +1,4 @@
-import { setLocale, Language, getIntercomLanguage, getCurrentLocaleOptions } from "@locale";
+import { setLocale, Language, getIntercomLanguage } from "@locale";
 import { Navigation } from "@navigation/main";
 import { SyncAction } from "@redux/_core/types";
 import Logger from "@services/logging/logger";
@@ -7,11 +7,8 @@ import { call } from "redux-saga/effects";
 export default function* updateLanguage({ payload }: SyncAction<{ locale: Language }>) {
   yield call(setLocale, payload.locale);
 
-  yield call(Navigation.setDefaultOptions, {
-    layout: {
-      direction: getCurrentLocaleOptions().direction,
-    },
-  });
+  // updates the default options of the app based on the new locale
+  yield call(Navigation.setDefaultOptions);
 
   const intercomLanguage = getIntercomLanguage(payload.locale);
 

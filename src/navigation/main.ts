@@ -1,10 +1,17 @@
 import Logger from "@services/logging/logger";
 import { ReactElement } from "react";
 import { ComponentProvider, ViewStyle } from "react-native";
-import { Layout, LayoutRoot, Navigation as NativeNavigation, Options } from "react-native-navigation";
+import {
+  Layout,
+  LayoutRoot,
+  Navigation as NativeNavigation,
+  Options,
+  OptionsModalPresentationStyle,
+} from "react-native-navigation";
 import { MODALS, ROUTES } from "./constants";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
+import { getCurrentLocaleOptions } from "@locale";
 
 const BLURRED_OVERLAY_COMPONENT_ID = MODALS.blurredOverlay;
 
@@ -52,8 +59,37 @@ export class Navigation {
     return NativeNavigation.events();
   };
 
-  public static setDefaultOptions = (options: Options) => {
-    NativeNavigation.setDefaultOptions(options);
+  public static setDefaultOptions = () => {
+    const { direction } = getCurrentLocaleOptions();
+
+    NativeNavigation.setDefaultOptions({
+      animations: {
+        setRoot: {
+          waitForRender: true,
+        },
+        push: {
+          waitForRender: true,
+        },
+      },
+      bottomTabs: {
+        animate: false,
+        drawBehind: true,
+        visible: false,
+      },
+      layout: {
+        backgroundColor: "white", // ios
+        componentBackgroundColor: "white", // android
+        orientation: ["portrait"],
+        direction,
+      },
+      modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
+      statusBar: getRNNStatusBarStyle(),
+      topBar: {
+        animate: false,
+        drawBehind: true,
+        visible: false,
+      },
+    });
   };
 
   public static registerComponent = (
