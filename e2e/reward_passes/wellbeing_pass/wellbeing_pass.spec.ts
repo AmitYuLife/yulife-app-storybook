@@ -1,12 +1,13 @@
 import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
-import * as commonWhen from "../_common/when";
-import * as given from "./_steps/given";
+import * as commonThen from "../_common/then";
+import * as commonGiven from "../_common/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
 import moment from "moment";
+import { GENERIC_AUTH_PASSWORD } from "../../_utils/users/auth";
 
 const MILESTTONE_DETAILS_ASSERTIONS = [
   {
@@ -71,10 +72,15 @@ const MILESTTONE_DETAILS_ASSERTIONS = [
   },
 ];
 
+const BUSINESS_ACCOUNT_ID = data.BUSINESS_WELLBEING_PASS.business.data.businessAccountId;
+const BATTLE_PASS_START_LOCAL_DATE = moment().subtract(1, "year").format("YYYY-MM-DD");
+const BATTLE_PASS_END_LOCAL_DATE = moment().subtract(1, "year").add(24, "months").subtract(1, "day");
+const BATTLE_PASS_REWARD_PASS_ID = "bupa-group-health-uk-v2";
+
 Feature("Wellbeing pass", async () => {
   Scenario("I can check all the milestone details", scenario.start, async () => {
-    Given("A 'business_product_created' event was emitted", given.triggerProductCreated(data.BUSINESS_WELLBEING_PASS.data.businessAccountId, data.BUSINESS_WELLBEING_PASS.data.businessAccountId, "bupa-group-health-uk-v2", moment().subtract(1, "year").format("YYYY-MM-DD")), async () => {
-      Given("I login and go to the rewards screen", given.logInAndGoToTab("rewards", data.CUSTOMER_WELLBEING_PASS_01, data.AUTH_WELLBEING_PASS_01), async () => {
+    Given("A 'business_product_created' event was emitted", commonGiven.triggerProductCreated(BUSINESS_ACCOUNT_ID, BUSINESS_ACCOUNT_ID, BATTLE_PASS_REWARD_PASS_ID, BATTLE_PASS_START_LOCAL_DATE), async () => {
+      Given("I login and go to the rewards screen", commonGiven.logInAndGoToTab("rewards", data.CUSTOMER_WELLBEING_PASS_01.customer, GENERIC_AUTH_PASSWORD), async () => {
         When("I go to the reward pass screen", when.tapText("Wellbeing Pass"), async () => {
           for (const { position, titleAssertion, descriptionAssertions } of MILESTTONE_DETAILS_ASSERTIONS) {
             When(`I scroll until the milestone (position ${position})`, when.scrollUntilIdVisible(ids.BATTLE_PASS_LIST, ids.BATTLE_PASS_LIST_ITEM(position), "right"), async () => {
@@ -82,7 +88,7 @@ Feature("Wellbeing pass", async () => {
                 Then(`I can see the reward title (position ${position})`, then.idVisible(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion)));
 
                 When("I scroll to the bottom of the page", when.scrollFromID(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion), "up", "fast"), async () => {
-                  Then(`I can see the reward descriptions (position ${position})`, then.assertMultipleTextsVisible(descriptionAssertions));
+                  Then(`I can see the reward descriptions (position ${position})`, commonThen.assertMultipleTextsVisible(descriptionAssertions));
 
                   When("I press the got it button", when.tapID(ids.HALF_MODAL_CTA), async () => {
                     Then("I'm back at the reward pass screen", then.textVisible("Wellbeing pass"));

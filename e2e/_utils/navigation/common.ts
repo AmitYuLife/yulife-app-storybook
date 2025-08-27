@@ -11,7 +11,7 @@ import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
 import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
-import { navigation } from "@utils";
+import { scrollUntilTextVisible } from "./scrolling";
 
 export const restart = async (locale = "en-GB", dm = dataManager) => {
   console.log(`Restaring app...`);
@@ -151,7 +151,6 @@ export const textVisible =
   (text: string, waitTime = 0) =>
   async () => {
     const target = element(by.text(text));
-    await navigation.common.wait(waitTime)();
     await wait(waitTime)();
     await expect(target).toBeVisible();
   };
@@ -561,7 +560,7 @@ export const testMultipleTextVisibility = (text: string, indexes: number) => asy
 export const objCopyVisible = (obj: Object, scrollView?: string) => async () => {
   if (scrollView) {
     for (let key in obj) {
-      await navigation.scrolling.scrollUntilTextVisible(scrollView, obj[key], "down")();
+      await scrollUntilTextVisible(scrollView, obj[key], "down")();
     }
   } else {
     for (let key in obj) {
@@ -580,7 +579,7 @@ export const localisedTextVisible =
     }
 
     const target = element(by.text(dictionary[locale]));
-    await navigation.common.wait(waitTime)();
+    await wait(waitTime)();
     await expect(target).toBeVisible();
   };
 
@@ -595,7 +594,7 @@ export const tapLocalisedText =
     }
 
     const target = element(by.text(dictionary[locale]));
-    await navigation.common.wait(waitTime)();
+    await wait(waitTime)();
     await target.tap();
   };
 
