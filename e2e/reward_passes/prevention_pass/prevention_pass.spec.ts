@@ -1,13 +1,15 @@
 import { Feature, Scenario, Given, When, Then, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as commonWhen from "../_common/when";
-import * as given from "./_steps/given";
+import * as commonThen from "../_common/then";
+import * as commonGiven from "../_common/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
 import moment from "moment";
 import * as textConstants from "./constants.text";
+import { GENERIC_AUTH_PASSWORD } from "../../_utils/users/auth";
 
 const MILESTTONE_DETAILS_ASSERTIONS = [
   {
@@ -128,28 +130,35 @@ const CLAIM_MILESTONE_ASSERTIONS = [
   },
 ];
 
+const BUSINESS_ACCOUNT_ID = data.BUSINESS_PREVENTION_PASS.business.data.businessAccountId;
+const BATTLE_PASS_START_LOCAL_DATE = moment().subtract(1, "year").format("YYYY-MM-DD");
+const BATTLE_PASS_END_LOCAL_DATE = moment().subtract(1, "year").add(24, "months").subtract(1, "day");
+const BATTLE_PASS_REWARD_PASS_ID = "metlife-gip-uk";
+
 Feature("Prevention pass", async () => {
   Scenario("I can freshly join the Prevention Pass and check the FAQ", scenario.start, async () => {
-    Given("I login and go to the rewards screen", given.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_01, data.AUTH_PREVENTION_PASS_01), async () => {
-      When("I go to the reward pass screen", when.tapText("Prevention Pass"), async () => {
-        Then("I should see the next reward progress bar", then.textVisible("0 / 1 levels", 500));
-        Then("I should see how many levels I have to complete in total", then.textVisible("Complete 500 levels", 500));
-        Then("I should see how many days I have left", then.textVisible(`${moment(data.BATTLE_PASS_PREVENTION_SEASON_01.data.endLocalDate).diff(moment(), "days")} days left`, 500));
+    Given("A 'business_product_created' event was emitted", commonGiven.triggerProductCreated(BUSINESS_ACCOUNT_ID, BUSINESS_ACCOUNT_ID, BATTLE_PASS_REWARD_PASS_ID, BATTLE_PASS_START_LOCAL_DATE), async () => {
+      Given("I login and go to the rewards screen", commonGiven.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_01.customer, GENERIC_AUTH_PASSWORD), async () => {
+        When("I go to the reward pass screen", when.tapText("Prevention Pass"), async () => {
+          Then("I should see the next reward progress bar", then.textVisible("0 / 1 levels", 500));
+          Then("I should see how many levels I have to complete in total", then.textVisible("Complete 500 levels", 500));
+          Then("I should see how many days I have left", then.textVisible(`${BATTLE_PASS_END_LOCAL_DATE.diff(moment(), "days")} days left`, 500));
 
-        When("I scroll to the bottom of the page", when.swipeFromText("Prevention pass", "up", "fast"), async () => {
-          When("I click on the first FAQ", when.tapID("game_mechanics_faqs_how_do_i_level"), async () => {
-            Then("I am on the FAQ page for the first FAQ", then.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE1));
-          });
-
-          When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I click on the second FAQ", when.tapID("game_mechanics_faqs_how_do_i_claim"), async () => {
-              Then("I am on the FAQ page for the second FAQ", then.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE2));
+          When("I scroll to the bottom of the page", when.swipeFromText("Prevention pass", "up", "fast"), async () => {
+            When("I click on the first FAQ", when.tapID("game_mechanics_faqs_how_do_i_level"), async () => {
+              Then("I am on the FAQ page for the first FAQ", commonThen.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE1));
             });
-          });
 
-          When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I click on the third FAQ", when.tapID("game_mechanics_faqs_time_runs_out"), async () => {
-              Then("I am on the FAQ page for the third FAQ", then.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE3));
+            When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+              When("I click on the second FAQ", when.tapID("game_mechanics_faqs_how_do_i_claim"), async () => {
+                Then("I am on the FAQ page for the second FAQ", commonThen.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE2));
+              });
+            });
+
+            When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+              When("I click on the third FAQ", when.tapID("game_mechanics_faqs_time_runs_out"), async () => {
+                Then("I am on the FAQ page for the third FAQ", commonThen.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE3));
+              });
             });
           });
         });
@@ -158,68 +167,72 @@ Feature("Prevention pass", async () => {
   });
 
   Scenario("I can check all the milestone details", scenario.start, async () => {
-    Given("I login and go to the rewards screen", given.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_01, data.AUTH_PREVENTION_PASS_01), async () => {
-      When("I go to the reward pass screen", when.tapText("Prevention Pass"), async () => {
-        for (const { position, titleAssertion, descriptionAssertions } of MILESTTONE_DETAILS_ASSERTIONS) {
-          When(`I scroll until the milestone (position ${position})`, when.scrollUntilIdVisible(ids.BATTLE_PASS_LIST, ids.BATTLE_PASS_LIST_ITEM(position), "right"), async () => {
-            When(`I press on it (position ${position})`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
-              Then(`I can see the reward title (position ${position})`, then.textVisible(titleAssertion));
+    Given("A 'business_product_created' event was emitted", commonGiven.triggerProductCreated(BUSINESS_ACCOUNT_ID, BUSINESS_ACCOUNT_ID, "metlife-gip-uk", BATTLE_PASS_START_LOCAL_DATE), async () => {
+      Given("I login and go to the rewards screen", commonGiven.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_01.customer, GENERIC_AUTH_PASSWORD), async () => {
+        When("I go to the reward pass screen", when.tapText("Prevention Pass"), async () => {
+          for (const { position, titleAssertion, descriptionAssertions } of MILESTTONE_DETAILS_ASSERTIONS) {
+            When(`I scroll until the milestone (position ${position})`, when.scrollUntilIdVisible(ids.BATTLE_PASS_LIST, ids.BATTLE_PASS_LIST_ITEM(position), "right"), async () => {
+              When(`I press on it (position ${position})`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
+                Then(`I can see the reward title (position ${position})`, then.idVisible(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion)));
 
-              When("I scroll to the bottom of the page", when.swipeFromText(titleAssertion, "up", "fast"), async () => {
-                Then(`I can see the reward descriptions (position ${position})`, then.assertMultipleTextsVisible(descriptionAssertions));
+                When("I scroll to the bottom of the page", when.scrollFromID(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion), "up", "fast"), async () => {
+                  Then(`I can see the reward descriptions (position ${position})`, commonThen.assertMultipleTextsVisible(descriptionAssertions));
 
-                When("I press the got it button", when.tapID(ids.HALF_MODAL_CTA), async () => {
-                  Then("I'm back at the reward pass screen", then.textVisible("Prevention pass"));
+                  When("I press the got it button", when.tapID(ids.HALF_MODAL_CTA), async () => {
+                    Then("I'm back at the reward pass screen", then.textVisible("Prevention pass"));
+                  });
                 });
               });
             });
-          });
-        }
+          }
+        });
       });
     });
   });
 
   Scenario("I can claim all the milestones", scenario.start, async () => {
-    Given("I login and go to the rewards screen", given.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_02, data.AUTH_PREVENTION_PASS_02), async () => {
-      let level = 0;
+    Given("A 'business_product_created' event was emitted", commonGiven.triggerProductCreated(BUSINESS_ACCOUNT_ID, BUSINESS_ACCOUNT_ID, "metlife-gip-uk", BATTLE_PASS_START_LOCAL_DATE), async () => {
+      Given("I login and go to the rewards screen", commonGiven.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_02.customer, GENERIC_AUTH_PASSWORD), async () => {
+        let level = 0;
 
-      // skips the last milestone because the check is a bit different - no progress bar and no swipping needed
-      for (let i = 0; i < CLAIM_MILESTONE_ASSERTIONS.length - 1; i += 1) {
-        const { levelIncValue, position, rewardDetailsTextAssertions } = CLAIM_MILESTONE_ASSERTIONS[i];
-        level += levelIncValue;
+        // skips the last milestone because the check is a bit different - no progress bar and no swipping needed
+        for (let i = 0; i < CLAIM_MILESTONE_ASSERTIONS.length - 1; i += 1) {
+          const { levelIncValue, position, rewardDetailsTextAssertions } = CLAIM_MILESTONE_ASSERTIONS[i];
+          level += levelIncValue;
 
-        const nextLevelIncValue = CLAIM_MILESTONE_ASSERTIONS[i + 1]?.levelIncValue || 0;
+          const nextLevelIncValue = CLAIM_MILESTONE_ASSERTIONS[i + 1]?.levelIncValue || 0;
 
-        When(`I reach game level ${level}`, commonWhen.levelUpForBattlePasses(data.CUSTOMER_PREVENTION_PASS_02.data.customerId, levelIncValue), async () => {
-          When(`I go to the reward pass screen (index: ${position}; level ${level})`, when.tapText("Prevention Pass"), async () => {
-            Then(`I can see the next reward progress bar (index: ${position}; level ${level})`, then.textVisible(`0 / ${nextLevelIncValue} levels`, 500));
+          When(`I reach game level ${level}`, commonWhen.levelUpForBattlePasses(data.CUSTOMER_PREVENTION_PASS_02.customer.data.customerId, levelIncValue), async () => {
+            When(`I go to the reward pass screen (index: ${position}; level ${level})`, when.tapText("Prevention Pass"), async () => {
+              Then(`I can see the next reward progress bar (index: ${position}; level ${level})`, then.textVisible(`0 / ${nextLevelIncValue} levels`, 500));
 
-            When(`I press Claim for ${rewardDetailsTextAssertions[0]} (index: ${position}; level ${level})`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", position)), async () => {
-              When(`I scroll to the left of the milestone list (index: ${position}; level ${level})`, when.scrollFromID(ids.BATTLE_PASS_LIST_ITEM(position), "right", "slow", 0.4), async () => {
-                Then(`I can see the milestone is claimed (index: ${position}; level ${level})`, then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(position)));
-                When(`I press on the claimed milestone (index: ${position}; level ${level})`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
-                  Then("I can see the reward details", then.assertMultipleTextsVisible(rewardDetailsTextAssertions));
-                  When(`I can go back to the unlocked rewards screen (index: ${position}; level ${level})`, when.tapID(ids.BACK_BUTTON), async () => {
-                    When(`I can go back to the rewards screen (index: ${position}; level ${level})`, when.tapID(ids.BACK_BUTTON), async () => {
-                      Then(`I can see the reward store front (index: ${position}; level ${level})`, then.textVisible("Prevention Pass"));
+              When(`I press Claim for ${rewardDetailsTextAssertions[0]} (index: ${position}; level ${level})`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", position)), async () => {
+                When(`I scroll to the left of the milestone list (index: ${position}; level ${level})`, when.scrollFromID(ids.BATTLE_PASS_LIST_ITEM(position), "right", "slow", 0.4), async () => {
+                  Then(`I can see the milestone is claimed (index: ${position}; level ${level})`, then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(position)));
+                  When(`I press on the claimed milestone (index: ${position}; level ${level})`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
+                    Then("I can see the reward details", commonThen.assertMultipleTextsVisible(rewardDetailsTextAssertions));
+                    When(`I can go back to the unlocked rewards screen (index: ${position}; level ${level})`, when.tapID(ids.BACK_BUTTON), async () => {
+                      When(`I can go back to the rewards screen (index: ${position}; level ${level})`, when.tapID(ids.BACK_BUTTON), async () => {
+                        Then(`I can see the reward store front (index: ${position}; level ${level})`, then.textVisible("Prevention Pass"));
+                      });
                     });
                   });
                 });
               });
             });
           });
-        });
-      }
+        }
 
-      // assert the last milestone outside the loop
-      const { levelIncValue, position, rewardDetailsTextAssertions } = CLAIM_MILESTONE_ASSERTIONS[CLAIM_MILESTONE_ASSERTIONS.length - 1];
+        // assert the last milestone outside the loop
+        const { levelIncValue, position, rewardDetailsTextAssertions } = CLAIM_MILESTONE_ASSERTIONS[CLAIM_MILESTONE_ASSERTIONS.length - 1];
 
-      When(`I reach game level 500`, commonWhen.levelUpForBattlePasses(data.CUSTOMER_PREVENTION_PASS_02.data.customerId, levelIncValue), async () => {
-        When(`I go to the reward pass screen (index: ${position}; level 500)`, when.tapText("Prevention Pass"), async () => {
-          When(`I press Claim for New Balance 880 (index: ${position}; level 500)`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", position)), async () => {
-            Then(`I can see the milestone is claimed (index: ${position}; level 500)`, then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(position)));
-            When(`I press on the claimed milestone (index: ${position}; level 500)`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
-              Then("I can see the reward details", then.assertMultipleTextsVisible(rewardDetailsTextAssertions));
+        When(`I reach game level 500`, commonWhen.levelUpForBattlePasses(data.CUSTOMER_PREVENTION_PASS_02.customer.data.customerId, levelIncValue), async () => {
+          When(`I go to the reward pass screen (index: ${position}; level 500)`, when.tapText("Prevention Pass"), async () => {
+            When(`I press Claim for New Balance 880 (index: ${position}; level 500)`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", position)), async () => {
+              Then(`I can see the milestone is claimed (index: ${position}; level 500)`, then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(position)));
+              When(`I press on the claimed milestone (index: ${position}; level 500)`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
+                Then("I can see the reward details", commonThen.assertMultipleTextsVisible(rewardDetailsTextAssertions));
+              });
             });
           });
         });

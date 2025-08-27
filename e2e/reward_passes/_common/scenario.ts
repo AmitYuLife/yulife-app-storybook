@@ -9,7 +9,7 @@ beforeAll(async () => {
 
   console.log("Adding data...", Object.values(dataToInsert).length);
 
-  dataManager.addData(dataToInsert);
+  dataManager.addData(dataToInsert as any);
   await dataManager.connect(API_URL, true);
   await dataManager.reseed();
 });

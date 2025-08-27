@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import * as customer from "../postgres/customers";
+import * as customerRecords from "../generated/customer_records";
 
 const type = "mongo" as const;
 const modelName = "userprofile" as const;
@@ -18,7 +18,7 @@ export const USER_PROFILE_PREVENTION_PASS_01: IDatabaseItem = {
   data: {
     ...DEFAULT_DATA,
     _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_PREVENTION_PASS_01.data.customerId,
+    userId: customerRecords.CUSTOMER_PREVENTION_PASS_01.customer.data.customerId,
   },
 };
 
@@ -28,7 +28,7 @@ export const USER_PROFILE_PREVENTION_PASS_02: IDatabaseItem = {
   data: {
     ...DEFAULT_DATA,
     _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_PREVENTION_PASS_02.data.customerId,
+    userId: customerRecords.CUSTOMER_PREVENTION_PASS_02.customer.data.customerId,
   },
 };
 
@@ -38,7 +38,7 @@ export const USER_PROFILE_WELLBEING_PASS_01: IDatabaseItem = {
   data: {
     ...DEFAULT_DATA,
     _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_WELLBEING_PASS_01.data.customerId,
+    userId: customerRecords.CUSTOMER_WELLBEING_PASS_01.customer.data.customerId,
   },
 };
 
@@ -48,6 +48,6 @@ export const USER_PROFILE_WELLBEING_PASS_02: IDatabaseItem = {
   data: {
     ...DEFAULT_DATA,
     _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_WELLBEING_PASS_02.data.customerId,
+    userId: customerRecords.CUSTOMER_WELLBEING_PASS_02.customer.data.customerId,
   },
 };
