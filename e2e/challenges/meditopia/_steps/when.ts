@@ -1,6 +1,6 @@
 import { screens } from "@appScreens";
 import { navigation } from "@utils";
-export { authoriseFitkit, sendSteps, fitKitAddSampleQueries, sendMindfulnessData } from "@socket";
+export { authoriseFitkit, sendSteps, addSampleQueries, sendMindfulnessData } from "@socket";
 
 export const {
   tapText,

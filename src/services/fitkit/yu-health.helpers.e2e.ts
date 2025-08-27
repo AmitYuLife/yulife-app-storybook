@@ -1,6 +1,5 @@
 import { IFeature } from "@redux/user/user.types";
 import getClient from "@services/bugsnag";
-import Logger from "@services/logging/logger";
 import { processYuHealthResult } from "./helpers/sampleToAggregatedData";
 import {
   BucketSize,
@@ -11,13 +10,57 @@ import {
   IPedometerParams,
   ISampleQueryParams,
   ISampleQueryResponse,
-  aggregateQuery,
-  queryPedometerFromDate,
-  sampleQuery,
 } from "@yu-life/react-native-yu-health";
 import { IFetchActivityResponse } from "@services/fitkit/fitkit.helpers";
 import { IFetchActivityRequest } from "./fitkit.types";
 import { ChallengesPayload, HealthProvider as GqlHealthProvider, PassiveChallengeType } from "@graphql/__generated";
+import socket from "@services/socket";
+import moment from "moment";
+import { PedometerResponse, WithDataType } from "e2e/_utils/socket/events";
+
+const steps: PedometerResponse[] = [];
+let yuHealthSampleQueries: WithDataType<ISampleQueryResponse>[] = [];
+let yuHealthAggregatedQueries: WithDataType<IAggregateQueryResponse>[] = [];
+
+socket.onPedometerEvent((step) => steps.push(step));
+
+socket.onSampleQueriesAdded?.((newQueries) => {
+  yuHealthSampleQueries = [...yuHealthSampleQueries, ...newQueries.map((query) => ({ ...query }))];
+});
+
+socket.onAggregatedQueriesAdded?.((newQueries) => {
+  yuHealthAggregatedQueries = [...yuHealthAggregatedQueries, ...newQueries.map((query) => ({ ...query }))];
+});
+
+const aggregateQuery = async (params: IAggregateQueryRequest): Promise<{ result: IAggregateQueryResponse[] }> => {
+  const filtered = yuHealthAggregatedQueries.filter((result) => {
+    const resultStart = moment(result.startTime);
+    const resultEnd = moment(result.endTime);
+    const queryStart = moment(params.startTime);
+    const queryEnd = moment(params.endTime);
+
+    return (
+      resultStart.isSameOrAfter(queryStart) && resultEnd.isSameOrBefore(queryEnd) && result.dataType === params.dataType
+    );
+  });
+
+  return { result: filtered };
+};
+
+const sampleQuery = async (params: ISampleQueryParams): Promise<{ result: ISampleQueryResponse[] }> => {
+  const filtered = yuHealthSampleQueries.filter((result) => {
+    const resultStart = moment(result.startTime);
+    const resultEnd = moment(result.endTime);
+    const queryStart = moment(params.startTime);
+    const queryEnd = moment(params.endTime);
+
+    return (
+      resultStart.isSameOrAfter(queryStart) && resultEnd.isSameOrBefore(queryEnd) && result.dataType === params.dataType
+    );
+  });
+
+  return { result: filtered };
+};
 
 interface IYuHealthAggregateQuery {
   params: IAggregateQueryRequest;
@@ -27,51 +70,15 @@ interface IYuHealthAggregateQuery {
 
 export const yuHealthAggregateQuery = async ({
   features,
-  metadata,
   params,
 }: IYuHealthAggregateQuery): Promise<IAggregateQueryResponse[]> => {
-  const { loggingEnabled, disableUserEntries } = {
-    loggingEnabled: false,
+  const { disableUserEntries } = {
     disableUserEntries: true,
     ...features,
   };
 
-  try {
-    getClient().leaveBreadcrumb("YuHealth Aggregation Queried", { params }, "log");
-
-    if (loggingEnabled) {
-      Logger.logMixpanelEvent("app_debug", {
-        metadata,
-        params,
-        type: `yu_health_aggregate_query_args`,
-        location: "yu-health",
-      });
-    }
-
-    const results = await aggregateQuery({ ...params, queryOptions: { ...params?.queryOptions, disableUserEntries } });
-
-    if (loggingEnabled && results) {
-      Logger.logMixpanelEvent("app_debug", {
-        metadata,
-        params,
-        results,
-        type: `yu_health_aggregate_query_response`,
-        location: "yu-health",
-      });
-    }
-
-    return results?.result;
-  } catch (e) {
-    Logger.logMixpanelEvent("app_debug", {
-      error: e,
-      params,
-      metadata,
-      type: `yu_health_aggregate_query_response_error`,
-      location: "yu-health",
-    });
-
-    return [];
-  }
+  const results = await aggregateQuery({ ...params, queryOptions: { ...params?.queryOptions, disableUserEntries } });
+  return results?.result;
 };
 
 interface IYuHealthSampleQuery {
@@ -80,63 +87,33 @@ interface IYuHealthSampleQuery {
   metadata: Record<string, string>;
 }
 
-export async function yuHealthSampleQuery({
-  features,
-  metadata,
-  params,
-}: IYuHealthSampleQuery): Promise<ISampleQueryResponse[]> {
-  const { disableUserEntries = true, loggingEnabled = false } = features || {
+export async function yuHealthSampleQuery({ features, params }: IYuHealthSampleQuery): Promise<ISampleQueryResponse[]> {
+  const { disableUserEntries = true } = features || {
     disableUserEntries: true,
-    loggingEnabled: false,
   };
 
   getClient().leaveBreadcrumb("YuHealth Sample Queried", { params }, "log");
 
-  try {
-    const args: ISampleQueryParams = {
-      ...params,
-      queryOptions: { ...params?.queryOptions, disableUserEntries },
-    };
+  const args: ISampleQueryParams = {
+    ...params,
+    queryOptions: { ...params?.queryOptions, disableUserEntries },
+  };
 
-    if (loggingEnabled) {
-      Logger.logMixpanelEvent("app_debug", {
-        ...metadata,
-        ...args,
-        type: `yu_health_sample_query_args`,
-        location: "yu-health",
-      });
-    }
-
-    const results = await sampleQuery(args);
-
-    if (loggingEnabled && results) {
-      Logger.logMixpanelEvent("app_debug", {
-        ...metadata,
-        results,
-        type: `yu_health_sample_query_results`,
-        location: "yu-health",
-      });
-    }
-
-    return results.result;
-  } catch (e) {
-    Logger.error(e, { event: "yuHealthSampleQuery" });
-
-    Logger.logMixpanelEvent("app_debug", {
-      ...metadata,
-      error: e.message,
-      params,
-      type: `yu_health_sample_query_error`,
-      location: "yu-health",
-    });
-
-    return [];
-  }
+  const results = await sampleQuery(args);
+  return results.result;
 }
 
 export const yuHealthPedometerQuery = async (data: IPedometerParams) => {
-  const response = await queryPedometerFromDate(data);
-  return response.result;
+  const result = steps.reduce(
+    (step, total) => ({
+      ...total,
+      value: step.steps + total.steps,
+      steps: step.steps + total.steps,
+    }),
+    { startTime: data.startTime.toString(), endTime: data.endTime.toString(), value: 0, steps: 0 } as PedometerResponse
+  );
+
+  return result;
 };
 
 export const fetchYuHealthActivityData = async ({
@@ -201,8 +178,8 @@ export const fetchYuHealthStepsData = async ({
     metadata: { file: "yu-health.helpers" },
     params: { ...sharedOptions, dataType: HealthDataType.steps },
   });
-  const stepsResults = processYuHealthResult(yuHealthSteps, start, end, PassiveChallengeType.Steps);
 
+  const stepsResults = processYuHealthResult(yuHealthSteps, start, end, PassiveChallengeType.Steps);
   return { stepsResults };
 };
 

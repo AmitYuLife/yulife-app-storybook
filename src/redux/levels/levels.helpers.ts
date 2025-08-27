@@ -1,5 +1,5 @@
 import RNFitKit from "@services/fitkit/fitkit.service";
-import { HealthDataType, ISampleQueryResponse, queryPedometerFromDate } from "@yu-life/react-native-yu-health";
+import { HealthDataType, ISampleQueryResponse } from "@yu-life/react-native-yu-health";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone } from "@utils";
 import moment from "moment";
@@ -9,7 +9,7 @@ import { delay } from "@utils/misc";
 import { FitKitSampleType, GenericFitKitResponseType } from "@services/fitkit/fitkit.types";
 import { IFeature } from "@redux/user/user.types";
 import { Platform } from "react-native";
-import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
+import { yuHealthPedometerQuery, yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 import { FitKitType } from "@redux/_core/types";
 
 const PROTECTED_DATA_INACCESSIBLE_ERROR = "Protected health data is inaccessible";
@@ -58,7 +58,8 @@ const getPedometerEndResult = async (activeLevel: IActiveLevel, blacklistApps: s
 
   // If we are querying step count, we should use pedometer data instead of sample data
   const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
-  const pedometerResults = await queryPedometerFromDate({
+
+  const pedometerResults = await yuHealthPedometerQuery({
     startTime: moment(start).toDate(),
     endTime: moment(end).toDate(),
     queryOptions: {
@@ -67,7 +68,7 @@ const getPedometerEndResult = async (activeLevel: IActiveLevel, blacklistApps: s
     },
   });
 
-  const pedometerValue = pedometerResults?.result.value ?? 0;
+  const pedometerValue = pedometerResults?.value ?? 0;
 
   Logger.logMixpanelEvent("end_challenge_result", {
     startDateTime,

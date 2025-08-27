@@ -243,12 +243,10 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     When("I have done yesterday 309 steps", given.addStepsHistoricalData(309), async () => {
       When("I have done yesterday Biking 11.3 km", given.addCyclingHistoricalData(11345), async () => {
         When("I have done yesterday 13:20 min Mindfulness", given.addMindfulnessHistoricalData(800), async () => {
-          When("I have done yesterday 2 Pilates", given.addPilatesHistoricalData(2), async () => {
-            Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
-              Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
-              When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
-                Then("I should see the menu items", then.menuItemsVisible("enhanced"));
-              });
+          Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
+            Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+            When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
+              Then("I should see the menu items", then.menuItemsVisible("enhanced"));
             });
           });
         });

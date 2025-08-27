@@ -1,7 +1,7 @@
 import { screens } from "@appScreens";
 import { navigation } from "@utils";
 export { authoriseFitkit, sendSteps } from "@socket";
-import { sendSteps, fitKitAddSampleQueries, sendMindfulnessData } from "@socket";
+import { sendSteps, addSampleQueries, sendMindfulnessData } from "@socket";
 import { getLocalisedString as t } from "@i18n";
 import * as ids from "@ids";
 import moment from "moment";
