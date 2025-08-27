@@ -3,9 +3,6 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import registerScreens from "./navigation/index";
 import { DETOX_ENABLED } from "@services/socket";
-import { OptionsModalPresentationStyle } from "react-native-navigation";
-import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
-import { getCurrentLocaleOptions } from "@locale";
 
 if (DETOX_ENABLED) {
   LogBox.ignoreLogs([
@@ -29,43 +26,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
 
   // register all the screens
   registerScreens();
-  setDefaultOptions();
+  Navigation.setDefaultOptions();
 });
 
 // TODO: purge when upgrading to RN >=76
 if (__DEV__) {
   require("react-native-devsettings");
-}
-
-function setDefaultOptions() {
-  const { direction } = getCurrentLocaleOptions();
-
-  Navigation.setDefaultOptions({
-    animations: {
-      setRoot: {
-        waitForRender: true,
-      },
-      push: {
-        waitForRender: true,
-      },
-    },
-    bottomTabs: {
-      animate: false,
-      drawBehind: true,
-      visible: false,
-    },
-    layout: {
-      backgroundColor: "white", // ios
-      componentBackgroundColor: "white", // android
-      orientation: ["portrait"],
-      direction,
-    },
-    modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
-    statusBar: getRNNStatusBarStyle(),
-    topBar: {
-      animate: false,
-      drawBehind: true,
-      visible: false,
-    },
-  });
 }
