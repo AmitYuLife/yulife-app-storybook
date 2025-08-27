@@ -9,6 +9,7 @@ export const translations: Record<Language, Translation> = {
     intercomLanguage: "en",
     isEnabled: true,
     load: () => require("./main/en-GB.json"),
+    direction: "ltr",
     setMomentLocale: () => {
       require("moment/locale/en-gb");
       require("moment").locale("en-gb");
@@ -21,6 +22,7 @@ export const translations: Record<Language, Translation> = {
     overwrite: "en",
     isEnabled: true,
     load: () => require("./main/en-GB.json"),
+    direction: "ltr",
     setMomentLocale: () => {
       require("moment/locale/en-gb");
       require("moment").locale("en-gb");
@@ -32,6 +34,7 @@ export const translations: Record<Language, Translation> = {
     flag: "🇺🇸",
     isEnabled: true,
     load: () => require("./downloaded/en-US.json"),
+    direction: "ltr",
     setMomentLocale: () => {
       // default is en, so no need to load anything
       require("moment").locale("en");
@@ -44,6 +47,7 @@ export const translations: Record<Language, Translation> = {
     isEnabled: false,
     isEnabledForTest: true,
     load: () => require("./downloaded/es-US.json"),
+    direction: "ltr",
     setMomentLocale: () => {
       require("moment/locale/es-us");
       require("moment").locale("es-us");
@@ -55,6 +59,7 @@ export const translations: Record<Language, Translation> = {
     flag: "🇯🇵",
     isEnabled: true,
     load: () => require("./downloaded/ja-JP.json"),
+    direction: "ltr",
     setMomentLocale: () => {
       require("moment/locale/ja");
       require("moment").locale("ja");
@@ -66,6 +71,7 @@ export const translations: Record<Language, Translation> = {
     flag: "🇸🇦",
     isEnabled: false,
     load: () => require("./downloaded/ar-SA.json"),
+    direction: "rtl",
     setMomentLocale: () => {
       require("moment/locale/ar-sa");
       require("moment").locale("ar-sa");

@@ -12,4 +12,5 @@ export type Translation = {
   isEnabledForTest?: boolean;
   load: () => unknown;
   setMomentLocale: () => void;
+  direction: "ltr" | "rtl";
 };
