@@ -5,7 +5,6 @@ export {
   addStepsHistoricalData,
   addCyclingHistoricalData,
   addMindfulnessHistoricalData,
-  addPilatesHistoricalData,
 } from "@socket";
 
 // A function that wraps the loginAsUser function with default values for this module's data

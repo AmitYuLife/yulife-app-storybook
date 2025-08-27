@@ -8,21 +8,12 @@ import {
 } from "@yu-life/react-native-fitkit";
 import service from "@yu-life/react-native-fitkit";
 import moment from "moment";
-import socket from "@services/socket";
+
+// TODO: Purge this
 
 const steps = [] as PedometerResponse[];
-let sampleQueries = [] as SampleQueryResult[];
-let aggregatedQueries = [] as AggregateQueryResult[];
-
-socket.onSampleQueriesAdded((newQueries) => {
-  sampleQueries = [...sampleQueries, ...newQueries];
-});
-
-socket.onAggregatedQueriesAdded((newQueries) => {
-  aggregatedQueries = [...aggregatedQueries, ...newQueries];
-});
-
-socket.onPedometerEvent((step) => steps.push(step));
+const sampleQueries = [] as SampleQueryResult[];
+const aggregatedQueries = [] as AggregateQueryResult[];
 
 export default {
   ...service,

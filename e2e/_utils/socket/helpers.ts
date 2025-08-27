@@ -1,7 +1,18 @@
 import socketServer from "./server";
-import { EVENT, ReduxEvent, FitkitSampleQueriesAdd, FitkitAggregatedQueriesAdd } from "./events";
+import { EVENT, ReduxEvent, SampleQueriesAdd, AggregateQueriesAdd } from "./events";
 import moment from "moment";
 import { wait } from "@navigation";
+
+// TODO: Purge this, detox doesn't start when it's imported directly from the library
+export enum HealthDataType {
+  steps = 'STEP_COUNT',
+  mindfulMinutes = 'MINDFUL_MINUTES',
+  heartRate = 'HEART_RATE',
+  cyclingDistance = 'CYCLING_DISTANCE',
+  calories = 'CALORIES',
+  workoutMinutes = 'WORKOUT_MINUTES',
+  wheelchairPushes = 'WHEELCHAIR_PUSHES',
+}
 
 export const authoriseFitkit =
   (authorised = true) =>
@@ -54,16 +65,16 @@ export const sendReduxEvent = (payload: ReduxEvent["payload"]) => {
   });
 };
 
-export const fitKitAddSampleQueries = (payload: FitkitSampleQueriesAdd["payload"]) => {
+export const addSampleQueries = (payload: SampleQueriesAdd["payload"]) => {
   socketServer.emit({
-    name: EVENT.FITKIT_SAMPLE_QUERIES_ADD,
+    name: EVENT.SAMPLE_QUERIES_ADD,
     payload,
   });
 };
 
-export const fitKitAddAggregatedQueries = (payload: FitkitAggregatedQueriesAdd["payload"]) => {
+export const addAggregateQueries = (payload: AggregateQueriesAdd["payload"]) => {
   socketServer.emit({
-    name: EVENT.FITKIT_AGGREGATED_QUERIES_ADD,
+    name: EVENT.AGGREGATE_QUERIES_ADD,
     payload,
   });
 };
@@ -85,27 +96,29 @@ export const sendMindfulnessData =
   async () => {
     const record = [
       {
-        startTime: moment().add(60, "seconds").toDate().toString(),
-        endTime: moment().add(80, "seconds").toDate().toString(),
+        startTime: moment().add(60, "seconds").toDate(),
+        endTime: moment().add(80, "seconds").toDate(),
         value,
-        type: "MindfulSession",
+        dataType: HealthDataType.mindfulMinutes,
+        bundleIdentifier: "com.yu-life.app",
+        isUserEntered: false,
       },
     ];
-    await fitKitAddSampleQueries(record);
+    await addSampleQueries(record);
     await wait(waitTime)();
   };
 
 export const addCyclingData = (value: number) => async () => {
   const record = [
     {
-      startTime: moment().startOf("day").add(10, "minutes").toDate().toString(),
-      endTime: moment().endOf("day").subtract(10, "minutes").toDate().toString(),
+      startTime: moment().startOf("day").add(10, "minutes").toDate(),
+      endTime: moment().endOf("day").subtract(10, "minutes").toDate(),
       value,
-      type: "Biking",
+      dataType: HealthDataType.cyclingDistance,
     },
   ];
 
-  await fitKitAddAggregatedQueries(record);
+  await addAggregateQueries(record);
 };
 
 export const addStepsHistoricalData =
@@ -117,43 +130,41 @@ export const addStepsHistoricalData =
           .subtract(dayToSubstract, "day")
           .startOf("day")
           .add(10, "minutes")
-          .toDate()
-          .toString(),
+          .toDate(),
         endTime: moment()
           .subtract(dayToSubstract, "day")
           .endOf("day")
           .subtract(10, "minutes")
-          .toDate()
-          .toString(),
-        value,
-        type: "StepCount",
+          .toDate(),        value,
+        dataType: HealthDataType.steps,
       },
     ];
-    await fitKitAddAggregatedQueries(record);
+    await addAggregateQueries(record);
   };
 
 export const addSteps3DaysHistoricalData = (value: number) => async () => {
   const record = [
     {
-      startTime: moment().subtract(2, "day").startOf("day").add(10, "minutes").toDate().toString(),
-      endTime: moment().subtract(2, "day").endOf("day").subtract(10, "minutes").toDate().toString(),
+      startTime: moment().subtract(2, "day").startOf("day").add(10, "minutes").toDate(),
+      endTime: moment().subtract(2, "day").endOf("day").subtract(10, "minutes").toDate(),
       value,
-      type: "StepCount",
+      dataType: HealthDataType.steps,
     },
     {
-      startTime: moment().subtract(3, "day").startOf("day").add(10, "minutes").toDate().toString(),
-      endTime: moment().subtract(3, "day").endOf("day").subtract(10, "minutes").toDate().toString(),
+      startTime: moment().subtract(3, "day").startOf("day").add(10, "minutes").toDate(),
+      endTime: moment().subtract(3, "day").endOf("day").subtract(10, "minutes").toDate(),
       value,
-      type: "StepCount",
+      dataType: HealthDataType.steps,
     },
     {
-      startTime: moment().subtract(4, "day").startOf("day").add(10, "minutes").toDate().toString(),
-      endTime: moment().subtract(4, "day").endOf("day").subtract(10, "minutes").toDate().toString(),
+      startTime: moment().subtract(4, "day").startOf("day").add(10, "minutes").toDate(),
+      endTime: moment().subtract(4, "day").endOf("day").subtract(10, "minutes").toDate(),
       value,
-      type: "StepCount",
+      dataType: HealthDataType.steps,
     },
   ];
-  await fitKitAddAggregatedQueries(record);
+
+  await addAggregateQueries(record);
 };
 
 export const addCyclingHistoricalData =
@@ -165,43 +176,43 @@ export const addCyclingHistoricalData =
           .subtract(dayToSubstract, "day")
           .startOf("day")
           .add(10, "minutes")
-          .toDate()
-          .toString(),
+          .toDate(),
         endTime: moment()
           .subtract(dayToSubstract, "day")
           .endOf("day")
           .subtract(10, "minutes")
-          .toDate()
-          .toString(),
+          .toDate(),
         value,
-        type: "Biking",
+        dataType: HealthDataType.cyclingDistance,
       },
     ];
-    await fitKitAddAggregatedQueries(record);
+
+    await addAggregateQueries(record);
   };
 
 export const addCycling3DaysHistoricalData = (value: number) => async () => {
   const record = [
     {
-      startTime: moment().subtract(2, "day").startOf("day").add(10, "minutes").toDate().toString(),
-      endTime: moment().subtract(2, "day").endOf("day").subtract(10, "minutes").toDate().toString(),
+      startTime: moment().subtract(2, "day").startOf("day").add(10, "minutes").toDate(),
+      endTime: moment().subtract(2, "day").endOf("day").subtract(10, "minutes").toDate(),
       value,
-      type: "Biking",
+      dataType: HealthDataType.cyclingDistance,
     },
     {
-      startTime: moment().subtract(3, "day").startOf("day").add(10, "minutes").toDate().toString(),
-      endTime: moment().subtract(3, "day").endOf("day").subtract(10, "minutes").toDate().toString(),
+      startTime: moment().subtract(3, "day").startOf("day").add(10, "minutes").toDate(),
+      endTime: moment().subtract(3, "day").endOf("day").subtract(10, "minutes").toDate(),
       value,
-      type: "Biking",
+      dataType: HealthDataType.cyclingDistance,
     },
     {
-      startTime: moment().subtract(4, "day").startOf("day").add(10, "minutes").toDate().toString(),
-      endTime: moment().subtract(4, "day").endOf("day").subtract(10, "minutes").toDate().toString(),
+      startTime: moment().subtract(4, "day").startOf("day").add(10, "minutes").toDate(),
+      endTime: moment().subtract(4, "day").endOf("day").subtract(10, "minutes").toDate(),
       value,
-      type: "Biking",
+      dataType: HealthDataType.cyclingDistance,
     },
   ];
-  await fitKitAddAggregatedQueries(record);
+
+  await addAggregateQueries(record);
 };
 
 export const addMindfulnessHistoricalData =
@@ -213,32 +224,20 @@ export const addMindfulnessHistoricalData =
           .subtract(dayToSubstract, "day")
           .startOf("day")
           .add(10, "minutes")
-          .toDate()
-          .toString(),
+          .toDate(),
         endTime: moment()
           .subtract(dayToSubstract, "day")
           .endOf("day")
           .subtract(10, "minutes")
-          .toDate()
-          .toString(),
+          .toDate(),
         value,
-        type: "MindfulSession",
+        dataType: HealthDataType.mindfulMinutes,
+        bundleIdentifier: "com.yu-life.app",
+        isUserEntered: false,
       },
     ];
-    await fitKitAddSampleQueries(record);
+    await addSampleQueries(record);
   };
-
-export const addPilatesHistoricalData = (value: number) => async () => {
-  const record = [
-    {
-      startTime: moment().subtract(1, "day").startOf("day").add(10, "minutes").toDate().toString(),
-      endTime: moment().subtract(1, "day").endOf("day").subtract(10, "minutes").toDate().toString(),
-      value,
-      type: "Pilates",
-    },
-  ];
-  await fitKitAddSampleQueries(record);
-};
 
 export const addSteps28DaysHistoricalData = (steps: number) => async () => {
   const record = [];
@@ -251,22 +250,20 @@ export const addSteps28DaysHistoricalData = (steps: number) => async () => {
         .subtract(i, "day")
         .startOf("day")
         .add(10, "minutes")
-        .toDate()
-        .toString(),
+        .toDate(),
       endTime: moment()
         .startOf("month")
         .subtract(i, "day")
         .endOf("day")
         .subtract(10, "minutes")
-        .toDate()
-        .toString(),
+        .toDate(),
       value: steps + i,
-      type: "StepCount",
+      dataType: HealthDataType.steps,
     };
     record.push(data);
     i++;
   }
-  await fitKitAddAggregatedQueries(record);
+  await addAggregateQueries(record);
 };
 
 export const addCycling28DaysHistoricalData = (value: number) => async () => {
@@ -280,22 +277,20 @@ export const addCycling28DaysHistoricalData = (value: number) => async () => {
         .subtract(i, "day")
         .startOf("day")
         .add(10, "minutes")
-        .toDate()
-        .toString(),
+        .toDate(),
       endTime: moment()
         .startOf("month")
         .subtract(i, "day")
         .endOf("day")
         .subtract(10, "minutes")
-        .toDate()
-        .toString(),
+        .toDate(),
       value: value + i * 100,
-      type: "Biking",
+      dataType: HealthDataType.cyclingDistance,
     };
     record.push(data);
     i++;
   }
-  await fitKitAddAggregatedQueries(record);
+  await addAggregateQueries(record);
 };
 
 export const addMins28DaysHistoricalData =
@@ -324,13 +319,13 @@ export const addMins28DaysHistoricalData =
         startTime,
         endTime,
         value: (firstDayInMinutes + i) * 60,
-        type: "MindfulSession",
+        dataType: HealthDataType.mindfulMinutes,
       };
 
       record.push(data);
     }
 
-    await fitKitAddSampleQueries(record);
+    await addSampleQueries(record);
   };
 
 export const addStepsHistoricalDataMulitple = (value: number, days: number) => async () => {
@@ -340,11 +335,11 @@ export const addStepsHistoricalDataMulitple = (value: number, days: number) => a
       startTime: moment().subtract(i, "day").startOf("day").add(10, "minutes").toDate().toString(),
       endTime: moment().subtract(i, "day").endOf("day").subtract(10, "minutes").toDate().toString(),
       value,
-      type: "StepCount",
+      dataType: HealthDataType.steps,
     };
     record.push(data);
   }
-  await fitKitAddAggregatedQueries(record);
+  await addAggregateQueries(record);
 };
 
 const SUDOKU_TIME_FORMAT_LONG = "h[h] m[m] s[s]";

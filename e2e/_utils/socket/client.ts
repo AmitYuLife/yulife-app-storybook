@@ -5,7 +5,7 @@ import {
   FitkitAuthorised,
   PedometerEvent,
   ReduxEvent,
-  FitkitSampleQueriesAdd,
+  SampleQueriesAdd,
 } from "./events";
 
 type Callback<T extends EventWithPayload> = (payload: T["payload"]) => void;
@@ -40,9 +40,7 @@ export default class SocketClient {
   }
 
   public onFitkitAuthorised(cb: Callback<FitkitAuthorised>) {
-    console.log(`Subscribing to fitkit authorised event (onFitkitAuthorised)....`);
     this.socket.on(EVENT.FITKIT_AUTHORISED, (args) => {
-      console.log(`Fitkit authorised event called....`, args);
       cb(args);
     });
     return () => this.socket.off(EVENT.FITKIT_AUTHORISED, cb);
@@ -58,14 +56,14 @@ export default class SocketClient {
     return () => this.socket.off(EVENT.REDUX_EVENT);
   }
 
-  public onSampleQueriesAdded(cb: Callback<FitkitSampleQueriesAdd>) {
-    this.socket.on(EVENT.FITKIT_SAMPLE_QUERIES_ADD, cb);
-    return () => this.socket.off(EVENT.FITKIT_SAMPLE_QUERIES_ADD);
+  public onSampleQueriesAdded(cb: Callback<SampleQueriesAdd>) {
+    this.socket.on(EVENT.SAMPLE_QUERIES_ADD, cb);
+    return () => this.socket.off(EVENT.SAMPLE_QUERIES_ADD);
   }
 
-  public onAggregatedQueriesAdded(cb: Callback<FitkitSampleQueriesAdd>) {
-    this.socket.on(EVENT.FITKIT_AGGREGATED_QUERIES_ADD, cb);
-    return () => this.socket.off(EVENT.FITKIT_AGGREGATED_QUERIES_ADD);
+  public onAggregatedQueriesAdded(cb: Callback<SampleQueriesAdd>) {
+    this.socket.on(EVENT.AGGREGATE_QUERIES_ADD, cb);
+    return () => this.socket.off(EVENT.AGGREGATE_QUERIES_ADD);
   }
 
   public onNativeEvent(cb: Callback<PedometerEvent>) {
@@ -74,7 +72,6 @@ export default class SocketClient {
   }
 
   public unsubscribe(event: EVENT, cb: any) {
-    console.log(`Unsubscribing from event: ${event}`);
     this.socket.off(event, cb);
   }
 }
