@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.78.0] - 2025-08-27
+
+### Bugfixes
+
+- Bugfix ENG-4321: awaitRefetchQueries in sduiActionSendMutation saga
+
+### Tasks
+
+- Task CTE-350: add direction for locales
+- Task CTE-18: refactor reward passes data seed
+- Task: Rename New Ventures Test Suite Folders
+- Task CTE-350: add ar-SA
+- Task: Set bitrise script Gradle Runner to version 3.0.0 to fix android builds
+- Task CTE-17: wellbeing pass - milestone details
+- Task: Mixpanel event rate limiting & disabling
+- Revert "Merge branch 'task/detox-flaky-fixes' into 'develop'"
+- Task NVS-1622: Add Health Questionnaire Instance to seed data
+- Task GS-1850: Battle pass visual reward feedback
+- Task: remove group health from bitrise and add reward passes
+- Task GS-1457: Purge level slot id
+- Task CTE-347: update hcaptcha to 2.0.5
+- Task: Filter queries to refetch when changing content location
+
+### Chores
+
+- Chore - Updated translations
+
+### Extra
+
+- Revert "Merge branch 'fix/detox-jp' into 'develop'"
+- Detox: fixes - mainly adding wait times
+- Purge: group health & gip detox
+- Detox CTE-18: prevention pass claim milestones
+- Detox NVS-1579: User search is filtering out ESG leaderboards correctly
+- Detox GS-1421: donations leaderboard inspection fix
+- Detox CTE-18: prevention pass - milestone details
+- Detox CTE-18: prevention pass (FAQs) and partial claim experience
+- Detox CTE-202: Verify goal visibility for restrictedForLabels
+- Fixed Pension Scroll Interrupt and Added storeAccessLevel Comment
+
 ## [4.77.0] - 2025-08-20
 
 ### Bugfixes
