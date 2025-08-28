@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
 import { ROUTES } from "@navigation/constants";
 import { getCurrentUserId } from "@redux/user/user.selectors";
-import { useBackHandler, useTrack, useUserFeatures } from "@hooks";
+import { useTrack, useUserFeatures } from "@hooks";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { gql } from "@graphql/__generated";
 import { onDuelPress } from "@utils/duels";
@@ -18,19 +18,15 @@ interface IProps {
   leaderboardPlacement: number;
 }
 
+const onClose = () => Navigation.pop(ROUTES.inspect);
+
 const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacement }: IProps) => {
   const dispatch = useDispatch();
-  const onClose = useCallback(() => {
-    Navigation.pop(ROUTES.inspect);
-    return true;
-  }, []);
 
   const currentUserId = useSelector(getCurrentUserId);
   const isOtherUser = userId !== currentUserId;
   const { tempGameShowAchievements } = useUserFeatures();
   const track = useTrack();
-
-  useBackHandler(onClose);
 
   const [getDuels, { loading: duelsLoading, data: duelsData }] = useLazyQuery(gql("GetDuelsDocument"), {
     fetchPolicy: "network-only",
