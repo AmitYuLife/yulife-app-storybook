@@ -213,7 +213,7 @@ Feature("As a user I can get past the login screen", async () => {
   Scenario("As an archived user, I should not be able to login", scenario.start, async () => {
     Given("I login as an archived user", given.performLogin(data.CUSTOMER_ARCHIVED, data.AUTH_ARCHIVED), async () => {
       When("I tap let's go", when.tapText("Let's go"), async () => {
-        When("I tap skip this step", when.tapText("Skip this step"), async () => {
+        When("I go close the settings screen", when.tapID(ids.BUTTON_CLOSE_HEADER("YuHealthConnect")), async () => {
           Then("I should see 'Sorry'!", then.textVisible(t("Sorry!")));
           Then("I should see copy saying I can't use the app", then.textVisible(t("You are not able to use this app at the moment.")));
         });

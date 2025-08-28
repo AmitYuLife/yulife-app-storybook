@@ -15,6 +15,7 @@ import { HEALTH_PROVIDER_OPTIONS, SupportedHealthTypes } from "@services/yuHealt
 import { YugiHealthConnectIcon } from "@atoms/icon/yugi-health-connect-icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { isiOS } from "@utils";
+import { BUTTON_CLOSE_HEADER } from "@ids";
 
 interface IYuHealthConnectScreenProps {
   body?: string;
@@ -126,7 +127,11 @@ const YuHealthConnectScreen = ({
         </View>
       </ScrollView>
 
-      <GenericHeadingAbsolute heading={t["yu_health.connect.title"]} onRightIconPress={onCancel} />
+      <GenericHeadingAbsolute
+        heading={t["yu_health.connect.title"]}
+        onRightIconPress={onCancel}
+        rightIconTestID={BUTTON_CLOSE_HEADER("YuHealthConnect")}
+      />
     </>
   );
 };
