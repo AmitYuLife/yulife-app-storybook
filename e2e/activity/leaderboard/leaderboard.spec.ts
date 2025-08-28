@@ -151,10 +151,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       Then("I should see the Challenge stats", then.challengeDataVisible(0, 0));
       Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Michael Scott 4"));
     });
-    When("I scroll to the Activity data section", when.scrollFromID(ids.USER_INFO("Michael Scott 4"), "up", "fast", 0.3), async () => {
-      Then("I should see the yumoji avatars and the comparative activity stats between me and Michael", then.comparativeUserSeedStatsVisible(26, 333));
-    });
     When("I scroll down", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.6), async () => {
+      Then("I should see the yumoji avatars and the comparative activity stats between me and Michael", then.comparativeUserSeedStatsVisible(26, 333));
       Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(0.1, 1, 0, 3));
     });
     When("I close", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
@@ -477,7 +475,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       Then("I should see myself Michael Scott in 2nd position for the 'trees' leaderboard", then.impactPassLeaderboardVisible([User18ImpactPassLeaderboardItem], 2000));
     });
     When("I tap to go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR, 2000), async () => {
-      When("I to go back again", when.tapID(ids.BACK_BUTTON, 2000), async () => {
+      When("I to go back again", when.tapID(ids.BACK_BUTTON, 3000), async () => {
         Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
       });
     });

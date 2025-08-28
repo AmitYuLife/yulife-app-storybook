@@ -42,7 +42,7 @@ Feature("App store review should behave correctly", async () => {
       Then("I should see text Enjoying YuLife?", then.idVisible(ids.APPREVIEW_TEXT(t("Enjoying YuLife?")), 5000));
       When("I tap the button Not really", when.tapText(t("Not really"), 2000, true), async () => {
         Then("I should see text We’d love a chance to do better. Would you mind leaving us a few tips?", then.textVisible("We’d love a chance to do better. Would you mind leaving us a few tips?"));
-        When("I tap the button Give feedback", when.tapText(t("No thanks"), 1, true), async () => {
+        When("I tap the button Give feedback", when.tapText(t("No thanks"), 3000, true), async () => {
           Then("I should  see the daily steps screen", then.onDailySteps());
           Then("I should  not see intercom", then.textNotVisible(t("Start a conversation")));
           When("I close and reopen the app", when.reloadOnly, async () => {

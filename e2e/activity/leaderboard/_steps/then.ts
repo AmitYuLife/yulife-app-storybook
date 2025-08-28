@@ -82,9 +82,6 @@ export const leaderboardVisible =
 export const impactPassLeaderboardVisible =
   (customers: ImpactPassLeaderboard[], waitTime?: number) => async () => {
     await wait(waitTime)();
-    if (device.name.includes("(iPhone SE (3rd generation))")) {
-      await swipeFromText("Steps", "up", "fast")();
-    }
 
     for (const { name, rank, score } of customers) {
       const scoreStr = String(score);

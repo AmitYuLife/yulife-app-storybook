@@ -21,4 +21,4 @@ export const turnOffBirthdaysDecline = "No, keep them on-text-view";
 
 export const tellUsBirthdayHeader = "Tell us your birthday!";
 export const tellUsBirthdayDescription =
-  "Celebrate birthdays with all your in-app friends — update your birthday to turn on birthday notifications.";
+  "For your friends to be notified on your birthday, update your birthdate in Settings.";

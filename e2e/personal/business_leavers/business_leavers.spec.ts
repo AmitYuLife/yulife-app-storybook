@@ -25,7 +25,9 @@ Feature("As a business leaver I should still have app access", async () => {
     });
     When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
       When("I search for a different leaver", when.searchLeaderboard(data.CUSTOMER_126_LEAVER_WELLBEING.data.firstName), async () => {
-        Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)]), 2000));
+        When("I wait", when.wait(3000), async () => {
+          Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)]), 2000));
+        });
       });
     });
     When("I tap the leaver", when.tapText(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)), async () => {
