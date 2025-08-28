@@ -76,7 +76,7 @@ export const WideCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) =
             <TextTemplate type="l3b" testID={YUSCREEN_V5_CTA_BUTTON(item.productName)}>
               {item.cardCta}
             </TextTemplate>
-            <ArrowButton width={Style.adjust(16)} height={Style.adjust(16)} color={Colours.primary.p600} />
+            <ArrowButton size={Style.adjust(16)} color={Colours.primary.p600} />
           </View>
         )}
       </View>

@@ -125,7 +125,7 @@ const AchievementsShowcase = ({ achievement, componentId, isInspectingUser, curr
           mt={16}
         >
           <TextTemplate type="l1">{t("all_achievements")}</TextTemplate>
-          <ArrowIcon width={14} />
+          <ArrowIcon size={14} />
         </Box>
       </Pressable>
     </Box>

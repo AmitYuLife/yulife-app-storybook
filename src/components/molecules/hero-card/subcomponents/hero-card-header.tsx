@@ -4,7 +4,7 @@ import { Colours, Style } from "@styles";
 import { Box, Image, TextTemplate } from "@atoms";
 import { HeroCardHeader as HeroCardHeaderProps, HeroCardHeaderButtonState } from "@utils/heroCards";
 import { HERO_CARD_PADDING } from "../constants";
-import { CaretIcon } from "@atoms/icon/caret-icon";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { EVENT_DESCRIPTION, EVENT_HEADING } from "@ids";
 import Markdown from "@components/molecules/markdown/markdown";
 
@@ -68,7 +68,7 @@ const HeroCardBannerHeader = ({
           pl={2}
           testID="PINK_ARROW_ICON"
         >
-          <CaretIcon size={Style.adjust(16)} color={Colours.neutral.white} />
+          <ArrowIcon size={Style.adjust(16)} color={Colours.neutral.white} />
         </Box>
         <Image
           source={image}
@@ -135,7 +135,7 @@ const HeroCardHeader = (
         >
           {showCaret ? (
             <Box height={24} width={24} justifyContent="center" alignItems="center" pl={2}>
-              <CaretIcon size={Style.adjust(16)} color={Colours.neutral.white} />
+              <ArrowIcon size={Style.adjust(16)} color={Colours.neutral.white} />
             </Box>
           ) : (
             <Box flexDirection="row" alignItems="center" justifyContent="center" gap={8} pv={4} ph={16} maxWidth={80}>

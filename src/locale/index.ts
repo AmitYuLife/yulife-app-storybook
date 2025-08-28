@@ -32,6 +32,7 @@ export const getCurrentLocale = translator.getCurrentLocale;
 export const getCurrentLocaleOptions = translator.getCurrentLocaleOptions;
 export const setLocale = translator.setLocale;
 export const getAvailableLocaleOptions = translator.getAvailableLocaleOptions;
+export const getLocaleDirection = () => translator.getCurrentLocaleOptions().direction;
 
 // utility / helper functions
 export const getMetricName = (metric: LeaderboardMetric, form: "singular" | "plural" = "singular") => {

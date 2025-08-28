@@ -104,7 +104,7 @@ const DonationListItem = ({
               {title}
             </TextTemplate>
             <View style={styles.arrow}>
-              <ArrowIcon width={Style.adjust(20)} color="#464647" />
+              <ArrowIcon size={Style.adjust(20)} color="#464647" />
             </View>
           </View>
 

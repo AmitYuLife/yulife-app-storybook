@@ -54,7 +54,7 @@ const YucoinPowerButtonMini = ({ style, onPress = showYuCoinPowerExplainedOverla
         </Box>
       </View>
       <View style={styles.yucoinPowerButtonArrow}>
-        <ArrowIcon width={Style.adjust(16)} height={Style.adjust(16)} />
+        <ArrowIcon size={Style.adjust(16)} />
       </View>
     </YucoinPowerButtonBase>
   );

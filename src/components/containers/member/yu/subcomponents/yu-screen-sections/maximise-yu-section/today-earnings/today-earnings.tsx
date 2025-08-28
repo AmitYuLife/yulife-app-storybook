@@ -7,7 +7,7 @@ import { ProgressText } from "./progress-text";
 import { ProgressBar, TouchableOpacityWithDelay } from "@components/molecules";
 import { Navigation } from "@navigation/main";
 import { ROUTES, bottomTabs } from "@navigation/constants";
-import { CaretIcon } from "@atoms/icon/caret-icon";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { MAXIMISE_TODAYS_EARNINGS } from "@ids";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -70,7 +70,7 @@ export const TodayEarnings = memo(({ animate, progress }: Props) => {
           />
         </View>
       </View>
-      <CaretIcon />
+      <ArrowIcon />
     </TouchableOpacityWithDelay>
   );
 });
