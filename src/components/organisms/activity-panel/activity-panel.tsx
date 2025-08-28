@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(12),
   },
   rewardText: {
-    marginRight: Style.adjust(4),
+    marginEnd: Style.adjust(4),
   },
 });
 

@@ -3,13 +3,13 @@ import { Colours, Style } from "../../../styles";
 
 export default StyleSheet.create({
   iconWrapper: {
-    marginRight: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   } as ViewStyle,
   iconWrapperCard: {
     marginBottom: Style.SCALE_UP_AND_DOWN(-4),
   } as ViewStyle,
   image: {
-    marginRight: Style.SCALE_UP_AND_DOWN(20),
+    marginEnd: Style.SCALE_UP_AND_DOWN(20),
     width: Style.SCALE_UP_AND_DOWN(25),
   } as ImageStyle,
   input: {
@@ -24,7 +24,7 @@ export default StyleSheet.create({
     flex: 1,
   } as ViewStyle,
   inputCard: {
-    marginLeft: 2,
+    marginStart: 2,
   } as ViewStyle,
   outerWrapper: {
     paddingHorizontal: Style.SCALE_UP_AND_DOWN(44),

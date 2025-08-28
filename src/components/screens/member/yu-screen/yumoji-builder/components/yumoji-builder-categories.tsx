@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   categoryChildren: {
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
   bodyItemWrapper: {
     ...defaultStyles,

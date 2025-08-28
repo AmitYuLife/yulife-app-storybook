@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flexDirection: "row",
-    paddingRight: 8,
-    paddingLeft: 16,
+    paddingEnd: 8,
+    paddingStart: 16,
     alignItems: "center",
   },
   image: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   },
   details: {
     flexDirection: "column",

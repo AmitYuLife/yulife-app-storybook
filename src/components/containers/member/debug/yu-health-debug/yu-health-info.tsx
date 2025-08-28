@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     padding: Style.adjust(6),
     paddingHorizontal: Style.adjust(10),
     borderRadius: Style.adjust(8),
-    marginRight: Style.adjust(6),
+    marginEnd: Style.adjust(6),
     marginBottom: Style.adjust(6),
     backgroundColor: colours.products.fib.rare,
   },

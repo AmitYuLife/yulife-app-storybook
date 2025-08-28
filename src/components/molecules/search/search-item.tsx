@@ -54,17 +54,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   } as ViewStyle,
   iconWrapper: {
-    marginLeft: Style.adjust(24),
+    marginStart: Style.adjust(24),
     width: 40,
     alignItems: "center",
     height: "100%",
     justifyContent: "center",
   } as ViewStyle,
   textWrapper: {
-    marginRight: Style.adjust(64),
+    marginEnd: Style.adjust(64),
     flexDirection: "column",
     marginVertical: Style.adjust(16),
-    paddingLeft: Style.adjust(16),
+    paddingStart: Style.adjust(16),
   } as ViewStyle,
   confirmStyles: {
     flex: 1,

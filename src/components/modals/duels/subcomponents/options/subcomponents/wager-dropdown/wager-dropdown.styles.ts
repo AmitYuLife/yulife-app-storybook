@@ -7,19 +7,19 @@ export const DUEL_WAGER_BUTTON_TOP_MARGIN = Style.adjust(20);
 
 export default StyleSheet.create({
   dropdownArrow: {
-    marginRight: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   } as ImageStyle,
   wagerButton: {
     height: DUEL_WAGER_BUTTON_HEIGHT,
     marginTop: Style.adjust(20),
   } as ViewStyle,
   coinsWrapper: {
-    marginRight: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   } as ViewStyle,
   yucoinWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: Style.adjust(20),
+    paddingStart: Style.adjust(20),
   } as ViewStyle,
   boxShadow: {
     position: "absolute",

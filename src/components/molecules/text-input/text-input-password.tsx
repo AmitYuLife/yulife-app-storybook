@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: "100%",
     width: Style.adjust(24),
-    marginLeft: Style.DEVICE_WIDTH - Style.adjust(70),
+    marginStart: Style.DEVICE_WIDTH - Style.adjust(70),
   },
 });

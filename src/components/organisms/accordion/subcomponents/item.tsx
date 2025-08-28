@@ -78,7 +78,7 @@ const Info = memo(
 
 const styles = StyleSheet.create({
   pressableIcon: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   } as ViewStyle,
   wrapper: {
     flexDirection: "row",
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   column2: {
     flexDirection: "row",
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   } as ViewStyle,
   body: {
     width: Style.adjust(120),

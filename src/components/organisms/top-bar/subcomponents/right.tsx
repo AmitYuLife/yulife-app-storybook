@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   coinsText: {
     fontSize: Style.adjust(18),
     marginBottom: Style.adjust(Platform.select({ ios: -12, android: 4 })),
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
   } as TextStyle,
   coinsTextWrapper: {
     height: "100%",
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   } as ViewStyle,
   coinsCounterPadding: {
-    paddingRight: Style.adjust(16),
+    paddingEnd: Style.adjust(16),
   } as ViewStyle,
 });

@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   },
   activeTextContainer: {
     paddingHorizontal: Style.adjust(10),
-    paddingRight: Style.adjust(22),
+    paddingEnd: Style.adjust(22),
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FCE7F1",
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(100),
     borderColor: "white",
     backgroundColor: "#E30D76",
-    marginLeft: -Style.adjust(16),
+    marginStart: -Style.adjust(16),
     borderWidth: Style.adjust(2),
   },
 });

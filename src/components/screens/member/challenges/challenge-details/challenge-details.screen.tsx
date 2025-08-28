@@ -287,10 +287,10 @@ const styles = StyleSheet.create({
     paddingBottom: Style.adjust(20),
   },
   rewardWrapper: {
-    marginLeft: "auto",
+    marginStart: "auto",
     alignItems: "center",
     flexDirection: "row",
-    marginRight: Style.adjust(5),
+    marginEnd: Style.adjust(5),
   },
   bonusInfoPopup: {
     paddingVertical: Style.adjust(15),

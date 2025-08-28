@@ -26,8 +26,8 @@ export const ReanimatedPlant = memo(({ animation, end, start, shouldAnimate, lap
       width: ITEM_WIDTH,
       height: ITEM_WIDTH / 0.63,
       opacity: opacityRef.value,
-      marginLeft: -12,
-      marginRight: -12,
+      marginStart: -12,
+      marginEnd: -12,
     }),
     [lottieLoading, lottieUri]
   );

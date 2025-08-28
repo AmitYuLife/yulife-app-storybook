@@ -34,9 +34,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleWrapper: {
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   },
   rightIcon: {
-    marginLeft: "auto",
+    marginStart: "auto",
   },
 });

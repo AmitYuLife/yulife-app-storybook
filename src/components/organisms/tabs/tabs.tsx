@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   listName: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
     paddingBottom: Style.adjust(8),
   },
   loadingList: {

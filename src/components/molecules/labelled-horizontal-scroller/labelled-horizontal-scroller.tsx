@@ -108,11 +108,11 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   } as ViewStyle,
   contentContainer: {
-    paddingLeft: CHOICE_WIDTH,
-    paddingRight: CHOICE_WIDTH,
+    paddingStart: CHOICE_WIDTH,
+    paddingEnd: CHOICE_WIDTH,
   } as ViewStyle,
   loadingWrapper: {
-    paddingRight: Style.adjust(20),
+    paddingEnd: Style.adjust(20),
   } as ViewStyle,
   baseOverlay: {
     width: CHOICE_WIDTH * 3,

@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   subTitle: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   },
   info: {
     marginVertical: Style.adjust(16),
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   starIcon: {
-    marginLeft: Style.adjust(9),
+    marginStart: Style.adjust(9),
   },
   yuCoin: {
     flexDirection: "row",
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   coin: {
     width: Style.adjust(16),
     height: Style.adjust(16),
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
   tagWrapper: {
     marginTop: Style.adjust(10),

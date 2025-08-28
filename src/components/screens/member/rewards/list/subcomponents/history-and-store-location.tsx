@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   },
   divider: {
     backgroundColor: Colours.divider,

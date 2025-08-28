@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     height: Style.adjust(22),
     backgroundColor: Colours.neutral.white,
     borderRadius: 200,
-    paddingLeft: Style.adjust(2),
-    paddingRight: Style.adjust(5),
+    paddingStart: Style.adjust(2),
+    paddingEnd: Style.adjust(5),
   },
   extraChallengeTag: {
     backgroundColor: Colours.primary.p600,

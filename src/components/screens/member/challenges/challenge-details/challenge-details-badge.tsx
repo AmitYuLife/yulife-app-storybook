@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: Style.adjust(5),
+    marginEnd: Style.adjust(5),
     borderRadius: Style.adjust(8),
     paddingVertical: Style.adjust(2),
     paddingHorizontal: Style.adjust(10),
   },
   badgeIcon: {
-    marginRight: Style.adjust(5),
+    marginEnd: Style.adjust(5),
   },
 });

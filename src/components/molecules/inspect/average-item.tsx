@@ -146,12 +146,12 @@ const styles = StyleSheet.create({
   leftRankWrapper: {
     height: Style.adjust(24),
     width: Style.adjust(24),
-    marginRight: Style.adjust(11),
+    marginEnd: Style.adjust(11),
   },
   rightRankWrapper: {
     height: Style.adjust(24),
     width: Style.adjust(24),
-    marginLeft: Style.adjust(11),
+    marginStart: Style.adjust(11),
   },
   singleValueWrapper: {
     alignItems: "center",

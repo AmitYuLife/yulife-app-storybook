@@ -87,10 +87,10 @@ const styles = StyleSheet.create({
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   },
   yucoinPowerButtonTextWrapper: {
-    marginLeft: Style.adjust(3),
+    marginStart: Style.adjust(3),
   },
   yucoinPowerButtonArrow: {
-    marginLeft: "auto",
+    marginStart: "auto",
   },
 });
 

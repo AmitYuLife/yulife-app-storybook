@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(8),
   },
   todayEarnings: {
-    paddingRight: Style.adjust(12),
-    paddingLeft: Style.adjust(16),
+    paddingEnd: Style.adjust(12),
+    paddingStart: Style.adjust(16),
     paddingTop: Style.adjust(18),
     flexDirection: "row",
   },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(12),
   },
   todayEarningsContent: {
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
     flex: 1,
   },
   title: {
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     width: Style.adjust(43),
     height: Style.adjust(16),
     borderRadius: Style.adjust(4),
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   },
   progressBar: {
     height: Style.adjust(8),
@@ -85,20 +85,20 @@ const styles = StyleSheet.create({
     width: Style.adjust(24),
     height: Style.adjust(24),
     borderRadius: Style.adjust(4),
-    marginRight: Style.adjust(4),
+    marginEnd: Style.adjust(4),
   },
   horizontalList: {
     marginTop: Style.adjust(16),
     height: Style.adjust(72),
     width: "100%",
     flexDirection: "row",
-    paddingLeft: Style.adjust(8),
+    paddingStart: Style.adjust(8),
     overflow: "hidden",
   },
   nudgeItem: {
     width: NUDGE_ITEM_WIDTH,
     height: Style.adjust(72),
     borderRadius: Style.adjust(8),
-    marginLeft: NUDGE_ITEM_MARGIN,
+    marginStart: NUDGE_ITEM_MARGIN,
   },
 });

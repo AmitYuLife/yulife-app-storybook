@@ -24,7 +24,7 @@ const GameSettingsItem = ({ title, description, value, onPress }: IProps) => (
       </TextTemplate>
     </View>
     <View style={styles.measurement}>
-      <View style={{ marginRight: Style.adjust(10) }}>
+      <View style={{ marginEnd: Style.adjust(10) }}>
         <TextTemplate type="b2" color={Colours.primary.p600} testID={TEXT_TEMPLATE(value)}>
           {value}
         </TextTemplate>

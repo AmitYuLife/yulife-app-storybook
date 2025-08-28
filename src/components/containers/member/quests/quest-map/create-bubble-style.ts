@@ -18,7 +18,7 @@ export function createBubbleStyle({ episodeWidth, y, offsetY, x }: Props) {
   return {
     width: BUBBLE_SIZE,
     height: BUBBLE_SIZE,
-    marginLeft: -BUBBLE_SIZE / 2,
+    marginStart: -BUBBLE_SIZE / 2,
     marginTop: -BUBBLE_SIZE / 2,
     aspectRatio: 1,
     borderRadius: 100,

@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   iconWrapper: {
-    marginRight: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   } as ViewStyle,
   innerWrapper: {
     backgroundColor: Colours.neutral.white,

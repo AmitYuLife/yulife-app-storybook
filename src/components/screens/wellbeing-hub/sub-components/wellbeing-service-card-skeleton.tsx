@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(8),
     flex: 1,
     flexDirection: "column",
-    paddingLeft: Style.adjust(16),
+    paddingStart: Style.adjust(16),
   } as ViewStyle,
   title: {
     width: Style.adjust(112),
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   button: {
     width: Style.adjust(24),
     height: Style.adjust(24),
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   } as ViewStyle,
 });
 

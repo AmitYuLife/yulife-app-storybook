@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   arrow: {
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
   rightColumn: {
     justifyContent: "center",
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     marginHorizontal: Style.adjust(8),
   },
   avatar: {
-    marginRight: Style.adjust(2),
+    marginEnd: Style.adjust(2),
   },
 });
 

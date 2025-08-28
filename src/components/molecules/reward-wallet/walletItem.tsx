@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     flexDirection: "column",
     flex: 1,
-    paddingLeft: 8,
+    paddingStart: 8,
   },
   imageContainer: {
     alignItems: "flex-start",

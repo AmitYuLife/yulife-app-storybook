@@ -61,7 +61,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colours.neutral.white,
     borderRadius: Style.adjust(8),
-    marginRight: Style.adjust(4),
+    marginEnd: Style.adjust(4),
   },
   rightRewardWrapper: {
     flexGrow: 1,
@@ -69,7 +69,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colours.neutral.white,
     borderRadius: Style.adjust(8),
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
   circle: {
     height: Style.adjust(88),
@@ -114,7 +114,7 @@ const style = StyleSheet.create({
     flexDirection: "row",
   },
   itemWrapper4: {
-    marginLeft: Style.adjust(24),
+    marginStart: Style.adjust(24),
     paddingTop: Style.adjust(8),
   },
 });

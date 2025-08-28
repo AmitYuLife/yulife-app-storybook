@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   } as ViewStyle,
   image: {
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
 });

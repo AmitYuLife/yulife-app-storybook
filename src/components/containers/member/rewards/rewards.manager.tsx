@@ -248,7 +248,7 @@ const _RewardsTabManagerContainer = () => {
       {
         icon: LeftIcon.MENU,
         onPress: onLeftMenuPress,
-        style: { marginRight: Style.adjust(16) },
+        style: { marginEnd: Style.adjust(16) },
       },
       ...(showNotificationCentre
         ? [
@@ -263,7 +263,7 @@ const _RewardsTabManagerContainer = () => {
                 });
               },
               testID: NOTIF_CENTRE,
-              style: { paddingLeft: Style.adjust(8) },
+              style: { paddingStart: Style.adjust(8) },
               hitSlop: {
                 ...TOP_BAR.HIT_SLOP,
                 left: 0,
@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(42),
     backgroundColor: Colours.neutral.n250,
     borderRadius: Style.adjust(21),
-    marginLeft: Style.adjust(12),
+    marginStart: Style.adjust(12),
   },
   backgroundLottie: {
     width: Style.DEVICE_WIDTH,

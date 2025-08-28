@@ -144,7 +144,7 @@ const styles = {
   } as ViewStyle,
   sideLabelWrapper: {
     height: 30,
-    marginLeft: 5,
+    marginStart: 5,
     flexDirection: "row",
     marginTop: Platform.select({ ios: 0, android: 6 }),
   } as ViewStyle,

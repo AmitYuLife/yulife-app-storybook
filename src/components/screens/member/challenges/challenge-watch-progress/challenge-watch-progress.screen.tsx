@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(40),
   },
   appleWatchIcon: {
-    marginLeft: Style.adjust(-40),
+    marginStart: Style.adjust(-40),
     transform: [
       {
         translateX: 24,

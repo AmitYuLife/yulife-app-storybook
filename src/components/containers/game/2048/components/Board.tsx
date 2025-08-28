@@ -29,8 +29,8 @@ const Board = ({ boardSize, skin }: IBoardProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: "auto",
-    marginRight: "auto",
+    marginStart: "auto",
+    marginEnd: "auto",
     borderRadius: 4,
     flexDirection: "column",
     flexWrap: "wrap",

@@ -46,9 +46,9 @@ const mapCoverToPadding = (coverType: CoverType, showShadow: boolean) => {
 
   return {
     paddingTop: coverType ? 2 : 1,
-    paddingLeft: coverType ? 2 : 1,
+    paddingStart: coverType ? 2 : 1,
     paddingBottom: coverType ? 6 : 5,
-    paddingRight: coverType ? 6 : 5,
+    paddingEnd: coverType ? 6 : 5,
   };
 };
 

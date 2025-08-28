@@ -87,7 +87,7 @@ const HorizontalNumberDisplay = forwardRef<AnimationHandle, HorizontalNumberDisp
       () =>
         range(minNumber, maxNumber + 1).map((value, idx) => ({
           value,
-          marginLeft: idx === 0 ? 0 : getMarginLeft(value, currentTarget),
+          marginStart: idx === 0 ? 0 : getMarginLeft(value, currentTarget),
         })),
       [minNumber, currentTarget, maxNumber]
     );
@@ -111,7 +111,7 @@ const HorizontalNumberDisplay = forwardRef<AnimationHandle, HorizontalNumberDisp
 
     const numberDisplays = useMemo(
       () =>
-        numbers.map(({ value, marginLeft }, idx) => (
+        numbers.map(({ value, marginStart }, idx) => (
           <NumberDisplay
             key={value}
             value={value}
@@ -119,7 +119,7 @@ const HorizontalNumberDisplay = forwardRef<AnimationHandle, HorizontalNumberDisp
             stylesProgress={stylesProgress}
             mainColor={mainColor}
             secondaryColor={secondaryColor}
-            marginLeft={marginLeft}
+            marginStart={marginStart}
             isFirst={idx === 0}
           />
         )),

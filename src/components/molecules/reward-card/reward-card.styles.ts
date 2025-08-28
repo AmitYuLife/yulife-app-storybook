@@ -64,8 +64,8 @@ export const rewardCardStyles = StyleSheet.create({
   textWrapper: {
     flex: 1,
     maxWidth: Style.adjust(195),
-    paddingLeft: Style.adjust(16),
-    marginRight: "auto",
+    paddingStart: Style.adjust(16),
+    marginEnd: "auto",
     minHeight: Style.adjust(60),
     height: "100%",
     justifyContent: "center",

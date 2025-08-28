@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     marginHorizontal: Style.adjust(8),
   },
   textWrapper: {
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
 });
 

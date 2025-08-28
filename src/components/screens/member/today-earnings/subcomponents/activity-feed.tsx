@@ -426,7 +426,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(24),
   },
   questionMarkIcon: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   },
   wellDoneBanner: {
     alignItems: "center",

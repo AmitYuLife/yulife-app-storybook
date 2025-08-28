@@ -372,10 +372,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   leftIcon: {
-    marginRight: Style.adjust(9),
+    marginEnd: Style.adjust(9),
   },
   rightIcon: {
-    marginLeft: Style.adjust(9),
+    marginStart: Style.adjust(9),
   },
   badge: {
     position: "absolute",

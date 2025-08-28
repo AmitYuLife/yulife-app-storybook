@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   referralsWrapper: {
     marginTop: Style.adjust(16),
-    marginLeft: Style.adjust(5),
+    marginStart: Style.adjust(5),
   },
   skeletonShort: {
     width: "100%",

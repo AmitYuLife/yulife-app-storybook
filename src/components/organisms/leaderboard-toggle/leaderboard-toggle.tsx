@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   nameWrapper: {
-    paddingRight: Style.adjust(40),
+    paddingEnd: Style.adjust(40),
     paddingVertical: Style.adjust(20),
     flex: 1,
   },

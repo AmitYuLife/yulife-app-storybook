@@ -31,16 +31,16 @@ export default StyleSheet.create({
   },
   yuCoinSubTotal: {
     justifyContent: "flex-end",
-    paddingLeft: Style.adjust(6),
+    paddingStart: Style.adjust(6),
   },
   icon: {
-    marginRight: Style.adjust(12),
+    marginEnd: Style.adjust(12),
   },
   starsWrapper: {
-    marginRight: Style.adjust(4),
+    marginEnd: Style.adjust(4),
   },
   yuCoin: {
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
     width: Style.adjust(24),
     height: Style.adjust(24),
   },

@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     marginVertical: Style.adjust(4),
   },
   image: {
-    marginRight: Style.adjust(10),
+    marginEnd: Style.adjust(10),
   },
   toast: {
     marginTop: Style.adjust(16),

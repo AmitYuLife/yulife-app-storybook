@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   icon: {
-    marginRight: Style.adjust(15),
+    marginEnd: Style.adjust(15),
   },
 });
 

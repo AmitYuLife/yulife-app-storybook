@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(8),
   },
   yucoin: {
-    marginLeft: Style.adjust(3),
+    marginStart: Style.adjust(3),
   },
   surgeIcon: {
     position: "absolute",
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colours.primary.p40,
     borderRadius: Style.adjust(48),
-    paddingLeft: Style.adjust(8),
-    paddingRight: Style.adjust(26),
+    paddingStart: Style.adjust(8),
+    paddingEnd: Style.adjust(26),
     height: Style.adjust(26),
   },
   completedContainer: {
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(6),
     padding: Style.adjust(8),
     paddingVertical: Style.adjust(2),
-    paddingRight: Style.adjust(28),
+    paddingEnd: Style.adjust(28),
     backgroundColor: "#E3E3E1",
     justifyContent: "center",
     alignItems: "center",

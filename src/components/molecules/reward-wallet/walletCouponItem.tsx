@@ -111,14 +111,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "space-between",
-    marginRight: 0,
+    marginEnd: 0,
   },
   leftOuterContainer: { flex: 2 },
   rightContainer: {
     backgroundColor: BACKGROUND_COLOUR,
     height: CARD_HEIGHT,
     flexDirection: "row",
-    marginLeft: 0,
+    marginStart: 0,
   },
   rightOuterContainer: { flex: 1 },
   infoContainer: {

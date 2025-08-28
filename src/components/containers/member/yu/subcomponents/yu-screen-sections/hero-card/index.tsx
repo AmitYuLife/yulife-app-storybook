@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingVertical: Style.adjust(0),
-    paddingLeft: Style.adjust(16),
+    paddingStart: Style.adjust(16),
     zIndex: 1,
   },
   markdownText: {

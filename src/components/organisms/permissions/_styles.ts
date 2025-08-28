@@ -34,8 +34,8 @@ export const permissionsStyles = StyleSheet.create({
     borderWidth: Style.adjust(1),
   },
   copyWrapperStyle: {
-    marginLeft: Style.adjust(72),
-    marginRight: Style.adjust(16),
+    marginStart: Style.adjust(72),
+    marginEnd: Style.adjust(16),
   },
   googleFitIconWrapper: {
     alignItems: "center",

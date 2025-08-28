@@ -48,7 +48,7 @@ export default StyleSheet.create({
     marginTop: 0,
   } as TextStyle,
   streakWrapperLast: {
-    marginRight: 0,
+    marginEnd: 0,
   } as ViewStyle,
   streakCountContainer: {
     position: "absolute",

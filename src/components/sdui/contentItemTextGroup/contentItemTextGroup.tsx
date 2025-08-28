@@ -41,16 +41,16 @@ const styles = StyleSheet.create({
   },
   labelWrapper: {
     flex: 1,
-    marginRight: Style.adjust(24),
+    marginEnd: Style.adjust(24),
   } as ViewStyle,
   rightIconWrapper: {
-    marginLeft: "auto",
+    marginStart: "auto",
   },
   item: {
     flexDirection: "row",
     backgroundColor: Colours.neutral.white,
     paddingVertical: Style.adjust(16),
-    paddingLeft: Style.adjust(24),
-    paddingRight: Style.adjust(16),
+    paddingStart: Style.adjust(24),
+    paddingEnd: Style.adjust(16),
   },
 });

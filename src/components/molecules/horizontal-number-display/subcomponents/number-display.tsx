@@ -13,7 +13,7 @@ interface NumberDisplayProps {
   stylesProgress: SharedValue<number>;
   mainColor: string;
   secondaryColor: string;
-  marginLeft: number;
+  marginStart: number;
   isFirst: boolean;
 }
 
@@ -23,7 +23,7 @@ const NumberDisplay = ({
   stylesProgress,
   mainColor,
   secondaryColor,
-  marginLeft,
+  marginStart,
   isFirst,
 }: NumberDisplayProps) => {
   const diffFromTarget = Math.abs(currentTarget - value);
@@ -72,7 +72,7 @@ const NumberDisplay = ({
     return {
       width: defaultWidth + (baseWidth - defaultWidth) * progress,
       height: defaultHeight + (baseHeight - defaultHeight) * progress,
-      marginLeft: isFirst ? 0 : SCROLLING_NUMBER_GAP + (marginLeft - SCROLLING_NUMBER_GAP) * progress,
+      marginStart: isFirst ? 0 : SCROLLING_NUMBER_GAP + (marginStart - SCROLLING_NUMBER_GAP) * progress,
     };
   });
 

@@ -48,7 +48,7 @@ const skeletonStyle = StyleSheet.create({
   coinValue: {
     width: Style.adjust(30),
     height: Style.adjust(COMMON_HEIGHT),
-    marginRight: Style.adjust(5),
+    marginEnd: Style.adjust(5),
   },
   coinIcon: {
     width: Style.adjust(20),

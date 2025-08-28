@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   lottie: {
     position: "absolute",
-    marginLeft: 0,
+    marginStart: 0,
   },
 });
 

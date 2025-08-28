@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   header: {
     paddingTop: Style.adjust(32),
-    paddingLeft: Style.adjust(24),
+    paddingStart: Style.adjust(24),
     marginBottom: Style.adjust(24),
   },
   categoryChipsContainer: {
@@ -122,10 +122,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
   },
   categoryChips: {
-    paddingLeft: Style.adjust(27),
+    paddingStart: Style.adjust(27),
   },
   wrapper: {
-    paddingLeft: Style.adjust(24),
+    paddingStart: Style.adjust(24),
   } as ViewStyle,
   container: {
     flexDirection: "row",

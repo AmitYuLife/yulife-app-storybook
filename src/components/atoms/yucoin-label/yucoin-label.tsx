@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
   yucoinPowerButtonInner: {
     borderRadius: Style.adjust(8),
     paddingVertical: Style.adjust(1),
-    paddingLeft: Style.adjust(3),
-    paddingRight: Style.adjust(7),
+    paddingStart: Style.adjust(3),
+    paddingEnd: Style.adjust(7),
   },
 
   yucoinPowerButtonCoinWrapper: {
@@ -85,10 +85,10 @@ const styles = StyleSheet.create({
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   },
   yucoinPowerButtonTextWrapper: {
-    marginLeft: Style.adjust(5),
+    marginStart: Style.adjust(5),
   },
   yucoinPowerButtonArrow: {
-    marginLeft: "auto",
+    marginStart: "auto",
   },
 });
 

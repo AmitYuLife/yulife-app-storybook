@@ -148,8 +148,8 @@ const InfoPanel = ({
 const styles = StyleSheet.create({
   wrapper: {
     borderWidth: Style.adjust(1),
-    paddingLeft: Style.adjust(16),
-    paddingRight: Style.adjust(20),
+    paddingStart: Style.adjust(16),
+    paddingEnd: Style.adjust(20),
   } as ViewStyle,
   innerWrapper: {
     display: "flex",
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     flex: 1,
   } as ViewStyle,
   imageWrapper: {
-    paddingRight: Style.adjust(10),
+    paddingEnd: Style.adjust(10),
   },
   buttonWrapper: {
     paddingTop: Style.adjust(12),
@@ -211,7 +211,7 @@ const getBannerTheme = (bannerType: BannerType) => {
         closeIconSize: Style.adjust(24),
         closeIconColor: Colours.neutral.n850,
         contentAlignItems: "flex-start",
-        markdownWrapper: { paddingRight: Style.adjust(24) },
+        markdownWrapper: { paddingEnd: Style.adjust(24) },
       };
     default:
       return {

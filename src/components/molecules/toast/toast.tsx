@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
   },
   image: {
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
     alignSelf: "flex-end",
   },
   children: {

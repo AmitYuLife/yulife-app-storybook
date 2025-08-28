@@ -24,7 +24,7 @@ export const SCROLL_PADDING = media.select(
 export default StyleSheet.create({
   iconWrapper: {
     position: "relative",
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
   } as ViewStyle,
   itemWrapper: {
     alignItems: "center",
@@ -50,7 +50,7 @@ export default StyleSheet.create({
     height: Style.adjust(120),
   } as ViewStyle,
   scrollView: {
-    paddingLeft: Platform.select({
+    paddingStart: Platform.select({
       ios: Style.SCALE_UP_AND_DOWN(105),
       android: Style.SCALE_UP_AND_DOWN(120),
     }),

@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     flexWrap: "nowrap",
-    marginLeft: Style.adjust(-16),
+    marginStart: Style.adjust(-16),
   } as TextStyle,
   buttonSave: {
     paddingTop: Style.adjust(2),

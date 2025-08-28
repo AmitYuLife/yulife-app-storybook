@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
   } as ViewStyle,
   headerIconWrapper: {
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   } as ViewStyle,
 });

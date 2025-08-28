@@ -12,11 +12,11 @@ export default StyleSheet.create({
     width: Style.adjust(48),
   } as ViewStyle,
   reward: {
-    paddingRight: Style.adjust(10),
+    paddingEnd: Style.adjust(10),
   } as TextStyle,
   statusWrapper: {
     justifyContent: "flex-end",
-    marginLeft: "auto",
+    marginStart: "auto",
   } as ViewStyle,
   wrapper: {
     padding: Style.adjust(16),

@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   nameWrapper: {
     flex: 1,
-    paddingRight: Style.adjust(16),
+    paddingEnd: Style.adjust(16),
   } as ViewStyle,
   container: {
     flexDirection: "row",
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   image: {
     width: Style.adjust(16),
     height: Style.adjust(16),
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   } as ImageStyle,
   switchWrapper: {
     alignItems: "flex-end",

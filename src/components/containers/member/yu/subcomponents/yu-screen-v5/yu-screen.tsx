@@ -137,7 +137,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, sh
       {
         icon: LeftIcon.MENU,
         onPress: onLeftMenuPress,
-        style: { marginRight: Style.adjust(16) },
+        style: { marginEnd: Style.adjust(16) },
       },
       ...(onNotificationPress
         ? [
@@ -145,7 +145,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, sh
               icon: LeftIcon.NOTIFICATIONS,
               onPress: onNotificationPress,
               testID: NOTIF_CENTRE,
-              style: { paddingLeft: Style.adjust(8) },
+              style: { paddingStart: Style.adjust(8) },
               hitSlop: {
                 ...TOP_BAR.HIT_SLOP,
                 left: 0,

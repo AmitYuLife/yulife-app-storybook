@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   copyWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: Style.adjust(24),
+    marginStart: Style.adjust(24),
   } as ViewStyle,
   copyBox: {
     paddingHorizontal: 4,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   } as ViewStyle,
   copyText: {
-    marginRight: Style.adjust(12),
+    marginEnd: Style.adjust(12),
   } as ViewStyle,
 });
 

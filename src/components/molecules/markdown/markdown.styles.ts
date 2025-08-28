@@ -95,11 +95,11 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
       height: Style.adjust(4),
       backgroundColor: "black",
       borderRadius: 2,
-      marginRight: Style.adjust(10),
+      marginEnd: Style.adjust(10),
       marginTop: Style.adjust(10),
     },
     listItemNumber: {
-      marginRight: Style.adjust(5),
+      marginEnd: Style.adjust(5),
       marginTop: Style.adjust(4),
     },
     imageWrapper: {

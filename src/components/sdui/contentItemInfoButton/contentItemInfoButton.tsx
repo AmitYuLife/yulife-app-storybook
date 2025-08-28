@@ -100,10 +100,10 @@ const styles = StyleSheet.create({
     bottom: 4,
   },
   iconRight: {
-    marginLeft: "auto",
+    marginStart: "auto",
   },
   promptWrapper: {
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
     width: Style.DEVICE_WIDTH - 160,
   },
   alignSelfCenter: {

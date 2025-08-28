@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     padding: Style.adjust(16),
   },
   text: {
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   },
   textMargin: { marginBottom: Style.adjust(12) },
 });

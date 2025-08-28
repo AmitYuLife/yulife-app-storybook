@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   logo: {
-    paddingLeft: Style.adjust(8),
+    paddingStart: Style.adjust(8),
   },
   description: {
     paddingHorizontal: Style.adjust(20),

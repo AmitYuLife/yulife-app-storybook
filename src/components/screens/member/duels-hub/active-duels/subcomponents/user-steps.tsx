@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(50),
     marginTop: Style.adjust(24),
     marginBottom: Style.adjust(40),
-    paddingLeft: Style.adjust(8),
+    paddingStart: Style.adjust(8),
     backgroundColor: Colours.blue.b200,
     borderRadius: 8,
   } as ViewStyle,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     height: Style.adjust(50),
     paddingTop: 10,
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
   } as ViewStyle,
 });
 

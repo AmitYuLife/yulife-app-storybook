@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingTop: TOP_BAR.PADDING_TOP + Style.adjust(68),
-    paddingLeft: Style.adjust(24),
+    paddingStart: Style.adjust(24),
   },
   yumojiPromptWrapper: {
     position: "absolute",

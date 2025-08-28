@@ -142,14 +142,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: "100%",
     justifyContent: "center",
-    paddingLeft: Style.adjust(16),
+    paddingStart: Style.adjust(16),
   } as ViewStyle,
   menuLabel: {
     fontSize: Style.adjust(20),
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   } as TextStyle,
   menuLabelWrapper: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   } as ViewStyle,
   iconHeight: {
     justifyContent: "center",

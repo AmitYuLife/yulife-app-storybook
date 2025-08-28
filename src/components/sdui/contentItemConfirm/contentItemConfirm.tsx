@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: Style.adjust(16),
     padding: Style.adjust(16),
-    paddingRight: Style.adjust(48),
+    paddingEnd: Style.adjust(48),
   } as ViewStyle,
 });

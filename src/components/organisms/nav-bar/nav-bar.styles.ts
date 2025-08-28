@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
 export function getLabelAdjustment(index: number) {
   switch (index) {
     case 0:
-      return { marginLeft: 12 };
+      return { marginStart: 12 };
     case 1:
       return null;
     case 2:
       return null;
     case 3:
-      return { marginRight: 12 };
+      return { marginEnd: 12 };
     default:
       return null;
   }

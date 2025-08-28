@@ -70,6 +70,6 @@ const styles = StyleSheet.create({
   max: {
     justifyContent: "flex-end",
     paddingBottom: Style.adjust(4),
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
 });

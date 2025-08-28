@@ -68,7 +68,7 @@ const UserSelection = ({ selected, onPress }: Props) => {
 
 const styles = StyleSheet.create({
   target: {
-    marginRight: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   },
 });
 

@@ -36,7 +36,7 @@ export const Placeholder = ({ scale, translateY, opacity, title, isFocused, hasI
 
   const dynamicStyles = {
     transform: [{ translateY }],
-    paddingLeft: isFocused || hasInput ? 0 : paddingLeft,
+    paddingStart: isFocused || hasInput ? 0 : paddingLeft,
     bottom: isFocused ? 0 : 8,
   };
 

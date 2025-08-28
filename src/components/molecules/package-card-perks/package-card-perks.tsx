@@ -58,13 +58,13 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(8),
   } as ViewStyle,
   icon: {
-    marginRight: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   } as ViewStyle,
   title: {
     marginBottom: Style.adjust(4),
   },
   optionDetail: {
     flex: 1,
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   } as ViewStyle,
 });

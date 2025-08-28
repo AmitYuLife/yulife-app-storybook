@@ -239,14 +239,14 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(16),
   },
   checkBoxWrapper: {
-    marginLeft: Style.adjust(37),
+    marginStart: Style.adjust(37),
     marginBottom: Style.adjust(16),
   },
   typeWrapper: {
     marginBottom: Style.adjust(16),
   },
   checkBoxChildWrapper: {
-    paddingLeft: Style.adjust(16),
+    paddingStart: Style.adjust(16),
   },
 });
 
