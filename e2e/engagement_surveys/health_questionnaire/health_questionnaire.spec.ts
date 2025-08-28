@@ -188,10 +188,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
-      Then(
-        "As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 40 YuCoin for completing it",
-        then.idVisible(ids.MARKDOWN("+40 ![](https://yulife-develop.imgix.net/journeys/yuCoin.svg?ixlib=js-3.2.1&w=24&h=24&dpr=3&s=3cb4cda29e509a2eb7f6cb42af14a01e)"))
-      );
+      Then("As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 40 YuCoin for completing it", then.idVisible("health_questionnaire_submission_yucoin_markdown"));
     });
     When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
       When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
@@ -444,10 +441,7 @@ Feature("Health questionnaires", async () => {
     When("I tap select", when.tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON), async () => {
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
         Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
-        Then(
-          "As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 40 YuCoin for completing it",
-          then.idVisible(ids.MARKDOWN("+40 ![](https://yulife-develop.imgix.net/journeys/yuCoin.svg?ixlib=js-3.2.1&w=24&h=24&dpr=3&s=3cb4cda29e509a2eb7f6cb42af14a01e)"))
-        );
+        Then("As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 40 YuCoin for completing it", then.idVisible("health_questionnaire_submission_yucoin_markdown"));
       });
     });
     When("I close the app before I press the claim button", when.restartWithData, async () => {
