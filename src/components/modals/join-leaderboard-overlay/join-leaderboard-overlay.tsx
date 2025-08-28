@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(80),
   },
   group: {
-    paddingLeft: Style.adjust(10),
+    paddingStart: Style.adjust(10),
     flexDirection: "row",
     alignItems: "center",
     marginVertical: Style.adjust(16),

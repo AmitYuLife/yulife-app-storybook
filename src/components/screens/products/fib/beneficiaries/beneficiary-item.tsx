@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderBottomColor: Colours.neutral.n200,
   } as TextStyle,
   beneficiaryButtonWrapper: {
-    marginRight: Style.adjust(24),
+    marginEnd: Style.adjust(24),
     flex: 1,
   } as ViewStyle,
   beneficiaryWrapper: {

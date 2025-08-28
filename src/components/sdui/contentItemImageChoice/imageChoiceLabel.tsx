@@ -27,8 +27,8 @@ export const ImageChoiceLabel = ({ label, labelTextType, textStyles }: Props) =>
 const styles = StyleSheet.create({
   textWrapper: {
     alignSelf: "center",
-    marginLeft: Style.adjust(16),
-    marginRight: Style.adjust(16),
+    marginStart: Style.adjust(16),
+    marginEnd: Style.adjust(16),
     marginBottom: Style.adjust(8),
   } as ViewStyle,
 });

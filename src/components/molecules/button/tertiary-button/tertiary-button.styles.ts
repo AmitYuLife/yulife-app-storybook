@@ -25,12 +25,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   titleWrapper: {
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   } as TextStyle,
   subtitleWrapper: {
     marginTop: Style.adjust(4),
   } as ViewStyle,
   rightIcon: {
-    marginLeft: "auto",
+    marginStart: "auto",
   } as ViewStyle,
 });

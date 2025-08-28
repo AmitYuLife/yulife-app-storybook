@@ -23,8 +23,8 @@ const StackedShadowWrapper = ({
 }: IProps) => {
   const wrapperStyle = useMemo(
     () => ({
-      marginLeft: 1,
-      marginRight: 1,
+      marginStart: 1,
+      marginEnd: 1,
       marginTop: 1,
       marginBottom: stackColors.length * shadowHeight,
       borderRadius,

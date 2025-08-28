@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   iconWrapper: {
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
     justifyContent: "center",
   },
 });

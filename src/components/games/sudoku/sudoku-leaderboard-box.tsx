@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   contentWrapper: {
     flex: 1,
-    marginLeft: Style.adjust(20),
+    marginStart: Style.adjust(20),
     flexDirection: "column",
   },
   contentItem: {

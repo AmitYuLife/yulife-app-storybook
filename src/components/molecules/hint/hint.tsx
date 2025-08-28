@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    paddingRight: Style.adjust(24),
+    paddingEnd: Style.adjust(24),
     zIndex: 1,
   },
   iconContainer: {
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     width: Style.adjust(16),
     justifyContent: "center",
     alignItems: "center",
-    marginRight: Style.adjust(6),
+    marginEnd: Style.adjust(6),
     borderRadius: 50,
     aspectRatio: 1,
   },

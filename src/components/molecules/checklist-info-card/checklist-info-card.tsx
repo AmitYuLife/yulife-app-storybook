@@ -73,11 +73,11 @@ const styles = StyleSheet.create({
   listWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: Style.adjust(8),
+    paddingStart: Style.adjust(8),
     marginBottom: Style.adjust(8),
   },
   listLabel: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   },
   checked: {
     backgroundColor: "#EBF5ED",

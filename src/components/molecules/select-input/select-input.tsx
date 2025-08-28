@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     transform: [{ rotate: "90deg" }],
   } as ImageStyle,
   textWrapper: {
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   } as ViewStyle,
 });
 

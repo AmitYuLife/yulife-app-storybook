@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   cardBody: {
     paddingTop: Style.adjust(16),
-    paddingLeft: Style.adjust(16),
+    paddingStart: Style.adjust(16),
     paddingBottom: Style.adjust(12),
     flex: 1,
     flexGrow: 1,

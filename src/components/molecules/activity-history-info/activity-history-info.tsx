@@ -101,7 +101,7 @@ export const activityHistoryInfoStyles = StyleSheet.create({
     marginTop: Style.adjust(16),
   },
   leftImage: {
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
   },
   yucoinWrapper: {
     position: "absolute",
@@ -112,11 +112,11 @@ export const activityHistoryInfoStyles = StyleSheet.create({
   yucoin: {
     width: Style.adjust(16),
     height: Style.adjust(16),
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
   stars: {
     flexDirection: "row",
-    marginRight: Style.adjust(4),
+    marginEnd: Style.adjust(4),
   },
 });
 

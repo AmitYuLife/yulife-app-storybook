@@ -104,10 +104,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
   },
   rewardWrapper: {
-    marginLeft: "auto",
+    marginStart: "auto",
     alignItems: "center",
     flexDirection: "row",
-    marginRight: Style.adjust(5),
+    marginEnd: Style.adjust(5),
   },
   rewardAmount: {
     minWidth: Style.adjust(30),

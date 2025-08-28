@@ -152,7 +152,7 @@ export default function TextField(props: Props) {
         <TextInput
           editable={editable}
           testID={testID}
-          style={StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize }, inputTextStyle])}
+          style={StyleSheet.flatten([styles.inputBase, { paddingStart: placeholderIndentSize }, inputTextStyle])}
           onBlur={() => {
             if (onBlur) {
               onBlur();
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     width: 24,
   } as ViewStyle,
   errorMessage: {
-    marginLeft: "auto",
+    marginStart: "auto",
     color: "#FC0000",
     fontSize: 12,
     fontFamily: Style.FONT_FAMILY_PRIMARY,

@@ -105,6 +105,6 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(6),
   } as ViewStyle,
   textWrapper: {
-    paddingLeft: Style.adjust(12),
+    paddingStart: Style.adjust(12),
   } as ViewStyle,
 });

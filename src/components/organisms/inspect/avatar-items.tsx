@@ -68,7 +68,7 @@ export default memo(AvatarItems);
 const styles = StyleSheet.create({
   vs: {
     paddingTop: Style.adjust(2),
-    paddingLeft: Style.adjust(2),
+    paddingStart: Style.adjust(2),
     marginTop: Style.adjust(80),
     height: Style.adjust(40),
     width: Style.adjust(40),

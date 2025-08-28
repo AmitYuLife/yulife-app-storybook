@@ -15,7 +15,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   popoverText: {
     marginTop: Style.adjust(8),
-    marginRight: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   } as ViewStyle,
   popoverImage: {
     width: Style.adjust(87),

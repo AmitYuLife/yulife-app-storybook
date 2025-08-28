@@ -129,9 +129,9 @@ function mapRewardItemToBattlePassListItem(componentId: string) {
         width: 58,
         style: {
           marginTop: Style.adjust(11),
-          marginLeft: Style.adjust(18),
+          marginStart: Style.adjust(18),
           borderRadius: Style.adjust(56),
-          marginRight: "auto",
+          marginEnd: "auto",
         },
       } as Props["rewards"][number]["icon"],
     };

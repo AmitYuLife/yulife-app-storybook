@@ -58,7 +58,7 @@ export default StyleSheet.create({
     minHeight: "100%",
     paddingHorizontal: Style.adjust(24),
   },
-  progressTextIcon: { marginRight: Style.adjust(4) },
+  progressTextIcon: { marginEnd: Style.adjust(4) },
   about: { marginTop: Style.adjust(40), marginBottom: Style.adjust(24) },
   aboutForVersus: { marginTop: Style.adjust(12), marginBottom: Style.adjust(24) },
   bannerWrapper: { marginBottom: Style.adjust(24) },

@@ -123,8 +123,8 @@ export const ContentItemImageChoice = memo((props: Props) => {
 const styles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(28),
-    marginLeft: Style.adjust(24),
-    marginRight: Style.adjust(24),
+    marginStart: Style.adjust(24),
+    marginEnd: Style.adjust(24),
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

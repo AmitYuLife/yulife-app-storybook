@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     marginBottom: Style.adjust(40),
   },
   yugiHeader: {
-    paddingLeft: Style.adjust(32),
+    paddingStart: Style.adjust(32),
     width: "100%",
     marginBottom: Style.adjust(40),
   },

@@ -27,12 +27,12 @@ const chestCardStyles = StyleSheet.create({
   },
   textWrapper: {
     flex: 1,
-    paddingLeft: Style.adjust(16),
+    paddingStart: Style.adjust(16),
   },
   chestImageWrapper: {
-    marginLeft: "auto",
+    marginStart: "auto",
     paddingVertical: Style.adjust(12),
-    paddingRight: Style.adjust(16),
+    paddingEnd: Style.adjust(16),
   },
   chestImage: {
     width: Style.adjust(80),

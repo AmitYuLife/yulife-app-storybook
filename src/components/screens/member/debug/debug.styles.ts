@@ -20,7 +20,7 @@ export default StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   textWrapper: {
-    marginLeft: Style.adjust(5),
+    marginStart: Style.adjust(5),
   } as ViewStyle,
   starWrapper: {
     // Bigger box to click

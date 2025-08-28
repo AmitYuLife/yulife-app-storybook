@@ -135,12 +135,12 @@ const styles = StyleSheet.create({
     // Allow for the bottom bar
   },
   leftButton: {
-    marginRight: Style.adjust(10),
+    marginEnd: Style.adjust(10),
     flex: 1,
   },
   rightButton: {
     flex: 1,
-    marginLeft: Style.adjust(10),
+    marginStart: Style.adjust(10),
   },
   planetIcon: {
     right: 0,

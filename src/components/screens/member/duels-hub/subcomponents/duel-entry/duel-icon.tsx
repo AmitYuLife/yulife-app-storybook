@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   } as ViewStyle,
   iconWrapper: {
-    marginLeft: 4,
+    marginStart: 4,
   } as ViewStyle,
   completedWrapper: {
     alignItems: "flex-end",

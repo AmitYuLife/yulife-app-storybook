@@ -60,7 +60,7 @@ const getStyle = (type: Props["type"]) => {
           color: Colours.orangeNew,
         },
         descriptionWrapperStyle: {
-          marginLeft: Style.adjust(6),
+          marginStart: Style.adjust(6),
           marginBottom: Platform.select({
             ios: 0,
             android: Style.adjust(2),

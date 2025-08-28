@@ -245,10 +245,10 @@ const getMarkdownStyles = (fontColor: string, boldTextColor?: string, fontWeight
 
 const styles = StyleSheet.create({
   headingWrapper: {
-    paddingRight: HERO_CARD_PADDING - Style.adjust(4),
+    paddingEnd: HERO_CARD_PADDING - Style.adjust(4),
   },
   headingNegativeMargins: {
-    marginLeft: -HERO_CARD_PADDING,
+    marginStart: -HERO_CARD_PADDING,
     marginTop: -HERO_CARD_PADDING,
   },
   markdownContainer: {

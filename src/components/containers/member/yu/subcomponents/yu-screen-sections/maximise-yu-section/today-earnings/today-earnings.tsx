@@ -77,13 +77,13 @@ export const TodayEarnings = memo(({ animate, progress }: Props) => {
 
 const styles = StyleSheet.create({
   todayEarnings: {
-    paddingRight: Style.adjust(12),
-    paddingLeft: Style.adjust(16),
+    paddingEnd: Style.adjust(12),
+    paddingStart: Style.adjust(16),
     paddingTop: Style.adjust(24),
     flexDirection: "row",
   },
   todayEarningsContent: {
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
     flex: 1,
   },
   progressBar: {

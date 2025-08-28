@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   flex: {
     flex: 1,
     marginTop: LINE_HEIGHT_OFFSET,
-    paddingRight: Style.adjust(8),
+    paddingEnd: Style.adjust(8),
   } as ViewStyle,
   wrapper: {
     backgroundColor: Colours.neutral.white,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   } as ViewStyle,
   image: {
-    marginRight: 16,
+    marginEnd: 16,
   } as ViewStyle,
   title: {
     marginBottom: 0,

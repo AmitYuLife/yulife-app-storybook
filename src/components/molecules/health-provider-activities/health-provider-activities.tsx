@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   },
   details: {
     flexDirection: "column",

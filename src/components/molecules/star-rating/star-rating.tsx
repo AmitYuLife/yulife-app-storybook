@@ -32,6 +32,6 @@ const StarRating = memo(({ activeStars, totalStars }: IStarRatingProps) => {
 });
 const styles = StyleSheet.create({
   row: { alignItems: "center", flexDirection: "row" },
-  star: { marginRight: Style.adjust(3) },
+  star: { marginEnd: Style.adjust(3) },
 });
 export default StarRating;

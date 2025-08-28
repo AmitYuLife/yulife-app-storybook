@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   infoIcon: {
     width: Style.adjust(20),
     height: Style.adjust(20),
-    marginRight: 8,
+    marginEnd: 8,
   },
 });
 

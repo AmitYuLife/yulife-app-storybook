@@ -3,7 +3,7 @@ import { Colours, Style } from "../../../styles";
 
 export default StyleSheet.create({
   arrow: {
-    marginLeft: "auto",
+    marginStart: "auto",
   } as ImageStyle,
   label: {
     color: Colours.darkGray,
@@ -16,7 +16,7 @@ export default StyleSheet.create({
     color: Colours.lightGray,
   } as TextStyle,
   textWrapper: {
-    marginLeft: Style.SCALE_UP_AND_DOWN(20),
+    marginStart: Style.SCALE_UP_AND_DOWN(20),
   } as ViewStyle,
   wrapper: {
     alignItems: "center",

@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   timer: {
     fontSize: Style.adjust(18),
     marginTop: Style.adjust(Platform.OS === "android" ? -2 : 2),
-    paddingLeft: Style.adjust(5),
+    paddingStart: Style.adjust(5),
   } as TextStyle,
   centerWrapper: {
     alignItems: "center",

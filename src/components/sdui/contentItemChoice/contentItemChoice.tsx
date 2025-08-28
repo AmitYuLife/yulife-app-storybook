@@ -233,11 +233,11 @@ const getTemplateTextStyles = (textType?: TemplateTextType) => {
 
 const baseStyles = StyleSheet.create({
   choiceWrapper: {
-    marginLeft: Style.adjust(24),
-    marginRight: Style.adjust(64),
+    marginStart: Style.adjust(24),
+    marginEnd: Style.adjust(64),
   },
   inputWrapper: {
-    paddingLeft: Style.adjust(12),
+    paddingStart: Style.adjust(12),
     paddingBottom: Style.adjust(2),
   },
   inputItem: {
@@ -257,7 +257,7 @@ const baseStyles = StyleSheet.create({
 
 const defaultDesignStyles = StyleSheet.create({
   choiceWrapper: {
-    marginRight: Style.adjust(24),
+    marginEnd: Style.adjust(24),
   },
   rowStyles: {
     flexDirection: "row-reverse",
@@ -279,13 +279,13 @@ const defaultDesignStyles = StyleSheet.create({
   checkboxText: {
     display: "flex",
     width: "85%",
-    paddingLeft: 0,
+    paddingStart: 0,
   },
   otherOptionWrapper: {
     width: "85%",
   },
   inputWrapper: {
-    paddingLeft: 0,
+    paddingStart: 0,
     paddingBottom: 0,
   },
   textInput: {

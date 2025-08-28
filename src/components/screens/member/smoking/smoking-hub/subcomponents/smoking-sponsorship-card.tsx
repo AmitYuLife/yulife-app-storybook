@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFBE5",
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: Style.adjust(24),
+    paddingStart: Style.adjust(24),
     gap: Style.adjust(8),
   },
   placeholderOverlayWrapper: {

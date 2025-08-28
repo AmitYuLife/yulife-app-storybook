@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   yuCoin: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   } as ViewStyle,
   textWrapper: {
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   } as ViewStyle,
 });

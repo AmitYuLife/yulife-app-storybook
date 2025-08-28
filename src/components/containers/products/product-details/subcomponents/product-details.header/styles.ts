@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
     maxWidth: Style.adjust(184),
   } as ViewStyle,
   logo: {
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
   },
   rightSide: {
-    marginLeft: "auto",
+    marginStart: "auto",
   } as ViewStyle,
   yuCoinPowerWrapper: {
     position: "absolute",

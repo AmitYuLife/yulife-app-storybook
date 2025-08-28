@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   yucoinPowerButtonArrow: {
-    marginLeft: "auto",
+    marginStart: "auto",
   },
 });
 

@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   deleteButtonWrapper: {
     alignSelf: "flex-start",
-    marginLeft: -10,
+    marginStart: -10,
   },
   continueButtonMainWrapper: {
     flexGrow: 1,

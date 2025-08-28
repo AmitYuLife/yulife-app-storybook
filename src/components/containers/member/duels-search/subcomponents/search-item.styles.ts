@@ -7,8 +7,8 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingLeft: Style.adjust(24),
-    paddingRight: Style.adjust(24),
+    paddingStart: Style.adjust(24),
+    paddingEnd: Style.adjust(24),
     paddingTop: Style.adjust(8),
     paddingBottom: Style.adjust(8),
     backgroundColor: Colours.neutral.white,
@@ -28,7 +28,7 @@ export default StyleSheet.create({
   nameText: {
     color: Colours.neutral.n800,
     fontSize: Style.adjust(16),
-    marginLeft: Style.adjust(2),
+    marginStart: Style.adjust(2),
   } as TextStyle,
   duelText: {
     color: Colours.primary.p600,

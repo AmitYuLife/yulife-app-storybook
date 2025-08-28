@@ -56,7 +56,7 @@ const QuestsContainer = () => {
       {
         icon: LeftIcon.MENU,
         onPress: onLeftMenuPress,
-        style: { marginRight: Style.adjust(16) },
+        style: { marginEnd: Style.adjust(16) },
       },
       ...(features.showNotificationCentre
         ? [
@@ -71,7 +71,7 @@ const QuestsContainer = () => {
                 });
               },
               testID: NOTIF_CENTRE,
-              style: { paddingLeft: Style.adjust(8) },
+              style: { paddingStart: Style.adjust(8) },
               hitSlop: {
                 ...TOP_BAR.HIT_SLOP,
                 left: 0,

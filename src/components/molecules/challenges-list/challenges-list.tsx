@@ -73,11 +73,11 @@ function ChallengeSet({ challenges, tileColour, durationColour, durationTextColo
 
 const styles = StyleSheet.create({
   leftColumnWrapper: {
-    marginRight: 8,
+    marginEnd: 8,
   },
   rightColumnWrapper: {
     marginTop: 37,
-    marginLeft: 8,
+    marginStart: 8,
   },
   wrapper: {
     flexDirection: "row",

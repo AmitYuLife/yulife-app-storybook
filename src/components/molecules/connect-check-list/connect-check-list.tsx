@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   samsungWrapper: {
-    marginRight: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   },
 });
 

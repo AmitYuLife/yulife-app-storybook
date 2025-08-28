@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
       ios: 10,
       android: 8,
     }),
-    paddingLeft: 4,
-    paddingRight: 4,
+    paddingStart: 4,
+    paddingEnd: 4,
     paddingTop: Platform.select({
       ios: 2,
       android: 0,

@@ -4,7 +4,7 @@ import { Colours, Style } from "../../../../../../styles";
 const styles = StyleSheet.create({
   bar: {
     height: Style.PIXEL * 4,
-    marginRight: 3,
+    marginEnd: 3,
     marginTop: 5,
   },
   barColorBlack: {

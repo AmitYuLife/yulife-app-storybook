@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   textWrapper: {
     flex: 1,
-    paddingLeft: Style.adjust(15),
+    paddingStart: Style.adjust(15),
   },
 });
 

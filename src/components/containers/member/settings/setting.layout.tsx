@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(24),
   },
   container: {
-    paddingLeft: Style.adjust(24),
-    paddingRight: Style.adjust(35),
+    paddingStart: Style.adjust(24),
+    paddingEnd: Style.adjust(35),
   },
   option: {
     flexDirection: "row",

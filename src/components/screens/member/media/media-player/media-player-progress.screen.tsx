@@ -277,12 +277,12 @@ const styles = StyleSheet.create({
     paddingBottom: Style.adjust(120),
   },
   leftButton: {
-    marginRight: Style.adjust(10),
+    marginEnd: Style.adjust(10),
     flex: 1,
   },
   rightButton: {
     flex: 1,
-    marginLeft: Style.adjust(10),
+    marginStart: Style.adjust(10),
   },
   contentContainer: {
     flex: 1,

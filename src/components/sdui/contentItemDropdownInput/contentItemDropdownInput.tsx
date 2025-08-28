@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   textWrapper: {
     flex: 1,
-    paddingRight: Style.adjust(6),
+    paddingEnd: Style.adjust(6),
   } as ViewStyle,
   iconWrapper: {
     marginBottom: Style.adjust(6),

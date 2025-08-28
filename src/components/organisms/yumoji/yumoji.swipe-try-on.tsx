@@ -298,8 +298,8 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(14),
   },
   flatList: {
-    marginLeft: -(YUMOJI_CARD_WIDTH + YUMOJI_CARD_WIDTH / 2),
-    marginRight: -(YUMOJI_CARD_WIDTH / 2),
+    marginStart: -(YUMOJI_CARD_WIDTH + YUMOJI_CARD_WIDTH / 2),
+    marginEnd: -(YUMOJI_CARD_WIDTH / 2),
     flex: 1,
   },
   flatlistItemOverlay: {
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
     width: Style.adjust(140),
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: Style.adjust(16),
-    marginRight: Style.adjust(16),
+    marginStart: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   },
 });

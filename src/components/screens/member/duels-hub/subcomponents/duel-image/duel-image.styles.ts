@@ -18,7 +18,7 @@ export const emptyStyles = StyleSheet.create({
   small: {
     height: AVATAR_SM,
     width: AVATAR_SM,
-    marginRight: Style.adjust(10),
+    marginEnd: Style.adjust(10),
   } as ViewStyle,
   medium: {
     height: AVATAR_MD,
@@ -43,7 +43,7 @@ export const filledStyles = StyleSheet.create({
   small: {
     height: AVATAR_SM,
     width: AVATAR_SM,
-    marginRight: Style.adjust(10),
+    marginEnd: Style.adjust(10),
   } as ViewStyle,
   medium: {
     height: AVATAR_MD,

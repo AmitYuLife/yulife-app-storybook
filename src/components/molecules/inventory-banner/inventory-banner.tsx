@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   inventoryBannerImage: {
     width: "100%",
-    marginLeft: BANNER_HEIGHT * 0.83,
+    marginStart: BANNER_HEIGHT * 0.83,
     position: "absolute",
     overflow: "hidden",
     height: BANNER_HEIGHT * BANNER_WIDE_HEIGHT_MULTIPLIER,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingLeft: BANNER_HEIGHT * 1.2,
+    paddingStart: BANNER_HEIGHT * 1.2,
   },
   chevronContainer: {
     padding: Style.adjust(BANNER_HEIGHT / 6),

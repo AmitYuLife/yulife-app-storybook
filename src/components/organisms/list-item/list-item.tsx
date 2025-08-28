@@ -220,11 +220,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: Style.adjust(2),
     paddingBottom: Style.adjust(3),
-    paddingRight: Style.adjust(8),
+    paddingEnd: Style.adjust(8),
     marginBottom: Style.adjust(8),
   },
   avatar: {
-    marginRight: Style.adjust(9),
+    marginEnd: Style.adjust(9),
   },
   position: {
     alignItems: "center",
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   score: {
     position: "absolute",
     right: 0,
-    paddingRight: Style.adjust(8),
+    paddingEnd: Style.adjust(8),
     flexDirection: "row",
   },
   leaderboard: {
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   yucoin: {
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
 });
 

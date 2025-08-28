@@ -29,7 +29,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   logoWrapper: {
     flexDirection: "row",
-    marginLeft: Style.SCALE_UP_AND_DOWN(16),
+    marginStart: Style.SCALE_UP_AND_DOWN(16),
     marginTop: Style.SCALE_UP_AND_DOWN(100),
   } as ViewStyle,
   meditationInstructionsWrapper: {
@@ -44,7 +44,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   faqUrl: {
     alignItems: "flex-end",
-    marginRight: Style.adjust(35),
+    marginEnd: Style.adjust(35),
     bottom: Style.adjust(20),
   } as ViewStyle,
   buttonLogo: {

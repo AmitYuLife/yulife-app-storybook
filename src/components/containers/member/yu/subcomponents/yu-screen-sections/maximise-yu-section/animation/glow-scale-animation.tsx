@@ -43,9 +43,7 @@ export const GlowScaleAnimation = memo(({ animate }: Props) => {
 
   return (
     <View pointerEvents="none" style={styles.wrapper}>
-      <Animated.View
-        style={[styles.glow, { transform: [{ scaleX: glowScaleX }, { scaleY: glowScaleY }] }]}
-      ></Animated.View>
+      <Animated.View style={[styles.glow, { transform: [{ scaleX: glowScaleX }, { scaleY: glowScaleY }] }]} />
     </View>
   );
 });
@@ -58,8 +56,8 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     marginTop: Style.adjust(12),
-    marginLeft: Style.adjust(12),
-    marginRight: Style.adjust(12),
+    marginStart: Style.adjust(12),
+    marginEnd: Style.adjust(12),
   },
   glow: {
     position: "absolute",

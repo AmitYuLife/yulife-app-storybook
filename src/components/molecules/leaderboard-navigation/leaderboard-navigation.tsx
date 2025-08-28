@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(20),
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
     paddingTop: Style.adjust(2),
   },
   buttonsWrapper: {
@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
     backgroundColor: backgroundColour,
     paddingTop: Style.adjust(8),
     paddingBottom: Style.adjust(8),
-    paddingLeft: Style.adjust(10),
-    paddingRight: Style.adjust(10),
+    paddingStart: Style.adjust(10),
+    paddingEnd: Style.adjust(10),
   },
   search: {
     borderRadius: 24,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     padding: Style.adjust(6),
   },
   duelsIcon: {
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
   },
 });
 

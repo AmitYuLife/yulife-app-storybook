@@ -106,17 +106,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   icon: {
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
   },
   starsWrapper: {
     flexDirection: "row",
-    marginRight: Platform.select({
+    marginEnd: Platform.select({
       ios: Style.adjust(4),
       android: 0,
     }),
   },
   yuCoin: {
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
     width: Style.adjust(16),
     height: Style.adjust(16),
   },

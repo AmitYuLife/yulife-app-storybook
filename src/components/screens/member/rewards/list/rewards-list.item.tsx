@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   },
   pillsWrapper: {
     position: "absolute",

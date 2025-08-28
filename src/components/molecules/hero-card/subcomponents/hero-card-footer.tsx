@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    paddingRight: Style.adjust(16),
+    paddingEnd: Style.adjust(16),
     paddingBottom: Style.adjust(16),
     marginTop: Style.adjust(8),
   },

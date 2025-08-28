@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     paddingBottom: Style.adjust(16),
   },
   userInfo: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   },
   referralCoin: {
     flexDirection: "row",
@@ -22,6 +22,6 @@ export const styles = StyleSheet.create({
   yucoin: {
     width: Style.adjust(18),
     height: Style.adjust(18),
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
 });

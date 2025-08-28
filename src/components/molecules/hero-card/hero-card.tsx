@@ -122,7 +122,7 @@ const HeroCard = ({
 const styles = StyleSheet.create({
   backgroundImage: {
     paddingTop: HERO_CARD_PADDING,
-    paddingLeft: HERO_CARD_PADDING,
+    paddingStart: HERO_CARD_PADDING,
     flex: 1,
   },
   image: {

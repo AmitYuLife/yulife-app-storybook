@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   },
   titleWrapper: {
     flexDirection: "row",
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
   coin: {
     width: Style.adjust(16),
     height: Style.adjust(16),
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
   detailsWrapper: {
     flex: 1,
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   descriptionWrapper: {
     flexDirection: "row",
     flex: 1,
-    paddingRight: Style.adjust(5),
+    paddingEnd: Style.adjust(5),
   },
   tagWrapper: {
     marginTop: Style.adjust(5),

@@ -31,14 +31,14 @@ export const ListItemLoadingSkeleton = ({ items = 1 }: IProps) => {
 
 const styles = StyleSheet.create({
   avatar: {
-    marginRight: Style.adjust(9),
+    marginEnd: Style.adjust(9),
     width: Style.adjust(40),
     height: Style.adjust(40),
     borderRadius: Style.adjust(20),
   },
   name: {
     flexGrow: 1,
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
     height: Style.adjust(24),
     borderRadius: Style.adjust(4),
   },

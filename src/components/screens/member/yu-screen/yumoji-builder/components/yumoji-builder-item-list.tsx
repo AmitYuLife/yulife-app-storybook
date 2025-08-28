@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   title: {
     marginTop: Style.adjust(16),
     marginBottom: Style.adjust(8),
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
     minHeight: Style.adjust(24),
   },
   itemList: {

@@ -73,7 +73,7 @@ export const activityHistoryDayStyles = StyleSheet.create({
     marginTop: Style.adjust(8),
   },
   leftIcon: {
-    marginRight: Style.adjust(6),
+    marginEnd: Style.adjust(6),
   },
   rightIcon: {
     position: "absolute",
@@ -81,7 +81,7 @@ export const activityHistoryDayStyles = StyleSheet.create({
     flexDirection: "row",
   },
   yucoin: {
-    marginLeft: Style.adjust(4),
+    marginStart: Style.adjust(4),
   },
 });
 

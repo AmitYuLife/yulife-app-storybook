@@ -77,11 +77,11 @@ const styles = StyleSheet.create({
   imageWrapper: {
     height: Style.adjust(24),
     width: Style.adjust(24),
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
     alignItems: "center",
     justifyContent: "center",
   },
   infoWrapper: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   },
 });

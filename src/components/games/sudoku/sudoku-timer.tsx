@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     color: Colours.sudoku.gridThickColor,
     fontWeight: "600",
     minWidth: Style.adjust(50),
-    marginLeft: Style.adjust(14),
+    marginStart: Style.adjust(14),
   },
 });
 

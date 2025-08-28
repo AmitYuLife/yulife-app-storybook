@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   contentWrapper: {
     flex: 1,
     flexDirection: "column",
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   },
   contentInnerWrapper: {
     justifyContent: "center",
@@ -171,6 +171,6 @@ const styles = StyleSheet.create({
   },
   arrowWrapper: {
     alignSelf: "center",
-    paddingLeft: Style.adjust(8),
+    paddingStart: Style.adjust(8),
   },
 });

@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     width: "86%",
   },
   detailsText: {
-    marginLeft: Style.adjust(72),
+    marginStart: Style.adjust(72),
     marginVertical: Style.adjust(3),
   },
   detailsIcon: {

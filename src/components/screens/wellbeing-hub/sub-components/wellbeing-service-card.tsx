@@ -87,11 +87,11 @@ const WellBeingServiceCard: FC<IProps> = ({ card }) => {
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    paddingRight: Style.adjust(24),
+    paddingEnd: Style.adjust(24),
     marginBottom: Style.adjust(24),
   } as ViewStyle,
   remoteWrapper: {
-    marginRight: Style.adjust(16),
+    marginEnd: Style.adjust(16),
   } as ViewStyle,
   remoteImageStyle: {
     borderRadius: 8,
@@ -101,10 +101,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    paddingRight: Style.adjust(24),
+    paddingEnd: Style.adjust(24),
   } as ViewStyle,
   cardContainer: {
-    paddingRight: Style.adjust(15),
+    paddingEnd: Style.adjust(15),
   } as ViewStyle,
   cardDescription: {
     marginTop: Style.adjust(8),
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   iconImage: {
-    marginLeft: Style.adjust(8),
+    marginStart: Style.adjust(8),
   } as ViewStyle,
 });
 

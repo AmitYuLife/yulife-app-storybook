@@ -106,16 +106,16 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(25),
   },
   emailContainer: {
-    paddingLeft: Style.adjust(8),
-    paddingRight: Style.adjust(8),
+    paddingStart: Style.adjust(8),
+    paddingEnd: Style.adjust(8),
     marginTop: Style.adjust(16),
     marginBottom: Style.adjust(24),
     width: "100%",
   },
   emailInput: {
     width: "100%",
-    paddingLeft: 0,
-    paddingRight: 0,
+    paddingStart: 0,
+    paddingEnd: 0,
   },
 });
 

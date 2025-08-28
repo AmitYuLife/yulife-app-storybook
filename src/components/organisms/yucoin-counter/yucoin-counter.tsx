@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   coinsText: {
     fontSize: Style.adjust(18),
-    marginRight: Style.adjust(8),
+    marginEnd: Style.adjust(8),
   },
   coinsTextWrapper: {
     height: "100%",

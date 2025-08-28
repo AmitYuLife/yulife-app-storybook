@@ -6,8 +6,8 @@ export const PROPERTY_MAP = {
   // Padding
   p: "padding",
   pt: "paddingTop",
-  pl: "paddingLeft",
-  pr: "paddingRight",
+  pl: "paddingStart",
+  pr: "paddingEnd",
   pb: "paddingBottom",
   py: "paddingVertical",
   pv: "paddingVertical",
@@ -17,8 +17,8 @@ export const PROPERTY_MAP = {
   // Margin
   m: "margin",
   mt: "marginTop",
-  ml: "marginLeft",
-  mr: "marginRight",
+  ml: "marginStart",
+  mr: "marginEnd",
   mb: "marginBottom",
   my: "marginVertical",
   mv: "marginVertical",
@@ -47,8 +47,8 @@ export const PROPERTY_MAP = {
 
   // Position
   top: "top",
-  left: "left",
-  right: "right",
+  left: "start",
+  right: "end",
   bottom: "bottom",
   position: "position",
 

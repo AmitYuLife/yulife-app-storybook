@@ -151,8 +151,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   icon: {
-    marginLeft: Style.adjust(2),
-    marginRight: Style.adjust(-2),
+    marginStart: Style.adjust(2),
+    marginEnd: Style.adjust(-2),
     marginTop: -1,
   },
   statsItem: {
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   iconWrapper: {
-    marginRight: Style.adjust(10),
+    marginEnd: Style.adjust(10),
   },
   unrankedBadge: {
     borderWidth: 1,
@@ -171,10 +171,10 @@ const styles = StyleSheet.create({
     backgroundColor: colours.status.er100,
     padding: Style.adjust(3),
     paddingHorizontal: Style.adjust(7),
-    marginLeft: Style.adjust(6),
+    marginStart: Style.adjust(6),
   },
   yucoin: {
-    marginLeft: Style.adjust(5),
+    marginStart: Style.adjust(5),
   },
 });
 export default SudokuStatsList;

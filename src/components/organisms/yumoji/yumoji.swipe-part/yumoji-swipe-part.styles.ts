@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
     marginTop: Style.adjust(16),
   } as ViewStyle,
   flatList: {
-    marginLeft: -(ITEM_WIDTH + ITEM_WIDTH / 2),
-    marginRight: -(ITEM_WIDTH / 2),
+    marginStart: -(ITEM_WIDTH + ITEM_WIDTH / 2),
+    marginEnd: -(ITEM_WIDTH / 2),
     flex: 1,
   } as ViewStyle,
   flatListItem: {

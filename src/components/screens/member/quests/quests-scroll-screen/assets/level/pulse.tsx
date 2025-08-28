@@ -18,7 +18,7 @@ function _Pulse(props: IProps) {
         styles.wrapper,
         {
           height: pulseMaxSize,
-          marginLeft: -pulseMaxSize / 2,
+          marginStart: -pulseMaxSize / 2,
           width: pulseMaxSize,
         },
       ]}

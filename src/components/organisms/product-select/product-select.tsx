@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: Style.adjust(8),
+    paddingStart: Style.adjust(8),
     paddingTop: Style.adjust(8),
     paddingBottom: Style.adjust(8),
   },
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     padding: Style.adjust(4),
   },
   info: {
-    marginLeft: Style.adjust(16),
+    marginStart: Style.adjust(16),
   },
   description: {
     marginTop: Style.adjust(4),
