@@ -6,8 +6,11 @@ import {
   BucketSize,
   HealthDataType,
   HealthProvider,
+  HealthProviderCapability,
   IAggregateQueryRequest,
   IAggregateQueryResponse,
+  getPermissionStatusOfCapabilities,
+  ICapabilityPermissions,
   IPedometerParams,
   ISampleQueryParams,
   ISampleQueryResponse,
@@ -204,6 +207,13 @@ export const fetchYuHealthStepsData = async ({
   const stepsResults = processYuHealthResult(yuHealthSteps, start, end, PassiveChallengeType.Steps);
 
   return { stepsResults };
+};
+
+export const getHealthPermissionStatuses = async (
+  capabilities: HealthProviderCapability[],
+  _activeProvider: HealthProvider
+): Promise<ICapabilityPermissions> => {
+  return getPermissionStatusOfCapabilities(capabilities);
 };
 
 export const GQL_HEALTH_PROVIDER_TO_API_MAP = Object.freeze({

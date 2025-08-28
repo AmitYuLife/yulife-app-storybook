@@ -2,17 +2,14 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { useNavigationComponentDidAppear, useVerifyAndAuthorizeCapability } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import {
-  HealthProviderCapability,
-  ICapabilityPermissions,
-  getPermissionStatusOfCapabilities,
-} from "@yu-life/react-native-yu-health";
+import { HealthProviderCapability, ICapabilityPermissions } from "@yu-life/react-native-yu-health";
 import { useSelector } from "react-redux";
 import { getActiveProvider, getYuHealthStatus } from "@redux/yu-health/yu-health.selectors";
 import { getPermissionsConfig } from "@services/yuHealth/permissions.helpers";
 import { YU_HEALTH_ALL_CAPABILITIES } from "@utils";
 import PermissionsScreen from "@components/screens/member/permissions/permissions.screen";
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
+import { getHealthPermissionStatuses } from "@services/fitkit/yu-health.helpers";
 
 interface IProps {
   componentId: string;
@@ -28,7 +25,7 @@ const PermissionsContainer = ({ componentId }: IProps) => {
 
   const refreshPermissions = useCallback(async () => {
     setIsLoading(true);
-    const status = await getPermissionStatusOfCapabilities(YU_HEALTH_ALL_CAPABILITIES);
+    const status = await getHealthPermissionStatuses(YU_HEALTH_ALL_CAPABILITIES, activeProvider);
 
     setIsLoading(false);
     return setPermissionStatus(status);

@@ -2,6 +2,7 @@ import React, { memo, useMemo } from "react";
 import { View, ViewStyle } from "react-native";
 import { InfoPanel } from "@molecules";
 import { useTranslation } from "@hooks";
+import { DETOX_ENABLED } from "@services/socket";
 
 export interface IHealthPermissionPanelProps {
   width: number;
@@ -48,7 +49,10 @@ const HealthPermissionPanel = ({ width, onPress, isUnavailable, isUnauthorised }
 
   const wrapperStyle = useMemo((): ViewStyle => ({ justifyContent: "flex-end", width }), [width]);
 
-  if (!isUnavailable && !isUnauthorised) {
+  // If we think health data is available but don't actually have any we show this panel
+  // Because in a real-world scenario there would always be at least some data if there's no issues
+  // However this isn't the case in detox, so we can skip this panel only if we're available but have no data
+  if (!isUnavailable && (!isUnauthorised || DETOX_ENABLED)) {
     return null;
   }
 

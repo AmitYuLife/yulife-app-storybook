@@ -4,9 +4,12 @@ import { processYuHealthResult } from "./helpers/sampleToAggregatedData";
 import {
   BucketSize,
   HealthDataType,
+  HealthPermissionStatus,
   HealthProvider,
+  HealthProviderCapability,
   IAggregateQueryRequest,
   IAggregateQueryResponse,
+  ICapabilityPermissions,
   IPedometerParams,
   ISampleQueryParams,
   ISampleQueryResponse,
@@ -17,10 +20,13 @@ import { ChallengesPayload, HealthProvider as GqlHealthProvider, PassiveChalleng
 import socket from "@services/socket";
 import moment from "moment";
 import { PedometerResponse, WithDataType } from "e2e/_utils/socket/events";
+import { YU_HEALTH_ALL_CAPABILITIES } from "@utils";
+import { getPermissionsConfig } from "@services/yuHealth/permissions.helpers";
 
 const steps: PedometerResponse[] = [];
 let yuHealthSampleQueries: WithDataType<ISampleQueryResponse>[] = [];
 let yuHealthAggregatedQueries: WithDataType<IAggregateQueryResponse>[] = [];
+let yuHealthPermissions: HealthProviderCapability[] = [];
 
 socket.onPedometerEvent((step) => steps.push(step));
 
@@ -30,6 +36,10 @@ socket.onSampleQueriesAdded?.((newQueries) => {
 
 socket.onAggregatedQueriesAdded?.((newQueries) => {
   yuHealthAggregatedQueries = [...yuHealthAggregatedQueries, ...newQueries.map((query) => ({ ...query }))];
+});
+
+socket.onFitkitAuthorised(() => {
+  yuHealthPermissions = YU_HEALTH_ALL_CAPABILITIES;
 });
 
 const aggregateQuery = async (params: IAggregateQueryRequest): Promise<{ result: IAggregateQueryResponse[] }> => {
@@ -181,6 +191,30 @@ export const fetchYuHealthStepsData = async ({
 
   const stepsResults = processYuHealthResult(yuHealthSteps, start, end, PassiveChallengeType.Steps);
   return { stepsResults };
+};
+
+export const getHealthPermissionStatuses = async (
+  capabilities: HealthProviderCapability[],
+  activeProvider: HealthProvider
+): Promise<ICapabilityPermissions> => {
+  const allPermissions = getPermissionsConfig(activeProvider);
+
+  const providerPermissions = capabilities.map((capability) => {
+    const isGranted = yuHealthPermissions.includes(capability);
+
+    return {
+      identifier: allPermissions.providerPermissions.find((permission) => permission.capability === capability)
+        ?.identifier,
+      status: isGranted ? HealthPermissionStatus.granted : HealthPermissionStatus.notDetermined,
+      systemPermissionsRequired: [],
+      capability,
+    };
+  });
+
+  return {
+    systemPermissions: [],
+    providerPermissions,
+  };
 };
 
 export const GQL_HEALTH_PROVIDER_TO_API_MAP = Object.freeze({
