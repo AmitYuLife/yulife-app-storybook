@@ -77,8 +77,10 @@ Feature("Mood Monitor", async () => {
 
   Scenario("I can see my mood monitor history", scenario.start, () => {
     Given("I login as a user with the mood monitor enabled", given.logInAndGoToTab("yu", data.CUSTOMER_5, data.AUTH_5), async () => {
-      Then("I should see my YuCoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 270));
+      When("I wait", when.wait(3000), async () => {
+        Then("I should see my YuCoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+        Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 270));
+      });
     });
     When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
       When("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async () => {
@@ -138,8 +140,10 @@ Feature("Mood Monitor", async () => {
 
   Scenario("I should be restricted from the mood monitor when business setting is not enabled", scenario.start, () => {
     Given("I login as a user with the mood monitor enabled ", given.logInAndGoToTab("yucoin", data.CUSTOMER_89, data.AUTH_89), async () => {
-      When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
-        Then("I see the correct yucoin earned today so far", then.textVisible("200 YuCoin"));
+      When("I wait", when.wait(3000), async () => {
+        When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+          Then("I see the correct yucoin earned today so far", then.textVisible("200 YuCoin"));
+        });
       });
     });
     When("I swipe down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.3), async () => {

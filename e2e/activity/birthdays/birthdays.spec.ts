@@ -97,7 +97,7 @@ Feature("As a user I can see birthday notifications in the app if consented, and
         });
       });
     });
-    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true)), async () => {
+    When("I tap to see the notification", when.tapID(ids.NOTIF_ICON_BADGE(true), 3000), async () => {
       Then("I should see the birthday notification for Michael Scott", then.birthdayNotificationVisible(data.CUSTOMER_18));
     });
   });
