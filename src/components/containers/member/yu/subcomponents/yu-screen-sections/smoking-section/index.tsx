@@ -6,7 +6,7 @@ import { Button } from "@components/molecules";
 import { SmokingSection as ISmokingSection } from "@redux/yu-screen/yu-screen.types";
 import colours from "@styles/colours";
 import { usePressedInWithDelay } from "@hooks";
-import { CaretIcon } from "@atoms/icon/caret-icon";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { useDispatch } from "react-redux";
 import { SMOKING_TILE_BUTTON, YUSCREEN_SMOKING_TILE, YUSCREEN_SMOKING_TILE_TITLE } from "@ids";
 
@@ -74,7 +74,7 @@ export const SmokingSection = (props: ISmokingSection) => {
           />
         ) : null}
         <View style={[styles.caretWrapper, buttonDynamicStyle]}>
-          <CaretIcon size={Style.adjust(16)} color={carretColor} />
+          <ArrowIcon size={Style.adjust(16)} color={carretColor} />
         </View>
         <View style={styles.cardContent}>
           <View style={styles.headingWrapper}>

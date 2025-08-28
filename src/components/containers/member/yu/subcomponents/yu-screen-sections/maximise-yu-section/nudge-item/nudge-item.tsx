@@ -5,7 +5,7 @@ import { memo, useCallback, useMemo } from "react";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { DoneNudgeIcon } from "@atoms/icon/nudge/done";
 import { NUDGE_ITEM_MARGIN, NUDGE_ITEM_WIDTH } from "./styles";
-import { CaretIcon } from "@atoms/icon/caret-icon";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { MaximiseYuItem } from "@redux/yu-screen/yu-screen.types";
 import Markdown from "@components/molecules/markdown/markdown";
 import { useDispatch } from "react-redux";
@@ -48,7 +48,7 @@ export const NudgeItem = memo(({ image, markdown, onPress, done, markdownStyleOv
         {done ? (
           <DoneNudgeIcon />
         ) : onPress ? (
-          <CaretIcon color={Colours.primary.p600} />
+          <ArrowIcon color={Colours.primary.p600} />
         ) : (
           <View style={styles.rightSpacer} />
         )}

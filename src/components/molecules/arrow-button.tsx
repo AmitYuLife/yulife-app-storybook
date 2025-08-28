@@ -7,8 +7,7 @@ type IArrowButtonProps = IArrowIconProps;
 
 export const ArrowButton = memo(
   ({
-    width = Style.adjust(24),
-    height = Style.adjust(24),
+    size = Style.adjust(24),
     color = Colours.primary.p600,
     intent = "transparent",
     direction = "right",
@@ -16,20 +15,20 @@ export const ArrowButton = memo(
     const arrowStyles = useMemo(() => {
       switch (intent) {
         case "primary":
-          return [styles.arrowPrimary, { width, height }];
+          return [styles.arrowPrimary, { width: size, height: size }];
         case "secondary":
-          return [styles.arrowSecondary, { width, height }];
+          return [styles.arrowSecondary, { width: size, height: size }];
         case "transparent":
-          return [styles.arrowTransparent, { width, height }];
+          return [styles.arrowTransparent, { width: size, height: size }];
         default:
-          return [{ width, height }];
+          return [{ width: size, height: size }];
       }
-    }, [intent, width, height]);
+    }, [intent, size]);
 
     return (
       <View style={arrowStyles}>
         <View style={styles.arrowInner}>
-          <ArrowIcon width={width} height={height} color={color} intent={intent} direction={direction} />
+          <ArrowIcon size={size} color={color} intent={intent} direction={direction} />
         </View>
       </View>
     );
