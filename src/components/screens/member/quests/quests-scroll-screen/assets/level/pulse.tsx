@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, View } from "react-native";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   size: number;
   pulseMaxSize: number;

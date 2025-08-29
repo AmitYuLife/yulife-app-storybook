@@ -2,7 +2,7 @@ import { TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { setActiveYuHealthProvider } from "@redux/yu-health/yu-health.actions";
 import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import {
   HealthProvider,
@@ -12,7 +12,7 @@ import {
   getCapabilities,
 } from "@yu-life/react-native-yu-health";
 import { memo, useCallback, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 const getStateColor = (state: string) => {

@@ -1,8 +1,8 @@
 import React from "react";
-import { ScrollView, View, StyleSheet } from "react-native";
+import { ScrollView, View } from "react-native";
 import NativeSvg from "@molecules/native-svg/native-svg";
 import { Rect } from "react-native-svg";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 
 export function RewardsListLoading() {
   return (

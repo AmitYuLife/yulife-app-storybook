@@ -1,9 +1,9 @@
 import { useCallback, memo, useState } from "react";
-import { GestureResponderEvent, LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { GestureResponderEvent, LayoutChangeEvent, View } from "react-native";
 import { Image } from "@atoms";
 import { Button } from "@molecules";
 import { IButtonProps } from "@components/molecules/button/button";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 // TODO: no imports from containers!
 import { useBattlePassAnimationContext } from "@components/containers/battle-pass/battle-pass-animation.context";
 

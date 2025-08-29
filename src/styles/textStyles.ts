@@ -1,8 +1,6 @@
 import { Style } from "@styles/index";
-import { Platform, StyleSheet } from "react-native";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type NamedStyles = StyleSheet.NamedStyles<any>;
+import { Platform } from "react-native";
+import { NamedStyles, StyleSheet } from "./style-sheet";
 
 export type TemplateTextType =
   | "h1"
@@ -166,6 +164,6 @@ export const styleDefinitions = {
     lineHeight: Style.adjust(96),
     letterSpacing: Style.getLetterSpacing(Style.adjust(1)),
   },
-} as Record<TemplateTextType, NamedStyles>;
+} as Record<TemplateTextType, NamedStyles<any>>;
 
-export const templateTextStyles: Record<TemplateTextType, NamedStyles> = StyleSheet.create(styleDefinitions);
+export const templateTextStyles: Record<TemplateTextType, NamedStyles<any>> = StyleSheet.create(styleDefinitions);

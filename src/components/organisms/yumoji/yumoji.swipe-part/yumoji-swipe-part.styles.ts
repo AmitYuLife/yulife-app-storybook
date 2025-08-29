@@ -1,5 +1,5 @@
-import { StyleSheet, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 
 export const ITEM_WIDTH = Style.DEVICE_WIDTH / 2;
 export const styles = StyleSheet.create({

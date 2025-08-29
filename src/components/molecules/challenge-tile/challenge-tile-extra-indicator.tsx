@@ -1,8 +1,8 @@
 import { Box, TextTemplate, TimeCounter } from "@atoms";
 import { EXTRA_CHALLENGE_INDICATOR } from "@ids";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IExtraChallengeIndicator {
   value: number;

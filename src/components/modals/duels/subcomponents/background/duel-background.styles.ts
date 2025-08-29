@@ -1,6 +1,7 @@
-import { ImageStyle, StyleSheet } from "react-native";
+import { ImageStyle } from "react-native";
 import { Style } from "@styles/index";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   backgroundImage: {
     top: 0,

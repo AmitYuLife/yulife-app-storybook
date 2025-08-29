@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { ImageStyle, Platform, StyleSheet, View, ViewStyle } from "react-native";
+import { ImageStyle, Platform, View, ViewStyle } from "react-native";
 import { CloseSvg, Image, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Countdown } from "./countdown";
 import { Pressable } from "..";
 import { BUTTON_CLOSE_CHALLENGE } from "@ids";

@@ -2,8 +2,8 @@ import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { memo } from "react";
-import { Image, StyleSheet } from "react-native";
-import { Style } from "@styles";
+import { Image } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { WALLET_CARD_TITLE } from "@ids";
 
 const SHADOW_COLOR = "#E7E7EB";

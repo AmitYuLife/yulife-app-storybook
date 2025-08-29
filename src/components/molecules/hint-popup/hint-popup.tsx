@@ -1,6 +1,5 @@
 import { Box, CloseSvg, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
-import { StyleSheet } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { SecondaryButton } from "../button";
 import Pressable from "../pressable/pressable";
 import { memo, useCallback, useEffect, useRef } from "react";

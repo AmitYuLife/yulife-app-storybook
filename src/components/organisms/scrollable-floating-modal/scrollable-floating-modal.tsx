@@ -2,10 +2,10 @@ import { BottomShadow, TextTemplate } from "@atoms";
 import { FloatingModal } from "@components/modals";
 import { Pressable } from "@components/molecules";
 import { t } from "@locale";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { ImageSource } from "expo-image";
 import { memo, ReactNode, useMemo } from "react";
-import { Modal, StyleSheet, View } from "react-native";
+import { Modal, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 

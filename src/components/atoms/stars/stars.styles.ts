@@ -1,6 +1,7 @@
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   starMidWrapper: {
     marginTop: Style.SCALE_UP_AND_DOWN(-4),

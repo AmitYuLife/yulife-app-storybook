@@ -1,5 +1,6 @@
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   activePage: {
     backgroundColor: "rgb(251, 207, 39)",

@@ -1,7 +1,7 @@
 import React, { memo, ReactNode, useCallback, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Image, SkeletonLoading, TextTemplate } from "@atoms";
-import { Style, Colours, TemplateTextType } from "@styles";
+import { Style, Colours, TemplateTextType, StyleSheet } from "@styles";
 import { LeaderboardPositionIcon } from "@atoms/icon/leaderboard-position-icon";
 import Avatar from "@components/molecules/avatar/avatar";
 import { TouchableOpacityWithDelay } from "@molecules";

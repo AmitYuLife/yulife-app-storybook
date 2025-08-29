@@ -1,8 +1,8 @@
 import React, { memo, MutableRefObject, useEffect, useRef } from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, View } from "react-native";
 import Lottie from "lottie-react-native";
 import { Image, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useGetLottieJson } from "@hooks";
 import { LottieView } from "@molecules";
 import media from "@styles/media";

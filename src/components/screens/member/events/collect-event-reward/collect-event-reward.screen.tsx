@@ -3,9 +3,9 @@ import { Button, LottieView } from "@molecules";
 import { IReward } from "@organisms/event-reward/event-reward";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { DETOX_ENABLED } from "@services/socket";
-import { Colours, Style, TOP_BAR } from "@styles";
+import { Colours, Style, TOP_BAR, StyleSheet } from "@styles";
 import React, { FC, memo, useEffect, useMemo, useRef, useState } from "react";
-import { Animated, Easing, ImageStyle, StyleProp, StyleSheet, View } from "react-native";
+import { Animated, Easing, ImageStyle, StyleProp, View } from "react-native";
 import { COLLECT_EVENT_REWARD_BUTTON } from "@ids";
 
 export enum eventState {

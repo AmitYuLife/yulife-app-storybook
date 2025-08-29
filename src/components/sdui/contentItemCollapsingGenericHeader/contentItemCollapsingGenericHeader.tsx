@@ -1,11 +1,11 @@
 import React, { memo } from "react";
-import { Animated, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 import { DETOX_ENABLED } from "@services/socket";
 import { ContentItemCollapsingGenericHeaderFragment as Props } from "@graphql/__generated";
 import { CloseSvg } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 
 type OwnProps = Props & {
   scrollValue: Animated.Value;

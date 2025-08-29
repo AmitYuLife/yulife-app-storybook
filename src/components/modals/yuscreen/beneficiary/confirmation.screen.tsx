@@ -2,8 +2,8 @@ import React from "react";
 import { View } from "react-native";
 import { Text } from "@atoms";
 import { Button } from "@molecules";
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { TextStyle, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { BENEFICIARY_DEFAULT_MODAL } from "@ids";
 
 interface DeleteConfirmationProps {

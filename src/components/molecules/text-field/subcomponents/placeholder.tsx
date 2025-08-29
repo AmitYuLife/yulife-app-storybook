@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Animated, TextStyle, StyleSheet, LayoutChangeEvent, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { Animated, TextStyle, LayoutChangeEvent, ViewStyle } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 
 interface Props {
   scale: Animated.Value;

@@ -2,9 +2,9 @@ import { memo, useMemo } from "react";
 import Animated, { interpolateColor, SharedValue, useAnimatedStyle } from "react-native-reanimated";
 import { getNumberStyle, SCROLLING_NUMBER_GAP } from "./constants";
 import { Box } from "@atoms";
-import { StyleSheet } from "react-native";
 import { omit } from "lodash";
 
+import { StyleSheet } from "@styles";
 const DEFAULT_NUMBER_STYLE = getNumberStyle();
 
 interface NumberDisplayProps {

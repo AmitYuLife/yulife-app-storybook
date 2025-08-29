@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput as Input, View, ViewStyle, TextStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { TextInput as Input, View, ViewStyle, TextStyle } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 
 interface IProps {
   value?: string;

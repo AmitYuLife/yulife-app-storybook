@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from "react";
 import { Button } from "@molecules";
 import { InspectDetailsItem } from "@organisms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { InspectItem } from "@organisms/inspect/details-item";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { INSPECT_SECTION_HEADER, CHALLENGE_DUEL_BUTTON } from "@ids";

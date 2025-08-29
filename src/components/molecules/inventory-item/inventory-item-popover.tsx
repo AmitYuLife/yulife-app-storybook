@@ -1,6 +1,6 @@
 import { TextTemplate, TimeCounter } from "@atoms";
-import { Colours, Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { View } from "react-native";
 import { SecondaryButton } from "../button";
 import { t } from "@locale";
 import { memo } from "react";

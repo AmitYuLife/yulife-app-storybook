@@ -1,8 +1,8 @@
 import { Box, TextTemplate } from "@atoms";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { LEVEL_STAR_COUNT } from "@ids";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { CheckIcon } from "@atoms/icon/check";
 import { CIRCLE_SIZE, CIRCLE_SIZE_UNADJUSTED } from "./level.styles";
 

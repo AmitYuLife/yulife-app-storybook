@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useState, useRef, useCallback } from "react";
-import { Animated, StyleSheet, View, findNodeHandle, Platform, ViewStyle } from "react-native";
+import { Animated, View, findNodeHandle, Platform, ViewStyle } from "react-native";
 import Blur from "./blur";
 import styles from "./blur-provider.styles";
 
+import { StyleSheet } from "@styles";
 type BackgroundColours = "default" | "dark";
 
 export interface IToggleBlur {

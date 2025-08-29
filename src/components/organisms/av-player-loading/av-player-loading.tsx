@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
-import { Style, Colours } from "@styles";
+import { View } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 const lottieJson = require("./meditation-lottie.json");
 import { MEDITOPIA_CHALLENGE_LOAD_SCREEN } from "@ids";

@@ -1,5 +1,5 @@
-import { Platform, StyleSheet } from "react-native";
-import { Colours, Style } from "@styles";
+import { Platform } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo, ReactNode, useMemo } from "react";
 import { Button } from "@components/molecules";
 import { useBackHandler } from "@hooks";

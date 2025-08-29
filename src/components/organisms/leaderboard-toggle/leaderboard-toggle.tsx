@@ -2,9 +2,9 @@ import { TextTemplate } from "@atoms";
 import { Switch, TouchableOpacityWithDelay } from "@components/molecules";
 import { SETTINGS_SWITCH } from "@ids";
 import { t } from "@locale";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo, useCallback } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 
 export interface IChangeConsentProps {
   name: string;

@@ -4,9 +4,9 @@ import { WalletIcon } from "@atoms/icon/wallet-icon";
 import { Pressable, ShineButton } from "@components/molecules";
 import { REWARD_SEARCH_INPUT } from "@ids";
 import { t } from "@locale";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import React, { memo, useCallback, useEffect, useRef } from "react";
-import { LayoutChangeEvent, StyleSheet, TextInput, TextInputProps } from "react-native";
+import { LayoutChangeEvent, TextInput, TextInputProps } from "react-native";
 import {
   FadeIn,
   useAnimatedRef,

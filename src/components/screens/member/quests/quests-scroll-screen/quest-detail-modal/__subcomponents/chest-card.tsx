@@ -1,9 +1,9 @@
 import { TextTemplate } from "@atoms";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { t } from "@locale";
 import { ChestYucoinSparkle } from "@atoms/icon/chest-yucoin-sparkle";
 import { memo } from "react";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 
 export const ChestCard = memo(() => (
   <View style={chestCardStyles.wrapper}>

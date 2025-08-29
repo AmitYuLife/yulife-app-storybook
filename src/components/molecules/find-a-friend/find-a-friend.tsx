@@ -1,7 +1,7 @@
 import { MagnifyingGlass, Pad, TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { VoidFunction } from "@utils";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { t } from "@locale";
 import { InviteIcon } from "@atoms/icon/invite-icon";
 import { memo } from "react";

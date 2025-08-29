@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, TextTemplate } from "@atoms";
-import { StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo, useState } from "react";
 import { Button } from "@components/molecules";
 import { useTranslation } from "@hooks";

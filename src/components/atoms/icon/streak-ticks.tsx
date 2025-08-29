@@ -1,7 +1,7 @@
 import * as React from "react";
 import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { View, ViewStyle } from "react-native";
 import Svg, { Mask, Path, G, Ellipse } from "react-native-svg";
 
 interface IProps {

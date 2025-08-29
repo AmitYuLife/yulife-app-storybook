@@ -1,8 +1,8 @@
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { ROUTES } from "@navigation/constants";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import React, { useCallback } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Navigation } from "@navigation/main";
 
 interface IProps {

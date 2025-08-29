@@ -1,5 +1,5 @@
-import { Colours, Style } from "@styles";
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { TextStyle, ViewStyle } from "react-native";
 
 const CONTENT_PUSHUP_SIZE = Style.adjust(36);
 const IMAGE_OVERSHOOT_HEIGHT = Style.adjust(40);

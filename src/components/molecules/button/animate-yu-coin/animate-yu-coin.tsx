@@ -1,8 +1,8 @@
 import { DETOX_ENABLED } from "@services/socket";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import LottieView from "lottie-react-native";
 import { memo } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 
 export const AnimateYuCoin = memo(() => (
   <View style={bubblingCoinsStyles.wrapper} pointerEvents="none">

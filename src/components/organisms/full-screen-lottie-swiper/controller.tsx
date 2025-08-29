@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { FULL_SCREEN_LOTTIE_SWIPER } from "@ids";
 

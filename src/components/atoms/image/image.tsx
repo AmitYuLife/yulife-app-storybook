@@ -1,6 +1,5 @@
 import React, { memo, useMemo, useState, useCallback } from "react";
 import {
-  StyleSheet,
   View,
   ViewStyle,
   ActivityIndicator,
@@ -10,7 +9,7 @@ import {
   DimensionValue,
 } from "react-native";
 import { Image as ExpoImage, ImageLoadEventData, ImageSource as Source, ImageStyle, ImageProps } from "expo-image";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { shallowEqual } from "react-redux";
 import { isWeb } from "@utils";
 import { round } from "lodash";

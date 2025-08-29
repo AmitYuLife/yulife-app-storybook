@@ -1,7 +1,6 @@
 import { memo } from "react";
 import { Box } from "@atoms";
-import { Colours } from "@styles";
-import { StyleSheet } from "react-native";
+import { Colours, StyleSheet } from "@styles";
 import { ParticleInstanceProps, ParticleSpawner, ParticleSpawnerDynamicCount } from "@organisms";
 import { QuadStarIcon } from "@atoms/icon/quad-star-icon";
 

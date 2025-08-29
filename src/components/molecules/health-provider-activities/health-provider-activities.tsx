@@ -1,7 +1,7 @@
 import React, { ReactNode, memo, useMemo } from "react";
 import { Box, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
-import { StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { StyleProp, ViewStyle } from "react-native";
 import { CheckIcon } from "@atoms/icon/check";
 import { StepsIcon } from "@atoms/icon/steps-icon";
 import { CrossIcon } from "@atoms/icon/cross";

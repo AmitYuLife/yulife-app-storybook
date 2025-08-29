@@ -1,6 +1,6 @@
 import React, { ComponentProps, memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ProgressBar } from "@molecules";
 import { TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { YuCoinAnimation } from "./yu-coin-animation/yu-coin-animation";

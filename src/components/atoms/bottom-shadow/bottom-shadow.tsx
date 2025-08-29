@@ -1,6 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet } from "react-native";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 
 const BottomShadow = () => {

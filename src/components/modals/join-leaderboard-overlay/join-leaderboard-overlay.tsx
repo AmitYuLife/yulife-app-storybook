@@ -1,8 +1,8 @@
 import React, { memo, useState, useCallback, useEffect } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { t } from "@locale";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Switch } from "@molecules";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";
 import { LEADERBOARD_DESC, LEADERBOARD_SWITCH, LEADERBOARD_TITLE } from "@ids";

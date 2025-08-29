@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { ContentItemInfoButtonFragment as GqlInfoButton } from "@graphql/__generated";
 import { Image, TextTemplate, Loading } from "@atoms";
 import { TouchableWithDelay } from "@components/molecules";
-import { StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { sduiEventActionCreator } from "../_utils/sduiEventActionCreator";
 
 type Props = Omit<GqlInfoButton, "onPress" | "answerKeys"> & {

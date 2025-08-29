@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TextTemplate, Image } from "@atoms";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { SecondaryButton } from "../button/secondary-button/secondary-button";
 
 const BUTTON_COLOR = "#F186BA";

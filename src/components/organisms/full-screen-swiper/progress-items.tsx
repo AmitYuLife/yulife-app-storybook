@@ -1,7 +1,7 @@
 import MaskedView from "@react-native-masked-view/masked-view";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ComponentProps, memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import Animated from "react-native-reanimated";
 
 type Props = {

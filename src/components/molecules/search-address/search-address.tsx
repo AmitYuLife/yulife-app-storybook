@@ -1,10 +1,10 @@
 import { NetworkStatus } from "@apollo/client";
 import React, { useCallback, useEffect, memo } from "react";
-import { View, StyleSheet, ViewStyle, SafeAreaView } from "react-native";
+import { View, ViewStyle, SafeAreaView } from "react-native";
 import { SearchInput, SearchList, SearchListEmpty, SearchItem, ISearchItem } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useBackHandler } from "@hooks";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 
 export interface ISearchAddress {
   onClose: () => void;

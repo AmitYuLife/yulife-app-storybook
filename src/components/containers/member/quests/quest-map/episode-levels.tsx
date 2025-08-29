@@ -1,5 +1,5 @@
 import { memo, useMemo } from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, View } from "react-native";
 import QuestMapLevel from "./quest-map-level";
 import { QuestsMapLevel } from "@components/screens/member/quests/quests-scroll-screen/quests.context";
 import { IEpisodeLevelConfig } from "./quest-map.interface";
@@ -10,7 +10,7 @@ import { ConnectingLines } from "./connecting-lines";
 import { createLines } from "./create-lines";
 import { useOnboardingAnimation } from "./animation/use-onboarding-animation";
 import { getShouldQuestMapAnimateOnboarding } from "@redux/quest-map/quest-map.selectors";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 
 interface IEpisodeLinesProps {
   levels: Record<number, IEpisodeLevelConfig>;

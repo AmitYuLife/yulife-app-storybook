@@ -3,11 +3,11 @@ import { range } from "lodash";
 import { ItemDetailsTipCard } from "./item-details-tip-card";
 import ItemDetailsItem from "./item-details-item";
 import Box from "@atoms/box/box";
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import ItemDetailsLoading from "./item-details-loading";
 import ItemDetailsStarsBackground from "./item-details-stars-background";
 import { FadeIn } from "react-native-reanimated";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { HalfModalItemDetails } from "@hooks";
 
 interface IItemDetailsContainer {

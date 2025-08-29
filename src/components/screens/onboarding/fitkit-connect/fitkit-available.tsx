@@ -1,7 +1,7 @@
 import React, { FC, useState, useCallback } from "react";
 import { isSamsung } from "@utils";
-import { Colours, Style } from "@styles";
-import { Alert, StyleSheet } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { Alert } from "react-native";
 import { Blurb, Heading, Pad } from "@atoms";
 import { Button } from "@molecules";
 import { getFitKitConnectCopy } from "./copy";

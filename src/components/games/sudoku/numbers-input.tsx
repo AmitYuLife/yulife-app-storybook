@@ -1,8 +1,8 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import NumberInput, { SUDOKU_NUMBER_PADDING, SUDOKU_PASSED_NUMBER_CUTOFF } from "./number-input";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import UndoIcon from "@atoms/icon/undo-svg";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo } from "react";
 import { useTranslation } from "@hooks";
 import { TextTemplate } from "@atoms";

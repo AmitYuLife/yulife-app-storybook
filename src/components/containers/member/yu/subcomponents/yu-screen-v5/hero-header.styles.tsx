@@ -1,6 +1,5 @@
-import { StyleSheet } from "react-native";
-import { Colours, Style, TOP_BAR } from "@styles";
 import { FULL_HEADER_HEIGHT, PLATFORM_SIZE } from "./yu-screen.styles";
+import { Colours, Style, TOP_BAR, StyleSheet } from "@styles";
 
 export const styles = StyleSheet.create({
   bottomHider: {

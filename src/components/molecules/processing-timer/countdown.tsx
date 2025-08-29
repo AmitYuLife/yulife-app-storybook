@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useRef, useState } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Stars1, Stars2 } from "@atoms/icon/stars-icon";
 import { CountdownUnit } from "./countdown-unit";
 import { getCountdownFromSeconds } from "./getCountdownFromDate";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 import { COUNTDOWN_COMPONENT } from "@ids";
 

@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Platform, StyleSheet, TextInput, TouchableOpacity, View, ViewStyle } from "react-native";
+import { Platform, TextInput, TouchableOpacity, View, ViewStyle } from "react-native";
 import { isEmpty, omit, omitBy } from "lodash";
 import {
   ContentItemChoiceDesign,
   ContentItemChoiceFragment as GqlChoice,
   ContentItemConfirmCheckboxType,
 } from "@graphql/__generated";
-import { Style, templateTextStyles, TemplateTextType } from "@styles";
+import { Style, templateTextStyles, TemplateTextType, StyleSheet } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { CheckBox } from "@molecules";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";

@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
-import { StyleSheet, ViewStyle, View, Platform } from "react-native";
+import { ViewStyle, View, Platform } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { VALUE_DESCRIPTION } from "@ids";
 
 type TextTemplateType = ComponentProps<typeof TextTemplate>["type"];

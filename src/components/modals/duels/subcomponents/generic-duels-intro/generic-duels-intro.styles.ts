@@ -1,5 +1,5 @@
-import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
-import { Style, TOP_BAR } from "@styles";
+import { ViewStyle, ImageStyle } from "react-native";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 
 export default StyleSheet.create({
   versusImage: {

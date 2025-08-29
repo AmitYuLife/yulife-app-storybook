@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, View } from "react-native";
 import moment from "moment";
 
 import { Loading, Pad, TextTemplate } from "@atoms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useMutation, useQuery } from "@apollo/client";

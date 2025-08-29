@@ -1,6 +1,6 @@
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { StreakTicks } from "@atoms/icon/streak-ticks";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React from "react";
 import { TextTemplate } from "@atoms";
 

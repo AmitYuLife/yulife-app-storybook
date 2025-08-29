@@ -1,6 +1,6 @@
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { TipCard } from "@organisms";
 import { Image } from "@redux/_core/types";
 

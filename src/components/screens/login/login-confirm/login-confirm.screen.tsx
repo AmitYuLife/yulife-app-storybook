@@ -4,12 +4,13 @@ import { Button, LinkButton } from "@molecules";
 import { t } from "@locale";
 import { CaptchaInput, useCaptcha } from "@organisms/captcha-input";
 import LoginFormWrapper from "../subcomponents/login-form-wrapper";
-import { Alert, StyleSheet } from "react-native";
+import { Alert } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { openInbox, EmailException } from "react-native-email-link";
 import Logger from "@services/logging/logger";
 import { LinkButtonSpacing } from "../subcomponents/link-button-spacing";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   email: string;
   showLoginWithPassword: boolean;

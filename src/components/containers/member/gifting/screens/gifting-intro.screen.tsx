@@ -1,8 +1,8 @@
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
 import { GenericHeadingPad } from "@organisms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { useTranslation } from "@hooks";
 import { GIFTING_INTRO } from "@ids";
 

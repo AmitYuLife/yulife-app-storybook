@@ -2,9 +2,9 @@ import { TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { IFeature } from "@redux/user/user.types";
-import { Colours, Style, TOP_BAR, TemplateTextType } from "@styles";
+import { Colours, Style, TOP_BAR, TemplateTextType, StyleSheet } from "@styles";
 import { FC, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import Config from "react-native-config";
 import { useSelector } from "react-redux";
 

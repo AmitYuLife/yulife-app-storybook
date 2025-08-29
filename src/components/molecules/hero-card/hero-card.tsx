@@ -1,8 +1,8 @@
 import { FC, memo, PropsWithChildren, useCallback, useMemo } from "react";
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground } from "react-native";
 import { EVENT_CARD_COLOUR, EVENT_CARD } from "@ids";
 import { getTheme } from "@theme";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Box } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { HeroCard as HeroCardProps } from "@utils/heroCards";

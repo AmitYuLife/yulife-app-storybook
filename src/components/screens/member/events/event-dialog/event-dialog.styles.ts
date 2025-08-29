@@ -1,5 +1,5 @@
-import { StyleSheet, Platform } from "react-native";
-import { Style, Colours } from "@styles";
+import { Platform } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 import { PADDING_TOP } from "@styles/top-bar.styles";
 
 export const STATUS_BAR_COVER_HEIGHT = Platform.select({

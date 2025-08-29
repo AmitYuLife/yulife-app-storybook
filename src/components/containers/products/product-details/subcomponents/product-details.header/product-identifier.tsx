@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { View, ViewStyle } from "react-native";
 
 type IProductIdentifier = { label: string; value: string };
 

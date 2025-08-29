@@ -1,8 +1,8 @@
 /* tslint:disable */
 import * as React from "react";
 import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
-import { Colours, Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { View } from "react-native";
 import { MALE_BODY } from "@ids";
 
 interface IProps {

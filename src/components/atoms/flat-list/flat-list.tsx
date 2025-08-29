@@ -1,11 +1,10 @@
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React, { memo, Ref, useEffect, useState } from "react";
 import {
   Animated,
   FlatListProps,
   ViewabilityConfig,
   FlatList as RNFlatList,
-  StyleSheet,
   ViewStyle,
   NativeSyntheticEvent,
   NativeScrollEvent,

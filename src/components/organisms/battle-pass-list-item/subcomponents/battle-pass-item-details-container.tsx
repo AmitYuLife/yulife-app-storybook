@@ -1,8 +1,7 @@
 import { memo } from "react";
-import { StyleSheet } from "react-native";
-import { Style } from "@styles";
-import { useBattlePassItemDetailsModalItems } from "@organisms/battle-pass-list-item/helpers";
+import { Style, StyleSheet } from "@styles";
 import { ItemDetailsContainer } from "@organisms";
+import { useBattlePassItemDetailsModalItems } from "../helpers";
 
 interface IBattlePassItemDetailsContainer {
   milestoneId: string;

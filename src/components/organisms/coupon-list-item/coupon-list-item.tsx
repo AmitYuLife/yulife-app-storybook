@@ -1,8 +1,7 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { memo } from "react";
 import { BoxOption } from "@molecules";
-import { Style } from "@styles";
-import { StyleSheet } from "react-native";
+import { Style, StyleSheet } from "@styles";
 
 interface IProps {
   title: string;

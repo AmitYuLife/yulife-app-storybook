@@ -1,6 +1,6 @@
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 
 interface IProps {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { Loading } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { GenericHeadingAbsolute } from "@organisms";
 
 interface IProps {

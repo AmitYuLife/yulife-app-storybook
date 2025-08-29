@@ -1,8 +1,9 @@
 import React, { memo } from "react";
 import { Colours } from "@styles/index";
-import { ActivityIndicator, ActivityIndicatorProps, StyleSheet, ViewStyle } from "react-native";
+import { ActivityIndicator, ActivityIndicatorProps, ViewStyle } from "react-native";
 import { LOADING_BAR } from "@ids";
 
+import { StyleSheet } from "@styles";
 interface Props {
   size?: ActivityIndicatorProps["size"];
   style?: ViewStyle;

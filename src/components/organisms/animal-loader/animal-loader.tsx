@@ -1,7 +1,8 @@
 import { LottieView } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { memo, useEffect, useState } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, View } from "react-native";
+import { StyleSheet } from "@styles";
 
 const LOADING_ANIMATION = require("./animal-loader-animation.json");
 

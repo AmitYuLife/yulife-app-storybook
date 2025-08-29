@@ -1,8 +1,8 @@
 import { Box, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
-import { Colours, Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { View } from "react-native";
 
 interface IBattlePassSeasonComplete {
   rewards: IBattlePassListItem[];

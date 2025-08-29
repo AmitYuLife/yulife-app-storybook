@@ -1,8 +1,7 @@
 import { Box, SkeletonLoading, Source } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Image } from "expo-image";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
 
 export type MobileGameUserWalletHeader = {
   item_type: "header";

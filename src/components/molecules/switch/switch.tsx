@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import { StyleSheet, View, Animated, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { View, Animated, ViewStyle } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 import { noop } from "@utils";
 import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
 

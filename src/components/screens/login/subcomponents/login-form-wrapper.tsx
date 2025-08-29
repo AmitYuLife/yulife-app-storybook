@@ -1,8 +1,8 @@
 import { memo } from "react";
 import { Box, Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
 import { CentredScreen } from "@molecules";
-import { Style } from "@styles";
-import { ScrollView, StyleSheet } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { ScrollView } from "react-native";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import LoginBackgroundSvg from "@components/screens/login/subcomponents/svgs/login-background-svg";

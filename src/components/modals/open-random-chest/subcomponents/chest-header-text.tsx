@@ -1,7 +1,7 @@
 import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import Animated, { FadeInUp } from "react-native-reanimated";
 
 interface IChestHeaderTextProps {

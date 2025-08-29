@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { IPickStageProps } from "../../../open-random-chest.types";
 import Animated, { FadeInUp } from "react-native-reanimated";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import RadioBattlePassRewardItem from "@components/molecules/radio-battle-pass-reward-item/radio-battle-pass-reward-item";
 import ClaimPrizeButton from "../../claim-prize-button";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import ChestHeaderText from "../../chest-header-text";
 import { GlowingSpinner, Image, TextTemplate } from "@atoms";
 import StageContainer from "../../stage-container";

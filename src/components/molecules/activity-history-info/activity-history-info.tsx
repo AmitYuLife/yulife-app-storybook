@@ -1,8 +1,8 @@
 import { Image, StarInline, TextTemplate } from "@atoms";
 import { ACTIVITY_HISTORY_CHALLENGE_VALUE } from "@ids";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 // Temp type:
 interface RemoteImage {

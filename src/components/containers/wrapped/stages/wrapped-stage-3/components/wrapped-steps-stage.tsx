@@ -1,11 +1,10 @@
 import { Box, Text, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { t } from "@locale";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import { addCommasToNumber } from "@utils";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
 import { FadeOut, FadeInUp, FadeOutDown, FadeInDown } from "react-native-reanimated";
 
 const CONTENT_DELAY = 3000;

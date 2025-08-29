@@ -1,7 +1,7 @@
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React, { memo } from "react";
 import Svg, { G, Path, Defs, LinearGradient, Stop, ClipPath } from "react-native-svg";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, View } from "react-native";
 import Rays from "../rays/rays";
 
 const variation = Dimensions.get("window").scale * 4 - Dimensions.get("window").fontScale;

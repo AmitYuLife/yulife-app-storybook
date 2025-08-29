@@ -1,6 +1,4 @@
-import { StyleSheet } from "react-native";
-import { Style } from "@styles";
-
+import { Style, StyleSheet } from "@styles";
 export default StyleSheet.create({
   taskWrapper: { marginBottom: Style.adjust(16) },
 });

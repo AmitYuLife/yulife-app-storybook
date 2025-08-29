@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 export const PlayGround = () => {
   return (

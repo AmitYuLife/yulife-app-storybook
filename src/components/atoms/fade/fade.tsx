@@ -1,7 +1,8 @@
 import { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { LinearGradient } from "react-native-linear-gradient";
 
+import { StyleSheet } from "@styles";
 export const Fade = memo(() => {
   const { start, end, colors } = useMemo(() => {
     return {

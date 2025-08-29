@@ -1,5 +1,4 @@
-import { Colours, Style } from "@styles";
-import { StyleSheet } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 
 export const ICON_SIZE = Style.adjust(24);
 export const CALENDAR_ICON = require("@assets/icons/calendar.png");

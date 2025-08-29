@@ -1,5 +1,5 @@
-import { Style } from "@styles";
-import { StyleSheet, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { ViewStyle } from "react-native";
 
 const CENTER_X = Style.DEVICE_WIDTH / 2;
 

@@ -1,6 +1,6 @@
 import React, { ComponentProps, Ref, memo, useCallback, useMemo } from "react";
-import { Animated, StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { Animated, View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Item } from "./item";
 import { Source } from "@atoms";
 

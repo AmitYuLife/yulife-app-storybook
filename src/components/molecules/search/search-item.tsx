@@ -1,8 +1,8 @@
 import React from "react";
-import { View, ListRenderItemInfo, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { View, ListRenderItemInfo, TextStyle, ViewStyle } from "react-native";
 import { Text } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { SEARCH_ITEM } from "@ids";
 
 export type ISearchItem<T> = T & {

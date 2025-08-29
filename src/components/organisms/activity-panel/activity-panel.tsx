@@ -1,6 +1,6 @@
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Block, Image, TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { GetYuCoinPowerInfoQuery } from "@graphql/__generated";
 import { ACTIVITY_PANEL_REWARD, ACTIVITY_PANEL_TITLE } from "@ids";

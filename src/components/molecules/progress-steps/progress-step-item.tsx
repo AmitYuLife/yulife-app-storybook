@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 // eslint-disable-next-line no-restricted-imports
-import { Animated, StyleSheet, View, ViewStyle, Text } from "react-native";
+import { Animated, View, ViewStyle, Text } from "react-native";
 import { ContentItemProgressSteps } from "@graphql/__generated";
 
 type IContentItemProgressStepsTheme = ContentItemProgressSteps["theme"];

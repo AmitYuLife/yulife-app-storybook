@@ -1,7 +1,7 @@
 import { TextTemplate, Image } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import React, { memo } from "react";
-import { StyleSheet, View, Image as RNImage, Platform } from "react-native";
+import { View, Image as RNImage, Platform } from "react-native";
 import { ProgressBar } from "@molecules";
 import { StarIcon } from "@atoms/icon/star-icon";
 import { ACTIVITY_LISTING } from "@ids";

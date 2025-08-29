@@ -1,6 +1,6 @@
 import { Box, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { Pressable, View } from "react-native";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { usePressedInWithDelay, useTranslation } from "@hooks";
 import Animated from "react-native-reanimated";

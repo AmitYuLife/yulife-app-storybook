@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
-import { Style, TemplateTextType } from "@styles";
+import { Style, TemplateTextType, StyleSheet } from "@styles";
 import { getMarkdownStyles } from "../markdown/markdown.styles";
 import { parseJSON } from "@utils";
 import { MARKDOWN } from "@ids";

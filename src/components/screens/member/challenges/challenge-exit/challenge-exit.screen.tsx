@@ -1,10 +1,10 @@
 import React from "react";
 import { TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { useBackHandler } from "@hooks";
 import styles from "./challenge-exit.styles";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { t } from "@locale";
 import { CANCEL_CANCEL_CHALLENGE } from "@ids";
 

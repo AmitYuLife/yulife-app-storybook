@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { SkeletonLoading } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { UserAvatarCoinCardSkeleton } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 interface IProps {
   handleClose: () => void;

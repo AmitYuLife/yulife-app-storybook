@@ -1,11 +1,11 @@
 import React, { memo, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import { CloseSvg, Image } from "@atoms";
 import { Pressable } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { useMutation, useQuery } from "@apollo/client";
 import { gql, MobileGameBattlePassType, MobileGameChestCollectionType } from "@graphql/__generated";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import ListPickReward from "./subcomponents/stages/pick-stages/list-pick-reward-stage";
 import { ChestStage, IPickStageProps } from "./open-random-chest.types";
 import GlowPickReward from "./subcomponents/stages/pick-stages/glow-pick-reward-stage";

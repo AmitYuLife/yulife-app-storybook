@@ -1,6 +1,6 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { Style, mapCoverToColor } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Style, mapCoverToColor, StyleSheet } from "@styles";
 import { Icon, TextTemplate } from "@atoms";
 import { CoverType } from "@graphql/__generated";
 import { POLICY_CERTIFICATE_TITLE } from "@ids";

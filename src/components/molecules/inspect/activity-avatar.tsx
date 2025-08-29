@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { ImageStyle, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { COMPARISON_NAMES } from "@ids";
 import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
 import Avatar from "../avatar/avatar";

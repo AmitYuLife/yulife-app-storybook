@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from "react";
-import { Animated, StyleSheet } from "react-native";
+import { Animated } from "react-native";
 import { ListItem } from "@organisms";
-import { NAV_BAR, Style } from "@styles";
+import { NAV_BAR, Style, StyleSheet } from "@styles";
 import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
 
 interface IProps {

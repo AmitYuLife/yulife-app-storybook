@@ -1,11 +1,12 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Text } from "@atoms";
 import styles from "./list-picker.styles";
 import { TEXT_TEMPLATE } from "@ids";
 import { t } from "@locale";
 import { TouchableOpacityWithDelay } from "@molecules";
 
+import { StyleSheet } from "@styles";
 interface IItem {
   label: string;
   onPress: () => void;

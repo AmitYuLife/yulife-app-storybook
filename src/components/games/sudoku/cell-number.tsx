@@ -8,9 +8,9 @@ import {
   SUDOKU_NUMBER_WAVE_SCALE_DURATION_REDUCE,
 } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import React, { memo, useEffect, useMemo } from "react";
-import { PixelRatio, StyleSheet, View } from "react-native";
+import { PixelRatio, View } from "react-native";
 import Animated, {
   BounceIn,
   withSequence,

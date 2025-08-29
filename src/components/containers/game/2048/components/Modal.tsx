@@ -1,5 +1,5 @@
-import { Colours, Style } from "@styles";
-import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { ScrollView, View, ViewStyle } from "react-native";
 
 interface IProps {
   children: React.ReactNode;

@@ -1,9 +1,9 @@
 import { TextTemplate } from "@atoms";
 import { BoxOption } from "@components/molecules";
 import { SUDOKU_NUMBER_INPUT } from "@ids";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 
 interface IProps {
   value: number;

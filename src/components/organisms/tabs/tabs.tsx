@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Image, Source, SkeletonLoading, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Pressable } from "@molecules";
 import { LEADBOARD_TAB } from "@ids";
 

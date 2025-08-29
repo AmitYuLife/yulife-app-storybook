@@ -3,10 +3,10 @@ import { Button } from "@components/molecules";
 import { useTranslation } from "@hooks";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import HealthProviderSelection from "@organisms/health-provider-selection/health-provider-selection";
-import { Style, TOP_BAR } from "@styles";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 import { HealthProvider } from "@yu-life/react-native-yu-health";
 import { memo } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView } from "react-native";
 
 interface IYuHealthConnectSelectScreenProps {
   activeProvider: HealthProvider;

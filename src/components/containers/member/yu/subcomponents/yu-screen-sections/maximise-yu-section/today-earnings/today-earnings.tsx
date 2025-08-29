@@ -1,7 +1,7 @@
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Coin } from "./coin";
 import { ProgressText } from "./progress-text";
 import { ProgressBar, TouchableOpacityWithDelay } from "@components/molecules";

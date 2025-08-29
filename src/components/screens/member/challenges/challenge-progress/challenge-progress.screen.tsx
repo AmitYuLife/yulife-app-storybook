@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
@@ -8,7 +8,7 @@ import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR, CHALLENGE_PROGRESS_SCRE
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Box, Image } from "@atoms";
 import { Pressable, TertiaryButton } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
 import { useSelector } from "react-redux";
 import { getActiveChallengeAppButton } from "@redux/levels/levels.selectors";

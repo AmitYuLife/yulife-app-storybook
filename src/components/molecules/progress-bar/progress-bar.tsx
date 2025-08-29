@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import { StyleSheet, View, ViewStyle, Animated } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle, Animated } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import Svg, { Rect } from "react-native-svg";
 import { WEEKLY_PROGRESS_BAR } from "@ids";
 import { GoldenAnimation } from "./golden-animation";

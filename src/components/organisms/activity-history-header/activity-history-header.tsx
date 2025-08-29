@@ -1,8 +1,8 @@
 import React, { memo, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { BottomShadow, TextTemplate } from "@atoms";
 import { Pressable } from "@molecules";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { last, upperFirst } from "lodash";
 import { DATE_FORMAT } from "@utils";
 import moment from "moment";

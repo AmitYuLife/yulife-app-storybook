@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { FlatList, Image, Loading } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { CHOICE_WIDTH, COMPONENT_HEIGHT } from "./styles";
 import { renderItem } from "./renderItem";
 import { Label } from "./label";

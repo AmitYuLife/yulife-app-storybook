@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import TertiaryButtonBase from "./tertiary-button.base";
 import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { BUTTON_ICON } from "./tertiary-button.helpers";
 import { Sizes } from "../button.types";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { TERTIARY_BUTTON } from "@ids";
 
 interface Props {

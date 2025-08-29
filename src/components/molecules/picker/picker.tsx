@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Style } from "@styles";
-import { Image as RNImage, StyleSheet, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { Image as RNImage, View } from "react-native";
 import { Text, Image } from "@atoms";
 import Assets, { BoxedHeart, Coins } from "./assets";
 import styles from "./picker.styles";

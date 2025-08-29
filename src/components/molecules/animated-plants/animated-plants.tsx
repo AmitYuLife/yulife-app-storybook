@@ -1,6 +1,6 @@
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ReanimatedPlant } from "./reanimated-plant";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";

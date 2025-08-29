@@ -1,6 +1,6 @@
 import * as React from "react";
-import { StyleSheet, ViewStyle, View, Insets } from "react-native";
-import { Colours, TemplateTextType } from "@styles";
+import { ViewStyle, View, Insets } from "react-native";
+import { Colours, TemplateTextType, StyleSheet } from "@styles";
 import { usePressedInWithDelay } from "@hooks";
 import { ButtonBase } from "./button.base";
 import { Sizes } from "./button.types";

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { SkeletonLoading } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { GenericHeadingAbsolute } from "@organisms";
 
 interface Props {

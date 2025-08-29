@@ -73,13 +73,18 @@ module.exports = {
         paths: [
           {
             name: "react-native",
-            importNames: ["Text"],
+            importNames: ["Text", "StyleSheet"],
             message:
-              "Use `TextTemplate` from `src/components/atoms/text/text-template.tsx` or `Text` from `src/components/atoms/text/text.tsx` instead of `Text` from `react-native`.",
+              "Use `TextTemplate` from `src/components/atoms/text/text-template.tsx` or `Text` from `src/components/atoms/text/text.tsx` instead of `Text` from `react-native`. Use `StyleSheet` from `@styles` instead of `StyleSheet` from `react-native`.",
           },
           {
             name: "react-native-modal",
             message: "Do not use react-native-modal - this is only included for the hCaptcha implementation",
+          },
+          {
+            name: "react-native-navigation",
+            importNames: ["Navigation"],
+            message: "Use `Navigation` from `@navigation/main` instead of `Navigation` from `react-native-navigation`.",
           },
         ],
       },

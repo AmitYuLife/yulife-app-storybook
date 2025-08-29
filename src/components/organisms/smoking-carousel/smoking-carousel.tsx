@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { HealthSmokingStreakCarouselItem } from "@redux/health-smoking/health-smoking.types";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { FlashList } from "@shopify/flash-list";
 import SmokingCarouselList from "./carousel/smoking-carousel-list";
 import { ISmokingCarouselListItem } from "@organisms/smoking-carousel/carousel/smoking-carousel-list-item";

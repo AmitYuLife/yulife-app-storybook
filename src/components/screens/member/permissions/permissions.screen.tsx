@@ -1,7 +1,7 @@
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style, templateTextStyles } from "@styles";
+import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
 import React, { memo, useCallback, useMemo } from "react";
-import { Linking, Platform, ScrollView, StyleSheet, View } from "react-native";
+import { Linking, Platform, ScrollView, View } from "react-native";
 import { t } from "@locale";
 import { TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@components/molecules";

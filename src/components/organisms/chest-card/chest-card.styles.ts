@@ -1,5 +1,5 @@
-import { Style } from "@styles";
-import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { ViewStyle, ImageStyle } from "react-native";
 
 export const CARD_WIDTH = Style.adjust(106);
 export const CARD_HEIGHT = Style.adjust(144);

@@ -1,10 +1,9 @@
 import { GlowingSpinner, Image } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { ImageSource } from "expo-image";
 import { memo, useMemo } from "react";
 import Animated, { FadeIn, useAnimatedStyle, withTiming, ZoomOut } from "react-native-reanimated";
 import { Pressable } from "..";
-import { StyleSheet } from "react-native";
 import { DETOX_ENABLED } from "@services/socket";
 import { YUMOJI_REWARD_PICKER_ITEM } from "@ids";
 import { t } from "@locale";

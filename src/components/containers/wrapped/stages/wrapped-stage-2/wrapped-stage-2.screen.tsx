@@ -1,13 +1,13 @@
 import { Box, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { memo, useCallback, useMemo, useState } from "react";
-import { Image, ScrollView, StyleSheet } from "react-native";
+import { Image, ScrollView } from "react-native";
 import { FadeIn, FadeInDown, FadeInUp, SlideInDown } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { IWrappedStageProps } from "../../wrapped.types";
 import WrappedFish from "./components/wrapped-fish";
 import WrappedChallengeCountCard from "./components/wrapped-challenge-count-card";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { useWrappedStage2Animations } from "./use-wrapped-stage-2-animations.hook";
 import { t } from "@locale";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";

@@ -1,8 +1,9 @@
 import React, { memo } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { ContentItemLinearGradientFragment as GqlLinearGradient } from "@graphql/__generated";
 
+import { StyleSheet } from "@styles";
 type Props = GqlLinearGradient;
 
 const _ContentItemLinearGradient = (props: Props) => {

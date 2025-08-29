@@ -2,8 +2,8 @@ import { Box, SkeletonLoading } from "@atoms";
 import { SecondaryButton } from "@components/molecules";
 import { t } from "@locale";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
 
+import { StyleSheet } from "@styles";
 export type MobileGameUserWalletMoreAction = {
   item_type: "see_more";
   onPress: () => void;

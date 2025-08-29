@@ -1,8 +1,8 @@
 import { Image } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { Colours, Style, templateTextStyles } from "@styles";
+import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo } from "react";
-import { Platform, StyleSheet, View, ViewStyle } from "react-native";
+import { Platform, View, ViewStyle } from "react-native";
 import { DoneNudgeIcon } from "@atoms/icon/nudge/done";
 import { NUDGE_ITEM_MARGIN, NUDGE_ITEM_WIDTH } from "./styles";
 import { ArrowIcon } from "@atoms/icon/arrow";

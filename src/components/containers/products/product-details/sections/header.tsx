@@ -1,9 +1,10 @@
 import React from "react";
-import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { LayoutChangeEvent, View, ViewStyle } from "react-native";
 import { ProductDetailsHeaderBar } from "../subcomponents/product-details.header-bar/product-details.header-bar";
 import { ContentItemLinearGradient } from "@components/sdui";
 import { GetYuScreenProductDetailsQuery } from "@graphql/__generated";
 
+import { StyleSheet } from "@styles";
 type IPropsHeader = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"]["header"];
 interface Props {
   header: IPropsHeader;

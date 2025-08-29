@@ -1,6 +1,6 @@
 import React, { memo, useMemo, useState, useCallback, ReactNode, isValidElement, ReactElement } from "react";
-import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { LayoutChangeEvent, View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TooltipBeak } from "./tooltip-beak";
 import { getMessageViewPosition, getStaticPosition } from "./helper";
 import { Navigation } from "@navigation/main";

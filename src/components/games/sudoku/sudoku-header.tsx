@@ -1,4 +1,5 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
+import { StyleSheet } from "@styles";
 import { Colours, Style } from "@styles";
 import { useSelector } from "react-redux";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";

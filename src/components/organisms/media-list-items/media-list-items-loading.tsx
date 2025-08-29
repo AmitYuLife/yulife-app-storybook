@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { SkeletonLoading } from "@atoms";
 import { BoxOption } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { BOX_HEIGHT, IMAGE_HEIGHT, IMAGE_WIDTH, styles as stylesList } from "./media-list-items.styles";
 
 interface IProps {

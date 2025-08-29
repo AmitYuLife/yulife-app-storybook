@@ -1,7 +1,6 @@
 import React, { memo } from "react";
-import { StyleSheet } from "react-native";
 import { Box, SkeletonLoading } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 const NotificationLoading = () => (
   <Box mt={16} mh={20} mb={22}>

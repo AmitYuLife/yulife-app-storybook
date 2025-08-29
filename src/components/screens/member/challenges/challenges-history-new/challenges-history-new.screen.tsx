@@ -7,9 +7,9 @@ import { useTranslation } from "@hooks";
 import { CHALLENGE_HISTORY_NEW_SLOT, SUDOKU_HOWTOPLAY_BUTTON } from "@ids";
 import { ActivityProgress, GenericHeadingAbsolute, GenericHeadingPad, MoreChallengesBanner } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IProps {
   onBack?: () => void;

@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { DarkScreen } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import styles from "./popover.styles";
 import { POPOVER } from "@ids";
 import Pressable from "../pressable/pressable";

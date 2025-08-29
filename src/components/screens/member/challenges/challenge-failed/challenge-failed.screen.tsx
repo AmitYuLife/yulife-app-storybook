@@ -1,12 +1,13 @@
 import { LevelLine, Stars, Text } from "@atoms";
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import styles from "./challenge-failed.screen.styles";
 import { Button, CentredScreen } from "@molecules";
 import { t } from "@locale";
 import { getTheme } from "@theme";
 import { CHALLENGE_FAILED_SCREEEN } from "@ids";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   level?: number;
   yuniversalMap?: number;

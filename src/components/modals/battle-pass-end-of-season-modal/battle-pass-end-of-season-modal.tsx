@@ -1,10 +1,10 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
 import RNLottieView from "lottie-react-native";
 import { DONATION_LEVEL_UP_MODAL } from "@ids";
 import { t } from "@locale";
 import { ItemDetailsReward } from "@organisms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { FadeIn, FadeInDown } from "react-native-reanimated";
 import { EndOfSeasonRewardsInfo, LottieView } from "@molecules";
 import { Box, TextTemplate } from "@atoms";

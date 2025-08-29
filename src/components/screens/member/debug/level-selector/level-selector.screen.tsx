@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo, memo } from "react";
-import { StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Button, TextInput } from "@molecules";
 import { TextTemplate } from "@atoms";

@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
-import { Image, StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { Image, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { IQuestMapItem } from "./quest-map.interface";
 import EpisodeLevels from "./episode-levels";
 import { RawImage } from "@atoms";

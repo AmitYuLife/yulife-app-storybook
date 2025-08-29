@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useRef, useState } from "react";
-import { StyleSheet, View, ViewStyle, Vibration } from "react-native";
+import { View, ViewStyle, Vibration } from "react-native";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { CopyIcon } from "@atoms/icon/copy-icon";
 import { Pressable } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";

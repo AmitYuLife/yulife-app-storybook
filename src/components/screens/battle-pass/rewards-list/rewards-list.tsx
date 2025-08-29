@@ -1,9 +1,9 @@
 import { Box, TextTemplate } from "@atoms";
 import { DONATIONS_LIST } from "@ids";
 import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IRewardsListProps {
   donationTemplates: IDonationListItem[];

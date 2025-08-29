@@ -1,7 +1,8 @@
 import { memo } from "react";
 import Svg, { Path } from "react-native-svg";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
+import { StyleSheet } from "@styles";
 type ItemDetailsStarsBackgroundProps = {
   width?: number;
   height?: number;

@@ -1,10 +1,10 @@
 import { TextTemplate } from "@atoms";
 import { CtaWarningSVG } from "@components/molecules/info-panel/svgs";
 import { useTranslation } from "@hooks";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 const SudokuSecondAttemptDisclaimer = () => {
   const t = useTranslation(["sudoku.staging.secondAttemptDisclaimer"]);

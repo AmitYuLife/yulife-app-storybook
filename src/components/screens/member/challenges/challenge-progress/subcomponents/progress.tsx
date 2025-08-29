@@ -1,11 +1,12 @@
 import * as React from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 import Svg, { Circle, Polygon } from "react-native-svg";
 import { padNum } from "@utils";
 import { TextTemplate } from "@atoms";
 import styles from "./progress.styles";
 import { GetMobileQuestLevelChallengeDetailsQuery } from "@graphql/__generated";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   amount: number;
   goal: number;

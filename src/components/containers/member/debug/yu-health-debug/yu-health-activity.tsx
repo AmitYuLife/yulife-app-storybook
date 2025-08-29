@@ -1,12 +1,13 @@
 import { TextTemplate } from "@atoms";
 import { useUserFeatures } from "@hooks";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import moment from "moment";
 import { PassiveChallengeType } from "@graphql/__generated";
 import { IFetchActivityResponse, fetchFitkitActivityData } from "@services/fitkit/fitkit.helpers";
 import { fetchYuHealthActivityData } from "@services/fitkit/yu-health.helpers";
 
+import { StyleSheet } from "@styles";
 const DATA_DIFFERENCE_COLOR = "rgba(255,0,0,.2)";
 const DATA_SAME_COLOR = "rgba(0,255,0,.2)";
 

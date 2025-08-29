@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { View, Alert, StyleSheet } from "react-native";
+import { View, Alert } from "react-native";
 import { getUserStart } from "@redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
@@ -20,6 +20,7 @@ import { t } from "@locale";
 import { GetDuelsQuery, gql } from "@graphql/__generated";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   duelId: string;
   componentId: string;

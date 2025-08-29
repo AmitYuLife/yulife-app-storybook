@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { SkeletonLoading, useLoadingAnimation } from "@atoms";
 import Svg, { Ellipse } from "react-native-svg";
 import Animated from "react-native-reanimated";

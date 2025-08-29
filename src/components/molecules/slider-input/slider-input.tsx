@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useMemo } from "react";
-import { StyleSheet, View, Animated } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, Animated } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import { Pressable } from "@components/molecules";
 import { SLIDER_INPUT, SLIDER_LABEL } from "@ids";

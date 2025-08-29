@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import React, { memo, useMemo } from "react";
 // eslint-disable-next-line no-restricted-imports
-import { View, Text, StyleSheet, ViewStyle } from "react-native";
+import { View, Text, ViewStyle } from "react-native";
 
 import { t } from "@locale";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { YucoinPowerButtonBase } from "@molecules";
 import { Box, Image, TextTemplate } from "@atoms";

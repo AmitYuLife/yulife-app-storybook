@@ -1,8 +1,8 @@
-import { LayoutChangeEvent, ScrollView, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, ScrollView, View } from "react-native";
 import { CloseSvg, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { Button, SecondaryButton, TouchableOpacityWithDelay } from "@components/molecules";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 import { useCallback, useMemo, useState } from "react";
 import { ScrollableContentOverlayProps } from "./types";

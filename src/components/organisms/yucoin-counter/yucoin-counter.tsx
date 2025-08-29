@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { StyleSheet, TextStyle, View } from "react-native";
+import { TextStyle, View } from "react-native";
 import { Counter } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";

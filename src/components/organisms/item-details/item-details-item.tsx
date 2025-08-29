@@ -1,8 +1,8 @@
 import { ImageSource } from "expo-image";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 type ItemDetailsItemProps = {
   icon: ImageSource;

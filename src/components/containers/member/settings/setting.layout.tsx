@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ListRenderItemInfo } from "react-native";
+import { View, ListRenderItemInfo } from "react-native";
 import { FlatList } from "@atoms";
 import { SettingsHeader } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad, RadioListItem, RadioListItemProps } from "@organisms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 
 type Props = {

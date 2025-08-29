@@ -1,6 +1,6 @@
 import React, { ComponentProps, memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms/text/text-template";
 import Markdown from "@components/molecules/markdown/markdown";
 import { Hyperlink } from "@molecules";

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { StarIcon } from "@atoms/icon/star-icon";
 import { TextTemplate } from "@atoms";
 import { useScreenReaderChange } from "@hooks";

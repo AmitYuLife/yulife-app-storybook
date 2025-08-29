@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { ActivityAvatar } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { COMPARISON_STATS_SECTION, LEFT_USER, RIGHT_USER, SINGLE_USER } from "@ids";
 import { t } from "@locale";
 import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";

@@ -1,6 +1,5 @@
 import React, { memo, useState, useRef, useEffect } from "react";
 import {
-  StyleSheet,
   View,
   FlatList as RNFlatList,
   Animated,
@@ -8,7 +7,7 @@ import {
   NativeScrollEvent,
   ViewStyle,
 } from "react-native";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { FlatList, Loading, SwipeArrowLeft, SwipeArrowRight, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Yumoji } from "./yumoji";

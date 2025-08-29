@@ -1,12 +1,12 @@
 import React, { memo } from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
+import { KeyboardAvoidingView, Platform } from "react-native";
 import { UnauthorisedGradient } from "@atoms";
 import { CentredScreen } from "@molecules";
 import { LoginForm, LoginFormProps } from "./subcomponents/login-form";
 import { ServerList } from "../subcomponents/server-list";
 import { REGION } from "@locale";
 import Animated, { FadeIn } from "react-native-reanimated";
-import { TOP_BAR } from "@styles";
+import { TOP_BAR, StyleSheet } from "@styles";
 
 type LoginScreenProps = LoginFormProps & {
   regionSelect?: {

@@ -1,8 +1,8 @@
 import { GHI_REWARD_ICON, LEVEL_CHALLENGE_BUTTON } from "@ids";
 import moment from "moment";
 import React, { memo, useMemo, useState } from "react";
-import { Animated, StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { Animated, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import useInterval from "@use-it/interval";
 import { getCurrentWorld, getNormalizedLevel } from "@utils";
 import { QuestsMapLevel } from "@components/screens";

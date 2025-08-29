@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import { BoxOption } from "@molecules";

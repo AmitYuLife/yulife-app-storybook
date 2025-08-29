@@ -1,7 +1,7 @@
 import { TextTemplate } from "@atoms";
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { EyeOpenIcon } from "@atoms/icon/eye-open-icon";
 import { EyeClosedIcon } from "@atoms/icon/eye-closed-icon";
 import { Pressable } from "@molecules";

@@ -1,8 +1,8 @@
 import React, { useState, useCallback, memo, useMemo, forwardRef } from "react";
 import TextInput, { IProps as TextInputProps } from "./text-input";
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { TouchableWithoutFeedback, View } from "react-native";
 import { Eye } from "@atoms/icon/eye";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 
 type IProps = Omit<TextInputProps, "type">;

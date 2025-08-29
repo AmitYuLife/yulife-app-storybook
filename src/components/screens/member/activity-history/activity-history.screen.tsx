@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ACTIVITY_HISTORY_SCREEN } from "@ids";
 import { t } from "@locale";
 import {
@@ -12,7 +12,7 @@ import {
 import { IActivityHistoryDay } from "@organisms/activity-history-day/activity-history-day";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import ActivityHistoryEmpty from "./activity-history-empty";
 
 type ISelectedMonth = {

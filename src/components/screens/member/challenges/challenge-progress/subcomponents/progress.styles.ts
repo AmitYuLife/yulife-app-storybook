@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
 import { Colours, Style } from "../../../../../../styles";
 
+import { StyleSheet } from "@styles";
 const styles = StyleSheet.create({
   bar: {
     height: Style.PIXEL * 4,

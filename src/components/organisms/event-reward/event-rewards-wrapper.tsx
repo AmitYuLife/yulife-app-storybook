@@ -1,7 +1,7 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import React, { memo, useCallback } from "react";
 
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import EventReward, { IReward } from "./event-reward";
 import { FlashList, ListRenderItem } from "@shopify/flash-list";
 

@@ -1,5 +1,5 @@
-import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { ViewStyle, ImageStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 
 const styles = StyleSheet.create({
   wrapper: {

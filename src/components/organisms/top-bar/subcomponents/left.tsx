@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { View, StyleSheet, TextStyle, ViewStyle, Insets } from "react-native";
+import { View, TextStyle, ViewStyle, Insets } from "react-native";
 import { BUTTON_TOP_LEFT_BAR, MENU_ICON_BADGE, NOTIF_ICON_BADGE } from "@ids";
 import { Back, Box, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
@@ -9,6 +9,7 @@ import { t } from "@locale";
 import NotificationSvg from "@atoms/notification/notification-svg";
 import { TouchableOpacityWithDelay } from "@molecules";
 
+import { StyleSheet } from "@styles";
 export enum LeftIcon {
   MENU = "Menu",
   BACK = "Back",

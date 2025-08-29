@@ -1,7 +1,8 @@
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import { Colours, Style } from "@styles/index";
 import { ImageStyle } from "@atoms";
 
+import { StyleSheet } from "@styles";
 export const DUEL_WAGER_BUTTON_HEIGHT = Style.adjust(84);
 export const DUEL_WAGER_BUTTON_TOP_MARGIN = Style.adjust(20);
 

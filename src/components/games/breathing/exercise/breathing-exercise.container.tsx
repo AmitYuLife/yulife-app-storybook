@@ -3,10 +3,9 @@ import { BoxOption, Button, LottieView } from "@components/molecules";
 import { Navigation } from "@navigation/main";
 import { useNavigation } from "@navigation/navigation.context";
 import { GenericHeadingAbsolute } from "@organisms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import useInterval from "@use-it/interval";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { StyleSheet } from "react-native";
 import {
   cancelAnimation,
   Easing,

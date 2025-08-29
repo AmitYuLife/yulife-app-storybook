@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { FlatList as RNFlatList, ListRenderItem, StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style, TOP_BAR } from "@styles";
+import { FlatList as RNFlatList, ListRenderItem, View, ViewStyle } from "react-native";
+import { Colours, Style, TOP_BAR, StyleSheet } from "@styles";
 import { FlatList, TextTemplate } from "@atoms";
 import { IPageItem, Page } from "./page";
 import { Dismiss } from "./dismiss";

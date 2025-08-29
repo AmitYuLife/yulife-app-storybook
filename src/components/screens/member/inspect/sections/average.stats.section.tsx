@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { AvatarItems } from "@organisms";
-import { Colours, Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import AverageItem, { IAverageItem } from "@components/molecules/inspect/average-item";
 import { INSPECT_ACTIVITY_SECTION, INSPECT_ACTIVITY_PERIOD, INSPECT_ACTIVITY_HEADER } from "@ids";

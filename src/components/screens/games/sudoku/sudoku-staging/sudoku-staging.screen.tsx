@@ -1,6 +1,6 @@
 import { Button } from "@components/molecules";
 import { memo, useMemo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import {
   GetMobileSocialGroupLeaderboardItemsQuery,
   GetMobileQuestLevelChallengeDetailsQuery,
@@ -10,7 +10,7 @@ import { GenericHeadingAbsolute } from "@organisms";
 import { useSelector } from "react-redux";
 import SudokuStats from "@components/games/sudoku/sudoku-stats";
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import moment from "moment";
 import SudokuHowToPlayIcon from "@atoms/icon/sudoku-how-to-play-svg";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";

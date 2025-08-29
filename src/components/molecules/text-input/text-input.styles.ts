@@ -1,6 +1,7 @@
-import { ImageStyle, Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, Platform, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   iconWrapper: {
     marginEnd: Style.adjust(16),

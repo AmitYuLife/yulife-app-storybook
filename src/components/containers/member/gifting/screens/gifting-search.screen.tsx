@@ -1,10 +1,10 @@
 import { memo } from "react";
 import { UserSearchScreen } from "@screens";
 import { UserSelection } from "@organisms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import GiftingSearchItem from "../gifting-search-item.container";
 import { UserSearchItem } from "@redux/_core/types";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 type Props = {
   selectedUsers: UserSearchItem[];

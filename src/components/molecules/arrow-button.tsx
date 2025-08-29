@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ArrowIcon, IArrowIconProps } from "@atoms/icon/arrow";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 type IArrowButtonProps = IArrowIconProps;
 

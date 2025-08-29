@@ -1,10 +1,10 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { memo, useCallback } from "react";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { Button, LottieView, SecondaryButton } from "@components/molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { AppleWatchIcon } from "@atoms/icon/apple-watch-icon";
 import { useTranslation } from "@hooks";
 import { useDispatch } from "react-redux";

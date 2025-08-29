@@ -1,6 +1,6 @@
-import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
+import { View, ViewStyle, TextStyle } from "react-native";
 import { Navigation } from "@navigation/main";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import { SecondaryButton } from "@molecules";
 import { MODALS, ROUTES } from "@navigation/constants";

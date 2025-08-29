@@ -1,8 +1,8 @@
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Box, Loading } from "@atoms";
 import { GenericHeadingPad } from "@organisms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 const GiftingLoadingScreen = () => {
   return (

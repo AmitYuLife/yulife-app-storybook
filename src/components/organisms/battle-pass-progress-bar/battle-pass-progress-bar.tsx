@@ -1,6 +1,6 @@
 import { Image, TextTemplate } from "@atoms";
 import React, { memo, useEffect, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
 import Animated, {
   Extrapolation,
@@ -13,7 +13,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import BattlePassFlashCoin from "./subcomponents/battle-pass-flash-coin";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { BUBBLE_CONTAINER_SIZE } from "./battle-pass-progress-bar.constants";
 import { DONATIONS_PROGRESS_BAR } from "@ids";
 import { t } from "@locale";

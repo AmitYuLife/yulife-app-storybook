@@ -1,8 +1,9 @@
+import { StyleSheet } from "@styles";
 /* tslint:disable */
 import * as React from "react";
 import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 import { Colours, Style } from "@styles/index";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { FEMALE_BODY } from "@ids";
 
 interface IProps {

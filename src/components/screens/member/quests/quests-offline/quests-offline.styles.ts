@@ -1,5 +1,5 @@
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { ImageStyle, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 
 const styles = StyleSheet.create({
   background: {

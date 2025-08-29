@@ -1,9 +1,10 @@
 import * as React from "react";
 import { FC } from "react";
 // eslint-disable-next-line no-restricted-imports
-import { StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
+import { Text, TextStyle, View, ViewStyle } from "react-native";
 import styles from "./blurb.styles";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   label: string;
   wrapperStyle?: ViewStyle;

@@ -1,6 +1,7 @@
 import { CIRCLE_SIZE } from "@components/screens/member/quests/quests-scroll-screen/assets/level/level.styles";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 
+import { StyleSheet } from "@styles";
 export const DropShadow = () => (
   <View pointerEvents="none" style={styles.wrapper}>
     <View style={styles.shadow} />

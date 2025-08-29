@@ -1,5 +1,4 @@
-import { StyleSheet } from "react-native";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 
 export const permissionsStyles = StyleSheet.create({
   settingsHeader: {

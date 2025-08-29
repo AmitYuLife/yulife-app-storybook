@@ -1,5 +1,5 @@
-import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { Platform, TextStyle, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 
 const styles = StyleSheet.create({
   container: {

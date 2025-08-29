@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Button, LinkButton } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 import { GP_CONTINUE } from "@ids";
 

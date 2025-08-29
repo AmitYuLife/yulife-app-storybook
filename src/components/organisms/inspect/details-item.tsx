@@ -1,8 +1,8 @@
 import React, { memo, useRef, useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Pressable } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { InfoIcon } from "@atoms/icon/info-icon";
 import { RemoteImage } from "@graphql/__generated";
 import { addCommasToNumber } from "@utils";

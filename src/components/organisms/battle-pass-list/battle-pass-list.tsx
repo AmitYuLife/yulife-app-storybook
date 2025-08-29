@@ -1,11 +1,11 @@
 import React, { forwardRef, memo, useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import BattlePassListItem, {
   ENTERPRISE_REWARD_ITEM_WIDTH,
   IBattlePassListItem,
 } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { ContentStyle, FlashList } from "@shopify/flash-list";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { BATTLE_PASS_LIST } from "@ids";
 import { VoidFunction } from "@utils";
 

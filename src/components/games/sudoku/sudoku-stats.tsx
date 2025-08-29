@@ -1,7 +1,7 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ISudokuStore } from "@redux/sudoku/sudoku.types";
 import SudokuStatsList from "./sudoku-stats-list";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ISudokuResults, ISudokuStats } from "./sudoku.interface";
 import { memo } from "react";
 

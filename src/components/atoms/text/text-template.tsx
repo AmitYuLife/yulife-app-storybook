@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { AccessibilityRole, ColorValue, StyleSheet, Text, TextStyle } from "react-native";
-import { Colours, TemplateTextType, templateTextStyles } from "@styles";
+import { AccessibilityRole, ColorValue, Text, TextStyle } from "react-native";
+import { Colours, TemplateTextType, templateTextStyles, StyleSheet } from "@styles";
 
 export type ITextDecorationType = "underline" | "strikeThrough" | "none";
 

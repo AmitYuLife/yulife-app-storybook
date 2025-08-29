@@ -1,12 +1,12 @@
 import { Back, Box, TextTemplate } from "@atoms";
 import { memo, useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable } from "react-native";
 import { FadeIn, FadeInDown, FadeOut, FadeOutDown } from "react-native-reanimated";
 import { Button } from "@components/molecules";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import LinearGradient from "react-native-linear-gradient";
 import WrappedLogo from "../../components/wrapped-logo";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import BalloonYugi from "./components/balloon-yugi";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 import { t } from "@locale";

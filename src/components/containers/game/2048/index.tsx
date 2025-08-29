@@ -1,12 +1,12 @@
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { GameScreen } from "./components";
 import { DEFAULT_GAME_CONFIG, DEFAULT_GAME_OPTIONS, theme } from "./constants";
 import { TextTemplate } from "@atoms";
 import { t } from "@locale";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import { showGameIntroModal, ShowGameIntroModalProps } from "@containers/game/2048/gameIntro.modal";
 import { usePressedInWithDelay } from "@hooks";

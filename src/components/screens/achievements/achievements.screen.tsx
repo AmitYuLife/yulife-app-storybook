@@ -7,9 +7,8 @@ import { showYuModal } from "@navigation/root";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import AchievementCard, { IAchievementCardProps } from "@organisms/achievement-card/achievement-card";
 import { FlashList } from "@shopify/flash-list";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo } from "react";
-import { StyleSheet } from "react-native";
 import { ChipList } from "@molecules";
 
 const onLeftIconPress = () => Navigation.pop(ROUTES.achievements);

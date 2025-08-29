@@ -1,5 +1,4 @@
-import { Style, Colours } from "@styles";
-import { StyleSheet } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 
 export const MAX_PROGRESS_WIDTH = Style.DEVICE_WIDTH - Style.adjust(52 * 2);
 export const MAX_UI_PROGRESS_PERCENTAGE = 1;

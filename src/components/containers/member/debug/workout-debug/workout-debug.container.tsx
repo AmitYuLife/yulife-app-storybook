@@ -3,7 +3,7 @@ import { Button } from "@components/molecules";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, TOP_BAR } from "@styles";
+import { Colours, TOP_BAR, StyleSheet } from "@styles";
 import { isAndroid } from "@utils";
 import {
   HealthProviderCapability,
@@ -14,7 +14,7 @@ import {
 } from "@yu-life/react-native-yu-health";
 import moment from "moment";
 import { memo, useCallback, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 const WorkoutDebugContainer = () => {
   const [hasPermission, setHasPermission] = useState<boolean>(false);

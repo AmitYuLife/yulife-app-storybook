@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Animated, StyleSheet } from "react-native";
+import { Animated } from "react-native";
 import { BlurView } from "@react-native-community/blur";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   blurRef: number;
   wrapperOpacity: Animated.Value;

@@ -1,5 +1,5 @@
-import { Colours, Style, templateTextStyles } from "@styles";
-import { Platform, StyleSheet } from "react-native";
+import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
+import { Platform } from "react-native";
 
 export const styles = StyleSheet.create({
   flex: {

@@ -1,6 +1,7 @@
 import { Style } from "@styles/index";
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 
+import { StyleSheet } from "@styles";
 const styles = StyleSheet.create({
   wrapper: {
     alignItems: "center",

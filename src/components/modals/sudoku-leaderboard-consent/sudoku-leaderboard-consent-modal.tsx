@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { TextTemplate, Wrapper } from "@atoms";
-import { Style, TOP_BAR } from "@styles";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler, useTranslation } from "@hooks";
 import LeaderboardConsentImage from "@components/games/sudoku/leaderboard/LeaderboardConsentImage";

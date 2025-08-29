@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { Button, SecondaryButton } from "@molecules";
 import moment from "moment";
 import useInterval from "@use-it/interval";

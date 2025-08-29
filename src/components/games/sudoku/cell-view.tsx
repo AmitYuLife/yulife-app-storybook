@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import Animated, { Easing, useSharedValue, useAnimatedStyle, withDelay, withTiming } from "react-native-reanimated";
 import CellNumber from "./cell-number";
 import {
@@ -9,7 +9,7 @@ import {
   SUDOKU_QUADRANT_DIMENSIONS,
   SUDOKU_SAME_VALUE_CELL_DELAY_TIME,
 } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { CELL_ROW_COLUMN } from "@ids";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 

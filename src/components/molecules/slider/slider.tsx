@@ -1,8 +1,8 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { P2P_SLIDER, P2P_SLIDER_ITEM } from "@ids";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useRef, useEffect } from "react";
-import { Pressable, ScrollView, StyleSheet } from "react-native";
+import { Pressable, ScrollView } from "react-native";
 
 type BaseItem = {
   id?: string;

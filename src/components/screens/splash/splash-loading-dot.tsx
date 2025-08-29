@@ -1,6 +1,6 @@
 import { Colours, Style } from "@styles/index";
 import { memo, useEffect, useMemo } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -9,6 +9,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from "react-native-reanimated";
+import { StyleSheet } from "@styles";
 
 type DotProps = {
   delay?: number;

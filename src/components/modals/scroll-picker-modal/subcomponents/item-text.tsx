@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { Animated, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
+import { Animated, TextStyle, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
 import { ITEM_HEIGHT } from "../scroll-picker.styles";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { getActiveTextOpacityValue, getInactiveTextOpacityValue } from "../scroll-picker.animation";
 
 interface Props {

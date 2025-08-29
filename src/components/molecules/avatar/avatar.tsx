@@ -1,7 +1,7 @@
 import { Image } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { EmptyMaleBody } from "../yumoji/assets/empty-male-body-svg";
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import LottieView from "../lottie-view/lottie-view";

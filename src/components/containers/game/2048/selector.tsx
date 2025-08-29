@@ -4,7 +4,7 @@ import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Image } from "expo-image";
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { DEFAULT_GAME_CONFIG, DEFAULT_GAME_STATE_MODALS, theme } from "./constants";
 import { TextTemplate } from "@atoms";
 import {
@@ -17,7 +17,7 @@ import {
   YUNITY_SWIPE_SETTINGS,
 } from "@ids";
 import { t } from "@locale";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { GameBoardSize, GameMode, GameValue } from "./game";
 import { GameSkin } from "./types";
 

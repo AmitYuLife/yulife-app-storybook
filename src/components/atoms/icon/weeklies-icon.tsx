@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import Svg, { Rect, Path, Circle } from "react-native-svg";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { LottieView } from "@molecules";
 
 const shineLottie = require("@assets/lottie/shine.json");

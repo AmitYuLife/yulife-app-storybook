@@ -1,7 +1,7 @@
 import { Box, TextTemplate, Image } from "@atoms";
 import { memo } from "react";
-import { NAV_BAR, Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { NAV_BAR, Style, StyleSheet } from "@styles";
+import { View } from "react-native";
 import { t } from "@locale";
 
 const RewardsUnlockEmpty = () => {

@@ -1,8 +1,8 @@
 import React from "react";
 import WebView from "react-native-webview";
-import { View, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { View, KeyboardAvoidingView } from "react-native";
 import Config from "react-native-config";
-import { Style, TOP_BAR } from "@styles";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { IS_DEVELOP } from "@utils";
 

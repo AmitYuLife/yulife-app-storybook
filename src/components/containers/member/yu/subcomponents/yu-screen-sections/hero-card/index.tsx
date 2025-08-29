@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo } from "react";
-import { StyleSheet } from "react-native";
-import { Style, templateTextStyles } from "@styles";
 import { Box, Image } from "@atoms";
+import { Style, templateTextStyles, StyleSheet } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import { HeroCardSection as IYuScreenBannerSection } from "@redux/yu-screen/yu-screen.types";
 import { useDispatch } from "react-redux";

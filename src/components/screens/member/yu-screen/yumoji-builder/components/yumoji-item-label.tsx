@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Image, TextTemplate } from "@atoms";
-import { View, ViewStyle, StyleSheet } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 
 interface IProps {
   label: string;

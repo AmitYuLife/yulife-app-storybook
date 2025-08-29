@@ -1,8 +1,9 @@
 import { CroppedImage } from "@components/screens/member/yu-screen/yumoji-builder/components/croppedImage";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { shallowEqual } from "react-redux";
 
+import { StyleSheet } from "@styles";
 interface IYumojiPart {
   order?: number;
   partType: string;

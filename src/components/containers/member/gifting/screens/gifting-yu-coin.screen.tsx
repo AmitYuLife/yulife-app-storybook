@@ -1,9 +1,9 @@
 import { memo } from "react";
-import { ScrollView, Pressable, StyleSheet, View } from "react-native";
+import { ScrollView, Pressable, View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { Avatar, CheckBoxType } from "@molecules";
 import { GenericHeadingPad } from "@organisms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { YuCoinDenominationChoice } from "../context";
 import { UserSearchItem } from "@redux/_core/types";
 import { P2P_GIFTING_AMOUNT } from "@ids";

@@ -1,5 +1,5 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { TextStyle, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 
 export default StyleSheet.create({
   headingWrapper: {

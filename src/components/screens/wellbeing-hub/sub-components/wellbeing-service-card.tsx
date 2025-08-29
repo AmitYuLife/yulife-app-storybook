@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Image, ImageStyle, TextTemplate } from "@atoms";
 import { Navigation } from "@navigation/main";

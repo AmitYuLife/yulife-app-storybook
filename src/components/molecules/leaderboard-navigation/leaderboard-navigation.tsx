@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { DropdownSolidIcon } from "@atoms/icon/dropdown-solid-icon";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { DuelsIcon } from "@atoms/icon/duels-icon";
 import { t } from "@locale";
 import { DUELS_BUTTON, LEADERBOARD_DROPDOWN, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN, SEARCH_BUTTON } from "@ids";

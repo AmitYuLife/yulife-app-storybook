@@ -1,7 +1,7 @@
 import { StarIcon } from "@atoms/icon/star-icon";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
   index: number;

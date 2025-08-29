@@ -1,6 +1,6 @@
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IProps {
   currentProgress: number;

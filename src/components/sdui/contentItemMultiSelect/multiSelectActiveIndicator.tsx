@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import Svg, { Circle, Path } from "react-native-svg";
 
 interface Props {

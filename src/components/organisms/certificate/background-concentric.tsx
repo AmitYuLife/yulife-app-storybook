@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import Svg, { Path } from "react-native-svg";
-import { Style, Colours } from "@styles";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
+import { View, ViewStyle } from "react-native";
 
 interface Props {
   color: string;

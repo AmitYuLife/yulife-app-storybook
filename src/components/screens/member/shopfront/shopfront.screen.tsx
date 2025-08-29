@@ -5,11 +5,9 @@ import { GetMobileGameShopfrontQuery, GetMobileRewardsListQuery } from "@graphql
 import { NavBar, RewardPass, TopBar } from "@organisms";
 import { GenericHeadingPad } from "@organisms/generic-heading/generic-heading-absolute";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import { StyleSheet } from "react-native";
 import FirstTimeContentLocationSelection from "../content-location/first-time-content-location-selection";
 import { memo, useCallback, useMemo } from "react";
-import { NAV_BAR, TOP_BAR } from "@styles";
-import { Style } from "@styles";
+import { NAV_BAR, TOP_BAR, Style, StyleSheet } from "@styles";
 import { IIcon } from "@organisms/top-bar/subcomponents/left";
 import moment from "moment";
 import { InfoPanel, Pressable, RewardSectionHeader } from "@components/molecules";

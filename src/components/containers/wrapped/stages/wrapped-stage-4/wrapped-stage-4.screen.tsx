@@ -3,7 +3,7 @@ import { IWrappedStageProps } from "../../wrapped.types";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import SudokuTodaysTimeSvg from "@atoms/icon/sudoku-todays-time-svg";
 
-import { Image, StyleSheet } from "react-native";
+import { Image } from "react-native";
 import {
   Easing,
   FadeIn,
@@ -18,7 +18,7 @@ import {
 } from "react-native-reanimated";
 import { Button } from "@components/molecules";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { MedalIcon } from "@atoms/icon/medal-icon";
 import { getDuration } from "@components/games/sudoku/sudoku-utils";
 import WrappedStage4YudokuGame from "./components/WrappedStage4YudokuGame";

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Animated, LayoutChangeEvent, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { Animated, LayoutChangeEvent, TouchableOpacity, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { SmokingSection as ISmokingSection } from "@redux/yu-screen/yu-screen.types";

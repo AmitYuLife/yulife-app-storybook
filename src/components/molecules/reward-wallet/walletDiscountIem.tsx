@@ -1,9 +1,8 @@
 import { Box, StackedShadowWrapper, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { WALLET_COUPON_ITEM_DESCRIPTION } from "@ids";
-import { Colours, Style, TemplateTextType } from "@styles";
+import { Colours, Style, TemplateTextType, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
 import WalletShine from "./wallet-shine";
 
 const HIT_SLOP_SIZE = Style.adjust(8);

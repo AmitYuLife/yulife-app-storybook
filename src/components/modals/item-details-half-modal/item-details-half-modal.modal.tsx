@@ -1,5 +1,5 @@
-import { StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ReactNode, memo, useMemo, useState } from "react";
 import { Button } from "@components/molecules";
 import { GetItemDetailsHookResponse, HalfModalItemDetails, useAsyncEffect, useBackHandler } from "@hooks";

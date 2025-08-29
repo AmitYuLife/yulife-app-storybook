@@ -1,6 +1,7 @@
 import { Colours, Style, TOP_BAR } from "@styles/index";
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { ImageStyle, ViewStyle } from "react-native";
 
+import { StyleSheet } from "@styles";
 const LOGO_MARGIN_TOP = TOP_BAR.TOP_BAR_WITH_PAD + Style.adjust(135);
 const DOT_SIZE = Style.adjust(10);
 const DOTS_WIDTH = Style.adjust(80);

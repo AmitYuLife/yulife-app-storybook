@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef, useMemo } from "react";
-import { StyleSheet, View, ViewStyle, Animated } from "react-native";
-import { Style } from "@styles";
+import { View, ViewStyle, Animated } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import Svg, { Rect } from "react-native-svg";
 import { ProgressStepItem, IProgressStepItemProps } from "./progress-step-item";
 import { ContentItemProgressStepsFragment as IContentItemProgressSteps } from "@graphql/__generated";

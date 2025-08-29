@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef, memo, useCallback, useEffect, useMemo } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, View } from "react-native";
 import { Button, Counter, Switch } from "@components/molecules";
-import { Colours, Style, templateTextStyles } from "@styles";
+import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
 import * as Haptics from "expo-haptics";
 import { Image } from "expo-image";
 import {

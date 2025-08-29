@@ -1,7 +1,7 @@
 import { Box } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image } from "react-native";
 import { Easing, useAnimatedStyle, withRepeat, withSequence, withTiming } from "react-native-reanimated";
 
 const YUGI_ASPECT = 1642 / 903;

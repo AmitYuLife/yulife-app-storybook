@@ -3,11 +3,11 @@ import { setMainRoot } from "@redux/app/app.actions";
 import SplashScreen from "@screens/splash/splash.screen";
 import * as React from "react";
 // eslint-disable-next-line no-restricted-imports
-import { LayoutChangeEvent, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { LayoutChangeEvent, SafeAreaView, Text, View } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
 import { useSafeAreaViewOffset } from "@hooks";
 import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {

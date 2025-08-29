@@ -3,9 +3,9 @@ import { Button } from "@components/molecules";
 import Markdown from "@components/molecules/markdown/markdown";
 import { EMPTY_USER_YUMOJI_AVATAR, YUMOJI_PROMPT_COPY, YUMOJI_PROMPT_CTA } from "@ids";
 import { getYumojiPrompt } from "@redux/yu-screen/yu-screen.selectors";
-import { templateTextStyles, Style, Colours } from "@styles";
+import { templateTextStyles, Style, Colours, StyleSheet } from "@styles";
 import { FC, memo, useMemo } from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 

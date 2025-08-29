@@ -1,9 +1,9 @@
 import { RawImage } from "@atoms";
 import { Rank } from "@atoms/icon/rank";
 import { EmptyMaleBody } from "@components/molecules/yumoji/assets/empty-male-body-svg";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IProps {
   uri: string;

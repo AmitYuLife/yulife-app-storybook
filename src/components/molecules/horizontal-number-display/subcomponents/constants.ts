@@ -1,5 +1,5 @@
-import { Style, templateTextStyles } from "@styles";
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Style, templateTextStyles, StyleSheet } from "@styles";
+import { TextStyle, ViewStyle } from "react-native";
 
 type SupportedDistances = 0 | 1 | 2 | "default";
 type SupportedGapDistances = 1 | "default";

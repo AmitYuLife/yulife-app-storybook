@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { SkeletonLoading } from "@atoms";
 import { WideCardSkeleton } from "./wide-card-skeleton";
 

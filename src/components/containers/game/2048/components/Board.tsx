@@ -1,6 +1,6 @@
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React, { memo } from "react";
-import { ImageBackground, ImageSourcePropType, StyleSheet, View } from "react-native";
+import { ImageBackground, ImageSourcePropType, View } from "react-native";
 import { BOARD_WIDTH_MULTIPLIER, MARGIN } from "../constants";
 import Cells from "./Cells";
 import { GameBoardSize } from "../game";

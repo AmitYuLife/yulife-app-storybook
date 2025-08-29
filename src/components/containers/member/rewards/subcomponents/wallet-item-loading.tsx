@@ -1,7 +1,6 @@
 import { Box, SkeletonLoading, StackedShadowWrapper } from "@atoms";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
 
 const TEXT_COLOR = Colours.metallic.m100;
 const IMAGE_COLOR = Colours.metallic.m100;

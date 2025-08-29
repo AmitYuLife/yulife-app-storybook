@@ -1,11 +1,11 @@
 import React, { useState, useCallback, memo } from "react";
-import { ImageStyle, StyleSheet, View, ViewStyle } from "react-native";
+import { ImageStyle, View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
 import { Image, TextTemplate } from "@atoms";
 import { ListPicker, TouchableOpacityWithDelay, TextInputError } from "@molecules";
 import { ISelectInput, ISelectInputOption } from "./select-input.types";
 import { MODALS } from "@navigation/constants";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ArrowButton } from "../arrow-button";
 
 const getBorderColour = (error: boolean, value: boolean) => {

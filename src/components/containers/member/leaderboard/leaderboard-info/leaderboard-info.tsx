@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { TextTemplate } from "@atoms";
-import { StyleSheet, ViewStyle, View, ScrollView } from "react-native";
+import { ViewStyle, View, ScrollView } from "react-native";
 import { LEADERBOARD_INFO } from "@ids";
-import { Style, TOP_BAR } from "@styles";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute } from "@organisms";
 import { useBackHandler } from "@hooks";

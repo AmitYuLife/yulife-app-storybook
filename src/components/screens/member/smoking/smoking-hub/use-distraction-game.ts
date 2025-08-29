@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { useDispatch } from "react-redux";

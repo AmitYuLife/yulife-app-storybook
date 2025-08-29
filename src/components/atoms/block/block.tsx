@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Colours } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, StyleSheet } from "@styles";
 
 interface IProps {
   children: React.ReactNode;

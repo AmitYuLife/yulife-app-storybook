@@ -1,7 +1,8 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ButtonAnimationStar } from "./button-animation-star";
 import { ButtonAnimationRally } from "./button-animation-rally";
 
+import { StyleSheet } from "@styles";
 export const ButtonAnimation = () => (
   <View pointerEvents="none" style={styles.wrapper}>
     <View style={styles.starPos1}>

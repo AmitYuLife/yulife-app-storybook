@@ -1,7 +1,8 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { getHeight, getWidth } from "./pad.styles";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   height?: number;
   width?: number;

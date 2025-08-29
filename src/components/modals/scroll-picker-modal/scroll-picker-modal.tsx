@@ -1,9 +1,9 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle, Platform } from "react-native";
+import { View, ViewStyle, Platform } from "react-native";
 import { Box } from "@atoms";
 import { Picker } from "./subcomponents/picker";
 import { Buttons } from "./subcomponents/buttons";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ChipList, TouchableOpacityWithDelay } from "@components/molecules";
 import { Item } from "./flatlist-utils/types";
 

@@ -1,13 +1,12 @@
 import { memo, useCallback } from "react";
-import { StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { Box, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { showFloatingModal } from "@modals";
-import { Style } from "@styles";
 import { BUTTON_SUBMIT } from "@ids";
+import { Style, StyleSheet } from "@styles";
 import { VoidFunction } from "@utils";
 import { useTimeout } from "@hooks";
 

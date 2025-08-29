@@ -1,6 +1,4 @@
-import { StyleSheet } from "react-native";
-import { Style } from "@styles";
-
+import { Style, StyleSheet } from "@styles";
 const TIP_CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
 
 export const styles = StyleSheet.create({

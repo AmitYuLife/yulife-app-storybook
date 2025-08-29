@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ContentItemListFragment as GqlList } from "@graphql/__generated";
 import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 
 type Props = GqlList;

@@ -1,11 +1,12 @@
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
-import { Animated, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, LayoutChangeEvent, View, ViewStyle } from "react-native";
 import { mapServerStyles } from "@components/sdui";
 import { Absolute, Body } from "./sections";
 import { UiContext } from "./product-details.context";
 import { Header } from "./sections/header";
 import { GetYuScreenProductDetailsQuery, SduiStyle } from "@graphql/__generated";
 
+import { StyleSheet } from "@styles";
 type IGetYuScreenProductDetails = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"];
 
 interface Props {

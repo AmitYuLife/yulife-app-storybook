@@ -1,6 +1,7 @@
 import { Colours, NAV_BAR } from "@styles/index";
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 
+import { StyleSheet } from "@styles";
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: Colours.neutral.white,

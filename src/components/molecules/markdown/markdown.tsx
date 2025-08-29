@@ -1,10 +1,11 @@
 import { Text } from "@atoms/index";
 import React, { createContext, useContext, useMemo } from "react";
-import { StyleSheet, View, Image, StyleProp, ViewStyle, Linking } from "react-native";
+import { View, Image, StyleProp, ViewStyle, Linking } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 import getMarkdownStyles from "./markdown.styles";
 import { TEXT } from "@ids";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   text: string;
   markdownStyles?: StyleProp<any>;

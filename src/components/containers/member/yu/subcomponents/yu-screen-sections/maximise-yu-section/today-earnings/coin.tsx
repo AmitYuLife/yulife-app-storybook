@@ -1,7 +1,7 @@
 import { YuCoinMiniSvg } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 export const Coin = memo(() => (
   <View style={styles.wrapper}>

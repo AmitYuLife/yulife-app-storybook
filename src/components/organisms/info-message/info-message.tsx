@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { SecondaryButton } from "@molecules";
 import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Sizes } from "@components/molecules/button/button.types";
 
 interface IProps {

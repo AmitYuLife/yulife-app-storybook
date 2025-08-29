@@ -1,9 +1,10 @@
 import { memo } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, View } from "react-native";
 import { Button } from "@components/molecules";
 import { sendMessage } from "@yu-life/react-native-yu-watch";
 import { YuWatchAction } from "@redux/yu-watch/yu-watch.types";
 
+import { StyleSheet } from "@styles";
 const WatchHome = () => {
   return (
     <>

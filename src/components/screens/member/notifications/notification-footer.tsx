@@ -1,8 +1,8 @@
 import { TextTemplate } from "@atoms";
 import HintContainer from "@components/molecules/hint/hint.container";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ROUTES } from "@navigation/constants";
 import { t } from "@locale";
 

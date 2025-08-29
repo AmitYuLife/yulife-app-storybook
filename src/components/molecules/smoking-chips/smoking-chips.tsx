@@ -1,7 +1,7 @@
 import React, { FC, memo, useMemo } from "react";
-import { FlexStyle, StyleSheet, View } from "react-native";
+import { FlexStyle, View } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "..";
 import EditSVG from "@atoms/edit/edit-svg";
 import { t } from "@locale";

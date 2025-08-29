@@ -1,6 +1,6 @@
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import media from "@styles/media";
-import { Platform, StyleSheet } from "react-native";
+import { Platform } from "react-native";
 import { BUTTON_SIZES, Sizes } from "./button.types";
 
 export const DEFAULT_HEIGHT = Style.adjust(53);

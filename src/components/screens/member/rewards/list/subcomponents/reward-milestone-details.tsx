@@ -4,8 +4,8 @@ import { RewardCard } from "@components/molecules/reward-card/reward-card";
 import { RemoteImage } from "@graphql/__generated";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
-import { Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { View } from "react-native";
 
 type RewardMilestoneDetailsProps = {
   target: number;

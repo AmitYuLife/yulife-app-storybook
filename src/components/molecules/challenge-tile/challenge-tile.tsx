@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
-import { Pressable, Image as RNImage, StyleSheet, View } from "react-native";
+import { Pressable, Image as RNImage, View } from "react-native";
 import styles, { IMAGE_SIZE } from "./challenge-tile.styles";
 import { CHALLENGE_REWARD, CHALLENGE_TILE, CHALLENGE_TILE_BOOST_TAG, CHALLENGE_TILE_SURGE_ICON } from "@ids";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Image, Box, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import colours from "@styles/colours";

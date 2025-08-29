@@ -1,12 +1,11 @@
 import { memo, useCallback, useEffect, useMemo, useRef } from "react";
-import { StyleSheet } from "react-native";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { Box, TextTemplate } from "@atoms";
 import { AnimationHandle, Markdown, SmokingChips, TouchableOpacityWithDelay } from "@components/molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style, templateTextStyles, TOP_BAR } from "@styles";
+import { Colours, Style, templateTextStyles, TOP_BAR, StyleSheet } from "@styles";
 import { SmokingMilestones, SmokingSponsorshipCard, SmokingTips } from "./subcomponents";
 import {
   MOMENTS_TO_MONITOR,

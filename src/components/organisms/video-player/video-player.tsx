@@ -9,11 +9,11 @@ import Video, {
   ViewType,
 } from "react-native-video";
 import moment from "moment";
-import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
+import { Animated, View, AppStateStatus } from "react-native";
 import Lottie from "lottie-react-native";
 import Config from "react-native-config";
 import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { IState, IAction, reducer, INITIAL_STATE, ActionTypes } from "./video-player.reducer";
 import { Button, LottieView, Pressable, VidePlayerButton } from "@molecules";
 import {

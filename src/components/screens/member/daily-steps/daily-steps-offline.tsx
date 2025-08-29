@@ -1,9 +1,9 @@
 import * as React from "react";
-import { StyleSheet } from "react-native";
 import { Text } from "@atoms";
 import styles from "./daily-steps.screen.styles";
 import { t } from "@locale";
 
+import { StyleSheet } from "@styles";
 export interface IProps {
   isLight?: boolean;
   lastUpdate?: string;

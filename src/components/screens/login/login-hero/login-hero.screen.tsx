@@ -1,4 +1,4 @@
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { FullScreenHero } from "@organisms";
 import { gql } from "@graphql/__generated";
 import { memo, useMemo, useState } from "react";
@@ -6,7 +6,6 @@ import { region, t } from "@locale";
 import { useQuery } from "@apollo/client";
 import LinearGradient from "react-native-linear-gradient";
 import AnimatedChest from "./components/animated-chest";
-import { StyleSheet } from "react-native";
 import { LoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
 
 type LoginHeroScreenProps = {

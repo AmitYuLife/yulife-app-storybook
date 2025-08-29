@@ -1,6 +1,7 @@
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { ImageStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   contentWrapper: {
     alignItems: "center",

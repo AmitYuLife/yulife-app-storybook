@@ -1,10 +1,10 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { CyclingIcon } from "@atoms/icon/cycling-icon";
 import { MindfulnessIcon } from "@atoms/icon/mindfulness-icon";
 import { StepsIcon } from "@atoms/icon/steps-icon";
 import { TextTemplate } from "@atoms";
-import { Style, Colours, templateTextStyles } from "@styles";
+import { Style, Colours, templateTextStyles, StyleSheet } from "@styles";
 import { Counter } from "@molecules";
 import { STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
 import { t } from "@locale";

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { ITEM_HEIGHT } from "../scroll-picker.styles";
 
 export const Overlays = memo(() => (

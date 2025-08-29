@@ -1,6 +1,6 @@
 import { Box, CloseSvg } from "@atoms";
 import { memo, useCallback, useRef } from "react";
-import { Alert, ScrollView, StyleSheet } from "react-native";
+import { Alert, ScrollView } from "react-native";
 import { FadeIn, FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -12,7 +12,7 @@ import Share from "react-native-share";
 import { t } from "@locale";
 import LinearGradient from "react-native-linear-gradient";
 
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import WrappedLogo from "../../components/wrapped-logo";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 import { HEIGHT, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";

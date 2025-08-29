@@ -2,8 +2,7 @@ import { Box, RawImage, TextTemplate } from "@atoms";
 import { IBoxProps } from "@atoms/box/box.types";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { REWARD_STORE_TEASER } from "@ids";
-import { Style } from "@styles";
-import { StyleSheet } from "react-native";
+import { Style, StyleSheet } from "@styles";
 
 interface IRewardPassRewardLabelProps extends IBoxProps {
   label: string;

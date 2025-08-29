@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import {
-  StyleSheet,
   TextInput,
   View,
   // eslint-disable-next-line rulesdir/no-restricted-imports-clone
@@ -10,7 +9,7 @@ import {
   KeyboardType,
   TextInputProps,
 } from "react-native";
-import { Style } from "@styles/index";
+import { Style, StyleSheet } from "@styles";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
 import { formatNumber, formatPostCode, truncateNumberValue } from "@utils";

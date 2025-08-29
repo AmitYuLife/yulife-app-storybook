@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, View } from "react-native";
 import { Heading, Pad } from "@atoms";
 import styles from "./collect-reward.styles";
 import { Button, CentredScreen, CoinConfetti } from "@molecules";
 import { t } from "@locale";
 import { COLLECT_REWARD_CTA } from "@ids";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   heading?: string;
   onPress: () => void;

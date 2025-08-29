@@ -1,6 +1,6 @@
 import { Button } from "@components/molecules";
 import { Box, TextTemplate } from "@atoms";
-import { Image, StyleSheet } from "react-native";
+import { Image } from "react-native";
 import { WrappedCloud } from "../../components/wrapped-cloud";
 import { IWrappedStageProps } from "../../wrapped.types";
 import { memo, useCallback, useMemo, useState } from "react";
@@ -11,7 +11,7 @@ import { FadeInUp, FadeOutDown } from "react-native-reanimated";
 import { t } from "@locale";
 import { addCommasToNumber } from "@utils";
 import colours from "@styles/colours";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 import { HEIGHT, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 

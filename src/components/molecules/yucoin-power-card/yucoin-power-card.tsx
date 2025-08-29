@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import Svg, { G, Rect, Path, Defs, LinearGradient, Stop, Text, ForeignObject } from "react-native-svg";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { InfoIcon } from "@atoms/icon/info-icon";
 import { TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { t } from "@locale";
 import { showTooltipPopupRelativeToPoint } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 import { SecondaryButton } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { addCommasToNumber } from "@utils";

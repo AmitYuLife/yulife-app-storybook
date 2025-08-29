@@ -5,8 +5,7 @@ import { CaptchaCancelledError, CaptchaHandleExecuteResponse } from "./types";
 import { t } from "@locale";
 import { Box } from "@atoms";
 import { Markdown } from "@components/molecules";
-import { Colours, templateTextStyles } from "@styles";
-import { StyleSheet } from "react-native";
+import { Colours, templateTextStyles, StyleSheet } from "@styles";
 
 export type HcaptchaHandle = {
   execute: () => Promise<CaptchaHandleExecuteResponse>;

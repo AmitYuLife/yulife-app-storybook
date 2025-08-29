@@ -1,9 +1,9 @@
 import { SearchInputWithIcon, FindAFriend, UserSearchHeading } from "@components/molecules";
 import { Box } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo, ReactNode, useMemo } from "react";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { t } from "@locale";
 import { SEARCH_CLOSE, SEARCH_RESULTS } from "@ids";

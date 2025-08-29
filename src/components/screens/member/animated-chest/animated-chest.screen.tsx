@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Animated, Image, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, Image, View, ViewStyle } from "react-native";
 import { ChestCoin, Text } from "@atoms";
 import { Button, LinkButton } from "@molecules";
 import styles from "./animated-chest.styles";
 import assets from "./assets";
 import { DETOX_ENABLED } from "@services/socket";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   ctaLabel: string;
   heading: string;

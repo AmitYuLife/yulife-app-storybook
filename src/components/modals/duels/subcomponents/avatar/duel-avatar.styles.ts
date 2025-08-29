@@ -1,5 +1,5 @@
-import { Style } from "@styles";
-import { StyleSheet, Platform, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { Platform, ViewStyle } from "react-native";
 import { ImageStyle } from "@atoms";
 
 const scaleAvatarBasedOnDeviceHeight = (width: number) => {

@@ -3,8 +3,8 @@ import { useQuery } from "@apollo/client";
 import GenericOverlay from "../generic-overlay/generic-overlay";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { ListItem } from "@organisms";
-import { Platform, StyleSheet, View } from "react-native";
-import { NAV_BAR, Style } from "@styles";
+import { Platform, View } from "react-native";
+import { NAV_BAR, Style, StyleSheet } from "@styles";
 import { Navigation } from "@navigation/main";
 import { GetMobileSocialGroupLeaderboardItemsQuery, gql } from "@graphql/__generated";
 

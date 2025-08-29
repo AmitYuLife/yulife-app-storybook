@@ -1,8 +1,8 @@
 import { TextTemplate } from "@atoms";
 import { Counter } from "@components/molecules";
-import { Colours, Style, templateTextStyles } from "@styles";
+import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
 import { memo, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 type Props = {
   progress: {
