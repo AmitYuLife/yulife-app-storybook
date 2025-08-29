@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Alert, Keyboard } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { useGiftingPages } from "./hooks/use-gifting-pages";
 import GiftingManagerScreen from "./screens/gifting-manager.screen";

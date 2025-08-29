@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from "react";
-import { Animated, Platform, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, Platform, View, ViewStyle } from "react-native";
 import { ProductDetailsHeader } from "../subcomponents/product-details.header";
 import { UiContext } from "../product-details.context";
 import {
@@ -19,7 +19,7 @@ import {
 } from "@components/sdui";
 import { ProductDetailsButton } from "../subcomponents/product-details.button";
 import media from "@styles/media";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ProductDetailsHoldingHeader } from "../subcomponents/product-details.holding-header/product-details.holding-header";
 import { PRODUCT_DETAILS_SCROLL_VIEW } from "@ids";
 import { GetYuScreenProductDetailsQuery } from "@graphql/__generated";

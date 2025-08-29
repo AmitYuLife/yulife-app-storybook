@@ -1,8 +1,7 @@
 import React, { memo } from "react";
-import { StyleSheet } from "react-native";
 import Svg, { Rect } from "react-native-svg";
 import { Pressable } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { PlayIcon } from "@atoms/icon/play-icon";
 
 interface IProps {

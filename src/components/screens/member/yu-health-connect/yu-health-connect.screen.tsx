@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { TextTemplate, SkeletonLoading } from "@atoms";
 import { Button, InfoPanel, SecondaryButton } from "@molecules";
-import { Style, TOP_BAR } from "@styles";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { useBackHandler, useTranslation } from "@hooks";

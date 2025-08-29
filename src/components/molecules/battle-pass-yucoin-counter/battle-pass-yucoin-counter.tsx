@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import Animated, {
   useFrameCallback,
@@ -9,6 +9,7 @@ import Animated, {
   withTiming,
   withSequence,
 } from "react-native-reanimated";
+import { StyleSheet } from "@styles";
 import { random } from "lodash";
 import colours from "@styles/colours";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

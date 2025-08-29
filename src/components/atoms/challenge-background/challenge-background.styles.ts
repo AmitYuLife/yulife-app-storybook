@@ -1,5 +1,6 @@
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { ImageStyle, ViewStyle } from "react-native";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   background: {
     ...StyleSheet.absoluteFillObject,

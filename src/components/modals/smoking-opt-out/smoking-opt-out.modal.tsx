@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { useDispatch } from "react-redux";
 import { HealthSmokingOptOutModal } from "@redux/health-smoking/health-smoking.types";
 import { Navigation } from "@navigation/main";
 import { Image, TextTemplate } from "@atoms";
 import { ScrollableContentOverlay } from "@components/modals/scrollable-content-overlay/scrollable-content-overlay";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 interface IProps {
   optOutModal: HealthSmokingOptOutModal;

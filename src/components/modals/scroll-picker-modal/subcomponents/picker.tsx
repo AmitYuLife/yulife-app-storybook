@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useRef } from "react";
-import { Animated, StyleSheet, ViewStyle, NativeScrollEvent, NativeSyntheticEvent, View, FlatList } from "react-native";
+import { Animated, ViewStyle, NativeScrollEvent, NativeSyntheticEvent, View, FlatList } from "react-native";
 import { ITEM_HEIGHT, WRAPPER_HEIGHT } from "../scroll-picker.styles";
 import { Overlays } from "./overlays";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { SCROLL_PICKER } from "@ids";
 import { renderItem } from "../flatlist-utils/renderItem";
 import { IListItem, LIST_ITEM, Item } from "../flatlist-utils/types";

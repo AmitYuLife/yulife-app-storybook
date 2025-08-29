@@ -1,6 +1,7 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../styles";
 
+import { StyleSheet } from "@styles";
 export const commonStyles = StyleSheet.create({
   heading: {
     color: "rgb(51,51,51)",

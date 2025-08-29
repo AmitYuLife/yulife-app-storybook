@@ -1,7 +1,7 @@
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React, { useEffect, useMemo } from "react";
 import { memo } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import Animated, { withRepeat, withTiming, useAnimatedStyle, useSharedValue, Easing } from "react-native-reanimated";
 import Svg, { G, Path, Defs, LinearGradient, Stop, ClipPath } from "react-native-svg";
 

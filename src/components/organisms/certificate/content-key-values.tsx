@@ -1,7 +1,7 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { CERTIFICATE_KEY_VALUES } from "@ids";
 
 interface Pair {

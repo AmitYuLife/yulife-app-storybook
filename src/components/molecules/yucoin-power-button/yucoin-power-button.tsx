@@ -1,9 +1,9 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 
 import { t } from "@locale";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { YucoinPowerButtonBase } from "@molecules";
 import { TextTemplate, Box, Image } from "@atoms";

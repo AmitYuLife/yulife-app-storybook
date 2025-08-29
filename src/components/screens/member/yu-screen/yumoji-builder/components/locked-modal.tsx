@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { labels as navigationTabs } from "@navigation/root";
@@ -8,7 +8,7 @@ import { useUserFeatures } from "@hooks";
 import { ScrollableContentOverlay } from "@components/modals/scrollable-content-overlay/scrollable-content-overlay";
 import Markdown from "@components/molecules/markdown/markdown";
 import { ImageCachePolicy } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ItemListItems } from "./yumoji-item";
 import { CroppedImage } from "./croppedImage";
 

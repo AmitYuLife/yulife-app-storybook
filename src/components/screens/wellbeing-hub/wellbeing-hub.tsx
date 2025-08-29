@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { ScrollView, View, ViewStyle } from "react-native";
 import { GetWellbeingHubItemsQuery } from "@graphql/__generated";
 import { t } from "@locale";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ChipList } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { WELLBEING_HUB_SCREEN, WELLBEING_HUB_SCROLL_VIEW, WELLBEING_SERVICE_CARD } from "@ids";

@@ -1,8 +1,8 @@
 import { useEffect, useRef, Fragment, memo, useMemo } from "react";
 import Svg, { Path, Rect, Circle, G } from "react-native-svg";
-import { ViewStyle, StyleSheet, Animated, Easing } from "react-native";
+import { ViewStyle, Animated, Easing } from "react-native";
 
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { EVENT_PROGRESS_BAR } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 import { Pulse } from "@atoms";

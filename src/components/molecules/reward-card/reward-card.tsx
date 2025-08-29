@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Image, TextTemplate, WorldCard } from "@atoms";
 import { t } from "@locale";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { MAX_PROGRESS_WIDTH, MAX_UI_PROGRESS_PERCENTAGE, rewardCardStyles as styles } from "./reward-card.styles";
 import { ProgressMilestoneComplete } from "../progress-milestone/progress-milestone-complete";
 import { ProgressMilestoneIncomplete } from "../progress-milestone/progress-milestone-incomplete";

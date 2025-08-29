@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { mapCoverToColor } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { mapCoverToColor, StyleSheet } from "@styles";
 import { CoverType } from "@graphql/__generated";
 
 interface Props {

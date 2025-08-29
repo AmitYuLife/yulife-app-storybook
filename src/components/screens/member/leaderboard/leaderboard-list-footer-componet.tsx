@@ -2,8 +2,8 @@ import React, { memo } from "react";
 import { TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { JoinLeaderboard, ListItem } from "@organisms";
-import { Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { View } from "react-native";
 import { styles as screenStyle } from "./leaderboard.screen";
 interface IProps {
   itemsIsLoading: boolean;

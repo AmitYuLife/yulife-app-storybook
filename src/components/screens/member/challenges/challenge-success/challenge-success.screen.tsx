@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, View } from "react-native";
 import { LevelLine, Box, Stars, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { AnimatedPlusPoints, Button, CentredScreen, YucoinPowerButtonMini } from "@molecules";
@@ -7,7 +7,7 @@ import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/sub
 import { getTheme } from "@theme";
 import { CHALLENGE_SUCCESS_SCREEN } from "@ids";
 import { IActiveLevel } from "@redux/levels/levels.types";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { commonStyles } from "../challenge-failed/challenge-failed.screen.styles";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";

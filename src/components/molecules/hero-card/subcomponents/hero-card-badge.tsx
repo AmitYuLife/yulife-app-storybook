@@ -1,6 +1,6 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { memo } from "react";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { HeroCardBadge as HeroCardBadgeProps } from "@utils/heroCards";
 import { HERO_CARD_BADGE } from "@ids";

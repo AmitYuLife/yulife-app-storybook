@@ -3,12 +3,11 @@ import { memo } from "react";
 import { Box, Pad, TextTemplate } from "@atoms";
 import { Button, LinkButton, TextInput } from "@molecules";
 import { BUTTON_LOGIN, INPUT_LOGIN_PASSWORD } from "@ids";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { region, REGION, t } from "@locale";
 import { ServerList } from "../subcomponents/server-list";
 import { TextInputPassword } from "@components/molecules/text-input/text-input-password";
 import LoginFormWrapper from "../subcomponents/login-form-wrapper";
-import { StyleSheet } from "react-native";
 import { handleOpenWebView } from "@navigation/utils";
 import { LinkButtonSpacing } from "../subcomponents/link-button-spacing";
 

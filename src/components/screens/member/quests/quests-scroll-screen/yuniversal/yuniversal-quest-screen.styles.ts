@@ -1,5 +1,5 @@
-import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
-import { Style, Media, TOP_BAR } from "@styles";
+import { ViewStyle, ImageStyle } from "react-native";
+import { Style, Media, TOP_BAR, StyleSheet } from "@styles";
 import { PADDING_TOP } from "@styles/top-bar.styles";
 
 export const LEVELS_WRAPPER_HEIGHT = (Style.DEVICE_WIDTH * 812) / 375;

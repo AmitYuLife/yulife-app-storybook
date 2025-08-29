@@ -1,5 +1,5 @@
-import { Colours, Style, TOP_BAR } from "@styles";
-import { StyleSheet, ViewStyle } from "react-native";
+import { Colours, Style, TOP_BAR, StyleSheet } from "@styles";
+import { ViewStyle } from "react-native";
 
 export const defaultFundingTheme = {
   backgroundColor: Colours.primary.p400,

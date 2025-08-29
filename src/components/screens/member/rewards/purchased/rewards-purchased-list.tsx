@@ -1,12 +1,13 @@
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { NAV_BAR, Style } from "@styles/index";
 import * as React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 import { useSelector } from "react-redux";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   data: RewardsPurchasedItemData[];
   loading: boolean;

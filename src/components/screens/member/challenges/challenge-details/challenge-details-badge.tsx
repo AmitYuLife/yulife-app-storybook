@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { CHALLENGE_DETAILS_BADGE } from "@ids";
 
 export enum ChallengeDetailsBadgeIntent {

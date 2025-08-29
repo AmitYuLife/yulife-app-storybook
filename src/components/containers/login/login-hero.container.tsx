@@ -4,7 +4,7 @@ import { ROUTES } from "@navigation/constants";
 import { debounce } from "lodash";
 import { memo, useCallback, useEffect, useMemo } from "react";
 import { Alert } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 
 interface Props {
   componentId: string;

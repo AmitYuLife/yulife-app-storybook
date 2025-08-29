@@ -1,9 +1,10 @@
 import React, { memo, useCallback } from "react";
 import { TextTemplate } from "@atoms";
 import { SEARCH_INPUT } from "@ids";
-import { TextInput, View, ViewStyle, StyleSheet } from "react-native";
+import { TextInput, View, ViewStyle } from "react-native";
 import styles from "./search-input.styles";
 
+import { StyleSheet } from "@styles";
 interface Props {
   title: string;
   onChangeText: (text: string) => void;

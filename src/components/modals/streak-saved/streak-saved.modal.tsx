@@ -2,9 +2,9 @@ import { TextTemplate } from "@atoms";
 import { StreakSaverIcon } from "@atoms/icon/streak-saver-icon";
 import { Button, InventoryItem } from "@components/molecules";
 import { useTranslation } from "@hooks";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo, useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { FloatingModal } from "..";
 // eslint-disable-next-line rulesdir/no-restricted-imports-clone
 import React from "react";

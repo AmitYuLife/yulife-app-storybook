@@ -3,7 +3,7 @@ import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { SduiAction } from "@graphql/__generated";
 import { Rays } from "@organisms";
 import React, { memo, useMemo } from "react";
-import { DimensionValue, StyleSheet } from "react-native";
+import { DimensionValue } from "react-native";
 import RewardPassRewardImage from "./subcomponents/reward-pass-reward-image";
 import { RewardPassRewardLabel } from "./subcomponents/reward-pass-reward-label";
 import RewardPassLottieStars from "./subcomponents/reward-pass-lottie-stars/reward-pass-lottie-stars";
@@ -11,6 +11,7 @@ import { Pressable } from "@components/molecules";
 import { DETOX_ENABLED } from "@services/socket";
 import { REWARD_PASS } from "@ids";
 
+import { StyleSheet } from "@styles";
 interface IRewardPassProps {
   label: string;
   primaryColor: string;

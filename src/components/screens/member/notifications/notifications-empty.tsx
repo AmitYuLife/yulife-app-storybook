@@ -1,9 +1,9 @@
 import { TextTemplate } from "@atoms";
 import EnvelopeSvg from "@atoms/envelope/envelope-svg";
 import { useTranslation } from "@hooks";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { NOTIFICATIONS_EMPTY } from "@ids";
 
 const NotificationsEmpty = () => {

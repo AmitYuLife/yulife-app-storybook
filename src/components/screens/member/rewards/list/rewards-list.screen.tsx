@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { FlatList, ListRenderItemInfo, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
-import { Style, NAV_BAR, Colours } from "@styles";
+import { FlatList, ListRenderItemInfo, NativeScrollEvent, NativeSyntheticEvent, View } from "react-native";
+import { Style, NAV_BAR, Colours, StyleSheet } from "@styles";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
 import FirstTimeContentLocationSelection from "../../content-location/first-time-content-location-selection";

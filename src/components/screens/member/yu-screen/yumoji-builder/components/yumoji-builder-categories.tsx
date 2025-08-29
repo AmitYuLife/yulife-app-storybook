@@ -1,6 +1,6 @@
 import React, { memo, useRef, useState, FC } from "react";
-import { ScrollView, View, StyleSheet, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { ScrollView, View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import YumojiBuilderCategory from "./yumoji-builder-category";
 
 import { SkeletonLoading } from "@atoms";

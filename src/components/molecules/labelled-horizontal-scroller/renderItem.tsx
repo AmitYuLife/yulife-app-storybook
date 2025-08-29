@@ -1,9 +1,9 @@
 import React from "react";
-import { Animated, ListRenderItemInfo, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
+import { Animated, ListRenderItemInfo, TextStyle, View, ViewStyle } from "react-native";
 import { Text } from "@atoms";
 import { getActiveTextOpacityValue, getInactiveTextOpacityValue } from "./animation";
 import { CHOICE_WIDTH } from "./styles";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
 
 export const renderItem =

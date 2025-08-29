@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import { mapCoverToColor } from "@styles";
+import { mapCoverToColor, StyleSheet } from "@styles";
 import { CoverType } from "@graphql/__generated";
 
 interface Props {

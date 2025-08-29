@@ -1,9 +1,9 @@
 import React, { memo, RefObject, useCallback, useMemo, useRef } from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, View } from "react-native";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { GenericHeadingPad, LeaderboardFloatingRank, ListItem, TopBarAbsolute } from "@organisms";
 import { Image, TextTemplate } from "@atoms";
-import { Colours, NAV_BAR, Style } from "@styles";
+import { Colours, NAV_BAR, Style, StyleSheet } from "@styles";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { TouchableOpacityWithDelay } from "@molecules";

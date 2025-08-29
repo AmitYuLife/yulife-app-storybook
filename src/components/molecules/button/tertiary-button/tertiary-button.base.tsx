@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { Image, TextTemplate } from "@atoms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { Pressable } from "@components/molecules";
 import { BUTTON_ICON, iconHashMap } from "./tertiary-button.helpers";
 import { styles } from "./tertiary-button.styles";

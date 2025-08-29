@@ -1,7 +1,7 @@
 import React, { ComponentProps, RefObject } from "react";
-import { View, StyleSheet, ViewStyle, Platform } from "react-native";
+import { View, ViewStyle, Platform } from "react-native";
 import TopBar from "./top-bar";
-import { TOP_BAR } from "@styles";
+import { TOP_BAR, StyleSheet } from "@styles";
 import { RightIconTypes } from "./subcomponents/right";
 import { LeftIcon } from "./subcomponents/left";
 

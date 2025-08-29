@@ -1,5 +1,5 @@
-import { StyleSheet, ViewStyle, Platform } from "react-native";
-import { Colours, Style } from "@styles";
+import { ViewStyle, Platform } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import media from "@styles/media";
 import { PADDING_TOP } from "@styles/top-bar.styles";
 

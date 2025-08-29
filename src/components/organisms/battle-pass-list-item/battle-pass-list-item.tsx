@@ -1,10 +1,10 @@
 import { ReactNode, memo, useCallback, useEffect, useMemo, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Box, Image, ImageStyle, Loading, prefetchImages, Source, TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import {

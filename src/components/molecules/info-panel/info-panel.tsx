@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { CloseSvg, Image } from "@atoms";
-import { Colours, Style, templateTextStyles } from "@styles";
+import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
 import Markdown from "../markdown/markdown";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import Pressable from "../pressable/pressable";

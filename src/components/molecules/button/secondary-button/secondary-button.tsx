@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { Sizes } from "../button.types";
-import { Colours, TemplateTextType } from "@styles";
+import { Colours, TemplateTextType, StyleSheet } from "@styles";
 import ButtonBase from "../button.base";
 import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "../button.use-title";
 

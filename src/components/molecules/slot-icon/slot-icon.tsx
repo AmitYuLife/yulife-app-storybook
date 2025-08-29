@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Image, TextTemplate } from "@atoms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 
 export interface ISlotIcon {
   itemUrl: string;

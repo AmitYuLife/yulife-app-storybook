@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { TextTemplate, Wrapper } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { useTranslation } from "@hooks";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import LeaderboardEmptyImage from "@components/games/sudoku/leaderboard/LeaderboardEmptyImage";

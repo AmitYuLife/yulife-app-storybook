@@ -1,9 +1,9 @@
 import React, { memo, useState, useCallback, useEffect, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Navigation } from "@navigation/main";
 import moment from "moment";
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { getTimeRemaining } from "@utils";
 import useInterval from "@use-it/interval";
 import { DETOX_ENABLED } from "@services/socket";

@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
-import { Style } from "@styles";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { KeyboardAvoidingView, Platform, ScrollView, View, ViewStyle } from "react-native";
 import { ContentItemForm } from "@molecules";
 import { IElement } from "@components/molecules/content-item-form/content-item-form";
 import { PERK_SCREEN } from "@ids";

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Platform, StyleSheet, ViewStyle, TextStyle, View } from "react-native";
+import { Platform, ViewStyle, TextStyle, View } from "react-native";
 import { Style } from "@styles/index";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { labels } from "@navigation/root";
@@ -12,6 +12,7 @@ import { useNavigation } from "@navigation/navigation.context";
 import { ROUTES } from "@navigation/constants";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
+import { StyleSheet } from "@styles";
 export type RightIconTypes = "Coins";
 
 interface Props {

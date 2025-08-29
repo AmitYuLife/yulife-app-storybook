@@ -1,9 +1,9 @@
 import { LottieView } from "@components/molecules";
 import { SduiIdContext } from "@components/sdui/_context/SduiProvider";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import Lottie from "lottie-react-native";
 import { RefObject, memo, useContext, useEffect, useRef } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 
 export const YuCoinAnimation = memo(() => {
   const sduiId = useContext(SduiIdContext);

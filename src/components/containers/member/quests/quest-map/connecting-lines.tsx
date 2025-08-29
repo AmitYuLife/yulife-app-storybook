@@ -1,6 +1,6 @@
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { Animated, StyleSheet } from "react-native";
+import { Animated } from "react-native";
 import Svg, { Defs, G, Line, LinearGradient, Rect, Stop } from "react-native-svg";
 import { QUEST_MAP_ROW_SPACE_BASIS } from "./config/constants";
 import { getShouldQuestMapAnimateOnboarding } from "@redux/quest-map/quest-map.selectors";

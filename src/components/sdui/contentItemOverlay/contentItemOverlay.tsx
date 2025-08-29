@@ -1,8 +1,8 @@
 import React, { ReactNode, memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ContentItemOverlayFragment as GqlOverlay, ContentItemButtonFragment } from "@graphql/__generated";
 import Markdown from "@molecules/markdown/markdown";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Pad } from "@atoms";
 import * as Animated from "react-native-animatable";
 

@@ -1,6 +1,7 @@
 import { Colours, Style } from "@styles/index";
-import { StyleSheet, TextStyle, ViewStyle, ImageStyle } from "react-native";
+import { TextStyle, ViewStyle, ImageStyle } from "react-native";
 
+import { StyleSheet } from "@styles";
 const styles = StyleSheet.create({
   heading: {
     paddingHorizontal: Style.adjust(40),

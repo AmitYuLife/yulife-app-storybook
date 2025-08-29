@@ -1,6 +1,7 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   arrow: {
     marginStart: "auto",

@@ -1,8 +1,8 @@
 import { Box, TextTemplate } from "@atoms";
 import { ContentItemWrapper } from "@components/sdui";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ComponentProps, memo } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image } from "react-native";
 
 type Props = {
   icon?: {

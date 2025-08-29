@@ -1,7 +1,7 @@
 import * as React from "react";
 // eslint-disable-next-line no-restricted-imports
-import { StyleSheet, Text, TextStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { Text, TextStyle } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 
 interface IProps {
   bold?: boolean;

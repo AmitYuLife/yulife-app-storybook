@@ -1,5 +1,5 @@
-import { Colours, Style } from "@styles";
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { TextStyle, ViewStyle } from "react-native";
 
 export default StyleSheet.create({
   opponentCard: {

@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import React, { memo, useMemo } from "react";
 import LinearGradient from "react-native-linear-gradient";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { YUCOIN_POWER } from "@ids";
 import { getUserEarnRate } from "@redux/user/user.selectors";
 import { TouchableOpacityWithDelay } from "@components/molecules";

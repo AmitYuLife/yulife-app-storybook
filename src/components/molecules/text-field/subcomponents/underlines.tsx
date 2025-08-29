@@ -1,6 +1,6 @@
 import React from "react";
-import { Animated, StyleSheet, ViewStyle } from "react-native";
-import { Colours } from "@styles";
+import { Animated, ViewStyle } from "react-native";
+import { Colours, StyleSheet } from "@styles";
 
 export const ColouredUnderline = ({ scaleX }: { scaleX: Animated.Value }) => {
   return <Animated.View style={[styles.colouredUnderline, { transform: [{ scaleX }] }]} />;

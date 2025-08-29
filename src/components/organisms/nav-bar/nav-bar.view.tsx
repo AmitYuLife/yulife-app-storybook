@@ -1,7 +1,7 @@
 import { useState, useCallback, memo, useMemo, FC, useEffect, useRef } from "react";
 import { labels as defaultLabels } from "@navigation/root";
 import { ROUTES } from "@navigation/constants";
-import { StyleSheet, View, Platform } from "react-native";
+import { View, Platform } from "react-native";
 import { NAV_BAR, Style } from "@styles/index";
 import { Giraffe, Scroll, Treasure, Yu } from "./assets";
 import Trophy from "./assets/trophy";
@@ -25,6 +25,7 @@ import { IHighlightedTabOptions } from "@redux/app/app.types";
 import { usePrizeHintPopup } from "@hooks";
 import { DETOX_ENABLED } from "@services/socket";
 
+import { StyleSheet } from "@styles";
 const hasUnreadBadgeCount = (value: number) => (value || 0) > 0;
 
 const NavBarView = (props: NavBarProps) => {

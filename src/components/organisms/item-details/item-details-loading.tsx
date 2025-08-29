@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { SkeletonLoading } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 const ItemDetailsLoading = () => {
   return (

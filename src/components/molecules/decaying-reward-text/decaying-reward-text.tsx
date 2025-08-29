@@ -1,8 +1,7 @@
 import { TextTemplate } from "@atoms";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { random } from "lodash";
 import { memo, useEffect, useMemo } from "react";
-import { StyleSheet } from "react-native";
 import Animated, {
   Easing,
   useFrameCallback,

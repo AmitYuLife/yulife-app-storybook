@@ -1,12 +1,11 @@
 import { Box, MagnifyingGlass, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad, RewardSearchListItem } from "@organisms";
 import React, { memo, useCallback } from "react";
-import { StyleSheet } from "react-native";
 import { FadeIn, FadeInUp, FadeOut, FadeOutUp } from "react-native-reanimated";
 import { UserSearchHeading } from "@components/molecules";
 import { FlashList } from "@shopify/flash-list";
-import { Colours, Style } from "@styles";
 import { GetMobileRewardsListQuery } from "@graphql/__generated";
+import { Colours, Style, StyleSheet } from "@styles";
 import { isEmpty } from "lodash";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
 import RewardSearchHeader from "./subcomponents/reward-search-header";

@@ -1,10 +1,10 @@
 import { isEmpty } from "lodash";
 import { FlashList } from "@shopify/flash-list";
-import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { ScrollView, View, ViewStyle } from "react-native";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 
 import { t } from "@locale";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useQuery } from "@apollo/client";
 import { YuCoinPowerCard } from "@molecules";
 import { Navigation } from "@navigation/main";

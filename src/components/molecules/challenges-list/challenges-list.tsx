@@ -1,10 +1,10 @@
 import React, { memo, useMemo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import ChallengeTile, { IChallengeTileProps } from "../challenge-tile/challenge-tile";
 import { CHALLENGE_SET, CHALLENGE_SET_SCROLL } from "@ids";
 import ChallengeTileLoading from "../challenge-tile/challenge-tile-loading";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { useSelector } from "react-redux";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 

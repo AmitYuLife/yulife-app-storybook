@@ -1,7 +1,8 @@
 import colours from "@styles/colours";
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../../styles";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   contentWrapper: {
     flex: 1,

@@ -1,6 +1,5 @@
 import { memo } from "react";
 import { Image } from "expo-image";
-import { StyleSheet } from "react-native";
 import Animated, {
   BaseAnimationBuilder,
   LinearTransition,
@@ -9,6 +8,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from "react-native-reanimated";
+import { StyleSheet } from "@styles";
 import { ANIMATION_DURATION, EASING, MARGIN, theme, TILES } from "../constants";
 import { GameValue } from "../game";
 import { GameSkin } from "../types";

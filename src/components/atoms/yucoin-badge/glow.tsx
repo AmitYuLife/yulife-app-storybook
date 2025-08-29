@@ -1,7 +1,8 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import Svg, { Path, RadialGradient, Stop } from "react-native-svg";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   hasWhiteGlow?: boolean;
 }

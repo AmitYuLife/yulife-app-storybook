@@ -1,8 +1,8 @@
 import { SkeletonLoading, Box } from "@atoms";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { inventoryItemStyles } from "./inventory-item";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 const InventoryItemLoading = () => {
   return (

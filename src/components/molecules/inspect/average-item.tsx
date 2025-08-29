@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Rank } from "@atoms/icon/rank";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { addCommasToNumber } from "@utils";
 import {
   COMPARISON_ACTIVITY,

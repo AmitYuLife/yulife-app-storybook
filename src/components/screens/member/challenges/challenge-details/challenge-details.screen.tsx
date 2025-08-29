@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import LinearGradient from "react-native-linear-gradient";
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
-import { Animated, NativeScrollEvent, StyleSheet, View } from "react-native";
+import { Animated, NativeScrollEvent, View } from "react-native";
 
 import { t } from "@locale";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useDispatch } from "react-redux";
 import { MODALS } from "@navigation/constants";
 import { Image, Box, TextTemplate } from "@atoms";

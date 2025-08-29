@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Image, Source, TextTemplate } from "@atoms";
 import { RemoteImage } from "@graphql/__generated";
 

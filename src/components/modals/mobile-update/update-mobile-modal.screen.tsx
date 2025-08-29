@@ -2,8 +2,8 @@ import * as React from "react";
 import { View } from "react-native";
 import { Text } from "@atoms";
 import { Button, LinkButton } from "@molecules";
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { TextStyle, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { GenericHeadingAbsolute } from "@organisms";
 
 type ButtonProps = React.ComponentProps<typeof Button>;

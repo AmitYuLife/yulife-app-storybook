@@ -1,10 +1,9 @@
 import { Source, TextTemplate } from "@atoms";
 import Box from "@atoms/box/box";
 import { EMPTY_WALLET_TITLE } from "@ids";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { Image } from "expo-image";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
 
 interface EmptyWalletProps {
   image: Source;

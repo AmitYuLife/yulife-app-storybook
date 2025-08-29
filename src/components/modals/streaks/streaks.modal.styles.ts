@@ -1,5 +1,4 @@
-import { Style } from "@styles";
-import { StyleSheet } from "react-native";
+import { Style, StyleSheet } from "@styles";
 
 export const streaksModalStyles = StyleSheet.create({
   sectionWrapper: {

@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from "react";
-import { View, ViewStyle, StyleSheet } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { CHECK_REWARDS_BUTTON } from "@ids";
-import { NAV_BAR, Style, TOP_BAR } from "@styles";
+import { NAV_BAR, Style, TOP_BAR, StyleSheet } from "@styles";
 import { t } from "@locale";
 import { PurchasesSaleIcon } from "@atoms/icon/purchases-sale-icon";
 

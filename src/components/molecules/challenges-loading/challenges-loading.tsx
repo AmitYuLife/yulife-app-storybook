@@ -1,10 +1,11 @@
 import { ChallengeBackground, Loading } from "@atoms";
 import React, { memo } from "react";
 import { GenericHeadingAbsolute } from "@organisms";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { getTheme } from "@theme";
 import style from "./challenges-loading.style";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   currentLevel: number;
   yuniversalMap?: number;

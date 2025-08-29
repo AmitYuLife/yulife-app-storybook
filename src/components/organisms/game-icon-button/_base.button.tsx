@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 
 type GameButtonProps = {
   Icon: React.ReactElement;

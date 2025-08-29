@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { ActivityHistoryCalendarIcon } from "@atoms/icon/activity-history-calendar-icon";
 import { t } from "@locale";
-import { NAV_BAR, Style } from "@styles";
+import { NAV_BAR, Style, StyleSheet } from "@styles";
 
 const ActivityHistoryEmpty = () => {
   return (

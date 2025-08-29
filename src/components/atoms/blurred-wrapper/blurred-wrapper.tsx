@@ -1,7 +1,7 @@
 import { BlurView, BlurViewProps } from "@react-native-community/blur";
 import { memo, ReactElement, useMemo } from "react";
-import { StyleSheet } from "react-native";
 
+import { StyleSheet } from "@styles";
 interface IProps extends Pick<BlurViewProps, "blurAmount" | "blurType"> {
   children: ReactElement;
   blurAmount?: number;

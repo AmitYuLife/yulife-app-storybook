@@ -1,13 +1,12 @@
 import React, { memo } from "react";
-import { StyleSheet } from "react-native";
-import { Style } from "@styles";
-import moment from "moment";
+import { Style, StyleSheet } from "@styles";
 import { minifiedFromNow } from "@utils";
 import { TEXT_TEMPLATE, SURGE_ICON } from "@ids";
 import { GameButton } from "./_base.button";
 import { useRemainingTime } from "./helpers/useRemainingTime";
 import { t } from "@locale";
 import { LottieView } from "@molecules";
+import moment from "moment";
 
 const LottieIcon = require("./assets/surge-lottie.json");
 

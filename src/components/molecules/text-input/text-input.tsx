@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Image } from "@atoms";
-import { Style } from "@styles";
-import { StyleSheet, TextInput as Input, View, ViewStyle, TextInputProps } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { TextInput as Input, View, ViewStyle, TextInputProps } from "react-native";
 import TextInputError from "./text-input-error";
 import {
   getColour,

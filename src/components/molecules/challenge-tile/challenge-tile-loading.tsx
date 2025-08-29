@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import tileStyles from "./challenge-tile.styles";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { SkeletonLoading, Box } from "@atoms";
 import LottieView from "../lottie-view/lottie-view";
 

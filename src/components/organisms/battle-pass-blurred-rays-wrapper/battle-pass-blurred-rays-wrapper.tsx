@@ -1,5 +1,6 @@
 import { memo, ReactElement, useMemo } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
+import { StyleSheet } from "@styles";
 import { BlurredWrapper, Box, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { Rays, RollingText } from "@organisms";

@@ -1,9 +1,9 @@
 import { Image, TextTemplate } from "@atoms";
 import { HintIcon } from "@atoms/icon/hint-icon";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import { memo, useCallback, useState, JSX } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { TouchableOpacityWithDelay } from "..";
 import Markdown from "../markdown/markdown";

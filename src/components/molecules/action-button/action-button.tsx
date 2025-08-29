@@ -1,9 +1,9 @@
 import { TextTemplate } from "@atoms";
 import { BoxOption } from "@components/molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import React, { ReactNode, memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ArrowButton } from "../arrow-button";
 
 interface IProps {

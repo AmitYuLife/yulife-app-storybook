@@ -1,6 +1,6 @@
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { GetMobileGameBattlePassChestDetailsQuery } from "@graphql/__generated";
 import RadioBattlePassRewardItem from "@components/molecules/radio-battle-pass-reward-item/radio-battle-pass-reward-item";
 import Animated, { FadeOutDown } from "react-native-reanimated";

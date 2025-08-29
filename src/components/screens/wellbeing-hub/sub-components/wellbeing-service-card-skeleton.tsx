@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { SkeletonLoading } from "@atoms";
 
 interface IProps {

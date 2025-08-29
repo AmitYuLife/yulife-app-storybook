@@ -1,7 +1,7 @@
 import { Box, Draggable } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo, ReactNode, useCallback, useMemo, useState } from "react";
-import { LayoutChangeEvent, StyleSheet, useWindowDimensions, View, ViewStyle } from "react-native";
+import { LayoutChangeEvent, useWindowDimensions, View, ViewStyle } from "react-native";
 import LikertScaleLabels from "./likert-scale-labels";
 import Pressable from "../pressable/pressable";
 import { useSharedValue, withTiming } from "react-native-reanimated";

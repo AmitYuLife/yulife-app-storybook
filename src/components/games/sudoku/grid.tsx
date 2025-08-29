@@ -1,11 +1,11 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { memo, useMemo } from "react";
 import {
   SUDOKU_BOARD_SIZE,
   SUDOKU_DIMENSIONS,
   SUDOKU_QUADRANT_DIMENSIONS,
 } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import Cell from "./cell";
 import { CellStatus, useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { ISudokuPosition } from "./sudoku.interface";

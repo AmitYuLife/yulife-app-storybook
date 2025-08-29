@@ -1,5 +1,4 @@
-import { StyleSheet } from "react-native";
-
+import { StyleSheet } from "@styles";
 export const styles = StyleSheet.create({
   info: {
     flexDirection: "column",

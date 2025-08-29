@@ -1,5 +1,5 @@
-import { Colours, Style } from "@styles";
-import { StyleSheet, TextStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { TextStyle } from "react-native";
 
 export const NAV_BAR_ICON_SIZE = Style.adjust(24);
 const styles = StyleSheet.create({

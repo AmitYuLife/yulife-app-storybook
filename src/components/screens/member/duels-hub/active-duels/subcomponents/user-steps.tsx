@@ -1,6 +1,6 @@
 import { useMemo, memo } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 import { useSelector } from "react-redux";
 import { TextTemplate } from "@atoms";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";

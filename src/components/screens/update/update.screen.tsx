@@ -1,8 +1,8 @@
 import { RawImage, Text } from "@atoms";
 import { Button } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IProps {
   title: string;

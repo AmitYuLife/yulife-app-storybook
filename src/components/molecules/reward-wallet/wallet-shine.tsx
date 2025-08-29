@@ -1,8 +1,8 @@
 import { Box } from "@atoms";
 import LottieView from "lottie-react-native";
 import { memo, useCallback, useEffect, useRef } from "react";
-import { StyleSheet } from "react-native";
 
+import { StyleSheet } from "@styles";
 const shineLottie = require("@assets/lottie/wallet/shine.lottie");
 
 interface IWalletShineProps {

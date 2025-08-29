@@ -3,9 +3,10 @@ import { GetSduiJourneyQuery } from "@graphql/__generated";
 import { useSafeAreaViewOffset } from "@hooks";
 import { SDUI_BODY_SCROLL } from "@ids";
 import React, { useEffect, useRef } from "react";
-import { Animated, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { Animated, SafeAreaView, ScrollView, View } from "react-native";
 import { Renderer } from "../renderer";
 
+import { StyleSheet } from "@styles";
 interface Props {
   items: GetSduiJourneyQuery["getSduiJourney"]["body"];
   isSafeAreaView: boolean;

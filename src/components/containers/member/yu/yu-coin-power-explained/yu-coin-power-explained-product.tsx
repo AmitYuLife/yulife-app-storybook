@@ -1,9 +1,9 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import React, { memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { delay } from "@utils/misc";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { TextTemplate, Image } from "@atoms";
 import { Navigation } from "@navigation/main";
 import { getRouteState } from "@redux/app/app.selectors";

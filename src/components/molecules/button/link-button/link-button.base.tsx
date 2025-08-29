@@ -1,16 +1,8 @@
 import React, { ComponentProps, useRef } from "react";
-import {
-  Animated,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-  ViewStyle,
-  TextStyle,
-  GestureResponderEvent,
-} from "react-native";
+import { Animated, TouchableWithoutFeedback, View, ViewStyle, TextStyle, GestureResponderEvent } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { Text } from "@atoms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { Pressable } from "@molecules";
 
 interface IProps {

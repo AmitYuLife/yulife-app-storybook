@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { Colours, Style, TemplateTextType } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, Style, TemplateTextType, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 
 export interface CardInformationItem {

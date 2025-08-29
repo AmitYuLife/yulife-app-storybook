@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, TextStyle, View } from "react-native";
+import { TextStyle, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { getFitKitNotAuthorizedCopy } from "./copy";
 
 interface Props {

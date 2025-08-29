@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { Image, ImageStyle, StyleSheet, View, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { Image, ImageStyle, View, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import QuestMapLevelAccessibility from "./quest-map-level-accessibility";
 
 export interface IQuestMapEpisodeAccessibilityItem {

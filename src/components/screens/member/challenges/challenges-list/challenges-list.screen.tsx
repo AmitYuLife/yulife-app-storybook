@@ -4,13 +4,13 @@ import { getTheme } from "@theme";
 import { t } from "@locale";
 import { ChallengeBackground } from "@atoms";
 import { ChallengesList, ChallengesListAccessibility, IChallengesListProps } from "@molecules";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { useBackHandler, useScreenReaderChange } from "@hooks";
 import InventoryBanner from "@components/molecules/inventory-banner/inventory-banner";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { useSelector } from "react-redux";
 import { getInventoryItemCount } from "@redux/quest-map/quest-map.selectors";
 

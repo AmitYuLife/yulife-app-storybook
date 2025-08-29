@@ -1,10 +1,10 @@
 import { ReactNode, memo, useEffect, useRef } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import LottieViewRef from "lottie-react-native";
 import { ImageSource } from "expo-image";
 import { Image } from "@atoms";
 import { LottieView } from "@components/molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 interface IItemDetailsRewardProps {
   size: number;

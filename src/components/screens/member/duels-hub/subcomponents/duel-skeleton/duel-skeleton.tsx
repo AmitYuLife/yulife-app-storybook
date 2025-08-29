@@ -1,7 +1,8 @@
 import React, { memo, FC } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { SkeletonRow } from "@molecules";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   length?: number;
 }

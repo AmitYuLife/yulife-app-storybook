@@ -1,5 +1,4 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet } from "react-native";
 import { ImageSource } from "expo-image";
 import { useBackHandler } from "@hooks";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
@@ -8,6 +7,7 @@ import { t } from "@locale";
 import StepFeedbackHalfModal from "./half-modal/step-feedback-half-modal.modal";
 import { HALF_MODAL_SUBTITLE } from "@ids";
 
+import { StyleSheet } from "@styles";
 export interface ISduiStepFeedbackHalfModalProps {
   image?: {
     image: ImageSource;

@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { Image, ScrollView, View } from "react-native";
 import { TextTemplate, Wrapper } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";

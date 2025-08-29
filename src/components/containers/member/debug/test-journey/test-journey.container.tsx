@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from "react";
-import { Keyboard, StyleSheet, View } from "react-native";
+import { Keyboard, View } from "react-native";
 import { uniq } from "lodash";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { TextTemplate } from "@atoms";
 import { Button, TextInput, TouchableOpacityWithDelay } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Storage, StorageKey } from "@utils/storage";
 import { useAsyncEffect } from "@hooks";
 

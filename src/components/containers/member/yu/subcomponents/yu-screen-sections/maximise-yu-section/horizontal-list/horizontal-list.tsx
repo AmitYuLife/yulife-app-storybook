@@ -1,7 +1,7 @@
 import { FlatList } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { ComponentProps, memo } from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, View } from "react-native";
 import { renderItem } from "./render-item";
 import { NudgeItem } from "../nudge-item";
 import { INudgeItem } from "./types";

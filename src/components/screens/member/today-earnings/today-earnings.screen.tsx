@@ -1,9 +1,9 @@
 import React, { memo, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { TODAYS_EARNINGS } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import ActivityFeed from "./subcomponents/activity-feed";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 import HintContainer from "@components/molecules/hint/hint.container";
 import { ROUTES } from "@navigation/constants";

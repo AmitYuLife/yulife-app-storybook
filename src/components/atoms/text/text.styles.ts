@@ -1,6 +1,7 @@
-import { StyleSheet, TextStyle, Platform } from "react-native";
+import { TextStyle, Platform } from "react-native";
 import { Colours, Style } from "../../../styles";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   base: {
     color: Colours.darkGray,

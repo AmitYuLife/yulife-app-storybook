@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { LayoutChangeEvent, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { ContentItemProductDetailsHeader } from "@graphql/__generated";
 import Markdown from "@components/molecules/markdown/markdown";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
 
 interface Props {

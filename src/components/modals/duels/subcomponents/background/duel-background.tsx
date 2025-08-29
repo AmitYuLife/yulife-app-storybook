@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, View } from "react-native";
 import styles from "./duel-background.styles";
 
+import { StyleSheet } from "@styles";
 export default function DuelBackground() {
   return (
     <View style={StyleSheet.absoluteFill}>

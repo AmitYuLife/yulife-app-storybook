@@ -1,7 +1,7 @@
 import { memo, useCallback, useContext, useMemo } from "react";
-import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
+import { ActivityIndicator, ScrollView } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
-import { Style, TOP_BAR } from "@styles";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 import { gql, MobileGameBattlePassReward } from "@graphql/__generated";
 import { ContentItemWrapper } from "@components/sdui";

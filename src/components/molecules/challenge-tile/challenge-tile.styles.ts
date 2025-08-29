@@ -1,5 +1,5 @@
-import { StyleSheet, Platform } from "react-native";
-import { Colours, Style } from "@styles";
+import { Platform } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 
 export const IMAGE_SIZE = Style.DEVICE_WIDTH / 2 - Style.adjust(23);

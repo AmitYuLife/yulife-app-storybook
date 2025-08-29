@@ -1,6 +1,6 @@
 import { Style } from "@styles";
 import { useMemo } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "@styles";
 import { useSafeAreaViewOffset } from "./useSafeAreaViewOffset";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 

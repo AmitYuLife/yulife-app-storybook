@@ -1,7 +1,7 @@
 import * as React from "react";
 import { TextTemplate } from "@atoms";
-import { StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useMemo } from "react";
 import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { Button, SecondaryButton } from "@components/molecules";

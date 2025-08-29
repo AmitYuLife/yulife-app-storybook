@@ -1,6 +1,7 @@
 import { memo, ReactNode, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   children: ReactNode;
   stackColors?: string[];

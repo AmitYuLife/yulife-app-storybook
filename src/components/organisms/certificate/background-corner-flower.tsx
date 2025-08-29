@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import Svg, { Path } from "react-native-svg";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 
 const DISTANCE = 6;
 

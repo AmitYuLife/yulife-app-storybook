@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { BoxOption } from "@molecules";
 import { REWARD_ITEM, LOCKED_REWARD_ITEM } from "@ids";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import Lock from "./subcomponents/lock";
 import RewardPill from "./subcomponents/pill";
 import { ArrowButton } from "@components/molecules/arrow-button";

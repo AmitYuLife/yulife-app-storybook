@@ -4,7 +4,7 @@ import { ROUTES } from "@navigation/constants";
 import { useCaptcha } from "@organisms/captcha-input";
 import { memo, useCallback, useState } from "react";
 import { AccessibilityInfo, Alert, Keyboard } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useSendMagicLink } from "./send-magic-link.hook";
 import { validateEmail } from "@utils/email";
 import { useBackHandler } from "@hooks";

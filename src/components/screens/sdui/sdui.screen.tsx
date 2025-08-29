@@ -4,10 +4,11 @@ import { SduiLocalActionTypes } from "@components/sdui/_types/sdui.types";
 import { SduiStyle, GetSduiJourneyQuery } from "@graphql/__generated";
 import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
 import React, { memo, useContext, useEffect, useMemo } from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
+import { KeyboardAvoidingView, Platform, View, ViewStyle } from "react-native";
 import { Absolute, Body } from "../../sdui/_renderer/sections";
 import { SDUI_SCREEN_SCROLL_VIEW } from "@ids";
 
+import { StyleSheet } from "@styles";
 interface Props {
   body?: GetSduiJourneyQuery["getSduiJourney"]["body"];
   absolute?: GetSduiJourneyQuery["getSduiJourney"]["absolute"];

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FlatList as RNFlatList, Animated, StyleSheet, View, ViewStyle, Platform } from "react-native";
-import { Colours, Style } from "@styles";
+import { FlatList as RNFlatList, Animated, View, ViewStyle, Platform } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { FlatList, TextTemplate } from "@atoms";
 import { ProgressItems } from "./progress-items";
 import { Controller } from "./controller";

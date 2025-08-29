@@ -1,7 +1,6 @@
 import { memo } from "react";
 import { Box } from "@atoms";
-import { Style } from "@styles";
-import { StyleSheet } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { Rays } from "@organisms";
 
 export type RaysDecorationProps = {

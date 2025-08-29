@@ -1,6 +1,6 @@
 import React from "react";
-import { Platform, StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { Platform, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
 import { SecondaryButton } from "@components/molecules";

@@ -7,7 +7,7 @@ import { addLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.act
 import { getLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.selectors";
 import { memo, useCallback } from "react";
 import { Keyboard } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 
 export interface ILeaderboardSearchContainerProps {

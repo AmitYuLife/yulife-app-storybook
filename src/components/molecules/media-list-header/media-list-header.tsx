@@ -1,7 +1,7 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import React, { memo, useMemo } from "react";
 import { Image, Source, TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { MEDIA_LIST_DESCRIPTION, MEDIA_LIST_HEADER, PARTNER_LOGO } from "@ids";
 
 interface IProps {

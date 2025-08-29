@@ -1,6 +1,7 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
+import { StyleSheet } from "@styles";
 const width = Style.SCALE_UP_AND_DOWN(355);
 const height = Style.SCALE_UP_AND_DOWN(57);
 

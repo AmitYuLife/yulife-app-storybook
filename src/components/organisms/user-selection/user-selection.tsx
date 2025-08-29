@@ -2,9 +2,9 @@ import { Box, TextTemplate, CloseSvg } from "@atoms";
 import { Avatar } from "@components/molecules";
 import { P2P_DESELECT_USER, P2P_SELECTED_SECTION, P2P_SELECTED_USER } from "@ids";
 import { UserSearchItem } from "@redux/_core/types";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { ScrollView, Pressable, StyleSheet } from "react-native";
+import { ScrollView, Pressable } from "react-native";
 
 type Props = {
   selected: UserSearchItem[];

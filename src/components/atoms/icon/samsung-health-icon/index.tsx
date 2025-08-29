@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { Image, ImageStyle, StyleSheet } from "react-native";
-import { Style } from "@styles";
+import { Image, ImageStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 
 export const SamsungHealthIcon = memo(() => (
   <Image source={require("./samsung-health-icon.png")} style={styles.wrapper} />

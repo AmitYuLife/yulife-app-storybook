@@ -1,5 +1,5 @@
 import React, { cloneElement, ReactElement, useCallback, useEffect, useMemo, useRef } from "react";
-import { Animated, Modal, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, Modal, View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
 import { BlurView, BlurViewProps } from "@react-native-community/blur";
 import { useBackHandler, usePressedInWithDelay } from "@hooks";
@@ -7,6 +7,7 @@ import { MODALS } from "@navigation/constants";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 
+import { StyleSheet } from "@styles";
 interface IProps extends Pick<BlurViewProps, "blurAmount" | "blurType"> {
   children: ReactElement;
   withBlurBackground: boolean;

@@ -1,11 +1,11 @@
 import React, { ReactNode, useState } from "react";
-import { StyleSheet, ViewStyle, View, Platform } from "react-native";
+import { ViewStyle, View, Platform } from "react-native";
 import { REWARDS_SCREEN } from "@ids";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Box, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useUserFeatures } from "@hooks";
 import { t } from "@locale";
 

@@ -1,7 +1,7 @@
 import React, { memo, useMemo, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ChecklistInfoCard } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { GoogleFitIcon } from "@atoms/icon/google-fit-icon";
 import { SamsungHealthIcon } from "@atoms/icon/samsung-health-icon";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";

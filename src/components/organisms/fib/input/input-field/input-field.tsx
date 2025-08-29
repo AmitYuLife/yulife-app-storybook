@@ -3,7 +3,6 @@ import {
   TextInput,
   View,
   ViewStyle,
-  StyleSheet,
   TextStyle,
   NativeSyntheticEvent,
   TextInputKeyPressEventData,
@@ -11,7 +10,7 @@ import {
   Platform,
 } from "react-native";
 import { Text } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { INPUT_FIELD, INPUT_FIELD_VALUE } from "@ids";
 export interface InputFieldProps {
   onChangeText: (text: string) => void;

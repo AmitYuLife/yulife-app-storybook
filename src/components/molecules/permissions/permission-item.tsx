@@ -1,7 +1,7 @@
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import React, { memo, useCallback, useMemo, useRef } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import { ExclamationIcon } from "@atoms/icon/exclamation-icon";
 import { InfoIcon } from "@atoms/icon/info-icon";

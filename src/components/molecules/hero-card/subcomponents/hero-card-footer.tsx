@@ -1,8 +1,8 @@
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, View } from "react-native";
 import { memo } from "react";
 import { Image } from "@atoms";
 import { HeroCardFooter as HeroCardFooterProps } from "@utils/heroCards";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 
 const HeroCardFooter = ({ left, right, fontColor }: HeroCardFooterProps) => {

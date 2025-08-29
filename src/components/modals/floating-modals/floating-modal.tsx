@@ -8,9 +8,9 @@ import React, {
   ReactNode,
   cloneElement,
 } from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
+import { KeyboardAvoidingView, Platform, View, ViewStyle } from "react-native";
 import { Button, Pressable, SecondaryButton } from "@molecules";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { useTranslation } from "@hooks";

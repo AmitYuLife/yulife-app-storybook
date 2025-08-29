@@ -1,5 +1,4 @@
 import { forwardRef, memo, useEffect, useImperativeHandle, useMemo, useState } from "react";
-import { StyleSheet } from "react-native";
 import { useAnimatedStyle } from "react-native-reanimated";
 import { range } from "lodash";
 import LinearGradient from "react-native-linear-gradient";
@@ -7,8 +6,8 @@ import MaskedView from "@react-native-masked-view/masked-view";
 
 import { Box } from "@atoms";
 import { useTimeout } from "@hooks";
-import { Colours } from "@styles";
 import NumberDisplay from "./subcomponents/number-display";
+import { Colours, StyleSheet } from "@styles";
 import { getNumberStyle, MAX_HEIGHT } from "./subcomponents/constants";
 import { getMarginLeft } from "./utils";
 import { useHorizontalNumberDisplayAnimations } from "./useHorizontalNumberDisplayAnimations";

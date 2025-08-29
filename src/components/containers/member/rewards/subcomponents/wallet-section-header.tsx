@@ -1,8 +1,7 @@
 import { Box, SkeletonLoading, Source, TextTemplate } from "@atoms";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import { Image } from "expo-image";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
 
 const TEXT_COLOR = Colours.neutral.n900;
 

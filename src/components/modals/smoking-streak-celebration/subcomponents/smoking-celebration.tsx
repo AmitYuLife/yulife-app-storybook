@@ -1,5 +1,5 @@
 import { memo, useCallback, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { clamp } from "lodash";
 import {
   SMOKING_CELEBRATION_CTA,
@@ -15,7 +15,7 @@ import { Box, Image, TextTemplate } from "@atoms";
 import { GenericYucoin } from "@atoms/yucoin-badge";
 import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
 import { Spotlight, SpotlightProps, TipCard } from "@organisms";
-import { Colours, Style, templateTextStyles } from "@styles";
+import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
 import { Button, Markdown } from "@components/molecules";
 import { VoidFunctionOrPromise } from "@utils";
 import {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, memo } from "react";
-import { StyleSheet } from "react-native";
 import { Button, SelectInput, TextInput, TextInputTypes, ISelectInputOption } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { CONTENT_FORM_SUBMIT, INPUT_AVIOS_FORM_FIELD } from "@ids";
 
 interface IValidation {

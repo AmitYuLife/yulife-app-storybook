@@ -4,9 +4,10 @@ import { ComponentProvider, ViewStyle } from "react-native";
 import {
   Layout,
   LayoutRoot,
-  Navigation as NativeNavigation,
   Options,
   OptionsModalPresentationStyle,
+  // eslint-disable-next-line no-restricted-imports
+  Navigation as NativeNavigation,
 } from "react-native-navigation";
 import { MODALS, ROUTES } from "./constants";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";

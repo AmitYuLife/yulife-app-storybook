@@ -1,5 +1,5 @@
-import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, TouchableOpacity } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useSudokuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";
 import moment from "moment";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";

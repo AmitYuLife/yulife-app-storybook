@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { BottomShadow } from "@atoms";
 import { t } from "@locale";
 import { Tabs } from "@organisms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { ACTIVE_TAB, COMPLETED_TAB } from "@ids";
 
 interface IProps {

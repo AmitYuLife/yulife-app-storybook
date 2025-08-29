@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Pressable } from "..";
 import LinearGradient from "react-native-linear-gradient";
 import { RADIO_BATTLE_PASS_REWARD_ITEM } from "@ids";

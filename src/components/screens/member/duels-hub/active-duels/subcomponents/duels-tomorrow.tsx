@@ -1,6 +1,6 @@
 import { memo } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import { DuelEntry } from "../../subcomponents";
 import { useSelector } from "react-redux";

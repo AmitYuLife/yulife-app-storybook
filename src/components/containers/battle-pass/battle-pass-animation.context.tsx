@@ -1,8 +1,9 @@
 import { DecayingCoin } from "@components/molecules";
 import BattlePassRecentTransactionBar from "@organisms/battle-pass-progress-bar/subcomponents/battle-pass-recent-transaction-bar";
 import { createContext, memo, ReactNode, useCallback, useContext, useMemo, useState } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 
+import { StyleSheet } from "@styles";
 export interface IBattlePassAnimationCanvas {
   addVelocityCoin: ({ x, y }: { x: number; y: number }) => void;
 }

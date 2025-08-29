@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { Image, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { useCreateSduiActionDispatcher } from "../_hooks/useCreateSduiActionDispatcher";
 import { ContentItemTextGroup as ContentItemTextGroupProps } from "@graphql/__generated";

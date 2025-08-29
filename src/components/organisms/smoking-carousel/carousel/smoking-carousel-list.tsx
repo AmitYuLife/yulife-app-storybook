@@ -1,7 +1,7 @@
 import React, { forwardRef, memo, useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ContentStyle, FlashList } from "@shopify/flash-list";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { SMOKING_CAROUSEL_LIST } from "@ids";
 import { VoidFunction } from "@utils";
 import SmokingCarouselListItem, {

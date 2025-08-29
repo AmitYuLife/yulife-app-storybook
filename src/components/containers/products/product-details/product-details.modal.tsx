@@ -1,6 +1,6 @@
 import React, { ComponentProps } from "react";
-import { StyleSheet, View, ViewStyle, ScrollView, Platform } from "react-native";
-import { Style } from "@styles";
+import { View, ViewStyle, ScrollView, Platform } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { GroupProductDisclaimer } from "@molecules";

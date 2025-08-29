@@ -1,7 +1,7 @@
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IProps {
   date: string;

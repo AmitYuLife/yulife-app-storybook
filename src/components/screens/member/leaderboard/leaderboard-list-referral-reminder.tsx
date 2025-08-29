@@ -1,14 +1,14 @@
 import { addCommasToNumber } from "@utils";
 import { CloseSvg } from "@atoms";
 import { InviteIcon } from "@atoms/icon/invite-icon";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useEffect, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { SecondaryButton, TouchableOpacityWithDelay } from "@components/molecules";
 import Markdown from "@components/molecules/markdown/markdown";
 import { LEADERBOARD_REFERRAL_REMINDER, LEADERBOARD_REFERRAL_REMINDER_CLOSE } from "@ids";
 import { t } from "@locale";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IItemsProps {
   componentId: string;

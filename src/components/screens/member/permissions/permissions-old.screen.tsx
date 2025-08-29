@@ -5,9 +5,9 @@ import {
   HealthPermissionsSection,
   SwitchGoogleFitSection,
 } from "@organisms";
-import { Style, templateTextStyles } from "@styles";
+import { Style, templateTextStyles, StyleSheet } from "@styles";
 import React, { memo, useCallback, useMemo } from "react";
-import { Platform, ScrollView, StyleSheet, View } from "react-native";
+import { Platform, ScrollView, View } from "react-native";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@yu-life/react-native-fitkit";

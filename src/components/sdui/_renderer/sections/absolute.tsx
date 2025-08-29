@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { mapDynamicServerStyles, mapServerStyles } from "@components/sdui";
 import { Renderer } from "../renderer";
 import { SduiStateContext } from "@components/sdui/_context/SduiProvider";
 import { GetSduiJourneyQuery } from "@graphql/__generated";
 
+import { StyleSheet } from "@styles";
 interface Props {
   items: GetSduiJourneyQuery["getSduiJourney"]["absolute"];
 }

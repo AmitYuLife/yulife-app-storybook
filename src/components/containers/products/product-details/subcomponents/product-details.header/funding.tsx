@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from "react";
 import { TextTemplate } from "@atoms";
 import { ContentItemProductDetailsHeader } from "@graphql/__generated";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { defaultFundingTheme } from "./styles";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 
 export const Funding = memo(({ text, theme }: ContentItemProductDetailsHeader["funding"]) => {
   const [themeStyles, textColor] = useMemo(

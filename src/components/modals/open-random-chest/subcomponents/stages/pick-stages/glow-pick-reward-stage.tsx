@@ -1,9 +1,9 @@
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { IPickStageProps } from "../../../open-random-chest.types";
 import Animated, { FadeInUp } from "react-native-reanimated";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import ClaimPrizeButton from "../../claim-prize-button";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import ChestHeaderText from "../../chest-header-text";
 import { YumojiRewardPicker } from "@components/molecules";
 import StageContainer from "../../stage-container";

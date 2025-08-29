@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { GenericHeadingAbsolute, GenericHeadingPad, Tabs } from "@organisms";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import YuHealthInfo from "./yu-health-info";
 import YuHealthActivity from "./yu-health-activity";
 import YuHealthChallenges from "./yu-health-challenges";

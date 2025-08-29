@@ -1,5 +1,5 @@
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
-import { Style, TOP_BAR } from "@styles";
+import { ImageStyle, ViewStyle } from "react-native";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 
 export default StyleSheet.create({
   imageWrapper: {

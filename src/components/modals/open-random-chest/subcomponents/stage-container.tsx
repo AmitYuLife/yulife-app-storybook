@@ -1,6 +1,7 @@
 import { memo, ReactNode } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
+import { StyleSheet } from "@styles";
 interface IStageContainerProps {
   children: ReactNode;
 }

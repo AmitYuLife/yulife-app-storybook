@@ -1,6 +1,4 @@
-import { StyleSheet } from "react-native";
-import { Colours, Style } from "@styles";
-
+import { Colours, Style, StyleSheet } from "@styles";
 export const BACKGROUND_IMAGE = require("@assets/smoking/commitment-background.png");
 export const YUMOJI_AVATAR_SIZE = 80;
 

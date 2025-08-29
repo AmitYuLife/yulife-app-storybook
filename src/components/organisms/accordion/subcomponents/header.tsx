@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
-import { Animated, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, LayoutChangeEvent, View, ViewStyle } from "react-native";
 import { Image, Source, TextTemplate } from "@atoms";
 import { Pressable } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 
 interface Props {
   onPress: () => void;

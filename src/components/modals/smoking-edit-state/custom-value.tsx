@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput } from "react-native";
 import { CheckBox } from "@components/molecules";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 
 interface IProps {
   index: number;

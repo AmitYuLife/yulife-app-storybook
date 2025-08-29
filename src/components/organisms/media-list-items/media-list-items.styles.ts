@@ -1,5 +1,4 @@
-import { Style } from "@styles";
-import { StyleSheet } from "react-native";
+import { Style, StyleSheet } from "@styles";
 
 export const IMAGE_WIDTH = Style.adjust(120);
 export const IMAGE_HEIGHT = Style.adjust(104);

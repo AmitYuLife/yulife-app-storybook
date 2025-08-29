@@ -1,7 +1,7 @@
 import React, { useCallback, memo, useRef, FC, useEffect, useMemo } from "react";
-import { View, StyleSheet, ViewStyle, FlatList } from "react-native";
+import { View, ViewStyle, FlatList } from "react-native";
 import { Navigation } from "@navigation/main";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import { itemHeight, ItemListItems, YumojiItem } from "./yumoji-item";
 import { AVATAR_BUILDER_LIST } from "@ids";

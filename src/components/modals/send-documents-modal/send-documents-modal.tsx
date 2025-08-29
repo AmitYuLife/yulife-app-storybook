@@ -1,7 +1,7 @@
 import React, { memo, useState, useCallback } from "react";
-import { Alert, Keyboard, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { Alert, Keyboard, ScrollView, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms/text/text-template";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Button, TextInput } from "@components/molecules";
 import { useMutation } from "@apollo/client";
 import { MODALS } from "@navigation/constants";

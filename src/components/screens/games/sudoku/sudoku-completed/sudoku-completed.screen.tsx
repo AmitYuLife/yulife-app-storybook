@@ -1,10 +1,10 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { memo, useCallback, useRef } from "react";
 import { Image, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import SudokuStatsList from "@components/games/sudoku/sudoku-stats-list";
 import { Button } from "@components/molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import Lottie from "lottie-react-native";
 import colours from "@styles/colours";
 import Animated, { FadeInDown } from "react-native-reanimated";

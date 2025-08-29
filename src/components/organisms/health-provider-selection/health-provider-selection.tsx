@@ -3,10 +3,10 @@ import Radio from "@atoms/radio/radio";
 import HealthProviderActivities from "@components/molecules/health-provider-activities/health-provider-activities";
 import HealthProviderLogo from "@components/molecules/health-provider-logo/health-provider-logo";
 import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { HealthProvider } from "@yu-life/react-native-yu-health";
 import React, { memo } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 interface IHealthProviderSelectionProps {
   provider: HealthProvider;

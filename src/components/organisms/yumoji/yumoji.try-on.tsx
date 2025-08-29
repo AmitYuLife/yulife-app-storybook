@@ -1,10 +1,10 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@apollo/client";
 import { YUMOJI_OUTFIT_LABEL, YUMOJI_OUTFIT_RADIO } from "@ids";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
 import { Popover as PopoverMolecule, TouchableOpacityWithDelay } from "@molecules";
 import { Yumoji } from "./yumoji";

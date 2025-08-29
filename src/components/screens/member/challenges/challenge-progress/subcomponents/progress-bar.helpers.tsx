@@ -1,12 +1,13 @@
 import { Counter } from "@molecules/index";
 import * as React from "react";
 // eslint-disable-next-line no-restricted-imports
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
 import { displaySecondsAsMinutes, padNum } from "@utils";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
 import { t } from "@locale";
 
+import { StyleSheet } from "@styles";
 export const renderProgressLabel = ({ amount, styleType, type }: Partial<IProps>) => {
   const textColorStyle = { color: styleType.progressTextColor };
   const { minutes, seconds } = displaySecondsAsMinutes(amount);

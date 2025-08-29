@@ -1,5 +1,5 @@
-import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
-import { Style } from "@styles";
+import { ViewStyle, ImageStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 
 export default StyleSheet.create({
   popover: {

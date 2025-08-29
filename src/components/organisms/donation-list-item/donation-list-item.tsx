@@ -5,11 +5,11 @@ import { DONATION_BUTTON, DONATION_LIST_AVATARS, IMPACT_DONATION_IMAGE, IMPACT_D
 import { t } from "@locale";
 import { Avatar, BoxOption, Markdown, Pressable } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
-import { Style, templateTextStyles } from "@styles";
+import { Style, templateTextStyles, StyleSheet } from "@styles";
 import * as Haptics from "expo-haptics";
 import { ImageSource } from "expo-image";
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 
 export interface IDonationListItem {
   id: string;

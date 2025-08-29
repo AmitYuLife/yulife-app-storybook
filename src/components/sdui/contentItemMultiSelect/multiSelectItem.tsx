@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-import { Platform, StyleSheet, View, ViewStyle } from "react-native";
+import { Platform, View, ViewStyle } from "react-native";
 import { Image } from "@atoms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { MultiSelectActiveIndicator } from "./multiSelectActiveIndicator";
 import { MultiSelectLabel } from "./multiSelectLabel";

@@ -1,7 +1,7 @@
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ComponentProps, memo, useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import { FlashList } from "@shopify/flash-list";

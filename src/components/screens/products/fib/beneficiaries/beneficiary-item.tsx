@@ -1,5 +1,5 @@
-import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, ViewStyle, TextStyle, Platform } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TertiaryButton, BUTTON_ICON } from "@molecules";
 import { InputField } from "@organisms/fib/input/input-field";
 import { truncate } from "@utils";

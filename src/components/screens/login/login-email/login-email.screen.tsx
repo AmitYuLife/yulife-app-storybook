@@ -4,10 +4,10 @@ import { Box, Pad, TextTemplate } from "@atoms";
 import { Button, TextInput } from "@molecules";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL } from "@ids";
 import { CaptchaInput, useCaptcha } from "@organisms/captcha-input";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 import { LoginFormWrapper } from "../subcomponents/login-form-wrapper";
-import { Keyboard, StyleSheet } from "react-native";
+import { Keyboard } from "react-native";
 import { useKeyboardListeners } from "@hooks";
 
 interface IProps {

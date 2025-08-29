@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { GenericHeadingPad, MediaListItems, MediaListButtons, GenericHeadingAbsolute } from "@organisms";
 import { MediaListHeader, PromotionPanel, SecondaryButton } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { t } from "@locale";
 import { FIIT_CATEGORY_LIST_SCREEN } from "@ids";

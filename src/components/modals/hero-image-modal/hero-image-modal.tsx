@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Buttons } from "./subcomponents/buttons";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import { Image } from "@atoms";
 import { HERO_IMAGE_MODAL } from "@ids";

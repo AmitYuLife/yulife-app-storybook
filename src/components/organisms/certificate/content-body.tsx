@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { ValueDescription } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { POLICY_CERTIFICATE_CONTENT } from "@ids";
 
 interface ContentBody {

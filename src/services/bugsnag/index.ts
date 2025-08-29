@@ -2,7 +2,8 @@ import Config from "react-native-config";
 import Bugsnag, { Event } from "@bugsnag/expo";
 import { Platform } from "react-native";
 import BugsnagPluginReactNativeNavigation from "@bugsnag/plugin-react-native-navigation";
-import { Navigation } from "react-native-navigation";
+// eslint-disable-next-line no-restricted-imports
+import { Navigation as RNNavigation } from "react-native-navigation";
 import { noop } from "lodash";
 
 export type BugsnagClient = typeof Bugsnag;
@@ -29,7 +30,7 @@ export default function getClient(): BugsnagClient {
       logger: bugsnagLogger,
       releaseStage: Config.ENV,
       enabledReleaseStages: ["develop", "uat", "production"],
-      plugins: [new BugsnagPluginReactNativeNavigation(Navigation)],
+      plugins: [new BugsnagPluginReactNativeNavigation(RNNavigation)],
       onError: function (event: Event) {
         if (event.errors?.[0]?.errorMessage) {
           const { errorMessage } = event.errors[0];

@@ -1,7 +1,7 @@
 import React, { RefObject, memo, useCallback, useEffect, useMemo, useRef } from "react";
-import { Animated, Platform, RefreshControl, StyleSheet, View } from "react-native";
+import { Animated, Platform, RefreshControl, View } from "react-native";
 import { GenericHeadingPad, LeaderboardFloatingRank, NavBar, TopBar, UserReferral } from "@organisms";
-import { Colours, NAV_BAR, Style, TOP_BAR } from "@styles";
+import { Colours, NAV_BAR, Style, TOP_BAR, StyleSheet } from "@styles";
 import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { LEADERBOARD_SCROLL_LIST, NOTIF_CENTRE, LEADERBOARD_USER_REFERRAL } from "@ids";

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
-import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { Animated, Easing, View, ViewStyle } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 
 const ProgressItem = ({

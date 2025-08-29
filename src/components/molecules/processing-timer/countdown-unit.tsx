@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { COUNTDOWN_UNIT } from "@ids";
 
 interface Props {

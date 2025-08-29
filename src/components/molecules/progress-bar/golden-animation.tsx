@@ -1,6 +1,6 @@
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useEffect, useRef } from "react";
-import { Animated, StyleSheet } from "react-native";
+import { Animated } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
 type Props = {

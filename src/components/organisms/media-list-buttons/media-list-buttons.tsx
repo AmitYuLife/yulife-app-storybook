@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import { Image, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@molecules";
-import { StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { BUTTON_LIST_SCREEN } from "@ids";
 import { GetQuestMapLevelQuery } from "@graphql/__generated";
 

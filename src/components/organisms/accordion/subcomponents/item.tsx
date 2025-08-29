@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Image, Source, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { SduiAction } from "@graphql/__generated";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";

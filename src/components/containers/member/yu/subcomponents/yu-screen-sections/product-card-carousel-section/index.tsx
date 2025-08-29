@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
-import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { FlatList, ListRenderItemInfo, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { SkeletonLoading, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@components/molecules";
 import { BUTTON_SIZES } from "@components/molecules/button/button.types";

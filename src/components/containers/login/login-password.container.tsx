@@ -8,7 +8,7 @@ import Logger from "@services/logging/logger";
 import { memo, useCallback, useMemo, useState } from "react";
 import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
 import DeviceInfo from "react-native-device-info";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { applyLoginSession } from "./login.helpers";
 import { useDispatch } from "react-redux";
 

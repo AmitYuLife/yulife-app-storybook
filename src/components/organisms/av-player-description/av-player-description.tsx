@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
-import { Image as RNImage, StyleSheet, View } from "react-native";
+import { Image as RNImage, View } from "react-native";
 import moment from "moment";
 import { Image, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { StarIcon } from "@atoms/icon/star-icon";
 import { MEDIA_SMALL_LOGO, MEDIA_STAR_REWARD, MEDIA_YUCOIN_REWARD, VIDEO_PLAYER_DESCRIPTION_SCREEN } from "@ids";
 import { t } from "@locale";

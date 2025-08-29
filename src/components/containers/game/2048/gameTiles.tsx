@@ -2,10 +2,10 @@ import { memo, useMemo } from "react";
 import { BoardCell } from "@containers/game/2048/game";
 import { GameSkin } from "@containers/game/2048/types";
 import { Box } from "@atoms";
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground } from "react-native";
 import { CellsDisplay } from "./components/Cells";
 import { generatePreviewBoard } from "@containers/game/2048/generateBoard";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 const PREVIEW_BOARD_SIZE = 4;
 const MARGIN = 7;

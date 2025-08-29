@@ -1,6 +1,5 @@
 import { memo, useEffect } from "react";
 import { Box } from "@atoms";
-import { StyleSheet } from "react-native";
 import Animated, {
   Easing,
   interpolate,
@@ -12,7 +11,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
 import { range } from "lodash";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 
 const DEFAULT_OPACITY_INTERPOLATION: [number[], number[]] = [
   [0, 0.5, 0.9, 1],

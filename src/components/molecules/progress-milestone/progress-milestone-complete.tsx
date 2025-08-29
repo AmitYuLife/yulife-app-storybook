@@ -1,7 +1,7 @@
 import { EncircledCheckIcon } from "@atoms/icon/encircled-check-icon";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 export const ProgressMilestoneComplete = memo(() => (
   <>

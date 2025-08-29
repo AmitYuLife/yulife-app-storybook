@@ -1,8 +1,8 @@
 import { memo, RefObject, useRef } from "react";
-import { ImageSourcePropType, StyleSheet, View } from "react-native";
+import { ImageSourcePropType, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { BattlePassList, BattlePassProgressBar } from "@organisms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";

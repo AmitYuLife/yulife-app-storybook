@@ -1,8 +1,9 @@
 import { ImageSource } from "expo-image";
 import { memo } from "react";
 import YumojiRewardPickerItem from "./yumoji-reward-picker-item";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
+import { StyleSheet } from "@styles";
 interface IYumojiRewardPickerProps {
   activeItem: string;
   onPress: (item: string) => void;

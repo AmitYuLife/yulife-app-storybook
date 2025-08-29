@@ -1,7 +1,6 @@
 import { Image } from "@atoms";
 import { random } from "lodash";
 import { memo, useEffect, useMemo } from "react";
-import { StyleSheet } from "react-native";
 import Animated, {
   Easing,
   useFrameCallback,
@@ -11,6 +10,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { StyleSheet } from "@styles";
 
 interface IDecayingCoinProps {
   id: string;

@@ -1,8 +1,8 @@
 import React, { memo, useMemo, useRef } from "react";
-import { ListRenderItemInfo, StyleSheet, View, ViewStyle, FlatList as RNFlatList } from "react-native";
+import { ListRenderItemInfo, View, ViewStyle, FlatList as RNFlatList } from "react-native";
 import { Box, FlatList, SkeletonLoading, TextTemplate } from "@atoms";
 import Pressable from "../pressable/pressable";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { CHIP_LIST_ITEM } from "@ids";
 import { FadeIn } from "react-native-reanimated";
 import { isNil } from "lodash";

@@ -1,6 +1,6 @@
 import { useCallback, memo } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 
 import { useSelector } from "react-redux";

@@ -1,5 +1,5 @@
 import { region, REGION, t } from "@locale";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import LoginConfirmScreen from "@components/screens/login/login-confirm/login-confirm.screen";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";

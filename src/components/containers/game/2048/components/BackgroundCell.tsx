@@ -1,9 +1,10 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { MARGIN, theme } from "../constants";
 import { useCellSize } from "../hooks";
 import { GameBoardSize } from "../game";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   boardSize: GameBoardSize;
 }

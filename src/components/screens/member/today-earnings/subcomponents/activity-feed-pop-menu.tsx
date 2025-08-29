@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from "react";
 import { Hyperlink, Pressable, Toast } from "@molecules";
 import { Navigation } from "@navigation/main";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Block, CloseSvg, Image, TextTemplate } from "@atoms";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ROUTES } from "@navigation/constants";
 import { useTranslation } from "@hooks";
 import { useDispatch } from "react-redux";

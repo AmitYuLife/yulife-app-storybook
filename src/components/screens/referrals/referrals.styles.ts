@@ -1,5 +1,5 @@
-import { Platform, StyleSheet } from "react-native";
-import { Style, TOP_BAR } from "@styles";
+import { Platform } from "react-native";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 
 export const styles = StyleSheet.create({
   wrapper: {

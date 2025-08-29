@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
-import { View, Text, StyleSheet } from "react-native";
-import { Colours, Style } from "@styles";
+import { View, Text } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useSudokuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";
 import { memo, useCallback, useEffect, useState } from "react";
 import Animated, { FadeOutUp } from "react-native-reanimated";

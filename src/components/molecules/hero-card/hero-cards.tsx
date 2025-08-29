@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { FlatList, StyleSheet, ListRenderItemInfo } from "react-native";
+import { FlatList, ListRenderItemInfo } from "react-native";
 import { useSelector } from "react-redux";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { FLAT_LIST_EVENTS } from "@ids";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Box } from "@atoms";
 import HealthPermissionPanel, { IHealthPermissionPanelProps } from "../health-permission-panel/health-permission-panel";
 import { HeroCard as HeroCardProps } from "@utils/heroCards";

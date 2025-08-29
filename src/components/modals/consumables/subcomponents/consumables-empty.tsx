@@ -1,9 +1,9 @@
 import { TextTemplate } from "@atoms";
 import { InventoryItemLoading } from "@components/molecules";
 import { useTranslation } from "@hooks";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IConsumablesEmptyProps {
   consumablesLoading: boolean;

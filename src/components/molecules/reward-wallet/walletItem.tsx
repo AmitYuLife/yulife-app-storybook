@@ -1,8 +1,8 @@
 import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { Colours, Style, TemplateTextType } from "@styles";
+import { Colours, Style, TemplateTextType, StyleSheet } from "@styles";
 import { memo } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image } from "react-native";
 import WalletShine from "./wallet-shine";
 import { WALLET_ITEM_LABEL, WALLET_ITEM_TITLE } from "@ids";
 

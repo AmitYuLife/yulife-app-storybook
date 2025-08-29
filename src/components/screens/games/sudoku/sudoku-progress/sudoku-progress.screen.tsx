@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Button } from "@molecules";
@@ -11,7 +11,7 @@ import { Navigation } from "@navigation/main";
 import { SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
 import { getCurrentWorldName } from "@utils";
 import { gql } from "@graphql/__generated";
-import { Colours, NAV_BAR, Style } from "@styles";
+import { Colours, NAV_BAR, Style, StyleSheet } from "@styles";
 import moment from "moment";
 import { useTranslation } from "@hooks";
 import { Box, Image, TextTemplate } from "@atoms";

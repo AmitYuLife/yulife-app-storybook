@@ -1,6 +1,6 @@
 import React, { memo, PropsWithChildren, ReactNode, useMemo } from "react";
-import { Animated, StyleSheet, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { Animated, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 
 interface Props {
   expandThreshold: number;

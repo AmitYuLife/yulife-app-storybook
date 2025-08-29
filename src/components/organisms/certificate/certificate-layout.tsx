@@ -1,7 +1,7 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Medal } from "./background-medal";
-import { mapCoverToColor, Style } from "@styles";
+import { mapCoverToColor, Style, StyleSheet } from "@styles";
 import { ConcentricSet } from "./background-concentric";
 import { CornerFlowerSet } from "./background-corner-flower";
 import { CoverType } from "@graphql/__generated";

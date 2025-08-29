@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { RibbonGold } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 
 interface IProps {

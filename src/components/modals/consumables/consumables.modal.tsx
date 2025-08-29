@@ -1,6 +1,6 @@
 import * as React from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { LayoutChangeEvent, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Button, InventoryItem, SecondaryButton } from "@components/molecules";
 import { useBackHandler, useTranslation } from "@hooks";

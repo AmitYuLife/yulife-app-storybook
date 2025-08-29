@@ -1,7 +1,7 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Style, Colours, TemplateTextType } from "@styles";
+import { Style, Colours, TemplateTextType, StyleSheet } from "@styles";
 import { ContentItemImageChoiceFragment } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { IMAGE_CHOICE_LABEL } from "@ids";

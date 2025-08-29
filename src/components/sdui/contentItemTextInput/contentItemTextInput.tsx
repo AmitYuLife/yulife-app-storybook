@@ -1,5 +1,5 @@
 import React, { ComponentProps, memo, useCallback, useContext, useState } from "react";
-import { KeyboardType, LayoutChangeEvent, StyleSheet, TextInputProps, View, ViewStyle } from "react-native";
+import { KeyboardType, LayoutChangeEvent, TextInputProps, View, ViewStyle } from "react-native";
 import { CONTENT_ITEM_INPUT } from "@ids";
 import {
   ContentItemFormTextInputType,
@@ -8,7 +8,7 @@ import {
   ContentItemTextInputValidationType as ValidationType,
 } from "@graphql/__generated";
 import { TextField } from "@components/molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import media, { DEVICES } from "@styles/media";
 import { formatNumber } from "@utils";

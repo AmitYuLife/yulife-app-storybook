@@ -2,8 +2,9 @@ import React, { memo } from "react";
 import { ContentItemKeyValueBoxFragment as GqlProps } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { TextTemplate } from "@atoms";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
+import { StyleSheet } from "@styles";
 export const ContentItemKeyValueBox = memo((props: GqlProps) => (
   <View style={mapServerStyles(props.wrapperStyles)}>
     <View style={[styles.container, mapServerStyles(props.styles)]}>

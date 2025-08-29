@@ -1,10 +1,10 @@
 import { memo } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, View } from "react-native";
 import { TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { InviteIcon } from "@atoms/icon/invite-icon";
 import { SecondaryButton } from "@components/molecules";
 import { t } from "@locale";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { VoidFunction, addCommasToNumber } from "@utils";
 
 interface IProps {

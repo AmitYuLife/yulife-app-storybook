@@ -1,6 +1,6 @@
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useEffect, useRef } from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, View } from "react-native";
 import { INITIAL_DELAY, PEAK_DELAY } from "./animation-constants";
 
 type Props = {

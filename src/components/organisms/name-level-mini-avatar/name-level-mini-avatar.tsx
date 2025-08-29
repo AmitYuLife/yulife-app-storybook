@@ -1,6 +1,6 @@
 import React, { FC, memo, useEffect, useRef } from "react";
-import { Animated, Easing, Image, StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { Animated, Easing, Image, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import { getCurrentWorld, getCurrentWorldImage, getCurrentWorldText } from "@utils";
 import { useSelector } from "react-redux";

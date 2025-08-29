@@ -1,8 +1,7 @@
 import { memo } from "react";
 import { TextTemplate, Radio } from "@atoms";
-import { StyleSheet } from "react-native";
-import { Style } from "@styles";
-import { Pressable } from "@components/molecules";
+import { Style, StyleSheet } from "@styles";
+import { Pressable } from "@molecules";
 
 interface IGenericSelectorItemProps {
   label: string;

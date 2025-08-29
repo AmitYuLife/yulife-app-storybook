@@ -1,11 +1,11 @@
 import { useVerifyAndAuthorizeCapability } from "@hooks";
 import { TextTemplate } from "@atoms";
 import { getCapabilityStatuses } from "@redux/yu-health/yu-health.selectors";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import { HealthPermissionStatus, HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { memo } from "react";
-import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Alert, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
 import { Button } from "@components/molecules";
 import { useDispatch } from "react-redux";

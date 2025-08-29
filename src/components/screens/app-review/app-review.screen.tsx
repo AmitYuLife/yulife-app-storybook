@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Button, LinkButton, SecondaryButton } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { APPREVIEW_TEXT } from "@ids";
 
 type ButtonProps = React.ComponentProps<typeof Button>;

@@ -5,10 +5,9 @@ import { GetMobileRecentlyUsedRewardsListQuery } from "@graphql/__generated";
 import { t } from "@locale";
 import { RecentRewardCard } from "@organisms";
 import { FlashList } from "@shopify/flash-list";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { isEmpty } from "lodash";
 import { memo, useCallback } from "react";
-import { StyleSheet } from "react-native";
 
 interface IRewardRecentlyUsedSectionContainerProps {
   recentRewards?: GetMobileRecentlyUsedRewardsListQuery["data"];

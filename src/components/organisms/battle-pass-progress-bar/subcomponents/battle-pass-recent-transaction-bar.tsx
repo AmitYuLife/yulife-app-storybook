@@ -1,7 +1,7 @@
 import { DecayingRewardText } from "@components/molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo, useCallback, useEffect, useState } from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 
 interface IBattlePassRecentTransactionBarProps {
   step: number;

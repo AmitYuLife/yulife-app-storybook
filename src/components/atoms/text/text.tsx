@@ -1,6 +1,7 @@
 import * as React from "react";
-import { StyleSheet, Text, TextProps, TextStyle } from "react-native";
+import { Text, TextProps, TextStyle } from "react-native";
 import styles from "./text.styles";
+import { StyleSheet } from "@styles";
 /**
  * @param bold *** WATCH OUT *** This prop will only work if we don't pass a fontFamily alongside other styles.
  * **bold** prop changes the fontFamily to the default bold one but it can be overwriting

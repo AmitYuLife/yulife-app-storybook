@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { PackageType } from "@molecules";
 import { mapCoverTypeToColorTheme, Style } from "@styles";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import Markdown from "../markdown/markdown";
 import { TEXT_TEMPLATE } from "@ids";
 import { CoverType } from "@graphql/__generated";

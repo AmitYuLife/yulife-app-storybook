@@ -1,9 +1,9 @@
 import { FloatingModal, SudokuPauseModal } from "@components/modals";
 import { SUDOKU_PAUSE_ANIMATION_DURATION } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import React, { useMemo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
 import Grid from "./grid";
 import NumbersInput from "./numbers-input";

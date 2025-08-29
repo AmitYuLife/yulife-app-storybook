@@ -1,6 +1,6 @@
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 // eslint-disable-next-line no-restricted-imports
-import { StyleSheet, Text, ViewStyle } from "react-native";
+import { Text, ViewStyle } from "react-native";
 
 type Props = {
   children: string;

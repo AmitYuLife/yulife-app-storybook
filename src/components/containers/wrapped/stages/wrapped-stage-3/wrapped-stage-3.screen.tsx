@@ -1,6 +1,6 @@
 import { Box } from "@atoms";
 import Rays from "@organisms/rays/rays";
-import { StyleSheet, useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import {
   Easing,
@@ -16,7 +16,7 @@ import {
 } from "react-native-reanimated";
 import { IWrappedStageProps } from "../../wrapped.types";
 import { memo, useCallback, useState } from "react";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { WrappedCloud } from "../../components/wrapped-cloud";
 import WrappedFlyingAsset from "../../components/wrapped-flying-asset";

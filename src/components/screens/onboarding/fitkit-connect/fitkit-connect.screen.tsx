@@ -3,11 +3,10 @@ import React, { FC } from "react";
 import { Loading, Pad } from "@atoms";
 import FitKitAvailable from "./fitkit-available";
 import FitKitUnavailable from "./fitkit-unavailable";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 import { CentredScreen } from "@molecules";
-import { StyleSheet } from "react-native";
 import { SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP, SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_PRIVACY } from "@ids";
 
 interface IProps {

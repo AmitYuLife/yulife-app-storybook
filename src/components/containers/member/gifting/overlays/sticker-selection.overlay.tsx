@@ -1,8 +1,8 @@
 import { memo, useCallback, useState } from "react";
-import { Pressable, Image, ScrollView, StyleSheet } from "react-native";
+import { Pressable, Image, ScrollView } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { t } from "@locale";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Navigation } from "@navigation/main";
 import { chunk } from "lodash";
 import { GiftingAsset } from "../context/gifting-manager.types";

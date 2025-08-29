@@ -1,5 +1,5 @@
 import React, { ComponentProps, memo, useEffect, useMemo, useRef, useState } from "react";
-import { Animated, DimensionValue, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, DimensionValue, LayoutChangeEvent, View, ViewStyle } from "react-native";
 import { Header } from "./subcomponents/header";
 import { Content } from "./subcomponents/content";
 import { Item } from "./subcomponents/item";
@@ -7,6 +7,7 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
 import { Source } from "@atoms";
 
+import { StyleSheet } from "@styles";
 interface Props {
   header: string;
   subheading?: string;

@@ -1,11 +1,12 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Heading, Pad, Text } from "@atoms";
 import styles from "./feedback.styles";
 import StarRating from "./star-rating";
 import { Button, CentredScreen, LinkButton } from "@molecules";
 import { t } from "@locale";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   isSubmitting: boolean;
   onCancel: () => void;

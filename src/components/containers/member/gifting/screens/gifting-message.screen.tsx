@@ -1,9 +1,9 @@
 import { memo, useContext, useMemo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { Avatar, Pressable, CheckBoxType } from "@molecules";
 import { GenericHeadingPad } from "@organisms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { GiftingChoice } from "../context/gifting-manager.types";
 import { GiftingManagerContext } from "../context/gifting-manager.context";
 import { P2P_MESSAGE } from "@ids";

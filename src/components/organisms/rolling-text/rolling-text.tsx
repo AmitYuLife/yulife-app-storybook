@@ -1,8 +1,7 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet } from "react-native";
 import { RollingTextItem } from "@molecules";
 import { Box } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 interface IRollingTextSpinProps {
   previousValue: string | number;

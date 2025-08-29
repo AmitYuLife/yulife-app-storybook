@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Image } from "@atoms";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Style } from "@styles";
+import { TouchableOpacity, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { memo, useMemo } from "react";
 import Avatar, { FRAME_SCALE_FACTOR } from "@components/molecules/avatar/avatar";
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";

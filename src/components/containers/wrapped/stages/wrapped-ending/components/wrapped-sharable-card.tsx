@@ -5,10 +5,9 @@ import { getDuration } from "@components/games/sudoku/sudoku-utils";
 import { Yumoji } from "@components/molecules";
 import { t } from "@locale";
 import { getUserAvatar, getUserFirstName } from "@redux/user/user.selectors";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { addCommasToNumber } from "@utils";
 import { RefObject, memo, useMemo } from "react";
-import { StyleSheet } from "react-native";
 import ViewShot from "react-native-view-shot";
 import { useSelector } from "react-redux";
 

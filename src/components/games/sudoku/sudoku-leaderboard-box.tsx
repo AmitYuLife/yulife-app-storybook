@@ -1,9 +1,9 @@
 import { TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import SudokuLeaderboardAvatar from "./sudoku-leaderboard-avatar";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ISudokuLeaderboardItem } from "./sudoku.interface";

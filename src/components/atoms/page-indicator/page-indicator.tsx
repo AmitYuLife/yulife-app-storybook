@@ -1,7 +1,8 @@
 import * as React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { TouchableOpacityWithDelay } from "@molecules";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   pageCount: number;
   activePage: number;

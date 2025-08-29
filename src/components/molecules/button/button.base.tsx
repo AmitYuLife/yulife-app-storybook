@@ -1,7 +1,6 @@
 import React, { ComponentProps, memo, useEffect, useState } from "react";
 import {
   Animated,
-  StyleSheet,
   ActivityIndicator,
   TouchableWithoutFeedback,
   View,
@@ -11,7 +10,7 @@ import {
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { usePressedInWithDelay } from "@hooks";
-import { Style, TemplateTextType } from "@styles";
+import { Style, TemplateTextType, StyleSheet } from "@styles";
 import { getOptionallyDisabledColor } from "@styles/getOptionallyDisabledColor";
 import { TextTemplate } from "@atoms/text/text-template";
 import { BadgeIcon } from "@atoms/icon/badge-icon";

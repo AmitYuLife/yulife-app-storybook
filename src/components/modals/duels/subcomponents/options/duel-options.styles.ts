@@ -1,6 +1,7 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 import { Style, TOP_BAR } from "@styles/index";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   blurStyle: {
     marginBottom: -2,

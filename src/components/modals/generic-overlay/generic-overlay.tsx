@@ -1,6 +1,6 @@
 import React, { ComponentProps, ReactNode } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 interface IGenericOverlay {

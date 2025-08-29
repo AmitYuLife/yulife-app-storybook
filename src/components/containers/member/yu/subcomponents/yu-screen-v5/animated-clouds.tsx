@@ -1,6 +1,6 @@
 import React, { FC, memo, useEffect, useRef } from "react";
-import { Animated, Easing, StyleSheet, View } from "react-native";
-import { Style, TOP_BAR } from "@styles";
+import { Animated, Easing, View } from "react-native";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 import { Cloud } from "@atoms";
 import { DETOX_ENABLED } from "@services/socket";
 

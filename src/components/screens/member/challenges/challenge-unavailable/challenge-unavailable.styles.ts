@@ -1,6 +1,7 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../styles";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   heading: {
     fontSize: Style.SCALE_UP_AND_DOWN(22),

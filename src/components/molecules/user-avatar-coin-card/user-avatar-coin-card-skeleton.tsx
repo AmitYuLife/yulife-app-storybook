@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { SkeletonLoading } from "@atoms";
 import { styles } from "./styles";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 interface IProps {
   limit: number;

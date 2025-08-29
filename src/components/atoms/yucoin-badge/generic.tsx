@@ -1,7 +1,6 @@
 import React, { memo } from "react";
-import { StyleSheet } from "react-native";
 import Svg, { Path, Defs, LinearGradient, Stop, G } from "react-native-svg";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 
 interface IProps {
   isGrayScale?: boolean;

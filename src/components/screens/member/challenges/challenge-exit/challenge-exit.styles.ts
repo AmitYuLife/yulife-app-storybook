@@ -1,6 +1,7 @@
 import { Style } from "@styles/index";
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   wrapper: {
     backgroundColor: "rgba(255,255,255,0.9)",

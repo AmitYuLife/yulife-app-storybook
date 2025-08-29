@@ -1,8 +1,8 @@
 import { ImageSource } from "expo-image";
 import { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 import { ITEM_DETAILS_REWARD } from "@ids";
 

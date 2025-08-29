@@ -3,7 +3,7 @@ import { Navigation } from "@navigation/main";
 import { useSelector, useDispatch } from "react-redux";
 import { ActiveDuelsScreen, CompletedDuelsScreen, DuelsIntroScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
-import { StyleSheet, FlatList, ListRenderItemInfo, ViewToken, ViewStyle, View } from "react-native";
+import { FlatList, ListRenderItemInfo, ViewToken, ViewStyle, View } from "react-native";
 import { useBackHandler } from "@hooks";
 import { getDuelsGoalsIntro } from "@redux/onboarding/onboarding.selectors";
 import { setDuelsIntroShown } from "@redux/onboarding/onboarding.actions";
@@ -11,7 +11,7 @@ import { DuelTabs } from "@components/screens/member/duels-hub/subcomponents";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
 import { Button } from "@components/molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { ROUTES } from "@navigation/constants";
 import { CHALLENGE_FRIEND_BUTTON, DUELS_HUB } from "@ids";
 

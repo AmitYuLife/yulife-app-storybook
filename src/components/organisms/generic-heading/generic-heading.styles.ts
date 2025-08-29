@@ -1,5 +1,5 @@
-import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
-import { Style, TOP_BAR, Colours } from "@styles";
+import { TextStyle, ViewStyle, Platform } from "react-native";
+import { Style, TOP_BAR, Colours, StyleSheet } from "@styles";
 import media from "@styles/media";
 
 export const TOP_BAR_HEIGHT = TOP_BAR.HEIGHT + TOP_BAR.PADDING_TOP + TOP_BAR.PADDING_BOTTOM;

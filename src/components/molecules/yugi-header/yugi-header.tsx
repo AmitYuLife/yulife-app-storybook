@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
 import { Image, TextTemplate } from "@atoms";
 import { TEXT_TEMPLATE } from "@ids";
-import { Style } from "@styles";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { View, ViewStyle } from "react-native";
 
 interface IProps {
   title?: string;

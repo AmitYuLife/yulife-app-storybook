@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Image } from "@atoms";
 import { PackageType } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { CoverType } from "@graphql/__generated";
 import { TOP_RIGHT_ITEM_IMAGE } from "@ids";
 

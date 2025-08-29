@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { ArrowButton } from "@components/molecules/arrow-button";

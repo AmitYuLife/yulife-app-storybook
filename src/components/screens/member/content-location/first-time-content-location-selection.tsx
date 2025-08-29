@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import { Modal, StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { Modal, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import Logger from "@services/logging/logger";
 import { Image, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";

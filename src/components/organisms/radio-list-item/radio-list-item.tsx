@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Radio, TextTemplate } from "@atoms";
 import { SETTINGS_NAME, TEXT_TEMPLATE } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 export type RadioListItemProps = {
   id: string;

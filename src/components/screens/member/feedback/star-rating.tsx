@@ -1,6 +1,6 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { Image, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import assets from "./assets";
 import { TouchableOpacityWithDelay } from "@molecules";
 

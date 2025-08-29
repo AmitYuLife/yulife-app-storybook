@@ -1,13 +1,13 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { WELLBEING_HUB_SETTINGS_SCREEN } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad, RadioListItem, RadioListItemProps } from "@organisms";
 import { Button } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { useTranslation } from "@hooks";
 import { gql } from "@graphql/__generated";
 import InfoPanel from "@components/molecules/info-panel/info-panel";

@@ -1,7 +1,7 @@
 import { Image } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface IProps {
   iconUrl: string;

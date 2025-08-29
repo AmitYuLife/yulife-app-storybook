@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import moment from "moment";
 import { MEDITOPIA_TIMER_MINUTES, MEDITOPIA_TIMER_SECS } from "@ids";
-import { TemplateTextType } from "@styles";
+import { TemplateTextType, StyleSheet } from "@styles";
 
 interface IProps {
   time: number;

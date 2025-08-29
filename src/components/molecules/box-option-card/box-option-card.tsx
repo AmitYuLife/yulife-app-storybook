@@ -1,8 +1,8 @@
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { default as BoxOption } from "../box-option/box-option";
 import { ContentItemButtonFragment, RemoteImage, SduiAction, VariableRemoteImage } from "@graphql/__generated";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { ComponentProps, useCallback, useRef, useState } from "react";
 import { Title } from "./box-option-card.title";
 import { BOX_OPTION_DESCRIPTION, BOX_OPTION_TITLE, RIGHT_SIDE_IMAGE_BOX_OPTION } from "@ids";

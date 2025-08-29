@@ -1,6 +1,6 @@
 import React, { useEffect, memo, useRef } from "react";
-import { StyleSheet, View, Animated, ViewStyle, Platform, TouchableOpacityProps } from "react-native";
-import { Style, Colours } from "@styles";
+import { View, Animated, ViewStyle, Platform, TouchableOpacityProps } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 import * as media from "@styles/media";
 import { TouchableWithDelay } from "@molecules";
 import { usePressedInWithDelay } from "@hooks";

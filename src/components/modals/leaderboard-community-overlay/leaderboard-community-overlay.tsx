@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Radio, TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Pressable } from "@molecules";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";

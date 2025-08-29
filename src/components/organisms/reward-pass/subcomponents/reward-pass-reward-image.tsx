@@ -2,8 +2,8 @@ import { Box } from "@atoms";
 import { IBoxProps } from "@atoms/box/box.types";
 import BattlePassItemAnimatedIcon from "@organisms/battle-pass-list-item/subcomponents/battle-pass-item-animated-icon";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
 
+import { StyleSheet } from "@styles";
 interface IImpactPassRewardImageProps extends IBoxProps {
   images: string[];
 }

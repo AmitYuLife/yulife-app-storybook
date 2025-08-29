@@ -1,8 +1,9 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { t } from "@locale";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   price: number | string;
 }

@@ -2,9 +2,9 @@ import { Image, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import { GenericHeadingPad } from "@organisms";
 import React, { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import SudokuLeaderboardBox from "./sudoku-leaderboard-box";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import SudokuDate from "./sudoku-date";
 import { ISudokuLeaderboardItem } from "./sudoku.interface";
 

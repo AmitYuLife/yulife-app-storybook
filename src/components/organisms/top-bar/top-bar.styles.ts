@@ -1,6 +1,6 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
-import { TOP_BAR } from "@styles";
+import { TOP_BAR, StyleSheet } from "@styles";
 
 export default StyleSheet.create({
   wrapper: {

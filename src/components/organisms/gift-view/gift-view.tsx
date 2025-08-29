@@ -4,9 +4,9 @@ import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
 import { Avatar, Button, SecondaryButton, Slider } from "@molecules";
 import { t } from "@locale";
 import ItemDetailsReward from "@organisms/item-details-reward/item-details-reward";
-import { Style, Colours, TOP_BAR, NAV_BAR } from "@styles";
+import { Style, Colours, TOP_BAR, NAV_BAR, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo } from "react";
-import { ScrollView, Pressable, StyleSheet, View } from "react-native";
+import { ScrollView, Pressable, View } from "react-native";
 import {
   FadeIn,
   ZoomIn,

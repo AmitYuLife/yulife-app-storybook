@@ -1,8 +1,9 @@
 import { Loading } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import React, { memo } from "react";
-import { ActivityIndicatorProps, StyleSheet, View } from "react-native";
+import { ActivityIndicatorProps, View } from "react-native";
 
+import { StyleSheet } from "@styles";
 type TypeProps =
   | { onLeftIconPress: () => void; onRightIconPress?: never }
   | { onRightIconPress: () => void; onLeftIconPress?: never };

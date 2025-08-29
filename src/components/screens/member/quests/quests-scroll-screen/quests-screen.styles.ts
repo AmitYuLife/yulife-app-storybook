@@ -1,6 +1,6 @@
-import { StyleSheet, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style, TOP_BAR } from "@styles";
+import { Style, TOP_BAR, StyleSheet } from "@styles";
 
 export function scrollViewAdjustPosition() {
   if (isIphoneX()) {

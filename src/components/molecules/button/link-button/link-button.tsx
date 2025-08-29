@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import LinkButtonBase from "./link-button.base";
 import { DEFAULT_HEIGHT, buttonStyles } from "../button.styles";
 import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "../button.use-title";

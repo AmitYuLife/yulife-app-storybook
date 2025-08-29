@@ -1,9 +1,9 @@
 import React, { FC, useMemo, memo, useCallback } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { View as AnimatedView, Animation } from "react-native-animatable";
 import { CloseSvg } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import styles from "./popover.styles";
 import PopoverBackground from "./popover-background";
 import { PopoverBeak } from "./popover-beak";

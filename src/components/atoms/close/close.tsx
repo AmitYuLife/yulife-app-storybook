@@ -1,7 +1,7 @@
 import { BUTTON_CLOSE } from "@ids";
 import * as React from "react";
-import { Image, Platform, StyleSheet, ViewStyle, ImageStyle } from "react-native";
-import { Style } from "@styles";
+import { Image, Platform, ViewStyle, ImageStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "@molecules";
 
 const getTop = () => {

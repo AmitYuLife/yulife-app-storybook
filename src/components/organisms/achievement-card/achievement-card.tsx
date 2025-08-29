@@ -2,9 +2,8 @@ import { Box, Image, TextTemplate } from "@atoms";
 import { CheckIcon } from "@atoms/icon/check-icon";
 import { LockIcon } from "@atoms/icon/lock-icon";
 import { AchievementPoints, BoxOption } from "@molecules";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { memo, useMemo, ReactNode } from "react";
-import { StyleSheet } from "react-native";
 import { addCommasToNumber } from "@utils";
 import { ACHIEVEMENT_CARD } from "@ids";
 

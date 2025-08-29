@@ -13,8 +13,7 @@ import WalletCard from "../../../molecules/reward-wallet/walletCard";
 import EmptyWallet from "./subcomponents/empty-wallet";
 
 import WalletItemLoading from "./subcomponents/wallet-item-loading";
-import { Style } from "@styles";
-import { StyleSheet } from "react-native";
+import { Style, StyleSheet } from "@styles";
 
 interface IRewardsWalletContainerProps {
   componentId: string;

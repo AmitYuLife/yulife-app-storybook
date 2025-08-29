@@ -1,6 +1,6 @@
 import React, { ComponentProps, memo } from "react";
-import { ViewStyle, View, StyleSheet } from "react-native";
-import { Colours, Style, TemplateTextType } from "@styles";
+import { ViewStyle, View } from "react-native";
+import { Colours, Style, TemplateTextType, StyleSheet } from "@styles";
 import { CHECK_BOX_STATE } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { TextTemplate } from "@atoms";

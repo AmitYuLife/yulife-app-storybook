@@ -1,6 +1,4 @@
-import { StyleSheet } from "react-native";
-import { Colours, Style, TOP_BAR } from "@styles";
-
+import { Colours, Style, TOP_BAR, StyleSheet } from "@styles";
 export const FOOTER_HEIGHT = Style.adjust(80);
 export const FOOTER_HIDE_BACKGROUND_HEIGHT = Style.adjust(1000);
 

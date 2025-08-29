@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 import GenericHeading from "./generic-heading";
-import { View, StyleSheet, ViewStyle, Platform } from "react-native";
-import { TOP_BAR, Colours } from "@styles";
+import { View, ViewStyle, Platform } from "react-native";
+import { TOP_BAR, Colours, StyleSheet } from "@styles";
 import { BUTTON_CLOSE, CONNECTION_SETUP_TITLE } from "@ids";
 
 interface OwnProps {

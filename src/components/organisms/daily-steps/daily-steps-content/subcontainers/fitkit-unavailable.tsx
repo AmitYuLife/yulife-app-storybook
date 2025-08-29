@@ -1,7 +1,7 @@
 import React from "react";
-import { Platform, StyleSheet, TextStyle } from "react-native";
+import { Platform, TextStyle } from "react-native";
 import { Text } from "@atoms";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 
 export const FitkitUnavailable = () => (

@@ -1,9 +1,9 @@
 import { FC, memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { BUTTON_ICON, TertiaryButton } from "@molecules";
 import { Icon, Pad, TextTemplate } from "@atoms";
 import { REGION, region } from "@locale";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { useTranslation } from "@hooks";
 import { TOP_BAR_HEIGHT } from "@organisms";
 

@@ -1,5 +1,5 @@
-import { StyleSheet, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { ViewStyle } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 import { DUEL_ENTRY_HEIGHT } from "../subcomponents/duel-entry/duel-entry";
 
 export default StyleSheet.create({

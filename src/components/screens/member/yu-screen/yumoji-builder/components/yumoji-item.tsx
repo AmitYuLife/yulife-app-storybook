@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { ImageCachePolicy, RawImage, SkeletonLoading } from "@atoms";
 import { CroppedImage } from "./croppedImage";
 import ColorPreview from "./colorPreview";
 import { YumojiItemLabel } from "./yumoji-item-label";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { COLOUR, YUMOJI_PART_ID, YUMOJI_PART_ID_STATUS } from "@ids";
 import { BOX_OPTION_BORDER_RADIUS, BoxOption } from "@molecules";
 import { useUserFeatures } from "@hooks";

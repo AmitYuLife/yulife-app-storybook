@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import { MediaListHeader, PromotionPanel, SecondaryButton } from "@molecules";
 import { ROUTES } from "@navigation/constants";
 import { GenericHeadingAbsolute, GenericHeadingPad, MediaListButtons, MediaListItems } from "@organisms";
 import { IITem } from "@organisms/media-list-items/media-list-items";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { USE_OTHER_APP_BUTTON, TODAYS_MEDITATION_SCREEN } from "@ids";
 import { Source } from "@atoms";
 import { GetQuestMapLevelQuery } from "@graphql/__generated";

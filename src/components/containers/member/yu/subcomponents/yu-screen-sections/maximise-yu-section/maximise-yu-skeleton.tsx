@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 import { SkeletonLoading } from "@atoms";
 import { NUDGE_ITEM_MARGIN, NUDGE_ITEM_WIDTH } from "./nudge-item/styles";
 

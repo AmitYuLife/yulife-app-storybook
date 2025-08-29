@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
-import { StyleSheet, View, ViewStyle, TextStyle, Platform } from "react-native";
+import { View, ViewStyle, TextStyle, Platform } from "react-native";
 import { Clock } from "../assets";
 import { Text } from "@atoms/index";
 import Logo from "@atoms/logo";
@@ -8,6 +8,7 @@ import useInterval from "@use-it/interval";
 import { Style } from "@styles/index";
 import { formatSeconds } from "../top-bar.helpers";
 
+import { StyleSheet } from "@styles";
 interface Props {
   colour: string;
   logoColour: string;

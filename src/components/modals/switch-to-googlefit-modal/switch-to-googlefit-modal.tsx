@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, View } from "react-native";
 import { TextTemplate, Wrapper } from "@atoms";
 import { Button, ChecklistInfoCard } from "@molecules";
 import { GoogleFitIcon } from "@atoms/icon/google-fit-icon";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";

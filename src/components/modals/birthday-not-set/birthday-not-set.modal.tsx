@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image } from "react-native";
+import { View, Image } from "react-native";
 import { Box, TextTemplate, CloseSvg } from "../../atoms";
 import { GenericHeadingPad } from "../../organisms";
 import { Style, Colours } from "../../../styles";
@@ -7,6 +7,7 @@ import { useTranslation } from "../../../hooks";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BUTTON_BASE } from "@ids";
 
+import { StyleSheet } from "@styles";
 interface IProps {
   onPress: () => void;
   onClose?: () => void;

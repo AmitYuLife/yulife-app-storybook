@@ -1,5 +1,5 @@
-import { Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { View } from "react-native";
 import React, { memo, useMemo } from "react";
 import { GenericHeadingPad } from "@organisms";
 import { Box, SkeletonLoading } from "@atoms";

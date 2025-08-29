@@ -1,6 +1,7 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
 
+import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   wrapper: {
     width: "100%",

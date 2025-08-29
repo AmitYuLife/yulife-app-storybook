@@ -1,5 +1,5 @@
-import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
-import { Style, Colours } from "@styles";
+import { TextStyle, ViewStyle, Platform } from "react-native";
+import { Style, Colours, StyleSheet } from "@styles";
 import media from "@styles/media";
 
 const NAVIGATION_VIEW_HEIGHT = Style.adjust(40);

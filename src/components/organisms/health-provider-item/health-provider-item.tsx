@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import { Box, TextTemplate } from "@atoms";
 import { BoxOption } from "@molecules";
-import { Colours, Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
+import { View } from "react-native";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import HealthProviderLogo from "@components/molecules/health-provider-logo/health-provider-logo";
 import { HealthProvider } from "@yu-life/react-native-yu-health";

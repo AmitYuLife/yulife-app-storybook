@@ -1,8 +1,8 @@
 import { useMemo, memo } from "react";
-import { Image, ListRenderItemInfo, StyleSheet, ImageStyle } from "react-native";
+import { Image, ListRenderItemInfo, ImageStyle } from "react-native";
 import { TextTemplate, Box } from "@atoms";
 import { OnboardingSwiper, OnboardingSwiperData } from "@organisms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { t } from "@locale";
 
 const images = [

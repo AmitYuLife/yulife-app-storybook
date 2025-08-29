@@ -1,10 +1,10 @@
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { Button } from "@components/molecules";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { memo, useCallback, useMemo } from "react";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { useTranslation } from "@hooks";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 
 const SudokuPauseModal = ({ onClose }: { onClose: () => void }) => {

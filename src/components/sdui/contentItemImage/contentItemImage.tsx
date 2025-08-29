@@ -1,12 +1,12 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ContentItemImageFragment as IContentItemImage } from "@graphql/__generated";
 import { Image } from "@atoms";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { useDispatch } from "react-redux";
 import { ContentItemImageSize } from "@graphql/__generated";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { CONTENT_ITEM_SLIDER, CONTENT_MIDDLE_ITEM_IMAGE } from "@ids";
 
 export const ContentItemImage = memo((props: IContentItemImage) => {

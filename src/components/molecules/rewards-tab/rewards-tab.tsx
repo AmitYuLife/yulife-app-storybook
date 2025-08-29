@@ -1,9 +1,8 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
-import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { Colours, Style, StyleSheet } from "@styles";
 import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { REWARDS_TABS } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";

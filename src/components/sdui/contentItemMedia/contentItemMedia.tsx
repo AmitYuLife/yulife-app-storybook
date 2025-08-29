@@ -4,8 +4,8 @@ import { getRouteState } from "@redux/app/app.selectors";
 import { Navigation } from "@navigation/main";
 import { VideoPlayer } from "@organisms";
 import { ContentItemMediaFragment as GqlMarkdown } from "@graphql/__generated";
-import { Modal, StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { Modal, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import { GenericModal } from "@components/modals";
 

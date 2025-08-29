@@ -1,7 +1,7 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
 import StreakStart from "../subcomponents/streak-start";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import { LottieView } from "@molecules";
 

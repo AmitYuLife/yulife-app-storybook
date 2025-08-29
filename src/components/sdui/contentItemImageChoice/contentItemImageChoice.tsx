@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { ContentItemImageChoiceFragment as GqlImageChoice } from "@graphql/__generated";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { TouchableOpacityWithDelay } from "@components/molecules";

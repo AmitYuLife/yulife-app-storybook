@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from "react";
 import { Pressable, Yumoji } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad, GiftSendPrompt, NameLevelMiniAvatar } from "@organisms";
-import { Style } from "@styles";
-import { Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
+import { Platform, ScrollView, View, ViewStyle } from "react-native";
 import { t } from "@locale";
 import { INSPECT_SCREEN, YUMOJI, USER_INFO } from "@ids";
 import AverageStatsSection, { ActivityItems } from "./sections/average.stats.section";

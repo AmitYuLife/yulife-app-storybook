@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 import { t } from "@locale";
 import { StarRating } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { TARGET, REWARD_AMOUNT, TARGET_AND_REWARD } from "@ids";
 import { SurgeIcon } from "@atoms/icon/surge-icon";

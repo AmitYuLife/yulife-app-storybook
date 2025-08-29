@@ -1,5 +1,5 @@
-import { Platform, StyleSheet, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { Platform, ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 
 export default StyleSheet.create({
   absolute: {

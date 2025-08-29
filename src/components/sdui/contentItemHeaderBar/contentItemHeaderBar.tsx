@@ -1,7 +1,7 @@
 import React, { ComponentProps, memo, useCallback } from "react";
-import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { LayoutChangeEvent, View, ViewStyle } from "react-native";
 import { GenericHeading } from "@organisms";
-import { Colours, TOP_BAR } from "@styles";
+import { Colours, TOP_BAR, StyleSheet } from "@styles";
 import { useBackHandler } from "@hooks";
 import { useSduiActionUpdateBus, useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import { VoidFunctionOrSduiActionPayload } from "../_types/sdui.types";

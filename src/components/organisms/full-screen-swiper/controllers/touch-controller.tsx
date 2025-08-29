@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from "react";
-import { GestureResponderEvent, StyleSheet, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { GestureResponderEvent, ViewStyle } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 
 // Moving less than this distance when moving between parts of screen (left & right)

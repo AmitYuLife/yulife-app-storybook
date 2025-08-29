@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { TextTemplate } from "@atoms";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { Colours } from "@styles";
+import { View, ViewStyle } from "react-native";
+import { Colours, StyleSheet } from "@styles";
 import YuCoin from "./yucoin";
 import Award from "./award";
 import { DUEL_ICON } from "@ids";

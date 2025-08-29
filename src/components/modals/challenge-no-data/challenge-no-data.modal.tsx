@@ -1,7 +1,7 @@
 import * as React from "react";
 import { TextTemplate } from "@atoms";
-import { Alert, Linking, Platform, StyleSheet, View } from "react-native";
-import { Style } from "@styles";
+import { Alert, Linking, Platform, View } from "react-native";
+import { Style, StyleSheet } from "@styles";
 import { ActionButton, Button, SecondaryButton } from "@components/molecules";
 import { challengeEndAction } from "@redux/levels/levels.actions";
 import { useTranslation } from "@hooks";

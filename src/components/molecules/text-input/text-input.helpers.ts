@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native";
 import { Colours } from "../../../styles";
 import { Board, Card, Giraffe, Lock, Mail } from "./assets";
 import { TextInputTypes } from "./text-input.types";
 import styles from "./text-input.styles";
 
+import { StyleSheet } from "@styles";
 interface IGetWrapperStyle {
   hasError: boolean;
   isFocused: boolean;
