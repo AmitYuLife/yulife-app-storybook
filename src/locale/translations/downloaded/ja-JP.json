@@ -45,7 +45,7 @@
     },
     "start_game": "ゲーム開始"
   },
-  "achievements": "実績",
+  "achievements": "バッジ",
   "activity_types": {
     "cycling": {
       "plural": "サイクリング"
@@ -69,7 +69,7 @@
       "title": "YuCoinが不足しています"
     }
   },
-  "all_achievements": "全ての実績",
+  "all_achievements": "すべてのバッジ",
   "apple_health": "Apple ヘルスケア",
   "button": "ボタン",
   "captcha_input": {
@@ -392,7 +392,7 @@
         "confirm": "OK",
         "heading": "ランキングのフレーム",
         "no_frames": "アバターのフレームがありません",
-        "subheading": "フレームで成績を自慢しましょう!"
+        "subheading": "フレームを選択してバッジを自慢しましょう!"
       },
       "invite": {
         "cta_label": "招待を承認する",
@@ -485,8 +485,8 @@
       }
     },
     "unlocked_achievements": {
-      "description": "Yumoji に装備して自慢しよう。",
-      "title": "新しい成果が解除されました！ |||| %{smart_count} 件の新しい成果を獲得しました！"
+      "description": "Yumojiに装備してバッジを自慢しましょう!",
+      "title": "新しいバッジが付与されました! |||| %{smart_count}つの新しいバッジが付与されました!"
     }
   },
   "molecules": {
@@ -752,7 +752,7 @@
   },
   "screens": {
     "achievements": {
-      "achievements_points": "%{achievementPoints} 実績ポイント"
+      "achievements_points": "バッジポイント: %{achievementPoints}"
     },
     "activity_history": {
       "empty_message": "まだ何もチャレンジを達成してないようです。早速今日からWell-beingの旅に出かけましょう。"
@@ -1630,8 +1630,8 @@
         "label": "ストアの国/地域"
       },
       "data_saver": {
-        "description": "この設定により、ワークアウトビデオの画質が低下します。",
-        "label": "データ セーバー"
+        "description": "動画の画質を低く設定し、データ通信量を節約します",
+        "label": "データセーバー"
       },
       "email_notification": {
         "label": "メールアドレス"
