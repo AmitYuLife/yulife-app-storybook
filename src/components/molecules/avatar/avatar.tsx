@@ -71,7 +71,7 @@ const Avatar = ({
       width: avatarSize * FRAME_SCALE_FACTOR,
       height: avatarSize * FRAME_SCALE_FACTOR,
       top: (-avatarSize * (FRAME_SCALE_FACTOR - 1)) / 2,
-      left: (-avatarSize * (FRAME_SCALE_FACTOR - 1)) / 2,
+      start: (-avatarSize * (FRAME_SCALE_FACTOR - 1)) / 2,
     };
   }, [avatarSize, tempGameEnableAvatarFrames]);
 

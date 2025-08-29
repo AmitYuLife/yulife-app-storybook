@@ -76,7 +76,7 @@ export default DevVersionSelector;
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    left: Style.adjust(-5),
+    start: Style.adjust(-5),
   },
   buttonWrapper: {
     marginBottom: Style.adjust(12),

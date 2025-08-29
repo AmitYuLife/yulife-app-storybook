@@ -24,7 +24,7 @@ export const AnimatedPlants = memo(({ animationStage, items, canStartPlantAnimat
       plantsWrapperStyle: [
         styles.plantsWrapper,
         {
-          left: getPlantWrapperLeftPosition(animationStage),
+          start: getPlantWrapperLeftPosition(animationStage),
         },
       ],
     };
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     position: "absolute",
     bottom: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
   },
 });

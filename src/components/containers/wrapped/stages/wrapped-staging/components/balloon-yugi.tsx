@@ -14,7 +14,7 @@ const WrappedSpaceYugi = () => {
     const easing = Easing.inOut(Easing.bezierFn(0.12, -0.05, 0.74, 0.42));
     const duration = 2500;
     return {
-      left: 0,
+      start: 0,
       position: "absolute",
       height: YUGI_SIZE * YUGI_ASPECT,
       transform: [

@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(10),
     borderRadius: HERO_CARD_BADGE_HEIGHT / 2,
     top: -HERO_CARD_BADGE_HEIGHT / 2,
-    left: HERO_CARD_BADGE_HEIGHT / 2,
+    start: HERO_CARD_BADGE_HEIGHT / 2,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

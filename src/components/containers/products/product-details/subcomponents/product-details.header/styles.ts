@@ -42,21 +42,21 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   yuCoinPowerWrapper: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
   } as ViewStyle,
   yuCoinTopHalfBackground: {
     position: "absolute",
     top: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
   } as ViewStyle,
   yuCoinBottomHalfBackground: {
     position: "absolute",
     height: 16,
     bottom: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
   } as ViewStyle,
 });
 

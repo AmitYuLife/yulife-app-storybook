@@ -58,17 +58,17 @@ const styles = StyleSheet.create({
   topLeftStars: {
     position: "absolute",
     top: 0,
-    left: 0,
+    start: 0,
   } as ViewStyle,
   bottomRightStars: {
     position: "absolute",
     bottom: 0,
-    right: 0,
+    end: 0,
   } as ViewStyle,
   shadow: {
     position: "absolute",
-    left: 16,
-    right: 16,
+    start: 16,
+    end: 16,
     height: Style.adjust(20),
     bottom: 0,
     borderRadius: 16,

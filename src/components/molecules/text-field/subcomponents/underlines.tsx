@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: "1%",
     height: 2,
-    left: "50%",
+    start: "50%",
   },
   baseUnderline: {
     position: "absolute",

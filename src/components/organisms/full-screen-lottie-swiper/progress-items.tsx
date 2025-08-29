@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     marginHorizontal: Style.adjust(12),
     position: "absolute",
     top: Style.adjust(16),
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     flexDirection: "row",
   } as ViewStyle,
 });

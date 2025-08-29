@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   outerWrapper: {
     position: "absolute",
-    left: NAV_BAR.OUTER_PADDING,
-    right: NAV_BAR.OUTER_PADDING,
+    start: NAV_BAR.OUTER_PADDING,
+    end: NAV_BAR.OUTER_PADDING,
     bottom: NAV_BAR.getPositionBottom(),
   } as ViewStyle,
   shadow: {

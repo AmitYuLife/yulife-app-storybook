@@ -6,8 +6,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     position: "absolute",
-    left: Style.adjust(24),
-    right: Style.adjust(24),
+    start: Style.adjust(24),
+    end: Style.adjust(24),
     bottom: 0,
     alignItems: "center",
     paddingBottom: Platform.select({

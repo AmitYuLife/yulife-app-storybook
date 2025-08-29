@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   },
   extraText: {
     position: "absolute",
-    left: 0,
+    start: 0,
   },
 });
 

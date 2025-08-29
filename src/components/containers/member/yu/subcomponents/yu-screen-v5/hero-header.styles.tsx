@@ -4,8 +4,8 @@ import { Colours, Style, TOP_BAR, StyleSheet } from "@styles";
 export const styles = StyleSheet.create({
   bottomHider: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: -1,
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
@@ -13,22 +13,22 @@ export const styles = StyleSheet.create({
   },
   foregroundWrapper: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: 0,
     width: Style.DEVICE_WIDTH,
   },
   platformImage: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: Style.adjust(40),
     ...PLATFORM_SIZE,
   },
   platformFill: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: Style.adjust(-2),
     height: Style.adjust(46),
     backgroundColor: Colours.neutral.white,
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
   },
   yumojiWrapper: {
     position: "absolute",
-    right: Style.adjust(20),
+    end: Style.adjust(20),
     alignItems: "center",
     transformOrigin: "50% 0%",
   },

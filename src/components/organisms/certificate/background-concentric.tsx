@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
   topLeft: {
     position: "absolute",
     top: 0,
-    left: 0,
+    start: 0,
     transform: [{ rotate: "180deg" }],
   } as ViewStyle,
   bottomRight: {
     position: "absolute",
     bottom: 0,
-    right: 0,
+    end: 0,
   } as ViewStyle,
 });
 

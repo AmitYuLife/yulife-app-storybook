@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   yucoinPowerButtonShine: {
     top: 0,
-    left: "-33%",
+    start: "-33%",
     width: "50%",
     height: "200%",
     position: "absolute",
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   yucoinPowerButtonShadow: {
     top: 0,
-    left: 0,
+    start: 0,
     position: "absolute",
     backgroundColor: "#ECB316",
     marginBottom: Style.adjust(-2),

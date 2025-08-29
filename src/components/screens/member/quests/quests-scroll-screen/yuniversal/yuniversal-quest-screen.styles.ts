@@ -16,9 +16,9 @@ export default StyleSheet.create({
     position: "absolute",
   } as ImageStyle,
   topBarWrapper: {
-    left: 0,
+    start: 0,
     position: "absolute",
-    right: 0,
+    end: 0,
     top: PADDING_TOP,
   } as ViewStyle,
   levelsWrapper: {
@@ -29,7 +29,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   leftIconList: {
     position: "absolute",
-    left: Style.adjust(16),
+    start: Style.adjust(16),
     top: TOP_BAR.TOP_BAR_WITH_PAD,
     alignItems: "center",
     justifyContent: "center",

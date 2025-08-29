@@ -35,7 +35,7 @@ const Cell = ({ x, y, cellWidth, margin = MARGIN, value, skin, entering, exiting
 
   const positionStyle = {
     top: 2 * margin + x * (cellWidth + 2 * margin),
-    left: 2 * margin + y * (cellWidth + 2 * margin),
+    start: 2 * margin + y * (cellWidth + 2 * margin),
     width: cellWidth,
     height: cellWidth,
   };

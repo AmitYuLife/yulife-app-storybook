@@ -58,8 +58,8 @@ const StackedShadowWrapper = ({
               ...StyleSheet.absoluteFillObject,
               backgroundColor,
               bottom,
-              left: verticalOffset,
-              right: verticalOffset,
+              start: verticalOffset,
+              end: verticalOffset,
               borderRadius,
             }}
           />

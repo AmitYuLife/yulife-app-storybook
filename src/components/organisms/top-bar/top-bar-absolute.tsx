@@ -56,16 +56,16 @@ export const TopBarAbsolute = (props: Props) => {
 const styles = StyleSheet.create({
   topBarWrapper: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     height: TOP_BAR.TOP_BAR_WITH_PAD,
     paddingTop: TOP_BAR.PADDING_TOP,
   } as ViewStyle,
   topBarShadow: {
     position: "absolute",
     bottom: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     width: "100%",
     height: Platform.select({ ios: StyleSheet.hairlineWidth, android: 1 }),
     backgroundColor: "rgba(0,0,0,0.2)",

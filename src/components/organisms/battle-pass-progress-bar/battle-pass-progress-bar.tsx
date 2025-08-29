@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   yucoinImageContainer: {
     position: "absolute",
     top: Style.adjust(12),
-    left: Style.adjust(12),
+    start: Style.adjust(12),
   },
   fullDimensions: {
     width: "100%",
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
   },
   yucoinProgress: {
     backgroundColor: "#F43E8E",
-    left: 0,
+    start: 0,
     height: BUBBLE_CONTAINER_SIZE,
     width: BUBBLE_CONTAINER_SIZE,
     borderRadius: BUBBLE_CONTAINER_SIZE * 2,
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   levelNumber: {
-    right: 0,
+    end: 0,
   },
   yucoinImage: {
     width: Style.adjust(40),
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
   absoluteFilled: { width: "100%", height: "100%", position: "absolute" },
   icon: {
     position: "absolute",
-    right: Style.adjust(19),
+    end: Style.adjust(19),
   },
 });
 export default memo(BattlePassProgressBar);

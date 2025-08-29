@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
     top: -Style.DEVICE_HEIGHT,
-    left: -Style.DEVICE_WIDTH / 2,
+    start: -Style.DEVICE_WIDTH / 2,
   },
 });
 

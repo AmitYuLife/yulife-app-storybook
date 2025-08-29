@@ -172,9 +172,9 @@ const QuestMapScreen = ({
 
 const styles = {
   header: {
-    left: 0,
+    start: 0,
     position: "absolute",
-    right: 0,
+    end: 0,
     top: TOP_BAR.PADDING_TOP,
   } as ViewStyle,
   container: {
@@ -187,7 +187,7 @@ const styles = {
   },
   leftIconList: {
     position: "absolute",
-    left: Style.adjust(16),
+    start: Style.adjust(16),
     top: TOP_BAR.TOP_BAR_WITH_PAD,
     alignItems: "center",
     justifyContent: "center",

@@ -10,8 +10,8 @@ type Props = {
 const absolute = {
   br: Style.adjust(58),
   position: "absolute",
-  left: 0,
-  right: 0,
+  start: 0,
+  end: 0,
   top: 0,
   bottom: 0,
 } as ComponentProps<typeof Box>;

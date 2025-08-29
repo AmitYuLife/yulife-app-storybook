@@ -39,8 +39,8 @@ export interface InspectProps {
 
 const BACKGROUNDS_STYLES = {
   position: "absolute",
-  left: 0,
-  right: 0,
+  start: 0,
+  end: 0,
   ...PLATFORM_SIZE,
 } as ViewStyle;
 

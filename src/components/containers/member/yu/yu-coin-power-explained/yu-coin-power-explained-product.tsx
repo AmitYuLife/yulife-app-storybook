@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   productCardYuCoin: {
     position: "absolute",
     top: Style.adjust(20),
-    left: Style.adjust(20),
+    start: Style.adjust(20),
   },
   productCardimage: {},
   productCardButton: {

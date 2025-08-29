@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(80),
     borderRadius: 100,
     position: "absolute",
-    left: -Style.adjust(16),
+    start: -Style.adjust(16),
   },
   detailsImageIcon: {
     borderRadius: 100,

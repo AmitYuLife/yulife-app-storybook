@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
   backgroundImage: {
     position: "absolute",
     top: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     width: IMAGE_WIDTH,
     borderRadius: Style.adjust(16),
   },
@@ -133,13 +133,13 @@ const styles = StyleSheet.create({
   arrowButton: {
     position: "absolute",
     top: Style.adjust(24),
-    right: Style.adjust(24),
+    end: Style.adjust(24),
   },
   bottomSection: {
     position: "absolute",
-    left: 0,
+    start: 0,
     bottom: 0,
-    right: 0,
+    end: 0,
     height: Style.adjust(40),
     backgroundColor: "#FFFBE5",
     flexDirection: "row",

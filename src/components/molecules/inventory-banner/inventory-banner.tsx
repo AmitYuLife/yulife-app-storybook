@@ -20,7 +20,7 @@ interface IInventoryBannerProps {
   onPress?: () => void;
 }
 
-const BANNER_CONTENT_POSITION = { top: 0, left: 0 };
+const BANNER_CONTENT_POSITION = { top: 0, start: 0 };
 const SPARKLE_LOTTIE = require("./inventory-banner-sparkles.lottie");
 
 const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(100),
     position: "absolute",
     top: Style.adjust(1),
-    left: Style.adjust(1),
+    start: Style.adjust(1),
     backgroundColor: Colours.primary.p600,
   },
   inventoryBannerContainer: {

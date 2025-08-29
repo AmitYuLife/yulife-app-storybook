@@ -39,7 +39,7 @@ const AvatarFrameSelectItem = ({ frame, avatar, isActive, onPress }: IAvatarFram
     () => ({
       ...frameItemStyles.overlay,
       top: (-AVATAR_SIZE * (FRAME_SCALE_FACTOR - 1)) / 2,
-      left: (-AVATAR_SIZE * (FRAME_SCALE_FACTOR - 1)) / 2,
+      start: (-AVATAR_SIZE * (FRAME_SCALE_FACTOR - 1)) / 2,
     }),
     []
   );

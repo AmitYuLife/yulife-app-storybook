@@ -397,10 +397,10 @@ export const styles = StyleSheet.create({
     }),
   },
   topbarWrapper: {
-    left: 0,
+    start: 0,
     top: TOP_BAR.PADDING_TOP,
     position: "absolute",
-    right: 0,
+    end: 0,
   },
   avatarsWrapper: {
     width: Style.DEVICE_WIDTH * 0.58,

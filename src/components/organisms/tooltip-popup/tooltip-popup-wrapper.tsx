@@ -65,11 +65,11 @@ const TooltipPopupWrapper = ({ relativePosition, children, style, pointPosition,
     : getStaticPosition(beakPosition, x, y, messageViewWidth, messageViewHeight);
 
   const messageViewStyle = useMemo(
-    () => [styles.messageViewWrapper, { left, top, opacity }, style ?? {}],
+    () => [styles.messageViewWrapper, { start: left, top, opacity }, style ?? {}],
     [left, top, opacity, style]
   );
   const beakWrapper = useMemo(
-    () => [styles.popoverBreak, { top: beakTop, left: beakLeft, transform: beakTransform, opacity }],
+    () => [styles.popoverBreak, { top: beakTop, start: beakLeft, transform: beakTransform, opacity }],
     [beakLeft, beakTop, beakTransform, opacity]
   );
 

@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
   },
 });
 

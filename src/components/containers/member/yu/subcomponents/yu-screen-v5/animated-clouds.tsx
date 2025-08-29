@@ -134,20 +134,20 @@ const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
     top: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     height: Style.adjust(340) + TOP_BAR.PADDING_TOP,
     display: "flex",
     width: Style.DEVICE_WIDTH,
   },
   cloud: {
     position: "absolute",
-    left: Style.DEVICE_WIDTH * 0.45,
+    start: Style.DEVICE_WIDTH * 0.45,
     bottom: Style.DEVICE_WIDTH * 0.34,
   },
   cloud2: {
     position: "absolute",
-    left: Style.DEVICE_WIDTH * 0.85,
+    start: Style.DEVICE_WIDTH * 0.85,
     bottom: Style.DEVICE_WIDTH * 0.5,
   },
 });

@@ -4,8 +4,8 @@ import { useBobbingAnimation } from "@hooks";
 type LogoPosition = {
   id: string;
   bottom: number;
-  left: number;
-  right: number;
+  start: number;
+  end: number;
   size: number;
   rotation: number;
   border: number;
@@ -28,8 +28,8 @@ export const useLogoPositions = ({ height, width }: { height: number; width: num
     {
       id: "center",
       bottom: verticalScale(190),
-      left: scale(0),
-      right: scale(0),
+      start: scale(0),
+      end: scale(0),
       size: scale(80),
       rotation: 0,
       border: scale(14),
@@ -42,8 +42,8 @@ export const useLogoPositions = ({ height, width }: { height: number; width: num
     {
       id: "top-right",
       bottom: verticalScale(275),
-      left: scale(220),
-      right: scale(0),
+      start: scale(220),
+      end: scale(0),
       size: scale(46),
       rotation: 15,
       border: scale(8),
@@ -56,8 +56,8 @@ export const useLogoPositions = ({ height, width }: { height: number; width: num
     {
       id: "top-left",
       bottom: verticalScale(250),
-      left: scale(0),
-      right: scale(240),
+      start: scale(0),
+      end: scale(240),
       size: scale(62),
       rotation: -10,
       border: scale(10),
@@ -70,8 +70,8 @@ export const useLogoPositions = ({ height, width }: { height: number; width: num
     {
       id: "bottom-left",
       bottom: verticalScale(130),
-      left: scale(0),
-      right: scale(230),
+      start: scale(0),
+      end: scale(230),
       size: scale(48),
       rotation: 15,
       border: scale(9),
@@ -84,8 +84,8 @@ export const useLogoPositions = ({ height, width }: { height: number; width: num
     {
       id: "bottom-right",
       bottom: verticalScale(150),
-      left: scale(274),
-      right: scale(0),
+      start: scale(274),
+      end: scale(0),
       size: scale(60),
       rotation: -10,
       border: scale(12),

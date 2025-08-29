@@ -146,7 +146,7 @@ const TOP = media.select(
 const styles = StyleSheet.create({
   prefixWrapper: {
     position: "absolute",
-    left: 0,
+    start: 0,
     top: TOP,
     bottom: 0,
     height: 32,

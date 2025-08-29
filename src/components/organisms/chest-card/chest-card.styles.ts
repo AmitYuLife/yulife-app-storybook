@@ -18,14 +18,14 @@ const styles = StyleSheet.create({
   stars: {
     position: "absolute",
     top: 0,
-    left: 0,
+    start: 0,
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
   } as ViewStyle,
   shine: {
     position: "absolute",
     top: 0,
-    left: 0,
+    start: 0,
     width: CARD_WIDTH,
     height: Style.adjust(116),
   } as ViewStyle,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   tooltipIcon: {
     position: "absolute",
     top: Style.adjust(10),
-    right: Style.adjust(10),
+    end: Style.adjust(10),
   } as ViewStyle,
 });
 

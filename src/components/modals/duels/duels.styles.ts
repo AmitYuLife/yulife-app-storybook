@@ -11,13 +11,13 @@ export default StyleSheet.create({
   close: {
     padding: 10,
     position: "absolute",
-    left: 20,
+    start: 20,
     top: Platform.OS === "ios" ? 50 : 20,
   } as ImageStyle,
   info: {
     padding: 10,
     position: "absolute",
-    right: 20,
+    end: 20,
     top: Platform.OS === "ios" ? 60 : 30,
   } as ImageStyle,
   buttonWrapper: {

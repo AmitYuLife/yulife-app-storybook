@@ -32,7 +32,7 @@ export const useWrappedStage1Animations = ({ isExiting }: IWrappedStage1Animatio
       position: "absolute",
       height: waterHeight * 1.2,
       width: Style.DEVICE_WIDTH * 1.2,
-      left: -Style.DEVICE_WIDTH * 0.1,
+      start: -Style.DEVICE_WIDTH * 0.1,
       bottom: withSequence(
         withTiming(-waterHeight * 1.2),
         withTiming(-waterHeight * 1.2 + 485, { duration: 1200, easing: Easing.inOut(Easing.ease) })

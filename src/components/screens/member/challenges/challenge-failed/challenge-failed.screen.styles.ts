@@ -28,8 +28,8 @@ export const commonStyles = StyleSheet.create({
   } as ViewStyle,
   levelLineWrapper: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: Style.SCALE_UP_AND_DOWN(3),
     overflow: "visible",
   } as ViewStyle,

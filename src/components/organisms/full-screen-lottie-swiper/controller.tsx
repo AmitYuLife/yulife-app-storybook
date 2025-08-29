@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
     bottom: 0,
   } as ViewStyle,
   left: {
-    left: 0,
+    start: 0,
   },
   right: {
-    right: 0,
+    start: 0,
   },
 });

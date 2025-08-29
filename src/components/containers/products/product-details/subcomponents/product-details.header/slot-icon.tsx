@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   coverTypeWrapper: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     top: 0,
     alignItems: "center",
     justifyContent: "center",

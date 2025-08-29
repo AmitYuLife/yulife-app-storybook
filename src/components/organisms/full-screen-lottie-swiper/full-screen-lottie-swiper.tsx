@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   title: {
     position: "absolute",
     top: Style.adjust(40),
-    left: Style.adjust(16),
+    start: Style.adjust(16),
   } as ViewStyle,
 });
 

@@ -61,11 +61,11 @@ const Popover: FC<IProps> = ({
     onClose();
   }, [onClose, onTouchTarget]);
 
-  const { top, left, right } = useMemo(
+  const { top, start, end } = useMemo(
     () => ({
       top: targetY - Style.adjust(24),
-      left: side === "left" ? targetX + Style.adjust(16) + targetSize / 6 : null,
-      right: side === "right" ? targetX + Style.adjust(16) - offset + targetSize / 6 : null,
+      start: side === "left" ? targetX + Style.adjust(16) + targetSize / 6 : null,
+      end: side === "right" ? targetX + Style.adjust(16) - offset + targetSize / 6 : null,
     }),
     [targetY, targetX, side]
   );
@@ -87,7 +87,7 @@ const Popover: FC<IProps> = ({
           animation={animation}
           delay={animationDelay}
           duration={animationDuration}
-          style={[styles.absolute, styles.shadowProp, { top, left, right, shadowOpacity }]}
+          style={[styles.absolute, styles.shadowProp, { top, start, end, shadowOpacity }]}
           useNativeDriver={true}
           pointerEvents="box-none"
         >
@@ -104,7 +104,7 @@ const Popover: FC<IProps> = ({
           ) : (
             <View
               pointerEvents="none"
-              style={[styles.popoverBeakRight, { left: width + MAGIC_NUMBER, transform: [{ rotate: "180deg" }] }]}
+              style={[styles.popoverBeakRight, { start: width + MAGIC_NUMBER, transform: [{ rotate: "180deg" }] }]}
             >
               <PopoverBeak backgroundColor={backgroundColor} borderColor={borderColor} />
             </View>

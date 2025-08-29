@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
   },
   label: {
     position: "absolute",
-    left: 0,
-    right: 2,
+    start: 0,
+    end: 2,
     bottom: 0,
     alignItems: "center",
   },

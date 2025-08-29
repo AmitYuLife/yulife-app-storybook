@@ -332,8 +332,8 @@ const backgroundStyles = StyleSheet.create({
   wrapper: {
     position: "absolute",
     top: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: 0,
     borderRadius: 999,
   } as ViewStyle,
@@ -355,8 +355,8 @@ const styles = StyleSheet.create({
     width: "100%",
     position: "absolute",
     top: 6,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
   } as ViewStyle,
   flex: {
     justifyContent: "center",
@@ -379,6 +379,6 @@ const styles = StyleSheet.create({
   badge: {
     position: "absolute",
     top: Style.adjust(-8),
-    right: Style.adjust(16),
+    end: Style.adjust(16),
   },
 });

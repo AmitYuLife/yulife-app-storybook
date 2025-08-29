@@ -139,6 +139,6 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
     top: 0,
-    left: 0,
+    start: 0,
   } as ViewStyle,
 });

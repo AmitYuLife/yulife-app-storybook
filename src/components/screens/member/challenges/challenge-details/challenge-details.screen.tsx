@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   },
   headerBackgroundImage: {
     top: 0,
-    left: 0,
+    start: 0,
     position: "absolute",
     ...StyleSheet.absoluteFillObject,
   },

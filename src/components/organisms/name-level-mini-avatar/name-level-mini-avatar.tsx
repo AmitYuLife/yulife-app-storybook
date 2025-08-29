@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   wrapper: {
-    left: Style.adjust(76),
+    start: Style.adjust(76),
     width: Style.adjust(194),
   },
   worldContainer: {

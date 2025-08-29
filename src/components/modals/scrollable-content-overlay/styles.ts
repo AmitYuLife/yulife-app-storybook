@@ -8,8 +8,8 @@ const HEADER_IMAGE_SIZE = Style.adjust(140);
 export const scrollableContentOverlayStyles = StyleSheet.create({
   bottomWrapper: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: 0,
   },
   overshootCushion: {
@@ -43,8 +43,8 @@ export const scrollableContentOverlayStyles = StyleSheet.create({
   } as TextStyle,
   buttonContainer: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: 0,
     paddingBottom: Style.adjust(32),
   },
@@ -55,23 +55,23 @@ export const scrollableContentOverlayStyles = StyleSheet.create({
   closeButtonWrapper: {
     position: "absolute",
     top: Style.adjust(40),
-    right: 0,
+    end: 0,
     padding: Style.adjust(16),
   },
   bottomFadeWrapper: {
     position: "absolute",
     top: Style.adjust(-16),
     bottom: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     overflow: "hidden",
   },
   topFadeWrapper: {
     position: "absolute",
     height: Style.adjust(120),
     top: IMAGE_OVERSHOOT_HEIGHT,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     overflow: "hidden",
     borderTopLeftRadius: Style.adjust(16),
     borderTopRightRadius: Style.adjust(16),

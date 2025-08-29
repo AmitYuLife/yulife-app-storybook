@@ -4,15 +4,15 @@ import { Style, NAV_BAR, StyleSheet } from "@styles";
 export default StyleSheet.create({
   backgroundImage: {
     bottom: 0,
-    left: 0,
+    start: 0,
     position: "absolute",
-    right: 0,
+    end: 0,
     width: "100%",
   } as ImageStyle,
   meditationButtonWrapper: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: NAV_BAR.getPositionBottom() + Style.adjust(84),
   } as ViewStyle,
   navBarWrapper: {
