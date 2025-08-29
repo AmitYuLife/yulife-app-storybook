@@ -2,7 +2,7 @@ import { t } from "@locale";
 import { HealthProvider, HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { isAndroid } from "@utils";
 
-const IOS_PROVIDER_PERMISSIONS: IPermission[] = [
+const buildIosProviderPermissions = (): IPermission[] => [
   {
     identifier: "HKQuantityTypeIdentifierStepCount",
     title: t("permissions.ios.steps_read.title"),
@@ -29,7 +29,7 @@ const IOS_PROVIDER_PERMISSIONS: IPermission[] = [
   },
 ];
 
-const IOS_SYSTEM_PERMISSIONS = [
+const buildIosSystemPermissions = (): IPermission[] => [
   {
     identifier: "MotionAndFitnessPermission",
     title: t("permissions.ios.motion_and_fitness.title"),
@@ -37,7 +37,7 @@ const IOS_SYSTEM_PERMISSIONS = [
   },
 ];
 
-const ANDROID_SYSTEM_PERMISSIONS: IPermission[] = [
+const buildAndroidSystemPermissions = (): IPermission[] => [
   {
     identifier: "android.permission.ACTIVITY_RECOGNITION",
     title: t("permissions.android.activity_recognition.title"),
@@ -52,7 +52,7 @@ const ANDROID_SYSTEM_PERMISSIONS: IPermission[] = [
   },
 ];
 
-const SAMSUNG_HEALTH_PERMISSIONS: IPermission[] = [
+const buildSamsungHealthPermissions = (): IPermission[] => [
   {
     identifier: "stepCount",
     title: t("permissions.android.samsung_steps_count_trend.title"),
@@ -81,7 +81,7 @@ const SAMSUNG_HEALTH_PERMISSIONS: IPermission[] = [
   },
 ];
 
-const GOOGLE_FIT_PERMISSIONS: IPermission[] = [
+const buildGoogleFitPermissions = (): IPermission[] => [
   {
     identifier: "stepCount",
     title: t("permissions.android.fitness_activity_read.title"),
@@ -112,7 +112,7 @@ const GOOGLE_FIT_PERMISSIONS: IPermission[] = [
   },
 ];
 
-const HEALTH_CONNECT_PERMISSIONS: IPermission[] = [
+const buildHealthConnectPermissions = (): IPermission[] => [
   {
     identifier: "stepCount",
     title: t("permissions.android.health_connect.steps.title"),
@@ -159,15 +159,21 @@ export const getPermissionsConfig = (activeProvider: HealthProvider): IPermissio
   if (isAndroid()) {
     switch (activeProvider) {
       case HealthProvider.googleFit:
-        return { providerPermissions: GOOGLE_FIT_PERMISSIONS, systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
+        return { providerPermissions: buildGoogleFitPermissions(), systemPermissions: buildAndroidSystemPermissions() };
       case HealthProvider.samsungHealth:
-        return { providerPermissions: SAMSUNG_HEALTH_PERMISSIONS, systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
+        return {
+          providerPermissions: buildSamsungHealthPermissions(),
+          systemPermissions: buildAndroidSystemPermissions(),
+        };
       case HealthProvider.healthConnect:
-        return { providerPermissions: HEALTH_CONNECT_PERMISSIONS, systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
+        return {
+          providerPermissions: buildHealthConnectPermissions(),
+          systemPermissions: buildAndroidSystemPermissions(),
+        };
       default:
-        return { providerPermissions: [], systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
+        return { providerPermissions: [], systemPermissions: buildAndroidSystemPermissions() };
     }
   }
 
-  return { providerPermissions: IOS_PROVIDER_PERMISSIONS, systemPermissions: IOS_SYSTEM_PERMISSIONS };
+  return { providerPermissions: buildIosProviderPermissions(), systemPermissions: buildIosSystemPermissions() };
 };
