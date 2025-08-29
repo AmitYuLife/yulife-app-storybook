@@ -49,7 +49,7 @@ const systemPermissionIDs = [
   "system_motion_fitness",
 ];
 
-const androidPermissions: Permissions[] = [
+const buildAndroidPermissions = (): Permissions[] => [
   {
     id: "system_activity_recognition_permission",
     title: t("permissions.android.activity_recognition.title"),
@@ -107,7 +107,7 @@ const androidPermissions: Permissions[] = [
   },
 ];
 
-const samsungHealthPermissions: Permissions[] = [
+const buildSamsungHealthPermissions = (): Permissions[] => [
   {
     id: "system_activity_recognition_permission",
     title: t("permissions.android.activity_recognition_samsung_health.title"),
@@ -151,7 +151,7 @@ const samsungHealthPermissions: Permissions[] = [
   },
 ];
 
-const iosPermissions: Permissions[] = [
+const buildIosPermissions = (): Permissions[] => [
   {
     id: "apple_health_steps_read",
     title: t("permissions.ios.steps_read.title"),
@@ -224,8 +224,8 @@ const getPermissionsData = async () => {
     (isSamsungHealthStepsAuthorised || isSamsungHealthStepDailyTrendAuthorised);
 
   const permissions = Platform.select({
-    ios: iosPermissions,
-    android: showSamsungHealthPermissions ? samsungHealthPermissions : androidPermissions,
+    ios: buildIosPermissions(),
+    android: showSamsungHealthPermissions ? buildSamsungHealthPermissions() : buildAndroidPermissions(),
   });
 
   return {
