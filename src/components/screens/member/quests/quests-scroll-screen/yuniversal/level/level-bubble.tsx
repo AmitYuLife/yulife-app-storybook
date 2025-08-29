@@ -75,7 +75,7 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
   const notificationImageStyle = {
     position: "absolute",
     top: (y - radius - 2) * HEIGHT_WIDTH_MULTIPLIER,
-    left: (x + radius - 14) * HEIGHT_WIDTH_MULTIPLIER,
+    start: (x + radius - 14) * HEIGHT_WIDTH_MULTIPLIER,
   } as ViewStyle;
 
   const { handlePress: handlePressWithDelay } = usePressedInWithDelay({ onPress, delay: 1000 });

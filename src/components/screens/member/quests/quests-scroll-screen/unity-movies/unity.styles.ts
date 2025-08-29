@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   headingWrapper: {
     top: Style.adjust(80),
-    left: 0,
+    start: 0,
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     display: Style.DEVICE_HEIGHT < 700 ? "none" : "flex",
     position: Style.DEVICE_HEIGHT < 700 ? "relative" : "absolute",
     bottom: Style.adjust(120),
-    left: 0,
+    start: 0,
     alignItems: "center",
     justifyContent: "center",
     width: Style.DEVICE_WIDTH,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   buttonWrapper: {
     bottom: Style.adjust(32),
-    left: 0,
+    start: 0,
     position: "absolute",
     width: Style.DEVICE_WIDTH,
   } as ViewStyle,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     position: "absolute",
     top: 0,
-    left: 0,
+    start: 0,
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
   } as ImageStyle,

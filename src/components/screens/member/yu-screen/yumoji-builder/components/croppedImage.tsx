@@ -59,7 +59,7 @@ export const CroppedImage: FC<IProps> = memo(
         ({
           position: "absolute",
           top: top * scale,
-          left: left * scale,
+          start: left * scale,
         } as StyleProp<ViewStyle>),
       [left, scale, top]
     );

@@ -196,8 +196,8 @@ const styles = StyleSheet.create({
   },
   /* Ensures the header is still white when the user overscrolls */
   yuCoinPowerCardHeaderBackgroundOffset: {
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     position: "absolute",
     backgroundColor: Colours.neutral.white,
     top: Style.adjust(-HEADER_BACKGROUND_OFFSET),
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   productCardYuCoin: {
     position: "absolute",
     top: Style.adjust(20),
-    left: Style.adjust(20),
+    start: Style.adjust(20),
   },
   productCardimage: {},
   productCardButton: {

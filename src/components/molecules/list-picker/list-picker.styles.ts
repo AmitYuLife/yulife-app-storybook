@@ -58,8 +58,8 @@ export default StyleSheet.create({
     borderWidth: 1,
     bottom: Style.adjust(25),
     justifyContent: "center",
-    left: 0,
+    start: 0,
     position: "absolute",
-    right: 0,
+    end: 0,
   } as ViewStyle,
 });

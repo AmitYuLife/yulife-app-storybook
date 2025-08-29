@@ -17,15 +17,15 @@ const RewardLogos = ({ rewards }: Pick<AnimatedChestProps, "rewards">) => {
   return (
     <Box position="absolute" top={0} left={0} right={0} bottom={0} alignItems="center">
       {rewards.map((reward, index) => {
-        const { id, bottom, left, right, size, rotation, border, animation } = logoPositions[index];
+        const { id, bottom, start, end, size, rotation, border, animation } = logoPositions[index];
 
         return (
           <Box
             key={`${reward.id}-${id}`}
             position="absolute"
             bottom={bottom}
-            left={left}
-            right={right}
+            left={start}
+            right={end}
             alignItems="center"
             entering={FadeIn.delay(750 + 100 * index).duration(500)}
             forceAnimated={true}

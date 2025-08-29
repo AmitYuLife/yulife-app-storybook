@@ -319,8 +319,8 @@ const EventReward = ({
 const styles = StyleSheet.create({
   image: {
     top: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: 0,
     width: REWARD_SIZE,
     height: REWARD_SIZE,
@@ -329,12 +329,12 @@ const styles = StyleSheet.create({
   infoWrapper: {
     position: "absolute",
     top: Style.adjust(9),
-    right: Style.adjust(9),
+    end: Style.adjust(9),
   },
   explosionEffectWrapper: {
     top: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: 0,
     position: "absolute",
     alignItems: "center",

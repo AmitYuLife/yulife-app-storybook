@@ -68,9 +68,9 @@ const styles = StyleSheet.create({
   shadow: {
     position: "absolute",
     bottom: 0,
-    right: 0,
+    end: 0,
     top: 4,
-    left: 4,
+    start: 4,
     borderRadius: 16,
   } as ViewStyle,
 });

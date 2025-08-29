@@ -93,8 +93,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
     bottom: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
   } as ViewStyle,
   switchStyle: {
     marginTop: Style.adjust(28),

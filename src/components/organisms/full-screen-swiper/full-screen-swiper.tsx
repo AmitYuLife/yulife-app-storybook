@@ -203,12 +203,12 @@ const styles = StyleSheet.create({
   title: {
     position: "absolute",
     top: Style.adjust(40),
-    left: Style.adjust(16),
+    start: Style.adjust(16),
   } as ViewStyle,
   button: {
     position: "absolute",
-    left: Style.adjust(32),
-    right: Style.adjust(32),
+    start: Style.adjust(32),
+    end: Style.adjust(32),
     bottom: Style.adjust(32),
   } as ViewStyle,
 });

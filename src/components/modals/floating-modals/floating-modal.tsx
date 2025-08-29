@@ -141,14 +141,14 @@ const styles = StyleSheet.create({
   title: {
     alignItems: "center",
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     top: Style.adjust(16),
   },
   closeWrapper: {
     position: "absolute",
     top: Style.adjust(16),
-    right: Style.adjust(16),
+    end: Style.adjust(16),
   },
   iconWrapper: {
     height: Style.adjust(140),

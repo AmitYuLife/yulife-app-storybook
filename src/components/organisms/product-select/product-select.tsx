@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
   },
   checkBox: {
     position: "absolute",
-    right: Style.adjust(25),
+    end: Style.adjust(25),
   },
   coin: {
     position: "absolute",
-    left: -4,
+    start: -4,
     top: -4,
   },
 });

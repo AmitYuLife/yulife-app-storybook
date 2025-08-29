@@ -53,7 +53,7 @@ export const ProgressStepItem = ({
   });
 
   return (
-    <View key={id} style={[{ width: diameter, left: x }, styles.wrapper]}>
+    <View key={id} style={[{ width: diameter, start: x }, styles.wrapper]}>
       <View
         style={[
           {

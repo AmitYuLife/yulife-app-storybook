@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
     top: Style.adjust(16),
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     height: Style.adjust(20),
   },
   maskedView: {

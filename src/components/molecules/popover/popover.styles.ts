@@ -12,7 +12,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   popoverBody: {
     position: "absolute",
-    left: Style.adjust(17),
+    start: Style.adjust(17),
     padding: Style.adjust(16),
     borderRadius: Style.adjust(10),
     borderWidth: Style.adjust(1),
@@ -22,7 +22,7 @@ export default StyleSheet.create({
   popoverBeak: {
     position: "absolute",
     top: Style.adjust(10),
-    left: Platform.select({
+    start: Platform.select({
       ios: -1,
       android: 0,
     }),
@@ -30,7 +30,7 @@ export default StyleSheet.create({
   popoverBeakRight: {
     position: "absolute",
     top: Style.adjust(10),
-    right: Platform.select({
+    end: Platform.select({
       ios: -1,
       android: 0,
     }),
@@ -44,6 +44,6 @@ export default StyleSheet.create({
   closeWrapper: {
     position: "absolute",
     top: Style.adjust(8),
-    right: Style.adjust(8),
+    end: Style.adjust(8),
   } as ViewStyle,
 });

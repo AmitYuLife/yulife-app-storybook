@@ -238,8 +238,8 @@ const styles = {
     marginTop: isShort ? 0 : Style.adjust(8),
   } as ViewStyle,
   buttonWrapper: {
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(75) }),
     position: "absolute",
   } as ViewStyle,

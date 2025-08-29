@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
     marginHorizontal: Style.adjust(16),
   } as ViewStyle,
   titleWrapper: {
-    left: 0,
+    start: 0,
     position: "absolute",
-    right: 0,
+    end: 0,
     top: 0,
   },
   title: {

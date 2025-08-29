@@ -28,14 +28,14 @@ const styles = StyleSheet.create({
   surgeIcon: {
     position: "absolute",
     top: Style.adjust(8),
-    left: Style.adjust(8),
+    start: Style.adjust(8),
   },
   rightStats: {
     position: "absolute",
     width: "100%",
     justifyContent: "flex-end",
     top: Style.adjust(8),
-    right: Style.adjust(8),
+    end: Style.adjust(8),
   },
 
   duration: {
@@ -58,9 +58,9 @@ const styles = StyleSheet.create({
   imageBackground: {
     bottom: 0,
     height: TOP_HEIGHT,
-    left: 0,
+    start: 0,
     position: "absolute",
-    right: 0,
+    end: 0,
     borderTopLeftRadius: BORDER_RADIUS,
     borderTopRightRadius: BORDER_RADIUS,
     overflow: "hidden",
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   hasBonusContainer: {
     position: "absolute",
-    right: 0,
+    end: 0,
     bottom: 0,
     flexDirection: "row",
     alignItems: "center",
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     top: -Style.adjust(4),
     borderColor: "#ffffff",
     width: Style.adjust(28),
-    right: -Style.adjust(5),
+    end: -Style.adjust(5),
     height: Style.adjust(28),
     justifyContent: "center",
     backgroundColor: "#E3E3E1",

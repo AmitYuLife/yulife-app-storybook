@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colours.neutral.n100,
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
   } as ViewStyle,
 });

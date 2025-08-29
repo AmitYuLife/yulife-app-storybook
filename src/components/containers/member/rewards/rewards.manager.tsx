@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
     paddingTop: Style.adjust(8),
   },
   topbarWrapper: {
-    left: 0,
+    start: 0,
     top: TOP_BAR.PADDING_TOP,
     position: "absolute",
     right: 0,

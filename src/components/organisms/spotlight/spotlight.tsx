@@ -78,13 +78,13 @@ const Spotlight = ({
   const originPositionForCenterDecorations = useMemo(() => {
     if (origin === "center") {
       return {
-        left: wrapperWidth / 2 + originOffsetX,
+        start: wrapperWidth / 2 + originOffsetX,
         top: wrapperHeight / 2 + originOffsetY,
       };
     }
 
     return {
-      left: originOffsetX,
+      start: originOffsetX,
       top: originOffsetY,
     };
   }, [origin, originOffsetX, originOffsetY, wrapperHeight, wrapperWidth]);
@@ -92,13 +92,13 @@ const Spotlight = ({
   const originPositionForTopLeftDecorations = useMemo(() => {
     if (origin === "center") {
       return {
-        left: originOffsetX,
+        start: originOffsetX,
         top: originOffsetY,
       };
     }
 
     return {
-      left: -wrapperWidth / 2 + originOffsetX,
+      start: -wrapperWidth / 2 + originOffsetX,
       top: -wrapperHeight / 2 + originOffsetY,
     };
   }, [origin, originOffsetX, originOffsetY, wrapperHeight, wrapperWidth]);

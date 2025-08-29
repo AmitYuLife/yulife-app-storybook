@@ -38,24 +38,24 @@ const styles = StyleSheet.create({
   bottomLeft: {
     position: "absolute",
     bottom: DISTANCE,
-    left: DISTANCE,
+    start: DISTANCE,
   } as ViewStyle,
   topLeft: {
     position: "absolute",
     top: DISTANCE,
-    left: DISTANCE,
+    start: DISTANCE,
     transform: [{ rotate: "90deg" }],
   } as ViewStyle,
   topRight: {
     position: "absolute",
     top: DISTANCE,
-    right: DISTANCE,
+    end: DISTANCE,
     transform: [{ rotate: "180deg" }],
   } as ViewStyle,
   bottomRight: {
     position: "absolute",
     bottom: DISTANCE,
-    right: DISTANCE,
+    end: DISTANCE,
     transform: [{ rotate: "270deg" }],
   } as ViewStyle,
 });

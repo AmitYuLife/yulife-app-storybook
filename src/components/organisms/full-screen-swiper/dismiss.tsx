@@ -56,14 +56,14 @@ const buttonBottom = media.select(
 const styles = StyleSheet.create({
   button: {
     position: "absolute",
-    left: Style.adjust(32),
-    right: Style.adjust(32),
+    start: Style.adjust(32),
+    end: Style.adjust(32),
     bottom: buttonBottom,
   } as ViewStyle,
   closeIconWrapper: {
     position: "absolute",
     top: Style.adjust(24),
-    right: 0,
+    end: 0,
     height: Style.adjust(16),
     width: Style.adjust(16),
     padding: Style.adjust(24),

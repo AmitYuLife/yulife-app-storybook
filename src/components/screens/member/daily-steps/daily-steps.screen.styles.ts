@@ -45,21 +45,21 @@ export default StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   topbarWrapper: {
-    left: 0,
+    start: 0,
     top: TOP_BAR.PADDING_TOP,
     position: "absolute",
-    right: 0,
+    end: 0,
   } as ViewStyle,
   rightIconList: {
     position: "absolute",
-    right: Style.adjust(16),
+    end: Style.adjust(16),
     top: TOP_BAR.TOP_BAR_WITH_PAD,
     alignItems: "center",
     justifyContent: "center",
   } as ViewStyle,
   leftIconList: {
     position: "absolute",
-    left: Style.adjust(16),
+    start: Style.adjust(16),
     top: TOP_BAR.TOP_BAR_WITH_PAD,
     alignItems: "center",
     justifyContent: "center",
@@ -67,7 +67,7 @@ export default StyleSheet.create({
   informationIcon: {
     position: "absolute",
     top: Style.adjust(40),
-    left: Style.adjust(37),
+    start: Style.adjust(37),
   },
   yucoinBadgeWrapper: {
     width: Style.adjust(218),

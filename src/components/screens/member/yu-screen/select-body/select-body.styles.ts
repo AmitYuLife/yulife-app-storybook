@@ -28,9 +28,9 @@ export default StyleSheet.create({
   buttonsWrapper: {
     alignItems: "center",
     bottom: Style.adjust(40),
-    left: 0,
+    start: 0,
     position: "absolute",
-    right: 0,
+    end: 0,
   },
   description: {
     marginBottom: Style.adjust(16),

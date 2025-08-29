@@ -241,7 +241,7 @@ const Chest: FC<IProps> = ({
             zIndex: 10,
             position: "absolute",
             top: cardPositions.endY,
-            left: cardXs[index],
+            start: cardXs[index],
           } as ViewStyle)
       ),
     }),

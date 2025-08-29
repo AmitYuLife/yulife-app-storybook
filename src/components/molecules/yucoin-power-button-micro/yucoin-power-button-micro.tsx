@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   yucoinPowerButtonCoin: {
     position: "absolute",
-    left: Style.adjust(0),
+    start: Style.adjust(0),
   },
   yucoinPowerTextOffset: {
     marginTop: Style.adjust(-6),

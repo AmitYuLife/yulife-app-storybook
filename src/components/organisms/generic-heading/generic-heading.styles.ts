@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
   },
   centerSection: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     height: "100%",
     justifyContent: "center",
     alignItems: "center",

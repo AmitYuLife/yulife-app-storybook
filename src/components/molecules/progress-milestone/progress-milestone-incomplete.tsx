@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     top: SHIM_TOP,
     backgroundColor: Colours.neutral.white,
     position: "absolute",
-    right: 0,
+    end: 0,
   },
   shimLeft: {
     height: SHIM_HEIGHT,
@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     top: SHIM_TOP,
     backgroundColor: Colours.neutral.white,
     position: "absolute",
-    left: 0,
+    start: 0,
   },
 });

@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   placeholderWrapper: {
     height: 24,
     position: "absolute",
-    left: 0,
+    start: 0,
     width: "100%",
     justifyContent: "flex-end",
   } as ViewStyle,

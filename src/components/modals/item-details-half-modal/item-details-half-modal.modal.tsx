@@ -281,8 +281,8 @@ const styles = StyleSheet.create({
 
   smallTitle: {
     position: "absolute",
-    left: Style.adjust(48),
-    right: Style.adjust(48),
+    start: Style.adjust(48),
+    end: Style.adjust(48),
     justifyContent: "center",
     alignItems: "center",
   },

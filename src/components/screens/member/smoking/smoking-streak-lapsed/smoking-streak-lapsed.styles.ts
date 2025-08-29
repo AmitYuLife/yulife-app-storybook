@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
   buttonSection: {
     position: "absolute",
     bottom: Style.adjust(40),
-    left: Style.adjust(24),
-    right: Style.adjust(24),
+    start: Style.adjust(24),
+    end: Style.adjust(24),
   },
 });

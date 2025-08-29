@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
   label: {
     position: "absolute",
     top: Style.adjust(-10),
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     height: Style.adjust(20),
     alignItems: "center",
     justifyContent: "center",

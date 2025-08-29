@@ -80,7 +80,7 @@ export const useWrappedStage2Animations = ({ coralHeight }: IUseWrappedStage2Ani
   const waterStyle = useAnimatedStyle(() => {
     return {
       width: Style.DEVICE_WIDTH * 1.2,
-      left: -Style.DEVICE_WIDTH * 0.1,
+      start: -Style.DEVICE_WIDTH * 0.1,
       height: waterHeight * 1.2,
       position: "absolute",
       top: withSequence(

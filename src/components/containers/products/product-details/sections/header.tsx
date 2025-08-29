@@ -22,8 +22,8 @@ export const Header = (props: Props) => {
 const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     top: 0,
   } as ViewStyle,
 });

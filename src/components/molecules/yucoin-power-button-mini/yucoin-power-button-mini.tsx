@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   yucoinPowerButtonCoin: {
     position: "absolute",
-    left: Style.adjust(0),
+    start: Style.adjust(0),
   },
   yucoinPowerButtonEarnRateText: {
     color: Colours.orange,

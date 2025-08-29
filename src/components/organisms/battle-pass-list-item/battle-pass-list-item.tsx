@@ -138,7 +138,7 @@ const BattlePassListItem = ({
       ? {
           position: "absolute" as "absolute",
           top: Style.adjust(teaser.topPosition),
-          left: Style.adjust(teaser.leftPosition),
+          start: Style.adjust(teaser.leftPosition),
         }
       : {};
   }, [teaser]);

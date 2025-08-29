@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     marginBottom: Style.adjust(8),
   },
-  streakSaver: { position: "absolute", top: -Style.adjust(28), left: Style.adjust(12) },
+  streakSaver: { position: "absolute", top: -Style.adjust(28), start: Style.adjust(12) },
 });
 
 export default memo(ConsumablesModal);

@@ -4,7 +4,7 @@ import { Style, StyleSheet } from "@styles";
 export default StyleSheet.create({
   headingWrapper: {
     top: Style.adjust(80),
-    left: 0,
+    start: 0,
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
@@ -14,7 +14,7 @@ export default StyleSheet.create({
     display: Style.DEVICE_HEIGHT < 700 ? "none" : "flex",
     position: Style.DEVICE_HEIGHT < 700 ? "relative" : "absolute",
     bottom: Style.adjust(120),
-    left: 0,
+    start: 0,
     alignItems: "center",
     justifyContent: "center",
     width: Style.DEVICE_WIDTH,
@@ -29,7 +29,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   buttonWrapper: {
     bottom: Style.adjust(32),
-    left: 0,
+    start: 0,
     position: "absolute",
     width: Style.DEVICE_WIDTH,
   } as ViewStyle,

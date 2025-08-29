@@ -159,8 +159,8 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(48),
   },
   score: {
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     textAlign: "center",
     position: "absolute",
     bottom: Style.adjust(24),

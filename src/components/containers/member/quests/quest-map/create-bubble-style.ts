@@ -26,6 +26,6 @@ export function createBubbleStyle({ episodeWidth, y, offsetY, x }: Props) {
     position: "absolute" as "absolute",
     justifyContent: "center" as "center",
     top: position.y,
-    left: position.x,
+    start: position.x,
   };
 }

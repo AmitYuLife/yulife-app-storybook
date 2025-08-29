@@ -82,14 +82,14 @@ const styles = StyleSheet.create({
   closeButton: {
     position: "absolute",
     top: Style.adjust(60),
-    right: Style.adjust(16),
+    end: Style.adjust(16),
     padding: Style.adjust(8),
     zIndex: 1,
   },
   buttonContainer: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     bottom: 0,
     paddingHorizontal: Style.adjust(32),
     paddingTop: Style.adjust(16),

@@ -139,7 +139,7 @@ const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, s
     () => ({
       containerStyle: {
         bottom: bottom - PLANET_CONTAINER_RADIUS / 2,
-        left: left - PLANET_CONTAINER_RADIUS / 2,
+        start: left - PLANET_CONTAINER_RADIUS / 2,
         position: "absolute",
         justifyContent: "center",
         alignItems: "center",
@@ -154,7 +154,7 @@ const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, s
       star: {
         position: "absolute",
         top: (PLANET_CONTAINER_RADIUS - STAR_RADIUS) / 2,
-        left: (PLANET_CONTAINER_RADIUS - STAR_RADIUS) / 2,
+        start: (PLANET_CONTAINER_RADIUS - STAR_RADIUS) / 2,
         width: STAR_RADIUS,
         height: STAR_RADIUS,
         opacity: state === PLANET_STATE.PREVIOUS ? animationValues?.current?.starOpacity : 1,

@@ -19,6 +19,6 @@ const styles = StyleSheet.create({
     width: Style.adjust(7),
     top: Style.adjust(9),
     position: "absolute",
-    left: 0,
+    start: 0,
   },
 });

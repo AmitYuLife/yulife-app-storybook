@@ -54,7 +54,7 @@ const Draggable = ({
   });
 
   const animatedStyle = useAnimatedStyle(() => ({
-    left: left.value - handleWidth / 2,
+    start: left.value - handleWidth / 2,
     bottom: 0,
     top: 0,
     position: "absolute",

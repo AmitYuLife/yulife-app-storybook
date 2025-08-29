@@ -88,18 +88,18 @@ const styles = StyleSheet.create({
   },
   star: {
     position: "absolute",
-    right: 1,
+    end: 1,
     top: 3,
   },
   starBackground: {
     position: "absolute",
-    right: -1,
+    end: -1,
     top: 1,
   },
   stepsGoals: {
-    left: 0,
+    start: 0,
     position: "absolute",
-    right: 0,
+    end: 0,
     top: 0,
   },
   stepsRow: {

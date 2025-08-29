@@ -16,10 +16,10 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   topbarWrapper: {
-    left: 0,
+    start: 0,
     top: TOP_BAR.PADDING_TOP,
     position: "absolute",
-    right: 0,
+    end: 0,
   },
   gradientWrapper: {
     position: "absolute",
@@ -46,16 +46,16 @@ export const styles = StyleSheet.create({
   info: {
     position: "absolute",
     top: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     paddingTop: TOP_BAR.PADDING_TOP + Style.adjust(68),
     paddingStart: Style.adjust(24),
   },
   yumojiPromptWrapper: {
     position: "absolute",
     top: 0,
-    left: Style.adjust(24),
-    right: Style.adjust(24),
+    start: Style.adjust(24),
+    end: Style.adjust(24),
     paddingTop: TOP_BAR.PADDING_TOP + Style.adjust(128),
   },
   sections: {

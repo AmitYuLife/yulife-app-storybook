@@ -57,10 +57,10 @@ const styles = StyleSheet.create({
   },
   stars: {
     position: "absolute",
-    left: Style.adjust(16),
+    start: Style.adjust(16),
     top: Style.adjust(16),
   },
-  closeButton: { position: "absolute", right: Style.adjust(8), top: Style.adjust(8) },
+  closeButton: { position: "absolute", end: Style.adjust(8), top: Style.adjust(8) },
   description: {
     marginTop: Style.adjust(8),
   },

@@ -20,7 +20,7 @@ interface IRaysProps {
 }
 
 const DEFAULT_POSITION_STYLE: ViewStyle = {
-  left: "-50%",
+  start: "-50%",
   width: "200%",
   height: "200%",
 };

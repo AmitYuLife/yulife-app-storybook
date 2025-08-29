@@ -25,9 +25,9 @@ export const createLines = ({ formattedLevels, levels, episodeWidth, offsetY }: 
     return [
       ...acc,
       {
-        x1: prevBubble.left,
+        x1: prevBubble.start,
         y1: prevBubble.top,
-        x2: currBubble.left,
+        x2: currBubble.start,
         y2: currBubble.top,
       },
     ];

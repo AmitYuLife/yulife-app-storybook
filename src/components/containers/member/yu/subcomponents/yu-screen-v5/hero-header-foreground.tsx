@@ -34,8 +34,8 @@ export const HeroHeaderForeground: FC<Props> = memo(
         },
         achievements: {
           ...styles.yumojiWrapper,
-          left: Style.adjust(24),
-          right: "auto",
+          start: Style.adjust(24),
+          end: "auto",
           bottom: 0,
           opacity: yumojiOpacity,
           transform: [{ scale: yumojiScale }],

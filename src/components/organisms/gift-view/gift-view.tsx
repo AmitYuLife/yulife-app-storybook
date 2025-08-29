@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(560),
     width: Style.adjust(560),
     bottom: -Style.adjust(24),
-    left: Style.DEVICE_WIDTH / 2 - Style.adjust(560) / 2,
+    start: Style.DEVICE_WIDTH / 2 - Style.adjust(560) / 2,
     opacity: 0.1,
   },
 });

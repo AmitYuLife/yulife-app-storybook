@@ -53,7 +53,7 @@ const BattlePassAnimationManager = ({ children, step, showCoinAnimation }: IBatt
 
       <View pointerEvents="none" style={styles.container}>
         {coins.map(({ id, x, y }) => {
-          const style: ViewStyle = { position: "absolute", left: x, top: y };
+          const style: ViewStyle = { position: "absolute", start: x, top: y };
 
           return (
             <View key={id} style={style}>

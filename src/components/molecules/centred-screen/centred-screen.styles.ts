@@ -4,9 +4,9 @@ import { Style, TOP_BAR, StyleSheet } from "@styles";
 export default StyleSheet.create({
   imageWrapper: {
     bottom: 0,
-    left: 0,
+    start: 0,
     position: "absolute",
-    right: 0,
+    end: 0,
     width: "100%",
   } as ViewStyle,
   wrapper: {

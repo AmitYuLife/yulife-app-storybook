@@ -234,7 +234,7 @@ const navItemStyles = StyleSheet.create({
     width: LOTTIE_HEIGHT,
     height: LOTTIE_HEIGHT,
     top: -LOTTIE_HEIGHT / 3 + Style.adjust(-5),
-    left: -LOTTIE_HEIGHT / 3 + Style.adjust(5),
+    start: -LOTTIE_HEIGHT / 3 + Style.adjust(5),
     position: "absolute",
   },
 });
