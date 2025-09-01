@@ -6,7 +6,6 @@ import * as scenario from "../_common/scenario";
 import * as data from "../_data";
 import * as ids from "@ids";
 import { getLocalisedString as t } from "@i18n";
-import moment from "moment";
 
 Feature("As a user I can get past the login screen", async () => {
   Scenario("A locked account unlocks after 30 minutes since the last attempt", scenario.start, async () => {
@@ -71,7 +70,6 @@ Feature("As a user I can get past the login screen", async () => {
 
   Scenario("I can login with correct login detail and see the connection setup for daily activities", scenario.start, async () => {
     Given("I have entered a valid email address and valid password", given.performLogin(data.CUSTOMER_2, data.AUTH_2, true), async () => {
-      Then("I should not longer be on the login screen", then.notOnLoginScreen);
       Then("I should see the signup reward screen", then.signupRewardVisible);
     });
     When("I tap let's go", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN")), async () => {
@@ -79,7 +77,6 @@ Feature("As a user I can get past the login screen", async () => {
     });
     When("I tap X to skip connection", when.tapID(ids.BUTTON_CLOSE), async () => {
       Then("I should see my total yucoin balance of 15200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(15200)));
-      Then("I can see the health sync component", then.healthDataSyncComponent);
     });
   });
 

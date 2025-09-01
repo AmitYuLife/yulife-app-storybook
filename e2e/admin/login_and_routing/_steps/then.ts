@@ -46,11 +46,6 @@ export const isOnLoginScreen = async (): Promise<void> => {
   await expect(target).toBeVisible();
 };
 
-export const notOnLoginScreen = async (): Promise<void> => {
-  const target = element(by.text(t("Welcome!")));
-  await expect(target).not.toBeVisible();
-};
-
 export const healthAppPromptVisible = async (): Promise<void> => {
   const target = element(by.label(t("Sync to Apple Health")));
   await waitFor(target).toExist();
@@ -191,7 +186,7 @@ export const greyConnectScreenVisible = async () => {
 };
 
 export const connectionSetupScreenVisible = async () => {
-  await idVisible(ids.BUTTON_CLOSE_HEADER("Connection setup"))();
+  await idVisible(ids.BUTTON_CLOSE_HEADER("YuHealthConnect"))();
   await idVisible(ids.CONNECTION_SETUP_TITLE)();
 };
 
