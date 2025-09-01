@@ -1,5 +1,5 @@
 import * as ids from "@ids";
-import { navigation } from "@utils";
+import { multipleTextVisible, navigation } from "@utils";
 import { screens } from "@appScreens";
 import { scrollFromID } from "_utils/navigation/scrolling";
 import { challengeTypes, impactDonationImages } from "../_resources/constants";
@@ -74,3 +74,14 @@ export const assertEndOfSeasonItems =
       await idVisible(ids.END_OF_SEASON_ITEM_SCORE(score), waitTime)();
     }
   };
+
+export const assertWalletPopUp = async () => {
+  await multipleTextVisible(["Reward collected!", "Find it in your wallet."], 3000)();
+};
+
+export const assertInventoryPopUp = async () => {
+  await multipleTextVisible(
+    ["Power-up collected!", "Find it in your inventory in Quests."],
+    3000
+  )();
+};

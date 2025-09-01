@@ -286,12 +286,14 @@ export const replaceTextViaID = (id: string, text: string) => async () => {
   await target.replaceText(text);
 };
 
-export const multipleTextVisible = (textArr: string[]) => async () => {
-  await wait(2000)();
-  for (const i of textArr) {
-    await expect(element(by.text(i))).toBeVisible();
-  }
-};
+export const multipleTextVisible =
+  (textArr: string[], waitTime = 2000) =>
+  async () => {
+    await wait(waitTime)();
+    for (const i of textArr) {
+      await expect(element(by.text(i))).toBeVisible();
+    }
+  };
 
 export const multipleTextNotVisible =
   (textArr: string[], waitTime = 0) =>
