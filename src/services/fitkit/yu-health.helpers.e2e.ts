@@ -31,11 +31,23 @@ let yuHealthPermissions: HealthProviderCapability[] = [];
 socket.onPedometerEvent((step) => steps.push(step));
 
 socket.onSampleQueriesAdded?.((newQueries) => {
-  yuHealthSampleQueries = [...yuHealthSampleQueries, ...newQueries.map((query) => ({ ...query }))];
+  const queries = newQueries.map((query) => ({
+    ...query,
+    startTime: moment(query.startTime).toDate(),
+    endTime: moment(query.endTime).toDate(),
+  }));
+
+  yuHealthSampleQueries = [...yuHealthSampleQueries, ...queries];
 });
 
 socket.onAggregatedQueriesAdded?.((newQueries) => {
-  yuHealthAggregatedQueries = [...yuHealthAggregatedQueries, ...newQueries.map((query) => ({ ...query }))];
+  const queries = newQueries.map((query) => ({
+    ...query,
+    startTime: moment(query.startTime).toDate(),
+    endTime: moment(query.endTime).toDate(),
+  }));
+
+  yuHealthAggregatedQueries = [...yuHealthAggregatedQueries, ...queries];
 });
 
 socket.onFitkitAuthorised(() => {
