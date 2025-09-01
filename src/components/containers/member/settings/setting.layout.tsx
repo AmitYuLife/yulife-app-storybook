@@ -21,7 +21,7 @@ const SettingLayout = ({ onRightIconPress, onLeftIconPress, options, headerText,
       <View style={styles.settingsHeader}>
         <SettingsHeader title={headerText} />
       </View>
-      <FlatList style={styles.container} horizontal={false} data={options} renderItem={renderItem} />
+      <FlatList horizontal={false} data={options} renderItem={renderItem} />
       <GenericHeadingAbsolute
         heading={t("screens.settings.heading")}
         onLeftIconPress={onLeftIconPress}
@@ -38,10 +38,6 @@ const styles = StyleSheet.create({
   settingsHeader: {
     marginTop: Style.adjust(10),
     marginBottom: Style.adjust(24),
-  },
-  container: {
-    paddingStart: Style.adjust(24),
-    paddingEnd: Style.adjust(35),
   },
   option: {
     flexDirection: "row",

@@ -1,4 +1,3 @@
-import { I18nManager } from "react-native";
 import translator from "./translator";
 import { RegionService } from "./region";
 
@@ -6,8 +5,6 @@ type LeaderboardMetric = "steps" | "distance" | "coins" | "meditation" | null;
 
 export * from "./region";
 export * from "./translations/translations.types";
-
-export const isRTL = I18nManager.isRTL;
 
 export const region = new RegionService();
 export const translate: typeof translator["translate"] = (key, args) => {
@@ -35,6 +32,7 @@ export const getCurrentLocaleOptions = translator.getCurrentLocaleOptions;
 export const setLocale = translator.setLocale;
 export const getAvailableLocaleOptions = translator.getAvailableLocaleOptions;
 export const getLocaleDirection = () => translator.getCurrentLocaleOptions().direction;
+export const isRTL = () => getLocaleDirection() === "rtl";
 
 // utility / helper functions
 export const getMetricName = (metric: LeaderboardMetric, form: "singular" | "plural" = "singular") => {
