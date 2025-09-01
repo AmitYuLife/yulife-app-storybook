@@ -32,7 +32,6 @@ export const {
 export const { scrollUntilTextVisible, scrollFromID } = navigation.scrolling;
 
 export {
-  notOnLoginScreen,
   signupRewardVisible,
   connectionSetupScreenVisible,
   healthDataSyncComponent,

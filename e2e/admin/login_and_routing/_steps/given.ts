@@ -5,14 +5,14 @@ import {
   LOGIN_HERO_LOGIN_BUTTON,
   LOGIN_SCREEN_HEADER,
   LOGIN_WITH_PASSWORD,
+  TERTIARY_BUTTON,
 } from "@ids";
-import * as when from "./when";
 import { authoriseFitkit, sendReduxEvent } from "@socket";
-import { AUTH_7, CUSTOMER_7, CUSTOMER_1, CUSTOMER_2 } from "../../_data";
+import { AUTH_7, CUSTOMER_7, CUSTOMER_2 } from "../../_data";
 import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
 import { selectRegionIfVisible, wait } from "../../_common/given";
-import { dismissNewLooksModalIfVisible, skipHealthConnection } from "_utils/navigation/login";
+import { dismissNewLooksModalIfVisible } from "_utils/navigation/login";
 import { navigateViaID, tapID, tapText } from "_utils/navigation/common";
 
 export {
@@ -47,6 +47,7 @@ export const performLogin =
     fitkitAuth && (await authoriseFitkit(fitkitAuth)());
     await navigateViaID(BUTTON_LOGIN(false));
     await dismissNewLooksModalIfVisible();
+    await navigateViaID(TERTIARY_BUTTON(region));
   };
 
 export const enterValidCredentials =
