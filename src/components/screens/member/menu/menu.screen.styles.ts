@@ -43,20 +43,18 @@ export default StyleSheet.create({
   closeWrapper: {
     position: "absolute",
     top: PADDING_TOP,
-    right: 0,
+    end: 0,
     padding: 16,
   } as ViewStyle,
   bottomPadding: {
     height: Style.adjust(120),
   } as ViewStyle,
-  scrollView: {
-    paddingStart: Platform.select({
+  scrollViewContentContainer: {
+    alignItems: "flex-start", // default: "stretch" expands the hit slop to the edge of the screen
+    paddingLeft: Platform.select({
       ios: Style.SCALE_UP_AND_DOWN(105),
       android: Style.SCALE_UP_AND_DOWN(120),
     }),
-  } as ViewStyle,
-  scrollViewContentContainer: {
-    alignItems: "flex-start", // default: "stretch" expands the hit slop to the edge of the screen
   } as ViewStyle,
   debugVersionWrapper: {
     marginTop: Style.adjust(8),
@@ -65,7 +63,7 @@ export default StyleSheet.create({
   sparks: {
     position: "absolute",
     top: Style.adjust(-10),
-    right: Style.adjust(-8),
+    end: Style.adjust(-8),
     width: Style.adjust(42),
     height: Style.adjust(46),
   },

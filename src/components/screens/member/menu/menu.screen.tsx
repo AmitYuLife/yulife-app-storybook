@@ -31,11 +31,7 @@ const MenuScreen = ({ onDebugPress, onPressClose, links, version }: IProps) => {
   return (
     <>
       <View style={styles.wrapper} testID={MENU_SCREEN}>
-        <ScrollView
-          style={styles.scrollView}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.scrollViewContentContainer}
-        >
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContentContainer}>
           <Pad height={SCROLL_PADDING} />
           <Logo scale={0.37} type="full" />
           <DebugAndVersion onDebugPress={onDebugPress} version={version} />
