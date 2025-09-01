@@ -16,6 +16,7 @@ interface IProps {
   accessibilityRole?: AccessibilityRole;
   accessible?: boolean;
   lineHeight?: TextStyle["lineHeight"];
+  writingDirection?: TextStyle["writingDirection"];
 }
 
 export const TextTemplate = memo(
@@ -31,15 +32,24 @@ export const TextTemplate = memo(
     accessibilityRole,
     accessible = true,
     lineHeight: customLineHeight,
+    writingDirection,
   }: IProps) => {
     const alignment = { textAlign };
     const fontColor = { color: color || Colours.neutral.n800 };
     const decorationStyle = !decoration || decoration === "none" ? null : styles[decoration];
     const lineHeight = customLineHeight ? { lineHeight: customLineHeight } : {};
+    const writingDirectionStyle = writingDirection ? { writingDirection } : {};
 
     return (
       <Text
-        style={StyleSheet.flatten([templateTextStyles[type], alignment, fontColor, decorationStyle, lineHeight])}
+        style={StyleSheet.flatten([
+          templateTextStyles[type],
+          alignment,
+          fontColor,
+          decorationStyle,
+          lineHeight,
+          writingDirectionStyle,
+        ])}
         allowFontScaling={false}
         testID={testID}
         numberOfLines={numberOfLines}

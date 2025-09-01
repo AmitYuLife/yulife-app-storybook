@@ -24,7 +24,7 @@ function _Switch(props: Props) {
   const translateX = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
-    const toValue = isRTL ? TRANSFORM_X - SWITCH_WIDTH : SWITCH_WIDTH - TRANSFORM_X;
+    const toValue = isRTL() ? TRANSFORM_X - SWITCH_WIDTH : SWITCH_WIDTH - TRANSFORM_X;
     const animation = Animated.timing(translateX, {
       toValue: value ? toValue : 0,
       duration: ANIMATION_SPEED,

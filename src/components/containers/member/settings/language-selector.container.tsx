@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigation } from "@navigation/main";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { GAME_SETTINGS_LANGUAGE_SELECTOR_SCREEN } from "@ids";
-import { t, getAvailableLocaleOptions } from "@locale";
+import { t, getAvailableLocaleOptions, isRTL } from "@locale";
 import SettingLayout from "./setting.layout";
 import { setDeviceLocale } from "@redux/device/device.actions";
 import { getDeviceLocale } from "@redux/device/device.selectors";
@@ -27,7 +27,7 @@ const LanguageSelectorContainer = ({ componentId }: Props) => {
       screenTestId={GAME_SETTINGS_LANGUAGE_SELECTOR_SCREEN}
       options={getAvailableLocaleOptions(features?.showAllLanguages).map((o) => ({
         id: o.id,
-        title: `${o.flag} ${o.name}`,
+        title: isRTL() ? `${o.name} ${o.flag}` : `${o.flag} ${o.name}`,
         description: "",
         isSelected: o.id === locale || o.overwrite === locale,
         onPress: () => {

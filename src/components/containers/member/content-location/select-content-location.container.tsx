@@ -105,12 +105,6 @@ const itemSize = Style.adjust(48);
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  listItemWrapper: {
-    paddingTop: Style.adjust(8),
-    paddingHorizontal: Style.adjust(24),
-    height: itemSize,
-    alignItems: "center",
-  },
   info: {
     padding: Style.adjust(24),
   },
@@ -121,9 +115,5 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderItem = ({ item }: ListRenderItemInfo<RadioListItemProps>) => (
-  <View style={styles.listItemWrapper}>
-    <RadioListItem {...item} />
-  </View>
-);
+const renderItem = ({ item }: ListRenderItemInfo<RadioListItemProps>) => <RadioListItem {...item} />;
 const keyExtractor = (item: RadioListItemProps) => item.id;
