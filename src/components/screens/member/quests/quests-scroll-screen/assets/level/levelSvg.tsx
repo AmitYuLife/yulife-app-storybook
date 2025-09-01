@@ -7,7 +7,6 @@ import { LEVEL_SVG } from "@ids";
 interface IProps {
   backgroundColour: string;
   borderWidth?: number;
-  hasNotification?: boolean;
   notificationBorderWidth?: number;
   isPastLevel: boolean;
   isPending: boolean;
@@ -15,15 +14,7 @@ interface IProps {
   level: number;
 }
 
-const _LevelSvg = ({
-  backgroundColour,
-  hasNotification,
-  notificationBorderWidth,
-  isPastLevel,
-  isPending,
-  isActive,
-  level,
-}: IProps) => {
+const _LevelSvg = ({ backgroundColour, notificationBorderWidth, isPastLevel, isPending, isActive, level }: IProps) => {
   const fillBackground = getBubbleBackgroundColor({
     isPending,
     isPastLevel,
@@ -41,7 +32,6 @@ const _LevelSvg = ({
       <G mask={!notificationBorderWidth ? null : "url(#notification-mask)"}>
         <Circle x={31} y={31} r={25.5} fill={fillBackground} />
       </G>
-      {!hasNotification ? null : <Circle x={50} y={12} r={12} fill={Colours.neutral.white} />}
     </Svg>
   );
 };

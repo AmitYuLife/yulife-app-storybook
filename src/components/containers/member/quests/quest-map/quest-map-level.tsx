@@ -19,7 +19,7 @@ import {
 } from "@components/screens/member/quests/quests-scroll-screen/assets/level/level.styles";
 import Pulse from "@components/screens/member/quests/quests-scroll-screen/assets/level/pulse";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { Image } from "@atoms";
+import { Box, Image } from "@atoms";
 import { LevelSvg } from "@components/screens/member/quests/quests-scroll-screen/assets/level/levelSvg";
 import { usePulseAnimation } from "./animation/use-pulse-animation";
 import { DropShadow } from "./drop-shadow";
@@ -104,7 +104,6 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
             backgroundColour={backgroundColour}
             borderWidth={bubbleBorderWidth}
             notificationBorderWidth={notificationBorderWidth}
-            hasNotification={!!level.notificationIcon}
             isPastLevel={level.level < currentLevel}
             isPending={nextAvailableTimer < 0}
             isActive={level.isActive}
@@ -116,14 +115,16 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
           />
           <View style={styles.bubbleText}>{levelText}</View>
           {!level.notificationIcon ? null : (
-            <Image
-              testID={GHI_REWARD_ICON(level.level)}
-              style={styles.notificationImage}
-              width={16}
-              height={16}
-              source={level.notificationIcon}
-              suppressLoadingUi={true}
-            />
+            <Box br={99} bg={Colours.neutral.white} position="absolute" top={0} right={0} size={24}>
+              <Image
+                testID={GHI_REWARD_ICON(level.level)}
+                style={styles.notificationImage}
+                width={16}
+                height={16}
+                source={level.notificationIcon}
+                suppressLoadingUi={true}
+              />
+            </Box>
           )}
         </TouchableOpacityWithDelay>
       </View>
@@ -148,9 +149,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   notificationImage: {
-    position: "absolute",
-    top: Style.adjust(4),
-    right: Style.adjust(4),
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
   },
   levelPulse: {
     position: "absolute",
@@ -164,8 +166,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: Style.adjust(32),
     top: Style.adjust(5),
-    left: Style.adjust(5),
-    right: Style.adjust(5),
+    start: Style.adjust(5),
+    end: Style.adjust(5),
     bottom: Style.adjust(5),
   },
   staticBorder: {
