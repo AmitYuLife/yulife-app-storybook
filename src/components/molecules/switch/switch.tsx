@@ -3,6 +3,7 @@ import { View, Animated, ViewStyle } from "react-native";
 import { Style, Colours, StyleSheet } from "@styles";
 import { noop } from "@utils";
 import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
+import { isRTL } from "@locale";
 
 const CIRCLE_SIZE = Style.adjust(24);
 const SWITCH_WIDTH = Style.adjust(48);
@@ -23,9 +24,9 @@ function _Switch(props: Props) {
   const translateX = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
-    const toValue = value ? SWITCH_WIDTH - TRANSFORM_X : 0;
+    const toValue = isRTL ? TRANSFORM_X - SWITCH_WIDTH : SWITCH_WIDTH - TRANSFORM_X;
     const animation = Animated.timing(translateX, {
-      toValue,
+      toValue: value ? toValue : 0,
       duration: ANIMATION_SPEED,
       useNativeDriver: true,
     });

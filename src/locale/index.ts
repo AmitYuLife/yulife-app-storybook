@@ -1,3 +1,4 @@
+import { I18nManager } from "react-native";
 import translator from "./translator";
 import { RegionService } from "./region";
 
@@ -6,8 +7,9 @@ type LeaderboardMetric = "steps" | "distance" | "coins" | "meditation" | null;
 export * from "./region";
 export * from "./translations/translations.types";
 
-export const region = new RegionService();
+export const isRTL = I18nManager.isRTL;
 
+export const region = new RegionService();
 export const translate: typeof translator["translate"] = (key, args) => {
   const keyWithRegion = `${key}.${region.getPreferredRegion()?.toLowerCase()}`;
 
