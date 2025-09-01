@@ -90,7 +90,7 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
         });
       });
     },
-    [componentId, providerAvailabilities]
+    [componentId, enabledHealthProviders, providerAvailabilities]
   );
 
   /** Gets an array of capabilities and returns ones which need to requested */
@@ -191,7 +191,11 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
         retrySafeguard,
         newProvider,
         skipPreliminaryModal,
-      }: { skipPreliminaryModal?: boolean; retrySafeguard?: boolean; newProvider?: HealthProvider } = {}
+      }: {
+        skipPreliminaryModal?: boolean;
+        retrySafeguard?: boolean;
+        newProvider?: HealthProvider;
+      } = {}
     ): Promise<boolean> => {
       if (!activeProvider && !newProvider) {
         // User hasn't setup a provider yet.

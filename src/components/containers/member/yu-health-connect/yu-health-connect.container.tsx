@@ -19,7 +19,9 @@ import {
   HealthProvider,
   HealthProviderAvailability,
   HealthProviderCapability,
+  disconnect,
   getCapabilities,
+  supportsDisconnect,
 } from "@yu-life/react-native-yu-health";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -149,6 +151,15 @@ const YuHealthConnectContainer = ({
     const capabilities = YU_HEALTH_DEFAULT_CAPABILITIES.filter((capability) =>
       supportedCapabilities?.includes(capability)
     );
+
+    const supportsDisconnection = await supportsDisconnect(selectedProvider);
+    if (supportsDisconnection) {
+      try {
+        await disconnect(selectedProvider);
+      } catch (e) {
+        // We don't care if it fails
+      }
+    }
 
     await verifyAndAuthorizeCapability(capabilities, { skipPreliminaryModal: true, newProvider: selectedProvider });
 
