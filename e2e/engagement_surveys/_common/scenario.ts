@@ -13,4 +13,3 @@ beforeAll(async () => {
 });
 
 export const start = startWithoutLaunch();
-export const startUS = startWithoutLaunch("en-US");

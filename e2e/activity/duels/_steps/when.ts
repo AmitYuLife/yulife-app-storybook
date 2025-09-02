@@ -1,4 +1,4 @@
-import { navigation } from "@utils";
+import { launchApp, navigation } from "@utils";
 import * as ids from "@ids";
 import { loginAsUser } from "_utils/navigation/login";
 export { sendSteps, addStepsHistoricalData } from "@socket";
@@ -33,7 +33,7 @@ export const restartToDuelsRequest =
     await wait(waitTime)();
     await device.terminateApp();
     await device.clearKeychain();
-    await device.launchApp({ delete: true });
+    await launchApp({ delete: true });
     await wait(waitTime)();
     await loginAsUser(customer, auth, fitkitAuth)();
   };

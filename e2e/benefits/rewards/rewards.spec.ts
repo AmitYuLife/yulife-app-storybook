@@ -177,7 +177,10 @@ Feature("Rewards should act correctly", async () => {
     });
   });
 
-  Scenario("I can login and view my previously purchased rewards with different date formate : locale US", scenario.startUS, async () => {
+  /**
+   * Change language inside the app, from the menu
+   */
+  ScenarioSkip("I can login and view my previously purchased rewards with different date formate : locale US", scenario.start, async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
       Then("I should see the modal to select store location", then.textVisible("Current Location", 2000));
     });

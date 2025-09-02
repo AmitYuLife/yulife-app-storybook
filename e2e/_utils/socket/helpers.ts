@@ -1,17 +1,17 @@
 import socketServer from "./server";
 import { EVENT, ReduxEvent, SampleQueriesAdd, AggregateQueriesAdd } from "./events";
 import moment from "moment";
-import { wait } from "@navigation";
+import { launchApp, wait } from "@navigation";
 
 // TODO: Purge this, detox doesn't start when it's imported directly from the library
 export enum HealthDataType {
-  steps = 'STEP_COUNT',
-  mindfulMinutes = 'MINDFUL_MINUTES',
-  heartRate = 'HEART_RATE',
-  cyclingDistance = 'CYCLING_DISTANCE',
-  calories = 'CALORIES',
-  workoutMinutes = 'WORKOUT_MINUTES',
-  wheelchairPushes = 'WHEELCHAIR_PUSHES',
+  steps = "STEP_COUNT",
+  mindfulMinutes = "MINDFUL_MINUTES",
+  heartRate = "HEART_RATE",
+  cyclingDistance = "CYCLING_DISTANCE",
+  calories = "CALORIES",
+  workoutMinutes = "WORKOUT_MINUTES",
+  wheelchairPushes = "WHEELCHAIR_PUSHES",
 }
 
 export const authoriseFitkit =
@@ -135,7 +135,8 @@ export const addStepsHistoricalData =
           .subtract(dayToSubstract, "day")
           .endOf("day")
           .subtract(10, "minutes")
-          .toDate(),        value,
+          .toDate(),
+        value,
         dataType: HealthDataType.steps,
       },
     ];
@@ -352,10 +353,10 @@ export const getDuration = (seconds: number) => {
 
 export const closeAndReopenApp = async () => {
   await device.sendToHome();
-  await device.launchApp({ newInstance: false });
+  await launchApp({ newInstance: false });
 };
 
 export const quitAndReopenApp = async () => {
   await device.terminateApp();
-  await device.launchApp({ newInstance: false });
+  await launchApp({ newInstance: false });
 };

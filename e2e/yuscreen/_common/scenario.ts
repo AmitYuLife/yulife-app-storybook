@@ -1,6 +1,7 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
-import { startWithoutLaunch, startWithoutWBHub } from "@navigation";
+import { startWithoutLaunch } from "@navigation";
 import * as dataToInsert from "../_data";
+export { restartWithoutWBHub } from "@navigation";
 
 beforeAll(async () => {
   const API_URL = (process.env.API_URL as string) || `http://localhost:5000/`;
@@ -17,5 +18,3 @@ afterAll(async () => {
 });
 
 export const start = startWithoutLaunch();
-
-export const startWithoutWBHItems = startWithoutWBHub();

@@ -1,4 +1,4 @@
-import { navigation } from "@navigation";
+import { launchApp, navigation } from "@navigation";
 import { AUTH_7, CUSTOMER_7 } from "../../_data";
 
 export {
@@ -18,5 +18,5 @@ export const loginAsUser = (
 };
 
 export const allowNotifications = async () => {
-  await device.launchApp({ permissions: { notifications: "YES" } });
+  await launchApp({ permissions: { notifications: "YES" } });
 };

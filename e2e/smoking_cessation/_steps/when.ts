@@ -1,4 +1,4 @@
-import { navigation } from "@utils";
+import { launchApp, navigation } from "@utils";
 
 export const {
   scrollFromText,
@@ -38,5 +38,5 @@ export const {
 } = navigation.common;
 
 export const goToSmokingCessation = async () => {
-  await device.launchApp({ url: "yulifeapp-detox://yulife/smoking" });
+  await launchApp({ url: "yulifeapp-detox://yulife/smoking" });
 };

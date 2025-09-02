@@ -1,6 +1,6 @@
 import { screens } from "@appScreens";
 import { MEDIA_2 } from "../../_data";
-import { navigation } from "@utils";
+import { launchApp, navigation } from "@utils";
 import { fiitInfo } from "../_resources/constants";
 import { FiitMediaCategory } from "../_resources/types";
 export { authoriseFitkit, sendSteps } from "@socket";
@@ -42,5 +42,5 @@ export const pauseVideo = (pause: boolean) => async () => {
 export const minimiseAndReopenApp = async () => {
   await device.sendToHome();
   await wait(10000)();
-  await device.launchApp({ newInstance: false });
+  await launchApp({ newInstance: false });
 };

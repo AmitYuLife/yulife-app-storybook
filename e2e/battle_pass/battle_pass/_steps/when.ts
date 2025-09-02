@@ -1,6 +1,6 @@
 export { authoriseFitkit, sendSteps } from "@socket";
 import { screens } from "@appScreens";
-import { navigation } from "@utils";
+import { launchApp, navigation } from "@utils";
 import * as ids from "@ids";
 import { IMPACT_DONATION } from "../_resources/types";
 
@@ -32,5 +32,5 @@ export const donate =
   };
 
 export const goToRewardStore = async () => {
-  await device.launchApp({ url: "yulifeapp-detox://yulife/rewards" });
+  await launchApp({ url: "yulifeapp-detox://yulife/rewards" });
 };

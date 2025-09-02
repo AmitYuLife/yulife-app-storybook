@@ -1,6 +1,7 @@
 import { dataManager, DataManager, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import * as surgeStubs from "../_data";
 import * as dataToInsert from "../../_data";
+import { launchApp } from "@navigation";
 
 beforeAll(async () => {
   const API_URL = (process.env.API_URL as string) || `http://localhost:5000/`;
@@ -21,5 +22,5 @@ export const start = async () => {
   surgeDataManager.addData(dataToInsert as any);
   await device.terminateApp();
   await surgeDataManager.reseed();
-  await device.launchApp({ delete: true });
+  await launchApp({ delete: true });
 };

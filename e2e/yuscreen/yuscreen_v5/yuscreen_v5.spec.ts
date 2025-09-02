@@ -305,7 +305,7 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
   });
 
-  Scenario("As a user with concurrent employments, I should see all of my companies' wellbeing hub benefits on my YuScreen", scenario.startWithoutWBHItems, async () => {
+  Scenario("As a user with concurrent employments, I should see all of my companies' wellbeing hub benefits on my YuScreen", scenario.restartWithoutWBHub, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Forest", "401"));
     });
