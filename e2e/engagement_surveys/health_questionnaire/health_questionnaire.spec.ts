@@ -444,7 +444,7 @@ Feature("Health questionnaires", async () => {
         Then("As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 40 YuCoin for completing it", then.idVisible("health_questionnaire_submission_yucoin_markdown"));
       });
     });
-    When("I close the app before I press the claim button", when.restartWithData, async () => {
+    When("I close the app before I press the claim button", when.start, async () => {
       Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_2, data.AUTH_2, true, "UK"), async () => {
         Then("I should see my YuCoin balance gone up by 40", then.textVisible("240 YuCoin today"));
       });

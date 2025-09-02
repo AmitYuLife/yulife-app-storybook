@@ -32,7 +32,7 @@ export const {
   tryTapText,
   wait,
   clearFieldByID,
-  restartWithData,
+  start,
   restartWithoutDelete,
   idVisible,
   navigateViaText,

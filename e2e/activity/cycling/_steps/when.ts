@@ -2,8 +2,7 @@ import { navigation } from "@navigation";
 export { addCyclingData, addCycling3DaysHistoricalData, addCyclingHistoricalData } from "@socket";
 import { screens } from "@appScreens";
 
-export const { tapID, tapText, replaceTextByID, restartWithData, reloadAppToTab, wait } =
-  navigation.common;
+export const { tapID, tapText, replaceTextByID, start, reloadAppToTab, wait } = navigation.common;
 
 export const { loginAsUser, continueLogin, continueLoginAfterSignupBonus } = navigation.login;
 

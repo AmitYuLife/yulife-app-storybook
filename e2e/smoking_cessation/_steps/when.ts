@@ -22,7 +22,6 @@ export const {
   tryTapText,
   wait,
   clearFieldByID,
-  restartWithData,
   restartWithoutDelete,
   idVisible,
   navigateViaText,

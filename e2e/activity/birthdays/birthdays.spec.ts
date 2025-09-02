@@ -88,7 +88,7 @@ Feature("As a user I can see birthday notifications in the app if consented, and
     When("I tap the toggle to see birthdays", when.tapID(ids.SETTINGS_SWITCH("Birthdays", false)), async () => {
       Then("I can see the see birthdays toggle is now set to true", then.seeBirthdayToggleVisible(true));
     });
-    When("I close the app before I press the claim button", when.restartWithData, async () => {
+    When("I close the app before I press the claim button", when.start, async () => {
       Given("I trigger the nofitications", given.triggerBirthdayNotifications, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_17, data.AUTH_17, true), async () => {
           Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));

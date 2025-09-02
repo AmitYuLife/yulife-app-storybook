@@ -13,39 +13,17 @@ import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
 import { scrollUntilTextVisible } from "./scrolling";
 
-export const restart = async (locale = "en-GB", dm = dataManager) => {
-  console.log(`Restaring app...`);
-  await device.terminateApp();
+const DEFAULT_LOCALE = process.env.TARGET_LOCALE || "en-GB";
+
+export const restart = async (locale = DEFAULT_LOCALE, dm = dataManager) => {
   await dm.reseed();
-  await device.clearKeychain();
-  console.log(`Launching app...`);
-  await device.launchApp({
-    delete: true,
-    languageAndLocale: {
-      language: locale,
-      locale: locale,
-    },
-  });
+  await start(locale);
 };
 
-export const restartWithoutWBHub = async (locale = "en-GB", dm = dataManager) => {
-  await device.terminateApp();
+export const restartWithoutWBHub = async (locale = DEFAULT_LOCALE, dm = dataManager) => {
   await dm.clearWellbeingHubItemsData();
   await dm.reseed();
-  await device.clearKeychain();
-  await device.launchApp({
-    delete: true,
-    languageAndLocale: {
-      language: locale,
-      locale: locale,
-    },
-  });
-};
-
-export const restartWithData = async () => {
-  await device.terminateApp();
-  await device.clearKeychain();
-  await device.launchApp({ delete: true });
+  await start(locale);
 };
 
 export const terminateApp = async () => {
@@ -61,22 +39,28 @@ export const restartWithoutDelete = async () => {
   await device.launchApp({ delete: false });
 };
 
-export const start = async () => {
+/** TOOD: rename this to restartDevice */
+export const start = async (locale = DEFAULT_LOCALE) => {
+  console.log(`Restarting app...`);
   await device.terminateApp();
   await device.clearKeychain();
   await device.launchApp({
     delete: true,
+    languageAndLocale: {
+      language: locale,
+      locale: locale,
+    },
   });
 };
 
 export const startWithoutLaunch =
-  (locale = "en-GB") =>
+  (locale = DEFAULT_LOCALE) =>
   async () => {
     await restart(process.env.TARGET_LOCALE || locale);
   };
 
 export const startWithoutWBHub =
-  (locale = "en-GB") =>
+  (locale = DEFAULT_LOCALE) =>
   async () => {
     await restartWithoutWBHub(process.env.TARGET_LOCALE || locale);
   };
