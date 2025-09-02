@@ -27,7 +27,6 @@ export const {
   tryTapText,
   wait,
   clearFieldByID,
-  restartWithData,
   restartWithoutDelete,
   idVisible,
   idExist,
@@ -40,6 +39,7 @@ export const {
   tapIDAtIndex,
   navigateTo,
   minimiseAndReopenApp,
+  start,
 } = navigation.common;
 
 export const { startChallenge } = screens.challenges;

@@ -16,7 +16,7 @@ export const {
   tapID,
   tapText,
   replaceTextByID,
-  restartWithData,
+  start,
   navigateViaText,
   wait,
   navigateViaID,

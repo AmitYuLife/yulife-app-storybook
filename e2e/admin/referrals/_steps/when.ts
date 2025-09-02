@@ -22,7 +22,7 @@ export const {
   tryTapText,
   wait,
   clearFieldByID,
-  restartWithData,
+  start,
   restartWithoutDelete,
   restartWithoutDeleteTwoTimes,
   reloadOnly,

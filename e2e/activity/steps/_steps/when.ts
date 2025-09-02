@@ -15,7 +15,7 @@ export const {
   tapID,
   tapText,
   replaceTextByID,
-  restartWithData,
+  start,
   reloadAppToTab,
   minimiseAndReopenApp,
   wait,

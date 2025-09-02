@@ -10,10 +10,10 @@ import { screens } from "@appScreens";
 import { CUSTOMER_18 } from "activity/_data";
 
 export const {
+  start,
   tapID,
   tapText,
   replaceTextByID,
-  restartWithData,
   navigateViaText,
   wait,
   navigateViaID,
