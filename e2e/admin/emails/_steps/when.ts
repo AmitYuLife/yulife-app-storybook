@@ -1,4 +1,4 @@
-import { navigation } from "@utils";
+import { launchApp, navigation } from "@utils";
 import { screens } from "@appScreens";
 import { dataManager, IDatabaseItem, readEmailContent } from "@yu-life/yulife-bdd-framework";
 
@@ -66,7 +66,7 @@ export const followEmailLink = (emailAddress: string) => async () => {
     throw new Error(`Deeplink not found in the email`);
   }
 
-  await device.launchApp({
+  await launchApp({
     newInstance: true,
     url: deeplink,
   });

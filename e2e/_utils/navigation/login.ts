@@ -1,31 +1,24 @@
 import {
-  INPUT_LOGIN_EMAIL,
-  INPUT_LOGIN_PASSWORD,
-  BUTTON_LOGIN,
   NAV_BAR,
   BUTTON_CLOSE,
   BACK_BUTTON,
-  BUTTON_BASE,
-  LOGIN_SCREEN_HEADER,
-  LOGIN_WITH_PASSWORD,
   LOGIN_HERO_LOGIN_BUTTON,
   SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP,
 } from "@ids";
-import { dataManager, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
   completeOnboardingIntro,
+  launchApp,
   navigateViaID,
   navigateViaText,
   tapID,
   textVisible,
   wait,
 } from "./common";
-import { authoriseFitkit, EVENT, loginWithCredentials, socketServer } from "@socket";
+import { authoriseFitkit, loginWithCredentials } from "@socket";
 import { tapText } from "@navigation";
 import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
-import axios from "axios";
-import SocketClient from "_utils/socket/client";
 
 /**
  * Skips the login / auth screen and places the app in a logged in state for speed
@@ -83,7 +76,7 @@ export const restartAndLoginToTab =
   ) =>
   async () => {
     await device.terminateApp();
-    await device.launchApp({ delete: true });
+    await launchApp({ delete: true });
     await loginAsUser(customer, auth, fitkitAuth)();
     await navigateViaID(NAV_BAR(tab));
   };
@@ -173,6 +166,6 @@ export const fullRestartAndLogin =
   async () => {
     await device.terminateApp();
     await device.clearKeychain();
-    await device.launchApp({ delete: true });
+    await launchApp({ delete: true });
     await loginAsUser(customer, auth, fitkitAuth, region)();
   };

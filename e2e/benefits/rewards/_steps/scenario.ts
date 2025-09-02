@@ -13,8 +13,3 @@ beforeAll(async () => {
 });
 
 export const start = startWithoutLaunch();
-
-export const startUS = async () => {
-  await dataManager.reseed();
-  await restart("en-US");
-};

@@ -12,7 +12,15 @@ import moment from "moment";
 import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
 import { scrollUntilTextVisible } from "./scrolling";
+import { DeviceLaunchAppConfig } from "detox/detox";
 
+/**
+ * If a CI/CD has a default language for its simulator e.g. en-US
+ * Then if we call device.launchApp, then by default it will have the device run with en-US copy
+ * Leading to a scenario when tests pass locally, but not in the CI/CD pipeline
+ *
+ * For example, this happened in e2e/reward_passes/wellbeing_pass/wellbeing_pass.spec.ts
+ */
 const DEFAULT_LOCALE = process.env.TARGET_LOCALE || "en-GB";
 
 export const restart = async (locale = DEFAULT_LOCALE, dm = dataManager) => {
@@ -20,10 +28,10 @@ export const restart = async (locale = DEFAULT_LOCALE, dm = dataManager) => {
   await start(locale);
 };
 
-export const restartWithoutWBHub = async (locale = DEFAULT_LOCALE, dm = dataManager) => {
+export const restartWithoutWBHub = async (dm = dataManager) => {
   await dm.clearWellbeingHubItemsData();
   await dm.reseed();
-  await start(locale);
+  await start();
 };
 
 export const terminateApp = async () => {
@@ -36,7 +44,7 @@ export const minimiseApp = async () => {
 
 export const restartWithoutDelete = async () => {
   await device.terminateApp();
-  await device.launchApp({ delete: false });
+  await launchApp({ delete: false });
 };
 
 /** TOOD: rename this to restartDevice */
@@ -44,25 +52,27 @@ export const start = async (locale = DEFAULT_LOCALE) => {
   console.log(`Restarting app...`);
   await device.terminateApp();
   await device.clearKeychain();
-  await device.launchApp({
-    delete: true,
+  await launchApp({
     languageAndLocale: {
       language: locale,
-      locale: locale,
+      locale,
     },
+    delete: true,
   });
+};
+
+export const launchApp = async (config?: DeviceLaunchAppConfig) => {
+  const languageAndLocale = {
+    language: DEFAULT_LOCALE,
+    locale: DEFAULT_LOCALE,
+  };
+  await device.launchApp({ languageAndLocale, ...config });
 };
 
 export const startWithoutLaunch =
   (locale = DEFAULT_LOCALE) =>
   async () => {
     await restart(process.env.TARGET_LOCALE || locale);
-  };
-
-export const startWithoutWBHub =
-  (locale = DEFAULT_LOCALE) =>
-  async () => {
-    await restartWithoutWBHub(process.env.TARGET_LOCALE || locale);
   };
 
 export const reloadAppToTab =
@@ -409,10 +419,10 @@ export const capitalizeFirstLetter = (string: string) => {
 
 export const restartWithoutDeleteTwoTimes = async () => {
   await device.terminateApp();
-  await device.launchApp({ delete: false });
+  await launchApp({ delete: false });
   await wait(4000)();
   await device.terminateApp();
-  await device.launchApp({ delete: false });
+  await launchApp({ delete: false });
   await dismissNewLooksModalIfVisible();
   await wait(4000)();
 };
@@ -444,7 +454,7 @@ export const tapTextAtIndex =
 
 export const minimiseAndReopenApp = async () => {
   await device.sendToHome();
-  await device.launchApp({ newInstance: false });
+  await launchApp({ newInstance: false });
 };
 
 export const hoursRemainingOfDay = () => {

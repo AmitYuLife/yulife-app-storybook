@@ -1,4 +1,4 @@
-import { navigation } from "@navigation";
+import { launchApp, navigation } from "@navigation";
 import { screens } from "@appScreens";
 
 export const {
@@ -22,9 +22,9 @@ export const { scrollFromText, scrollFromID, scrollUntilTextVisible, swipeFromTe
   navigation.scrolling;
 
 export const goToQuestsScreen = async () => {
-  await device.launchApp({ url: "yulifeapp-detox://yulife/quests" });
+  await launchApp({ url: "yulifeapp-detox://yulife/quests" });
 };
 
 export const goToleaderboardScreen = async () => {
-  await device.launchApp({ url: "yulifeapp-detox://yulife/leaderboard" });
+  await launchApp({ url: "yulifeapp-detox://yulife/leaderboard" });
 };
