@@ -47,7 +47,7 @@ export const performLogin =
     fitkitAuth && (await authoriseFitkit(fitkitAuth)());
     await navigateViaID(BUTTON_LOGIN(false));
     await dismissNewLooksModalIfVisible();
-    await navigateViaID(TERTIARY_BUTTON(region));
+    await selectRegionIfVisible(region)();
   };
 
 export const enterValidCredentials =

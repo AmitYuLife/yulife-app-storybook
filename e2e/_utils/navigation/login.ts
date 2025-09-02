@@ -148,7 +148,7 @@ export const loginToYuScreen =
 
 export const selectRegionIfVisible = (region: string) => async () => {
   try {
-    await expect(element(by.text(t("Select your company location")))).toBeVisible();
+    await expect(element(by.text(t("Select your region")))).toBeVisible();
     await tapText(region)();
   } catch (err) {}
 };
