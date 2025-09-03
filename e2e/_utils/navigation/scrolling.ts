@@ -1,32 +1,39 @@
-import { ACTIVITY_HISTORY_CHALLENGE_VALUE, ACTIVITY_HISTORY_MONTH, ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids";
-import { booleanIdVisible, booleanTextVisible, navigateViaID, navigateViaText, tapID, wait } from "./common";
+import {
+  ACTIVITY_HISTORY_CHALLENGE_VALUE,
+  ACTIVITY_HISTORY_MONTH,
+  ACTIVITY_HISTORY_SCREEN,
+} from "@ids";
+import { booleanIdVisible, booleanTextVisible, navigateViaID, wait } from "./common";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
-import {expect} from 'detox'
+import { expect } from "detox";
 import moment from "moment";
 
+export const scrollFromText =
+  (text: string, direction: any, speed: any, percentage?: any) => async () => {
+    const target = element(by.text(text));
+    await target.swipe(direction, speed, percentage);
+  };
 
-export const scrollFromText = (text: string, direction: any, speed: any, percentage?: any) => async () => {
-  const target = element(by.text(text));
-  await target.swipe(direction, speed, percentage);
-};
+export const scrollFromID =
+  (id: string, direction: any, speed: any, percentage?: any) => async () => {
+    const target = element(by.id(id));
+    await target.swipe(direction, speed, percentage);
+  };
 
-export const scrollFromID = (id: string, direction: any, speed: any, percentage?: any) => async () => {
-  const target = element(by.id(id));
-  await target.swipe(direction, speed, percentage);
-};
+export const swipeFromIDAtIndex =
+  (id: string, index: number, direction: any, speed: any, percentage?: any) => async () => {
+    const target = element(by.id(id)).atIndex(index);
+    await target.swipe(direction, speed, percentage);
+  };
 
-export const swipeFromIDAtIndex = (id: string, index:number, direction: any, speed: any, percentage?: any) => async () => {
-const target = element(by.id(id)).atIndex(index);
-await target.swipe(direction, speed, percentage);
-};
-
-export const swipeFromText = (text: string, direction: any, speed: any, percentage?: any, waitTime?:number) => async () => {
-  if (waitTime){
-    await wait(waitTime)()
-  }
-  const target = element(by.text(text));
-  await target.swipe(direction, speed, percentage);
-};
+export const swipeFromText =
+  (text: string, direction: any, speed: any, percentage?: any, waitTime?: number) => async () => {
+    if (waitTime) {
+      await wait(waitTime)();
+    }
+    const target = element(by.text(text));
+    await target.swipe(direction, speed, percentage);
+  };
 
 export const scrollFromIDMultiple =
   (id: string, direction: any, speed: any, scrollCount: number, percentage?: any) => async () => {
@@ -41,9 +48,16 @@ export const scrollFromIDMultiple =
 
 // down is down
 export const scrollUntilTextVisible =
-  (scrollViewId: string, text: string, direction: "up" | "down" | "left" | "right", xscroll = 0.5, yscroll = 0.5, waitTime=0) =>
+  (
+    scrollViewId: string,
+    text: string,
+    direction: "up" | "down" | "left" | "right",
+    xscroll = 0.5,
+    yscroll = 0.5,
+    waitTime = 0
+  ) =>
   async () => {
-    await wait(waitTime)()
+    await wait(waitTime)();
 
     await waitFor(element(by.text(text)))
       .toBeVisible()
@@ -59,14 +73,45 @@ export const scrollUntilIdVisible =
     xscroll = 0.5,
     yscroll = 0.5,
     offset = 100,
-    waitTime=0
+    waitTime = 0
   ) =>
   async () => {
-    await wait(waitTime)()
+    await wait(waitTime)();
     await waitFor(element(by.id(id)))
       .toBeVisible()
       .whileElement(by.id(scrollViewId))
       .scroll(offset, direction, xscroll, yscroll);
+  };
+
+/**
+ * Similar but have found this to be more reliable then scrollUntilIdVisible
+ */
+export const scrollWithLimitedAttemptsUntilIdVisible =
+  (
+    scrollContainerId: string,
+    targetId: string,
+    direction: "up" | "down" = "up",
+    attempts = 5,
+    timeout = 2000
+  ) =>
+  async () => {
+    let done = false;
+
+    while (attempts > 0 && !done) {
+      try {
+        const scrollContainer = element(by.id(scrollContainerId));
+        await scrollContainer.swipe(direction, "slow", 0.2);
+
+        const target = element(by.id(targetId));
+        await waitFor(target).toBeVisible().withTimeout(timeout);
+
+        // wait for scroll momentum to end
+        await wait(1000)();
+        done = true;
+      } catch (error) {
+        attempts -= 1;
+      }
+    }
   };
 
 export const scrollToAndTapText =
@@ -80,7 +125,12 @@ export const scrollToAndTapText =
   };
 
 export const swipeToText =
-  (scrollID: any, targetText: string, direction: "up" | "down" | "left" | "right", maxAttempts = 10) =>
+  (
+    scrollID: any,
+    targetText: string,
+    direction: "up" | "down" | "left" | "right",
+    maxAttempts = 10
+  ) =>
   async () => {
     let targetTextVisible = await booleanTextVisible(targetText);
     let scroller = element(by.id(scrollID));
@@ -135,45 +185,78 @@ export const swipeToID =
     }
   };
 
-export const activityHistoryScrollStepDataCorrect = (steps: number, daysToCheck: number) => async () => {
-  const startSteps = steps + 1;
-  const endSteps = steps + daysToCheck;
+export const activityHistoryScrollStepDataCorrect =
+  (steps: number, daysToCheck: number) => async () => {
+    const startSteps = steps + 1;
+    const endSteps = steps + daysToCheck;
 
-  for (let i = startSteps; i <= endSteps; i++) {
-    await scrollUntilTextVisible(ACTIVITY_HISTORY_SCREEN, `${addCommasToNumber(i)} Steps`, "down")();
-    await expect(element(by.id(ACTIVITY_HISTORY_CHALLENGE_VALUE(`${addCommasToNumber(i)} Steps`)))).toBeVisible();
-  }
-};
+    for (let i = startSteps; i <= endSteps; i++) {
+      await scrollUntilTextVisible(
+        ACTIVITY_HISTORY_SCREEN,
+        `${addCommasToNumber(i)} Steps`,
+        "down"
+      )();
+      await expect(
+        element(by.id(ACTIVITY_HISTORY_CHALLENGE_VALUE(`${addCommasToNumber(i)} Steps`)))
+      ).toBeVisible();
+    }
+  };
 
 export const formatCyclingMetersToKmWithOneDecimal = (meters: number): string => {
   return `${(meters / 1000).toFixed(1)} km`;
 };
 
-export const activityHistoryScrollCyclingDataCorrect = (steps: number, daysToCheck: number) => async () => {
-  const startSteps = steps + 100;
-  const endSteps = steps + (daysToCheck * 100);
+export const activityHistoryScrollCyclingDataCorrect =
+  (steps: number, daysToCheck: number) => async () => {
+    const startSteps = steps + 100;
+    const endSteps = steps + daysToCheck * 100;
 
-  for (let i = startSteps; i <= endSteps; i += 100) {
-    await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`), "down")()
-    await expect(element(by.id(ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`)))).toBeVisible();
-  }
-};
+    for (let i = startSteps; i <= endSteps; i += 100) {
+      await scrollUntilIdVisible(
+        ACTIVITY_HISTORY_SCREEN,
+        ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`),
+        "down"
+      )();
+      await expect(
+        element(
+          by.id(
+            ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`)
+          )
+        )
+      ).toBeVisible();
+    }
+  };
 
-export const activityHistoryScrollMinsDataCorrect = (minutes = 0) => async () => {
-  const totalDays = 28;
+export const activityHistoryScrollMinsDataCorrect =
+  (minutes = 0) =>
+  async () => {
+    const totalDays = 28;
 
-  for (let i = 1; i <= totalDays; i++) {
-    await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_CHALLENGE_VALUE(`${minutes + i} Mindful mins`), "down")();
-  }
-};
+    for (let i = 1; i <= totalDays; i++) {
+      await scrollUntilIdVisible(
+        ACTIVITY_HISTORY_SCREEN,
+        ACTIVITY_HISTORY_CHALLENGE_VALUE(`${minutes + i} Mindful mins`),
+        "down"
+      )();
+    }
+  };
 
-export const selectActivityMonth = (monthsAgo: 0 | 1 | 2 = 0) => async () => {
-  const targetMonth = moment().subtract(monthsAgo, "months").format('MMMM');
-  await navigateViaID(ACTIVITY_HISTORY_MONTH(targetMonth));
-}
+export const selectActivityMonth =
+  (monthsAgo: 0 | 1 | 2 = 0) =>
+  async () => {
+    const targetMonth = moment().subtract(monthsAgo, "months").format("MMMM");
+    await navigateViaID(ACTIVITY_HISTORY_MONTH(targetMonth));
+  };
 
 export const scrollUntilTextVisibleAtIndex =
-  (scrollViewId: string, text: string, direction: "up" | "down", index: number, xscroll = 0.5, yscroll = 0.5) =>
+  (
+    scrollViewId: string,
+    text: string,
+    direction: "up" | "down",
+    index: number,
+    xscroll = 0.5,
+    yscroll = 0.5
+  ) =>
   async () => {
     await waitFor(element(by.text(text)).atIndex(index))
       .toBeVisible()
@@ -181,13 +264,14 @@ export const scrollUntilTextVisibleAtIndex =
       .scroll(100, direction, xscroll, yscroll);
   };
 
-  export const swipeFromTextAtIndex = (text: string, direction: any, speed: any, index: number) => async () => {
+export const swipeFromTextAtIndex =
+  (text: string, direction: any, speed: any, index: number) => async () => {
     const target = element(by.text(text)).atIndex(index);
     await target.swipe(direction, speed);
   };
 
-
-  export const scrollUntilIdVisibleAtIndex = (
+export const scrollUntilIdVisibleAtIndex =
+  (
     scrollViewId: string,
     id: string,
     direction: "up" | "down" | "left" | "right",
@@ -202,4 +286,3 @@ export const scrollUntilTextVisibleAtIndex =
       .whileElement(by.id(scrollViewId))
       .scroll(offset, direction, xscroll, yscroll);
   };
-

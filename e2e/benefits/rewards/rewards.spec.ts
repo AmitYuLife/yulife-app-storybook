@@ -1,10 +1,11 @@
-import { Given, When, Then, Scenario, Feature, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Given, When, Then, Scenario, Feature } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
-import * as ids from "@ids";
 import * as data from "../_data";
+import * as ids from "@ids";
+import { getLocalisedString } from "@i18n";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("Rewards should act correctly", async () => {
@@ -177,22 +178,74 @@ Feature("Rewards should act correctly", async () => {
     });
   });
 
-  /**
-   * Change language inside the app, from the menu
-   */
-  ScenarioSkip("I can login and view my previously purchased rewards with different date formate : locale US", scenario.start, async () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
-      Then("I should see the modal to select store location", then.textVisible("Current Location", 2000));
-    });
-    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
-      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-    });
-    When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
-      When("I tap on the Nike wallet card", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
-        When("I tap on the Nike wallet card", when.tapID(ids.WALLET_ITEM_TITLE("£10"), 1000), async () => {
-          Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-          Then("I should be on the purchase screen for this reward and see US date format", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE, "en-US"));
-        });
+  Scenario("I can view my previously purchased rewards with copy based on user language preference", scenario.start, async () => {
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
+        Then("I see the content location modal's confirmation button", then.idVisible(ids.REWARDS_LOCATION_CONFIRM));
+      });
+
+      When("I confirm the content location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+        Then("I can see the wallet navigation icon", then.idVisible(ids.SHINE_BUTTON("Wallet")));
+      });
+
+      When("I tap the wallet navigation icon", when.tapID(ids.SHINE_BUTTON("Wallet")), async () => {
+        Then("I can see my purchased rewards", then.idVisible(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name)));
+      });
+
+      When("I tap on a reward", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
+        Then("I can see my gift cards on the reward", then.idVisible(ids.WALLET_ITEM_TITLE("£10")));
+      });
+
+      When("I tap on a gift card", when.tapID(ids.WALLET_ITEM_TITLE("£10")), async () => {
+        Then("I should be on the purchase screen with the correct copy", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE, "en-GB"));
+      });
+
+      When("I go back from the purchased gift card screen", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
+        Then("I can see my gift cards on the reward", then.idVisible(ids.WALLET_ITEM_TITLE("£10")));
+      });
+
+      When("I go back from the reward wallet items screen", when.tapID(ids.LEFT_HEADING_BUTTON(getLocalisedString("Wallet"))), async () => {
+        Then("I can see my purchased rewards", then.idVisible(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name)));
+      });
+
+      When("I go back from the rewards wallet screen", when.tapID(ids.LEFT_HEADING_BUTTON(getLocalisedString("Wallet"))), async () => {
+        Then("I am back on the tab view", then.idVisible(ids.BUTTON_TOP_LEFT_BAR));
+      });
+
+      When("I press the menu button", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
+        Then("I can see settings", then.idVisible(ids.MENU_ITEM(getLocalisedString("Settings"))));
+      });
+
+      When("I tap settings", when.tapID(ids.MENU_ITEM(getLocalisedString("Settings"))), async () => {
+        Then("I can see the settings screen", then.idVisible(ids.SETTINGS_SCREEN));
+      });
+
+      When("I scroll down to change my language", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SETTINGS_SCREEN_SCROLL, ids.TEXT_TEMPLATE(getLocalisedString("Language"))), async () => {
+        Then("I can see the option to change my language", then.idVisible(ids.TEXT_TEMPLATE(getLocalisedString("Language"))));
+      });
+
+      When("I press the option to change my language", when.tapID(ids.TEXT_TEMPLATE(getLocalisedString("Language"))), async () => {
+        Then("I can see a different language option", then.idVisible(ids.SETTINGS_NAME("en-US")));
+      });
+
+      When("I select a different language", when.tapID(ids.SETTINGS_NAME("en-US")), async () => {
+        Then("The app should restart, bringing me to the tab view", then.idVisible(ids.NAV_BAR("rewards")));
+      });
+
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
+        Then("I can see the wallet navigation icon", then.idVisible(ids.SHINE_BUTTON(getLocalisedString("Wallet"))));
+      });
+
+      When("I tap the wallet navigation icon", when.tapID(ids.SHINE_BUTTON(getLocalisedString("Wallet"))), async () => {
+        Then("I can see my purchased rewards", then.idVisible(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name)));
+      });
+
+      When("I tap on a reward", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
+        Then("I can see my gift cards on the reward", then.idVisible(ids.WALLET_ITEM_TITLE("£10")));
+      });
+
+      When("I tap on a gift card", when.tapID(ids.WALLET_ITEM_TITLE("£10")), async () => {
+        Then("I should be on the purchase screen with the correct copy", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE, "en-US"));
       });
     });
   });

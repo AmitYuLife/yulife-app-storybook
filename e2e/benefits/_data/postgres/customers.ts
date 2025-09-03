@@ -27,7 +27,7 @@ export const CUSTOMER_2 = {
   type,
   modelName,
   data: {
-    customerId: generateRandomMongoId(),
+    customerId: generateRandomPostgresId(),
     email: generateRandomInbox(),
     firstName: "Osama",
     lastName: "Rahman",
