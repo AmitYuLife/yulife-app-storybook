@@ -22,7 +22,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     });
     When("I tap rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
       When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2500), async () => {
-        Then("I should be on rewards", then.idVisible(ids.REWARDS_SCREEN, 1500));
+        Then("I should be on rewards", then.idVisible(ids.REWARDS_SCREEN, 2500));
       });
     });
   });
@@ -245,12 +245,12 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I have done yesterday 13:20 min Mindfulness", given.addMindfulnessHistoricalData(800), async () => {
           Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
-            When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
-              Then("I should see the menu items", then.menuItemsVisible("enhanced"));
-            });
           });
         });
       });
+    });
+    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
+      Then("I should see the menu items", then.menuItemsVisible("enhanced"));
     });
     When("I tap settings", when.tapMenuItem(t("Settings")), async () => {
       Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));

@@ -7,7 +7,7 @@ import * as scenario from "./_steps/scenario";
 import * as ids from "@ids";
 import * as data from "./_data";
 
-Feature("As a user I can get past the login screen", async () => {
+Feature("As a user I can get past the login screen - JP", async () => {
   Scenario("Japan", scenario.start, async () => {
     Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
       Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
