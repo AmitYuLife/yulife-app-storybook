@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.79.0] - 2025-09-03
+
+### Bugfixes
+
+- Bugfix GS-1913: Inventory banner image broken
+- Bugfix CTE-360: quest map level
+- Bugfix: menu styles
+- Bugfix: double badge render on weeklies
+
+### Tasks
+
+- Task CTE-360: radio list item for arabic
+- Task CTE-360: switch component for arabic
+- Task: Update podfile.lock
+- Task: Update YuHealth & add disconnection
+- Task CTE-360: replace left/right with start/end
+- Task: cursor rule for RN best practices
+- Task: make provider permissions functions
+- Task: replace stylesheet import
+- Task: Further YuHealth detox fixes
+- Task GS-1895: Improve back button on android while inspecting user and checking the achievements
+- Task CTE-360: change Left/Right to Start/End for margin & padding
+- Task: YuHealth Detox
+- Task CTE-350: move default options to Navigation.main
+
+### Chores
+
+- chore DEVOPS-4196: Update assume-aws-role-with-web-identity GitLab Component to v1.1.0
+- Chore: better define locale
+- Chore - Updated translations
+
+### Extra
+
+- Detox NVS-1636: Multi language spec for reward purchased details
+- Detox: Seed Mindfulness Data
+- Detox: Wrap launchApp with language
+- Detox: Fix and use selectRegionIfVisible
+- Detox: YuHealth Queries
+- Detox: Fix login connection setup scenario
+- Detox: Fix streaks test by deprecating logInWithStreakScreen in favor of loginAsUser
+- Detox: added wait times for nightly timeouts, copy and swipe change
+- Detox: Fix detox test due to updated HeadingAndCopy testID change
+- Purge CTE-360: chevron icon in favour of arrow
+
 ## [4.78.0] - 2025-08-27
 
 ### Bugfixes
