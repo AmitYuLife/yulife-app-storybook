@@ -13,6 +13,7 @@ import {
   PROVIDER_RECOMMENDED_ORDER,
   YU_HEALTH_DEFAULT_CAPABILITIES,
   getRecommendedProvider,
+  isAndroid,
   joinCapabilities,
 } from "@utils";
 import {
@@ -152,12 +153,15 @@ const YuHealthConnectContainer = ({
       supportedCapabilities?.includes(capability)
     );
 
-    const supportsDisconnection = await supportsDisconnect(selectedProvider);
-    if (supportsDisconnection) {
-      try {
-        await disconnect(selectedProvider);
-      } catch (e) {
-        // We don't care if it fails
+    // TODO: Fix this at YuHealth level - https://yulife.atlassian.net/browse/ENG-4333
+    if (isAndroid()) {
+      const supportsDisconnection = await supportsDisconnect(selectedProvider);
+      if (supportsDisconnection) {
+        try {
+          await disconnect(selectedProvider);
+        } catch (e) {
+          // We don't care if it fails
+        }
       }
     }
 
