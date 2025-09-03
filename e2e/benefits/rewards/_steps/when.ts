@@ -18,6 +18,7 @@ export const {
   scrollToAndTapText,
   scrollUntilTextVisible,
   scrollUntilIdVisible,
+  scrollWithLimitedAttemptsUntilIdVisible,
 } = navigation.scrolling;
 
 export const { tapText, reloadAppToTab, tapID } = navigation.common;
