@@ -104,7 +104,8 @@ export const sendMindfulnessData =
         isUserEntered: false,
       },
     ];
-    await addSampleQueries(record);
+
+    await addAggregateQueries(record);
     await wait(waitTime)();
   };
 
@@ -140,6 +141,7 @@ export const addStepsHistoricalData =
         dataType: HealthDataType.steps,
       },
     ];
+
     await addAggregateQueries(record);
   };
 
@@ -237,7 +239,8 @@ export const addMindfulnessHistoricalData =
         isUserEntered: false,
       },
     ];
-    await addSampleQueries(record);
+
+    await addAggregateQueries(record);
   };
 
 export const addSteps28DaysHistoricalData = (steps: number) => async () => {
@@ -264,6 +267,7 @@ export const addSteps28DaysHistoricalData = (steps: number) => async () => {
     record.push(data);
     i++;
   }
+
   await addAggregateQueries(record);
 };
 
@@ -291,6 +295,7 @@ export const addCycling28DaysHistoricalData = (value: number) => async () => {
     record.push(data);
     i++;
   }
+
   await addAggregateQueries(record);
 };
 
@@ -326,7 +331,7 @@ export const addMins28DaysHistoricalData =
       record.push(data);
     }
 
-    await addSampleQueries(record);
+    await addAggregateQueries(record);
   };
 
 export const addStepsHistoricalDataMulitple = (value: number, days: number) => async () => {
@@ -340,6 +345,7 @@ export const addStepsHistoricalDataMulitple = (value: number, days: number) => a
     };
     record.push(data);
   }
+
   await addAggregateQueries(record);
 };
 
