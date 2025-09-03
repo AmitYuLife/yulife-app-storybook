@@ -20,7 +20,7 @@ interface IInventoryBannerProps {
   onPress?: () => void;
 }
 
-const BANNER_CONTENT_POSITION = { top: 0, start: 0 };
+const BANNER_CONTENT_POSITION = { top: 0, left: 0 };
 const SPARKLE_LOTTIE = require("./inventory-banner-sparkles.lottie");
 
 const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
