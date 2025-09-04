@@ -19,7 +19,7 @@ Feature("I can view and use all battle pass features", async () => {
       });
     });
     When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
-      Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
+      Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2500));
       Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
     });
     When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
@@ -48,12 +48,14 @@ Feature("I can view and use all battle pass features", async () => {
     When("I tap to claim my prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
       Then("The wallet reward pop-up should be visible", then.assertWalletPopUp);
     });
-    When("I close the wallet pop-up", when.tapID(ids.CTA_GOT_IT, 2000), async () => {
+    When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
       When("I donate to Clean the ocean and complete the next level", when.donate("ocean", 5), async () => {
         When("I tap to claim my prize", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
           When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
             When("I tap to claim the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
-              Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
+              When("I dismiss the reward pop-up again", when.dismissRewardPopUp, async () => {
+                Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
+              });
             });
           });
         });
@@ -122,12 +124,10 @@ Feature("I can view and use all battle pass features", async () => {
     When("I tap to claim my prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
       Then("The wallet reward pop-up should be visible", then.assertWalletPopUp);
     });
-    When("I close the wallet pop-up", when.tapID(ids.CTA_GOT_IT, 2000), async () => {
-      When("I close the inventory pop-up", when.tapID(ids.CTA_GOT_IT, 2000), async () => {
-        Then("I should see level 2 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
-        Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(1), 2000));
-        Then("I should see the correct remaining rewards count", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("2 rewards remaining"), 2000));
-      });
+    When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
+      Then("I should see level 2 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
+      Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(1), 2000));
+      Then("I should see the correct remaining rewards count", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("2 rewards remaining"), 2000));
     });
     When("I terminate the app", when.terminateApp, async () => {
       When("I follow the deep link to the rewards store", when.goToRewardStore, async () => {
@@ -175,7 +175,7 @@ Feature("I can view and use all battle pass features", async () => {
         });
       });
     });
-    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I go back", when.tapID(ids.BACK_BUTTON, 2500), async () => {
       When("I go to the rewards store", when.tapID(ids.NAV_BAR("rewards"), 2000), async () => {
         Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
       });
@@ -211,7 +211,7 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see the random extra challenge reward", then.extraChallengeRewardModalVisible);
     });
     When("I tap to claim the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
-      When("I close the inventory pop-up", when.tapID(ids.CTA_GOT_IT, 2000), async () => {
+      When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
         Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(2), 2000));
         Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
       });
