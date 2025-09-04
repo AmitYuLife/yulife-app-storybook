@@ -47,7 +47,7 @@ import { IHintsStore } from "@redux/hints/hints.types";
 import yuHealthReducer, { IYuHealthStore, getInitialYuHealthState } from "@redux/yu-health/yu-health.reducer";
 import yuScreenReducer, { getInitialState as getInitialYuScreenState } from "@redux/yu-screen/yu-screen.reducer";
 import { IYuScreenStore } from "@redux/yu-screen/yu-screen.types";
-
+import modalReducer, { getInitialState as getInitialModalState } from "@redux/modal/modal.reducer";
 import healthSmokingReducer, {
   IHealthSmokingStore,
   getInitialState as getInitialHealthSmokingState,
@@ -64,6 +64,8 @@ import prizesReducer, { getInitialPrizesState } from "@redux/prizes/prizes.reduc
 import { IPrizesStore } from "@redux/prizes/prizes.types";
 import debugReducer, { getInitialState as getInitialDebugState } from "@redux/debug/debug.reducer";
 import { IDebugStore } from "@redux/debug/debug.types";
+import { IModalStore } from "@redux/modal/modal.types";
+
 export interface IReduxState {
   app: IAppStore;
   coins: ICoinsStore;
@@ -91,6 +93,7 @@ export interface IReduxState {
   game2048: IGame2048Store;
   prizes: IPrizesStore;
   debugReducer: IDebugStore;
+  modal: IModalStore;
 }
 
 export const initialState: IReduxState = {
@@ -120,6 +123,7 @@ export const initialState: IReduxState = {
   game2048: getInitialGame2048State(),
   prizes: getInitialPrizesState(),
   debugReducer: getInitialDebugState(),
+  modal: getInitialModalState(),
 };
 
 // this alias is created for testing purposes
@@ -152,6 +156,7 @@ const combinedReducers = combineReducers({
   game2048: game2048Reducer,
   prizes: prizesReducer,
   debugReducer: debugReducer,
+  modal: modalReducer,
 });
 
 export default combinedReducers;
