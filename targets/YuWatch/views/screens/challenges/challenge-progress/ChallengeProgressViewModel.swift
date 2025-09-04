@@ -190,7 +190,7 @@ class ChallengeProgressViewModel: ObservableObject {
     }
     
     DispatchQueue.main.async {
-      ConnectivityModel.shared.refetchAppData(dataTypes: [.activeChallenge, .coinLedger, .todayActivity, .challengesDoneToday])
+      ConnectivityModel.shared.refetchAppData(dataTypes: [.activeChallenge, .coinLedger, .todayActivity, .challengesDoneToday, .activeStreak])
       StateModel.shared.setRoot(stack: .challengeComplete)
     }
   }
