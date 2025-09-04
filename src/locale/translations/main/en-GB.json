@@ -178,6 +178,12 @@
   },
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
+    "pathways": {
+      "user_mood": {
+        "heading": "Your week",
+        "view_calendar": "View calendar"
+      }
+    },
     "products": {
       "beneficiary": {
         "add": {
