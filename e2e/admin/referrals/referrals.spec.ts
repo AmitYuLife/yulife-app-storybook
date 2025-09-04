@@ -131,7 +131,9 @@ Feature("Referrals work as intended", async () => {
     When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
       When("I press the hamburger menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
         When("I press the menu item settings", when.tapID(ids.MENU_ITEM("Settings")), async () => {
-          Then("I should see language", then.idVisible(ids.TEXT_TEMPLATE("Language", "undefined")));
+          When("I scroll down the settings screen", when.scrollFromID(ids.SETTINGS_SCREEN, "up", "slow", 0.5), async () => {
+            Then("I should see language", then.idVisible(ids.TEXT_TEMPLATE("Language", "undefined")));
+          });
         });
       });
     });

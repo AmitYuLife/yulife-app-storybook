@@ -1,4 +1,4 @@
-import { Given, When, Then, Scenario, Feature } from "@yu-life/yulife-bdd-framework";
+import { Given, When, Then, Scenario, Feature, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -20,7 +20,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see the John Lewis Reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
     });
     When("I tap on the John Lewis reward", when.tapRewardInList(data.CORE_REWARDS_JOHN_LEWIS), async () => {
-      Then("I should be on the reward page", then.textVisible("To redeem John Lewis:")); //onRewardScreen(data.CORE_REWARDS_JOHN_LEWIS))
+      Then("I should be on the reward page", then.textVisible("To redeem John Lewis:", 2500)); //onRewardScreen(data.CORE_REWARDS_JOHN_LEWIS))
     });
     When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "fast"), async () => {
       Then("I should see the Buy voucher with YuCoin button", then.textVisible("Buy voucher with YuCoin"));
@@ -31,10 +31,10 @@ Feature("Rewards should act correctly", async () => {
     When("I tap to buy a denomination", when.tapDenomination(data.CORE_REWARDS_JOHN_LEWIS, 0), async () => {
       Then("I should see the confirm modal", then.textVisible("Confirm purchase"));
     });
-    When("I tap 'Confirm'", when.tapText("Confirm"), async () => {
+    When("I tap 'Confirm'", when.tapText("Confirm", 2500), async () => {
       Then("I should see the not enough YuCoin modal", then.textVisible("You do not have enough YuCoin to purchase this reward", 3000));
     });
-    When("I click Got it", when.tapText("Got it"), async () => {
+    When("I click Got it", when.tapText("Got it", 3000), async () => {
       Then("I should be back on the John Lewis reward page", then.textVisible("Have a question?"));
     });
   });
@@ -55,9 +55,9 @@ Feature("Rewards should act correctly", async () => {
     When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
       Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.5), async () => {
-      Then("I should see the locked amazon reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON_UNAVAILABLE.data._id)));
-      Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1));
+    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.7), async () => {
+      Then("I should see the locked amazon reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON_UNAVAILABLE.data._id), 3000));
+      Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1, 3000));
     });
   });
 
@@ -141,11 +141,11 @@ Feature("Rewards should act correctly", async () => {
     When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.4), async () => {
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.5), async () => {
       Then("I should see the Broken Item Reward", then.rewardVisible(data.CORE_REWARDS_BROKEN));
     });
     When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_BROKEN), async () => {
-      Then("I should be on the reward page", then.textVisible("To redeem Broken Item:"));
+      Then("I should be on the reward page", then.textVisible("To redeem Broken Item:", 1500));
     });
     When("I scroll to the bottom of the page", when.swipeFromText("To redeem Broken Item:", "up", "fast"), async () => {
       Then("I should see the buy button", then.textVisible("Buy voucher with YuCoin"));
@@ -156,8 +156,8 @@ Feature("Rewards should act correctly", async () => {
     When("I tap to buy a denomination", when.tapDenomination(data.CORE_REWARDS_BROKEN, 0), async () => {
       Then("I should see the confirm modal", then.textVisible("Confirm purchase"));
     });
-    When("I tap 'Confirm'", when.tapText("Confirm"), async () => {
-      Then("I should see that the reward is unavailable", then.textVisible("Reward could not be found"));
+    When("I tap 'Confirm'", when.tapText("Confirm", 2000), async () => {
+      Then("I should see that the reward is unavailable", then.textVisible("Reward could not be found", 2000));
     });
   });
 

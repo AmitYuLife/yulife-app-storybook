@@ -105,7 +105,7 @@ export const sendMindfulnessData =
       },
     ];
 
-    await addAggregateQueries(record);
+    await addSampleQueries(record);
     await wait(waitTime)();
   };
 
