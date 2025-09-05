@@ -420,6 +420,11 @@ const routesForRegistration = [
     component: require("../components/containers/achievements/achievements.container").default,
   },
 
+  // pathways
+  {
+    name: ROUTES.pathways,
+    component: require("../components/containers/member/pathways/pathways.container").default,
+  },
   // modals
   {
     name: MODALS.yuCoinPowerExplained,
