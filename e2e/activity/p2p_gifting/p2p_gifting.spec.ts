@@ -261,7 +261,7 @@ Feature("P2P gifting - UK", async () => {
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
       Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
     });
-    When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
+    When("I tap to open the notification message", when.tapIDAtIndex(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 0, 2500), async () => {
       Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW("forest"), 2500));
       Then("I can see the gift message", then.idVisible(ids.P2P_MESSAGE(data.USER_18_GIFT_A.data.message), 2500));
     });

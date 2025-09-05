@@ -2,6 +2,7 @@ import * as ids from "@ids";
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import { sendSteps, sendMindfulnessData, addCyclingData, sendReduxEvent } from "@socket";
+export { addMindfulnessHistoricalData } from "@socket";
 
 export const {
   scrollFromText,
