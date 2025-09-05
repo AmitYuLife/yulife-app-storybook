@@ -56,6 +56,7 @@ export { default as DatePicker } from "./date-picker/date-picker";
 export { default as BattlePassHeader } from "./battle-pass-header/battle-pass-header";
 export { default as RollingText } from "./rolling-text/rolling-text";
 export { SmokingCarousel } from "./smoking-carousel/smoking-carousel";
+export { default as CarouselPathways } from "./carousel-pathways/carousel-pathways";
 export { default as ItemDetailsContainer } from "./item-details/item-details-container";
 export { default as ItemDetailsReward } from "./item-details-reward/item-details-reward";
 export { default as ScrollableFloatingModal } from "./scrollable-floating-modal/scrollable-floating-modal";
