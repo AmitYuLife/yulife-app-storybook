@@ -23,6 +23,7 @@ export {
   sendReduxEvent,
 } from "@socket";
 export { logInAndGoToTab, selectRegionIfVisible } from "../../_common/given";
+export { addMindfulnessHistoricalData } from "@socket";
 
 export { skipHealthConnection } from "_utils/navigation/login";
 

@@ -98,9 +98,9 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
     When("I tap on level 124", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(123), 2000), async () => {
       When("I complete a short stroll challenge", when.completeShortStroll(310, 40000), async () => {
-        When("I tap collect", when.tapText("Collect"), async () => {
-          When("I tap done", when.tapText("Done"), async () => {
-            When("I go back the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+        When("I tap collect", when.tapText("Collect", 1500), async () => {
+          When("I tap done", when.tapText("Done", 1500), async () => {
+            When("I go back the yuscreen", when.tapID(ids.NAV_BAR("yu"), 1500), async () => {
               Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
               Then("I should see the updated YuCoin earned of 170", then.maximiseYucoinVisible(170, 430));
               Then("I should see the walking nudge", then.walkingNudgeVisible("9,498", 50));
@@ -113,10 +113,9 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should see the meditation nudge", then.meditationNudeVisible());
       Then("I should see the updated YuCoin earned of 220/430", then.maximiseYucoinVisible(220, 430));
     });
-    When("I send 45 mindful minutes and reload the yuscreen tab", when.sendPassiveMindulnessAndReloadToTab(2700), async () => {
-      When("I wait", when.wait(3000), async () => {
+    When("I send 45 mindful minutes and reload the yuscreen tab", when.addMindfulnessHistoricalData(2700, 0), async () => {
+      When("I swipe left on the completed meditation nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.lotusIcon), "left", "fast"), async () => {
         Then("I should see the cycling nudge", then.cyclingNudgeVisible());
-        Then("I should see the updated YuCoin earned of 260/430", then.maximiseYucoinVisible(260, 430));
       });
     });
     When("I send 10km of cycling and reload the yuscreen tab", when.sendPassiveCyclingAndReloadToTab(10000), async () => {

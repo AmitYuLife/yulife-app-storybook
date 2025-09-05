@@ -470,7 +470,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
       Then("I should 2 avatar on the 'Plant trees' donations list", then.idVisibleAtIndex(ids.DONATION_LIST_AVATARS(2), 0, 2000));
     });
-    When("I tap on my 'trees' leaderboard avatar", when.tapIDAtIndex(ids.DONATION_LIST_AVATARS(2), 0, 2000), async () => {
+    When("I tap the 'Plant trees' donation list item", when.tapID(ids.IMPACT_DONATION_TITLE("Plant trees"), 1500), async () => {
       Then("I should see Monkey D Luffy in 1st position for the 'trees' leaderboard", then.impactPassLeaderboardVisible([User143ImpactPassLeaderboardItem], 2000));
       Then("I should see myself Michael Scott in 2nd position for the 'trees' leaderboard", then.impactPassLeaderboardVisible([User18ImpactPassLeaderboardItem], 2000));
     });
