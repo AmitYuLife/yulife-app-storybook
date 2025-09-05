@@ -153,6 +153,9 @@ export const ROUTES = {
 
   // achievements
   achievements: "yulife.achievements",
+
+  // pathways
+  pathways: "yulife.member.pathways",
 };
 
 export const MODALS = {
