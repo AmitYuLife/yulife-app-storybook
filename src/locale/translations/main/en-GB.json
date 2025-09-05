@@ -182,6 +182,9 @@
       "user_mood": {
         "heading": "Your week",
         "view_calendar": "View calendar"
+      },
+      "personal_health_path": {
+        "heading": "Personal Health Path"
       }
     },
     "products": {
