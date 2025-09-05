@@ -142,7 +142,7 @@ export const tapText =
   };
 
 export const textVisible =
-  (text: string, waitTime = 0) =>
+  (text: string | RegExp, waitTime = 0) =>
   async () => {
     const target = element(by.text(text));
     await wait(waitTime)();
