@@ -1435,6 +1435,12 @@
       "heading": "أنت غير متصل",
       "subheading": "تحقق من اتصالك بالإنترنت."
     },
+    "pathways": {
+      "user_mood": {
+        "heading": "أسبوعك",
+        "view_calendar": "عرض التقويم"
+      }
+    },
     "permissions": {
       "connect_health_app": "اتصل بمقدم الرعاية الصحية",
       "description": "حالة وإدارة أذونات الحساب ومستوى النظام.",

@@ -1435,6 +1435,12 @@
       "heading": "デバイスは\nオフラインです",
       "subheading": "インターネット接続をご確認ください。"
     },
+    "pathways": {
+      "user_mood": {
+        "heading": "あなた の 週",
+        "view_calendar": "カレンダー を 表示 "
+      }
+    },
     "permissions": {
       "connect_health_app": "医療機関との連携",
       "description": "YuLifeおよびApple ヘルスケアアプリのアクセス許可に関する設定",

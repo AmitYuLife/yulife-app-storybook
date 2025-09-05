@@ -1435,6 +1435,12 @@
       "heading": "You're offline",
       "subheading": "Check your internet connection."
     },
+    "pathways": {
+      "user_mood": {
+        "heading": "Your week",
+        "view_calendar": "View calendar"
+      }
+    },
     "permissions": {
       "connect_health_app": "Connect health provider",
       "description": "Status and management of account and system level permissions.",

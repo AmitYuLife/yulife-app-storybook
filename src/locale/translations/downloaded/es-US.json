@@ -1435,6 +1435,12 @@
       "heading": "Estás desconectado",
       "subheading": "Comprueba tu conexión a Internet."
     },
+    "pathways": {
+      "user_mood": {
+        "heading": "Su semana",
+        "view_calendar": "Ver el calendario"
+      }
+    },
     "permissions": {
       "connect_health_app": "Conectar al proveedor de servicios de salud",
       "description": "Estado y gestión de los permisos a nivel de cuenta y de sistema.",
