@@ -1436,6 +1436,9 @@
       "subheading": "インターネット接続をご確認ください。"
     },
     "pathways": {
+      "personal_health_path": {
+        "heading": "パーソナル ヘルス パス"
+      },
       "user_mood": {
         "heading": "あなた の 週",
         "view_calendar": "カレンダー を 表示 "

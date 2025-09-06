@@ -1436,6 +1436,9 @@
       "subheading": "Comprueba tu conexión a Internet."
     },
     "pathways": {
+      "personal_health_path": {
+        "heading": "Trayectoria personal de salud"
+      },
       "user_mood": {
         "heading": "Su semana",
         "view_calendar": "Ver el calendario"

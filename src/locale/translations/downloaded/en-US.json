@@ -1436,6 +1436,9 @@
       "subheading": "Check your internet connection."
     },
     "pathways": {
+      "personal_health_path": {
+        "heading": "Personal Health Path"
+      },
       "user_mood": {
         "heading": "Your week",
         "view_calendar": "View calendar"
