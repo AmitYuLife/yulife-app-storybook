@@ -326,6 +326,7 @@ export type AssignProductSelectedProductInformation = {
   carrierId?: Maybe<Scalars["String"]["output"]>;
   categoryId?: Maybe<Scalars["String"]["output"]>;
   categoryName?: Maybe<Scalars["String"]["output"]>;
+  policyName?: Maybe<Scalars["String"]["output"]>;
   productCode?: Maybe<Scalars["String"]["output"]>;
   productId?: Maybe<Scalars["String"]["output"]>;
   productName?: Maybe<Scalars["String"]["output"]>;
@@ -814,17 +815,18 @@ export enum BusinessAccessPermission {
   EditWellbeingTools = "editWellbeingTools",
   ExportEmployees = "exportEmployees",
   ManageAdmins = "manageAdmins",
-  ManageAdviserAccess = "manageAdviserAccess",
   ManageCustomValues = "manageCustomValues",
   ManageEmployeeRecognition = "manageEmployeeRecognition",
   ManageEngagementDashboard = "manageEngagementDashboard",
   ManageExternalIntegrations = "manageExternalIntegrations",
   ManageLeaderboards = "manageLeaderboards",
+  ManageMessagingIntegrations = "manageMessagingIntegrations",
   ManageSurveys = "manageSurveys",
   ManageTags = "manageTags",
   ManageWellbeingHub = "manageWellbeingHub",
   ViewBeneficiaries = "viewBeneficiaries",
   ViewEmployeeBasic = "viewEmployeeBasic",
+  ViewEmployeeExperience = "viewEmployeeExperience",
   ViewEmployeeImports = "viewEmployeeImports",
   ViewEmployeeSensitive = "viewEmployeeSensitive",
   ViewExternalIntegrations = "viewExternalIntegrations",
@@ -1000,9 +1002,12 @@ export type BusinessSessionBusiness = {
 
 export type BusinessSessionSettings = {
   __typename?: "BusinessSessionSettings";
+  customEventsEnabled: Scalars["Boolean"]["output"];
   customValuesFiltering: CustomValuesFiltering;
   earlyAccessEnabled: Scalars["Boolean"]["output"];
+  employeeExperienceEnabled: Scalars["Boolean"]["output"];
   employeeRecognitionEnabled: Scalars["Boolean"]["output"];
+  enableEmployeeRecognitionsScheduling: Scalars["Boolean"]["output"];
   enableTagRestriction: Scalars["Boolean"]["output"];
   engagementSurveysEnabled: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
@@ -3027,8 +3032,6 @@ export type DefaultOnboardingDetails = {
   isDateOfBirthRequired?: Maybe<Scalars["Boolean"]["output"]>;
   /** The user's last name, either from the users customer record or their employee record */
   lastName?: Maybe<Scalars["String"]["output"]>;
-  /** Whether the user is eligible for the new account claim via magic link flow */
-  memberAccountClaimViaMagicLinkEnabled?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type DeviceResponse = {
@@ -3377,6 +3380,7 @@ export enum EmployeeRecognitionCampaignStatus {
   Completed = "COMPLETED",
   Draft = "DRAFT",
   Processing = "PROCESSING",
+  Scheduled = "SCHEDULED",
 }
 
 export type EmployeeRecognitionRecipientById = {
@@ -3821,6 +3825,7 @@ export type GameSettings = {
   cyclingMeasurement: DistanceMeasurementType;
   debugQueriesToolEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   debugToolsEnabled?: Maybe<Scalars["Boolean"]["output"]>;
+  disableHealthProviderUserEntries: Scalars["Boolean"]["output"];
   enabledHealthProviders: Array<HealthProvider>;
   hasEsgBattlepass?: Maybe<Scalars["Boolean"]["output"]>;
   loggingEnabled?: Maybe<Scalars["Boolean"]["output"]>;
@@ -3833,6 +3838,11 @@ export type GameSettingsRewards = {
   hasDonationBattlepass: Scalars["Boolean"]["output"];
   hasUnlockableBattlepassVouchers: Scalars["Boolean"]["output"];
   hasVoucherStore: Scalars["Boolean"]["output"];
+};
+
+export type GetAuthorisationUrlsResult = {
+  __typename?: "GetAuthorisationUrlsResult";
+  authUrls?: Maybe<Array<Maybe<MessagingConnectionAuthUrl>>>;
 };
 
 export type GetBusinessAccessAdmins = {
@@ -4694,8 +4704,8 @@ export type HrisImportEventsResult = {
 export type HrisIntegration = {
   __typename?: "HrisIntegration";
   id: Scalars["String"]["output"];
+  logoUrl: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
-  squareImage: Scalars["String"]["output"];
 };
 
 export type HrisPreviewImport = {
@@ -5140,6 +5150,34 @@ export type MemberOnboardingYuCoinProgress = {
   __typename?: "MemberOnboardingYuCoinProgress";
   current: Scalars["Int"]["output"];
   total: Scalars["Int"]["output"];
+};
+
+export type MessagingConnection = {
+  __typename?: "MessagingConnection";
+  connectionType: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+  status: MessagingConnectionState;
+};
+
+export type MessagingConnectionAuthUrl = {
+  __typename?: "MessagingConnectionAuthUrl";
+  type: Scalars["String"]["output"];
+  url?: Maybe<Scalars["String"]["output"]>;
+};
+
+export enum MessagingConnectionState {
+  Active = "Active",
+  Disabled = "Disabled",
+}
+
+export enum MessagingConnectionTypes {
+  Slack = "slack",
+}
+
+export type MessagingConnectionsResult = {
+  __typename?: "MessagingConnectionsResult";
+  connections?: Maybe<Array<MessagingConnection>>;
+  count: Scalars["Int"]["output"];
 };
 
 export enum Metric {
@@ -6042,6 +6080,7 @@ export type Mutation = {
   deleteTeamSocialGroup: TeamSocialGroup;
   disable2FA: Scalars["Boolean"]["output"];
   disconnectHris: Scalars["Boolean"]["output"];
+  disconnectMessagingConnection: Scalars["Boolean"]["output"];
   dismissPeopleWelcomeModal?: Maybe<Scalars["Boolean"]["output"]>;
   enable2FA: Scalars["Boolean"]["output"];
   /** Allows the current user to equip an item */
@@ -6082,6 +6121,7 @@ export type Mutation = {
   refreshBusinessSession?: Maybe<BusinessPayload>;
   refreshEngagementDashboardActivities: Scalars["Boolean"]["output"];
   refreshSession?: Maybe<UserPayload>;
+  registerInterestInCustomEvents: Scalars["Boolean"]["output"];
   reinviteEmployees?: Maybe<Scalars["Boolean"]["output"]>;
   /** Removes beneficiary from product */
   removeBeneficiaryFromProduct: CustomerProductBeneficiaries;
@@ -6146,7 +6186,6 @@ export type Mutation = {
   testCreateEngagementDashboardPeriod: EngagementDashboardPeriod;
   testDeactivateTeamLeaversByDate?: Maybe<Scalars["Boolean"]["output"]>;
   testDuelPushNotifications?: Maybe<Scalars["Boolean"]["output"]>;
-  testPushNotification?: Maybe<Scalars["Boolean"]["output"]>;
   testSendSampleEmails?: Maybe<Scalars["Boolean"]["output"]>;
   testToggleEquippedBuffedItem?: Maybe<Scalars["Boolean"]["output"]>;
   toggleChallengePause: Scalars["Int"]["output"];
@@ -6482,6 +6521,10 @@ export type MutationDisable2FaArgs = {
 };
 
 export type MutationDisconnectHrisArgs = {
+  connectionId: Scalars["String"]["input"];
+};
+
+export type MutationDisconnectMessagingConnectionArgs = {
   connectionId: Scalars["String"]["input"];
 };
 
@@ -6878,14 +6921,6 @@ export type MutationTestDuelPushNotificationsArgs = {
   type?: InputMaybe<DuelTestType>;
 };
 
-export type MutationTestPushNotificationArgs = {
-  body: Scalars["String"]["input"];
-  link?: InputMaybe<Scalars["String"]["input"]>;
-  os: OperatingSystem;
-  title?: InputMaybe<Scalars["String"]["input"]>;
-  token: Scalars["String"]["input"];
-};
-
 export type MutationTestSendSampleEmailsArgs = {
   customerId: Scalars["String"]["input"];
   template: Scalars["String"]["input"];
@@ -7201,11 +7236,6 @@ export type OnboardingResponse = {
   yuCoinAwarded?: Maybe<Scalars["Int"]["output"]>;
 };
 
-export enum OperatingSystem {
-  Android = "android",
-  Ios = "ios",
-}
-
 export type OptionsForGift = {
   __typename?: "OptionsForGift";
   backgrounds: Array<Maybe<GiftAsset>>;
@@ -7452,6 +7482,7 @@ export type ProductInformation = {
   policyReviewDate?: Maybe<Scalars["String"]["output"]>;
   productCode: Scalars["String"]["output"];
   productDescription: Scalars["String"]["output"];
+  productDisplayName?: Maybe<Scalars["String"]["output"]>;
   refreshFrequency?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -7567,6 +7598,7 @@ export type Query = {
   getDuelsTomorrow?: Maybe<Array<Maybe<Duel>>>;
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
+  getEmployeeExperienceData: Scalars["String"]["output"];
   getEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaignResponse;
   getEmployeeRecognitionCampaignBillingAddresses?: Maybe<Array<TeamEmployeeRecognitionCampaignBillingAddress>>;
   getEmployeeRecognitionCampaignRecipients: TeamEmployeeRecognitionCampaignRecipientsResponse;
@@ -7612,7 +7644,9 @@ export type Query = {
   getMemberOnboardingYuCoinProgress?: Maybe<MemberOnboardingYuCoinProgress>;
   getMembersOrCsmWithPermission: GetMembersOrCsmWithPermissionResult;
   getMergeDevLinkToken: Scalars["String"]["output"];
-  getMessagingConnectionAuthorisationUrl: Scalars["String"]["output"];
+  getMessagingConnection: MessagingConnection;
+  getMessagingConnectionAuthorisationUrls: GetAuthorisationUrlsResult;
+  getMessagingConnections: MessagingConnectionsResult;
   getMobileAssets: Array<RemoteImage>;
   getMobileAssetsWithVersion: MobileAssets;
   getMobileAvailableContentLocations: Array<MobileUserContentLocation>;
@@ -7732,10 +7766,12 @@ export type Query = {
   getUserLeaderboardEnrollments: Array<SocialGroupLeaderboardEnrollmentGroup>;
   getUserLeaderboards?: Maybe<Array<Maybe<Leaderboard>>>;
   getUserMobileConsent?: Maybe<MobileConsent>;
+  getUserMoodSubmissions?: Maybe<UserMoodSubmissionsResponse>;
   getUserNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getUserOnboardingConsents: UserOnboardingConsents;
   getUserOnboardings: UserOnboarding;
   getUserPassiveChallengesEarnRate?: Maybe<UserPassiveChallengesEarnRate>;
+  getUserPathways: UserPathways;
   getUserProfile: UserProfile;
   getUserProfileEvents: Array<UserProfileEvents>;
   getUserSurge?: Maybe<Surge>;
@@ -7965,6 +8001,11 @@ export type QueryGetEmployeeDashboardArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetEmployeeExperienceDataArgs = {
+  businessAccountId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetEmployeeRecognitionCampaignArgs = {
   campaignId: Scalars["String"]["input"];
 };
@@ -8114,6 +8155,17 @@ export type QueryGetMembersOrCsmWithPermissionArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMergeDevLinkTokenArgs = {
   connectionId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMessagingConnectionArgs = {
+  connectionId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMessagingConnectionsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -8397,6 +8449,12 @@ export type QueryGetUnityRewardsArgs = {
   level: Scalars["Int"]["input"];
   yuniversalLevel?: InputMaybe<Scalars["Int"]["input"]>;
   yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetUserMoodSubmissionsArgs = {
+  endDate?: InputMaybe<Scalars["String"]["input"]>;
+  startDate?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -9823,6 +9881,7 @@ export type TeamEmployeeRecognitionCampaignRecipient = {
   fullName?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
   lastName?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Not available for businesses with enableTagRestriction */
   tags: Array<Scalars["String"]["output"]>;
 };
 
@@ -9967,11 +10026,13 @@ export type TeamProduct = {
   categoryName?: Maybe<Scalars["String"]["output"]>;
   displayName?: Maybe<Scalars["String"]["output"]>;
   effectiveDate?: Maybe<Scalars["String"]["output"]>;
+  hasAutoAssignmentRules?: Maybe<Scalars["Boolean"]["output"]>;
   hasLowSeats?: Maybe<Scalars["Boolean"]["output"]>;
   id?: Maybe<Scalars["ID"]["output"]>;
   isUnmanageable?: Maybe<Scalars["Boolean"]["output"]>;
   isUnmanaged?: Maybe<Scalars["Boolean"]["output"]>;
   perks?: Maybe<Array<ProductPerk>>;
+  policyName: Scalars["String"]["output"];
   productCode: Scalars["String"]["output"];
   productCodeName: Scalars["String"]["output"];
   productDescriptionLong?: Maybe<Scalars["String"]["output"]>;
@@ -9994,6 +10055,7 @@ export type TeamProductCategory = {
 export type TeamProductInformation = {
   __typename?: "TeamProductInformation";
   categories: Array<TeamProductInformationCategory>;
+  displayName: Scalars["String"]["output"];
   perks: Array<TeamProductInformationPerk>;
   policyName: Scalars["String"]["output"];
   product: Array<TeamProductInformationField>;
@@ -10466,7 +10528,6 @@ export type UnityRewardsIntro = {
 export type UpdateBusinessSurveyCampaignInput = {
   campaignName?: InputMaybe<Scalars["String"]["input"]>;
   endLocalDate?: InputMaybe<Scalars["String"]["input"]>;
-  steps?: InputMaybe<Array<BusinessSurveyStepInput>>;
 };
 
 export type UpdateContactDetailsInput = {
@@ -10755,6 +10816,18 @@ export type UserFeature = {
   value?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export type UserMoodSubmission = {
+  __typename?: "UserMoodSubmission";
+  date: Scalars["String"]["output"];
+  icon: RemoteImage;
+  id: Scalars["ID"]["output"];
+};
+
+export type UserMoodSubmissionsResponse = {
+  __typename?: "UserMoodSubmissionsResponse";
+  submissions: Array<UserMoodSubmission>;
+};
+
 export enum UserNotificationsType {
   BirthdaysInbox = "birthdaysInbox",
   BirthdaysPush = "birthdaysPush",
@@ -10791,6 +10864,29 @@ export type UserPassiveChallengesLastUpdate = {
   cycling?: Maybe<Scalars["String"]["output"]>;
   meditation?: Maybe<Scalars["String"]["output"]>;
   steps?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type UserPathways = {
+  __typename?: "UserPathways";
+  pathwaysItems?: Maybe<Array<UserPathwaysItem>>;
+  reflectionProgress: UserPathwaysReflectionProgress;
+};
+
+export type UserPathwaysItem = {
+  __typename?: "UserPathwaysItem";
+  action: SduiAction;
+  id: Scalars["ID"]["output"];
+  image: RemoteImage;
+  label: Scalars["String"]["output"];
+};
+
+export type UserPathwaysReflectionProgress = {
+  __typename?: "UserPathwaysReflectionProgress";
+  coins: Scalars["Int"]["output"];
+  currentProgress: Scalars["Int"]["output"];
+  maxProgress: Scalars["Int"]["output"];
+  reflectAction: SduiAction;
+  reflectedToday: Scalars["Boolean"]["output"];
 };
 
 export type UserPayload = {
@@ -18484,6 +18580,23 @@ export type MobileWeeklyActivityProgressFragment = {
   iconUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
+export type UserMoodSubmissionFragment = {
+  __typename?: "UserMoodSubmission";
+  id: string;
+  date: string;
+  icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type UserMoodSubmissionsResponseFragment = {
+  __typename?: "UserMoodSubmissionsResponse";
+  submissions: Array<{
+    __typename?: "UserMoodSubmission";
+    id: string;
+    date: string;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
+};
+
 export type NotificationSettingsPropsFragment = {
   __typename?: "NotificationSettingsProps";
   id: string;
@@ -18503,6 +18616,42 @@ export type UserProfileNotificationFragment = {
   hasPendingForm: boolean;
   hasMobileWhatsNewModal: boolean;
   hasAppReview: boolean;
+};
+
+export type UserPathwaysFragment = {
+  __typename?: "UserPathways";
+  reflectionProgress: {
+    __typename?: "UserPathwaysReflectionProgress";
+    currentProgress: number;
+    maxProgress: number;
+    coins: number;
+    reflectedToday: boolean;
+    reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  };
+  pathwaysItems?: Array<{
+    __typename?: "UserPathwaysItem";
+    id: string;
+    label: string;
+    action: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }> | null;
+};
+
+export type UserPathwaysItemFragment = {
+  __typename?: "UserPathwaysItem";
+  id: string;
+  label: string;
+  action: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type UserPathwaysReflectionProgressFragment = {
+  __typename?: "UserPathwaysReflectionProgress";
+  currentProgress: number;
+  maxProgress: number;
+  coins: number;
+  reflectedToday: boolean;
+  reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
 };
 
 export type UserWalletItemFragment = {
@@ -26797,6 +26946,24 @@ export type GetPotentialRewardsQuery = {
   }>;
 };
 
+export type GetUserMoodSubmissionsQueryVariables = Exact<{
+  startDate?: InputMaybe<Scalars["String"]["input"]>;
+  endDate?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type GetUserMoodSubmissionsQuery = {
+  __typename?: "Query";
+  getUserMoodSubmissions?: {
+    __typename?: "UserMoodSubmissionsResponse";
+    submissions: Array<{
+      __typename?: "UserMoodSubmission";
+      id: string;
+      date: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+  } | null;
+};
+
 export type GetInboxNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetInboxNotificationsSettingsQuery = {
@@ -26923,6 +27090,42 @@ export type PerformMobileOnboardingStepMutationVariables = Exact<{
 }>;
 
 export type PerformMobileOnboardingStepMutation = { __typename?: "Mutation"; performMobileOnboardingStep: boolean };
+
+export type GetUserPathwaysQueryVariables = Exact<{
+  startDate?: InputMaybe<Scalars["String"]["input"]>;
+  endDate?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type GetUserPathwaysQuery = {
+  __typename?: "Query";
+  getUserPathways: {
+    __typename?: "UserPathways";
+    reflectionProgress: {
+      __typename?: "UserPathwaysReflectionProgress";
+      currentProgress: number;
+      maxProgress: number;
+      coins: number;
+      reflectedToday: boolean;
+      reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    };
+    pathwaysItems?: Array<{
+      __typename?: "UserPathwaysItem";
+      id: string;
+      label: string;
+      action: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }> | null;
+  };
+  getUserMoodSubmissions?: {
+    __typename?: "UserMoodSubmissionsResponse";
+    submissions: Array<{
+      __typename?: "UserMoodSubmission";
+      id: string;
+      date: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+  } | null;
+};
 
 export type ConfirmPaymentCardMutationVariables = Exact<{
   paymentId: Scalars["String"]["input"];
@@ -54580,6 +54783,98 @@ export const MobileWeeklyActivityProgressFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MobileWeeklyActivityProgressFragment, unknown>;
+export const UserMoodSubmissionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserMoodSubmission" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserMoodSubmission" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserMoodSubmissionFragment, unknown>;
+export const UserMoodSubmissionsResponseFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserMoodSubmissionsResponse" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserMoodSubmissionsResponse" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submissions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserMoodSubmission" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserMoodSubmission" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserMoodSubmission" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserMoodSubmissionsResponseFragment, unknown>;
 export const NotificationSettingsPropsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -54623,6 +54918,207 @@ export const UserProfileNotificationFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UserProfileNotificationFragment, unknown>;
+export const UserPathwaysReflectionProgressFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserPathwaysReflectionProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserPathwaysReflectionProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "currentProgress" } },
+          { kind: "Field", name: { kind: "Name", value: "maxProgress" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reflectAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "coins" } },
+          { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserPathwaysReflectionProgressFragment, unknown>;
+export const UserPathwaysItemFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserPathwaysItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserPathwaysItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "action" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserPathwaysItemFragment, unknown>;
+export const UserPathwaysFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserPathways" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserPathways" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reflectionProgress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserPathwaysReflectionProgress" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "pathwaysItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserPathwaysItem" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserPathwaysReflectionProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserPathwaysReflectionProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "currentProgress" } },
+          { kind: "Field", name: { kind: "Name", value: "maxProgress" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reflectAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "coins" } },
+          { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserPathwaysItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserPathwaysItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "action" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserPathwaysFragment, unknown>;
 export const UserWalletRewardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -76499,6 +76995,103 @@ export const GetPotentialRewardsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPotentialRewardsQuery, GetPotentialRewardsQueryVariables>;
+export const GetUserMoodSubmissionsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserMoodSubmissions" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "startDate" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "endDate" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserMoodSubmissions" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "startDate" },
+                value: { kind: "Variable", name: { kind: "Name", value: "startDate" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "endDate" },
+                value: { kind: "Variable", name: { kind: "Name", value: "endDate" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserMoodSubmissionsResponse" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserMoodSubmission" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserMoodSubmission" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserMoodSubmissionsResponse" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserMoodSubmissionsResponse" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submissions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserMoodSubmission" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUserMoodSubmissionsQuery, GetUserMoodSubmissionsQueryVariables>;
 export const GetInboxNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [
@@ -76896,6 +77489,199 @@ export const PerformMobileOnboardingStepDocument = {
     },
   ],
 } as unknown as DocumentNode<PerformMobileOnboardingStepMutation, PerformMobileOnboardingStepMutationVariables>;
+export const GetUserPathwaysDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserPathways" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "startDate" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "endDate" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserPathways" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserPathways" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserMoodSubmissions" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "startDate" },
+                value: { kind: "Variable", name: { kind: "Name", value: "startDate" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "endDate" },
+                value: { kind: "Variable", name: { kind: "Name", value: "endDate" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserMoodSubmissionsResponse" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserPathwaysReflectionProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserPathwaysReflectionProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "currentProgress" } },
+          { kind: "Field", name: { kind: "Name", value: "maxProgress" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reflectAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "coins" } },
+          { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserPathwaysItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserPathwaysItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "action" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserMoodSubmission" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserMoodSubmission" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserPathways" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserPathways" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reflectionProgress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserPathwaysReflectionProgress" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "pathwaysItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserPathwaysItem" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserMoodSubmissionsResponse" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserMoodSubmissionsResponse" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submissions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserMoodSubmission" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUserPathwaysQuery, GetUserPathwaysQueryVariables>;
 export const ConfirmPaymentCardDocument = {
   kind: "Document",
   definitions: [

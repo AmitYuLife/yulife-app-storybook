@@ -1,0 +1,5 @@
+query GetUserMoodSubmissions($startDate: String, $endDate: String) {
+  getUserMoodSubmissions(startDate: $startDate, endDate: $endDate) {
+    ...UserMoodSubmissionsResponse
+  }
+}

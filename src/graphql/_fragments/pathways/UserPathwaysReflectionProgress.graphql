@@ -1,0 +1,9 @@
+fragment UserPathwaysReflectionProgress on UserPathwaysReflectionProgress {
+  currentProgress
+  maxProgress
+  reflectAction {
+    ...SduiAction
+  }
+  coins
+  reflectedToday
+}
