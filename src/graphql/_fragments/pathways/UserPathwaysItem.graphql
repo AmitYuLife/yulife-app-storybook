@@ -1,0 +1,10 @@
+fragment UserPathwaysItem on UserPathwaysItem {
+  id
+  action {
+    ...SduiAction
+  }
+  image {
+    ...RemoteImage
+  }
+  label
+}

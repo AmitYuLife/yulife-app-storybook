@@ -1,0 +1,8 @@
+fragment UserPathways on UserPathways {
+  reflectionProgress {
+    ...UserPathwaysReflectionProgress
+  }
+  pathwaysItems {
+    ...UserPathwaysItem
+  }
+}

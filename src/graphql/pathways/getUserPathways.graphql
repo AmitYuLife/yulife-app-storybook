@@ -1,0 +1,8 @@
+query GetUserPathways($startDate: String, $endDate: String) {
+  getUserPathways {
+    ...UserPathways
+  }
+  getUserMoodSubmissions(startDate: $startDate, endDate: $endDate) {
+    ...UserMoodSubmissionsResponse
+  }
+}

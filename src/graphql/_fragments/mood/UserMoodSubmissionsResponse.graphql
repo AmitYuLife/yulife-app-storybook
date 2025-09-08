@@ -1,0 +1,5 @@
+fragment UserMoodSubmissionsResponse on UserMoodSubmissionsResponse {
+  submissions {
+    ...UserMoodSubmission
+  }
+}

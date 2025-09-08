@@ -112,8 +112,13 @@ const documents = {
   MediaFragmentDoc: types.MediaFragmentDoc,
   MobileGameRewardPassFragmentDoc: types.MobileGameRewardPassFragmentDoc,
   MobileWeeklyActivityProgressFragmentDoc: types.MobileWeeklyActivityProgressFragmentDoc,
+  UserMoodSubmissionFragmentDoc: types.UserMoodSubmissionFragmentDoc,
+  UserMoodSubmissionsResponseFragmentDoc: types.UserMoodSubmissionsResponseFragmentDoc,
   NotificationSettingsPropsFragmentDoc: types.NotificationSettingsPropsFragmentDoc,
   UserProfileNotificationFragmentDoc: types.UserProfileNotificationFragmentDoc,
+  UserPathwaysFragmentDoc: types.UserPathwaysFragmentDoc,
+  UserPathwaysItemFragmentDoc: types.UserPathwaysItemFragmentDoc,
+  UserPathwaysReflectionProgressFragmentDoc: types.UserPathwaysReflectionProgressFragmentDoc,
   UserWalletItemFragmentDoc: types.UserWalletItemFragmentDoc,
   UserWalletRewardFragmentDoc: types.UserWalletRewardFragmentDoc,
   UserWalletSectionFragmentDoc: types.UserWalletSectionFragmentDoc,
@@ -237,12 +242,14 @@ const documents = {
   SubmitFeedbackFormDocument: types.SubmitFeedbackFormDocument,
   UpdateMemberConsentDocument: types.UpdateMemberConsentDocument,
   GetPotentialRewardsDocument: types.GetPotentialRewardsDocument,
+  GetUserMoodSubmissionsDocument: types.GetUserMoodSubmissionsDocument,
   GetInboxNotificationsSettingsDocument: types.GetInboxNotificationsSettingsDocument,
   GetUserLeaderboardEnrollmentsDocument: types.GetUserLeaderboardEnrollmentsDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
   GetMobileWhatsNewModalDocument: types.GetMobileWhatsNewModalDocument,
   PerformMobileOnboardingStepDocument: types.PerformMobileOnboardingStepDocument,
+  GetUserPathwaysDocument: types.GetUserPathwaysDocument,
   ConfirmPaymentCardDocument: types.ConfirmPaymentCardDocument,
   GetMobilePaymentCardSetupDocument: types.GetMobilePaymentCardSetupDocument,
   GetPerkSubscriptionInfoDocument: types.GetPerkSubscriptionInfoDocument,
@@ -827,6 +834,16 @@ export function gql(
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "UserMoodSubmissionFragmentDoc"): typeof documents["UserMoodSubmissionFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "UserMoodSubmissionsResponseFragmentDoc"
+): typeof documents["UserMoodSubmissionsResponseFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(
   source: "NotificationSettingsPropsFragmentDoc"
 ): typeof documents["NotificationSettingsPropsFragmentDoc"];
@@ -836,6 +853,20 @@ export function gql(
 export function gql(
   source: "UserProfileNotificationFragmentDoc"
 ): typeof documents["UserProfileNotificationFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserPathwaysFragmentDoc"): typeof documents["UserPathwaysFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserPathwaysItemFragmentDoc"): typeof documents["UserPathwaysItemFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "UserPathwaysReflectionProgressFragmentDoc"
+): typeof documents["UserPathwaysReflectionProgressFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1397,6 +1428,10 @@ export function gql(source: "GetPotentialRewardsDocument"): typeof documents["Ge
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "GetUserMoodSubmissionsDocument"): typeof documents["GetUserMoodSubmissionsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(
   source: "GetInboxNotificationsSettingsDocument"
 ): typeof documents["GetInboxNotificationsSettingsDocument"];
@@ -1428,6 +1463,10 @@ export function gql(source: "GetMobileWhatsNewModalDocument"): typeof documents[
 export function gql(
   source: "PerformMobileOnboardingStepDocument"
 ): typeof documents["PerformMobileOnboardingStepDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetUserPathwaysDocument"): typeof documents["GetUserPathwaysDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -1,0 +1,7 @@
+fragment UserMoodSubmission on UserMoodSubmission {
+  id
+  date
+  icon {
+    ...RemoteImage
+  }
+}
