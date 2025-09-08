@@ -90,7 +90,7 @@ export const scrollWithLimitedAttemptsUntilIdVisible =
   (
     scrollContainerId: string,
     targetId: string,
-    direction: "up" | "down" = "up",
+    direction: "up" | "down" | "left" | "right" = "up",
     attempts = 5,
     timeout = 2000
   ) =>

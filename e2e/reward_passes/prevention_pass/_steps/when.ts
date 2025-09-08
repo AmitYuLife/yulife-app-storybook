@@ -3,5 +3,10 @@ export { quitAndReopenApp } from "@socket";
 
 export const { navigateTo, tapID, tapText } = navigation.common;
 
-export const { swipeFromText, scrollFromID, scrollFromText, scrollUntilIdVisible } =
-  navigation.scrolling;
+export const {
+  swipeFromText,
+  scrollFromID,
+  scrollFromText,
+  scrollUntilIdVisible,
+  scrollWithLimitedAttemptsUntilIdVisible,
+} = navigation.scrolling;

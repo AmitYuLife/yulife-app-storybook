@@ -207,7 +207,7 @@ Feature("Prevention pass", async () => {
               Then(`I can see the next reward progress bar (index: ${position}; level ${level})`, then.textVisible(`0 / ${nextLevelIncValue} levels`, 500));
 
               When(`I press Claim for ${rewardDetailsTextAssertions[0]} (index: ${position}; level ${level})`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", position)), async () => {
-                When(`I scroll to the left of the milestone list (index: ${position}; level ${level})`, when.scrollFromID(ids.BATTLE_PASS_LIST_ITEM(position), "right", "slow", 0.4), async () => {
+                When(`I scroll to the left of the milestone list (index: ${position}; level ${level})`, when.scrollWithLimitedAttemptsUntilIdVisible(ids.BATTLE_PASS_LIST, ids.CLAIMED_BATTLE_PASS_LIST_ITEM(position), "right"), async () => {
                   Then(`I can see the milestone is claimed (index: ${position}; level ${level})`, then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(position)));
                   When(`I press on the claimed milestone (index: ${position}; level ${level})`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
                     Then("I can see the reward details", commonThen.assertMultipleTextsVisible(rewardDetailsTextAssertions));
