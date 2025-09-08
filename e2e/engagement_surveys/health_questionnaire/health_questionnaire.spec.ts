@@ -376,7 +376,7 @@ Feature("Health questionnaires", async () => {
         Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("The actual answer is: **5 portions**.")));
       });
     });
-    When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
+    When("I click on the 'Next' button", when.tapID(ids.HALF_MODAL_CTA), async () => {
       Then("I can see the next question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What are the benefits of a balanced diet?", "b2b")));
     });
     When("I click on the 'Back arrow' button", when.tapID(ids.BACK_BUTTON), async () => {
@@ -388,7 +388,7 @@ Feature("Health questionnaires", async () => {
         Then("I can see the answer", then.idVisible(ids.HALF_MODAL_SUBTITLE("**5 portions** is the correct answer.")));
       });
     });
-    When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
+    When("I click on the 'Next' button", when.tapID(ids.HALF_MODAL_CTA), async () => {
       Then("I can see the next question", then.idVisible(ids.TEXT_TEMPLATE("Quiz time! What are the benefits of a balanced diet?", "b2b")));
     });
     When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_health.1.1.222", "choice_dynamic_health.1.1.222", 4), async () => {
@@ -399,7 +399,7 @@ Feature("Health questionnaires", async () => {
         });
       });
     });
-    When("I click on the 'Next' button", when.tapID(ids.REWARDS_GOT_IT), async () => {
+    When("I click on the 'Next' button", when.tapID(ids.HALF_MODAL_CTA), async () => {
       Then("I can see the image question", then.idVisible(ids.TEXT_TEMPLATE("Are you a morning or night person?", "b2b")));
       Then("I can see each question has an image and a label", then.verifyImageChoicesVisible);
     });
@@ -416,7 +416,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
       Then("I can see the select multiple image question", then.idVisible(ids.TEXT_TEMPLATE("How do you typically maintain your social connections?", "b2b")));
-      Then("I can see the (select all that apply) subheading", then.idVisible(ids.MARKDOWN("(Select all that apply)")));
+      Then("I can see the (select all that apply) subheading", then.textVisible("(Select all that apply)"));
       Then("I can see the next button is disabled as I have not selected an answer yet", then.idVisible(ids.BUTTON_BASE("Next", true)));
     });
     When("I select in-person meet ups", when.tapID(ids.IMAGE_CHOICE_CHECKBOX("dynamic_health.2.8.109.1", false)), async () => {
