@@ -8,6 +8,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { StreakIcon } from "@atoms/icon/streak-icon";
 import { GameButton } from "./_base.button";
 import { t } from "@locale";
+import { STREAKS_BUTTON_LABEL } from "@ids";
 
 export type StreakTypes = "forest" | "ocean" | "desert" | "mountain" | "yuniversal_1";
 
@@ -26,10 +27,13 @@ const _Streak = ({ onPrimaryPress }: StreakParams) => {
     return null;
   }
 
+  const label = `${currentStreak || 0}/${maxStreak || 1}`;
+
   return (
     <GameButton
       onPress={createHandlePress(streak, onPrimaryPress)}
-      label={`${currentStreak || 0}/${maxStreak || 1}`}
+      label={label}
+      labelTestID={STREAKS_BUTTON_LABEL(label)}
       Icon={<StreakIcon isDoneToday={isDoneToday} />}
       accessibilityLabel={t("screens.daily.streak.accessibility_label", {
         currentStreak: currentStreak || 0,

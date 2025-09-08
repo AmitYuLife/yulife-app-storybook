@@ -173,23 +173,27 @@ Feature("Fiit in app", async () => {
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
       When("I tap 'maybe later'", when.tapText("maybe later"), async () => {
-        Then("The video is playing", then.isVideoPaused(false));
+        When("I pause the video", when.pauseVideo(true), async () => {
+          Then("I can see the video is paused", then.isVideoPaused(true));
+        });
       });
     });
-    When("I pause the video", when.pauseVideo(false), async () => {
-      Then("I can see the video is paused", then.isVideoPaused(true));
+    When("I unpause the video", when.pauseVideo(false), async () => {
+      Then("The video is playing", then.isVideoPaused(false));
     });
     When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
-      Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
+      When("I tap the menu icon to close the referrals popover", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+        When("I navigate to the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
+          Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
+        });
+      });
     });
     When("I tap 'Collect'", when.tapText("Collect", 3000), async () => {
-      Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1));
-    });
-    When("I tap 'Done'", when.tapText("Done", 2000), async () => {
       Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
     });
-    When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
+    When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin")), async () => {
       Then("I should see that 314 YuCoin have been earned today", then.canSeeYuCoinEarntToday(314));
+      Then("I can see I've completed day one of a streak", then.idVisible(ids.STREAKS_BUTTON_LABEL("1/5"), 2000));
     });
   });
 });

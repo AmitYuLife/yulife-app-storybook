@@ -287,12 +287,12 @@ Feature("As a user I can take a challenge", async () => {
         Then("I should be on the completed events milestone page", then.onCompletedEventPage("Ends on the 10th", "5 Profiles viewed", "650"));
       });
     });
-    When("I click Claim", when.tapText(t("Claim")), async () => {
+    When("I click Claim", when.tapText("Claim", 2000), async () => {
       When("I wait", when.wait(3000), async () => {
         Then("The 5 profiles badge is claimed", then.milestoneComplete(0));
       });
     });
-    When("I click Great!", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON), async () => {
+    When("I click Great!", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON, 3000), async () => {
       Then("I can see the milestones and challenge are complete", then.challengeComplete);
     });
     When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {

@@ -35,12 +35,14 @@ export const playFiitVideo = async () => {
   await tapText("Start class")();
 };
 
-export const pauseVideo = (pause: boolean) => async () => {
-  await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(!pause));
-};
+export const pauseVideo =
+  (pause: boolean, waitTime = 3000) =>
+  async () => {
+    await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(!pause), waitTime);
+  };
 
 export const minimiseAndReopenApp = async () => {
-  await device.sendToHome();
   await wait(10000)();
-  await launchApp({ newInstance: false });
+  await device.sendToHome();
+  await launchApp({ newInstance: true });
 };

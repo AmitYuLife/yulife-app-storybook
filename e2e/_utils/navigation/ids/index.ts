@@ -162,6 +162,7 @@ export const CONTENT_FORM_SUBMIT = "CONTENT_FORM_SUBMIT";
 export const YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON = "DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON";
 export const SCROLLABLE_CONTENT_DISMISS = "scrollable-content-dismiss-button";
 export const STREAKS_SCREEN_BUTTON = "STREAKS_SCREEN_CTA_BUTTON";
+export const STREAKS_BUTTON_LABEL = (label: string) => `STREAKS_BUTTON_LABEL_${label}`;
 export const CHALLENGE_TAKE_CHALLENGE_BUTTON = "screens.challenges.details.cta_label";
 export const ANIMATED_CHEST_BUTTON = "animated-chest-screen-cta-button";
 export const SCROLLABLE_CONTENT_CTA = "SCROLLABLE_CONTENT_CTA";
