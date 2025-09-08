@@ -268,7 +268,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see that I have access to the rewards store, as is the default setting value", then.rewardsLocationModalVisible());
     });
     When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
-      When("I scroll down this page", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.4), async () => {
+      When("I scroll down this page", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, data.CORE_REWARDS_AMAZUNG.data._id, "up"), async () => {
         Then("I should see the 'Amazung Prime' reward, as my storeAccessLevel resolved to the default setting value", then.rewardVisible(data.CORE_REWARDS_AMAZUNG));
       });
     });
