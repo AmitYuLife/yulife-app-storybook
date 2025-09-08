@@ -18,7 +18,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible);
       });
     });
-    When("I scroll back up to the top", then.swipeFromText("Beam", "down", "slow"), async () => {
+    When("I scroll back up to the top", when.scrollWithLimitedAttemptsUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Smart Health"), "down"), async () => {
       When("I tap the smart health tab", when.tapID(ids.TEXT_TEMPLATE("Smart Health")), async () => {
         Then("I should be on the smart health tab", then.textVisible("What is Smart Health?"));
       });
