@@ -432,7 +432,7 @@ Feature("Health questionnaires", async () => {
     When("I click to enter my weight in pounds", when.tapID(ids.CHIP_LIST_ITEM("Pounds (lbs)")), async () => {
       Then("I should see im on the lower bound of the slider 50 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("50lbs")));
     });
-    When("I swipe to choose my weight of 52 lbs", when.scrollUntilIdVisible(ids.SCROLL_PICKER("WEIGHT_LB"), ids.SCROLL_PICKER_ACTIVE_ITEM("52lbs"), "down"), async () => {
+    When("I swipe to choose my weight of 52 lbs", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SCROLL_PICKER("WEIGHT_LB"), ids.SCROLL_PICKER_ACTIVE_ITEM("52lbs"), "up", undefined, undefined, 0.05), async () => {
       Then("I should see ive stopped on 52 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("52lbs")));
     });
     When("I tap select", when.tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON), async () => {

@@ -92,7 +92,10 @@ export const scrollWithLimitedAttemptsUntilIdVisible =
     targetId: string,
     direction: "up" | "down" | "left" | "right" = "up",
     attempts = 5,
-    timeout = 2000
+    timeout = 2000,
+    percentage = 0.2,
+    normalizedStartingPointX = 0.5,
+    normalizedStartingPointY = 0.5
   ) =>
   async () => {
     let done = false;
@@ -100,7 +103,13 @@ export const scrollWithLimitedAttemptsUntilIdVisible =
     while (attempts > 0 && !done) {
       try {
         const scrollContainer = element(by.id(scrollContainerId));
-        await scrollContainer.swipe(direction, "slow", 0.2);
+        await scrollContainer.swipe(
+          direction,
+          "slow",
+          percentage,
+          normalizedStartingPointX,
+          normalizedStartingPointY
+        );
 
         const target = element(by.id(targetId));
         await waitFor(target).toBeVisible().withTimeout(timeout);
