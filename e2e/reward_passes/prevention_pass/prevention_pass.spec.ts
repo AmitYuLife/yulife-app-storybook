@@ -139,7 +139,9 @@ Feature("Prevention pass", async () => {
   Scenario("I can freshly join the Prevention Pass and check the FAQ", scenario.start, async () => {
     Given("A 'business_product_created' event was emitted", commonGiven.triggerProductCreated(BUSINESS_ACCOUNT_ID, BUSINESS_ACCOUNT_ID, BATTLE_PASS_REWARD_PASS_ID, BATTLE_PASS_START_LOCAL_DATE), async () => {
       Given("I login and go to the rewards screen", commonGiven.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_01.customer, GENERIC_AUTH_PASSWORD), async () => {
-        When("I go to the reward pass screen", when.tapText("Prevention Pass"), async () => {
+        Then("I can see the Prevention Pass", then.idVisible(ids.REWARD_PASS("Prevention Pass")));
+
+        When("I go to the reward pass screen", when.tapID(ids.REWARD_PASS("Prevention Pass")), async () => {
           Then("I should see the next reward progress bar", then.textVisible("0 / 1 levels", 500));
           Then("I should see how many levels I have to complete in total", then.textVisible("Complete 500 levels", 500));
           Then("I should see how many days I have left", then.textVisible(`${BATTLE_PASS_END_LOCAL_DATE.diff(moment(), "days")} days left`, 500));
