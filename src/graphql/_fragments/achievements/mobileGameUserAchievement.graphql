@@ -12,6 +12,10 @@ fragment MobileGameUserAchievement on MobileGameUserAchievement {
   backgroundColor
   textColor
   topBarType
+  progress {
+    current
+    target
+  }
   backgroundImage {
     ...RemoteImage
   }
