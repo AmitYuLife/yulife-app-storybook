@@ -20,7 +20,7 @@ const ESTIMATED_ITEM_SIZE = 148;
 const CarouselPathways = ({ pathways }: CarouselPathwaysProps) => {
   return (
     <Box>
-      <Box mb={16}>
+      <Box mb={16} mh={32}>
         <TextTemplate type="b1b">{t("screens.pathways.personal_health_path.heading")}</TextTemplate>
       </Box>
       <FlashList
@@ -39,7 +39,7 @@ const CarouselPathways = ({ pathways }: CarouselPathwaysProps) => {
 
 const renderPathway = ({ item }: { item: PathwayItem }) => (
   <Box mr={16}>
-    <RecentRewardCard imageUrl={item.imageUrl} label={item.text} onPress={item.onPress} />
+    <RecentRewardCard imageUrl={item.imageUrl} label={item.text} onPress={item.onPress} width={132} />
   </Box>
 );
 
@@ -47,7 +47,7 @@ const keyExtractor = (item: PathwayItem, index: number) => `${item.text}-${item.
 
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingHorizontal: Style.adjust(16),
+    paddingHorizontal: Style.adjust(24),
   },
 });
 
