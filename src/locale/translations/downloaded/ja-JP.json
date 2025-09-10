@@ -1423,7 +1423,7 @@
       "subheading": "現在、このアプリはご利用いただけません。"
     },
     "notifications": {
-      "deleted_disclaimer": "なお、メッセージは7日後に自動的に消去されます。",
+      "deleted_disclaimer": "メッセージは%{days}日後に自動的に消去されます。",
       "empty": "まだ通知がありません。",
       "headers": {
         "last_7": "過去7日間",
@@ -1592,7 +1592,7 @@
       "search": {
         "initial_state": "割引、バウチャー、サブスクリプションを検索",
         "no_results": "ブランドが見つかりません。",
-        "placeholder": "リワードを検索",
+        "placeholder": "検索",
         "subheading": "ブランド を検索",
         "title": "ストア"
       },
