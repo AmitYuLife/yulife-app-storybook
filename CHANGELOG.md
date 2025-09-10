@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.80.0] - 2025-09-10
+
+### Tasks
+
+- Task: Clean up unused action SET_SHOW_SURGE_INTRO
+- Task: Pathways mood submission & carousel
+- Task GS-1925: Add comma to progress on ProgressBar component
+- Task GS-1921: Add current progress on Achievement
+- Task GS-1924: Show current progress and target on ProgressBar component
+- Task GS-1918: Pathway state and mood submissions query
+- Task GS-1915: Personal pahtways carousel
+- Task GS-1868: Pathways container
+- Task GS-1910: Add modal section into redux
+- Task ENG-4250: Apple Watch 1st challenge prevents Streak completed pop up
+- Task GS-1885: User mood view
+- Task ENG-4333: Quick fix for supportsDisconnect on iOS
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Improvements
+
+- Detox: Improve rewards spec stability
+- Detox: Improve Wellbeing Hub spec stability
+- Detox: Improve prevention pass "i can claim all the milestones" spec stability
+
+### Extra
+
+- Detox: Allow grace period for rewards content to load
+- Detox: Stabilize Prevention Pass FAQ check scenario
+- Detox: Stabilize weight picker assertion
+- Detox: Streaks testIDs
+- Detox: Fix HQ failed scenarios
+- Detox NVS-1637: Fix hq modal scenario
+- Detox: Mindfulness Data Seeding
+- Detox: Donations Reward Pop-up
+
 ## [4.79.0] - 2025-09-03
 
 ### Bugfixes
