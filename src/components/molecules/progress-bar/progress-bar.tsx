@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { View, ViewStyle, Animated } from "react-native";
-import { Colours, Style, StyleSheet } from "@styles";
-import Svg, { Rect } from "react-native-svg";
+import { Colours, Style, StyleSheet, templateTextStyles } from "@styles";
+import Svg, { Rect, Text, Defs, Mask, TextProps } from "react-native-svg";
 import { WEEKLY_PROGRESS_BAR } from "@ids";
 import { GoldenAnimation } from "./golden-animation";
 import { DETOX_ENABLED } from "@services/socket";
@@ -23,6 +23,7 @@ interface IProgressBarProps {
   unfilledBackgroundColor?: string;
   unfilledStrokeWidth?: number;
   unfilledStrokeColor?: string;
+  showCurrentAndTargetProgress?: boolean;
 }
 
 export const PROGRESS_BAR_DEFAULT_HEIGHT = Style.adjust(14);
@@ -39,10 +40,11 @@ export default function ProgressBar(props: IProgressBarProps) {
     isCompleted,
     height = PROGRESS_BAR_DEFAULT_HEIGHT,
     onAnimationEnd,
+    showCurrentAndTargetProgress = false,
   } = props;
   const { currentPosition, maxLength } = useMemo(() => {
     if (_maxLength < 100) {
-      return { currentPosition: _currentPosition * 10, maxLength: _maxLength * 10 ?? 1 };
+      return { currentPosition: _currentPosition * 10, maxLength: _maxLength * 10 || 1 };
     }
 
     return { currentPosition: _currentPosition, maxLength: _maxLength };
@@ -97,6 +99,31 @@ export default function ProgressBar(props: IProgressBarProps) {
     }),
     [isCompleted, isDisabled]
   );
+  const TEXT_COMMON_PROPS: TextProps = useMemo(
+    () => ({
+      x: data.svgWidth / 2,
+      y: height / 2 + 4,
+      textAnchor: "middle",
+      fontSize: templateTextStyles.b2b.fontSize as number,
+      fontWeight: "bold",
+    }),
+    [data.svgWidth, height]
+  );
+
+  const PROGRESSION_TEXT = useMemo(() => `${currentPosition} / ${maxLength}`, [currentPosition, maxLength]);
+
+  // Generate unique mask IDs to prevent Android conflicts
+  const uniqueId = useMemo(() => Math.random().toString(36).substring(2, 11), []);
+  const filledMaskId = `filledMask-${uniqueId}`;
+  const unfilledMaskId = `unfilledMask-${uniqueId}`;
+  const MASK_COMMON_PROPS = useMemo(
+    () => ({
+      width: data.svgWidth,
+      height: height,
+      fill: "black",
+    }),
+    [data.svgWidth, height]
+  );
 
   if (hideType === "unrendered") {
     return null;
@@ -113,7 +140,26 @@ export default function ProgressBar(props: IProgressBarProps) {
       style={[styles.wrapper, { width: data.wrapperWidth, height, marginTop: data.marginTop }, style]}
       testID={WEEKLY_PROGRESS_BAR(currentPosition, maxLength, fillColour)}
     >
-      <Svg width={data.svgWidth} height={height} viewBox={`0 0 ${data.svgWidth} ${height}`}>
+      <Svg width={data.svgWidth} height={height} viewBox={`0 0 ${data.svgWidth} ${height}`} style={styles.container}>
+        {!showCurrentAndTargetProgress ? null : (
+          <Defs>
+            <Mask id={filledMaskId} x="0" y="0" width={data.svgWidth} height={height} maskUnits="userSpaceOnUse">
+              <Rect {...MASK_COMMON_PROPS} />
+              <Rect x="0" y="0" width={data.currentProgressUI} height={height} fill="white" />
+            </Mask>
+            <Mask id={unfilledMaskId} x="0" y="0" width={data.svgWidth} height={height} maskUnits="userSpaceOnUse">
+              <Rect {...MASK_COMMON_PROPS} />
+              <Rect
+                x={data.currentProgressUI}
+                y="0"
+                width={Math.max(0, data.svgWidth - data.currentProgressUI)}
+                height={height}
+                fill="white"
+              />
+            </Mask>
+          </Defs>
+        )}
+
         <Rect
           width={data.svgWidth - 1}
           height={height - 1}
@@ -124,8 +170,21 @@ export default function ProgressBar(props: IProgressBarProps) {
           stroke={props.unfilledStrokeColor ?? "transparent"}
           strokeWidth={props.unfilledStrokeWidth ?? 0}
         />
-        <Rect width={data.currentProgressUI} height={height} rx={data.borderRadius} fill={fillColour} />
+
+        <Rect width={data.currentProgressUI} rx={data.borderRadius} height={height} fill={fillColour} />
+
+        {!showCurrentAndTargetProgress ? null : (
+          <>
+            <Text fill="#ffffff" mask={`url(#${filledMaskId})`} {...TEXT_COMMON_PROPS}>
+              {PROGRESSION_TEXT}
+            </Text>
+            <Text fill="#A0A09B" mask={`url(#${unfilledMaskId})`} {...TEXT_COMMON_PROPS}>
+              {PROGRESSION_TEXT}
+            </Text>
+          </>
+        )}
       </Svg>
+
       {!props.animation || DETOX_ENABLED ? null : <GoldenAnimation type={props.animation} />}
       {props.children}
     </View>
@@ -138,4 +197,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
   } as ViewStyle,
+  container: {
+    backgroundColor: "transparent",
+  },
 });
