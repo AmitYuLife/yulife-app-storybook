@@ -6,7 +6,7 @@ import { Colours } from "@styles";
 import { t } from "@locale";
 import MoodDay from "./subcomponets/mood-day";
 
-type MoodData = {
+export type MoodData = {
   dayLabel: string;
   iconUrl?: string;
   isToday?: boolean;
@@ -19,9 +19,9 @@ interface IMoodViewProps {
 
 const MoodWeekView = ({ data = [], openCalendar }: IMoodViewProps) => {
   return (
-    <Box flexDirection="column" p={16}>
+    <Box flexDirection="column" ph={24}>
       <Box flexDirection="row" justifyContent="space-between" alignItems="center" mb={16}>
-        <TextTemplate type="b2b">{t("screens.pathways.user_mood.heading")}</TextTemplate>
+        <TextTemplate type="b1b">{t("screens.pathways.user_mood.heading")}</TextTemplate>
         <TouchableOpacityWithDelay onPress={openCalendar}>
           <Box flexDirection="row" alignItems="center" gap={8}>
             <TextTemplate type="b2">{t("screens.pathways.user_mood.view_calendar")}</TextTemplate>

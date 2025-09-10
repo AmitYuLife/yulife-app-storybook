@@ -185,7 +185,9 @@
       },
       "personal_health_path": {
         "heading": "Personal Health Path"
-      }
+      },
+      "reflect": "reflect",
+      "secondary_button_label": "Go to Wellbeing Hub"
     },
     "products": {
       "beneficiary": {
