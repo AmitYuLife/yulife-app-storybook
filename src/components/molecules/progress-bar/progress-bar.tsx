@@ -5,6 +5,7 @@ import Svg, { Rect, Text, Defs, Mask, TextProps } from "react-native-svg";
 import { WEEKLY_PROGRESS_BAR } from "@ids";
 import { GoldenAnimation } from "./golden-animation";
 import { DETOX_ENABLED } from "@services/socket";
+import { addCommasToNumber } from "@utils";
 
 interface IProgressBarProps {
   currentPosition: number;
@@ -102,7 +103,7 @@ export default function ProgressBar(props: IProgressBarProps) {
   const TEXT_COMMON_PROPS: TextProps = useMemo(
     () => ({
       x: data.svgWidth / 2,
-      y: height / 2 + 4,
+      y: height / 2 + 5,
       textAnchor: "middle",
       fontSize: templateTextStyles.b2b.fontSize as number,
       fontWeight: "bold",
@@ -110,7 +111,10 @@ export default function ProgressBar(props: IProgressBarProps) {
     [data.svgWidth, height]
   );
 
-  const PROGRESSION_TEXT = useMemo(() => `${currentPosition} / ${maxLength}`, [currentPosition, maxLength]);
+  const PROGRESSION_TEXT = useMemo(
+    () => `${addCommasToNumber(currentPosition)} / ${addCommasToNumber(maxLength)}`,
+    [currentPosition, maxLength]
+  );
 
   // Generate unique mask IDs to prevent Android conflicts
   const uniqueId = useMemo(() => Math.random().toString(36).substring(2, 11), []);
@@ -145,7 +149,7 @@ export default function ProgressBar(props: IProgressBarProps) {
           <Defs>
             <Mask id={filledMaskId} x="0" y="0" width={data.svgWidth} height={height} maskUnits="userSpaceOnUse">
               <Rect {...MASK_COMMON_PROPS} />
-              <Rect x="0" y="0" width={data.currentProgressUI} height={height} fill="white" />
+              <Rect x="0" y="0" width={data.currentProgressUI} height={height - 1} fill="white" />
             </Mask>
             <Mask id={unfilledMaskId} x="0" y="0" width={data.svgWidth} height={height} maskUnits="userSpaceOnUse">
               <Rect {...MASK_COMMON_PROPS} />
@@ -153,7 +157,7 @@ export default function ProgressBar(props: IProgressBarProps) {
                 x={data.currentProgressUI}
                 y="0"
                 width={Math.max(0, data.svgWidth - data.currentProgressUI)}
-                height={height}
+                height={height - 1}
                 fill="white"
               />
             </Mask>
