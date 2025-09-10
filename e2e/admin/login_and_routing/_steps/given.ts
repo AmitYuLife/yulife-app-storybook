@@ -65,14 +65,6 @@ export const enterValidCredentials =
 
 export const seenOnboardingScreens = async (): Promise<void> => {
   await sendReduxEvent({ type: "SET_SHOW_INTRO", payload: false });
-  await sendReduxEvent({
-    type: "SET_SHOW_SURGE_INTRO",
-    payload: {
-      visibility: false,
-      activity: null,
-      rate: 1,
-    },
-  });
 };
 
 export const onLoginScreen = async () => {
