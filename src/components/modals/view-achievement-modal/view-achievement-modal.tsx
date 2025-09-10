@@ -1,6 +1,6 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { memo, useCallback, useMemo } from "react";
-import { AchievementPoints, Button } from "@molecules";
+import { AchievementPoints, Button, ProgressBar } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Style } from "@styles";
@@ -26,6 +26,10 @@ interface IProps {
   status: "locked" | "unlocked" | "equipped";
   currentRoute: string;
   isInspectingUser?: boolean;
+  progress?: {
+    current: number;
+    target: number;
+  };
   onClose?: () => void;
 }
 const onModalClose = () => Navigation.dismissModal(MODALS.viewAchievementModal);
@@ -40,6 +44,7 @@ const ViewAchievementModal = ({
   shortDescription,
   currentRoute,
   isInspectingUser,
+  progress,
 }: IProps) => {
   const [updateMobileGameUserAchievement, { loading }] = useMutation(gql("UpdateMobileGameUserAchievementDocument"));
   const currentUserId = useSelector(getCurrentUserId);
@@ -72,13 +77,28 @@ const ViewAchievementModal = ({
         <TextTemplate type="b2" textAlign="center">
           {description}
         </TextTemplate>
-        {!shortDescription ? null : (
-          <Box mt={56}>
+
+        <Box mt={status === AchievementStatus.locked ? 28 : 56}>
+          {status !== AchievementStatus.locked && !progress ? null : (
+            <Box mb={28}>
+              <ProgressBar
+                currentPosition={progress.current}
+                maxLength={progress.target}
+                wrapperWidth={Style.adjust(290)}
+                height={Style.adjust(28)}
+                unfilledBackgroundColor={"#EFF0FA"}
+                unfilledStrokeColor={"#EFF0FA"}
+                unfilledStrokeWidth={3}
+                showCurrentAndTargetProgress={true}
+              />
+            </Box>
+          )}
+          {!shortDescription ? null : (
             <TextTemplate type="b2b" textAlign="center">
               {shortDescription}
             </TextTemplate>
-          </Box>
-        )}
+          )}
+        </Box>
       </Box>
       {hideButton ? null : (
         <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">

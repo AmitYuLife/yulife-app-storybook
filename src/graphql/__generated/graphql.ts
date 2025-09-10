@@ -3325,6 +3325,12 @@ export type EmployeeDashboardWelcomeBanner = {
   illustration?: Maybe<RemoteImage>;
 };
 
+export type EmployeeExperienceStatistics = {
+  __typename?: "EmployeeExperienceStatistics";
+  checksum: Scalars["String"]["output"];
+  signedUrl: Scalars["String"]["output"];
+};
+
 export type EmployeeInput = {
   addressCountry?: InputMaybe<Scalars["String"]["input"]>;
   category?: InputMaybe<Scalars["String"]["input"]>;
@@ -5506,6 +5512,7 @@ export type MobileGameUserAchievement = {
   id: Scalars["ID"]["output"];
   name: Scalars["String"]["output"];
   points?: Maybe<Scalars["Int"]["output"]>;
+  progress?: Maybe<MobileGameUserAchievementProgress>;
   shortDescription?: Maybe<Scalars["String"]["output"]>;
   slot?: Maybe<Scalars["Int"]["output"]>;
   status: Scalars["String"]["output"];
@@ -5519,6 +5526,12 @@ export type MobileGameUserAchievementCategory = {
   __typename?: "MobileGameUserAchievementCategory";
   key: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
+};
+
+export type MobileGameUserAchievementProgress = {
+  __typename?: "MobileGameUserAchievementProgress";
+  current: Scalars["Int"]["output"];
+  target: Scalars["Int"]["output"];
 };
 
 export type MobileGameUserAchievements = {
@@ -6973,6 +6986,7 @@ export type MutationUpdateAccessUserBySectionArgs = {
   archiveUser?: InputMaybe<Scalars["Boolean"]["input"]>;
   basicInfo?: InputMaybe<AccessUserInput>;
   businessTags?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  password?: InputMaybe<Scalars["String"]["input"]>;
   permissions?: InputMaybe<Array<BusinessAccessPermission>>;
 };
 
@@ -7598,7 +7612,7 @@ export type Query = {
   getDuelsTomorrow?: Maybe<Array<Maybe<Duel>>>;
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
-  getEmployeeExperienceData: Scalars["String"]["output"];
+  getEmployeeExperienceStatistics?: Maybe<EmployeeExperienceStatistics>;
   getEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaignResponse;
   getEmployeeRecognitionCampaignBillingAddresses?: Maybe<Array<TeamEmployeeRecognitionCampaignBillingAddress>>;
   getEmployeeRecognitionCampaignRecipients: TeamEmployeeRecognitionCampaignRecipientsResponse;
@@ -7951,6 +7965,7 @@ export type QueryGetBusinessSurveyCampaignsArgs = {
   orderByColumn?: InputMaybe<Scalars["String"]["input"]>;
   orderByDirection?: InputMaybe<Scalars["String"]["input"]>;
   search?: InputMaybe<Scalars["String"]["input"]>;
+  statuses?: InputMaybe<Array<BusinessSurveyCampaignStatus>>;
 };
 
 /** Default types to be extended / root query */
@@ -8001,8 +8016,8 @@ export type QueryGetEmployeeDashboardArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetEmployeeExperienceDataArgs = {
-  businessAccountId: Scalars["String"]["input"];
+export type QueryGetEmployeeExperienceStatisticsArgs = {
+  checksum?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -11959,6 +11974,7 @@ export type MobileGameUserAchievementFragment = {
   backgroundColor: string;
   textColor: string;
   topBarType: string;
+  progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
   backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
@@ -11982,6 +11998,7 @@ export type MobileGameUserAchievementsFragment = {
     backgroundColor: string;
     textColor: string;
     topBarType: string;
+    progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
@@ -11999,6 +12016,7 @@ export type MobileGameUserAchievementsFragment = {
     backgroundColor: string;
     textColor: string;
     topBarType: string;
+    progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
@@ -12016,6 +12034,7 @@ export type MobileGameUserAchievementsFragment = {
     backgroundColor: string;
     textColor: string;
     topBarType: string;
+    progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
@@ -20817,6 +20836,7 @@ export type GetMobileGameUserAchievementsQuery = {
       backgroundColor: string;
       textColor: string;
       topBarType: string;
+      progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20834,6 +20854,7 @@ export type GetMobileGameUserAchievementsQuery = {
       backgroundColor: string;
       textColor: string;
       topBarType: string;
+      progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20851,6 +20872,7 @@ export type GetMobileGameUserAchievementsQuery = {
       backgroundColor: string;
       textColor: string;
       topBarType: string;
+      progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20883,6 +20905,7 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       backgroundColor: string;
       textColor: string;
       topBarType: string;
+      progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20900,6 +20923,7 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       backgroundColor: string;
       textColor: string;
       topBarType: string;
+      progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20917,6 +20941,7 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       backgroundColor: string;
       textColor: string;
       topBarType: string;
+      progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20950,6 +20975,7 @@ export type UpdateMobileGameUserAchievementMutation = {
       backgroundColor: string;
       textColor: string;
       topBarType: string;
+      progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20967,6 +20993,7 @@ export type UpdateMobileGameUserAchievementMutation = {
       backgroundColor: string;
       textColor: string;
       topBarType: string;
+      progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20984,6 +21011,7 @@ export type UpdateMobileGameUserAchievementMutation = {
       backgroundColor: string;
       textColor: string;
       topBarType: string;
+      progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -40923,6 +40951,17 @@ export const MobileGameUserAchievementFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "topBarType" } },
           {
             kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "current" } },
+                { kind: "Field", name: { kind: "Name", value: "target" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
             selectionSet: {
               kind: "SelectionSet",
@@ -41037,6 +41076,17 @@ export const MobileGameUserAchievementsFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "topBarType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "current" } },
+                { kind: "Field", name: { kind: "Name", value: "target" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
@@ -64681,6 +64731,17 @@ export const GetMobileGameUserAchievementsDocument = {
           { kind: "Field", name: { kind: "Name", value: "topBarType" } },
           {
             kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "current" } },
+                { kind: "Field", name: { kind: "Name", value: "target" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
             selectionSet: {
               kind: "SelectionSet",
@@ -64821,6 +64882,17 @@ export const MarkMobileGameUserAchievementsViewedDocument = {
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "topBarType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "current" } },
+                { kind: "Field", name: { kind: "Name", value: "target" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
@@ -64970,6 +65042,17 @@ export const UpdateMobileGameUserAchievementDocument = {
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "topBarType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "current" } },
+                { kind: "Field", name: { kind: "Name", value: "target" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
