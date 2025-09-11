@@ -1042,6 +1042,20 @@ export type BusinessSurveyCampaignBase = {
   status: BusinessSurveyCampaignStatus;
 };
 
+export type BusinessSurveyCampaignParticipants = {
+  __typename?: "BusinessSurveyCampaignParticipants";
+  participantCount: Scalars["Int"]["output"];
+  participants: Array<BusinessSurveyCampaignParticipantsItem>;
+  query?: Maybe<Array<SearchQuery>>;
+};
+
+export type BusinessSurveyCampaignParticipantsItem = {
+  __typename?: "BusinessSurveyCampaignParticipantsItem";
+  avatar?: Maybe<RemoteImage>;
+  email?: Maybe<Scalars["String"]["output"]>;
+  name: Scalars["String"]["output"];
+};
+
 export type BusinessSurveyCampaignSearchResults = {
   __typename?: "BusinessSurveyCampaignSearchResults";
   count: Scalars["Int"]["output"];
@@ -4710,6 +4724,7 @@ export type HrisImportEventsResult = {
 export type HrisIntegration = {
   __typename?: "HrisIntegration";
   id: Scalars["String"]["output"];
+  isBeta: Scalars["Boolean"]["output"];
   logoUrl: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
 };
@@ -6213,6 +6228,8 @@ export type Mutation = {
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
   updateBeneficiaryForProduct: CustomerProductBeneficiaries;
   updateBusinessSurveyCampaign: BusinessSurveyCampaign;
+  updateBusinessSurveyCampaignName: Scalars["Boolean"]["output"];
+  updateBusinessSurveyCampaignParticipants: BusinessSurveyCampaignParticipants;
   updateBusinessTag: Scalars["Boolean"]["output"];
   updateCompanySettings: Scalars["Boolean"]["output"];
   updateCustomValue: Scalars["Boolean"]["output"];
@@ -6996,6 +7013,16 @@ export type MutationUpdateBeneficiaryForProductArgs = {
 
 export type MutationUpdateBusinessSurveyCampaignArgs = {
   campaign: UpdateBusinessSurveyCampaignInput;
+  campaignId: Scalars["ID"]["input"];
+};
+
+export type MutationUpdateBusinessSurveyCampaignNameArgs = {
+  campaignId: Scalars["ID"]["input"];
+  name: Scalars["String"]["input"];
+};
+
+export type MutationUpdateBusinessSurveyCampaignParticipantsArgs = {
+  campaign: UpdateBusinessSurveyCampaignParticipantsInput;
   campaignId: Scalars["ID"]["input"];
 };
 
@@ -10545,6 +10572,10 @@ export type UpdateBusinessSurveyCampaignInput = {
   endLocalDate?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type UpdateBusinessSurveyCampaignParticipantsInput = {
+  query: Array<SearchQueryInput>;
+};
+
 export type UpdateContactDetailsInput = {
   addressCity?: InputMaybe<Scalars["String"]["input"]>;
   addressFirstLine?: InputMaybe<Scalars["String"]["input"]>;
@@ -11075,11 +11106,13 @@ export type UserReferralInformation = {
   businessAccountId?: Maybe<Scalars["String"]["output"]>;
   disclaimer: Scalars["String"]["output"];
   markdown: ReferralMarkdown;
+  referralCode?: Maybe<Scalars["String"]["output"]>;
   referralHistory: Array<ReferralHistoryItem>;
   referralLink: Scalars["String"]["output"];
   rewardForReferral: Scalars["Int"]["output"];
   shareCTA: Scalars["String"]["output"];
   shareMessage: Scalars["String"]["output"];
+  shareReferralCodeMessage?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type UserStatisticDetails = {
@@ -34989,6 +35022,7 @@ export type GetYuScreenV5Query = {
             challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
             scrollItems?: Array<{
               __typename?: "MaximiseYuSectionContentScrollItem";
+              id: string;
               markdown: string;
               done?: boolean | null;
               markdownStyleOverrides?: string | null;
@@ -36871,6 +36905,7 @@ export type GetYuScreenV5SectionsQuery = {
           challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
           scrollItems?: Array<{
             __typename?: "MaximiseYuSectionContentScrollItem";
+            id: string;
             markdown: string;
             done?: boolean | null;
             markdownStyleOverrides?: string | null;
@@ -38759,6 +38794,7 @@ export type MaximiseYuSectionContentBadgeFragment = {
 
 export type MaximiseYuSectionContentScrollItemFragment = {
   __typename?: "MaximiseYuSectionContentScrollItem";
+  id: string;
   markdown: string;
   done?: boolean | null;
   markdownStyleOverrides?: string | null;
@@ -38777,6 +38813,7 @@ export type MaximiseYuSectionContentFragment = {
   challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
   scrollItems?: Array<{
     __typename?: "MaximiseYuSectionContentScrollItem";
+    id: string;
     markdown: string;
     done?: boolean | null;
     markdownStyleOverrides?: string | null;
@@ -38827,6 +38864,7 @@ export type MaximiseYuSectionFragment = {
     challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
     scrollItems?: Array<{
       __typename?: "MaximiseYuSectionContentScrollItem";
+      id: string;
       markdown: string;
       done?: boolean | null;
       markdownStyleOverrides?: string | null;
@@ -39090,6 +39128,7 @@ type YuScreenSection_MaximiseYuSection_Fragment = {
     challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
     scrollItems?: Array<{
       __typename?: "MaximiseYuSectionContentScrollItem";
+      id: string;
       markdown: string;
       done?: boolean | null;
       markdownStyleOverrides?: string | null;
@@ -60263,6 +60302,7 @@ export const MaximiseYuSectionContentScrollItemFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -60554,6 +60594,7 @@ export const MaximiseYuSectionContentFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -60680,6 +60721,7 @@ export const MaximiseYuSectionFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -64093,6 +64135,7 @@ export const YuScreenSectionFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -94373,6 +94416,7 @@ export const GetYuScreenV5Document = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -97285,6 +97329,7 @@ export const GetYuScreenV5SectionsDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
