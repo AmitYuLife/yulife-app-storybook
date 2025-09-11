@@ -36,7 +36,7 @@ export const playFiitVideo = async () => {
 };
 
 export const pauseVideo =
-  (pause: boolean, waitTime = 3000) =>
+  (pause: boolean, waitTime = 1500) =>
   async () => {
     await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(!pause), waitTime);
   };

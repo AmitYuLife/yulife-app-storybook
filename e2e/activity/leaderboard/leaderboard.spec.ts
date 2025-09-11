@@ -56,8 +56,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
   Scenario("I can change consent to a leaderboard I belong to", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
-      When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-        Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));
+      When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name), 2000));
         Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem], 2000));
       });
       When("I swipe up if needed", when.swipeFromText("Steps", "down", "fast"), async () => {
@@ -65,8 +65,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
           Then("I should see my active leaderboard", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_C1.data.name])));
         });
       });
-      When("I tap close", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
-        When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
+      When("I tap close", when.tapID(ids.FLOATING_CONTINUE_BUTTON, 1500), async () => {
+        When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR, 1500), async () => {
           When("I tap settings", when.tapMenuItem("Settings"), async () => {
             When("I tap leaderboards", when.tapText("Leaderboards and birthday"), async () => {
               Then("I can see the option for Steps leaderboards", then.idVisible(ids.SETTINGS_SWITCH("Steps", true)));

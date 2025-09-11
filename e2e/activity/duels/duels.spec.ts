@@ -137,7 +137,7 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
     });
     When("I tap to 'Confirm' the steps", when.tapIDAtIndex(ids.DUEL_CONFIRM, 1, 1500), async () => {
       Then("I should see the correct steps of my second duel", then.idVisible(ids.DUEL_DESCRIPTION(100, 250), 1500));
-      Then("I should see that I won this duel", then.textVisible("you won!"));
+      Then("I should see that I won this duel", then.textVisibleAtIndex("you won!", 0, 3000));
       Then("I should see that my first duel still awaits confirmation", then.idVisible(ids.DUEL_ENTRY("Michael Scott", 10, "pending_submission"), 3000));
       Then("I should still see the correct sync copy", then.textVisible("Sync your steps"));
     });
