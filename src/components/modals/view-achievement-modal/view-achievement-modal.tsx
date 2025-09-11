@@ -1,6 +1,6 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { memo, useCallback, useMemo } from "react";
-import { AchievementPoints, Button, ProgressBar } from "@molecules";
+import { AchievementPoints, Button, InfoPanel, ProgressBar } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Style } from "@styles";
@@ -12,6 +12,7 @@ import { gql } from "@graphql/__generated";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { AchievementStatus } from "@organisms/achievement-card/achievement-card";
+import { t } from "@locale";
 
 interface IProps {
   id: string;
@@ -66,10 +67,17 @@ const ViewAchievementModal = ({
 
   const showAchievementPoints = useMemo(() => typeof points === "number", [points]);
 
+  const showInfoPanel = useMemo(
+    () => status === AchievementStatus.locked && progress?.current >= progress?.target,
+    [status, progress]
+  );
+
+  const containerStyle = useMemo(() => (showInfoPanel ? { ph: 38 } : { p: 38 }), [showInfoPanel]);
+
   return (
     <Box flex={1}>
       <GenericHeadingPad />
-      <Box alignItems="center" justifyContent="center" p={38}>
+      <Box alignItems="center" justifyContent="center" {...containerStyle}>
         <Image source={icon} width={Style.adjust(318)} height={Style.adjust(298)} />
         <Box mt={60} mb={16}>
           <TextTemplate type="h2">{name}</TextTemplate>
@@ -100,6 +108,11 @@ const ViewAchievementModal = ({
           )}
         </Box>
       </Box>
+      {showInfoPanel ? (
+        <Box position="absolute" bottom={insets.bottom} width="100%" ph={38}>
+          <InfoPanel markdown={t("modals.locked_achievement.title")} showIcon={true} />
+        </Box>
+      ) : null}
       {hideButton ? null : (
         <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">
           <Button

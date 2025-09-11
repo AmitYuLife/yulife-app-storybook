@@ -1733,6 +1733,9 @@
     "unlocked_achievements": {
       "title": "New achievement unlocked! |||| You’ve earned %{smart_count} new achievements!",
       "description": "Show them off by equipping them to your Yumoji."
+    },
+    "locked_achievement": {
+      "title": "Do this once more to unlock this achievement"
     }
   },
   "overlays": {
