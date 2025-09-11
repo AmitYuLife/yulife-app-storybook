@@ -5,19 +5,17 @@ import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import moment from "moment";
 import { getMoodSubmission } from "./utils/getMoodSubmission";
+import { useDispatch } from "react-redux";
 
 interface Props {
   componentId: string;
 }
 
 const PathwaysContainer = ({ componentId }: Props) => {
+  const dispatch = useDispatch();
   const onClose = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
-
-  const onReflect = useCallback(() => {
-    // TODO: use SDUI from sever
-  }, []);
 
   const { data, loading } = useQuery(gql("GetUserPathwaysDocument"), {
     fetchPolicy: "cache-and-network",
@@ -28,6 +26,10 @@ const PathwaysContainer = ({ componentId }: Props) => {
   });
 
   const moodSubmissions = useMemo(() => getMoodSubmission(data), [data]);
+
+  const onReflect = useCallback(() => {
+    dispatch(data?.getUserPathways?.reflectionProgress.reflectAction);
+  }, [data?.getUserPathways?.reflectionProgress.reflectAction]);
 
   if (loading) {
     return null;
