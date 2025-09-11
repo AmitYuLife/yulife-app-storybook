@@ -375,7 +375,7 @@ export const isOnQuitChallengeScreen = async () => {
 };
 
 export const closeQuitChallengeScreen = async () => {
-  await navigateViaID(ids.GENERIC_SCREEN_CTA(t("Cancel")));
+  await navigateViaID(ids.GENERIC_SCREEN_CTA("Cancel"), 1500);
 };
 
 export const exitMeditopiaChallenge = async () => {
@@ -446,7 +446,7 @@ export const tapMeditopiaContentCard = (mins1: string, yuCoin1: string) => async
 };
 
 export const exitChallenge = async () => {
-  await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"), 3000);
+  await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"), 2000);
 };
 
 export const canSeeNewChallengePage =

@@ -691,6 +691,7 @@ export const HINT_VARIANT_IMAGE = (uri?: string) =>
   uri ? `HINT_VARIANT_IMAGE_${uri}` : "HINT_VARIANT_IMAGE_NONE";
 export const QUEST_MODAL_MAYBE_LATER = "quest-detail-modal-dismiss-button-text-view";
 export const LOCKED_QUEST_LEVEL_CTA = "quest-detail-modal-cta-button";
+export const CANCEL_CHALLENGE = "modals.generic_modal.cancel_challenge.cta_label";
 
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";
