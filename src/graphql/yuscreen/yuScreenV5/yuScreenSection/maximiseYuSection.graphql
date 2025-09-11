@@ -13,6 +13,7 @@ fragment MaximiseYuSectionContentBadge on MaximiseYuSectionContentBadge {
 }
 
 fragment MaximiseYuSectionContentScrollItem on MaximiseYuSectionContentScrollItem {
+  id
   image {
     ...RemoteImage
   }
