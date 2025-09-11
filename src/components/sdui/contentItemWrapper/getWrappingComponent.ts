@@ -46,10 +46,8 @@ export const getWrappingComponent = ({
   dynamicStyles,
   gestureViewProps,
   sharedValue,
-  testID,
 }: Params): WrappingComponent => {
   const baseProps = {
-    testID,
     pointerEvents: mapPointerEvents(pointerEvents),
     style: mapServerStyles([...styles, ...dynamicStyles]),
   };
