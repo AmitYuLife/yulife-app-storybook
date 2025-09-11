@@ -1439,6 +1439,8 @@
       "personal_health_path": {
         "heading": "مسار الصحة الشخصية"
       },
+      "reflect": "تفكر",
+      "secondary_button_label": "اذهب إلى مركز الرفاهية",
       "user_mood": {
         "heading": "أسبوعك",
         "view_calendar": "عرض التقويم"

@@ -1439,6 +1439,8 @@
       "personal_health_path": {
         "heading": "Trayectoria personal de salud"
       },
+      "reflect": "reflejar",
+      "secondary_button_label": "Ir a Wellbeing Hub",
       "user_mood": {
         "heading": "Su semana",
         "view_calendar": "Ver el calendario"
