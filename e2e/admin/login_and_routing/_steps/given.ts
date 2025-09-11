@@ -63,10 +63,6 @@ export const enterValidCredentials =
     await passwordField.replaceText(auth.data.password);
   };
 
-export const seenOnboardingScreens = async (): Promise<void> => {
-  await sendReduxEvent({ type: "SET_SHOW_INTRO", payload: false });
-};
-
 export const onLoginScreen = async () => {
   const welcomeLabel = element(by.text(t("Welcome!")));
   const loginField = element(by.id(INPUT_LOGIN_EMAIL));
