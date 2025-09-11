@@ -6,6 +6,7 @@ import { renderItem } from "./render-item";
 import { NudgeItem } from "../nudge-item";
 import { INudgeItem } from "./types";
 import { NUDGE_ITEM_MARGIN, NUDGE_ITEM_WIDTH } from "../nudge-item/styles";
+import { MAXIMISE_YU_NUDGE_LIST } from "@ids";
 
 type Props = {
   data: Array<ComponentProps<typeof NudgeItem>>;
@@ -33,6 +34,7 @@ export const HorizontalList = memo(({ data }: Props) => {
   return (
     <View style={styles.wrapper}>
       <FlatList
+        testID={MAXIMISE_YU_NUDGE_LIST}
         renderItem={renderItem}
         snapToInterval={SNAP_TO_INTERVAL}
         data={builtData}

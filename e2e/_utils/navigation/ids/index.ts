@@ -125,6 +125,7 @@ export const HEADSPACE_BUTTON = "HEADSPACE_BUTTON";
 export const BENEFICIARY_CONTINUE = "BENEFICIARY_CONTINUE";
 export const BENEFICIARY_DONE = "BENEFICIARY_DONE";
 export const JOIN_COMMUNITY_GOAL_BUTTON = "JOIN_COMMUNITY_GOAL_BUTTON";
+export const ACTIVITY_FEED_ID = (id: string) => `ACTIVITY_FEED_${id}`;
 export const ACTIVITY_FEED = "ACTIVITY_FEED";
 export const ACTIVITY_HISTORY_MONTH = (month: string) => `ACTIVITY_HISTORY_${month}`;
 export const YUCOIN_POWER_INFO = "YUCOIN_POWER_INFO";
@@ -855,6 +856,7 @@ export const removeTextStyling = (inputString: string) => {
 };
 
 // Maximise Yu
+export const NUDGE_ITEM_WRAPPER = (id: string) => `NUDGE_ITEM_WRAPPER_${id}`;
 export const NUDGE_ITEM = (text: string) => `NUDGE_ITEM_${text}`;
 export const MAXIMISE_TODAYS_EARNINGS = (current: number, max: number) =>
   `MAXIMISE_TODAYS_EARNINGS_${current}_${max}`;
@@ -863,6 +865,7 @@ export const DONE_NUDGE_ICON = (text: string) => `DONE_NUDGE_ICON_${text}`;
 export const MAXIMISE_YU_COMPONENT = "MAXIMISE_YU_COMPONENT";
 export const MAXIMISE_YU = (showProgress: boolean, showItems: boolean) =>
   `MAXIMISE_YU_progress_bar_${showProgress}_nudge_${showItems}`;
+export const MAXIMISE_YU_NUDGE_LIST = "MAXIMISE_YU_NUDGE_LIST";
 
 // Smoking
 export const YUSCREEN_SMOKING_TILE = "YUSCREEN_SMOKING_TILE";

@@ -9,10 +9,10 @@ import { ArrowIcon } from "@atoms/icon/arrow";
 import { MaximiseYuItem } from "@redux/yu-screen/yu-screen.types";
 import Markdown from "@components/molecules/markdown/markdown";
 import { useDispatch } from "react-redux";
-import { DONE_NUDGE_ICON, NUDGE_ITEM, NUDGE_ITEM_IMAGE } from "@ids";
+import { DONE_NUDGE_ICON, NUDGE_ITEM, NUDGE_ITEM_IMAGE, NUDGE_ITEM_WRAPPER } from "@ids";
 import { parseJSON } from "@utils";
 
-export const NudgeItem = memo(({ image, markdown, onPress, done, markdownStyleOverrides }: MaximiseYuItem) => {
+export const NudgeItem = memo(({ id, image, markdown, onPress, done, markdownStyleOverrides }: MaximiseYuItem) => {
   const dispatch = useDispatch();
 
   const memoized = useMemo(() => {
@@ -29,7 +29,7 @@ export const NudgeItem = memo(({ image, markdown, onPress, done, markdownStyleOv
   const opacity = { opacity: done ? 0.4 : 1 };
 
   return (
-    <Wrapper style={styles.wrapper} onPress={pressHandler}>
+    <Wrapper testID={NUDGE_ITEM_WRAPPER(id)} style={styles.wrapper} onPress={pressHandler}>
       {!image ? (
         <View style={styles.leftSpacer} />
       ) : (

@@ -69,14 +69,9 @@ Feature("Health questionnaires", async () => {
       Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 280));
       Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
     });
-    When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
-      When("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async () => {
-        When("I swipe left on the meditation nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.lotusIcon), "left", "fast"), async () => {
-          When("I swipe left on the cycling nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.helmetIcon), "left", "fast"), async () => {
-            Then("I should see the HQ nudge", then.hqNudgeVisible());
-          });
-        });
-      });
+
+    When("I swipe towards the end of the MaximiseYu section", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("health-questionnaire-nudge"), "left", undefined, undefined, 0.8, 0.8), async () => {
+      Then("I should see the HQ nudge", then.idVisible(ids.NUDGE_ITEM_WRAPPER("health-questionnaire-nudge")));
     });
     When("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
@@ -87,7 +82,7 @@ Feature("Health questionnaires", async () => {
       });
     });
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
-      When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+      When("I swipe to the bottom", when.scrollWithLimitedAttemptsUntilIdVisible(ids.TODAYS_EARNINGS, ids.ACTIVITY_FEED_ID("health-questionnaire-slot"), "up"), async () => {
         Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
         Then("I should see the Let's go! button", then.textVisible("Let's go!"));
       });
@@ -202,7 +197,7 @@ Feature("Health questionnaires", async () => {
     When("I tap earned from todays activities", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(240, 280)), async () => {
       Then("I see the 240 yucoin earned today so far", then.textVisible("240 YuCoin"));
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+    When("I swipe to the bottom", when.scrollWithLimitedAttemptsUntilIdVisible(ids.TODAYS_EARNINGS, ids.ACTIVITY_FEED_ID("health-questionnaire-slot")), async () => {
       Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"));
       Then("I should see that I completed the qustionnaire", then.textVisible("Quiz"));
       Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("40", 1500));
