@@ -5,9 +5,14 @@ import { Colours, StyleSheet } from "@styles";
 interface IProps {
   children: React.ReactNode;
   style?: ViewStyle | ViewStyle[];
+  testID?: string;
 }
 
-const Block = ({ children, style }: IProps) => <View style={[styles.wrapper, style]}>{children}</View>;
+const Block = ({ children, style, testID }: IProps) => (
+  <View style={[styles.wrapper, style]} testID={testID}>
+    {children}
+  </View>
+);
 
 const styles = StyleSheet.create({
   wrapper: {

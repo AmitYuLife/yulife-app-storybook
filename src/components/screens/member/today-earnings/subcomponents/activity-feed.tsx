@@ -12,7 +12,13 @@ import { openGoogleFit } from "@services/app-link";
 import { getFitKitConnectCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
-import { ACTIVITY_FEED, QUESTION_MARK_MODAL, TAKE_A_CHALLENGE_LEFT_BUTTON, WELLDONE_BANNER } from "@ids";
+import {
+  ACTIVITY_FEED,
+  ACTIVITY_FEED_ID,
+  QUESTION_MARK_MODAL,
+  TAKE_A_CHALLENGE_LEFT_BUTTON,
+  WELLDONE_BANNER,
+} from "@ids";
 import { useDispatch, useSelector } from "react-redux";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 import { isSamsung } from "@utils/device";
@@ -255,7 +261,7 @@ const ActivityFeed = ({
   }, []);
 
   return (
-    <Block style={[styles.wrapper, wellDoneBanner ? { paddingBottom: 0 } : null]}>
+    <Block testID={ACTIVITY_FEED_ID(id)} style={[styles.wrapper, wellDoneBanner ? { paddingBottom: 0 } : null]}>
       <View style={styles.headerWrapper}>
         <TextTemplate
           type="b2b"
