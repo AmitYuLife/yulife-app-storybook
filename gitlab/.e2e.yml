@@ -1,0 +1,53 @@
+ios-detox-build-app:
+  tags:
+    - oakhost_macos_m4
+  image: 846880112034.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-detox:develop
+  stage: build
+  interruptible: true
+  cache:
+    key:
+      files:
+        - support/ios/Podfile.lock
+        - support/ios/Gemfile.lock
+      prefix: "ios-detox-build"
+    paths:
+      - .yarn
+      - .cocoapods_cache
+      - ios/build/Build/Products
+  variables:
+    # Set cocoapods cache path to local folder to allow gitlab cache it
+    CP_HOME_DIR: "$CI_PROJECT_DIR/.cocoapods_cache"
+    FORCE_COLOR: 1
+    BUNDLE_ID: "com.yulife.develop"
+    XCODE_WORKSPACE: "YuLife.xcworkspace"
+    XCODE_SCHEME: "YuLife"
+    DISPLAY_NAME: "YuLife (e2e)"
+    ENVFILE: ".env.e2e"
+    GITLAB_TOKEN: $CI_JOB_TOKEN
+    # This will be the app version (patch)
+    BITRISE_BUILD_NUMBER: 1234
+    PLATFORM: ios
+    ENABLE_YUWATCH: 0
+    DETOX_BUILD_CONFIG: ios.sim.release
+    FORCE_DETOX_BUILD: "1"
+  script:
+    # install node and yarn
+    - nvm install -b
+    - node --version
+    - corepack enable
+    # Prepare yarn for cache
+    - yarn config set cache-folder $CI_PROJECT_DIR/.yarn
+    - yarn cache dir
+    # Install node dependencies and build tsc
+    - yarn install --frozen-lockfile
+    - yarn tsc
+    - . ./scripts/gitlab/detox/build_detox_app.sh
+  artifacts:
+    paths:
+      - detox-build.log
+    expire_in: 7 days
+    untracked: false
+  # TODO: Use proper rules once CI test jobs are ready, for now enable it only on MR manually for testing purposes
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
