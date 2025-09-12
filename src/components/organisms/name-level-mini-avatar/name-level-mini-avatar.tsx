@@ -10,6 +10,7 @@ import { ROMAN_NUMERALS, getCurrentWorldIcon } from "@utils/yuScreenV5";
 import { YUSCREEN_V5_USERNAME, YUSCREEN_V5_WORLD_AND_LEVEL } from "@ids";
 import { Avatar } from "@components/molecules";
 import { DETOX_ENABLED } from "@services/socket";
+import { isRTL } from "@locale";
 
 interface IProps {
   name?: string;
@@ -23,7 +24,7 @@ interface IProps {
 }
 
 const ANIMATION_DURATION = DETOX_ENABLED ? 0 : 200;
-const HIDDEN_YUMOJI_POSITION = Style.adjust(-76);
+const buildHiddenYumojiPosition = () => Style.adjust(isRTL() ? 76 : -76);
 
 const NameLevelMiniAvatar: FC<IProps> = memo(
   ({ name, level, yuniversalMap, showYumoji, animateYumoji, textColour, centerContent, hideDisplayedLevel }) => {
@@ -44,7 +45,7 @@ const NameLevelMiniAvatar: FC<IProps> = memo(
     const worldName = getCurrentWorldText(currentWorld, isYuniversal);
     const displayedLevel = getDisplayedLevel(currentLevel, yuniversalLevel, isYuniversal, hideDisplayedLevel);
 
-    const translateX = useRef(new Animated.Value(HIDDEN_YUMOJI_POSITION)).current;
+    const translateX = useRef(new Animated.Value(buildHiddenYumojiPosition())).current;
 
     useEffect(() => {
       if (DETOX_ENABLED) {
@@ -53,7 +54,7 @@ const NameLevelMiniAvatar: FC<IProps> = memo(
 
       const animation = Animated.timing(translateX, {
         duration: ANIMATION_DURATION,
-        toValue: animateYumoji ? 0 : HIDDEN_YUMOJI_POSITION,
+        toValue: animateYumoji ? 0 : buildHiddenYumojiPosition(),
         useNativeDriver: true,
         easing: Easing.inOut(Easing.ease),
       });
