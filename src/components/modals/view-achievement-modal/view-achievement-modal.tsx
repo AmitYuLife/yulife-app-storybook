@@ -87,7 +87,7 @@ const ViewAchievementModal = ({
         </TextTemplate>
 
         <Box mt={status === AchievementStatus.locked ? 28 : 56}>
-          {status !== AchievementStatus.locked && !progress ? null : (
+          {status !== AchievementStatus.locked || !progress ? null : (
             <Box mb={28}>
               <ProgressBar
                 currentPosition={progress.current}
