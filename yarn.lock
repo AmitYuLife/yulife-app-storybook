@@ -5740,6 +5740,13 @@
   dependencies:
     merge-options "^3.0.4"
 
+"@react-native-async-storage/async-storage@^1.21.0":
+  version "1.24.0"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.24.0.tgz#888efbc62a26f7d9464b32f4d3027b7f2771999b"
+  integrity sha512-W4/vbwUOYOjco0x3toB8QCr7EjIP6nE9G7o8PMguvvjYT5Awg09lyV4enACRx4s++PPulBiBSjL0KTFx2u0Z/g==
+  dependencies:
+    merge-options "^3.0.4"
+
 "@react-native-clipboard/clipboard@^1.12.1":
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/@react-native-clipboard/clipboard/-/clipboard-1.12.1.tgz#a23f9defb732077afa860d0598baa95f5ee9f54b"
@@ -7962,13 +7969,6 @@
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
-
-"@types/react-native-mixpanel@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@types/react-native-mixpanel/-/react-native-mixpanel-1.1.3.tgz#a500b8774c5e2b629cff0bde673eff0f084954e4"
-  integrity sha512-7VawMfRx8gucOLjnidvy0C0g/6p2oaUbEVTskXg9YZV/SWQYHeGwfbKudoEVDOuoNeIZ4/Spi1Ec5wZIrmSgoA==
-  dependencies:
-    react-native-mixpanel "*"
 
 "@types/react-redux@^7.1.25":
   version "7.1.25"
@@ -12860,6 +12860,11 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.1.tgz#8d172c064867f235c0c84a596806d279bf4bcc07"
   integrity sha512-Wrk35e8ydCKDj/ArClo1VrPVmN8zph5V4AtHwIuHhvMXsKf73UT3BOD+azBIW+3wOJ4FhEH7zyaJCFvChjYvMA==
 
+fast-base64-decode@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fast-base64-decode/-/fast-base64-decode-1.0.0.tgz#b434a0dd7d92b12b43f26819300d2dafb83ee418"
+  integrity sha512-qwaScUgUGBYeDNRnbc/KyllVU88Jk1pRHPStuF/lO7B0/RTRLj7U0lkdTAutlBblY08rwZDff6tNU9cjv6j//Q==
+
 fast-decode-uri-component@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/fast-decode-uri-component/-/fast-decode-uri-component-1.0.1.tgz#46f8b6c22b30ff7a81357d4f59abfae938202543"
@@ -17209,6 +17214,15 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
+mixpanel-react-native@^3.0.6:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/mixpanel-react-native/-/mixpanel-react-native-3.1.2.tgz#d9da38735c3e7bb1e42768909c1986ff3dd58bdd"
+  integrity sha512-EtmaPUagi32MloHIRGc35B91GgmikqVE1asUHXuEVr4P+TQFj7Jb5Kt4QWQv2MeGEWRhhV3XbJouHqdOCIbSOA==
+  dependencies:
+    "@react-native-async-storage/async-storage" "^1.21.0"
+    react-native-get-random-values "^1.9.0"
+    uuid "3.3.2"
+
 mkdirp-classic@^0.5.2:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/mkdirp-classic/-/mkdirp-classic-0.5.3.tgz#fa10c9115cc6d8865be221ba47ee9bed78601113"
@@ -19019,6 +19033,13 @@ react-native-gesture-handler@2.16.2:
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
+react-native-get-random-values@^1.9.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/react-native-get-random-values/-/react-native-get-random-values-1.11.0.tgz#1ca70d1271f4b08af92958803b89dccbda78728d"
+  integrity sha512-4BTbDbRmS7iPdhYLRcz3PGFIpFJBwNZg9g42iwa2P6FOv9vZj/xJc678RZXnLNZzd0qd7Q3CCF6Yd+CU2eoXKQ==
+  dependencies:
+    fast-base64-decode "^1.0.0"
+
 react-native-in-app-review@^4.3.3:
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/react-native-in-app-review/-/react-native-in-app-review-4.3.3.tgz#61f09f110de18f0a470a9bb55b9f49600390085f"
@@ -19033,11 +19054,6 @@ react-native-linear-gradient@^2.8.3:
   version "2.8.3"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.8.3.tgz#9a116649f86d74747304ee13db325e20b21e564f"
   integrity sha512-KflAXZcEg54PXkLyflaSZQ3PJp4uC4whM7nT/Uot9m0e/qxFV3p6uor1983D1YOBJbJN7rrWdqIjq0T42jOJyA==
-
-react-native-mixpanel@*, react-native-mixpanel@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/react-native-mixpanel/-/react-native-mixpanel-1.2.5.tgz#1d3348625a82786e860c5a41d3d9d73939f2eeda"
-  integrity sha512-Xbpcj99Wo4NJa/Idp/nLY5m9r/H+v7szRWfQGxZGxDFiqz3VPs87c7hTMQP9OpgId6BFycxWGbkJOptiDSKqQQ==
 
 react-native-modal-datetime-picker@^17.1.0:
   version "17.1.0"
@@ -22308,6 +22324,11 @@ utrie@^1.0.2:
   integrity sha512-1MLa5ouZiOmQzUbjbu9VmjLzn1QLXBhwpUa7kdLUQK+KQ5KA9I1vk5U4YHe/X2Ch7PYnJfWuWT+VbuxbGwljhw==
   dependencies:
     base64-arraybuffer "^1.0.2"
+
+uuid@3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
+  integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
 uuid@^3.0.0, uuid@^3.3.2:
   version "3.4.0"

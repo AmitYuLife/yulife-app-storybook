@@ -1,7 +1,7 @@
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "@intercom/intercom-react-native";
-import Mixpanel from "react-native-mixpanel";
+import { Mixpanel } from "mixpanel-react-native";
 import getBugsnagClient, { BugsnagClient } from "../bugsnag";
 import LeanplumClient from "./leanplum";
 import { MixpanelEvent, MixpanelEventMetadata, UserSupportLevel } from "@services/logging/types";
@@ -21,6 +21,7 @@ class LoggerInstance {
   private appVersionRegex = /(\d+.\d+).(\d+)/;
   private bugsnag: BugsnagClient;
   public leanplum: LeanplumClient;
+  private mixpanel: Mixpanel | null = null;
   private eventRates: Map<string, { count: number; resetTime: number }> = new Map();
   private disabledEvents: Set<string> = new Set();
 
@@ -33,7 +34,8 @@ class LoggerInstance {
   public init = async () => {
     if (!this.initialised) {
       const mixpanelKey = region.getConfig("mixpanelKey");
-      await Mixpanel.sharedInstanceWithToken(mixpanelKey);
+      this.mixpanel = new Mixpanel(mixpanelKey, false, false);
+      await this.mixpanel.init();
       this.leanplum = new LeanplumClient();
       this.initialised = true;
     }
@@ -42,9 +44,9 @@ class LoggerInstance {
   public logOut = async () => {
     this.userId = "";
 
-    if (this.initialised) {
-      Mixpanel.clearSuperProperties();
-      Mixpanel.reset();
+    if (this.initialised && this.mixpanel) {
+      this.mixpanel.clearSuperProperties();
+      this.mixpanel.reset();
 
       try {
         await Intercom.logout(); // we should always logout from intercom because sometimes things get weirdly cached...
@@ -56,7 +58,7 @@ class LoggerInstance {
     }
   };
 
-  private addDefaultEventProperties = (props: Record<string, any>): Record<string, any> => {
+  private addDefaultEventProperties = (props: Record<string, unknown>): Record<string, unknown> => {
     return {
       ...props,
       user_utc_offset: moment().utcOffset(),
@@ -84,7 +86,10 @@ class LoggerInstance {
 
       await this.setIntercomUser(userId, intercomHash, supportLevel);
       this.bugsnag.setUser(userId, "", "");
-      Mixpanel.identify(userId);
+      if (this.mixpanel) {
+        this.mixpanel.identify(userId);
+      }
+
       this.leanplum.setUserId(userId);
       this.userId = userId;
     } finally {
@@ -114,7 +119,7 @@ class LoggerInstance {
     }
   };
 
-  public logEvent = async (event: string, metadata: Record<string, any> = {}) => {
+  public logEvent = async (event: string, metadata: Record<string, unknown> = {}) => {
     if (!this.initialised || !this.userId) {
       return;
     }
@@ -125,7 +130,9 @@ class LoggerInstance {
 
     const data = this.addDefaultEventProperties(metadata);
     const isUserLoggedIn = await Intercom.isUserLoggedIn();
-    Mixpanel.trackWithProperties(event, data);
+    if (this.mixpanel) {
+      this.mixpanel.track(event, data);
+    }
 
     if (!isUserLoggedIn) {
       return;
@@ -181,7 +188,9 @@ class LoggerInstance {
       return;
     }
 
-    Mixpanel.trackWithProperties(event, this.addDefaultEventProperties(metadata));
+    if (this.mixpanel) {
+      this.mixpanel.track(event, this.addDefaultEventProperties(metadata));
+    }
   };
 
   public setUserLanguagePreferenceOnIntercom = async (languageOverride: string) => {
@@ -199,14 +208,16 @@ class LoggerInstance {
     }
   };
 
-  public setUserProperties = async (props: Record<string, any>, customAttrs = false) => {
+  public setUserProperties = async (props: Record<string, unknown>, customAttrs = false) => {
     if (!this.initialised || !this.userId) {
       return;
     }
 
     const eventProperties = this.addDefaultEventProperties(props);
     const isUserLoggedIn = await Intercom.isUserLoggedIn();
-    Mixpanel.set(eventProperties);
+    if (this.mixpanel) {
+      this.mixpanel.getPeople().set(eventProperties);
+    }
 
     if (!isUserLoggedIn) {
       return;
@@ -214,9 +225,9 @@ class LoggerInstance {
 
     try {
       if (customAttrs) {
-        await Intercom.updateUser({ customAttributes: eventProperties });
+        await Intercom.updateUser({ customAttributes: eventProperties as Record<string, string | number | boolean> });
       } else {
-        await Intercom.updateUser(eventProperties);
+        await Intercom.updateUser(eventProperties as Record<string, string | number | boolean>);
       }
     } catch (err) {
       this.error(err, {
