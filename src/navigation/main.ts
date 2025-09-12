@@ -1,6 +1,6 @@
 import Logger from "@services/logging/logger";
 import { ReactElement } from "react";
-import { ComponentProvider, ViewStyle } from "react-native";
+import { ComponentProvider, ViewStyle, Dimensions, Platform } from "react-native";
 import {
   Layout,
   LayoutRoot,
@@ -62,16 +62,41 @@ export class Navigation {
 
   public static setDefaultOptions = () => {
     const { direction } = getCurrentLocaleOptions();
+    // For iOS and RTL, we need to invert the animation direction on pops and pushes
+    const invertAnimation = direction === "rtl" && Platform.OS === "ios";
+
+    // Base animations configuration
+    const animations = {
+      setRoot: {
+        waitForRender: true,
+      },
+      push: {
+        waitForRender: true,
+        ...(invertAnimation && {
+          content: {
+            translationX: {
+              from: -Dimensions.get("window").width,
+              to: 0,
+              duration: 300,
+            },
+          },
+        }),
+      },
+      ...(invertAnimation && {
+        pop: {
+          content: {
+            translationX: {
+              from: 0,
+              to: -Dimensions.get("window").width,
+              duration: 300,
+            },
+          },
+        },
+      }),
+    };
 
     NativeNavigation.setDefaultOptions({
-      animations: {
-        setRoot: {
-          waitForRender: true,
-        },
-        push: {
-          waitForRender: true,
-        },
-      },
+      animations,
       bottomTabs: {
         animate: false,
         drawBehind: true,
