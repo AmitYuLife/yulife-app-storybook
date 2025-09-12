@@ -149,10 +149,12 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - Mixpanel (3.6.5)
   - Mixpanel-swift (5.1.0):
     - Mixpanel-swift/Complete (= 5.1.0)
   - Mixpanel-swift/Complete (5.1.0)
+  - MixpanelReactNative (3.1.2):
+    - Mixpanel-swift (= 5.1.0)
+    - React-Core
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -1113,9 +1115,6 @@ PODS:
   - react-native-leanplum (2.3.0):
     - Leanplum-iOS-SDK (~> 6.4)
     - React-Core
-  - react-native-mixpanel (1.2.5):
-    - Mixpanel (~> 3.6.0)
-    - React
   - react-native-netinfo (11.3.1):
     - React-Core
   - react-native-safe-area-context (4.10.5):
@@ -1697,6 +1696,7 @@ DEPENDENCIES:
   - "intercom-react-native (from `../node_modules/@intercom/intercom-react-native`)"
   - lottie-react-native (from `../node_modules/lottie-react-native`)
   - Mixpanel-swift
+  - MixpanelReactNative (from `../node_modules/mixpanel-react-native`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTDeprecation (from `../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
@@ -1728,7 +1728,6 @@ DEPENDENCIES:
   - react-native-encrypted-storage (from `../node_modules/react-native-encrypted-storage`)
   - react-native-in-app-review (from `../node_modules/react-native-in-app-review`)
   - "react-native-leanplum (from `../node_modules/@leanplum/react-native-sdk`)"
-  - react-native-mixpanel (from `../node_modules/react-native-mixpanel`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video (from `../node_modules/react-native-video`)
@@ -1792,7 +1791,6 @@ SPEC REPOS:
     - libvmaf
     - libwebp
     - lottie-ios
-    - Mixpanel
     - Mixpanel-swift
     - RiveRuntime
     - SDWebImage
@@ -1861,6 +1859,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@intercom/intercom-react-native"
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
+  MixpanelReactNative:
+    :path: "../node_modules/mixpanel-react-native"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTDeprecation:
@@ -1919,8 +1919,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-in-app-review"
   react-native-leanplum:
     :path: "../node_modules/@leanplum/react-native-sdk"
-  react-native-mixpanel:
-    :path: "../node_modules/react-native-mixpanel"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
@@ -2049,8 +2047,8 @@ SPEC CHECKSUMS:
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
   lottie-ios: fcb5e73e17ba4c983140b7d21095c834b3087418
   lottie-react-native: f851c0e235f171d99083c803f728f644be1dcf65
-  Mixpanel: de8296d8568806ab17bfced0f823c908b808e1e0
   Mixpanel-swift: 7b26468fc0e2e521104e51d65c4bbf7cab8162f8
+  MixpanelReactNative: b523d54778e31e396c55df6f732173f3819e58ee
   RCT-Folly: 02617c592a293bd6d418e0a88ff4ee1f88329b47
   RCTDeprecation: 3afceddffa65aee666dafd6f0116f1d975db1584
   RCTRequired: ec1239bc9d8bf63e10fb92bd8b26171a9258e0c1
@@ -2080,7 +2078,6 @@ SPEC CHECKSUMS:
   react-native-encrypted-storage: db300a3f2f0aba1e818417c1c0a6be549038deb7
   react-native-in-app-review: db8bb167a5f238e7ceca5c242d6b36ce8c4404a4
   react-native-leanplum: 1040772f934a7ff8855a74188ff4e2d9d6848316
-  react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-netinfo: bdb108d340cdb41875c9ced535977cac6d2ff321
   react-native-safe-area-context: a240ad4b683349e48b1d51fed1611138d1bdad97
   react-native-video: 0d5d432c94ee0dafe05ed4927db19ed89b8c3ea5
