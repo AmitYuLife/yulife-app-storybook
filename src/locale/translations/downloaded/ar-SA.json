@@ -403,6 +403,9 @@
         "subheading_before_name": "بقبول الدعوة ستشارك خطواتك ويوكوين مع الأعضاء الآخرين في"
       }
     },
+    "locked_achievement": {
+      "title": "قم بذلك مرة أخرى لفتح هذا الإنجاز"
+    },
     "open_random_chest": {
       "claim_all_subtitle": "اكتشف ما الذي فتحته!",
       "claim_all_title": "الجائزة الكبرى!",

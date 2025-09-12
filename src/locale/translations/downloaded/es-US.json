@@ -403,6 +403,9 @@
         "subheading_before_name": "al aceptar la invitación compartirás tus pasos y yucoin con otros miembros de"
       }
     },
+    "locked_achievement": {
+      "title": "Hazlo una vez más para desbloquear este logro"
+    },
     "open_random_chest": {
       "claim_all_subtitle": "¡Checa lo que has desbloqueado!",
       "claim_all_title": "¡Lotería!",

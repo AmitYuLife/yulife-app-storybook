@@ -403,6 +403,9 @@
         "subheading_before_name": "by accepting the invite you will share your steps and yucoin with other members of"
       }
     },
+    "locked_achievement": {
+      "title": "Do this once more to unlock this achievement"
+    },
     "open_random_chest": {
       "claim_all_subtitle": "Check out what you've unlocked!",
       "claim_all_title": "Jackpot!",

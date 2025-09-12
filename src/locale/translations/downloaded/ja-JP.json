@@ -403,6 +403,9 @@
         "subheading_before_name": "招待を承認することにより、あなたの歩数とYuCoinをランキングのメンバーと共有し、"
       }
     },
+    "locked_achievement": {
+      "title": "この実績を解除するには もう一度 行い ます"
+    },
     "open_random_chest": {
       "claim_all_subtitle": "早速ボックスを開けてみましょう!",
       "claim_all_title": "新アイテムを獲得しました",
