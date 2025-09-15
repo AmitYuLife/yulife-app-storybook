@@ -70,6 +70,7 @@ export const translations: Record<Language, Translation> = {
     intercomLanguage: "ar",
     flag: "🇸🇦",
     isEnabled: false,
+    isEnabledForTest: true,
     load: () => require("./downloaded/ar-SA.json"),
     direction: "rtl",
     setMomentLocale: () => {
