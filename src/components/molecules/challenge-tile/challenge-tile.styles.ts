@@ -65,10 +65,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: BORDER_RADIUS,
     overflow: "hidden",
   },
-  imageNext: {
-    height: Style.adjust(24),
-    width: Style.adjust(24),
-  },
   hasBonusContainer: {
     position: "absolute",
     end: 0,

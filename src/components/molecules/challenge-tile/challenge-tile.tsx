@@ -9,6 +9,7 @@ import colours from "@styles/colours";
 import Animated from "react-native-reanimated";
 import { usePressEffect } from "@hooks";
 import ChallengeTileExtraIndicator from "./challenge-tile-extra-indicator";
+import { ArrowIcon } from "@atoms/icon/arrow";
 
 export interface IChallengeTileProps {
   heading?: string;
@@ -113,12 +114,6 @@ const ChallengeTile = ({
             </View>
           ) : null}
         </Box>
-        {/* {isLocked ? (
-          <View style={styles.lockedOverlay}>
-            <RNImage resizeMode="contain" style={styles.lockedImage} source={require("@assets/icons/lock.png")} />
-            <TextTemplate type={"b2b"}>{t("screens.challenge_list.level_locked", { availableAtLevel })}</TextTemplate>
-          </View>
-        ) : ( */}
         <View style={styles.sectionBottomShadow} testID={CHALLENGE_TILE_BOOST_TAG(heading, reward, hasBonus)}>
           <View style={styles.sectionBottomWrapper} testID={CHALLENGE_TILE(heading)}>
             <View style={styles.contentWrapper}>
@@ -154,7 +149,9 @@ const ChallengeTile = ({
                         </TextTemplate>
                       </View>
                     )}
-                    <RNImage source={require("@assets/icons/next.png")} resizeMode="contain" style={styles.imageNext} />
+                    <Box bg={Colours.primary.p600} br={99} size={24} justifyContent="center" alignItems="center">
+                      <ArrowIcon intent="primary" color="white" />
+                    </Box>
                   </>
                 ) : null}
                 {!isCompleted && isLocked ? (
