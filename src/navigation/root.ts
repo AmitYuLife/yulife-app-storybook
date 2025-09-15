@@ -12,7 +12,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { Layout } from "react-native-navigation";
 import { MobileTabs } from "@graphql/__generated";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
-import { REGION } from "@locale";
+import { REGION, isRTL } from "@locale";
 import Config from "react-native-config";
 
 const icon = require("@assets/icons/clock.png");
@@ -27,12 +27,16 @@ export interface IMainTabsProps {
   onLeftMenuPress: () => void;
 }
 
+const getMenuSide = () => {
+  return isRTL() ? ("right" as const) : ("left" as const);
+};
+
 export function generateOnLeftMenuPress(route: string) {
   return () => {
     setScreenViewForBurgerMenu();
     Navigation.mergeOptions(route, {
       sideMenu: {
-        left: {
+        [getMenuSide()]: {
           enabled: true,
           visible: true,
         },
@@ -108,6 +112,8 @@ export const labels = [
 export const TAB_ROUTES = labels.map(({ id }) => id);
 
 export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => void) {
+  const menuSide = getMenuSide();
+
   await Navigation.setRoot({
     root: {
       sideMenu: {
@@ -187,7 +193,7 @@ export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => vo
             ],
           },
         },
-        left: {
+        [menuSide]: {
           component: {
             id: ROUTES.menu,
             name: ROUTES.menu,
@@ -196,7 +202,7 @@ export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => vo
         options: {
           bottomTabs,
           sideMenu: {
-            left: Platform.select({
+            [menuSide]: Platform.select({
               android: {
                 enabled: false,
                 width: Style.DEVICE_WIDTH,
@@ -217,7 +223,7 @@ export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => vo
 
   await Navigation.mergeOptions(ROUTES.menu, {
     sideMenu: {
-      left: {
+      [menuSide]: {
         width: Style.DEVICE_WIDTH,
       } as any,
     },

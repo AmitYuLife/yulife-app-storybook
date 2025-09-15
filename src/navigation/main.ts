@@ -65,6 +65,9 @@ export class Navigation {
     // For iOS and RTL, we need to invert the animation direction on pops and pushes
     const invertAnimation = direction === "rtl" && Platform.OS === "ios";
 
+    const { width } = Dimensions.get("window");
+    const duration = 300;
+
     // Base animations configuration
     const animations = {
       setRoot: {
@@ -75,9 +78,9 @@ export class Navigation {
         ...(invertAnimation && {
           content: {
             translationX: {
-              from: -Dimensions.get("window").width,
+              from: width,
               to: 0,
-              duration: 300,
+              duration,
             },
           },
         }),
@@ -87,8 +90,8 @@ export class Navigation {
           content: {
             translationX: {
               from: 0,
-              to: -Dimensions.get("window").width,
-              duration: 300,
+              to: width,
+              duration,
             },
           },
         },
