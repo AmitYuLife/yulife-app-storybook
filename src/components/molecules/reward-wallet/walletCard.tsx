@@ -1,5 +1,5 @@
 import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
-import { ChevronIcon } from "@atoms/icon/chevron-icon";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { memo } from "react";
 import { Image } from "react-native";
@@ -56,7 +56,7 @@ const WalletCard = <T,>({ item, onPress }: WalletCardProps<T>) => {
               </Box>
             </Box>
             <Box py={4} flexDirection="column" justifyContent="center" alignItems="center">
-              <ChevronIcon size={24} direction="right" color={CHEVRON_COLOR} />
+              <ArrowIcon size={24} color={CHEVRON_COLOR} />
             </Box>
           </Box>
         </Box>

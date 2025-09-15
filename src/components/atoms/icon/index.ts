@@ -65,7 +65,6 @@ import { ActivityHistoryCalendarIcon } from "./activity-history-calendar-icon";
 import { YuCoinTopNavIcon } from "./yucoin-top-nav-icon";
 import { AvatarFrameIcon } from "./avatar-frame-icon";
 import { InviteIcon } from "./invite-icon";
-import { ChevronIcon } from "./chevron-icon";
 import { AlarmClockIcon } from "./alarm-clock-icon";
 import { AddIcon } from "./add-icon";
 import { HeroCalendarIcon } from "./hero-calendar-icon";
@@ -152,7 +151,6 @@ export default {
   YuCoinTopNavIcon,
   AvatarFrameIcon,
   InviteIcon,
-  ChevronIcon,
   AlarmClockIcon,
   AddIcon,
   HeroCalendarIcon,

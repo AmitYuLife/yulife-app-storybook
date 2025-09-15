@@ -6,7 +6,7 @@ import { TransformsStyle } from "react-native";
 import { ARROW_BUTTON } from "@ids";
 import { getLocaleDirection } from "@locale";
 
-type ArrowDirection = "right" | "down" | "left";
+type ArrowDirection = "right" | "down" | "left" | "top";
 type ArrowIntent = "primary" | "secondary" | "transparent";
 
 export interface IArrowIconProps {
@@ -17,6 +17,7 @@ export interface IArrowIconProps {
   testID?: string;
 }
 
+/** aka ChevronIcon */
 export const ArrowIcon = memo(
   ({
     size = Style.adjust(24),
@@ -89,7 +90,8 @@ export const ArrowIcon = memo(
 );
 
 const TRANSFORM: Record<ArrowDirection, TransformsStyle> = {
+  top: { transform: [{ rotate: "270deg" }] },
   left: { transform: [{ rotate: "180deg" }] },
   down: { transform: [{ rotate: "90deg" }] },
-  right: undefined,
+  right: {},
 };
