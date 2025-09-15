@@ -9,6 +9,7 @@ import LottieView from "../lottie-view/lottie-view";
 import { usePressEffect } from "../../../hooks/usePressEffect";
 import { INVENTORY_BANNER, INVENTORY_BANNER_ITEM_COUNT } from "@ids";
 import { ArrowIcon } from "@atoms/icon/arrow";
+import { isRTL } from "@locale";
 
 const BANNER_IMAGE = require("./inventory-banner-icon.webp");
 const BANNER_BACKGROUND = require("./inventory-banner-background.webp");
@@ -26,6 +27,8 @@ const SPARKLE_LOTTIE = require("./inventory-banner-sparkles.lottie");
 const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({ pressedTranslation: 0 });
   const { handlePress } = usePressedInWithDelay({ onPress });
+
+  const isRTLLayout = isRTL();
 
   const t = useTranslation(["molecules.inventory_banner.title", "molecules.inventory_banner.subtitle"]);
 
@@ -59,7 +62,7 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
               source={BANNER_BACKGROUND}
               contentFit="contain"
               contentPosition={BANNER_CONTENT_POSITION}
-              style={styles.inventoryBannerImage}
+              style={[styles.inventoryBannerImage, isRTLLayout && styles.inventoryBannerImageRTL]}
             />
             <Box gap={4} style={styles.inventoryBannerContent}>
               <Box gap={0}>
@@ -140,6 +143,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     height: BANNER_HEIGHT * BANNER_WIDE_HEIGHT_MULTIPLIER,
     top: (BANNER_HEIGHT * (1 - BANNER_WIDE_HEIGHT_MULTIPLIER)) / 2,
+  },
+  inventoryBannerImageRTL: {
+    transform: [{ rotate: "180deg" }],
   },
   inventoryBannerBackground: {
     backgroundColor: "#FFD600",
