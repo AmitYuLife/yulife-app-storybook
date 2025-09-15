@@ -1,5 +1,5 @@
 import { Box, TextTemplate } from "@atoms";
-import { ChevronIcon } from "@atoms/icon/chevron-icon";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { usePressEffect } from "@hooks";
 import { Colours } from "@styles";
 import { memo } from "react";
@@ -30,7 +30,7 @@ const BattlePassLeaderboardHeaderFilterButton = ({ label, onPress }: IBattlePass
         <TextTemplate numberOfLines={1} type="b2b">
           {label}
         </TextTemplate>
-        <ChevronIcon size={22} direction="bottom" color={Colours.neutral.n800} />
+        <ArrowIcon size={22} direction="down" color={Colours.neutral.n800} />
       </Box>
     </Pressable>
   );

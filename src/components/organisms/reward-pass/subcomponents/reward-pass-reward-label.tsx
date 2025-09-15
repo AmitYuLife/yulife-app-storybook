@@ -1,6 +1,6 @@
 import { Box, RawImage, TextTemplate } from "@atoms";
 import { IBoxProps } from "@atoms/box/box.types";
-import { ChevronIcon } from "@atoms/icon/chevron-icon";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { REWARD_STORE_TEASER } from "@ids";
 import { Style, StyleSheet } from "@styles";
 
@@ -20,7 +20,7 @@ export const RewardPassRewardLabel = ({ label, iconUrl, ...props }: IRewardPassR
         {label}
       </TextTemplate>
 
-      <ChevronIcon color="white" size={20} />
+      <ArrowIcon color="white" size={20} />
     </Box>
   );
 };

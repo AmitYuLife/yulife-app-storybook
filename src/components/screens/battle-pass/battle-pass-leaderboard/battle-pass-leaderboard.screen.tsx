@@ -4,7 +4,7 @@ import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { GenericHeadingPad, LeaderboardFloatingRank, ListItem, TopBarAbsolute } from "@organisms";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, NAV_BAR, Style, StyleSheet } from "@styles";
-import { ChevronIcon } from "@atoms/icon/chevron-icon";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { ISocialGroupLeaderboardListItem } from "@components/screens/member/leaderboard/leaderboard-list-item";
@@ -143,7 +143,7 @@ const BattlePassLeaderboardScreen = ({
                   <TextTemplate type="l2">{details.rewardInfo.description}</TextTemplate>
                 </View>
                 <View style={styles.detailsIcon}>
-                  <ChevronIcon size={22} />
+                  <ArrowIcon size={22} />
                 </View>
               </View>
               <View style={styles.detailsImage}>

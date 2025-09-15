@@ -1,5 +1,5 @@
 import { Box, Image, SkeletonLoading, TextTemplate } from "@atoms";
-import { ChevronIcon } from "@atoms/icon/chevron-icon";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { Pressable } from "@components/molecules";
 import { IPressableProps } from "@components/molecules/pressable/pressable";
 import { REWARD_ITEM } from "@ids";
@@ -48,7 +48,7 @@ const RewardSearchListItem = ({ label, imageUrl, isLoading, onPress, ...props }:
           </>
         )}
       </Box>
-      {!isLoading ? <ChevronIcon /> : null}
+      {!isLoading ? <ArrowIcon /> : null}
     </Pressable>
   );
 };

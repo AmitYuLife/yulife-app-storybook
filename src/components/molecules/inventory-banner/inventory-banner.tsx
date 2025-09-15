@@ -1,7 +1,6 @@
 import { Box, TextTemplate } from "@atoms";
 import { Colours, Style, StyleSheet } from "@styles";
 import { Pressable, View } from "react-native";
-import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { usePressedInWithDelay, useTranslation } from "@hooks";
 import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
@@ -9,6 +8,7 @@ import { memo } from "react";
 import LottieView from "../lottie-view/lottie-view";
 import { usePressEffect } from "../../../hooks/usePressEffect";
 import { INVENTORY_BANNER, INVENTORY_BANNER_ITEM_COUNT } from "@ids";
+import { ArrowIcon } from "@atoms/icon/arrow";
 
 const BANNER_IMAGE = require("./inventory-banner-icon.webp");
 const BANNER_BACKGROUND = require("./inventory-banner-background.webp");
@@ -72,7 +72,7 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
                 </TextTemplate>
               </Box>
               <View style={styles.chevronContainer}>
-                <ChevronIcon size={22} />
+                <ArrowIcon size={22} />
               </View>
             </Box>
           </View>
