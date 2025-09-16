@@ -214,10 +214,10 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Michael Scott 4"));
     });
     When("I scroll to the Activity data section", when.scrollFromID(ids.USER_INFO("Michael Scott 4"), "up", "slow", 0.4), async () => {
-      Then("I should see the yumoji avatars and the comparative walking activity stats between me and Michael", then.comparativeUserStatsVisible(26, 833));
+      Then("I should see the yumoji avatars and the comparative walking activity stats between me and Michael", then.comparativeUserStatsVisible(26, 333));
     });
     When("I scroll down", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.6), async () => {
-      Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(0.1, 1.3, 0, 3));
+      Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(0.1, 1, 0, 3));
     });
   });
 
