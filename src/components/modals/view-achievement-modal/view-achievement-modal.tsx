@@ -53,7 +53,10 @@ const ViewAchievementModal = ({
   const currentUserId = useSelector(getCurrentUserId);
   const sudokuState = useSelector(getSudokuState);
   const insets = useSafeAreaInsets();
-  const showSudokuStats = useMemo(() => !progress && status === AchievementStatus.locked, [progress, status]);
+  const showSudokuStats = useMemo(
+    () => !progress && status === AchievementStatus.locked && !isInspectingUser,
+    [progress, status, isInspectingUser]
+  );
 
   const { data } = useQuery(gql("GetSudokuBoardDocument"), {
     fetchPolicy: "no-cache",
