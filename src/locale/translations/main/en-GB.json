@@ -1723,9 +1723,7 @@
       "won_reward": "You've won %{reward}!"
     },
     "reward_info": {
-      "got_it": "Got it",
-      "unlock_multiple_rewards": "Spend YuCoin to unlock a reward",
-      "unlock_reward": "Spend YuCoin to unlock this reward!"
+      "got_it": "Got it"
     },
     "step_feedback": {
       "next": "Next"

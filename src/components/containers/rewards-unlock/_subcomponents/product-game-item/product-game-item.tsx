@@ -2,7 +2,7 @@ import { Box, Image } from "@atoms";
 import { GlowStarsIcon } from "@atoms/icon/glow-stars";
 import { ContentItemWrapper } from "@components/sdui";
 import { BattlePassList } from "@organisms";
-import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ComponentProps, memo } from "react";
 import { ProductGameItemProgress } from "./progress";
 import { ImageOverlay } from "./image-overlay";
@@ -10,7 +10,6 @@ import { Header } from "./header";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { useNavigation } from "@navigation/navigation.context";
-import { Markdown } from "@components/molecules";
 import { useScrollToItem } from "@hooks";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 
@@ -115,13 +114,6 @@ function mapRewardItemToBattlePassListItem(componentId: string) {
       detailsTitle: gameRewardItem.detailsTitle,
       tickColour: gameRewardItem.tickColour,
       rewardLevelComponent: <Box position="absolute" />,
-      rewardSubtitleComponent: !gameRewardItem.subtitle ? (
-        <Box position="absolute" />
-      ) : (
-        <Box px={32}>
-          <Markdown markdownStyles={markdownStyles} text={gameRewardItem.subtitle} />
-        </Box>
-      ),
       icon: {
         ...gameRewardItem.icon,
         height: 58,
@@ -142,10 +134,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(16),
   },
 });
-
-const markdownStyles = {
-  text: {
-    ...templateTextStyles.b2,
-    color: Colours.neutral.n900,
-  },
-};

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -22,7 +23,7 @@ export type ApiConfig = {
   intercom: ApiConfigIntercom;
   language: Scalars["String"]["output"];
   leanplum: ApiConfigLeanplum;
-  mixpanelHost: Scalars["String"]["output"];
+  mixpanelBaseUrl: Scalars["String"]["output"];
   mixpanelKey: Scalars["String"]["output"];
   recaptchaSiteKey?: Maybe<Scalars["String"]["output"]>;
   sduiJourney: ApiConfigSduiJourney;
@@ -370,6 +371,26 @@ export type AssignTeamPerkInput = {
   perkId: Scalars["String"]["input"];
   purchaseOrderNumber: Scalars["String"]["input"];
   yuStoreCreditRedeemed?: InputMaybe<Scalars["Float"]["input"]>;
+};
+
+export type AutoAssignmentRule = {
+  __typename?: "AutoAssignmentRule";
+  archived: Scalars["Boolean"]["output"];
+  businessProductCategoryId: Scalars["String"]["output"];
+  businessProductId: Scalars["String"]["output"];
+  enabled: Scalars["Boolean"]["output"];
+  matchOn: Array<SearchQuery>;
+  priority: Scalars["Int"]["output"];
+  ruleSetId: Scalars["ID"]["output"];
+  ruleType: Scalars["String"]["output"];
+  source: Scalars["String"]["output"];
+};
+
+export type AutoAssignmentRules = {
+  __typename?: "AutoAssignmentRules";
+  ruleSetId: Scalars["ID"]["output"];
+  ruleType: Scalars["String"]["output"];
+  rules: Array<AutoAssignmentRule>;
 };
 
 export type AvailablePerk = {
@@ -1024,22 +1045,28 @@ export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
   __typename?: "BusinessSurveyCampaign";
   archivedAt?: Maybe<Scalars["String"]["output"]>;
   campaignName: Scalars["String"]["output"];
+  completedSurveys: Scalars["Int"]["output"];
   createdAt: Scalars["String"]["output"];
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
+  isValidForNpsAggregation: Scalars["Boolean"]["output"];
   publishedAt?: Maybe<Scalars["String"]["output"]>;
   status: BusinessSurveyCampaignStatus;
   steps: Array<BusinessSurveyStep>;
+  totalSurveys: Scalars["Int"]["output"];
 };
 
 export type BusinessSurveyCampaignBase = {
   archivedAt?: Maybe<Scalars["String"]["output"]>;
   campaignName: Scalars["String"]["output"];
+  completedSurveys: Scalars["Int"]["output"];
   createdAt: Scalars["String"]["output"];
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
+  isValidForNpsAggregation: Scalars["Boolean"]["output"];
   publishedAt?: Maybe<Scalars["String"]["output"]>;
   status: BusinessSurveyCampaignStatus;
+  totalSurveys: Scalars["Int"]["output"];
 };
 
 export type BusinessSurveyCampaignParticipants = {
@@ -1066,11 +1093,14 @@ export type BusinessSurveyCampaignSearchResultsEntry = BusinessSurveyCampaignBas
   __typename?: "BusinessSurveyCampaignSearchResultsEntry";
   archivedAt?: Maybe<Scalars["String"]["output"]>;
   campaignName: Scalars["String"]["output"];
+  completedSurveys: Scalars["Int"]["output"];
   createdAt: Scalars["String"]["output"];
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
+  isValidForNpsAggregation: Scalars["Boolean"]["output"];
   publishedAt?: Maybe<Scalars["String"]["output"]>;
   status: BusinessSurveyCampaignStatus;
+  totalSurveys: Scalars["Int"]["output"];
 };
 
 export enum BusinessSurveyCampaignStatus {
@@ -1078,6 +1108,13 @@ export enum BusinessSurveyCampaignStatus {
   Draft = "draft",
   Live = "live",
 }
+
+export type BusinessSurveyLaunchPlanInput = {
+  endLocalDate: Scalars["String"]["input"];
+  hasLaunchEmailReminders: Scalars["Boolean"]["input"];
+  launchEmailBody: Scalars["String"]["input"];
+  launchEmailSubjectLine: Scalars["String"]["input"];
+};
 
 export type BusinessSurveyPreset = {
   __typename?: "BusinessSurveyPreset";
@@ -5429,6 +5466,7 @@ export type MobileGameBattlePassReward = {
   position: Scalars["Int"]["output"];
   rewardId?: Maybe<Scalars["String"]["output"]>;
   status: GoalRewardStatus;
+  /** @deprecated Not used anywhere */
   subtitle?: Maybe<Scalars["String"]["output"]>;
   teaser?: Maybe<MobileGameBattlePassRewardTeaser>;
   tickColour?: Maybe<Scalars["String"]["output"]>;
@@ -5440,6 +5478,7 @@ export type MobileGameBattlePassRewardInfo = {
   __typename?: "MobileGameBattlePassRewardInfo";
   explanations?: Maybe<Array<MobileGameBattlePassRewardInfoExplanation>>;
   possibleItems?: Maybe<Array<MobileGameBattlePassRewardInfoItem>>;
+  subtitle?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type MobileGameBattlePassRewardInfoExplanation = {
@@ -6043,6 +6082,7 @@ export type Mutation = {
   addDeviceToken?: Maybe<DeviceResponse>;
   addEmployeeRecognitionCampaignRecipients: Scalars["Boolean"]["output"];
   addUserFeedback?: Maybe<AddUserFeedbackResponse>;
+  archiveBusinessSurveyCampaign: Scalars["Boolean"]["output"];
   archiveBusinessTag: Scalars["ID"]["output"];
   archiveWellbeingHubCategory: Scalars["Boolean"]["output"];
   assignProductToTeamMember: AssignProductToTeamMemberResult;
@@ -6110,6 +6150,7 @@ export type Mutation = {
   disconnectHris: Scalars["Boolean"]["output"];
   disconnectMessagingConnection: Scalars["Boolean"]["output"];
   dismissPeopleWelcomeModal?: Maybe<Scalars["Boolean"]["output"]>;
+  duplicateBusinessSurveyCampaign: Scalars["ID"]["output"];
   enable2FA: Scalars["Boolean"]["output"];
   /** Allows the current user to equip an item */
   equipItem?: Maybe<EquipItemResponse>;
@@ -6228,6 +6269,7 @@ export type Mutation = {
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
   updateBeneficiaryForProduct: CustomerProductBeneficiaries;
   updateBusinessSurveyCampaign: BusinessSurveyCampaign;
+  updateBusinessSurveyCampaignLaunchPlan: Scalars["Boolean"]["output"];
   updateBusinessSurveyCampaignName: Scalars["Boolean"]["output"];
   updateBusinessSurveyCampaignParticipants: BusinessSurveyCampaignParticipants;
   updateBusinessTag: Scalars["Boolean"]["output"];
@@ -6297,6 +6339,10 @@ export type MutationAddUserFeedbackArgs = {
   comment?: InputMaybe<Scalars["String"]["input"]>;
   metric?: InputMaybe<Metric>;
   rating: Scalars["Int"]["input"];
+};
+
+export type MutationArchiveBusinessSurveyCampaignArgs = {
+  campaignId: Scalars["ID"]["input"];
 };
 
 export type MutationArchiveBusinessTagArgs = {
@@ -6556,6 +6602,10 @@ export type MutationDisconnectHrisArgs = {
 
 export type MutationDisconnectMessagingConnectionArgs = {
   connectionId: Scalars["String"]["input"];
+};
+
+export type MutationDuplicateBusinessSurveyCampaignArgs = {
+  campaignId: Scalars["ID"]["input"];
 };
 
 export type MutationEnable2FaArgs = {
@@ -7014,6 +7064,11 @@ export type MutationUpdateBeneficiaryForProductArgs = {
 export type MutationUpdateBusinessSurveyCampaignArgs = {
   campaign: UpdateBusinessSurveyCampaignInput;
   campaignId: Scalars["ID"]["input"];
+};
+
+export type MutationUpdateBusinessSurveyCampaignLaunchPlanArgs = {
+  campaignId: Scalars["ID"]["input"];
+  launchPlan: BusinessSurveyLaunchPlanInput;
 };
 
 export type MutationUpdateBusinessSurveyCampaignNameArgs = {
@@ -7602,6 +7657,7 @@ export type Query = {
   getBusinessPerks: GetBusinessPerksResponse;
   getBusinessSession: BusinessSession;
   getBusinessSurveyCampaign?: Maybe<BusinessSurveyCampaign>;
+  getBusinessSurveyCampaignParticipants: BusinessSurveyCampaignParticipants;
   getBusinessSurveyCampaigns: BusinessSurveyCampaignSearchResults;
   getBusinessSurveyPresets: Array<BusinessSurveyPreset>;
   getBusinessTag: BusinessTag;
@@ -7982,6 +8038,11 @@ export type QueryGetBusinessPerksArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetBusinessSurveyCampaignArgs = {
+  campaignId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBusinessSurveyCampaignParticipantsArgs = {
   campaignId: Scalars["ID"]["input"];
 };
 
@@ -10096,6 +10157,7 @@ export type TeamProductCategory = {
 
 export type TeamProductInformation = {
   __typename?: "TeamProductInformation";
+  autoAssignmentRules: Array<AutoAssignmentRules>;
   categories: Array<TeamProductInformationCategory>;
   displayName: Scalars["String"]["output"];
   perks: Array<TeamProductInformationPerk>;
@@ -12112,7 +12174,6 @@ export type MobileGameBattlePassFragment = {
     position: number;
     status: GoalRewardStatus;
     title: string;
-    subtitle?: string | null;
     detailsTitle?: string | null;
     titleColour?: string | null;
     backgroundColour: string;
@@ -12266,6 +12327,7 @@ export type MobileGameBattlePassChestPrizeFragment = {
 
 export type MobileGameBattlePassRewardInfoFragment = {
   __typename?: "MobileGameBattlePassRewardInfo";
+  subtitle?: string | null;
   explanations?: Array<{
     __typename?: "MobileGameBattlePassRewardInfoExplanation";
     label: string;
@@ -12295,7 +12357,6 @@ export type MobileGameBattlePassRewardFragment = {
   position: number;
   status: GoalRewardStatus;
   title: string;
-  subtitle?: string | null;
   detailsTitle?: string | null;
   titleColour?: string | null;
   backgroundColour: string;
@@ -21107,7 +21168,6 @@ export type ClaimMobileGameBattlePassChestPrizesMutation = {
       position: number;
       status: GoalRewardStatus;
       title: string;
-      subtitle?: string | null;
       detailsTitle?: string | null;
       titleColour?: string | null;
       backgroundColour: string;
@@ -21145,7 +21205,6 @@ export type ClaimMobileGameBattlePassRewardsMutation = {
     position: number;
     status: GoalRewardStatus;
     title: string;
-    subtitle?: string | null;
     detailsTitle?: string | null;
     titleColour?: string | null;
     backgroundColour: string;
@@ -21197,7 +21256,6 @@ export type CompleteMobileGameBattlePassSeasonMutation = {
       position: number;
       status: GoalRewardStatus;
       title: string;
-      subtitle?: string | null;
       detailsTitle?: string | null;
       titleColour?: string | null;
       backgroundColour: string;
@@ -21356,7 +21414,6 @@ export type GetMobileGameBattlePassQuery = {
       position: number;
       status: GoalRewardStatus;
       title: string;
-      subtitle?: string | null;
       detailsTitle?: string | null;
       titleColour?: string | null;
       backgroundColour: string;
@@ -21470,7 +21527,6 @@ export type GetMobileGameBattlePassFullQuery = {
       position: number;
       status: GoalRewardStatus;
       title: string;
-      subtitle?: string | null;
       detailsTitle?: string | null;
       titleColour?: string | null;
       backgroundColour: string;
@@ -21549,6 +21605,7 @@ export type GetMobileGameBattlePassRewardInfoQuery = {
   __typename?: "Query";
   rewardInfo: {
     __typename?: "MobileGameBattlePassRewardInfo";
+    subtitle?: string | null;
     explanations?: Array<{
       __typename?: "MobileGameBattlePassRewardInfoExplanation";
       label: string;
@@ -21687,7 +21744,6 @@ export type SubmitMobileGameBattlePassDonationsMutation = {
       position: number;
       status: GoalRewardStatus;
       title: string;
-      subtitle?: string | null;
       detailsTitle?: string | null;
       titleColour?: string | null;
       backgroundColour: string;
@@ -29059,7 +29115,6 @@ export type GetMobileUnlockableBattlePassVouchersQuery = {
         position: number;
         status: GoalRewardStatus;
         title: string;
-        subtitle?: string | null;
         detailsTitle?: string | null;
         titleColour?: string | null;
         backgroundColour: string;
@@ -41330,7 +41385,6 @@ export const MobileGameBattlePassRewardFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -41563,7 +41617,6 @@ export const MobileGameBattlePassFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -42043,6 +42096,7 @@ export const MobileGameBattlePassRewardInfoFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "explanations" },
@@ -65491,7 +65545,6 @@ export const ClaimMobileGameBattlePassChestPrizesDocument = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -65665,7 +65718,6 @@ export const ClaimMobileGameBattlePassRewardsDocument = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -65881,7 +65933,6 @@ export const CompleteMobileGameBattlePassSeasonDocument = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -66469,7 +66520,6 @@ export const GetMobileGameBattlePassDocument = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -66860,7 +66910,6 @@ export const GetMobileGameBattlePassFullDocument = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -67129,6 +67178,7 @@ export const GetMobileGameBattlePassRewardInfoDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "explanations" },
@@ -67619,7 +67669,6 @@ export const SubmitMobileGameBattlePassDonationsDocument = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -81764,7 +81813,6 @@ export const GetMobileUnlockableBattlePassVouchersDocument = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
