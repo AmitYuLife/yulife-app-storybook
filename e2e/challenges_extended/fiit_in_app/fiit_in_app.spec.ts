@@ -91,11 +91,11 @@ Feature("Fiit in app", async () => {
     When("I pause the video", when.pauseVideo(true), async () => {
       Then("I can see the video is paused", then.isVideoPaused(true));
     });
-    When("I tap the close button to quit the challenge part way through", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 3000), async () => {
+    When("I tap the close button to quit the challenge part way through", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 1000), async () => {
       Then("I should see the quit challenge confirmation screen", then.isOnQuitChallengeScreen);
     });
     When("I return to the challenge", when.closeQuitChallengeScreen, async () => {
-      When("I tap the close button again", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 1500), async () => {
+      When("I tap the close button again", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 1000), async () => {
         Then("I should see the quit challenge confirmation screen", then.isOnQuitChallengeScreen);
       });
     });

@@ -306,12 +306,12 @@ export const completeMeditopiaContentSession = async () => {
     await idVisible(ids.VIDEO_PLAYER)();
     await idVisible(ids.VIDEO_LOGO)();
     await idVisible(ids.VIDEO_PLAYER_TIMER)();
-    await idVisible(ids.VIDEO_PROGRESS_BAR)();
+    await idVisible(ids.VIDEO_PROGRESS_BAR, 2000)();
     await idVisible(ids.VIDEO_PLAY_PAUSE_BUTTON(false))();
   }
   await idVisible(ids.VIDEO_PLAYER)();
   await idVisible(ids.VIDEO_LOGO)();
-  await idVisible(ids.VIDEO_PLAYER_TIMER)();
+  await idVisible(ids.VIDEO_PLAYER_TIMER, 2000)();
   await idVisible(ids.VIDEO_PROGRESS_BAR)();
   await idVisible(ids.VIDEO_PLAY_PAUSE_BUTTON(false))();
   await wait(20000)();
@@ -446,7 +446,7 @@ export const tapMeditopiaContentCard = (mins1: string, yuCoin1: string) => async
 };
 
 export const exitChallenge = async () => {
-  await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"), 2000);
+  await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"), 1000);
 };
 
 export const canSeeNewChallengePage =

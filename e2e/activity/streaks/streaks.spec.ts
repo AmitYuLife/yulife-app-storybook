@@ -44,8 +44,8 @@ Feature("As a user I can use the streaks functionality", async () => {
       });
       When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
         Then("I should see 1/5 streaks", then.idVisible(ids.STREAKS_BUTTON_LABEL("1/5"), 2000));
-        Then("I should see the amount of yucoin I earned today", then.textVisible(`240 ${t("YuCoin")} ${t("today")}`));
-        Then("I should see the number of steps I walked today", then.idVisible(ids.STEPS_COUNT(400)));
+        Then("I should see the amount of yucoin I earned today", then.textVisible(`240 ${t("YuCoin")} ${t("today")}`, 1500));
+        Then("I should see the number of steps I walked today", then.idVisible(ids.STEPS_COUNT(400), 200));
       });
       When("I tap '1/5", when.tapID(ids.STREAKS_BUTTON_LABEL("1/5")), async () => {
         Then("I should see the completed modal again", then.completedTodayStreakCopyVisible(1));
