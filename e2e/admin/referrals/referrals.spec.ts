@@ -118,7 +118,7 @@ Feature("Referrals work as intended", async () => {
       Then("I should see the empty referral history", then.textVisible(noReferralsMessage));
     });
     When("I scroll back to the top", when.scrollFromID(ids.REFERRALS_QR_CODE, "down", "fast"), async () => {
-      When("I change the selected business to 'Justice League' using the dropdown", when.changeReferralSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name), async () => {
+      When("I change the selected business to 'Justice League' using the dropdown", when.changeReferralSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name, 3000), async () => {
         Then("I should see that my currently selected referral company has changed to 'Justice League'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name)));
         Then("I should see the updated voucher code title", then.idVisible(ids.VOUCHER_CODE_TITLE(`Share your link with a ${data.BUSINESS_ACCOUNT_4.data.business_account_name} colleague!`)));
         Then("I should see the correct voucher code for this business", then.idVisible(ids.VOUCHER_CODE("mylink.develop.yulife.engineering/UK-T3ST-CU14")));
@@ -150,7 +150,7 @@ Feature("Referrals work as intended", async () => {
     When("I reload app", when.reloadOnly, async () => {
       When("I go to the menu page", when.tapID(ids.MENU_ICON), async () => {
         When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("同僚を招待する")), async () => {
-          When("I change the selected business to 'Justice League' using the dropdown", when.changeReferralSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name), async () => {
+          When("I change the selected business to 'Justice League' using the dropdown", when.changeReferralSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name, 3000), async () => {
             Then("I should see that my currently selected referral company has changed to 'Justice League'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name)));
           });
         });

@@ -9,30 +9,36 @@ import { expect } from "detox";
 import moment from "moment";
 
 export const scrollFromText =
-  (text: string, direction: any, speed: any, percentage?: any) => async () => {
+  (text: string, direction: any, speed: any, percentage?: any, waitTime = 1000) =>
+  async () => {
     const target = element(by.text(text));
     await target.swipe(direction, speed, percentage);
+    await wait(waitTime)();
   };
 
 export const scrollFromID =
-  (id: string, direction: any, speed: any, percentage?: any) => async () => {
+  (id: string, direction: any, speed: any, percentage?: any, waitTime = 1000) =>
+  async () => {
     const target = element(by.id(id));
     await target.swipe(direction, speed, percentage);
+    await wait(waitTime)();
   };
 
 export const swipeFromIDAtIndex =
-  (id: string, index: number, direction: any, speed: any, percentage?: any) => async () => {
+  (id: string, index: number, direction: any, speed: any, percentage?: any, waitTime = 1000) =>
+  async () => {
     const target = element(by.id(id)).atIndex(index);
     await target.swipe(direction, speed, percentage);
+    await wait(waitTime)();
   };
 
 export const swipeFromText =
-  (text: string, direction: any, speed: any, percentage?: any, waitTime?: number) => async () => {
-    if (waitTime) {
-      await wait(waitTime)();
-    }
+  (text: string, direction: any, speed: any, percentage?: any, waitTime = 1000) =>
+  async () => {
+    await wait(waitTime)();
     const target = element(by.text(text));
     await target.swipe(direction, speed, percentage);
+    await wait(waitTime)();
   };
 
 export const scrollFromIDMultiple =
