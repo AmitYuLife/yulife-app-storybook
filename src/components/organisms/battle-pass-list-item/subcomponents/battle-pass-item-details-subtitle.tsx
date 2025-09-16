@@ -1,8 +1,7 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { Box, TextTemplate } from "@atoms";
-import { t } from "@locale";
 import { ITEM_DETAILS_SUBTITLE } from "@ids";
 
 interface IBattlePassItemSubtitleContainer {
@@ -15,15 +14,9 @@ const BattlePassItemSubtitleContainer = ({ milestoneId }: IBattlePassItemSubtitl
     fetchPolicy: "cache-only", // Cache only, details container will query this for us
   });
 
-  const subtitle = useMemo(() => {
-    if (explanation?.rewardInfo?.possibleItems?.length) {
-      return t("modals.reward_info.unlock_multiple_rewards");
-    }
+  const subtitle = explanation?.rewardInfo?.subtitle;
 
-    return t("modals.reward_info.unlock_reward");
-  }, [explanation?.rewardInfo?.possibleItems]);
-
-  if (loading) {
+  if (!subtitle || loading) {
     return null;
   }
 

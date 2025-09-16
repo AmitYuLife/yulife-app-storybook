@@ -40,7 +40,6 @@ export interface IBattlePassListItem {
     iconSize: number;
   };
   title: string;
-  subtitle?: string;
   position: number;
   titleColour?: string;
   buttonLabel?: string;

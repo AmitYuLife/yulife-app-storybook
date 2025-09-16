@@ -1,4 +1,5 @@
 fragment MobileGameBattlePassRewardInfo on MobileGameBattlePassRewardInfo {
+  subtitle
   explanations {
     icon {
       ...RemoteImage
