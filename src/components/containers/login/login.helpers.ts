@@ -31,7 +31,7 @@ export const applyLoginSession = async (
     fetchPolicy: "no-cache",
   });
 
-  if (response?.data?.config?.mixpanelKey) {
+  if (response?.data?.config?.__typename) {
     await regionService.setConfig(response.data.config);
   }
 

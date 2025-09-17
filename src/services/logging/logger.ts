@@ -34,8 +34,9 @@ class LoggerInstance {
   public init = async () => {
     if (!this.initialised) {
       const mixpanelKey = region.getConfig("mixpanelKey");
+      const baseUrl = region.getConfig("mixpanelBaseUrl");
       this.mixpanel = new Mixpanel(mixpanelKey, false, false);
-      await this.mixpanel.init();
+      await this.mixpanel.init(undefined, undefined, baseUrl);
       this.leanplum = new LeanplumClient();
       this.initialised = true;
     }

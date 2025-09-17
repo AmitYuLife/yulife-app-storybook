@@ -22402,6 +22402,7 @@ export type GetPublicYuApiConfigQuery = {
     language: string;
     stripeKey: string;
     mixpanelKey: string;
+    mixpanelBaseUrl: string;
     enabledCaptchaProviders?: Array<string | null> | null;
     hcaptchaSiteKey?: string | null;
     sessionTimeout: number;
@@ -69815,6 +69816,7 @@ export const GetPublicYuApiConfigDocument = {
                 { kind: "Field", name: { kind: "Name", value: "language" } },
                 { kind: "Field", name: { kind: "Name", value: "stripeKey" } },
                 { kind: "Field", name: { kind: "Name", value: "mixpanelKey" } },
+                { kind: "Field", name: { kind: "Name", value: "mixpanelBaseUrl" } },
                 { kind: "Field", name: { kind: "Name", value: "enabledCaptchaProviders" } },
                 { kind: "Field", name: { kind: "Name", value: "hcaptchaSiteKey" } },
                 {

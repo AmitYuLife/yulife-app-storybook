@@ -3,6 +3,7 @@ query GetPublicYuAPIConfig {
     language
     stripeKey
     mixpanelKey
+    mixpanelBaseUrl
     enabledCaptchaProviders
     hcaptchaSiteKey
     urls {

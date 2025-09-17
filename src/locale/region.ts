@@ -12,6 +12,7 @@ type RegionConfig = {
   language: string;
   stripeKey: string;
   mixpanelKey: string;
+  mixpanelBaseUrl: string;
   enabledCaptchaProviders?: string[];
   hcaptchaSiteKey?: string;
   urls: {
