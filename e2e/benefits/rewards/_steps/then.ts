@@ -14,7 +14,6 @@ export const {
 
 export const {
   rewardVisible,
-  onRewardScreen,
   lockedRewardVisible,
   rewardDenominationsVisible,
   denominationListVisible,

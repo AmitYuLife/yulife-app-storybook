@@ -63,16 +63,6 @@ export const tapRewardInList = (reward: any) => async () => {
   await rewardItem.tap();
 };
 
-export const onRewardScreen = (reward: any) => async () => {
-  const name = reward.data.name;
-  const description = reward.data.description;
-  const minValue = reward.data.availableDenominations[0].value;
-  const minYucoin = reward.data.availableDenominations[0].yuCoin;
-
-  const rewardItem = REWARD_ITEM(reward.data._id);
-  const rewardTitle = `£${minValue} ${name} for ${minYucoin} YuCoins`;
-};
-
 export const onSpecialRewardScreen = (reward: any, type: rewardType) => async () => {
   const description = reward.data.description;
 
