@@ -20,7 +20,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see the John Lewis Reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
     });
     When("I tap on the John Lewis reward", when.tapRewardInList(data.CORE_REWARDS_JOHN_LEWIS), async () => {
-      Then("I should be on the reward page", then.textVisible("To redeem John Lewis:", 2500)); //onRewardScreen(data.CORE_REWARDS_JOHN_LEWIS))
+      Then("I should be on the reward page", then.textVisible("To redeem John Lewis:", 2500));
     });
     When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "fast"), async () => {
       Then("I should see the Buy voucher with YuCoin button", then.textVisible("Buy voucher with YuCoin"));
@@ -73,7 +73,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON));
     });
     When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
-      Then("I should be on the Amazon reward page", then.onRewardScreen(data.CORE_REWARDS_AMAZON));
+      Then("I should be on the Amazon reward page", then.idVisible(`${data.CORE_REWARDS_AMAZON.data._id}_description`));
     });
     When("I scroll to the bottom of the page", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast"), async () => {
       When("I tap the button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
@@ -283,7 +283,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see the 'Hobbycraft' reward from Tillo", then.rewardVisible(data.CORE_REWARDS_HOBBYCRAFT));
     });
     When("I click on the 'Hobbycraft' card", when.tapRewardInList(data.CORE_REWARDS_HOBBYCRAFT), async () => {
-      Then("I should see the 'Hobbycraft' reward page", then.onRewardScreen(data.CORE_REWARDS_HOBBYCRAFT));
+      Then("I should see the 'Hobbycraft' reward page", then.idVisible(`${data.CORE_REWARDS_HOBBYCRAFT.data._id}_description`));
     });
     When("I click on the 'Buy voucher with YuCoin' button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin", false)), async () => {
       Then("I should see the denominations modal", then.denominationListVisible(data.CORE_REWARDS_HOBBYCRAFT, 5200));
@@ -305,7 +305,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(25200)));
     });
     When("I click on the 'MTN' reward", when.tapRewardInList(data.CORE_REWARDS_MTN), async () => {
-      Then("I should see the 'MTN' reward page", then.onRewardScreen(data.CORE_REWARDS_MTN));
+      Then("I should see the 'MTN' reward page", then.idVisible(`${data.CORE_REWARDS_MTN.data._id}_description`));
     });
     When("I click on the 'Claim Reward' button", when.tapID(ids.BUTTON_BASE("Claim Reward", false)), async () => {
       When("I click on 'Monthly 120MB Data' denomination", when.tapID(ids.TEXT_TEMPLATE("Monthly 120MB Data - 815 YuCoin", undefined)), async () => {
@@ -320,7 +320,7 @@ Feature("Rewards should act correctly", async () => {
     When("I close the claim modal", when.tapID(ids.SCREEN_CLOSE), async () => {
       When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
         When("I click on the 'Checkers' reward", when.tapRewardInList(data.CORE_REWARDS_CHECKERS), async () => {
-          Then("I should see the 'Checkers' reward page", then.onRewardScreen(data.CORE_REWARDS_CHECKERS));
+          Then("I should see the 'Checkers' reward page", then.idVisible(`${data.CORE_REWARDS_CHECKERS.data._id}_description`));
         });
       });
     });

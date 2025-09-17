@@ -14,8 +14,6 @@ export const {
   multipleTextVisible,
 } = navigation.common;
 
-export const { onRewardScreen } = screens.rewards;
-
 export const { swipeToID } = navigation.scrolling;
 
 export { rewardScreenVisible, given200coins } from "../../login_and_routing/_steps/then";
