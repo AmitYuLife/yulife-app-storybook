@@ -19,6 +19,7 @@ import NoStoreWalletButton from "@components/screens/member/rewards/list/subcomp
 import { isAndroid } from "@utils";
 import { useMutation } from "@apollo/client";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { REWARDS_UNLOCK_SCROLL } from "@ids";
 
 const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPressWallet }: IRewardContainerProps) => {
   const { componentId } = useNavigation();
@@ -120,6 +121,7 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
           onScroll={onScroll}
+          testID={REWARDS_UNLOCK_SCROLL}
         >
           <Box>
             <Box bg={data.header.background.color} pt={topPadding} disableAutoAdjust={true}>
