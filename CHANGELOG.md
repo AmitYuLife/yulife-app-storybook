@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.81.0] - 2025-09-17
+
+### Bugfixes
+
+- Bugfix CTE-402: navigation animations
+- Bugfix GS-1934: Dont show progress bar on yudoku seconds achievement
+- Bugfix GS-1930: ContentItemScrollPicker component not working on android devices
+
+### Tasks
+
+- Task GS-1947: Use onLeftIconPress instead of onRightIconPress on inspect screen
+- Task DEVOPS-4251: iOS Detox build
+- Task GS-1936: Hide achievement progress when inspecting a user
+- Task GS-1900: Update copy and components on reward passes
+- Task GS-1933: Add personal best to Zenith of the mind achievement
+- Task CTE-360: challenge tile arrow RTL
+- Task CTE-360: inventory banner RTL
+- Revert "Merge branch 'task/devops-4251' into 'develop'"
+- Task DEVOPS-4251: iOS Detox build
+- Task CTE-360: name level mini avatar component for RTL
+- Task GS-1932: Add infobox if user has enough data to unlock an achievement but...
+- Task GS-1928: Pathways reflect action
+
+### Chores
+
+- chore: DEVOPS-4298: Update assume-aws-role-with-web-identity version to 2.0.0
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox NVS-1662: Purge assertion helper with no assertions `onRewardScreen`
+- Detox NVS-1658: Fix Prevention Pass FAQ scrolling assertions
+- Resolve CTE-412
+- ISA-3737: Added waits to fix flaky scroll events
+- Detox: Update Challenges Await Times
+- Purge CTE-360: chevron icon
+- CTE-402: invert push and pop animation for RTL
+- CTE-410: fix podlock
+- CTE-410: Upgrade mixpanel to latest SDK
+- Detox NVS-1640: Stabilize HealthQuestionnaire scroll actions
+- Detox: Challenge Cancel
+- NVS-1641: Include ID in MaximiseYuSectionContentScrollItem fragment
+- Detox NVS-1639: Stabilize passive activity scenario
+
 ## [4.80.0] - 2025-09-10
 
 ### Tasks
