@@ -4,11 +4,10 @@ include:
     ref: main
     file:
       - "shared-gitlab-config/generic-node.yml"
-  - component: $CI_SERVER_FQDN/yu-life/infrastructure/yulife-devops-shared-config/assume-aws-role-with-web-identity@assume-aws-role-with-web-identity-1.1.0
+  - component: $CI_SERVER_FQDN/yu-life/infrastructure/yulife-devops-shared-config/assume-aws-role-with-web-identity@assume-aws-role-with-web-identity-2.0.0
     inputs:
       job_name: assume-aws-role-with-web-identity:uk-dev:app-components
       role_arn: $UK_DEV_APP_COMPONENTS_ROLE_ARN
-      yu_ci_tools_binary_architecture: linux-arm64
 
 variables:
   UK_DEV_AWS_ACCOUNT_ID: 846880112034
