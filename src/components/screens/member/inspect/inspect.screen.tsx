@@ -176,7 +176,7 @@ const InspectScreen = ({
         </Box>
       </ScrollView>
 
-      <GenericHeadingAbsolute logo="yulife" onRightIconPress={onClose} />
+      <GenericHeadingAbsolute logo="yulife" onLeftIconPress={onClose} />
     </View>
   );
 };
