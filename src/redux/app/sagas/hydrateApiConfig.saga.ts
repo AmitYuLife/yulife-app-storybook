@@ -35,7 +35,7 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
           })
         );
 
-        if (response?.data?.config?.mixpanelKey) {
+        if (response?.data?.config?.__typename) {
           yield call(region.setConfig, response.data.config);
         }
       }
@@ -61,7 +61,7 @@ const hydrateForDetox = async () => {
         errorPolicy: "ignore",
       });
 
-      if (response?.data?.config?.mixpanelKey) {
+      if (response?.data?.config?.__typename) {
         await region.setConfig(response.data.config);
         return;
       }
