@@ -434,9 +434,7 @@
       }
     },
     "reward_info": {
-      "got_it": "OK",
-      "unlock_multiple_rewards": "リワードを獲得するには、YuCoinを交換しましょう",
-      "unlock_reward": "このリワードを獲得するには、YuCoinを交換しましょう!"
+      "got_it": "OK"
     },
     "smoking_streak_lapsed": {
       "page_1": {

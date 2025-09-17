@@ -434,9 +434,7 @@
       }
     },
     "reward_info": {
-      "got_it": "Entendido.",
-      "unlock_multiple_rewards": "Gasta YuCoin para desbloquear una recompensa",
-      "unlock_reward": "¡Gasta YuCoin para desbloquear esta recompensa!"
+      "got_it": "Entendido."
     },
     "smoking_streak_lapsed": {
       "page_1": {

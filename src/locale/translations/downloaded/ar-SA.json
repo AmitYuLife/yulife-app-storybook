@@ -434,9 +434,7 @@
       }
     },
     "reward_info": {
-      "got_it": "فهمت",
-      "unlock_multiple_rewards": "استخدم YuCoin لفتح المكافأة",
-      "unlock_reward": "استخدم YuCoin لفتح هذه المكافأة"
+      "got_it": "فهمت"
     },
     "smoking_streak_lapsed": {
       "page_1": {
