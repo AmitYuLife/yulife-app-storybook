@@ -6,6 +6,7 @@ import getMarkdownStyles from "./markdown.styles";
 import { TEXT } from "@ids";
 
 import { StyleSheet } from "@styles";
+import { isRTL } from "@locale";
 interface IProps {
   text: string;
   markdownStyles?: StyleProp<any>;
@@ -147,7 +148,7 @@ const MarkdownText = ({
   testID?: string;
 }) => {
   const { styles } = useContext(MarkdownContext);
-  const style = [styles.text].concat(extras?.style || []);
+  const style = [styles.text, isRTL() ? { letterSpacing: 0 } : {}].concat(extras?.style || []);
 
   if (node.props) {
     return (
