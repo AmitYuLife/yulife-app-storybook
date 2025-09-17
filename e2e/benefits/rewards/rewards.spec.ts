@@ -46,16 +46,17 @@ Feature("Rewards should act correctly", async () => {
     When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.3), async () => {
+    When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id), "up"), async () => {
       Then("I should see the locked bloom reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id)));
     });
-    When("I tap on the locked reward", when.tapRewardInList(data.CORE_REWARDS_BLOOM_UNAVAILABLE), async () => {
+    When("I tap on the locked reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id)), async () => {
       Then("I should see an update in progress pop up ", then.textVisible("update in progress"));
+      Then("I should see text 'back to rewards' ", then.textVisible("back to rewards"));
     });
     When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
       Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll up until the locked reward is visible", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.7), async () => {
+    When("I scroll up until the locked reward is visible", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON_UNAVAILABLE.data._id), "up"), async () => {
       Then("I should see the locked amazon reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON_UNAVAILABLE.data._id), 3000));
       Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1, 3000));
     });
