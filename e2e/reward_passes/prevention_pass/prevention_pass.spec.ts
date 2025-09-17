@@ -145,21 +145,37 @@ Feature("Prevention pass", async () => {
           Then("I should see the next reward progress bar", then.textVisible("0 / 1 levels", 500));
           Then("I should see how many levels I have to complete in total", then.textVisible("Complete 500 levels", 500));
           Then("I should see how many days I have left", then.textVisible(`${BATTLE_PASS_END_LOCAL_DATE.diff(moment(), "days")} days left`, 500));
+          Then("I should see the rewards unlock screen", then.idVisible(ids.REWARDS_UNLOCK_SCROLL));
 
-          When("I scroll to the bottom of the page", when.swipeFromText("Prevention pass", "up", "fast"), async () => {
-            When("I click on the first FAQ", when.tapID("game_mechanics_faqs_how_do_i_level"), async () => {
+          When("I scroll to the FAQ section", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_UNLOCK_SCROLL, ids.TEXT_TEMPLATE("How do I level up?", "b2b"), "up"), async () => {
+            Then("I should see the first FAQ", then.idVisible(ids.TEXT_TEMPLATE("How do I level up?", "b2b")));
+            When("I click on the first FAQ", when.tapID(ids.TEXT_TEMPLATE("How do I level up?", "b2b")), async () => {
               Then("I am on the FAQ page for the first FAQ", commonThen.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE1));
+              Then("I can press the back button", then.idVisible(ids.BACK_BUTTON));
             });
 
             When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
-              When("I click on the second FAQ", when.tapID("game_mechanics_faqs_how_do_i_claim"), async () => {
-                Then("I am on the FAQ page for the second FAQ", commonThen.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE2));
+              Then("I should be able to scroll", then.idVisible(ids.REWARDS_UNLOCK_SCROLL));
+
+              When("I scroll to the second FAQ", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_UNLOCK_SCROLL, ids.TEXT_TEMPLATE("How do I claim my rewards?", "b2b"), "up"), async () => {
+                Then("I should see the second FAQ", then.idVisible(ids.TEXT_TEMPLATE("How do I claim my rewards?", "b2b")));
+
+                When("I click on the second FAQ", when.tapID(ids.TEXT_TEMPLATE("How do I claim my rewards?", "b2b")), async () => {
+                  Then("I am on the FAQ page for the second FAQ", commonThen.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE2));
+                  Then("I can press the back button", then.idVisible(ids.BACK_BUTTON));
+                });
               });
             });
 
             When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
-              When("I click on the third FAQ", when.tapID("game_mechanics_faqs_time_runs_out"), async () => {
-                Then("I am on the FAQ page for the third FAQ", commonThen.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE3));
+              Then("I should be able to scroll", then.idVisible(ids.REWARDS_UNLOCK_SCROLL));
+
+              When("I scroll to the third FAQ", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_UNLOCK_SCROLL, ids.TEXT_TEMPLATE("What happens when the time runs out?", "b2b"), "up"), async () => {
+                Then("I should see the third FAQ", then.idVisible(ids.TEXT_TEMPLATE("What happens when the time runs out?", "b2b")));
+
+                When("I click on the third FAQ", when.tapID(ids.TEXT_TEMPLATE("What happens when the time runs out?", "b2b")), async () => {
+                  Then("I am on the FAQ page for the third FAQ", commonThen.assertMultipleTextsVisible(textConstants.LEARN_MORE_FAQ_PAGE3));
+                });
               });
             });
           });
