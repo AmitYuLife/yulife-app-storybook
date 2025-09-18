@@ -193,3 +193,29 @@ export const SOCIAL_GROUP_U1 = {
     ],
   },
 } as IDatabaseItem;
+
+export const SOCIAL_GROUP_DEPARTMENT_OR_CONTRACT_TYPE = {
+  type: "mongo",
+  modelName: "social_groups",
+  data: {
+    _id: generateRandomMongoId(),
+    socialGroupId: generateRandomMongoId(),
+    archived: false,
+    businessAccountId: business.BUSINESS_ACCOUNT_2.data.business_account_id,
+    containedSocialGroupIds: [],
+    name: "Test OR Group Department x Contract Type",
+    query: [
+      {
+        department: {
+          contains: ["Dance Central"],
+        },
+      },
+      {
+        contractType: {
+          contains: ["Permanent"],
+        },
+      },
+    ],
+    socialGroupType: "rule",
+  },
+};

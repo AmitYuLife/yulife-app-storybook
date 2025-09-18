@@ -2,6 +2,8 @@ export * from "./postgres/business_background";
 export * from "./postgres/business";
 export * from "./postgres/customers";
 export * from "./postgres/business_employees";
+export * from "./postgres/business_employee_info_field_preset";
+export * from "./postgres/business_employee_info";
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/journey_progression";
