@@ -15,9 +15,17 @@ export const INSPECT_USER =
   ) =>
   async () => {
     When(
-      "I swipe down the list",
-      when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "slow"),
+      "I swipe up to scroll down to find a colleague",
+      when.scrollWithLimitedAttemptsUntilIdVisible(
+        ids.LEADERBOARD_SCROLL_LIST,
+        ids.LEADERBOARD_EMPLOYEE_NAME(getFullName(customerPersonalData)),
+        "up"
+      ),
       async () => {
+        Then(
+          "I should see the colleague's name",
+          then.idVisible(ids.LEADERBOARD_EMPLOYEE_NAME(getFullName(customerPersonalData)), 2000)
+        );
         When(
           `I click on user ${getFullName(customerPersonalData)} name`,
           when.tapText(getFullName(customerPersonalData), 4000),
@@ -34,16 +42,21 @@ export const INSPECT_USER =
           }
         );
         When(
-          "I scroll down to the challenge button",
-          when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 1),
+          "I swipe up to scroll down to the challenge button",
+          when.scrollWithLimitedAttemptsUntilIdVisible(
+            ids.INSPECT_SCREEN,
+            ids.COMPARISON_ACTIVITY("Average mindfulness"),
+            "up"
+          ),
           async () => {
             Then(
               "I should see the Average mindfulness section",
-              then.textVisible("Average mindfulness")
+              then.idVisible(ids.COMPARISON_ACTIVITY("Average mindfulness"))
             );
+            Then("I should see a way to go back", then.idVisible(ids.LEFT_HEADING_BUTTON()));
           }
         );
-        When("I close inspect view", when.tapID(ids.SCREEN_CLOSE, 2000), async () => {
+        When("I close inspect view", when.tapID(ids.LEFT_HEADING_BUTTON(), 2000), async () => {
           Then(
             "I should be back on the leaderboard LB4",
             then.textVisibleAtIndex(getFullName(customer), 0, 3000)

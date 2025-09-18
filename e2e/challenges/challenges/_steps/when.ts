@@ -41,6 +41,7 @@ export const {
   scrollFromText,
   swipeFromText,
   swipeFromIDAtIndex,
+  scrollWithLimitedAttemptsUntilIdVisible,
 } = navigation.scrolling;
 
 export const { goToYuScreenAndDismissIntro, goToYuScreenAndDismissPower } = screens.yuscreen;
