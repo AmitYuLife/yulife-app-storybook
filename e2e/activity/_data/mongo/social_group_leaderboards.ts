@@ -231,3 +231,14 @@ export const SOCIAL_GROUP_LEADERBOARD_TREES_IMPACT = {
     leaderboardConfigId: "CALENDAR_MONTHLY_TREES_GOAL_IMPACT",
   },
 } as IDatabaseItem;
+
+export const SOCIAL_GROUP_DEP_OR_CON_LEADERBOARD = {
+  type: "mongo",
+  modelName: "social_group_leaderboards",
+  data: {
+    _id: generateRandomMongoId(),
+    socialGroup: social_group.SOCIAL_GROUP_DEPARTMENT_OR_CONTRACT_TYPE.data._id,
+    archived: false,
+    leaderboardConfigId: "STEPS_30_DAYS",
+  },
+} as IDatabaseItem;

@@ -489,4 +489,36 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       });
     });
   });
+
+  Scenario("I can eligible to view OR-grouped leaderboards as a user satisfying either operand of the OR-query", scenario.start, async () => {
+    // Trigger the workers to update the leaderboard enrolments for the two relevant users
+    Given("I trigger the leaderboard enrolments worker for the first relevant user", given.triggerSyncAllLeaderboardEnrolmentsForUser([data.CUSTOMER_17.data.customerId, data.CUSTOMER_18.data.customerId]), async () => {
+      // First login as a user who satisfies the first criteria of the OR-group leaderboard
+      When("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
+        When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+          When("I tap the dropdown to select a different leaderboard", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
+            When("I click the option for the OR-type rule-based leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_DEPARTMENT_OR_CONTRACT_TYPE.data.name)), async () => {
+              When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE("Test OR Group Department x Contract Type")));
+                Then("I should see that I'm eligible to join this leaderboard", then.onLeaderboardWithoutConsent(true, false));
+              });
+            });
+          });
+        });
+      });
+    });
+    // Now logout and login as a user who satisfies the second criteria of the OR-group leaderboard
+    When("I login as the second user", when.fullRestartAndLogin(data.CUSTOMER_18, data.AUTH_18), async () => {
+      When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        When("I tap the dropdown to select a different leaderboard", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
+          When("I click the option for the OR-type rule-based leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_DEPARTMENT_OR_CONTRACT_TYPE.data.name)), async () => {
+            When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
+              Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE("Test OR Group Department x Contract Type")));
+              Then("I should see that I'm also eligible to join this leaderboard", then.onLeaderboardWithoutConsent(true, false));
+            });
+          });
+        });
+      });
+    });
+  });
 });
