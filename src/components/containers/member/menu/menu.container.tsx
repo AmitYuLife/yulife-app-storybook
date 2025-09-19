@@ -111,6 +111,21 @@ const MenuContainer = () => {
     [currentRoute, dispatch, openSupport, handlePressLogout]
   );
 
+  const supportMenuItems: IMenuLink[] = useMemo(() => {
+    if (supportLevel === UserSupportLevel.None) {
+      return [];
+    }
+
+    return [
+      {
+        condition: true,
+        label: t(supportLevel === UserSupportLevel.Basic ? "screens.menu.support.label" : "screens.menu.chat.label"),
+        onPress: handlePressLink(LINKS.SUPPORT),
+        source: assets[LINKS.SUPPORT],
+      },
+    ];
+  }, [handlePressLink, supportLevel]);
+
   const links: IMenuLink[] = useMemo(
     () => [
       {
@@ -150,12 +165,7 @@ const MenuContainer = () => {
         onPress: handlePressLink(LINKS.TOOLS),
         source: assets[LINKS.SETTINGS],
       },
-      {
-        condition: true,
-        label: t(supportLevel === UserSupportLevel.Basic ? "screens.menu.support.label" : "screens.menu.chat.label"),
-        onPress: handlePressLink(LINKS.SUPPORT),
-        source: assets[LINKS.SUPPORT],
-      },
+      ...supportMenuItems,
       {
         condition: true,
         label: t("screens.menu.logout.label"),
@@ -163,7 +173,7 @@ const MenuContainer = () => {
         source: assets[LINKS.LOGOUT],
       },
     ],
-    [handlePressLink, showReferrals, debugQueriesToolEnabled, supportLevel]
+    [handlePressLink, showReferrals, debugQueriesToolEnabled, supportMenuItems]
   );
 
   return (

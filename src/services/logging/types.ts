@@ -103,4 +103,5 @@ export type MixpanelEvent =
 export enum UserSupportLevel {
   Basic = "basic",
   Enhanced = "enhanced",
+  None = "none",
 }
