@@ -20,6 +20,7 @@ export const {
   idExist,
   tapID,
   inputHasValue,
+  idVisibleAtIndex,
 } = navigation.common;
 
 export const {

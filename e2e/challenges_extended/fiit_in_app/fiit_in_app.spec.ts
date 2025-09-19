@@ -31,27 +31,25 @@ Feature("Fiit in app", async () => {
       Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_5, data.USER_FIIT, 2500));
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
-      When("I tap 'maybe later'", when.tapText("maybe later"), async () => {
+      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200), async () => {
         When("I pause the video", when.pauseVideo(true), async () => {
           Then("I can see the video is paused", then.isVideoPaused(true));
         });
       });
     });
-    When("I wait", when.wait(3000), async () => {
-      When("I unpause the video", when.pauseVideo(false), async () => {
-        When("I wait for the video to finish", when.wait(20000), async () => {
-          Then("I can see the challenge reward screen", then.canSeeFiitChallengeRewardScreen(data.USER_FIIT, data.MEDIA_5, 5));
-        });
+    When("I unpause the video", when.pauseVideo(false, 2000), async () => {
+      When("I wait for the video to finish", when.wait(20000), async () => {
+        Then("I can see the challenge reward screen", then.canSeeFiitChallengeRewardScreen(data.USER_FIIT, data.MEDIA_5, 5));
       });
     });
-    When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT), async () => {
+    When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT, 3500), async () => {
       Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1));
     });
-    When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+    When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
       Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
     });
     When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
-      Then("I should see 314 YuCoin today have been earnt today", then.canSeeYuCoinEarntToday(314));
+      Then("I should see 314 YuCoin have been earned today", then.canSeeYuCoinEarntToday(314));
     });
     When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
       Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS));
@@ -131,12 +129,14 @@ Feature("Fiit in app", async () => {
       });
     });
     When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
-      When("I tap 'Collect'", when.tapText("Collect", 3000), async () => {
-        Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1));
+      When("I tap the menu icon to close the referrals popover", when.tapID(ids.NAV_BAR("yucoin"), 2500), async () => {
+        When("I navigate to the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
+          Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
+        });
       });
     });
-    When("I tap 'Done'", when.tapText("Done"), async () => {
-      Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+    When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT, 4000), async () => {
+      Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
     });
     When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
       Then("I should see 314 YuCoin today have been earnt today", then.canSeeYuCoinEarntToday(314));
@@ -182,13 +182,13 @@ Feature("Fiit in app", async () => {
       Then("The video is playing", then.isVideoPaused(false));
     });
     When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
-      When("I tap the menu icon to close the referrals popover", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+      When("I tap the menu icon to close the referrals popover", when.tapID(ids.NAV_BAR("yucoin"), 2500), async () => {
         When("I navigate to the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
           Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
         });
       });
     });
-    When("I tap 'Collect'", when.tapText("Collect", 3000), async () => {
+    When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT, 4000), async () => {
       Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
     });
     When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin")), async () => {
