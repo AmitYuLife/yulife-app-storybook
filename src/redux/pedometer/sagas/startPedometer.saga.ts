@@ -5,22 +5,36 @@ import { Unpacked } from "@utils";
 import { call, cancel, fork, put, race, select, take } from "redux-saga/effects";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
 import { START_DAILY_STEPS } from "../../daily-steps/daily-steps.actions";
-import { getIsUserArchived } from "../../user/user.selectors";
+import { getIsUserArchived, getUserFeatures } from "../../user/user.selectors";
 import { PEDOMETER_RESTART_ON_NEW_DAY, PEDOMETER_STOP, startPedometerUpdates } from "../pedometer.actions";
 import listenToSteps from "./listenToSteps.helper";
+import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
+import { HealthProvider } from "@redux/user/user.types";
+import { YU_HEALTH_SET_ACTIVE_PROVIDER } from "@redux/yu-health/yu-health.actions";
 
-// TODO: restart the pedometer when a new day ticks over
 export default function* startPedometerSaga() {
-  let shouldStartPedometerUpdates = true; // when the app starts we don't need to wait for other actions; fire pedometer straight away
+  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+
+  let shouldStartPedometerUpdates = !features?.tempGameEnableReleaseYuHealthV4;
 
   while (true) {
+    const newFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+
     if (!shouldStartPedometerUpdates) {
       const { appUpdated, dailySteps } = yield race({
         appUpdated: take(UPDATE_APP_STATE),
         dailySteps: take(START_DAILY_STEPS),
+        activeProvider: take(YU_HEALTH_SET_ACTIVE_PROVIDER),
       });
 
-      shouldStartPedometerUpdates = dailySteps || (appUpdated && appUpdated.payload.appState === "active");
+      let shouldContinue = true;
+      if (newFeatures?.tempGameEnableReleaseYuHealthV4) {
+        const activeProvider: HealthProvider = yield select(getActiveProvider);
+        shouldContinue = !!activeProvider;
+      }
+
+      shouldStartPedometerUpdates =
+        shouldContinue && (dailySteps || (appUpdated && appUpdated.payload.appState === "active"));
     }
 
     const token: Unpacked<typeof getToken> = yield call(getToken);
