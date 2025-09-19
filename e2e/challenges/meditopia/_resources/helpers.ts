@@ -66,7 +66,7 @@ export const START_MEDITATION_FAKE_TIME = async () => {
   When("I tap start session", when.tapStartSession, async () => {
     When(
       "I start and pause the challenge half way through",
-      when.pauseMeditopiaChallenge,
+      when.pauseMeditopiaChallenge(),
       async () => {
         Then("I should see the paused time on the screen", then.pauseChallengeTimeVisible);
       }

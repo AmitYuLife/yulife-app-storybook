@@ -13,6 +13,7 @@ import {
   tapText,
   idExist,
   tapID,
+  multipleIDVisible,
 } from "@navigation";
 import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n";
@@ -27,7 +28,6 @@ import {
   WorkoutTargetsAndRewards,
   YudokuTargetsAndRewards,
   briskWalkMaxReward,
-  fiitMaxReward,
   longWalkMaxReward,
   meditationMaxReward,
   shortStrollMaxReward,
@@ -300,20 +300,20 @@ export const tapStartSession = async () => {
 };
 
 export const completeMeditopiaContentSession = async () => {
+  // Try dismissing "maybe later", but don't fail if it's not there
   try {
-    await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"));
+    await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200);
   } catch (e) {
-    await idVisible(ids.VIDEO_PLAYER)();
-    await idVisible(ids.VIDEO_LOGO)();
-    await idVisible(ids.VIDEO_PLAYER_TIMER)();
-    await idVisible(ids.VIDEO_PROGRESS_BAR, 2000)();
-    await idVisible(ids.VIDEO_PLAY_PAUSE_BUTTON(false))();
+    // CTA not present, that's fine
   }
-  await idVisible(ids.VIDEO_PLAYER)();
-  await idVisible(ids.VIDEO_LOGO)();
-  await idVisible(ids.VIDEO_PLAYER_TIMER, 2000)();
-  await idVisible(ids.VIDEO_PROGRESS_BAR)();
-  await idVisible(ids.VIDEO_PLAY_PAUSE_BUTTON(false))();
+  await multipleIDVisible([
+    ids.VIDEO_PLAYER,
+    ids.VIDEO_LOGO,
+    ids.VIDEO_PLAYER_TIMER,
+    ids.VIDEO_PROGRESS_BAR,
+    ids.VIDEO_PLAY_PAUSE_BUTTON(false),
+  ])();
+
   await wait(20000)();
 };
 
@@ -336,11 +336,12 @@ export const onMeditopiaChallengeComplete =
     }
   };
 
-export const pauseMeditopiaChallenge = async () => {
-  await navigateViaText("maybe later");
-  await wait(3000)();
-  await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(false));
-};
+export const pauseMeditopiaChallenge =
+  (waitTime = 1500) =>
+  async () => {
+    await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"), waitTime);
+    await tapID(ids.VIDEO_PLAY_PAUSE_BUTTON(false), waitTime)();
+  };
 
 export const pauseChallengeTimeVisible = async () => {
   await textNotVisible("00:00")();
@@ -356,7 +357,7 @@ export const playAndFinishMeditopiaChallenge = async () => {
 };
 
 export const startAndQuitMeditopiaChallenge = async () => {
-  await navigateViaText("maybe later");
+  await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"));
   await navigateViaID(ids.SCREEN_CLOSE);
 };
 
