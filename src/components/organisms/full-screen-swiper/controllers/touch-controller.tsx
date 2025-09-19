@@ -2,6 +2,7 @@ import React, { useCallback, useRef } from "react";
 import { GestureResponderEvent, ViewStyle } from "react-native";
 import { Style, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { FULL_SCREEN_SWIPER_TOUCH_CONTROLLER } from "@ids";
 
 // Moving less than this distance when moving between parts of screen (left & right)
 // will still use the press out as a navigate command
@@ -125,6 +126,7 @@ export const TouchController = ({
       }}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
+      testID={FULL_SCREEN_SWIPER_TOUCH_CONTROLLER}
     />
   );
 };
