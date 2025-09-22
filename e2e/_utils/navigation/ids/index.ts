@@ -255,6 +255,7 @@ export const SMOKING_STREAK_HALF_MODAL = (heading: string) =>
 export const HALF_MODAL_CTA = "modals.reward_info.got_it";
 export const ITEM_DETAILS_HALF_MODAL_TITLE = (title: string) =>
   `ITEM_DETAILS_HALF_MODAL_TITLE_${title}`;
+export const ITEM_DETAILS_HALF_MODAL_LIST = "ITEM_DETAILS_HALF_MODAL_LIST";
 export const GENERIC_SELECTOR_ITEM = (itemText: string) => `GENERIC_SELECTOR_ITEM_${itemText}`;
 export const GENERIC_SELECTOR_CONFIRM = "generic-selector-confirm-text-view";
 export const REWARD_LOCATION_MODAL = "REWARD_LOCATION_MODAL";

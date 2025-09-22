@@ -101,7 +101,8 @@ export const scrollWithLimitedAttemptsUntilIdVisible =
     timeout = 2000,
     percentage = 0.2,
     normalizedStartingPointX = 0.5,
-    normalizedStartingPointY = 0.5
+    normalizedStartingPointY = 0.5,
+    speed: "slow" | "fast" = "slow"
   ) =>
   async () => {
     let done = false;
@@ -111,7 +112,7 @@ export const scrollWithLimitedAttemptsUntilIdVisible =
         const scrollContainer = element(by.id(scrollContainerId));
         await scrollContainer.swipe(
           direction,
-          "slow",
+          speed,
           percentage,
           normalizedStartingPointX,
           normalizedStartingPointY
