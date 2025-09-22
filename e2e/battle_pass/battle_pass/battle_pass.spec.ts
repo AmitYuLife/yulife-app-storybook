@@ -1,6 +1,6 @@
 import { Given, When, Then, Feature, Scenario, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import { couponsTermsAndConditions, endOfSeasonHarmonyTitle, EndOfSeasonMockItems } from "./_resources/fixtures";
-import { outOfCoinsMessage } from "./_resources/constants";
+import { outOfCoinsMessage, cardDetails } from "./_resources/constants";
 import { BUSINESS_THE_BEAR, BUSINESS_ACCOUNT_2 } from "battle_pass/_data";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
@@ -308,6 +308,12 @@ Scenario("I can view, adjust and validate coupon values before completing checko
     When("I mark the terms and conditions checkbox", when.tapID(ids.CHECK_BOX_STATE(couponsTermsAndConditions, false), 2000), async () => {
       Then("I should see that the 'Continue to Payment' cta button is now enabled", then.idVisible(ids.BUTTON_BASE("Continue to Payment", false), 2000));
       Then("I should see that checkbox is now selected", then.idVisible(ids.CHECK_BOX_STATE(couponsTermsAndConditions, true), 2000));
+    });
+  });
+  When("I tap to continue to payment", when.tapID(ids.BUTTON_BASE("Continue to Payment", false), 2500), async () => {
+    When("I fill in the required card details on the Stripe payment modal", when.completeStripePayment(cardDetails, "67.50"), async () => {
+      Then("I should see that payment was successful", then.idVisible(ids.VOUCHER_CODE_TITLE(`£75 ${data.CORE_REWARDS_MARKS_AND_SPENCER.data.name["en-GB"]} voucher`), 5000));
+      Then("I should see the coupon email in my inbox", then.assertCouponEmailReceived(data.CUSTOMER_CARMY.data.email, data.CORE_REWARDS_MARKS_AND_SPENCER.data.name["en-GB"]));
     });
   });
 });

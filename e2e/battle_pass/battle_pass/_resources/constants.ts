@@ -1,4 +1,5 @@
-import { IMPACT_DONATION } from "./types";
+import moment from "moment";
+import { IMPACT_DONATION, StripeCardDetails } from "./types";
 
 export const emptySeasonalRewardVisible =
   "It's quiet in here. Head over to your seasonal rewards path to earn exclusive vouchers and discounts!";
@@ -25,3 +26,10 @@ export const challengeTypes = [
   "Extra workout challenge",
   "Extra short stroll challenge",
 ];
+
+export const cardDetails: StripeCardDetails = {
+  cardNumber: "4242424242424242",
+  expiry: moment().add(2, "years").format("MM/YY"),
+  cvc: "123",
+  postalCode: "SWA 1AA",
+};

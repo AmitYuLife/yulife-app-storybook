@@ -7,3 +7,10 @@ export interface EndOfSeasonItem {
 }
 
 export type EndOfSeasonItems = EndOfSeasonItem[];
+
+export type StripeCardDetails = {
+  cardNumber: string;
+  expiry: string;
+  cvc: string;
+  postalCode: string;
+};

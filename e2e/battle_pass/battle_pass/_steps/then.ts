@@ -1,10 +1,11 @@
 import * as ids from "@ids";
-import { multipleTextVisible, navigation } from "@utils";
-import { screens } from "@appScreens";
-import { scrollFromID } from "_utils/navigation/scrolling";
-import { challengeTypes, impactDonationImages } from "../_resources/constants";
-import { EndOfSeasonItems, IMPACT_DONATION } from "../_resources/types";
 import { expect } from "detox";
+import { screens } from "@appScreens";
+import { multipleTextVisible, navigation } from "@utils";
+import { readInbox } from "@yu-life/yulife-bdd-framework";
+import { scrollFromID } from "_utils/navigation/scrolling";
+import { EndOfSeasonItems, IMPACT_DONATION } from "../_resources/types";
+import { challengeTypes, impactDonationImages } from "../_resources/constants";
 
 export const {
   idVisible,
@@ -84,4 +85,13 @@ export const assertInventoryPopUp = async () => {
     ["Power-up collected!", "Find it in your inventory in Quests."],
     3000
   )();
+};
+
+export const assertCouponEmailReceived = (email: string, rewardName: string) => async () => {
+  const inbox = await readInbox(email, true);
+  const subject = inbox[0].subject;
+
+  if (subject !== `[detox] Your link to your ${rewardName} voucher`) {
+    throw new Error("Email subject is incorrect");
+  }
 };
