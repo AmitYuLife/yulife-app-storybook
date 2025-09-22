@@ -11,24 +11,29 @@ import { leaderboardCommunitiesMessage, wellbeingHubHeaderMessage } from "./_res
 
 Feature("Mutual of Omaha specific tests", async () => {
   Scenario("Various features are not visible for a MOO user", scenario.start, async () => {
-    Given("I login and go to the daily steps screen", given.logInAndGoToTab("leaderboard", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-      Then("I should see my YuCoin balance is 10 for my first login, not 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10)));
+    Given("I login and go to the 'Leaderboard' screen", given.logInAndGoToTab("leaderboard", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+      Then("I should see my YuCoin balance is 10 for my first login", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10))); // not 200
       Then("I can't see the duels button", then.idNotVisible(ids.DUELS_BUTTON));
       Then("I can't see the search button", then.idNotVisible(ids.SEARCH_BUTTON));
-      Then("I can't see a referall button", then.idNotVisible(ids.REFERRAL_BUTTON("Invite a colleague")));
+      Then("I can't see a referral button", then.idNotVisible(ids.REFERRAL_BUTTON("Invite a colleague")));
+      Then("I can find another user", then.idVisible(ids.LEADERBOARD_EMPLOYEE_NAME("Axel")));
     });
-    When("I tap on another employee", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME("Axel")), async () => {
+    When("I tap on another user", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME("Axel")), async () => {
       Then("I can't see the p2p gifting card", then.idNotVisible(ids.P2P_GIFTING_CARD));
       Then("I can't see the duel statistics", then.idNotVisible(ids.INSPECT_SECTION_HEADER("Duel Statistics")));
-      Then("I can still only see the first name", then.idVisible(ids.YUSCREEN_V5_USERNAME("Axel")));
+      Then("I can see the first name", then.idVisible(ids.YUSCREEN_V5_USERNAME("Axel")));
+      Then("I have a way to go back", then.idVisible(ids.LEFT_HEADING_BUTTON()));
     });
-    When("I click to close this screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-      When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+    When("I go back from the 'Inspect' screen", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
+      Then("I should be back on the 'Leaderboard' screen", then.idVisible(ids.LEADERBOARD_SCROLL_LIST));
+      When("I tap the 'Yu' tab", when.tapID(ids.NAV_BAR("yu")), async () => {
         Then("I shouldn't see the hero card for gifting", then.idNotVisible(ids.HERO_CARD_SECTION));
+        Then("I should see the 'Yu' screen scroll view", then.idVisible(ids.YUSCREEN_SCROLL_VIEW));
       });
     });
     When("I swipe to the bottom of the screen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
-      Then("I can't see a referall button", then.idNotVisible(ids.REFERRAL_BUTTON("Invite a colleague")));
+      Then("I can't see a referral button", then.idNotVisible(ids.REFERRAL_BUTTON("Invite a colleague")));
+      Then("I can see a way to open the 'Menu'", then.idVisible(ids.MENU_ICON_BADGE(false)));
     });
     When("I open the hamburger menu", when.tapID(ids.MENU_ICON_BADGE(false)), async () => {
       Then("I can't see an option to invite a colleague", then.textNotVisible("Invite a Colleague"));
