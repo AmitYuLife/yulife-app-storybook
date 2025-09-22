@@ -41,17 +41,22 @@ Feature("Mutual of Omaha specific tests", async () => {
   });
 
   Scenario("Mentions of companies are not present for MOO users", scenario.start, async () => {
-    Given("I login and go to the daily steps screen", given.logInAndGoToTab("leaderboard", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-      Then("I should see my YuCoin balance is 10 for my first login, not 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10)));
+    Given("I login and go to the 'Leaderboard' screen", given.logInAndGoToTab("leaderboard", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+      Then("I should see my YuCoin balance is 10 for my first login", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10))); // not 200
+      Then("I should see the Leaderboard info button", then.idVisible(ids.LEADERBOARD_INFO_BUTTON));
     });
     When("I tap the tooltip", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
-      Then("I should see the updated copy for the communities section that doesn't mention companies", then.textVisible(leaderboardCommunitiesMessage));
+      Then("I should see the updated copy for the communities section that doesn't mention companies", then.textVisible(leaderboardCommunitiesMessage, 5000));
+      Then("I have a way to close the 'Leaderboard Info' screen", then.idVisibleAtIndex(ids.BUTTON_CLOSE, 0));
     });
     When("I click to close this screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
+      Then("I have a way to open the 'Menu'", then.idVisible(ids.MENU_ICON_BADGE(false)));
       When("I open the hamburger menu", when.tapID(ids.MENU_ICON_BADGE(false)), async () => {
+        Then("I can go to the 'Wellbeing Hub'", then.idVisible(ids.MENU_ITEM("WellbeingHub")));
         When("I click the Wellbeing Hub", when.tapText("Wellbeing Hub", 3000), async () => {
+          Then("I can confirm my location", then.idVisible(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000));
           When("I confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
-            Then("I should see the updated copy for the wellbeing hub that doesn't mention companies", then.textVisible(wellbeingHubHeaderMessage));
+            Then("I should see the updated copy for the wellbeing hub that doesn't mention companies", then.textVisible(wellbeingHubHeaderMessage, 5000));
           });
         });
       });
