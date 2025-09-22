@@ -1,5 +1,6 @@
 import { Style } from "@styles";
 import { BeakPosition } from "./tooltip-popup-wrapper";
+import { isRTL } from "@locale";
 
 const BEAK_MIN_LEFT_POSITION = Style.adjust(20);
 const BEAK_MAX_LEFT_POSITION = Style.DEVICE_WIDTH - Style.adjust(38);
@@ -64,7 +65,7 @@ export const getStaticPosition = (
     left: anchorX - viewWidth - BEAK_WIDTH + Style.adjust(1),
     beakLeft: anchorX - BEAK_WIDTH,
     beakTop: anchorY - BEAK_HEIGHT / 2,
-    beakTransform: [{ rotate: "180deg" }],
+    beakTransform: [{ rotate: isRTL() ? "0deg" : "180deg" }],
   };
 
   const autoHorizontalRight = {
@@ -72,7 +73,7 @@ export const getStaticPosition = (
     left: anchorX + BEAK_WIDTH - Style.adjust(1),
     beakLeft: anchorX,
     beakTop: anchorY - BEAK_HEIGHT / 2,
-    beakTransform: [{ rotate: "0deg" }],
+    beakTransform: [{ rotate: isRTL() ? "180deg" : "0deg" }],
   };
 
   const bottomCommonPosition = {
@@ -86,7 +87,7 @@ export const getStaticPosition = (
     left: anchorX + BEAK_WIDTH - Style.adjust(1),
     beakLeft: anchorX,
     beakTop: anchorY - BEAK_HEIGHT / 2,
-    beakTransform: [{ rotate: "0deg" }],
+    beakTransform: [{ rotate: isRTL() ? "180deg" : "0deg" }],
   };
 
   const topCommonPosition = {
@@ -99,7 +100,7 @@ export const getStaticPosition = (
     left: anchorX - viewWidth - BEAK_WIDTH + Style.adjust(1),
     beakLeft: anchorX - BEAK_WIDTH,
     beakTop: anchorY - BEAK_HEIGHT / 2,
-    beakTransform: [{ rotate: "180deg" }],
+    beakTransform: [{ rotate: isRTL() ? "0deg" : "180deg" }],
   };
 
   const positions = {
@@ -141,12 +142,12 @@ const getVerticalPosition = (
     ? {
         top: pageY + anchorViewHeight + BEAK_WIDTH - Style.adjust(1),
         beakTop: pageY + anchorViewHeight - BEAK_ROTATION_MARGIN,
-        beakTransform: [{ rotate: "90deg" }],
+        beakTransform: [{ rotate: isRTL() ? "-90deg" : "90deg" }],
       }
     : {
         top: pageY - messageViewHeight - BEAK_WIDTH + Style.adjust(1),
         beakTop: pageY - BEAK_WIDTH - BEAK_ROTATION_MARGIN,
-        beakTransform: [{ rotate: "270deg" }],
+        beakTransform: [{ rotate: isRTL() ? "90deg" : "270deg" }],
       };
 
   const showViewOnCenterOfAnchor =
@@ -204,7 +205,7 @@ const getHorizontalPosition = (
       beakLeft: pageX + anchorViewWidth + Style.adjust(1),
       top: messageViewPositionTop,
       beakTop: beakPositionTop,
-      beakTransform: [{ rotate: "0deg" }],
+      beakTransform: [{ rotate: isRTL() ? "180deg" : "0deg" }],
     };
   }
 
@@ -213,6 +214,6 @@ const getHorizontalPosition = (
     beakLeft: pageX - BEAK_WIDTH - Style.adjust(1),
     top: messageViewPositionTop,
     beakTop: beakPositionTop,
-    beakTransform: [{ rotate: "180deg" }],
+    beakTransform: [{ rotate: isRTL() ? "0deg" : "180deg" }],
   };
 };

@@ -6,6 +6,8 @@ import TooltipPopupWrapper, { BeakPosition } from "./tooltip-popup-wrapper";
 import InfoMessage from "@organisms/info-message/info-message";
 import { Sizes } from "@components/molecules/button/button.types";
 import { InfoMessageTooltipPointRelative } from "./info-tooltip-popup";
+import { isRTL } from "@locale";
+import { Style } from "@styles";
 
 interface PopoverProps {
   viewRef: React.MutableRefObject<View | TouchableOpacity>;
@@ -42,7 +44,12 @@ export const showTooltipPopupRelativeToView = ({
   viewRef?.current?.measure((_fx, _fy, width, height, pageX, pageY) => {
     const infoView = (
       <TooltipPopupWrapper
-        relativePosition={{ pageX, pageY, anchorViewHeight: height, anchorViewWidth: width }}
+        relativePosition={{
+          pageX: isRTL() ? Style.DEVICE_WIDTH - pageX - width : pageX,
+          pageY,
+          anchorViewHeight: height,
+          anchorViewWidth: width,
+        }}
         beakPosition={beakPosition}
         style={style}
       >
@@ -55,11 +62,12 @@ export const showTooltipPopupRelativeToView = ({
 };
 
 export const showTooltipPopupRelativeToPoint = ({
-  x,
+  x: initialX,
   y,
   children,
   beakPosition = "bottomCenter",
 }: TooltipPointRelative) => {
+  const x = isRTL() ? Style.DEVICE_WIDTH - initialX : initialX;
   const infoView = (
     <TooltipPopupWrapper pointPosition={{ x, y }} beakPosition={beakPosition}>
       {children}
