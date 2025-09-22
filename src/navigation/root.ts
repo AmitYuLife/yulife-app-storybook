@@ -27,7 +27,7 @@ export interface IMainTabsProps {
   onLeftMenuPress: () => void;
 }
 
-const getMenuSide = () => {
+export const getMenuSide = () => {
   return isRTL() ? ("right" as const) : ("left" as const);
 };
 

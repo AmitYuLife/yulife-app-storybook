@@ -9,6 +9,7 @@ import { ROUTES, bottomTabs } from "@navigation/constants";
 import { ShareIcon } from "@atoms/icon/share-icon";
 import { REFERRAL_BUTTON, REFERRAL_IMAGE } from "@ids";
 import { ReferralSection as IReferralSection } from "@redux/yu-screen/yu-screen.types";
+import { getMenuSide } from "@navigation/root";
 
 export const ReferralSection = ({ sectionInstanceId, content }: IReferralSection) => {
   const { illustration, title, markdown, buttonLabel, buttonIcon } = content || {};
@@ -62,7 +63,7 @@ const onPress = () =>
       options: {
         bottomTabs,
         sideMenu: {
-          left: {
+          [getMenuSide()]: {
             enabled: false,
             visible: false,
           },

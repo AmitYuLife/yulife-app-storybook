@@ -11,6 +11,7 @@ import { ArrowIcon } from "@atoms/icon/arrow";
 import { MAXIMISE_TODAYS_EARNINGS } from "@ids";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { getMenuSide } from "@navigation/root";
 
 type Props = {
   progress: {
@@ -33,7 +34,7 @@ export const TodayEarnings = memo(({ animate, progress }: Props) => {
         options: {
           bottomTabs,
           sideMenu: {
-            left: {
+            [getMenuSide()]: {
               enabled: false,
               visible: false,
             },

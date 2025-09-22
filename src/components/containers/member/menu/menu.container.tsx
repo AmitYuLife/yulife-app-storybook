@@ -9,7 +9,7 @@ import { logOutStart, openMyAccount } from "@redux/user/user.actions";
 import { IMenuLink, MenuScreen } from "@screens";
 import assets, { LINKS, LinkTypes } from "./assets";
 import { IS_DEVELOP } from "@utils";
-import { showYuModal } from "@navigation/root";
+import { getMenuSide, showYuModal } from "@navigation/root";
 import Logger from "@services/logging/logger";
 import { t } from "@locale";
 import { LayoutComponent } from "react-native-navigation";
@@ -202,7 +202,7 @@ const handlePush = async (
       options: {
         bottomTabs,
         sideMenu: {
-          left: {
+          [getMenuSide()]: {
             enabled: false,
             visible: false,
           },
@@ -216,7 +216,7 @@ const handlePush = async (
 const handleClose = () =>
   Navigation.mergeOptions(ROUTES.menu, {
     sideMenu: {
-      left: {
+      [getMenuSide()]: {
         enabled: false,
         visible: false,
       },
