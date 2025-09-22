@@ -39,22 +39,17 @@ export const goToRewardStore = async () => {
 export const dismissRewardPopUp = async () => {
   const gotItButton = element(by.text("Got it"));
 
-  try {
-    await waitFor(gotItButton).toBeVisible().withTimeout(2000);
+  let morePopups = true;
 
-    let isVisible = true;
-
-    while (isVisible) {
-      await gotItButton.tap();
-      await new Promise((res) => setTimeout(res, 500));
-    }
+  while (morePopups) {
     try {
-      await expect(gotItButton).toBeVisible();
+      await waitFor(gotItButton).toBeVisible().withTimeout(2000);
+      await gotItButton.tap();
+
+      await new Promise((res) => setTimeout(res, 500));
     } catch {
-      isVisible = false;
+      morePopups = false;
     }
-  } catch {
-    throw new Error("Reward pop-up did not appear within timeout");
   }
 };
 
