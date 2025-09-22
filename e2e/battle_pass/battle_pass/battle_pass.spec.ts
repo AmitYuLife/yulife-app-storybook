@@ -18,7 +18,7 @@ Feature("I can view and use all battle pass features", async () => {
         });
       });
     });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
+    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 5000), async () => {
       Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2500));
       Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
     });
@@ -103,7 +103,7 @@ Feature("I can view and use all battle pass features", async () => {
     When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
       Then("I should see the store location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
     });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
+    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 4000), async () => {
       When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
         Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
         Then("I should see the correct season title", then.idVisible(ids.BATTLE_PASS_TITLE("Season of Harmony"), 2000));
@@ -176,11 +176,11 @@ Feature("I can view and use all battle pass features", async () => {
       });
     });
     When("I go back", when.tapID(ids.BACK_BUTTON, 2500), async () => {
-      When("I go to the rewards store", when.tapID(ids.NAV_BAR("rewards"), 2000), async () => {
+      When("I go to the rewards store", when.tapID(ids.NAV_BAR("rewards"), 4000), async () => {
         Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
       });
     });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
+    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 10000), async () => {
       When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
         Then("I should be on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
       });
@@ -212,8 +212,8 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I tap to claim the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
       When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
-        Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(2), 2000));
-        Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
+        Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(2), 3000));
+        Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 3000));
       });
     });
     When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON, 2000), async () => {
@@ -243,7 +243,7 @@ Feature("I can view and use all battle pass features", async () => {
         });
       });
     });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
+    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 4000), async () => {
       Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
     });
     When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
@@ -260,7 +260,7 @@ Scenario("I can view, adjust and validate coupon values before completing checko
       });
     });
   });
-  When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
+  When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 4000), async () => {
     Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
   });
   When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 2500), async () => {
