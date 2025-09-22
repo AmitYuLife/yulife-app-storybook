@@ -63,19 +63,21 @@ Feature("Mutual of Omaha specific tests", async () => {
     });
   });
 
-  Scenario("As a user on the US region, I should be able to get US rewards", scenario.start, async () => {
-    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_ACCOUNT_USA_2_NPC.business.data.businessAccountId]), async () => {
-      Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
-        Given("I login and go to the rewards screen", given.logInAndGoToTab("rewards", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-          Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
-        });
-        When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
-          Then("I should see the first item 'Mystery Box'", then.idVisible(ids.BATTLE_PASS_LIST_ITEM_TITLE("Mystery Box"), 1500));
-        });
-      });
+  Scenario("As a user on the US region, I should be able to get US rewards", scenario.withBattlePassRewards([BUSINESS_ACCOUNT_USA_2_NPC.business.data.businessAccountId]), async () => {
+    Given("I login and go to the rewards screen", given.logInAndGoToTab("rewards", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+      Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 5000));
     });
-    When("I tap on the 'Mystery Box'", when.tapID(ids.BATTLE_PASS_LIST_ITEM_TITLE("Mystery Box"), 3000), async () => {
-      When("I scroll to the bottom of the rewards'", when.mysteryRewardUsPreviewScrollToBottom, async () => {
+    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+      Then("I should see the first item 'Mystery Box'", then.idVisible(ids.BATTLE_PASS_LIST_ITEM_TITLE("Mystery Box"), 5000));
+    });
+    When("I tap on the 'Mystery Box'", when.tapID(ids.BATTLE_PASS_LIST_ITEM_TITLE("Mystery Box")), async () => {
+      Then("I should see the rewards list", then.idVisible(ids.ITEM_DETAILS_HALF_MODAL_LIST, 5000));
+      /**
+       * The following scrollWithLimitedAttemptsUntilIdVisible configuration is delicate.
+       * If we don't find the target fast enough, detox memory seems to run out and it just crashes.
+       * If it's too fast, we risk scrolling past the target, and it will cause the test to be flaky.
+       */
+      When("I scroll to the bottom", when.scrollWithLimitedAttemptsUntilIdVisible(ids.ITEM_DETAILS_HALF_MODAL_LIST, ids.ITEM_DETAILS_REWARD("$5 Target voucher"), "up", 30, 1000, 0.3, 0.5, 0.6, "fast"), async () => {
         Then("I should be able to see the US related rewards such as `Starbucks US voucher'", then.checkUsMysteryBoxRewardsVisible);
       });
     });
