@@ -2,7 +2,7 @@ export { authoriseFitkit, sendSteps } from "@socket";
 import { screens } from "@appScreens";
 import { launchApp, navigation } from "@utils";
 import * as ids from "@ids";
-import { IMPACT_DONATION } from "../_resources/types";
+import { IMPACT_DONATION, StripeCardDetails } from "../_resources/types";
 import { expect } from "detox";
 
 export const {
@@ -56,4 +56,24 @@ export const dismissRewardPopUp = async () => {
   } catch {
     throw new Error("Reward pop-up did not appear within timeout");
   }
+};
+
+export const completeStripePayment = (card: StripeCardDetails, amount: string) => async () => {
+  const fieldMappings: [string, string][] = [
+    ["Card number", card.cardNumber],
+    ["expiration date", card.expiry],
+    ["CVC", card.cvc],
+    ["Postal code", card.postalCode],
+  ];
+
+  for (const [label, value] of fieldMappings) {
+    await element(by.label(label)).atIndex(0).typeText(value);
+  }
+
+  await element(by.label("Or pay with a card")).atIndex(0).tap();
+
+  const payButton = element(by.label(`Pay £${amount}`)).atIndex(0);
+  await waitFor(payButton).toBeVisible().withTimeout(5000);
+
+  await payButton.tap();
 };
