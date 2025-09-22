@@ -117,11 +117,9 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
     });
   });
 
-  Scenario("I should see a confirmation prompt when ending a duel to ensure step sync accuracy", scenario.start, async () => {
+  Scenario("I should see a confirmation prompt when ending a duel to ensure step sync accuracy", scenario.withSearchToken(55), async () => {
     Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_17, data.AUTH_17), async () => {
-      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
-        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
-      });
+      Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
     });
     When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 2500), async () => {
       Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]));
@@ -135,7 +133,7 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
       Then("I should see the correct date of my second duel date", then.idVisible(ids.DUEL_DATE(moment().subtract(1, "days").format("DD/MM/YYYY")), 1500));
       Then("I should see my second duel pending and awaiting confirmation", then.idVisible(ids.DUEL_ENTRY("Angela Martin", 10, "pending_submission"), 3000));
     });
-    When("I tap to 'Confirm' the steps", when.tapIDAtIndex(ids.DUEL_CONFIRM, 1, 2500), async () => {
+    When("I tap to 'Confirm' the steps for the second duel on the list", when.tapIDAtIndex(ids.DUEL_CONFIRM, 1, 2500), async () => {
       Then("I should see the correct steps of my second duel", then.idVisible(ids.DUEL_DESCRIPTION(100, 250), 2500));
       Then("I should see that I won this duel", then.textVisibleAtIndex("you won!", 0, 3000));
       Then("I should see that my first duel still awaits confirmation", then.idVisible(ids.DUEL_ENTRY("Michael Scott", 10, "pending_submission"), 3000));
@@ -147,7 +145,7 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
         Then("I should see the updated duel steps after the sync", then.idVisible(ids.DUEL_STEPS("3000 steps"), 2500));
       });
     });
-    When("I tap to 'Confirm' the steps", when.tapID(ids.DUEL_CONFIRM, 1500), async () => {
+    When("I tap to 'Confirm' the steps for the first duel on the list", when.tapID(ids.DUEL_CONFIRM, 1500), async () => {
       Then("I should see that I lost this duel", then.idVisible(ids.DUEL_ICON("Michael Scott", false), 2000));
       Then("I should see the correct synced steps of my second duel", then.idVisible(ids.DUEL_DESCRIPTION(4000, 3000), 2500));
       Then("I should not see any sync buttons", then.idNotVisible(ids.DUEL_SYNC));
