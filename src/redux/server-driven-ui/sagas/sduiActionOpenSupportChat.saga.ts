@@ -1,6 +1,7 @@
 import { region } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
+import { getMenuSide } from "@navigation/root";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getSupportLevel } from "@redux/user/user.selectors";
 import { IntercomClient } from "@services/logging/intercom";
@@ -33,7 +34,7 @@ export function* sduiActionOpenSupportChatSaga() {
             },
             options: {
               sideMenu: {
-                left: {
+                [getMenuSide()]: {
                   enabled: false,
                   visible: false,
                 },
