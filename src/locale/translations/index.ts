@@ -74,8 +74,10 @@ export const translations: Record<Language, Translation> = {
     load: () => require("./downloaded/ar-SA.json"),
     direction: "rtl",
     setMomentLocale: () => {
+      const moment = require("moment");
       require("moment/locale/ar-sa");
-      require("moment").locale("ar-sa");
+      moment.updateLocale("ar-sa", { postformat: (str: string) => str });
+      moment.locale("ar-sa");
     },
   },
 };
