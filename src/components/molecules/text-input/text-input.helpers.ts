@@ -4,6 +4,8 @@ import { TextInputTypes } from "./text-input.types";
 import styles from "./text-input.styles";
 
 import { StyleSheet } from "@styles";
+import { isRTL } from "@locale";
+
 interface IGetWrapperStyle {
   hasError: boolean;
   isFocused: boolean;
@@ -103,8 +105,8 @@ interface IGetStyle {
 export const getStyle = ({ type }: IGetStyle) => {
   switch (type) {
     case "Card":
-      return StyleSheet.flatten([styles.input, styles.inputCard]);
+      return StyleSheet.flatten([styles.input, styles.inputCard, isRTL() ? styles.inputRtl : {}]);
     default:
-      return styles.input;
+      return StyleSheet.flatten([styles.input, isRTL() ? styles.inputRtl : {}]);
   }
 };

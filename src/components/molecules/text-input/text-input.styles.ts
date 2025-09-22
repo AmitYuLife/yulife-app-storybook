@@ -21,6 +21,10 @@ export default StyleSheet.create({
     padding: 0,
     width: "100%",
   } as TextStyle,
+  inputRtl: {
+    writingDirection: "rtl",
+    textAlign: "right",
+  } as TextStyle,
   inputWrapper: {
     flex: 1,
   } as ViewStyle,
