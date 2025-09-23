@@ -7,14 +7,12 @@ import { Style } from "@styles";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { addCommasToNumber } from "@utils";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { AchievementStatus } from "@organisms/achievement-card/achievement-card";
 import { t } from "@locale";
-import SudokuStats from "@components/games/sudoku/sudoku-stats";
-import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
 
 interface IProps {
   id: string;
@@ -51,17 +49,8 @@ const ViewAchievementModal = ({
 }: IProps) => {
   const [updateMobileGameUserAchievement, { loading }] = useMutation(gql("UpdateMobileGameUserAchievementDocument"));
   const currentUserId = useSelector(getCurrentUserId);
-  const sudokuState = useSelector(getSudokuState);
-  const insets = useSafeAreaInsets();
-  const showSudokuStats = useMemo(
-    () => !progress && status === AchievementStatus.locked && !isInspectingUser,
-    [progress, status, isInspectingUser]
-  );
 
-  const { data } = useQuery(gql("GetSudokuBoardDocument"), {
-    fetchPolicy: "no-cache",
-    skip: !showSudokuStats,
-  });
+  const insets = useSafeAreaInsets();
 
   const hideButton = useMemo(() => status === AchievementStatus.locked || isInspectingUser, [status, isInspectingUser]);
 
@@ -126,17 +115,6 @@ const ViewAchievementModal = ({
         </Box>
       ) : null}
 
-      {!showSudokuStats ? null : (
-        <Box ph={38}>
-          <SudokuStats
-            reward={0}
-            savedData={sudokuState}
-            results={data?.getSudokuBoard?.results}
-            stats={data?.getSudokuBoard?.stats}
-            date={data?.getSudokuBoard?.date}
-          />
-        </Box>
-      )}
       {hideButton ? null : (
         <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">
           <Button
