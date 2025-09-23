@@ -28,3 +28,4 @@ export { ScrollableContentOverlay } from "./scrollable-content-overlay/scrollabl
 export { default as BattlePassEndOfSeasonModal } from "./battle-pass-end-of-season-modal/battle-pass-end-of-season-modal";
 export { default as ViewAchievementModal } from "./view-achievement-modal/view-achievement-modal";
 export { default as BirthdayNotSetModal } from "./birthday-not-set/birthday-not-set.modal";
+export { default as UnlockedAchievementsModal } from "./unlocked-achievements-modal/unlocked-achievements-modal";
