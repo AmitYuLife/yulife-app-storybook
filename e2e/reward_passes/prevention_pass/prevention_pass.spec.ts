@@ -187,14 +187,17 @@ Feature("Prevention pass", async () => {
   Scenario("I can check all the milestone details", scenario.start, async () => {
     Given("A 'business_product_created' event was emitted", commonGiven.triggerProductCreated(BUSINESS_ACCOUNT_ID, BUSINESS_ACCOUNT_ID, "metlife-gip-uk", BATTLE_PASS_START_LOCAL_DATE), async () => {
       Given("I login and go to the rewards screen", commonGiven.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_01.customer, GENERIC_AUTH_PASSWORD), async () => {
+        Then("I can see the Prevention Pass", then.idVisible(ids.REWARD_PASS("Prevention Pass"), 30000));
         When("I go to the reward pass screen", when.tapText("Prevention Pass"), async () => {
+          Then("I should see the rewards unlock screen", then.idVisible(ids.BATTLE_PASS_LIST));
           for (const { position, titleAssertion, descriptionAssertions } of MILESTTONE_DETAILS_ASSERTIONS) {
-            When(`I scroll until the milestone (position ${position})`, when.scrollUntilIdVisible(ids.BATTLE_PASS_LIST, ids.BATTLE_PASS_LIST_ITEM(position), "right"), async () => {
-              When(`I press on it (position ${position})`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
-                Then(`I can see the reward title (position ${position})`, then.idVisible(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion)));
+            When(`I swipe left to scroll right until milestone position ${position}`, when.scrollWithLimitedAttemptsUntilIdVisible(ids.BATTLE_PASS_LIST, ids.BATTLE_PASS_LIST_ITEM(position), "left"), async () => {
+              Then(`I should see the milestone position ${position}`, then.idVisible(ids.BATTLE_PASS_LIST_ITEM(position)));
+              When(`I press on the milestone position ${position}`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
+                Then(`I can see the reward title of milestone position ${position}`, then.idVisible(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion)));
 
                 When("I scroll to the bottom of the page", when.scrollFromID(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion), "up", "fast"), async () => {
-                  Then(`I can see the reward descriptions (position ${position})`, commonThen.assertMultipleTextsVisible(descriptionAssertions));
+                  Then(`I can see the reward descriptions of milestone position ${position}`, commonThen.assertMultipleTextsVisible(descriptionAssertions));
 
                   When("I press the got it button", when.tapID(ids.HALF_MODAL_CTA), async () => {
                     Then("I'm back at the reward pass screen", then.textVisible("Prevention pass"));
