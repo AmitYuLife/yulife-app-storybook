@@ -62,7 +62,9 @@ export const completeStripePayment = (card: StripeCardDetails, amount: string) =
   ];
 
   for (const [label, value] of fieldMappings) {
-    await element(by.label(label)).atIndex(0).typeText(value);
+    const input = element(by.label(label)).atIndex(0);
+    await waitFor(input).toBeVisible().withTimeout(3500);
+    await input.typeText(value);
   }
 
   await element(by.label("Or pay with a card")).atIndex(0).tap();
