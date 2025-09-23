@@ -13,6 +13,7 @@ export const {
   scrollUntilTextVisible,
   scrollUntilIdVisible,
   swipeFromText,
+  scrollWithLimitedAttemptsUntilIdVisible,
 } = navigation.scrolling;
 
 export const {
