@@ -1,8 +1,10 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { AchievementsScreen } from "@components/screens";
 import { gql } from "@graphql/__generated";
 import { toCapitalLetter } from "@utils";
+import { showYuModal } from "@navigation/root";
+import { MODALS } from "@navigation/constants";
 
 interface IProps {
   currentViewedUserId?: string;
@@ -11,6 +13,7 @@ interface IProps {
 
 const AchievementsContainer = ({ currentViewedUserId, isInspectingUser }: IProps) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
+
   const { data, loading, refetch } = useQuery(gql("GetMobileGameUserAchievementsDocument"), {
     fetchPolicy: "network-only",
     ...(currentViewedUserId ? { variables: { userId: currentViewedUserId } } : {}),
@@ -23,6 +26,22 @@ const AchievementsContainer = ({ currentViewedUserId, isInspectingUser }: IProps
 
     return [...equippedAchievements, ...achievements, ...lockedAchievements];
   }, [data?.getMobileGameUserAchievements]);
+
+  const unseenAchievements = useMemo(() => {
+    return (data?.getMobileGameUserAchievements?.achievements || []).filter((achievement) => !achievement.viewed);
+  }, [data?.getMobileGameUserAchievements?.achievements]);
+
+  useEffect(() => {
+    if (unseenAchievements.length > 0) {
+      showYuModal({
+        component: {
+          id: MODALS.unlockedAchievementsModal,
+          name: MODALS.unlockedAchievementsModal,
+          passProps: { achievements: unseenAchievements },
+        },
+      });
+    }
+  }, [unseenAchievements]);
 
   const achievementsCategories = useMemo(() => {
     const categories = data?.getMobileGameUserAchievements?.categories || [];
