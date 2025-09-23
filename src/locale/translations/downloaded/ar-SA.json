@@ -36,24 +36,24 @@
     "haptics": "اهتزاز",
     "size": "حجم اللوحة",
     "skin": {
-      "label": "جلد",
+      "label": "المظهر",
       "options": {
         "numerical": "رقمي",
         "symbols": "رموز"
       },
-      "title": "جلد اللعبة"
+      "title": "مظهر اللعبة"
     },
     "start_game": "ابدأ اللعبة"
   },
   "achievements": "إنجازات",
   "activity_types": {
     "cycling": {
-      "plural": "الدراجات"
+      "plural": "اكتملت"
     },
     "meditation": {
       "plural": "دقائق التأمل",
       "short": "%{min} دقيقة",
-      "singular": "دقيقة التأمل"
+      "singular": "دقيقة تأمل"
     },
     "pension": {
       "plural": "مدخرات"
@@ -66,11 +66,11 @@
   "alerts": {
     "not_enough_coins": {
       "body": "اكسب المزيد وعد لاحقًا!",
-      "title": "غير كافٍ من يوكوين"
+      "title": "رصيد يوكوين غير كافٍ"
     }
   },
   "all_achievements": "كل الإنجازات",
-  "apple_health": "آبل الصحة",
+  "apple_health": "Apple Health",
   "button": "زر",
   "captcha_input": {
     "hcaptcha_disclaimer": "تتم حماية هذا التطبيق بواسطة hCaptcha وتطبق [سياسة الخصوصية](https://www.hcaptcha.com/privacy) و[شروط الخدمة](https://www.hcaptcha.com/terms) الخاصة بها."
@@ -81,30 +81,30 @@
       "plist": {
         "ns_camera_usage_description": "إرسال الصور لحل مشاكل التطبيق",
         "ns_health_share_usage_description": "نستخدم بيانات خطواتك وتأملاتك حتى نتمكن من التحقق من إكمال التحديات",
-        "ns_health_update_usage_description": "نحتاج إلى القدرة على كتابة بيانات خطواتك وتأملاتك حتى نتمكن من تحديث التحديات المكتملة",
-        "ns_location_always_usage_description": "نحتاج إلى إمكانية الوصول لحركة موقعك لتتبع التحديات الخطوية",
+        "ns_health_update_usage_description": "نحتاج إلى صلاحية لتسجيل بيانات خطواتك وجلسات التأمّل حتى نتمكّن من تحديث التحديات المكتملة.",
+        "ns_location_always_usage_description": "نحتاج إلى صلاحية للوصول إلى موقعك الجغرافي لتتبع خطواتك في التحديات.",
         "ns_motion_usage_description": "نستخدم عداد الخطوات لديك لمتابعة عدد الخطوات التي قمت بها خلال اليوم.",
-        "ns_photo_library_add_usage_description": "لحفظ هذه الصورة سيحتاج YuLife إلى القدرة على الإضافة إلى صورك.",
+        "ns_photo_library_add_usage_description": "لحفظ هذه الصورة، يحتاج YuLife إلى صلاحية لإضافة صور إلى ألبومك.",
         "ns_photo_library_usage_description": "إرسال الصور لحل مشاكل التطبيق"
       }
     }
   },
-  "coupons": "كوبونات",
-  "create_challenge_error": "عذرًا، حدثت مشكلة في بدء التحدي الخاص بك.\nيرجى المحاولة مرة أخرى!",
+  "coupons": "قسائم",
+  "create_challenge_error": "فيه مشكلة ببداية التحدي، جرّب مرة ثانية!",
   "device_not_supported": "الجهاز غير مدعوم",
-  "equip": "تَجْهِيز",
+  "equip": "جهّز",
   "equipped": "مُجَهَّز",
   "format": {
-    "date_picker_display": "DD / MM / YYYY",
-    "date_readable": "DD MMM YYYY",
-    "date_readable_short": "DD MMM",
-    "date_short": "DD/MM/YYYY",
-    "date_time_readable": "HH:mm D مَم YYYY",
-    "date_time_readable_short": "HH:mm D مَم",
+    "date_picker_display": "اليوم / الشهر / السنة",
+    "date_readable": "اليوم / الشهر / السنة",
+    "date_readable_short": "اليوم الشهر",
+    "date_short": "اليوم / الشهر / السنة",
+    "date_time_readable": "HH:mm يوم MMMM سنة YYYY",
+    "date_time_readable_short": "HH:mm يوم MMM",
     "duration": "د[د] ث[ث]",
-    "duration_long": "ساع[س] دق[د] ثوا[ث]",
-    "month_full": "MMMM",
-    "time_short": "HH:mm"
+    "duration_long": "س[س] د[د] ث[ث]",
+    "month_full": "شهر",
+    "time_short": "س س: دد"
   },
   "generic_heading": {
     "left_icon": {
@@ -117,7 +117,7 @@
         "accessibility_label": "إغلاق"
       },
       "coins": {
-        "accessibility_label": "العملات"
+        "accessibility_label": "كوينز"
       },
       "done": {
         "accessibility_label": "تم"
@@ -136,14 +136,14 @@
       }
     }
   },
-  "google_fit": "جوجل فيت",
+  "google_fit": "Google Fit",
   "hints": {
     "unlock_more_challenges": {
-      "description": "كل 50 مستوى، تحصل على القدرة لتنفيذ تحدي واحد إضافي يوميًا. حتى 4 تحديات بشكل إجمالي!",
-      "title": "افتح تحديات أكثر"
+      "description": "كل ٥٠ مستوى، تكسب القدرة على تنفيذ تحدٍ إضافي يومياً، بحد أقصى ٤ تحديات!",
+      "title": "افتح المزيد من التحديات"
     }
   },
-  "history": "تاريخ",
+  "history": "التاريخ",
   "labels": {
     "accessibility": {
       "hide": "إخفاء",
@@ -158,12 +158,12 @@
       "ask_later": "اسألني لاحقًا",
       "back": "عودة",
       "cancel": "إلغاء",
-      "claim": "استلم",
+      "claim": "استرداد",
       "close": "إغلاق",
       "collect": "جمع",
       "confirm": "تأكيد",
-      "connect": "اتصل",
-      "connect_health_app": "اتصل بـ%{healthApp}",
+      "connect": "ربط",
+      "connect_health_app": "اربط بـ%{healthApp}",
       "continue": "تابع",
       "cool": "رائع!",
       "copy": "نسخ",
@@ -179,14 +179,14 @@
       "invite": "دعوة زميل",
       "join": "انضم",
       "later": "لاحقًا",
-      "learn_more": "اعرف أكثر",
-      "lets_go": "لنذهب",
+      "learn_more": "اعرف المزيد",
+      "lets_go": "يلا نبدأ",
       "loading": "جار التحميل...",
       "next": "التالي",
       "no": "لا",
       "no_thanks": "لا، شكرًا",
       "not_now": "ليس الآن",
-      "not_really": "ليس حقاً",
+      "not_really": "ليس تماماً",
       "ok": "موافق",
       "open": "افتح",
       "pause": "إيقاف",
@@ -202,10 +202,10 @@
     },
     "deleted_user_name": "زميلك",
     "level": "المستوى %{level}",
-    "many_more": "+العديد من المزيد",
+    "many_more": "+وغيرها كثير",
     "off": "إيقاف",
     "on": "تشغيل",
-    "power": "القوة",
+    "power": "قوة",
     "quest_map": "خريطة",
     "spend": "إنفاق",
     "time": {
@@ -239,7 +239,7 @@
         "title": "هل أنت متأكد أنك تريد حذف هذا المستفيد؟"
       },
       "default_confirmation": {
-        "title": "هل ترغب في أن يكون هؤلاء المستفيدين الافتراضيين لمنتجات أخرى مستقبلاً؟"
+        "title": "هل تود أن يكون هؤلاء هم المستفيدين الافتراضيين لمنتجاتك الأخرى مستقبلاً؟"
       },
       "delete_beneficiary_label": "حذف المستفيد",
       "title": "تفاصيل المستفيد"
@@ -247,28 +247,28 @@
     "battle_pass": {
       "completed": {
         "button_label": "استلام المكافآت",
-        "description": "لقد أكملت هذا الموسم! \n\n استلم جميع مكافآتك حتى تتمكن من بدء موسم جديد.",
-        "title": "تهانينا!"
+        "description": "لقد أنهيت هذا الموسم! استرد جميع مكافآتك لتبدأ موسماً جديداً.",
+        "title": "مبروك!"
       },
       "finished": {
         "button_label": "أبدأ الموسم الجديد",
-        "description": "لقد أكملت هذا الموسم! \n\n ابدأ موسمًا جديدًا لفتح المزيد من المكافآت الرائعة!",
-        "title": "تهانينا!"
+        "description": "لقد أكملت هذا الموسم! \n\n ابدأ موسماً جديداً للحصول على المزيد من المكافآت الرائعة!",
+        "title": "مبروك!"
       },
       "out_of_coin": {
-        "description": "رصيدك لا يكفي لإتمام هذه الشراء. \n \n جرب إنهاء بعض التحديات لكسب المزيد من العملات.",
-        "title": "يا للهول!"
+        "description": "رصيدك لا يكفي لإتمام هذه الشراء. \n \n جرب إنهاء بعض التحديات لكسب المزيد من الكوينز.",
+        "title": "يا للأسف!"
       }
     },
     "consumables": {
-      "activate_button": "تنشيط",
+      "activate_button": "تفعيل",
       "already_active_end": "للاستخدام حتى انتهاء صلاحيته.",
       "already_active_start": "قوتك الخاصة نشطة. لديك",
       "close": "إغلاق",
       "empty": "مخزونك فارغ. توجه إلى مسار مكافآت المواسم للحصول على عناصر مفيدة لمساعدتك في رحلتك.",
       "go_to_rewards_button": "اذهب إلى المكافآت",
       "popover_confirm": "رائع",
-      "subtitle": "اختر قوة لتعشيقها",
+      "subtitle": "اختر قوة لتفعيلها",
       "title": "المخزون"
     },
     "duels": {
@@ -276,51 +276,51 @@
         "alternative_name": "زميلك",
         "description_already_accepted": "سوف تتم المبارزة الخاصة بك مع %{name} في %{duelStart}. يمكنك تحديهم في مباراة إعادة بعد ذلك، أو تحدي صديق آخر الآن.",
         "description_not_accepted": "لقد دعوت بالفعل %{name} إلى المبارزة. انتظر ردهم أو تحدَّ صديقًا آخر الآن.",
-        "title_already_accepted": "لقد بدأ بالفعل!",
+        "title_already_accepted": "لقد بدأت بالفعل!",
         "title_not_accepted": "انتظر لحظة!"
       },
       "duel_intro": {
-        "button": "تحديد التحدي",
+        "button": "جهّز التحدي",
         "heading": "المواجهة:"
       },
       "duel_invite": {
         "confirm_invitation": {
           "heading": "تأكيد الدعوة؟",
-          "subheading": "إذا قُبلت، سيتم إضافتها إلى قائمة المبارزات القادمة لديك وستبدأ غداً"
+          "subheading": "إذا قُبلت، سيتم إضافتها إلى قائمة تحدياتك القادمة لديك وستبدأ غداً"
         },
         "not_enought_yucoin": {
-          "heading": "غير كافٍ من يوكوين",
+          "heading": "رصيد يوكوين غير كافٍ",
           "subheading": "قم بالمزيد من التحديات وعد لاحقًا!"
         }
       },
       "duel_options": {
         "bragging_rights_option": "حقوق المفاخرة",
-        "button_label": "إرسال طلب مبارزة",
+        "button_label": "إرسال طلب تحدي",
         "colleague": "زميل",
         "header": "تقوم بتحدي **%{name}** في مبارزة. من يسجل أكبر عدد من الخطوات خلال التحدي، يفوز!",
         "instruction": "ما الهدف من المنازلة؟",
-        "select_wager": "اختر رهانًا",
+        "select_wager": "اختر تحدياً",
         "subheader_1": "يبدأ النزال غدًا ويستمر طوال اليوم. ستظهر النتائج التي تُعلن الفائز في صباح اليوم التالي.",
         "subheader_2": "ما الهدف من المنازلة؟",
-        "your_wager": "رهانك"
+        "your_wager": "تحديك"
       },
       "duel_respond": {
         "heading": "هل أنت متأكد؟",
         "subheading": "تذكر، إذا قبلت هذا التحدي، قد تخسر %{yucoin} يوكوين. هل أنت متأكد أنك تريد المتابعة؟",
-        "subheading_no_yucoin": "هذه المبارزة فقط للفخر، لذا لن تكسب أو تخسر أي يوكوين. هل أنت سعيد بالمتابعة؟"
+        "subheading_no_yucoin": "هذا التحدي للتباهي فقط، ولن تربح أو تخسر أي يوكوين. هل ترغب في الاستمرار؟"
       },
       "duel_response_intro": {
-        "bragging_rights": "حقوق المفاخرة",
+        "bragging_rights": "حقوق التباهي",
         "collegue": "زميل",
         "heading": "دعاك إلى مبارزة لمدة يوم واحد!",
         "yucoin_heading": "دعاك إلى مبارزة لمدة يوم واحد مقابل %{yucoin}!"
       },
       "hub": {
-        "active_tab": "نشطة",
+        "active_tab": "نشط",
         "all_day_steps": "%{userScore} خطوات",
-        "br": "البرازيل",
+        "br": "BR",
         "challenge_friend_button": "تحدَّ صديقك",
-        "completed_tab": "المنتهي",
+        "completed_tab": "مكتمل",
         "confirm_duel_steps": "تأكيد خطواتك",
         "duel_confirming": "جارٍ التأكيد...",
         "duel_syncing": "جاري المزامنة...",
