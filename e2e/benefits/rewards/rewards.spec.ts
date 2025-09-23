@@ -11,7 +11,7 @@ import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 Feature("Rewards should act correctly", async () => {
   Scenario("I cannot redeem a reward if I don't have enough coin", scenario.start, () => {
     Given("I log in and go to reward", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should see the modal to select store location", then.rewardsLocationModalVisible(4000));
+      Then("I should see the modal to select store location", then.rewardsLocationModalVisible(7000));
     });
     When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 3000));

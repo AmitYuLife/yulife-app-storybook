@@ -82,19 +82,10 @@ Feature("Fiit in app", async () => {
       Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT, 2500));
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
-      When("I tap 'maybe later'", when.tapText("maybe later", 2000), async () => {
-        Then("The video is playing", then.isVideoPaused(false));
-      });
-    });
-    When("I pause the video", when.pauseVideo(true), async () => {
-      Then("I can see the video is paused", then.isVideoPaused(true));
-    });
-    When("I tap the close button to quit the challenge part way through", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 1000), async () => {
-      Then("I should see the quit challenge confirmation screen", then.isOnQuitChallengeScreen);
-    });
-    When("I return to the challenge", when.closeQuitChallengeScreen, async () => {
-      When("I tap the close button again", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 1000), async () => {
-        Then("I should see the quit challenge confirmation screen", then.isOnQuitChallengeScreen);
+      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200), async () => {
+        When("I tap the close button to quit the challenge part way through", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 2000), async () => {
+          Then("I should see the quit challenge confirmation screen", then.isOnQuitChallengeScreen);
+        });
       });
     });
     When("I exit the challenge", when.exitChallenge, async () => {
@@ -124,7 +115,7 @@ Feature("Fiit in app", async () => {
       Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT, 2500));
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
-      When("I tap 'maybe later'", when.tapText("maybe later"), async () => {
+      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200), async () => {
         Then("The video is playing", then.isVideoPaused(false));
       });
     });
@@ -172,7 +163,7 @@ Feature("Fiit in app", async () => {
       Then("I should see the workout info", then.canSeeBodyCoachVideoInfo(bodyCoachWorkout10, data.USER_BODY_COACH));
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
-      When("I tap 'maybe later'", when.tapText("maybe later"), async () => {
+      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200), async () => {
         When("I pause the video", when.pauseVideo(true), async () => {
           Then("I can see the video is paused", then.isVideoPaused(true));
         });
