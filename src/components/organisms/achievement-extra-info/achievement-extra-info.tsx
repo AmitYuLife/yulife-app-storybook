@@ -14,18 +14,9 @@ interface IProps {
   }[];
 }
 const AchievementExtraInfo = ({ items }: IProps) => (
-  <Box ph={38}>
+  <Box ph={16} borderWidth={1} borderColor={Colours.metallic.m200} br={16}>
     {items.map((item) => (
-      <Box
-        key={item.title}
-        flexDirection="row"
-        alignItems="center"
-        borderWidth={1}
-        borderColor={Colours.metallic.m200}
-        br={16}
-        justifyContent="space-between"
-        ph={16}
-      >
+      <Box key={item.title} flexDirection="row" alignItems="center" justifyContent="space-between">
         <Box flexDirection="row" alignItems="center" gap={8}>
           <Image source={item.icon} width={Style.adjust(24)} height={Style.adjust(24)} />
           <Markdown text={item.title} />

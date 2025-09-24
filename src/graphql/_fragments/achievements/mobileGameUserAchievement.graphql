@@ -16,6 +16,13 @@ fragment MobileGameUserAchievement on MobileGameUserAchievement {
     current
     target
   }
+  extraInfo {
+    title
+    description
+    icon {
+      ...RemoteImage
+    }
+  }
   backgroundImage {
     ...RemoteImage
   }
