@@ -54,6 +54,8 @@ export const {
   yuScreenV5HeaderVisible,
 } = screens.yuscreen;
 
+export { smokingCelebrationPopupVisible } from "../../../smoking_cessation/_helpers/smoking-celebration-popup-visible";
+
 export const { swipeToID, swipeFromText, scrollUntilIdVisible, scrollUntilTextVisible } =
   navigation.scrolling;
 
