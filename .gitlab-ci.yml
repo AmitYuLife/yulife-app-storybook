@@ -11,8 +11,11 @@ include:
 
 variables:
   UK_DEV_AWS_ACCOUNT_ID: 846880112034
+  TEAM_QA_AWS_ACCOUNT_ID: 209479303709
+  DEVOPS_AWS_ACCOUNT_ID: 112259133553
   UK_DEV_APP_COMPONENTS_ROLE_ARN: arn:aws:iam::$UK_DEV_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-yulife-app-components
   GITLAB_TOKEN: $CI_JOB_TOKEN
+  QA_REPORTER_ROLE_ARN: arn:aws:iam::$TEAM_QA_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-yulife-cypress-reports
 
 stages:
   - build
