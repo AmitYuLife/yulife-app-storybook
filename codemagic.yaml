@@ -546,26 +546,6 @@ workflows:
         <<: *ios_detox_base_env_vars
         DETOX_TEST_TYPE: group-health-two
 
-  ios-detox-health:
-    <<: *ios_detox_base_test
-    name: iOS Detox Health Test
-    environment:
-      <<: *ios_detox_base_environment
-      vars:
-        <<: *ios_detox_base_env_vars
-        DETOX_TEST_TYPE: health
-
-  ios-detox-health-jp:
-    <<: *ios_detox_base_test
-    name: iOS Detox Health JP Test
-    environment:
-      <<: *ios_detox_base_environment
-      vars:
-        <<: *ios_detox_base_env_vars
-        API_REGION: JP
-        DETOX_TEST_TYPE: health
-        TARGET_LOCALE: ja-JP
-
   ios-detox-combine-overnight-reports:
     name: iOS Detox Combine Overnight Reports
     max_build_duration: 30
