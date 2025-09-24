@@ -229,10 +229,6 @@ export const LeaderboardScreen = ({
               onPress: onNotificationPress,
               testID: NOTIF_CENTRE,
               style: { paddingStart: Style.adjust(8) },
-              hitSlop: {
-                ...TOP_BAR.HIT_SLOP,
-                left: 0,
-              },
             },
           ]
         : []),

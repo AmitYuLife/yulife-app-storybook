@@ -6,7 +6,7 @@ import { IConnectedScreenProps } from "@app/typings";
 import { Pad, YuCoinBadge } from "@atoms";
 import { TouchableOpacityWithDelay, CentredScreen } from "@molecules";
 import { Surge, Streak, TopBar, NavBar, DailyStepsContentOld } from "@organisms";
-import { Style, TOP_BAR } from "@styles";
+import { Style } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import ReferralsPopover from "./referrals-popover";
 import { ContentItemLottieFragment, GetUserSurgeQuery } from "@graphql/__generated";
@@ -115,10 +115,6 @@ const DailyStepsScreen = ({
               onPress: onNotificationPress,
               testID: NOTIF_CENTRE,
               style: { paddingStart: Style.adjust(8) },
-              hitSlop: {
-                ...TOP_BAR.HIT_SLOP,
-                left: 0,
-              },
             },
           ]
         : []),
