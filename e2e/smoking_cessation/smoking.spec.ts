@@ -9,7 +9,7 @@ import { smoking_questions, smoking_opt_out, LEELA_MOMENTS_AND_REASONS, FRY_MOME
 
 const locale = process.env.TARGET_LOCALE || "en-GB";
 
-Feature("I can view and use the smoking cessation feature", async () => {
+Feature("As a user from UK, I can view and use the smoking cessation feature", async () => {
   Scenario("I can begin my smoking cessation journey, fill out the questionnaire, and track view the smoking hub", scenario.start, async () => {
     Given("I log in and go to the YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_FRY, data.AUTH_FRY), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Phillip Fry", "Ocean", "81", true));

@@ -26,6 +26,8 @@ export const {
   objCopyVisible,
 } = navigation.common;
 
+export { smokingCelebrationPopupVisible } from "../_helpers/smoking-celebration-popup-visible";
+
 export const { onChallengeComplete } = screens.challenges;
 
 export const { yuScreenV5HeaderVisible } = screens.yuscreen;
@@ -37,17 +39,6 @@ export const smokingTileVisible =
     await idVisible(ids.YUSCREEN_SMOKING_TILE)();
     await idVisible(ids.YUSCREEN_SMOKING_TILE_TITLE(titleCopy))();
   };
-
-export const smokingCelebrationPopupVisible = (days: number, yucoin?: number) => async () => {
-  await wait(2000)();
-  await idVisible(ids.SMOKING_CELEBRATION_TITLE)();
-  await idVisible(ids.SMOKING_CELEBRATION_DAYS(`Day ${days}`))();
-  yucoin && days <= 28 && (await idVisible(ids.SMOKING_CELEBRATION_YUCOIN(yucoin))());
-  !yucoin && days > 28 && (await idNotVisible(ids.SMOKING_CELEBRATION_YUCOIN(0))());
-  days <= 28 && days > 1 && (await idVisible(ids.SMOKING_CELEBRATION_TIPS_CONTAINER)());
-  days <= 28 && days > 1 && (await idVisibleAtIndex(ids.SMOKING_TIP(`day_${days}`), 1)());
-  await idVisible(ids.SMOKING_CELEBRATION_CTA)();
-};
 
 export const smokingCardVisible = (days: number, locale: string) => async () => {
   const daysText = locale === "ja-JP" ? "" : " days";
