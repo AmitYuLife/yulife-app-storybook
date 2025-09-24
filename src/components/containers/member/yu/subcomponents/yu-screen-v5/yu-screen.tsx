@@ -8,7 +8,7 @@ import { getRouteState } from "@redux/app/app.selectors";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
 import { getYuScreenLastLayoutUpdate, getYuScreenSections } from "@redux/yu-screen/yu-screen.selectors";
-import { Colours, Style, TOP_BAR } from "@styles";
+import { Colours, Style } from "@styles";
 import { getTheme } from "@theme";
 import { getCurrentWorld } from "@utils";
 import { getCurrentWorldBackground } from "@utils/yuScreenV5";
@@ -146,10 +146,6 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, sh
               onPress: onNotificationPress,
               testID: NOTIF_CENTRE,
               style: { paddingStart: Style.adjust(8) },
-              hitSlop: {
-                ...TOP_BAR.HIT_SLOP,
-                left: 0,
-              },
             },
           ]
         : []),

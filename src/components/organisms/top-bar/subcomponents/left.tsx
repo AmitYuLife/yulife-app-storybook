@@ -1,11 +1,11 @@
 import React, { memo, useMemo } from "react";
-import { View, TextStyle, ViewStyle, Insets } from "react-native";
+import { View, TextStyle, ViewStyle } from "react-native";
 import { BUTTON_TOP_LEFT_BAR, MENU_ICON_BADGE, NOTIF_ICON_BADGE } from "@ids";
 import { Back, Box, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
 import { Text } from "@atoms/index";
 import { Style, TOP_BAR, Colours } from "@styles/index";
-import { t } from "@locale";
+import { isRTL, t } from "@locale";
 import NotificationSvg from "@atoms/notification/notification-svg";
 import { TouchableOpacityWithDelay } from "@molecules";
 
@@ -21,7 +21,6 @@ export enum LeftIcon {
 export interface IIcon {
   icon: LeftIcon;
   onPress: () => void;
-  hitSlop?: Insets;
   style?: ViewStyle;
   testID?: string;
 }
@@ -39,10 +38,10 @@ const Left = ({ icons = [], colour, label, textStyle, badges }: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      {filteredIcons.map(({ icon, testID, onPress, hitSlop, style }) => (
+      {filteredIcons.map(({ icon, testID, onPress, style }) => (
         <TouchableOpacityWithDelay
           key={icon}
-          hitSlop={hitSlop || TOP_BAR.HIT_SLOP}
+          hitSlop={buildHitSlop(icon)}
           style={[styles.icon, style]}
           onPress={onPress}
           testID={testID || BUTTON_TOP_LEFT_BAR}
@@ -158,3 +157,14 @@ const styles = StyleSheet.create({
     height: "100%",
   } as ViewStyle,
 });
+
+const buildHitSlop = (icon: LeftIcon) => {
+  if (icon === LeftIcon.NOTIFICATIONS) {
+    return {
+      ...TOP_BAR.HIT_SLOP,
+      [isRTL() ? "right" : "left"]: 0,
+    };
+  }
+
+  return TOP_BAR.HIT_SLOP;
+};

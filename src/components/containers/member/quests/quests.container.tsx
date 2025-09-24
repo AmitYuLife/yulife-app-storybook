@@ -1,7 +1,7 @@
 import moment from "moment";
 import { showYuModal } from "@navigation/root";
 import { getUnitTarget } from "@utils";
-import { Style, TOP_BAR } from "@styles/index";
+import { Style } from "@styles/index";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
@@ -72,10 +72,6 @@ const QuestsContainer = () => {
               },
               testID: NOTIF_CENTRE,
               style: { paddingStart: Style.adjust(8) },
-              hitSlop: {
-                ...TOP_BAR.HIT_SLOP,
-                left: 0,
-              },
             },
           ]
         : []),
