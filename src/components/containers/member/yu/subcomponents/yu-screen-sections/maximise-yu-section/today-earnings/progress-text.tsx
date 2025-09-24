@@ -1,8 +1,8 @@
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { Counter } from "@components/molecules";
-import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
-import { memo, useEffect, useState } from "react";
-import { View } from "react-native";
+import { isRTL } from "@locale";
+import { Colours, templateTextStyles, StyleSheet } from "@styles";
+import { memo, useEffect, useMemo, useState } from "react";
 
 type Props = {
   progress: {
@@ -15,6 +15,8 @@ type Props = {
 export const ProgressText = memo(({ progress, animate }: Props) => {
   const [currentValue, setCurrentValue] = useState(progress.current);
   const [animateCounter, setAnimateCounter] = useState(false);
+
+  const maxProps = useMemo(() => buildMaxProps(), []);
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -39,37 +41,36 @@ export const ProgressText = memo(({ progress, animate }: Props) => {
   }
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.currentWrapper}>
-        {animateCounter ? (
-          <Counter duration={1200} value={currentValue} textStyle={styles.current} />
-        ) : (
-          <TextTemplate type="h3" color={styles.current.color}>
-            {progress.current}
-          </TextTemplate>
-        )}
-      </View>
-      <View style={styles.max}>
-        <TextTemplate type="b2b">{`/ ${progress.max}`}</TextTemplate>
-      </View>
-    </View>
+    <Box flexDirection="row">
+      <Box flexDirection={isRTL() ? "row-reverse" : "row"}>
+        <Box justifyContent="flex-end">
+          {animateCounter ? (
+            <Counter duration={1200} value={currentValue} textStyle={styles.current} />
+          ) : (
+            <TextTemplate type="h3" color={styles.current.color}>
+              {progress.current}
+            </TextTemplate>
+          )}
+        </Box>
+        <Box {...maxProps}>
+          <TextTemplate type="b2b">{`/ ${progress.max}`}</TextTemplate>
+        </Box>
+      </Box>
+    </Box>
   );
 });
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "row",
-  },
-  currentWrapper: {
+const buildMaxProps = () => {
+  return {
     justifyContent: "flex-end",
-  },
+    pb: 4,
+    ...(isRTL() ? { mr: 4 } : { ml: 4 }),
+  } as const;
+};
+
+const styles = StyleSheet.create({
   current: {
     ...templateTextStyles.h3,
     color: Colours.primary.p600,
-  },
-  max: {
-    justifyContent: "flex-end",
-    paddingBottom: Style.adjust(4),
-    marginStart: Style.adjust(4),
   },
 });
