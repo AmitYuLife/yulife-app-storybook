@@ -46,6 +46,7 @@
     "start_game": "ゲーム開始"
   },
   "achievements": "バッジ",
+  "achievements_earned": "バッジ獲得!",
   "activity_types": {
     "cycling": {
       "plural": "サイクリング"

@@ -46,6 +46,7 @@
     "start_game": "Comenzar juego"
   },
   "achievements": "Logros",
+  "achievements_earned": "¡Logros conseguidos!",
   "activity_types": {
     "cycling": {
       "plural": "Ciclismo"

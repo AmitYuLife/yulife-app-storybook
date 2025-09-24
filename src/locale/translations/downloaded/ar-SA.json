@@ -46,6 +46,7 @@
     "start_game": "ابدأ اللعبة"
   },
   "achievements": "إنجازات",
+  "achievements_earned": "إنجازات محققة!",
   "activity_types": {
     "cycling": {
       "plural": "اكتملت"
