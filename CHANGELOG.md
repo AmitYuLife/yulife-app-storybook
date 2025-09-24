@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.82.0] - 2025-09-24
+
+### Features
+
+- Detox NVS-1676: Fix MoO feature visibility scenario to accommodate new inspect screen 'Back' method
+
+### Bugfixes
+
+- Bugfix GS-1962: Menu navigation crashing the app on android if current locale is arabic
+
+### Tasks
+
+- Task GS-1969: Add AchievementExtraInfo component into ViewAchievementModal
+- Task CTE-449: RTL leaderboard podium
+- Task GS-1967: Create AchievementExtraInfo component
+- Task CTE-446: wrong hitslop for notifications
+- Task CTE-447: RTL maximise yu
+- Task GS-1942: Remove SudokuStats component from viewing achievement modal
+- Task GS-1952: Show unlocked achievements if user have unlocked an achievement
+- Task GS-1965: Update react-native-device-info to support new iPhones
+- Task CTE-437: moment().format() wrong for arabic
+- Task: Upgrade YuHealth to 1.3.19
+- Task CTE-436: RTL tooltip
+- Task CTE-360: RTL input
+- Task: YuHealth upgrade & wait for active provider before trying to start pedometer
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox NVS-1694: Fix USA Smoking test
+- Detox: New Achievement Unlocked
+- Detox NVS-1687: Stabilize Maximise Yu scenario
+- Detox: Workout Challenge Cancel Flow
+- Detox NVS-1685: Stabilize Prevention Pass Milestone Details
+- Detox NVS-1680: Stabilize duel sync scenario
+- Detox: Reward Pop-up Dismissal
+- Detox NVS-1678: Fix MoO battle pass rewards scenario
+- Detox GS-1955: Coupon Stripe Payment
+- Detox NVS-1677: Fix MoO company mentions scenario, add timeout for copy assertions
+- Detox: Stabilise Meditation & Workout Flows
+- Detox NVS-1669: Stabilize Smoking Cessation sign up and hero card access
+- CTE-430: hide support
+- ISA-3614: Customer Matcher OR-Group Leaderboards In-App
+- Detox NVS-1657: Increase waiting time for rewards tab data or assets to load
+- Detox NVS-1668: Fix inspect profile challenge event scenario
+- Detox NVS-1666: Fix multi reward purchase scrolling issues
+- Bugifx GS-1948: Markdown images position for arabic
+- Detox NVS-1664: Fix locked reward scenario scrolling issues
+
 ## [4.81.0] - 2025-09-17
 
 ### Bugfixes
