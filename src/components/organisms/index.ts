@@ -82,3 +82,4 @@ export { default as NameLevelMiniAvatar } from "./name-level-mini-avatar/name-le
 export { default as ParticleSpawner, ParticleSpawnerDynamicCount } from "./particle-spawner/particle-spawner";
 export { ParticleInstanceProps } from "./particle-spawner/subcomponents/particle";
 export { default as Spotlight, SpotlightProps } from "./spotlight/spotlight";
+export { default as AchievementExtraInfo } from "./achievement-extra-info/achievement-extra-info";
