@@ -57,6 +57,7 @@ const init = async () => {
   console.log(`API URL: ${API_URL}`);
   console.log(`TARGET_LOCALE: ${TARGET_LOCALE}`);
 
+  let detoxExitCode = 0;
   try {
     execSync(
       [
@@ -78,6 +79,10 @@ const init = async () => {
       ].join(" "),
       { stdio: "inherit" }
     );
+  } catch (error: unknown) {
+    // Capture the exit code from the failed command
+    detoxExitCode = (error as { status?: number }).status || 1;
+    console.error(`Test execution failed with exit code: ${detoxExitCode}`);
   } finally {
     // If we have a history folder that's provided, we want to copy it across to the report so we can identify flaky tests
     if (ALLURE_HISTORY_FOLDER_LOCATION) {
@@ -124,14 +129,20 @@ const init = async () => {
       } catch (e) {}
     }
   }
+
+  // Exit with the test's exit code to properly propagate failures
+  if (detoxExitCode !== 0) {
+    process.exit(detoxExitCode);
+  }
 };
 
 ["SIGINT", "SIGTERM", "exit"].forEach((signal) => {
-  process.on(signal, () => {
-    if (liveServer) {
+  process.on(signal, (code?: number) => {
+    if (liveServer && typeof liveServer.kill === "function") {
       liveServer.kill();
     }
-    process.exit(0);
+    // Use the exit code from callback if available, otherwise default to 0
+    process.exit(code ?? 0);
   });
 });
 

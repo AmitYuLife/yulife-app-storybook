@@ -9,11 +9,10 @@
 #                any of its commands occurs
 # * -x: print each command before executing it
 #
-set -euo pipefail
-# set -x
+set -eo pipefail
 
 # shellcheck disable=SC1090
-# source ~/.zprofile
+source ~/.zprofile
 
 function build_app() {
   echo "🔨 Prebuilding app..."
