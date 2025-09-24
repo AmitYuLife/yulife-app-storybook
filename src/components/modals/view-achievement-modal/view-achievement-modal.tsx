@@ -1,7 +1,7 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { memo, useCallback, useMemo } from "react";
 import { AchievementPoints, Button, InfoPanel, ProgressBar } from "@molecules";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { AchievementExtraInfo, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Style } from "@styles";
 import { Navigation } from "@navigation/main";
@@ -31,6 +31,15 @@ interface IProps {
     current: number;
     target: number;
   };
+  extraInfo?: {
+    title: string;
+    description: string;
+    icon: {
+      uri?: string;
+      id: string;
+    };
+  }[];
+
   onClose?: () => void;
 }
 const onModalClose = () => Navigation.dismissModal(MODALS.viewAchievementModal);
@@ -46,6 +55,7 @@ const ViewAchievementModal = ({
   currentRoute,
   isInspectingUser,
   progress,
+  extraInfo,
 }: IProps) => {
   const [updateMobileGameUserAchievement, { loading }] = useMutation(gql("UpdateMobileGameUserAchievementDocument"));
   const currentUserId = useSelector(getCurrentUserId);
@@ -72,6 +82,8 @@ const ViewAchievementModal = ({
     () => status === AchievementStatus.locked && progress?.current >= progress?.target,
     [status, progress]
   );
+
+  const showExtraInfo = status === AchievementStatus.locked && extraInfo?.length > 0;
 
   const containerStyle = useMemo(() => (showInfoPanel ? { ph: 38 } : { p: 38 }), [showInfoPanel]);
 
@@ -112,6 +124,12 @@ const ViewAchievementModal = ({
       {showInfoPanel ? (
         <Box position="absolute" bottom={insets.bottom} width="100%" ph={38}>
           <InfoPanel markdown={t("modals.locked_achievement.title")} showIcon={true} />
+        </Box>
+      ) : null}
+
+      {showExtraInfo ? (
+        <Box ph={38}>
+          <AchievementExtraInfo items={extraInfo} />
         </Box>
       ) : null}
 

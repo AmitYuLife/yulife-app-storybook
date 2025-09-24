@@ -633,7 +633,7 @@ export type BulkMemberImportLeaverRow = {
 export type BulkMemberImportMissingRow = {
   __typename?: "BulkMemberImportMissingRow";
   displayAsLeaver: Scalars["Boolean"]["output"];
-  fields: Array<BulkMemberImportField>;
+  fields: Array<BulkMemberJointField>;
   id: Scalars["ID"]["output"];
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
@@ -797,6 +797,14 @@ export type BulkMemberImportsResponse = {
   bulkImports: Array<BulkMemberImport>;
   /** @deprecated Will no longer be used once the portal onboarding experience is complete */
   hasBulkImports: Scalars["Boolean"]["output"];
+};
+
+export type BulkMemberJointField = {
+  __typename?: "BulkMemberJointField";
+  after?: Maybe<Scalars["String"]["output"]>;
+  before?: Maybe<Scalars["String"]["output"]>;
+  key?: Maybe<Scalars["String"]["output"]>;
+  value?: Maybe<Scalars["String"]["output"]>;
 };
 
 export enum BulkMemberUploadType {
@@ -1044,12 +1052,17 @@ export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
   __typename?: "BusinessSurveyCampaign";
   archivedAt?: Maybe<Scalars["String"]["output"]>;
   campaignName: Scalars["String"]["output"];
+  categoriesCount: Scalars["Int"]["output"];
   completedSurveys: Scalars["Int"]["output"];
   createdAt: Scalars["String"]["output"];
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
+  hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
+  launchEmailBody?: Maybe<Scalars["String"]["output"]>;
+  launchEmailSubjectLine?: Maybe<Scalars["String"]["output"]>;
   publishedAt?: Maybe<Scalars["String"]["output"]>;
+  questionsCount: Scalars["Int"]["output"];
   status: BusinessSurveyCampaignStatus;
   steps: Array<BusinessSurveyStep>;
   totalSurveys: Scalars["Int"]["output"];
@@ -1061,8 +1074,11 @@ export type BusinessSurveyCampaignBase = {
   completedSurveys: Scalars["Int"]["output"];
   createdAt: Scalars["String"]["output"];
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
+  hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
+  launchEmailBody?: Maybe<Scalars["String"]["output"]>;
+  launchEmailSubjectLine?: Maybe<Scalars["String"]["output"]>;
   publishedAt?: Maybe<Scalars["String"]["output"]>;
   status: BusinessSurveyCampaignStatus;
   totalSurveys: Scalars["Int"]["output"];
@@ -1095,8 +1111,11 @@ export type BusinessSurveyCampaignSearchResultsEntry = BusinessSurveyCampaignBas
   completedSurveys: Scalars["Int"]["output"];
   createdAt: Scalars["String"]["output"];
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
+  hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
+  launchEmailBody?: Maybe<Scalars["String"]["output"]>;
+  launchEmailSubjectLine?: Maybe<Scalars["String"]["output"]>;
   publishedAt?: Maybe<Scalars["String"]["output"]>;
   status: BusinessSurveyCampaignStatus;
   totalSurveys: Scalars["Int"]["output"];
@@ -1107,6 +1126,11 @@ export enum BusinessSurveyCampaignStatus {
   Draft = "draft",
   Live = "live",
 }
+
+export type BusinessSurveyCampaignTemplateScaleOptions = {
+  __typename?: "BusinessSurveyCampaignTemplateScaleOptions";
+  options: Array<ScaleTemplateOption>;
+};
 
 export type BusinessSurveyLaunchPlanInput = {
   endLocalDate: Scalars["String"]["input"];
@@ -1129,31 +1153,24 @@ export enum BusinessSurveyPresetId {
   QuickEngagementSurvey = "QuickEngagementSurvey",
 }
 
-export type BusinessSurveyStep = {
-  __typename?: "BusinessSurveyStep";
-  category?: Maybe<Scalars["String"]["output"]>;
-  description?: Maybe<Scalars["String"]["output"]>;
-  heading?: Maybe<Scalars["String"]["output"]>;
-  id: Scalars["ID"]["output"];
-  isRequired?: Maybe<Scalars["Boolean"]["output"]>;
-  type: BusinessSurveyStepTemplateType;
-};
+export type BusinessSurveyStep = StepMultipleChoice | StepNps | StepOpenAnswer | StepScale;
 
 export type BusinessSurveyStepInput = {
-  category?: InputMaybe<Scalars["String"]["input"]>;
+  category: Scalars["String"]["input"];
   description?: InputMaybe<Scalars["String"]["input"]>;
   heading?: InputMaybe<Scalars["String"]["input"]>;
   id?: InputMaybe<Scalars["ID"]["input"]>;
   isRequired?: InputMaybe<Scalars["Boolean"]["input"]>;
+  multiSelect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  multipleChoiceOptions?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  scaleType?: InputMaybe<SurveyTemplateScaleType>;
   type: BusinessSurveyStepTemplateType;
 };
 
 export enum BusinessSurveyStepTemplateType {
-  Intro = "intro",
   MultipleChoice = "multipleChoice",
   Nps = "nps",
   OpenAnswer = "openAnswer",
-  Reward = "reward",
   Scale = "scale",
 }
 
@@ -5213,6 +5230,7 @@ export type MessagingConnection = {
   __typename?: "MessagingConnection";
   connectionType: Scalars["String"]["output"];
   id: Scalars["String"]["output"];
+  invitesEnabled: Scalars["Boolean"]["output"];
   status: MessagingConnectionState;
 };
 
@@ -5222,6 +5240,10 @@ export type MessagingConnectionAuthUrl = {
   url?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type MessagingConnectionConfigFieldsInput = {
+  invitesEnabled?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
 export enum MessagingConnectionState {
   Active = "Active",
   Disabled = "Disabled",
@@ -5229,6 +5251,7 @@ export enum MessagingConnectionState {
 
 export enum MessagingConnectionTypes {
   Slack = "slack",
+  Teams = "teams",
 }
 
 export type MessagingConnectionsResult = {
@@ -5561,6 +5584,7 @@ export type MobileGameUserAchievement = {
   backgroundColor: Scalars["String"]["output"];
   backgroundImage: RemoteImage;
   description: Scalars["String"]["output"];
+  extraInfo?: Maybe<Array<MobileGameUserAchievementExtraInfo>>;
   icon: RemoteImage;
   id: Scalars["ID"]["output"];
   name: Scalars["String"]["output"];
@@ -5579,6 +5603,13 @@ export type MobileGameUserAchievementCategory = {
   __typename?: "MobileGameUserAchievementCategory";
   key: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
+};
+
+export type MobileGameUserAchievementExtraInfo = {
+  __typename?: "MobileGameUserAchievementExtraInfo";
+  description: Scalars["String"]["output"];
+  icon: RemoteImage;
+  title: Scalars["String"]["output"];
 };
 
 export type MobileGameUserAchievementProgress = {
@@ -6116,6 +6147,7 @@ export type Mutation = {
   completeMobileGameBattlePassSeason?: Maybe<MobileGameBattlePass>;
   completeSignup: Scalars["Boolean"]["output"];
   configureHrisConnection: Scalars["Boolean"]["output"];
+  configureMessagingConnection: Scalars["Boolean"]["output"];
   confirmDuelsScore: ConfirmDuelsScoreResponse;
   confirmPaymentCard: ConfirmedPaymentCard;
   createBusinessAccessUser: BusinessAccessUser;
@@ -6183,6 +6215,7 @@ export type Mutation = {
   performMobileOnboardingStep: Scalars["Boolean"]["output"];
   performOnboardingStep: Scalars["Boolean"]["output"];
   processMembersBulkUpload?: Maybe<Scalars["Boolean"]["output"]>;
+  publishBusinessSurveyCampaign: Scalars["Boolean"]["output"];
   reactivateTeamEmployee: Scalars["Boolean"]["output"];
   reassignProductToTeamMember: Scalars["Boolean"]["output"];
   redeemMobileSduiReward: SduiAction;
@@ -6203,6 +6236,7 @@ export type Mutation = {
   respondToDuel?: Maybe<Duel>;
   /** Restore user streak */
   restoreStreak: RestoreStreakResponse;
+  scheduleEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
   sendBusinessMagicLink?: Maybe<BusinessMagicLinkResponse>;
   sendGiftToRecipients: SendGiftToRecipientsResponse;
   sendMagicLink?: Maybe<StartSessionResponse>;
@@ -6262,19 +6296,21 @@ export type Mutation = {
   trackEvent: Scalars["Boolean"]["output"];
   transferBusinessAccess: BusinessPayload;
   unassignProductFromTeamMember: Scalars["Boolean"]["output"];
+  unscheduleEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
   unsubscribeFromEmails: Scalars["Boolean"]["output"];
   updateAccessUser?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
   updateBeneficiaryForProduct: CustomerProductBeneficiaries;
-  updateBusinessSurveyCampaign: BusinessSurveyCampaign;
   updateBusinessSurveyCampaignLaunchPlan: Scalars["Boolean"]["output"];
   updateBusinessSurveyCampaignName: Scalars["Boolean"]["output"];
-  updateBusinessSurveyCampaignParticipants: BusinessSurveyCampaignParticipants;
+  updateBusinessSurveyCampaignParticipants: Scalars["Boolean"]["output"];
+  updateBusinessSurveyCampaignSteps: Scalars["Boolean"]["output"];
   updateBusinessTag: Scalars["Boolean"]["output"];
   updateCompanySettings: Scalars["Boolean"]["output"];
   updateCustomValue: Scalars["Boolean"]["output"];
   updateCyclingMeasurement?: Maybe<Scalars["Boolean"]["output"]>;
+  updateEmployeeExperienceAverageSalary?: Maybe<Scalars["Boolean"]["output"]>;
   updateEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
   updateMemberDetails: Scalars["Boolean"]["output"];
   /** @deprecated(reason: "Use updateMemberDetails instead") */
@@ -6487,6 +6523,11 @@ export type MutationCompleteMobileGameBattlePassSeasonArgs = {
 export type MutationConfigureHrisConnectionArgs = {
   connectionId: Scalars["String"]["input"];
   settings: HrisConnectionSettingsInput;
+};
+
+export type MutationConfigureMessagingConnectionArgs = {
+  config: MessagingConnectionConfigFieldsInput;
+  connectionId: Scalars["String"]["input"];
 };
 
 export type MutationConfirmDuelsScoreArgs = {
@@ -6758,6 +6799,10 @@ export type MutationProcessMembersBulkUploadArgs = {
   importId: Scalars["String"]["input"];
 };
 
+export type MutationPublishBusinessSurveyCampaignArgs = {
+  campaignId: Scalars["ID"]["input"];
+};
+
 export type MutationReactivateTeamEmployeeArgs = {
   businessEmployeeId: Scalars["String"]["input"];
 };
@@ -6832,6 +6877,11 @@ export type MutationRespondToDuelArgs = {
   leaderboardPlacement?: InputMaybe<Scalars["Int"]["input"]>;
   requestLocation?: InputMaybe<Scalars["String"]["input"]>;
   startDateTime: Scalars["String"]["input"];
+};
+
+export type MutationScheduleEmployeeRecognitionCampaignArgs = {
+  campaignId: Scalars["String"]["input"];
+  scheduledAtLocalDateTime: Scalars["String"]["input"];
 };
 
 export type MutationSendBusinessMagicLinkArgs = {
@@ -7038,6 +7088,10 @@ export type MutationUnassignProductFromTeamMemberArgs = {
   productId: Scalars["String"]["input"];
 };
 
+export type MutationUnscheduleEmployeeRecognitionCampaignArgs = {
+  campaignId: Scalars["String"]["input"];
+};
+
 export type MutationUnsubscribeFromEmailsArgs = {
   email: Scalars["String"]["input"];
 };
@@ -7060,11 +7114,6 @@ export type MutationUpdateBeneficiaryForProductArgs = {
   beneficiary?: InputMaybe<CustomerBeneficiaryUpdate>;
 };
 
-export type MutationUpdateBusinessSurveyCampaignArgs = {
-  campaign: UpdateBusinessSurveyCampaignInput;
-  campaignId: Scalars["ID"]["input"];
-};
-
 export type MutationUpdateBusinessSurveyCampaignLaunchPlanArgs = {
   campaignId: Scalars["ID"]["input"];
   launchPlan: BusinessSurveyLaunchPlanInput;
@@ -7077,6 +7126,11 @@ export type MutationUpdateBusinessSurveyCampaignNameArgs = {
 
 export type MutationUpdateBusinessSurveyCampaignParticipantsArgs = {
   campaign: UpdateBusinessSurveyCampaignParticipantsInput;
+  campaignId: Scalars["ID"]["input"];
+};
+
+export type MutationUpdateBusinessSurveyCampaignStepsArgs = {
+  campaign: UpdateBusinessSurveyCampaignStepsInput;
   campaignId: Scalars["ID"]["input"];
 };
 
@@ -7096,6 +7150,10 @@ export type MutationUpdateCustomValueArgs = {
 
 export type MutationUpdateCyclingMeasurementArgs = {
   measurement: DistanceMeasurementType;
+};
+
+export type MutationUpdateEmployeeExperienceAverageSalaryArgs = {
+  averageSalary: Scalars["Float"]["input"];
 };
 
 export type MutationUpdateEmployeeRecognitionCampaignArgs = {
@@ -7657,6 +7715,7 @@ export type Query = {
   getBusinessSession: BusinessSession;
   getBusinessSurveyCampaign?: Maybe<BusinessSurveyCampaign>;
   getBusinessSurveyCampaignParticipants: BusinessSurveyCampaignParticipants;
+  getBusinessSurveyCampaignTemplateScaleOptions: BusinessSurveyCampaignTemplateScaleOptions;
   getBusinessSurveyCampaigns: BusinessSurveyCampaignSearchResults;
   getBusinessSurveyPresets: Array<BusinessSurveyPreset>;
   getBusinessTag: BusinessTag;
@@ -7694,6 +7753,7 @@ export type Query = {
   getDuelsTomorrow?: Maybe<Array<Maybe<Duel>>>;
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
+  getEmployeeExperienceAverageSalary?: Maybe<Scalars["Float"]["output"]>;
   getEmployeeExperienceStatistics?: Maybe<EmployeeExperienceStatistics>;
   getEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaignResponse;
   getEmployeeRecognitionCampaignBillingAddresses?: Maybe<Array<TeamEmployeeRecognitionCampaignBillingAddress>>;
@@ -8042,6 +8102,11 @@ export type QueryGetBusinessSurveyCampaignArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetBusinessSurveyCampaignParticipantsArgs = {
+  campaignId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBusinessSurveyCampaignTemplateScaleOptionsArgs = {
   campaignId: Scalars["ID"]["input"];
 };
 
@@ -8980,7 +9045,6 @@ export enum RemoteImageFormat {
 
 export type RemoteImageOption = {
   crop?: InputMaybe<Scalars["String"]["input"]>;
-  duotone?: InputMaybe<Array<Scalars["String"]["input"]>>;
   fit?: InputMaybe<Scalars["String"]["input"]>;
   format?: InputMaybe<RemoteImageFormat>;
   height?: InputMaybe<Scalars["Float"]["input"]>;
@@ -9107,6 +9171,13 @@ export type SampleQueryDebug = {
   startTime: Scalars["String"]["output"];
 };
 
+export type ScaleTemplateOption = {
+  __typename?: "ScaleTemplateOption";
+  answers: Array<Scalars["String"]["output"]>;
+  label: Scalars["String"]["output"];
+  type: SurveyTemplateScaleType;
+};
+
 export type SchemeOption = {
   __typename?: "SchemeOption";
   costDuration: Scalars["String"]["output"];
@@ -9229,6 +9300,7 @@ export type SearchQuery = {
   baseSalary?: Maybe<NumberQuery>;
   baseSalaryCurrency?: Maybe<StringQuery>;
   businessEmployeeId?: Maybe<StringQuery>;
+  businessProductInternalIds?: Maybe<StringQuery>;
   businessTagIds?: Maybe<StringQuery>;
   businessUnit?: Maybe<StringQuery>;
   contractType?: Maybe<StringQuery>;
@@ -9471,6 +9543,44 @@ export type Step = {
   tasks: Array<Task>;
 };
 
+export type StepMultipleChoice = {
+  __typename?: "StepMultipleChoice";
+  category: Scalars["String"]["output"];
+  heading: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  isRequired: Scalars["Boolean"]["output"];
+  multiSelect?: Maybe<Scalars["Boolean"]["output"]>;
+  multipleChoiceOptions: Array<Scalars["String"]["output"]>;
+  type: Scalars["String"]["output"];
+};
+
+export type StepNps = {
+  __typename?: "StepNps";
+  category: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  type: Scalars["String"]["output"];
+};
+
+export type StepOpenAnswer = {
+  __typename?: "StepOpenAnswer";
+  category: Scalars["String"]["output"];
+  description?: Maybe<Scalars["String"]["output"]>;
+  heading: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  isRequired: Scalars["Boolean"]["output"];
+  type: Scalars["String"]["output"];
+};
+
+export type StepScale = {
+  __typename?: "StepScale";
+  category: Scalars["String"]["output"];
+  heading: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  isRequired: Scalars["Boolean"]["output"];
+  scaleType: SurveyTemplateScaleType;
+  type: Scalars["String"]["output"];
+};
+
 export type StreakDetailsQueryResponse = {
   __typename?: "StreakDetailsQueryResponse";
   goalMilestone?: Maybe<StreakDetailsQueryResponseGoalMilestone>;
@@ -9631,6 +9741,20 @@ export type Surge = {
   multiplier: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
 };
+
+export enum SurveyTemplateScaleType {
+  Agreement = "agreement",
+  Confidence = "confidence",
+  Ease = "ease",
+  Effectiveness = "effectiveness",
+  EnergyEngagement = "energyEngagement",
+  Frequency = "frequency",
+  Importance = "importance",
+  Interest = "interest",
+  Likelihood = "likelihood",
+  Quality = "quality",
+  Satisfaction = "satisfaction",
+}
 
 export type SyncDuelScoreResponse = {
   __typename?: "SyncDuelScoreResponse";
@@ -9948,6 +10072,8 @@ export type TeamEmployeeRecognitionCampaign = {
   recipientCount?: Maybe<Scalars["Int"]["output"]>;
   requestedBy?: Maybe<Scalars["String"]["output"]>;
   requestedById?: Maybe<Scalars["String"]["output"]>;
+  scheduledAtLocalTime?: Maybe<Scalars["String"]["output"]>;
+  scheduledAtLocalTimeWithTz?: Maybe<Scalars["String"]["output"]>;
   startsAt?: Maybe<Scalars["String"]["output"]>;
   status: EmployeeRecognitionCampaignStatus;
   title: Scalars["String"]["output"];
@@ -9979,13 +10105,22 @@ export type TeamEmployeeRecognitionCampaignRecipient = {
   avatar?: Maybe<Scalars["String"]["output"]>;
   businessEmployeeId: Scalars["String"]["output"];
   email?: Maybe<Scalars["String"]["output"]>;
+  failureReason?: Maybe<Scalars["String"]["output"]>;
   firstName?: Maybe<Scalars["String"]["output"]>;
   fullName?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
   lastName?: Maybe<Scalars["String"]["output"]>;
+  status?: Maybe<TeamEmployeeRecognitionCampaignRecipientStatus>;
   /** @deprecated Not available for businesses with enableTagRestriction */
   tags: Array<Scalars["String"]["output"]>;
 };
+
+export enum TeamEmployeeRecognitionCampaignRecipientStatus {
+  Completed = "COMPLETED",
+  Failed = "FAILED",
+  Pending = "PENDING",
+  Processing = "PROCESSING",
+}
 
 export type TeamEmployeeRecognitionCampaignRecipientsByIdsResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignRecipientsByIdsResponse";
@@ -10001,6 +10136,7 @@ export type TeamEmployeeRecognitionCampaignRecipientsResponse = {
 export type TeamEmployeeRecognitionCampaignResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignResponse";
   campaign: TeamEmployeeRecognitionCampaign;
+  timezone: Scalars["String"]["output"];
 };
 
 export type TeamEmployeeRecognitionYuCoinAmountSuggestionResponse = {
@@ -10628,13 +10764,12 @@ export type UnityRewardsIntro = {
   subHeading?: Maybe<Scalars["String"]["output"]>;
 };
 
-export type UpdateBusinessSurveyCampaignInput = {
-  campaignName?: InputMaybe<Scalars["String"]["input"]>;
-  endLocalDate?: InputMaybe<Scalars["String"]["input"]>;
-};
-
 export type UpdateBusinessSurveyCampaignParticipantsInput = {
   query: Array<SearchQueryInput>;
+};
+
+export type UpdateBusinessSurveyCampaignStepsInput = {
+  steps: Array<BusinessSurveyStepInput>;
 };
 
 export type UpdateContactDetailsInput = {
@@ -12070,6 +12205,12 @@ export type MobileGameUserAchievementFragment = {
   textColor: string;
   topBarType: string;
   progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+  extraInfo?: Array<{
+    __typename?: "MobileGameUserAchievementExtraInfo";
+    title: string;
+    description: string;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }> | null;
   backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
@@ -12094,6 +12235,12 @@ export type MobileGameUserAchievementsFragment = {
     textColor: string;
     topBarType: string;
     progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+    extraInfo?: Array<{
+      __typename?: "MobileGameUserAchievementExtraInfo";
+      title: string;
+      description: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }> | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
@@ -12112,6 +12259,12 @@ export type MobileGameUserAchievementsFragment = {
     textColor: string;
     topBarType: string;
     progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+    extraInfo?: Array<{
+      __typename?: "MobileGameUserAchievementExtraInfo";
+      title: string;
+      description: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }> | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
@@ -12130,6 +12283,12 @@ export type MobileGameUserAchievementsFragment = {
     textColor: string;
     topBarType: string;
     progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+    extraInfo?: Array<{
+      __typename?: "MobileGameUserAchievementExtraInfo";
+      title: string;
+      description: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }> | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
@@ -20931,6 +21090,12 @@ export type GetMobileGameUserAchievementsQuery = {
       textColor: string;
       topBarType: string;
       progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+      extraInfo?: Array<{
+        __typename?: "MobileGameUserAchievementExtraInfo";
+        title: string;
+        description: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }> | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20949,6 +21114,12 @@ export type GetMobileGameUserAchievementsQuery = {
       textColor: string;
       topBarType: string;
       progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+      extraInfo?: Array<{
+        __typename?: "MobileGameUserAchievementExtraInfo";
+        title: string;
+        description: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }> | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -20967,6 +21138,12 @@ export type GetMobileGameUserAchievementsQuery = {
       textColor: string;
       topBarType: string;
       progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+      extraInfo?: Array<{
+        __typename?: "MobileGameUserAchievementExtraInfo";
+        title: string;
+        description: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }> | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -21000,6 +21177,12 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       textColor: string;
       topBarType: string;
       progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+      extraInfo?: Array<{
+        __typename?: "MobileGameUserAchievementExtraInfo";
+        title: string;
+        description: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }> | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -21018,6 +21201,12 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       textColor: string;
       topBarType: string;
       progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+      extraInfo?: Array<{
+        __typename?: "MobileGameUserAchievementExtraInfo";
+        title: string;
+        description: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }> | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -21036,6 +21225,12 @@ export type MarkMobileGameUserAchievementsViewedMutation = {
       textColor: string;
       topBarType: string;
       progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+      extraInfo?: Array<{
+        __typename?: "MobileGameUserAchievementExtraInfo";
+        title: string;
+        description: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }> | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -21070,6 +21265,12 @@ export type UpdateMobileGameUserAchievementMutation = {
       textColor: string;
       topBarType: string;
       progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+      extraInfo?: Array<{
+        __typename?: "MobileGameUserAchievementExtraInfo";
+        title: string;
+        description: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }> | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -21088,6 +21289,12 @@ export type UpdateMobileGameUserAchievementMutation = {
       textColor: string;
       topBarType: string;
       progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+      extraInfo?: Array<{
+        __typename?: "MobileGameUserAchievementExtraInfo";
+        title: string;
+        description: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }> | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -21106,6 +21313,12 @@ export type UpdateMobileGameUserAchievementMutation = {
       textColor: string;
       topBarType: string;
       progress?: { __typename?: "MobileGameUserAchievementProgress"; current: number; target: number } | null;
+      extraInfo?: Array<{
+        __typename?: "MobileGameUserAchievementExtraInfo";
+        title: string;
+        description: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }> | null;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
@@ -41057,6 +41270,25 @@ export const MobileGameUserAchievementFragmentDoc = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "extraInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
             selectionSet: {
               kind: "SelectionSet",
@@ -41179,6 +41411,25 @@ export const MobileGameUserAchievementsFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "current" } },
                 { kind: "Field", name: { kind: "Name", value: "target" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "extraInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -64840,6 +65091,25 @@ export const GetMobileGameUserAchievementsDocument = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "extraInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
             selectionSet: {
               kind: "SelectionSet",
@@ -64988,6 +65258,25 @@ export const MarkMobileGameUserAchievementsViewedDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "current" } },
                 { kind: "Field", name: { kind: "Name", value: "target" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "extraInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -65148,6 +65437,25 @@ export const UpdateMobileGameUserAchievementDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "current" } },
                 { kind: "Field", name: { kind: "Name", value: "target" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "extraInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
