@@ -8,6 +8,7 @@ import { ITop3, styles } from "./leaderboard.screen";
 import { TrophyIcon } from "@atoms/icon/trophy-icon";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";
 import { LEADERBOARD_INFO_BUTTON } from "@ids";
+import { isRTL } from "@locale";
 
 interface IProps {
   showTrophy: boolean;
@@ -46,7 +47,7 @@ const LeaderboardListHeaderComponent = ({
         <Podium enableAnimatedRays={enableAnimatedRays} />
       </Animated.View>
       <Animated.View style={[styles.avatarsWrapper, { opacity }]}>
-        <View style={[styles.avatars, styles.avatarTop2]}>
+        <View style={[styles.avatars, isRTL() ? styles.avatarTop3 : styles.avatarTop2]}>
           {showTrophy || !ranks.top2 ? null : <Yumoji uri={ranks.top2} {...AVATAR_PROPS} />}
         </View>
         <View style={styles.avatars}>
@@ -58,7 +59,7 @@ const LeaderboardListHeaderComponent = ({
             <Yumoji uri={ranks.top1} {...AVATAR_PROPS} />
           )}
         </View>
-        <View style={[styles.avatars, styles.avatarTop3]}>
+        <View style={[styles.avatars, isRTL() ? styles.avatarTop2 : styles.avatarTop3]}>
           {showTrophy || !ranks.top3 ? null : <Yumoji uri={ranks.top3} {...AVATAR_PROPS} />}
         </View>
       </Animated.View>
