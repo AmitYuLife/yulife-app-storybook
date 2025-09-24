@@ -428,6 +428,9 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I can see the achievement unlocked message", then.textVisible("Zenith of the Mind unlocked!", 2500));
     });
     When("I tap to open the notification message", when.tapID(ids.NOTIFICATION_PINK_DOT_ARROW("Zenith of the Mind unlocked!", true, true), 2500), async () => {
+      Then("I should see the new achievement unlocked modal", then.textVisible("New achievement unlocked!", 3000));
+    });
+    When("I tap 'Continue' to the new achievement unlocked modal", when.tapID(ids.NEW_ACHIEVEMENT_UNLOCKED_BUTTON, 3000), async () => {
       Then("I should now see the 'Zenith of the Mind' achievement unlocked", then.idVisible(ids.ACHIEVEMENT_CARD(constants.zenith_of_the_mind_achievement, "unlocked"), 2000));
     });
     When("I equip the 'Zenith of the Mind achievement' achivement", when.tapAchievementCard(constants.zenith_of_the_mind_achievement, "equip"), async () => {

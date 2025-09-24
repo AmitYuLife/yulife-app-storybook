@@ -27,7 +27,7 @@ import { getFullName } from "_utils/users";
 Feature("As a user I can see my achievements on the leaderboard", async () => {
   Scenario("I can consent to my company leaderboard, and view referrals from the leaderboard", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
-      When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+      When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard"), 4000), async () => {
         Then("I should see the leaderboard screen without consent", then.onLeaderboardWithoutConsent());
       });
     });
@@ -49,7 +49,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     When("I tap 30 days", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
       Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO));
     });
-    When("I tap the back button", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
+    When("I tap the back button", when.tapID(ids.SCREEN_CLOSE, 2000), async () => {
       Then("I should be back on the leaderboard", then.leaderboardVisible([User18LeaderboardItem, User16LeaderboardItem], 2000));
     });
   });
@@ -155,7 +155,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       Then("I should see the yumoji avatars and the comparative activity stats between me and Michael", then.comparativeUserSeedStatsVisible(26, 333));
       Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(0.1, 1, 0, 3));
     });
-    When("I close", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
+    When("I tap to go back", when.tapID(ids.LEFT_HEADING_BUTTON(null), 3000), async () => {
       When("I click on my own name", when.tapLeaderboardUser(User47LeaderboardItem), async () => {
         Then("I should be on the Inspect screen", then.isOnInspectScreen);
         Then("My name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_47))));
@@ -352,7 +352,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       Then("I should be on the Inspect screen", then.isOnInspectScreen);
       Then("Donald's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_44))));
     });
-    When("I exit", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
+    When("I exit", when.tapID(ids.LEFT_HEADING_BUTTON(null), 3000), async () => {
       Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])));
     });
     When("I exit", when.tapID(ids.SEARCH_CLOSE), async () => {

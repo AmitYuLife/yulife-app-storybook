@@ -24,7 +24,7 @@ export const {
   quitMeditopiaChallenge,
   closeQuitChallengeScreen,
   exitMeditopiaChallenge,
-  startAndQuitMeditopiaChallenge,
+  startQuitAndExitMeditopiaChallenge,
   startMeditopiaChallenge,
   clickScrubber,
   tapMeditopiaContentCard,

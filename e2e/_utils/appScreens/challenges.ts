@@ -356,10 +356,13 @@ export const playAndFinishMeditopiaChallenge = async () => {
   await wait(18000)();
 };
 
-export const startAndQuitMeditopiaChallenge = async () => {
-  await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"));
-  await navigateViaID(ids.SCREEN_CLOSE);
-};
+export const startQuitAndExitMeditopiaChallenge =
+  (waitTime: number = 1000) =>
+  async () => {
+    await tapID(ids.GENERIC_SCREEN_CTA("maybe later"), waitTime)();
+    await tapID(ids.SCREEN_CLOSE, waitTime)();
+    await tapID(ids.GENERIC_SCREEN_CTA("Exit challenge"), waitTime)();
+  };
 
 export const quitMeditopiaChallenge = async () => {
   await navigateViaID(ids.SCREEN_CLOSE);

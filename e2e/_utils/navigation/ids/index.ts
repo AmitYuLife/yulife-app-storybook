@@ -421,6 +421,7 @@ export const ACHIEVEMENT_SLOT = (index: number) => `ACHIEVEMENT_SLOT_${index}`;
 export const ACHIEVEMENT_EMPTY_SLOT = (achievementSlot: string) => `${achievementSlot}_EMPTY`;
 export const ACHIEVEMENT_CARD = (name: string, status: "unlocked" | "locked" | "equipped") =>
   `ACHIEVEMENT_CARD_${name}_${status}`;
+export const NEW_ACHIEVEMENT_UNLOCKED_BUTTON = "unlocked-achievements-got-it-button";
 
 // PRODUCT DETAILS
 export const PRODUCT_DETAILS_SCROLL_VIEW = "PRODUCT_DETAILS_SCROLL_VIEW";

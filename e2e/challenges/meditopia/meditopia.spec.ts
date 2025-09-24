@@ -94,20 +94,18 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
-      When("I tap Take Challenge", when.tapTakeChallenge, async () => {
-        Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
-        When("I tap the Awareness content card", when.tapMeditopiaContentCard("5", "40"), async () => {
-          When("I wait ten seconds", when.waitTenSeconds, async () => {
-            Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 40, 200));
-          });
-        });
+    });
+    When("I tap Take Challenge", when.tapTakeChallenge, async () => {
+      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
+    });
+    When("I tap the Awareness content card", when.tapMeditopiaContentCard("5", "40"), async () => {
+      When("I wait ten seconds", when.waitTenSeconds, async () => {
+        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 40, 200));
       });
     });
     When("I tap start session", when.tapStartSession, async () => {
-      When("I quit the challenge half way through", when.startAndQuitMeditopiaChallenge, async () => {
-        When("I exit the challenge via the quit challenge confirmation screen", when.exitMeditopiaChallenge, async () => {
-          Then("I should be on choose Meditopia content screen", then.isOnTodaysMeditationScreen("5", "40"));
-        });
+      When("I quit and exit the challenge half way through", when.startQuitAndExitMeditopiaChallenge(), async () => {
+        Then("I should be on choose Meditopia content screen", then.isOnTodaysMeditationScreen("5", "40"));
       });
     });
   });
