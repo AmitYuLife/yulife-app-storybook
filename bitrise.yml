@@ -714,11 +714,6 @@ workflows:
         - workflows: ios-detox-run-iphone-15-pro-max-reward-passes-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run Health Hub tests: iPhone 15 Pro Max'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-health-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
         title: 'Run Japan tests: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-japan-70
@@ -1287,47 +1282,6 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-16.2.x
-  ios-detox-run-iphone-15-pro-max-reward-passes-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: reward-passes
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-16.2.x
-  ios-detox-run-iphone-15-pro-max-health-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: health
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-16.2.x
-  ios-detox-run-iphone-15-pro-max-health-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: health
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-healthcheck:
     after_run:
     - ios-detox-run-base-70
@@ -1539,6 +1493,19 @@ workflows:
         is_expand: false
     - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-16.2.x
+  ios-detox-run-iphone-15-pro-max-reward-passes-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: reward-passes
+      opts:
+        is_expand: false
     meta:
       bitrise.io:
         stack: osx-xcode-16.2.x
