@@ -13,6 +13,11 @@ include:
       - .cocoapods_cache
       - ios/build/Build/Products
 
+.detox-overnight-rules:
+  # TODO: Modify rules once CI test jobs are ready
+  rules:
+    - when: never
+
 ios-detox-build-app:
   tags:
     - oakhost_macos_m4
@@ -104,10 +109,156 @@ ios-detox-build-app:
     expire_in: 7 days
     untracked: false
 
+# TODO: This job is not part of the overnight run
 ios-detox-healthcheck-test:
   extends: .base-detox-test
   variables:
     DETOX_TEST_TYPE: healthcheck
-  # TODO: Modify rules once CI test jobs are ready
   rules:
-    - when: never
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-admin:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: admin
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-admin-2:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: admin:2
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-activity:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: activity
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-activity-2:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: activity:2
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-battle-pass:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: battle-pass
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-benefits:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: benefits
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-challenges:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: challenges
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-challenges-2:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: challenges:2
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-challenges-extended:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: challenges-extended
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-personal:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: personal
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+# TODO: This job is not part of the overnight run
+ios-detox-screenshots:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: screenshots
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-sa:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: sa
+    API_REGION: SA
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+# TODO: This job is not part of the overnight run
+ios-detox-smoke:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: smoke
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-surveys:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: surveys
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-usa:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: usa
+    API_REGION: US
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-jp:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: jp
+    API_REGION: JP
+    TARGET_LOCALE: ja-JP
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-worlds:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: worlds
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-worlds-2:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: worlds:2
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-yuscreen:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: yuscreen
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+
+ios-detox-reward-passes:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: reward-passes
+  rules:
+    - !reference [.detox-overnight-rules, rules]
