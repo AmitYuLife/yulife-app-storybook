@@ -5,7 +5,7 @@ import { Box, Image, TextTemplate } from "@atoms";
 import { HeroCardHeader as HeroCardHeaderProps, HeroCardHeaderButtonState } from "@utils/heroCards";
 import { HERO_CARD_PADDING } from "../constants";
 import { ArrowIcon } from "@atoms/icon/arrow";
-import { EVENT_DESCRIPTION, EVENT_HEADING } from "@ids";
+import { EVENT_DESCRIPTION, EVENT_HEADING, PINK_ARROW_ICON } from "@ids";
 import Markdown from "@components/molecules/markdown/markdown";
 
 const Subheading = ({
@@ -66,7 +66,7 @@ const HeroCardBannerHeader = ({
           justifyContent="center"
           alignItems="center"
           pl={2}
-          testID="PINK_ARROW_ICON"
+          testID={PINK_ARROW_ICON}
         >
           <ArrowIcon size={Style.adjust(16)} color={Colours.neutral.white} />
         </Box>

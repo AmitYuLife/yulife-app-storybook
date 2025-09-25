@@ -36,6 +36,22 @@ export const CUSTOMER_2 = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_SDUI_SCROLL_PICKER = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_5.business.data.businessAccountId,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+});
+
 export const CUSTOMER_3 = {
   type: "postgres",
   modelName: "customer",
