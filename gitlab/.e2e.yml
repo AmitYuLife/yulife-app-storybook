@@ -3,6 +3,7 @@ include:
     inputs:
       job_name: assume-aws-role-with-web-identity:qa-reporter
       role_arn: $QA_REPORTER_ROLE_ARN
+      duration_seconds: 6000
 
 .detox-cache:
   cache: &detox-cache
@@ -14,9 +15,8 @@ include:
       - ios/build/Build/Products
 
 .detox-overnight-rules:
-  # TODO: Modify rules once CI test jobs are ready
   rules:
-    - when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "overnight-detox-run"
 
 ios-detox-build-app:
   tags:
@@ -52,9 +52,8 @@ ios-detox-build-app:
       - detox-build.log
     expire_in: 7 days
     untracked: false
-  # TODO: Use proper rules once CI test jobs are ready
   rules:
-    - when: never
+    - !reference [.detox-overnight-rules, rules]
 
 .base-detox-test:
   extends: .assume-aws-role-with-web-identity:qa-reporter
@@ -64,6 +63,7 @@ ios-detox-build-app:
     - oakhost_macos_m4
   image: $DEVOPS_AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-xcode:1.0.0
   stage: test
+  timeout: 100m
   interruptible: true
   cache:
     <<: *detox-cache
@@ -99,23 +99,43 @@ ios-detox-build-app:
     - ./scripts/gitlab/detox/pull_run_api_server.sh
     # Sync allure history
     - ./scripts/gitlab/detox/pull_latest_allure_report.sh
-    # Run detox
-    - ./scripts/gitlab/detox/run_detox_test.sh
-    # Report results
-    - ./scripts/gitlab/detox/upload_detox_report.sh
+    - |
+      echo "Running detox test"
+      set +e
+      # Run detox
+      ./scripts/gitlab/detox/run_detox_test.sh
+      export DETOX_EXIT_CODE=$?
+      # Report results
+      ./scripts/gitlab/detox/upload_detox_report.sh
   artifacts:
     paths:
-      - e2e-report
+      - e2e-report/**/*.log
     expire_in: 7 days
     untracked: false
 
-# TODO: This job is not part of the overnight run
+# TODO: DEVOPS-4362 - Allow manual triggering of detox tests
 ios-detox-healthcheck-test:
   extends: .base-detox-test
   variables:
     DETOX_TEST_TYPE: healthcheck
   rules:
-    - !reference [.detox-overnight-rules, rules]
+    - when: never
+
+ios-detox-screenshots:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: screenshots
+  rules:
+    - when: never
+
+ios-detox-smoke:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: smoke
+  rules:
+    - when: never
+
+# The following jobs will be part of the overnight run
 
 ios-detox-admin:
   extends: .base-detox-test
@@ -187,27 +207,11 @@ ios-detox-personal:
   rules:
     - !reference [.detox-overnight-rules, rules]
 
-# TODO: This job is not part of the overnight run
-ios-detox-screenshots:
-  extends: .base-detox-test
-  variables:
-    DETOX_TEST_TYPE: screenshots
-  rules:
-    - !reference [.detox-overnight-rules, rules]
-
 ios-detox-sa:
   extends: .base-detox-test
   variables:
     DETOX_TEST_TYPE: sa
     API_REGION: SA
-  rules:
-    - !reference [.detox-overnight-rules, rules]
-
-# TODO: This job is not part of the overnight run
-ios-detox-smoke:
-  extends: .base-detox-test
-  variables:
-    DETOX_TEST_TYPE: smoke
   rules:
     - !reference [.detox-overnight-rules, rules]
 
@@ -262,3 +266,12 @@ ios-detox-reward-passes:
     DETOX_TEST_TYPE: reward-passes
   rules:
     - !reference [.detox-overnight-rules, rules]
+
+combine-overnight-detox-reports:
+  extends: .base-detox-test
+  stage: test-report
+  script:
+    - ./scripts/gitlab/detox/combine-overnight-detox-reports.sh
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "overnight-detox-run"
+      when: always

@@ -85,7 +85,10 @@ if [[ "$DETOX_TEST_TYPE" == "base" ]]; then
   TEST_TYPE_ARG="${DETOX_SPEC_FILE:-}"
 fi
 
-yarn detox:run "$TEST_TYPE_ARG" -c "$DETOX_BUILD_CONFIG" \
+# Install timeout
+brew install coreutils
+
+timeout --preserve-status --foreground 90m yarn detox:run "$TEST_TYPE_ARG" -c "$DETOX_BUILD_CONFIG" \
   --take-screenshots all \
   --artifacts-location ./e2e-report \
   --loglevel "${DETOX_LOG_LEVEL:=warn}" \
@@ -97,7 +100,6 @@ yarn detox:run "$TEST_TYPE_ARG" -c "$DETOX_BUILD_CONFIG" \
 # Save exit code for slack notification title in the upload detox report script (upload_detox_report.sh)
 ##############################
 DETOX_EXIT_CODE=$?
-export DETOX_EXIT_CODE
 echo "Detox exit code: $DETOX_EXIT_CODE"
 
 ##############################
@@ -106,3 +108,5 @@ echo "Detox exit code: $DETOX_EXIT_CODE"
 if [[ "$DETOX_BUILD_CONFIG" == "ios.sim.debug" ]]; then
   stop_metro_bundler
 fi
+
+exit $DETOX_EXIT_CODE
