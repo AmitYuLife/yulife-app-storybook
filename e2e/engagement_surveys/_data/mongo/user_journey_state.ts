@@ -457,6 +457,70 @@ export const USER_JOURNEY_STATE_04 = {
   },
 } as IDatabaseItem;
 
+export const USER_JOURNEY_SCROLL_PICKER = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journeyId: "health_questionnaire",
+    triggerSourceId: "initial",
+    userId: customer.CUSTOMER_SDUI_SCROLL_PICKER.customer.data.customerId,
+    __v: 0,
+    createdAt: "2024-04-23T10:42:19.959+0000",
+    requiresUserStateForAccess: true,
+    static: true,
+    published: true,
+    status: "pending",
+    steps: [
+      {
+        stepId: steps.CORE_JOURNEY_STEP_WEIGHT.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 7,
+        isAQuestion: true,
+      },
+      {
+        stepId: "health_questionnaire_submission",
+        animateProgressBar: false,
+        progressBarValue: undefined,
+        isAQuestion: false,
+      },
+    ],
+    uiAccess: {
+      eventPanel: {
+        alwaysOn: false,
+        validation: {
+          type: "object",
+          properties: {
+            dateNow: {
+              type: "string",
+              anyOf: [
+                {
+                  format: "date",
+                  formatMinimum: moment().subtract(7, "days").format("YYYY-MM-DD"),
+                  formatMaximum: moment().add(7, "days").format("YYYY-MM-DD"),
+                },
+                {
+                  format: "date",
+                  formatMinimum: "2024-05-06",
+                  formatMaximum: "2024-05-13",
+                },
+                {
+                  format: "date",
+                  formatMinimum: "2024-05-20",
+                  formatMaximum: "2024-05-27",
+                },
+              ],
+            },
+          },
+          required: ["dateNow"],
+          additionalProperties: false,
+        },
+      },
+    },
+    updatedAt: "2024-04-23T10:42:19.959+0000",
+  },
+} as IDatabaseItem;
+
 export const USER_JOURNEY_STATE_04_CUSTOMER_7 = {
   type,
   modelName,

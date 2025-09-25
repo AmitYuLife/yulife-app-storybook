@@ -427,7 +427,7 @@ Feature("Health questionnaires", async () => {
     When("I click to enter my weight in pounds", when.tapID(ids.CHIP_LIST_ITEM("Pounds (lbs)")), async () => {
       Then("I should see im on the lower bound of the slider 50 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("50lbs")));
     });
-    When("I swipe to choose my weight of 52 lbs", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SCROLL_PICKER("WEIGHT_LB"), ids.SCROLL_PICKER_ACTIVE_ITEM("52lbs"), "up", undefined, undefined, 0.05), async () => {
+    When("I swipe to choose my weight of 52 lbs", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SCROLL_PICKER("WEIGHT_LB"), ids.SCROLL_PICKER_ACTIVE_ITEM("52lbs"), "up", 2, 2000, 0.1, 0.5, 0.6), async () => {
       Then("I should see ive stopped on 52 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("52lbs")));
     });
     When("I tap select", when.tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON), async () => {
@@ -516,6 +516,33 @@ Feature("Health questionnaires", async () => {
         When("I click claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
           Then("I should see the YuScreen CTA 'Invite a colleague'", then.textVisible("Invite a colleague"));
         });
+      });
+    });
+  });
+
+  Scenario("I should be able to answer a question with a 'Scroll Picker' component", scenario.start, async () => {
+    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_SDUI_SCROLL_PICKER.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see my starting YuCoin balance", then.textVisible("200 YuCoin today"));
+    });
+    When("I press on the Health Questionnaire hero card", when.tapID(ids.PINK_ARROW_ICON), async () => {
+      Then("I should see the prompt to enter my weight", then.idVisible(ids.TEXT_TEMPLATE("Enter your weight", "l1b")));
+    });
+    When("I press on 'Enter your weight'", when.tapID(ids.TEXT_TEMPLATE("Enter your weight", "l1b")), async () => {
+      Then("I should see 'Kilos (kg)'", then.idVisible(ids.CHIP_LIST_ITEM("Kilos (kg)")));
+      Then("I should see 'Stones (st)'", then.idVisible(ids.CHIP_LIST_ITEM("Stones (st)")));
+      Then("I should see 'Pounds (lbs)'", then.idVisible(ids.CHIP_LIST_ITEM("Pounds (lbs)")));
+    });
+    When("I press 'Pounds (lbs)'", when.tapID(ids.CHIP_LIST_ITEM("Pounds (lbs)")), async () => {
+      Then("I should see im on the lower bound of the slider 50 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("50lbs")));
+    });
+    When("I swipe to choose my weight of 52 lbs", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SCROLL_PICKER("WEIGHT_LB"), ids.SCROLL_PICKER_ACTIVE_ITEM("52lbs"), "up", 2, 2000, 0.1, 0.5, 0.6), async () => {
+      Then("I should see ive stopped on 52 lbs", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("52lbs")));
+      Then("I should see the 'Select' button", then.idVisible(ids.SCROLL_PICKER_CONFIRM_BUTTON));
+    });
+    When("I tap the 'Select' button", when.tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON), async () => {
+      Then("The scroll picker modal should be closed", then.idVisible(ids.BUTTON_BASE("Next")));
+      When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
+        Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
       });
     });
   });
