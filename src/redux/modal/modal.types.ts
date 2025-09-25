@@ -1,6 +1,7 @@
 export type IModalQueueItem = {
   id: string;
-  priority?: number; // leave it for now, might be removed later
+  modalId: string;
+  priority: number;
   props: Record<string, any>;
 };
 

@@ -14,7 +14,6 @@ import {
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
 import { ActiveLevelStatus, ChallengeSourceType } from "@redux/levels/levels.types";
-import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 import {
   ChallengeExitScreen,
   ChallengeFailedScreen,
@@ -123,18 +122,9 @@ const QuestsContainer = () => {
     }
   }, [activeLevel, activeLevel.endDeferCount, activeModal, currentRoute, hasShownDeferModal]);
 
-  const handleResetChallenge = useCallback(
-    (wasSuccessful = false) => {
-      if (wasSuccessful) {
-        // at some point(if we dispatch another action) it'll be good to create a new action
-        // and move all these to a saga; keep it for now
-        dispatch(displayStreaksCompletedAction());
-      }
-
-      dispatch(challengeResetAction());
-    },
-    [dispatch]
-  );
+  const handleResetChallenge = useCallback(() => {
+    dispatch(challengeResetAction());
+  }, [dispatch]);
 
   const cancelChallenge = useCallback(async (): Promise<void> => {
     await Storage.removeItem(StorageKey.mediaPlayerProgress);
@@ -208,7 +198,7 @@ const QuestsContainer = () => {
         reward={challengeFinishedResult.coins}
         rating={challengeFinishedResult.rating}
         yuniversalMap={yuniversalMap}
-        onPressCta={() => handleResetChallenge(true)}
+        onPressCta={handleResetChallenge}
       />
     );
   }

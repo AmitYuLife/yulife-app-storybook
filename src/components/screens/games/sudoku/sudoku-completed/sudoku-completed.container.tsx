@@ -6,7 +6,6 @@ import { memo, useCallback, useEffect } from "react";
 import SudokuCompletedScreen from "./sudoku-completed.screen";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { useBackHandler } from "@hooks";
-import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { GetSudokuBoardQuery } from "@graphql/__generated";
@@ -26,7 +25,6 @@ export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }:
   });
 
   useEffect(() => {
-    dispatch(displayStreaksCompletedAction());
     dispatch(challengeResetAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
