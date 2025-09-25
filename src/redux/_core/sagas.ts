@@ -28,6 +28,7 @@ import rewardsTabSagas from "../rewards-tab/sagas";
 import battlePassSagas from "../battle-pass/sagas";
 import prizeSagas from "../prizes/sagas";
 import game2048Sagas from "../game-2048/sagas";
+import modalSagas from "../modal/sagas";
 
 export default function* allSagas() {
   yield all([
@@ -60,5 +61,6 @@ export default function* allSagas() {
     ...battlePassSagas,
     ...prizeSagas,
     ...game2048Sagas,
+    ...modalSagas,
   ]);
 }
