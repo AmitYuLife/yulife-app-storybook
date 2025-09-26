@@ -27,6 +27,8 @@ export type TemplateTextType =
 const defaultStyles = {
   fontFamily: Style.FONT_FAMILY_PRIMARY,
   fontWeight: Platform.select({ ios: null, android: "normal" }),
+  // automatically changes to right for RTL
+  textAlign: "left",
 };
 
 export const styleDefinitions = {
