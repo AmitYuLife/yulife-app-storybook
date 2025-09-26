@@ -26,7 +26,7 @@ const withManifestPlugin = (config) => {
     androidManifest.application[0].service.push(
       {
         $: {
-          "android:name": ".YulifeFirebaseMessaggingService",
+          "android:name": ".YulifeFirebaseMessagingService",
           "android:enabled": "true",
           "android:exported": "false",
         },
