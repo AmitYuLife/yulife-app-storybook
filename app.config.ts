@@ -5,6 +5,8 @@ const packageJson = require("./package.json");
 const proguardRules = fs.readFileSync(path.join(__dirname, "/support/android/proguard-rules.pro"), "utf-8");
 
 import dotenv from "dotenv";
+import Colours from "./src/styles/colours";
+
 dotenv.config({ path: process.env?.ENVFILE ?? ".env.local" });
 
 const environmentConfig = {
@@ -55,7 +57,7 @@ export default () => ({
     versionCode: Number(appVersioning.versionCode),
     adaptiveIcon: {
       foregroundImage: "./assets/native/adaptive-icon.png",
-      backgroundColor: "#e30d76",
+      backgroundColor: Colours.primary.p600,
     },
     blockedPermissions: ["android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"],
     permissions: [
@@ -167,7 +169,7 @@ export default () => ({
       "expo-notifications",
       {
         icon: "./assets/native/push-icon.png",
-        color: "#e30d76",
+        color: Colours.primary.p600,
       },
     ],
     ["@betomorrow/expo-app-name", { name: appNameWithVersion }],

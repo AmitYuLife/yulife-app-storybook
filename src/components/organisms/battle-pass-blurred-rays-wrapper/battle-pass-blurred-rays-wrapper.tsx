@@ -39,7 +39,7 @@ const BattlePassBlurredRaysWrapper = ({
   acceessibilityLabelTitle,
   isLoading,
   showRays = true,
-  backgroundColor = "rgba(0,0,0,.1)",
+  backgroundColor = Colours.overlay.black10,
   children,
   testID,
 }: IBattlePassBlurredRaysWrapperProps) => {

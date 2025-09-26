@@ -45,7 +45,7 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
     hr: {
       alignSelf: "stretch",
       height: 1,
-      backgroundColor: "#333333",
+      backgroundColor: Colours.darkestGray,
       marginVertical: Style.adjust(8),
     },
     text: {
@@ -93,7 +93,7 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
     listItemBullet: {
       width: Style.adjust(4),
       height: Style.adjust(4),
-      backgroundColor: "black",
+      backgroundColor: Colours.neutral.black,
       borderRadius: 2,
       marginEnd: Style.adjust(10),
       marginTop: Style.adjust(10),

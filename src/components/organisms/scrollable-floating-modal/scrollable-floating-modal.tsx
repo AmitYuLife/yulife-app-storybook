@@ -2,7 +2,7 @@ import { BottomShadow, TextTemplate } from "@atoms";
 import { FloatingModal } from "@components/modals";
 import { Pressable } from "@components/molecules";
 import { t } from "@locale";
-import { Style, StyleSheet } from "@styles";
+import { Style, StyleSheet, Colours } from "@styles";
 import { ImageSource } from "expo-image";
 import { memo, ReactNode, useMemo } from "react";
 import { Modal, View } from "react-native";
@@ -23,9 +23,9 @@ interface IScrollableModalProps {
   showCloseIcon?: boolean;
 }
 
-const BOTTOM_BACKGROUND = "rgba(255,255,255,1)";
+const BOTTOM_BACKGROUND = Colours.overlay.whiteSolid;
 const GRADIENT_LOCATIONS = [0, 0.7, 1];
-const GRADIENT_COLORS = [BOTTOM_BACKGROUND, BOTTOM_BACKGROUND, "rgba(255,255,255,0)"];
+const GRADIENT_COLORS = [BOTTOM_BACKGROUND, BOTTOM_BACKGROUND, Colours.overlay.whiteTransparent];
 
 const ScrollableFloatingModal = ({
   title,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,.64)",
+    backgroundColor: Colours.overlay.black64,
   },
   overlay: {
     height: Style.DEVICE_HEIGHT,
