@@ -1,5 +1,5 @@
 import { Box, TextTemplate } from "@atoms";
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Navigation } from "@navigation/main";
@@ -9,8 +9,8 @@ import AchievementCard, { IAchievementCardProps } from "@organisms/achievement-c
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { ScrollView } from "react-native";
-import { Style, StyleSheet } from "@styles";
 import { Button } from "@molecules";
+import { useBackHandler } from "@hooks";
 
 interface IAchievement extends Omit<IAchievementCardProps, "onPress"> {
   shortDescription?: string;
@@ -37,14 +37,20 @@ const UnlockedAchievementsModal = ({ achievements }: IProps) => {
     }
   );
 
+  const onPress = useCallback(() => {
+    return true;
+  }, []);
+
+  useBackHandler(onPress);
+
   return (
     <Box flex={1}>
       <GenericHeadingPad />
-      <ScrollView contentContainerStyle={styles.container}>
-        <Box flex={1} mt={16}>
+      <ScrollView contentContainerStyle={{ paddingBottom: insets.bottom * 2 }} showsVerticalScrollIndicator={false}>
+        <Box mt={16} flex={1}>
           <Box flexDirection="row" flexWrap="wrap" gap={8} alignItems="center" justifyContent="center">
             {achievements.map((item) => (
-              <Box key={item.id} mb={16} alignItems="center" justifyContent="center" maxWidth={Style.adjust(164)}>
+              <Box key={item.id} mb={16} alignItems="center" justifyContent="center">
                 <AchievementCard {...item} description={item.shortDescription} onPress={null} />
               </Box>
             ))}
@@ -59,26 +65,19 @@ const UnlockedAchievementsModal = ({ achievements }: IProps) => {
               </Box>
             </Box>
           </Box>
-
-          <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">
-            <Button
-              testID="unlocked-achievements-got-it-button"
-              translatedLabel={t("labels.cta.continue")}
-              onPress={markMobileUserWrappedAsViewed}
-              isLoading={loading}
-            />
-          </Box>
         </Box>
       </ScrollView>
+      <Box position="absolute" bottom={0} left={0} right={0} alignItems="center" bg="white" pb={insets.bottom / 2}>
+        <Button
+          testID="unlocked-achievements-got-it-button"
+          translatedLabel={t("labels.cta.continue")}
+          onPress={markMobileUserWrappedAsViewed}
+          isLoading={loading}
+        />
+      </Box>
       <GenericHeadingAbsolute heading={t("achievements_earned")} />
     </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default memo(UnlockedAchievementsModal);
