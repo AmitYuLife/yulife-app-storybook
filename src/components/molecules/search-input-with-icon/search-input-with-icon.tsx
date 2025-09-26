@@ -1,5 +1,6 @@
 import { SearchIcon } from "@atoms/icon/search-icon";
 import { INPUT_FIELD } from "@ids";
+import { isRTL } from "@locale";
 import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo, useState } from "react";
 import { TextInput, TextStyle, View, ViewStyle } from "react-native";
@@ -26,6 +27,7 @@ const SearchInputWithIcon = ({ onChangeText, placeholder, wrapperStyles, textInp
     () => ({
       ...styles.textInput,
       ...textInputStyle,
+      ...(isRTL() ? styles.textInputRtl : {}),
     }),
     [textInputStyle]
   );
@@ -74,6 +76,10 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(16),
     letterSpacing: Style.getLetterSpacing(Style.adjust(0.6)),
     padding: 0,
+  },
+  textInputRtl: {
+    writingDirection: "rtl",
+    textAlign: "right",
   },
   iconWrapper: {
     marginEnd: Style.adjust(8),

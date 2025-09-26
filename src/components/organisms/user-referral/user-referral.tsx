@@ -6,6 +6,7 @@ import { SecondaryButton } from "@components/molecules";
 import { t } from "@locale";
 import { Style, StyleSheet } from "@styles";
 import { VoidFunction, addCommasToNumber } from "@utils";
+import { Box } from "@atoms";
 
 interface IProps {
   referralAmount: number;
@@ -21,15 +22,17 @@ const UserReferral = ({ onReferralsButtonPress, referralAmount }: IProps) => {
       </TextTemplate>
       <View style={styles.referralAmountWrapper}>
         {!referralAmount ? null : (
-          <TextTemplate type="b2" textAlign="center">
-            {t("user_referral.description.reward")}{" "}
-            <TextTemplate type="b2b">
-              {t("user_referral.description.amount", {
-                yuCoinValue: addCommasToNumber(referralAmount),
-              })}
+          <Box justifyContent="center" flexDirection="row">
+            <TextTemplate type="b2" textAlign="center">
+              {t("user_referral.description.reward")}{" "}
+              <TextTemplate type="b2b">
+                {t("user_referral.description.amount", {
+                  yuCoinValue: addCommasToNumber(referralAmount),
+                })}
+              </TextTemplate>
             </TextTemplate>
             <YuCoinMiniSvg size={24} style={styles.yuCoin} />
-          </TextTemplate>
+          </Box>
         )}
         <TextTemplate type="b2" textAlign="center">
           {t("user_referral.description.action")}
