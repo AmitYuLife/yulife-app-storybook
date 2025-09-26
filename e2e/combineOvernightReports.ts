@@ -1,9 +1,10 @@
 const { execSync } = require("child_process");
 const specs = require("./specs.json");
 
-const keys = Object.keys(specs);
+const allKeys = Object.keys(specs);
+const ignoreKeys = ["healthcheck", "all", "screenshots", "smoke"];
 
-const ignoreKeys = ["healthcheck", "all", "screenshots"];
+const keys = allKeys.filter((key) => !ignoreKeys.includes(key));
 
 const outputDir = "./allure-reports-all";
 
@@ -15,10 +16,6 @@ const S3_PREFIX = process.env.REPORT_S3_BUCKET_NAME ? "detox/" : "";
 
 // 1. fetch the last develop reports
 for (const key of keys) {
-  if (ignoreKeys.includes(key)) {
-    continue;
-  }
-
   console.log(`Syncing ${key}...`);
   const cmd = `aws s3 sync s3://${S3_BUCKET_NAME}/${S3_PREFIX}reports/${key}/develop/allure-results ${outputDir}/${key}`;
   console.log(cmd);
