@@ -76,7 +76,7 @@
   },
   "surveys": {
     "region": "UK",
-    "specs": ["surveys/**/*.spec.ts"]
+    "specs": ["engagement_surveys/**/*.spec.ts"]
   },
   "usa": {
     "region": "US",
