@@ -17,6 +17,7 @@ include:
 .detox-overnight-rules:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "overnight-detox-run"
+      interruptible: false
 
 ios-detox-build-app:
   tags:

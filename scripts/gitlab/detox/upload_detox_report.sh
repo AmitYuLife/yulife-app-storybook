@@ -129,10 +129,19 @@ else
 fi
 
 ##############################
+# Delete gallery and screenshots
+##############################
+cd "$CI_PROJECT_DIR/e2e-report"
+echo "Deleting gallery..."
+rm -rf "gallery"
+echo "Deleting screenshots..."
+rm -rf "screenshots"
+
+##############################
 # Sync Jest and Allure Reports
 ##############################
-REPORT_PATH="$CI_PROJECT_DIR/e2e-report/allure-report"
-aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$CI_JOB_ID" --no-progress
+REPORT_PATH="$CI_PROJECT_DIR/e2e-report"
+aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/$CI_JOB_ID" --no-progress
 
 # If current branch is develop sync the current folder to "develop"
 if [ "$CI_COMMIT_BRANCH" = "develop" ]; then
@@ -140,10 +149,10 @@ if [ "$CI_COMMIT_BRANCH" = "develop" ]; then
 fi
 
 ##############################
-# Set Codemagic Output Variables
+# Set Output Variables
 ##############################
 
-ALLURE_REPORT_URL="https://$REPORT_DNS_NAME/detox/reports/$CI_JOB_ID/index.html"
+ALLURE_REPORT_URL="https://$REPORT_DNS_NAME/detox/reports/$DETOX_TEST_TYPE/$CI_JOB_ID/allure-report/index.html"
 SCREENSHOTS_REPORT_URL=$(echo "https://$REPORT_DNS_NAME/detox/screenshots/$S3_PATH/index.html" | sed -e 's/ /%20/g')
 
 ##############################
