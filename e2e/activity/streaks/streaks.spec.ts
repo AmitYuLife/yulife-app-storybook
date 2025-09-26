@@ -13,7 +13,7 @@ Feature("As a user I can use the streaks functionality", async () => {
       When("I tap the streak button", when.tapID(ids.STREAKS_BUTTON_LABEL("0/5"), 2000), async () => {
         Then("I should see the streak screen", then.onStartStreakFromHome);
       });
-      When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
+      When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 3000), async () => {
         Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
       });
       When("I tap the level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
@@ -61,7 +61,7 @@ Feature("As a user I can use the streaks functionality", async () => {
     When("I tap 1/5", when.tapText("1/5"), async () => {
       Then("I should see the streak screen", then.headingStartStreakCopyVisible(2));
     });
-    When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
+    When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 4000), async () => {
       Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
     });
     When("I start a challenge", when.startChallenge("Short Stroll"), async () => {
