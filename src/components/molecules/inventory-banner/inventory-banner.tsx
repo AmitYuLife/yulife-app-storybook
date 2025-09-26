@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     transform: [{ rotate: "180deg" }],
   },
   inventoryBannerBackground: {
-    backgroundColor: "#FFD600",
+    backgroundColor: Colours.yellow.y100,
     borderRadius: Style.adjust(8),
     height: BANNER_HEIGHT * BANNER_WIDE_HEIGHT_MULTIPLIER,
     top: (BANNER_HEIGHT * (1 - BANNER_WIDE_HEIGHT_MULTIPLIER)) / 2,

@@ -151,7 +151,7 @@ const GameStateModal = memo(
                 translationKey="labels.cta.exit"
                 onPress={onExitPress}
                 textColor={Colours.neutral.white}
-                borderColor={Colours.gradient.whiteTransparent}
+                borderColor={Colours.gradients.whiteTransparent}
               />
             ) : (
               <Button translationKey="labels.cta.exit" onPress={onExitPress} />

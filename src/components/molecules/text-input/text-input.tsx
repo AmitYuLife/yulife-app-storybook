@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image } from "@atoms";
-import { Style, StyleSheet } from "@styles";
+import { Style, StyleSheet, Colours } from "@styles";
 import { TextInput as Input, View, ViewStyle, TextInputProps } from "react-native";
 import TextInputError from "./text-input-error";
 import {
@@ -110,7 +110,7 @@ class TextInput extends React.PureComponent<IProps> {
               underlineColorAndroid="transparent"
               secureTextEntry={type === TEXT_INPUT_TYPES.PASSWORD}
               keyboardType={getKeyboardType(type)}
-              placeholderTextColor="rgb(204,204,204)"
+              placeholderTextColor={Colours.textInput.inactive}
               returnKeyType={this.props.returnKeyType}
             />
           </View>

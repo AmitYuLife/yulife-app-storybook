@@ -70,33 +70,33 @@ export function getStyle(type: TopBarTypes) {
   switch (type) {
     case "mountain":
       return {
-        colour: "rgb(51, 51, 51)",
-        logoColour: "rgb(51, 51, 51)",
-        textStyle: { color: "rgb(51, 51, 51)" },
+        colour: Colours.darkestGray,
+        logoColour: Colours.darkestGray,
+        textStyle: { color: Colours.darkestGray },
       };
     case "desert":
       return {
-        colour: "rgb(108,59,38)",
-        logoColour: "rgb(108,59,38)",
-        textStyle: { color: "rgb(108,59,38)" },
+        colour: Colours.text.brown,
+        logoColour: Colours.text.brown,
+        textStyle: { color: Colours.text.brown },
       };
     case "forest":
       return {
-        colour: "rgb(51, 88, 66)",
-        logoColour: "rgb(51, 88, 66)",
-        textStyle: { color: "rgb(51, 88, 66)" },
+        colour: Colours.text.forestGreen,
+        logoColour: Colours.text.forestGreen,
+        textStyle: { color: Colours.text.forestGreen },
       };
     case "white":
       return {
-        colour: "#FFF",
-        logoColour: "#FFF",
-        textStyle: { color: "white" },
+        colour: Colours.neutral.white,
+        logoColour: Colours.neutral.white,
+        textStyle: { color: Colours.neutral.white },
       };
     default:
       return {
-        colour: "#333333",
+        colour: Colours.darkestGray,
         logoColour: Colours.darkHotPink,
-        textStyle: { color: "#333333" },
+        textStyle: { color: Colours.darkestGray },
       };
   }
 }
