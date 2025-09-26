@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { ViewStyle, View, ScrollView } from "react-native";
 import { LEADERBOARD_INFO } from "@ids";
 import { Style, TOP_BAR, StyleSheet } from "@styles";
@@ -24,27 +24,25 @@ function LeaderboardInfoScreen({ componentId }: IProps) {
   return (
     <View style={styles.wrapper} testID={LEADERBOARD_INFO}>
       <ScrollView style={styles.scrollView}>
-        <TextTemplate type="h2">{t("screens.leaderboard.podium.info_heading")}</TextTemplate>
-        <View style={styles.sectionContainer}>
-          <TextTemplate type="b1b">{t("screens.leaderboard.podium.communities_info.heading")}</TextTemplate>
-          <TextTemplate type="b2">{t("screens.leaderboard.podium.communities_info.content")}</TextTemplate>
-        </View>
-        <View style={styles.sectionContainer}>
-          <TextTemplate type="b1b">{t("screens.leaderboard.podium.steps_info.heading")}</TextTemplate>
-          <TextTemplate type="b2">{t("screens.leaderboard.podium.steps_info.content")}</TextTemplate>
-        </View>
-        {/* <View style={styles.sectionContainer}>
-          <TextTemplate type="b1b">{t("screens.leaderboard.podium.cycling_info.heading")}</TextTemplate>
-          <TextTemplate type="b2">{t("screens.leaderboard.podium.cycling_info.content")}</TextTemplate>
-        </View> */}
-        <View style={styles.sectionContainer}>
-          <TextTemplate type="b1b">{t("screens.leaderboard.podium.yudoku_info.heading")}</TextTemplate>
-          <TextTemplate type="b2">{t("screens.leaderboard.podium.yudoku_info.content")}</TextTemplate>
-        </View>
-        <View style={styles.sectionContainer}>
-          <TextTemplate type="b1b">{t("screens.leaderboard.podium.opting_info.heading")}</TextTemplate>
-          <TextTemplate type="b2">{t("screens.leaderboard.podium.opting_info.content")}</TextTemplate>
-        </View>
+        <Box p={24}>
+          <TextTemplate type="h2">{t("screens.leaderboard.podium.info_heading")}</TextTemplate>
+          <View style={styles.sectionContainer}>
+            <TextTemplate type="b1b">{t("screens.leaderboard.podium.communities_info.heading")}</TextTemplate>
+            <TextTemplate type="b2">{t("screens.leaderboard.podium.communities_info.content")}</TextTemplate>
+          </View>
+          <View style={styles.sectionContainer}>
+            <TextTemplate type="b1b">{t("screens.leaderboard.podium.steps_info.heading")}</TextTemplate>
+            <TextTemplate type="b2">{t("screens.leaderboard.podium.steps_info.content")}</TextTemplate>
+          </View>
+          <View style={styles.sectionContainer}>
+            <TextTemplate type="b1b">{t("screens.leaderboard.podium.yudoku_info.heading")}</TextTemplate>
+            <TextTemplate type="b2">{t("screens.leaderboard.podium.yudoku_info.content")}</TextTemplate>
+          </View>
+          <View style={styles.sectionContainer}>
+            <TextTemplate type="b1b">{t("screens.leaderboard.podium.opting_info.heading")}</TextTemplate>
+            <TextTemplate type="b2">{t("screens.leaderboard.podium.opting_info.content")}</TextTemplate>
+          </View>
+        </Box>
       </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={goBack} />
     </View>
@@ -64,7 +62,5 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     top: TOP_BAR.TOP_BAR_WITH_PAD,
     backgroundColor: "#FFFFFF",
-    paddingHorizontal: Style.adjust(24),
-    paddingVertical: Style.adjust(24),
   } as ViewStyle,
 });
