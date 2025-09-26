@@ -147,10 +147,16 @@ export const START_WALKING_CHALLENGE_MINIMISE_FAKE_TIME = async () => {
     );
   });
   When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-    When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
-      When("I wait", when.wait(15000), async () => {
-        Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
-      });
+    When("I close and reopen the app", when.quitAndReopenApp, async () => {
+      When(
+        "I tap on the daily screen YuCoin icon",
+        when.tapID(ids.DAILYSTEP_SCREEN_COIN, 3000),
+        async () => {
+          When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+            Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
+          });
+        }
+      );
     });
   });
 };
@@ -159,13 +165,11 @@ export const END_WALKING_CHALLENGE_FAKE_TIME = async () => {
   const currentTime = 1700611260000; // 22-11-23 00:01:00 GMT
   jest.setSystemTime(currentTime);
 
-  When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+  When("I walk over 3000 steps", when.sendSteps(3050, 5000), async () => {
     Then("I should see the well done screen", then.onChallengeComplete(3050, 7));
   });
   When("I tap collect on the well done screen", when.tapText("Collect", 1000), async () => {
-    When("I wait 10 seconds", when.wait(10000), async () => {
-      Then("I should see the first day streak screen", then.textVisible("First day done!"));
-    });
+    Then("I should see the first day streak screen", then.textVisible("First day done!", 3000));
   });
   When("I dismiss the streak screen", when.tapText("Done", 5000), async () => {
     Then(

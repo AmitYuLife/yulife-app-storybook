@@ -72,10 +72,10 @@ export const onMeditationChallengeComplete = (minutes: number, level: number) =>
 };
 
 export const startChallenge = (challengeTile: string) => async () => {
-  await navigateViaID(ids.CHALLENGE_TILE(challengeTile));
-  await navigateViaText(t("Take challenge"));
+  await tapID(ids.CHALLENGE_TILE(challengeTile), 3000)();
+  await tapID(ids.CHALLENGE_TAKE_CHALLENGE_BUTTON)();
   try {
-    await navigateViaText(t("maybe later"));
+    await tapID(ids.GENERIC_SCREEN_CTA("maybe later"))();
   } catch (e) {
     await idVisible(ids.CHALLENGE_PROGRESS_BAR)();
   }
