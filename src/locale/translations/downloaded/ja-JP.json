@@ -46,7 +46,7 @@
     "start_game": "ゲーム開始"
   },
   "achievements": "バッジ",
-  "achievements_earned": "バッジ獲得!",
+  "achievements_earned": "バッジを獲得しました!",
   "activity_types": {
     "cycling": {
       "plural": "サイクリング"
@@ -405,7 +405,7 @@
       }
     },
     "locked_achievement": {
-      "title": "この実績を解除するには もう一度 行い ます"
+      "title": "このバッジを獲得するにはもう一度チャレンジを行ってください"
     },
     "open_random_chest": {
       "claim_all_subtitle": "早速ボックスを開けてみましょう!",
