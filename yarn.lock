@@ -8725,10 +8725,10 @@
     request-promise "^4.2.5"
     uuid "^8.3.2"
 
-"@yu-life/yulife-tolgee-cli@2.1.0":
-  version "2.1.0"
-  resolved "https://gitlab.com/api/v4/projects/48537518/packages/npm/@yu-life/yulife-tolgee-cli/-/@yu-life/yulife-tolgee-cli-2.1.0.tgz#a8a7b5fa6942fefb091301c2ff1906e8df79f216"
-  integrity sha1-qKe1+mlC/vsJEwHC/xkG6N958hY=
+"@yu-life/yulife-tolgee-cli@2.1.2":
+  version "2.1.2"
+  resolved "https://gitlab.com/api/v4/projects/48537518/packages/npm/@yu-life/yulife-tolgee-cli/-/@yu-life/yulife-tolgee-cli-2.1.2.tgz#09325b5c2a511137b6a184c2cc4b90649d286d32"
+  integrity sha1-CTJbXCpRETe2oYTCzEuQZJ0obTI=
   dependencies:
     "@tolgee/cli" "^2.6.0"
     "@types/lodash" "^4.17.12"
