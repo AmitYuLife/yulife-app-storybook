@@ -12,7 +12,7 @@ const outputDir = "./allure-reports-all";
 // The new bucket is a generic reporting bucket that uses folder structure to separate reports (cypress/detox)
 const S3_BUCKET_NAME =
   process.env.REPORT_S3_BUCKET_NAME || "yu-eu-west-2-develop-detox-static-origin";
-const S3_PREFIX = process.env.REPORT_S3_BUCKET_NAME ? "detox/" : "";
+const S3_PREFIX = process.env.REPORT_S3_BUCKET_NAME && process.env.GITLAB_CI ? "detox/" : "";
 
 // 1. fetch the last develop reports
 for (const key of keys) {
