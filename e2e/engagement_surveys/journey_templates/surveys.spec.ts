@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -94,7 +94,8 @@ Feature("Miscellaneous surveys and surveys stored in the database", async () => 
     });
   });
 
-  Scenario("I can see the hero cards in the correct order", scenario.start, async () => {
+  // @update -- Access to journeys has changed, making these tests no longer relevant (previously depended on GIVE_ACCESS_TO_CORE_JOURNEY)
+  ScenarioSkip("I can see the hero cards in the correct order", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess("engagement_survey_deep_dive", data.BUSINESS_ACCOUNT_5.business.data.businessAccountId), async () => {
       Given("I have entered a valid email address and valid password", given.logInAndGoToTab("yucoin", data.CUSTOMER_7.customer, GENERIC_AUTH_PASSWORD), async () => {
         When("I am on the home screen", [], async () => {
