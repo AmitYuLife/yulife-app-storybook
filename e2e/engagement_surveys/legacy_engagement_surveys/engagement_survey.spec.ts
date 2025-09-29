@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, WhenSkip, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, WhenSkip, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -9,7 +9,8 @@ import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 import * as helper from "./_steps/helpers";
 import { ENGAGEMENT_SURVEY_QUESTIONS } from "./_resources/constants";
 
-Feature("Engagement Surveys", async () => {
+// @update -- Access to journeys has changed, making these tests no longer relevant (previously depended on GIVE_ACCESS_TO_CORE_JOURNEY)
+FeatureSkip("Engagement Surveys", async () => {
   Scenario("As a user that works at 2 companies, I can traverse through the engagement survey until it is complete and I receive the correct amount of YuCoin for English.", scenario.start, async () => {
     Given("I run the worker to give access to the engagement survey", given.giveEngagementSurveyAccess("engagement_survey_deep_dive", data.BUSINESS_ACCOUNT_4.data.business_account_id), async () => {
       Given("I login as a user", given.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
