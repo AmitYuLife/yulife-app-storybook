@@ -1,4 +1,4 @@
-import { ChildProcess, execSync, spawn } from "child_process";
+import { type ChildProcess, execSync } from "child_process";
 import specs from "./specs.json";
 import { select } from "@inquirer/prompts";
 import { existsSync } from "fs";
@@ -29,6 +29,81 @@ const init = async () => {
       throw new Error(`Spec "${specName}" does not exist`);
     }
     specList = [specName];
+  } else if (process.env.CI_DETOX_CHANGES) {
+    // Special case to run modified files on CI pipeline
+    try {
+      // Get modified files
+      const modifiedFilesOutput = execSync(
+        `git diff --diff-filter=d --name-only origin/${process.env.CI_MERGE_REQUEST_TARGET_BRANCH_NAME} origin/${process.env.CI_COMMIT_REF_NAME}`,
+        { encoding: "utf8" }
+      );
+      const modifiedFiles = modifiedFilesOutput
+        .trim()
+        .split("\n")
+        .filter((file) => file.length > 0);
+
+      console.log(`Modified files: ${modifiedFiles.join(", ")}`);
+
+      // Get .spec.ts files under e2e folder
+      const specFiles = modifiedFiles.filter(
+        (file) => file.endsWith(".spec.ts") && file.startsWith("e2e/")
+      );
+
+      console.log(`Spec files: ${specFiles.join(", ")}`);
+
+      if (specFiles.length === 0) {
+        console.log("No modified spec files found, skipping test run");
+        process.exit(0);
+      }
+
+      // Check if specs files are regional, if all belong to the same region, proceed
+      // If there are a mix of regions, skip the run - NOT SUPPORTED
+      const regions = new Set<string>();
+      specFiles.forEach((specFile) => {
+        // Extract region from spec file path (assuming format like e2e/region/spec.spec.ts)
+        const pathParts = specFile.split("/");
+        if (pathParts.length >= 3) {
+          const potentialRegion = pathParts[1];
+          if (["south_africa", "usa", "japan"].includes(potentialRegion)) {
+            regions.add(potentialRegion);
+          }
+        }
+      });
+
+      if (regions.size === 0) {
+        // No regional specs found, use default region
+        region = "UK";
+      } else if (regions.size === 1) {
+        // All specs belong to the same region
+        switch (Array.from(regions)[0]) {
+          case "south_africa":
+            region = "SA";
+            break;
+          case "usa":
+            region = "US";
+            break;
+          case "japan":
+            region = "JP";
+            break;
+        }
+      } else {
+        // Mixed regions - not supported
+        console.log(
+          `Mixed regions detected: ${Array.from(regions).join(
+            ", "
+          )}. Skipping test run as this is not supported.`
+        );
+        process.exit(0);
+      }
+      // Add them to specList
+      specList = specFiles;
+
+      console.log(`Running modified spec files for region ${region}: ${specFiles.join(", ")}`);
+    } catch (e) {
+      console.log("Something went wrong getting modified files");
+      console.error(e);
+      process.exit(1);
+    }
   } else {
     // Otherwise a preset from specs.json
     if (!specName) {

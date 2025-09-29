@@ -8,9 +8,12 @@ include:
 .detox-cache:
   cache: &detox-cache
     policy: pull-push
-    key: ios-detox-build
+    key:
+      files:
+        - support/ios/Gemfile.lock
+        - support/ios/Podfile.lock
+      prefix: $CI_DETOX_CACHE_PREFIX
     paths:
-      - .yarn
       - .cocoapods_cache
       - ios/build/Build/Products
 
@@ -30,6 +33,7 @@ ios-detox-build-app:
   variables:
     FORCE_COLOR: 1
     GITLAB_TOKEN: $CI_JOB_TOKEN
+    CI_DETOX_CACHE_PREFIX: ios-detox-build
     # Configure tart
     TART_EXECUTOR_SHELL: bash -l
     # Set cocoapods cache path to local folder to allow gitlab cache it
@@ -44,9 +48,8 @@ ios-detox-build-app:
     PLATFORM: ios
     ENABLE_YUWATCH: 0
     DETOX_BUILD_CONFIG: ios.sim.release
-    FORCE_DETOX_BUILD: "1"
+    FORCE_DETOX_BUILD: "true"
   script:
-    - ./scripts/gitlab/detox/install_dependencies.sh
     - ./scripts/gitlab/detox/build_detox_app.sh
   artifacts:
     paths:
@@ -55,6 +58,13 @@ ios-detox-build-app:
     untracked: false
   rules:
     - !reference [.detox-overnight-rules, rules]
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      variables:
+        CI_DETOX_CACHE_PREFIX: ios-detox-build-modified-files
+        DETOX_BUILD_CONFIG: ios.sim.debug
+        FORCE_DETOX_BUILD: "false"
+      changes:
+        - e2e/**/*
 
 .base-detox-test:
   extends: .assume-aws-role-with-web-identity:qa-reporter
@@ -113,6 +123,19 @@ ios-detox-build-app:
       - e2e-report/**/*.log
     expire_in: 7 days
     untracked: false
+
+ios-detox-run-modified-files:
+  extends: .base-detox-test
+  allow_failure: true
+  variables:
+    CI_DETOX_CACHE_PREFIX: ios-detox-build-modified-files
+    CI_DETOX_CHANGES: "true"
+    DETOX_BUILD_CONFIG: ios.sim.debug
+    DETOX_TEST_TYPE: modified-files
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - e2e/**/*
 
 # TODO: DEVOPS-4362 - Allow manual triggering of detox tests
 ios-detox-healthcheck-test:

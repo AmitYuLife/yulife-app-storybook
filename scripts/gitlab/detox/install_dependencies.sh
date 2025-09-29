@@ -24,9 +24,6 @@ PATH="$(dirname "$(nvm which --silent)"):$PATH"
 export PATH
 echo "Node version: $(node --version)"
 corepack enable
-# Prepare yarn for cache
-yarn config set cache-folder $CI_PROJECT_DIR/.yarn
-yarn cache dir
 # Install node dependencies
 yarn install --frozen-lockfile
 # TSC check
