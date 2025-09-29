@@ -17,6 +17,7 @@ import QuestMapEpisode from "./quest-map-episode";
 import QuestMapEpisodeAccessibility from "./quest-map-episode-accessibility";
 import { getTopBarType } from "./quest-map-helpers";
 import { IQuestMapItem } from "./quest-map.interface";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
@@ -44,6 +45,19 @@ const keyExtractor = (_item: IQuestMapItem): string => {
   return `${_item.episodeConfig.episodeKey}`;
 };
 
+/**
+ * Stabilize slow simulator environments
+ * by adding a delay before scrolling to the current level
+ * so that it doesn't get invoked around the same time
+ * that memory is being spent rendering all the other tabs
+ */
+const SCROLL_TO_LEVEL_DELAY = DETOX_ENABLED ? 5000 : 0;
+
+enum ScrollToLevelReason {
+  Load = "Load",
+  Delay = "Delay",
+}
+
 const QuestMapScreen = ({
   items,
   weeklies,
@@ -58,6 +72,7 @@ const QuestMapScreen = ({
   const flashlistRef = useRef<FlashList<IQuestMapItem>>(null);
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
   const nextLevelIndex = useMemo(() => items.findIndex((item) => item.levels.find((level) => level.isNext)), [items]);
+  const lastScrolledLevelRef = useRef<number | null>(null);
 
   const itemsForScreenReader = useMemo(
     () => first(items.slice(nextLevelIndex, nextLevelIndex + 7)),
@@ -82,19 +97,28 @@ const QuestMapScreen = ({
   }, [items]);
 
   const scrollToLevel = useCallback(
-    (_time: { elapsedTimeInMs: number }, animated: boolean = false) => {
+    (_time?: { elapsedTimeInMs: number }, reason = ScrollToLevelReason.Load) => {
+      if (lastScrolledLevelRef.current === currentLevel && reason === ScrollToLevelReason.Delay) {
+        return;
+      }
+
       flashlistRef.current?.scrollToOffset({
         offset: snapOffsets[currentLevelEpisode],
-        animated: animated,
       });
+
+      if (reason === ScrollToLevelReason.Delay) {
+        lastScrolledLevelRef.current = currentLevel;
+      }
     },
     [currentLevelEpisode, snapOffsets]
   );
 
   useEffect(() => {
-    setTimeout(() => {
-      scrollToLevel(undefined, false);
-    });
+    const timeoutId = setTimeout(() => {
+      scrollToLevel(undefined, ScrollToLevelReason.Delay);
+    }, SCROLL_TO_LEVEL_DELAY);
+
+    return () => clearTimeout(timeoutId);
   }, [currentLevel, scrollToLevel]);
 
   const overrideItemLayout = useCallback((layout: { span?: number; size?: number }, item: IQuestMapItem) => {
