@@ -32,6 +32,17 @@ function build_app() {
   echo "🔨 Done."
 }
 
+function install_dependencies() {
+  nvm install -b
+  # Update PATH with the new node version
+  PATH="$(dirname "$(nvm which --silent)"):$PATH"
+  export PATH
+  echo "Node version: $(node --version)"
+  corepack enable
+  # Install node dependencies
+  yarn install --frozen-lockfile
+}
+
 if [[ "$DETOX_BUILD_CONFIG" == "ios.sim.release" ]]; then
   APP_BUILD_PATH="ios/build/Build/Products/Release-iphonesimulator/YuLife.app"
 else
@@ -40,14 +51,17 @@ fi
 
 # Check if we should skip the build:
 # - Skip if app exists in cache AND we're not forcing a build
-# - Build if app doesn't exist OR if FORCE_DETOX_BUILD is set to "1"
-if [[ -d "$APP_BUILD_PATH" ]] && [[ "$FORCE_DETOX_BUILD" != "1" ]]; then
+# - Build if app doesn't exist OR if FORCE_DETOX_BUILD is set to "true"
+if [[ -d "$APP_BUILD_PATH" ]] && [[ "$FORCE_DETOX_BUILD" != "true" ]]; then
   echo "🔍 App build found in cache, skipping build..."
 else
-  if [[ "$FORCE_DETOX_BUILD" == "1" ]]; then
-    echo "🔄 Force build enabled (FORCE_DETOX_BUILD=1), building app..."
+  if [[ "$FORCE_DETOX_BUILD" == "true" ]]; then
+    echo "🔄 Force build enabled (FORCE_DETOX_BUILD=true), building app..."
   else
     echo "❌ App build not found in cache, building app..."
   fi
+  install_dependencies
+  # TSC check
+  yarn tsc
   build_app
 fi
