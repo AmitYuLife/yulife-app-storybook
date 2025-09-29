@@ -21,6 +21,7 @@ import { GetDuelsQuery, gql } from "@graphql/__generated";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 
 import { StyleSheet } from "@styles";
+import Logger from "@services/logging/logger";
 interface IProps {
   duelId: string;
   componentId: string;
@@ -76,6 +77,7 @@ const DuelRespondModal: React.FC<IProps> = ({
   const [respondToInvite] = useMutation(gql("RespondToDuelDocument"), {
     refetchQueries: filterRefetchQueries(["GetDuelInvitations"]),
   });
+  const dismissModal = useCallback(() => Navigation.dismissModal(componentId), [componentId]);
 
   const handlePress = useCallback(
     (hasAccepted: boolean) => async () => {
@@ -86,22 +88,21 @@ const DuelRespondModal: React.FC<IProps> = ({
         await respondToInvite({
           variables: { duelId, hasAccepted, startDateTime, requestLocation, leaderboardPlacement },
         });
-        setLoadingLabel(null);
-        setIsLoading(false);
-        await Navigation.dismissModal(componentId);
+
         dispatch(getUserStart());
         if (hasAccepted) {
           dispatch(refreshTotalCoins());
         }
       } catch (e) {
+        Logger.error(e, { event: "respondToInvite" });
+      } finally {
         setLoadingLabel(null);
+        dismissModal();
         setIsLoading(false);
       }
     },
-    [componentId, dispatch, duelId, respondToInvite, startDateTime, requestLocation, leaderboardPlacement]
+    [dispatch, duelId, respondToInvite, startDateTime, requestLocation, leaderboardPlacement, dismissModal]
   );
-
-  const dismissModal = useCallback(() => Navigation.dismissModal(componentId), [componentId]);
 
   const submitDuel = async () => {
     const description =
