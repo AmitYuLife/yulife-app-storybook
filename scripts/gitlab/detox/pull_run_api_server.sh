@@ -46,7 +46,6 @@ corepack enable
 export GITLAB_TOKEN=$GITLAB_TOKEN_REPORTER
 yarn install --immutable --inline-builds
 ./scripts/setupPostgresForBitrise.sh
-yarn translations:download:local
 
 ##############################
 # Run API on TS (no build step)
