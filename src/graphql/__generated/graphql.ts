@@ -633,7 +633,7 @@ export type BulkMemberImportLeaverRow = {
 export type BulkMemberImportMissingRow = {
   __typename?: "BulkMemberImportMissingRow";
   displayAsLeaver: Scalars["Boolean"]["output"];
-  fields: Array<BulkMemberJointField>;
+  fields: Array<BulkMemberImportFieldUpdate>;
   id: Scalars["ID"]["output"];
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
@@ -799,14 +799,6 @@ export type BulkMemberImportsResponse = {
   hasBulkImports: Scalars["Boolean"]["output"];
 };
 
-export type BulkMemberJointField = {
-  __typename?: "BulkMemberJointField";
-  after?: Maybe<Scalars["String"]["output"]>;
-  before?: Maybe<Scalars["String"]["output"]>;
-  key?: Maybe<Scalars["String"]["output"]>;
-  value?: Maybe<Scalars["String"]["output"]>;
-};
-
 export enum BulkMemberUploadType {
   AddMembers = "ADD_MEMBERS",
   EditMembers = "EDIT_MEMBERS",
@@ -862,6 +854,7 @@ export enum BusinessAccessPermission {
   ViewResources = "viewResources",
   ViewSurveys = "viewSurveys",
   ViewWellbeingTools = "viewWellbeingTools",
+  YucoinTopups = "yucoinTopups",
 }
 
 export enum BusinessAccessPermissionCategory {
@@ -1046,6 +1039,7 @@ export type BusinessSessionSettings = {
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
   yuStoreEnabled: Scalars["Boolean"]["output"];
+  yucoinTopupsEnabled: Scalars["Boolean"]["output"];
 };
 
 export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
@@ -5228,15 +5222,18 @@ export type MemberOnboardingYuCoinProgress = {
 
 export type MessagingConnection = {
   __typename?: "MessagingConnection";
-  connectionType: Scalars["String"]["output"];
+  connectionDisplayType: Scalars["String"]["output"];
+  connectionType: MessagingConnectionTypes;
   id: Scalars["String"]["output"];
   invitesEnabled: Scalars["Boolean"]["output"];
+  name: Scalars["String"]["output"];
   status: MessagingConnectionState;
 };
 
 export type MessagingConnectionAuthUrl = {
   __typename?: "MessagingConnectionAuthUrl";
-  type: Scalars["String"]["output"];
+  connectionDisplayType: Scalars["String"]["output"];
+  type: MessagingConnectionTypes;
   url?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -7910,6 +7907,7 @@ export type Query = {
   getTotalCoins: Scalars["Int"]["output"];
   getUninvitedEmployeeCount: Scalars["Int"]["output"];
   getUnityRewards: UnityRewards;
+  getUptakeResultsBySegment: Array<UptakeResultsBySegment>;
   getUserActiveChallenge?: Maybe<ActiveChallenge>;
   getUserActiveStreak?: Maybe<ActiveStreak>;
   getUserChallengesDoneToday: UserChallengesDoneToday;
@@ -8619,6 +8617,12 @@ export type QueryGetUnityRewardsArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetUptakeResultsBySegmentArgs = {
+  campaignId: Scalars["ID"]["input"];
+  segment: SegmentType;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetUserMoodSubmissionsArgs = {
   endDate?: InputMaybe<Scalars["String"]["input"]>;
   startDate?: InputMaybe<Scalars["String"]["input"]>;
@@ -9226,6 +9230,8 @@ export enum SduiActionType {
   SduiActionOpenMagicLink = "SDUI_ACTION_OPEN_MAGIC_LINK",
   /** Generic: Accepts client-side modal constant as payload. Needs to be stringified. E.g: {"routeId":"some.screen","props":{}} */
   SduiActionOpenModal = "SDUI_ACTION_OPEN_MODAL",
+  /** Generic: Opens the share dialog. RN client version >= 4.83.0 */
+  SduiActionOpenShareDialog = "SDUI_ACTION_OPEN_SHARE_DIALOG",
   /** Generic: Opens the intercom chat */
   SduiActionOpenSupportChat = "SDUI_ACTION_OPEN_SUPPORT_CHAT",
   /** Generic: Opens a URL, accepts a URI as payload */
@@ -9339,6 +9345,11 @@ export type SearchQueryInput = {
   workLocationName?: InputMaybe<StringQueryInput>;
   workLocationPostcode?: InputMaybe<StringQueryInput>;
 };
+
+export enum SegmentType {
+  Age = "age",
+  Department = "department",
+}
 
 export type SendGiftToRecipientsResponse = {
   __typename?: "SendGiftToRecipientsResponse";
@@ -10137,6 +10148,7 @@ export type TeamEmployeeRecognitionCampaignResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignResponse";
   campaign: TeamEmployeeRecognitionCampaign;
   timezone: Scalars["String"]["output"];
+  timezoneOffset: Scalars["Int"]["output"];
 };
 
 export type TeamEmployeeRecognitionYuCoinAmountSuggestionResponse = {
@@ -10822,6 +10834,15 @@ export type UpdateTeamSocialGroupInput = {
   eligibility?: InputMaybe<Array<SearchQueryInput>>;
   isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
   name?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type UptakeResultsBySegment = {
+  __typename?: "UptakeResultsBySegment";
+  percentCompleted: Scalars["Float"]["output"];
+  segmentName: Scalars["String"]["output"];
+  totalCompletedRecipients: Scalars["Int"]["output"];
+  totalNonCompletedRecipients: Scalars["Int"]["output"];
+  totalRecipients: Scalars["Int"]["output"];
 };
 
 export type User = {
