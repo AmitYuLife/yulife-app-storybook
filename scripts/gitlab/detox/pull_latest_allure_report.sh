@@ -33,4 +33,4 @@ command -v aws >/dev/null 2>&1 || brew install awscli
 ##############################
 # Pull the last report if it exists
 ##############################
-aws s3 sync "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/develop/allure-report/history" . --no-progress || echo "No history folder in remote found"
+aws s3 sync "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/develop/allure-report/history" "$CI_PROJECT_DIR/e2e-report/allure-report/history" --no-progress || echo "No history folder in remote found"
