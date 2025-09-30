@@ -18,6 +18,7 @@ import { sduiActionDismissOverlay } from "./sduiActionDismissOverlay.saga";
 import { sduiActionDisplayStepFeedback } from "./sduiActionDisplayStepFeedback.saga";
 import { sduiActionRefetchQueriesSaga } from "./sduiActionRefetchQueries.saga";
 import { sduiActionDismissModal } from "./sduiActionDismissModal.saga";
+import { sduiActionOpenShareDialogSaga } from "./sduiActionOpenShareDialog.saga";
 
 export default [
   takeLeading(SduiActionType.SduiActionShowOverlayListPicker, sduiActionShowOverlayListPicker),
@@ -38,4 +39,5 @@ export default [
   takeEvery(SduiActionType.SduiActionLogEvent, sduiActionLogEventSaga),
   takeEvery(SduiActionType.SduiActionShowFloatingModal, sduiActionShowFloatingModal),
   takeLeading(SduiActionType.SduiActionRefetchQueries, sduiActionRefetchQueriesSaga),
+  takeLeading(SduiActionType.SduiActionOpenShareDialog, sduiActionOpenShareDialogSaga),
 ];
