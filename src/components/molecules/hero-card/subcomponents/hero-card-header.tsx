@@ -104,13 +104,19 @@ const HeroCardBannerHeader = ({
 };
 
 const HeroCardHeader = (
-  props: HeroCardHeaderProps & { fontColor: string; boldTextColor?: string; textWidth: number }
+  props: HeroCardHeaderProps & {
+    fontColor: string;
+    boldTextColor?: string;
+    textWidth: number;
+    headingNumberOfLines?: number;
+  }
 ) => {
   if (props.image) {
     return <HeroCardBannerHeader {...props} />;
   }
 
-  const { heading, subheadingMargin, subheading, button, fontColor, boldTextColor, textWidth } = props;
+  const { heading, subheadingMargin, subheading, button, fontColor, boldTextColor, textWidth, headingNumberOfLines } =
+    props;
 
   const showCaret = !button?.text && !button?.icon;
   const subheadingMarginTop = subheadingMargin ?? 4;
@@ -119,7 +125,12 @@ const HeroCardHeader = (
     <>
       <Box flexDirection="row" justifyContent="space-between" gap={8} style={styles.headingWrapper}>
         <Box flexGrow={1} maxWidth={Style.DEVICE_WIDTH - Style.adjust(180)}>
-          <TextTemplate numberOfLines={1} type="b1b" color={fontColor} testID={EVENT_HEADING(heading, fontColor)}>
+          <TextTemplate
+            numberOfLines={headingNumberOfLines}
+            type="b1b"
+            color={fontColor}
+            testID={EVENT_HEADING(heading, fontColor)}
+          >
             {heading}
           </TextTemplate>
         </Box>
@@ -132,6 +143,7 @@ const HeroCardHeader = (
             backgroundColor: getButtonBackgroundColor(button?.state),
             borderColor: getButtonBorderColor(button?.state),
           }}
+          maxHeight={26}
         >
           {showCaret ? (
             <Box height={24} width={24} justifyContent="center" alignItems="center" pl={2}>

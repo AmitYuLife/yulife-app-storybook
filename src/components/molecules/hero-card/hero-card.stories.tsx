@@ -107,7 +107,7 @@ const journeyArgs: Meta<typeof HeroCard>["args"] = {
     },
   },
   header: {
-    heading: "Journey",
+    heading: "Journey Lorem ipsum dolor sit amet consectetur adipiscing elit",
     subheading: [
       {
         text: "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor.",
