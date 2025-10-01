@@ -30,6 +30,7 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
             resizeMode="cover"
             suppressLoadingUi={true}
             testID={YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(item.illustrations.square.uri)}
+            autoFlipForRTL={true}
           />
         </View>
         <View style={styles.bannerContent}>

@@ -62,6 +62,7 @@ export interface IImageProps extends Omit<IBoxProps, "style"> {
    * are going to be instantly loaded
    */
   suppressLoadingUi?: boolean;
+  autoFlipForRTL?: boolean;
   CustomLoader?: React.ReactNode;
   onLoad?: ImageProps["onLoad"];
   accessible?: boolean;
@@ -88,11 +89,14 @@ export const Image = memo(
     accessibilityLabel,
     height: propHeight = 0,
     resizeMode = "contain",
+    autoFlipForRTL = false,
     onError,
     ...props
   }: IImageProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(!isWeb());
     const { style: boxStyle } = useBoxProps(props);
+
+    const rtlImageStyle = useMemo(() => (autoFlipForRTL ? { transform: [{ scaleX: -1 }] } : {}), [autoFlipForRTL]);
 
     const disableNativeSizing = typeof propWidth !== "number" || typeof propHeight !== "number";
     const [nativeSize, setNativeSize] = useState<{ width: number; height: number } | null>(
@@ -184,7 +188,7 @@ export const Image = memo(
         <RawImage
           onLoadStart={handleLoadStart}
           onLoad={handleLoadState}
-          style={[imageStyles, boxStyle]}
+          style={[imageStyles, boxStyle, rtlImageStyle]}
           source={source}
           transition={transition}
           resizeMode={resizeMode}
