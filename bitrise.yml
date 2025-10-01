@@ -1309,6 +1309,7 @@ workflows:
     - API_REGION: JP
     - API_ENV_OVERWRITE: NODE_ENV=detox server__locale=ja-JP server__region=JP server__port=5003
     - API_PORT: "5003"
+    - TARGET_LOCALE: ja-JP
     steps:
     - restore-cache@2:
         inputs:
