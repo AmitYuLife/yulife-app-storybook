@@ -68,8 +68,6 @@ ios-detox-build-app:
 
 .base-detox-test:
   extends: .assume-aws-role-with-web-identity:qa-reporter
-  needs:
-    - ios-detox-build-app
   tags:
     - oakhost_macos_m4
   image: $DEVOPS_AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-xcode:1.0.0
