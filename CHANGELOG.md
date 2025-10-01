@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.83.0] - 2025-10-01
+
+### Bugfixes
+
+- Bugfix NVS-1717: Allow 2 lines on hero card heading
+- Bugfix: Remove translations download for API run on detox
+- Bugfix DEVOPS-4300: Check for Gitlab CI env var to modify S3 prefix
+- Bugfix DEVOPS-4300: Gitlab CI detox overnight fixes
+- Bugfix: Update engagement surveys specs glob pattern
+
+### Tasks
+
+- Task DEVOPS-4398: Remove Gitlab CI needs for e2e CI jobs
+- Task CTE-468: yu-screen flip images
+- Task ISA-3774: Add SDUI action to open share dialog
+- Task DEVOPS-4388: Allure report history for Detox in Gitlab CI
+- Task DEVOPS-4371: Run detox on modified files
+- Task CTE-466: upgrade tolgee cli
+- Task GS-1974: Improve accept duel modal flow
+- Task NVS-1716: Fix QuestMapScreen scrollToLevel invocations
+- Task CTE-462: RTL leaderboards fixes
+- Task CTE-360: default to left for textAlign style
+- Task GS-1971: Improvements on UnlockedAchievementsModal
+- Task CTE-450: decouple android push from leanplum sdk"
+- Task CTE-454: extract colours to colours.ts
+- Task DEVOPS-4300: Gitlab CI Detox overnight tests
+- Task GS-1874: Create a system to queue modals
+- Task DEVOPS-4299: Create all detox tests variants CI jobs
+- Task DEVOPS-4239: Detox healthcheck test
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Remove `health` from e2e specs
+
+### Extra
+
+- Detox: Skip Engagement Surveys
+- Detox: Challenge Quit & Reopen Flow
+- Revert: app.config colours
+- Detox NVS-1698: Stabilize ScrollPicker swipe configuration
+- Detox NVS-1695: Fix broken Rewards Multiple Employment User scenario
+
 ## [4.82.0] - 2025-09-24
 
 ### Features
