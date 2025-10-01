@@ -71,6 +71,7 @@ export const SmokingSection = (props: ISmokingSection) => {
             source={backgroundImage}
             resizeMode="cover"
             suppressLoadingUi={true}
+            autoFlipForRTL={true}
           />
         ) : null}
         <View style={[styles.caretWrapper, buttonDynamicStyle]}>
