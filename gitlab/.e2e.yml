@@ -25,7 +25,7 @@ include:
 ios-detox-build-app:
   tags:
     - oakhost_macos_m4
-  image: $DEVOPS_AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-xcode:1.0.0
+  image: $MACOS_VM_IMAGE
   stage: build
   interruptible: true
   cache:
@@ -70,7 +70,7 @@ ios-detox-build-app:
   extends: .assume-aws-role-with-web-identity:qa-reporter
   tags:
     - oakhost_macos_m4
-  image: $DEVOPS_AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-xcode:1.0.0
+  image: $MACOS_VM_IMAGE
   stage: test
   timeout: 100m
   interruptible: true
