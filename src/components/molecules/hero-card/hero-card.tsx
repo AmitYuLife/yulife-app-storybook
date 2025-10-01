@@ -68,6 +68,8 @@ const HeroCard = ({
     [body.backgroundImage]
   );
 
+  const headingNumberOfLines = !body.progress?.milestones?.length ? 2 : 1;
+
   return (
     <TouchableOpacityWithDelay onPress={handleSduiAction} testID={EVENT_CARD_COLOUR(backgroundColor)}>
       <Box pt={HERO_CARD_BADGE_HEIGHT / 2}>
@@ -106,6 +108,7 @@ const HeroCard = ({
                   fontColor={fontColor}
                   boldTextColor={boldTextColor}
                   textWidth={body.rightImage ? cardWidth - imageWidth : cardWidth}
+                  headingNumberOfLines={headingNumberOfLines}
                 />
               ) : null}
               {body ? <HeroCardBody {...body} cardWidth={cardWidth} cardPadding={HERO_CARD_PADDING} /> : null}
