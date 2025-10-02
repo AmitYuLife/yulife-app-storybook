@@ -118,7 +118,9 @@ Feature("As a user from Japan, I can view and use the smoking cessation feature"
     });
     When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
       When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
-        Then("I should be on the smoking cessation screen", then.onSmokingHub(locale, 0, true, "0", "0", CUSTOMER_2_MOMENTS_AND_REASONS));
+        When("I tap to collect the reward", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
+          Then("I should be on the smoking cessation screen", then.onSmokingHub(locale, 0, true, "0", "0", CUSTOMER_2_MOMENTS_AND_REASONS));
+        });
       });
     });
     When("I exit the smoking hub", when.tapID(ids.BACK_BUTTON), async () => {
