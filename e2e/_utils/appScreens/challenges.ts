@@ -296,7 +296,7 @@ export const onMeditationContentIntroScreen =
   };
 
 export const tapStartSession = async () => {
-  await navigateViaID(ids.VIDEO_PLAYER_START_BUTTON);
+  await navigateViaID(ids.VIDEO_PLAYER_START_BUTTON, 7000);
 };
 
 export const completeMeditopiaContentSession = async () => {
