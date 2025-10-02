@@ -57,7 +57,7 @@ export const BUSINESS_2_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {
     _id: generateRandomMongoId(),
-    domain: "analytics.intercom",
+    domain: "support",
     entityId: BUSINESS_ACCOUNT_2.data.business_account_id,
     entityType: "business",
     settings: {

@@ -129,15 +129,15 @@ Feature("As a user I can navigate through member routes correctly", async () => 
   Scenario("I can open a support request if my supportLevel is basic", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_13, data.AUTH_13), async () => {
       Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
-      When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
-        Then("I should see the menu items", then.menuItemsVisible("basic"));
-        When("I tap chat", when.tapMenuItem(t("Support")), async () => {
-          Then("I should see the notification request, as I have not allowed this permission", then.idVisible(ids.GENERIC_SCREEN_HEADING("notification")));
-          When("I tap skip", when.tapID(ids.GENERIC_SCREEN_CTA(t("skip"))), async () => {
-            Then("I should see the support request form", then.buttonVisible("Send message"));
-          });
-        });
-      });
+    });
+    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
+      Then("I should see the menu items", then.menuItemsVisible("basic"));
+    });
+    When("I tap chat", when.tapMenuItem("Support"), async () => {
+      Then("I should see the notification request, as I have not allowed this permission", then.idVisible(ids.GENERIC_SCREEN_HEADING("notification")));
+    });
+    When("I tap skip", when.tapID(ids.GENERIC_SCREEN_CTA("skip")), async () => {
+      Then("I should see the support request form", then.buttonVisible("Send message"));
     });
   });
 
