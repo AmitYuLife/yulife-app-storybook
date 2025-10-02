@@ -125,7 +125,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
     });
     When("I tap life assurance card", when.tapText(fixture.groupLifeAssuranceOMWideCard.name), async () => {
       Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_OM, fixture.MeGL_OMKeyInfo, true, fixture.MeGL_2_CoverAmounts, undefined, true));
-      Then("I should see the new copy under 'Increase Cover button' for SA product details pages", then.idVisible(ids.MARKDOWN("Approval of your cover increase request is subject to medical underwriting.")));
+      Then("I should see the new copy under 'Increase Cover button' for SA product details pages", then.textVisible("Approval of your cover increase request is subject to medical underwriting."));
     });
   });
 });
