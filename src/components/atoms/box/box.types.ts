@@ -88,6 +88,7 @@ export const PROPERTY_MAP = {
   bg: "backgroundColor",
   aspectRatio: "aspectRatio",
   zIndex: "zIndex",
+  dir: "direction",
 } as const;
 
 const EXCLUDE_AUTO_ADJUST_PROPERTIES: (keyof typeof PROPERTY_MAP)[] = [
