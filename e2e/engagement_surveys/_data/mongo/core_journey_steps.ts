@@ -1825,7 +1825,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_1 = {
   type,
   modelName,
   data: {
-    _id: generateRandomMongoId,
+    _id: generateRandomMongoId(),
     journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_MULTIPLIER_TEST.data._id,
     stepId: "initial_multiplier",
     name: "initial",
@@ -1860,12 +1860,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_1 = {
           value: "blue_pill",
         },
       ],
-      showProgress: true,
       category: {},
-      progress: {
-        progressValue: 0,
-        progressTotal: 1,
-      },
     },
     answerKeys: ["the_choice_is_yours"],
     temporaryProperties: [],
@@ -1874,11 +1869,6 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_1 = {
     },
     hooks: [],
     events: [],
-    nextSteps: [
-      {
-        stepId: "submission_multiplier",
-      },
-    ],
   },
 };
 
@@ -1886,7 +1876,7 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_2 = {
   type,
   modelName,
   data: {
-    _id: generateRandomMongoId,
+    _id: generateRandomMongoId(),
     journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_MULTIPLIER_TEST.data._id,
     stepId: "submission_multiplier",
     name: "submission",
@@ -1904,19 +1894,10 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_2 = {
           "en-GB": "Submit",
         },
       },
-      showProgress: true,
-      progress: {
-        progressValue: 1,
-        progressTotal: 1,
-      },
     },
     answerKeys: [],
     temporaryProperties: [],
     hooks: [
-      {
-        hook: "validateAccessRules",
-        trigger: "onPreSave",
-      },
       {
         hook: "awardYucoin",
         trigger: "onPreFill",
@@ -1931,7 +1912,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
   type,
   modelName,
   data: {
-    _id: generateRandomMongoId,
+    _id: generateRandomMongoId(),
     journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST.data._id,
     stepId: "initial_flat",
     name: "initial",
@@ -1966,12 +1947,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
           value: "blue_pill",
         },
       ],
-      showProgress: true,
       category: {},
-      progress: {
-        progressValue: 0,
-        progressTotal: 1,
-      },
     },
     answerKeys: ["the_choice_is_yours"],
     temporaryProperties: [],
@@ -1980,11 +1956,6 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
     },
     hooks: [],
     events: [],
-    nextSteps: [
-      {
-        stepId: "submission_flat",
-      },
-    ],
   },
 };
 
@@ -1992,7 +1963,7 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_2 = {
   type,
   modelName,
   data: {
-    _id: generateRandomMongoId,
+    _id: generateRandomMongoId(),
     journey: CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST.data._id,
     stepId: "submission_flat",
     name: "submission",
@@ -2010,19 +1981,10 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_2 = {
           "en-GB": "Submit",
         },
       },
-      showProgress: true,
-      progress: {
-        progressValue: 1,
-        progressTotal: 1,
-      },
     },
     answerKeys: [],
     temporaryProperties: [],
     hooks: [
-      {
-        hook: "validateAccessRules",
-        trigger: "onPreSave",
-      },
       {
         hook: "awardYucoin",
         trigger: "onPreFill",

@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import * as customer from "../postgres/customers";
-import { BUSINESS_ACCOUNT_5 } from "../postgres/business";
+import { BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_5 } from "../postgres/business";
 import { CORE_JOURNEY_INSTANCE_HQ_ID } from "../../_resources/constants";
 
 const model = "core_journey_instances";
@@ -17,11 +17,6 @@ export const CORE_JOURNEY_INSTANCE_FOR_REWARD_MULTIPLIER_TEST = {
     showHeroCard: true,
     minAppVersion: ">=4.9.0",
     staticJourney: false,
-    requiresUserStateForAccess: false,
-    uiAccess: [],
-    accessRules: {
-      tags: [customer.CUSTOMER_1.data.customerId],
-    },
     uiAccessCopy: {
       eventPanel: {
         title: {
@@ -57,11 +52,6 @@ export const CORE_JOURNEY_INSTANCE_FOR_REWARD_FLAT_RATE_TEST = {
     showHeroCard: true,
     minAppVersion: ">=4.9.0",
     staticJourney: false,
-    requiresUserStateForAccess: false,
-    uiAccess: [],
-    accessRules: {
-      tags: [customer.CUSTOMER_1.data.customerId, customer.CUSTOMER_7.customer.data.customerId],
-    },
     uiAccessCopy: {
       eventPanel: {
         title: {
