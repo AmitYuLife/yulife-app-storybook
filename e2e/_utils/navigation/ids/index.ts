@@ -697,6 +697,8 @@ export const HINT_VARIANT_IMAGE = (uri?: string) =>
 export const QUEST_MODAL_MAYBE_LATER = "quest-detail-modal-dismiss-button-text-view";
 export const LOCKED_QUEST_LEVEL_CTA = "quest-detail-modal-cta-button";
 export const CANCEL_CHALLENGE = "modals.generic_modal.cancel_challenge.cta_label";
+export const INFO_MESSAGE_BUTTON = "info-message-button";
+export const CLAIM_YUNITY_REWARDS = "unity-movies-chest-button-text-view";
 
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";

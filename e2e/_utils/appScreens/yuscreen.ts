@@ -1,60 +1,15 @@
-import { navigation } from "@utils";
-import {
-  scrollUntilTextVisible,
-  swipeFromText,
-  scrollFromID,
-  swipeFromTextAtIndex,
-  scrollUntilIdVisible,
-} from "_utils/navigation/scrolling";
-import {
-  EARN_RATE_ROW,
-  PACKAGE_INFO,
-  SUMMARY_SCROLL_VIEW,
-  TEXT_TEMPLATE,
-  VALUE_DESCRIPTION,
-  BACKGROUND_COLOUR_PRODUCT,
-  CAROUSEL_CARD,
-  ONBOARDING_SCREEN,
-  V4_YUSCREEN,
-  SLOT_TITLE,
-  YUSCREEN_SCROLL_VIEW,
-  BOX_OPTION_DESCRIPTION,
-  BOX_OPTION_TITLE,
-  RIGHT_SIDE_IMAGE_BOX_OPTION,
-  YUSCREEN,
-  GET_STARTED_BUTTON,
-  EMPTY_YUSCREEN_COPY,
-  MALE_BODY,
-  FEMALE_BODY,
-  BODY_ITEM_TITLE,
-  AVATAR_BODY,
-  PERSONAL_PRODUCT,
-  SURVEY_SCREEN,
-  BUILDER_BODY,
-  FIB_BROWSE_SCREEN,
-  NAV_BAR,
-  CATEGORY_TYPE,
-  YUMOJI_PART_ID,
-  AVATAR_BUILDER_LIST,
-  YUMOJI_PART_ID_STATUS,
-  MAXIMISE_TODAYS_EARNINGS,
-  NUDGE_ITEM,
-  DONE_NUDGE_ICON,
-  YUMOJI_PROMPT_CTA,
-  YUMOJI_PROMPT_COPY,
-  EMPTY_USER_YUMOJI_AVATAR,
-  YUSCREEN_V5_USERNAME,
-  YUSCREEN_V5_WORLD_AND_LEVEL,
-  YUMOJI_YUSCREEN_V5,
-  ACTIVITY_PANEL_TITLE,
-  ACTIVITY_PANEL_REWARD,
-  EARN_RATE,
-} from "@ids";
+import * as ids from "@ids";
 import moment from "moment";
 import { expect } from "detox";
-import { getFullName } from "_utils/users";
+import { navigation } from "@utils";
 import { yuscreenImages } from "@images";
+import { getFullName } from "_utils/users";
 import { yumojiCreateCopy } from "yuscreen/yuscreen_v5/_resources/constants";
+import {
+  scrollUntilTextVisible,
+  scrollFromID,
+  scrollUntilIdVisible,
+} from "_utils/navigation/scrolling";
 
 export const {
   idVisible,
@@ -75,9 +30,9 @@ export const onEmptyYuscreen = (customer) => async () => {
   const firstName = customer.data.firstName;
   const lastName = customer.data.lastName;
 
-  const yuscreen = element(by.id(YUSCREEN));
-  const getStartedButton = element(by.id(GET_STARTED_BUTTON));
-  const copy = element(by.id(EMPTY_YUSCREEN_COPY));
+  const yuscreen = element(by.id(ids.YUSCREEN));
+  const getStartedButton = element(by.id(ids.GET_STARTED_BUTTON));
+  const copy = element(by.id(ids.EMPTY_YUSCREEN_COPY));
 
   await expect(yuscreen).toBeVisible();
   await expect(getStartedButton).toBeVisible();
@@ -88,7 +43,7 @@ export const onEmptyYuscreen = (customer) => async () => {
 
 export const onYuscreen = (customer: any) => async () => {
   const fullName = getFullName(customer);
-  const yuscreen = element(by.id(YUSCREEN));
+  const yuscreen = element(by.id(ids.YUSCREEN));
 
   await expect(yuscreen).toBeVisible();
 
@@ -99,10 +54,10 @@ export const onCreateAvatarScreen = async () => {
   const createTitle = element(by.text("Create your Yumoji to step into the Yuniverse"));
   const editTitle = element(by.text("Pick a body type"));
 
-  const maleBody = element(by.id(MALE_BODY));
+  const maleBody = element(by.id(ids.MALE_BODY));
   await expect(maleBody).toBeVisible();
 
-  const femaleBody = element(by.id(FEMALE_BODY));
+  const femaleBody = element(by.id(ids.FEMALE_BODY));
   await expect(femaleBody).toBeVisible();
 
   try {
@@ -119,7 +74,7 @@ export const onAvatarBuilder = (screen: string) => async () => {
   const editTitle = element(by.text("Edit your Yumoji"));
 
   try {
-    await expect(element(by.id(BODY_ITEM_TITLE(screen)))).toBeVisible();
+    await expect(element(by.id(ids.BODY_ITEM_TITLE(screen)))).toBeVisible();
   } catch (e) {
     await expect(element(by.text(screen))).toBeVisible();
   }
@@ -145,16 +100,20 @@ export const onYourYuCoin = async () => {
   await expect(element(by.text("Your YuCoin Power"))).toBeVisible();
 
   for (let i = 0; i < copy.length; i++) {
-    await expect(element(by.id(EARN_RATE_ROW(copy[i], value[i])))).toBeVisible();
+    await expect(element(by.id(ids.EARN_RATE_ROW(copy[i], value[i])))).toBeVisible();
   }
 };
 
 export const avatarBodyVisible =
   (eyes: string, hair: string, facialHair: string, glasses: string) => async () => {
     try {
-      await expect(element(by.id(AVATAR_BODY([eyes, hair, facialHair, glasses])))).toBeVisible();
+      await expect(
+        element(by.id(ids.AVATAR_BODY([eyes, hair, facialHair, glasses])))
+      ).toBeVisible();
     } catch (e) {
-      await expect(element(by.id(BUILDER_BODY([eyes, hair, facialHair, glasses])))).toBeVisible();
+      await expect(
+        element(by.id(ids.BUILDER_BODY([eyes, hair, facialHair, glasses])))
+      ).toBeVisible();
     }
   };
 
@@ -166,12 +125,12 @@ export const avatarBodyVisibleWithUser = (user) => async () => {
 
   const partsList = [eyes, hair, facialHair, glasses];
 
-  await expect(element(by.id(AVATAR_BODY(partsList)))).toBeVisible();
+  await expect(element(by.id(ids.AVATAR_BODY(partsList)))).toBeVisible();
 };
 
 export const leaderboardAvatarVisible =
   (facialHair: string, eyes: string, hair: string, glasses: string) => async () => {
-    await expect(element(by.id(AVATAR_BODY([facialHair, eyes, hair, glasses])))).toBeVisible();
+    await expect(element(by.id(ids.AVATAR_BODY([facialHair, eyes, hair, glasses])))).toBeVisible();
   };
 
 export const personalProductsVisible = async () => {
@@ -183,12 +142,12 @@ export const personalProductsVisible = async () => {
   ];
 
   for (const i of products) {
-    await expect(element(by.id(PERSONAL_PRODUCT(i)))).toBeVisible();
+    await expect(element(by.id(ids.PERSONAL_PRODUCT(i)))).toBeVisible();
   }
 };
 
 export const onSurveyScreen = async () => {
-  const surveyScreen = element(by.id(SURVEY_SCREEN));
+  const surveyScreen = element(by.id(ids.SURVEY_SCREEN));
   const title = element(by.text("What Would You Like To See?"));
 
   await expect(surveyScreen).toBeVisible();
@@ -208,7 +167,7 @@ export const onSurveySubmitScreen = async () => {
 };
 
 export const onPackageScreen = async () => {
-  await expectIsVisibleViaID(PACKAGE_INFO);
+  await expectIsVisibleViaID(ids.PACKAGE_INFO);
   await multipleTextVisible(["Common", "Rare", "Epic"])();
 };
 
@@ -232,10 +191,10 @@ export const packageScreenCorrect = async () => {
 
   for (const i of textElements) {
     try {
-      await scrollUntilTextVisible(FIB_BROWSE_SCREEN, i, "down")();
+      await scrollUntilTextVisible(ids.FIB_BROWSE_SCREEN, i, "down")();
       await expect(element(by.text(i))).toBeVisible();
     } catch (e) {
-      await scrollUntilTextVisible(SUMMARY_SCROLL_VIEW, i, "down")();
+      await scrollUntilTextVisible(ids.SUMMARY_SCROLL_VIEW, i, "down")();
       await expect(element(by.text(i))).toBeVisible();
     }
   }
@@ -246,10 +205,10 @@ export const onProductDetails =
     const lumpSum = `x salary as lump sum`;
     const yuCoin = `YuCoin Power`;
 
-    const product = TEXT_TEMPLATE(productName);
-    const power = VALUE_DESCRIPTION(earnRate, yuCoin);
+    const product = ids.TEXT_TEMPLATE(productName);
+    const power = ids.VALUE_DESCRIPTION(earnRate, yuCoin);
 
-    const documents = TEXT_TEMPLATE("Documents");
+    const documents = ids.TEXT_TEMPLATE("Documents");
 
     await expect(element(by.text(coverType))).toBeVisible();
     await expect(element(by.id(product))).toBeVisible();
@@ -291,10 +250,10 @@ export const onChooseAvatarBodyScreen = async () => {
   const createTitle = element(by.text("Create your Yumoji to step into the Yuniverse"));
   await expect(createTitle).toBeVisible();
 
-  const femaleBody = element(by.id(FEMALE_BODY));
+  const femaleBody = element(by.id(ids.FEMALE_BODY));
   await expect(femaleBody).toBeVisible();
 
-  const maleBody = element(by.id(MALE_BODY));
+  const maleBody = element(by.id(ids.MALE_BODY));
   await expect(maleBody).toBeVisible();
 
   const continueButtonText = element(by.text("Continue"));
@@ -306,7 +265,7 @@ export const onChooseAvatarBodyScreen = async () => {
 
 export const onSkinToneScreen = (screen: string) => async () => {
   try {
-    await expect(element(by.id(BODY_ITEM_TITLE(screen)))).toBeVisible();
+    await expect(element(by.id(ids.BODY_ITEM_TITLE(screen)))).toBeVisible();
   } catch (e) {
     await expect(element(by.text(screen))).toBeVisible();
   }
@@ -314,7 +273,7 @@ export const onSkinToneScreen = (screen: string) => async () => {
 
 export const onFacialHairScreen = (screen: string) => async () => {
   try {
-    await expect(element(by.id(BODY_ITEM_TITLE(screen)))).toBeVisible();
+    await expect(element(by.id(ids.BODY_ITEM_TITLE(screen)))).toBeVisible();
   } catch (e) {
     await expect(element(by.text(screen))).toBeVisible();
   }
@@ -325,17 +284,17 @@ export const yuCoinPowerInfoVisible = (earnRate: number) => async () => {
   const yucoinPowerUp = "Power up to earn more YuCoin";
   const passiveRewards = ["Steps", "Mindfulness", "Cycling"];
 
-  await idVisible(EARN_RATE(earnRate.toString()), 1000)();
+  await idVisible(ids.EARN_RATE(earnRate.toString()), 1000)();
   await textVisible(yucoinPowerUp, 2000)();
   await textVisible("Daily core activities", 1500)();
 
   for (const title of passiveRewards) {
-    await waitFor(element(by.id(ACTIVITY_PANEL_TITLE(title))))
+    await waitFor(element(by.id(ids.ACTIVITY_PANEL_TITLE(title))))
       .toBeVisible()
       .withTimeout(3000);
   }
 
-  await idVisible(ACTIVITY_PANEL_REWARD(`up to ${mindfulnessMultiple}`), 1500)();
+  await idVisible(ids.ACTIVITY_PANEL_REWARD(`up to ${mindfulnessMultiple}`), 1500)();
 
   const activeRewards = [
     { title: "Chest", reward: Math.round(earnRate * 20) },
@@ -344,107 +303,110 @@ export const yuCoinPowerInfoVisible = (earnRate: number) => async () => {
   ];
 
   for (const item of activeRewards) {
-    await waitFor(element(by.id(ACTIVITY_PANEL_TITLE(item.title))))
+    await waitFor(element(by.id(ids.ACTIVITY_PANEL_TITLE(item.title))))
       .toBeVisible()
       .withTimeout(3000);
-    await waitFor(element(by.id(ACTIVITY_PANEL_REWARD(item.reward))))
+    await waitFor(element(by.id(ids.ACTIVITY_PANEL_REWARD(item.reward))))
       .toBeVisible()
       .withTimeout(3000);
   }
 };
 
 export const goToYuScreenAndDismissIntro = async () => {
-  await tapID(NAV_BAR("yu"))();
+  await tapID(ids.NAV_BAR("yu"))();
   await tapText("Check out my power", 2500)();
   await tapText("I'll do this later", 2500)();
 };
 
 export const goToYuScreenAndDismissPower = async () => {
-  await tapID(NAV_BAR("yu"))();
+  await tapID(ids.NAV_BAR("yu"))();
   await tapText("Check out my power", 2500)();
 };
 
 export const startYumojiBuilder = (bodyTypeID: string) => async () => {
-  await tapText("Create Yumoji", 2500)();
-  await tapID(bodyTypeID)();
-  await tapText("Continue")();
+  await tapID(ids.YUMOJI_PROMPT_CTA, 2500)();
+  await tapID(bodyTypeID, 3000)();
+  await tapID(ids.LABELS_CTA_CONTINUE, 300)();
 };
 
 export const unlockedYumojiItemsVisible =
   (gender: string, itemLevel: string, itemWorld: any, tapItem = true, scrollFromItemTab = true) =>
   async () => {
-    scrollFromItemTab && (await scrollFromID(CATEGORY_TYPE("hairStyle"), "left", "fast")());
+    scrollFromItemTab && (await scrollFromID(ids.CATEGORY_TYPE("hairStyle"), "left", "fast")());
 
-    await tapID(CATEGORY_TYPE("chest"), 3000)();
+    await tapID(ids.CATEGORY_TYPE("chest"), 3000)();
     if (itemWorld !== "forest") {
       await scrollUntilIdVisible(
-        AVATAR_BUILDER_LIST,
-        YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
+        ids.AVATAR_BUILDER_LIST,
+        ids.YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
         "down"
       )();
-      await scrollFromID(AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
+      await scrollFromID(ids.AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
     }
     await idVisible(
-      YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
+      ids.YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
       5000
     )();
     tapItem &&
-      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`), 3000)());
+      (await tapID(ids.YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`), 3000)());
 
-    await tapID(CATEGORY_TYPE("pants"), 3000)();
+    await tapID(ids.CATEGORY_TYPE("pants"), 3000)();
     if (itemWorld !== "forest") {
       await scrollUntilIdVisible(
-        AVATAR_BUILDER_LIST,
-        YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
+        ids.AVATAR_BUILDER_LIST,
+        ids.YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
         "down"
       )();
-      await scrollFromID(AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
+      await scrollFromID(ids.AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
     }
     await idVisible(
-      YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
+      ids.YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
       4000
     )();
     tapItem &&
-      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`), 3000)());
+      (await tapID(ids.YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`), 3000)());
 
-    await tapID(CATEGORY_TYPE("boots"), 3000)();
+    await tapID(ids.CATEGORY_TYPE("boots"), 3000)();
     if (itemWorld !== "forest") {
       await scrollUntilIdVisible(
-        AVATAR_BUILDER_LIST,
-        YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
+        ids.AVATAR_BUILDER_LIST,
+        ids.YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
         "down"
       )();
     }
     await idVisible(
-      YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
+      ids.YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
       4000
     )();
     tapItem &&
-      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`), 3000)());
+      (await tapID(ids.YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`), 3000)());
 
     if (itemLevel != "base") {
-      await scrollFromID(CATEGORY_TYPE("chest"), "left", "slow")();
-      await tapID(CATEGORY_TYPE("gloves"), 3000)();
+      await scrollFromID(ids.CATEGORY_TYPE("chest"), "left", "slow")();
+      await tapID(ids.CATEGORY_TYPE("gloves"), 3000)();
       await scrollUntilIdVisible(
-        AVATAR_BUILDER_LIST,
-        YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`),
+        ids.AVATAR_BUILDER_LIST,
+        ids.YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`),
         "down"
       )();
       await idVisible(
-        YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`),
+        ids.YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`),
         3000
       )();
       tapItem &&
-        (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`), 3000)());
+        (await tapID(
+          ids.YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`),
+          3000
+        )());
     }
   };
 
 export const saveYumoji =
   (firstTime = true) =>
   async () => {
-    await tapText("Save")();
-    await tapText("Save changes")();
-    firstTime && (await tapText("Done")());
+    await tapID(ids.BUTTON_CLOSE_HEADER("Edit your Yumoji"), 2500)();
+    await tapID(ids.GENERIC_SCREEN_CTA("Save changes"), 1500)();
+    firstTime && (await tapID(ids.COLLECT_REWARD_CTA, 3000)());
   };
 
 export const yumojiItemLockedModalVisible = (level: number) => async () => {
@@ -456,20 +418,20 @@ export const yumojiItemLockedModalVisible = (level: number) => async () => {
 
 export const maximiseYucoinVisible = (current: number, max: number) => async () => {
   await textVisible("Earned from activities today")();
-  await idVisible(MAXIMISE_TODAYS_EARNINGS(current, max))();
+  await idVisible(ids.MAXIMISE_TODAYS_EARNINGS(current, max))();
 };
 
 export const chestNudgeVisible =
   (yuCoinAmount = 200) =>
   async () => {
     const nudgeCopy = `Unlock a chest to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(NUDGE_ITEM(nudgeCopy))();
+    await idVisible(ids.NUDGE_ITEM(nudgeCopy))();
   };
 export const walkingNudgeVisible =
   (steps = "12,000", yuCoinAmount = 60) =>
   async () => {
     const walkingMarkdown = `Walk ${steps} steps to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(NUDGE_ITEM(walkingMarkdown))();
+    await idVisible(ids.NUDGE_ITEM(walkingMarkdown))();
   };
 
 export const challengeNudgeVisible =
@@ -477,55 +439,55 @@ export const challengeNudgeVisible =
     let challengeText = "challenges";
     if (challengeAmount === 1) challengeText = "challenge";
     const nudgeMarkdown = `Complete ${challengeAmount} ${challengeText} to earn up to ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(NUDGE_ITEM(nudgeMarkdown))();
+    await idVisible(ids.NUDGE_ITEM(nudgeMarkdown))();
   };
 
 export const streakNudgeVisible =
   (yuCoinAmount = 400) =>
   async () => {
     const streakMarkdown = `Complete your streak to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(NUDGE_ITEM(streakMarkdown))();
+    await idVisible(ids.NUDGE_ITEM(streakMarkdown))();
   };
 
 export const meditationNudeVisible =
   (minutes = 30, yuCoinAmount = 40) =>
   async () => {
     const meditationMarkdown = `Meditate for ${minutes} mins to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(NUDGE_ITEM(meditationMarkdown))();
+    await idVisible(ids.NUDGE_ITEM(meditationMarkdown))();
   };
 
 export const cyclingNudgeVisible =
   (km = 9.6, yuCoinAmount = 60) =>
   async () => {
     const cycleMarkdown = `Cycle ${km}km to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(NUDGE_ITEM(cycleMarkdown))();
+    await idVisible(ids.NUDGE_ITEM(cycleMarkdown))();
   };
 
 export const hqNudgeVisible =
   (yuCoinAmount = 40) =>
   async () => {
     const hqMarkdown = `Check in on your health to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(NUDGE_ITEM(hqMarkdown))();
+    await idVisible(ids.NUDGE_ITEM(hqMarkdown))();
   };
 
 export const moodMonitorNudgeVisible = async () => {
   const moodMonitorMarkdown =
     "Keep track of how you're feeling to earn 30 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)";
-  await idVisible(NUDGE_ITEM(moodMonitorMarkdown))();
+  await idVisible(ids.NUDGE_ITEM(moodMonitorMarkdown))();
 };
 
 export const completedChestNudgeVisible =
   (yuCoinAmount = 200) =>
   async () => {
     const nudgeCopy = `Unlock a chest to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(DONE_NUDGE_ICON(nudgeCopy))();
+    await idVisible(ids.DONE_NUDGE_ICON(nudgeCopy))();
   };
 
 export const completedWalkingNudgeVisible =
   (steps = "12,000", yuCoinAmount = 60) =>
   async () => {
     const walkingMarkdown = `Walk ${steps} steps to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(DONE_NUDGE_ICON(walkingMarkdown))();
+    await idVisible(ids.DONE_NUDGE_ICON(walkingMarkdown))();
   };
 
 export const completedChallengeNudgeVisible =
@@ -533,64 +495,64 @@ export const completedChallengeNudgeVisible =
     let challengeText = "challenges";
     if (challengeAmount === 1) challengeText = "challenge";
     const nudgeMarkdown = `Complete ${challengeAmount} ${challengeText} to earn up to ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(DONE_NUDGE_ICON(nudgeMarkdown))();
+    await idVisible(ids.DONE_NUDGE_ICON(nudgeMarkdown))();
   };
 
 export const completedMeditationNudeVisible =
   (minutes = 30, yuCoinAmount = 40) =>
   async () => {
     const meditationMarkdown = `Meditate for ${minutes} mins to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(DONE_NUDGE_ICON(meditationMarkdown))();
+    await idVisible(ids.DONE_NUDGE_ICON(meditationMarkdown))();
   };
 
 export const completedCyclingNudgeVisible =
   (km = 9.6, yuCoinAmount = 60) =>
   async () => {
     const cycleMarkdown = `Cycle ${km}km to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(DONE_NUDGE_ICON(cycleMarkdown))();
+    await idVisible(ids.DONE_NUDGE_ICON(cycleMarkdown))();
   };
 
 export const completedStreakNudgeVisible =
   (yuCoinAmount = 400) =>
   async () => {
     const streakMarkdown = `Complete your streak to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(DONE_NUDGE_ICON(streakMarkdown))();
+    await idVisible(ids.DONE_NUDGE_ICON(streakMarkdown))();
   };
 
 export const completedHQNudgeVisible =
   (yuCoinAmount = 40) =>
   async () => {
     const hqMarkdown = `Check in on your health to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(DONE_NUDGE_ICON(hqMarkdown))();
+    await idVisible(ids.DONE_NUDGE_ICON(hqMarkdown))();
   };
 
 export const completedMoodMonitorNudgeVisible = async () => {
   const moodMonitorMarkdown =
     "Keep track of how you're feeling to earn 30 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)";
-  await idVisible(DONE_NUDGE_ICON(moodMonitorMarkdown))();
+  await idVisible(ids.DONE_NUDGE_ICON(moodMonitorMarkdown))();
 };
 
 export const yuscreenV5CreateYumojiVisible = async () => {
-  await idVisible(YUMOJI_PROMPT_CTA)();
-  await idVisible(YUMOJI_PROMPT_COPY(yumojiCreateCopy))();
-  await idVisible(EMPTY_USER_YUMOJI_AVATAR)();
+  await idVisible(ids.YUMOJI_PROMPT_CTA)();
+  await idVisible(ids.YUMOJI_PROMPT_COPY(yumojiCreateCopy))();
+  await idVisible(ids.EMPTY_USER_YUMOJI_AVATAR)();
 };
 
 export const yuScreenV5HeaderVisible =
   (collapsed: boolean, name: string, world: string, level: string, emptyAvatar = false) =>
   async () => {
-    await idVisibleAtIndex(YUSCREEN_V5_USERNAME(name), 0)();
-    await idVisibleAtIndex(YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 0)();
+    await idVisibleAtIndex(ids.YUSCREEN_V5_USERNAME(name), 0)();
+    await idVisibleAtIndex(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 0)();
 
     if (!collapsed && emptyAvatar) {
-      await idVisible(EMPTY_USER_YUMOJI_AVATAR)();
+      await idVisible(ids.EMPTY_USER_YUMOJI_AVATAR)();
     } else {
-      await idNotVisible(EMPTY_USER_YUMOJI_AVATAR)();
+      await idNotVisible(ids.EMPTY_USER_YUMOJI_AVATAR)();
     }
 
     if (!collapsed && !emptyAvatar) {
-      await idVisible(YUMOJI_YUSCREEN_V5)();
+      await idVisible(ids.YUMOJI_YUSCREEN_V5)();
     } else {
-      await idNotVisible(YUMOJI_YUSCREEN_V5)();
+      await idNotVisible(ids.YUMOJI_YUSCREEN_V5)();
     }
   };
