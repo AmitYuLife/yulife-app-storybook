@@ -705,3 +705,35 @@ export const USER_JOURNEY_STATE_04_CUSTOMER_8_1_QUESTION = {
     updatedAt: "2024-04-23T10:42:19.959+0000",
   },
 } as IDatabaseItem;
+
+export const USER_JOURNEY_STATE_FOR_REWARD_MULTIPLIER_TEST_CUSTOMER_1 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journeyId: "automated_qa_test_journey_10_multiplier",
+    triggerSourceId: "initial_multiplier",
+    userId: customer.CUSTOMER_1.data.customerId,
+    status: "pending",
+    uiAccess: {
+      eventPanel: { alwaysOn: true },
+    },
+    updatedAt: "2024-04-23T10:42:19.959+0000",
+  },
+} as IDatabaseItem;
+
+export const USER_JOURNEY_STATE_FOR_REWARD_FLAT_RATE_TEST_CUSTOMER_1 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journeyId: "automated_qa_test_journey_500_yucoin_flat_amount",
+    triggerSourceId: "initial_multiplier",
+    userId: customer.CUSTOMER_1.data.customerId,
+    status: "pending",
+    uiAccess: {
+      eventPanel: { alwaysOn: true },
+    },
+    updatedAt: "2024-04-23T10:42:19.959+0000",
+  },
+} as IDatabaseItem;

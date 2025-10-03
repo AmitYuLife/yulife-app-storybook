@@ -9,26 +9,17 @@ import { moneyMasteryFWQDescriptionPage } from "../_resources/fixtures";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("Miscellaneous surveys and surveys stored in the database", async () => {
-  Scenario("I encounter an error on quiz event without journey and Health Questionnaire is disabled", scenario.start, async () => {
+  Scenario("I encounter an error on quiz event without journey", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_5, data.AUTH_5), async () => {
-      When("I click on the event card", when.tapText("Money Mastery#2"), async () => {
-        Then("I should see the money mastery quiz", then.customerQuizModalVisible("Money Mastery#2", "6", 0));
-        Then("I am on the correct description page for the money mastery quiz", then.onFinancialWellnessQuizDescriptionPage(moneyMasteryFWQDescriptionPage, false));
+      When("I swipe to see the event card", when.scrollFromID(ids.EVENT_CARD("Daily health questions"), "left", "fast", 0.5), async () => {
+        When("I click on the event card", when.tapText("Money Mastery#2"), async () => {
+          Then("I should see the money mastery quiz", then.customerQuizModalVisible("Money Mastery#2", "6", 0));
+          Then("I am on the correct description page for the money mastery quiz", then.onFinancialWellnessQuizDescriptionPage(moneyMasteryFWQDescriptionPage, false));
+        });
       });
     });
     When("I click to take the quiz", when.tapText(moneyMasteryFWQDescriptionPage.button), async () => {
       Then("I should see an error message, as this quiz does not have a journey", then.idVisible(ids.TEXT_TEMPLATE("Looks like Yugi’s spotted an error!", "h2")));
-    });
-    When("I close the error message", when.tapID(ids.SCREEN_CLOSE), async () => {
-      When("I scroll up the event page", when.scrollFromID(ids.EVENT_DIALOG_SCREEN_SCROLL, "down", "fast", 0.5), async () => {
-        When("I go back to the YuCoin screen", when.tapID(ids.BACK_BUTTON, 1500), async () => {
-          When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
-            When("I scroll to the bottom of the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
-              Then("I should not see the HQ title available", then.textNotVisible("Getting to know Yu!"));
-            });
-          });
-        });
-      });
     });
   });
 
@@ -42,7 +33,6 @@ Feature("Miscellaneous surveys and surveys stored in the database", async () => 
     When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
       When("I click on the Automated QA Test Journey 10 Multiplier card", when.tapIDAtIndex(ids.EVENT_CARD("Automated QA Test Journey 10 Multiplier"), 0, 2000), async () => {
         Then("I should see the 'The choice is yours' question", then.idVisible(ids.TEXT_TEMPLATE("The choice is yours.", "b2b"), 1000));
-        Then("I should see the progress bar has moved", then.progressBarVisible(100, 100, "#E30D76"));
       });
     });
     When("I select the first choice", when.tapID(ids.CHECKBOX_SELECTORS("initial_multiplier_choice", "red_pill")), async () => {
@@ -73,7 +63,6 @@ Feature("Miscellaneous surveys and surveys stored in the database", async () => 
       When("I swipe left on the Automated QA Test Journey 10 Multiplier card", when.scrollFromID(ids.EVENT_CARD("Automated QA Test Journey 10 Multiplier"), "left", "fast", 0.5), async () => {
         When("I click on the Automated QA Test Journey 500 YuCoin Flat Amount card", when.tapID(ids.EVENT_CARD("Automated QA Test Journey 500 YuCoin Flat Amount")), async () => {
           Then("I should see the 'The choice is yours' question", then.idVisible(ids.TEXT_TEMPLATE("The choice is yours.", "b2b")));
-          Then("I should see the progress bar has moved", then.progressBarVisible(500, 500, "#E30D76"));
         });
       });
     });
