@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -390,62 +390,62 @@ Feature("End of the world/Yuniverse", async () => {
   Scenario("I can complete level 800, and get the epic mountain yumoji item reward", scenario.start, () => {
     Given("I trigger the worker to give missing yumoji items", given.triggerGiveMissingYumojiItems([data.CUSTOMER_93.data.customerId]), async () => {
       When("I login as a user on level 800", when.logInAndGoToTab("quests", data.CUSTOMER_93, data.AUTH_93), async () => {
-        Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800)));
+        Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800), 2000));
       });
     });
-    When("I go the yucsreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+    When("I go the yucsreen", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
       When("I start the yumoji builder", when.startYumojiBuilder(ids.FEMALE_BODY), async () => {
-        Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"));
+        Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji", 2500));
         Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("female", "rare", "ocean"));
       });
     });
-    When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I tap the male yumoji", when.tapID(ids.MALE_BODY), async () => {
-        When("I tap continue", when.tapText("Continue"), async () => {
+    When("I tap the back button", when.tapID(ids.BACK_BUTTON, 2000), async () => {
+      When("I tap the male yumoji", when.tapID(ids.MALE_BODY, 2000), async () => {
+        When("I tap continue", when.tapID(ids.LABELS_CTA_CONTINUE, 3000), async () => {
           Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("male", "common", "desert"));
         });
       });
     });
     When("I scroll to the locked epic mountain gloves", when.scrollUntilIdVisible(ids.AVATAR_BUILDER_LIST, ids.YUMOJI_PART_ID(`yumoji_male_gloves_epic_mountain`), "down"), async () => {
-      When("I tap this item", when.tapID(ids.YUMOJI_PART_ID(`yumoji_male_gloves_epic_mountain`)), async () => {
+      When("I tap this item", when.tapID(ids.YUMOJI_PART_ID(`yumoji_male_gloves_epic_mountain`), 4000), async () => {
         Then("I should see the locked item modal", then.yumojiItemLockedModalVisible(800));
       });
     });
-    When("I tap Take a challenge", when.tapText("Take a challenge"), async () => {
-      Then("I should be on the quest map, and see level 800", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800)));
+    When("I tap Take a challenge", when.tapID(ids.SCROLLABLE_CONTENT_CTA, 3000), async () => {
+      Then("I should be on the quest map, and see level 800", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800), 2500));
     });
     When("I tap level 800 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(800)), async () => {
       Then("I should see that I have achieved Yunity Mountain", then.yunityCorrect("Mountain"));
       Then("I should see the Yunity Rewards", then.yunityRewardsVisible(["6 Levels\nBoost", "Mountain\nOutfit", "The Yuniversal\nReflection"]));
     });
-    When("I tap the levels boost", when.tapID(ids.YUNITY_CARD("6 Levels\nBoost")), async () => {
-      Then("I should see 'Boosted YuCoin'", then.textVisible("Boosted YuCoin"));
-      Then("I should see the Boosted YuCoin description", then.textVisible("During this time, the challenges you complete will reward you with additional YuCoin."));
+    When("I tap the levels boost", when.tapID(ids.YUNITY_CARD("6 Levels\nBoost"), 3500), async () => {
+      Then("I should see 'Boosted YuCoin'", then.textVisible("Boosted YuCoin", 2500));
+      Then("I should see the Boosted YuCoin description", then.textVisible("During this time, the challenges you complete will reward you with additional YuCoin.", 1500));
     });
-    When("I tap got it", when.tapText("Got it"), async () => {
+    When("I tap got it on the reward info pop up", when.tapID(ids.INFO_MESSAGE_BUTTON, 2500), async () => {
       When("I tap Mountain Outfit", when.tapID(ids.YUNITY_CARD("Mountain\nOutfit")), async () => {
-        Then("I should see New customisation", then.textVisible("New customisation"));
-        Then("I should see the description", then.textVisible("You've unlocked new items for your Yumoji! Visit the Yumoji editor to try them on."));
+        Then("I should see New customisation", then.textVisible("New customisation", 1500));
+        Then("I should see the description", then.textVisible("You've unlocked new items for your Yumoji! Visit the Yumoji editor to try them on.", 1500));
       });
     });
-    When("I tap got it", when.tapText("Got it"), async () => {
-      When("I tap Mountain Outfit", when.tapID(ids.YUNITY_CARD("The Yuniversal\nReflection")), async () => {
+    When("I tap got it on the second reward info pop up", when.tapID(ids.INFO_MESSAGE_BUTTON, 2500), async () => {
+      When("I tap Mountain Outfit", when.tapID(ids.YUNITY_CARD("The Yuniversal\nReflection"), 2500), async () => {
         Then("I should see The Yuniversal Reflection", then.textVisible("The Yuniversal Reflection"));
         Then("I should see the description", then.textVisible("You've achieved Yunity. Now take your time, breathe and reflect with these special quests."));
       });
     });
-    When("I tap Got it", when.tapText("Got it"), async () => {
-      Then("I should see Claim rewards", then.textVisible("Claim rewards"));
+    When("I tap got it on the third reward info pop up", when.tapID(ids.INFO_MESSAGE_BUTTON, 2500), async () => {
+      Then("I should see Claim rewards", then.idVisible(ids.CLAIM_YUNITY_REWARDS, 2000));
     });
-    When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
-      When("I go the yucsreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-        Then("I should see the unlocked epic mountain gloves", then.idVisible(ids.YUMOJI_PART_ID(`yumoji_male_gloves_epic_mountain`)));
+    When("I tap claim rewards", when.tapID(ids.CLAIM_YUNITY_REWARDS, 1000), async () => {
+      When("I go the yucsreen", when.tapID(ids.NAV_BAR("yu"), 4000), async () => {
+        Then("I should see the unlocked epic mountain gloves", then.idVisible(ids.YUMOJI_PART_ID(`yumoji_male_gloves_epic_mountain`), 4000));
         Then("I should see the new epic mountain items I have unlocked", then.unlockedYumojiItemsVisible("male", "epic", "mountain", true, false));
       });
     });
     When("I save the yumoji", when.saveYumoji(true), async () => {
-      Then("I should be back on the yuscreen", then.textVisible("Los Santos"));
-      Then("I should see the yumoji", then.idVisible(ids.YUMOJI_EQUIPMENT));
+      Then("I should be back on the yuscreen", then.textVisible("Los Santos", 2500));
+      Then("I should see the yumoji", then.idVisible(ids.YUMOJI_EQUIPMENT, 3000));
     });
   });
 
