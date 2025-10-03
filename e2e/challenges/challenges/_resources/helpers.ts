@@ -147,16 +147,8 @@ export const START_WALKING_CHALLENGE_MINIMISE_FAKE_TIME = async () => {
     );
   });
   When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-    When("I close and reopen the app", when.quitAndReopenApp, async () => {
-      When(
-        "I tap on the daily screen YuCoin icon",
-        when.tapID(ids.DAILYSTEP_SCREEN_COIN, 1000),
-        async () => {
-          When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 1000), async () => {
-            Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
-          });
-        }
-      );
+    When("I minimise and reopen the app", when.relaunchAppWithoutSync, async () => {
+      Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR, 5000));
     });
   });
 };
