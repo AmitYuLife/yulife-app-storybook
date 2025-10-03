@@ -15,6 +15,7 @@ import { isWeb } from "@utils";
 import { round } from "lodash";
 import { useBoxProps, useUserFeatures } from "@hooks";
 import { IBoxProps } from "@atoms/box/box.types";
+import { isRTL } from "@locale";
 
 const PIXEL_FIX: number = 1;
 
@@ -96,7 +97,10 @@ export const Image = memo(
     const [isLoading, setIsLoading] = useState<boolean>(!isWeb());
     const { style: boxStyle } = useBoxProps(props);
 
-    const rtlImageStyle = useMemo(() => (autoFlipForRTL ? { transform: [{ scaleX: -1 }] } : {}), [autoFlipForRTL]);
+    const rtlImageStyle = useMemo(
+      () => (autoFlipForRTL && isRTL() ? { transform: [{ scaleX: -1 }] } : {}),
+      [autoFlipForRTL]
+    );
 
     const disableNativeSizing = typeof propWidth !== "number" || typeof propHeight !== "number";
     const [nativeSize, setNativeSize] = useState<{ width: number; height: number } | null>(
