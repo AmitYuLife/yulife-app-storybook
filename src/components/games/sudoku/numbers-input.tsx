@@ -1,11 +1,10 @@
-import { View } from "react-native";
 import NumberInput, { SUDOKU_NUMBER_PADDING, SUDOKU_PASSED_NUMBER_CUTOFF } from "./number-input";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import UndoIcon from "@atoms/icon/undo-svg";
 import { Style, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo } from "react";
 import { useTranslation } from "@hooks";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { BoxOption } from "@components/molecules";
 import { SUDOKU_UNDO_BUTTON } from "@ids";
 
@@ -25,23 +24,30 @@ const NumbersInput = () => {
   }, [isNumberComplete]);
 
   return (
-    <View style={styles.grid}>
-      <View style={styles.row}>
+    <Box
+      width={Style.DEVICE_WIDTH}
+      p={Style.adjust(15)}
+      alignItems="center"
+      flexDirection="column"
+      justifyContent="center"
+      disableAutoAdjust={true}
+    >
+      <Box width="100%" flexDirection="row" justifyContent="space-between" dir="ltr">
         {Array.from({ length: 5 }).map((_, index) => {
           const value = index + 1;
           return (
             <NumberInput value={value} key={index} onPress={onNumberPress} isComplete={completedNumbers[value - 1]} />
           );
         })}
-      </View>
-      <View style={styles.row}>
+      </Box>
+      <Box flexDirection="row" justifyContent="space-between" dir="ltr">
         {Array.from({ length: 4 }).map((_, index) => {
           const value = index + 1 + 5;
           return (
             <NumberInput value={value} key={index} onPress={onNumberPress} isComplete={completedNumbers[value - 1]} />
           );
         })}
-        <View style={styles.undoContainer}>
+        <Box p={SUDOKU_NUMBER_PADDING} aspectRatio={1} flex={1}>
           <BoxOption
             isSelected={false}
             selectedStyle={null}
@@ -54,24 +60,19 @@ const NumbersInput = () => {
             <>
               <UndoIcon size={Style.adjust(!SUDOKU_PASSED_NUMBER_CUTOFF ? 20 : 24)} testID={SUDOKU_UNDO_BUTTON} />
               {SUDOKU_PASSED_NUMBER_CUTOFF ? (
-                <View style={styles.undoText}>
+                <Box mt={4}>
                   <TextTemplate type="l2b">{t["sudoku.game.undo"]}</TextTemplate>
-                </View>
+                </Box>
               ) : null}
             </>
           </BoxOption>
-        </View>
-      </View>
-    </View>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
 const styles = StyleSheet.create({
-  undoContainer: {
-    padding: Style.adjust(SUDOKU_NUMBER_PADDING),
-    aspectRatio: 1,
-    flex: 1,
-  },
   undoButtonWrapper: {
     flex: 1,
     paddingBottom: Style.adjust(5),
@@ -80,21 +81,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-  },
-  undoText: {
-    marginTop: Style.adjust(4),
-  },
-  grid: {
-    width: Style.DEVICE_WIDTH,
-    padding: Style.adjust(15),
-    alignItems: "center",
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  row: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
   },
 });
 

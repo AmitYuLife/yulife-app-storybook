@@ -42,7 +42,7 @@ export const ProgressText = memo(({ progress, animate }: Props) => {
 
   return (
     <Box flexDirection="row">
-      <Box flexDirection={isRTL() ? "row-reverse" : "row"}>
+      <Box flexDirection="row" dir="ltr">
         <Box justifyContent="flex-end">
           {animateCounter ? (
             <Counter duration={1200} value={currentValue} textStyle={styles.current} />

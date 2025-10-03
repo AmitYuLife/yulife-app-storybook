@@ -1,8 +1,6 @@
-import { View, ViewStyle } from "react-native";
 import { StreakTicks } from "@atoms/icon/streak-ticks";
-import { Style, StyleSheet } from "@styles";
 import React from "react";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 
 interface IProps {
   streakMax: number;
@@ -12,36 +10,21 @@ interface IProps {
 
 const StreakStart = ({ streakMax, streakCompleted, heading }: IProps) => {
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.heading}>
+    <Box alignItems="center">
+      <Box mb={24}>
         <TextTemplate type="b2" textAlign="center">
           {heading}
         </TextTemplate>
-      </View>
-      <View style={styles.streakWrapper}>
+      </Box>
+      <Box flexDirection="row" dir="ltr">
         {Array.from({ length: streakMax }).map((_, index) => (
-          <View key={index} style={styles.streakTicks}>
+          <Box key={index} mh={7}>
             <StreakTicks checked={index < streakCompleted} label={(index + 1).toString()} />
-          </View>
+          </Box>
         ))}
-      </View>
-    </View>
+      </Box>
+    </Box>
   );
 };
 
 export default StreakStart;
-
-const styles = StyleSheet.create({
-  wrapper: {
-    alignItems: "center",
-  },
-  heading: {
-    marginBottom: Style.adjust(24),
-  },
-  streakWrapper: {
-    flexDirection: "row",
-  } as ViewStyle,
-  streakTicks: {
-    marginHorizontal: Style.adjust(7),
-  },
-});
