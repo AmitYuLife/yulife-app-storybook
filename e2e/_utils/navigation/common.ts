@@ -457,6 +457,17 @@ export const minimiseAndReopenApp = async () => {
   await launchApp({ newInstance: false });
 };
 
+/**
+ * Temporarily disables Detox sync to avoid hangs
+ * caused by background timers (e.g. challenge timers).
+ */
+export const relaunchAppWithoutSync = async () => {
+  await device.disableSynchronization();
+  await device.sendToHome();
+  await launchApp({ newInstance: false });
+  await device.enableSynchronization();
+};
+
 export const hoursRemainingOfDay = () => {
   const now = moment();
   const timeDiff = moment(now).endOf("day");

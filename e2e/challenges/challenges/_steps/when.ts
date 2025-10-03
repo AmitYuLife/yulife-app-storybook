@@ -23,6 +23,7 @@ export const {
   navigateViaID,
   minimiseAndReopenApp,
   navigateTo,
+  relaunchAppWithoutSync,
 } = navigation.common;
 
 export const { dismissStreakIfVisible, restartAndLoginToTab, fullRestartAndLogin } =
