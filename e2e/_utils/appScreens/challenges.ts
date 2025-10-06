@@ -450,7 +450,7 @@ export const tapMeditopiaContentCard = (mins1: string, yuCoin1: string) => async
 };
 
 export const exitChallenge = async () => {
-  await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"), 1000);
+  await tapID(ids.GENERIC_SCREEN_CTA("Exit challenge"), 1000)();
 };
 
 export const canSeeNewChallengePage =

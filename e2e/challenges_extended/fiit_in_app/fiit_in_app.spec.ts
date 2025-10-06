@@ -82,8 +82,8 @@ Feature("Fiit in app", async () => {
       Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT, 2500));
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
-      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200), async () => {
-        When("I tap the close button to quit the challenge part way through", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 2000), async () => {
+      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1000), async () => {
+        When("I tap the close button to quit the challenge part way through", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 1000), async () => {
           Then("I should see the quit challenge confirmation screen", then.isOnQuitChallengeScreen);
         });
       });
@@ -119,15 +119,13 @@ Feature("Fiit in app", async () => {
         Then("The video is playing", then.isVideoPaused(false));
       });
     });
-    When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
-      When("I tap the menu icon to close the referrals popover", when.tapID(ids.NAV_BAR("yucoin"), 2500), async () => {
-        When("I navigate to the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
-          Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
-        });
-      });
+    When("I close and reopen the app", when.relaunchAppWithoutSync, async () => {
+      Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
     });
     When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT, 4000), async () => {
-      Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
+      When("I tap 'Done' on the first day streak modal", when.tapID(ids.STREAKS_SCREEN_BUTTON, 200), async () => {
+        Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
+      });
     });
     When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
       Then("I should see 314 YuCoin today have been earnt today", then.canSeeYuCoinEarntToday(314));

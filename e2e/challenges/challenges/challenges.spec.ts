@@ -33,8 +33,8 @@ Feature("As a user I can take a challenge", async () => {
     When("I tap exit", when.tapID(ids.CANCEL_CHALLENGE, 1500), async () => {
       Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 2000));
     });
-    When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
-      Then("I should see the number of points I started with", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin"), 4000), async () => {
+      Then("I should see the number of points I started with", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200), 2000));
     });
   });
 
@@ -396,7 +396,7 @@ Feature("As a user I can take a challenge", async () => {
         Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation"), 1000));
       });
     });
-    When("I close and reopen the app", when.closeAndReopenApp, async () => {
+    When("I close and reopen the app", when.relaunchAppWithoutSync, async () => {
       Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation"), 3000));
     });
     When("I wait for the challenge to complete", when.wait(50000), async () => {

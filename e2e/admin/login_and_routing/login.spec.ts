@@ -226,7 +226,7 @@ Feature("As a user I can get past the login screen", async () => {
         });
         When("I have done 11.3 km cycling", given.addCyclingData(11345), async () => {
           When("I have done 13 min Mindfulness", given.addMindfulnessHistoricalData(800, 0), async () => {
-            When("I update the screen to see today activity", given.triggerAppUpdateState, async () => {
+            When("I update the screen to see today activity", when.relaunchAppWithoutSync, async () => {
               Then("I should see 11.3 km done today", then.idVisible(ids.CYCLING_COUNT("11.3 km"), 2000));
               Then("I should see 13 min mindful done today", then.idVisible(ids.MINDFUL_COUNT("13 min")));
               Then("I should se§e the amount of yucoin I earned today", then.textVisible("320 YuCoin today", 2000));
@@ -234,18 +234,18 @@ Feature("As a user I can get past the login screen", async () => {
             });
           });
         });
-        When("I tap on YuCoin", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
+        When("I tap on YuCoin", when.tapID(ids.DAILYSTEP_SCREEN_COIN, 1500), async () => {
           Then("I should see 360 YuCoin today", then.textVisible("320 YuCoin"));
         });
-        When("I go back this screen", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I go back this screen", when.tapID(ids.BACK_BUTTON, 2000), async () => {
           Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
           When("I tap on YuCoin today text", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
             Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, "11.3 / 9.6 km", 13));
           });
         });
-        When("I go back this screen", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I go back this screen", when.tapID(ids.BACK_BUTTON, 2000), async () => {
           When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 5000), async () => {
-            When("I tap settings", when.tapMenuItem(t("Settings")), async () => {
+            When("I tap settings", when.tapMenuItem("Settings"), async () => {
               Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
             });
           });
@@ -255,24 +255,24 @@ Feature("As a user I can get past the login screen", async () => {
           Then("I should see Measurement cycling description", then.idVisible(ids.TEXT_TEMPLATE("Change between the imperial (miles) and metric (kilometers) system.")));
           Then("I should see Measurement method used", then.idVisible(ids.TEXT_TEMPLATE("km")));
         });
-        When("I tap the km measurement", when.tapID(ids.TEXT_TEMPLATE("km")), async () => {
+        When("I tap the km measurement", when.tapID(ids.TEXT_TEMPLATE("km"), 3000), async () => {
           Then("I should see GAME_SETTINGS_SCREEN", then.idVisible(ids.GAME_SETTINGS_SCREEN));
           Then("I should see correct title for Miles", then.idVisible(ids.TEXT_TEMPLATE("Imperial system")));
           Then("I should see correct description for Miles", then.idVisible(ids.TEXT_TEMPLATE("Distance will be shown in miles ”mi”")));
           Then("I should see correct title for Metrics", then.idVisible(ids.TEXT_TEMPLATE("Metric system")));
           Then("I should see correct description for Metrics", then.idVisible(ids.TEXT_TEMPLATE("Distance will be shown in kilometers ”km”")));
         });
-        When("I select miles as measurement", when.tapID(ids.SETTINGS_NAME("mi")), async () => {
-          When("I go close the settings screen", when.tapID(ids.BUTTON_CLOSE_HEADER("Settings")), async () => {
+        When("I select miles as measurement", when.tapID(ids.SETTINGS_NAME("mi"), 2000), async () => {
+          When("I go close the settings screen", when.tapID(ids.BUTTON_CLOSE_HEADER("Settings"), 1500), async () => {
             Then("I should see 7.0 mi done today", then.idVisible(ids.CYCLING_COUNT("7.0 mi")));
             Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
           });
         });
-        When("I tap on YuCoin coin", when.tapID(ids.CYCLING_COUNT("7.0 mi")), async () => {
+        When("I tap on YuCoin coin", when.tapID(ids.CYCLING_COUNT("7.0 mi"), 2000), async () => {
           Then("I should see correct data 20 steps, 7 mi, 13 min mindful", then.onTodaysYucoin(20, "7.0 / 6.0 mi", 13));
         });
         When("I tap on the 'i' activity feed info tooltip", when.tapID(ids.ACTIVITY_FEED, 1500), async () => {
-          Then("I should see 20 YuCoin for 1.0 mi cycling", then.textVisible("20 YuCoin for 1.0 mi cycling"));
+          Then("I should see 20 YuCoin for 1.0 mi cycling", then.textVisible("20 YuCoin for 1.0 mi cycling", 3000));
         });
       });
     });
