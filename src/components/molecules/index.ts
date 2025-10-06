@@ -109,6 +109,7 @@ export { default as WalletDiscountItem } from "./reward-wallet/walletDiscountIem
 export { default as ShineButton } from "./shine-button/shine-button";
 export { default as AchievementPoints } from "./achievement-points/achievement-points";
 export { default as AchievementSlot } from "./achievement-slot/achievement-slot";
+export { default as WeekDays } from "./week-days/week-days";
 export { default as RewardSectionHeader } from "./reward-section-header/reward-section-header";
 export {
   default as HorizontalNumberDisplay,
