@@ -109,7 +109,7 @@ else
   S3_PATH="$TARGET_LOCALE/$DETOX_TEST_TYPE/$DATE/$DEVICE_NAME"
 fi
 
-aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/detox/screenshots/$S3_PATH" --no-progress
+aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/detox/screenshots/$S3_PATH" --no-progress --quiet
 
 ##############################
 # Invalidate CloudFront Cache
@@ -141,11 +141,11 @@ rm -rf "screenshots"
 # Sync Jest and Allure Reports
 ##############################
 REPORT_PATH="$CI_PROJECT_DIR/e2e-report"
-aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/$CI_JOB_ID" --no-progress
+aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/$CI_JOB_ID" --no-progress --quiet
 
 # If current branch is develop sync the current folder to "develop"
 if [ "$CI_COMMIT_BRANCH" = "develop" ]; then
-  aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/develop" --no-progress --delete
+  aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/develop" --no-progress --delete --quiet
 fi
 
 ##############################
