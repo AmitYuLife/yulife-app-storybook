@@ -1,5 +1,48 @@
+spec:
+  inputs:
+    detox_test_type:
+      type: string
+      default: "healthcheck"
+      description: "Detox test type to run"
+      options:
+        - activity
+        - activity:2
+        - admin
+        - admin:2
+        - battle-pass
+        - benefits
+        - challenges
+        - challenges-2
+        - challenges-extended
+        - healthcheck
+        - jp
+        - overnight
+        - personal
+        - reward-passes
+        - sa
+        - screenshots
+        - smoke
+        - surveys
+        - usa
+        - worlds
+        - worlds-2
+        - yuscreen
+    api_branch_name:
+      type: string
+      default: "develop"
+      description: "Target API container branch"
+---
 include:
-  - local: "gitlab/*.yml"
+  - local: "gitlab/.build.yml"
+  - local: "gitlab/.quality.yml"
+  - local: "gitlab/.release.yml"
+  - local: "gitlab/.storybook.yml"
+  - local: "gitlab/.test.yml"
+  - local: "gitlab/.translate.yml"
+  - local: "gitlab/.e2e.yml"
+    inputs:
+      detox_test_type: $[[ inputs.detox_test_type ]]
+      api_branch_name: $[[ inputs.api_branch_name ]]
   - project: "yu-life/infrastructure/yulife-devops-shared-config"
     ref: main
     file:
