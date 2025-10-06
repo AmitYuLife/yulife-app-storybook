@@ -8,7 +8,15 @@ import * as ids from "@ids";
 
 export const { scrollFromID } = navigation.scrolling;
 
-export const { tapText, tapID, wait, navigateTo, tapYuCoinIcon, navigateViaID } = navigation.common;
+export const {
+  tapText,
+  tapID,
+  wait,
+  navigateTo,
+  tapYuCoinIcon,
+  navigateViaID,
+  relaunchAppWithoutSync,
+} = navigation.common;
 
 export const { tapTakeChallenge, closeQuitChallengeScreen, exitChallenge } = screens.challenges;
 

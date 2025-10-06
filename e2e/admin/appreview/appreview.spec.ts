@@ -23,17 +23,17 @@ Feature("App store review should behave correctly", async () => {
 
   Scenario("App store review pop up and i should tap on Not really and after that Give feedback", scenario.start, async () => {
     Given("I am in the app should pop up app review", given.loginAsUser(data.CUSTOMER_6, data.AUTH_6), async () => {
-      Then("I should see text Enjoying YuLife?", then.idVisible(ids.APPREVIEW_TEXT(t("Enjoying YuLife?")), 5000));
-      When("I tap the button Not really", when.tapText("Not really", 2000, true), async () => {
-        Then("I should see text We’re sorry to hear that", then.idVisible(ids.APPREVIEW_TEXT(t("We’re sorry to hear that"))));
-        Then("I should see text We’d love a chance to do better. Would you mind leaving us a few tips?", then.textVisible(t("We’d love a chance to do better. Would you mind leaving us a few tips?")));
-        When("I tap the button Give feedback", when.tapText(t("Give feedback"), 1, true), async () => {
-          Then("I should see intercom", then.textVisible(t("Send us a message")));
-          When("I close and reopen the app", when.reloadOnly, async () => {
-            Then("I should not see a screen asking me Enjoying YuLife?", then.idNotVisible(ids.APPREVIEW_TEXT(t("Enjoying YuLife?"))));
-          });
-        });
-      });
+      Then("I should see text Enjoying YuLife?", then.idVisible(ids.APPREVIEW_TEXT("Enjoying YuLife?"), 5000));
+    });
+    When("I tap the button Not really", when.tapText("Not really", 2000, true), async () => {
+      Then("I should see text We’re sorry to hear that", then.idVisible(ids.APPREVIEW_TEXT("We’re sorry to hear that"), 1500));
+      Then("I should see text We’d love a chance to do better. Would you mind leaving us a few tips?", then.textVisible("We’d love a chance to do better. Would you mind leaving us a few tips?", 1500));
+    });
+    When("I tap the button Give feedback", when.tapText("Give feedback", 1, true), async () => {
+      Then("I should see intercom", then.textVisible("Send us a message"));
+    });
+    When("I close and reopen the app", when.reloadOnly, async () => {
+      Then("I should not see a screen asking me Enjoying YuLife?", then.idNotVisible(ids.APPREVIEW_TEXT("Enjoying YuLife?"), 1500));
     });
   });
 
