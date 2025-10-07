@@ -75,7 +75,6 @@ export const BA1_PARTNERSHIP_REWARDS_SETTINGS = {
     entityId: BUSINESS_ACCOUNT_1.data.business_account_id,
     settings: {
       storeEnabled: true,
-      storeAccessLevel: 1,
     },
   },
 } as IDatabaseItem;
