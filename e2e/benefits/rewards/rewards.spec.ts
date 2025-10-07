@@ -284,7 +284,7 @@ Feature("Rewards should act correctly", async () => {
     });
   });
 
-  Scenario("As a user with multiple employments, if one of my employments does not have reward store settings explicitly set, my overall store access should resolve to the default values", scenario.start, async () => {
+  Scenario("As a user with multiple employments, if one of my employments does not have the reward storeEnabled setting explicitly set, my overall store access should resolve to the default values", scenario.start, async () => {
     // storeAccessLevel has been purged as a concept, but this scenario still serves as a test for concurrent employments settings conflict resolutions
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_130.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see that I have access to the rewards store, as is the default setting value", then.rewardsLocationModalVisible());
@@ -292,9 +292,9 @@ Feature("Rewards should act correctly", async () => {
     });
     When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
       Then("I should see the rewards screen", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 5000));
-      When("I scroll down this page", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SHOPFRONT_REWARDS_LIST, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZUNG.data._id), "up"), async () => {
-        Then("I should see the 'Amazung Prime' reward, as my storeAccessLevel resolved to the default setting value", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZUNG.data._id), 5000));
-      });
+    });
+    When("I scroll down this page", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SHOPFRONT_REWARDS_LIST, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZUNG.data._id), "up"), async () => {
+      Then("I should see the 'Amazung Prime' reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZUNG.data._id), 5000));
     });
   });
 
