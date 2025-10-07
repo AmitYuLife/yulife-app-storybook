@@ -92,7 +92,7 @@ const ViewAchievementModal = ({
       <GenericHeadingPad />
       <Box alignItems="center" justifyContent="center" {...containerStyle}>
         <Image source={icon} width={Style.adjust(318)} height={Style.adjust(298)} />
-        <Box mt={60} mb={16}>
+        <Box mt={Style.isIphone8() ? 30 : 60} mb={16}>
           <TextTemplate type="h2">{name}</TextTemplate>
         </Box>
         <TextTemplate type="b2" textAlign="center">
