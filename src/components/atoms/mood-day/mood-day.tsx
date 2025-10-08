@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { Image } from "react-native";
+import { Image } from "@atoms";
 import { TextTemplate } from "../text/text-template";
 import { Colours } from "@styles";
 import Box from "../box/box";
@@ -31,11 +31,13 @@ const MoodDay = ({ day, moodImage, isToday = false }: IProps) => {
           {day}
         </TextTemplate>
       </Box>
-      {moodImage ? (
-        <Image source={{ uri: moodImage }} width={24} height={24} />
-      ) : (
-        <Box width={24} height={24} br={12} borderWidth={1} borderColor={Colours.neutral.n150} />
-      )}
+      <Box mb={8}>
+        {moodImage ? (
+          <Image source={{ uri: moodImage }} width={24} height={24} />
+        ) : (
+          <Box width={24} height={24} br={12} borderWidth={1} borderColor={Colours.neutral.n150} />
+        )}
+      </Box>
     </Box>
   );
 };

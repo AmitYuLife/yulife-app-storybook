@@ -6,19 +6,16 @@ import { Colours } from "@styles";
 
 export const WeekDays = () => {
   const weekDays = useMemo(() => {
-    const days: { label: string; isToday: boolean }[] = [];
     const startOfWeek = moment().startOf("week");
     const today = moment();
 
-    for (let i = 0; i < 7; i++) {
+    return Array.from({ length: 7 }).map((_, i) => {
       const day = startOfWeek.clone().add(i, "days");
-      days.push({
+      return {
         label: day.format("dd"),
         isToday: day.isSame(today, "day"),
-      });
-    }
-
-    return days;
+      };
+    });
   }, []);
 
   return (
