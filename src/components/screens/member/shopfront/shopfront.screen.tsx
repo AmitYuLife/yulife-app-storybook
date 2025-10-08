@@ -192,9 +192,10 @@ const ShopfrontScreen = ({
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.flashListContent}
       />
-      <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP} bg="white">
+      <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP} bg="white" disableAutoAdjust={true}>
         <TopBar type="default" leftIcons={leftIcons} />
       </Box>
+
       <NavBar activeIndex={4} />
       {isSearchOpen ? (
         <RewardSearchOverlayContainer
