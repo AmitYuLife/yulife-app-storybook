@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.84.0] - 2025-10-08
+
+### Bugfixes
+
+- Bugfix CTE-468: image rtl
+- Bugfix: Set JP locale on detox JP overnight test (Bitrise)
+
+### Tasks
+
+- Task GS-1986: Fix topbar on rewards screen
+- Task GS-1976: Mood calendar
+- Task GS-1985: Adjust achievements modal view on iPhone 8
+- Task DEVOPS-4433: Bump MacOS VM Image version
+- Task GS-1976: Mood calendar week days
+- Task GS-1976: Mood calendar day
+- Task DEVOPS-4418: Reduce aws s3 sync command verbosity
+- Task DEVOPS-4362: Allow manual UI trigger for detox CI jobs
+- Task CTE-474: numbers LTR always
+- Task DEVOPS-4401: Update MacOS VM image version
+
+### Extra
+
+- Detox: Purged storeAccessLevel from Test Data
+- Detox: App Review Screen
+- Detox: EOTW Epic Mountain Yumoji
+- Detox: Handle Background Flow in Challenges
+- Detox: Surveys.spec fixes around user_journey_state
+- Detox: Chat Support Setting
+- Detox: fixes for login JP, JP smoking and login_sa
+- Detox: Change login flow in eotw.spec for better debugging and failure screenshots
+
 ## [4.83.0] - 2025-10-01
 
 ### Bugfixes
