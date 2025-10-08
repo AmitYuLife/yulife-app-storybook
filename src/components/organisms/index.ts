@@ -83,3 +83,4 @@ export { default as ParticleSpawner, ParticleSpawnerDynamicCount } from "./parti
 export { ParticleInstanceProps } from "./particle-spawner/subcomponents/particle";
 export { default as Spotlight, SpotlightProps } from "./spotlight/spotlight";
 export { default as AchievementExtraInfo } from "./achievement-extra-info/achievement-extra-info";
+export { default as MoodCalendar } from "./mood-calendar/mood-calendar";
