@@ -96,4 +96,11 @@ fragment ContentItem on ContentItem {
   ... on ContentItemConfirm {
     ...ContentItemConfirm
   }
+
+  ... on ContentItemStackedShadowWrapper {
+    ...ContentItemStackedShadowWrapper
+  }
+  ... on ContentItemBlurredRaysWrapper {
+    ...ContentItemBlurredRaysWrapper
+  }
 }

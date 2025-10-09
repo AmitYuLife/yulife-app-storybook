@@ -1,0 +1,14 @@
+fragment ContentItemStackedShadowWrapper on ContentItemStackedShadowWrapper {
+  id
+  children
+  stackColors
+  styles {
+    ...SduiStyle
+  }
+  outerStyles {
+    ...SduiStyle
+  }
+  shadowHeight
+  borderRadius
+}
+

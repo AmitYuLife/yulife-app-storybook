@@ -1,0 +1,20 @@
+fragment ContentItemBlurredRaysWrapper on ContentItemBlurredRaysWrapper {
+  id
+  title
+  children
+  centrePiece
+  centrePieceHeight
+  rollingTextPreviousValue
+  rollingTextNewValue
+  buttonIsEnabled
+  buttonTestID
+  buttonLabel
+  onButtonPress {
+    ...SduiAction
+  }
+  backgroundColor
+  isLoading
+  showRays
+  testID
+  accessibilityLabelTitle
+}

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import BattlePassBlurredRaysWrapper from "./battle-pass-blurred-rays-wrapper";
+import BlurredRaysWrapper from "./blurred-rays-wrapper";
 import { Text } from "react-native";
 
-const meta: Meta<typeof BattlePassBlurredRaysWrapper> = {
-  component: BattlePassBlurredRaysWrapper,
-  title: "Design System/organisms/BattlePassBlurredRaysWrapper",
+const meta: Meta<typeof BlurredRaysWrapper> = {
+  component: BlurredRaysWrapper,
+  title: "Design System/organisms/BlurredRaysWrapper",
   tags: ["autodocs"],
   parameters: {
     design: {
@@ -18,7 +18,7 @@ const meta: Meta<typeof BattlePassBlurredRaysWrapper> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof BattlePassBlurredRaysWrapper>;
+type Story = StoryObj<typeof BlurredRaysWrapper>;
 
 export const Default: Story = {
   args: {

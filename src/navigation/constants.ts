@@ -215,7 +215,6 @@ export const MODALS = {
   viewAchievementModal: "yulife.modals.viewAchievementModal",
   unlockedAchievementsModal: "yulife.modals.unlockedAchievementsModal",
   birthdayNotSet: "yulife.modals.birthdayNotSet",
-
   // YuHealth
   healthPermission: "yulife.modals.healthPermission",
 };

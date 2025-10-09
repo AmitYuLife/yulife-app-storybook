@@ -33,6 +33,8 @@ import {
   ContentItemScrollPicker,
   ContentItemPaymentButton,
   ContentItemConfirm,
+  ContentItemStackedShadowWrapper,
+  ContentItemBlurredRaysWrapper,
 } from "@components/sdui";
 import { GetSduiJourneyQuery } from "@graphql/__generated";
 import { mapDynamicProps } from "../_utils/mapDynamicProps";
@@ -79,6 +81,8 @@ let componentMap: Record<string, (props: unknown) => ReactNode>;
       ContentItemPaymentButton,
       ContentItemScale,
       ContentItemConfirm,
+      ContentItemStackedShadowWrapper,
+      ContentItemBlurredRaysWrapper,
     };
   });
 })();

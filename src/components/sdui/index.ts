@@ -42,3 +42,5 @@ export * from "./contentItemShowHideBalance/contentItemShowHideBalance";
 export * from "./contentItemHint/contentItemHint";
 export * from "./contentItemChoice/contentItemChoice";
 export * from "./contentItemScrollPicker/contentItemScrollPicker";
+export * from "./contentItemStackedShadowWrapper/contentItemStackedShadowWrapper";
+export * from "./contentItemBlurredRaysWrapper/contentItemBlurredRaysWrapper";

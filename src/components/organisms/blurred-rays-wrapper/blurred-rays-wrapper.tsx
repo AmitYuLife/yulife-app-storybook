@@ -9,7 +9,7 @@ import { Colours, Style } from "@styles";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-interface IBattlePassBlurredRaysWrapperProps {
+interface BlurredRaysWrapperProps {
   title: string;
   children: ReactElement;
   rollingTextProps?: {
@@ -27,9 +27,9 @@ interface IBattlePassBlurredRaysWrapperProps {
   acceessibilityLabelTitle?: string;
 }
 
-export const BATTLE_PASS_BLURRED_RAYS_Y_OFFSET = Style.adjust(130);
+export const BLURRED_RAYS_Y_OFFSET = Style.adjust(130);
 
-const BattlePassBlurredRaysWrapper = ({
+const BlurredRaysWrapper = ({
   title,
   rollingTextProps,
   buttonIsEnabled = true,
@@ -42,7 +42,7 @@ const BattlePassBlurredRaysWrapper = ({
   backgroundColor = Colours.overlay.black10,
   children,
   testID,
-}: IBattlePassBlurredRaysWrapperProps) => {
+}: BlurredRaysWrapperProps) => {
   const safeAreaInsets = useSafeAreaInsets();
 
   const wrapperStyle = useMemo(
@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     position: "absolute",
-    top: -BATTLE_PASS_BLURRED_RAYS_Y_OFFSET,
+    top: -BLURRED_RAYS_Y_OFFSET,
   },
 });
 
-export default memo(BattlePassBlurredRaysWrapper);
+export default memo(BlurredRaysWrapper);
