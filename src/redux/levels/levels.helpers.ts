@@ -48,6 +48,7 @@ export async function logEmptyResultDebugData({
   Logger.logMixpanelEvent("end_challenge_no_data", logData);
 }
 
+let hasLoggedError = false;
 /**
  * YuHealth - getPedometerEndResult
  * @remarks
@@ -59,28 +60,39 @@ const getPedometerEndResult = async (activeLevel: IActiveLevel, blacklistApps: s
   // If we are querying step count, we should use pedometer data instead of sample data
   const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
 
-  const pedometerResults = await yuHealthPedometerQuery({
-    startTime: moment(start).toDate(),
-    endTime: moment(end).toDate(),
-    queryOptions: {
-      blacklistApps: blacklistApps,
-      disableUserEntries: features.disableUserEntries,
-    },
-  });
+  try {
+    const pedometerResults = await yuHealthPedometerQuery({
+      startTime: moment(start).toDate(),
+      endTime: moment(end).toDate(),
+      queryOptions: {
+        blacklistApps: blacklistApps,
+        disableUserEntries: features.disableUserEntries,
+      },
+    });
 
-  const pedometerValue = pedometerResults?.value ?? 0;
+    const pedometerValue = pedometerResults?.value ?? 0;
 
-  Logger.logMixpanelEvent("end_challenge_result", {
-    startDateTime,
-    endDateTime,
-    start,
-    end,
-    score,
-    pedometerValue,
-  });
+    Logger.logMixpanelEvent("end_challenge_result", {
+      startDateTime,
+      endDateTime,
+      start,
+      end,
+      score,
+      pedometerValue,
+    });
 
-  const value = Math.max(pedometerValue, score);
-  return { value };
+    const value = Math.max(pedometerValue, score);
+    return { value };
+  } catch (e) {
+    // This method is called frequently when a user completes a challenge. It can fail for various reasons, most of which we don't care about. We limit Bugsnag logging for this method to once per session
+    if (!hasLoggedError) {
+      Logger.error(e, { event: "getPedometerEndResult" });
+      hasLoggedError = true;
+    }
+
+    // This will now show the no-data-defer modal if there's an error fetching data
+    return { value: 0 };
+  }
 };
 
 /**
