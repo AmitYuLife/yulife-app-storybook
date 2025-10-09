@@ -1,0 +1,32 @@
+diff --git a/node_modules/mixpanel-react-native/.DS_Store b/node_modules/mixpanel-react-native/.DS_Store
+new file mode 100644
+index 0000000..5008ddf
+Binary files /dev/null and b/node_modules/mixpanel-react-native/.DS_Store differ
+diff --git a/node_modules/mixpanel-react-native/ios/MixpanelReactNative.m b/node_modules/mixpanel-react-native/ios/MixpanelReactNative.m
+index bd29c1e..e744839 100644
+--- a/node_modules/mixpanel-react-native/ios/MixpanelReactNative.m
++++ b/node_modules/mixpanel-react-native/ios/MixpanelReactNative.m
+@@ -1,5 +1,5 @@
+ #import <Foundation/Foundation.h>
+-#import "React/RCTBridgeModule.h"
++#import <React/RCTBridgeModule.h>
+ 
+ @interface RCT_EXTERN_MODULE(MixpanelReactNative, NSObject)
+ 
+diff --git a/node_modules/mixpanel-react-native/javascript/mixpanel-persistent.js b/node_modules/mixpanel-react-native/javascript/mixpanel-persistent.js
+index 84b26ab..805c116 100644
+--- a/node_modules/mixpanel-react-native/javascript/mixpanel-persistent.js
++++ b/node_modules/mixpanel-react-native/javascript/mixpanel-persistent.js
+@@ -42,7 +42,11 @@ export class MixpanelPersistent {
+   }
+ 
+   async initializationCompletePromise(token) {
+-    Promise.all([
++    if (!token) {
++      return;
++    }
++
++    await Promise.all([
+       this.loadIdentity(token),
+       this.loadSuperProperties(token),
+       this.loadTimeEvents(token),
