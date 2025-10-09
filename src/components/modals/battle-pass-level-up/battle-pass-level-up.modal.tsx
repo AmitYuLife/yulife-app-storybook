@@ -12,9 +12,7 @@ import * as Haptics from "expo-haptics";
 import { memo, useCallback, useEffect, useMemo } from "react";
 import { Dimensions, View } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import BattlePassBlurredRaysWrapper, {
-  BATTLE_PASS_BLURRED_RAYS_Y_OFFSET,
-} from "@organisms/battle-pass-blurred-rays-wrapper/battle-pass-blurred-rays-wrapper";
+import BlurredRaysWrapper, { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
 
 interface IBattlePassLevelUpModalProps {
   onClose: () => void;
@@ -65,7 +63,7 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
     return [
       styles.imageWrapper,
       {
-        top: screenHeight / 2.2 - BATTLE_PASS_BLURRED_RAYS_Y_OFFSET / 1.9 - REWARD_IMAGE_SIZE / 2,
+        top: screenHeight / 2.2 - BLURRED_RAYS_Y_OFFSET / 1.9 - REWARD_IMAGE_SIZE / 2,
       },
     ];
   }, []);
@@ -79,7 +77,7 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
   }
 
   return (
-    <BattlePassBlurredRaysWrapper
+    <BlurredRaysWrapper
       testID={DONATION_LEVEL_UP_MODAL}
       title={t("screens.battle_pass.level_up.title")}
       rollingTextProps={{
@@ -97,7 +95,7 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
           <ItemDetailsReward size={180} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
         </Animated.View>
       </View>
-    </BattlePassBlurredRaysWrapper>
+    </BlurredRaysWrapper>
   );
 };
 

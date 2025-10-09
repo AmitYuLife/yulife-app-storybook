@@ -36,6 +36,7 @@ const documents = {
   ContentItemFragmentDoc: types.ContentItemFragmentDoc,
   ContentItemAccordionFragmentDoc: types.ContentItemAccordionFragmentDoc,
   ContentItemBeneficiariesSectionFragmentDoc: types.ContentItemBeneficiariesSectionFragmentDoc,
+  ContentItemBlurredRaysWrapperFragmentDoc: types.ContentItemBlurredRaysWrapperFragmentDoc,
   ContentItemBoxFragmentDoc: types.ContentItemBoxFragmentDoc,
   ContentItemBoxOptionCardFragmentDoc: types.ContentItemBoxOptionCardFragmentDoc,
   ContentItemButtonFragmentDoc: types.ContentItemButtonFragmentDoc,
@@ -89,6 +90,7 @@ const documents = {
   ContentItemSearchPostcodeFragmentDoc: types.ContentItemSearchPostcodeFragmentDoc,
   ContentItemShowHideBalanceFragmentDoc: types.ContentItemShowHideBalanceFragmentDoc,
   ContentItemSliderInputFragmentDoc: types.ContentItemSliderInputFragmentDoc,
+  ContentItemStackedShadowWrapperFragmentDoc: types.ContentItemStackedShadowWrapperFragmentDoc,
   ContentItemSwitchFragmentDoc: types.ContentItemSwitchFragmentDoc,
   ContentItemTextFragmentDoc: types.ContentItemTextFragmentDoc,
   ContentItemTextAreaInputFragmentDoc: types.ContentItemTextAreaInputFragmentDoc,
@@ -476,6 +478,12 @@ export function gql(
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(
+  source: "ContentItemBlurredRaysWrapperFragmentDoc"
+): typeof documents["ContentItemBlurredRaysWrapperFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "ContentItemBoxFragmentDoc"): typeof documents["ContentItemBoxFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -731,6 +739,12 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "ContentItemSliderInputFragmentDoc"): typeof documents["ContentItemSliderInputFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "ContentItemStackedShadowWrapperFragmentDoc"
+): typeof documents["ContentItemStackedShadowWrapperFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -9,9 +9,7 @@ import { FadeIn, FadeInDown } from "react-native-reanimated";
 import { EndOfSeasonRewardsInfo, LottieView } from "@molecules";
 import { Box, TextTemplate } from "@atoms";
 import { Navigation } from "@navigation/main";
-import BattlePassBlurredRaysWrapper, {
-  BATTLE_PASS_BLURRED_RAYS_Y_OFFSET,
-} from "@organisms/battle-pass-blurred-rays-wrapper/battle-pass-blurred-rays-wrapper";
+import BlurredRaysWrapper, { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
 
 export interface IBattlePassEndOfSeasonModalProps {
   title: string;
@@ -29,7 +27,7 @@ export interface IBattlePassEndOfSeasonModalProps {
 const { height: screenHeight } = Dimensions.get("screen");
 const ANIMATION_START_DELAY = 700;
 const REWARD_IMAGE_SIZE = Style.adjust(140);
-const IMAGE_TOP = screenHeight / 2.4 - BATTLE_PASS_BLURRED_RAYS_Y_OFFSET / 1.9 - REWARD_IMAGE_SIZE / 2;
+const IMAGE_TOP = screenHeight / 2.4 - BLURRED_RAYS_Y_OFFSET / 1.9 - REWARD_IMAGE_SIZE / 2;
 
 const BattlePassEndOfSeasonModal = ({ items, title, onComplete, isLoading }: IBattlePassEndOfSeasonModalProps) => {
   const [animationStage, setAnimationStage] = useState(0);
@@ -65,7 +63,7 @@ const BattlePassEndOfSeasonModal = ({ items, title, onComplete, isLoading }: IBa
   }, [animationStage, validFrames]);
 
   return (
-    <BattlePassBlurredRaysWrapper
+    <BlurredRaysWrapper
       testID={DONATION_LEVEL_UP_MODAL}
       title={title}
       buttonLabel={t("screens.battle_pass.season_complete.modal.button_label")}
@@ -75,7 +73,7 @@ const BattlePassEndOfSeasonModal = ({ items, title, onComplete, isLoading }: IBa
       onButtonPress={onButtonPress}
     >
       {showStatics ? (
-        <Box p={53} mt={(BATTLE_PASS_BLURRED_RAYS_Y_OFFSET / validFrames.length) * 1.5}>
+        <Box p={53} mt={(BLURRED_RAYS_Y_OFFSET / validFrames.length) * 1.5}>
           <Box forceAnimated={true} entering={FadeInDown.delay(100).duration(600)}>
             <EndOfSeasonRewardsInfo items={validItems} />
           </Box>
@@ -120,7 +118,7 @@ const BattlePassEndOfSeasonModal = ({ items, title, onComplete, isLoading }: IBa
           </Box>
         </>
       )}
-    </BattlePassBlurredRaysWrapper>
+    </BlurredRaysWrapper>
   );
 };
 

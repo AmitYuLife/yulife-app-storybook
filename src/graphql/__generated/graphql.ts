@@ -1052,6 +1052,7 @@ export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
   hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
+  isNameConfirmed: Scalars["Boolean"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
   launchEmailBody?: Maybe<Scalars["String"]["output"]>;
   launchEmailSubjectLine?: Maybe<Scalars["String"]["output"]>;
@@ -1070,6 +1071,7 @@ export type BusinessSurveyCampaignBase = {
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
   hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
+  isNameConfirmed: Scalars["Boolean"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
   launchEmailBody?: Maybe<Scalars["String"]["output"]>;
   launchEmailSubjectLine?: Maybe<Scalars["String"]["output"]>;
@@ -1107,6 +1109,7 @@ export type BusinessSurveyCampaignSearchResultsEntry = BusinessSurveyCampaignBas
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
   hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
+  isNameConfirmed: Scalars["Boolean"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
   launchEmailBody?: Maybe<Scalars["String"]["output"]>;
   launchEmailSubjectLine?: Maybe<Scalars["String"]["output"]>;
@@ -1469,6 +1472,7 @@ export type ContentItem =
   | ContentItemAccordion
   | ContentItemAppDownloadPrompt
   | ContentItemBeneficiariesSection
+  | ContentItemBlurredRaysWrapper
   | ContentItemBox
   | ContentItemBoxOptionCard
   | ContentItemButton
@@ -1514,6 +1518,7 @@ export type ContentItem =
   | ContentItemSexPicker
   | ContentItemShowHideBalance
   | ContentItemSliderInput
+  | ContentItemStackedShadowWrapper
   | ContentItemStages
   | ContentItemSwitch
   | ContentItemTable
@@ -1562,6 +1567,26 @@ export type ContentItemBeneficiariesSection = {
   id: Scalars["ID"]["output"];
   productId: Scalars["String"]["output"];
   styles?: Maybe<Array<SduiStyle>>;
+};
+
+export type ContentItemBlurredRaysWrapper = {
+  __typename?: "ContentItemBlurredRaysWrapper";
+  accessibilityLabelTitle?: Maybe<Scalars["String"]["output"]>;
+  backgroundColor?: Maybe<Scalars["String"]["output"]>;
+  buttonIsEnabled?: Maybe<Scalars["Boolean"]["output"]>;
+  buttonLabel?: Maybe<Scalars["String"]["output"]>;
+  buttonTestID?: Maybe<Scalars["String"]["output"]>;
+  centrePiece?: Maybe<Scalars["String"]["output"]>;
+  centrePieceHeight?: Maybe<Scalars["Int"]["output"]>;
+  children: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  isLoading: Scalars["Boolean"]["output"];
+  onButtonPress?: Maybe<SduiAction>;
+  rollingTextNewValue?: Maybe<Scalars["String"]["output"]>;
+  rollingTextPreviousValue?: Maybe<Scalars["String"]["output"]>;
+  showRays?: Maybe<Scalars["Boolean"]["output"]>;
+  testID?: Maybe<Scalars["String"]["output"]>;
+  title?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type ContentItemBox = {
@@ -2605,6 +2630,17 @@ export type ContentItemSliderInput = {
   styles?: Maybe<Array<SduiStyle>>;
 };
 
+export type ContentItemStackedShadowWrapper = {
+  __typename?: "ContentItemStackedShadowWrapper";
+  borderRadius?: Maybe<Scalars["Int"]["output"]>;
+  children: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  outerStyles?: Maybe<Array<SduiStyle>>;
+  shadowHeight?: Maybe<Scalars["Int"]["output"]>;
+  stackColors?: Maybe<Array<Scalars["String"]["output"]>>;
+  styles?: Maybe<Array<SduiStyle>>;
+};
+
 export type ContentItemStages = {
   __typename?: "ContentItemStages";
   id: Scalars["ID"]["output"];
@@ -2875,6 +2911,11 @@ export type CustomValue = {
   /** @deprecated Use assignedEmployeesCount instead */
   numberOfPeople: Scalars["Int"]["output"];
   value: Scalars["String"]["output"];
+};
+
+export type CustomValueFilters = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  type?: InputMaybe<CustomValueType>;
 };
 
 export type CustomValueInput = {
@@ -6154,7 +6195,9 @@ export type Mutation = {
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
   createEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
+  /** @deprecated Use createEmployerToolingLead instead */
   createEmployeeRecognitionLead: Scalars["Boolean"]["output"];
+  createEmployerToolingLead: Scalars["Boolean"]["output"];
   /**
    * Introduced to clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.10.0
    * Incremented feature toggle to V2 on RN version >= 4.16.0
@@ -6187,6 +6230,8 @@ export type Mutation = {
   exportEmployees: Scalars["Boolean"]["output"];
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
   finalizeEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
+  /** Generates a signed URL for the member's product document and returns an action to open it */
+  generateMemberProductDocumentUrl: SduiAction;
   getNewConnectionLink?: Maybe<Scalars["String"]["output"]>;
   getNewPensionConnectionLink?: Maybe<Scalars["String"]["output"]>;
   initiateCompanyJoin: InitiateCompanyJoinResult;
@@ -6562,6 +6607,10 @@ export type MutationCreateEmployeeRecognitionCampaignArgs = {
   title: Scalars["String"]["input"];
 };
 
+export type MutationCreateEmployerToolingLeadArgs = {
+  leadType: Scalars["String"]["input"];
+};
+
 export type MutationCreateMobileQuestLevelChallengeArgs = {
   contentId?: InputMaybe<Scalars["String"]["input"]>;
   createdBySource?: InputMaybe<ActiveChallengeSourceType>;
@@ -6670,6 +6719,10 @@ export type MutationExportYuCoinRedemptionReportArgs = {
 
 export type MutationFinalizeEmployeeRecognitionCampaignArgs = {
   campaignId: Scalars["String"]["input"];
+};
+
+export type MutationGenerateMemberProductDocumentUrlArgs = {
+  customerProductId: Scalars["String"]["input"];
 };
 
 export type MutationGetNewConnectionLinkArgs = {
@@ -7712,6 +7765,7 @@ export type Query = {
   getBusinessSession: BusinessSession;
   getBusinessSurveyCampaign?: Maybe<BusinessSurveyCampaign>;
   getBusinessSurveyCampaignParticipants: BusinessSurveyCampaignParticipants;
+  getBusinessSurveyCampaignResponsesCategoryResults: Array<ResponsesCategoryResults>;
   getBusinessSurveyCampaignTemplateScaleOptions: BusinessSurveyCampaignTemplateScaleOptions;
   getBusinessSurveyCampaigns: BusinessSurveyCampaignSearchResults;
   getBusinessSurveyPresets: Array<BusinessSurveyPreset>;
@@ -7951,6 +8005,7 @@ export type Query = {
   getYuStoreProductDetails: YuStoreProduct;
   getYuStoreProductSections: Array<YuStoreProductSection>;
   getYuStoreRecommendations: Array<YuStoreProduct>;
+  getYucoinWalletHistory?: Maybe<GetYucoinWalletHistoryResult>;
   /** Gets all the categories to display in the scroller for the yumoji builder */
   getYumojiBuilderCategoryList: Array<YumojiBuilderCategory>;
   /** Gets the default avatar/current avatar for the user */
@@ -7981,6 +8036,7 @@ export type Query = {
   searchForDuelOpponent?: Maybe<Array<Maybe<DuelSearchResult>>>;
   searchLeaderboardUser: Array<SearchLeaderboardUser>;
   validateGiftSendToRecipient?: Maybe<GiftSendToRecipientValidation>;
+  validateReferralCode: ReferralCodeValidation;
   wellbeingHubCategories: Array<WellbeingHubCategory>;
   wellbeingHubItem: WellbeingHubItem;
   wellbeingHubItems: Array<WellbeingHubItem>;
@@ -8101,6 +8157,12 @@ export type QueryGetBusinessSurveyCampaignArgs = {
 /** Default types to be extended / root query */
 export type QueryGetBusinessSurveyCampaignParticipantsArgs = {
   campaignId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBusinessSurveyCampaignResponsesCategoryResultsArgs = {
+  campaignId: Scalars["ID"]["input"];
+  customValueFilters?: InputMaybe<Array<CustomValueFilters>>;
 };
 
 /** Default types to be extended / root query */
@@ -8678,6 +8740,14 @@ export type QueryGetYuStoreRecommendationsArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetYucoinWalletHistoryArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  search?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetYumojiBuilderInitialPartsArgs = {
   bodyType?: InputMaybe<AvatarBodyType>;
 };
@@ -8741,6 +8811,11 @@ export type QuerySearchLeaderboardUserArgs = {
 /** Default types to be extended / root query */
 export type QueryValidateGiftSendToRecipientArgs = {
   recipientId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryValidateReferralCodeArgs = {
+  referralCode: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -8977,6 +9052,11 @@ export type ReadableBusinessAccessPermission = {
   tooltip?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type ReferralCodeValidation = {
+  __typename?: "ReferralCodeValidation";
+  message: Scalars["String"]["output"];
+};
+
 export type ReferralHistoryItem = {
   __typename?: "ReferralHistoryItem";
   avatarUrl?: Maybe<Scalars["String"]["output"]>;
@@ -9101,6 +9181,17 @@ export type ResourceTableLink = {
   __typename?: "ResourceTableLink";
   label: Scalars["String"]["output"];
   url: Scalars["String"]["output"];
+};
+
+export type ResponsesCategoryResults = {
+  __typename?: "ResponsesCategoryResults";
+  averageScore: Scalars["Float"]["output"];
+  categoryName: Scalars["String"]["output"];
+  completionRate: Scalars["Float"]["output"];
+  negativePercentage: Scalars["Float"]["output"];
+  neutralPercentage: Scalars["Float"]["output"];
+  positivePercentage: Scalars["Float"]["output"];
+  questionsCount: Scalars["Int"]["output"];
 };
 
 export type RestoreStreakResponse = {
@@ -10577,6 +10668,20 @@ export enum TeamYuCoinTopupRequestStatus {
   Pending = "PENDING",
 }
 
+export type TeamYucoinWalletHistory = {
+  __typename?: "TeamYucoinWalletHistory";
+  date: Scalars["String"]["output"];
+  description: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+  invoiceDownloadUrl?: Maybe<Scalars["String"]["output"]>;
+  requestedBy?: Maybe<Scalars["String"]["output"]>;
+  sourceId?: Maybe<Scalars["String"]["output"]>;
+  sourceType?: Maybe<TransactionHistorySourceType>;
+  status: TransactionHistoryStatus;
+  type: TransactionHistoryType;
+  yucoinAmount: Scalars["Float"]["output"];
+};
+
 export type TestBusinessInput = {
   archived?: InputMaybe<Scalars["Boolean"]["input"]>;
   businessAccountName?: InputMaybe<Scalars["String"]["input"]>;
@@ -10714,6 +10819,24 @@ export enum TopBarType {
   Forest = "FOREST",
   Mountain = "MOUNTAIN",
   White = "WHITE",
+}
+
+export enum TransactionHistorySourceType {
+  RecognitionCampaign = "recognitionCampaign",
+  Topup = "topup",
+}
+
+export enum TransactionHistoryStatus {
+  Cancelled = "cancelled",
+  Completed = "completed",
+  Failed = "failed",
+  Invoiced = "invoiced",
+  Pending = "pending",
+}
+
+export enum TransactionHistoryType {
+  Credit = "credit",
+  Debit = "debit",
 }
 
 export type TwoFaSecretResponse = {
@@ -12203,6 +12326,12 @@ export type GetCustomValueTypesResponse = {
   customValues: Array<CustomValueTypeData>;
 };
 
+export type GetYucoinWalletHistoryResult = {
+  __typename?: "getYucoinWalletHistoryResult";
+  rows?: Maybe<Array<TeamYucoinWalletHistory>>;
+  totalCount: Scalars["Int"]["output"];
+};
+
 export type UpdateUserAvatarResponse = {
   __typename?: "updateUserAvatarResponse";
   avatarRemoteFiles?: Maybe<AvatarRemoteFiles>;
@@ -12704,6 +12833,25 @@ export type AbsoluteContentItemFragment = {
       }
     | { __typename: "ContentItemAppDownloadPrompt" }
     | { __typename: "ContentItemBeneficiariesSection" }
+    | {
+        __typename: "ContentItemBlurredRaysWrapper";
+        id: string;
+        title?: string | null;
+        children: string;
+        centrePiece?: string | null;
+        centrePieceHeight?: number | null;
+        rollingTextPreviousValue?: string | null;
+        rollingTextNewValue?: string | null;
+        buttonIsEnabled?: boolean | null;
+        buttonTestID?: string | null;
+        buttonLabel?: string | null;
+        backgroundColor?: string | null;
+        isLoading: boolean;
+        showRays?: boolean | null;
+        testID?: string | null;
+        accessibilityLabelTitle?: string | null;
+        onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      }
     | {
         __typename: "ContentItemBox";
         id: string;
@@ -14003,6 +14151,52 @@ export type AbsoluteContentItemFragment = {
           }> | null;
         }> | null;
       }
+    | {
+        __typename: "ContentItemStackedShadowWrapper";
+        id: string;
+        children: string;
+        stackColors?: Array<string> | null;
+        shadowHeight?: number | null;
+        borderRadius?: number | null;
+        styles?: Array<{
+          __typename?: "SduiStyle";
+          property: string;
+          value: string;
+          conditionalValue?: Array<{
+            __typename?: "ConditionalValue";
+            value: string;
+            conditions: Array<{
+              __typename?: "ConditionalValueCondition";
+              logicalOperator?: ConditionalValueLogicalOperator | null;
+              expressions: Array<{
+                __typename?: "ConditionalValueConditionExpression";
+                operand: ConditionalValueOperand;
+                comparisonOperator: ConditionalValueComparisonOperator;
+                value: string;
+              }>;
+            }>;
+          }> | null;
+        }> | null;
+        outerStyles?: Array<{
+          __typename?: "SduiStyle";
+          property: string;
+          value: string;
+          conditionalValue?: Array<{
+            __typename?: "ConditionalValue";
+            value: string;
+            conditions: Array<{
+              __typename?: "ConditionalValueCondition";
+              logicalOperator?: ConditionalValueLogicalOperator | null;
+              expressions: Array<{
+                __typename?: "ConditionalValueConditionExpression";
+                operand: ConditionalValueOperand;
+                comparisonOperator: ConditionalValueComparisonOperator;
+                value: string;
+              }>;
+            }>;
+          }> | null;
+        }> | null;
+      }
     | { __typename: "ContentItemStages" }
     | {
         __typename: "ContentItemSwitch";
@@ -14365,6 +14559,26 @@ type ContentItem_ContentItemAccordion_Fragment = {
 type ContentItem_ContentItemAppDownloadPrompt_Fragment = { __typename: "ContentItemAppDownloadPrompt" };
 
 type ContentItem_ContentItemBeneficiariesSection_Fragment = { __typename: "ContentItemBeneficiariesSection" };
+
+type ContentItem_ContentItemBlurredRaysWrapper_Fragment = {
+  __typename: "ContentItemBlurredRaysWrapper";
+  id: string;
+  title?: string | null;
+  children: string;
+  centrePiece?: string | null;
+  centrePieceHeight?: number | null;
+  rollingTextPreviousValue?: string | null;
+  rollingTextNewValue?: string | null;
+  buttonIsEnabled?: boolean | null;
+  buttonTestID?: string | null;
+  buttonLabel?: string | null;
+  backgroundColor?: string | null;
+  isLoading: boolean;
+  showRays?: boolean | null;
+  testID?: string | null;
+  accessibilityLabelTitle?: string | null;
+  onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
 
 type ContentItem_ContentItemBox_Fragment = {
   __typename: "ContentItemBox";
@@ -15714,6 +15928,53 @@ type ContentItem_ContentItemSliderInput_Fragment = {
   }> | null;
 };
 
+type ContentItem_ContentItemStackedShadowWrapper_Fragment = {
+  __typename: "ContentItemStackedShadowWrapper";
+  id: string;
+  children: string;
+  stackColors?: Array<string> | null;
+  shadowHeight?: number | null;
+  borderRadius?: number | null;
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  outerStyles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+};
+
 type ContentItem_ContentItemStages_Fragment = { __typename: "ContentItemStages" };
 
 type ContentItem_ContentItemSwitch_Fragment = {
@@ -16017,6 +16278,7 @@ export type ContentItemFragment =
   | ContentItem_ContentItemAccordion_Fragment
   | ContentItem_ContentItemAppDownloadPrompt_Fragment
   | ContentItem_ContentItemBeneficiariesSection_Fragment
+  | ContentItem_ContentItemBlurredRaysWrapper_Fragment
   | ContentItem_ContentItemBox_Fragment
   | ContentItem_ContentItemBoxOptionCard_Fragment
   | ContentItem_ContentItemButton_Fragment
@@ -16062,6 +16324,7 @@ export type ContentItemFragment =
   | ContentItem_ContentItemSexPicker_Fragment
   | ContentItem_ContentItemShowHideBalance_Fragment
   | ContentItem_ContentItemSliderInput_Fragment
+  | ContentItem_ContentItemStackedShadowWrapper_Fragment
   | ContentItem_ContentItemStages_Fragment
   | ContentItem_ContentItemSwitch_Fragment
   | ContentItem_ContentItemTable_Fragment
@@ -16133,6 +16396,26 @@ export type ContentItemBeneficiariesSectionFragment = {
       }>;
     }> | null;
   }> | null;
+};
+
+export type ContentItemBlurredRaysWrapperFragment = {
+  __typename?: "ContentItemBlurredRaysWrapper";
+  id: string;
+  title?: string | null;
+  children: string;
+  centrePiece?: string | null;
+  centrePieceHeight?: number | null;
+  rollingTextPreviousValue?: string | null;
+  rollingTextNewValue?: string | null;
+  buttonIsEnabled?: boolean | null;
+  buttonTestID?: string | null;
+  buttonLabel?: string | null;
+  backgroundColor?: string | null;
+  isLoading: boolean;
+  showRays?: boolean | null;
+  testID?: string | null;
+  accessibilityLabelTitle?: string | null;
+  onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 export type ContentItemBoxFragment = {
@@ -18214,6 +18497,53 @@ export type ContentItemSliderInputFragment = {
   }> | null;
 };
 
+export type ContentItemStackedShadowWrapperFragment = {
+  __typename?: "ContentItemStackedShadowWrapper";
+  id: string;
+  children: string;
+  stackColors?: Array<string> | null;
+  shadowHeight?: number | null;
+  borderRadius?: number | null;
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  outerStyles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+};
+
 export type ContentItemSwitchFragment = {
   __typename?: "ContentItemSwitch";
   id: string;
@@ -19058,6 +19388,25 @@ export type SduiSectionFragment = {
         }
       | { __typename: "ContentItemAppDownloadPrompt" }
       | { __typename: "ContentItemBeneficiariesSection" }
+      | {
+          __typename: "ContentItemBlurredRaysWrapper";
+          id: string;
+          title?: string | null;
+          children: string;
+          centrePiece?: string | null;
+          centrePieceHeight?: number | null;
+          rollingTextPreviousValue?: string | null;
+          rollingTextNewValue?: string | null;
+          buttonIsEnabled?: boolean | null;
+          buttonTestID?: string | null;
+          buttonLabel?: string | null;
+          backgroundColor?: string | null;
+          isLoading: boolean;
+          showRays?: boolean | null;
+          testID?: string | null;
+          accessibilityLabelTitle?: string | null;
+          onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }
       | {
           __typename: "ContentItemBox";
           id: string;
@@ -20338,6 +20687,52 @@ export type SduiSectionFragment = {
           leftLabel: string;
           rightLabel: string;
           styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
+      | {
+          __typename: "ContentItemStackedShadowWrapper";
+          id: string;
+          children: string;
+          stackColors?: Array<string> | null;
+          shadowHeight?: number | null;
+          borderRadius?: number | null;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          outerStyles?: Array<{
             __typename?: "SduiStyle";
             property: string;
             value: string;
@@ -23759,6 +24154,25 @@ export type GetSduiJourneyQuery = {
       | { __typename: "ContentItemAppDownloadPrompt" }
       | { __typename: "ContentItemBeneficiariesSection" }
       | {
+          __typename: "ContentItemBlurredRaysWrapper";
+          id: string;
+          title?: string | null;
+          children: string;
+          centrePiece?: string | null;
+          centrePieceHeight?: number | null;
+          rollingTextPreviousValue?: string | null;
+          rollingTextNewValue?: string | null;
+          buttonIsEnabled?: boolean | null;
+          buttonTestID?: string | null;
+          buttonLabel?: string | null;
+          backgroundColor?: string | null;
+          isLoading: boolean;
+          showRays?: boolean | null;
+          testID?: string | null;
+          accessibilityLabelTitle?: string | null;
+          onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }
+      | {
           __typename: "ContentItemBox";
           id: string;
           title?: string | null;
@@ -25057,6 +25471,52 @@ export type GetSduiJourneyQuery = {
             }> | null;
           }> | null;
         }
+      | {
+          __typename: "ContentItemStackedShadowWrapper";
+          id: string;
+          children: string;
+          stackColors?: Array<string> | null;
+          shadowHeight?: number | null;
+          borderRadius?: number | null;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          outerStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
       | { __typename: "ContentItemStages" }
       | {
           __typename: "ContentItemSwitch";
@@ -25395,6 +25855,25 @@ export type GetSduiJourneyQuery = {
           }
         | { __typename: "ContentItemAppDownloadPrompt" }
         | { __typename: "ContentItemBeneficiariesSection" }
+        | {
+            __typename: "ContentItemBlurredRaysWrapper";
+            id: string;
+            title?: string | null;
+            children: string;
+            centrePiece?: string | null;
+            centrePieceHeight?: number | null;
+            rollingTextPreviousValue?: string | null;
+            rollingTextNewValue?: string | null;
+            buttonIsEnabled?: boolean | null;
+            buttonTestID?: string | null;
+            buttonLabel?: string | null;
+            backgroundColor?: string | null;
+            isLoading: boolean;
+            showRays?: boolean | null;
+            testID?: string | null;
+            accessibilityLabelTitle?: string | null;
+            onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          }
         | {
             __typename: "ContentItemBox";
             id: string;
@@ -26694,6 +27173,52 @@ export type GetSduiJourneyQuery = {
               }> | null;
             }> | null;
           }
+        | {
+            __typename: "ContentItemStackedShadowWrapper";
+            id: string;
+            children: string;
+            stackColors?: Array<string> | null;
+            shadowHeight?: number | null;
+            borderRadius?: number | null;
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+            outerStyles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+          }
         | { __typename: "ContentItemStages" }
         | {
             __typename: "ContentItemSwitch";
@@ -27519,6 +28044,7 @@ export type GetPerkSubscriptionInfoQuery = {
       | { __typename: "ContentItemAccordion" }
       | { __typename: "ContentItemAppDownloadPrompt" }
       | { __typename: "ContentItemBeneficiariesSection" }
+      | { __typename: "ContentItemBlurredRaysWrapper" }
       | {
           __typename: "ContentItemBox";
           id: string;
@@ -27760,6 +28286,7 @@ export type GetPerkSubscriptionInfoQuery = {
       | { __typename: "ContentItemSexPicker" }
       | { __typename: "ContentItemShowHideBalance" }
       | { __typename: "ContentItemSliderInput" }
+      | { __typename: "ContentItemStackedShadowWrapper" }
       | { __typename: "ContentItemStages" }
       | { __typename: "ContentItemSwitch" }
       | { __typename: "ContentItemTable" }
@@ -29480,6 +30007,25 @@ export type GetSduiStaticStepQuery = {
       | { __typename: "ContentItemAppDownloadPrompt" }
       | { __typename: "ContentItemBeneficiariesSection" }
       | {
+          __typename: "ContentItemBlurredRaysWrapper";
+          id: string;
+          title?: string | null;
+          children: string;
+          centrePiece?: string | null;
+          centrePieceHeight?: number | null;
+          rollingTextPreviousValue?: string | null;
+          rollingTextNewValue?: string | null;
+          buttonIsEnabled?: boolean | null;
+          buttonTestID?: string | null;
+          buttonLabel?: string | null;
+          backgroundColor?: string | null;
+          isLoading: boolean;
+          showRays?: boolean | null;
+          testID?: string | null;
+          accessibilityLabelTitle?: string | null;
+          onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }
+      | {
           __typename: "ContentItemBox";
           id: string;
           title?: string | null;
@@ -30778,6 +31324,52 @@ export type GetSduiStaticStepQuery = {
             }> | null;
           }> | null;
         }
+      | {
+          __typename: "ContentItemStackedShadowWrapper";
+          id: string;
+          children: string;
+          stackColors?: Array<string> | null;
+          shadowHeight?: number | null;
+          borderRadius?: number | null;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          outerStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
       | { __typename: "ContentItemStages" }
       | {
           __typename: "ContentItemSwitch";
@@ -31116,6 +31708,25 @@ export type GetSduiStaticStepQuery = {
           }
         | { __typename: "ContentItemAppDownloadPrompt" }
         | { __typename: "ContentItemBeneficiariesSection" }
+        | {
+            __typename: "ContentItemBlurredRaysWrapper";
+            id: string;
+            title?: string | null;
+            children: string;
+            centrePiece?: string | null;
+            centrePieceHeight?: number | null;
+            rollingTextPreviousValue?: string | null;
+            rollingTextNewValue?: string | null;
+            buttonIsEnabled?: boolean | null;
+            buttonTestID?: string | null;
+            buttonLabel?: string | null;
+            backgroundColor?: string | null;
+            isLoading: boolean;
+            showRays?: boolean | null;
+            testID?: string | null;
+            accessibilityLabelTitle?: string | null;
+            onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          }
         | {
             __typename: "ContentItemBox";
             id: string;
@@ -32396,6 +33007,52 @@ export type GetSduiStaticStepQuery = {
             leftLabel: string;
             rightLabel: string;
             styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+          }
+        | {
+            __typename: "ContentItemStackedShadowWrapper";
+            id: string;
+            children: string;
+            stackColors?: Array<string> | null;
+            shadowHeight?: number | null;
+            borderRadius?: number | null;
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+            outerStyles?: Array<{
               __typename?: "SduiStyle";
               property: string;
               value: string;
@@ -35453,6 +36110,25 @@ export type GetYuScreenV5Query = {
               | { __typename: "ContentItemAppDownloadPrompt" }
               | { __typename: "ContentItemBeneficiariesSection" }
               | {
+                  __typename: "ContentItemBlurredRaysWrapper";
+                  id: string;
+                  title?: string | null;
+                  children: string;
+                  centrePiece?: string | null;
+                  centrePieceHeight?: number | null;
+                  rollingTextPreviousValue?: string | null;
+                  rollingTextNewValue?: string | null;
+                  buttonIsEnabled?: boolean | null;
+                  buttonTestID?: string | null;
+                  buttonLabel?: string | null;
+                  backgroundColor?: string | null;
+                  isLoading: boolean;
+                  showRays?: boolean | null;
+                  testID?: string | null;
+                  accessibilityLabelTitle?: string | null;
+                  onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+                }
+              | {
                   __typename: "ContentItemBox";
                   id: string;
                   title?: string | null;
@@ -36779,6 +37455,52 @@ export type GetYuScreenV5Query = {
                     }> | null;
                   }> | null;
                 }
+              | {
+                  __typename: "ContentItemStackedShadowWrapper";
+                  id: string;
+                  children: string;
+                  stackColors?: Array<string> | null;
+                  shadowHeight?: number | null;
+                  borderRadius?: number | null;
+                  styles?: Array<{
+                    __typename?: "SduiStyle";
+                    property: string;
+                    value: string;
+                    conditionalValue?: Array<{
+                      __typename?: "ConditionalValue";
+                      value: string;
+                      conditions: Array<{
+                        __typename?: "ConditionalValueCondition";
+                        logicalOperator?: ConditionalValueLogicalOperator | null;
+                        expressions: Array<{
+                          __typename?: "ConditionalValueConditionExpression";
+                          operand: ConditionalValueOperand;
+                          comparisonOperator: ConditionalValueComparisonOperator;
+                          value: string;
+                        }>;
+                      }>;
+                    }> | null;
+                  }> | null;
+                  outerStyles?: Array<{
+                    __typename?: "SduiStyle";
+                    property: string;
+                    value: string;
+                    conditionalValue?: Array<{
+                      __typename?: "ConditionalValue";
+                      value: string;
+                      conditions: Array<{
+                        __typename?: "ConditionalValueCondition";
+                        logicalOperator?: ConditionalValueLogicalOperator | null;
+                        expressions: Array<{
+                          __typename?: "ConditionalValueConditionExpression";
+                          operand: ConditionalValueOperand;
+                          comparisonOperator: ConditionalValueComparisonOperator;
+                          value: string;
+                        }>;
+                      }>;
+                    }> | null;
+                  }> | null;
+                }
               | { __typename: "ContentItemStages" }
               | {
                   __typename: "ContentItemSwitch";
@@ -37335,6 +38057,25 @@ export type GetYuScreenV5SectionsQuery = {
               }
             | { __typename: "ContentItemAppDownloadPrompt" }
             | { __typename: "ContentItemBeneficiariesSection" }
+            | {
+                __typename: "ContentItemBlurredRaysWrapper";
+                id: string;
+                title?: string | null;
+                children: string;
+                centrePiece?: string | null;
+                centrePieceHeight?: number | null;
+                rollingTextPreviousValue?: string | null;
+                rollingTextNewValue?: string | null;
+                buttonIsEnabled?: boolean | null;
+                buttonTestID?: string | null;
+                buttonLabel?: string | null;
+                backgroundColor?: string | null;
+                isLoading: boolean;
+                showRays?: boolean | null;
+                testID?: string | null;
+                accessibilityLabelTitle?: string | null;
+                onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+              }
             | {
                 __typename: "ContentItemBox";
                 id: string;
@@ -38646,6 +39387,52 @@ export type GetYuScreenV5SectionsQuery = {
                   }> | null;
                 }> | null;
               }
+            | {
+                __typename: "ContentItemStackedShadowWrapper";
+                id: string;
+                children: string;
+                stackColors?: Array<string> | null;
+                shadowHeight?: number | null;
+                borderRadius?: number | null;
+                styles?: Array<{
+                  __typename?: "SduiStyle";
+                  property: string;
+                  value: string;
+                  conditionalValue?: Array<{
+                    __typename?: "ConditionalValue";
+                    value: string;
+                    conditions: Array<{
+                      __typename?: "ConditionalValueCondition";
+                      logicalOperator?: ConditionalValueLogicalOperator | null;
+                      expressions: Array<{
+                        __typename?: "ConditionalValueConditionExpression";
+                        operand: ConditionalValueOperand;
+                        comparisonOperator: ConditionalValueComparisonOperator;
+                        value: string;
+                      }>;
+                    }>;
+                  }> | null;
+                }> | null;
+                outerStyles?: Array<{
+                  __typename?: "SduiStyle";
+                  property: string;
+                  value: string;
+                  conditionalValue?: Array<{
+                    __typename?: "ConditionalValue";
+                    value: string;
+                    conditions: Array<{
+                      __typename?: "ConditionalValueCondition";
+                      logicalOperator?: ConditionalValueLogicalOperator | null;
+                      expressions: Array<{
+                        __typename?: "ConditionalValueConditionExpression";
+                        operand: ConditionalValueOperand;
+                        comparisonOperator: ConditionalValueComparisonOperator;
+                        value: string;
+                      }>;
+                    }>;
+                  }> | null;
+                }> | null;
+              }
             | { __typename: "ContentItemStages" }
             | {
                 __typename: "ContentItemSwitch";
@@ -39561,6 +40348,25 @@ type YuScreenSection_SduiSection_Fragment = {
         }
       | { __typename: "ContentItemAppDownloadPrompt" }
       | { __typename: "ContentItemBeneficiariesSection" }
+      | {
+          __typename: "ContentItemBlurredRaysWrapper";
+          id: string;
+          title?: string | null;
+          children: string;
+          centrePiece?: string | null;
+          centrePieceHeight?: number | null;
+          rollingTextPreviousValue?: string | null;
+          rollingTextNewValue?: string | null;
+          buttonIsEnabled?: boolean | null;
+          buttonTestID?: string | null;
+          buttonLabel?: string | null;
+          backgroundColor?: string | null;
+          isLoading: boolean;
+          showRays?: boolean | null;
+          testID?: string | null;
+          accessibilityLabelTitle?: string | null;
+          onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        }
       | {
           __typename: "ContentItemBox";
           id: string;
@@ -40841,6 +41647,52 @@ type YuScreenSection_SduiSection_Fragment = {
           leftLabel: string;
           rightLabel: string;
           styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
+      | {
+          __typename: "ContentItemStackedShadowWrapper";
+          id: string;
+          children: string;
+          stackColors?: Array<string> | null;
+          shadowHeight?: number | null;
+          borderRadius?: number | null;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          outerStyles?: Array<{
             __typename?: "SduiStyle";
             property: string;
             value: string;
@@ -47368,6 +48220,145 @@ export const ContentItemConfirmFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemConfirmFragment, unknown>;
+export const ContentItemStackedShadowWrapperFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemStackedShadowWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "stackColors" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "outerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "shadowHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "borderRadius" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConditionalValue" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ConditionalValue" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "logicalOperator" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "expressions" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "operand" } },
+                      { kind: "Field", name: { kind: "Name", value: "comparisonOperator" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditionalValue" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemStackedShadowWrapperFragment, unknown>;
+export const ContentItemBlurredRaysWrapperFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePiece" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePieceHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextPreviousValue" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextNewValue" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonIsEnabled" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonTestID" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "isLoading" } },
+          { kind: "Field", name: { kind: "Name", value: "showRays" } },
+          { kind: "Field", name: { kind: "Name", value: "testID" } },
+          { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemBlurredRaysWrapperFragment, unknown>;
 export const ContentItemFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -47633,6 +48624,24 @@ export const ContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
             },
           },
         ],
@@ -49624,6 +50633,70 @@ export const ContentItemFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemStackedShadowWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "stackColors" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "outerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "shadowHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "borderRadius" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePiece" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePieceHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextPreviousValue" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextNewValue" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonIsEnabled" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonTestID" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "isLoading" } },
+          { kind: "Field", name: { kind: "Name", value: "showRays" } },
+          { kind: "Field", name: { kind: "Name", value: "testID" } },
+          { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
         ],
       },
     },
@@ -51658,6 +52731,70 @@ export const AbsoluteContentItemFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemStackedShadowWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "stackColors" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "outerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "shadowHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "borderRadius" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePiece" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePieceHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextPreviousValue" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextNewValue" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonIsEnabled" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonTestID" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "isLoading" } },
+          { kind: "Field", name: { kind: "Name", value: "showRays" } },
+          { kind: "Field", name: { kind: "Name", value: "testID" } },
+          { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -51918,6 +53055,24 @@ export const AbsoluteContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
             },
           },
         ],
@@ -60149,6 +61304,70 @@ export const SduiSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemStackedShadowWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "stackColors" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "outerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "shadowHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "borderRadius" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePiece" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePieceHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextPreviousValue" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextNewValue" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonIsEnabled" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonTestID" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "isLoading" } },
+          { kind: "Field", name: { kind: "Name", value: "showRays" } },
+          { kind: "Field", name: { kind: "Name", value: "testID" } },
+          { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -60409,6 +61628,24 @@ export const SduiSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
             },
           },
         ],
@@ -64146,6 +65383,70 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemStackedShadowWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "stackColors" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "outerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "shadowHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "borderRadius" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePiece" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePieceHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextPreviousValue" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextNewValue" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonIsEnabled" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonTestID" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "isLoading" } },
+          { kind: "Field", name: { kind: "Name", value: "showRays" } },
+          { kind: "Field", name: { kind: "Name", value: "testID" } },
+          { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -64406,6 +65707,24 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
             },
           },
         ],
@@ -76164,6 +77483,70 @@ export const GetSduiJourneyDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemStackedShadowWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "stackColors" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "outerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "shadowHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "borderRadius" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePiece" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePieceHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextPreviousValue" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextNewValue" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonIsEnabled" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonTestID" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "isLoading" } },
+          { kind: "Field", name: { kind: "Name", value: "showRays" } },
+          { kind: "Field", name: { kind: "Name", value: "testID" } },
+          { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -76424,6 +77807,24 @@ export const GetSduiJourneyDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
             },
           },
         ],
@@ -84274,6 +85675,70 @@ export const GetSduiStaticStepDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemStackedShadowWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "stackColors" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "outerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "shadowHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "borderRadius" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePiece" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePieceHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextPreviousValue" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextNewValue" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonIsEnabled" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonTestID" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "isLoading" } },
+          { kind: "Field", name: { kind: "Name", value: "showRays" } },
+          { kind: "Field", name: { kind: "Name", value: "testID" } },
+          { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -84534,6 +85999,24 @@ export const GetSduiStaticStepDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
             },
           },
         ],
@@ -94415,6 +95898,70 @@ export const GetYuScreenV5Document = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemStackedShadowWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "stackColors" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "outerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "shadowHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "borderRadius" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePiece" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePieceHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextPreviousValue" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextNewValue" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonIsEnabled" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonTestID" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "isLoading" } },
+          { kind: "Field", name: { kind: "Name", value: "showRays" } },
+          { kind: "Field", name: { kind: "Name", value: "testID" } },
+          { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -94675,6 +96222,24 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
             },
           },
         ],
@@ -97328,6 +98893,70 @@ export const GetYuScreenV5SectionsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemStackedShadowWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "stackColors" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "outerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "shadowHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "borderRadius" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "children" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePiece" } },
+          { kind: "Field", name: { kind: "Name", value: "centrePieceHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextPreviousValue" } },
+          { kind: "Field", name: { kind: "Name", value: "rollingTextNewValue" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonIsEnabled" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonTestID" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "isLoading" } },
+          { kind: "Field", name: { kind: "Name", value: "showRays" } },
+          { kind: "Field", name: { kind: "Name", value: "testID" } },
+          { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -97588,6 +99217,24 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemStackedShadowWrapper" } },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
             },
           },
         ],
