@@ -17214,7 +17214,7 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mixpanel-react-native@^3.0.6:
+mixpanel-react-native@3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/mixpanel-react-native/-/mixpanel-react-native-3.1.2.tgz#d9da38735c3e7bb1e42768909c1986ff3dd58bdd"
   integrity sha512-EtmaPUagi32MloHIRGc35B91GgmikqVE1asUHXuEVr4P+TQFj7Jb5Kt4QWQv2MeGEWRhhV3XbJouHqdOCIbSOA==
