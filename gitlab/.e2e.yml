@@ -41,6 +41,7 @@ include:
 
 variables:
   API_BRANCH_NAME: $[[ inputs.api_branch_name ]]
+  DETOX_TEST_TYPE: $[[ inputs.detox_test_type ]]
 
 .detox-cache:
   cache: &detox-cache
@@ -97,7 +98,7 @@ ios-detox-build-app:
     untracked: false
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api"
       interruptible: false
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       variables:
@@ -161,6 +162,7 @@ ios-detox-build-app:
   artifacts:
     paths:
       - e2e-report/**/*.log
+      - e2e-report/results.json
     expire_in: 7 days
     untracked: false
 
@@ -183,7 +185,7 @@ ios-detox-healthcheck-test:
   variables:
     DETOX_TEST_TYPE: healthcheck
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "healthcheck"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "healthcheck"'
       interruptible: false
 
 ios-detox-screenshots:
@@ -191,7 +193,7 @@ ios-detox-screenshots:
   variables:
     DETOX_TEST_TYPE: screenshots
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "screenshots"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "screenshots"'
       interruptible: false
 
 ios-detox-smoke:
@@ -199,7 +201,7 @@ ios-detox-smoke:
   variables:
     DETOX_TEST_TYPE: smoke
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "smoke"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "smoke"'
       interruptible: false
 
 # The following jobs will be part of the overnight run
@@ -210,7 +212,7 @@ ios-detox-admin:
     DETOX_TEST_TYPE: admin
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "admin"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "admin"'
       interruptible: false
 
 ios-detox-admin-2:
@@ -219,7 +221,7 @@ ios-detox-admin-2:
     DETOX_TEST_TYPE: admin:2
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "admin:2"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "admin:2"'
       interruptible: false
 
 ios-detox-activity:
@@ -228,7 +230,7 @@ ios-detox-activity:
     DETOX_TEST_TYPE: activity
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "activity"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "activity"'
       interruptible: false
 
 ios-detox-activity-2:
@@ -237,7 +239,7 @@ ios-detox-activity-2:
     DETOX_TEST_TYPE: activity:2
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "activity:2"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "activity:2"'
       interruptible: false
 
 ios-detox-battle-pass:
@@ -246,7 +248,7 @@ ios-detox-battle-pass:
     DETOX_TEST_TYPE: battle-pass
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "battle-pass"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "battle-pass"'
       interruptible: false
 
 ios-detox-benefits:
@@ -255,7 +257,7 @@ ios-detox-benefits:
     DETOX_TEST_TYPE: benefits
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "benefits"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "benefits"'
       interruptible: false
 
 ios-detox-challenges:
@@ -264,7 +266,7 @@ ios-detox-challenges:
     DETOX_TEST_TYPE: challenges
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "challenges"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "challenges"'
       interruptible: false
 
 ios-detox-challenges-2:
@@ -273,7 +275,7 @@ ios-detox-challenges-2:
     DETOX_TEST_TYPE: challenges:2
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "challenges:2"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "challenges:2"'
       interruptible: false
 
 ios-detox-challenges-extended:
@@ -282,7 +284,7 @@ ios-detox-challenges-extended:
     DETOX_TEST_TYPE: challenges-extended
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "challenges-extended"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "challenges-extended"'
       interruptible: false
 
 ios-detox-personal:
@@ -291,7 +293,7 @@ ios-detox-personal:
     DETOX_TEST_TYPE: personal
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "personal"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "personal"'
       interruptible: false
 
 ios-detox-sa:
@@ -301,7 +303,7 @@ ios-detox-sa:
     API_REGION: SA
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "sa"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "sa"'
       interruptible: false
 
 ios-detox-surveys:
@@ -310,7 +312,7 @@ ios-detox-surveys:
     DETOX_TEST_TYPE: surveys
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "surveys"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "surveys"'
       interruptible: false
 
 ios-detox-usa:
@@ -320,7 +322,7 @@ ios-detox-usa:
     API_REGION: US
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "usa"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "usa"'
       interruptible: false
 
 ios-detox-jp:
@@ -331,7 +333,7 @@ ios-detox-jp:
     TARGET_LOCALE: ja-JP
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "jp"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "jp"'
       interruptible: false
 
 ios-detox-worlds:
@@ -340,7 +342,7 @@ ios-detox-worlds:
     DETOX_TEST_TYPE: worlds
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "worlds"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "worlds"'
       interruptible: false
 
 ios-detox-worlds-2:
@@ -349,7 +351,7 @@ ios-detox-worlds-2:
     DETOX_TEST_TYPE: worlds:2
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "worlds:2"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "worlds:2"'
       interruptible: false
 
 ios-detox-yuscreen:
@@ -358,7 +360,7 @@ ios-detox-yuscreen:
     DETOX_TEST_TYPE: yuscreen
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "yuscreen"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "yuscreen"'
       interruptible: false
 
 ios-detox-reward-passes:
@@ -367,7 +369,7 @@ ios-detox-reward-passes:
     DETOX_TEST_TYPE: reward-passes
   rules:
     - !reference [.detox-overnight-rules, rules]
-    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "reward-passes"'
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "reward-passes"'
       interruptible: false
 
 combine-overnight-detox-reports:
@@ -377,4 +379,21 @@ combine-overnight-detox-reports:
     - ./scripts/gitlab/detox/combine-overnight-detox-reports.sh
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "overnight-detox-run"
+      when: always
+
+detox-test-mr-reporter:
+  extends:
+    - .generic-node-arm64
+    - .assume-aws-role-with-web-identity:qa-reporter
+  stage: test-report
+  variables:
+    REPORT_DNS_NAME: reports.qa.yulife.engineering
+    GITLAB_TOKEN: $GITLAB_TOKEN_REPORTER
+  script:
+    - nvm install -b
+    - corepack enable
+    - yarn install --frozen-lockfile
+    - node ./scripts/gitlab/detox/gitlab_mr_test_reporter.js
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "api"
       when: always
