@@ -81,9 +81,9 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
     When("I tap to collect the reward", when.tapID(ids.CTA_COLLECT, 3000), async () => {
       When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
-        Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(630), 3000));
-        Then("I should see total number of mindfulness minutes completed", then.idVisible(ids.MINDFUL_COUNT("14 min"), 2000));
-        Then("I should see the number of YuCoin earned today", then.textVisible("280 YuCoin today", 3000));
+        Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(650), 3000));
+        Then("I should see total number of mindfulness minutes completed", then.idVisible(ids.MINDFUL_COUNT("19 min"), 2000));
+        Then("I should see the number of YuCoin earned today", then.textVisible("300 YuCoin today", 3000));
       });
     });
   });

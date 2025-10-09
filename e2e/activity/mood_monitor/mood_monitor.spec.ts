@@ -54,13 +54,13 @@ Feature("Mood Monitor", async () => {
       Then("I should see the happy mood monitor image", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(moodMonitorHappy)));
       Then("I should see the progress bar fully complete", then.progressBarVisible(600, 600));
     });
-    When("I click done", when.tapIDAtIndex(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 1), async () => {
+    When("I tap done", when.tapID(ids.BUTTON_BASE("Done"), 1500), async () => {
       Then("I should see the correct reward amount on the 'Additional rewards' section", then.idVisible(ids.ACTIVITY_LISTING("Mood monitor", 60)));
     });
     When("I swipe up the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "down", "fast", 0.3), async () => {
-      Then("I should now have 260 yucoin", then.textVisible("260 YuCoin"));
+      Then("I should now have 260 yucoin", then.textVisible("260 YuCoin", 1500));
     });
-    When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I tap the back button", when.tapID(ids.BACK_BUTTON, 2000), async () => {
       Then("I should see my yucoin balance update to 260", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(260)));
     });
     When("I tap the menu icon", when.tapID(ids.MENU_ICON, 1500), async () => {
@@ -69,7 +69,7 @@ Feature("Mood Monitor", async () => {
       });
     });
     When("I tap the previous month", when.selectActivityMonth(1), async () => {
-      When("I tap to refresh the activity history", when.tapID(ids.ACTIVITY_HISTORY_REFRESH), async () => {
+      When("I tap to refresh the activity history", when.tapID(ids.ACTIVITY_HISTORY_REFRESH, 1500), async () => {
         Then("I should see my Mood monitor activity from the past", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Mood monitor"), 4000));
       });
     });

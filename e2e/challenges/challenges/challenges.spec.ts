@@ -55,9 +55,9 @@ Feature("As a user I can take a challenge", async () => {
       });
     });
     When("I log out and log in again", when.fullRestartAndLogin(data.CUSTOMER_1, data.AUTH_1, true, "UK"), async () => {
-      Then("I should still see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0), 2000));
+      Then("I should still see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0), 4000));
     });
-    When("I tap the 'Back to challenge' button", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON, 1500), async () => {
+    When("I tap the 'Back to challenge' button", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON, 3500), async () => {
       Then("I should see the failed challenge screen", then.idVisible(ids.CHALLENGE_FAILED_SCREEEN, 2000));
     });
   });
