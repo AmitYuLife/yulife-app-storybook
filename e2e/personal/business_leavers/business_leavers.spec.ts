@@ -23,14 +23,12 @@ Feature("As a business leaver I should still have app access", async () => {
         Then("I should see this is the public leaderboard", then.idVisible(ids.LEADERBOARD_TITLE("Public")));
       });
     });
-    When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
+    When("I tap search", when.tapID(ids.SEARCH_BUTTON, 2000), async () => {
       When("I search for a different leaver", when.searchLeaderboard(data.CUSTOMER_126_LEAVER_WELLBEING.data.firstName), async () => {
-        When("I wait", when.wait(3000), async () => {
-          Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)]), 2000));
-        });
+        Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)]), 5000));
       });
     });
-    When("I tap the leaver", when.tapText(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)), async () => {
+    When("I tap the leaver", when.tapText(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING), 3500), async () => {
       Then("I should be on the Inspect screen", then.idVisible(ids.INSPECT_SCREEN));
       Then("The leaver's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING))));
     });

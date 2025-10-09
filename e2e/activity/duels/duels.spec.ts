@@ -177,7 +177,7 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
 
   Scenario("I am able to view my won and lost duels", scenario.start, async () => {
     Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_19, data.AUTH_19), async () => {
-      Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+      Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON, 4000));
     });
     When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
       Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]));

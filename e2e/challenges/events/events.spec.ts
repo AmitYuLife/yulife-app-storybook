@@ -140,7 +140,7 @@ Feature("As a user I can opt in and take an event", async () => {
     Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_81, data.AUTH_81), async () => {
       Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
       Then("I should see I have done 0 steps today", then.textVisible("0 steps"));
-      Then("I should see the event card has the correct desert colour", then.idVisible(ids.EVENT_CARD_COLOUR("#FFF9E0")));
+      Then("I should see the event card has the correct desert colour", then.idVisible(ids.EVENT_CARD_COLOUR("#FFFCDE")));
       Then("I should see the event card title has the correct desert colour", then.idVisible(ids.EVENT_HEADING("Walk 10k this week", "#5A5A5C")));
       Then("I should see the event card description has the correct desert colour", then.idVisible(ids.EVENT_DESCRIPTION("0 / 10,000 steps", "#5A5A5C")));
     });

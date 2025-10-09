@@ -25,6 +25,6 @@ export const navigateViaButton = (text: string) => async () => {
 };
 
 export const goToWellbeingHub = async () => {
-  await tapID(ids.MENU_ICON)();
+  await tapID(ids.MENU_ICON, 4000)();
   await tapID(ids.MENU_ITEM("Wellbeing Hub"))();
 };

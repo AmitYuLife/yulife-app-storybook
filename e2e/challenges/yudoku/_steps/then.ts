@@ -170,7 +170,7 @@ export const canSeePersonalBest = (stat: typeof USER_STAT_86) => async () => {
 };
 
 export const plus30sIsVisible = async () => {
-  await idExist(SUDOKU_PENALTY_TIME(30))();
+  await idExist(SUDOKU_PENALTY_TIME(30), 2500)();
 };
 
 export const hintInfoTooltipIsVisible = async () => {

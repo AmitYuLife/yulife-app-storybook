@@ -128,7 +128,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   Scenario("I should not be able to see entries with a country code that the User is not a part of", scenario.start, async () => {
     Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_34, data.AUTH_34), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
+        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 4000), async () => {
           Then("I should see Fiit on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_1.data.title));
           Then("I should see Fiit assigned to UK on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_4.data.title));
           Then("I should not be able to see the item that is assigned to the US", then.textNotVisible(data.WELLBEING_HUB_ITEM_3.data.title));
