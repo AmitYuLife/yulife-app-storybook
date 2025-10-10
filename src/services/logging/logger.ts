@@ -24,6 +24,8 @@ class LoggerInstance {
   private mixpanel: Mixpanel | null = null;
   private eventRates: Map<string, { count: number; resetTime: number }> = new Map();
   private disabledEvents: Set<string> = new Set();
+  /** We want to wait until we identify the user before sending it to the MP SDK */
+  private anonymousEvents: { name: MixpanelEvent; metadata: MixpanelEventMetadata }[] = [];
 
   constructor() {
     this.bugsnag = getBugsnagClient();
@@ -45,7 +47,7 @@ class LoggerInstance {
   public logOut = async () => {
     this.userId = "";
 
-    if (this.initialised && this.mixpanel) {
+    if (this.initialised) {
       this.mixpanel.clearSuperProperties();
       this.mixpanel.reset();
 
@@ -85,14 +87,17 @@ class LoggerInstance {
         await this.logOut();
       }
 
-      await this.setIntercomUser(userId, intercomHash, supportLevel);
       this.bugsnag.setUser(userId, "", "");
-      if (this.mixpanel) {
-        this.mixpanel.identify(userId);
-      }
-
+      this.mixpanel.identify(userId);
       this.leanplum.setUserId(userId);
       this.userId = userId;
+
+      this.anonymousEvents.forEach(({ name, metadata }) => {
+        this.logMixpanelEvent(name, metadata);
+      });
+      this.anonymousEvents = [];
+
+      await this.setIntercomUser(userId, intercomHash, supportLevel);
     } finally {
       this.updatingUser = false;
     }
@@ -131,9 +136,7 @@ class LoggerInstance {
 
     const data = this.addDefaultEventProperties(metadata);
     const isUserLoggedIn = await Intercom.isUserLoggedIn();
-    if (this.mixpanel) {
-      this.mixpanel.track(event, data);
-    }
+    this.logMixpanelEvent(event as MixpanelEvent, data);
 
     if (!isUserLoggedIn) {
       return;
@@ -189,9 +192,12 @@ class LoggerInstance {
       return;
     }
 
-    if (this.mixpanel) {
-      this.mixpanel.track(event, this.addDefaultEventProperties(metadata));
+    if (!this.userId) {
+      this.anonymousEvents.push({ name: event, metadata: { ...metadata, time: Date.now() } });
+      return;
     }
+
+    this.mixpanel.track(event, this.addDefaultEventProperties(metadata));
   };
 
   public setUserLanguagePreferenceOnIntercom = async (languageOverride: string) => {
