@@ -19,16 +19,8 @@ source ~/.zprofile
 # TODO: Check if we need a new Gitlab token or this one is enough
 mkdir -p ~/temp-repos
 cd ~/temp-repos || exit
-git clone "https://oauth2:${GITLAB_TOKEN_REPORTER}@gitlab.com/yu-life/yulife-api-server.git"
+git clone -b "${API_BRANCH_NAME:-${CM_BRANCH:-develop}}" "https://oauth2:${GITLAB_TOKEN_REPORTER}@gitlab.com/yu-life/yulife-api-server.git"
 cd yulife-api-server || exit
-
-##############################
-# Checkout branch
-# 1.- API_BRANCH_NAME: Allow to run on any branch with env var
-# 2.- CI_COMMIT_REF_NAME: Same branch name as RN repo
-# 3.- Default to develop
-##############################
-git checkout "${API_BRANCH_NAME:-${CI_COMMIT_REF_NAME}}" || git checkout develop
 
 ##############################
 # Use API node version
@@ -44,7 +36,7 @@ echo "Node version: $(node --version)"
 ##############################
 corepack enable
 export GITLAB_TOKEN=$GITLAB_TOKEN_REPORTER
-yarn install --immutable --inline-builds
+pnpm install --frozen-lockfile
 ./scripts/setupPostgresForBitrise.sh
 
 ##############################
@@ -66,7 +58,7 @@ mkdir -p "$OUTPUTS_DIR"
 # run the migrations for postgres
 echo "Running postgres migrations"
 # Run postgres migrations up (logs in outputs/postgres-up.log)
-if ! NODE_ENV=detox POSTGRES_DB=yulife-detox yarn migrate-postgres up post >"$OUTPUTS_DIR/postgres-up.log" 2>&1; then
+if ! NODE_ENV=detox POSTGRES_DB=yulife-detox pnpm migrate-postgres up post >"$OUTPUTS_DIR/postgres-up.log" 2>&1; then
     cat "$OUTPUTS_DIR/postgres-up.log"
     exit 1
 fi
@@ -75,11 +67,11 @@ fi
 mongosh --port 27018 yulife-detox --eval 'db.dropDatabase()'
 echo "Running mongo migrations"
 # Run mongo migrations up (logs in outputs/mongo-up.log)
-if ! NODE_ENV=detox yarn migrate-mongo up post >"$OUTPUTS_DIR/mongo-up.log" 2>&1; then
+if ! NODE_ENV=detox pnpm migrate-mongo up post >"$OUTPUTS_DIR/mongo-up.log" 2>&1; then
     cat "$OUTPUTS_DIR/mongo-up.log"
     exit 1
 fi
-if ! NODE_ENV=detox yarn migrate-mongo up post --global >"$OUTPUTS_DIR/mongo-up-global.log" 2>&1; then
+if ! NODE_ENV=detox pnpm migrate-mongo up post --global >"$OUTPUTS_DIR/mongo-up-global.log" 2>&1; then
     cat "$OUTPUTS_DIR/mongo-up-global.log"
     exit 1
 fi
@@ -112,17 +104,13 @@ case $API_REGION in
     ;;
 esac
 
-# Yarn pnpm link issues
-# TODO: Fix this workaround
-npm install --global ts-node@10.9.2
-TS_NODE_BIN=$(which ts-node)
 # shellcheck disable=SC2086 # Do not quote to split arguments
 env -S ${API_ENV_OVERRIDES} \
 NODE_ENV=detox \
 DEBUG="yu:*" \
-yarn pm2 start ./src/app/index.ts \
+pnpm pm2 start ./src/app/index.ts \
 --name api-server \
---interpreter $TS_NODE_BIN \
+--interpreter ./node_modules/.bin/ts-node \
 --output "$OUTPUTS_DIR/api-server.out.log" \
 --error  "$OUTPUTS_DIR/api-server.err.log"
 
@@ -136,13 +124,13 @@ for _ in {1..30}; do
   fi
   echo "Waiting for API to start..."
   # Log last 50 lines
-  yarn pm2 logs api-server --lines 50 --nostream
+  pnpm pm2 logs api-server --lines 50 --nostream
   sleep 1
 done
 
 if ! curl -s "http://localhost:${API_PORT:-5000}/" > /dev/null; then
   echo "API did not start in time"
-  yarn pm2 logs api-server --lines 1000 --nostream
+  pnpm pm2 logs api-server --lines 1000 --nostream
   exit 1
 fi
 
