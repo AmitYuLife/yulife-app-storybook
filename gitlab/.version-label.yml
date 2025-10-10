@@ -6,7 +6,7 @@ version-label:
     - node scripts/gitlab/version-label.js
   allow_failure: true
   variables:
-    GITLAB_TOKEN: $GITLAB_TOKEN_REPORTER
+    GITLAB_TOKEN: $GITLAB_TOKEN_RELEASE
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never
