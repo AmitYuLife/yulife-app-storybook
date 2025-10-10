@@ -1,16 +1,13 @@
 import React, { memo } from "react";
-import { Dimensions } from "react-native";
 import { GetSduiJourneyQuery, ContentItemBlurredRaysWrapperFragment as Props } from "@graphql/__generated";
 import { BlurredRaysWrapper } from "@organisms";
-import { parseJSON } from "@utils";
+import { isiOS, parseJSON } from "@utils";
 import { Renderer } from "../_renderer/renderer";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import Box from "@atoms/box/box";
 import { Style } from "@styles";
-import { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-const { height: screenHeight } = Dimensions.get("screen");
+import { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
 
 type Body = GetSduiJourneyQuery["getSduiJourney"]["body"];
 
@@ -48,8 +45,10 @@ export const ContentItemBlurredRaysWrapper = memo(
           }
         : undefined;
 
+    const wrapperMarginBottom = isiOS() ? -bottom : 0;
+
     return (
-      <Box mb={-bottom} height={Style.DEVICE_HEIGHT} disableAutoAdjust={true}>
+      <Box mb={wrapperMarginBottom} height={Style.DEVICE_HEIGHT} disableAutoAdjust={true}>
         <BlurredRaysWrapper
           title={title}
           rollingTextProps={rollingTextProps}
@@ -69,12 +68,13 @@ export const ContentItemBlurredRaysWrapper = memo(
             {isCentrePieceValid && centrePieceData && (
               <Box
                 position="absolute"
-                top={screenHeight / 2.2 - BLURRED_RAYS_Y_OFFSET / 1.9 - centrePieceHeight / 2}
+                top={-BLURRED_RAYS_Y_OFFSET + centrePieceHeight / 1.5}
                 left={0}
                 right={0}
+                w="100%"
+                h="100%"
                 justifyContent="center"
                 alignItems="center"
-                disableAutoAdjust={true}
               >
                 <Renderer item={centrePieceData} />
               </Box>
