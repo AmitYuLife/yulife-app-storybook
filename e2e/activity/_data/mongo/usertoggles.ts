@@ -361,7 +361,6 @@ export const CUSTOMER_47_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
-      showInspect: true,
       passiveCyclingEnabled: true,
       useNewLeaderboardServices: true,
     },
@@ -377,7 +376,6 @@ export const CUSTOMER_50_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
-      showInspect: true,
       passiveCyclingEnabled: true,
       useNewLeaderboardServices: true,
     },
