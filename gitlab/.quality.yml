@@ -5,6 +5,8 @@ lint-bitrise:
   stage: quality
   image: golang:1.17
   allow_failure: true
+  variables:
+        GIT_DEPTH: 0 # disable shallow clone for 'git diff'
   script:
     # Install dependencies
     - apt-get update && apt-get install -y git jq rsync
