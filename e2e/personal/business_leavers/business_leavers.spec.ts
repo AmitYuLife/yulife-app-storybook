@@ -17,19 +17,17 @@ Feature("As a business leaver I should still have app access", async () => {
         });
       });
     });
-    When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-      When("I wait", when.wait(2000), async () => {
-        Then("I should see the users full name", then.idVisible(ids.LEADERBOARD_NAME("Bus Leaf", 0, 1, "#464647")));
-        Then("I should see this is the public leaderboard", then.idVisible(ids.LEADERBOARD_TITLE("Public")));
-      });
+    When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
+      Then("I should see the users full name", then.idVisible(ids.LEADERBOARD_NAME("Bus Leaf", 0, 1, "#464647"), 4000));
+      Then("I should see this is the public leaderboard", then.idVisible(ids.LEADERBOARD_TITLE("Public")));
     });
     When("I tap search", when.tapID(ids.SEARCH_BUTTON, 2000), async () => {
       When("I search for a different leaver", when.searchLeaderboard(data.CUSTOMER_126_LEAVER_WELLBEING.data.firstName), async () => {
         Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)]), 5000));
       });
     });
-    When("I tap the leaver", when.tapText(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING), 3500), async () => {
-      Then("I should be on the Inspect screen", then.idVisible(ids.INSPECT_SCREEN));
+    When("I tap the leaver", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)), 4000), async () => {
+      Then("I should be on the Inspect screen", then.idVisible(ids.INSPECT_SCREEN, 4000));
       Then("The leaver's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING))));
     });
   });
