@@ -2418,14 +2418,14 @@ workflows:
             nvm install
             echo "enabling corepack"
             corepack enable
-            echo "running yarn install"
-            yarn install --immutable
-            yarn add node-gyp
+            echo "running pnpm install"
+            pnpm install --frozen-lockfile
+            pnpm add node-gyp
             ./scripts/setupPostgresForBitrise.sh
 
-            yarn translations:download:local
-            yarn build
-            yarn detox:changeRegionDatabase:${API_REGION:=UK}
+            pnpm translations:download:local
+            pnpm build
+            pnpm detox:changeRegionDatabase:${API_REGION:=UK}
 
             npm install -g forever
             env ${API_ENV_OVERWRITE:=NODE_ENV=detox} DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
