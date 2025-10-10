@@ -6,9 +6,11 @@
  * It adds the current package.json version as a label to the merged MR
  */
 
-const axios = require("axios");
+const https = require("https");
+const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const { URL } = require("url");
 
 // Configuration
 const TARGET_BRANCH = "develop";
@@ -21,6 +23,49 @@ const CI_COMMIT_SHA = process.env.CI_COMMIT_SHA;
 const CI_COMMIT_BRANCH = process.env.CI_COMMIT_BRANCH;
 // Use GITLAB_TOKEN first (has more permissions), fall back to CI_JOB_TOKEN
 const CI_TOKEN = process.env.GITLAB_TOKEN || process.env.CI_JOB_TOKEN;
+
+/**
+ * Makes an HTTPS/HTTP request
+ */
+function makeRequest(url, options = {}) {
+  return new Promise((resolve, reject) => {
+    const urlObj = new URL(url);
+    const isHttps = urlObj.protocol === "https:";
+    const client = isHttps ? https : http;
+
+    const requestOptions = {
+      ...options,
+      hostname: urlObj.hostname,
+      port: urlObj.port,
+      path: urlObj.pathname + urlObj.search,
+    };
+
+    const req = client.request(requestOptions, (res) => {
+      let data = "";
+
+      res.on("data", (chunk) => {
+        data += chunk;
+      });
+
+      res.on("end", () => {
+        try {
+          const parsedData = JSON.parse(data);
+          resolve({ status: res.statusCode, data: parsedData });
+        } catch {
+          resolve({ status: res.statusCode, data: data });
+        }
+      });
+    });
+
+    req.on("error", reject);
+
+    if (options.body) {
+      req.write(JSON.stringify(options.body));
+    }
+
+    req.end();
+  });
+}
 
 /**
  * Get version from package.json
@@ -58,12 +103,17 @@ async function findMergeRequest() {
   console.log(`🔎 Searching for MR containing commit ${CI_COMMIT_SHA.substring(0, 8)}...`);
 
   try {
-    const response = await axios.get(url, {
+    const response = await makeRequest(url, {
+      method: "GET",
       headers: {
         "PRIVATE-TOKEN": CI_TOKEN,
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) {
+      throw new Error(`Failed to fetch MRs: HTTP ${response.status}`);
+    }
 
     const mergeRequests = response.data;
 
@@ -97,17 +147,20 @@ async function addLabelsToMR(mrIid, version) {
   const url = `${CI_API_V4_URL}/projects/${encodedProjectId}/merge_requests/${mrIid}`;
 
   try {
-    const response = await axios.put(url, 
-      {
+    const response = await makeRequest(url, {
+      method: "PUT",
+      headers: {
+        "PRIVATE-TOKEN": CI_TOKEN,
+        "Content-Type": "application/json",
+      },
+      body: {
         add_labels: `app-version: ${version}`,
       },
-      {
-        headers: {
-          "PRIVATE-TOKEN": CI_TOKEN,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    });
+
+    if (response.status !== 200) {
+      throw new Error(`Failed to update MR: HTTP ${response.status}`);
+    }
 
     console.log("✓ Successfully added label to MR");
     return response.data;
