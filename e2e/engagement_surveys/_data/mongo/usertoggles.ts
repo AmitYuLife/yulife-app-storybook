@@ -46,7 +46,6 @@ export const CUSTOMER_2_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
-      showInspect: true,
       passiveCyclingEnabled: true,
       useNewLeaderboardServices: true,
     },
