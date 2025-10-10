@@ -1,0 +1,11 @@
+version-label:
+  extends: .generic-node-arm64
+  stage: .post
+  interruptible: false
+  script:
+    - node scripts/gitlab/version-label.js
+  allow_failure: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "develop"
