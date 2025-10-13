@@ -46,7 +46,6 @@ export const CUSTOMER_FIIT_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
-      enableFiitInApp: true,
     },
   },
 } as IDatabaseItem;
