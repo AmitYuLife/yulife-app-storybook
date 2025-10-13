@@ -8,7 +8,10 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { showYuModal } from "@navigation/root";
 import { openMyAccount } from "@redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/client";
-import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
+import {
+  clearSocialGroupLeaderboardRecentSearchHistory,
+  updateSocialGroupLeaderboardConsents,
+} from "@redux/leaderboards/leaderboards.actions";
 import { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
 import {
   GetInboxNotificationsSettingsDocument,
@@ -110,6 +113,9 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
 
       dispatch(updateSocialGroupLeaderboardConsents({ socialGroupId, leaderboards: [{ leaderboardId, consent }] }));
       dispatch(queryYuScreenLayout());
+      if (!consent) {
+        dispatch(clearSocialGroupLeaderboardRecentSearchHistory());
+      }
 
       dismissModal();
     },
