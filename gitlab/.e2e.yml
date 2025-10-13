@@ -159,6 +159,7 @@ ios-detox-build-app:
       export DETOX_EXIT_CODE=$?
       # Report results
       ./scripts/gitlab/detox/upload_detox_report.sh
+      exit $DETOX_EXIT_CODE
   artifacts:
     paths:
       - e2e-report/**/*.log
