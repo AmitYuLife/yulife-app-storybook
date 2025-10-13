@@ -39,7 +39,6 @@ export const CUSTOMER_2_TOGGLES = {
       statsShowCyclingGraphCard: true,
       showSettings: true,
       showTodayEarningsScreen: true,
-      showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
       showYucoinPowerButton: true,
@@ -219,7 +218,6 @@ export const CUSTOMER_20_TOGGLES = {
       hideYuMatterScreen: true,
       showDuels: true,
       showCommunityGoals: true,
-      showGoals: true,
       useCoreChallengesService: true,
       useActiveChallengesService: true,
       useNewLeaderboardServices: true,
@@ -393,7 +391,6 @@ export const CUSTOMER_65_TOGGLES = {
       showTodayEarningsScreen: true,
       yuScreenV3: true,
       showPermissionSettings: true,
-      showGoals: true,
       passiveCyclingEnabled: true,
     },
   },
@@ -472,7 +469,6 @@ export const CUSTOMER_71_TOGGLES = {
       statsShowCyclingGraphCard: true,
       showSettings: true,
       showTodayEarningsScreen: true,
-      showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
       passiveCyclingEnabled: true,
@@ -491,7 +487,6 @@ export const CUSTOMER_73_TOGGLES = {
       useNewLeaderboardServices: true,
       showNotificationCentre: true,
       showCommunityGoals: true,
-      showGoals: true,
     },
   },
 } as IDatabaseItem;
@@ -560,7 +555,7 @@ export const BUSINESS_13_USER_TOGGLES = {
     _id: generateRandomMongoId(),
     businessAccountId: BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id,
     toggleType: "business",
-    features: { showGoals: true },
+    features: {},
   },
 } as IDatabaseItem;
 
@@ -601,7 +596,6 @@ export const CUSTOMER_141_TOGGLES = {
     userId: customer.CUSTOMER_141.customer.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      showGoals: true,
       showPermissionSettings: true,
       tempGameEnableReleaseYuHealthV4: true,
     },

@@ -35,7 +35,6 @@ export const CUSTOMER_2_TOGGLES = {
       statsShowCyclingGraphCard: true,
       showSettings: true,
       showTodayEarningsScreen: true,
-      showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
       showYucoinPowerButton: true,
@@ -237,7 +236,6 @@ export const CUSTOMER_81_TOGGLES = {
       showFiit: true,
       // TODO: Remove once 'showWeeklies' is fully migrated to settings
       showWeeklies: true,
-      showGoals: true,
     },
   },
 } as IDatabaseItem;

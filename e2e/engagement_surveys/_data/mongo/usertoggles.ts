@@ -63,7 +63,6 @@ export const CUSTOMER_3_TOGGLES = {
       useNewLeaderboardServices: true,
       showNotificationCentre: true,
       showCommunityGoals: true,
-      showGoals: true,
     },
   },
 } as IDatabaseItem;
@@ -92,7 +91,6 @@ export const CUSTOMER_7_TOGGLES = {
     userId: customer.CUSTOMER_7.customer.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      showGoals: true,
       showPermissionSettings: true,
       tempGameEnableReleaseYuHealthV4: true,
     },
@@ -139,7 +137,6 @@ export const BUSINESS_4_USER_TOGGLES = {
     _id: generateRandomMongoId(),
     businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
     toggleType: "business",
-    features: { showGoals: true, tempUseCoreJourneyInstances: true },
   },
 } as IDatabaseItem;
 

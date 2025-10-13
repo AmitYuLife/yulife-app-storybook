@@ -34,7 +34,6 @@ export const CUSTOMER_1_TOGGLES = {
       statsShowCyclingGraphCard: true,
       showSettings: true,
       showTodayEarningsScreen: true,
-      showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
       showYucoinPowerButton: true,

@@ -16,7 +16,6 @@ export const CUSTOMER_73_TOGGLES = {
       useNewLeaderboardServices: true,
       showNotificationCentre: true,
       showCommunityGoals: true,
-      showGoals: true,
     },
   },
 } as IDatabaseItem;
