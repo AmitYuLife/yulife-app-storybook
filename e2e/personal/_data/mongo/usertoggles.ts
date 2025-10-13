@@ -16,7 +16,6 @@ export const CUSTOMER_34_TOGGLES = {
       yuScreenV3: true,
       hasBeneficiariesEnabled: false,
       showCommunityGoals: true,
-      showGoals: true,
       useCoreChallengesService: true,
       useActiveChallengesService: true,
       showBrainGameSudoku: true,

@@ -35,7 +35,6 @@ export const CUSTOMER_USA_4_TOGGLES = {
     userId: customer.CUSTOMER_USA_4.customer.data.customerId,
     features: {
       ...allTogglesTrue.data.features,
-      showGoals: true,
     },
   },
 } as IDatabaseItem;
@@ -48,7 +47,6 @@ export const CUSTOMER_USA_5_TOGGLES = {
     userId: customer.CUSTOMER_USA_5.customer.data.customerId,
     features: {
       ...allTogglesTrue.data.features,
-      showGoals: true,
     },
   },
 } as IDatabaseItem;
