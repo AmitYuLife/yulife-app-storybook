@@ -5,7 +5,7 @@ import { dataManager } from "@yu-life/yulife-bdd-framework";
 export { selectRegionIfVisible } from "_utils/navigation/login";
 export { triggerCreateRandomChestPool } from "../../../battle_pass/_common/given";
 
-export const { logInAndGoToTab } = navigation.login;
+export const { logInAndGoToTab, loginAsUser } = navigation.login;
 
 export const triggerAppUpdateState = async (): Promise<void> => {
   await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
