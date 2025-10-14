@@ -156,6 +156,9 @@ export const ROUTES = {
 
   // pathways
   pathways: "yulife.member.pathways",
+
+  // mood calendar
+  moodCalendar: "yulife.member.moodCalendar",
 };
 
 export const MODALS = {

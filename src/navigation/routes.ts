@@ -425,6 +425,13 @@ const routesForRegistration = [
     name: ROUTES.pathways,
     component: require("../components/containers/member/pathways/pathways.container").default,
   },
+
+  // mood calendar
+  {
+    name: ROUTES.moodCalendar,
+    component: require("../components/containers/member/mood-calendar/mood-calendar.container").default,
+  },
+
   // modals
   {
     name: MODALS.yuCoinPowerExplained,
