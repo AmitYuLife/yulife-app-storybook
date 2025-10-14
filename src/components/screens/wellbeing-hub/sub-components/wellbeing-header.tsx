@@ -1,6 +1,11 @@
 import React, { memo, useMemo } from "react";
 import { Image, TextTemplate } from "@atoms";
-import { TEXT_TEMPLATE, WELLBEING_HUB_BUSINESS_ACCOUNT_DROP_DOWN, WELLBEING_HUB_BUSINESS_ACCOUNT_NAME } from "@ids";
+import {
+  TEXT_TEMPLATE,
+  WELLBEING_HUB_BUSINESS_ACCOUNT_DROP_DOWN,
+  WELLBEING_HUB_BUSINESS_ACCOUNT_NAME,
+  WELLBEING_HUB_DESCRIPTION,
+} from "@ids";
 import { Style } from "@styles";
 import Box from "@atoms/box/box";
 import { BusinessAccountState, BusinessPicker } from "@components/molecules/business-picker";
@@ -37,7 +42,9 @@ const WellbeingHeader = ({ title, description, icon, iconUrl, testID, businessAc
           />
         )}
         <Box mt={Style.adjust(16)}>
-          <TextTemplate type="b2">{description}</TextTemplate>
+          <TextTemplate type="b2" testID={WELLBEING_HUB_DESCRIPTION(description)}>
+            {description}
+          </TextTemplate>
         </Box>
       </Box>
 

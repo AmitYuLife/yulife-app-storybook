@@ -645,6 +645,8 @@ export const WELLBEING_HUB_BUSINESS_ACCOUNT_NAME = (title: string) =>
   `WELLBEING_HUB_BUSINESS_ACCOUNT_NAME_${title}`;
 export const WELLBEING_HUB_BUSINESS_ACCOUNTS_LIST = (names: string[]) =>
   `LEADERBOARD_COMMUNITY_LIST_${names.sort()}`;
+export const WELLBEING_HUB_DESCRIPTION = (description: string) =>
+  `WELLBEING_HUB_DESCRIPTION_${description}`;
 
 // REFERRALS
 export const REFERRALS_SCROLL_VIEW = "REFERRALS_SCROLL_VIEW";
