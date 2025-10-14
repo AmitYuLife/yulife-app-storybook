@@ -16,6 +16,7 @@ export const {
   minimiseApp,
   restartWithoutDelete,
   terminateApp,
+  relaunchAppWithoutSync,
 } = navigation.common;
 
 export const { closeQuitChallengeScreen, exitChallenge, startChallenge } = screens.challenges;
