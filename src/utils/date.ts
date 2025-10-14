@@ -2,6 +2,7 @@ import moment, { parseZone } from "moment";
 import { padNum } from "@utils";
 import { t } from "@locale";
 
+export const DATE_FORMAT_MONTH = "YYYY-MM";
 export const DATE_FORMAT = "YYYY-MM-DD";
 export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
 export const DATE_FORMAT_WITHOUT_TZ = "YYYY-MM-DDTHH:mm:ss";

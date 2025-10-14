@@ -1,37 +1,30 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import { FlashList } from "@shopify/flash-list";
 import { Box } from "@atoms";
 import { MoodMonth, IMonth } from "./mood-month";
 import WeekDays from "../../molecules/week-days/week-days";
-import { getMissingDays } from "./calendar-helper";
 import { Style } from "@styles";
 
-export interface MoodDayData {
-  date: string;
-  moodImage: string;
-}
-
-export interface MonthMoodData {
-  month: string;
-  days: MoodDayData[];
-}
-
 interface IMoodCalendarProps {
-  data: MonthMoodData[];
+  data: IMonth[];
+  onEndReached: () => void;
+  loading?: boolean;
 }
 
-export const MoodCalendar = ({ data }: IMoodCalendarProps) => {
-  const monthSections = useMemo(() => getMissingDays(data), [data]);
-
+export const MoodCalendar = ({ data, onEndReached, loading }: IMoodCalendarProps) => {
   return (
     <Box flex={1}>
       <WeekDays />
       <FlashList
-        data={monthSections}
+        inverted={true}
+        data={data}
+        refreshing={loading}
         renderItem={render}
         keyExtractor={keyExtractor}
         estimatedItemSize={Style.adjust(500)}
         showsVerticalScrollIndicator={false}
+        onEndReached={onEndReached}
+        onEndReachedThreshold={0.5}
       />
     </Box>
   );
