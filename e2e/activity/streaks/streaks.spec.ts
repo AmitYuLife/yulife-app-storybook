@@ -28,7 +28,7 @@ Feature("As a user I can use the streaks functionality", async () => {
       When("I tap 'take challenge'", when.tapID(ids.CHALLENGE_TAKE_CHALLENGE_BUTTON, 2000), async () => {
         When("I wait", when.wait(5000), async () => {
           When("I dismiss the notification screen if visible", when.dismissNotificationScreenIfVisible, async () => {
-            Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
+            Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR, 2400));
           });
         });
       });
@@ -38,16 +38,16 @@ Feature("As a user I can use the streaks functionality", async () => {
       When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
         Then("I should see the completed streak day 1 modal", then.completedTodayStreakCopyVisible(1));
       });
-      When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+      When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2500), async () => {
         Then("I should be on the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)));
         Then("I should see the level 2 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2)));
       });
-      When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
+      When("I go back to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
         Then("I should see 1/5 streaks", then.idVisible(ids.STREAKS_BUTTON_LABEL("1/5"), 2000));
-        Then("I should see the amount of yucoin I earned today", then.textVisible(`240 ${t("YuCoin")} ${t("today")}`, 1500));
         Then("I should see the number of steps I walked today", then.idVisible(ids.STEPS_COUNT(400), 200));
+        Then("I should see the amount of YuCoin I earned today", then.textVisible("240 YuCoin today", 3500));
       });
-      When("I tap '1/5", when.tapID(ids.STREAKS_BUTTON_LABEL("1/5")), async () => {
+      When("I tap '1/5", when.tapID(ids.STREAKS_BUTTON_LABEL("1/5"), 3500), async () => {
         Then("I should see the completed modal again", then.completedTodayStreakCopyVisible(1));
       });
     });

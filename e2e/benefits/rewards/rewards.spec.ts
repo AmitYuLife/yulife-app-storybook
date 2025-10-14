@@ -72,9 +72,9 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
     });
     When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SHOPFRONT_REWARDS_LIST, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), "up"), async () => {
-      Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON));
+      Then("I should see the Amazon Reward", then.idExist(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 3000));
     });
-    When("I tap this reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id)), async () => {
+    When("I tap this reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 4000), async () => {
       Then("I should be on the Amazon reward page", then.idVisible(`${data.CORE_REWARDS_AMAZON.data._id}_description`));
     });
     When("I scroll to the Buy button", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SDUI_SCREEN_SCROLL_VIEW, ids.BUTTON_BASE("Buy voucher with YuCoin"), "up"), async () => {

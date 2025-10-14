@@ -242,8 +242,10 @@ Feature("I am able to use the yuscreen v5", async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_139, data.AUTH_139), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Small Daddy", "Mountain", "800"));
     });
-    When("I scroll down to the Powerful protection section on YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.3), async () => {
-      Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), 2000));
+    When("I scroll down to the Powerful protection section on YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.2), async () => {
+      Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE, 2000));
+    });
+    When("I scroll further down to view the product cards", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.1), async () => {
       Then("I should see Bupa Health Insurance", then.productCardVisible(bupaHealthInsuranceProductItem));
       Then("I should see Bupa Dental Insurance", then.productCardVisible(bupaDentalProductItem));
       Then("I should see Income protection", then.productCardVisible(incomeProtectionProductItem));
