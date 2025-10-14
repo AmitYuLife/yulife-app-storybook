@@ -24,6 +24,7 @@ export const {
   booleanTextVisible,
   textNotVisible,
   idVisibleAtIndex,
+  idExist,
 } = navigation.common;
 
 export const { scrollFromText, scrollFromID } = navigation.scrolling;
