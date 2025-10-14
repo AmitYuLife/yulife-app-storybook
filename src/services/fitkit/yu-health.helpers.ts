@@ -123,7 +123,8 @@ export async function yuHealthSampleQuery({
 
     return results.result;
   } catch (e) {
-    Logger.error(e, { event: "yuHealthSampleQuery" });
+    // Add it back when we'll have the logic to log only one error per session
+    // Logger.error(e, { event: "yuHealthSampleQuery" });
 
     Logger.logMixpanelEvent("app_debug", {
       ...metadata,
