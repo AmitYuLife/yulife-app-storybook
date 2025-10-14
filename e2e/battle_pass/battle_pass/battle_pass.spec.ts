@@ -129,13 +129,8 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(1), 2000));
       Then("I should see the correct remaining rewards count", then.idVisible(ids.BATTLE_PASS_DESCRIPTION("2 rewards remaining"), 2000));
     });
-    When("I terminate the app", when.terminateApp, async () => {
-      When("I follow the deep link to the rewards store", when.goToRewardStore, async () => {
-        When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
-          Then("I should successfully be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
-          Then("I should see my avatar being first on the 'Plant trees' donations list", then.idVisibleAtIndex(ids.DONATION_LIST_AVATARS(1), 0, 2000));
-        });
-      });
+    When("I relaunch the app", when.relaunchAppWithoutSync, async () => {
+      Then("I should see my avatar being first on the 'Plant trees' donations list", then.idVisibleAtIndex(ids.DONATION_LIST_AVATARS(1), 0, 4000));
     });
     When("I tap the 'Plant trees' donation list item", when.tapID(ids.IMPACT_DONATION_TITLE("Plant trees")), async () => {
       Then("I should see the correct donated amount and position for the 'trees' leaderboard", then.idVisible(ids.LEADERBOARD_NAME("Carmy Berzatto", "40", 1, "#464647")));

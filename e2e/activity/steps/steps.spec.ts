@@ -71,20 +71,22 @@ Feature("As a user my activity is monitored correctly", async () => {
   Scenario("I can do 28 days of cycling and see the data queried and displayed correctly", scenario.start, async () => {
     When("I have done 28 days of cycling in the past month", when.addCycling28DaysHistoricalData(3000), async () => {
       Given("I login", given.loginToYuScreen(false, data.CUSTOMER_66, data.AUTH_66), async () => {
-        When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
+        When("I go back to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
           Then("I should see my steps today as 0", then.idVisible(ids.STEPS_COUNT(0)));
         });
       });
     });
-    When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-      Then("I should not see cycling distance displayed on my yuscreen", then.idNotVisible(ids.CYCLING_COUNT("0 km")));
+    When("I go back to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
+      Then("I should not see cycling distance displayed on my YuScreen", then.idNotVisible(ids.CYCLING_COUNT("0 km")));
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
     });
-    When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
+    When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
       When("I tap the previous month", when.tapPreviousMonth(), async () => {
         Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500));
+      });
+      When("I tap to refresh activity history", when.tapID(ids.LEFT_HEADING_BUTTON("ACTIVITY_HISTORY"), 3000), async () => {
         Then("I should see all km cycled from the past 28 days ago loaded in", then.activityHistoryScrollCyclingDataCorrect(3000, 28));
       });
     });
