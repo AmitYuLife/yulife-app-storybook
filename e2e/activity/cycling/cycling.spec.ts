@@ -9,8 +9,8 @@ import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user my cycling distance is monitored correctly", async () => {
   Scenario("I can take and complete a cycling event and hit all the event milestones", scenario.start, async () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("yucoin", data.CUSTOMER_71, data.AUTH_71), async () => {
-      Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2000));
+    Given("I login and go to YuCoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_71, data.AUTH_71), async () => {
+      Then("I should be on the YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2000));
       Then("I should not see any cycling stats on the screen as I have cycled 0km so far today", then.idNotVisible(ids.CYCLING_COUNT("km")));
       Then("I should see the correct cycling event for me to complete and the progress bar", then.cyclingEventToBeCompletedVisible(0, 0));
     });

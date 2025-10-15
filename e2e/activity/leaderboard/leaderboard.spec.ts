@@ -458,13 +458,10 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([data.BUSINESS_ACCOUNT_2.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
         Given("I login", given.logInAndGoToTab("rewards", data.CUSTOMER_18, data.AUTH_18), async () => {
-          Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+          Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
+          Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520)));
         });
       });
-    });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
-      Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
-      Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520)));
     });
     When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
       Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));

@@ -20,6 +20,7 @@ export const CUSTOMER_1 = {
     firstName: "Dan",
     lastName: "Greane",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
@@ -32,6 +33,7 @@ export const CUSTOMER_2 = {
     firstName: "Osama",
     lastName: "Rahman",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
@@ -44,6 +46,7 @@ export const CUSTOMER_3 = {
     firstName: "Walter",
     lastName: "White",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
@@ -56,6 +59,7 @@ export const CUSTOMER_4 = {
     firstName: "Jesse",
     lastName: "Pinkman",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
@@ -152,6 +156,7 @@ export const CUSTOMER_128_WELLBEING_ELIGIBILITY = {
     firstName: "Totes",
     lastName: "Eligible",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
@@ -164,6 +169,7 @@ export const CUSTOMER_129_WELLBEING_ELIGIBILITY = {
     firstName: "Notquite",
     lastName: "Eligible",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
@@ -197,6 +203,7 @@ export const CUSTOMER_131 = createCustomerRecords({
   lastName: "Bulpit",
   status: "onboarded",
   email: generateRandomInbox(),
+  preferredContentLocation: "GB",
   employments: [
     {
       businessAccountId: BUSINESS_ACCOUNT_16.business.data.businessAccountId,
@@ -217,6 +224,7 @@ export const CUSTOMER_132 = createCustomerRecords({
   lastName: "Birdeye",
   status: "onboarded",
   email: generateRandomInbox(),
+  preferredContentLocation: "GB",
   employments: [
     {
       businessAccountId: BUSINESS_ACCOUNT_16.business.data.businessAccountId,

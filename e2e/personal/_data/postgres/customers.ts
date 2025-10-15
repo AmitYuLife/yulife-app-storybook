@@ -121,6 +121,7 @@ export const CUSTOMER_STORE_ACCESS_PERIOD = {
     firstName: "Greg",
     lastName: "Egg",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 

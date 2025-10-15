@@ -11,9 +11,6 @@ import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 Feature("Rewards should act correctly", async () => {
   Scenario("I cannot redeem a reward if I don't have enough coin", scenario.start, () => {
     Given("I log in and go to reward", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should see the modal to select store location", then.rewardsLocationModalVisible(15000));
-    });
-    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 3000));
     });
     When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.5), async () => {
@@ -41,9 +38,6 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("I cannot redeem a locked reward", scenario.start, () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
-    });
-    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
     When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id), "up"), async () => {
@@ -53,7 +47,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see an update in progress pop up ", then.textVisible("update in progress"));
       Then("I should see text 'back to rewards' ", then.textVisible("back to rewards"));
     });
-    When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
+    When("I tap 'back to rewards'", when.tapText("back to rewards", 2000), async () => {
       Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN));
     });
     When("I scroll up until the locked reward is visible", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON_UNAVAILABLE.data._id), "up"), async () => {
@@ -64,9 +58,6 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("I can purchase multiple rewards and adjust the voucher amount successfully", scenario.start, () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_3, data.AUTH_3), () => {
-      Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
-    });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2500), async () => {
       Then("I should be on the rewards store", then.idVisible(ids.REWARDS_SCREEN));
       Then("I should see the shopfront rewards list", then.idVisible(ids.SHOPFRONT_REWARDS_LIST));
       Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
@@ -158,9 +149,6 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("I cannot buy a reward if there are issues with a provider", scenario.start, async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_4, data.AUTH_4), async () => {
-      Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
-    });
-    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
     When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.5), async () => {
@@ -185,10 +173,7 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("I can login and view my previously purchased rewards", scenario.start, async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
-      Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
-    });
-    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
-      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200), 3000));
     });
     When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
       When("I tap on the Nike wallet card", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
@@ -203,69 +188,50 @@ Feature("Rewards should act correctly", async () => {
   Scenario("I can view my previously purchased rewards with copy based on user language preference", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
       When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
-        Then("I see the content location modal's confirmation button", then.idVisible(ids.REWARDS_LOCATION_CONFIRM));
+        Then("I can see the wallet navigation icon", then.idVisible(ids.SHINE_BUTTON("Wallet"), 3000));
       });
-
-      When("I confirm the content location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
-        Then("I can see the wallet navigation icon", then.idVisible(ids.SHINE_BUTTON("Wallet")));
-      });
-
       When("I tap the wallet navigation icon", when.tapID(ids.SHINE_BUTTON("Wallet")), async () => {
         Then("I can see my purchased rewards", then.idVisible(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name)));
       });
-
       When("I tap on a reward", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
         Then("I can see my gift cards on the reward", then.idVisible(ids.WALLET_ITEM_TITLE("£10")));
       });
-
       When("I tap on a gift card", when.tapID(ids.WALLET_ITEM_TITLE("£10")), async () => {
         Then("I should be on the purchase screen with the correct copy", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE, "en-GB"));
       });
-
       When("I go back from the purchased gift card screen", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
         Then("I can see my gift cards on the reward", then.idVisible(ids.WALLET_ITEM_TITLE("£10")));
       });
-
       When("I go back from the reward wallet items screen", when.tapID(ids.LEFT_HEADING_BUTTON(getLocalisedString("Wallet"))), async () => {
         Then("I can see my purchased rewards", then.idVisible(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name)));
       });
-
       When("I go back from the rewards wallet screen", when.tapID(ids.LEFT_HEADING_BUTTON(getLocalisedString("Wallet"))), async () => {
         Then("I am back on the tab view", then.idVisible(ids.BUTTON_TOP_LEFT_BAR));
       });
-
       When("I press the menu button", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
         Then("I can see settings", then.idVisible(ids.MENU_ITEM(getLocalisedString("Settings"))));
       });
-
       When("I tap settings", when.tapID(ids.MENU_ITEM(getLocalisedString("Settings"))), async () => {
         Then("I can see the settings screen", then.idVisible(ids.SETTINGS_SCREEN));
       });
-
       When("I scroll down to change my language", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SETTINGS_SCREEN_SCROLL, ids.TEXT_TEMPLATE(getLocalisedString("Language"))), async () => {
         Then("I can see the option to change my language", then.idVisible(ids.TEXT_TEMPLATE(getLocalisedString("Language"))));
       });
-
       When("I press the option to change my language", when.tapID(ids.TEXT_TEMPLATE(getLocalisedString("Language"))), async () => {
         Then("I can see a different language option", then.idVisible(ids.SETTINGS_NAME("en-US")));
       });
-
       When("I select a different language", when.tapID(ids.SETTINGS_NAME("en-US")), async () => {
         Then("The app should restart, bringing me to the tab view", then.idVisible(ids.NAV_BAR("rewards")));
       });
-
-      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 2000), async () => {
         Then("I can see the wallet navigation icon", then.idVisible(ids.SHINE_BUTTON(getLocalisedString("Wallet"))));
       });
-
       When("I tap the wallet navigation icon", when.tapID(ids.SHINE_BUTTON(getLocalisedString("Wallet"))), async () => {
         Then("I can see my purchased rewards", then.idVisible(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name)));
       });
-
       When("I tap on a reward", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
         Then("I can see my gift cards on the reward", then.idVisible(ids.WALLET_ITEM_TITLE("£10")));
       });
-
       When("I tap on a gift card", when.tapID(ids.WALLET_ITEM_TITLE("£10")), async () => {
         Then("I should be on the purchase screen with the correct copy", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE, "en-US"));
       });
@@ -274,9 +240,7 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("As a member with two concurrent employments, one with store enabled and one without, I should be able to access the store", scenario.start, async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should see that I have access to the rewards store, even though one of my employments does not", then.rewardsLocationModalVisible());
-    });
-    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
+      Then("I should see that I have access to the rewards store, even though one of my employments does not", then.idVisible(ids.REWARDS_SCREEN, 3500));
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
     When("I scroll down this page", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.7), async () => {
@@ -290,7 +254,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see that I have access to the rewards store, as is the default setting value", then.rewardsLocationModalVisible());
       Then("I should see the rewards location modal 'Confirm' button", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 5000));
     });
-    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
       Then("I should see the rewards screen", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 5000));
     });
     When("I scroll down this page", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SHOPFRONT_REWARDS_LIST, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZUNG.data._id), "up"), async () => {
@@ -300,9 +264,6 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("I can login and see the Tillo rewards store item for Hobbycraft", scenario.start, async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_131.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see that I have access to the rewards store", then.rewardsLocationModalVisible());
-    });
-    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
       Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5200)));
       Then("I should see the 'Hobbycraft' reward from Tillo", then.rewardVisible(data.CORE_REWARDS_HOBBYCRAFT));
     });
@@ -323,10 +284,7 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("I can enter my mobile number when claiming a Bluelabel or Shoprite reward voucher", scenario.start, async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see that I have access to the rewards store", then.rewardsLocationModalVisible());
-    });
-    When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
-      Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(25200)));
+      Then("I should see that I have access to the rewards store", then.idVisible(ids.REWARDS_SCREEN, 3000));
     });
     When("I click on the 'MTN' reward", when.tapRewardInList(data.CORE_REWARDS_MTN), async () => {
       Then("I should see the 'MTN' reward page", then.idVisible(`${data.CORE_REWARDS_MTN.data._id}_description`));
@@ -368,10 +326,8 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("Rewards from different regions should not appear together when changing store location", scenario.start, async () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should see that I have access to the rewards store", then.rewardsLocationModalVisible());
-    });
-    When("I confirm the UK as my selected store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3500), async () => {
+    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see that I have access to the rewards store", then.idVisible(ids.REWARDS_SCREEN, 3500));
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
