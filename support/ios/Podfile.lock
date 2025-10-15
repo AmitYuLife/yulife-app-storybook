@@ -1185,7 +1185,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-yu-health (1.3.19):
+  - react-native-yu-health (1.3.22):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2083,7 +2083,7 @@ SPEC CHECKSUMS:
   react-native-video: 0d5d432c94ee0dafe05ed4927db19ed89b8c3ea5
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
   react-native-webview: 05bae3a03a1e4f59568dfc05286c0ebf8954106c
-  react-native-yu-health: 940a1b8e6e4cc899060c712620c039dd4d42619a
+  react-native-yu-health: 97240d33b1767ac9e5c34b5a1dffb3a6749cb412
   react-native-yu-watch: 335f5bf7336d74e6097eceaa42d5b1d22afbf1bf
   React-nativeconfig: ba9a2e54e2f0882cf7882698825052793ed4c851
   React-NativeModulesApple: 8d11ff8955181540585c944cf48e9e7236952697
