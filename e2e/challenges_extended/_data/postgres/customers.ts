@@ -53,6 +53,7 @@ export const CUSTOMER_BODY_COACH = {
     firstName: "Joe",
     lastName: "Wicks",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 

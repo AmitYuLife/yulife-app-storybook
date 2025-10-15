@@ -13,10 +13,8 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
       Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
     });
     When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-      When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
-        Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN));
-        Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible);
-      });
+      Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN));
+      Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible);
     });
     When("I scroll back up to the top", when.scrollWithLimitedAttemptsUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Smart Health"), "down"), async () => {
       When("I tap the smart health tab", when.tapID(ids.TEXT_TEMPLATE("Smart Health")), async () => {
@@ -191,10 +189,8 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   Scenario("I can see a restricted wellbeing hub item when I fulfil the eligibility criteria", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_128_WELLBEING_ELIGIBILITY, data.AUTH_128), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
-          When("I scroll to the Restricted tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Restricted"), "down"), async () => {
-            Then("I should see the Restricted product on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_10.data.title));
-          });
+        When("I scroll to the Restricted tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Restricted"), "down"), async () => {
+          Then("I should see the Restricted product on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_10.data.title, 3000));
         });
       });
     });
@@ -203,9 +199,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
   Scenario("I cannot see a restricted wellbeing hub item when I fulfil only some of the eligibility criteria", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_129_WELLBEING_ELIGIBILITY, data.AUTH_129), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-        When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
-          Then("I shouldn't see the restricted product on the screen", then.textNotVisible(data.WELLBEING_HUB_ITEM_10.data.title));
-        });
+        Then("I shouldn't see the restricted product on the screen", then.textNotVisible(data.WELLBEING_HUB_ITEM_10.data.title, 3500));
       });
     });
   });

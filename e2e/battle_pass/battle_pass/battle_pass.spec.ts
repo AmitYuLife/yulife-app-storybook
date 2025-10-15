@@ -14,13 +14,10 @@ Feature("I can view and use all battle pass features", async () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
         Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 7000));
+          Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2500));
+          Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
         });
       });
-    });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 5000), async () => {
-      Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2500));
-      Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
     });
     When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
       Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
@@ -100,10 +97,7 @@ Feature("I can view and use all battle pass features", async () => {
     When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
       Then("I should be on the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)));
     });
-    When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
-      Then("I should see the store location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
-    });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 4000), async () => {
+    When("I go back to the rewards screen", when.tapID(ids.NAV_BAR("rewards"), 2000), async () => {
       When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
         Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
         Then("I should see the correct season title", then.idVisible(ids.BATTLE_PASS_TITLE("Season of Harmony"), 2000));
@@ -172,12 +166,9 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I go back", when.tapID(ids.BACK_BUTTON, 2500), async () => {
       When("I go to the rewards store", when.tapID(ids.NAV_BAR("rewards"), 4000), async () => {
-        Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
-      });
-    });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 10000), async () => {
-      When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
-        Then("I should be on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+        When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
+          Then("I should be on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+        });
       });
     });
     When("I tap on the Extra Challenge reward tile", when.tapID(ids.BATTLE_PASS_LIST_ITEM(2), 2000), async () => {
@@ -234,12 +225,9 @@ Feature("I can view and use all battle pass features", async () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_ACCOUNT_2.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
         Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+          Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
         });
       });
-    });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 4000), async () => {
-      Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
     });
     When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
       Then("I should be able to see the battle pass", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
@@ -250,12 +238,9 @@ Feature("I can view and use all battle pass features", async () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
         Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+          Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
         });
       });
-    });
-    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 4000), async () => {
-      Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
     });
     When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 2500), async () => {
       Then("I should see the 'M&S' coupon available for purchase", then.idVisible(ids.WALLET_CARD_TITLE("M&S"), 2000));

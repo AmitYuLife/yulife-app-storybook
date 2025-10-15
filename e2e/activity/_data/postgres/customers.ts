@@ -134,6 +134,7 @@ export const CUSTOMER_18 = {
     lastName: "Scott",
     status: "onboarded",
     customer_provided_date_of_birth: moment().subtract(30, "years"),
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
