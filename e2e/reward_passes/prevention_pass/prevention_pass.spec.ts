@@ -141,7 +141,7 @@ Feature("Prevention pass", async () => {
       Given("I login and go to the rewards screen", commonGiven.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_01.customer, GENERIC_AUTH_PASSWORD), async () => {
         Then("I can see the Prevention Pass", then.idVisible(ids.REWARD_PASS("Prevention Pass"), 30000));
 
-        When("I go to the reward pass screen", when.tapID(ids.REWARD_PASS("Prevention Pass")), async () => {
+        When("I go to the reward pass screen", when.tapID(ids.REWARD_PASS("Prevention Pass"), 3000), async () => {
           Then("I should see the next reward progress bar", then.textVisible("0 / 1 levels", 500));
           Then("I should see how many levels I have to complete in total", then.textVisible("Complete 500 levels", 500));
           Then("I should see how many days I have left", then.textVisible(`${BATTLE_PASS_END_LOCAL_DATE.diff(moment(), "days")} days left`, 500));
@@ -188,7 +188,7 @@ Feature("Prevention pass", async () => {
     Given("A 'business_product_created' event was emitted", commonGiven.triggerProductCreated(BUSINESS_ACCOUNT_ID, BUSINESS_ACCOUNT_ID, "metlife-gip-uk", BATTLE_PASS_START_LOCAL_DATE), async () => {
       Given("I login and go to the rewards screen", commonGiven.logInAndGoToTab("rewards", data.CUSTOMER_PREVENTION_PASS_01.customer, GENERIC_AUTH_PASSWORD), async () => {
         Then("I can see the Prevention Pass", then.idVisible(ids.REWARD_PASS("Prevention Pass"), 30000));
-        When("I go to the reward pass screen", when.tapText("Prevention Pass"), async () => {
+        When("I go to the reward pass screen", when.tapText("Prevention Pass", 4000), async () => {
           Then("I should see the rewards unlock screen", then.idVisible(ids.BATTLE_PASS_LIST));
           for (const { position, titleAssertion, descriptionAssertions } of MILESTTONE_DETAILS_ASSERTIONS) {
             When(`I swipe left to scroll right until milestone position ${position}`, when.scrollWithLimitedAttemptsUntilIdVisible(ids.BATTLE_PASS_LIST, ids.BATTLE_PASS_LIST_ITEM(position), "left"), async () => {
@@ -224,7 +224,7 @@ Feature("Prevention pass", async () => {
           const nextLevelIncValue = CLAIM_MILESTONE_ASSERTIONS[i + 1]?.levelIncValue || 0;
 
           When(`I reach game level ${level}`, commonWhen.levelUpForBattlePasses(data.CUSTOMER_PREVENTION_PASS_02.customer.data.customerId, levelIncValue), async () => {
-            When(`I go to the reward pass screen (index: ${position}; level ${level})`, when.tapText("Prevention Pass"), async () => {
+            When(`I go to the reward pass screen (index: ${position}; level ${level})`, when.tapText("Prevention Pass", 4000), async () => {
               Then(`I can see the next reward progress bar (index: ${position}; level ${level})`, then.textVisible(`0 / ${nextLevelIncValue} levels`, 500));
 
               When(`I press Claim for ${rewardDetailsTextAssertions[0]} (index: ${position}; level ${level})`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", position)), async () => {

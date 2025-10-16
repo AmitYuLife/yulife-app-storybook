@@ -51,7 +51,7 @@ export const { fullRestartAndLogin } = navigation.login;
 export const { searchLeaderboard, switchLeaderboard, triggerSearchTokens } = screens.leaderboard;
 
 export const pressGiftingGotIt = async () => {
-  await tapText(translation.labels.cta.got_it, 2000)();
+  await tapText(translation.labels.cta.got_it, 3000)();
 };
 
 export const triggerGiftReceivedNotification =

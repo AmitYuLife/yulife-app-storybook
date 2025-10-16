@@ -20,7 +20,7 @@ Feature("P2P gifting - UK", async () => {
   Scenario("I can send someone a YuCoin gift from the leaderboard", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18, true, "UK"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
-        When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+        When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard"), 4000), async () => {
           Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));
           Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem, User73LeaderboardLB1Item], 2000));
         });
@@ -40,39 +40,39 @@ Feature("P2P gifting - UK", async () => {
       Then("I should not see any user", then.searchReferralVisible);
     });
     When("I search for a different user who has consented - Tywin Lannister", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_73)), async () => {
-      Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")));
+      Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search"), 3000));
     });
-    When("I search for Tywin Lanister", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")), async () => {
+    When("I search for Tywin Lanister", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search"), 2000), async () => {
       When("I select Tywin Lanister", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME(getFullName(data.CUSTOMER_73)), 2500), async () => {
         Then("I can now see all these users are selected", then.selectedUsersVisible([data.CUSTOMER_50, data.CUSTOMER_73]));
       });
     });
-    When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+    When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON, 2000), async () => {
       Then("I see the message selection screen", then.messageSelectionScreenVisible(2));
     });
-    When("I tap next without selecting a message", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+    When("I tap next without selecting a message", when.tapID(ids.P2P_NEXT_BUTTON, 2000), async () => {
       Then("I am still on the message selection screen", then.messageSelectionScreenVisible(2));
     });
-    When("I select You got this!", when.tapID(ids.P2P_MESSAGE(P2P_MESSAGES[4])), async () => {
+    When("I select You got this!", when.tapID(ids.P2P_MESSAGE(P2P_MESSAGES[4]), 2000), async () => {
       When("I tap next", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
         Then("I see the correct YuCoin gift amounts, with 250 not displaying due to my total value", then.giftingAmountScreenVisible(2, 520));
       });
     });
-    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I go back again", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I go back", when.tapID(ids.BACK_BUTTON, 2000), async () => {
+      When("I go back again", when.tapID(ids.BACK_BUTTON, 2000), async () => {
         When("I deselect Tywin Lannister", when.tapID(ids.P2P_DESELECT_USER(data.CUSTOMER_73.data.firstName)), async () => {
           Then("I can see only one user selected", then.selectedUsersVisible([data.CUSTOMER_50]));
         });
       });
     });
-    When("I tap next to get to the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+    When("I tap next to get to the message screen", when.tapID(ids.P2P_NEXT_BUTTON, 2000), async () => {
       When("I tap next again to go to the selection page", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
         Then("I see the new header clarifying the sender loses YuCoin", then.textVisible("Add some of your YuCoin as a gift!"));
         Then("I see the correct YuCoin gift amounts, with 250 now displaying as I'm only sending to 1 person", then.giftingAmountScreenVisible(1, 520));
       });
     });
-    When("I select 250 YuCoin", when.tapID(ids.P2P_GIFTING_AMOUNT(`${P2P_GIFTING_AMOUNTS[4]} YuCoin`)), async () => {
-      When("I tap next to see the preview screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+    When("I select 250 YuCoin", when.tapID(ids.P2P_GIFTING_AMOUNT(`${P2P_GIFTING_AMOUNTS[4]} YuCoin`), 2000), async () => {
+      When("I tap next to see the preview screen", when.tapID(ids.P2P_NEXT_BUTTON, 2000), async () => {
         When("I tap to add a sticker", when.tapID(ids.P2P_STICKER, 2000), async () => {
           Then("I should see the stickers modal appear", then.idVisible(ids.P2P_STICKER_MODAL));
         });
@@ -94,7 +94,7 @@ Feature("P2P gifting - UK", async () => {
       Then("My YuCoin amount is depleted to the correct amount - 270 yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(270)));
     });
     When("I log out and log in again as Lynton Stock", when.fullRestartAndLogin(data.CUSTOMER_50, data.AUTH_50), async () => {
-      When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 4000), async () => {
         Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
       });
     });

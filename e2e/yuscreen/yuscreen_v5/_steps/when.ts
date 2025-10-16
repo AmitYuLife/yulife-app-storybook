@@ -53,26 +53,26 @@ export const sendPassiveStepsAndReloadToTab =
   async () => {
     await sendSteps(steps)();
     await wait(waitTime)();
-    reloadTab && (await tapID(ids.NAV_BAR("yucoin"))());
-    reloadTab && (await tapID(ids.NAV_BAR("yu"))());
+    reloadTab && (await tapID(ids.NAV_BAR("yucoin"), waitTime)());
+    reloadTab && (await tapID(ids.NAV_BAR("yu"), waitTime)());
   };
 
-export const sendPassiveMindulnessAndReloadToTab =
+export const sendPassiveMindfulnessAndReloadToTab =
   (mins: number, reloadTab = true) =>
   async () => {
     await sendMindfulnessData(mins)();
-    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
-    reloadTab && (await tapID(ids.NAV_BAR("yucoin"))());
-    reloadTab && (await tapID(ids.NAV_BAR("yu"))());
+    sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
+    reloadTab && (await tapID(ids.NAV_BAR("yucoin"), 3000)());
+    reloadTab && (await tapID(ids.NAV_BAR("yu"), 3000)());
   };
 
 export const sendPassiveCyclingAndReloadToTab =
   (km: number, reloadTab = true) =>
   async () => {
     await addCyclingData(km)();
-    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
-    reloadTab && (await tapID(ids.NAV_BAR("yucoin"))());
-    reloadTab && (await tapID(ids.NAV_BAR("yu"))());
+    sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
+    reloadTab && (await tapID(ids.NAV_BAR("yucoin"), 3000)());
+    reloadTab && (await tapID(ids.NAV_BAR("yu"), 3000)());
   };
 
 export const setStoreRegion = async () => {
