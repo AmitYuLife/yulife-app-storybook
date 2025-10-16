@@ -180,6 +180,7 @@
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
     "pathways": {
+      "header": "Daily Reflection",
       "user_mood": {
         "heading": "Your week",
         "view_calendar": "View calendar"
@@ -187,7 +188,10 @@
       "personal_health_path": {
         "heading": "Personal Health Path"
       },
-      "reflect": "reflect",
+      "today": "Today",
+      "day": "Day %{day}",
+      "reflect": "Reflect",
+      "reflect_in": "Reflect in %{time}",
       "secondary_button_label": "Go to Wellbeing Hub"
     },
     "products": {
