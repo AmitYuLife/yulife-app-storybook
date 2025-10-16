@@ -32,7 +32,7 @@ const AchievementsContainer = ({ currentViewedUserId, isInspectingUser }: IProps
   }, [data?.getMobileGameUserAchievements?.achievements]);
 
   useEffect(() => {
-    if (unseenAchievements.length > 0) {
+    if (unseenAchievements.length > 0 && !isInspectingUser) {
       showYuModal({
         component: {
           id: MODALS.unlockedAchievementsModal,
@@ -41,7 +41,7 @@ const AchievementsContainer = ({ currentViewedUserId, isInspectingUser }: IProps
         },
       });
     }
-  }, [unseenAchievements]);
+  }, [unseenAchievements, isInspectingUser]);
 
   const achievementsCategories = useMemo(() => {
     const categories = data?.getMobileGameUserAchievements?.categories || [];
