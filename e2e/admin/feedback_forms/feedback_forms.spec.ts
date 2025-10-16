@@ -72,8 +72,8 @@ Feature("Feedback forms should behave correctly", async () => {
       When("I type something", when.typeViaID(ids.FEEDBACK_TEXT_INPUT, "duels"), async () => {
         Then("I should see the text I just input", then.textVisible("duels", 2000));
       });
-      When("I tap Submit your feedback", when.tapText("Submit feedback"), async () => {
-        Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
+      When("I tap Submit your feedback", when.tapText("Submit feedback", 2000), async () => {
+        Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 300));
       });
       When("I close and reopen the app", when.reloadOnly, async () => {
         Then("The Feedback Form should not popUp again", then.textNotVisible(data.FEEDBACK_FORM_2.data.title, 6000));

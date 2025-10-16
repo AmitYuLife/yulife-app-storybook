@@ -10,7 +10,7 @@ import { GiftFromBizUsa2 } from "./_resources/fixture";
 
 const locale = process.env.TARGET_LOCALE || "en-US";
 
-Feature("P2P gifting", async () => {
+Feature("P2P gifting - USA", async () => {
   Scenario("As a user on the Mutual of Omaha pricing tier search features should be disabled.", scenario.start, async () => {
     Given("I log in", given.logInAndGoToTab("yucoin", data.CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
       When("I trigger the issue coin to NPC Biz", when.triggerIssueCoinToNpcBiz(data.BUSINESS_ACCOUNT_USA_2_NPC.business.data.businessAccountId, 30000, "1234"), async () => {
