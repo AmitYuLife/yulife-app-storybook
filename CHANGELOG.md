@@ -7,6 +7,63 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.85.0] - 2025-10-16
+
+### Features
+
+- Task GS-1983: Purge enableFiitInApp feature toggle from e2e test data
+- Task GS-1982: Purge showInspect feature toggle from e2e test data
+
+### Bugfixes
+
+- Bugfix GS-2006: Dont show unlocked achievements modal when inspecting user
+- Bugfix ENG-4349: Leaderboard opt-out doesnt clear them from user Search history
+- Bugfix GS-1938: SDUI contentItemBlurredRays issue
+- Bugfix: Use native http/https instead of axios for version-label script
+
+### Tasks
+
+- Task GS-2001: Bump Yu Health version to 1.3.22
+- Task GS-1976: Mood calendar container
+- Task GS-1997: Remove bugsnag error for yu health sample query
+- Task DEVOPS-4453: Fail detox CI jobs on test failures
+- Task GS-1664: Purge showGoals
+- Task: Use different token for version-label
+- Task: Set GITLAB_TOKEN as variable for version-label.yml
+- Task GS-1993: Attach label when MR is merged with the app version
+- Task GS-1989: Limit pedometer bugsnag spam
+- Task CTE-410: patch-package the vibed mixpanel code
+- Task GS-1938: success screen coupons
+- (grafted) Task DEVOPS-4416: API/RN detox test trigger with MR comments
+- Task GS-1947: Use onLeftIconPress instead of onRightIconPress on inspect screen
+- Task DEVOPS-4251: iOS Detox build
+
+### Chores
+
+- chore DEVOPS-4449: Set `GIT_DEPTH` CI variable to `0` on pipeline jobs using `git diff`
+- (grafted) chore: DEVOPS-4298: Update assume-aws-role-with-web-identity version to 2.0.0
+- (grafted) Chore - Updated translations
+
+### Extra
+
+- Bump axios from 1.12.0 to 1.12.1
+- Detox GS-2002: Preset User Location
+- Detox: fixes for Mutual of Omaha spec
+- Detox: Rewards Voucher Purchase
+- [Security] Bump axios from 1.10.0 to 1.12.0
+- Detox: Donation List Flow
+- DEVOPS-4454 - Bump @yu-life/yulife-tolgee-cli 2.1.3
+- Detox: YuScreen Product Cards
+- Hotfix: Never send mixpanel events unless identified
+- DEVOPS-4414 - API pnpm
+- (grafted) Merge branch 'detox/mood-monitor-reward' into 'develop'
+- Detox NVS-1666: Fix multi reward purchase scrolling issues
+- Bugifx GS-1948: Markdown images position for arabic
+- Detox NVS-1664: Fix locked reward scenario scrolling issues
+- Detox NVS-1662: Purge assertion helper with no assertions `onRewardScreen`
+- Detox NVS-1658: Fix Prevention Pass FAQ scrolling assertions
+- Resolve CTE-412
+
 ## [4.84.0] - 2025-10-08
 
 ### Bugfixes
