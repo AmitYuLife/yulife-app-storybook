@@ -54,10 +54,10 @@ const getIcon = (dayNumber: number, progress: number, currentDayIndex: number) =
   }
 
   if (dayNumber <= progress || dayNumber === currentDayIndex) {
-    return require("@assets/icons/yu-coin.webp");
+    return require("@assets/icons/yucoin.png");
   }
 
-  return require("@assets/icons/coin-gray.webp");
+  return require("@assets/icons/yucoin-gray.webp");
 };
 
 export default PathwaysReflectProgress;
