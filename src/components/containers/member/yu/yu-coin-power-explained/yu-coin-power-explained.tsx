@@ -1,5 +1,4 @@
 import { isEmpty } from "lodash";
-import { FlashList } from "@shopify/flash-list";
 import { ScrollView, View, ViewStyle } from "react-native";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 
@@ -8,7 +7,7 @@ import { Colours, Style, StyleSheet } from "@styles";
 import { useQuery } from "@apollo/client";
 import { YuCoinPowerCard } from "@molecules";
 import { Navigation } from "@navigation/main";
-import { Box, TextTemplate } from "@atoms";
+import { Box, TextTemplate, FlatList } from "@atoms";
 import YuCoinPowerExplainedProduct from "./yu-coin-power-explained-product";
 import YuCoinPowerExplainedSkeleton from "./yu-coin-power-explained-skeleton";
 import { ActivityPanel, GenericHeadingAbsolute, GenericHeadingPad, ProductSelect } from "@organisms";
@@ -137,13 +136,12 @@ const YuCoinPowerExplained = () => {
                   {section.title}
                 </TextTemplate>
               </View>
-              <FlashList
+              <FlatList
                 horizontal={true}
                 data={section.items}
                 keyExtractor={keyExtractor}
                 showsHorizontalScrollIndicator={false}
                 ItemSeparatorComponent={itemSeperator}
-                estimatedItemSize={ESTIMATED_ITEM_SIZE}
                 contentContainerStyle={styles.paddedSection}
                 renderItem={({ item }) => (
                   <ActivityPanel

@@ -1,6 +1,6 @@
 import { memo, RefObject, useRef } from "react";
 import { ImageSourcePropType, View } from "react-native";
-import { FlashList } from "@shopify/flash-list";
+import { FlatList } from "react-native";
 import { BattlePassList, BattlePassProgressBar } from "@organisms";
 import { Colours, Style, StyleSheet } from "@styles";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
@@ -23,7 +23,7 @@ interface IBattlePassHeaderProps extends IBoxProps {
   onPressWallet?: () => void;
   items: IBattlePassListItem[];
   onScrollStart?: () => void;
-  listRef?: RefObject<FlashList<IBattlePassListItem>>;
+  listRef?: RefObject<FlatList<IBattlePassListItem>>;
   progressStatus: IBattlePassProgressBar;
 }
 
@@ -81,7 +81,7 @@ const BattlePassHeader = ({
         onLoad={scrollToReward}
         battlePassType="esg"
         onScrollStart={onScrollStart}
-        contentContainerStyle={styles.battlePassList}
+        contentContainerStyle={styles.contentContainer}
       />
       <View style={styles.sectionWrapper}>
         <BattlePassProgressBar {...progressStatus} />
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
   title: {
     marginTop: Style.adjust(8),
   },
-  battlePassList: {
-    paddingLeft: Style.adjust(16),
+  contentContainer: {
+    paddingHorizontal: Style.adjust(16),
   },
   sectionWrapper: {
     marginVertical: Style.adjust(16),

@@ -2,9 +2,9 @@ import { FC, memo, useCallback, useEffect, useMemo, useRef, useState } from "rea
 import { View } from "react-native";
 import { HealthSmokingStreakCarouselItem } from "@redux/health-smoking/health-smoking.types";
 import { Colours, Style, StyleSheet } from "@styles";
-import { FlashList } from "@shopify/flash-list";
 import SmokingCarouselList from "./carousel/smoking-carousel-list";
 import { ISmokingCarouselListItem } from "@organisms/smoking-carousel/carousel/smoking-carousel-list-item";
+import { FlatList as RNFlatList } from "react-native";
 
 interface Props {
   streak: HealthSmokingStreakCarouselItem[];
@@ -27,7 +27,7 @@ export const SmokingCarousel: FC<Props> = memo(
         })),
       [showClaimButton, streak]
     );
-    const listRef = useRef<FlashList<ISmokingCarouselListItem>>(null);
+    const listRef = useRef<RNFlatList<ISmokingCarouselListItem>>(null);
 
     const [hasScrolled, setHasScrolled] = useState(false);
     const [hasUserTouched, setHasUserTouched] = useState(false);
@@ -65,12 +65,7 @@ export const SmokingCarousel: FC<Props> = memo(
 
     return (
       <View style={styles.container}>
-        <SmokingCarouselList
-          contentContainerStyle={styles.contentContainer}
-          items={rewardListItems}
-          ref={listRef}
-          onTouchStart={onTouchStart}
-        />
+        <SmokingCarouselList items={rewardListItems} ref={listRef} onTouchStart={onTouchStart} />
       </View>
     );
   }
@@ -79,8 +74,5 @@ export const SmokingCarousel: FC<Props> = memo(
 const styles = StyleSheet.create({
   container: {
     paddingTop: Style.adjust(16),
-  },
-  contentContainer: {
-    paddingHorizontal: Style.adjust(36),
   },
 });

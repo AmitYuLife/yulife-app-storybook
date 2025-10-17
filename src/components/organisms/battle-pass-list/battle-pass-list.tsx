@@ -1,38 +1,29 @@
 import React, { forwardRef, memo, useCallback } from "react";
-import { View } from "react-native";
+import { View, ViewStyle } from "react-native";
 import BattlePassListItem, {
-  ENTERPRISE_REWARD_ITEM_WIDTH,
   IBattlePassListItem,
+  ENTERPRISE_REWARD_ITEM_WIDTH,
 } from "@organisms/battle-pass-list-item/battle-pass-list-item";
-import { ContentStyle, FlashList } from "@shopify/flash-list";
 import { Style, StyleSheet } from "@styles";
+import { FlatList } from "@atoms";
+import { FlatList as RNFlatList } from "react-native";
 import { BATTLE_PASS_LIST } from "@ids";
 import { VoidFunction } from "@utils";
 
 export interface IBattlePassList {
   items: IBattlePassListItem[];
-  contentContainerStyle?: ContentStyle;
   battlePassType?: string;
-  onBlankArea?: VoidFunction;
   onTouchStart?: VoidFunction;
   onScrollStart?: VoidFunction;
   onLoad?: () => void;
   initialScrollIndex?: number;
+  contentContainerStyle?: ViewStyle;
 }
 
 const BattlePassList = forwardRef(
   (
-    {
-      items,
-      contentContainerStyle,
-      onScrollStart,
-      onBlankArea,
-      onTouchStart,
-      onLoad,
-      battlePassType,
-      initialScrollIndex,
-    }: IBattlePassList,
-    forwardRefProp: React.MutableRefObject<FlashList<IBattlePassListItem>>
+    { items, onScrollStart, onLoad, battlePassType, initialScrollIndex, contentContainerStyle }: IBattlePassList,
+    forwardRefProp: React.MutableRefObject<RNFlatList<IBattlePassListItem>>
   ) => {
     const renderItem = useCallback(
       ({ item }: { item: IBattlePassListItem }) => {
@@ -46,26 +37,35 @@ const BattlePassList = forwardRef(
     );
 
     return (
-      <FlashList
+      <FlatList
+        style={styles.wrapper}
         testID={BATTLE_PASS_LIST}
-        ref={forwardRefProp}
+        forwardRef={forwardRefProp}
+        onLayout={onLoad}
         horizontal={true}
-        estimatedItemSize={ENTERPRISE_REWARD_ITEM_WIDTH}
         data={items}
         onScrollBeginDrag={onScrollStart}
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
-        onBlankArea={onBlankArea}
-        onTouchStart={onTouchStart}
-        contentContainerStyle={contentContainerStyle}
-        onLoad={onLoad}
         initialScrollIndex={initialScrollIndex}
+        getItemLayout={getItemLayout}
+        disableThrottle={true}
+        contentContainerStyle={contentContainerStyle}
       />
     );
   }
 );
 
+const getItemLayout = (_: unknown, index: number) => ({
+  length: ENTERPRISE_REWARD_ITEM_WIDTH + Style.adjust(8),
+  offset: (ENTERPRISE_REWARD_ITEM_WIDTH + Style.adjust(8)) * index,
+  index,
+});
+
 const styles = StyleSheet.create({
+  wrapper: {
+    height: ENTERPRISE_REWARD_ITEM_WIDTH,
+  },
   itemWrapper: {
     marginHorizontal: Style.adjust(4),
   },
