@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { Keyboard } from "react-native";
+import { Alert, Keyboard } from "react-native";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
@@ -88,20 +88,24 @@ export default function AddBeneficiaryModal(props: IProps) {
   useBackHandler(backHandler);
 
   const navigateToBeneficiaryContainer = async (beneficiary: Beneficiary) => {
-    await onSaveBeneficiary(beneficiary);
-    if (pushEditRoot) {
-      Navigation.push(ROUTES.productDetails, {
-        component: {
-          id: ROUTES.beneficiary,
-          name: ROUTES.beneficiary,
-          passProps: {
-            productId,
+    try {
+      await onSaveBeneficiary(beneficiary);
+
+      if (pushEditRoot) {
+        Navigation.push(ROUTES.productDetails, {
+          component: {
+            id: ROUTES.beneficiary,
+            name: ROUTES.beneficiary,
+            passProps: {
+              productId,
+            },
           },
-        },
-      });
+        });
+      }
+
       dismissModal();
-    } else {
-      dismissModal();
+    } catch (error) {
+      Alert.alert(error.message);
     }
   };
 
