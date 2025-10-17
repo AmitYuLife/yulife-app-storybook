@@ -1,7 +1,7 @@
 PODS:
-  - Apollo (1.23.0):
-    - Apollo/Core (= 1.23.0)
-  - Apollo/Core (1.23.0)
+  - Apollo (1.24.0):
+    - Apollo/Core (= 1.24.0)
+  - Apollo/Core (1.24.0)
   - boost (1.83.0)
   - BVLinearGradient (2.8.3):
     - React-Core
@@ -1185,7 +1185,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-yu-health (1.3.22):
+  - react-native-yu-health (1.3.23):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2011,7 +2011,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Apollo: b3af4f81da6fd55ba0214cde8b8da64d8f2dc7d8
+  Apollo: 2bb77b5d6e45118bff7020d4ca20b9a3e606ecf9
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
   CleverTap-iOS-SDK: 78ea6d752d84918f0426f7b3959777d862bcb348
@@ -2083,7 +2083,7 @@ SPEC CHECKSUMS:
   react-native-video: 0d5d432c94ee0dafe05ed4927db19ed89b8c3ea5
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
   react-native-webview: 05bae3a03a1e4f59568dfc05286c0ebf8954106c
-  react-native-yu-health: 97240d33b1767ac9e5c34b5a1dffb3a6749cb412
+  react-native-yu-health: 1133f0b4a83129f29c6888f8e40d58f4f212ba5a
   react-native-yu-watch: 335f5bf7336d74e6097eceaa42d5b1d22afbf1bf
   React-nativeconfig: ba9a2e54e2f0882cf7882698825052793ed4c851
   React-NativeModulesApple: 8d11ff8955181540585c944cf48e9e7236952697
