@@ -1438,11 +1438,15 @@
       "subheading": "インターネット接続をご確認ください。"
     },
     "pathways": {
+      "day": "%{day}日目",
+      "header": "デイリー リフレクション",
       "personal_health_path": {
         "heading": "パーソナル ヘルス パス"
       },
       "reflect": "反映",
+      "reflect_in": "%{time} に反映",
       "secondary_button_label": "Well-beingセンター へ移動",
+      "today": "Today",
       "user_mood": {
         "heading": "あなた の 週",
         "view_calendar": "カレンダー を 表示 "

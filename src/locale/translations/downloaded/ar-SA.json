@@ -1438,11 +1438,15 @@
       "subheading": "تحقق من اتصالك بالإنترنت."
     },
     "pathways": {
+      "day": "يوم %{day}",
+      "header": "تأمل يومي",
       "personal_health_path": {
         "heading": "مسار الصحة الشخصية"
       },
-      "reflect": "فكر",
+      "reflect": "يعكس",
+      "reflect_in": "يعكس في %{time}",
       "secondary_button_label": "اذهب إلى مركز الرفاهية",
+      "today": "اليوم",
       "user_mood": {
         "heading": "أسبوعك",
         "view_calendar": "عرض التقويم"

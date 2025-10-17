@@ -1438,11 +1438,15 @@
       "subheading": "Comprueba tu conexión a Internet."
     },
     "pathways": {
+      "day": "Día %{day}",
+      "header": "Reflexión diaria",
       "personal_health_path": {
         "heading": "Trayectoria personal de salud"
       },
-      "reflect": "reflejar",
+      "reflect": "Reflect",
+      "reflect_in": "Reflejar en %{time}",
       "secondary_button_label": "Ir a Wellbeing Hub",
+      "today": "Hoy",
       "user_mood": {
         "heading": "Su semana",
         "view_calendar": "Ver el calendario"
