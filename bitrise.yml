@@ -508,7 +508,7 @@ workflows:
         is_expand: false
     - RELEASE_ENVIRONMENT: uat
     steps:
-    - xcode-archive@4.7:
+    - xcode-archive@5:
         inputs:
         - team_id: 739BJV2T6V
         - force_team_id: 739BJV2T6V
