@@ -54,7 +54,7 @@ const getIcon = (dayNumber: number, progress: number, currentDayIndex: number) =
   }
 
   if (dayNumber <= progress || dayNumber === currentDayIndex) {
-    return require("@assets/icons/coin.webp");
+    return require("@assets/icons/yu-coin.webp");
   }
 
   return require("@assets/icons/coin-gray.webp");
