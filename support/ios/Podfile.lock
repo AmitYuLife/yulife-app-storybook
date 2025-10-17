@@ -1,7 +1,7 @@
 PODS:
-  - Apollo (1.24.0):
-    - Apollo/Core (= 1.24.0)
-  - Apollo/Core (1.24.0)
+  - Apollo (1.25.2):
+    - Apollo/Core (= 1.25.2)
+  - Apollo/Core (1.25.2)
   - boost (1.83.0)
   - BVLinearGradient (2.8.3):
     - React-Core
@@ -1595,7 +1595,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNShare (12.0.3):
+  - RNShare (12.1.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2011,7 +2011,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Apollo: 2bb77b5d6e45118bff7020d4ca20b9a3e606ecf9
+  Apollo: dc2e92c10077c8ac5e4b807426c0f557fe4cee1c
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
   CleverTap-iOS-SDK: 78ea6d752d84918f0426f7b3959777d862bcb348
@@ -2120,7 +2120,7 @@ SPEC CHECKSUMS:
   RNFlashList: b521ebdd7f9352673817f1d98e8bdc0c8cf8545b
   RNGestureHandler: 2282cfbcf86c360d29f44ace393203afd5c6cff7
   RNReanimated: b0728bed09875d78b9a3a0ba0e2d1171f63f8b5a
-  RNShare: 22717e910836a66cb7255b3b8c4ab06cbe346e27
+  RNShare: 3258b1b38b3336ef2d93b17a800770d75e424e21
   RNSVG: 43b64ed39c14ce830d840903774154ca0c1f27ec
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageAVIFCoder: 8348fef6d0ec69e129c66c9fe4d74fbfbf366112
