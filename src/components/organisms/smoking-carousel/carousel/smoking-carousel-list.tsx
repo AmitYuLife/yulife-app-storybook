@@ -1,18 +1,18 @@
 import React, { forwardRef, memo, useCallback } from "react";
 import { View } from "react-native";
-import { ContentStyle, FlashList } from "@shopify/flash-list";
+import { FlatList } from "@atoms";
+import { FlatList as RNFlatList } from "react-native";
 import { Style, StyleSheet } from "@styles";
 import { SMOKING_CAROUSEL_LIST } from "@ids";
 import { VoidFunction } from "@utils";
 import SmokingCarouselListItem, {
   ENTERPRISE_REWARD_ITEM_WIDTH,
+  ENTERPRISE_REWARD_ITEM_HEIGHT,
   ISmokingCarouselListItem,
 } from "./smoking-carousel-list-item";
 
 export interface ISmokingCarouselList {
   items: ISmokingCarouselListItem[];
-  contentContainerStyle?: ContentStyle;
-  onBlankArea?: VoidFunction;
   onTouchStart?: VoidFunction;
   onScrollStart?: VoidFunction;
   onLoad?: () => void;
@@ -21,16 +21,8 @@ export interface ISmokingCarouselList {
 
 const SmokingCarouselList = forwardRef(
   (
-    {
-      items,
-      contentContainerStyle,
-      onScrollStart,
-      onBlankArea,
-      onTouchStart,
-      onLoad,
-      initialScrollIndex,
-    }: ISmokingCarouselList,
-    forwardRefProp: React.MutableRefObject<FlashList<ISmokingCarouselListItem>>
+    { items, onScrollStart, onTouchStart, onLoad, initialScrollIndex }: ISmokingCarouselList,
+    forwardRefProp: React.MutableRefObject<RNFlatList<ISmokingCarouselListItem>>
   ) => {
     const renderItem = useCallback(({ item }: { item: ISmokingCarouselListItem }) => {
       return (
@@ -41,28 +33,40 @@ const SmokingCarouselList = forwardRef(
     }, []);
 
     return (
-      <FlashList
+      <FlatList
+        style={styles.wrapper}
         testID={SMOKING_CAROUSEL_LIST}
-        ref={forwardRefProp}
+        forwardRef={forwardRefProp}
+        onLayout={onLoad}
         horizontal={true}
-        estimatedItemSize={ENTERPRISE_REWARD_ITEM_WIDTH}
         data={items}
         onScrollBeginDrag={onScrollStart}
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
-        onBlankArea={onBlankArea}
         onTouchStart={onTouchStart}
-        contentContainerStyle={contentContainerStyle}
-        onLoad={onLoad}
         initialScrollIndex={initialScrollIndex}
+        getItemLayout={getItemLayout}
+        contentContainerStyle={styles.contentContainer}
       />
     );
   }
 );
 
+const getItemLayout = (_: unknown, index: number) => ({
+  length: ENTERPRISE_REWARD_ITEM_WIDTH + Style.adjust(8),
+  offset: (ENTERPRISE_REWARD_ITEM_WIDTH + Style.adjust(8)) * index,
+  index,
+});
+
 const styles = StyleSheet.create({
+  wrapper: {
+    height: ENTERPRISE_REWARD_ITEM_HEIGHT,
+  },
   itemWrapper: {
     marginHorizontal: Style.adjust(4),
+  },
+  contentContainer: {
+    paddingHorizontal: Style.adjust(16),
   },
 });
 

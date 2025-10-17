@@ -6,7 +6,7 @@ import { IDonationListItem } from "@organisms/donation-list-item/donation-list-i
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { RewardsList } from "./rewards-list/rewards-list";
 import { BattlePassSeasonComplete } from "@organisms/battle-pass-season-complete/battle-pass-season-complete";
-import { FlashList } from "@shopify/flash-list";
+import { FlatList } from "react-native";
 import { BATTLE_PASS_SCREEN } from "@ids";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import { Box } from "@atoms";
@@ -45,7 +45,7 @@ const BattlePassScreen = ({
   onPressWallet,
 }: IProps) => {
   const isSeasonComplete = progressStatus.step === progressStatus.steps;
-  const headerListRef = useRef<FlashList<IBattlePassListItem>>(null);
+  const headerListRef = useRef<FlatList<IBattlePassListItem>>(null);
   const [showClaimButton, setShowClaimButton] = useState<boolean>(true);
 
   const onScrollStart = useCallback(() => {
@@ -57,10 +57,14 @@ const BattlePassScreen = ({
   useEffect(() => {
     const noRewardsIsClaimed = rewards.every((reward) => reward.status === "pending");
     if (noRewardsIsClaimed) {
-      headerListRef.current?.scrollToIndex({
-        index: 0,
-        animated: true,
-      });
+      const timeout = setTimeout(() => {
+        headerListRef.current?.scrollToIndex({
+          index: 0,
+          animated: true,
+        });
+      }, 100);
+
+      return () => clearTimeout(timeout);
     }
   }, [rewards]);
 

@@ -55,8 +55,8 @@ export const ProductGameItem = memo(({ title, icon, progress, rewards, info }: P
           ref={activeListRef}
           battlePassType="unlock"
           items={rewards.map(mapRewardItemToBattlePassListItem(componentId))}
-          contentContainerStyle={styles.padding}
           onLoad={scrollToReward}
+          contentContainerStyle={styles.padding}
         />
       </Box>
       {!progress?.max ? null : (

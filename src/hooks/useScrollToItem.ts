@@ -1,17 +1,17 @@
 import { getRouteState } from "@redux/app/app.selectors";
-import { FlashList } from "@shopify/flash-list";
-import { Style } from "@styles";
+import { FlatList } from "react-native";
 import { useRef, useCallback, useEffect, MutableRefObject, useMemo } from "react";
 import { useSelector } from "react-redux";
+import { isRTL } from "@locale";
 
 type Args<T> = {
   items: Array<{ status?: string }>;
-  ref?: MutableRefObject<FlashList<T>>;
+  ref?: MutableRefObject<FlatList<T>>;
   scrollToDependencies?: unknown[];
 };
 
 export function useScrollToItem<T>({ items, ref, scrollToDependencies = [] }: Args<T>) {
-  const listRef = useRef<FlashList<T>>(null);
+  const listRef = useRef<FlatList<T>>(null);
   const currentRoute = useSelector(getRouteState);
   const nextRewardIndex = useMemo(
     () => items.findIndex((reward) => reward.status === "completed" || reward.status === "pending") || 0,
@@ -22,14 +22,21 @@ export function useScrollToItem<T>({ items, ref, scrollToDependencies = [] }: Ar
 
   const scrollToReward = useCallback(() => {
     if (nextRewardIndex > 0) {
-      activeListRef.current?.scrollToIndex({
-        index: nextRewardIndex,
-        animated: true,
-        viewOffset: Style.adjust(7),
-      });
+      // Use setTimeout to ensure content is laid out before scrolling in RTL
+      const timeout = setTimeout(() => {
+        // // for rtl, we need to reverse the scroll index
+        const scrollIndex = isRTL() ? items.length - 1 - nextRewardIndex : nextRewardIndex;
+
+        activeListRef.current?.scrollToIndex({
+          index: scrollIndex,
+          animated: true,
+        });
+      }, 100);
+
+      return () => clearTimeout(timeout);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nextRewardIndex]);
+  }, [nextRewardIndex, items.length]);
 
   useEffect(scrollToReward, [nextRewardIndex, currentRoute, scrollToReward, ...scrollToDependencies]);
 

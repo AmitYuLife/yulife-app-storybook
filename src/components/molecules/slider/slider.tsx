@@ -1,6 +1,7 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { P2P_SLIDER, P2P_SLIDER_ITEM } from "@ids";
 import { Colours, Style, StyleSheet } from "@styles";
+import { isRTL } from "@locale";
 import { useRef, useEffect } from "react";
 import { Pressable, ScrollView } from "react-native";
 
@@ -24,7 +25,10 @@ export const Slider = <T extends BaseItem>({ title, textColor, items, selectedIt
 
   useEffect(() => {
     const index = items.findIndex((item) => item?.id === selectedItem?.id) || 0;
-    scrollViewRef?.current?.scrollTo({ x: index * Style.adjust(56) });
+    // for rtl, we need to reverse the scroll direction
+    const scrollX = (isRTL() ? items.length - 1 - index : index) * Style.adjust(56);
+
+    scrollViewRef?.current?.scrollTo({ x: scrollX });
   }, [items, selectedItem]);
 
   return (

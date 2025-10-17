@@ -45,7 +45,11 @@ const ActivityHistoryScreen = ({
 
   useEffect(() => {
     if (!loading) {
-      listRef.current?.scrollToIndex({ index: 0 });
+      const timeout = setTimeout(() => {
+        listRef.current?.scrollToIndex({ index: 0 });
+      }, 100);
+
+      return () => clearTimeout(timeout);
     }
   }, [loading]);
 

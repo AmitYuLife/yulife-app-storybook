@@ -4,7 +4,7 @@ import { VoidFunction } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { Alert, useWindowDimensions } from "react-native";
-import { t } from "@locale";
+import { t, isRTL } from "@locale";
 import { UserSearchItem } from "@redux/_core/types";
 import { useNavigation } from "@navigation/navigation.context";
 import { Navigation } from "@navigation/main";
@@ -101,7 +101,12 @@ export const useGiftingPages = ({
   useTimeout(
     () => {
       const needle = pagesConfig.findIndex((pagesConfigItem) => pagesConfigItem.id === page);
-      scrollViewRef.current?.scrollTo?.({ x: width * needle, animated: true });
+      const totalPages = pagesConfig.length;
+
+      // for rtl, we need to reverse the scroll direction
+      const scrollX = width * (isRTL() ? totalPages - 1 - needle : needle);
+
+      scrollViewRef.current?.scrollTo?.({ x: scrollX, animated: true });
     },
     0,
     !isGiftingPagesDataLoading
