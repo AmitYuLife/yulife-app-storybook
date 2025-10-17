@@ -20,7 +20,7 @@ type Story = StoryObj<typeof ProgressReflectItem>;
 export const Default: Story = {
   args: {
     label: "Day 1",
-    icon: require("@assets/icons/yu-coin.webp"),
+    icon: require("@assets/icons/yucoin.png"),
     isToday: false,
     isDone: false,
   },
