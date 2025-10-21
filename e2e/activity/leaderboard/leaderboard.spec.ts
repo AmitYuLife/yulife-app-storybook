@@ -274,6 +274,29 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     });
   });
 
+  Scenario("Unlocked achievements modal should not appear when inspecting another user", scenario.start, async () => {
+    Given("I login as a user with an unlocked and equipped achievement badge", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
+      Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+    });
+    When("I navigate to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+      Then("I should see the achievement slot already filled", then.idVisible(ids.ACHIEVEMENT_SLOT(1), 2500));
+    });
+    When("I navigate to the Leaderboards", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+      When("I tap the dropdown to open the community list", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1, 3000), async () => {
+        When("I select the BA3 leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA3.data.name)), async () => {
+          When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON, 3000), async () => {
+            Then("I should see Tywin Lannister on the leaderboard list", then.idVisible(ids.LEADERBOARD_EMPLOYEE_NAME("Tywin Lannister"), 3000));
+          });
+        });
+      });
+      When("I tap on Tywin Lannister", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME("Tywin Lannister"), 3000), async () => {
+        Then("I should be on the Inspect screen", then.isOnInspectScreen);
+        Then("Tywin's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_73))));
+        Then("The new achievement unlocked modal should NOT be visible", then.textNotVisible("New achievement unlocked!", 3000));
+      });
+    });
+  });
+
   Scenario("Social groups / leaderboards based on 'rules' function as expected", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("leaderboard", data.CUSTOMER_39, data.AUTH_39), async () => {
       When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1, 3000), async () => {
