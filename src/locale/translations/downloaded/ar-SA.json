@@ -24,9 +24,9 @@
   },
   "2048_selector": {
     "difficulty": {
-      "label": "الصعوبة",
+      "label": "مستوى الصعوبة",
       "options": {
-        "extreme": "شديد",
+        "extreme": "صعب للغاية",
         "hard": "صعب",
         "normal": "عادي"
       },
@@ -91,17 +91,17 @@
     }
   },
   "coupons": "قسائم",
-  "create_challenge_error": "فيه مشكلة ببداية التحدي، جرّب مرة ثانية!",
+  "create_challenge_error": "يوجد مشكلة ببداية التحدي، جرّب مرة ثانية!",
   "device_not_supported": "الجهاز غير مدعوم",
   "equip": "جهّز",
   "equipped": "مُجَهَّز",
   "format": {
     "date_picker_display": "اليوم / الشهر / السنة",
     "date_readable": "اليوم / الشهر / السنة",
-    "date_readable_short": "اليوم الشهر",
+    "date_readable_short": "اليوم / الشهر ",
     "date_short": "اليوم / الشهر / السنة",
-    "date_time_readable": "HH:mm يوم MMMM سنة YYYY",
-    "date_time_readable_short": "HH:mm يوم MMM",
+    "date_time_readable": "اليوم / الشهر / السنة الساعة:الدقيقة",
+    "date_time_readable_short": "الساعة: الدقيقة الشهر ",
     "duration": "د[د] ث[ث]",
     "duration_long": "س[س] د[د] ث[ث]",
     "month_full": "شهر",
@@ -144,7 +144,7 @@
       "title": "افتح المزيد من التحديات"
     }
   },
-  "history": "التاريخ",
+  "history": "السجل",
   "labels": {
     "accessibility": {
       "hide": "إخفاء",
@@ -156,8 +156,8 @@
     "cta": {
       "accept": "قبول",
       "allow": "السماح",
-      "ask_later": "اسألني لاحقًا",
-      "back": "عودة",
+      "ask_later": "اسألني لاحقاً",
+      "back": "الرجوع",
       "cancel": "إلغاء",
       "claim": "استرداد",
       "close": "إغلاق",
@@ -179,13 +179,13 @@
       "great": "رائع!",
       "invite": "دعوة زميل",
       "join": "انضم",
-      "later": "لاحقًا",
+      "later": "لاحقاً",
       "learn_more": "اعرف المزيد",
       "lets_go": "يلا نبدأ",
       "loading": "جار التحميل...",
       "next": "التالي",
       "no": "لا",
-      "no_thanks": "لا، شكرًا",
+      "no_thanks": "لا، شكراً",
       "not_now": "ليس الآن",
       "not_really": "ليس تماماً",
       "ok": "موافق",
@@ -275,9 +275,9 @@
     "duels": {
       "dialog_helpers": {
         "alternative_name": "زميلك",
-        "description_already_accepted": "سوف تتم المبارزة الخاصة بك مع %{name} في %{duelStart}. يمكنك تحديهم في مباراة إعادة بعد ذلك، أو تحدي صديق آخر الآن.",
-        "description_not_accepted": "لقد دعوت بالفعل %{name} إلى المبارزة. انتظر ردهم أو تحدَّ صديقًا آخر الآن.",
-        "title_already_accepted": "لقد بدأت بالفعل!",
+        "description_already_accepted": "سيُقام التحدي الخاص بك مع %{name} في %{duelStart}. يمكنك تحديهم في مباراة إعادة بعد ذلك، أو تحدي صديق آخر الآن.",
+        "description_not_accepted": "لقد دعوت %{name} سابقاً الى التحدي. انتظر ردهم أو تحدَّ صديقًا آخر الآن.",
+        "title_already_accepted": "لقد بدأنا!",
         "title_not_accepted": "انتظر لحظة!"
       },
       "duel_intro": {
@@ -299,10 +299,10 @@
         "button_label": "إرسال طلب تحدي",
         "colleague": "زميل",
         "header": "تقوم بتحدي **%{name}** في مبارزة. من يسجل أكبر عدد من الخطوات خلال التحدي، يفوز!",
-        "instruction": "ما الهدف من المنازلة؟",
+        "instruction": "ما الهدف من التحدي؟",
         "select_wager": "اختر تحدياً",
-        "subheader_1": "يبدأ النزال غدًا ويستمر طوال اليوم. ستظهر النتائج التي تُعلن الفائز في صباح اليوم التالي.",
-        "subheader_2": "ما الهدف من المنازلة؟",
+        "subheader_1": "يبدأ التحدي غدًا ويستمر طوال اليوم. ستظهر النتائج التي تُعلن الفائز في صباح اليوم التالي.",
+        "subheader_2": "ما الهدف من التحدي؟",
         "your_wager": "تحديك"
       },
       "duel_respond": {
@@ -313,8 +313,8 @@
       "duel_response_intro": {
         "bragging_rights": "حقوق التباهي",
         "collegue": "زميل",
-        "heading": "دعاك إلى مبارزة لمدة يوم واحد!",
-        "yucoin_heading": "دعاك إلى مبارزة لمدة يوم واحد مقابل %{yucoin}!"
+        "heading": "دعاك إلى تحدي لمدة يوم واحد!",
+        "yucoin_heading": "دعاك إلى تحدي لمدة يوم واحد مقابل %{yucoin}!"
       },
       "hub": {
         "active_tab": "نشط",
@@ -335,9 +335,9 @@
         "steps_today": "خطوات اليوم",
         "sync_duel_steps": "زامن خطواتك",
         "synced": "متزامن",
-        "today_empty": "أنت لا تتبارز مع أي شخص اليوم.",
-        "today_title": "مباريات اليوم",
-        "tomorrow_title": "مبارزات الغد",
+        "today_empty": "ليس لديك تحدٍ مع أي شخص اليوم.",
+        "today_title": "تحديات اليوم",
+        "tomorrow_title": "تحديات الغد",
         "waiting_for_opponent_steps_sync": "في انتظار مزامنة خطوات %{opponentName}",
         "waiting_user_steps_sync": "في انتظار مزامنة خطوات المستخدم",
         "you_drew": "تعادلتم",
@@ -345,8 +345,8 @@
         "you_won": "انت فزت!"
       },
       "intro": {
-        "subtitle_1": "هل تريد مواجهة وجهاً لوجه؟ اختر صديقاً من القائمة العلوية وتحداه إلى مبارزة!",
-        "subtitle_2": "واثق من نفسك؟ تحدى عشان يوكوين أو للتفاخر!",
+        "subtitle_1": "هل تريد مواجهة وجهاً لوجه؟ اختر صديقاً من القائمة العلوية وتحداه!",
+        "subtitle_2": "واثق من نفسك؟ تحدى لكسب يوكوين أو للتفاخر!",
         "subtitle_3": "ستبدأ المنافسة في اليوم التالي وسيكون لديك ٢٤ ساعة لتسجيل أكبر عدد ممكن من الخطوات!",
         "title_1": "تحدَّ صديقك",
         "title_2": "اختَر التحدي",
@@ -422,15 +422,15 @@
         "cta_label": "بالتأكيد",
         "cta_label_secondary": "ربما لاحقًا",
         "heading": "لا تفوت الفرصة",
-        "subheading": "هل ترغب أن نخطرك عند إكمال تحدٍ؟"
+        "subheading": "هل ترغب أن نخبرك عند إكمال تحدٍ؟"
       },
       "to_settings": {
         "cta_label": "الانتقال إلى الإعدادات",
         "heading": "إشعار",
-        "subheading": "للحصول على الإشعارات، يجب عليك الذهاب إلى إعدادات النظام وتشغيلها."
+        "subheading": "لإستلام الإشعارات، يجب عليك الذهاب إلى إعدادات النظام و تفعيلها."
       },
       "turn_notification_on": {
-        "heading": "تشغيل الإشعارات",
+        "heading": " الإشعارات",
         "subheading": "قم بتشغيل الإشعار حتى نتمكن من إعلامك عند وجود رد على رسالتك"
       }
     },
@@ -449,7 +449,7 @@
       "page_2": {
         "cta": "التالي",
         "markdown": "لقد قطعت شوطًا طويلاً بالفعل، يمكنك فعل ذلك مرة أخرى. نحن نؤمن بك.\n\nلنبدأ من جديد بعقلية متجددة.\n\n**متى كانت آخر مرة دخنت؟**",
-        "title": "لنواصل السير!"
+        "title": "هيا بنا! "
       }
     },
     "step_feedback": {
@@ -458,8 +458,8 @@
     "streak_saver": {
       "body": "فاتك يوم، لكن الجميع يستحق فرصة جديدة — استمر في كسب التحديات!",
       "button": "فهمت!",
-      "inventory_item": "حافظ السلسلة",
-      "title": "التسلسل محفوظ!"
+      "inventory_item": "حافظ سلسلة الانجازات",
+      "title": "سلسلة الانجازات محفوظة! "
     },
     "switch_to_google_fit": {
       "button_label": "التبديل إلى Google Fit",
@@ -500,7 +500,7 @@
       "title": "المخزون"
     },
     "inventory_item": {
-      "activated": "مفعل",
+      "activated": "مفعَّل",
       "quantity": "%{quantity}x"
     },
     "multi_factor_pricing": {
@@ -522,7 +522,7 @@
       }
     },
     "yucoin_power_button": {
-      "button_label": "يحسن من مكافآت التحدي الخاصة بك!",
+      "button_label": "يحسِّن من مكافآت التحدي الخاصة بك!",
       "power": "الطاقة",
       "yucoin": "يوكوين"
     }
@@ -600,7 +600,7 @@
       },
       "distance_read": {
         "description": "مطلوب لتطبيق YuLife للحصول على بيانات ركوب الدراجات/الدراجات الهوائية التي يتم تتبعها في حساب Google Fit الخاص بك.",
-        "requirement": "بحاجة الى: التعرف الجسدي، الموقع",
+        "requirement": "بحاجة الى: التعرف الجسدي، و الموقع",
         "title": "مسافة ركوب الدراجات"
       },
       "fitness_activity_read": {
@@ -631,7 +631,7 @@
       },
       "location": {
         "description": "مطلوب من تطبيق YuLife للحصول على بيانات النشاط من هاتفك.",
-        "requirement": "مطلوب لـ: المسافة بالدراجة",
+        "requirement": "مطلوب لـ: الركوب بالدراجة",
         "title": "الموقع"
       },
       "mindfulness_read": {
@@ -657,7 +657,7 @@
       "samsung_steps_count_trend": {
         "description": "مطلوب لتطبيق YuLife لقراءة بيانات الخطوات التي يتم تتبعها في حساب Samsung Health الخاص بك.",
         "requirement": "مطلوب: التعرف الجسدي",
-        "title": "توجهات عد خطوات اليومية"
+        "title": "صيحة عد الخطوات اليومية"
       },
       "workouts_read": {
         "description": "مطلوب لتطبيق YuLife للحصول على بيانات التمارين الرياضية (مثل Fiit) التي يتم تتبعها في حساب Google Fit الخاص بك.",
@@ -696,7 +696,7 @@
     "last_name": "اللقب",
     "password": "كلمة المرور",
     "phone_number": "رقم الهاتف",
-    "relation": "علاقة"
+    "relation": "العلاقة"
   },
   "prizes": {
     "tooltips": {
@@ -709,12 +709,12 @@
         "title": "تم جمع المكافأة!"
       },
       "yucoin": {
-        "body": "يمكنك رؤيته في شاشة يوكوين",
+        "body": "يمكنك رؤيتها في شاشة يوكوين",
         "title": "تم جمع عملة يوكوين!"
       },
       "yumoji": {
         "body": "جربه على يوموجي الخاص بك.",
-        "title": "تم جمع عنصر يوجيموجي!"
+        "title": "تم جمع عنصر يوموجي!"
       }
     }
   },
@@ -824,7 +824,7 @@
     },
     "challenge_chest_modal": {
       "card": "صندوق مليء بعملة يوكوين!",
-      "cta_label_is_next": "هيا",
+      "cta_label_is_next": "هيا بنا",
       "heading_is_completed": "حصلت على %{yucoin} يوكوين",
       "heading_is_next": "لقد شارفْت على الوصول! شارك في تحدٍّ لفتح مكافأتك.",
       "heading_is_not_next_level": "افتح عند المستوى %{level}",
@@ -849,7 +849,7 @@
       "level_locked": "مغلق"
     },
     "challenge_next_modal": {
-      "cta_reject": "ربما لاحقًا",
+      "cta_reject": "ربما لاحقاً",
       "cta_submit": "لنبدأ!",
       "heading": "على وشك الحصول عليها! اقبل التحدي لفتح الجائزة الخاصة بك.",
       "tease": "استمر في الترقية لفتح المكافآت"
@@ -861,7 +861,7 @@
         "open_apple_health": "افتح تطبيق Apple Health",
         "retry": "حاول المزامنة مرة أخرى"
       },
-      "cant_open_apple_health_body": "يرجى محاولة فتح تطبيق Apple Health يدويًا للتحقق من بياناتك",
+      "cant_open_apple_health_body": "يرجى محاولة فتح تطبيق Apple Health يدوياً للتحقق من بياناتك",
       "cant_open_apple_health_title": "هناك خطأ ما",
       "description": "بيانات التحدي النشط مفقودة. تأكد من أن أنشطة التحدي قد تم مزامنتها ضمن تطبيق الصحة الخاص بك. إذا واجهت مشكلة، يمكنك دائمًا الإلغاء والمحاولة مرة أخرى.",
       "title": "عذرًا! التحدي النشط الخاص بك لم يتزامن بعد."
