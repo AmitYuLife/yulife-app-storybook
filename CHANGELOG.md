@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.86.0] - 2025-10-22
+
+### Tasks
+
+- Task CTE-472: flat list instead of flash list for horizontal lists
+- Task GS-2012: Fix UAT builds
+- Task GS-2011: Rename and reuse assets to fix android build
+- Task SEC-219: upgrade react native share
+- Task ISA-3810: simple beneficiary error alert handlering
+- Task: Upgrade YuHealth to 1.2.23
+- Task GS-1943: Rename coin webp
+- Task GS-1943 GS-1941: Pathways reflection progress
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox GS-2006: Don't Show Unlocked Achievements Modal when Inspecting
+- Detox: Smoking USA - waitTimes & change to YuCoin
+- Detox GS-2008: YuScreen Nudges
+
 ## [4.85.0] - 2025-10-16
 
 ### Features
