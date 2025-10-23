@@ -75,6 +75,7 @@ export const ContentItemBlurredRaysWrapper = memo(
                 h="100%"
                 justifyContent="center"
                 alignItems="center"
+                pointerEvents="none"
               >
                 <Renderer item={centrePieceData} />
               </Box>
