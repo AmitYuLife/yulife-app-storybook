@@ -6,6 +6,7 @@ import { gql } from "@graphql/__generated";
 import moment from "moment";
 import { getMoodSubmission } from "./utils/getMoodSubmission";
 import { useDispatch } from "react-redux";
+import { ROUTES } from "@navigation/constants";
 
 interface Props {
   componentId: string;
@@ -31,6 +32,15 @@ const PathwaysContainer = ({ componentId }: Props) => {
     dispatch(data?.getUserPathways?.reflectionProgress.reflectAction);
   }, [data?.getUserPathways?.reflectionProgress.reflectAction]);
 
+  const onOpenMoodCalendar = useCallback(() => {
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.moodCalendar,
+        name: ROUTES.moodCalendar,
+      },
+    });
+  }, [componentId]);
+
   const reflectionProgress = useMemo(
     () =>
       data?.getUserPathways?.reflectionProgress || {
@@ -50,6 +60,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
     <PathwaysScreen
       onClose={onClose}
       onReflect={onReflect}
+      onOpenMoodCalendar={onOpenMoodCalendar}
       moodSubmissions={moodSubmissions}
       reflectionProgress={reflectionProgress.currentProgress}
       reflectedToday={reflectionProgress.reflectedToday}

@@ -59,6 +59,7 @@ enum DebugCodes {
   sendGiftToSelf = "send-gift-to-self",
   genericHeading = "generic-heading",
   breathingExercise = "breathing-exercise",
+  pathways = "pathways",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -357,6 +358,15 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
               component: {
                 id: ROUTES.genericHeading,
                 name: ROUTES.genericHeading,
+              },
+            });
+          }
+
+          case DebugCodes.pathways: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.pathways,
+                name: ROUTES.pathways,
               },
             });
           }
