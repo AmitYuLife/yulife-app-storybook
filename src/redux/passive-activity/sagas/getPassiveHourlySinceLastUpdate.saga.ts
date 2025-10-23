@@ -13,7 +13,8 @@ import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 
 export default function* getPassiveHourlySinceLastUpdate(
   stepsLastUpdate: string,
-  userFeatures: IUserStore["features"]
+  userFeatures: IUserStore["features"],
+  stepsQueryTimeRange?: string
 ) {
   const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
 
@@ -29,7 +30,8 @@ export default function* getPassiveHourlySinceLastUpdate(
     stepsLastUpdate,
     endDateSteps,
     stepsBlackListApps,
-    userFeatures
+    userFeatures,
+    stepsQueryTimeRange
   );
 
   return steps;
@@ -39,7 +41,8 @@ const getSteps = async (
   stepsLastUpdate: string,
   endDateSteps: moment.Moment,
   stepsBlackListApps: string[],
-  features: IUserStore["features"]
+  features: IUserStore["features"],
+  stepsQueryTimeRange?: string
 ): Promise<ChallengesPayload[]> => {
   if (!stepsLastUpdate) {
     return [];
@@ -48,7 +51,7 @@ const getSteps = async (
   const start = moment(stepsLastUpdate).add(1, "hour").startOf("hour");
 
   if (!features.tempGameEnableReleaseYuHealthV4) {
-    const stepsConfiguration = getAggregationStepCountHourlyConfiguration(stepsBlackListApps);
+    const stepsConfiguration = getAggregationStepCountHourlyConfiguration(stepsBlackListApps, stepsQueryTimeRange);
 
     const steps: QueryFitKitByTypesResponse = await queryFitKitAggregatedData({
       start: start.clone(),
@@ -69,7 +72,7 @@ const getSteps = async (
       endTime: endDateSteps.toDate(),
       dataType: HealthDataType.steps,
       bucketConfig: {
-        unit: BucketSize.hour,
+        unit: buildBucketUnit(stepsQueryTimeRange),
         value: 1,
       },
       queryOptions: {
@@ -79,4 +82,14 @@ const getSteps = async (
   });
 
   return processYuHealthResult(response, start, endDateSteps, PassiveChallengeType.Steps, "hour");
+};
+
+const buildBucketUnit = (range?: string) => {
+  switch (range) {
+    case "minutes":
+      return BucketSize.minute;
+    case "hours":
+    default:
+      return BucketSize.hour;
+  }
 };
