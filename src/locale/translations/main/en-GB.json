@@ -179,6 +179,9 @@
   },
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
+    "mood-calendar": {
+      "title": "Mood Calendar"
+    },
     "pathways": {
       "header": "Daily Reflection",
       "user_mood": {

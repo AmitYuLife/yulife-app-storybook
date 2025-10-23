@@ -4,10 +4,12 @@ import moment from "moment";
 import { GetUserMoodSubmissionsQuery, gql } from "@graphql/__generated";
 import { Box } from "@atoms";
 import { ActivityIndicator } from "react-native";
-import { MoodCalendar } from "@organisms";
 import { generateMissingData } from "@components/containers/member/mood-calendar/calendar-helper";
 import { IMonth } from "@organisms/mood-calendar/mood-month";
 import { DATE_FORMAT } from "@utils";
+import MoodCalendarScreen from "@components/screens/member/pathways/mood-calendar.screen";
+import { ROUTES } from "@navigation/constants";
+import { Navigation } from "@navigation/main";
 
 const MONTHS_PER_PAGE = 3;
 interface MoodDayData {
@@ -25,6 +27,10 @@ const MoodCalendarContainer = () => {
   );
   const [endDate, setEndDate] = useState<string>(moment().endOf("month").format(DATE_FORMAT));
   const [moodData, setMoodData] = useState<IMonth[]>([]);
+
+  const onClose = useCallback(() => {
+    Navigation.pop(ROUTES.moodCalendar);
+  }, []);
 
   const [getUserMoodSubmissions, { loading }] = useLazyQuery(gql("GetUserMoodSubmissionsDocument"), {
     variables: {
@@ -80,7 +86,7 @@ const MoodCalendarContainer = () => {
     );
   }
 
-  return <MoodCalendar data={moodData} onEndReached={handleLoadMore} loading={loading} />;
+  return <MoodCalendarScreen onClose={onClose} data={moodData} onEndReached={handleLoadMore} loading={loading} />;
 };
 
 export default memo(MoodCalendarContainer);
