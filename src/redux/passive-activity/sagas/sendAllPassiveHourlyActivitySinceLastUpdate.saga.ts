@@ -29,7 +29,7 @@ export default function* sendPassiveHourlyActivity(): any {
       return;
     }
 
-    const { steps: stepsLastUpdate } = yield select(getUserPassiveHourlyActivityLastUpdate);
+    const { steps: stepsLastUpdate, stepsQueryTimeRange } = yield select(getUserPassiveHourlyActivityLastUpdate);
 
     if (!stepsLastUpdate) {
       return;
@@ -56,7 +56,8 @@ export default function* sendPassiveHourlyActivity(): any {
       allResults = yield call(
         getPassiveHourlySinceLastUpdate,
         upToDate ? undefined : dynamicStepsLastUpdate,
-        userFeatures
+        userFeatures,
+        stepsQueryTimeRange
       );
 
       if (allResults.length) {

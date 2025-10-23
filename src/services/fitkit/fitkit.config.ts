@@ -26,12 +26,26 @@ export const getAggregationStepCountConfiguration = (blackListApps: string[]) =>
   blackListApps,
 });
 
-export const getAggregationStepCountHourlyConfiguration = (blackListApps: string[]) => ({
+export const getAggregationStepCountHourlyConfiguration = (blackListApps: string[], stepsQueryTimeRange?: string) => ({
   fitKitTypes: [FitKitType.StepCount],
-  timeRange: TimeRange.HOURS,
+  timeRange: buildActivityTimeRange(stepsQueryTimeRange),
   aggregationType: AggregationType.Time,
   blackListApps,
 });
+
+const buildActivityTimeRange = (range?: string) => {
+  switch (range) {
+    case "minutes":
+      return TimeRange.MINUTES;
+    case "seconds":
+      return TimeRange.SECONDS;
+    case "milliseconds":
+      return TimeRange.MILLISECONDS;
+    case "hours":
+    default:
+      return TimeRange.HOURS;
+  }
+};
 
 export const getMindfulSessionFitKitTypes = () =>
   Platform.select({

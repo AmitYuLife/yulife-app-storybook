@@ -43,6 +43,7 @@ query GetUserProfile {
     }
     passiveHourlyActivityLastUpdate {
       steps
+      stepsQueryTimeRange
     }
     endPointsVersion {
       getMobileCopy

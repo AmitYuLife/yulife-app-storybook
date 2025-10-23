@@ -39,6 +39,7 @@ export interface IUserStore {
   };
   passiveHourlyActivityLastUpdate: {
     steps?: string;
+    stepsQueryTimeRange?: string;
   };
   endPointsVersion: {
     getMobileCopy?: string;
