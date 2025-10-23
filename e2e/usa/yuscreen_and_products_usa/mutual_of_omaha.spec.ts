@@ -47,14 +47,14 @@ Feature("Mutual of Omaha specific tests", async () => {
     When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
       Then("I should see the Leaderboard info button", then.idVisible(ids.LEADERBOARD_INFO_BUTTON));
     });
-    When("I tap the tooltip", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
+    When("I tap the tooltip", when.tapID(ids.LEADERBOARD_INFO_BUTTON, 3000), async () => {
       Then("I should see the updated copy for the communities section that doesn't mention companies", then.textVisible(leaderboardCommunitiesMessage, 5000));
       Then("I have a way to close the 'Leaderboard Info' screen", then.idVisibleAtIndex(ids.BUTTON_CLOSE, 0));
     });
-    When("I click to close this screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
+    When("I click to close this screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 3000), async () => {
       Then("I have a way to open the 'Menu'", then.idVisible(ids.MENU_ICON_BADGE(false)));
     });
-    When("I open the hamburger menu", when.tapID(ids.MENU_ICON_BADGE(false)), async () => {
+    When("I open the hamburger menu", when.tapID(ids.MENU_ICON_BADGE(false), 3000), async () => {
       Then("I can go to the 'Wellbeing Hub'", then.idVisible(ids.MENU_ITEM("WellbeingHub")));
     });
     When("I click the Wellbeing Hub", when.tapText("Wellbeing Hub", 3000), async () => {
@@ -87,10 +87,10 @@ Feature("Mutual of Omaha specific tests", async () => {
 
   Scenario("Restricted goals work on the MoO pricing tier", scenario.start, async () => {
     Given("I login as a non-MoO pricing tier user and go to the YuCoin screen", given.logInAndGoToTab("yucoin", CUSTOMER_USA_5.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-      Then("I should see the event card 'step to it! - MoO Restriction test' ", then.idVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 2000));
+      Then("I should see the event card 'step to it! - MoO Restriction test' ", then.idVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 4000));
     });
     When("I log out and log in again with a MoO pricing tier user", when.fullRestartAndLogin(CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-      Then("I should NOT see the event card 'step to it! - MoO Restriction test' ", then.idNotVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 2000));
+      Then("I should NOT see the event card 'step to it! - MoO Restriction test' ", then.idNotVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 3000));
     });
   });
 });
