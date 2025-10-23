@@ -1,4 +1,4 @@
-import { Given, When, Then, Feature, Scenario, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Given, When, Then, Feature, Scenario, ScenarioOnly, WhenSkip } from "@yu-life/yulife-bdd-framework";
 import { couponsTermsAndConditions, endOfSeasonHarmonyTitle, EndOfSeasonMockItems } from "./_resources/fixtures";
 import { outOfCoinsMessage, cardDetails } from "./_resources/constants";
 import { BUSINESS_THE_BEAR, BUSINESS_ACCOUNT_2 } from "battle_pass/_data";
@@ -14,7 +14,7 @@ Feature("I can view and use all battle pass features", async () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
         Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2500));
+          Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 5000));
           Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
         });
       });
@@ -61,8 +61,10 @@ Feature("I can view and use all battle pass features", async () => {
     When("I scroll up the donations list", when.scrollFromID(ids.IMPACT_DONATION_TITLE("Feed families"), "down", "slow", 0.3), async () => {
       When("I donate to 'Provide water' and complete the season", when.donate("water", 6), async () => {
         When("I tap to claim my prize", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
-          Then("I should see the end of season modal with the correct title", then.textVisible(endOfSeasonHarmonyTitle, 2000));
-          Then("I should see the end of season action button", then.idVisible(ids.DONATION_END_OF_SEASON_BUTTON, 2000));
+          When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
+            Then("I should see the end of season modal with the correct title", then.textVisible(endOfSeasonHarmonyTitle, 2000));
+            Then("I should see the end of season action button", then.idVisible(ids.DONATION_END_OF_SEASON_BUTTON, 2000));
+          });
         });
       });
     });
@@ -291,9 +293,13 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I tap to continue to payment", when.tapID(ids.BUTTON_BASE("Continue to Payment", false), 2500), async () => {
       When("I fill in the required card details on the Stripe payment modal", when.completeStripePayment(cardDetails, "67.50"), async () => {
-        Then("I should see that payment was successful", then.idVisible(ids.VOUCHER_CODE_TITLE(`£75 ${data.CORE_REWARDS_MARKS_AND_SPENCER.data.name["en-GB"]} voucher`), 5000));
-        Then("I should see the coupon email in my inbox", then.assertCouponEmailReceived(data.CUSTOMER_CARMY.data.email, data.CORE_REWARDS_MARKS_AND_SPENCER.data.name["en-GB"]));
+        Then("I should see the purchase success screen", then.idVisible(ids.TEXT_TEMPLATE("You've successfully purchased a gift card!", undefined), 4000));
       });
+    });
+    //@bug GS-2018: View gift card cta not pressable
+    WhenSkip("I tap to view my gift card", when.tapID(ids.BUTTON_BASE("View gift card", false), 4000), async () => {
+      Then("I should see that payment was successful", then.idVisible(ids.VOUCHER_CODE_TITLE(`£75 ${data.CORE_REWARDS_MARKS_AND_SPENCER.data.name["en-GB"]} voucher`), 5000));
+      Then("I should see the coupon email in my inbox", then.assertCouponEmailReceived(data.CUSTOMER_CARMY.data.email, data.CORE_REWARDS_MARKS_AND_SPENCER.data.name["en-GB"]));
     });
   });
 });

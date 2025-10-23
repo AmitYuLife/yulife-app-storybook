@@ -328,6 +328,8 @@ Feature("Rewards should act correctly", async () => {
   Scenario("Rewards from different regions should not appear together when changing store location", scenario.start, async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see that I have access to the rewards store", then.idVisible(ids.REWARDS_SCREEN, 3500));
+    });
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.2), async () => {
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
