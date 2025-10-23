@@ -47,6 +47,29 @@ const manifestPlugin = (config) => {
       },
     });
 
+    androidManifest["uses-permission"].push(
+      {
+        $: {
+          "android:name": "android.permission.health.READ_STEPS",
+        },
+      },
+      {
+        $: {
+          "android:name": "android.permission.health.READ_ACTIVE_CALORIES_BURNED",
+        },
+      },
+      {
+        $: {
+          "android:name": "android.permission.health.READ_EXERCISE",
+        },
+      },
+      {
+        $: {
+          "android:name": "android.permission.health.READ_DISTANCE",
+        },
+      }
+    );
+
     androidManifest.application[0].activity.push({
       $: {
         "android:name": ".PermissionsRationaleActivity",

@@ -33,7 +33,7 @@ export const CLIENT_SUPPORTED_PROVIDERS = [
   HealthProvider.googleFit,
   HealthProvider.healthKit,
   HealthProvider.samsungHealth,
-  // HealthProvider.healthConnect,
+  HealthProvider.healthConnect,
 ];
 
 export const PROVIDER_RECOMMENDED_ORDER = [
