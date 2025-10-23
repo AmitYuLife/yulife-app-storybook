@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as ids from "@ids";
 import * as scenario from "./_steps/scenario";
 import * as when from "./_steps/when";
@@ -172,13 +172,13 @@ Feature("As a user from USA, I can view and use the smoking cessation feature", 
     });
     When("I go back from the Today's Earnings screen", when.tapID(ids.LEFT_HEADING_BUTTON("TODAY’S_EARNINGS"), 2000), async () => {
       Then("I can see the smoking card is there on day 1 ", then.smokingCardVisible(1, locale));
-      Then("I can see the Hero Card heading", then.idVisible(ids.EVENT_HEADING("Track your progress", "#464647")));
+      Then("I can see the Hero Card heading", then.idVisible(ids.EVENT_HEADING("Track your progress", "#464647"), 3000));
     });
     When("I tap the smoking card", when.tapID(ids.EVENT_CARD("Track your progress"), 2000), async () => {
-      Then("I can see the Milestone for Day 1", then.idVisible(ids.SMOKING_MILESTONE_TAPPABLE("1")));
+      Then("I can see the Milestone for Day 1", then.idVisible(ids.SMOKING_MILESTONE_TAPPABLE("1"), 3000));
     });
     When("I tap on the milestone for day 1", when.tapID(ids.SMOKING_MILESTONE_TAPPABLE("1"), 2000), async () => {
-      Then("I see I have hit the milestone the correct amount of times", then.textVisible(milestone_message[locale].first_time.message));
+      Then("I see I have hit the milestone the correct amount of times", then.textVisible(milestone_message[locale].first_time.message, 3000));
     });
   });
 });

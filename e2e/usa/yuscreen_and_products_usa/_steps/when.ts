@@ -2,7 +2,7 @@ import { navigation } from "@utils";
 import { USProductData } from "../_resources/types";
 import * as ids from "@ids";
 import { swipeFromIDAtIndex, swipeFromTextAtIndex } from "_utils/navigation/scrolling";
-export { authoriseFitkit } from "@socket";
+export { authoriseFitkit, addCyclingData, addMindfulnessHistoricalData } from "@socket";
 
 export const {
   scrollFromText,
