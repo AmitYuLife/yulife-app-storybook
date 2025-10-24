@@ -622,7 +622,7 @@ graph TD;
 On `rn-client`, open 2 terminals
 
 - `start:e2e`
-- `detox:smoke` or `detox:extended`
+- `detox:run` (if you want to run a specific suite, use `detox:run e2e/path/to/suite.spec.ts`)
 
 On `api-server`
 
