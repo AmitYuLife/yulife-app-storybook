@@ -1420,6 +1420,9 @@
         "label": "Well-beingセンター"
       }
     },
+    "mood-calendar": {
+      "title": "ムード カレンダー"
+    },
     "no_access": {
       "heading": "申し訳ございません。",
       "subheading": "現在、このアプリはご利用いただけません。"

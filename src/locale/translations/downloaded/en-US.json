@@ -1420,6 +1420,9 @@
         "label": "Wellbeing Hub"
       }
     },
+    "mood-calendar": {
+      "title": "Mood Calendar"
+    },
     "no_access": {
       "heading": "Sorry!",
       "subheading": "You are not able to use this app at the moment"

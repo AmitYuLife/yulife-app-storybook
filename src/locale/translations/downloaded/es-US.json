@@ -1420,6 +1420,9 @@
         "label": "Centro de bienestar"
       }
     },
+    "mood-calendar": {
+      "title": "Calendario de estados de ánimo"
+    },
     "no_access": {
       "heading": "¡Lo siento!",
       "subheading": "En este momento no puedes utilizar esta aplicación."
