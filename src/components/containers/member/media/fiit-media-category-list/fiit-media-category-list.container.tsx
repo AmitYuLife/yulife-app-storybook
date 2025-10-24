@@ -11,10 +11,11 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { handleLinkPress } from "@services/app-link";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { gqlCapabilityToCapability } from "@utils";
 import { YuHealthOptions, FitKitType, GetQuestMapLevelQuery } from "@graphql/__generated";
+import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 
 type IInternalContent =
   GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][number]["details"]["internalContent"][number];
@@ -27,7 +28,6 @@ interface IProps {
   tutorialUrl: string;
   yuHealth: YuHealthOptions;
   content: IInternalContent[];
-  reward: number;
   level: number;
   levelSlotTemplateId: string;
 }
@@ -36,7 +36,6 @@ const FiitMediaCategoryListContainer = ({
   createChallenge,
   fitKitTypes,
   content,
-  reward,
   yuHealth,
   tutorialUrl,
   level,
@@ -50,6 +49,7 @@ const FiitMediaCategoryListContainer = ({
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.questsChallengesList), []);
   const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
 
   const headerContent = content[0];
 
@@ -140,14 +140,14 @@ const FiitMediaCategoryListContainer = ({
             // TODO: Purge when fiit is swapped for workouts
             logo: headerContent.logo,
             providerLogo: item.providerLogo,
-            reward,
             level,
             levelSlotTemplateId,
+            yuniversalMap,
           },
         },
       });
     },
-    [dispatch, headerContent, level, levelSlotTemplateId, reward]
+    [dispatch, headerContent, level, levelSlotTemplateId, yuniversalMap]
   );
 
   const moreInformationPress = useCallback(() => {

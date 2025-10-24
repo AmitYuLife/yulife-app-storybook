@@ -4,7 +4,6 @@ import { Navigation } from "@navigation/main";
 import { FiitMediaListScreen } from "@components/screens";
 import { ROUTES } from "@navigation/constants";
 import { useBackHandler, usePopToQuestsRootOnNewDate } from "@hooks";
-import moment from "moment";
 import { t } from "@locale";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -17,8 +16,8 @@ type IInternalContent =
 interface IProps extends IInternalContent {
   componentId: string;
   levelSlotTemplateId: string;
-  reward: number;
   level: number;
+  yuniversalMap: number;
 }
 
 const FiitMediaListContainer = ({
@@ -26,14 +25,17 @@ const FiitMediaListContainer = ({
   title,
   providerLogo,
   logo,
-  reward,
   level,
   levelSlotTemplateId,
+  yuniversalMap,
 }: IProps) => {
-  const { data: medias, loading } = useQuery(gql("GetMediaDocument"), {
+  const { data: medias, loading } = useQuery(gql("GetMobileQuestLevelChallengeContentDocument"), {
     fetchPolicy: "network-only",
     variables: {
-      tags: contentMediaTags,
+      contentTags: contentMediaTags,
+      levelSlotTemplateId,
+      level,
+      yuniversalMap,
     },
   });
 
@@ -47,17 +49,17 @@ const FiitMediaListContainer = ({
   });
 
   const formattedVideos = useMemo(() => {
-    const videos = medias?.getMedia || [];
+    const videos = medias?.getMobileQuestLevelChallengeContent || [];
+
     return videos.map((item) => {
-      const formattedDuration = moment.utc(item.duration * 1000).format("m");
       return {
-        ...item,
-        reward,
-        stars: 3,
-        formattedDuration: t("smart_count.minutes", { smart_count: formattedDuration }),
+        ...item.media,
+        stars: item.stars,
+        reward: item.reward,
+        formattedDuration: item.formattedDuration,
       };
     });
-  }, [medias?.getMedia, reward]);
+  }, [medias?.getMobileQuestLevelChallengeContent]);
 
   usePopToQuestsRootOnNewDate(level);
 
