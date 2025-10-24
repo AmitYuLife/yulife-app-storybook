@@ -158,10 +158,10 @@ export const textNotVisible =
   };
 
 export const tapID =
-  (id: string, waitTime = 0) =>
+  (id: string, waitTime = 1500) =>
   async () => {
     const target = element(by.id(id));
-    await wait(waitTime)();
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
     await target.tap();
   };
 
@@ -202,7 +202,7 @@ export const tryTapText =
   };
 
 export const tapIDAtPoint =
-  (id: string, x: number, y: number, waitTime = 0) =>
+  (id: string, x: number, y: number, waitTime = 1500) =>
   async () => {
     const target = element(by.id(id));
     await waitFor(target).toBeVisible().withTimeout(waitTime);
@@ -436,10 +436,10 @@ export const idExist =
   };
 
 export const tapIDAtIndex =
-  (id: string, index = 0, waitTime = 0) =>
+  (id: string, index = 0, waitTime = 1500) =>
   async () => {
     const target = element(by.id(id)).atIndex(index);
-    await wait(waitTime)();
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
     await expect(target).toBeVisible();
     await target.tap();
   };
