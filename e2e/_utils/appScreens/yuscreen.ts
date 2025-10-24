@@ -520,7 +520,7 @@ export const completedStreakNudgeVisible =
   };
 
 export const completedHQNudgeVisible =
-  (yuCoinAmount = 40) =>
+  (yuCoinAmount = 60) =>
   async () => {
     const hqMarkdown = `Check in on your health to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(ids.DONE_NUDGE_ICON(hqMarkdown))();

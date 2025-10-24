@@ -23,27 +23,26 @@ export const moneyMasteryFWQDescriptionPage: FinancialWellnessQuizDescriptionPag
 };
 
 export const hqInfoCopy = {
-  title: "Getting to Know Yu!",
-  description: [
-    "Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some ",
-    "**extra YuCoin**",
-    " as you sail through these questions!",
-  ],
-  boxOneTitle: "Task",
-  boxOneDescription: "Complete the health questions to the best of your ability.",
-  boxTwoTitle: "Rewards",
-  boxTwoDescription: "40 YuCoin!",
-  boxThreeTitle: "Why all the questions?",
-  boxThreeDescription:
-    "These questions were hand-picked and referenced from NHS sources to help you create an overall picture of your health.",
-  infoBox:
-    "Our lips are sealed! Your answers are confidential and won’t be shared with your employer or any third party.",
-  cta: "Let’s go!",
-  disclaimer: [
-    "By completing this questionnaire and submitting this information, you consent to us processing your data in order to record and analyse the information on a pseudonymised basis for research purposes in order to develop our understanding of where we might be able to improve population health through gamification. You may withdraw your consent at any time through our in-app chat function or via email to ",
-    "data@yulife.com",
-    ". Please see our Privacy Policy for further information: \\n",
-    "https://yulife.com/privacy-policy/",
-    ".",
-  ],
+  title: "Daily Reflections",
+  cta: "See terms and conditions",
+};
+
+export const hqConsentCopy = {
+  title: "Your privacy and consent",
+  cta: "Consent and continue",
+};
+
+export const hqReflectionRestedTodayCopy = {
+  title: "How rested do you feel today?",
+  option: "Extremely tired",
+};
+
+export const hqReflectionYourDaySoFarCopy = {
+  title: "How has your day been so far?",
+  option: "Terrible",
+};
+
+export const hqReflectionHowYouFeelTodayCopy = {
+  title: "How are you feeling today?",
+  option: "Happy",
 };
