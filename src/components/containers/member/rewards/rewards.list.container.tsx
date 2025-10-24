@@ -1,32 +1,25 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
-import React, { memo, useCallback, useContext, useEffect, useState } from "react";
+import React, { memo, useCallback } from "react";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
-import RewardsListScreen, { DEFAULT_TAG } from "@screens/member/rewards/list/rewards-list.screen";
+import RewardsListScreen from "@screens/member/rewards/list/rewards-list.screen";
 import { showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit, useUserFeatures } from "@hooks";
 import { t } from "@locale";
 import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/subcomponents/reward-milestone-details";
 import { gql } from "@graphql/__generated";
 import { useNavigation } from "@navigation/navigation.context";
-import { RewardsManagerContext } from "./rewards.manager.context";
-import { IRewardContainerProps, RewardOnPressArgs, RewardsManagerActionTypes } from "./rewards.types";
+import { RewardOnPressArgs } from "./rewards.types";
 
-const REWARDS_ON_LIST = 5;
-
-const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) => {
-  const [tag, setTag] = useState(DEFAULT_TAG);
-  const [chipList, setChipList] = useState([]);
+const _RewardsListContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
-  const { onScroll, state, dispatch } = useContext(RewardsManagerContext);
   const { tempGameNewRewardsScreen } = useUserFeatures();
 
   useTapBackTwiceToExit(componentId);
 
   const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeen(
     gql("GetMobileRewardsListDocument"),
-    ROUTES.rewards,
-    { variables: { tag } }
+    ROUTES.rewards
   );
 
   const [getRecentlyUsedRewards, { loading: recentLoading, data: recentRewards }] = useQueryOnScreenSeen(
@@ -40,26 +33,6 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
     getRewards();
     getRecentlyUsedRewards();
   }, [getRecentlyUsedRewards, getRewards]);
-
-  useEffect(() => {
-    if (chipList.length === 0 && rewards?.data?.tags.length > 0) {
-      setChipList(rewards?.data?.tags);
-    }
-
-    if (rewards?.data?.tags.length === 0) {
-      dispatch({ type: RewardsManagerActionTypes.DISABLE_CHIP_LIST });
-    }
-  }, [rewards, chipList.length]);
-
-  useEffect(() => {
-    if (rewards?.data?.list.length < REWARDS_ON_LIST) {
-      return dispatch({ type: RewardsManagerActionTypes.DISABLE_ON_SCROLL_ACTION });
-    }
-
-    if (!state.isOnScrollActionEnabled && rewards?.data?.list.length > REWARDS_ON_LIST) {
-      return dispatch({ type: RewardsManagerActionTypes.ENABLE_ON_SCROLL_ACTION });
-    }
-  }, [rewards?.data?.list?.length, state.isOnScrollActionEnabled]);
 
   const isRecentLoading = (recentLoading || !recentRewards?.data?.recentlyUsedRewards) && !!tempGameNewRewardsScreen;
 
@@ -148,20 +121,13 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
 
   return (
     <RewardsListScreen
-      selectedTag={tag}
-      onTagPress={setTag}
       loading={isLoading}
       onRefresh={onRefresh}
       rewardsData={rewards?.data}
       recentRewards={recentRewards?.data}
-      chipList={chipList}
       onLeftMenuPress={onLeftMenuPress}
       onItemPress={handleRewardDetailsItemPress}
       onChangeStoreLocationPress={handleStoreLocationPress}
-      onScroll={onScroll}
-      showChipList={state.showChipList}
-      isOnScrollActionEnabled={state.isOnScrollActionEnabled && hasOtherContainers}
-      shouldAnimate={state.shouldAnimate}
     />
   );
 };

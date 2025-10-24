@@ -70,10 +70,8 @@ import { AddIcon } from "./add-icon";
 import { HeroCalendarIcon } from "./hero-calendar-icon";
 import { CheckIcon } from "./check-icon";
 import { MedalIcon } from "./medal-icon";
-import { PurchasesIcon } from "./purchases-icon";
 import { PurchasesSaleIcon } from "./purchases-sale-icon";
 import { StreakSaverIcon } from "./streak-saver-icon";
-import { LocationIcon } from "./location-icon";
 import { GiftIcon } from "./gift-icon";
 import { VoucherIcon } from "./voucher-icon";
 import { AchievementPointIcon } from "./achievement-point-icon";
@@ -156,10 +154,8 @@ export default {
   HeroCalendarIcon,
   CheckIcon,
   MedalIcon,
-  PurchasesIcon,
   PurchasesSaleIcon,
   StreakSaverIcon,
-  LocationIcon,
   GiftIcon,
   VoucherIcon,
   AchievementPointIcon,

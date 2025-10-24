@@ -1,4 +1,4 @@
-import { memo, useCallback, useContext, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { ActivityIndicator, ScrollView } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
 import { Style, TOP_BAR, StyleSheet } from "@styles";
@@ -10,24 +10,31 @@ import { FutureGame } from "./_subcomponents/future-game";
 import { useQueryOnScreenSeen } from "@hooks";
 import { useNavigation } from "@navigation/navigation.context";
 import RewardsUnlockEmpty from "@organisms/rewards-unlock-empty/rewards-unlock-empty";
-import { RewardsManagerContext } from "../member/rewards/rewards.manager.context";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Navigation } from "@navigation/main";
-import { IRewardContainerProps } from "../member/rewards/rewards.types";
 import NoStoreWalletButton from "@components/screens/member/rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
 import { isAndroid } from "@utils";
 import { useMutation } from "@apollo/client";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { REWARDS_UNLOCK_SCROLL } from "@ids";
 
-const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPressWallet }: IRewardContainerProps) => {
+interface RewardsUnlockContainerProps {
+  showNavigation?: boolean;
+  onPressWallet?: () => void;
+  isInnerScreen?: boolean;
+}
+
+const RewardsUnlockContainer = ({
+  showNavigation = false,
+  isInnerScreen,
+  onPressWallet,
+}: RewardsUnlockContainerProps) => {
   const { componentId } = useNavigation();
   const [refetchUnlockables, { data: queryResult }] = useQueryOnScreenSeen(
     gql("GetMobileUnlockableBattlePassVouchersDocument"),
     componentId
   );
-  const { onScroll } = useContext(RewardsManagerContext);
 
   const insets = useSafeAreaInsets();
 
@@ -120,7 +127,6 @@ const RewardsUnlockContainer = ({ showNavigation = false, isInnerScreen, onPress
           bounces={false}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
-          onScroll={onScroll}
           testID={REWARDS_UNLOCK_SCROLL}
         >
           <Box>

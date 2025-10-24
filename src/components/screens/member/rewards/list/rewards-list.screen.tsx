@@ -1,16 +1,15 @@
 import React, { useCallback, useMemo } from "react";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { FlatList, ListRenderItemInfo, NativeScrollEvent, NativeSyntheticEvent, View } from "react-native";
+import { FlatList, ListRenderItemInfo, View } from "react-native";
 import { Style, NAV_BAR, Colours, StyleSheet } from "@styles";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
 import FirstTimeContentLocationSelection from "../../content-location/first-time-content-location-selection";
 import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL } from "@ids";
-import { ChipList, InfoPanel, RewardSectionHeader } from "@components/molecules";
+import { InfoPanel, RewardSectionHeader } from "@components/molecules";
 import { Box } from "@atoms";
 import { RewardsListItem } from "./rewards-list.item";
 import { GetMobileRecentlyUsedRewardsListQuery, GetMobileRewardsListQuery } from "@graphql/__generated";
-import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { t } from "@locale";
 import moment from "moment";
 import { get } from "lodash";
@@ -19,23 +18,14 @@ import RewardRecentlyUsedSectionContainer from "./subcomponents/reward-recently-
 
 type IGetMobileRewardsListData = GetMobileRewardsListQuery["data"];
 
-export interface IRewardsListScreenProps extends IConnectedScreenProps {
+interface Props extends IConnectedScreenProps {
   rewardsData: IGetMobileRewardsListData;
   onItemPress: (item: IGetMobileRewardsListData["list"][0]) => void;
   onRefresh: () => void;
-  selectedTag: string;
-  onTagPress: React.Dispatch<React.SetStateAction<string>>;
   onChangeStoreLocationPress: () => void;
   loading: boolean;
-  showChipList: boolean;
-  onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
-  chipList: IGetMobileRewardsListData["tags"];
-  isOnScrollActionEnabled: boolean;
-  shouldAnimate: boolean;
   recentRewards?: GetMobileRecentlyUsedRewardsListQuery["data"];
 }
-
-export const DEFAULT_TAG = "All";
 
 enum RewardListItemTypes {
   GoalProductMilestones = "GoalProductMilestones",
@@ -56,44 +46,18 @@ const keyExtractor = (item: IData) => {
   return get(item, "id") || item.__typename;
 };
 
-const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
-  const {
-    loading,
-    onScroll,
-    chipList,
-    onRefresh,
-    onTagPress,
-    rewardsData,
-    selectedTag,
-    onItemPress,
-    showChipList,
-    recentRewards,
-    shouldAnimate,
-    onLeftMenuPress,
-    isOnScrollActionEnabled,
-    onChangeStoreLocationPress,
-  } = props;
+const RewardsListScreen = React.memo((props: Props) => {
+  const { loading, onRefresh, rewardsData, onItemPress, recentRewards, onLeftMenuPress, onChangeStoreLocationPress } =
+    props;
 
   const { tempGameNewRewardsScreen } = useUserFeatures();
 
   // can't use negation as we need to ignore null and undefined
   const shouldShowFirstTimeModal = rewardsData?.hasUserSelectedStoreLocation === false;
 
-  const chips = useMemo(() => {
-    return chipList.map((tag) => ({
-      value: tag === DEFAULT_TAG ? t("screens.rewards.chips.all") : tag,
-      isSelected: selectedTag === tag,
-      onPress: () => onTagPress(tag),
-    }));
-  }, [onTagPress, selectedTag, chipList]);
-
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IData>) => {
       if (item.__typename === RewardListItemTypes.GoalProductMilestones) {
-        if (selectedTag !== DEFAULT_TAG) {
-          return null;
-        }
-
         return null;
       }
 
@@ -130,7 +94,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
 
       return null;
     },
-    [selectedTag, rewardsData?.rewardStoreAccessRevokesAt, recentRewards, onItemPress]
+    [rewardsData?.rewardStoreAccessRevokesAt, recentRewards, onItemPress]
   );
 
   const dataWithChiplist = useMemo(() => {
@@ -178,19 +142,9 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
               keyExtractor={keyExtractor}
               testID={REWARDS_LIST_SCREEN_SCROLL}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={isOnScrollActionEnabled ? undefined : styles.contentContainerStyle}
-              onScroll={onScroll}
+              contentContainerStyle={styles.contentContainerStyle}
             />
           </View>
-        )}
-        {!showChipList ? null : (
-          <Animated.View
-            entering={FadeInUp.duration(300).easing(Easing.inOut(Easing.quad))}
-            {...(shouldAnimate && { exiting: FadeOutUp.duration(300).easing(Easing.inOut(Easing.quad)) })}
-            style={styles.chipListWrapper}
-          >
-            <ChipList chips={chips} />
-          </Animated.View>
         )}
       </View>
       <View style={styles.navBarFiller} />
