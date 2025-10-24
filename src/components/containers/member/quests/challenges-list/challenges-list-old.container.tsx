@@ -174,7 +174,6 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
                 fitKitTypes: slot.fitKitTypes,
                 tutorialUrl: slot.details.tutorialUrl,
                 content: internalContent,
-                reward: slot.reward,
                 level,
                 levelSlotTemplateId: slot.levelSlotTemplateId,
               },

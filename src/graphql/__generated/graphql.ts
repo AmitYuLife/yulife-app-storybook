@@ -3172,12 +3172,16 @@ export type DebugData = {
 /** Describes the user information required during the onboarding process */
 export type DefaultOnboardingDetails = {
   __typename?: "DefaultOnboardingDetails";
+  /** The referral code that was already attributed to this user (if any) */
+  attributedReferralCode?: Maybe<Scalars["String"]["output"]>;
   /** Whether the user is eligible for the experimental "seamless" D2C onboarding flow */
   d2cOnboardingEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   /** The user's date of birth, either from the users customer record or their business employee record */
   dateOfBirth?: Maybe<Scalars["String"]["output"]>;
   /** The user's email address, either from the users customer record or their employee record */
   email?: Maybe<Scalars["String"]["output"]>;
+  /** Whether the new referral process should be used during onboarding */
+  enableCodeBasedReferrals?: Maybe<Scalars["Boolean"]["output"]>;
   /** The user's first name, either from the users customer record or their employee record */
   firstName?: Maybe<Scalars["String"]["output"]>;
   /** The user's full name, either from the users customer record or their employee record with ordering as per locale */
@@ -3566,13 +3570,6 @@ export type EmployeesOverSpaType = {
   email?: Maybe<Scalars["String"]["output"]>;
   firstName?: Maybe<Scalars["String"]["output"]>;
   lastName?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type EmployerListItem = {
-  __typename?: "EmployerListItem";
-  businessAccountId: Scalars["String"]["output"];
-  businessAccountName: Scalars["String"]["output"];
-  id: Scalars["String"]["output"];
 };
 
 export type EndPointsVersion = {
@@ -7336,6 +7333,7 @@ export type MutationUpdateMemberDetailsArgs = {
   firstName: Scalars["String"]["input"];
   lastName: Scalars["String"]["input"];
   nameVariants?: InputMaybe<Array<NameVariantInput>>;
+  referralCode?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationUpdateMemberNameArgs = {
@@ -7858,7 +7856,8 @@ export type Query = {
   get2FASecret?: Maybe<TwoFaSecretResponse>;
   getAPIVersion?: Maybe<ApiDetails>;
   getActiveAndInactiveCount: ActiveAndInactiveCount;
-  getActiveEmployments: Array<EmployerListItem>;
+  /** Get the user's active employments */
+  getActiveEmployments: Array<UserBusinessLink>;
   getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
   getAnalyticsConfiguration: AnalyticsConfiguration;
@@ -7984,6 +7983,8 @@ export type Query = {
   getInventory: Array<InventoryItem>;
   getJoinCompanyStrategy: JoinCompanyStrategy;
   getLeaderboard?: Maybe<Array<Maybe<LeaderboardItem>>>;
+  /** Gets the businesses which the user is currently linked to (by employment or a dependant relationship) */
+  getLinkedBusinesses: Array<UserBusinessLink>;
   getMagicLink?: Maybe<Scalars["String"]["output"]>;
   getMedia?: Maybe<Array<Maybe<Media>>>;
   /** Get the users rewards with image to show featured */
@@ -11431,6 +11432,13 @@ export type UserBusiness = {
   isGroup?: Maybe<Scalars["Boolean"]["output"]>;
   /** @deprecated Do not use business on the client, abstract via the API */
   isWellbeingAccess?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type UserBusinessLink = {
+  __typename?: "UserBusinessLink";
+  businessAccountId: Scalars["String"]["output"];
+  businessAccountName: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
 };
 
 export type UserChallengesDoneToday = {
@@ -29812,7 +29820,7 @@ export type GetReferralInformationQuery = {
     };
   };
   activeEmployments: Array<{
-    __typename?: "EmployerListItem";
+    __typename?: "UserBusinessLink";
     id: string;
     businessAccountId: string;
     businessAccountName: string;
@@ -35600,7 +35608,7 @@ export type GetWellbeingHubItemsQuery = {
   } | null;
   categories: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
   activeEmployments: Array<{
-    __typename?: "EmployerListItem";
+    __typename?: "UserBusinessLink";
     id: string;
     businessAccountId: string;
     businessAccountName: string;

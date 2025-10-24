@@ -199,7 +199,6 @@ export const handleInternalContentChallenge = ({
             tutorialUrl: levelSlot.details.tutorialUrl,
             content: internalContent,
             yuHealth: levelSlot.yuHealth,
-            reward: levelSlot.reward,
             level,
             levelSlotTemplateId: levelSlot.levelSlotTemplateId,
           },
