@@ -1,8 +1,6 @@
 import { Box, TextTemplate } from "@atoms";
 import { t } from "@locale";
-import { memo, useContext, useEffect } from "react";
-import { RewardsManagerContext } from "@components/containers/member/rewards/rewards.manager.context";
-import { RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
+import { memo } from "react";
 import { SEASON_COMPLETE_NEW_SEASON_COMING } from "@ids";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -14,12 +12,6 @@ interface IBattlePassSeasonStagingProps {
 }
 
 const BattlePassSeasonStaging = ({ showNavigation, onBackPress }: IBattlePassSeasonStagingProps) => {
-  const { dispatch } = useContext(RewardsManagerContext);
-
-  useEffect(() => {
-    dispatch({ type: RewardsManagerActionTypes.SET_END_OF_SEASON, payload: true });
-  }, []);
-
   return (
     <>
       <Box

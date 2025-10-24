@@ -1,5 +1,4 @@
 import { Box, Image, TextTemplate } from "@atoms";
-import { IRewardContainerProps } from "@components/containers/member/rewards/rewards.types";
 import { Button } from "@components/molecules";
 import { useTranslation } from "@hooks";
 import { useNavigation } from "@navigation/navigation.context";
@@ -9,7 +8,11 @@ import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { Style } from "@styles";
 import { memo } from "react";
 
-const RewardsUnavailableScreen = ({ handlePurchasesPress }: IRewardContainerProps) => {
+interface RewardsUnavailableScreenProps {
+  handlePurchasesPress?: () => void;
+}
+
+const RewardsUnavailableScreen = ({ handlePurchasesPress }: RewardsUnavailableScreenProps) => {
   const { onLeftMenuPress } = useNavigation();
   const t = useTranslation([
     "screens.rewards.unavailable.title",

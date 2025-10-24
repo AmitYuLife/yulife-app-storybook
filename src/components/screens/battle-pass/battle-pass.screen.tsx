@@ -1,6 +1,6 @@
 import { BattlePassHeader, BattlePassTopBar } from "@organisms";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { ImageSourcePropType, NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
+import { ImageSourcePropType, ScrollView } from "react-native";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
@@ -26,7 +26,6 @@ interface IProps {
   onPressWallet?: () => void;
   onComplete: () => void; //leave this for now, it will be purged on container changes
   showCoinAnimation: boolean;
-  onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
 const BattlePassScreen = ({
@@ -41,7 +40,6 @@ const BattlePassScreen = ({
   isInnerScreen,
   rewards,
   showCoinAnimation,
-  onScroll,
   onPressWallet,
 }: IProps) => {
   const isSeasonComplete = progressStatus.step === progressStatus.steps;
@@ -83,7 +81,7 @@ const BattlePassScreen = ({
           pt={showNavigation || isInnerScreen ? TOP_BAR_WITH_PAD : 0}
         />
         <Box px={16} pb={showNavigation || isInnerScreen ? 0 : 80} mt={30} flex={1}>
-          <ScrollView scrollEventThrottle={16} onScroll={onScroll} showsVerticalScrollIndicator={false}>
+          <ScrollView scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
             {!isSeasonComplete ? (
               <RewardsList
                 donationTemplates={donationTemplates}

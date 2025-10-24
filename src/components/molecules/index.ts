@@ -87,12 +87,10 @@ export { default as InventoryItemLoading } from "./inventory-item/inventory-item
 export { default as RadioEnterpriseRewardItem } from "./radio-battle-pass-reward-item/radio-battle-pass-reward-item";
 export { default as DecayingCoin } from "./decaying-coin/decaying-coin";
 export { default as DecayingRewardText } from "./decaying-reward-text/decaying-reward-text";
-export { default as BattlePassYuCoinCounter } from "./battle-pass-yucoin-counter/battle-pass-yucoin-counter";
 export { default as RollingTextItem } from "./rolling-text-item/rolling-text-item";
 export { default as Markdown } from "./markdown/markdown";
 export { default as SmokingChips } from "./smoking-chips/smoking-chips";
 export { default as YumojiRewardPicker } from "./yumoji-reward-picker/yumoji-reward-picker";
-export { default as RewardsTab } from "./rewards-tab/rewards-tab";
 export { AnimatedPlants } from "./animated-plants/animated-plants";
 export { default as UserSearchHeading } from "./user-search-heading/user-search-heading";
 export { default as Card } from "./card/card";

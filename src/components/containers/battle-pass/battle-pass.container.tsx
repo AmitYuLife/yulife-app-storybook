@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext, useEffect, useMemo, useRef } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
 import { useModal, useNavigationComponentDidAppear, useQueryOnScreenSeenOnce, useTrack } from "@hooks";
@@ -20,9 +20,7 @@ import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import BattlePassSeasonStaging from "@organisms/battle-pass-season-staging/battle-pass-season-staging";
 import { pushToScreen } from "@navigation/root";
-import { RewardsManagerContext } from "@components/containers/member/rewards/rewards.manager.context";
 import { ROUTES } from "@navigation/constants";
-import { IRewardContainerProps, RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
 import FirstTimeContentLocationSelection from "@components/screens/member/content-location/first-time-content-location-selection";
 import { Navigation } from "@navigation/main";
 import { isEmpty } from "lodash";
@@ -31,14 +29,19 @@ import { t } from "@locale";
 import { prizesAwarded } from "@redux/prizes/prizes.actions";
 import { getModalState } from "@redux/app/app.selectors";
 
+interface BattlePassContainerProps {
+  showNavigation?: boolean;
+  onPressWallet?: () => void;
+  isInnerScreen?: boolean;
+}
+
 const BattlePassContainer = ({
   showNavigation = false,
   onPressWallet: propOnPressWallet,
   isInnerScreen,
-}: IRewardContainerProps) => {
+}: BattlePassContainerProps) => {
   const { componentId } = useNavigation();
   const activeModal = useSelector(getModalState);
-  const { onScroll, dispatch: rewardsManagerDispatch } = useContext(RewardsManagerContext);
 
   const onBack = useCallback(() => {
     if (showNavigation) {
@@ -114,13 +117,6 @@ const BattlePassContainer = ({
 
     if (templates?.length) {
       allTemplateIds.current = templates.map((template) => template.id);
-    }
-
-    if (battlePass?.title || battlePass?.description) {
-      rewardsManagerDispatch({
-        type: RewardsManagerActionTypes.SET_DONATION_INITIAL_STATE,
-        payload: { title: battlePass.title, description: battlePass.description },
-      });
     }
   }, [battlePass, templates]);
 
@@ -392,7 +388,6 @@ const BattlePassContainer = ({
           rewards={rewards || []}
           onComplete={onComplete}
           showCoinAnimation={showCoinAnimation}
-          onScroll={onScroll}
         />
         <FirstTimeContentLocationSelection
           isActive={contentLocation?.hasUserSelectedContentLocation === false}
