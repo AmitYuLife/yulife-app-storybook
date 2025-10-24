@@ -5,7 +5,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
-import { hqInfoCopy } from "../_resources/fixtures";
+import { hqConsentCopy, hqInfoCopy, hqReflectionHowYouFeelTodayCopy, hqReflectionRestedTodayCopy, hqReflectionYourDaySoFarCopy } from "../_resources/fixtures";
 import { getTranslation } from "_utils/translations/getTranslations";
 import { translations } from "@app/locale/translations";
 import { yuscreenImages } from "@images";
@@ -92,7 +92,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
       Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000));
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 280));
+      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 300));
       Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
     });
 
@@ -119,16 +119,45 @@ Feature("Health questionnaires", async () => {
     When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.LEFT_HEADING_BUTTON("Today’s Earnings")), async () => {
         Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("Daily health questions")));
-        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("Earn **40**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7) by discovering more about your health.", "#464647")));
+        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("Earn **60**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7) by discovering more about your health.", "#464647")));
         Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON));
       });
     });
     When("I tap the event panel for the HQ", when.tapID(ids.EVENT_CARD("Daily health questions")), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I press the Let’s go! button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-      Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01));
-      Then("I should see the progress bar in the start position", then.progressBarVisible(50, 400));
+    When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
+      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+    });
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+      When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
+        Then("I should see the reflection.rested_today step", then.textVisible(hqReflectionRestedTodayCopy.title));
+        Then("I should see the progress bar in the start position", then.progressBarVisible(50, 600));
+      });
+    });
+    When("I select the first option for reflection.rested_today", when.tapText(hqReflectionRestedTodayCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should see the reflection.your_day_so_far step", then.textVisible(hqReflectionYourDaySoFarCopy.title));
+          Then("I should see the progress bar has moved", then.progressBarVisible(100, 600));
+        });
+      });
+    });
+    When("I select the first option for reflection.your_day_so_far", when.tapText(hqReflectionYourDaySoFarCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should see the reflection.how_you_feel_today step", then.textVisible(hqReflectionHowYouFeelTodayCopy.title));
+          Then("I should see the progress bar has moved", then.progressBarVisible(160, 600));
+        });
+      });
+    });
+    When("I select the first option for reflection.how_you_feel_today", when.tapText(hqReflectionHowYouFeelTodayCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01));
+          Then("I should see the progress bar has moved", then.progressBarVisible(210, 600));
+        });
+      });
     });
     When("I select the first option for Q1", when.tapText(data.CORE_JOURNEY_STEPS_01.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_01, 0));
@@ -136,17 +165,17 @@ Feature("Health questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the second question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_02));
-      Then("I should see the progress bar has moved", then.progressBarVisible(100, 400));
+      Then("I should see the progress bar has moved", then.progressBarVisible(270, 600));
     });
     When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
       Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01));
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_01, 0));
       Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_01, 1));
-      Then("I should see the progress bar has moved down", then.progressBarVisible(50, 400));
+      Then("I should see the progress bar has moved down", then.progressBarVisible(210, 600));
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the second question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_02));
-      Then("I should see the progress bar has moved", then.progressBarVisible(100, 400));
+      Then("I should see the progress bar has moved", then.progressBarVisible(270, 600));
       Then("I should not see the first option selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_02, 0));
       Then("I should not see the second option selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_02, 1));
     });
@@ -156,7 +185,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the third question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_03));
-      Then("I should see the progress bar has moved", then.progressBarVisible(150, 400));
+      Then("I should see the progress bar has moved", then.progressBarVisible(320, 600));
     });
     When("I select the second option for Q3", when.tapText(data.CORE_JOURNEY_STEPS_03.data.templateUi.options[1].label["en-GB"]), async () => {
       Then("I should see the second option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_03, 1));
@@ -164,7 +193,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the fourth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_04));
-      Then("I should see the progress bar has moved", then.progressBarVisible(200, 400));
+      Then("I should see the progress bar has moved", then.progressBarVisible(380, 600));
     });
     When("I select the first option for Q4", when.tapText(data.CORE_JOURNEY_STEPS_04.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_04));
@@ -172,7 +201,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the fifth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_05));
-      Then("I should see the progress bar has moved", then.progressBarVisible(250, 400));
+      Then("I should see the progress bar has moved", then.progressBarVisible(430, 600));
     });
     When("I select the first option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_05.data.templateUi.options[0].label["en-GB"]), async () => {
       When("I also select the third option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_05.data.templateUi.options[2].label["en-GB"]), async () => {
@@ -185,7 +214,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the sixth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_06));
-      Then("I should see the progress bar has moved", then.progressBarVisible(300, 400));
+      Then("I should see the progress bar has moved", then.progressBarVisible(490, 600));
     });
     When("I select the first option for Q6", when.tapText(data.CORE_JOURNEY_STEPS_06.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_06));
@@ -193,7 +222,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the seventh question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_07));
-      Then("I should see the progress bar has moved", then.progressBarVisible(350, 400));
+      Then("I should see the progress bar has moved", then.progressBarVisible(540, 600));
     });
     When("I select the first option for Q7", when.tapText(data.CORE_JOURNEY_STEPS_07.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_07));
@@ -201,32 +230,32 @@ Feature("Health questionnaires", async () => {
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
       Then("I should be on the eigth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_08));
-      Then("I should see the progress bar has moved", then.progressBarVisible(400, 400));
+      Then("I should see the progress bar has moved", then.progressBarVisible(600, 600));
     });
     When("I select the first option for Q8", when.tapText(data.CORE_JOURNEY_STEPS_08.data.templateUi.options[0].label["en-GB"]), async () => {
       Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_08));
       Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_08, 1));
     });
     When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-      Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
-      Then("As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 40 YuCoin for completing it", then.idVisible("health_questionnaire_submission_yucoin_markdown"));
+      Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("You did it!", "h3")));
+      Then("As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 60 YuCoin for completing it", then.idVisible("health_questionnaire_submission_yucoin_markdown"));
     });
     When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
       When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-        Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(240, 280));
+        Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(260, 300));
         Then("I should see the completed HQ nudge", then.completedHQNudgeVisible());
       });
     });
     When("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {
       Then("I should be on the same screen, and still see the completed HQ nudge", then.completedHQNudgeVisible());
     });
-    When("I tap earned from todays activities", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(240, 280)), async () => {
-      Then("I see the 240 yucoin earned today so far", then.textVisible("240 YuCoin"));
+    When("I tap earned from todays activities", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(260, 300)), async () => {
+      Then("I see the 260 yucoin earned today so far", then.textVisible("260 YuCoin"));
     });
     When("I swipe to the bottom", when.scrollWithLimitedAttemptsUntilIdVisible(ids.TODAYS_EARNINGS, ids.ACTIVITY_FEED_ID("health-questionnaire-slot")), async () => {
       Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"));
       Then("I should see that I completed the qustionnaire", then.textVisible("Quiz"));
-      Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("40", 1500));
+      Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("60", 1500));
     });
   });
 
@@ -242,13 +271,36 @@ Feature("Health questionnaires", async () => {
       Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
       Then("I should see the Let's go! button", then.textVisible("Let's go!"));
     });
-    When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 1), async () => {
-      Then("I can see the HQ description screen title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
-      Then("I can see the HQ description screen markdown", then.textVisible("Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some extra YuCoin as you sail through these questions!"));
+    When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
+      Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
-      When("I click on the let's go! button", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
-        Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_11));
+    When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
+      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+    });
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+      When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
+        Then("I should see the reflection.rested_today step", then.textVisible(hqReflectionRestedTodayCopy.title));
+      });
+    });
+    When("I select the first option for reflection.rested_today", when.tapText(hqReflectionRestedTodayCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should see the reflection.your_day_so_far step", then.textVisible(hqReflectionYourDaySoFarCopy.title));
+        });
+      });
+    });
+    When("I select the first option for reflection.your_day_so_far", when.tapText(hqReflectionYourDaySoFarCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should see the reflection.how_you_feel_today step", then.textVisible(hqReflectionHowYouFeelTodayCopy.title));
+        });
+      });
+    });
+    When("I select the first option for reflection.how_you_feel_today", when.tapText(hqReflectionHowYouFeelTodayCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_11));
+        });
       });
     });
     When("I select the first option for Q1", when.tapText(data.CORE_JOURNEY_STEPS_11.data.templateUi.options[0].label["en-GB"]), async () => {
@@ -287,7 +339,7 @@ Feature("Health questionnaires", async () => {
       Then("I should be back on the today's earning screen, and can see the HQ title", then.textVisible("Getting to know Yu!"));
       Then("I should be back on the today's earning screen, and I should see the Let's go! button", then.textVisible("Let's go!"));
     });
-    When("I tap Let's go!", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 1), async () => {
+    When("I tap Let's go!", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
       Then("I should be on the fifth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_15));
       Then("I should see the first option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_15));
       Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_15, 1));
@@ -333,8 +385,8 @@ Feature("Health questionnaires", async () => {
       Then("I should see 9ft 11 in as the selected height", then.idVisible(ids.TEXT_TEMPLATE("9ft 11in", "l1b")));
     });
     When("I click the next button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-      Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
-      Then("As a user who is on a earnRate: 1, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 4 YuCoin for completing it", then.textVisible(/^\+4\s.*/));
+      Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("You did it!", "h3")));
+      Then("As a user who is on a earnRate: 1, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 6, I should receive 6 YuCoin for completing it", then.textVisible(/^\+6\s.*/));
     });
     When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
       Then("I should not see the HQ title", then.textNotVisible("Getting to know Yu!"));
@@ -342,16 +394,16 @@ Feature("Health questionnaires", async () => {
     });
     When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
       Then("I should not see the event panel", then.textNotVisible("Daily health questions"));
-      Then("I should see my YuCoin balance of 4, after I finish the HQ", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(4)));
-      Then("I should see '4 YuCoin Today' due to finishing HQ", then.textVisible("4 YuCoin today"));
+      Then("I should see my YuCoin balance of 6, after I finish the HQ", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(6)));
+      Then("I should see '6 YuCoin Today' due to finishing HQ", then.textVisible("6 YuCoin today"));
     });
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
-      Then("I should see 4 YuCoin for reward", then.textVisible("4 YuCoin"));
+      Then("I should see 6 YuCoin for reward", then.textVisible("6 YuCoin"));
     });
     When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
       Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"));
       Then("I should see that I completed the questionnaire", then.textVisible("Quiz"));
-      Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("4", 1500));
+      Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("6", 1500));
     });
   });
 
@@ -366,20 +418,40 @@ Feature("Health questionnaires", async () => {
       Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
       Then("I should see the Let's go! button", then.textVisible("Let's go!"));
     });
-    When("I click lets go!", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 1), async () => {
-      Then("I can see the getting to know yu title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
+    When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
+      Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
-      Then("I can see lets go button", then.idVisible(ids.BUTTON_BASE("Let’s go!")));
+    When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
+      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
     });
-    When("I press lets go ", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
-      Then("I should be on the HQ consent screen", then.idVisible(ids.TEXT_TEMPLATE("Your privacy and consent", "h3")));
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+      When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
+        Then("I should see the reflection.rested_today step", then.textVisible(hqReflectionRestedTodayCopy.title));
+      });
     });
-    When("I press the Consent and continue button ", when.tapID(ids.BUTTON_BASE("Consent and continue", false)), async () => {
-      Then("I can see the new designed advice/goal question with the banner with an image on top", then.idVisible(ids.HINT_LABEL("Health advice and tips")));
-      Then("I can see the new designed advice/goal questions image", then.idVisible(ids.HINT_VARIANT_IMAGE("https://yulife-develop.imgix.net/journeys/health-questionnaire/advice.svg?ixlib=js-3.2.1&s=22d39a7ba57dafd56f6a12b0f8f1da7f")));
-      Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("How motivated are you to take up this advice?", "b2b")));
-      Then("I can see the next button is disabled as I haven't selected an answer", then.idVisible(ids.BUTTON_BASE("Next", true)));
+    When("I select the first option for reflection.rested_today", when.tapText(hqReflectionRestedTodayCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should see the reflection.your_day_so_far step", then.textVisible(hqReflectionYourDaySoFarCopy.title));
+        });
+      });
+    });
+    When("I select the first option for reflection.your_day_so_far", when.tapText(hqReflectionYourDaySoFarCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should see the reflection.how_you_feel_today step", then.textVisible(hqReflectionHowYouFeelTodayCopy.title));
+        });
+      });
+    });
+    When("I select the first option for reflection.how_you_feel_today", when.tapText(hqReflectionHowYouFeelTodayCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I can see the new designed advice/goal question with the banner with an image on top", then.idVisible(ids.HINT_LABEL("Health advice and tips")));
+          Then("I can see the new designed advice/goal questions image", then.idVisible(ids.HINT_VARIANT_IMAGE("https://yulife-develop.imgix.net/journeys/health-questionnaire/advice.svg?ixlib=js-3.2.1&s=22d39a7ba57dafd56f6a12b0f8f1da7f")));
+          Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("How motivated are you to take up this advice?", "b2b")));
+          Then("I can see the next button is disabled as I haven't selected an answer", then.idVisible(ids.BUTTON_BASE("Next", true)));
+        });
+      });
     });
     When("I cycle through all the questions", when.tapAllCheckboxes("dynamic_advice.1.2.15", "choice_dynamic_advice.1.2.15", 5), async () => {
       Then("I can see the next button is enabled as I have selected an answer", then.idVisible(ids.BUTTON_BASE("Next", false)));
@@ -458,66 +530,20 @@ Feature("Health questionnaires", async () => {
     });
     When("I tap select", when.tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON), async () => {
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-        Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
-        Then("As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 4, I should receive 40 YuCoin for completing it", then.idVisible("health_questionnaire_submission_yucoin_markdown"));
+        Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("You did it!", "h3")));
+        Then("As a user who is on a earnRate: 10, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 6, I should receive 60 YuCoin for completing it", then.idVisible("health_questionnaire_submission_yucoin_markdown"));
       });
     });
     When("I close the app before I press the claim button", when.start, async () => {
       Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_2, data.AUTH_2, true, "UK"), async () => {
-        Then("I should see my YuCoin balance gone up by 40", then.textVisible("240 YuCoin today"));
+        Then("I should see my YuCoin balance gone up by 60", then.textVisible("260 YuCoin today"));
       });
     });
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
       When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5), async () => {
         Then("I should see Additional rewards showing the questionnaire", then.textVisible("Quiz"));
-        Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("40"));
+        Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("60"));
       });
-    });
-  });
-
-  Scenario("I should see the Health Questionnaire consent screen as a first time answerer (UK & JP copy)", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_2, data.AUTH_2), async () => {
-      Then("I should see the HQ hero card", then.idVisible(ids.EVENT_CARD("Daily health questions")));
-    });
-    When("I click on the HQ hero card", when.tapID(ids.EVENT_CARD("Daily health questions")), async () => {
-      Then("I can see the HQ title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
-    });
-    When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
-      When("I press lets go ", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
-        Then("I should be on the HQ consent screen", then.canSeeHQConsentScreen("en-GB"));
-      });
-    });
-    When("I press the Consent and continue button ", when.tapID(ids.BUTTON_BASE("Consent and continue", false)), async () => {
-      Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("How motivated are you to take up this advice?", "b2b")));
-    });
-    When("I tap the close button on top right", when.tapID(ids.SCREEN_CLOSE), async () => {
-      Then("I should see the HQ hero card", then.idVisible(ids.EVENT_CARD("Daily health questions")));
-    });
-    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
-      When("I tap settings", when.tapMenuItem("Settings"), async () => {
-        Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
-      });
-    });
-    When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.5), async () => {
-      Then("I should be on the language selector screen", then.idVisible(ids.TEXT_TEMPLATE("en-GB", undefined)));
-    });
-    When("I tap the language options", when.tapID(ids.TEXT_TEMPLATE("en-GB", undefined)), async () => {
-      Then("I should be on the language selector screen", then.languageSelectorVisible);
-    });
-    When("I tap to switch to Japanese", when.tapText(`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`, 2000, true), async () => {
-      When("I close the pop up", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-        Then("I should be back on my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2000));
-      });
-    });
-    When("I click on the HQ hero card", when.tapID(ids.EVENT_CARD("健康チェックの質問")), async () => {
-      When("I click to go back to the consent screen", when.tapID(ids.BACK_BUTTON), async () => {
-        When("I scroll up the consent page", when.scrollFromID(ids.TEXT_TEMPLATE("お客様の個人情報の取扱について", "h3"), "up", "fast", 0.5), async () => {
-          Then("I should be on the HQ consent screen", then.canSeeHQConsentScreen("ja-JP"));
-        });
-      });
-    });
-    When("I press the Consent and continue button ", when.tapID(ids.BUTTON_BASE("同意して次へ進む", false)), async () => {
-      Then("I can see the title", then.idVisible(ids.TEXT_TEMPLATE("このアドバイスを積極的に取り入れたい気持ちはどのくらいありますか?", "b2b")));
     });
   });
 
@@ -526,13 +552,35 @@ Feature("Health questionnaires", async () => {
       Then("I should see the YuScreen CTA 'Take a challenge (2 left today)'", then.textVisible("Take a challenge (2 left today)", 3000));
     });
     helper.takeChallengeFromYuCoinScreen("Take a challenge (1 left today)", true)();
-    helper.takeChallengeFromYuCoinScreen("Check in on your health (+4 YuCoin)", false)();
+    helper.takeChallengeFromYuCoinScreen("Check in on your health (+6 YuCoin)", false)();
     When("I tap to check in on your health", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
-      Then("I can see the getting to know yu title", then.idVisible(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3")));
+      Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.TEXT_TEMPLATE("Getting to know Yu!", "h3"), "up", "fast", 0.5), async () => {
-      When("I press lets go", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
-        When("I press the Consent and continue button", when.tapID(ids.BUTTON_BASE("Consent and continue", false)), async () => {
+    When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
+      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+    });
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+      When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
+        Then("I should see the reflection.rested_today step", then.textVisible(hqReflectionRestedTodayCopy.title));
+      });
+    });
+    When("I select the first option for reflection.rested_today", when.tapText(hqReflectionRestedTodayCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should see the reflection.your_day_so_far step", then.textVisible(hqReflectionYourDaySoFarCopy.title));
+        });
+      });
+    });
+    When("I select the first option for reflection.your_day_so_far", when.tapText(hqReflectionYourDaySoFarCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
+          Then("I should see the reflection.how_you_feel_today step", then.textVisible(hqReflectionHowYouFeelTodayCopy.title));
+        });
+      });
+    });
+    When("I select the first option for reflection.how_you_feel_today", when.tapText(hqReflectionHowYouFeelTodayCopy.option), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
           Then("I can see the new designed advice/goal question with the banner with an image on top", then.idVisible(ids.HINT_LABEL("Health advice and tips")));
         });
       });
@@ -568,7 +616,7 @@ Feature("Health questionnaires", async () => {
     When("I tap the 'Select' button", when.tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON), async () => {
       Then("The scroll picker modal should be closed", then.idVisible(ids.BUTTON_BASE("Next")));
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
-        Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("Thank you for your feedback!", "h3")));
+        Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("You did it!", "h3")));
       });
     });
   });

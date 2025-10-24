@@ -79,22 +79,12 @@ export const eventPanelForRewardTest = (eventPanel: any) => async () => {
   await textVisible(eventPanel.description["en-GB"])();
 };
 
-export const onHQInformationScreen = (copy: any) => async () => {
-  copy.description.forEach((text) => async () => {
-    await textVisible(text)();
-  });
-  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxOneTitle, "down")();
-  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxOneDescription, "down")();
-  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxTwoTitle, "down")();
-  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxTwoDescription, "down")();
-  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxThreeTitle, "down")();
-  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxThreeDescription, "down")();
-  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.infoBox, "down")();
-  await scrollFromID("SDUI_BODY_SCROLL", "up", "fast")();
-  await textVisible(copy.cta)();
-  copy.disclaimer.forEach((text) => async () => {
-    await textVisible(text)();
-  });
+export const onHQInformationScreen = (copy: { title: string }) => async () => {
+  await textVisible(copy.title)();
+};
+
+export const onHQConsentScreen = (copy: { title: string }) => async () => {
+  await textVisible(copy.title)();
 };
 
 export const onHQRadioQuestion = (journeyStep: any) => async () => {
