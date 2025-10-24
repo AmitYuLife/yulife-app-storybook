@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, WhenSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, WhenSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -42,18 +42,44 @@ Feature("Health questionnaires", async () => {
       });
     });
     When("I tap on the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
-      Then("I should see the HQ information screen heading in Japanese", then.textVisible(data.CORE_JOURNEY_STEPS_09.data.templateUi.copy.heading["ja-JP"]));
+      Then("I should see the HQ information screen heading in Japanese", then.textVisible("デイリーリフレクション"));
     });
     When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
       When("I press the Let’s go! button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE(""), 2000), async () => {
-        Then("I should see the first question in Japanese", then.textVisible(data.CORE_JOURNEY_STEPS_01.data.templateUi.copy.heading["ja-JP"]));
-        Then("I should see the first answer option in Japanese", then.textVisible(getTranslation("ja-JP").labels.cta.yes));
+        Then("I should see the terms and conditions screen", then.textVisible("お客様の個人情報の取扱について"));
+      });
+    });
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+      When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE("同意して次へ進む", false)), async () => {
+        Then("I should see the reflection.rested_today step", then.textVisible("昨晩はどのくらいよく眠れましたか?"));
+      });
+    });
+    When("I select the first option for reflection.rested_today", when.tapText("ほとんど眠れなかった"), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("次へ", false)), async () => {
+          Then("I should see the reflection.your_day_so_far step", then.textVisible("今の気分はいかがですか?"));
+        });
+      });
+    });
+    When("I select the first option for reflection.your_day_so_far", when.tapText("ひどい"), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("次へ", false)), async () => {
+          Then("I should see the reflection.how_you_feel_today step", then.textVisible("今日の気分は以下のうちどれに該当しますか?"));
+        });
+      });
+    });
+    When("I select the first option for reflection.how_you_feel_today", when.tapText("幸せ"), async () => {
+      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("次へ", false)), async () => {
+          Then("I should see the first DHQ question in Japanese", then.textVisible(data.CORE_JOURNEY_STEPS_01.data.templateUi.copy.heading["ja-JP"]));
+          Then("I should see the first DHQ answer option in Japanese", then.textVisible(getTranslation("ja-JP").labels.cta.yes));
+        });
       });
     });
     When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.BACK_BUTTON), async () => {
         Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("健康チェックの質問")));
-        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("健康に関する質問への回答で\n**40**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)をプレゼント。", "#464647")));
+        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("健康に関する質問への回答で\n**60**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)をプレゼント。", "#464647")));
         Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON));
       });
     });
