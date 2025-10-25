@@ -1442,17 +1442,17 @@
     },
     "pathways": {
       "day": "%{day}日目",
-      "header": "デイリー リフレクション",
+      "header": "毎日の振り返り",
       "personal_health_path": {
-        "heading": "パーソナル ヘルス パス"
+        "heading": "健康管理プログラム"
       },
-      "reflect": "反映",
-      "reflect_in": "%{time} に反映",
-      "secondary_button_label": "Well-beingセンター へ移動",
-      "today": "Today",
+      "reflect": "振り返りに進む",
+      "reflect_in": "次回まであと%{time}",
+      "secondary_button_label": "Well-beingセンターに移動",
+      "today": "今日",
       "user_mood": {
-        "heading": "あなた の 週",
-        "view_calendar": "カレンダー を 表示 "
+        "heading": "今週の気分",
+        "view_calendar": "カレンダーを表示 "
       }
     },
     "permissions": {
