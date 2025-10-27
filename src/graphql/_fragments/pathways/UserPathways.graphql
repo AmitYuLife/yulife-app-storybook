@@ -1,4 +1,5 @@
 fragment UserPathways on UserPathways {
+  nextQuestionnaireLocalDate
   reflectionProgress {
     ...UserPathwaysReflectionProgress
   }

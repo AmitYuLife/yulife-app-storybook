@@ -194,7 +194,7 @@
       "today": "Today",
       "day": "Day %{day}",
       "reflect": "Reflect",
-      "reflect_in": "Reflect in %{time}",
+      "reflect_in": "Reflect in %{hours}h %{minutes}m",
       "secondary_button_label": "Go to Wellbeing Hub"
     },
     "products": {
