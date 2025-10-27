@@ -1,6 +1,6 @@
 import { IFeature } from "@redux/user/user.types";
 import getClient from "@services/bugsnag";
-import Logger from "@services/logging/logger";
+import dd from "@services/datadog";
 import { processYuHealthResult } from "./helpers/sampleToAggregatedData";
 import {
   BucketSize,
@@ -43,10 +43,9 @@ export const yuHealthAggregateQuery = async ({
     getClient().leaveBreadcrumb("YuHealth Aggregation Queried", { params }, "log");
 
     if (loggingEnabled) {
-      Logger.logMixpanelEvent("app_debug", {
+      dd.info("YuHealth aggregate query args", {
         metadata,
         params,
-        type: `yu_health_aggregate_query_args`,
         location: "yu-health",
       });
     }
@@ -54,22 +53,20 @@ export const yuHealthAggregateQuery = async ({
     const results = await aggregateQuery({ ...params, queryOptions: { ...params?.queryOptions, disableUserEntries } });
 
     if (loggingEnabled && results) {
-      Logger.logMixpanelEvent("app_debug", {
+      dd.info("YuHealth aggregate query results", {
         metadata,
         params,
         results,
-        type: `yu_health_aggregate_query_response`,
         location: "yu-health",
       });
     }
 
     return results?.result;
   } catch (e) {
-    Logger.logMixpanelEvent("app_debug", {
+    dd.error("YuHealth aggregate query response error", {
       error: e,
       params,
       metadata,
-      type: `yu_health_aggregate_query_response_error`,
       location: "yu-health",
     });
 
@@ -102,10 +99,9 @@ export async function yuHealthSampleQuery({
     };
 
     if (loggingEnabled) {
-      Logger.logMixpanelEvent("app_debug", {
+      dd.info("YuHealth sample query args", {
         ...metadata,
         ...args,
-        type: `yu_health_sample_query_args`,
         location: "yu-health",
       });
     }
@@ -113,10 +109,9 @@ export async function yuHealthSampleQuery({
     const results = await sampleQuery(args);
 
     if (loggingEnabled && results) {
-      Logger.logMixpanelEvent("app_debug", {
+      dd.info("YuHealth sample query results", {
         ...metadata,
         results,
-        type: `yu_health_sample_query_results`,
         location: "yu-health",
       });
     }
@@ -126,11 +121,10 @@ export async function yuHealthSampleQuery({
     // Add it back when we'll have the logic to log only one error per session
     // Logger.error(e, { event: "yuHealthSampleQuery" });
 
-    Logger.logMixpanelEvent("app_debug", {
+    dd.error("YuHealth sample query error", {
       ...metadata,
       error: e.message,
       params,
-      type: `yu_health_sample_query_error`,
       location: "yu-health",
     });
 

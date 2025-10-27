@@ -4,7 +4,7 @@ import { queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.types";
 import { PermissionsAndroid } from "react-native";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
-import Logger from "@services/logging/logger";
+import dd from "@services/datadog";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getEndDates } from "./helper";
 import { processResult, processYuHealthResult } from "@services/fitkit/helpers/sampleToAggregatedData";
@@ -184,13 +184,12 @@ const checkPermissions = async (userFeatures: IUserStore["features"]) => {
   ]);
 
   if ((!meditationPermissionGranted || !cyclingPermissionGranted) && userFeatures?.loggingEnabled) {
-    Logger.logMixpanelEvent("app_debug", {
-      type: "google_fit_permission_not_granted",
+    dd.info("Google Fit permissions not granted", {
       permissions: {
         cycling: cyclingPermissionGranted,
-        mindful: meditationPermissionGranted,
+        meditation: meditationPermissionGranted,
       },
-      location: "getPassiveSinceLastUpdateAndroid",
+      location: "checkPermissions",
     });
   }
 

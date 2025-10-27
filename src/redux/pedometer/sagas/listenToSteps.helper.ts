@@ -3,6 +3,7 @@ import { Platform } from "react-native";
 import { call, cancelled, put, select, spawn, take } from "redux-saga/effects";
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
+import dd from "@services/datadog";
 import { getUserFeatures } from "../../user/user.selectors";
 import {
   restartPedometerOnNewDay,
@@ -59,9 +60,7 @@ export default function* listenToSteps() {
       }
 
       if (features.loggingEnabled) {
-        yield spawn(() =>
-          Logger.logMixpanelEvent("app_debug", { ...results, type: "raw_steps_results_passive", location: "fitkit" })
-        );
+        yield spawn(() => dd.info("Raw steps results passive", { ...results, location: "fitkit" }));
       }
 
       const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);

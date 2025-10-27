@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import { Alert, Linking, Platform } from "react-native";
 import RNFitKit, { FitKitAuthOptions, FitKitHealthTrackingPlatform, FitKitTypes } from "./fitkit.service";
 import Logger from "@services/logging/logger";
+import dd from "@services/datadog";
 import { mapGqlFitKitTypeToFitKitType } from "./cast/fitkitTypes";
 import { DATE_FORMAT_WITH_TZ, isSamsung } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,9 +30,8 @@ export function useFitKit() {
     try {
       isAvailable = await RNFitKit.isAvailable();
     } catch (e) {
-      Logger.logMixpanelEvent("app_debug", {
+      dd.error("RNFitKit.isAvailable error", {
         error: e.message,
-        type: "rn_fitKit_isAvailable_error",
         location: "fitkit",
       });
     }
@@ -69,7 +69,7 @@ export function useFitKit() {
         isAuthorised = await RNFitKit.isAuthorised();
       }
     } catch (e) {
-      Logger.logMixpanelEvent("app_debug", { error: e, type: "rn_fitKit_isAuthorised_error", location: "fitkit" });
+      dd.error("RNFitKit.isAuthorised error", { error: e, location: "fitkit" });
     }
 
     await setMixpanelProperties(isAuthorised);
@@ -254,9 +254,8 @@ export function useFitKit() {
           wasAuthorisationShown = true;
         }
       } catch (e) {
-        Logger.logMixpanelEvent("app_debug", {
+        dd.error("RNFitKit.authorise error", {
           error: e.message,
-          type: "rn_fitKit_authorisation_shown_error",
           location: "fitkit",
         });
       }
@@ -272,9 +271,8 @@ export function useFitKit() {
         try {
           await Linking.openURL("app-settings:");
         } catch (e) {
-          Logger.logMixpanelEvent("app_debug", {
+          dd.error("Linking.openURL error", {
             error: e.message,
-            type: "rn_fitKit_open_app_settings_error",
             location: "fitkit",
           });
         }
@@ -293,9 +291,8 @@ export function useFitKit() {
       try {
         await Storage.setItem(StorageKey.fitKitAuthorised, "true");
       } catch (e) {
-        Logger.logMixpanelEvent("app_debug", {
+        dd.error("Storage.setItem error", {
           error: e.message,
-          type: "rn_fitKit_authorise_error",
           location: "fitkit",
         });
       }
