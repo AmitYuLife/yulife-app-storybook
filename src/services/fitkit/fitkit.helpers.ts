@@ -2,6 +2,7 @@ import RNFitKit, { PedometerResponse, SampleQueryResult } from "@services/fitkit
 import getClient from "@services/bugsnag";
 import moment from "moment";
 import Logger from "../logging/logger";
+import dd from "@services/datadog";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { fitkitTypeToGqlType, mapGqlFitKitTypeToFitKitType } from "./cast/fitkitTypes";
 import {
@@ -69,10 +70,9 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       };
 
       if (loggingEnabled) {
-        Logger.logMixpanelEvent("app_debug", {
+        dd.info(`Raw ${fitKitType} query args`, {
           ...metaData,
           ...args,
-          type: `raw_${fitKitType}_query_args`,
           location: "fitkit",
         });
       }
@@ -80,10 +80,9 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       const results = await RNFitKit.sampleQuery(args);
 
       if (loggingEnabled && results) {
-        Logger.logMixpanelEvent("app_debug", {
+        dd.info(`Raw ${fitKitType} query results`, {
           ...metaData,
           results,
-          type: `raw_${fitKitType}_query_results`,
           location: "fitkit",
         });
       }
@@ -101,13 +100,12 @@ export async function queryFitKitSampleData<T extends boolean = false>({
         });
       }
 
-      Logger.logMixpanelEvent("app_debug", {
+      dd.error(`Raw ${fitKitType} query error`, {
         ...metaData,
         error: errorMessage,
         date_start: startTime,
         date_end: endTime,
         userInfo: e.userInfo,
-        type: `raw_${fitKitType}_query_error`,
         location: "fitkit",
       });
     }
@@ -164,10 +162,9 @@ export const queryFitKitAggregatedData = async ({
     };
 
     if (loggingEnabled) {
-      Logger.logMixpanelEvent("app_debug", {
+      dd.info("Raw aggregated query args", {
         ...metaData,
         ...args,
-        type: `raw_aggregated_query_args`,
         fitKitTypes,
         location: "fitkit",
       });
@@ -176,10 +173,9 @@ export const queryFitKitAggregatedData = async ({
     const results = await RNFitKit.aggregateQuery(args);
 
     if (loggingEnabled && results) {
-      Logger.logMixpanelEvent("app_debug", {
+      dd.info("Raw aggregated query results", {
         ...metaData,
         results,
-        type: `raw_aggregated_query_results`,
         fitKitTypes,
         location: "fitkit",
       });
@@ -187,12 +183,11 @@ export const queryFitKitAggregatedData = async ({
 
     return { results: results.map(transformSampleResultToPayloadWithType as any), error: null };
   } catch (e) {
-    Logger.logMixpanelEvent("app_debug", {
+    dd.error("Raw aggregated query error", {
       ...metaData,
       error: e.message,
       date_start: start.format(),
       date_end: end.format(),
-      type: `raw_aggregated_query_error`,
       fitKitTypes,
       location: "fitkit",
     });

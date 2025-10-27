@@ -1,8 +1,8 @@
 import { call, select } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
+import dd from "@services/datadog";
 import { SyncAction } from "@redux/_core/types";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { AppDebugMixpanelEvent } from "@services/logging/types";
 import { WHITELIST_REDUX_EVENTS } from "@redux/_core/logging";
 
 /**
@@ -17,14 +17,12 @@ export default function* logDeviceStateSaga(action: SyncAction) {
       // Check if event is whitelisted
       if (WHITELIST_REDUX_EVENTS.includes(action.type)) {
         const timestamp = new Date().toISOString();
-        const reduxEvent: AppDebugMixpanelEvent = {
+        const reduxEvent = {
           reduxEvent: action.type,
           payload: action.payload,
           timestamp,
-          location: "redux",
-          type: "redux_state_change",
         };
-        yield call(Logger.logMixpanelEvent, "app_debug", reduxEvent);
+        yield call(dd.info, "Redux state change", reduxEvent);
       }
     }
   } catch (e) {

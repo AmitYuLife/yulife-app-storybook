@@ -2,6 +2,7 @@ import moment, { Moment } from "moment";
 import { all, call, select, spawn, delay, put } from "redux-saga/effects";
 import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
+import dd from "@services/datadog";
 import { UPDATE_APP_STATE, updateAppState } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
@@ -73,11 +74,10 @@ export default function* getDailyPassiveActivity(
     ]);
 
     if ((!meditationPermissionGranted || !cyclingPermissionGranted) && features.loggingEnabled) {
-      Logger.logMixpanelEvent("app_debug", {
-        type: "google_fit_permission_not_granted",
+      dd.info("Google Fit permissions not granted", {
         permissions: {
           cycling: cyclingPermissionGranted,
-          mindful: meditationPermissionGranted,
+          meditation: meditationPermissionGranted,
         },
         location: "getDailyPassiveActivity",
       });

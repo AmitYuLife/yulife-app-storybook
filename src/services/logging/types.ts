@@ -11,7 +11,6 @@ export type MixpanelEventMetadata = AppDebugMixpanelEvent | Record<string, any>;
 export type MixpanelEvent =
   | "accordion_interaction"
   | "active_boosts_viewed"
-  | "app_debug"
   | "yu_health_debug"
   | "armour_inspected"
   | "avatar_save"
