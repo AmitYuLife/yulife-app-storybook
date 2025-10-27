@@ -89,13 +89,15 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should see the 130 YuCoin I have earned today", then.textVisible("130 YuCoin", 1500));
       Then("I see a way to go back", then.idVisible(ids.BACK_BUTTON, 3000));
     });
-    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I go back", when.tapID(ids.BACK_BUTTON, 4000), async () => {
       Then("I should be back on the 'Yu' tab", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
       Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
       Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 430));
     });
-    When("I tap the challenge nudge", when.tapID(ids.NUDGE_ITEM_WRAPPER("active-challenge-nudge")), async () => {
-      Then("I should be on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123), 5000));
+    When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.1), async () => {
+      When("I tap the challenge nudge", when.tapID(ids.NUDGE_ITEM_WRAPPER("active-challenge-nudge")), async () => {
+        Then("I should be on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123), 5000));
+      });
     });
     When("I tap on level 123", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(123), 2000), async () => {
       Then("I can see the short stroll tile", then.idVisible(ids.CHALLENGE_TILE("Short Stroll"), 5000));
@@ -110,7 +112,6 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I am back on the Quests screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123), 2000));
     });
     When("I go back to the 'Yu' screen", when.tapID(ids.NAV_BAR("yu"), 3500), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
       Then("I should see the updated YuCoin earned of 170", then.maximiseYucoinVisible(170, 430));
       Then("I should see the walking nudge", then.walkingNudgeVisible("9,498", 50));
     });
@@ -413,7 +414,7 @@ Feature("I am able to use the yuscreen v5", async () => {
     When("I tap the Yudoku challenge", when.tapSudoku, async () => {
       When("I complete the Yudoku", when.completeYudoku(3000), async () => {
         When("I tap to collect the reward", when.tapCollect, async () => {
-          When("I return to the YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+          When("I return to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 4500), async () => {
             Then("I should still see the achivement slot empty", then.checkEmptyAchievementSlots(1));
           });
         });

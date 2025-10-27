@@ -94,14 +94,14 @@ export const changeWellbeingHubSelectedBusiness = (businessName: string) => asyn
 
 export const tapSudoku = async () => {
   await scrollUntilTextVisible(ids.CHALLENGE_SET_SCROLL, "Yudoku", "down")();
-  await tapText("Yudoku")();
+  await tapID(ids.CHALLENGE_TILE("Yudoku"), 2500)();
 };
 
 export const completeYudoku =
   (endWait = 0) =>
   async () => {
     await scrollUntilTextVisible(ids.SUDOKU_STAGING_SCREEN_SCROLL, "Start game", "down")();
-    await tapText("Start game")();
+    await tapID(ids.START_SODOKU_GAME, 3500)();
     await dismissNotificationScreenIfVisible();
     await wait(9000)();
     await tapID(ids.CELL_ROW_COLUMN(8, 6, 0))();
@@ -115,11 +115,11 @@ export const completeYudoku =
   };
 
 export const tapCollect = async () => {
-  await tapText("Done")();
-  await wait(3000)();
+  await tapID(ids.STREAKS_SCREEN_BUTTON, 3000)();
+  await wait(4000)();
 
   await scrollUntilTextVisible(ids.SUDOKU_COMPLETED_SCREEN_SCROLL, "Collect", "down")();
-  await tapText("Collect")();
+  await tapID(ids.SODOKU_COMPLETED_REWARD_COLLECT, 3000)();
 };
 
 export const tapAchievementCard = (card: string, cta: "equip" | "unequip") => async () => {

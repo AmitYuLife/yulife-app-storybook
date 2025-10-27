@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, WhenSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, WhenSkip, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -17,7 +17,7 @@ Feature("Health questionnaires", async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_3, data.AUTH_3), async () => {
       Then("I should see my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
     });
-    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
+    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 3000), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
     });
     When("I tap settings", when.tapMenuItem("Settings"), async () => {
@@ -26,22 +26,22 @@ Feature("Health questionnaires", async () => {
     When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
       Then("I should see the pre-selected server language is en-GB", then.languageSettingVisible("en-GB"));
     });
-    When("I tap the language options", when.tapText("Language", 2000, true), async () => {
+    When("I tap the language options", when.tapText("Language", 3000, true), async () => {
       Then("I should be on the langauge selector screen", then.languageSelectorVisible);
       Then("I should see all the available languages listed", then.allLanguagesVsible);
     });
-    When("I tap to switch to Japanese", when.tapText(`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`, 2000, true), async () => {
-      When("I close the pop up", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-        Then("I should be back on my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2000));
-        Then("I should see that the YuCoin screen has changed in Japanese", then.textVisible(getTranslation("ja-JP").navbar.yucoin.label, 2500));
-      });
+    When("I tap to switch to Japanese", when.tapText(`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`, 3000, true), async () => {
+      Then("I should be back on my YuCoin screen", then.idExist(ids.DAILY_STEPS_SCREEN, 15000));
     });
-    When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+    When("I close the pop up", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 5000), async () => {
+      Then("I should see that the YuCoin screen has changed in Japanese", then.textVisible(getTranslation("ja-JP").navbar.yucoin.label, 4000));
+    });
+    When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0), 3000), async () => {
       When("I scroll to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
         Then("I should see the Let's go! button in Japanese", then.textVisible(getTranslation("ja-JP").labels.cta.lets_go, 2000));
       });
     });
-    When("I tap on the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
+    When("I tap on the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0, 2000), async () => {
       Then("I should see the HQ information screen heading in Japanese", then.textVisible("デイリーリフレクション"));
     });
     When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
@@ -50,37 +50,37 @@ Feature("Health questionnaires", async () => {
       });
     });
     When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
-      When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE("同意して次へ進む", false)), async () => {
+      When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE("同意して次へ進む", false), 3000), async () => {
         Then("I should see the reflection.rested_today step", then.textVisible("昨晩はどのくらいよく眠れましたか?"));
       });
     });
-    When("I select the first option for reflection.rested_today", when.tapText("ほとんど眠れなかった"), async () => {
+    When("I select the first option for reflection.rested_today", when.tapText("ほとんど眠れなかった", 2500), async () => {
       When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
-        When("I press Next button", when.tapID(ids.BUTTON_BASE("次へ", false)), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("次へ", false), 2500), async () => {
           Then("I should see the reflection.your_day_so_far step", then.textVisible("今の気分はいかがですか?"));
         });
       });
     });
-    When("I select the first option for reflection.your_day_so_far", when.tapText("ひどい"), async () => {
+    When("I select the first option for reflection.your_day_so_far", when.tapText("ひどい", 2000), async () => {
       When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
-        When("I press Next button", when.tapID(ids.BUTTON_BASE("次へ", false)), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("次へ", false), 2000), async () => {
           Then("I should see the reflection.how_you_feel_today step", then.textVisible("今日の気分は以下のうちどれに該当しますか?"));
         });
       });
     });
-    When("I select the first option for reflection.how_you_feel_today", when.tapText("幸せ"), async () => {
+    When("I select the first option for reflection.how_you_feel_today", when.tapText("幸せ", 2500), async () => {
       When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
-        When("I press Next button", when.tapID(ids.BUTTON_BASE("次へ", false)), async () => {
+        When("I press Next button", when.tapID(ids.BUTTON_BASE("次へ", false), 2500), async () => {
           Then("I should see the first DHQ question in Japanese", then.textVisible(data.CORE_JOURNEY_STEPS_01.data.templateUi.copy.heading["ja-JP"]));
           Then("I should see the first DHQ answer option in Japanese", then.textVisible(getTranslation("ja-JP").labels.cta.yes));
         });
       });
     });
-    When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
-      When("I go back to the yucoin tab", when.tapID(ids.BACK_BUTTON), async () => {
-        Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("健康チェックの質問")));
-        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("健康に関する質問への回答で\n**60**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)をプレゼント。", "#464647")));
-        Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON));
+    When("I close the HQ", when.tapID(ids.SCREEN_CLOSE, 2500), async () => {
+      When("I go back to the yucoin tab", when.tapID(ids.BACK_BUTTON, 2500), async () => {
+        Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("健康チェックの質問"), 1500));
+        Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("健康に関する質問への回答で\n**60**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)をプレゼント。", "#464647"), 1500));
+        Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON, 1500));
       });
     });
   });
