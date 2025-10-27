@@ -24,6 +24,14 @@ query GetPublicYuAPIConfig {
       prodKey
       devKey
     }
+    datadog {
+      appId
+      appKey
+      site
+      trackUserInteractions
+      trackXHRs
+      trackErrors
+    }
     sduiStaticDeeplinks {
       name
       stepId

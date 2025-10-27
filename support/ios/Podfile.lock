@@ -10,6 +10,29 @@ PODS:
   - clevertap-react-native (2.2.1):
     - CleverTap-iOS-SDK (= 6.2.1)
     - React-Core
+  - DatadogCore (2.30.2):
+    - DatadogInternal (= 2.30.2)
+  - DatadogCrashReporting (2.30.2):
+    - DatadogInternal (= 2.30.2)
+    - PLCrashReporter (~> 1.12.0)
+  - DatadogInternal (2.30.2)
+  - DatadogLogs (2.30.2):
+    - DatadogInternal (= 2.30.2)
+  - DatadogRUM (2.30.2):
+    - DatadogInternal (= 2.30.2)
+  - DatadogSDKReactNative (2.13.0):
+    - DatadogCore (= 2.30.2)
+    - DatadogCrashReporting (= 2.30.2)
+    - DatadogLogs (= 2.30.2)
+    - DatadogRUM (= 2.30.2)
+    - DatadogTrace (= 2.30.2)
+    - DatadogWebViewTracking (= 2.30.2)
+    - React-Core
+  - DatadogTrace (2.30.2):
+    - DatadogInternal (= 2.30.2)
+    - OpenTelemetrySwiftApi (= 1.13.1)
+  - DatadogWebViewTracking (2.30.2):
+    - DatadogInternal (= 2.30.2)
   - DoubleConversion (1.1.6)
   - EXApplication (5.9.1):
     - ExpoModulesCore
@@ -155,6 +178,8 @@ PODS:
   - MixpanelReactNative (3.1.2):
     - Mixpanel-swift (= 5.1.0)
     - React-Core
+  - OpenTelemetrySwiftApi (1.13.1)
+  - PLCrashReporter (1.12.0)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -1673,6 +1698,7 @@ DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - clevertap-react-native (from `../node_modules/clevertap-react-native`)
+  - "DatadogSDKReactNative (from `../node_modules/@datadog/mobile-react-native`)"
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXApplication (from `../node_modules/expo-application/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
@@ -1782,6 +1808,13 @@ SPEC REPOS:
   trunk:
     - Apollo
     - CleverTap-iOS-SDK
+    - DatadogCore
+    - DatadogCrashReporting
+    - DatadogInternal
+    - DatadogLogs
+    - DatadogRUM
+    - DatadogTrace
+    - DatadogWebViewTracking
     - HMSegmentedControl
     - Intercom
     - Leanplum-iOS-SDK
@@ -1792,6 +1825,8 @@ SPEC REPOS:
     - libwebp
     - lottie-ios
     - Mixpanel-swift
+    - OpenTelemetrySwiftApi
+    - PLCrashReporter
     - RiveRuntime
     - SDWebImage
     - SDWebImageAVIFCoder
@@ -1814,6 +1849,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-linear-gradient"
   clevertap-react-native:
     :path: "../node_modules/clevertap-react-native"
+  DatadogSDKReactNative:
+    :path: "../node_modules/@datadog/mobile-react-native"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   EXApplication:
@@ -2016,6 +2053,14 @@ SPEC CHECKSUMS:
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
   CleverTap-iOS-SDK: 78ea6d752d84918f0426f7b3959777d862bcb348
   clevertap-react-native: 34c3acaf46e7f8cd4f349dd5a1f851580d410be3
+  DatadogCore: 8e50ad6cb68343f701707f7eeca16e0acb52ed8c
+  DatadogCrashReporting: 34763d4276d4fce286c7e8729cfcd2ac04dca43b
+  DatadogInternal: bd8672d506a7e67936ed5f7ca612169e49029b44
+  DatadogLogs: d683aa9e0c9339f5ae679ead70bbdbe41cdc32f6
+  DatadogRUM: 8b794aa458e6323ea9b1cef3f820fd3d092cbe27
+  DatadogSDKReactNative: 5133b4d7bc8729d049f0049eafe78520f82a8832
+  DatadogTrace: 3ba194791267efa09634234749111cac95abd3e5
+  DatadogWebViewTracking: 8287d5ad06e992de5e46dd72a17e05c7513344be
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   EXApplication: c08200c34daca7af7fd76ac4b9d606077410e8ad
   EXConstants: 409690fbfd5afea964e5e9d6c4eb2c2b59222c59
@@ -2049,6 +2094,8 @@ SPEC CHECKSUMS:
   lottie-react-native: f851c0e235f171d99083c803f728f644be1dcf65
   Mixpanel-swift: 7b26468fc0e2e521104e51d65c4bbf7cab8162f8
   MixpanelReactNative: b523d54778e31e396c55df6f732173f3819e58ee
+  OpenTelemetrySwiftApi: aaee576ed961e0c348af78df58b61300e95bd104
+  PLCrashReporter: db59ef96fa3d25f3650040d02ec2798cffee75f2
   RCT-Folly: 02617c592a293bd6d418e0a88ff4ee1f88329b47
   RCTDeprecation: 3afceddffa65aee666dafd6f0116f1d975db1584
   RCTRequired: ec1239bc9d8bf63e10fb92bd8b26171a9258e0c1

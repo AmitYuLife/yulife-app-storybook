@@ -23,6 +23,14 @@ type RegionConfig = {
     eula: string;
     rewardsPolicy: string;
   };
+  datadog: {
+    appId?: string;
+    appKey?: string;
+    site: string;
+    trackUserInteractions: boolean;
+    trackXHRs: boolean;
+    trackErrors: boolean;
+  };
   intercom: {
     appId: string;
     ios: string;

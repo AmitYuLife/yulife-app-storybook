@@ -12,6 +12,7 @@ import moment from "moment";
 
 const MAX_EVENTS_PER_SECOND = 10;
 
+/** Rename to EngagementTracking */
 class LoggerInstance {
   private userId = "";
   private updatingUser: boolean = false;
@@ -69,6 +70,8 @@ class LoggerInstance {
       app_version_major_minor: this.appVersionMajorMinor,
     };
   };
+
+  public getMixpanelDeviceId = () => this.mixpanel.getDeviceId();
 
   public setUserId = async (userId: string, intercomHash: string, supportLevel: UserSupportLevel) => {
     if (this.updatingUser) {

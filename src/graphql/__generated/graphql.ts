@@ -17,6 +17,7 @@ export type Scalars = {
 
 export type ApiConfig = {
   __typename?: "APIConfig";
+  datadog: ApiConfigDatadog;
   enabledCaptchaProviders?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
   hcaptchaSiteKey?: Maybe<Scalars["String"]["output"]>;
   intercom: ApiConfigIntercom;
@@ -31,6 +32,16 @@ export type ApiConfig = {
   stripeKey: Scalars["String"]["output"];
   urls: ApiConfigUrls;
   validation: ApiConfigValidation;
+};
+
+export type ApiConfigDatadog = {
+  __typename?: "APIConfigDatadog";
+  appId?: Maybe<Scalars["String"]["output"]>;
+  appKey?: Maybe<Scalars["String"]["output"]>;
+  site: Scalars["String"]["output"];
+  trackErrors: Scalars["Boolean"]["output"];
+  trackUserInteractions: Scalars["Boolean"]["output"];
+  trackXHRs: Scalars["Boolean"]["output"];
 };
 
 export type ApiConfigIntercom = {
@@ -6242,6 +6253,32 @@ export type MonthlyActiveUsersPercentage = {
   value: Scalars["Int"]["output"];
 };
 
+export type MultipleChoiceQuestionAnswerResult = {
+  __typename?: "MultipleChoiceQuestionAnswerResult";
+  /** The name of the answer option. */
+  optionName: Scalars["String"]["output"];
+  /** The breakdown of answers by segment for this answer option. */
+  segments: Array<MultipleChoiceQuestionAnswerSegmentResult>;
+  /** The total number of answers for this answer option. */
+  totalAnswerCount: Scalars["Int"]["output"];
+};
+
+export type MultipleChoiceQuestionAnswerSegmentResult = {
+  __typename?: "MultipleChoiceQuestionAnswerSegmentResult";
+  /** The number of answers for this answer option in this segment. */
+  answerCount: Scalars["Int"]["output"];
+  /** The name of the segment. */
+  segmentName: Scalars["String"]["output"];
+};
+
+export type MultipleChoiceQuestionInfo = {
+  __typename?: "MultipleChoiceQuestionInfo";
+  /** The answers for this multiple choice question. */
+  answers: Array<MultipleChoiceQuestionAnswerResult>;
+  /** The title/text of the survey question. */
+  title: Scalars["String"]["output"];
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   aNumber?: Maybe<Scalars["Int"]["output"]>;
@@ -10088,6 +10125,8 @@ export type SurveySummaryResult = {
   maxScoreQuestions: Array<ScaleQuestionInfo>;
   /** A max of 3 questions with the lowest scores in the survey. */
   minScoreQuestions: Array<ScaleQuestionInfo>;
+  /** Sample multiple choice question in the survey. If there are no multiple choice questions, this will be null. */
+  multipleChoiceQuestion?: Maybe<MultipleChoiceQuestionInfo>;
   /** Overall percentage of negative responses across the entire survey (0-100) for scale questions. */
   negativePercentage: Scalars["Float"]["output"];
   /** Overall percentage of neutral responses across the entire survey (0-100) for scale questions. */
@@ -23315,6 +23354,15 @@ export type GetPublicYuApiConfigQuery = {
     };
     intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
     leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
+    datadog: {
+      __typename?: "APIConfigDatadog";
+      appId?: string | null;
+      appKey?: string | null;
+      site: string;
+      trackUserInteractions: boolean;
+      trackXHRs: boolean;
+      trackErrors: boolean;
+    };
     sduiStaticDeeplinks: Array<{
       __typename?: "APIConfigSDUIStaticDeepLink";
       name: string;
@@ -71776,6 +71824,21 @@ export const GetPublicYuApiConfigDocument = {
                       { kind: "Field", name: { kind: "Name", value: "appId" } },
                       { kind: "Field", name: { kind: "Name", value: "prodKey" } },
                       { kind: "Field", name: { kind: "Name", value: "devKey" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "datadog" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "appId" } },
+                      { kind: "Field", name: { kind: "Name", value: "appKey" } },
+                      { kind: "Field", name: { kind: "Name", value: "site" } },
+                      { kind: "Field", name: { kind: "Name", value: "trackUserInteractions" } },
+                      { kind: "Field", name: { kind: "Name", value: "trackXHRs" } },
+                      { kind: "Field", name: { kind: "Name", value: "trackErrors" } },
                     ],
                   },
                 },

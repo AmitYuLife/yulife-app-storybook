@@ -3450,6 +3450,13 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
+"@datadog/mobile-react-native@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@datadog/mobile-react-native/-/mobile-react-native-2.13.0.tgz#dc4a483005a9ea1da6ffe7f6e2f03265ae879d0d"
+  integrity sha512-f8VVoDvTc4+KRthwQWk98efHByU+gkYyTPzkyL0jJxLC2mvQXy4/tugRD/2JtBpeTMhPPNbfjaZvVrPsDn6EGA==
+  dependencies:
+    big-integer "^1.6.52"
+
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -9749,6 +9756,11 @@ big-integer@1.6.x, big-integer@^1.6.44:
   resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.51.tgz#0df92a5d9880560d3ff2d5fd20245c889d130686"
   integrity sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==
 
+big-integer@^1.6.52:
+  version "1.6.52"
+  resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.52.tgz#60a887f3047614a8e1bffe5d7173490a97dc8c85"
+  integrity sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==
+
 big.js@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
@@ -12632,6 +12644,11 @@ expo-crypto@~13.0.2:
   integrity sha512-7f/IMPYJZkBM21LNEMXGrNo/0uXSVfZTwufUdpNKedJR0fm5fH4DCSN79ZddlV26nF90PuXjK2inIbI6lb0qRA==
   dependencies:
     base64-js "^1.3.0"
+
+expo-datadog@^54.0.0:
+  version "54.0.0"
+  resolved "https://registry.yarnpkg.com/expo-datadog/-/expo-datadog-54.0.0.tgz#083bb7185244f3ec34481fea76684393c4b7a306"
+  integrity sha512-Em7MuEyuRWt18pMY+62udhz58ZbF1EFljotJmAl2AQejhFnYeFBvB1oqiXcNrEhhT45j8yg8X4kBwQn4NnTk3A==
 
 expo-device@~6.0.2:
   version "6.0.2"
