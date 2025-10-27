@@ -11563,6 +11563,7 @@ export type UserPassiveChallengesLastUpdate = {
 
 export type UserPathways = {
   __typename?: "UserPathways";
+  nextQuestionnaireLocalDate?: Maybe<Scalars["String"]["output"]>;
   pathwaysItems?: Maybe<Array<UserPathwaysItem>>;
   reflectionProgress: UserPathwaysReflectionProgress;
 };
@@ -19552,6 +19553,7 @@ export type UserProfileNotificationFragment = {
 
 export type UserPathwaysFragment = {
   __typename?: "UserPathways";
+  nextQuestionnaireLocalDate?: string | null;
   reflectionProgress: {
     __typename?: "UserPathwaysReflectionProgress";
     currentProgress: number;
@@ -28295,6 +28297,7 @@ export type GetUserPathwaysQuery = {
   __typename?: "Query";
   getUserPathways: {
     __typename?: "UserPathways";
+    nextQuestionnaireLocalDate?: string | null;
     reflectionProgress: {
       __typename?: "UserPathwaysReflectionProgress";
       currentProgress: number;
@@ -56917,6 +56920,7 @@ export const UserPathwaysFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "nextQuestionnaireLocalDate" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "reflectionProgress" },
@@ -79887,6 +79891,7 @@ export const GetUserPathwaysDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "nextQuestionnaireLocalDate" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "reflectionProgress" },

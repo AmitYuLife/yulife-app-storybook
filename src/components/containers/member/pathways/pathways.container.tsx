@@ -30,7 +30,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
 
   const onReflect = useCallback(() => {
     dispatch(data?.getUserPathways?.reflectionProgress.reflectAction);
-  }, [data?.getUserPathways?.reflectionProgress.reflectAction]);
+  }, [dispatch, data?.getUserPathways?.reflectionProgress.reflectAction]);
 
   const onOpenMoodCalendar = useCallback(() => {
     Navigation.push(componentId, {
@@ -64,6 +64,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
       moodSubmissions={moodSubmissions}
       reflectionProgress={reflectionProgress.currentProgress}
       reflectedToday={reflectionProgress.reflectedToday}
+      nextQuestionnaireLocalDate={data?.getUserPathways?.nextQuestionnaireLocalDate ?? ""}
     />
   );
 };

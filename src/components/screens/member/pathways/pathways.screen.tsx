@@ -13,6 +13,7 @@ interface Props {
   onOpenMoodCalendar: () => void;
   reflectionProgress: number;
   reflectedToday: boolean;
+  nextQuestionnaireLocalDate: string;
 }
 
 const PathwaysScreen = ({
@@ -21,12 +22,18 @@ const PathwaysScreen = ({
   moodSubmissions,
   reflectionProgress,
   reflectedToday,
+  nextQuestionnaireLocalDate,
   onOpenMoodCalendar,
 }: Props) => {
   return (
     <Box flex={1}>
       <ScrollView style={{ flex: 1 }} contentInsetAdjustmentBehavior="never">
-        <PathwaysHeader onReflect={onReflect} reflectionProgress={reflectionProgress} reflectedToday={reflectedToday} />
+        <PathwaysHeader
+          onReflect={onReflect}
+          reflectionProgress={reflectionProgress}
+          reflectedToday={reflectedToday}
+          nextQuestionnaireLocalDate={nextQuestionnaireLocalDate}
+        />
         <Box minHeight={100} width={"100%"} gap={24} pt={27}>
           {/* <Box mt={27}>
             <CarouselPathways pathways={[]} />
