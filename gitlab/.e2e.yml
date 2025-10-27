@@ -172,6 +172,7 @@ ios-detox-run-modified-files:
   extends: .base-detox-test
   allow_failure: true
   variables:
+    GIT_DEPTH: 0
     CI_DETOX_CACHE_PREFIX: ios-detox-build-modified-files
     CI_DETOX_CHANGES: "true"
     DETOX_BUILD_CONFIG: ios.sim.debug
