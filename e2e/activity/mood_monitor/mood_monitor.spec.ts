@@ -80,16 +80,18 @@ Feature("Mood Monitor", async () => {
       Then("I should see my YuCoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200), 4000));
       Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 270));
     });
-    When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
-      When("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async () => {
-        When("I swipe left on the meditation nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.lotusIcon), "left", "fast"), async () => {
-          When("I swipe left on the cycling nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.helmetIcon), "left", "fast"), async () => {
-            Then("I should see the mood monitor nudge", then.moodMonitorNudgeVisible);
+    When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.1), async () => {
+      When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
+        When("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async () => {
+          When("I swipe left on the meditation nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.lotusIcon), "left", "fast"), async () => {
+            When("I swipe left on the cycling nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.helmetIcon), "left", "fast"), async () => {
+              Then("I should see the mood monitor nudge", then.moodMonitorNudgeVisible);
+            });
           });
         });
       });
     });
-    When("I tap the mood monitor nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.moodMonitorIcon)), async () => {
+    When("I tap the mood monitor nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.moodMonitorIcon), 4000), async () => {
       Then("I should be on the Mood Monitor intro screen", then.objCopyVisible(moodMonitorIntro));
     });
     When("I close the mood monitor", when.tapID(ids.SCREEN_CLOSE), async () => {
