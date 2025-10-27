@@ -8,6 +8,7 @@ import client, { regionalClients } from "@graphql/_core/client";
 import { gql, GetPublicYuApiConfigQuery } from "@graphql/__generated";
 import { ApolloQueryResult } from "@apollo/client";
 import { DETOX_ENABLED } from "@services/socket";
+import dd from "@services/datadog";
 
 const initialPayloadTypes = ["INIT", "SET_MAIN_ROOT"];
 
@@ -47,6 +48,7 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
     }
 
     yield call(initStripe);
+    yield call(dd.init);
   } catch (error) {
     Logger.error(error, { file: "hydrateApiConfigSaga" });
   }

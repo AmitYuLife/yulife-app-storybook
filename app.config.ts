@@ -161,6 +161,16 @@ export default () => ({
         },
       },
     ],
+    [
+      "expo-datadog",
+      {
+        errorTracking: {
+          androidSourcemaps: false,
+          iosDsyms: false,
+          iosSourcemaps: false,
+        },
+      },
+    ],
     "expo-privacy-manifest-polyfill-plugin",
     "@leanplum/react-native-sdk",
     [
