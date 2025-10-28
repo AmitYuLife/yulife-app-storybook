@@ -37,7 +37,7 @@ const ChallengeProgressDebugInfo = ({
   const flashListRef = useRef<FlashList<IPedometerHistoryEntry>>();
   const dispatch = useDispatch();
 
-  const [submitChallengeDebugData] = useMutation(gql("SubmitChallengeDebugDataDocument"));
+  const [submitChallengeDebugData, { loading }] = useMutation(gql("SubmitChallengeDebugDataDocument"));
 
   const onExportDataPress = useCallback(async () => {
     const reducedHistorySteps = (historySteps || []).reverse().reduce(
@@ -103,7 +103,13 @@ const ChallengeProgressDebugInfo = ({
           renderItem={renderItem}
         />
       </Box>
-      <Button translationKey="screens.challenge_progress.debug_info.cta" size={"Small"} onPress={onExportDataPress} />
+      <Button
+        translationKey="screens.challenge_progress.debug_info.cta"
+        size={"Small"}
+        onPress={onExportDataPress}
+        disabled={loading}
+        isLoading={loading}
+      />
     </Box>
   );
 };
