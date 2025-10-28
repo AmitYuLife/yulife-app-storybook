@@ -3,11 +3,12 @@ import { Box, Image } from "@atoms";
 import { Button } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import moment from "moment";
-
-const TIME_REMAINING_REFRESH_RATE_MS = 5000; // 5 seconds
+import ButtonPulseAnimationWrapper from "@components/molecules/button/animation/button-pulse-animation-wrapper";
 
 // prevent a white BG from showing on scroll
 const TOP_SCROLL_UNDERLAY_HEIGHT = 600;
+
+const TIME_REMAINING_REFRESH_RATE_MS = 5000; // 5 seconds
 
 interface Props {
   onReflect: () => void;
@@ -57,13 +58,15 @@ const PathwaysHeader = ({ onReflect, nextQuestionnaireLocalDate }: Props) => {
       </Box>
 
       <Box position="absolute" bottom={52} alignSelf="center">
-        <Button
-          size="Medium"
-          onPress={onReflect}
-          translationKey={timeRemaining.hasTimeRemaining ? "screens.pathways.reflect_in" : "screens.pathways.reflect"}
-          translationArgs={timeRemaining}
-          disabled={timeRemaining.hasTimeRemaining}
-        />
+        <ButtonPulseAnimationWrapper animatePulse={!timeRemaining.hasTimeRemaining} pulseVerticalOffset={5}>
+          <Button
+            size="Medium"
+            onPress={onReflect}
+            translationKey={timeRemaining.hasTimeRemaining ? "screens.pathways.reflect_in" : "screens.pathways.reflect"}
+            translationArgs={timeRemaining}
+            disabled={timeRemaining.hasTimeRemaining}
+          />
+        </ButtonPulseAnimationWrapper>
       </Box>
       {/* <Box width={"100%"} px={16}>
         <PathwaysReflectProgress progress={reflectionProgress} completedToday={reflectedToday} />
