@@ -25,7 +25,10 @@ export const USER_GAME_STATE_6 = {
     currentBalance: 0,
     currentStreak: 1,
     currentLevel: 2,
-    nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+    nextStreakAvailableAt: moment()
+      .subtract(6, "hours")
+      .startOf("day")
+      .format("YYYY-MM-DDTHH:mm:ss"),
   },
 } as IDatabaseItem;
 
@@ -40,7 +43,14 @@ export const USER_GAME_STATE_7 = {
     currentBalance: 440,
     currentStreak: 4,
     currentLevel: 5,
-    nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+    /*
+    Test Adjustment: Offset by 6 hours so the streak is active when nightly CI runs near midnight.
+    Added to validate if this reduces the flakiness
+    */
+    nextStreakAvailableAt: moment()
+      .subtract(6, "hours")
+      .startOf("day")
+      .format("YYYY-MM-DDTHH:mm:ss"),
     nextLevelAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
   },
 } as IDatabaseItem;

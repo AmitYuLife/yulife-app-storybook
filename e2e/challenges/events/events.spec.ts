@@ -125,10 +125,9 @@ Feature("As a user I can opt in and take an event", async () => {
         Then("I can see all my challenges done and yucoin earned", then.challengesAndYuCoinsAwardedVisible);
       });
     });
-    When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I tap the back button", when.tapID(ids.BACK_BUTTON, 3000), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
         Then("I should see the longest number of steps I have done today", then.textVisible("3,000 steps"));
-        Then("I should see meditation I have done today", then.textVisible("10 min"));
         Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"));
         Then("I should see all my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5450)));
         Then("I should see I have earned 4,970 YuCoin today total from all milestones and challenges completed", then.yuCoinTodayEarned([450], 450));

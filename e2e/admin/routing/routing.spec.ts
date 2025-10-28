@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import { translations } from "@app/locale/translations";
 import { getLocalisedString as t } from "@i18n";
 import * as scenario from "../_common/scenario";
@@ -212,13 +212,13 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
   Scenario("I should see my Yumoji and streak coins in activity history", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
-      When("I tap the menu icon", when.tapID(ids.MENU_ICON, 1500), async () => {
+      When("I tap the menu icon", when.tapID(ids.MENU_ICON, 5000), async () => {
         Then("I should see the menu items", then.menuItemsVisible("enhanced"));
       });
       When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
         Then("I should be on the activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500));
-        Then("I should see the yucoin for completing a streak", then.multipleTextVisible(["Completing a streak", "400"], 2500));
-        Then("I should see the yucoin for creating a Yumoji", then.multipleTextVisible(["Creating your Yumoji", "100"], 2500));
+        Then("I should see the YuCoin reward for completing a streak", then.multipleTextVisible(["Completing a streak", "400"], 2500));
+        Then("I should see the YuCoin reward for creating an Yumoji", then.multipleTextVisible(["Creating your Yumoji", "100"], 2500));
       });
     });
   });

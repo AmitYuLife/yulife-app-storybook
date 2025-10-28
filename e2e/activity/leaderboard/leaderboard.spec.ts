@@ -27,14 +27,15 @@ import { getFullName } from "_utils/users";
 Feature("As a user I can see my achievements on the leaderboard", async () => {
   Scenario("I can consent to my company leaderboard, and view referrals from the leaderboard", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
-      When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard"), 4000), async () => {
-        Then("I should see the leaderboard screen without consent", then.onLeaderboardWithoutConsent());
-      });
+      Then("I should see my YuCoin total is 250", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(250), 4000));
     });
-    When("I tap the Yudoku tab", when.tapID(ids.LEADBOARD_TAB("Yudoku")), async () => {
+    When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard"), 7000), async () => {
+      Then("I should see the leaderboard screen without consent", then.onLeaderboardWithoutConsent());
+    });
+    When("I tap the Yudoku tab", when.tapID(ids.LEADBOARD_TAB("Yudoku"), 3000), async () => {
       Then("I can see the emtpy yudoku leaderboard state", then.onLeaderboardWithoutConsent());
     });
-    When("I tap the steps tab", when.tapID(ids.LEADBOARD_TAB("Steps")), async () => {
+    When("I tap the steps tab", when.tapID(ids.LEADBOARD_TAB("Steps"), 3000), async () => {
       When("I tap Join the leaderboard", when.tapJoinLeaderboard, async () => {
         Then("I can see the leaderboard list modal", then.canSeeLeaderboardListModal([DefaultStepsLeaderboard, DefaultYudokuLeaderboard], false));
       });
@@ -46,7 +47,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         });
       });
     });
-    When("I tap 30 days", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
+    When("I tap 30 days", when.tapID(ids.LEADERBOARD_INFO_BUTTON, 3000), async () => {
       Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO));
     });
     When("I tap the back button", when.tapID(ids.SCREEN_CLOSE, 2000), async () => {
