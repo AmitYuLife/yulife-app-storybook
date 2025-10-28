@@ -1,10 +1,13 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Box, Image } from "@atoms";
 import { Button } from "@components/molecules";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import moment from "moment";
 
 const TIME_REMAINING_REFRESH_RATE_MS = 5000; // 5 seconds
+
+// prevent a white BG from showing on scroll
+const TOP_SCROLL_UNDERLAY_HEIGHT = 600;
 
 interface Props {
   onReflect: () => void;
@@ -35,6 +38,15 @@ const PathwaysHeader = ({ onReflect, nextQuestionnaireLocalDate }: Props) => {
 
   return (
     <Box flex={1} height={512} width={"100%"} pt={100}>
+      <Box
+        position="absolute"
+        top={-TOP_SCROLL_UNDERLAY_HEIGHT}
+        left={0}
+        right={0}
+        height={TOP_SCROLL_UNDERLAY_HEIGHT}
+        bg={Colours.pathways.background}
+      />
+
       <Box position="absolute" top={0} height={512} width={"100%"}>
         <Image
           source={require("@assets/pathways/reflection-background.webp")}

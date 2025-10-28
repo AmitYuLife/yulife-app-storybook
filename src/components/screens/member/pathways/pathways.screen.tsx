@@ -1,10 +1,11 @@
 import React, { memo } from "react";
 import { Box } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
-import { ScrollView } from "react-native";
+import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MoodWeekView, { MoodData } from "@organisms/mood-week-view/mood-week-view";
 import PathwaysHeader from "./subcomponents/pathways-header";
 import { t } from "@locale";
+import { Colours } from "@styles";
 
 interface Props {
   onClose: () => void;
@@ -25,9 +26,22 @@ const PathwaysScreen = ({
   nextQuestionnaireLocalDate,
   onOpenMoodCalendar,
 }: Props) => {
+  const scrollY = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollY.value = event.contentOffset.y;
+    },
+  });
+
   return (
-    <Box flex={1}>
-      <ScrollView style={{ flex: 1 }} contentInsetAdjustmentBehavior="never">
+    <Box flex={1} bg="white">
+      <Animated.ScrollView
+        style={{ flex: 1 }}
+        contentInsetAdjustmentBehavior="never"
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+      >
         <PathwaysHeader
           onReflect={onReflect}
           reflectionProgress={reflectionProgress}
@@ -48,12 +62,14 @@ const PathwaysScreen = ({
         {/* <Box mv={24}>
           <SecondaryButton translationKey="screens.pathways.secondary_button_label" size="Large" onPress={onClose} />
         </Box> */}
-      </ScrollView>
+      </Animated.ScrollView>
       <GenericHeadingAbsolute
         onLeftIconPress={onClose}
-        backgroundColor="#0177FF"
+        backgroundColor={Colours.pathways.background}
         heading={t("screens.pathways.header")}
         color="white"
+        hasShadow={true}
+        scrollValue={scrollY}
       />
     </Box>
   );
