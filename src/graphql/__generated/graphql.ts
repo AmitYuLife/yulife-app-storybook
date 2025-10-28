@@ -3796,6 +3796,27 @@ export enum ExportEmployeesType {
   YuCoinRedemptionReport = "YU_COIN_REDEMPTION_REPORT",
 }
 
+export type FeatureCardSection = {
+  __typename?: "FeatureCardSection";
+  content?: Maybe<FeatureCardSectionContent>;
+  id: Scalars["String"]["output"];
+  loadingGroup?: Maybe<Scalars["Int"]["output"]>;
+  ready: Scalars["Boolean"]["output"];
+  sectionInstanceId: Scalars["String"]["output"];
+  updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type FeatureCardSectionContent = {
+  __typename?: "FeatureCardSectionContent";
+  backgroundImage: RemoteImage;
+  buttonText?: Maybe<Scalars["String"]["output"]>;
+  description: Scalars["String"]["output"];
+  image?: Maybe<VariableRemoteImage>;
+  onButtonPress?: Maybe<SduiAction>;
+  onCardPress: SduiAction;
+  title: Scalars["String"]["output"];
+};
+
 export type FeaturedReward = {
   __typename?: "FeaturedReward";
   description: Scalars["String"]["output"];
@@ -12259,6 +12280,7 @@ export type YuScreenProductSurveyOption = {
 };
 
 export type YuScreenSection =
+  | FeatureCardSection
   | HeroCardSection
   | MaximiseYuSection
   | ProductCardCarouselSection
@@ -36258,6 +36280,29 @@ export type GetYuScreenV5Query = {
     __typename?: "YuScreenV5";
     sections: Array<
       | {
+          __typename: "FeatureCardSection";
+          id: string;
+          sectionInstanceId: string;
+          ready: boolean;
+          updateOnView?: boolean | null;
+          loadingGroup?: number | null;
+          content?: {
+            __typename?: "FeatureCardSectionContent";
+            title: string;
+            description: string;
+            buttonText?: string | null;
+            onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+            onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            image?: {
+              __typename?: "VariableRemoteImage";
+              width: number;
+              height?: number | null;
+              image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+            } | null;
+            backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+        }
+      | {
           __typename: "HeroCardSection";
           id: string;
           sectionInstanceId: string;
@@ -38206,6 +38251,29 @@ export type GetYuScreenV5SectionsQuery = {
   __typename?: "Query";
   getYuScreenV5Sections: Array<
     | {
+        __typename: "FeatureCardSection";
+        id: string;
+        sectionInstanceId: string;
+        ready: boolean;
+        updateOnView?: boolean | null;
+        loadingGroup?: number | null;
+        content?: {
+          __typename?: "FeatureCardSectionContent";
+          title: string;
+          description: string;
+          buttonText?: string | null;
+          onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+          onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          image?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        } | null;
+      }
+    | {
         __typename: "HeroCardSection";
         id: string;
         sectionInstanceId: string;
@@ -40119,6 +40187,46 @@ export type GetYuScreenV5SectionsQuery = {
   >;
 };
 
+export type FeatureCardSectionContentFragment = {
+  __typename?: "FeatureCardSectionContent";
+  title: string;
+  description: string;
+  buttonText?: string | null;
+  onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  image?: {
+    __typename?: "VariableRemoteImage";
+    width: number;
+    height?: number | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+  backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type FeatureCardSectionFragment = {
+  __typename: "FeatureCardSection";
+  id: string;
+  sectionInstanceId: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  loadingGroup?: number | null;
+  content?: {
+    __typename?: "FeatureCardSectionContent";
+    title: string;
+    description: string;
+    buttonText?: string | null;
+    onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    image?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+};
+
 export type HeroCardSectionContentFragment = {
   __typename?: "HeroCardSectionContent";
   backgroundColor: string;
@@ -40489,6 +40597,30 @@ export type WellbeingHubSectionFragment = {
       route?: string | null;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
+  } | null;
+};
+
+type YuScreenSection_FeatureCardSection_Fragment = {
+  __typename: "FeatureCardSection";
+  id: string;
+  sectionInstanceId: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  loadingGroup?: number | null;
+  content?: {
+    __typename?: "FeatureCardSectionContent";
+    title: string;
+    description: string;
+    buttonText?: string | null;
+    onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    image?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   } | null;
 };
 
@@ -42399,6 +42531,7 @@ type YuScreenSection_WellbeingHubSection_Fragment = {
 };
 
 export type YuScreenSectionFragment =
+  | YuScreenSection_FeatureCardSection_Fragment
   | YuScreenSection_HeroCardSection_Fragment
   | YuScreenSection_MaximiseYuSection_Fragment
   | YuScreenSection_ProductCardCarouselSection_Fragment
@@ -63647,6 +63780,218 @@ export const SmokingSectionFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SmokingSectionFragment, unknown>;
+export const FeatureCardSectionContentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FeatureCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FeatureCardSectionContentFragment, unknown>;
+export const FeatureCardSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FeatureCardSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FeatureCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FeatureCardSectionFragment, unknown>;
 export const YuScreenSectionFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -63712,6 +64057,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSection" } }],
             },
           },
         ],
@@ -66419,6 +66772,51 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FeatureCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiSection" } },
       selectionSet: {
@@ -66597,6 +66995,30 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FeatureCardSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSectionContent" } }],
             },
           },
         ],
@@ -97138,6 +97560,75 @@ export const GetYuScreenV5Document = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FeatureCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FeatureCardSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "YuScreenSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSection" } },
       selectionSet: {
@@ -97198,6 +97689,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSection" } }],
             },
           },
         ],
@@ -100133,6 +100632,75 @@ export const GetYuScreenV5SectionsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FeatureCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FeatureCardSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "YuScreenSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSection" } },
       selectionSet: {
@@ -100193,6 +100761,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "FeatureCardSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSection" } }],
             },
           },
         ],

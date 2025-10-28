@@ -21,4 +21,7 @@ fragment YuScreenSection on YuScreenSection {
   ... on SmokingSection {
     ...SmokingSection
   }
+  ... on FeatureCardSection {
+    ...FeatureCardSection
+  }
 }
