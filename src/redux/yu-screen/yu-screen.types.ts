@@ -132,8 +132,22 @@ export interface ReferralSection extends CommonSectionProps {
   };
 }
 
+/** @deprecated - use FeatureCardSection instead */
 export interface SmokingSection extends CommonSectionProps {
   __typename: "SmokingSection";
+  content?: {
+    title: string;
+    description: string;
+    onCardPress: SduiAction;
+    buttonText?: string;
+    onButtonPress?: SduiAction;
+    image?: VariableRemoteImage;
+    backgroundImage: RemoteImage;
+  };
+}
+
+export interface FeatureCardSection extends CommonSectionProps {
+  __typename: "FeatureCardSection";
   content?: {
     title: string;
     description: string;

@@ -39,7 +39,7 @@ export const HeroCardSection = ({ sectionInstanceId, content }: IYuScreenBannerS
   }
 
   return (
-    <Box key={sectionInstanceId} ph={24} pt={12}>
+    <Box key={sectionInstanceId} ph={24} pt={12} pb={16}>
       <TouchableOpacityWithDelay onPress={pressHandler}>
         <Box
           style={cardStyle}

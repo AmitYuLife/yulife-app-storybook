@@ -877,6 +877,11 @@ export const MAXIMISE_YU = (showProgress: boolean, showItems: boolean) =>
   `MAXIMISE_YU_progress_bar_${showProgress}_nudge_${showItems}`;
 export const MAXIMISE_YU_NUDGE_LIST = "MAXIMISE_YU_NUDGE_LIST";
 
+// Feature Card Section
+export const YUSCREEN_FEATURE_CARD_SECTION = "YUSCREEN_FEATURE_CARD_SECTION";
+export const YUSCREEN_FEATURE_CARD_SECTION_TITLE = (title: string) =>
+  `YUSCREEN_FEATURE_CARD_SECTION_TITLE_${title}`;
+
 // Smoking
 export const YUSCREEN_SMOKING_TILE = "YUSCREEN_SMOKING_TILE";
 export const YUSCREEN_SMOKING_TILE_TITLE = (title: string) =>

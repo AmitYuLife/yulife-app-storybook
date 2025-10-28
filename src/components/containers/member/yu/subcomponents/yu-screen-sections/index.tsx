@@ -3,7 +3,7 @@ import { ProductCardCarouselSection } from "./product-card-carousel-section";
 import { YuScreenSection } from "@redux/yu-screen/yu-screen.types";
 import { WellbeingHubSection } from "./wellbeing-hub-section";
 import { ReferralSection } from "./referral-section";
-import { SmokingSection } from "./smoking-section";
+import { FeatureCardSection } from "./feature-card-section";
 import { Colours, Style } from "@styles";
 import { View } from "react-native";
 import { MaximiseYuSection } from "./maximise-yu-section";
@@ -15,7 +15,8 @@ const sectionMap = {
   WellbeingHubSection,
   ReferralSection,
   MaximiseYuSection,
-  SmokingSection,
+  SmokingSection: FeatureCardSection,
+  FeatureCardSection,
   HeroCardSection,
 } as Record<string, (props: any) => JSX.Element>;
 

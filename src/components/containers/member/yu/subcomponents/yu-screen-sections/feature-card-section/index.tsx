@@ -1,18 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Animated, LayoutChangeEvent, TouchableOpacity, View } from "react-native";
-import { Colours, Style, StyleSheet } from "@styles";
+import { Animated, LayoutChangeEvent, Platform, TouchableOpacity, View } from "react-native";
+import { Colours, Style, StyleSheet, templateTextStyles } from "@styles";
 import { Image, TextTemplate } from "@atoms";
-import { Button } from "@components/molecules";
-import { SmokingSection as ISmokingSection } from "@redux/yu-screen/yu-screen.types";
+import { Button, Markdown } from "@components/molecules";
 import colours from "@styles/colours";
 import { usePressedInWithDelay } from "@hooks";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { useDispatch } from "react-redux";
-import { SMOKING_TILE_BUTTON, YUSCREEN_SMOKING_TILE, YUSCREEN_SMOKING_TILE_TITLE } from "@ids";
+import { SMOKING_TILE_BUTTON, YUSCREEN_FEATURE_CARD_SECTION, YUSCREEN_FEATURE_CARD_SECTION_TITLE } from "@ids";
+import { FeatureCardSection as IFeatureCardSection } from "@redux/yu-screen/yu-screen.types";
+import { SduiAction } from "@graphql/__generated";
 
 const CARD_BORDER_HEIGHT = Style.adjust(5);
 
-export const SmokingSection = (props: ISmokingSection) => {
+export const FeatureCardSection = (props: IFeatureCardSection) => {
   const dispatch = useDispatch();
 
   const { id, content } = props;
@@ -61,7 +62,7 @@ export const SmokingSection = (props: ISmokingSection) => {
         onPressOut={handlePressOut}
         onPress={handlePress}
         onLayout={handleLayoutChange}
-        testID={YUSCREEN_SMOKING_TILE}
+        testID={YUSCREEN_FEATURE_CARD_SECTION}
       >
         {backgroundImage ? (
           <Image
@@ -79,7 +80,7 @@ export const SmokingSection = (props: ISmokingSection) => {
         </View>
         <View style={styles.cardContent}>
           <View style={styles.headingWrapper}>
-            <TextTemplate type="b1b" textAlign="left" testID={YUSCREEN_SMOKING_TILE_TITLE(title)}>
+            <TextTemplate type="b1b" textAlign="left" testID={YUSCREEN_FEATURE_CARD_SECTION_TITLE(title)}>
               {title}
             </TextTemplate>
           </View>
@@ -94,9 +95,11 @@ export const SmokingSection = (props: ISmokingSection) => {
             </View>
           )}
           <View style={styles.descriptionWrapper}>
-            <TextTemplate type={showButton ? "l2" : "l1"} textAlign="left">
-              {description}
-            </TextTemplate>
+            <Markdown
+              text={description}
+              markdownStyles={getMarkdownStyles(showButton)}
+              containerStyle={styles.descriptionWrapper}
+            />
           </View>
           {!showButton ? null : (
             <View style={styles.buttonWrapper}>
@@ -115,6 +118,25 @@ export const SmokingSection = (props: ISmokingSection) => {
 };
 
 const CARD_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
+
+const getMarkdownStyles = (hasButton: SduiAction) => ({
+  text: {
+    ...(hasButton ? templateTextStyles.l2 : templateTextStyles.l1),
+  },
+  imageWrapper: {
+    width: Style.adjust(16),
+  },
+  image: {
+    width: Style.adjust(16),
+    height: Style.adjust(16),
+    bottom: Style.adjust(
+      Platform.select({
+        ios: -10,
+        android: -3,
+      })
+    ),
+  },
+});
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -179,6 +201,7 @@ const styles = StyleSheet.create({
   },
   descriptionWrapper: {
     maxWidth: Style.adjust(180),
+    marginBottom: Style.adjust(-2),
   },
   buttonWrapper: {
     marginTop: Style.adjust(22),

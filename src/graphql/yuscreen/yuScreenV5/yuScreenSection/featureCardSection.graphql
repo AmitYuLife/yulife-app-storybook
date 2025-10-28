@@ -1,0 +1,29 @@
+fragment FeatureCardSectionContent on FeatureCardSectionContent {
+  title
+  description
+  onCardPress {
+    ...SduiAction
+  }
+  buttonText
+  onButtonPress {
+    ...SduiAction
+  }
+  image {
+    ...VariableRemoteImage
+  }
+  backgroundImage {
+    ...RemoteImage
+  }
+}
+
+fragment FeatureCardSection on FeatureCardSection {
+  __typename
+  id
+  sectionInstanceId
+  ready
+  updateOnView
+  loadingGroup
+  content {
+    ...FeatureCardSectionContent
+  }
+}
