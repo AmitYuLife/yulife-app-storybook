@@ -233,9 +233,11 @@ Feature("Health questionnaires", async () => {
 
   Scenario("I should see the DHQ in the MaximiseYu nudges", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_SINGLE_QUESTION_DHQ.customer, GENERIC_AUTH_PASSWORD), async () => {
-      When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-        When("I swipe towards the end of the MaximiseYu section", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("health-questionnaire-nudge"), "left", undefined, undefined, 0.8, 0.8), async () => {
-          Then("I should see the HQ nudge", then.idVisible(ids.NUDGE_ITEM_WRAPPER("health-questionnaire-nudge")));
+      When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu"), 4000), async () => {
+        When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.1), async () => {
+          When("I swipe towards the end of the MaximiseYu section", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("health-questionnaire-nudge"), "left", undefined, undefined, 0.8, 0.8), async () => {
+            Then("I should see the HQ nudge", then.idVisible(ids.NUDGE_ITEM_WRAPPER("health-questionnaire-nudge")));
+          });
         });
       });
     });

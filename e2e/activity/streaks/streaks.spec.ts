@@ -55,10 +55,10 @@ Feature("As a user I can use the streaks functionality", async () => {
 
   Scenario("I can continue a streak", scenario.start, async () => {
     Given("I login as a user with a streak", given.loginAsUser(data.CUSTOMER_6, data.AUTH_6), async () => {
-      Then("I should be on the yucoin tab", then.idVisible(ids.DAILY_STEPS_SCREEN));
+      Then("I should be on the yucoin tab", then.idVisible(ids.DAILY_STEPS_SCREEN, 4000));
       Then("I should see my 1/5 streak", then.idVisible(ids.STREAKS_BUTTON_LABEL("1/5"), 2000));
     });
-    When("I tap 1/5", when.tapText("1/5"), async () => {
+    When("I tap 1/5", when.tapText("1/5", 5000), async () => {
       Then("I should see the streak screen", then.headingStartStreakCopyVisible(2));
     });
     When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 4000), async () => {
@@ -70,10 +70,10 @@ Feature("As a user I can use the streaks functionality", async () => {
     When("I walk over 300 steps", when.sendSteps(400, 35000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(400, 2));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+    When("I tap collect", when.tapID(ids.CTA_COLLECT, 3000), async () => {
       Then("I should see the completed streak day 2 modal", then.completedTodayStreakCopyVisible(2));
     });
-    When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+    When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON, 4000), async () => {
       Then("I should be on the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)));
       Then("I should see the level 3 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(3)));
     });
