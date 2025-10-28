@@ -1447,7 +1447,7 @@
         "heading": "Personal Health Path"
       },
       "reflect": "Reflect",
-      "reflect_in": "Reflect in %{time}",
+      "reflect_in": "Reflect in %{hours}h %{minutes}m",
       "secondary_button_label": "Go to Wellbeing Hub",
       "today": "Today",
       "user_mood": {

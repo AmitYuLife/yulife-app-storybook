@@ -1447,7 +1447,7 @@
         "heading": "مسار الصحة الشخصية"
       },
       "reflect": "يعكس",
-      "reflect_in": "يعكس في %{time}",
+      "reflect_in": "سيتم التنفيذ خلال %{hours} ساعة و %{minutes} دقيقة",
       "secondary_button_label": "اذهب إلى مركز الرفاهية",
       "today": "اليوم",
       "user_mood": {

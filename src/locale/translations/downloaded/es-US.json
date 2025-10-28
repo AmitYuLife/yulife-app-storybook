@@ -1447,7 +1447,7 @@
         "heading": "Trayectoria personal de salud"
       },
       "reflect": "Reflect",
-      "reflect_in": "Reflejar en %{time}",
+      "reflect_in": "Reflejar en %{hours}h %{minutes}m",
       "secondary_button_label": "Ir a Wellbeing Hub",
       "today": "Hoy",
       "user_mood": {
