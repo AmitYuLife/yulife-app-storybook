@@ -108,7 +108,9 @@ export default {
     body: "rgb(226, 1, 119)",
     border: "white",
   },
-
+  pathways: {
+    background: "#0177FF",
+  },
   slider: {
     inactive: "#BFBFC2",
     greyBar: "#E7E7EB",
