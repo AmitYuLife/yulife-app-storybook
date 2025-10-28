@@ -296,8 +296,7 @@ Feature("I can view and use all battle pass features", async () => {
         Then("I should see the purchase success screen", then.idVisible(ids.TEXT_TEMPLATE("You've successfully purchased a gift card!", undefined), 4000));
       });
     });
-    //@bug GS-2018: View gift card cta not pressable
-    WhenSkip("I tap to view my gift card", when.tapID(ids.BUTTON_BASE("View gift card", false), 4000), async () => {
+    When("I tap to view my gift card", when.tapID(ids.BUTTON_BASE("View gift card", false), 4000), async () => {
       Then("I should see that payment was successful", then.idVisible(ids.VOUCHER_CODE_TITLE(`£75 ${data.CORE_REWARDS_MARKS_AND_SPENCER.data.name["en-GB"]} voucher`), 5000));
       Then("I should see the coupon email in my inbox", then.assertCouponEmailReceived(data.CUSTOMER_CARMY.data.email, data.CORE_REWARDS_MARKS_AND_SPENCER.data.name["en-GB"]));
     });
