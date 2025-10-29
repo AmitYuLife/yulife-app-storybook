@@ -47,7 +47,7 @@ const SmokingStatsEntry = ({ image, value, title, animated = true }: Props) => {
   return (
     <Box alignItems="center">
       <Box flexDirection="row" justifyContent="center" gap={4}>
-        {image?.uri && (
+        {image?.uri ? (
           <Image
             testID={SMOKING_CARD(image.id, value)}
             suppressLoadingUi={true}
@@ -55,7 +55,7 @@ const SmokingStatsEntry = ({ image, value, title, animated = true }: Props) => {
             height={Style.adjust(ICON_SIZE)}
             source={{ uri: image.uri }}
           />
-        )}
+        ) : null}
         <TextTemplate type="b1b">{formattedValue}</TextTemplate>
       </Box>
       <TextTemplate type="l3" textAlign="center">

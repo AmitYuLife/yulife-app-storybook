@@ -111,6 +111,7 @@ module.exports = {
         ],
       },
     ],
+    "rulesdir/jsx-no-logical-and": "error",
   },
   settings: {
     react: {

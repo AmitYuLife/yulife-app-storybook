@@ -65,7 +65,7 @@ export const ContentItemBlurredRaysWrapper = memo(
             {data.filter(Boolean).map((dataItem) => (
               <Renderer key={(dataItem as { id: string }).id} item={dataItem} />
             ))}
-            {isCentrePieceValid && centrePieceData && (
+            {isCentrePieceValid && centrePieceData ? (
               <Box
                 position="absolute"
                 top={-BLURRED_RAYS_Y_OFFSET + centrePieceHeight / 1.5}
@@ -79,7 +79,7 @@ export const ContentItemBlurredRaysWrapper = memo(
               >
                 <Renderer item={centrePieceData} />
               </Box>
-            )}
+            ) : null}
           </>
         </BlurredRaysWrapper>
       </Box>

@@ -27,11 +27,11 @@ export default function BirthdayNotSetModal({ onPress, onClose }: IProps) {
     <View style={StyleSheet.absoluteFillObject}>
       <View style={styles.screenWidth}>
         <GenericHeadingPad />
-        {onClose && (
+        {onClose ? (
           <TouchableOpacityWithDelay onPress={onClose} style={styles.closeButton}>
             <CloseSvg stroke={Colours.darkestGray} size={Style.adjust(24)} />
           </TouchableOpacityWithDelay>
-        )}
+        ) : null}
         <View style={styles.contentContainer}>
           <Box justifyContent="center" alignItems="center">
             <Image

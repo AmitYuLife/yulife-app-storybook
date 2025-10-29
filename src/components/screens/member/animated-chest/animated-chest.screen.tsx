@@ -101,13 +101,13 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
           translatedLabel={ctaLabel}
           onPress={onPressCta}
         />
-        {onPressCtaSecondary && (
+        {onPressCtaSecondary ? (
           <LinkButton
             wrapperStyle={styles.secondaryCtaWrapper}
             onPress={onPressCtaSecondary}
             translationKey="screens.challenges.animated_chest.link_button_label"
           />
-        )}
+        ) : null}
       </View>
     );
   }

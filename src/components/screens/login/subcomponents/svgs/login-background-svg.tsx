@@ -210,7 +210,7 @@ function LoginBackgroundSvg({
           fill="#61DBB5"
         />
       </G>
-      {showBird && (
+      {showBird ? (
         <G>
           <Path
             transform="rotate(68.955 212.445 27.103)"
@@ -272,7 +272,7 @@ function LoginBackgroundSvg({
             fill="#FF9355"
           />
         </G>
-      )}
+      ) : null}
       <Defs>
         <ClipPath id="clip0_39_27">
           <Path fill="#fff" d="M0 0H375V302H0z" />

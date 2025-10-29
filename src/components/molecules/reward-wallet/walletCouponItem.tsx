@@ -91,11 +91,11 @@ const WalletCouponItem = <T,>({ item, index, onPress }: WalletCouponItemProps<T>
                   {i.text}
                 </TextTemplate>
               ))}
-          {item.secondaryInfo && (
+          {item.secondaryInfo ? (
             <TextTemplate color={Colours.neutral.white} type="l2" numberOfLines={2}>
               {item.secondaryInfo}
             </TextTemplate>
-          )}
+          ) : null}
         </Box>
       </StackedShadowWrapper>
     </Box>

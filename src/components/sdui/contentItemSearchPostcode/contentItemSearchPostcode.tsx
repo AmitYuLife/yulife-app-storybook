@@ -28,9 +28,9 @@ export const ContentItemSearchPostcode = memo((props: Props) => {
   return (
     <SecondaryButton
       leftIcon={
-        icon && (
+        icon ? (
           <Image width={Style.adjust(16)} height={Style.adjust(16)} resizeMode="contain" source={{ uri: icon.uri }} />
-        )
+        ) : null
       }
       wrapperStyle={mapServerStyles(styles)}
       testID={id}

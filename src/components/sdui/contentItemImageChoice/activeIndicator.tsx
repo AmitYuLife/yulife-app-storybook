@@ -11,7 +11,7 @@ interface Props {
 export const ImageChoiceActiveIndicator = memo(({ isChecked, checkboxVisible }: Props) => {
   return (
     <View style={StyleSheet.flatten([styles.wrapper, isChecked ? styles.activeWrapper : null])}>
-      {checkboxVisible && (
+      {checkboxVisible ? (
         <View style={styles.absoluteUpperRight}>
           <CheckBoxType
             type={"cubic"}
@@ -21,7 +21,7 @@ export const ImageChoiceActiveIndicator = memo(({ isChecked, checkboxVisible }: 
             size={Style.adjust(16)}
           />
         </View>
-      )}
+      ) : null}
     </View>
   );
 });

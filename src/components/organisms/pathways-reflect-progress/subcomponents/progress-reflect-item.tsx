@@ -20,7 +20,7 @@ const ProgressReflectItem = ({ label, isToday, icon, isDone }: Props) => {
       </Box>
       <Box alignItems="center" justifyContent="center">
         <Image source={icon} width={32} height={32} resizeMode="cover" />
-        {isDone && (
+        {isDone ? (
           <Box
             size={14}
             br={7}
@@ -33,7 +33,7 @@ const ProgressReflectItem = ({ label, isToday, icon, isDone }: Props) => {
           >
             <Image source={require("@assets/icons/check-green.png")} width={12} height={12} resizeMode="cover" />
           </Box>
-        )}
+        ) : null}
       </Box>
     </Box>
   );
