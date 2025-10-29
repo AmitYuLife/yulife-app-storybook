@@ -218,20 +218,20 @@ Feature("I am able to use the yuscreen v5", async () => {
 
   Scenario("I can create an Yumoji from scratch on the YuScreen", scenario.start, () => {
     Given("I trigger the worker to give missing yumoji items", given.logInAndGoToTab("yu", data.CUSTOMER_140, data.AUTH_140), async () => {
-      Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)));
+      Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 3000));
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Sean Spencer", "Mountain", "800", true));
       Then("I should see the yumoji create copy", then.yuscreenV5CreateYumojiVisible);
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 510));
+      Then("I should see the current amount of YuCoin I have earned so far", then.maximiseYucoinVisible(200, 510));
     });
     When("I tap the yumoji creator", when.tapID(ids.YUMOJI_PROMPT_CTA, 3000), async () => {
       Then("I should be on the Yumoji create screen", then.textVisible("Create your Yumoji to step into the Yuniverse"));
     });
-    When("I tap the female yumoji", when.tapID(ids.FEMALE_BODY, 3000), async () => {
-      When("I tap continue", when.tapID(ids.LABELS_CTA_CONTINUE, 2000), async () => {
+    When("I tap the female yumoji", when.tapID(ids.FEMALE_BODY, 4000), async () => {
+      When("I tap continue", when.tapID(ids.LABELS_CTA_CONTINUE, 3000), async () => {
         When("I edit my yumoji", when.unlockedYumojiItemsVisible("female", "base", "forest"), async () => {
           When("I save", when.saveYumoji(true), async () => {
             Then("I should see the yumoji on the YuScreen", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000));
-            Then("I should see the updated yucoin value from creating my yumoji", then.maximiseYucoinVisible(300, 510));
+            Then("I should see the updated YuCoin value from creating my Yumoji", then.maximiseYucoinVisible(300, 510));
             Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17800), 1500));
           });
         });
@@ -292,17 +292,19 @@ Feature("I am able to use the yuscreen v5", async () => {
     When("I scroll down to the Powerful protection section on YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.1), async () => {
       Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE));
     });
-    When("I tap Life insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life Insurance")), async () => {
-      Then("I should see the details on the Life Insurance", then.idVisible(ids.TEXT_TEMPLATE("Life Insurance", "undefined")));
-      Then("I should see the policy details button", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)));
+    When("I scroll further down the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.1), async () => {
+      When("I tap Life insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life Insurance"), 4000), async () => {
+        Then("I should see the details on the Life Insurance", then.idVisible(ids.TEXT_TEMPLATE("Life Insurance", "undefined")));
+        Then("I should see the policy details button", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)));
+      });
     });
     When("I tap Policy details button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)), async () => {
       Then("I should see the digital cerficate", then.canSeeProductCertificate(certificateDetailsGLAUMAnya));
       Then("I should not see policy number", then.idNotVisible(ids.CERTIFICATE_KEY_VALUES("Policy number", certificateDetailsGLAUMAnya.policyNumber)));
     });
-    When("I tap X to close the certficate", when.tapID(ids.SCREEN_CLOSE), async () => {
-      When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-        When("I tap Income protection", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income Protection")), async () => {
+    When("I tap X to close the certficate", when.tapID(ids.SCREEN_CLOSE, 4000), async () => {
+      When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only"), 4000), async () => {
+        When("I tap Income protection", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income Protection"), 4000), async () => {
           Then("I should see the details on the Life insurance", then.idVisible(ids.TEXT_TEMPLATE("Income Protection")));
           Then("I should see the key info button", then.idVisible(ids.TERTIARY_BUTTON("How does this work?")));
         });

@@ -212,30 +212,32 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
   Scenario("I should see my Yumoji and streak coins in activity history", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
-      When("I tap the menu icon", when.tapID(ids.MENU_ICON, 5000), async () => {
-        Then("I should see the menu items", then.menuItemsVisible("enhanced"));
-      });
-      When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
-        Then("I should be on the activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500));
-        Then("I should see the YuCoin reward for completing a streak", then.multipleTextVisible(["Completing a streak", "400"], 2500));
-        Then("I should see the YuCoin reward for creating an Yumoji", then.multipleTextVisible(["Creating your Yumoji", "100"], 2500));
-      });
+      Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 5000));
+    });
+    When("I tap the menu icon", when.tapID(ids.MENU_ICON, 5000), async () => {
+      Then("I should see the menu items", then.menuItemsVisible("enhanced"));
+    });
+    When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
+      Then("I should be on the activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500));
+      Then("I should see the YuCoin reward for completing a streak", then.multipleTextVisible(["Completing a streak", "400"], 2500));
+      Then("I should see the YuCoin reward for creating an Yumoji", then.multipleTextVisible(["Creating your Yumoji", "100"], 2500));
     });
   });
 
   Scenario("I can see Status Permissions not_determined if have not done any activity", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true), async () => {
-      When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
-        When("I tap settings", when.tapMenuItem(t("Settings")), async () => {
-          Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
-        });
+      Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 5000));
+    });
+    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 5000), async () => {
+      When("I tap settings", when.tapMenuItem("Settings"), async () => {
+        Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
       });
-      When("I scroll down", when.scrollUntilTextVisible(ids.SETTINGS_SCREEN_SCROLL, t("Fitness trackers"), "down"), async () => {
-        Then("I should see the right settings details", then.permissionsActivityRightVisible);
-      });
-      When("I tap permissions settings", when.tapIDAtIndex(ids.ARROW_BUTTON, 1), async () => {
-        Then("I should be on permission page", then.onPermissionsPage("not_determined"));
-      });
+    });
+    When("I scroll down", when.scrollUntilTextVisible(ids.SETTINGS_SCREEN_SCROLL, t("Fitness trackers"), "down"), async () => {
+      Then("I should see the right settings details", then.permissionsActivityRightVisible);
+    });
+    When("I tap permissions settings", when.tapIDAtIndex(ids.ARROW_BUTTON, 1, 4000), async () => {
+      Then("I should be on permission page", then.onPermissionsPage("not_determined"));
     });
   });
 

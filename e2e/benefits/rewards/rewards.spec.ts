@@ -58,92 +58,86 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("I can purchase multiple rewards and adjust the voucher amount successfully", scenario.start, () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_3, data.AUTH_3), () => {
-      Then("I should be on the rewards store", then.idVisible(ids.REWARDS_SCREEN));
-      Then("I should see the shopfront rewards list", then.idVisible(ids.SHOPFRONT_REWARDS_LIST));
-      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)));
+      Then("I should be on the rewards store", then.idVisible(ids.REWARDS_SCREEN, 7000));
+      Then("I should see the shopfront rewards list", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 1500));
+      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200), 1500));
     });
     When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SHOPFRONT_REWARDS_LIST, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), "up"), async () => {
       Then("I should see the Amazon Reward", then.idExist(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 3000));
     });
     When("I tap this reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 4000), async () => {
-      Then("I should be on the Amazon reward page", then.idVisible(`${data.CORE_REWARDS_AMAZON.data._id}_description`));
+      Then("I should be on the Amazon reward page", then.idVisible(`${data.CORE_REWARDS_AMAZON.data._id}_description`, 3000));
     });
     When("I scroll to the Buy button", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SDUI_SCREEN_SCROLL_VIEW, ids.BUTTON_BASE("Buy voucher with YuCoin"), "up"), async () => {
       Then("I can see the Buy button", then.idVisible(ids.BUTTON_BASE("Buy voucher with YuCoin"), 3000));
-      When("I tap the button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
-        Then("I should see the buy button", then.buyButtonVisible(data.CORE_REWARDS_AMAZON));
-        Then("I should see the £ amount drop down", then.denominationListVisible(data.CORE_REWARDS_AMAZON, 42200));
-      });
     });
-
+    When("I tap the button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin"), 4000), async () => {
+      Then("I should see the buy button", then.buyButtonVisible(data.CORE_REWARDS_AMAZON, 2000));
+      Then("I should see the £ amount drop down", then.denominationListVisible(data.CORE_REWARDS_AMAZON, 42200));
+    });
     When("I tap the drop down", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon"), async () => {
       Then("I should see the confirm modal", then.textVisible("Confirm purchase"));
     });
     When("I tap 'Cancel'", when.tapText("Cancel", 2500, true), async () => {
       Then("I should not see the confirm modal", then.textNotVisible("Confirm purchase"));
     });
-    When("I tap the 'Buy voucher with YuCoin' button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
+    When("I tap the 'Buy voucher with YuCoin' button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin"), 4000), async () => {
       Then("I should see the £ amount drop down", then.denominationListVisible(data.CORE_REWARDS_AMAZON, 42200));
     });
     When("I tap the drop down", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon"), async () => {
       Then("I can see the Confirm button", then.textVisible("Confirm", 3000));
-      When("I tap 'Confirm'", when.tapText("Confirm"), async () => {
-        Then("I should be on the purchase screen", then.onRewardPurchasedScreen(data.CORE_REWARDS_AMAZON));
-        Then("I should see the custom purchase code title", then.idVisible(ids.VOUCHER_CODE_TITLE("Free Gummy Bears")));
-        Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(35200)));
+    });
+    When("I tap 'Confirm'", when.tapText("Confirm", 4000), async () => {
+      Then("I should be on the purchase screen", then.onRewardPurchasedScreen(data.CORE_REWARDS_AMAZON));
+      Then("I should see the custom purchase code title", then.idVisible(ids.VOUCHER_CODE_TITLE("Free Gummy Bears")));
+      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(35200)));
+      Then("I should see a button to go back", then.idVisible(ids.BACK_BUTTON));
+    });
+    When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON, 4000), async () => {
+      Then("I should see the Amazon reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 3000));
+    });
+    When("I tap on the Amazon reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 4000), async () => {
+      Then("I should see the Amazon reward details", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW, 3000));
+    });
+    When("I scroll to the Buy button", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SDUI_SCREEN_SCROLL_VIEW, ids.BUTTON_BASE("Buy voucher with YuCoin"), "up"), async () => {
+      Then("I should see the Buy button", then.idVisible(ids.BUTTON_BASE("Buy voucher with YuCoin"), 3000));
+    });
+    When("I tap to purchase the reward", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin"), 4000), async () => {
+      When("I select this time the second option of £24 voucher", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon", 1), async () => {
+        Then("I can see the confirm button", then.textVisible("Confirm", 3000));
+      });
+      When("I confirm the purchase", when.tapText("Confirm", 3000), async () => {
+        Then("I should see the custom voucher code", then.idVisible(ids.VOUCHER_CODE("TestAmazonCode456")));
+        Then("I should see my update YuCoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(21200)));
         Then("I should see a button to go back", then.idVisible(ids.BACK_BUTTON));
       });
     });
-    When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
-      Then("I should see the Amazon reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 3000));
-
-      When("I tap on the Amazon reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id)), async () => {
-        Then("I should see the Amazon reward details", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW, 3000));
-
-        When("I scroll to the Buy button", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SDUI_SCREEN_SCROLL_VIEW, ids.BUTTON_BASE("Buy voucher with YuCoin"), "up"), async () => {
-          Then("I should see the Buy button", then.idVisible(ids.BUTTON_BASE("Buy voucher with YuCoin"), 3000));
-          When("I tap to purchase the reward", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
-            When("I select this time the second option of £24 voucher", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon", 1), async () => {
-              Then("I can see the confirm button", then.textVisible("Confirm", 3000));
-              When("I confirm the purchase", when.tapText("Confirm"), async () => {
-                Then("I should see the custom voucher code", then.idVisible(ids.VOUCHER_CODE("TestAmazonCode456")));
-                Then("I should see my update YuCoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(21200)));
-                Then("I should see a button to go back", then.idVisible(ids.BACK_BUTTON));
-              });
-            });
-          });
-        });
-      });
-    });
-
-    When("I go back again to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I go back again to the rewards screen", when.tapID(ids.BACK_BUTTON, 3000), async () => {
       Then("I can see the Amazon reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 3000));
-      When("I tap on the Amazon reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id)), async () => {
-        Then("I should be in the Amazon reward details screen", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW, 3000));
-        When("I scroll to the Buy button", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SDUI_SCREEN_SCROLL_VIEW, ids.BUTTON_BASE("Buy voucher with YuCoin"), "up"), async () => {
-          Then("I should see the Buy button", then.idVisible(ids.BUTTON_BASE("Buy voucher with YuCoin"), 3000));
-          When("I tap to purchase the reward", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
-            When("I select this time the third option of £36 voucher", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon", 2), async () => {
-              Then("I can see that I can confirm the purchase", then.textVisible("Confirm", 3000));
-              When("I confirm the purchase", when.tapText("Confirm"), async () => {
-                Then("I should see the custom voucher code", then.idVisible(ids.VOUCHER_CODE("TestAmazonCode789")));
-                Then("I should see my update YuCoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-                Then("I should see a button to go back", then.idVisible(ids.BACK_BUTTON));
-              });
-            });
-          });
-        });
+    });
+    When("I tap on the Amazon reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 4000), async () => {
+      Then("I should be in the Amazon reward details screen", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW, 3000));
+    });
+    When("I scroll to the Buy button", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SDUI_SCREEN_SCROLL_VIEW, ids.BUTTON_BASE("Buy voucher with YuCoin"), "up"), async () => {
+      Then("I should see the Buy button", then.idVisible(ids.BUTTON_BASE("Buy voucher with YuCoin"), 3000));
+    });
+    When("I tap to purchase the reward", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin"), 4000), async () => {
+      When("I select this time the third option of £36 voucher", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon", 2), async () => {
+        Then("I can see that I can confirm the purchase", then.textVisible("Confirm", 3000));
+      });
+      When("I confirm the purchase", when.tapText("Confirm", 4000), async () => {
+        Then("I should see the custom voucher code", then.idVisible(ids.VOUCHER_CODE("TestAmazonCode789"), 4000));
+        Then("I should see my update YuCoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
       });
     });
-
-    When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON, 4000), async () => {
       Then("I should see my Wallet", then.idVisible(ids.SHINE_BUTTON("Wallet"), 3000));
-      When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
-        Then("I can see my Amazon wallet card", then.idVisible(ids.WALLET_CARD_TITLE("Amazon"), 3000));
-        When("I tap to open the Amazon wallet card", when.tapID(ids.WALLET_CARD_TITLE("Amazon")), async () => {
-          Then("I should see all three purchased Amazon vouchers", then.multiplePurchasedRewardVisible(["£36", "£24", "£12"]));
-        });
-      });
+    });
+    When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 2000), async () => {
+      Then("I can see my Amazon wallet card", then.idVisible(ids.WALLET_CARD_TITLE("Amazon"), 3000));
+    });
+    When("I tap to open the Amazon wallet card", when.tapID(ids.WALLET_CARD_TITLE("Amazon"), 3000), async () => {
+      Then("I should see all three purchased Amazon vouchers", then.multiplePurchasedRewardVisible(["£36", "£24", "£12"]));
     });
   });
 
