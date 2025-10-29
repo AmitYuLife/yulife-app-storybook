@@ -42,7 +42,7 @@ const WalletItem = <T,>({ item, index, onPress }: WalletItemProps<T>) => (
     <StackedShadowWrapper style={styles.container} stackColors={[SHADOW_COLOUR]} outerStyle={styles.outerContainer}>
       <WalletShine index={index} />
       <Box style={styles.imageContainer}>
-        {item.image && <Image style={styles.image} source={item.image} resizeMode="cover" />}
+        {item.image ? <Image style={styles.image} source={item.image} resizeMode="cover" /> : null}
       </Box>
       <Box style={styles.infoContainer}>
         {!item.label ? null : (
@@ -61,7 +61,7 @@ const WalletItem = <T,>({ item, index, onPress }: WalletItemProps<T>) => (
           {item.description}
         </TextTemplate>
       </Box>
-      {item.info && item.info.length > 0 && (
+      {item.info && item.info.length > 0 ? (
         <Box>
           {item.info.map((infoItem, infoIndex) => (
             <TextTemplate key={infoIndex} color={TEXT_COLOUR} type={(infoItem.style as TemplateTextType) || "b2"}>
@@ -69,7 +69,7 @@ const WalletItem = <T,>({ item, index, onPress }: WalletItemProps<T>) => (
             </TextTemplate>
           ))}
         </Box>
-      )}
+      ) : null}
     </StackedShadowWrapper>
   </TouchableOpacityWithDelay>
 );

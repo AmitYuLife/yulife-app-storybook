@@ -175,7 +175,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
 
           <View style={showError ? styles.bottomElementsWrapperWithError : styles.bottomElementsWrapper}>
             <View style={styles.errorAndButtonWrapper}>
-              {showError && <Error />}
+              {showError ? <Error /> : null}
               <Button
                 wrapperStyle={styles.doneButtonWrapper}
                 translationKey={bottomButtonTranslationKey}

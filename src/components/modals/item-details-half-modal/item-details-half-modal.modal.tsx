@@ -151,11 +151,11 @@ const ItemDetailsHalfModal = ({
     >
       <View style={styles.headerContent}>
         <View style={[styles.headerBackground, { backgroundColor: levelRewardColor }]}>
-          {!DETOX_ENABLED && (
+          {!DETOX_ENABLED ? (
             <Animated.View style={[styles.podiumRays, raysContainerStyle]}>
               <Rays backgroundColor={"transparent"} style="alternate" />
             </Animated.View>
-          )}
+          ) : null}
         </View>
 
         <View style={styles.headerContainer}>

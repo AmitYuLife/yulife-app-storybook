@@ -29,7 +29,7 @@ const NotificationsItem: FC<Props> = ({
   disabled,
 }) => (
   <View style={[styles.wrapper, disabled ? styles.disabled : undefined]} testID={testID}>
-    {alertTimestamp && <View style={styles.seperator} />}
+    {alertTimestamp ? <View style={styles.seperator} /> : null}
     <View style={styles.container}>
       <View style={styles.nameWrapper}>
         <TextTemplate type="b2b" testID={SETTINGS_NAME(name)}>

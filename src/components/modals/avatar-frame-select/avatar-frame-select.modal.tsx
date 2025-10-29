@@ -72,9 +72,9 @@ const AvatarFrameSelectModal = ({ onChanged, onClose }: IFrameSelectModalProps) 
                   frame={{ imageUri: image.uri, lottieUri: lottieUri }}
                 />
               ))}
-              {isEmpty(avatarFrames?.getInventory) && !framesLoading && (
+              {isEmpty(avatarFrames?.getInventory) && !framesLoading ? (
                 <TextTemplate type="b2">{t["modals.leaderboards.frame_select.no_frames"]}</TextTemplate>
-              )}
+              ) : null}
             </Box>
             {framesLoading ? <Loading /> : null}
           </View>
