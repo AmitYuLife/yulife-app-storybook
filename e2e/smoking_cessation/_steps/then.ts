@@ -36,8 +36,8 @@ export const smokingTileVisible =
   (titleCopy: string, waitTime = 0) =>
   async () => {
     await wait(waitTime)();
-    await idVisible(ids.YUSCREEN_SMOKING_TILE)();
-    await idVisible(ids.YUSCREEN_SMOKING_TILE_TITLE(titleCopy))();
+    await idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION)();
+    await idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE(titleCopy))();
   };
 
 export const smokingCardVisible = (days: number, locale: string) => async () => {

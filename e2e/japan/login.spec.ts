@@ -86,7 +86,7 @@ Feature("As a user I can get past the login screen - JP", async () => {
         Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
       });
     });
-    When("I scroll until I see all the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
+    When("I scroll until I see all the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
       Then("I should see the square card for GHealth", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("入院への備え"), 3000));
       Then("I should see the square card for GCI", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("がん・急性心筋梗塞・脳卒中への備え")));
       Then("I should see the square card for ExGL", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("万一への備え")));

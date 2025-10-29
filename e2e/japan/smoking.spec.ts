@@ -19,11 +19,11 @@ Feature("As a user from Japan, I can view and use the smoking cessation feature"
       Then("I should see the image for the Compass icon card", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(PRODUCT_CARD_ILLUSTRATIONS.COMPASS)));
       Then("I should see the image for the Candle icon card", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(PRODUCT_CARD_ILLUSTRATIONS.CANDLE)));
     });
-    When("I scroll down until I see the smoking tile", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "down"), async () => {
+    When("I scroll down until I see the smoking tile", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
       Then("I should see the image for the Lantern icon card", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(PRODUCT_CARD_ILLUSTRATIONS.LANTERN)));
       Then("I should see the initial smoking tile", then.smokingTileVisible("禁煙をお考えですか?"));
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
+    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
       Then("I should be on the smoking cessation intro screen", then.idVisible(ids.SMOKING_INTRO_TITLE));
     });
     When("I tap start my journey", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {

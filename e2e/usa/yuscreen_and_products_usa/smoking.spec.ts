@@ -16,12 +16,12 @@ Feature("As a user from USA, I can view and use the smoking cessation feature", 
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_USA_1.data.firstName} ${data.CUSTOMER_USA_1.data.lastName}`, "Forest", "1", true));
       Then("I can see the YuScreen scroll view", then.idVisible(ids.YUSCREEN_SCROLL_VIEW, 3000));
     });
-    When("I swipe up to scroll down", when.scrollWithLimitedAttemptsUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_SMOKING_TILE, "up"), async () => {
+    When("I swipe up to scroll down", when.scrollWithLimitedAttemptsUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "up"), async () => {
       When("I wait", when.wait(30000), async () => {
-        Then("I should see the smoking tile", then.idVisible(ids.YUSCREEN_SMOKING_TILE, 3000));
+        Then("I should see the smoking tile", then.idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION, 3000));
       });
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE, 2000), async () => {
+    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION, 2000), async () => {
       Then("I should be on the smoking cessation intro screen", then.idVisible(ids.SMOKING_INTRO_TITLE));
     });
     When("I tap start my journey", when.tapID(ids.BUTTON_BASE("Start my journey"), 2000), async () => {
