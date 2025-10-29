@@ -33,6 +33,7 @@ const CUSTOM_CONFIG = {
       "expo-image": path.join(__dirname, "/aliases/expo-image"),
       "react-native-share": path.join(__dirname, "/aliases/react-native-share"),
       "@hcaptcha/react-native-hcaptcha": path.join(__dirname, "/aliases/react-native-hcaptcha"),
+      "@datadog/mobile-react-native": path.join(__dirname, "/aliases/datadog-mobile-react-native"),
     },
     extensions: [".web.js", ".js", ".ts", ".tsx"],
   },
