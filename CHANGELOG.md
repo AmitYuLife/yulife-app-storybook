@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.87.0] - 2025-10-30
+
+### Features
+
+- Task GS-1922: refactor smoking yu section to feature card
+
+### Bugfixes
+
+- Bugfix GS-2020: Add loading state on export button
+- Bugfix GS-2018: Fix coupon success button
+
+### Tasks
+
+- Task: Foreground pedometer error
+- Task: Foreground service implementation
+- Task CTE-483: DD rate limiter
+- Task CTE-486: Use ternary in JSX eslint rule
+- Task CTE-0: Claude init
+- Task GS-2026: reflect button pulsing
+- Task GS-2027: nav shadow for pathways
+- Task DEVOPS-4528: Set GIT_DEPTH to 0 for detox modifed files CI job
+- Task GS-2026: reflection DHQ availability
+- Task CTE-483: replace app debug mixpanel
+- Task CTE-483: RN datadog
+- Task GS-2022: Purge waitForStepsSync
+- Task GS-1883: decouple MaxYu DHQ reflection tests from main scenario
+- Task GS-1883: reflection happy path detox
+- (grafted) Task GS-1883: JP reflections DHQ detox scenario
+- Task GS-1919: Add Health Connect
+- (grafted) Task CTE-356: allow time range config for hourly steps
+- (grafted) Merge branch 'task/yu-health-bumpert' into 'develop'
+
+### Chores
+
+- Chore - Updated translations
+- Chore CTE-483: Add Datadog alias for storybook
+- Chore - Updated translations
+- Chore DEVOPS-4525: Always save Detox logs in Gitlab CI jobs
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox GS-2044: Create Yumoji
+- Fix GS-1922: fix smoking yuscreen tile detox ID
+- Detox GS-2034: Stabilise Streaks
+- Detox GS-2018: Fix Coupon Success Button
+- Detox GS-2030: JP Language Switch for Health Questionnaire
+- (grafted) Merge branch 'detox/gs-2024-replace-manual-waits' into 'develop'
+- Detox GS-2021: USA Donations
+
 ## [4.86.0] - 2025-10-22
 
 ### Tasks
