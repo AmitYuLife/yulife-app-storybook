@@ -5,6 +5,7 @@ import { challengeStartSuccessAction, pedometerStepsChallengeStarted } from "../
 import startChallenge from "./startChallenge.helper";
 import { ChallengeSourceType } from "../levels.types";
 import moment from "moment";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
   const {
@@ -15,6 +16,8 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
     videoDuration,
     videoPlayerIsActive,
   } = payload;
+
+  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
   const initialPedometerSteps: ReturnType<typeof getSteps> = yield select(getSteps);
   yield put(pedometerStepsChallengeStarted(initialPedometerSteps));
@@ -34,6 +37,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       yuHealth,
       createdBySource: ChallengeSourceType.Phone,
       challengeId: id,
+      enableForegroundService: features.tempEnableYuHealthForegroundService,
     });
   }
 }

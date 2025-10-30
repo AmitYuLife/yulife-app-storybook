@@ -18,6 +18,7 @@ export const YU_HEALTH_DEFAULT_CAPABILITIES = [
   HealthProviderCapability.STEP_COUNT,
   HealthProviderCapability.MINDFUL_MINUTES,
   HealthProviderCapability.CYCLING_DISTANCE,
+  HealthProviderCapability.ACTIVITIES,
 ];
 
 // All currently supported capabilities, requested by settings

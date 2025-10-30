@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { addSecondsToChallengeEndDateTime, getCurrentPlanetByLevel, Planets } from "@utils";
-import { updatePedometerSuccessAction } from "../pedometer/pedometer.actions";
+import { updatePedometerSuccessAction, foregroundPedometerUpdateAction } from "../pedometer/pedometer.actions";
 import {
   getUserActiveChallengeSuccess,
   getUserCoinLedgerSuccess,
@@ -134,6 +134,7 @@ const levelsReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(getChallengesDoneTodayActionSuccess, (state, action) =>
     getChallengesDoneToday(state, action.payload)
   );
+  builder.addCase(foregroundPedometerUpdateAction, (state, action) => foregroundPedometerUpdate(state, action.payload));
 
   builder.addCase(logOutSuccess, (state) => {
     const cleanState = getInitialState();
@@ -456,6 +457,22 @@ const getChallengesDoneToday = (state: ILevelsStore, payload: GetChallengesDoneT
   ...state,
   challengesDoneToday: payload.challengesDoneToday,
 });
+
+const foregroundPedometerUpdate = (state: ILevelsStore, steps: number): ILevelsStore => {
+  if (!state.active.id || !state.active.challengeIsActive) {
+    return state;
+  }
+
+  const newScore = Math.max(steps, state.active.score);
+
+  return {
+    ...state,
+    active: {
+      ...state.active,
+      score: newScore,
+    },
+  };
+};
 
 const validateActiveChallengeUpdate = (state: ILevelsStore, updatedState: ILevelsStore): ILevelsStore => {
   if (

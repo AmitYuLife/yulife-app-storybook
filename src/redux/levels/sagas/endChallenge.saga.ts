@@ -45,6 +45,7 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
         const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
         const debugToolsEnabled: ReturnType<typeof getDebugToolsEnabled> = yield select(getDebugToolsEnabled);
         const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
+
         const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, stepsBlackListApps, features);
 
         if (result.value === 0 && !payload?.skipDefer && debugToolsEnabled && !isEmpty(active.fitKitTypes)) {

@@ -1,5 +1,5 @@
 import RNFitKit from "@services/fitkit/fitkit.service";
-import { HealthDataType, ISampleQueryResponse } from "@yu-life/react-native-yu-health";
+import { HealthDataType, ISampleQueryResponse, getForegroundSteps } from "@yu-life/react-native-yu-health";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone } from "@utils";
 import moment from "moment";
@@ -57,6 +57,19 @@ let hasLoggedError = false;
 const getPedometerEndResult = async (activeLevel: IActiveLevel, blacklistApps: string[], features: IFeature) => {
   const { startDateTime, endDateTime, score } = activeLevel;
 
+  let foregroundSteps = 0;
+  if (features.tempEnableYuHealthForegroundService) {
+    try {
+      foregroundSteps = await getForegroundSteps();
+    } catch (e) {
+      Logger.error(e, {
+        message: "Error getting foreground steps",
+        file: "levels.helpers",
+        event: "getPedometerEndResult",
+      });
+    }
+  }
+
   // If we are querying step count, we should use pedometer data instead of sample data
   const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
 
@@ -81,7 +94,7 @@ const getPedometerEndResult = async (activeLevel: IActiveLevel, blacklistApps: s
       pedometerValue,
     });
 
-    const value = Math.max(pedometerValue, score);
+    const value = Math.max(pedometerValue, foregroundSteps, score);
     return { value };
   } catch (e) {
     // This method is called frequently when a user completes a challenge. It can fail for various reasons, most of which we don't care about. We limit Bugsnag logging for this method to once per session

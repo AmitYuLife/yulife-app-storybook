@@ -68,6 +68,7 @@ export default () => ({
       "android.permission.ACTIVITY_RECOGNITION",
       "android.permission.SCHEDULE_EXACT_ALARM",
       "android.permission.FOREGROUND_SERVICE",
+      "android.permission.FOREGROUND_SERVICE_DATA_SYNC",
       "android.permission.POST_NOTIFICATIONS",
       "android.permission.VIBRATE",
       "android.permission.RECEIVE_BOOT_COMPLETED",
