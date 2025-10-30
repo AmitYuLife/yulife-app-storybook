@@ -6,9 +6,12 @@ import DeviceInfo from "react-native-device-info";
 
 class DD {
   private initialised = false;
-  public config: DatadogProviderConfiguration;
-
+  private MAX_EVENTS_PER_SECOND = 10;
+  private disabledEvents: Set<string> = new Set();
+  private eventRates: Map<string, { count: number; resetTime: number }> = new Map();
   private appContext: Record<string, unknown> = {};
+
+  public config: DatadogProviderConfiguration;
 
   constructor() {
     this.appContext.deviceId = DeviceInfo.getDeviceId();
@@ -60,7 +63,7 @@ class DD {
 
   private wrapWithInitialisedCheck =
     (type: "debug" | "info" | "warn" | "error") => async (message: LogArguments[0], context?: LogArguments[1]) => {
-      if (!this.initialised) {
+      if (!this.initialised || this.shouldSuppressEvent(message)) {
         return;
       }
 
@@ -77,6 +80,30 @@ class DD {
   public info = this.wrapWithInitialisedCheck("info");
   public warn = this.wrapWithInitialisedCheck("warn");
   public error = this.wrapWithInitialisedCheck("error");
+
+  private shouldSuppressEvent = (event: string): boolean => {
+    const now = Date.now();
+    const rateLimit = this.eventRates.get(event);
+
+    // reset
+    if (!rateLimit || now > rateLimit.resetTime) {
+      this.eventRates.set(event, { count: 1, resetTime: now + 1000 });
+      this.disabledEvents.delete(event);
+      return false;
+    }
+
+    if (this.disabledEvents.has(event)) {
+      return true;
+    }
+
+    if (rateLimit.count >= this.MAX_EVENTS_PER_SECOND) {
+      this.disabledEvents.add(event);
+      return true;
+    }
+
+    rateLimit.count++;
+    return false;
+  };
 }
 
 const dd = new DD();
