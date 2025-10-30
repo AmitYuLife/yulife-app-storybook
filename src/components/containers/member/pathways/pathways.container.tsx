@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { Navigation } from "@navigation/main";
 import { PathwaysScreen } from "@components/screens";
-import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import moment from "moment";
 import { getMoodSubmission } from "./utils/getMoodSubmission";
 import { useDispatch } from "react-redux";
 import { ROUTES } from "@navigation/constants";
+import { useQueryOnScreenSeen } from "@hooks";
 
 interface Props {
   componentId: string;
@@ -18,7 +18,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
     Navigation.pop(componentId);
   }, [componentId]);
 
-  const { data, loading } = useQuery(gql("GetUserPathwaysDocument"), {
+  const [, { data }] = useQueryOnScreenSeen(gql("GetUserPathwaysDocument"), componentId, {
     fetchPolicy: "cache-and-network",
     variables: {
       startDate: moment().startOf("week").format("YYYY-MM-DD"),
@@ -51,10 +51,6 @@ const PathwaysContainer = ({ componentId }: Props) => {
       },
     [data]
   );
-
-  if (loading) {
-    return null;
-  }
 
   return (
     <PathwaysScreen
