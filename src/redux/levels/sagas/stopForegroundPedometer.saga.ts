@@ -17,7 +17,7 @@ export default function* stopForegroundPedometerSaga() {
 
     const { id }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
-    if (!id) {
+    if (id) {
       return;
     }
 
