@@ -15,7 +15,6 @@ export const features = [
   "yuScreenV3",
   "showReferrals",
   "useActiveChallengesService",
-  "waitForStepsSync",
   "limitStepsLastUpdateEnabled",
   "enableBikingHand",
   "enableBikingMountain",
@@ -63,4 +62,5 @@ export const features = [
   "tempGameNewRewardsScreen",
   "tempGameShowAchievements",
   "tempGameShowCouponPrizeTemplates",
+  "tempEnableYuHealthForegroundService",
 ] as const;

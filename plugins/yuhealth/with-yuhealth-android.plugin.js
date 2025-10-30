@@ -4,6 +4,7 @@ const {
   withMainActivity,
   withAppBuildGradle,
   withDangerousMod,
+  withMainApplication,
 } = require("@expo/config-plugins");
 
 const fs = require("fs");
@@ -14,6 +15,7 @@ module.exports = (app) => {
     [manifestPlugin, {}],
     [settingsPlugin, {}],
     [permissionRationalePlugin, {}],
+    [mainApplicationPlugin, {}],
   ]);
 };
 
@@ -81,6 +83,40 @@ const manifestPlugin = (config) => {
             {
               $: {
                 "android:name": "androidx.activity.result.contract.action.REQUEST_PERMISSIONS",
+              },
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!androidManifest.application[0].service) {
+      androidManifest.application[0].service = [];
+    }
+
+    androidManifest.application[0].service.push({
+      $: {
+        "android:name": "com.yuhealth.foreground.ForegroundService",
+        "android:exported": "false",
+        "android:foregroundServiceType": "dataSync",
+      },
+    });
+
+    if (!androidManifest.application[0].receiver) {
+      androidManifest.application[0].receiver = [];
+    }
+
+    androidManifest.application[0].receiver.push({
+      $: {
+        "android:name": "com.yuhealth.foreground.ForegroundPedometerBroadcastReceiver",
+        "android:exported": "false",
+      },
+      "intent-filter": [
+        {
+          action: [
+            {
+              $: {
+                "android:name": "com.yuhealth.FOREGROUND_PEDOMETER_UPDATE",
               },
             },
           ],
@@ -174,6 +210,29 @@ const settingsPlugin = (config) => {
       return mod;
     },
   ]);
+};
+
+const mainApplicationPlugin = (config) => {
+  return withMainApplication(config, (mod) => {
+    const splitContents = mod.modResults.contents.split(`\n`);
+    splitContents.splice(3, 0, `\nimport com.yuhealth.YuHealthGlobal\n`);
+
+    const onCreateLine = splitContents.findIndex((line) => line.includes(`super.onCreate()`));
+
+    splitContents.splice(
+      onCreateLine + 1,
+      0,
+      `
+      val notificationIcon = R.drawable.notification_icon
+      val notificationColor = resources.getColor(R.color.notification_icon_color);
+      YuHealthGlobal.setNotificationIcon(notificationIcon)
+      YuHealthGlobal.setNotificationColor(R.color.notification_icon_color)`
+    );
+
+    mod.modResults.contents = splitContents.join(`\n`);
+
+    return mod;
+  });
 };
 
 const mainActivityPlugin = (config) => {

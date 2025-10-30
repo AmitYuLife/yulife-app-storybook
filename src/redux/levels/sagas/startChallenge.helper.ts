@@ -19,7 +19,9 @@ import { ChallengesPayload, CreateMobileQuestLevelChallengeMutation, FitKitType 
 import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 import { YuHealthOptions } from "@redux/_core/types";
 import { updateMobileQuestLevelChallenge } from "@graphql/challenges/updateChallenge.gql";
-import { ISampleQueryResponse } from "@yu-life/react-native-yu-health";
+import { HealthDataType, ISampleQueryResponse } from "@yu-life/react-native-yu-health";
+import { startForegroundService, stopForegroundService } from "@redux/yu-health/sagas/foregroundService.helpers";
+import listenToForegroundSteps from "@redux/pedometer/sagas/listenToForegroundSteps.helper";
 
 export function* startTracking(
   startDateTime: string,
@@ -129,6 +131,7 @@ type Args = {
   startDateTime: string;
   endDateTime: string;
   challengeId: string;
+  enableForegroundService: boolean;
 } & Pick<
   CreateMobileQuestLevelChallengeMutation["createMobileQuestLevelChallenge"]["levelSlot"],
   "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
@@ -145,17 +148,28 @@ export default function* startChallenge({
   createdBySource,
   yuHealth,
   challengeId,
+  enableForegroundService,
 }: Args) {
   let challengeTask: Task;
+  let foregroundStepsTask: Task;
 
   if (fitKitTypes.length && createdBySource !== ChallengeSourceType.Watch) {
     // We don't want to track time when playing sudoku as we want the user to be able to start & then finish after midnight.
     // The challenge will be auto cancelled by quests.container if they go back to the map after the day has ended,
     // but if they are still playing the game, we will allow them to finish.
-
     challengeTask = shouldEndOnLastGoalAchieved
       ? yield fork(startTracking, startDateTime, endDateTime, fitKitTypes, videoPlayerIsActive, yuHealth, challengeId)
       : yield fork(startTrackingTime, endDateTime);
+
+    if (enableForegroundService && yuHealth?.dataType === HealthDataType.steps) {
+      const currentTime = moment();
+      const endTime = moment(endDateTime);
+      if (currentTime.isBefore(endTime)) {
+        yield call(startForegroundService, { endTime: endTime.toDate() });
+      }
+
+      foregroundStepsTask = yield fork(listenToForegroundSteps);
+    }
   }
 
   let inProgress = true;
@@ -174,6 +188,15 @@ export default function* startChallenge({
           yield cancel(challengeTask);
         }
 
+        if (enableForegroundService) {
+          if (foregroundStepsTask) {
+            yield cancel(foregroundStepsTask);
+          }
+
+          // Stop foreground service when challenge is cancelled
+          yield call(stopForegroundService);
+        }
+
         inProgress = false;
       } catch (e) {
         yield spawn(() => {
@@ -181,6 +204,14 @@ export default function* startChallenge({
         });
       }
     } else if (challengeEnd) {
+      if (enableForegroundService) {
+        if (foregroundStepsTask) {
+          yield cancel(foregroundStepsTask);
+        }
+
+        yield call(stopForegroundService);
+      }
+
       inProgress = false;
       return;
     }

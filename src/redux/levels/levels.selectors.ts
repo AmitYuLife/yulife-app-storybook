@@ -55,6 +55,9 @@ export const getCreateChallengeError = createSelector(reducer, getCreateChalleng
 const getChallengeFinishedResultSelector = (state: State) => state.challengeFinishedResult;
 export const getChallengeFinishedResult = createSelector(reducer, getChallengeFinishedResultSelector);
 
+const getCurrentChallengeScoreSelector = (state: State) => state.active.score;
+export const getCurrentChallengeScore = createSelector(reducer, getCurrentChallengeScoreSelector);
+
 const challengesStatusSelector = (state: State) => {
   const done = state.challengesDoneToday;
   const available =

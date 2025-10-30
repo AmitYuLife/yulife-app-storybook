@@ -27,6 +27,8 @@ import cancelChallengeSaga from "./cancelChallenge.saga";
 import startChallengeSaga from "./startChallenge.saga";
 import resetChallengeSuccessSaga from "./resetChallengeSuccessSaga.saga";
 import addModalsToQueueAfterChallengeCompleted from "./addModalsToQueueAfterChallengeCompleted.saga";
+import { AUTHENTICATED, UPDATE_APP_STATE } from "@redux/app/app.actions";
+import stopForegroundPedometerSaga from "./stopForegroundPedometer.saga";
 
 export default [
   // startChallenges(),
@@ -40,4 +42,5 @@ export default [
   takeLeading(CHALLENGE_START, startChallengeSaga),
   takeLeading([CHALLENGE_CANCEL, LOGOUT_START], cancelChallengeSaga),
   takeLatest(CHALLENGE_RESET, addModalsToQueueAfterChallengeCompleted),
+  takeLatest([AUTHENTICATED, UPDATE_APP_STATE], stopForegroundPedometerSaga),
 ];

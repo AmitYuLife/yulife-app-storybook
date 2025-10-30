@@ -1977,6 +1977,12 @@
       "body": "Connect a service so we can reward you for your daily activities. You can adjust this in your device settings at any time.",
       "unsupported": "Sadly %{capabilities} is unsupported by %{provider}. To access this and the ability to earn YuCoin consider switching:",
       "no_providers": "We couldn't find any health providers on your device."
+    },
+    "foreground_service": {
+      "active_title": "%{steps} steps",
+      "active_body": "We’ve got your steps covered! Keep moving and keep earning Yucoin!",
+      "ended_title": "Challenge ended",
+      "ended_body": "Check back to see how you did!"
     }
   },
   "sudoku": {
