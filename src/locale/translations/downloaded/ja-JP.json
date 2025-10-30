@@ -1447,7 +1447,7 @@
         "heading": "健康管理プログラム"
       },
       "reflect": "振り返りに進む",
-      "reflect_in": "%{hours} h %{minutes} m後に反映",
+      "reflect_in": "あと%{hours}時間%{minutes}分",
       "secondary_button_label": "Well-beingセンターに移動",
       "today": "今日",
       "user_mood": {
