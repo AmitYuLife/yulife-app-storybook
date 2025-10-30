@@ -163,16 +163,17 @@ class LoggerInstance {
   };
 
   private shouldSuppressEvent = (event: string): boolean => {
-    if (this.disabledEvents.has(event)) {
-      return true;
-    }
-
-    const now = moment().valueOf();
+    const now = Date.now();
     const rateLimit = this.eventRates.get(event);
 
     if (!rateLimit || now > rateLimit.resetTime) {
       this.eventRates.set(event, { count: 1, resetTime: now + 1000 });
+      this.disabledEvents.delete(event);
       return false;
+    }
+
+    if (this.disabledEvents.has(event)) {
+      return true;
     }
 
     if (rateLimit.count >= MAX_EVENTS_PER_SECOND) {
