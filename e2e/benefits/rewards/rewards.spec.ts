@@ -237,7 +237,7 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see that I have access to the rewards store, even though one of my employments does not", then.idVisible(ids.REWARDS_SCREEN, 3500));
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
-    When("I scroll down this page", when.scrollFromID(ids.REWARDS_SCREEN, "up", "fast", 0.7), async () => {
+    When("I scroll down this page", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, ids.REWARD_ITEM(data.CORE_REWARDS_ULTRA_AMAZIN.data._id), "up", 7, 1000), async () => {
       Then("I should see the 'Ultra Amazin' reward, only visible to those with store access level 4", then.rewardVisible(data.CORE_REWARDS_ULTRA_AMAZIN));
     });
   });

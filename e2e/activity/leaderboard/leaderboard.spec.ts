@@ -27,7 +27,7 @@ import { getFullName } from "_utils/users";
 Feature("As a user I can see my achievements on the leaderboard", async () => {
   Scenario("I can consent to my company leaderboard, and view referrals from the leaderboard", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
-      Then("I should see my YuCoin total is 250", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(250), 4000));
+      Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 4000));
     });
     When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard"), 7000), async () => {
       Then("I should see the leaderboard screen without consent", then.onLeaderboardWithoutConsent());

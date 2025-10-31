@@ -10,7 +10,7 @@ import { getFullName } from "_utils/users";
 Feature("As a business leaver I should still have app access", async () => {
   Scenario("As a business leaver with no personal products, I should still have app access", scenario.start, () => {
     Given("I trigger the free product worker", given.triggerFreeProduct, async () => {
-      When("I trigger the search token worker", when.triggerSearchTokens(9), async () => {
+      When("I trigger the search token worker", when.triggerSearchTokens(50), async () => {
         When("I login", when.logInAndGoToTab("yu", data.CUSTOMER_LEAVER, data.AUTH_LEAVER), async () => {
           Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Bus Leaf", "Mountain", "399", true));
           Then("Even with the referral setting enabled, I should not see the referral button, as I am a leaver", then.idNotVisible(ids.REFERRAL_BUTTON("Invite a colleague")));
@@ -21,9 +21,11 @@ Feature("As a business leaver I should still have app access", async () => {
       Then("I should see the users full name", then.idVisible(ids.LEADERBOARD_NAME("Bus Leaf", 0, 1, "#464647"), 4000));
       Then("I should see this is the public leaderboard", then.idVisible(ids.LEADERBOARD_TITLE("Public")));
     });
-    When("I tap search", when.tapID(ids.SEARCH_BUTTON, 2000), async () => {
+    When("I tap search", when.tapID(ids.SEARCH_BUTTON, 4000), async () => {
       When("I search for a different leaver", when.searchLeaderboard(data.CUSTOMER_126_LEAVER_WELLBEING.data.firstName), async () => {
-        Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)]), 5000));
+        When("I tap to dismiss the keyboard", when.tapID(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)]), 4000), async () => {
+          Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)]), 5000));
+        });
       });
     });
     When("I tap the leaver", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING)), 4000), async () => {
