@@ -13,6 +13,7 @@ if (DETOX_ENABLED) {
     "An effect function",
     "Possible Unhandled",
     "An error occurred!",
+    "[Datadog SDK]",
   ]);
 }
 
