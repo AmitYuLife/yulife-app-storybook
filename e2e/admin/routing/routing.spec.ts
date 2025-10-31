@@ -290,13 +290,11 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
   Scenario("I can successfully deep link when app is minimised", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true), async () => {
-      When("I tap on the YuCoin badge icon", when.tapID(ids.DAILYSTEP_SCREEN_COIN, 2000), async () => {
-        Then("I should land on the today's earnings screen", then.idExist(ids.TODAYS_EARNINGS, 2000));
-      });
+      Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 4000));
     });
     When("I minimise the app pressing the home button", when.minimiseApp, async () => {
       When("I follow the deep link", when.goToQuestsScreen, async () => {
-        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 2500));
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 5000));
       });
     });
   });

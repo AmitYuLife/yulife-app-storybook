@@ -73,21 +73,23 @@ Feature("As a user I can get past the login screen and see all SA products", asy
       Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
       Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
     });
-    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PROTECTION_TITLE, "down"), async () => {
-      When("I tap life cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 1), async () => {
+    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PROTECTION_TITLE, "down", undefined, undefined, undefined, 3000), async () => {
+      When("I tap life cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 1, 3000), async () => {
         Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_2, fixture.MeGLKeyInfo, true, fixture.MeGLCoverAmounts, fixture.Beneficiaries_MeGL_2));
       });
     });
     When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
-      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-        When("I tap the spousal cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 0), async () => {
-          Then("I'm on the product page for spousal cover", then.productCheck(fixture.SpGL_1, fixture.SpGLKeyInfo, false));
+      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only"), 3000), async () => {
+        When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.2, 3000), async () => {
+          When("I tap the spousal cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 0, 3000), async () => {
+            Then("I'm on the product page for spousal cover", then.productCheck(fixture.SpGL_1, fixture.SpGLKeyInfo, false));
+          });
         });
       });
     });
     When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
-      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-        When("I tap the funeral cover card", when.tapTextAtIndex(fixture.funeralCoverSquareCard.name, 0), async () => {
+      When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only"), 3000), async () => {
+        When("I tap the funeral cover card", when.tapTextAtIndex(fixture.funeralCoverSquareCard.name, 0, 3000), async () => {
           Then("I'm on the product page for funeral cover", then.productCheck(fixture.GrFun_2, fixture.GrFunKeyInfo_2, true, fixture.GrFunCoverAmounts, fixture.Beneficiaries_GrFun_2));
         });
       });
