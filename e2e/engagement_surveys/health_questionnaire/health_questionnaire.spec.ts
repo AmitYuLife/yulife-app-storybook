@@ -110,8 +110,10 @@ Feature("Health questionnaires", async () => {
     When("I tap the event panel for the HQ", when.tapID(ids.EVENT_CARD("Daily health questions")), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
-      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+      When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
+        Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+      });
     });
     When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
       When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
@@ -285,8 +287,10 @@ Feature("Health questionnaires", async () => {
     When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
-      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+      When("I press the 'See terms and conditions' button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
+        Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+      });
     });
     When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
       When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
@@ -432,8 +436,10 @@ Feature("Health questionnaires", async () => {
     When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
-      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+      When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
+        Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+      });
     });
     When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
       When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
@@ -567,8 +573,10 @@ Feature("Health questionnaires", async () => {
     When("I tap to check in on your health", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
-      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+      When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
+        Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
+      });
     });
     When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
       When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
