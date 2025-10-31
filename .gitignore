@@ -124,3 +124,6 @@ dist
 
 allure-*
 artifacts/
+
+# Fastlane builds
+builds/

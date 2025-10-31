@@ -15,3 +15,78 @@ build:e2e:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       changes:
         - e2e/**/*
+
+.ios-build-cache:
+  cache: &ios-build-cache
+    policy: pull-push
+    key:
+      files:
+        - yarn.lock
+        - support/ios/Podfile.lock
+      prefix: ios-build
+    paths:
+      - .cocoapods_cache
+      - .yarn-cache/
+
+.ios-pre-build:
+  script:
+    - nvm install -b
+    - corepack enable
+    - yarn install --frozen-lockfile --cache-folder .yarn-cache
+    - yarn tsc
+    - node ./scripts/replace-package-versionCodes.js "$CI_PIPELINE_IID"
+    # Generate native projects
+    - EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --clean --no-install
+    # Install CocoaPods dependencies
+    - cd ios
+    - bundle config frozen true
+    - bundle install
+    - bundle exec pod install --repo-update --deployment
+    - cd ..
+    # Set watch display name
+    - ./scripts/set-watch-display-name.sh "$DISPLAY_NAME"
+    # Log info.plist
+    - cat ios/YuLife/Info.plist
+    # Download secure files (App Store Connect API Key)
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+
+ios-develop-build:
+  extends:
+    - .assume-aws-role-with-web-identity:devops:ios-develop-builds
+    - .base-macos-vm
+  stage: build
+  interruptible: false
+  cache:
+    <<: *ios-build-cache
+  variables:
+    # Fastlane variables
+    FL_APP_IDENTIFIER: com.yulife.develop
+    FL_WATCH_APP_IDENTIFIER: com.yulife.develop.yuwatch
+    FL_TEAM_ID: 739BJV2T6V
+    FL_IOS_CERT_TYPE: adhoc
+    FL_IOS_EXPORT_METHOD: ad-hoc
+    MATCH_PASSWORD: $FL_MATCH_PASSWORD
+    # Expo variables
+    ENVFILE: ".env.develop"
+    BUNDLE_ID: com.yulife.develop
+    PLATFORM: ios
+    ENABLE_YUWATCH: 1
+    # Project variables
+    # Set cocoapods cache path to local folder to allow gitlab cache it
+    CP_HOME_DIR: "$CI_PROJECT_DIR/.cocoapods_cache"
+  script:
+    - !reference [.ios-pre-build, script]
+    # Build ipa for distribution
+    - fastlane ios ci_develop_build
+  artifacts:
+    paths:
+      - builds/ios/
+    expire_in: 15 days
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+      variables:
+        SPACESHIP_CONNECT_API_KEY_FILEPATH: $SPACESHIP_CONNECT_DEVELOPER_API_KEY_FILEPATH
+        SPACESHIP_CONNECT_API_KEY_ID: $SPACESHIP_CONNECT_DEVELOPER_API_KEY_ID

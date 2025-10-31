@@ -52,6 +52,10 @@ include:
     inputs:
       job_name: assume-aws-role-with-web-identity:uk-dev:app-components
       role_arn: $UK_DEV_APP_COMPONENTS_ROLE_ARN
+  - component: $CI_SERVER_FQDN/yu-life/infrastructure/yulife-devops-shared-config/assume-aws-role-with-web-identity@assume-aws-role-with-web-identity-2.0.0
+    inputs:
+      job_name: assume-aws-role-with-web-identity:devops:ios-develop-builds
+      role_arn: $IOS_DEVELOP_BUILDS_ROLE_ARN
 
 variables:
   UK_DEV_AWS_ACCOUNT_ID: 846880112034
@@ -62,6 +66,7 @@ variables:
   QA_REPORTER_ROLE_ARN: arn:aws:iam::$TEAM_QA_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-yulife-cypress-reports
   MACOS_VM_IMAGE_VERSION: v1.1.3
   MACOS_VM_IMAGE: $DEVOPS_AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-xcode:$MACOS_VM_IMAGE_VERSION
+  IOS_DEVELOP_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-shared-react-native-develop-builds
 
 stages:
   - build
@@ -70,3 +75,10 @@ stages:
   - test-report
   - release
   - translate
+
+.base-macos-vm:
+  tags:
+    - oakhost_macos_m4
+  image: $MACOS_VM_IMAGE
+  variables:
+    TART_EXECUTOR_SHELL: bash -l

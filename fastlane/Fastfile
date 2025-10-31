@@ -16,14 +16,139 @@
 opt_out_usage
 
 platform :ios do
-  app_store_connect_api_key(
-    key_id: ENV["SPACESHIP_CONNECT_API_KEY_ID"],
-    issuer_id: ENV["SPACESHIP_CONNECT_API_ISSUER_ID"],
-    key_filepath: ENV["SPACESHIP_CONNECT_API_KEY_FILEPATH"]
-  )
+  desc "Setup app store connect api key. This action generates a lane context variable (also available as an environment variable)"
+  desc "`APP_STORE_CONNECT_API_KEY` that can be used in other actions."
+  desc "The API key is stored in the keychain and is used to authenticate with the App Store Connect API."
+  lane :app_store_connect do
+    app_store_connect_api_key(
+      key_id: ENV["SPACESHIP_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["SPACESHIP_CONNECT_API_ISSUER_ID"],
+      key_filepath: ENV["SPACESHIP_CONNECT_API_KEY_FILEPATH"]
+    )
+  end
+
+  desc "Download certificates and provisioning profiles. This action creates a new keychain for duration of the build."
+  desc "Then it downloads the certificates and provisioning profiles using the match action."
+  lane :ci_certificates do
+    create_keychain(
+      name: "fastlane.build.keychain",
+      password: ENV["FL_KEYCHAIN_PASSWORD"],
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      add_to_search_list: true
+    )
+    app_store_connect
+    match(
+      app_identifier: [ENV["FL_APP_IDENTIFIER"], ENV["FL_WATCH_APP_IDENTIFIER"]], 
+      type: ENV["FL_IOS_CERT_TYPE"], 
+      keychain_name: "fastlane.build.keychain",
+      keychain_password: ENV["FL_KEYCHAIN_PASSWORD"],
+      readonly: true,
+    )
+  end
+  desc "iOS Develop build"
+  lane :ci_develop_build do
+    ci_certificates
+    profile_mapping = Actions.lane_context[SharedValues::MATCH_PROVISIONING_PROFILE_MAPPING]
+    ios_project_path = "ios/YuLife.xcodeproj"
+    ios_workspace_path = "ios/YuLife.xcworkspace"
+    ios_signing_identity = "Apple Distribution: Yu Life Limited (#{ENV["FL_TEAM_ID"]})"
+    ipa_artifact_url = "#{ENV['CI_PROJECT_URL']}/-/jobs/#{ENV['CI_JOB_ID']}/artifacts/file/builds/ios/YuLife.ipa"
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: ios_project_path,
+      team_id: ENV["FL_TEAM_ID"],
+      profile_name: profile_mapping[ENV["FL_APP_IDENTIFIER"]],
+      bundle_identifier: ENV["FL_APP_IDENTIFIER"],
+      targets: ["YuLife"]
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: ios_project_path,
+      team_id: ENV["FL_TEAM_ID"],
+      profile_name: profile_mapping[ENV["FL_WATCH_APP_IDENTIFIER"]],
+      bundle_identifier: ENV["FL_WATCH_APP_IDENTIFIER"],
+      targets: ["YuWatch"]
+    )
+
+    build_app(
+      clean: true,
+      codesigning_identity: ios_signing_identity,
+      configuration: "Release",
+      export_method: ENV["FL_IOS_EXPORT_METHOD"],
+      output_directory: "builds/ios",
+      scheme: "YuLife",
+      workspace: ios_workspace_path, 
+      export_options: {
+        installerSigningCertificate: ios_signing_identity,
+        method: ENV["FL_IOS_EXPORT_METHOD"],
+        provisioningProfiles: ENV["MATCH_PROVISIONING_PROFILE_MAPPING"],
+        signingCertificate: "Apple Distribution",
+      }
+    )
+    
+    slack(
+      message: "YuLife iOS develop build completed successfully",
+      channel: "#alerts-engineering",
+      slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
+      username: "Gitlab CI MacOS Runner",
+      icon_emoji: ":apple-icon:",
+      default_payloads: ["git_branch", "git_author", "last_git_commit", "last_git_commit_hash"],
+      payload: {
+        "Build Status" => "✅ Success",
+        "Build Number" => ENV['CI_PIPELINE_IID']
+      },
+      attachment_properties: {
+        color: "good",
+        fields: [
+          {
+            title: "🔗 Quick Actions",
+            value: "<#{ENV['CI_JOB_URL']}|📱 View Build> | <#{ipa_artifact_url}|📦 Install App>",
+            short: false
+          }
+        ]
+      }
+    )
+  end
+
+  desc "Generate new develop certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)"
+  lane :develop_certs_and_profiles do
+    # Develop builds
+    match(
+      app_identifier: ["com.yulife.develop","com.yulife.develop.yuwatch"], 
+      type: "adhoc", 
+      readonly: false,
+      force_for_new_devices: true
+    )
+  end
+
+  desc "iOS local develop build"
+  lane :local_build do
+    match(
+      app_identifier: ["com.yulife.develop","com.yulife.develop.yuwatch"], 
+      type: "adhoc",
+      readonly: true,
+    )
+    build_app(
+      workspace: "ios/YuLife.xcworkspace", 
+      scheme: "YuLife",
+      configuration: "Release",
+      clean: true,
+      export_method: "ad-hoc",
+      export_team_id: "739BJV2T6V",
+      output_directory: "builds/ios",
+      export_options: {
+        installerSigningCertificate: "Apple Distribution: Yu Life Limited (739BJV2T6V)"
+      }
+    )
+  end
 
   desc "Push the already uploaded release to pre-internal TestFlight"
   lane :submit_to_internal do
+      app_store_connect
       upload_to_testflight(
         app_identifier: "com.yulife.main",
         app_platform: "ios",
@@ -38,6 +163,7 @@ platform :ios do
 
   desc "Push the already uploaded release to P&T TestFlight"
   lane :submit_to_pt do
+      app_store_connect
       upload_to_testflight(
         app_identifier: "com.yulife.main",
         app_platform: "ios",
@@ -52,6 +178,7 @@ platform :ios do
 
   desc "Push the already uploaded release to the YuCrew TestFlight"
   lane :submit_to_yucrew do
+      app_store_connect
       upload_to_testflight(
         app_identifier: "com.yulife.main",
         app_platform: "ios",
