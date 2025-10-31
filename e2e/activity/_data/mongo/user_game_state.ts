@@ -39,18 +39,11 @@ export const USER_GAME_STATE_7 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_7.data.customerId,
     userId: customer.CUSTOMER_7.data.customerId,
-    activeStreakId: "YU_STREAK_001",
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 440,
     currentStreak: 4,
     currentLevel: 5,
-    /*
-    Test Adjustment: Offset by 6 hours so the streak is active when nightly CI runs near midnight.
-    Added to validate if this reduces the flakiness
-    */
-    nextStreakAvailableAt: moment()
-      .subtract(6, "hours")
-      .startOf("day")
-      .format("YYYY-MM-DDTHH:mm:ss"),
+    nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
     nextLevelAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
   },
 } as IDatabaseItem;
@@ -62,7 +55,7 @@ export const USER_GAME_STATE_8 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_8.data.customerId,
     userId: customer.CUSTOMER_8.data.customerId,
-    activeStreakId: "YU_STREAK_001",
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 320,
     currentLevel: 3,
     currentStreak: 0,
@@ -77,7 +70,7 @@ export const USER_GAME_STATE_15 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_15.data.customerId,
     userId: customer.CUSTOMER_15.data.customerId,
-    activeStreakId: "YU_STREAK_001",
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 320,
     currentLevel: 4,
     nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
@@ -91,7 +84,7 @@ export const USER_GAME_STATE_16 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_16.data.customerId,
     userId: customer.CUSTOMER_16.data.customerId,
-    activeStreakId: "YU_STREAK_001",
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 50,
     currentLevel: 1,
     nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
@@ -105,7 +98,7 @@ export const USER_GAME_STATE_17 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_17.data.customerId,
     userId: customer.CUSTOMER_17.data.customerId,
-    activeStreakId: "YU_STREAK_001",
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 360,
     currentLevel: 2,
     nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
@@ -119,7 +112,7 @@ export const USER_GAME_STATE_18 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_18.data.customerId,
     userId: customer.CUSTOMER_18.data.customerId,
-    activeStreakId: "YU_STREAK_001",
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 320,
     currentLevel: 4,
     nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
@@ -200,7 +193,7 @@ export const USER_GAME_STATE_42 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_42.data.customerId,
     userId: customer.CUSTOMER_42.data.customerId,
-    activeStreakId: "YU_STREAK_001",
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 320,
     currentStreak: 5,
     currentLevel: 51,
@@ -280,7 +273,7 @@ export const USER_GAME_STATE_73 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_73.data.customerId,
     userId: customer.CUSTOMER_73.data.customerId,
-    activeStreakId: "YU_STREAK_001",
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 360,
     currentLevel: 2,
     nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
