@@ -2256,6 +2256,12 @@
       "button": "¡Entendido!",
       "title": "¿Por qué necesito esto?"
     },
+    "foreground_service": {
+      "active_body": "¡Tenemos tus pasos cubiertos! ¡Sigue moviéndote y sigue ganando Yucoin!",
+      "active_title": "%{steps} pasos",
+      "ended_body": "Vuelve para ver cómo te ha ido.",
+      "ended_title": "Desafío finalizado"
+    },
     "providers": {
       "generic": "Proveedor de servicios de salud",
       "googleFit": "Google Fit",

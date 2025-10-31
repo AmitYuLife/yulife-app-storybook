@@ -2256,6 +2256,12 @@
       "button": "فهمت!",
       "title": "لماذا أحتاج هذا؟"
     },
+    "foreground_service": {
+      "active_body": "سنحسب خطواتك! استمر في الحركة واربح المزيد من يو كوين!",
+      "active_title": "%{steps} خطوات",
+      "ended_body": "تحقق مرة أخرى لترى كيف كانت نتيجتك!",
+      "ended_title": "انتهاء التحدي"
+    },
     "providers": {
       "generic": "مزود الرعاية الصحية",
       "googleFit": "Google Fit",

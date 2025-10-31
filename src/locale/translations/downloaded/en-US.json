@@ -2256,6 +2256,12 @@
       "button": "Got it!",
       "title": "Why do I need this?"
     },
+    "foreground_service": {
+      "active_body": "We've got your steps covered! Keep moving and keep earning Yucoin!",
+      "active_title": "%{steps} steps",
+      "ended_body": "Check back to see how you did!",
+      "ended_title": "Challenge ended"
+    },
     "providers": {
       "generic": "Health Provider",
       "googleFit": "Google Fit",

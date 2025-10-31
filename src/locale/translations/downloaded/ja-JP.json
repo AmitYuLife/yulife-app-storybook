@@ -2256,6 +2256,12 @@
       "button": "OK",
       "title": "必要な理由"
     },
+    "foreground_service": {
+      "active_body": "ステップはカバー済みです！   動き続けて   Yucoin を獲得しよう！",
+      "active_title": "%{steps}歩",
+      "ended_body": "チェック バック して 自分 が どう だった か 確認 して！",
+      "ended_title": "チャレンジが終了しました"
+    },
     "providers": {
       "generic": "医療機関",
       "googleFit": "Google Fit",
