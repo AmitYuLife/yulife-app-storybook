@@ -22,7 +22,7 @@ export const USER_GAME_STATE_7 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_7.data.customerId,
     userId: customer.CUSTOMER_7.data.customerId,
-    activeStreakId: "YU_STREAK_001",
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 440,
     currentStreak: 4,
     currentLevel: 5,
