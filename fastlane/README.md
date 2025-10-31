@@ -15,6 +15,52 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios app_store_connect
+
+```sh
+[bundle exec] fastlane ios app_store_connect
+```
+
+Setup app store connect api key. This action generates a lane context variable (also available as an environment variable)
+
+`APP_STORE_CONNECT_API_KEY` that can be used in other actions.
+
+The API key is stored in the keychain and is used to authenticate with the App Store Connect API.
+
+### ios ci_certificates
+
+```sh
+[bundle exec] fastlane ios ci_certificates
+```
+
+Download certificates and provisioning profiles. This action creates a new keychain for duration of the build.
+
+Then it downloads the certificates and provisioning profiles using the match action.
+
+### ios ci_develop_build
+
+```sh
+[bundle exec] fastlane ios ci_develop_build
+```
+
+iOS Develop build
+
+### ios develop_certs_and_profiles
+
+```sh
+[bundle exec] fastlane ios develop_certs_and_profiles
+```
+
+Generate new develop certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)
+
+### ios local_build
+
+```sh
+[bundle exec] fastlane ios local_build
+```
+
+iOS local develop build
+
 ### ios submit_to_internal
 
 ```sh

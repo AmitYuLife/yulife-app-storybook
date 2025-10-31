@@ -1,4 +1,8 @@
-apple_id ENV["FL_APPLE_ID"]
-itc_team_id ENV["FL_ITC_TEAM_ID"]
-team_id ENV["FL_TEAM_ID"]
+# iOS
+apple_id ENV["FL_APPLE_ID"] # Your Apple Developer Portal username
+itc_team_id ENV["FL_ITC_TEAM_ID"] # App Store Connect Team ID
+team_id ENV["FL_TEAM_ID"] # Developer Portal Team ID
+app_identifier ENV["FL_APP_IDENTIFIER"] # The bundle identifier of your app for iOS
+
+# Android
 json_key_file ENV["FL_JSON_KEY_FILE"]

@@ -28,7 +28,9 @@ const IGNORE_APP_VERSION_IN_NAME_ENVS = ["dev", "e2e", "production"];
 
 const appVersioning = (() => {
   const [major, minor] = packageJson.version.split(".");
-  const versionCode: string = `${process.env.BITRISE_BUILD_NUMBER || "1"}`; // need a non-zero default for local builds
+  // While we are migrating to Gitlab CI, use this temporary variable
+  const tmpMigrationCode = process.env.GITLAB_CI ? process.env.CI_PIPELINE_IID : process.env.BITRISE_BUILD_NUMBER;
+  const versionCode: string = `${tmpMigrationCode || "1"}`; // need a non-zero default for local builds
   const short = `${major}.${minor}`;
   const full = `${short}.${versionCode}`;
 
