@@ -1965,7 +1965,7 @@ workflows:
         is_expand: false
     - RELEASE_ENVIRONMENT: develop
     steps:
-    - xcode-archive@4.7:
+    - xcode-archive@5:
         inputs:
         - team_id: 739BJV2T6V
         - force_team_id: 739BJV2T6V
@@ -2167,7 +2167,7 @@ workflows:
             # not just bash, e.g.:
             # ruby ./path/to/script.rb
     - certificate-and-profile-installer@1.9.2: {}
-    - xcode-archive@4.5:
+    - xcode-archive@5:
         inputs:
         - team_id: 739BJV2T6V
         - force_team_id: 739BJV2T6V
