@@ -33,6 +33,7 @@ export interface IUserStore {
     };
   };
   passiveChallengesLastUpdate: {
+    sessionId?: string;
     cycling?: string;
     meditation?: string;
     steps?: string;
