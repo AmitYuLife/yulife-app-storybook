@@ -1,0 +1,12 @@
+fragment UserPathwayAdviceItem on UserPathwayAdviceItem {
+  id
+  onPress {
+    ...SduiAction
+  }
+  backgroundColor
+  image {
+    ...RemoteImage
+  }
+  heading
+  label
+}

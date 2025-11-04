@@ -7,6 +7,8 @@ import PathwaysHeader from "./subcomponents/pathways-header";
 import { t } from "@locale";
 import { Colours } from "@styles";
 
+import { AdviceSection, PathwayAdviceSectionProps } from "./subcomponents/advice-section";
+
 interface Props {
   onClose: () => void;
   moodSubmissions: MoodData[];
@@ -15,6 +17,8 @@ interface Props {
   reflectionProgress: number;
   reflectedToday: boolean;
   nextQuestionnaireLocalDate: string;
+  adviceSection: Omit<PathwayAdviceSectionProps, "isLoading">;
+  isLoading: boolean;
 }
 
 const PathwaysScreen = ({
@@ -25,6 +29,8 @@ const PathwaysScreen = ({
   reflectedToday,
   nextQuestionnaireLocalDate,
   onOpenMoodCalendar,
+  adviceSection,
+  isLoading,
 }: Props) => {
   const scrollY = useSharedValue(0);
 
@@ -48,6 +54,7 @@ const PathwaysScreen = ({
           reflectedToday={reflectedToday}
           nextQuestionnaireLocalDate={nextQuestionnaireLocalDate}
         />
+
         <Box minHeight={100} width={"100%"} gap={24} pt={27}>
           {/* <Box mt={27}>
             <CarouselPathways pathways={[]} />
@@ -58,6 +65,9 @@ const PathwaysScreen = ({
               onOpenMoodCalendar();
             }}
           />
+          {adviceSection?.items?.length > 0 ? (
+            <AdviceSection heading={adviceSection.heading} items={adviceSection.items} isLoading={isLoading} />
+          ) : null}
         </Box>
         {/* <Box mv={24}>
           <SecondaryButton translationKey="screens.pathways.secondary_button_label" size="Large" onPress={onClose} />

@@ -5,4 +5,10 @@ query GetUserPathways($startDate: String, $endDate: String) {
   getUserMoodSubmissions(startDate: $startDate, endDate: $endDate) {
     ...UserMoodSubmissionsResponse
   }
+  getUserPathwayAdviceSection {
+    heading
+    items {
+      ...UserPathwayAdviceItem
+    }
+  }
 }
