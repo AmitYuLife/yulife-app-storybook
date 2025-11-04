@@ -1,0 +1,33 @@
+android-develop-build:
+  extends: .base-macos-vm
+  stage: build
+  interruptible: false
+  timeout: 75m
+  variables:
+    # Fastlane variables
+    FL_ANDROID_KEY_ALIAS: yulife-android-develop
+    # Project variables
+    ENVFILE: ".env.develop"
+    BUNDLE_ID: com.yulife.release
+    PLATFORM: android
+  script:
+    - nvm install -b
+    - corepack enable
+    - yarn install --frozen-lockfile --cache-folder .yarn-cache
+    - yarn tsc
+    - node ./scripts/replace-package-versionCodes.js "$CI_PIPELINE_IID"
+    - EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --clean --no-install
+    # Download secure files (App Store Connect API Key)
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    # Build Android release
+    - fastlane android develop_build --verbose
+    # Sourcemaps upload moved into Fastlane
+  artifacts:
+    paths:
+      - android/app/build/outputs/**/*.apk
+    expire_in: 15 days
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop" && $CI_PIPELINE_SOURCE != "schedule"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
