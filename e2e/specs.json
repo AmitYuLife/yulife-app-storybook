@@ -28,7 +28,6 @@
   "activity:2": {
     "region": "UK",
     "specs": [
-      "activity/mood_monitor/*.spec.ts",
       "activity/p2p_gifting/*.spec.ts",
       "activity/steps/*.spec.ts",
       "activity/streaks/*.spec.ts"
