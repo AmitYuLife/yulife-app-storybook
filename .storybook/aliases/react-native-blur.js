@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-const BlurWidget = () => <View style={styles.blur} />;
+const BlurView = () => <View style={styles.blur} />;
 
-export default BlurWidget;
+export default { BlurView };
 
 const styles = StyleSheet.create({
   blur: {
