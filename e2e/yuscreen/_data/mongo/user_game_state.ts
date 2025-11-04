@@ -62,11 +62,11 @@ export const USER_GAME_STATE_MAXIMISE_YU = {
     customerId: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
     userId: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
     currentBalance: 1250,
-    currentStreak: 4,
+    currentStreak: 2,
     currentLevel: 124,
-    totalStreak: 4,
-    activeStreakId: "YU_STREAK_002",
-    nextLevelAvailableAt: moment().add(5, "minutes").format("YYYY-MM-DDTHH:mm:ss"),
+    totalStreak: 2,
+    activeStreakId: "YU_STREAK_CHEST_0002",
+    nextLevelAvailableAt: moment().add(10, "hours").format("YYYY-MM-DDTHH:mm:ss"),
   },
 } as IDatabaseItem;
 

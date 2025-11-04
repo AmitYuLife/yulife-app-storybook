@@ -78,13 +78,13 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
   });
 
-  Scenario("I can see and complete Maximise-Yu nudges", scenario.start, async () => {
+  Scenario("I can view and complete the 'Maximise-Yu' nudges", scenario.start, async () => {
     Given("I login and go to the 'Yu' tab", given.logInAndGoToTab("yu", data.CUSTOMER_MAXIMISE_YU, data.AUTH_MAXIMISE_YU), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
       Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 430));
+      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 400));
     });
-    When("I click on the YuCoin I have earned today", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(130, 430), 3000), async () => {
+    When("I click on the YuCoin I have earned today", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(130, 400), 3000), async () => {
       Then("I should be on the Today's earnings screen", then.textVisible("Today’s Earnings", 1500));
       Then("I should see the 130 YuCoin I have earned today", then.textVisible("130 YuCoin", 1500));
       Then("I see a way to go back", then.idVisible(ids.BACK_BUTTON, 3000));
@@ -92,7 +92,7 @@ Feature("I am able to use the yuscreen v5", async () => {
     When("I go back", when.tapID(ids.BACK_BUTTON, 4000), async () => {
       Then("I should be back on the 'Yu' tab", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
       Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 430));
+      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 400));
     });
     When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.1), async () => {
       When("I tap the challenge nudge", when.tapID(ids.NUDGE_ITEM_WRAPPER("active-challenge-nudge")), async () => {
@@ -112,33 +112,31 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I am back on the Quests screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123), 2000));
     });
     When("I go back to the 'Yu' screen", when.tapID(ids.NAV_BAR("yu"), 3500), async () => {
-      Then("I should see the updated YuCoin earned of 170", then.maximiseYucoinVisible(170, 430));
+      Then("I should see the updated YuCoin earned of 170", then.maximiseYucoinVisible(170, 400));
       Then("I should see the walking nudge", then.walkingNudgeVisible("9,498", 50));
     });
     When("I send 12000 steps and reload the YuScreen tab", when.sendPassiveStepsAndReloadToTab(12000, 3000), async () => {
       Then("I should see the meditation nudge", then.meditationNudeVisible());
-      Then("I should see the updated YuCoin earned of 220/430", then.maximiseYucoinVisible(220, 430));
+      Then("I should see the updated YuCoin earned of 220/400", then.maximiseYucoinVisible(220, 400));
     });
     When("I send 45 mindful minutes and reload the YuScreen tab", when.addMindfulnessHistoricalData(2700, 0), async () => {
       Then("I should see the 'Maximise Yu' list", then.idVisible(ids.MAXIMISE_YU_NUDGE_LIST, 5000));
     });
-    When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.1), async () => {
+    When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.1, 4500), async () => {
       When("I swipe left on the completed meditation nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("passive-cycling-nudge"), "left", 5, 5000, 0.5, 0.8), async () => {
         Then("I should see the cycling nudge", then.cyclingNudgeVisible());
       });
     });
     When("I send 10km of cycling and reload the yuscreen tab", when.sendPassiveCyclingAndReloadToTab(10000), async () => {
       When("I wait", when.wait(3000), async () => {
-        Then("I should see the updated YuCoin earned of 320/430", then.maximiseYucoinVisible(320, 430));
+        Then("I should see the updated YuCoin earned of 320/400", then.maximiseYucoinVisible(320, 400));
+        Then("I should see the done steps nudge icon", then.completedWalkingNudgeVisible());
       });
     });
-    When("I swipe left on the complete 3 challenges nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("passive-steps-nudge"), "left", 5, 5000, 0.5, 0.8), async () => {
-      Then("I should see the done steps nudge icon", then.completedWalkingNudgeVisible());
-    });
-    When("I swipe left on the completed steps nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("passive-meditation-nudge"), "left", 5, 5000, 0.5, 0.8), async () => {
+    When("I swipe left on the completed steps nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("passive-meditation-nudge"), "left", 1, 5000, 0.5, 0.8), async () => {
       Then("I should see the done meditation nudge icon", then.completedMeditationNudeVisible());
     });
-    When("I swipe left on the completed meditation nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("passive-cycling-nudge"), "left", 5, 5000, 0.5, 0.8), async () => {
+    When("I swipe left on the completed meditation nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("passive-cycling-nudge"), "left", 1, 5000, 0.5, 0.8), async () => {
       Then("I should see the done cycling nudge icon", then.completedCyclingNudgeVisible());
     });
   });
@@ -221,7 +219,7 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 3000));
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Sean Spencer", "Mountain", "800", true));
       Then("I should see the yumoji create copy", then.yuscreenV5CreateYumojiVisible);
-      Then("I should see the current amount of YuCoin I have earned so far", then.maximiseYucoinVisible(200, 510));
+      Then("I should see the current amount of YuCoin I have earned so far", then.maximiseYucoinVisible(200, 480));
     });
     When("I tap the yumoji creator", when.tapID(ids.YUMOJI_PROMPT_CTA, 3000), async () => {
       Then("I should be on the Yumoji create screen", then.textVisible("Create your Yumoji to step into the Yuniverse"));
@@ -231,7 +229,7 @@ Feature("I am able to use the yuscreen v5", async () => {
         When("I edit my yumoji", when.unlockedYumojiItemsVisible("female", "base", "forest"), async () => {
           When("I save", when.saveYumoji(true), async () => {
             Then("I should see the yumoji on the YuScreen", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000));
-            Then("I should see the updated YuCoin value from creating my Yumoji", then.maximiseYucoinVisible(300, 510));
+            Then("I should see the updated YuCoin value from creating my Yumoji", then.maximiseYucoinVisible(300, 480));
             Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17800), 1500));
           });
         });
