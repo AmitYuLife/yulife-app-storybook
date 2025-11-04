@@ -25,11 +25,17 @@ const googleServicesFile =
     : "./support/android/google-services-debug.json";
 
 const IGNORE_APP_VERSION_IN_NAME_ENVS = ["dev", "e2e", "production"];
+//Increment value added to CI_PIPELINE_IID for build numbers
+// This is to make sure we have a higher version than in Bitrise builds
+// When modifying this value, also modify the BUILD_NUMBER_INCREMENT in Fastfile
+const BUILD_NUMBER_INCREMENT = 20000;
 
 const appVersioning = (() => {
   const [major, minor] = packageJson.version.split(".");
   // While we are migrating to Gitlab CI, use this temporary variable
-  const tmpMigrationCode = process.env.GITLAB_CI ? process.env.CI_PIPELINE_IID : process.env.BITRISE_BUILD_NUMBER;
+  const tmpMigrationCode = process.env.GITLAB_CI
+    ? +process.env.CI_PIPELINE_IID + BUILD_NUMBER_INCREMENT
+    : process.env.BITRISE_BUILD_NUMBER;
   const versionCode: string = `${tmpMigrationCode || "1"}`; // need a non-zero default for local builds
   const short = `${major}.${minor}`;
   const full = `${short}.${versionCode}`;

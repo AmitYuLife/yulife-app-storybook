@@ -90,6 +90,30 @@ Push the already uploaded release to the YuCrew TestFlight
 
 ## Android
 
+### android develop_build
+
+```sh
+[bundle exec] fastlane android develop_build
+```
+
+Android Develop build
+
+### android uat_build
+
+```sh
+[bundle exec] fastlane android uat_build
+```
+
+Android UAT build
+
+### android production_build
+
+```sh
+[bundle exec] fastlane android production_build
+```
+
+Android Production build
+
 ### android submit_to_pt
 
 ```sh
