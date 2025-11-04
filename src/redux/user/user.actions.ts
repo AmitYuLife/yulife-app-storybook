@@ -56,6 +56,7 @@ export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
 export const GET_USER_SESSION_SUCCESS = "GET_USER_SESSION_SUCCESS";
 export const UPDATE_USER_TODAY_SCREEN = "UPDATE_USER_TODAY_SCREEN";
 export const UPDATE_USER_PROFILE_DATE_SAVER_MODE = "UPDATE_USER_PROFILE_DATE_SAVER_MODE";
+export const UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID = "UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID";
 
 export const refreshUserToken = createAction<null, "REFRESH_USER_TOKEN">(REFRESH_USER_TOKEN);
 
@@ -163,3 +164,7 @@ export const updateUserProfileDataSaverMode = createAction<boolean, "UPDATE_USER
 );
 
 export const getUserSessionSuccess = createAction<null, "GET_USER_SESSION_SUCCESS">(GET_USER_SESSION_SUCCESS);
+
+export const updateUserPassiveChallengeSessionId = createAction<string, "UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID">(
+  UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID
+);

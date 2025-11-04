@@ -7502,7 +7502,9 @@ export type MutationUpdateWellbeingHubItemArgs = {
 };
 
 export type MutationUpsertDailyPassivesArgs = {
+  hasLastItem?: InputMaybe<Scalars["Boolean"]["input"]>;
   payload: Array<ChallengesPayload>;
+  sessionId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationUpsertMobileConsentArgs = {
@@ -7903,6 +7905,22 @@ export type ProfilePersonalInfoInput = {
   firstName?: InputMaybe<Scalars["String"]["input"]>;
   jobTitle?: InputMaybe<Scalars["String"]["input"]>;
   lastName?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type QualitativeQuestionAnswerResult = {
+  __typename?: "QualitativeQuestionAnswerResult";
+  /** Department name of the answer. */
+  departmentName: Scalars["String"]["output"];
+  /** The text of the answer. */
+  text: Scalars["String"]["output"];
+};
+
+export type QualitativeQuestionInfo = {
+  __typename?: "QualitativeQuestionInfo";
+  /** The answers for this qualitative question. */
+  answers: Array<QualitativeQuestionAnswerResult>;
+  /** The title/text of the survey question. */
+  title: Scalars["String"]["output"];
 };
 
 /** Default types to be extended / root query */
@@ -10146,8 +10164,8 @@ export type SurveySummaryResult = {
   maxScoreQuestions: Array<ScaleQuestionInfo>;
   /** A max of 3 questions with the lowest scores in the survey. */
   minScoreQuestions: Array<ScaleQuestionInfo>;
-  /** Sample multiple choice question in the survey. If there are no multiple choice questions, this will be null. */
-  multipleChoiceQuestion?: Maybe<MultipleChoiceQuestionInfo>;
+  /** If the survey contains multiple choice questions, this will be the sample question. If there are no multiple choice questions, this will be null. */
+  multipleChoiceQuestionSample?: Maybe<MultipleChoiceQuestionInfo>;
   /** Overall percentage of negative responses across the entire survey (0-100) for scale questions. */
   negativePercentage: Scalars["Float"]["output"];
   /** Overall percentage of neutral responses across the entire survey (0-100) for scale questions. */
@@ -10156,6 +10174,8 @@ export type SurveySummaryResult = {
   npsScore?: Maybe<NpsSummaryResult>;
   /** Overall percentage of positive responses across the entire survey (0-100) for scale questions. */
   positivePercentage: Scalars["Float"]["output"];
+  /** If the survey contains qualitative questions, this will be the sample question with a max of 3 answers. If there are no qualitative questions, this will be null. */
+  qualitativeQuestionSample?: Maybe<QualitativeQuestionInfo>;
 };
 
 export enum SurveyTemplateScaleType {
@@ -23321,6 +23341,8 @@ export type UpdateUserHourlyActivityMutation = { __typename?: "Mutation"; update
 
 export type UpsertDailyPassivesMutationVariables = Exact<{
   payload: Array<ChallengesPayload> | ChallengesPayload;
+  sessionId?: InputMaybe<Scalars["String"]["input"]>;
+  hasLastItem?: InputMaybe<Scalars["Boolean"]["input"]>;
 }>;
 
 export type UpsertDailyPassivesMutation = {
@@ -72115,6 +72137,16 @@ export const UpsertDailyPassivesDocument = {
             },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "sessionId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "hasLastItem" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -72127,6 +72159,16 @@ export const UpsertDailyPassivesDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "payload" },
                 value: { kind: "Variable", name: { kind: "Name", value: "payload" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "sessionId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "sessionId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "hasLastItem" },
+                value: { kind: "Variable", name: { kind: "Name", value: "hasLastItem" } },
               },
             ],
             selectionSet: {

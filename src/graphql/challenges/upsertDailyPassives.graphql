@@ -1,5 +1,5 @@
-mutation UpsertDailyPassives($payload: [ChallengesPayload!]!) {
-  upsertDailyPassives(payload: $payload) {
+mutation UpsertDailyPassives($payload: [ChallengesPayload!]!, $sessionId: String, $hasLastItem: Boolean) {
+  upsertDailyPassives(payload: $payload, sessionId: $sessionId, hasLastItem: $hasLastItem) {
     challenges {
       updatedAt
       yuCoinAwarded

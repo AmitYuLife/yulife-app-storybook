@@ -5,28 +5,22 @@ import Logger from "@services/logging/logger";
 import { getUserFeatures, getUserPassiveChallengesLastUpdate } from "../../user/user.selectors";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { Platform } from "react-native";
-import { getRouteState } from "@redux/app/app.selectors";
-import { MODALS, ROUTES } from "@navigation/constants";
-import { showYuModal } from "@navigation/root";
-import { Navigation } from "@navigation/main";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import getPassiveSinceLastUpdateAndroid from "./getPassiveSinceLastUpdateAndroid.saga";
 import getPassiveSinceLastUpdateIos from "./getPassiveSinceLastUpdateIos.saga";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
-import { getReadableShortDateFormat } from "@locale";
-import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT } from "@services/constants";
 import { DETOX_ENABLED } from "@services/socket";
 import { ChallengesPayload } from "@graphql/__generated";
+import { randomUUID } from "expo-crypto";
+import { updateUserPassiveChallengeSessionId } from "@redux/user/user.actions";
 
 export default function* sendPassiveActivity(): any {
   const token: Unpacked<typeof getToken> = yield call(getToken);
   if (!token) {
     return;
   }
-
-  const readableDateFormat = getReadableShortDateFormat();
 
   try {
     const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
@@ -38,13 +32,18 @@ export default function* sendPassiveActivity(): any {
       meditation: meditationLastUpdate,
       cycling: cyclingLastUpdate,
       steps: stepsLastUpdate,
+      sessionId: sessionIdFromState,
     } = yield select(getUserPassiveChallengesLastUpdate);
 
     if (!stepsLastUpdate && !meditationLastUpdate && !cyclingLastUpdate) {
       return;
     }
 
-    const endOfYesterday = moment().subtract(1, "day").endOf("day");
+    const sessionId = sessionIdFromState || randomUUID();
+
+    if (!sessionIdFromState) {
+      yield put(updateUserPassiveChallengeSessionId(sessionId));
+    }
 
     let awardedYucoin = 0;
     let dynamicStepsLastUpdate = stepsLastUpdate;
@@ -58,11 +57,13 @@ export default function* sendPassiveActivity(): any {
     );
 
     let attempts = 0;
+
     while (!lastUpdateValidation.upToDate && attempts < 12) {
       attempts++;
 
       const { isStepLastUpdateYesterday, isMeditationLastUpdateYesterday, isCyclingLastUpdateYesterday } =
         lastUpdateValidation;
+
       if (Platform.OS === "android") {
         allResults = yield call(
           getPassiveSinceLastUpdateAndroid,
@@ -81,14 +82,36 @@ export default function* sendPassiveActivity(): any {
         );
       }
 
+      dynamicStepsLastUpdate = moment(dynamicStepsLastUpdate).add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days").format();
+      dynamicMeditationLastUpdate = moment(dynamicMeditationLastUpdate)
+        .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
+        .format();
+      dynamicCyclingLastUpdate = moment(dynamicCyclingLastUpdate)
+        .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
+        .format();
+
+      const lastUpdateData = isPassiveActivityUpToDate(
+        dynamicStepsLastUpdate,
+        dynamicMeditationLastUpdate,
+        dynamicCyclingLastUpdate
+      );
+
       if (allResults.length) {
         while (allResults.length > 0) {
+          // splice mutates the array, fix later
           const payload = allResults.splice(0, 15);
+          const hasLastItem = allResults.length === 0 && lastUpdateData.upToDate;
+
           let isUpdated = false;
 
           while (!isUpdated) {
             try {
-              const response: Unpacked<typeof upsertDailyPassives> = yield call(upsertDailyPassives, payload);
+              const response: Unpacked<typeof upsertDailyPassives> = yield call(
+                upsertDailyPassives,
+                payload,
+                sessionId,
+                hasLastItem
+              );
 
               awardedYucoin += response?.data?.upsertDailyPassives?.totalCoins || 0;
               if (!DETOX_ENABLED) {
@@ -106,13 +129,6 @@ export default function* sendPassiveActivity(): any {
         }
       }
 
-      dynamicStepsLastUpdate = moment(dynamicStepsLastUpdate).add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days").format();
-      dynamicMeditationLastUpdate = moment(dynamicMeditationLastUpdate)
-        .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
-        .format();
-      dynamicCyclingLastUpdate = moment(dynamicCyclingLastUpdate)
-        .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
-        .format();
       lastUpdateValidation = isPassiveActivityUpToDate(
         dynamicStepsLastUpdate,
         dynamicMeditationLastUpdate,
@@ -124,9 +140,10 @@ export default function* sendPassiveActivity(): any {
       }
     }
 
-    if (awardedYucoin > 0) {
-      const route = yield select(getRouteState);
+    // complete backfill activity, we can reset session ID
+    yield put(updateUserPassiveChallengeSessionId());
 
+    if (awardedYucoin > 0) {
       // check for token before showing collect modal
       // user can logout before last update query is finished
       const userToken: Unpacked<typeof getToken> = yield call(getToken);
@@ -134,30 +151,7 @@ export default function* sendPassiveActivity(): any {
         return;
       }
 
-      if (route !== MODALS.collectReward) {
-        const startDateTime = moment.min(
-          moment(meditationLastUpdate),
-          moment(stepsLastUpdate),
-          moment(cyclingLastUpdate)
-        );
-
-        /*
-         user was already awarded for startDateTime once last update was set as startDateTime,
-         to not make user confused why we're awarding twice for the same day
-         we should add one day to the startDateTime.
-        */
-        if (startDateTime.format(readableDateFormat) !== endOfYesterday.format(readableDateFormat)) {
-          startDateTime.add(1, "day");
-        }
-
-        const firstDay = startDateTime.format(readableDateFormat);
-        const lastDay = endOfYesterday.format(readableDateFormat);
-
-        // adding 4s delay here to prevent it to colliding with leanplum modal
-        yield delay(4000);
-        yield showRewardModal(firstDay, lastDay, awardedYucoin);
-        yield put(refreshTotalCoins());
-      }
+      yield put(refreshTotalCoins());
     }
   } catch (e) {
     yield call(() => {
@@ -179,26 +173,3 @@ const isPassiveActivityUpToDate = (
   const upToDate = isStepLastUpdateYesterday && isMeditationLastUpdateYesterday && isCyclingLastUpdateYesterday;
   return { upToDate, isStepLastUpdateYesterday, isMeditationLastUpdateYesterday, isCyclingLastUpdateYesterday };
 };
-
-function* showRewardModal(firstDay: string, lastDay: string, awardedYucoin: number) {
-  const heading = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : firstDay;
-
-  const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
-  const currentRoute: string = yield select(getRouteState);
-  const isYudoku = currentRoute === ROUTES.sudokuStaging || currentRoute === ROUTES.sudokuGame;
-  if (!videoPlayerIsActive && !isYudoku) {
-    yield call(() => {
-      showYuModal({
-        component: {
-          id: MODALS.collectReward,
-          name: MODALS.collectReward,
-          passProps: {
-            heading,
-            onPress: () => Navigation.dismissModal(MODALS.collectReward),
-            yucoin: awardedYucoin,
-          },
-        },
-      });
-    });
-  }
-}

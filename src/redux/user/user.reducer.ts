@@ -16,6 +16,7 @@ import {
   logOutSuccess,
   getUserFeaturesSuccess as getUserFeaturesSuccessAction,
   getUserConnectionsSuccess as getUserConnectionsSuccessAction,
+  updateUserPassiveChallengeSessionId as updateUserPassiveChallengeSessionIdAction,
   getUserSessionSuccess,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -61,6 +62,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     },
   },
   passiveChallengesLastUpdate: {
+    sessionId: undefined,
     cycling: "",
     meditation: "",
     steps: "",
@@ -126,6 +128,9 @@ const userReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(updateUserProfileDataSaverModeAction, (state, action) =>
     updateUserProfileDataSaverMode(state, action.payload)
   );
+  builder.addCase(updateUserPassiveChallengeSessionIdAction, (state, action) =>
+    updateUserPassiveChallengeSessionId(state, action.payload)
+  );
   builder.addDefaultCase((state) => state);
 });
 
@@ -170,6 +175,7 @@ const updatePersistedState = (persistedState: IUserStore) => {
 
   if (!persistedState.passiveChallengesLastUpdate) {
     newState.passiveChallengesLastUpdate = {
+      sessionId: undefined,
       cycling: "",
       meditation: "",
       steps: "",
@@ -327,6 +333,14 @@ const getUserConnectionsSuccess = (state: IUserStore, payload: GetUserConnection
 const updateUserProfileDataSaverMode = (state: IUserStore, payload: boolean) => ({
   ...state,
   dataSaverModeEnabled: payload,
+});
+
+const updateUserPassiveChallengeSessionId = (state: IUserStore, payload: string) => ({
+  ...state,
+  passiveChallengesLastUpdate: {
+    ...state.passiveChallengesLastUpdate,
+    sessionId: payload,
+  },
 });
 
 export default userReducer;
