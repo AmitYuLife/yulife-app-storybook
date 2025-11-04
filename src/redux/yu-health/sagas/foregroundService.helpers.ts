@@ -1,11 +1,14 @@
 import { call, select, take } from "redux-saga/effects";
-import NativeYuHealth from "@yu-life/react-native-yu-health/src/NativeYuHealth";
 import { isAndroid } from "@utils";
 import { getActiveProvider, getYuHealthStatus } from "../yu-health.selectors";
 import { YuHealthStatus } from "../yu-health.types";
 import { YU_HEALTH_SET_STATUS } from "../yu-health.actions";
 import { getCurrentChallengeScore } from "@redux/levels/levels.selectors";
-import { startForegroundService as startForegroundServiceNative } from "@yu-life/react-native-yu-health";
+import {
+  startForegroundService as startForegroundServiceNative,
+  isForegroundServiceRunning,
+  stopForegroundService as stopForegroundServiceNative,
+} from "@yu-life/react-native-yu-health";
 import { t } from "@locale";
 
 /**
@@ -30,7 +33,7 @@ export function* startForegroundService({ endTime }: { endTime?: Date }) {
   const currentChallengeScore: number = yield select(getCurrentChallengeScore);
 
   try {
-    const isRunning: boolean = yield call([NativeYuHealth, "isForegroundServiceRunning"]);
+    const isRunning: boolean = yield call(isForegroundServiceRunning);
 
     if (isRunning) {
       yield call(stopForegroundService);
@@ -57,9 +60,9 @@ export function* stopForegroundService(): Generator<unknown, void, boolean> {
     return;
   }
 
-  const isRunning: boolean = yield call([NativeYuHealth, "isForegroundServiceRunning"]);
+  const isRunning: boolean = yield call(isForegroundServiceRunning);
 
   if (isRunning) {
-    yield call([NativeYuHealth, "stopForegroundService"]);
+    yield call(stopForegroundServiceNative);
   }
 }
