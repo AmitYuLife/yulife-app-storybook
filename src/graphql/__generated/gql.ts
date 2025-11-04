@@ -118,6 +118,7 @@ const documents = {
   UserMoodSubmissionsResponseFragmentDoc: types.UserMoodSubmissionsResponseFragmentDoc,
   NotificationSettingsPropsFragmentDoc: types.NotificationSettingsPropsFragmentDoc,
   UserProfileNotificationFragmentDoc: types.UserProfileNotificationFragmentDoc,
+  UserPathwayAdviceItemFragmentDoc: types.UserPathwayAdviceItemFragmentDoc,
   UserPathwaysFragmentDoc: types.UserPathwaysFragmentDoc,
   UserPathwaysItemFragmentDoc: types.UserPathwaysItemFragmentDoc,
   UserPathwaysReflectionProgressFragmentDoc: types.UserPathwaysReflectionProgressFragmentDoc,
@@ -868,6 +869,10 @@ export function gql(
 export function gql(
   source: "UserProfileNotificationFragmentDoc"
 ): typeof documents["UserProfileNotificationFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserPathwayAdviceItemFragmentDoc"): typeof documents["UserPathwayAdviceItemFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

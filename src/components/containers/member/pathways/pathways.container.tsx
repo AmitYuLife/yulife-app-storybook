@@ -18,7 +18,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
     Navigation.pop(componentId);
   }, [componentId]);
 
-  const [, { data }] = useQueryOnScreenSeen(gql("GetUserPathwaysDocument"), componentId, {
+  const [, { data, loading }] = useQueryOnScreenSeen(gql("GetUserPathwaysDocument"), componentId, {
     fetchPolicy: "cache-and-network",
     variables: {
       startDate: moment().startOf("week").format("YYYY-MM-DD"),
@@ -54,6 +54,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
 
   return (
     <PathwaysScreen
+      isLoading={loading}
       onClose={onClose}
       onReflect={onReflect}
       onOpenMoodCalendar={onOpenMoodCalendar}
@@ -61,6 +62,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
       reflectionProgress={reflectionProgress.currentProgress}
       reflectedToday={reflectionProgress.reflectedToday}
       nextQuestionnaireLocalDate={data?.getUserPathways?.nextQuestionnaireLocalDate ?? ""}
+      adviceSection={data?.getUserPathwayAdviceSection || { heading: "", items: [] }}
     />
   );
 };
