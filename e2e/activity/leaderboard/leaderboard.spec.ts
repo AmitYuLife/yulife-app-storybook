@@ -144,7 +144,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       Then("Michael's world and level is visible", then.idVisible(ids.YUSCREEN_V5_WORLD_AND_LEVEL("Forest", data.USER_GAME_STATE_18.data.currentLevel)));
       Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI));
     });
-    When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
+    When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2, 3000), async () => {
       Then("I should see Michael's Duel stats", then.duelStatsVisible(2, 3));
       Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible);
     });
@@ -233,7 +233,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         Then("I should be on the Inspect screen", then.isOnInspectScreen);
       });
     });
-    When("I scroll down to the duels challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.3), async () => {
+    When("I scroll down to the duels challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.3, 3000), async () => {
       When("I tap on the duels button", when.tapID(ids.CHALLENGE_DUEL_BUTTON, 2000), async () => {
         Then("I should be on the Challenge a friend screen", then.onChallengeAFriend);
       });

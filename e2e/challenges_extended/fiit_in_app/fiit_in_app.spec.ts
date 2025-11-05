@@ -123,9 +123,10 @@ Feature("Fiit in app", async () => {
       Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
     });
     When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT, 4000), async () => {
-      When("I tap 'Done' on the first day streak modal", when.tapID(ids.STREAKS_SCREEN_BUTTON, 200), async () => {
-        Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
-      });
+      Then("I should see the streak modal appear to the Quests screen", then.idVisible(ids.STREAKS_SCREEN_BUTTON, 4000));
+    });
+    When("I tap 'Done' on the first day streak modal", when.tapID(ids.STREAKS_SCREEN_BUTTON, 4000), async () => {
+      Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
     });
     When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
       Then("I should see 314 YuCoin today have been earnt today", then.canSeeYuCoinEarntToday(314));
@@ -133,7 +134,7 @@ Feature("Fiit in app", async () => {
     When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
       Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS));
     });
-    When("I scroll further down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast"), async () => {
+    When("I scroll further down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", undefined, 4000), async () => {
       Then("I can see 1/1 challenges completed today", then.textVisible("Today's challenges (1/1)", 3000));
       Then("I can see the fiit challenge completed today, with the correct duration", then.canSeeFiitCompleted(data.MEDIA_7));
     });

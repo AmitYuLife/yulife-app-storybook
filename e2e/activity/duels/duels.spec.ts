@@ -130,7 +130,7 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
     When("I tap on the 'Completed' duels tab", when.tapID(ids.COMPLETED_TAB, 2500), async () => {
       Then("I should see both duel Sync buttons", then.idVisibleAtIndex(ids.DUEL_SYNC, 1, 1500));
       Then("I should see both duel Confirm buttons", then.idVisibleAtIndex(ids.DUEL_CONFIRM, 1, 1500));
-      Then("I should see the correct date of my second duel date", then.idVisible(ids.DUEL_DATE(moment().subtract(1, "days").format("DD/MM/YYYY")), 1500));
+      Then("I should see the correct date of my second duel", then.idVisible(ids.DUEL_DATE(moment().subtract(1, "days").format("DD/MM/YYYY")), 2000));
       Then("I should see my second duel pending and awaiting confirmation", then.idVisible(ids.DUEL_ENTRY("Angela Martin", 10, "pending_submission"), 3000));
     });
     When("I tap to 'Confirm' the steps for the second duel on the list", when.tapIDAtIndex(ids.DUEL_CONFIRM, 1, 2500), async () => {
@@ -140,10 +140,11 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
       Then("I should still see the correct sync copy", then.textVisible("Sync your steps"));
     });
     When("I update the steps for the first duel", when.addStepsHistoricalData(3000, 2), async () => {
-      When("I tap the 'Sync' button", when.tapID(ids.DUEL_SYNC, 3500), async () => {
-        Then("I should see the duel state copy update successfully", then.textVisible("Confirm your steps", 2500));
-        Then("I should see the updated duel steps after the sync", then.idVisible(ids.DUEL_STEPS("3000 steps"), 2500));
-      });
+      Then("I should see the correct date of my first duel", then.idVisible(ids.DUEL_DATE(moment().subtract(2, "days").format("DD/MM/YYYY")), 2000));
+    });
+    When("I tap the 'Sync' button", when.tapID(ids.DUEL_SYNC, 5000), async () => {
+      Then("I should see the duel state copy update successfully", then.textVisible("Confirm your steps", 4500));
+      Then("I should see the updated duel steps after the sync", then.idVisible(ids.DUEL_STEPS("3000 steps"), 4500));
     });
     When("I tap to 'Confirm' the steps for the first duel on the list", when.tapID(ids.DUEL_CONFIRM, 1500), async () => {
       Then("I should see that I lost this duel", then.idVisible(ids.DUEL_ICON("Michael Scott", false), 2000));

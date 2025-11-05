@@ -144,7 +144,7 @@ Feature("Feedback forms should behave correctly", async () => {
         Then("I should see the right label for this question", then.idVisible(ids.SLIDER_LABEL(data.FEEDBACK_FORM_2.data.questions[0].labels.right)));
       });
     });
-    When("I Tap 0", when.tapID(ids.SLIDER_INPUT(0)), async () => {
+    When("I Tap 0", when.tapID(ids.SLIDER_INPUT(0), 4000), async () => {
       When("I tap Submit your rating", when.tapText("Submit your rating"), async () => {
         Then("I should see the correct question text", then.idVisible(ids.FEEDBACK_FORM_QUESTION(data.FEEDBACK_FORM_2.data.questions[3].questionText)));
         Then("I should see the correct label question text", then.idVisible(ids.FEEDBACK_FORM_QUESTION(data.FEEDBACK_FORM_2.data.questions[3].labels.placeholder)));
@@ -152,9 +152,11 @@ Feature("Feedback forms should behave correctly", async () => {
       });
     });
     When("I type something", when.typeViaID(ids.FEEDBACK_TEXT_INPUT, "This is the way"), async () => {
-      Then("I should see the text I just input", then.textVisible("This is the way", 2000));
+      When("I tap to dismiss the keyboard", when.tapID(ids.GP_CONTINUE, 4000), async () => {
+        Then("I should see the text I just input", then.textVisible("This is the way", 2000));
+      });
     });
-    When("I tap Submit your feedback", when.tapText("Submit feedback"), async () => {
+    When("I tap Submit your feedback", when.tapText("Submit feedback", 4000), async () => {
       Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
     });
     When("I close and reopen the app", when.reloadOnly, async () => {

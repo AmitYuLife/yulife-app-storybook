@@ -99,11 +99,14 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
 
   Scenario("Cycling data is successfully synced on log in through today's activities query", scenario.start, async () => {
     Given("I login and go to Yucoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_73, data.AUTH_73), async () => {
-      Then("I should see the correct today's cycling stats", then.idVisible(ids.CYCLING_COUNT("7.0 km"), 5000));
+      Then("I should see my current YuCoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560), 5000));
     });
     When("I tap to see my daily activity", when.tapID(ids.DAILYSTEP_SCREEN_COIN, 3000), async () => {
       When("I swipe to the bottom of the screen", when.swipeFromText("Daily core activities", "up", "fast"), async () => {
         Then("I should also be able to see the 7.0 Km completed today", then.textVisible("7.0 / 9.6 km", 4000));
+      });
+      When("I go back to the YuCoin screen", when.tapID(ids.LEFT_HEADING_BUTTON("TODAY’S_EARNINGS"), 3000), async () => {
+        Then("I should see the correct today's cycling stats", then.idVisible(ids.CYCLING_COUNT("7.0 km"), 5000));
       });
     });
   });

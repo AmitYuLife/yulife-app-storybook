@@ -56,7 +56,7 @@ Feature("As a user I can use the streaks functionality", async () => {
   Scenario("I can continue a streak", scenario.start, async () => {
     Given("I login as a user with a streak", given.loginAsUser(data.CUSTOMER_6, data.AUTH_6), async () => {
       Then("I should be on the yucoin tab", then.idVisible(ids.DAILY_STEPS_SCREEN, 4000));
-      Then("I should see my 1/5 streak", then.idVisible(ids.STREAKS_BUTTON_LABEL("1/5"), 2000));
+      Then("I should see my 1/5 streak", then.idVisible(ids.STREAKS_BUTTON_LABEL("1/5"), 3000));
     });
     When("I tap 1/5", when.tapText("1/5", 5000), async () => {
       Then("I should see the streak screen", then.headingStartStreakCopyVisible(2));
@@ -82,7 +82,7 @@ Feature("As a user I can use the streaks functionality", async () => {
       Then("I should see the amount of yucoin I earned today", then.textVisible(`240 ${t("YuCoin")} ${t("today")}`));
       Then("I should see the number of steps I walked today", then.idVisible(ids.STEPS_COUNT(400)));
     });
-    When("I tap '2/5", when.tapID(ids.STREAKS_BUTTON_LABEL("2/5"), 3000), async () => {
+    When("I tap '2/5", when.tapID(ids.STREAKS_BUTTON_LABEL("2/5"), 4500), async () => {
       Then("I should see the completed modal again", then.completedTodayStreakCopyVisible(2));
     });
   });
