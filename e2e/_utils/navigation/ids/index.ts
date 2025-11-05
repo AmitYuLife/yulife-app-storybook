@@ -332,7 +332,6 @@ export const LEADERBOARD_REFERRAL_REMINDER = "LEADERBOARD_REFERRAL_REMINDER";
 export const LEADERBOARD_REFERRAL_REMINDER_CLOSE = "LEADERBOARD_REFERRAL_REMINDER_CLOSE";
 export const LEADEADRBOARD_JOIN_BUTTON = "screens.leaderboard.turn_board_on.confirm";
 export const DISABLED_USER_REASON = (reason: string) => `DISABLED_USER_REASON_${reason}`;
-export const BIRTHDAY_TOGGLE = (consent: boolean) => `BIRTHDAY_TOGGLE_${consent}`;
 
 // YUSCREEN
 export const YUSCREEN = "YUSCREEN";

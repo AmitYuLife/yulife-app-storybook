@@ -42,7 +42,6 @@ export * from "./mongo/user_gift";
 export * from "./mongo/user_statistics";
 export * from "./mongo/user_habit_tracking_state";
 export * from "./mongo/user_habit_tracking_actions";
-export * from "./mongo/social_group_player_life_event";
-export * from "./mongo/user_notifications_settings";
+
 export * from "./mongo/game_achievements";
 export * from "./mongo/user_game_achievements";

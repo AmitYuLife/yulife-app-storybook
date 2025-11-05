@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { showYuModal } from "@navigation/root";
-import { openMyAccount } from "@redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/client";
 import {
   clearSocialGroupLeaderboardRecentSearchHistory,
@@ -34,7 +33,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
     awaitRefetchQueries: true,
     onError: (err) => {
       Logger.error(err, { message: "Failed to update notification settings" });
-      Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
+      Alert.alert(t("screens.leaderboard_settings.error"));
     },
   });
 
@@ -46,12 +45,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
     refetchQueries: [{ query: GetUserLeaderboardEnrollmentsDocument }],
     awaitRefetchQueries: true,
     onError: () => {
-      Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
-    },
-  });
-  const [setPlayerBirthdayVisibilityMutation] = useMutation(gql("SetMobilePlayerBirthdayVisibilityDocument"), {
-    onError: () => {
-      Alert.alert(t("screens.leaderboard_settings.birthday_visibility.error"));
+      Alert.alert(t("screens.leaderboard_settings.error"));
     },
   });
 
@@ -122,71 +116,6 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
     [dismissModal, dispatch, updateConsentMutation]
   );
 
-  const changeBirthdayVisibility = useCallback(
-    async (isVisible: boolean) => {
-      await setPlayerBirthdayVisibilityMutation({ variables: { isVisible } });
-      dispatch(queryYuScreenLayout());
-
-      dismissModal();
-    },
-    [dismissModal, dispatch, setPlayerBirthdayVisibilityMutation]
-  );
-
-  const onChangeBirthdayVisibility = useCallback(
-    ({ isVisible }: { isVisible: boolean }) => {
-      if (!data?.playerLifeEvents?.birthday) {
-        const handleNavigateToMyAccount = async () => {
-          await Navigation.dismissModal(MODALS.birthdayNotSet);
-          dispatch(openMyAccount());
-        };
-
-        showYuModal({
-          component: {
-            id: MODALS.birthdayNotSet,
-            name: MODALS.birthdayNotSet,
-            passProps: {
-              onPress: handleNavigateToMyAccount,
-              onClose: () => Navigation.dismissModal(MODALS.birthdayNotSet),
-            },
-          },
-        });
-
-        return;
-      }
-
-      const passProps = isVisible
-        ? {
-            ctaLabel: t("screens.leaderboard_settings.birthday_visibility.turn_on.ctaLabel"),
-            ctaLabelSecondary: t("screens.leaderboard_settings.birthday_visibility.turn_on.ctaLabelSecondary"),
-            heading: t("screens.leaderboard_settings.birthday_visibility.turn_on.heading"),
-            onPress: () => {
-              changeBirthdayVisibility(isVisible);
-            },
-            onPressSecondary: dismissModal,
-            subheading: t("screens.leaderboard_settings.birthday_visibility.turn_on.subheading"),
-          }
-        : {
-            ctaLabel: t("screens.leaderboard_settings.birthday_visibility.turn_off.ctaLabel"),
-            ctaLabelSecondary: t("screens.leaderboard_settings.birthday_visibility.turn_off.ctaLabelSecondary"),
-            heading: t("screens.leaderboard_settings.birthday_visibility.turn_off.heading"),
-            onPress: () => Navigation.dismissModal(MODALS.generic),
-            onPressSecondary: () => {
-              changeBirthdayVisibility(isVisible);
-            },
-            subheading: t("screens.leaderboard_settings.birthday_visibility.turn_off.subheading"),
-          };
-
-      showYuModal({
-        component: {
-          id: MODALS.generic,
-          name: MODALS.generic,
-          passProps,
-        },
-      });
-    },
-    [data?.playerLifeEvents?.birthday, dismissModal, dispatch, changeBirthdayVisibility]
-  );
-
   const onChangeConsent = useCallback(
     ({ name, socialGroupId, leaderboardId, consent }: IChangeConsentProps) => {
       const passProps = !consent
@@ -235,8 +164,6 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
       onLeftIconPress={onLeftIconPress}
       onChangeConsent={onChangeConsent}
       onRightIconPress={onRightIconPress}
-      onChangeBirthdayVisibility={onChangeBirthdayVisibility}
-      lifeEvents={data?.playerLifeEvents}
       inboxNotificationsSettings={inboxNotificationItems}
     />
   );

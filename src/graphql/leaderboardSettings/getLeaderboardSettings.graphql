@@ -1,11 +1,8 @@
 query GetLeaderboardSettings {
-  userLeaderboardEnrollments:  getUserLeaderboardEnrollments {
+  userLeaderboardEnrollments: getUserLeaderboardEnrollments {
     ...SocialGroupLeaderboardEnrollmentGroup
   }
   inboxNotifications: getInboxNotificationsSettings {
     ...NotificationSettingsProps
-  }
-  playerLifeEvents: getPlayerLifeEvents {
-    ...LifeEvents
   }
 }
