@@ -228,6 +228,7 @@ export default () => ({
     "./plugins/yuhealth/with-yuhealth.plugin",
     "./plugins/mixpanel/with-mixpanel.plugin",
     "./plugins/intercom/with-intercom.plugin.js",
+    "./plugins/security/with-out-tapjacking.js",
     "./plugins/react-native-config/with-react-native-config.plugin",
     "./plugins/yulife/with-yulife-debug-signing.plugin",
     "./plugins/react-native-navigation/with-react-native-navigation.plugin.js",
