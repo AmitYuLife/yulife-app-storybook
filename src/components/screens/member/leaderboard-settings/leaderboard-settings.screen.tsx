@@ -9,7 +9,6 @@ import LeaderboardToggle, { IChangeConsentProps } from "@organisms/leaderboard-t
 import { groupBy } from "lodash";
 import { INotificationsSectionItem } from "../settings/settings.screen";
 import NotificationsItem from "../settings/items/notifications-item";
-import { BIRTHDAY_TOGGLE } from "@ids";
 
 interface ILeaderboardEnrollment {
   socialGroupId: string;
@@ -20,24 +19,12 @@ interface ILeaderboardEnrollment {
   leaderboardConfigId: string;
 }
 
-export interface LifeEventsData {
-  birthday?: Birthday | null;
-  isBirthdayGiftingEnabled: boolean;
-}
-
-export interface Birthday {
-  isVisible?: boolean;
-  dateOfBirth?: string;
-}
-
 interface IProps {
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
   leaderboards?: ILeaderboardEnrollment[];
   inboxNotificationsSettings?: INotificationsSectionItem[];
-  lifeEvents?: LifeEventsData;
   onChangeConsent: (consentProps: IChangeConsentProps) => void;
-  onChangeBirthdayVisibility?: (props: { isVisible: boolean }) => void;
 }
 
 const LeaderboardSettings = ({
@@ -45,19 +32,9 @@ const LeaderboardSettings = ({
   leaderboards,
   onLeftIconPress,
   onRightIconPress,
-  lifeEvents,
-  onChangeBirthdayVisibility,
   inboxNotificationsSettings,
 }: IProps) => {
-  const t = useTranslation([
-    "screens.leaderboard_settings.title",
-    "screens.leaderboard_settings.screen_description",
-    "screens.leaderboard_settings.birthday_visibility.title",
-    "screens.leaderboard_settings.birthday_visibility.consented",
-    "screens.leaderboard_settings.birthday_visibility.not_consented",
-  ]);
-
-  const allLeaderboardsDisabled = leaderboards.every((leaderboard) => !leaderboard.consent);
+  const t = useTranslation(["screens.leaderboard_settings.title", "screens.leaderboard_settings.screen_description"]);
   const flatLeaderboardListWithHeaders = leaderboards
     ? Object.values(groupBy(leaderboards, "socialGroupId")).flatMap(([first, ...rest]) => [
         first.socialGroupName,
@@ -117,22 +94,7 @@ const LeaderboardSettings = ({
             <Box pb={16}>
               <TextTemplate type="b2">{t["screens.leaderboard_settings.screen_description"]}</TextTemplate>
             </Box>
-            {renderInboxNotificationSettings([
-              lifeEvents?.isBirthdayGiftingEnabled
-                ? {
-                    id: "birthday-visibility",
-                    isActive: lifeEvents?.birthday?.isVisible ?? false,
-                    disabled: allLeaderboardsDisabled,
-                    name: t["screens.leaderboard_settings.birthday_visibility.title"],
-                    testID: BIRTHDAY_TOGGLE(lifeEvents?.birthday?.isVisible ?? false),
-                    description: lifeEvents?.birthday?.isVisible
-                      ? t["screens.leaderboard_settings.birthday_visibility.consented"]
-                      : t["screens.leaderboard_settings.birthday_visibility.not_consented"],
-                    onSwitchPress: () => onChangeBirthdayVisibility({ isVisible: !lifeEvents?.birthday?.isVisible }),
-                  }
-                : null,
-              ...inboxNotificationsSettings,
-            ])}
+            {renderInboxNotificationSettings(inboxNotificationsSettings)}
           </View>
         }
         ListFooterComponent={<View style={styles.footer} />}
