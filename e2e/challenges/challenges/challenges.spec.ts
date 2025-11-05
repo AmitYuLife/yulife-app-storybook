@@ -441,18 +441,18 @@ Feature("As a user I can take a challenge", async () => {
     Given("I login and go to the quests tab", given.logInAndGoToTab("yucoin", data.CUSTOMER_10, data.AUTH_10), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(12200)));
     });
-    When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
+    When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON, 4000), async () => {
       Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
       Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
       Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
       Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
     });
-    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I go back", when.tapID(ids.BACK_BUTTON, 4000), async () => {
       Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(101), 3000));
     });
     When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      When("I tap '0/5", when.tapText("0/5"), async () => {
-        When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+      When("I tap '0/5 streaks icon", when.tapID(ids.STREAKS_BUTTON_LABEL("0/5"), 4500), async () => {
+        When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
           Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
           Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
           Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
@@ -460,11 +460,11 @@ Feature("As a user I can take a challenge", async () => {
         });
       });
     });
-    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 1000), async () => {
+    When("I go back", when.tapID(ids.BACK_BUTTON, 2000), async () => {
+      When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
         When("I tap on the YuCoin Badge", when.tapYuCoinIcon, async () => {
-          When("I scroll to the bottom of the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
-            When("I tap take a challenge", when.tapIDAtIndex(ids.TAKE_A_CHALLENGE_LEFT_BUTTON, 1, 2000), async () => {
+          When("I scroll to the bottom of the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5, 3000), async () => {
+            When("I tap take a challenge", when.tapIDAtIndex(ids.TAKE_A_CHALLENGE_LEFT_BUTTON, 0, 2000), async () => {
               Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
               Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
               Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));

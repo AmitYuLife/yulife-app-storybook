@@ -22,13 +22,12 @@ export const USER_GAME_STATE_6 = {
     _id: generateRandomMongoId(),
     customerId: customer.CUSTOMER_6.data.customerId,
     userId: customer.CUSTOMER_6.data.customerId,
+    activeStreakId: "YU_STREAK_CHEST_0002",
     currentBalance: 0,
     currentStreak: 1,
     currentLevel: 2,
-    nextStreakAvailableAt: moment()
-      .subtract(6, "hours")
-      .startOf("day")
-      .format("YYYY-MM-DDTHH:mm:ss"),
+    nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+    nextLevelAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
   },
 } as IDatabaseItem;
 
