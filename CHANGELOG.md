@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.88.0] - 2025-11-05
+
+### Features
+
+- Feature GS-2031: Advice cards on pathways container
+
+### Tasks
+
+- Task SEC-226: Fix tapjacking vulernability
+- Task GS-2055: Fix storybook
+- Task GS-1833: Remove passive earning modal
+- Task DEVOPS-4235: [Gitlab CI] Android develop builds
+- Task DEVOPS-4234: Do not build on scheduled pipelines
+- Task DEVOPS-4234: iOS Develop build
+- Task GS-2026: refetch pathways data on navigation
+
+### Chores
+
+- Chore - Updated translations
+
+### Extra
+
+- Purge NVS-1836: Purge birthdays from RN and detox tests
+- Detox GS-2052: Maximise Yu
+- Detox GS-2053: Remove Mood Monitor
+- Hotfix GS-201: Bump xcode-archive bitrise step
+- Detox GS-2050: HQ Navigation
+- Detox GS-2048: Active Streak IDs
+- Detox GS-2035: Ignore Datadog SDK Warning
+- Detox GS-2046: Business Leavers
+
 ## [4.87.0] - 2025-10-30
 
 ### Features
