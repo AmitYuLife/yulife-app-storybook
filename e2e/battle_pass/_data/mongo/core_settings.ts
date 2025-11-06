@@ -41,7 +41,6 @@ export const BUSINESS_THE_BEAR_COUPONS_SETTINGS = {
     entityType: "everyone",
     settings: {
       gameShowCouponPrizeTemplates: true,
-      gameShowWallet: true,
     },
   },
 } as IDatabaseItem;
