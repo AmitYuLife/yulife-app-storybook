@@ -57,7 +57,6 @@ export const features = [
   "tempGameGetInAppMeditationFromServer",
   "tempGameConfirmDuelScore",
   "tempGameShowCouponsTab",
-  "tempGameShowWallet",
   "tempGameShowAchievements",
   "tempGameNewRewardsScreen",
   "tempGameShowAchievements",

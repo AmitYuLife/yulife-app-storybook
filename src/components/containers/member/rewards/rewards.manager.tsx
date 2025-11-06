@@ -31,7 +31,7 @@ const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNod
 
 const _RewardsTabManagerContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
-  const { showNotificationCentre, tempGameShowWallet } = useUserFeatures();
+  const { showNotificationCentre } = useUserFeatures();
   const purchasesIconRef = useRef<View>(null);
 
   const reduxDispatch = useDispatch();
@@ -74,23 +74,13 @@ const _RewardsTabManagerContainer = () => {
   });
 
   const handlePurchasesPress = useCallback(() => {
-    if (tempGameShowWallet) {
-      Navigation.push(componentId, {
-        component: {
-          id: ROUTES.wallet,
-          name: ROUTES.wallet,
-        },
-      });
-      return;
-    }
-
     Navigation.push(componentId, {
       component: {
-        id: ROUTES.purchases,
-        name: ROUTES.purchases,
+        id: ROUTES.wallet,
+        name: ROUTES.wallet,
       },
     });
-  }, [componentId, tempGameShowWallet]);
+  }, [componentId]);
 
   useEffect(() => {
     if (selectedSection === RewardsSection.Premium && !hasUnlockableBattlepassVouchers) {
