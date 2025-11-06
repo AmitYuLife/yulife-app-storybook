@@ -11,8 +11,6 @@ deploy:dev:storybook:
     # Increase memory limit for node
     NODE_OPTIONS: "--max_old_space_size=3072"
     BUILD_PATH: "./storybook-static"
-  needs:
-    - test
   script:
     # Install node
     - nvm install -b
@@ -30,3 +28,19 @@ deploy:dev:storybook:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never
     - if: $CI_COMMIT_BRANCH == "develop"
+
+storybook-build:
+  extends: .generic-node-arm64
+  stage: quality
+  interruptible: false
+  variables:
+    # Increase memory limit for node
+    NODE_OPTIONS: "--max_old_space_size=3072"
+  script:
+    # Install node
+    - nvm install -b
+    - corepack enable
+    - yarn install --frozen-lockfile
+    - yarn build:storybook:web
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
