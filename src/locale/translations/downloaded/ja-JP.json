@@ -1262,42 +1262,13 @@
       }
     },
     "leaderboard_settings": {
-      "birthday_notifications": {
-        "title": "誕生日に関する通知"
-      },
-      "birthday_visibility": {
-        "consented": "同僚の誕生日に通知が届きます。また、ご自身の誕生日には同僚に通知が送信されます。",
-        "error": "エラーが発生しました",
-        "not_consented": "同僚の誕生日に通知が届きます。また、ご自身の誕生日には同僚に通知が送信されます。",
-        "not_set": {
-          "ctaLabel": "誕生日を更新!",
-          "description": "友達が誕生日に通知を受け取るには、 Yumoji の設定で生年月日を更新してください。",
-          "heading": "生年月日を教えてください！"
-        },
-        "title": "誕生日を共有しますか?",
-        "turn_off": {
-          "ctaLabel": "そのままにしておく",
-          "ctaLabelSecondary": "オフにする",
-          "heading": "誕生日の共有を停止しますか?",
-          "subheading": "ご自身の誕生日に同僚への通知を停止します。"
-        },
-        "turn_on": {
-          "confirm": "オンにする",
-          "ctaLabel": "オンにする",
-          "ctaLabelSecondary": "オフにする",
-          "description": "同僚の誕生日に通知が届きます。また、ご自身の誕生日には同僚に通知が送信されます。",
-          "heading": "誕生日の共有をオンにしますか?",
-          "subheading": "同僚の誕生日に通知が届きます。また、ご自身の誕生日には同僚に通知が送信されます。"
-        }
-      },
       "consented": "このランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
       "description": "アプリ内ランキングへのアクセス許可に関する設定",
-      "description_with_birthday": "アプリ内ランキングおよび誕生日のアクセス許可に関する設定",
+      "error": "エラーが発生しました",
       "item_title": "%{name}ランキング",
       "not_consented": "このランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
       "screen_description": "アプリ内ランキングへのアクセス許可を設定できます。ランキングへの不参加を選択すると、一部の機能へのアクセスが制限される場合があります。",
-      "title": "ランキング",
-      "title_with_birthday": "ランキングおよび誕生日"
+      "title": "ランキング"
     },
     "level_locked": {
       "level": "レベル%{level}で\nアンロック",

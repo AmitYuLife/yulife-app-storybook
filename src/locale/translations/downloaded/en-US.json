@@ -1262,42 +1262,13 @@
       }
     },
     "leaderboard_settings": {
-      "birthday_notifications": {
-        "title": "Birthday notifications"
-      },
-      "birthday_visibility": {
-        "consented": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
-        "error": "Oops! Something went wrong",
-        "not_consented": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
-        "not_set": {
-          "ctaLabel": "Update birthday!",
-          "description": "For your friends to be notified on your birthday, update your birthdate in Settings.",
-          "heading": "Share your birthday with us!"
-        },
-        "title": "Share your birthday?",
-        "turn_off": {
-          "ctaLabel": "No, keep them on",
-          "ctaLabelSecondary": "Yes, turn off",
-          "heading": "Disable birthday sharing?",
-          "subheading": "Disable notifications on your birthday to your friends."
-        },
-        "turn_on": {
-          "confirm": "Yes, turn on",
-          "ctaLabel": "Yes, turn on",
-          "ctaLabelSecondary": "No, thanks",
-          "description": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday.",
-          "heading": "Enable birthday sharing?",
-          "subheading": "Get a reminder on your friends' birthdays, and your friends get a notification on your birthday."
-        }
-      },
       "consented": "Other members of this leaderboard can see your name and activity.",
       "description": "Status and management of your access to app related leaderboards.",
-      "description_with_birthday": "Management of your access to app-related leaderboards and birthday permissions.",
+      "error": "Oops! Something went wrong",
       "item_title": "%{name} Leaderboard",
       "not_consented": "Allow other members of this leaderboard to see your name and activity.",
       "screen_description": "Management of your access to app-related leaderboards. Please note: opting out of a leaderboard may restrict your access to some features.",
-      "title": "Leaderboards",
-      "title_with_birthday": "Leaderboards and birthday"
+      "title": "Leaderboards"
     },
     "level_locked": {
       "level": "Unlock at level %{level}",
