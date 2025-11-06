@@ -19,7 +19,6 @@
   "activity": {
     "region": "UK",
     "specs": [
-      "activity/birthdays/*.spec.ts",
       "activity/cycling/*.spec.ts",
       "activity/duels/*.spec.ts",
       "activity/leaderboard/*.spec.ts"
