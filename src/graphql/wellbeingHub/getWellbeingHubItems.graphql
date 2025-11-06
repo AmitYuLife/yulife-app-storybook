@@ -32,7 +32,7 @@ query GetWellbeingHubItems(
     id
     name
   }
-  activeEmployments: getActiveEmployments {
+  linkedBusinesses: getLinkedBusinesses {
     id
     businessAccountId
     businessAccountName

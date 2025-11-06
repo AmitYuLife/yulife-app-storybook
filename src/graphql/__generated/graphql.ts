@@ -35738,7 +35738,7 @@ export type GetWellbeingHubItemsQuery = {
     locationLabel?: string | null;
   } | null;
   categories: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
-  activeEmployments: Array<{
+  linkedBusinesses: Array<{
     __typename?: "UserBusinessLink";
     id: string;
     businessAccountId: string;
@@ -92978,8 +92978,8 @@ export const GetWellbeingHubItemsDocument = {
           },
           {
             kind: "Field",
-            alias: { kind: "Name", value: "activeEmployments" },
-            name: { kind: "Name", value: "getActiveEmployments" },
+            alias: { kind: "Name", value: "linkedBusinesses" },
+            name: { kind: "Name", value: "getLinkedBusinesses" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [

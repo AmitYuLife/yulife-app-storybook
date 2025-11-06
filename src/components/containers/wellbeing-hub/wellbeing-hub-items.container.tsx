@@ -85,15 +85,15 @@ const WellbeingHubItemsContainer: FC<IProps> = ({
   }, [categoryToPreselect, data?.categories]);
 
   useEffect(() => {
-    const activeEmployments = data?.activeEmployments || [];
+    const linkedBusinesses = data?.linkedBusinesses || [];
 
-    setActiveBusinessAccounts(activeEmployments);
-    if (!selectedBusinessAccount && activeEmployments.length > 0) {
+    setActiveBusinessAccounts(linkedBusinesses);
+    if (!selectedBusinessAccount && linkedBusinesses.length > 0) {
       setSelectedBusinessAccount(
-        activeEmployments.find((a) => a.businessAccountId === businessAccountId) || activeEmployments[0]
+        linkedBusinesses.find((a) => a.businessAccountId === businessAccountId) || linkedBusinesses[0]
       );
     }
-  }, [businessAccountId, data?.activeEmployments, selectedBusinessAccount]);
+  }, [businessAccountId, data?.linkedBusinesses, selectedBusinessAccount]);
 
   const onCategoryPress = useCallback(
     (id: string) => {
