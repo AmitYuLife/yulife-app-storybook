@@ -6,7 +6,7 @@
 # The docs are available on https://docs.fastlane.tools/actions/match
 
 
-s3_bucket("yu-shared-react-native-certificates") # S3 bucket where the certs are stored (Infrastructure DevOps AWS account)
+s3_bucket(ENV["FL_MATCH_S3_BUCKET"]) # S3 bucket where the certs are stored (Infrastructure DevOps AWS account)
 s3_region("eu-west-2") # S3 region where the certs are stored (Infrastructure DevOps AWS account)
 storage_mode("s3") # Storage mode for the certs (s3 or file)
 type(ENV["FL_IOS_CERT_TYPE"]) # Type of cert to download (appstore, adhoc, enterprise or development)
