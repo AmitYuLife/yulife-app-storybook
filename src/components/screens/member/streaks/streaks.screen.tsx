@@ -3,20 +3,23 @@ import { SafeAreaView, ScrollView, View } from "react-native";
 import { Button, LinkButton } from "@molecules";
 
 import styles from "./streaks.styles";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { DETOX_ENABLED } from "@services/socket";
 import { t } from "@locale";
 import { StreaksLegacy } from "./_legacy/streaks.legacy";
-import { Fade } from "@atoms";
 import { STREAKS_SCREEN_BUTTON } from "@ids";
 import StreakSaverCountContainer from "@components/molecules/streak-saver-count/streak-saver-count.container";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dismissStreakModal } from "@redux/streaks/streaks.actions";
+import { getTheme } from "@app/theme";
+import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import CentredScreen from "@components/molecules/centred-screen/centred-screen";
+import { noop, VoidFunction } from "@utils";
 
 interface IProps {
   isLoading: boolean;
-  heading: string | string[];
-  subHeading: string | string[];
+  heading: string;
+  subHeading: string;
   ribbonLabel: string;
   timeRemaining: string;
   accessibilityTimeRemaining: string;
@@ -26,8 +29,8 @@ interface IProps {
   primaryButtonLabel: string;
   reward: string;
   onSubmit: (() => void) | null;
-  onClose: () => void;
   onPressCtaSecondary?: (() => void) | null;
+  onIconPress: VoidFunction;
   children?: React.ReactNode;
 }
 
@@ -42,20 +45,22 @@ const StreaksScreen = ({
   primaryButtonLabel,
   onSubmit,
   timeRemaining,
-  onClose,
   onPressCtaSecondary,
   reward,
   accessibilityTimeRemaining,
   children,
 }: IProps) => {
   const dispatch = useDispatch();
-  const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
   const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
+
+  const currentLevel = useSelector(getCurrentLevel);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { challengeSuccessScreen } = getTheme(currentLevel, yuniversalMap);
 
   const isNotValidTime = timeRemaining.startsWith("NaNd");
   const autoPlayLottie = DETOX_ENABLED ? false : true;
 
-  const streakInfo = getStreakInfo(streakMax, heading, subHeading, reward, currentStreakCompleted);
+  const streakInfo = getStreakInfo(streakMax, heading, subHeading, streakCompleted);
 
   const accessibilityLabel = useMemo(
     () =>
@@ -91,56 +96,61 @@ const StreaksScreen = ({
 
   return (
     <>
-      <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
-        <StreaksLegacy
-          streakInfo={streakInfo}
-          autoPlayLottie={autoPlayLottie}
-          isStreakCompleted={isStreakCompleted}
-          timeRemaining={timeRemaining}
-          isNotValidTime={isNotValidTime}
-          ribbonLabel={ribbonLabel}
-          streakCompleted={streakCompleted}
-          streakMax={streakMax}
-          accessibilityLabel={accessibilityLabel}
-        />
-        {children}
-        <View style={hideLinkButton ? styles.bottomPad : styles.bottomPadLarge} />
-      </ScrollView>
-      <SafeAreaView pointerEvents="box-none" style={styles.buttonWrapper}>
-        <Fade />
-        <Button
-          isLoading={isLoading}
-          wrapperStyle={styles.buttonPrimaryWrapper}
-          onPress={handlePress}
-          testID={STREAKS_SCREEN_BUTTON}
-          translatedLabel={primaryButtonLabel}
-          size="Fill"
-        />
-        {hideLinkButton ? null : (
-          <LinkButton
-            wrapperStyle={styles.buttonSecondaryWrapper}
-            onPress={onPressCtaSecondary}
-            translationKey="labels.cta.later"
+      <CentredScreen {...challengeSuccessScreen}>
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+          <GenericHeadingPad />
+          <StreaksLegacy
+            streakInfo={streakInfo}
+            autoPlayLottie={autoPlayLottie}
+            isStreakCompleted={isStreakCompleted}
+            timeRemaining={timeRemaining}
+            isNotValidTime={isNotValidTime}
+            ribbonLabel={ribbonLabel}
+            streakCompleted={streakCompleted}
+            streakMax={streakMax}
+            accessibilityLabel={accessibilityLabel}
+            reward={Number(reward)}
+            streakAwardId={streakAwardId}
           />
-        )}
-      </SafeAreaView>
-      <GenericHeadingAbsolute onRightIconPress={onClose} />
-      <View style={styles.streakCountContainer}>
-        <StreakSaverCountContainer />
-      </View>
+          {children}
+          <View style={hideLinkButton ? styles.bottomPad : styles.bottomPadLarge} />
+        </ScrollView>
+        <SafeAreaView pointerEvents="box-none" style={styles.buttonWrapper}>
+          <Button
+            isLoading={isLoading}
+            wrapperStyle={styles.buttonPrimaryWrapper}
+            onPress={handlePress}
+            testID={STREAKS_SCREEN_BUTTON}
+            translatedLabel={primaryButtonLabel}
+            size="Fill"
+          />
+          {hideLinkButton ? null : (
+            <LinkButton
+              wrapperStyle={styles.buttonSecondaryWrapper}
+              onPress={onPressCtaSecondary}
+              translationKey="labels.cta.later"
+            />
+          )}
+        </SafeAreaView>
+
+        <GenericHeadingAbsolute
+          backgroundColor="transparent"
+          rightIcon="COINS"
+          onRightIconPress={noop}
+          disabled={true}
+        />
+
+        <View style={styles.streakCountContainer}>
+          <StreakSaverCountContainer />
+        </View>
+      </CentredScreen>
     </>
   );
 };
 
-const getStreakInfo = (
-  streakMax: number,
-  heading: string | string[],
-  subHeading: string | string[],
-  reward: string,
-  currentStreakCompleted: number
-) => {
+const getStreakInfo = (streakMax: number, heading: string, subHeading: string, streakCompleted: number) => {
   const images = [
+    require("./assets/day-0.json"),
     require("./assets/day-1.json"),
     require("./assets/day-2.json"),
     require("./assets/day-3.json"),
@@ -148,26 +158,26 @@ const getStreakInfo = (
     require("./assets/day-5.json"),
   ];
 
-  const info = images.map((image, index) => ({
-    header: typeof heading === "string" ? heading : heading[index],
-    subHeader: (typeof subHeading === "string" ? subHeading : subHeading[index]).replace("${reward}", reward),
+  const info = images.map((image) => ({
+    header: heading,
+    subHeader: subHeading,
     image,
   }));
 
   if (streakMax === 4) {
-    info.splice(2, 1);
+    info.splice(3, 1);
   }
 
   if (streakMax === 3) {
-    info.splice(1, 2);
+    info.splice(2, 2);
   }
 
   //This a fallback in case the user is on 5/5 streaks and some how nextStreakAvailableAt is empty
-  if (!info[currentStreakCompleted]?.header) {
+  if (!info[streakCompleted]?.header) {
     return info[info.length - 1];
   }
 
-  return info[currentStreakCompleted];
+  return info[streakCompleted];
 };
 
 export default StreaksScreen;

@@ -8,7 +8,7 @@ export const getLabelCtaPrimary = ({
   streakAwardId,
   streakCompleted,
   copy,
-}: Pick<Props, "isDoneToday" | "streakCompleted" | "streakMax" | "streakAwardId"> & { copy: IStreakCopy }) => {
+}: Pick<Props, "isDoneToday" | "streakCompleted" | "streakMax"> & { copy: IStreakCopy; streakAwardId: string }) => {
   const { ctaLabelDone, ctaLabelCollect, ctaLabelTakeChallenge } = copy;
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
     if (!streakAwardId) {

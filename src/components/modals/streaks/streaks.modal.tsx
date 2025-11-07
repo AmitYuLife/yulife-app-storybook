@@ -1,12 +1,10 @@
 import { useMutation, useQuery } from "@apollo/client";
-import React, { useCallback, useMemo, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@hooks";
-import { Navigation } from "@navigation/main";
 import { streakCopy } from "./copy";
-import { ConnectedState, Props } from "./streaks.types";
-import { mapStateToProps } from "./_helpers/map-state-to-props";
+import { Props } from "./streaks.types";
 import { getSubHeading } from "./_helpers/get-subheading";
 import { getLabelCtaPrimary } from "./_helpers/get-label-cta-primary";
 import { useBackHandlerCallback } from "./_helpers/use-back-handler-callback";
@@ -19,12 +17,13 @@ import { View } from "react-native";
 import { streaksModalStyles } from "./streaks.modal.styles";
 import { TextTemplate } from "@atoms";
 import Hint from "@components/molecules/hint/hint";
+import { getStreakAwardId } from "@redux/streaks/streaks.selectors";
+import { Navigation } from "@navigation/main";
 
 const StreaksModal: React.FC<Props> = ({
   componentId,
   onPressCtaPrimary,
   onPressCtaSecondary,
-  streakAwardId,
   streakCompleted,
   isDoneToday,
   streakMax,
@@ -36,8 +35,10 @@ const StreaksModal: React.FC<Props> = ({
   const [isLoading, setLoading] = useState(false);
   const backHandler = useBackHandlerCallback(onPressCtaSecondary);
   useBackHandler(backHandler);
-  const handleClose = useCallback(() => Navigation.dismissModal(componentId), [componentId]);
+
+  const streakAwardId = useSelector(getStreakAwardId);
   const shouldShowTimer = streakMax === streakCompleted && !!streakAwardId;
+
   const { timeRemaining } = useTimer({ nextStreakAvailableAt, shouldShowTimer });
   const [collectAward] = useMutation(gql("CollectAwardDocument"));
 
@@ -61,6 +62,10 @@ const StreaksModal: React.FC<Props> = ({
     };
   }, [streakMax, streakCompleted, type, reward, data]);
 
+  const onIconPress = useCallback(() => {
+    Navigation.dismissModal(componentId);
+  }, [componentId]);
+
   const heading = getHeading({
     isDoneToday,
     streakMax,
@@ -79,6 +84,7 @@ const StreaksModal: React.FC<Props> = ({
 
   return (
     <StreaksScreen
+      onIconPress={onIconPress}
       heading={heading}
       subHeading={subheading}
       ribbonLabel={`${reward} ${type === "yucoin" ? "YuCoin" : "Voucher"}`}
@@ -96,7 +102,6 @@ const StreaksModal: React.FC<Props> = ({
       reward={reward}
       isLoading={isLoading}
       onPressCtaSecondary={onPressCtaSecondary}
-      onClose={handleClose}
       timeRemaining={timeRemaining.time}
       accessibilityTimeRemaining={timeRemaining.accessibility}
     >
@@ -137,4 +142,4 @@ const StreaksModal: React.FC<Props> = ({
   );
 };
 
-export default connect<ConnectedState>(mapStateToProps)(StreaksModal);
+export default memo(StreaksModal);

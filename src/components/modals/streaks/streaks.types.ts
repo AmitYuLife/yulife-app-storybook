@@ -1,7 +1,3 @@
-import { mapStateToProps } from "./_helpers/map-state-to-props";
-
-export type ConnectedState = ReturnType<typeof mapStateToProps>;
-
 export interface IProps {
   componentId: string;
   isDoneToday: boolean;
@@ -14,4 +10,4 @@ export interface IProps {
   type: string;
 }
 
-export type Props = IProps & ConnectedState;
+export type Props = IProps;

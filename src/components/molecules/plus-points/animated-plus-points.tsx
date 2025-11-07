@@ -3,12 +3,14 @@ import { Animated, Easing, Platform } from "react-native";
 import PlusPoints from "./plus-points";
 import styles from "./plus-points.styles";
 import { CHALLENGE_REWARD } from "@ids";
+import { TemplateTextType } from "@styles";
 
 type AnimatedType = "collect-reward" | "challenge-success";
 
 interface IProps {
   type: AnimatedType;
   coins?: number;
+  textType?: TemplateTextType;
 }
 
 interface IState {
@@ -102,7 +104,11 @@ export default class AnimatedPlusPoints extends React.PureComponent<IProps, ISta
           },
         ]}
       >
-        <PlusPoints coins={this.props.coins} testID={CHALLENGE_REWARD(this.props.coins)} />
+        <PlusPoints
+          coins={this.props.coins}
+          testID={CHALLENGE_REWARD(this.props.coins)}
+          textType={this.props.textType}
+        />
       </Animated.View>
     );
   }

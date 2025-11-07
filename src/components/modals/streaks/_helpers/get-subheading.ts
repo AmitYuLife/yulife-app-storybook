@@ -10,7 +10,8 @@ export const getSubHeading = ({
   streakCompleted,
   copy,
   timeRemaining,
-}: Pick<Props, "streakCompleted" | "isDoneToday" | "streakMax" | "streakAwardId"> & {
+}: Pick<Props, "streakCompleted" | "isDoneToday" | "streakMax"> & {
+  streakAwardId?: string;
   copy: IStreakCopy;
   timeRemaining?: string;
 }) => {
