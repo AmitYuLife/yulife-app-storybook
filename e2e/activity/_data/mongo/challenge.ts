@@ -1564,9 +1564,9 @@ export const CHALLENGE_73_A = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_73.data.customerId,
-    ...generateChallengeDates(moment().subtract(5, "hours")),
-    createdAt: moment().subtract(6, "hours").toDate(),
-    updatedAt: moment().subtract(6, "days").toDate(),
+    ...generateChallengeDates(moment().subtract(1, "hours")),
+    createdAt: moment().subtract(1, "hours").toDate(),
+    updatedAt: moment().subtract(1, "hours").toDate(),
     levelSlotTemplateId: "DAILY_PASSIVE_003",
     status: "passive",
     yuCoinAwarded: 0,

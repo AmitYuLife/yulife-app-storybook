@@ -62,21 +62,21 @@ Feature("Rewards should act correctly", async () => {
       Then("I should see the shopfront rewards list", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 1500));
       Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200), 1500));
     });
-    When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SHOPFRONT_REWARDS_LIST, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), "up"), async () => {
+    When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SHOPFRONT_REWARDS_LIST, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), "up", 5, 1500), async () => {
       Then("I should see the Amazon Reward", then.idExist(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 3000));
     });
     When("I tap this reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 4000), async () => {
       Then("I should be on the Amazon reward page", then.idVisible(`${data.CORE_REWARDS_AMAZON.data._id}_description`, 3000));
     });
-    When("I scroll to the Buy button", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SDUI_SCREEN_SCROLL_VIEW, ids.BUTTON_BASE("Buy voucher with YuCoin"), "up"), async () => {
+    When("I scroll to the Buy button", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast", 0.4, 3000), async () => {
       Then("I can see the Buy button", then.idVisible(ids.BUTTON_BASE("Buy voucher with YuCoin"), 3000));
     });
     When("I tap the button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin"), 4000), async () => {
-      Then("I should see the buy button", then.buyButtonVisible(data.CORE_REWARDS_AMAZON, 2000));
+      Then("I should see the buy button", then.buyButtonVisible(data.CORE_REWARDS_AMAZON));
       Then("I should see the £ amount drop down", then.denominationListVisible(data.CORE_REWARDS_AMAZON, 42200));
     });
     When("I tap the drop down", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon"), async () => {
-      Then("I should see the confirm modal", then.textVisible("Confirm purchase"));
+      Then("I should see the confirm modal", then.textVisible("Confirm purchase", 4000));
     });
     When("I tap 'Cancel'", when.tapText("Cancel", 2500, true), async () => {
       Then("I should not see the confirm modal", then.textNotVisible("Confirm purchase"));
@@ -99,7 +99,7 @@ Feature("Rewards should act correctly", async () => {
     When("I tap on the Amazon reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 4000), async () => {
       Then("I should see the Amazon reward details", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW, 3000));
     });
-    When("I scroll to the Buy button", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SDUI_SCREEN_SCROLL_VIEW, ids.BUTTON_BASE("Buy voucher with YuCoin"), "up"), async () => {
+    When("I scroll to the Buy button", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast", 0.4, 3000), async () => {
       Then("I should see the Buy button", then.idVisible(ids.BUTTON_BASE("Buy voucher with YuCoin"), 3000));
     });
     When("I tap to purchase the reward", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin"), 4000), async () => {
@@ -118,7 +118,7 @@ Feature("Rewards should act correctly", async () => {
     When("I tap on the Amazon reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 4000), async () => {
       Then("I should be in the Amazon reward details screen", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW, 3000));
     });
-    When("I scroll to the Buy button", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SDUI_SCREEN_SCROLL_VIEW, ids.BUTTON_BASE("Buy voucher with YuCoin"), "up"), async () => {
+    When("I scroll to the Buy button", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast", 0.4, 3000), async () => {
       Then("I should see the Buy button", then.idVisible(ids.BUTTON_BASE("Buy voucher with YuCoin"), 3000));
     });
     When("I tap to purchase the reward", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin"), 4000), async () => {

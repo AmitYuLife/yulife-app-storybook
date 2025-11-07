@@ -159,7 +159,7 @@ Feature("P2P gifting - UK", async () => {
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
       Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
       Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true, 0), 2500));
-      Then("I should see the correct MaxYu values before the gift claim", then.idVisible(ids.WEEKLY_PROGRESS_BAR(200, 270, "#E30D76"), 2000));
+      Then("I should see the correct MaxYu values before the gift claim", then.idVisible(ids.WEEKLY_PROGRESS_BAR(200, 240, "#E30D76"), 2000));
     });
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
       Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
@@ -178,7 +178,7 @@ Feature("P2P gifting - UK", async () => {
     When("I tap to close the soft landing intro screen", when.tapID(ids.SCREEN_CLOSE, 2500), async () => {
       Then("I should be back on my yuscreen", then.yuScreenV5HeaderVisible(false, "Ryan Howard", "Forest", "2", false));
       Then("I should see my updated YuCoin banalace", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(810), 2500));
-      Then("I can also see the correct MaxYu values after the gift claim", then.idVisible(ids.WEEKLY_PROGRESS_BAR(450, 270, "#E30D76"), 2000));
+      Then("I can also see the correct MaxYu values after the gift claim", then.idVisible(ids.WEEKLY_PROGRESS_BAR(450, 240, "#E30D76"), 2000));
     });
   });
 

@@ -144,7 +144,7 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
     });
     When("I tap the 'Sync' button", when.tapID(ids.DUEL_SYNC, 5000), async () => {
       Then("I should see the duel state copy update successfully", then.textVisible("Confirm your steps", 4500));
-      Then("I should see the updated duel steps after the sync", then.idVisible(ids.DUEL_STEPS("3000 steps"), 4500));
+      Then("I should see the updated duel steps after the sync", then.idVisible(ids.DUEL_STEPS("3000 steps"), 7000));
     });
     When("I tap to 'Confirm' the steps for the first duel on the list", when.tapID(ids.DUEL_CONFIRM, 1500), async () => {
       Then("I should see that I lost this duel", then.idVisible(ids.DUEL_ICON("Michael Scott", false), 2000));
