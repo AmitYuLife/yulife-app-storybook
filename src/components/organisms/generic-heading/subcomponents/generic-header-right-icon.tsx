@@ -24,6 +24,7 @@ interface IProps {
 // TODO: This component needs a proper refactor in the soon...
 const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon, disabled }: IProps) => {
   const handleOnPress = icon === "COINS" ? labels[4].onPress : onPress;
+
   if (Icon) {
     return (
       <TouchableOpacityWithDelay hitSlop={TOP_BAR.HIT_SLOP} onPress={onPress} testID={testID} disabled={disabled}>

@@ -12,7 +12,7 @@ const StreakStart = ({ streakMax, streakCompleted, heading }: IProps) => {
   return (
     <Box alignItems="center">
       <Box mb={24}>
-        <TextTemplate type="b2" textAlign="center">
+        <TextTemplate type="b1" textAlign="center">
           {heading}
         </TextTemplate>
       </Box>

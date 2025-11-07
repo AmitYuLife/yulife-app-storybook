@@ -2,8 +2,8 @@ import { View } from "react-native";
 import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
 import StreakStart from "../subcomponents/streak-start";
 import { Style, StyleSheet } from "@styles";
-import { TextTemplate } from "@atoms";
-import { LottieView } from "@molecules";
+import { Box, TextTemplate } from "@atoms";
+import { AnimatedPlusPoints, LottieView } from "@molecules";
 
 interface Props {
   streakInfo: {
@@ -19,6 +19,8 @@ interface Props {
   accessibilityLabel: string;
   streakCompleted: number;
   streakMax: number;
+  reward: number;
+  streakAwardId?: string;
 }
 
 export const StreaksLegacy = ({
@@ -31,15 +33,22 @@ export const StreaksLegacy = ({
   accessibilityLabel,
   streakCompleted,
   streakMax,
+  reward,
+  streakAwardId,
 }: Props) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.lottieWrapper}>
+        <Box pt={130}>
+          {(!!streakAwardId || isStreakCompleted) && reward ? (
+            <AnimatedPlusPoints type="collect-reward" coins={reward} textType="h3" />
+          ) : null}
+        </Box>
         <LottieView style={styles.lottie} source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
       </View>
 
       <View accessible={true} accessibilityLabel={accessibilityLabel} style={styles.progressWrapper}>
-        <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
+        <TextTemplate type={Style.isShortToMedium() ? "h3" : "h2"} textAlign="center">
           {streakInfo?.header}
         </TextTemplate>
         <View style={styles.streaksWrapper}>
@@ -54,6 +63,8 @@ export const StreaksLegacy = ({
   );
 };
 
+const lottieSize = Style.adjust(800);
+
 const styles = StyleSheet.create({
   wrapper: {
     justifyContent: "center",
@@ -61,13 +72,15 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
   },
   lottieWrapper: {
-    width: Style.adjust(220),
-    height: Style.adjust(220),
-    marginBottom: Style.adjust(Style.isShortToMedium() ? Style.adjust(15) : Style.adjust(32)),
+    position: "absolute",
+    top: Style.adjust(-70),
+    left: (Style.DEVICE_WIDTH - lottieSize) / 2,
+    alignItems: "center",
+    justifyContent: "center",
   },
   lottie: {
-    width: Style.adjust(220),
-    height: Style.adjust(220),
+    width: lottieSize,
+    height: lottieSize,
   },
   activeBuffsButton: {
     position: "absolute",
@@ -86,5 +99,6 @@ const styles = StyleSheet.create({
   progressWrapper: {
     alignItems: "center",
     paddingHorizontal: Style.adjust(16),
+    marginTop: Style.adjust(Style.isShortToMedium() ? 220 : 250),
   },
 });

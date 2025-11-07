@@ -8,7 +8,10 @@ export const getHeading = ({
   streakAwardId,
   streakCompleted,
   copy,
-}: Pick<Props, "streakAwardId" | "isDoneToday" | "streakMax" | "streakCompleted"> & { copy: IStreakCopy }) => {
+}: Pick<Props, "isDoneToday" | "streakMax" | "streakCompleted"> & {
+  copy: IStreakCopy;
+  streakAwardId: string;
+}) => {
   const calculatedStreakCompleted = getStreakCompleted({ streakAwardId, streakCompleted, streakMax });
   if (calculatedStreakCompleted >= streakMax) {
     return copy.headingCompleted;
