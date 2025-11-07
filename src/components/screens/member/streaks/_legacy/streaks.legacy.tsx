@@ -39,7 +39,7 @@ export const StreaksLegacy = ({
   return (
     <View style={styles.wrapper}>
       <View style={styles.lottieWrapper}>
-        <Box pt={130}>
+        <Box top={130}>
           {(!!streakAwardId || isStreakCompleted) && reward ? (
             <AnimatedPlusPoints type="collect-reward" coins={reward} textType="h3" />
           ) : null}
