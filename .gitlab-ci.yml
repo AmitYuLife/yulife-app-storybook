@@ -67,7 +67,8 @@ variables:
   QA_REPORTER_ROLE_ARN: arn:aws:iam::$TEAM_QA_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-yulife-cypress-reports
   MACOS_VM_IMAGE_VERSION: v1.1.3
   MACOS_VM_IMAGE: $DEVOPS_AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-xcode:$MACOS_VM_IMAGE_VERSION
-  IOS_DEVELOP_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-shared-react-native-develop-builds
+  IOS_DEVELOP_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-develop-react-native-ios-builds
+  IOS_PRODUCTION_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-production-react-native-ios-builds
 
 stages:
   - build

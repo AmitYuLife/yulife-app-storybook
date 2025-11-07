@@ -65,6 +65,7 @@ ios-develop-build:
     FL_TEAM_ID: 739BJV2T6V
     FL_IOS_CERT_TYPE: adhoc
     FL_IOS_EXPORT_METHOD: ad-hoc
+    FL_MATCH_S3_BUCKET: yu-develop-react-native-certificates
     MATCH_PASSWORD: $FL_MATCH_PASSWORD
     # Expo variables
     ENVFILE: ".env.develop"
