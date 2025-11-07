@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -152,12 +152,10 @@ Feature("Feedback forms should behave correctly", async () => {
       });
     });
     When("I type something", when.typeViaID(ids.FEEDBACK_TEXT_INPUT, "This is the way"), async () => {
-      When("I tap to dismiss the keyboard", when.tapID(ids.GP_CONTINUE, 4000), async () => {
-        Then("I should see the text I just input", then.textVisible("This is the way", 2000));
-      });
+      Then("I should see the text I just input", then.textVisible("This is the way", 2000));
     });
-    When("I tap Submit your feedback", when.tapText("Submit feedback", 4000), async () => {
-      Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
+    When("I tap Submit your feedback", when.tapID(ids.GP_CONTINUE, 4000), async () => {
+      Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 4000));
     });
     When("I close and reopen the app", when.reloadOnly, async () => {
       Then("The Feedback Form should not popUp again", then.textNotVisible(data.FEEDBACK_FORM_2.data.title, 6000));
