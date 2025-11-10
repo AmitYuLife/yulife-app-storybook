@@ -341,9 +341,13 @@ export const unlockedYumojiItemsVisible =
       await scrollUntilIdVisible(
         ids.AVATAR_BUILDER_LIST,
         ids.YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
-        "down"
+        "down",
+        undefined,
+        undefined,
+        undefined,
+        3000
       )();
-      await scrollFromID(ids.AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
+      await scrollFromID(ids.AVATAR_BUILDER_LIST, "up", "fast", 0.1, 3000)();
     }
     await idVisible(
       ids.YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
@@ -357,9 +361,13 @@ export const unlockedYumojiItemsVisible =
       await scrollUntilIdVisible(
         ids.AVATAR_BUILDER_LIST,
         ids.YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
-        "down"
+        "down",
+        undefined,
+        undefined,
+        undefined,
+        3000
       )();
-      await scrollFromID(ids.AVATAR_BUILDER_LIST, "up", "fast", 0.1)();
+      await scrollFromID(ids.AVATAR_BUILDER_LIST, "up", "fast", 0.1, 3000)();
     }
     await idVisible(
       ids.YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
@@ -373,7 +381,11 @@ export const unlockedYumojiItemsVisible =
       await scrollUntilIdVisible(
         ids.AVATAR_BUILDER_LIST,
         ids.YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
-        "down"
+        "down",
+        undefined,
+        undefined,
+        undefined,
+        3000
       )();
     }
     await idVisible(
@@ -384,12 +396,16 @@ export const unlockedYumojiItemsVisible =
       (await tapID(ids.YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`), 5000)());
 
     if (itemLevel != "base") {
-      await scrollFromID(ids.CATEGORY_TYPE("chest"), "left", "slow")();
+      await scrollFromID(ids.CATEGORY_TYPE("chest"), "left", "slow", undefined, 3000)();
       await tapID(ids.CATEGORY_TYPE("gloves"), 5000)();
       await scrollUntilIdVisible(
         ids.AVATAR_BUILDER_LIST,
         ids.YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`),
-        "down"
+        "down",
+        undefined,
+        undefined,
+        undefined,
+        3000
       )();
       await idVisible(
         ids.YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`),

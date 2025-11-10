@@ -231,7 +231,11 @@ export const activityHistoryScrollCyclingDataCorrect =
       await scrollUntilIdVisible(
         ACTIVITY_HISTORY_SCREEN,
         ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`),
-        "down"
+        "down",
+        undefined,
+        undefined,
+        undefined,
+        4000
       )();
       await expect(
         element(
