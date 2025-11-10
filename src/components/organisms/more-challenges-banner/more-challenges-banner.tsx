@@ -1,7 +1,6 @@
-import { TextTemplate } from "@atoms";
-import { Colours, Style, StyleSheet } from "@styles";
+import { Box, TextTemplate } from "@atoms";
+import { Colours } from "@styles";
 import React, { memo } from "react";
-import { View } from "react-native";
 import MoreChallengesImage from "./more-challenges-image";
 import { useTranslation } from "@hooks";
 
@@ -14,17 +13,24 @@ const MoreChallengesBanner = () => {
   ]);
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.imageWrapper}>
+    <Box
+      bg={Colours.products.fib.u100S4}
+      br={14}
+      p={16}
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="flex-start"
+    >
+      <Box right={0} bottom={0} position="absolute">
         <MoreChallengesImage />
-      </View>
+      </Box>
 
-      <View style={styles.textWrapper}>
-        <View style={styles.titleWrapper}>
+      <Box w="60%">
+        <Box mb={8}>
           <TextTemplate type="b2b" color={Colours.neutral.n900}>
             {t["screens.challenges.history.unlock_banner_title"]}
           </TextTemplate>
-        </View>
+        </Box>
         <TextTemplate type="b2" color={Colours.neutral.n900}>
           {t["screens.challenges.history.unlock_banner_description_start"]}
           <TextTemplate type="b2b" color={Colours.neutral.n900}>
@@ -32,32 +38,9 @@ const MoreChallengesBanner = () => {
           </TextTemplate>
           {t["screens.challenges.history.unlock_banner_description_end"]}
         </TextTemplate>
-      </View>
-    </View>
+      </Box>
+    </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: Colours.products.fib.u100S4,
-    flexDirection: "row",
-    minHeight: Style.adjust(180),
-    padding: Style.adjust(16),
-    alignItems: "center",
-    justifyContent: "flex-start",
-    borderRadius: Style.adjust(14),
-  },
-  titleWrapper: {
-    marginBottom: Style.adjust(8),
-  },
-  textWrapper: {
-    width: "60%",
-  },
-  imageWrapper: {
-    right: 0,
-    bottom: 0,
-    position: "absolute",
-  },
-});
 
 export default memo(MoreChallengesBanner);
