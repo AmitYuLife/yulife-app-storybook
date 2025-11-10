@@ -39,7 +39,16 @@ export const terminateApp = async () => {
 };
 
 export const minimiseApp = async () => {
+  // ensure no sync operations are pending before minimising
+  await device.disableSynchronization();
+
   await device.sendToHome();
+
+  // short buffer time to enter background fully
+  await new Promise((res) => setTimeout(res, 5000));
+
+  // re-enable sync to avoid timeout on next step
+  await device.enableSynchronization();
 };
 
 export const restartWithoutDelete = async () => {

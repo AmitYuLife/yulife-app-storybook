@@ -87,7 +87,7 @@ Feature("As a user my activity is monitored correctly", async () => {
         Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500));
       });
       When("I tap to refresh activity history", when.tapID(ids.LEFT_HEADING_BUTTON("ACTIVITY_HISTORY"), 3000), async () => {
-        Then("I should see all km cycled from the past 28 days ago loaded in", then.activityHistoryScrollCyclingDataCorrect(3000, 28));
+        Then("I should see all km cycled from the past 20 days ago loaded in", then.activityHistoryScrollCyclingDataCorrect(3000, 20));
       });
     });
   });
