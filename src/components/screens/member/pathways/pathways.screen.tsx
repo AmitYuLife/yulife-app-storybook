@@ -5,7 +5,7 @@ import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native
 import MoodWeekView, { MoodData } from "@organisms/mood-week-view/mood-week-view";
 import PathwaysHeader from "./subcomponents/pathways-header";
 import { t } from "@locale";
-import { Colours } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 
 import { AdviceSection, PathwayAdviceSectionProps } from "./subcomponents/advice-section";
 
@@ -45,6 +45,7 @@ const PathwaysScreen = ({
       <Animated.ScrollView
         style={{ flex: 1 }}
         contentInsetAdjustmentBehavior="never"
+        contentContainerStyle={styles.contentContainer}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
       >
@@ -84,5 +85,11 @@ const PathwaysScreen = ({
     </Box>
   );
 };
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    paddingBottom: Style.adjust(40),
+  },
+});
 
 export default memo(PathwaysScreen);
