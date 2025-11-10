@@ -7,20 +7,20 @@ query GetReferralInformation(
   referralInformation(limit: $limit, offset: $offset, businessAccountId: $businessAccountId)
     @include(if: $hasSelectedBusinessAccount) {
     rewardForReferral
-    referralLink
+    referralCode
+    shareReferralCodeMessage
     background {
       id
       uri
     }
-    shareCTA
-    shareMessage
-    disclaimer
+    codeDisclaimer
+    shareButton
     markdown {
       headerTitle
       headerSubtitle
-      shareTitle
+      shareBoxTitle
       historyTitle
-      historyEmptyMessage
+      codeHistoryEmptyMessage
     }
     businessAccountId
   }
@@ -30,3 +30,4 @@ query GetReferralInformation(
     businessAccountName
   }
 }
+

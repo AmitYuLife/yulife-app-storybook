@@ -10,6 +10,7 @@ export { default as FeedbackForm } from "./feedback-form/feedback-form";
 export { OnboardingSwiper, OnboardingSwiperData } from "./onboarding-swiper/onboarding-swiper";
 export { RadioListItemProps, RadioListItem } from "./radio-list-item/radio-list-item";
 export { default as TapToCopy } from "./tap-to-copy/tap-to-copy";
+export { default as CodeAndLinkCopy } from "./code-and-link-copy/code-and-link-copy";
 export { default as ProgressBarYuCoin } from "./progress-bar/progress-bar-yucoin";
 export { FullScreenSwiper } from "./full-screen-swiper/full-screen-swiper";
 export { Accordion } from "./accordion/accordion";
