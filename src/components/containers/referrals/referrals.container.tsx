@@ -94,14 +94,12 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
     Logger.logMixpanelEvent("referral_link_shared");
     try {
       await Share.share({
-        message: `${data?.referralInformation?.shareMessage.replace(/\.$/, "")}: ${
-          data?.referralInformation?.referralLink
-        }`,
+        message: data?.referralInformation?.shareReferralCodeMessage,
       });
     } catch (e) {
       Logger.error(e, { file: componentId });
     }
-  }, [componentId, data?.referralInformation?.referralLink, data?.referralInformation?.shareMessage]);
+  }, [componentId, data?.referralInformation?.shareReferralCodeMessage]);
 
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 

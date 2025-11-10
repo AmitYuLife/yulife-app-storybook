@@ -22,6 +22,7 @@ import { YugiProcessingIcon } from "./yugi-processing-icon";
 import { YugiWellBeingIcon } from "./yugi-wellbeing-icon";
 import { AvatarHeadIcon } from "./avatar-head-icon";
 import { ShareIcon } from "./share-icon";
+import { PaperclipIcon } from "./paperclip-icon";
 import { BadgeIcon } from "./badge-icon";
 import { RadioIcon } from "./radio-icon";
 import { GoogleFitIcon } from "./google-fit-icon";
@@ -105,6 +106,7 @@ export default {
   YugiWellBeingIcon,
   AvatarHeadIcon,
   ShareIcon,
+  PaperclipIcon,
   BadgeIcon,
   RadioIcon,
   GoogleFitIcon,

@@ -525,6 +525,13 @@ export type AvatarRemoteFilesImageArgs = {
   options?: InputMaybe<AvatarRemoteFileOption>;
 };
 
+export type BasicMemberDataConnection = {
+  __typename?: "BasicMemberDataConnection";
+  connectionType: ConnectionType;
+  id: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+};
+
 export type BasicProductInformation = {
   baseSalaryRequired?: InputMaybe<Scalars["Boolean"]["input"]>;
   carrierId?: InputMaybe<Scalars["String"]["input"]>;
@@ -1490,6 +1497,21 @@ export type Connection = {
   name?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type ConnectionConfig = {
+  __typename?: "ConnectionConfig";
+  customerFieldsToUpdate?: Maybe<Array<MemberDataFieldNames>>;
+  isProcessingEnabled: Scalars["Boolean"]["output"];
+  shouldAutoInvite: Scalars["Boolean"]["output"];
+};
+
+export type ConnectionDataSample = {
+  __typename?: "ConnectionDataSample";
+  percentageBasedDataSample?: Maybe<Array<DataSampleItem>>;
+  sampleResult?: Maybe<DataSampleResult>;
+  sampleSize?: Maybe<Scalars["Int"]["output"]>;
+  sampledAt?: Maybe<Scalars["String"]["output"]>;
+};
+
 export enum ConnectionEventStatus {
   Committed = "COMMITTED",
   Failed = "FAILED",
@@ -1503,6 +1525,15 @@ export enum ConnectionEventType {
   Partial = "PARTIAL",
 }
 
+export enum ConnectionState {
+  Active = "ACTIVE",
+  ConnectionSampling = "CONNECTION_SAMPLING",
+  ConnectionSamplingFailed = "CONNECTION_SAMPLING_FAILED",
+  NotConnected = "NOT_CONNECTED",
+  Paused = "PAUSED",
+  Preview = "PREVIEW",
+}
+
 export enum ConnectionStatus {
   Disabled = "DISABLED",
   Live = "LIVE",
@@ -1510,11 +1541,8 @@ export enum ConnectionStatus {
 }
 
 export enum ConnectionType {
-  CarrierScraper = "carrierScraper",
-  CloudCover = "cloudCover",
   Email = "email",
   HrisApi = "hrisApi",
-  ManualUpload = "manualUpload",
   Sftp = "sftp",
 }
 
@@ -3145,6 +3173,18 @@ export type DailyPensionContribution = {
   yuCoinAwarded?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type DataSampleItem = {
+  __typename?: "DataSampleItem";
+  percentSatisfied: Scalars["Int"]["output"];
+  requirement: Scalars["String"]["output"];
+};
+
+export enum DataSampleResult {
+  Failure = "FAILURE",
+  PartialSuccess = "PARTIAL_SUCCESS",
+  Success = "SUCCESS",
+}
+
 export type DataWidget = {
   __typename?: "DataWidget";
   description: Scalars["String"]["output"];
@@ -3334,6 +3374,11 @@ export type DuelsCompletedResponse = {
   date?: Maybe<Scalars["String"]["output"]>;
   duels?: Maybe<Array<Maybe<Duel>>>;
   id?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type EmailConnectionConfig = {
+  __typename?: "EmailConnectionConfig";
+  allowedSenders: Array<Scalars["String"]["output"]>;
 };
 
 export type EmployeeBulkProcessResult = {
@@ -4876,6 +4921,13 @@ export type HrisConnection = {
   statusDescription: Scalars["String"]["output"];
 };
 
+export type HrisConnectionConfig = {
+  __typename?: "HrisConnectionConfig";
+  contractedWeeksPerYear?: Maybe<Scalars["Int"]["output"]>;
+  employeeFilters?: Maybe<Array<HrisEmployeeFilter>>;
+  hrisType: Scalars["String"]["output"];
+};
+
 export type HrisConnectionImportEvent = {
   __typename?: "HrisConnectionImportEvent";
   businessMemberDataConnectionEventId: Scalars["String"]["output"];
@@ -5345,8 +5397,20 @@ export type MemberBusinessSurveyCampaign = {
 export type MemberDataConnection = {
   __typename?: "MemberDataConnection";
   connectionType: ConnectionType;
+  customerFieldsToUpdate?: Maybe<Array<MemberDataFieldNames>>;
+  dataSample?: Maybe<ConnectionDataSample>;
+  email?: Maybe<EmailConnectionConfig>;
+  hrisApi?: Maybe<HrisConnectionConfig>;
   id: Scalars["String"]["output"];
+  isProcessingEnabled: Scalars["Boolean"]["output"];
+  lastSyncedAt?: Maybe<Scalars["String"]["output"]>;
   name: Scalars["String"]["output"];
+  ownerIds?: Maybe<Array<Scalars["String"]["output"]>>;
+  previewImport?: Maybe<PreviewImport>;
+  sftp?: Maybe<SftpConnectionConfig>;
+  shouldAutoInvite: Scalars["Boolean"]["output"];
+  state: ConnectionState;
+  statusDescription: Scalars["String"]["output"];
 };
 
 export enum MemberDataFieldNames {
@@ -6474,6 +6538,7 @@ export type Mutation = {
   submitFeedbackForm: SubmitFeedbackFormResponse;
   submitMobileGameBattlePassDonations: MobileGameBattlePassUpdateInfo;
   submitMobileQuestLevelSudokuSolution?: Maybe<MobileQuestChallenge>;
+  submitPathwayAdviceResponse: Scalars["Boolean"]["output"];
   submitSduiJourney?: Maybe<Scalars["Boolean"]["output"]>;
   submitSudokuSolution?: Maybe<Challenge>;
   submitUnity?: Maybe<Scalars["Boolean"]["output"]>;
@@ -7204,6 +7269,10 @@ export type MutationSubmitMobileQuestLevelSudokuSolutionArgs = {
   results: MobileQuestSudokuSubmission;
 };
 
+export type MutationSubmitPathwayAdviceResponseArgs = {
+  input: SubmitPathwayAdviceResponseInput;
+};
+
 export type MutationSubmitSduiJourneyArgs = {
   action: SubmitSduiJourneyAction;
   data: Scalars["String"]["input"];
@@ -7687,6 +7756,11 @@ export type PathwayAdviceSection = {
   items: Array<UserPathwayAdviceItem>;
 };
 
+export enum PathwaysItemResponseDecision {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+}
+
 export type PaymentIntent = StripePaymentIntent;
 
 export type PerformedSteps = {
@@ -7776,6 +7850,12 @@ export type PotentialReward = {
   id: Scalars["ID"]["output"];
   logo: RemoteImage;
   name: Scalars["String"]["output"];
+};
+
+export type PreviewImport = {
+  __typename?: "PreviewImport";
+  createdAt: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
 };
 
 export type PricingConfiguration = {
@@ -7958,19 +8038,13 @@ export type Query = {
   getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessSelfRegistrationResult>;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
   getBusinessFeaturedRewards: Array<FeaturedReward>;
-  getBusinessMemberDataConnections: Array<MemberDataConnection>;
+  getBusinessMemberDataConnections: Array<BasicMemberDataConnection>;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
   getBusinessPerk: BusinessPerkItem;
   getBusinessPerks: GetBusinessPerksResponse;
   getBusinessSession: BusinessSession;
   getBusinessSurveyCampaign?: Maybe<BusinessSurveyCampaign>;
   getBusinessSurveyCampaignParticipants: BusinessSurveyCampaignParticipants;
-  /**
-   * Gets category-based results for a business survey campaign, including statistics like completion rates,
-   * average scores, and sentiment percentages aggregated by survey question categories.
-   * Returns an array of category results with metrics for each category in the survey.
-   */
-  getBusinessSurveyCampaignResponsesCategoryResults: Array<ResponsesCategoryResults>;
   getBusinessSurveyCampaignTemplateScaleOptions: BusinessSurveyCampaignTemplateScaleOptions;
   getBusinessSurveyCampaigns: BusinessSurveyCampaignSearchResults;
   getBusinessSurveyPresets: Array<BusinessSurveyPreset>;
@@ -7986,6 +8060,12 @@ export type Query = {
    * highest/lowest scoring segments, and lowest scoring questions within the category.
    */
   getCategoryBreakdownResult?: Maybe<CategoryBreakdownResult>;
+  /**
+   * Gets category-based results for a business survey campaign, including statistics like completion rates,
+   * average scores, and sentiment percentages aggregated by survey question categories.
+   * Returns an array of category results with metrics for each category in the survey.
+   */
+  getCategoryResponsesResults: Array<ResponsesCategoryResults>;
   getCompanyEmployeeFieldSettings: CompanyEmployeeFieldSetting;
   getCompanySettings: Array<CompanySetting>;
   /** Get user personal contact details */
@@ -8058,6 +8138,7 @@ export type Query = {
   getLinkedBusinesses: Array<UserBusinessLink>;
   getMagicLink?: Maybe<Scalars["String"]["output"]>;
   getMedia?: Maybe<Array<Maybe<Media>>>;
+  getMemberDataConnection: MemberDataConnection;
   /** Get the users rewards with image to show featured */
   getMemberFeaturedRewards: Array<Scalars["String"]["output"]>;
   /** Get the current Url progress */
@@ -8391,12 +8472,6 @@ export type QueryGetBusinessSurveyCampaignParticipantsArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetBusinessSurveyCampaignResponsesCategoryResultsArgs = {
-  campaignId: Scalars["ID"]["input"];
-  customValueFilters?: InputMaybe<Array<CustomValueFilters>>;
-};
-
-/** Default types to be extended / root query */
 export type QueryGetBusinessSurveyCampaignTemplateScaleOptionsArgs = {
   campaignId: Scalars["ID"]["input"];
 };
@@ -8429,6 +8504,12 @@ export type QueryGetCategoryBreakdownResultArgs = {
   campaignId: Scalars["ID"]["input"];
   categoryName: Scalars["String"]["input"];
   segment: SegmentType;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetCategoryResponsesResultsArgs = {
+  campaignId: Scalars["ID"]["input"];
+  customValueFilters?: InputMaybe<Array<CustomValueFilters>>;
 };
 
 /** Default types to be extended / root query */
@@ -8605,6 +8686,11 @@ export type QueryGetMagicLinkArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMediaArgs = {
   tags?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMemberDataConnectionArgs = {
+  connectionId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -9323,11 +9409,13 @@ export type ReferralHistoryItem = {
 
 export type ReferralMarkdown = {
   __typename?: "ReferralMarkdown";
+  codeHistoryEmptyMessage: Scalars["String"]["output"];
   header?: Maybe<Scalars["String"]["output"]>;
   headerSubtitle?: Maybe<Scalars["String"]["output"]>;
   headerTitle?: Maybe<Scalars["String"]["output"]>;
   historyEmptyMessage: Scalars["String"]["output"];
   historyTitle: Scalars["String"]["output"];
+  shareBoxTitle: Scalars["String"]["output"];
   shareTitle?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -9779,6 +9867,11 @@ export type Session = {
   tokenRefreshRequired?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export type SftpConnectionConfig = {
+  __typename?: "SftpConnectionConfig";
+  allowedIps: Array<Scalars["String"]["output"]>;
+};
+
 export type ShippingAddress = {
   __typename?: "ShippingAddress";
   addressCity?: Maybe<Scalars["String"]["output"]>;
@@ -10048,6 +10141,11 @@ export type StripeWalletSetupParams = {
 export type SubmitFeedbackFormResponse = {
   __typename?: "SubmitFeedbackFormResponse";
   message: Scalars["String"]["output"];
+};
+
+export type SubmitPathwayAdviceResponseInput = {
+  decision: PathwaysItemResponseDecision;
+  pathwayItemId: Scalars["ID"]["input"];
 };
 
 export enum SubmitSduiJourneyAction {
@@ -11807,15 +11905,17 @@ export type UserReferralInformation = {
   __typename?: "UserReferralInformation";
   background: RemoteImage;
   businessAccountId?: Maybe<Scalars["String"]["output"]>;
+  codeDisclaimer: Scalars["String"]["output"];
   disclaimer: Scalars["String"]["output"];
   markdown: ReferralMarkdown;
-  referralCode?: Maybe<Scalars["String"]["output"]>;
+  referralCode: Scalars["String"]["output"];
   referralHistory: Array<ReferralHistoryItem>;
   referralLink: Scalars["String"]["output"];
   rewardForReferral: Scalars["Int"]["output"];
+  shareButton: Scalars["String"]["output"];
   shareCTA: Scalars["String"]["output"];
   shareMessage: Scalars["String"]["output"];
-  shareReferralCodeMessage?: Maybe<Scalars["String"]["output"]>;
+  shareReferralCodeMessage: Scalars["String"]["output"];
 };
 
 export type UserStatisticDetails = {
@@ -19480,13 +19580,6 @@ export type MobileInventoryInfoFragment = {
   __typename?: "MobileInventoryInfo";
   count: number;
   streakSaverCount: number;
-};
-
-export type LifeEventsFragment = {
-  __typename?: "LifeEvents";
-  id: string;
-  isBirthdayGiftingEnabled: boolean;
-  birthday?: { __typename?: "PlayerBirthday"; dateOfBirth: string; isVisible: boolean } | null;
 };
 
 export type MediaFragment = {
@@ -27983,38 +28076,6 @@ export type GetLeaderboardSettingsQuery = {
     order: number;
     description?: string | null;
   } | null> | null;
-  playerLifeEvents?: {
-    __typename?: "LifeEvents";
-    id: string;
-    isBirthdayGiftingEnabled: boolean;
-    birthday?: { __typename?: "PlayerBirthday"; dateOfBirth: string; isVisible: boolean } | null;
-  } | null;
-};
-
-export type GetPlayerLifeEventsQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetPlayerLifeEventsQuery = {
-  __typename?: "Query";
-  getPlayerLifeEvents?: {
-    __typename?: "LifeEvents";
-    id: string;
-    isBirthdayGiftingEnabled: boolean;
-    birthday?: { __typename?: "PlayerBirthday"; dateOfBirth: string; isVisible: boolean } | null;
-  } | null;
-};
-
-export type SetMobilePlayerBirthdayVisibilityMutationVariables = Exact<{
-  isVisible: Scalars["Boolean"]["input"];
-}>;
-
-export type SetMobilePlayerBirthdayVisibilityMutation = {
-  __typename?: "Mutation";
-  setMobilePlayerBirthdayVisibility?: {
-    __typename?: "LifeEvents";
-    id: string;
-    isBirthdayGiftingEnabled: boolean;
-    birthday?: { __typename?: "PlayerBirthday"; dateOfBirth: string; isVisible: boolean } | null;
-  } | null;
 };
 
 export type ChangeUserLocaleMutationVariables = Exact<{
@@ -29935,19 +29996,19 @@ export type GetReferralInformationQuery = {
   referralInformation?: {
     __typename?: "UserReferralInformation";
     rewardForReferral: number;
-    referralLink: string;
-    shareCTA: string;
-    shareMessage: string;
-    disclaimer: string;
+    referralCode: string;
+    shareReferralCodeMessage: string;
+    codeDisclaimer: string;
+    shareButton: string;
     businessAccountId?: string | null;
     background: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     markdown: {
       __typename?: "ReferralMarkdown";
       headerTitle?: string | null;
       headerSubtitle?: string | null;
-      shareTitle?: string | null;
+      shareBoxTitle: string;
       historyTitle: string;
-      historyEmptyMessage: string;
+      codeHistoryEmptyMessage: string;
     };
   };
   activeEmployments: Array<{
@@ -56522,34 +56583,6 @@ export const MobileInventoryInfoFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MobileInventoryInfoFragment, unknown>;
-export const LifeEventsFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "LifeEvents" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "birthday" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
-                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<LifeEventsFragment, unknown>;
 export const MediaFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -78862,15 +78895,6 @@ export const GetLeaderboardSettingsDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "NotificationSettingsProps" } }],
             },
           },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "playerLifeEvents" },
-            name: { kind: "Name", value: "getPlayerLifeEvents" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "LifeEvents" } }],
-            },
-          },
         ],
       },
     },
@@ -78928,140 +78952,8 @@ export const GetLeaderboardSettingsDocument = {
         ],
       },
     },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "LifeEvents" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "birthday" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
-                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
-        ],
-      },
-    },
   ],
 } as unknown as DocumentNode<GetLeaderboardSettingsQuery, GetLeaderboardSettingsQueryVariables>;
-export const GetPlayerLifeEventsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetPlayerLifeEvents" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getPlayerLifeEvents" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "LifeEvents" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "LifeEvents" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "birthday" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
-                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetPlayerLifeEventsQuery, GetPlayerLifeEventsQueryVariables>;
-export const SetMobilePlayerBirthdayVisibilityDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "SetMobilePlayerBirthdayVisibility" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "isVisible" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "setMobilePlayerBirthdayVisibility" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "isVisible" },
-                value: { kind: "Variable", name: { kind: "Name", value: "isVisible" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "LifeEvents" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "LifeEvents" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "LifeEvents" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "birthday" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
-                { kind: "Field", name: { kind: "Name", value: "isVisible" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "isBirthdayGiftingEnabled" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  SetMobilePlayerBirthdayVisibilityMutation,
-  SetMobilePlayerBirthdayVisibilityMutationVariables
->;
 export const ChangeUserLocaleDocument = {
   kind: "Document",
   definitions: [
@@ -83113,7 +83005,8 @@ export const GetReferralInformationDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "rewardForReferral" } },
-                { kind: "Field", name: { kind: "Name", value: "referralLink" } },
+                { kind: "Field", name: { kind: "Name", value: "referralCode" } },
+                { kind: "Field", name: { kind: "Name", value: "shareReferralCodeMessage" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "background" },
@@ -83125,9 +83018,8 @@ export const GetReferralInformationDocument = {
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "shareCTA" } },
-                { kind: "Field", name: { kind: "Name", value: "shareMessage" } },
-                { kind: "Field", name: { kind: "Name", value: "disclaimer" } },
+                { kind: "Field", name: { kind: "Name", value: "codeDisclaimer" } },
+                { kind: "Field", name: { kind: "Name", value: "shareButton" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "markdown" },
@@ -83136,9 +83028,9 @@ export const GetReferralInformationDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "headerTitle" } },
                       { kind: "Field", name: { kind: "Name", value: "headerSubtitle" } },
-                      { kind: "Field", name: { kind: "Name", value: "shareTitle" } },
+                      { kind: "Field", name: { kind: "Name", value: "shareBoxTitle" } },
                       { kind: "Field", name: { kind: "Name", value: "historyTitle" } },
-                      { kind: "Field", name: { kind: "Name", value: "historyEmptyMessage" } },
+                      { kind: "Field", name: { kind: "Name", value: "codeHistoryEmptyMessage" } },
                     ],
                   },
                 },
