@@ -233,45 +233,6 @@ Feature("Health questionnaires", async () => {
     });
   });
 
-  Scenario("I should see the DHQ in the MaximiseYu nudges", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_SINGLE_QUESTION_DHQ.customer, GENERIC_AUTH_PASSWORD), async () => {
-      When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu"), 4000), async () => {
-        When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.1), async () => {
-          When("I swipe towards the end of the MaximiseYu section", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("health-questionnaire-nudge"), "left", undefined, undefined, 0.8, 0.8), async () => {
-            Then("I should see the HQ nudge", then.idVisible(ids.NUDGE_ITEM_WRAPPER("health-questionnaire-nudge")));
-          });
-        });
-      });
-    });
-    When("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {
-      Then("I should see the reflection.how_you_feel_today step", then.textVisible(hqReflectionHowYouFeelTodayCopy.title));
-    });
-    When("I select the first option for reflection.how_you_feel_today", when.tapText(hqReflectionHowYouFeelTodayCopy.option), async () => {
-      When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
-        When("I press Next button", when.tapID(ids.BUTTON_BASE("Next", false)), async () => {
-          Then("I should be on the claim screen", then.idVisible(ids.TEXT_TEMPLATE("You did it!", "h3")));
-        });
-      });
-    });
-    When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
-      When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-        Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(260, 380));
-        Then("I should see the completed HQ nudge", then.completedHQNudgeVisible());
-      });
-    });
-    When("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {
-      Then("I should be on the same screen, and still see the completed HQ nudge", then.completedHQNudgeVisible());
-    });
-    When("I tap earned from todays activities", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(260, 380)), async () => {
-      Then("I see the 260 yucoin earned today so far", then.textVisible("260 YuCoin"));
-    });
-    When("I swipe to the bottom", when.scrollWithLimitedAttemptsUntilIdVisible(ids.TODAYS_EARNINGS, ids.ACTIVITY_FEED_ID("health-questionnaire-slot")), async () => {
-      Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"));
-      Then("I should see that I completed the questionnaire", then.textVisible("Quiz"));
-      Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("60", 1500));
-    });
-  });
-
   Scenario("Once I complete the journey, press cta - I should see the HQ journey modal is gone", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "UK"), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));

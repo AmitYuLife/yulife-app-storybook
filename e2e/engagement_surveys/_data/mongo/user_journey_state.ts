@@ -843,59 +843,6 @@ export const USER_JOURNEY_STATE_04_CUSTOMER_8_1_QUESTION = {
   },
 } as IDatabaseItem;
 
-export const USER_JOURNEY_STATE_SINGLE_QUESTION_DHQ = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    journeyId: "health_questionnaire",
-    triggerSourceId: "initial",
-    userId: customer.CUSTOMER_SINGLE_QUESTION_DHQ.customer.data.customerId,
-    createdAt: "2024-04-23T10:42:19.959+0000",
-    requiresUserStateForAccess: true,
-    static: true,
-    published: true,
-    status: "pending",
-    steps: [
-      {
-        stepId: "reflection.how_you_feel_today",
-        animateProgressBar: false,
-        progressBarValue: 0,
-        isAQuestion: true,
-      },
-      {
-        stepId: "health_questionnaire_submission",
-        animateProgressBar: false,
-        progressBarValue: undefined,
-        isAQuestion: false,
-      },
-    ],
-    uiAccess: {
-      eventPanel: {
-        alwaysOn: false,
-        validation: {
-          type: "object",
-          properties: {
-            dateNow: {
-              type: "string",
-              anyOf: [
-                {
-                  format: "date",
-                  formatMinimum: moment().subtract(7, "days").format("YYYY-MM-DD"),
-                  formatMaximum: moment().add(7, "days").format("YYYY-MM-DD"),
-                },
-              ],
-            },
-          },
-          required: ["dateNow"],
-          additionalProperties: false,
-        },
-      },
-    },
-    updatedAt: "2024-04-23T10:42:19.959+0000",
-  },
-} as IDatabaseItem;
-
 export const USER_JOURNEY_STATE_FOR_REWARD_MULTIPLIER_TEST_CUSTOMER_1 = {
   type,
   modelName,

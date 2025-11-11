@@ -139,31 +139,3 @@ export const CUSTOMER_8 = createCustomerRecords({
     currentLevel: 55,
   },
 });
-
-export const CUSTOMER_SINGLE_QUESTION_DHQ = createCustomerRecords({
-  archived: false,
-  status: "onboarded",
-  email: generateRandomInbox(),
-  firstName: "Single",
-  lastName: "Question",
-  preferredContentLocation: "GB",
-  userInfo: {
-    isAvatarCreated: true,
-    earnRate: 10,
-    lastAppVersion: "4.86.0",
-  },
-  employments: [
-    {
-      businessAccountId: BUSINESS_ACCOUNT_5.business.data.businessAccountId,
-      businessEmployeeId: generateRandomPostgresId(),
-      archived: false,
-      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
-      products: [],
-    },
-  ],
-  userGameState: {
-    currentBalance: 0,
-    currentStreak: 0,
-    currentLevel: 55,
-  },
-});
