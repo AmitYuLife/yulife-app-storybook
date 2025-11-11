@@ -57,11 +57,6 @@ const manifestPlugin = (config) => {
       },
       {
         $: {
-          "android:name": "android.permission.health.READ_ACTIVE_CALORIES_BURNED",
-        },
-      },
-      {
-        $: {
           "android:name": "android.permission.health.READ_EXERCISE",
         },
       },

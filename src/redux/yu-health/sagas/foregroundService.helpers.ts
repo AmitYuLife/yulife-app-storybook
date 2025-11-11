@@ -46,8 +46,6 @@ export function* startForegroundService({ endTime }: { endTime?: Date }) {
         // The foreground service replaces '%{steps}' with the actual steps count
         activeTitle: t("yu_health.foreground_service.active_title", { steps: "%{steps}" }),
         activeBody: t("yu_health.foreground_service.active_body"),
-        endedTitle: t("yu_health.foreground_service.ended_title"),
-        endedBody: t("yu_health.foreground_service.ended_body"),
       },
     });
   } catch (error) {

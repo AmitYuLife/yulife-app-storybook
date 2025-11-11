@@ -59,7 +59,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "update": "yarn && yarn regenerate && yarn pod:install",
-    "yuhealth:push": "rm -rf ../react-native-yu-health/android/src/main/java && cp -r node_modules/@yu-life/react-native-yu-health/android/src/main/java/ ../react-native-yu-health/android/src/main/java"
+    "yuhealth:push": "rm -rf ../react-native-yu-health/android/src/main/java && cp -r node_modules/@yu-life/react-native-yu-health/android/src/main/java/ ../react-native-yu-health/android/src/main/java",
+    "yuhealth:pull": "rm -rf node_modules/@yu-life/react-native-yu-health/android/src/main/java/ && cp -r ../react-native-yu-health/android/src/main/java/ node_modules/@yu-life/react-native-yu-health/android/src/main/java/"
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",
@@ -85,7 +86,7 @@
     "@stripe/stripe-react-native": "0.37.2",
     "@use-it/interval": "^1.0.0",
     "@yu-life/react-native-fitkit": "1.0.41",
-    "@yu-life/react-native-yu-health": "^1.4.0",
+    "@yu-life/react-native-yu-health": "^1.4.2",
     "@yu-life/react-native-yu-watch": "^1.0.2",
     "@yu-life/yulife-bdd-framework": "^0.0.130",
     "ajv": "^8.12.0",
