@@ -9,9 +9,10 @@ interface IProps {
   timeRemaining: string;
   label: string;
   isNotValidTime: boolean;
+  textColor: string;
 }
 
-const StreakCompletion = ({ timeRemaining, isNotValidTime, label }: IProps) => {
+const StreakCompletion = ({ timeRemaining, isNotValidTime, label, textColor }: IProps) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.ribbonWrapper}>
@@ -21,7 +22,9 @@ const StreakCompletion = ({ timeRemaining, isNotValidTime, label }: IProps) => {
         <>
           <TextTemplate type="b2">{t("screens.streak.completion.next_streak")}</TextTemplate>
           <View style={styles.timeRemainingWrapper}>
-            <TextTemplate type="h2">{timeRemaining}</TextTemplate>
+            <TextTemplate type="h2" color={textColor}>
+              {timeRemaining}
+            </TextTemplate>
           </View>
         </>
       )}

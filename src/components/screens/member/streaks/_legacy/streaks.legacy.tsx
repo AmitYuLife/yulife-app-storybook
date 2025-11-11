@@ -21,6 +21,7 @@ interface Props {
   streakMax: number;
   reward: number;
   streakAwardId?: string;
+  textColor: string;
 }
 
 export const StreaksLegacy = ({
@@ -35,6 +36,7 @@ export const StreaksLegacy = ({
   streakMax,
   reward,
   streakAwardId,
+  textColor,
 }: Props) => {
   return (
     <View style={styles.wrapper}>
@@ -48,14 +50,24 @@ export const StreaksLegacy = ({
       </View>
 
       <View accessible={true} accessibilityLabel={accessibilityLabel} style={styles.progressWrapper}>
-        <TextTemplate type={Style.isShortToMedium() ? "h3" : "h2"} textAlign="center">
+        <TextTemplate type={Style.isShortToMedium() ? "h3" : "h2"} textAlign="center" color={textColor}>
           {streakInfo?.header}
         </TextTemplate>
         <View style={styles.streaksWrapper}>
           {isStreakCompleted ? (
-            <StreakCompletion timeRemaining={timeRemaining} isNotValidTime={isNotValidTime} label={ribbonLabel} />
+            <StreakCompletion
+              timeRemaining={timeRemaining}
+              isNotValidTime={isNotValidTime}
+              label={ribbonLabel}
+              textColor={textColor}
+            />
           ) : (
-            <StreakStart heading={streakInfo?.subHeader} streakMax={streakMax} streakCompleted={streakCompleted} />
+            <StreakStart
+              heading={streakInfo?.subHeader}
+              streakMax={streakMax}
+              streakCompleted={streakCompleted}
+              textColor={textColor}
+            />
           )}
         </View>
       </View>

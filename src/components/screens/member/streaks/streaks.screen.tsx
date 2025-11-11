@@ -111,6 +111,7 @@ const StreaksScreen = ({
             accessibilityLabel={accessibilityLabel}
             reward={Number(reward)}
             streakAwardId={streakAwardId}
+            textColor={challengeSuccessScreen?.textStyle?.color}
           />
           {children}
           <View style={hideLinkButton ? styles.bottomPad : styles.bottomPadLarge} />
@@ -138,10 +139,11 @@ const StreaksScreen = ({
           rightIcon="COINS"
           onRightIconPress={noop}
           disabled={true}
+          color={challengeSuccessScreen?.textStyle?.color}
         />
 
         <View style={styles.streakCountContainer}>
-          <StreakSaverCountContainer />
+          <StreakSaverCountContainer textColor={challengeSuccessScreen?.textStyle?.color} />
         </View>
       </CentredScreen>
     </>
