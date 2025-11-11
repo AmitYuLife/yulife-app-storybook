@@ -289,7 +289,7 @@ export const searchReferralVisible = async () => {
 };
 
 export const isOnInivteColleaguePage = async () => {
-  await expect(element(by.id(ids.REFERRALS_QR_CODE))).toBeVisible();
-  await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible();
+  await expect(element(by.id(ids.REFERRALS_CODE_TITLE("Your referral code:")))).toBeVisible();
+  await expect(element(by.id(ids.REFERRALS_SHARE_CODE_BUTTON))).toBeVisible();
   await expect(element(by.text("Your referrals"))).toExist();
 };
