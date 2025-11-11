@@ -16,11 +16,12 @@ const Wrapper = (Story, context) => {
     translator.setLocale(locale);
   }, [locale]);
 
+  const width = context.name === "Iconography" ? undefined : 414;
   return (
     <Provider store={mockStore}>
       <ApolloProvider client={client}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <View style={{ position: "relative", width: 414, display: "flex" }}>
+          <View style={{ position: "relative", width, display: "flex" }}>
             <Story />
           </View>
         </SafeAreaProvider>

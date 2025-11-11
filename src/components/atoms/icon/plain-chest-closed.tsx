@@ -112,7 +112,7 @@ export const PlainChestClosedIcon = memo(({ width = Style.adjust(88), height = S
       fill="#FFE200"
     />
     <Path
-      fill-rule="evenodd"
+      fillRule="evenodd"
       clip-rule="evenodd"
       d="M24.8671 34.2453C25.2899 34.0147 25.6358 33.5151 25.6358 32.977C25.6358 32.1699 24.9439 31.478 24.0215 31.478C23.1759 31.478 22.4072 32.1314 22.4072 32.977C22.4072 33.5151 22.7532 34.0147 23.1759 34.2453L22.4072 36.0902H25.6742L24.8671 34.2453Z"
       fill="#55535B"
