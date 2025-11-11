@@ -3,7 +3,6 @@ import DeviceInfo from "react-native-device-info";
 import Intercom from "@intercom/intercom-react-native";
 import { Mixpanel } from "mixpanel-react-native";
 import getBugsnagClient, { BugsnagClient } from "../bugsnag";
-import LeanplumClient from "./leanplum";
 import { MixpanelEvent, MixpanelEventMetadata, UserSupportLevel } from "@services/logging/types";
 import { Event } from "@bugsnag/expo";
 import { region } from "@locale";
@@ -21,7 +20,6 @@ class LoggerInstance {
   private appVersionMajorMinor: string;
   private appVersionRegex = /(\d+.\d+).(\d+)/;
   private bugsnag: BugsnagClient;
-  public leanplum: LeanplumClient;
   private mixpanel: Mixpanel | null = null;
   private eventRates: Map<string, { count: number; resetTime: number }> = new Map();
   private disabledEvents: Set<string> = new Set();
@@ -40,7 +38,6 @@ class LoggerInstance {
       const baseUrl = region.getConfig("mixpanelBaseUrl");
       this.mixpanel = new Mixpanel(mixpanelKey, false, false);
       await this.mixpanel.init(undefined, undefined, baseUrl);
-      this.leanplum = new LeanplumClient();
       this.initialised = true;
     }
   };
@@ -92,7 +89,6 @@ class LoggerInstance {
 
       this.bugsnag.setUser(userId, "", "");
       this.mixpanel.identify(userId);
-      this.leanplum.setUserId(userId);
       this.userId = userId;
 
       this.anonymousEvents.forEach(({ name, metadata }) => {

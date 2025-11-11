@@ -5,12 +5,11 @@ import { Platform } from "react-native";
 import moment from "moment";
 import { Storage, StorageKey } from "@utils/storage";
 
-export default class LeanplumClient {
+class LeanplumClient {
   public isDevMode = false;
-  private started = false;
   private enabled = true;
 
-  constructor() {
+  public bootstrap = async () => {
     const config = region.getConfig("leanplum");
 
     if (!config.prodKey && !config.appId) {
@@ -18,11 +17,6 @@ export default class LeanplumClient {
       return;
     }
 
-    this.bootstrap();
-  }
-
-  private bootstrap = async () => {
-    const config = region.getConfig("leanplum");
     this.isDevMode = await this.checkIfDevMode();
 
     if (this.isDevMode) {
@@ -31,8 +25,10 @@ export default class LeanplumClient {
       Leanplum.setAppIdForProductionMode(config.appId, config.prodKey);
     }
 
-    this.start();
+    Leanplum.start();
   };
+
+  public hasStarted = () => Leanplum.hasStarted();
 
   private checkIfDevMode = async () => {
     try {
@@ -43,16 +39,7 @@ export default class LeanplumClient {
     }
   };
 
-  private start = () => {
-    if (this.started) {
-      return;
-    }
-
-    Leanplum.start();
-    this.started = true;
-  };
-
-  public setUserId = (userId: string) => {
+  public setUserId = async (userId: string) => {
     if (!this.enabled) {
       return;
     }
@@ -127,3 +114,5 @@ export default class LeanplumClient {
     return Leanplum.setUserAttributes({ lastUpdated: new Date() });
   };
 }
+
+export default new LeanplumClient();
