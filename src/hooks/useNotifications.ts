@@ -1,5 +1,5 @@
 import { Message } from "@leanplum/react-native-sdk";
-import Logger from "@services/logging/logger";
+import leanplum from "@services/logging/leanplum";
 import moment from "moment";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -63,7 +63,7 @@ export const useNotifications = () => {
       await clearUserProfileBadgeCount({ variables: { type: UserProfileBadgeCountType.InboxMessages } });
     }
 
-    await Promise.all(leanplumUnread.map((messageId) => Logger.leanplum.markAsRead(messageId)));
+    await Promise.all(leanplumUnread.map((messageId) => leanplum.markAsRead(messageId)));
   }, [messages, clearUserProfileBadgeCount]);
 
   /**
@@ -80,11 +80,11 @@ export const useNotifications = () => {
    * The inbox is automatically fetched when the app loads
    */
   const fetchMessagesFromLeanplum = useCallback(async () => {
-    if (!Logger?.leanplum?.getInbox) {
+    if (!leanplum?.getInbox) {
       return;
     }
 
-    const inbox = await Logger.leanplum.getInbox();
+    const inbox = await leanplum.getInbox();
     const days = appInbox?.data?.maximumAgeOfMessageInDays || 7;
 
     const mappedMessages = inbox.allMessages
@@ -131,7 +131,7 @@ export const useNotifications = () => {
 
       // If it's leanplum and we want to open the native LP message
       if (data?.source !== "api") {
-        Logger.leanplum?.readInbox?.(messageId);
+        leanplum.readInbox?.(messageId);
         return;
       }
     },
@@ -140,7 +140,7 @@ export const useNotifications = () => {
 
   useEffect(() => {
     if (isNumber(appInbox?.data?.maximumAgeOfMessageInDays)) {
-      Logger.leanplum?.refreshInbox?.();
+      leanplum.refreshInbox?.();
       fetchMessagesFromLeanplum();
     }
   }, [appInbox?.data?.maximumAgeOfMessageInDays, fetchMessagesFromLeanplum]);

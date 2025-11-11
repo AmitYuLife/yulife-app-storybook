@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
-import Logger from "@services/logging/logger";
+import leanplum from "@services/logging/leanplum";
 import { ROUTES } from "@navigation/constants";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { IDebugItem } from "@components/screens/member/debug/debug.screen";
@@ -90,7 +90,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
     const formattedTitle = upperFirst(code.replace(/-/g, " "));
 
     if (code.startsWith(DebugCodes.toggleLeanplum)) {
-      return `${formattedTitle} (${Logger.leanplum?.isDevMode ? "dev" : "prod"})`;
+      return `${formattedTitle} (${leanplum.isDevMode ? "dev" : "prod"})`;
     }
 
     return formattedTitle;
@@ -225,7 +225,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
             return handleClose();
 
           case DebugCodes.toggleLeanplum:
-            return Logger.leanplum.toggleDevelopmentMode();
+            return leanplum.toggleDevelopmentMode();
 
           case DebugCodes.sleepMeditation:
             return dispatch({
