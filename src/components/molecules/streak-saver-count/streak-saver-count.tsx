@@ -6,15 +6,18 @@ import { memo } from "react";
 import { View } from "react-native";
 
 interface IStreakSaverCountProps {
+  textColor?: string;
   count: number;
 }
 
-const StreakSaverCount = ({ count }: IStreakSaverCountProps) => {
+const StreakSaverCount = ({ count, textColor }: IStreakSaverCountProps) => {
   return (
     <View style={styles.wrapper}>
       <Box flexDirection="row" style={styles.stack} gap={6}>
         <StreakSaverIcon />
-        <TextTemplate type="b2b">{t("molecules.inventory_item.quantity", { quantity: count })}</TextTemplate>
+        <TextTemplate type="b2b" color={textColor}>
+          {t("molecules.inventory_item.quantity", { quantity: count })}
+        </TextTemplate>
       </Box>
     </View>
   );

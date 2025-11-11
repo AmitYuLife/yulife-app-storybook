@@ -6,13 +6,14 @@ interface IProps {
   streakMax: number;
   streakCompleted: number;
   heading: string;
+  textColor: string;
 }
 
-const StreakStart = ({ streakMax, streakCompleted, heading }: IProps) => {
+const StreakStart = ({ streakMax, streakCompleted, heading, textColor }: IProps) => {
   return (
     <Box alignItems="center">
       <Box mb={24}>
-        <TextTemplate type="b1" textAlign="center">
+        <TextTemplate type="b1" textAlign="center" color={textColor}>
           {heading}
         </TextTemplate>
       </Box>
