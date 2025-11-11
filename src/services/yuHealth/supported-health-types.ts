@@ -24,12 +24,12 @@ export const HEALTH_PROVIDER_OPTIONS: Record<Partial<HealthProvider>, IHealthPro
   [HealthProvider.healthConnect]: {
     label: t("yu_health.providers.healthConnect"),
     isRecommended: false,
-    supportedTypes: [SupportedHealthTypes.steps, SupportedHealthTypes.cycling],
+    supportedTypes: [SupportedHealthTypes.steps, SupportedHealthTypes.cycling, SupportedHealthTypes.meditation],
   },
   [HealthProvider.samsungHealth]: {
     label: t("yu_health.providers.samsungHealth"),
     isRecommended: false,
-    supportedTypes: [SupportedHealthTypes.steps, SupportedHealthTypes.cycling],
+    supportedTypes: [SupportedHealthTypes.steps],
   },
   [HealthProvider.healthKit]: {
     label: t("yu_health.providers.healthKit"),
