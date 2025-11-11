@@ -9,6 +9,7 @@ import { Pressable } from "@molecules";
 import { Button } from "@molecules/button";
 import Logger from "@services/logging/logger";
 import { MixpanelEvent } from "@services/logging/types";
+import { REFERRALS_CODE, REFERRALS_CODE_TITLE, REFERRALS_SHARE_CODE_BUTTON } from "@ids";
 
 interface IProps {
   code: string;
@@ -69,7 +70,7 @@ const CodeAndLinkCopy = ({ code, onShare, title, disclaimer, analyticsEvent, but
       mt={24}
     >
       <Box mb={18}>
-        <TextTemplate type="b1b" textAlign="center">
+        <TextTemplate type="b1b" textAlign="center" testID={REFERRALS_CODE_TITLE(title)}>
           {title}
         </TextTemplate>
       </Box>
@@ -84,7 +85,13 @@ const CodeAndLinkCopy = ({ code, onShare, title, disclaimer, analyticsEvent, but
         >
           <Box flexDirection="row" alignItems="center" w="100%" ph={38}>
             <Box flex={1}>
-              <TextTemplate type="l2b" numberOfLines={1} color={Colours.inkStrong} textAlign="center">
+              <TextTemplate
+                type="l2b"
+                numberOfLines={1}
+                color={Colours.inkStrong}
+                textAlign="center"
+                testID={REFERRALS_CODE(code)}
+              >
                 {code}
               </TextTemplate>
             </Box>
@@ -98,7 +105,7 @@ const CodeAndLinkCopy = ({ code, onShare, title, disclaimer, analyticsEvent, but
               <PaperclipIcon color={Colours.neutral.white} width={Style.adjust(16)} height={Style.adjust(16)} />
             }
             translatedLabel={buttonText}
-            testID="share_code_button"
+            testID={REFERRALS_SHARE_CODE_BUTTON}
             size="Fill"
             backgroundColor={Colours.primary.p600}
             textColor={Colours.neutral.white}

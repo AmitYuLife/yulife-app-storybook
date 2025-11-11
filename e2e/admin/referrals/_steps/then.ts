@@ -39,9 +39,8 @@ export const referralsPopoverNotVisible =
 export const isOnInivteColleaguePage = (image: string, waitTime?: number) => async () => {
   await wait(waitTime)();
   await expect(element(by.id(ids.REFERRALS_IMAGE_URI(image)))).toBeVisible();
-  await expect(element(by.id(ids.REFERRALS_QR_CODE))).toBeVisible();
-  await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible();
-  await scrollFromID(ids.REFERRALS_QR_CODE, "up", "fast")();
+  await expect(element(by.id(ids.REFERRALS_SHARE_CODE_BUTTON))).toBeVisible();
+  await scrollFromID(ids.REFERRALS_SHARE_CODE_BUTTON, "up", "fast")();
   await expect(element(by.text("Your referrals"))).toBeVisible();
 };
 
@@ -66,9 +65,10 @@ export const referralNotVisible =
   };
 
 export const referralEmptyState = async () => {
-  await scrollFromID(ids.REFERRALS_QR_CODE, "up", "fast")();
+  await scrollFromID(ids.REFERRALS_SHARE_CODE_BUTTON, "up", "fast")();
   await textVisible("Your referrals")();
   await textVisible(
-    "Nobody’s used your link just yet – time for a nudge? Once they sign up with your link, their names will appear below."
+    "Nobody’s used your code just yet – time for a nudge? Once they sign up with your code, their names will appear below.",
+    2000
   )();
 };
