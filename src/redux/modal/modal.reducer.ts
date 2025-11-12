@@ -7,9 +7,10 @@ import {
 } from "./modal.actions";
 import { MODALS } from "@navigation/constants";
 
+// Higher number = higher priority
 export const MODALS_PRIORITIES = {
-  [MODALS.chest]: 1,
-  [MODALS.streaks]: 2,
+  [MODALS.streaks]: 1,
+  [MODALS.chest]: 2,
 };
 
 export const getInitialState = (): IModalStore => ({

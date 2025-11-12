@@ -1,4 +1,3 @@
-import { t } from "@locale";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { select } from "redux-saga/effects";
@@ -46,9 +45,7 @@ export default function* getChestModalDetails() {
       return {
         id: MODALS.chest,
         props: {
-          ctaLabel: t("labels.cta.collect"),
-          heading: t("screens.challenge_chest_modal.heading_is_completed", { yucoin: active.chest.value }),
-          isLocked: false,
+          reward: active.chest.value,
           onPressCta: () => Navigation.dismissModal(MODALS.chest),
         },
       };
