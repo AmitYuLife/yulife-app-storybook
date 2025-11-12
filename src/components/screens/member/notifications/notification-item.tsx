@@ -59,7 +59,7 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
      *
      * Note: The url schema from leanplum is missing a slash, so we need to add it
      */
-    if (!url.startsWith(schema)) {
+    if (!url.startsWith(schema) && !url.startsWith("http:/")) {
       const [_, splitUrl] = url.split(schema);
 
       return splitUrl ? { uri: `${schema}/${splitUrl}` } : fallbackImage;
