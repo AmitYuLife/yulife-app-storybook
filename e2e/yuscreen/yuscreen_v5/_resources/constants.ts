@@ -1,7 +1,7 @@
 export const inviteFriendsHeader = "Don’t see your friends?";
 export const inviteColleageButton = "Invite a colleague";
 export const noReferralsMessage =
-  "Nobody’s used your link just yet – time for a nudge? Once they sign up with your link, their names will appear below.";
+  "Nobody’s used your code just yet – time for a nudge? Once they sign up with your code, their names will appear below.";
 export const referralPageHeader = "Invite a Colleague";
 export const referralListHeader = "Your referrals";
 export const yuScreenBenefitsHeader = "Make the most of your benefits";

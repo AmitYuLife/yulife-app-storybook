@@ -15,7 +15,5 @@ export const lotusIcon =
   "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/meditation.svg?ixlib=js-3.2.1&w=66&h=66&fit=clip&fm=png&dpr=3&s=72a0ee4fddcd3597d8da1f017c8e5e9b";
 export const helmetIcon =
   "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/cycling.svg?ixlib=js-3.2.1&w=66&h=66&fit=clip&fm=png&dpr=3&s=4f847e3a55e1234fba8d0295fc62a58f";
-export const hqIcon =
-  "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/health-questionnaire.svg?ixlib=js-3.2.1&w=66&h=66&fit=clip&fm=png&dpr=3&s=414ae8bf95cc20d1973c718182d3d300";
 export const moodMonitorIcon =
   "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/mood-monitor.svg?ixlib=js-3.2.1&w=66&h=66&fit=clip&fm=png&dpr=3&s=a5216e44c948dc159d177f5dd36bdf0a";

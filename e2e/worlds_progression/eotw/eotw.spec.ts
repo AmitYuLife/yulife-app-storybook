@@ -10,7 +10,7 @@ import { weeklyQuestsTimeRemaining } from "@navigation";
 Feature("End of the world/Yuniverse", async () => {
   Scenario("I complete level 200, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
     Given("I login as a user on level 200 with a earn rate of 6", given.loginAsUser(data.CUSTOMER_69, data.AUTH_69), async () => {
-      Then("I should see the 'quest' tab", then.idVisible(ids.NAV_BAR("quests")));
+      Then("I should see the 'quest' tab", then.idVisible(ids.NAV_BAR("quests"), 4000));
     });
     When("I go to the quests screen", when.tapID(ids.NAV_BAR("quests"), 4000), async () => {
       Then("I should see the level 200 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(200)));

@@ -245,7 +245,7 @@ export const nextLevelLocked = (level: string) => async () => {
 };
 
 export const completeSecondChallenge = (levelNumber: number, challengeType: string) => async () => {
-  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber));
+  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))();
   await startChallenge(challengeType)();
   await sendSteps(400, 35000)();
   await waitFor(element(by.text(t("Collect"))))

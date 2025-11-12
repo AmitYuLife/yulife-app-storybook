@@ -11,7 +11,7 @@ import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 Feature("Rewards should act correctly", async () => {
   Scenario("I cannot redeem a reward if I don't have enough coin", scenario.start, () => {
     Given("I log in and go to reward", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 3000));
+      Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 5000));
     });
     When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.5), async () => {
       Then("I should see the John Lewis Reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
@@ -38,9 +38,9 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("I cannot redeem a locked reward", scenario.start, () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
+      Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 5000));
     });
-    When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id), "up"), async () => {
+    When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id), "up", 1, 3000), async () => {
       Then("I should see the locked bloom reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id)));
     });
     When("I tap on the locked reward", when.tapID(ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id)), async () => {

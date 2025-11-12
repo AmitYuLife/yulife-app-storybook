@@ -25,7 +25,7 @@ export const { scrollFromID, swipeFromText } = navigation.scrolling;
 export const { goToYuScreenAndDismissIntro, startYumojiBuilder } = screens.yuscreen;
 
 export const completeNewWorldShortStroll = (levelNumber: number) => async () => {
-  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber));
+  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))();
   await textVisible(t("Almost there! Take a challenge to unlock your reward."))();
   await navigateViaText(t("Let's do it"));
   await startChallenge("Short Stroll")();
@@ -58,7 +58,7 @@ export const tapExploreYuniverse = async () => {
 };
 
 export const completeChallenge = (levelNumber: number, challengeType: string) => async () => {
-  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber));
+  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))();
   await startChallenge(challengeType)();
   await sendSteps(400, 35000)();
   await waitFor(element(by.text("Collect")))
@@ -69,7 +69,7 @@ export const completeChallenge = (levelNumber: number, challengeType: string) =>
 };
 
 export const completeSecondChallenge = (levelNumber: number, challengeType: string) => async () => {
-  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber));
+  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))();
   await startChallenge(challengeType)();
   await sendSteps(400, 35000)();
   await waitFor(element(by.text(t("Collect"))))
@@ -98,7 +98,7 @@ export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async (
 
 export const selectAndCompleteMeditationChallengeWithMedia =
   (mindfulnessdata: number) => async () => {
-    await navigateViaID(ids.CHALLENGE_TILE("Meditation"));
+    await navigateViaID(ids.CHALLENGE_TILE("Meditation"))();
     await navigateViaText("Take challenge");
     await swipeFromText("Or use an app", "up", "slow")();
     await tapText("Use a different app")();

@@ -38,7 +38,7 @@ export const performLogin =
     await loginField.tap();
     await loginField.replaceText(customer.data.email);
     await tapID(LOGIN_SCREEN_HEADER)();
-    await navigateViaID(BUTTON_LOGIN(false));
+    await navigateViaID(BUTTON_LOGIN(false))();
     await tapText("PASS")();
     await tapID(LOGIN_WITH_PASSWORD)();
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
@@ -46,7 +46,7 @@ export const performLogin =
     await passwordField.replaceText(auth.data.password);
     await tapID(LOGIN_SCREEN_HEADER)();
     fitkitAuth && (await authoriseFitkit(fitkitAuth)());
-    await navigateViaID(BUTTON_LOGIN(false));
+    await navigateViaID(BUTTON_LOGIN(false))();
     await dismissNewLooksModalIfVisible();
     await selectRegionIfVisible(region)();
   };

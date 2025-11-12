@@ -10,6 +10,7 @@ export const {
   wait,
   minimiseAndReopenApp,
   reloadOnly,
+  relaunchAppWithoutSync,
 } = navigation.common;
 
 export const { dismissStreakIfVisible } = navigation.login;

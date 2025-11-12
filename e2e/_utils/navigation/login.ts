@@ -64,7 +64,7 @@ export const logInAndGoToTab =
   ) =>
   async () => {
     await loginAsUser(customer, auth, fitkitAuth, region)();
-    await navigateViaID(NAV_BAR(tab));
+    await navigateViaID(NAV_BAR(tab), 5000)();
   };
 
 export const restartAndLoginToTab =
@@ -78,13 +78,13 @@ export const restartAndLoginToTab =
     await device.terminateApp();
     await launchApp({ delete: true });
     await loginAsUser(customer, auth, fitkitAuth)();
-    await navigateViaID(NAV_BAR(tab));
+    await navigateViaID(NAV_BAR(tab))();
   };
 
 export const dismissPLIModalIfVisible = async () => {
   try {
     await expect(element(by.text(t("Personal Insurance")))).toBeVisible();
-    await navigateViaID(BUTTON_CLOSE);
+    await navigateViaID(BUTTON_CLOSE)();
   } catch (e) {}
 };
 
@@ -148,11 +148,11 @@ export const selectRegionIfVisible = (region: string) => async () => {
 
 export const skipHealthConnection = async () => {
   try {
-    await navigateViaID(BUTTON_CLOSE, 2000);
+    await navigateViaID(BUTTON_CLOSE, 2000)();
   } catch (err) {}
 
   try {
-    await navigateViaID(SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP, 2000);
+    await navigateViaID(SCREEN_ONBOARDING_FITKIT_CONNECT_BUTTON_SKIP, 2000)();
   } catch (err) {}
 };
 

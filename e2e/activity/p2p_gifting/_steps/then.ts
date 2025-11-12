@@ -26,7 +26,6 @@ export const {
 export const {
   challengeNudgeVisible,
   hqNudgeVisible,
-  completedHQNudgeVisible,
   maximiseYucoinVisible,
   yuScreenV5HeaderVisible,
 } = screens.yuscreen;

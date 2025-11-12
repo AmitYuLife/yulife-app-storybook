@@ -32,7 +32,7 @@ export const selectAndCompleteWalkingChallenge =
   };
 
 export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) => async () => {
-  await navigateViaID(ids.CHALLENGE_TILE("Meditation"));
+  await navigateViaID(ids.CHALLENGE_TILE("Meditation"))();
   await navigateViaText("Take challenge");
 
   await waitFor(element(by.text("Use a different app")))

@@ -537,13 +537,6 @@ export const completedStreakNudgeVisible =
     await idVisible(ids.DONE_NUDGE_ICON(streakMarkdown), 4000)();
   };
 
-export const completedHQNudgeVisible =
-  (yuCoinAmount = 60) =>
-  async () => {
-    const hqMarkdown = `Check in on your health to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(ids.DONE_NUDGE_ICON(hqMarkdown))();
-  };
-
 export const completedMoodMonitorNudgeVisible = async () => {
   const moodMonitorMarkdown =
     "Keep track of how you're feeling to earn 30 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)";

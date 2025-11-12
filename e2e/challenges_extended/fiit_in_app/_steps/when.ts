@@ -46,7 +46,7 @@ export const playFiitVideo = async () => {
 export const pauseVideo =
   (pause: boolean, waitTime = 1500) =>
   async () => {
-    await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(!pause), waitTime);
+    await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(!pause), waitTime)();
   };
 
 export const minimiseAndReopenApp = async () => {

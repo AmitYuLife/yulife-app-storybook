@@ -265,7 +265,7 @@ export const selectActivityMonth =
   (monthsAgo: 0 | 1 | 2 = 0) =>
   async () => {
     const targetMonth = moment().subtract(monthsAgo, "months").format("MMMM");
-    await navigateViaID(ACTIVITY_HISTORY_MONTH(targetMonth));
+    await navigateViaID(ACTIVITY_HISTORY_MONTH(targetMonth))();
   };
 
 export const scrollUntilTextVisibleAtIndex =

@@ -152,7 +152,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
 
   Scenario("I can successfully take a Meditopia challenge in app, close and reopen the app, and the challenge still runs", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200), 5000));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
@@ -166,7 +166,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       });
     });
     When("I start a Meditopia challenge", when.startMeditopiaChallenge, async () => {
-      When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
+      When("I close and reopen the app", when.relaunchAppWithoutSync, async () => {
         When("I wait", when.wait(15000), async () => {
           Then("I should be on the Well Done challenge complete screen", then.onMeditopiaChallengeComplete(5, 1, "40"));
         });

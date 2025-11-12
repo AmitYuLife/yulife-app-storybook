@@ -83,8 +83,8 @@ export const startChallenge = (challengeTile: string) => async () => {
 
 export const startChallengeFromQuests =
   (levelButton: number, challengeName: string) => async () => {
-    await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelButton));
-    await navigateViaID(ids.CHALLENGE_TILE(challengeName));
+    await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelButton))();
+    await navigateViaID(ids.CHALLENGE_TILE(challengeName))();
     await navigateViaText("Take challenge");
 
     if (challengeName === "Meditation") {
@@ -99,15 +99,15 @@ export const startChallengeFromQuests =
   };
 
 export const startMeditationChallengeFromQuests = (levelButton: number) => async () => {
-  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelButton));
-  await navigateViaID(ids.CHALLENGE_TILE("Meditation"));
+  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelButton))();
+  await navigateViaID(ids.CHALLENGE_TILE("Meditation"))();
   await navigateViaText("Take challenge");
   await navigateViaText("Use a different app");
   await dismissNotificationScreenIfVisible();
 };
 
 export const completeShortStroll = (steps: number, waitTime: number) => async () => {
-  await navigateViaID(ids.CHALLENGE_TILE("Short Stroll"));
+  await navigateViaID(ids.CHALLENGE_TILE("Short Stroll"))();
   await navigateViaText("Take challenge");
   await navigateViaText("maybe later");
   await sendSteps(steps, waitTime)();
@@ -139,9 +139,9 @@ export const isOnChallengeLoadScreen = async () => {
 
 export const selectMeditopiaChallengeFromQuests =
   (levelButton: number, challengeName: string) => async () => {
-    await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelButton));
+    await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelButton))();
     await scrollFromID(ids.CHALLENGE_SET, "up", "fast")();
-    await navigateViaID(ids.CHALLENGE_TILE(challengeName));
+    await navigateViaID(ids.CHALLENGE_TILE(challengeName))();
   };
 
 export const onChallengeDetailsScreen = (yuCoin: string) => async () => {
@@ -296,13 +296,13 @@ export const onMeditationContentIntroScreen =
   };
 
 export const tapStartSession = async () => {
-  await navigateViaID(ids.VIDEO_PLAYER_START_BUTTON, 7000);
+  await navigateViaID(ids.VIDEO_PLAYER_START_BUTTON, 7000)();
 };
 
 export const completeMeditopiaContentSession = async () => {
   // Try dismissing "maybe later", but don't fail if it's not there
   try {
-    await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200);
+    await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200)();
   } catch (e) {
     // CTA not present, that's fine
   }
@@ -339,7 +339,7 @@ export const onMeditopiaChallengeComplete =
 export const pauseMeditopiaChallenge =
   (waitTime = 1500) =>
   async () => {
-    await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"), waitTime);
+    await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"), waitTime)();
     await tapID(ids.VIDEO_PLAY_PAUSE_BUTTON(false), waitTime)();
   };
 
@@ -352,7 +352,7 @@ export const pauseChallengeTimeVisible = async () => {
 
 export const playAndFinishMeditopiaChallenge = async () => {
   await wait(2000)();
-  await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(true));
+  await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(true))();
   await wait(18000)();
 };
 
@@ -365,7 +365,7 @@ export const startQuitAndExitMeditopiaChallenge =
   };
 
 export const quitMeditopiaChallenge = async () => {
-  await navigateViaID(ids.SCREEN_CLOSE);
+  await navigateViaID(ids.SCREEN_CLOSE)();
 };
 
 export const isOnQuitChallengeScreen = async () => {
@@ -379,11 +379,11 @@ export const isOnQuitChallengeScreen = async () => {
 };
 
 export const closeQuitChallengeScreen = async () => {
-  await navigateViaID(ids.GENERIC_SCREEN_CTA("Cancel"), 1500);
+  await navigateViaID(ids.GENERIC_SCREEN_CTA("Cancel"), 1500)();
 };
 
 export const exitMeditopiaChallenge = async () => {
-  await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"));
+  await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"))();
 };
 
 export const onChooseMeditopiaContentScreen = async () => {
@@ -397,7 +397,7 @@ export const startMeditopiaChallenge = async () => {
 };
 
 export const clickScrubber = async () => {
-  await navigateViaID(ids.VIDEO_PROGRESS_BAR);
+  await navigateViaID(ids.VIDEO_PROGRESS_BAR)();
 };
 
 export const onScreenButtonsNotVisible = async () => {
