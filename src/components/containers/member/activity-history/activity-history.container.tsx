@@ -13,7 +13,7 @@ import { getUserFeatures, getUserPassiveChallengesLastUpdate } from "@redux/user
 import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { has } from "lodash";
-import { randomUUID } from "crypto";
+import { randomUUID } from "expo-crypto";
 
 interface IProps {
   componentId: string;
