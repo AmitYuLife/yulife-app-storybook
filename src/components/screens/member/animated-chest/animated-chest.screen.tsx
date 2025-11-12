@@ -1,144 +1,127 @@
-import * as React from "react";
-import { Animated, Image, View, ViewStyle } from "react-native";
-import { ChestCoin, Text } from "@atoms";
-import { Button, LinkButton } from "@molecules";
-import styles from "./animated-chest.styles";
-import assets from "./assets";
-import { DETOX_ENABLED } from "@services/socket";
+import { memo, useCallback, useMemo, useState } from "react";
+import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
+import { useSelector } from "react-redux";
+import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { getTheme } from "@app/theme";
+import { LottieView } from "@molecules";
+import { Box, TextTemplate } from "@atoms";
+import { ControlledYuCoinCounter } from "@organisms";
+import { Style, StyleSheet } from "@styles";
+import { SafeAreaView } from "react-native";
+import { getTotalCoins } from "@redux/coins/coins.selectors";
+import { t } from "@locale";
 
-import { StyleSheet } from "@styles";
 interface IProps {
-  ctaLabel: string;
-  heading: string;
-  isLocked?: boolean;
+  reward: number;
   onPressCta: () => void;
-  onPressCtaSecondary?: () => void;
 }
 
-export default class AnimatedChestScreen extends React.PureComponent<IProps> {
-  private animationDelay: NodeJS.Timer;
-  private lidYOffset = new Animated.Value(-35);
-  private coinYOffset = new Animated.Value(500);
-  private confettiScale = new Animated.Value(0);
-  private confettiOpacity = new Animated.Value(0);
+const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
+  const [isLocked, setIsLocked] = useState(true);
 
-  public componentWillUnmount() {
-    if (this.animationDelay) {
-      clearTimeout(this.animationDelay);
-    }
-  }
+  const currentLevel = useSelector(getCurrentLevel);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { challengeSuccessScreen } = getTheme(currentLevel, yuniversalMap);
 
-  public componentDidUpdate(prevProps: IProps): void {
-    const isUnlocked = prevProps.isLocked && !this.props.isLocked;
+  const currentCoins = useSelector(getTotalCoins);
 
-    if (isUnlocked) {
-      this.animate();
-    }
-  }
+  const { heading, subheading, ctaLabel } = useMemo(() => getCopy(isLocked), [isLocked]);
 
-  public componentDidMount(): void {
-    if (this.props.isLocked) {
-      return null;
-    }
+  // because the chest coins are awarded as soon as the challenge is completed, we need to subtract the reward from the current coins
+  // until the chest is opened
+  const totalCoins = isLocked ? currentCoins - reward : currentCoins;
 
-    this.animationDelay = global.setTimeout(this.animate, 500);
-  }
-
-  public render() {
-    const { ctaLabel, heading, isLocked, onPressCta, onPressCtaSecondary } = this.props;
-
-    return (
-      <View style={styles.wrapper}>
-        <View style={styles.imageWrapper}>
-          {isLocked ? (
-            <>
-              <Image style={styles.image} source={assets.chestLocked} />
-            </>
-          ) : (
-            <>
-              <Animated.Image
-                style={{
-                  opacity: this.confettiOpacity,
-                  transform: [
-                    {
-                      scale: this.confettiScale,
-                    },
-                  ],
-                }}
-                resizeMode="contain"
-                source={assets.chestBackground}
-              />
-              <View style={styles.chestWrapper}>
-                <Animated.View
-                  style={StyleSheet.flatten([
-                    styles.lidWrapper,
-                    { transform: [{ translateY: this.lidYOffset }] },
-                  ] as ViewStyle)}
-                >
-                  <Image source={assets.chestLid} />
-                </Animated.View>
-                <Animated.View
-                  style={StyleSheet.flatten([
-                    styles.chestCoinWrapper,
-                    { transform: [{ translateY: this.coinYOffset }] },
-                  ] as ViewStyle)}
-                >
-                  <ChestCoin />
-                </Animated.View>
-                <View style={styles.chestBaseWrapper}>
-                  <Image source={assets.chestBase} />
-                </View>
-              </View>
-            </>
-          )}
-        </View>
-        <Text bold={true} style={styles.heading}>
-          {heading}
-        </Text>
-        <Button
-          testID="animated-chest-screen-cta-button"
-          size="Medium"
-          translatedLabel={ctaLabel}
-          onPress={onPressCta}
-        />
-        {onPressCtaSecondary ? (
-          <LinkButton
-            wrapperStyle={styles.secondaryCtaWrapper}
-            onPress={onPressCtaSecondary}
-            translationKey="screens.challenges.animated_chest.link_button_label"
-          />
-        ) : null}
-      </View>
-    );
-  }
-
-  private animate = () => {
-    if (DETOX_ENABLED) {
+  const onButtonPress = useCallback(() => {
+    if (isLocked) {
+      setIsLocked(false);
       return;
     }
 
-    const sequenceOne = Animated.spring(this.lidYOffset, {
-      toValue: -60,
-      useNativeDriver: true,
-    });
-    const raiseCoin = Animated.spring(this.coinYOffset, {
-      friction: 7,
-      toValue: 24,
-      useNativeDriver: true,
-    });
+    onPressCta();
+  }, [isLocked, onPressCta]);
 
-    const expandConfetti = Animated.spring(this.confettiScale, {
-      toValue: 1,
-      useNativeDriver: true,
-    });
+  return (
+    <>
+      <CentredScreen {...challengeSuccessScreen}>
+        <ControlledYuCoinCounter
+          coins={totalCoins}
+          backgroundColor="transparent"
+          textStyle={challengeSuccessScreen?.textStyle}
+        />
 
-    const showConfetti = Animated.spring(this.confettiOpacity, {
-      toValue: 1,
-      useNativeDriver: true,
-    });
+        {isLocked || !reward ? null : (
+          <Box top={130}>
+            <AnimatedPlusPoints type="collect-reward" coins={reward} textType="h3" />
+          </Box>
+        )}
+        <Box position="absolute" top={70}>
+          {isLocked ? (
+            <LottieView
+              source={require("./assets/chest-closed.json")}
+              autoPlay={true}
+              loop={true}
+              style={styles.lottie}
+            />
+          ) : (
+            <>
+              <LottieView
+                source={require("./assets/chest-opened.json")}
+                autoPlay={true}
+                loop={false}
+                style={styles.lottie}
+              />
+            </>
+          )}
+        </Box>
+        <Box
+          flex={1}
+          alignItems="center"
+          justifyContent="flex-start"
+          pt={Style.DEVICE_HEIGHT * 0.4}
+          disableAutoAdjust={true}
+        >
+          <TextTemplate type={Style.isShortToMedium() ? "h3" : "h2"} textAlign="center">
+            {heading}
+          </TextTemplate>
+          {!subheading ? null : (
+            <TextTemplate type={Style.isShortToMedium() ? "b2" : "b1"} textAlign="center">
+              {subheading}
+            </TextTemplate>
+          )}
+        </Box>
+        <SafeAreaView>
+          <Button
+            testID="animated-chest-screen-cta-button"
+            size="Large"
+            translatedLabel={ctaLabel}
+            onPress={onButtonPress}
+          />
+        </SafeAreaView>
+      </CentredScreen>
+    </>
+  );
+};
 
-    const sequenceTwo = Animated.parallel([raiseCoin, expandConfetti, showConfetti]);
+export default memo(AnimatedChestScreen);
 
-    Animated.sequence([sequenceOne, sequenceTwo]).start();
+const styles = StyleSheet.create({
+  lottie: {
+    width: Style.adjust(800),
+    height: Style.adjust(800),
+  },
+});
+
+const getCopy = (isLocked: boolean) => {
+  if (isLocked) {
+    return {
+      heading: t("screens.animated_chest.closed_chest.heading"),
+      subheading: t("screens.animated_chest.closed_chest.subheading"),
+      ctaLabel: t("screens.animated_chest.closed_chest.cta_label"),
+    };
+  }
+
+  return {
+    heading: t("screens.animated_chest.opened_chest.heading"),
+    ctaLabel: t("screens.animated_chest.opened_chest.cta_label"),
   };
-}
+};

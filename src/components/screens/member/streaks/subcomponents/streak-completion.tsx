@@ -20,7 +20,9 @@ const StreakCompletion = ({ timeRemaining, isNotValidTime, label, textColor }: I
       </View>
       {isNotValidTime ? null : (
         <>
-          <TextTemplate type="b2">{t("screens.streak.completion.next_streak")}</TextTemplate>
+          <TextTemplate color={textColor} type="b2">
+            {t("screens.streak.completion.next_streak")}
+          </TextTemplate>
           <View style={styles.timeRemainingWrapper}>
             <TextTemplate type="h2" color={textColor}>
               {timeRemaining}

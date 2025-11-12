@@ -938,6 +938,17 @@
       "claim_button": "Claim rewards",
       "open_chest_button": "Open the chest"
     },
+    "animated_chest": {
+      "closed_chest": {
+        "heading": "Level milestone reached!",
+        "subheading": "You did it!",
+        "cta_label": "Open the chest"
+      },
+      "opened_chest": {
+        "heading": "You’ve earned YuCoin! ",
+        "cta_label": "Continue"
+      }
+    },
     "wellbeing_hub": {
       "category_all": "All",
       "header_title": "Hi %{name}",
