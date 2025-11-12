@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.89.0] - 2025-11-12
+
+### Features
+
+- Feature GS-1899: Update chest modal UI
+- Feature GS-2072: Iconography stories for storybook
+
+### Bugfixes
+
+- Bugfix GS-1833: Use expo-crypto for randomUUID
+- Bugfix GS-1833: Send session ID & hastLastItem on activity history on refresh
+- Bugfix GS-1898: Streak screen styling
+- Bugfix GS-2031: Add padding on pathways screen contentContainerStyle
+- Bugfix GS-1898: Use top instead of pt on animation wrapper
+
+### Tasks
+
+- Task: Update Podfile.lock
+- Task: Upgrade YuHealth, remove permissions
+- Task CTE-468: challenge history image RTL
+- Task ISA-3758: referral screen changes
+- Task DEVOPS-4568: Use an enviroment variable for fastlane iOS S3 bucket
+- Task GS-1898: Update streak modal UI
+- Task ISA-3844: Wellbeing Hub items query change'
+- Task DEVOPS-4565: Add Storybook build CI job on MRs
+- (grafted) Task ISA-3836: Concatonate url to message
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Fix ISA-3843: Make http restriction for inbox message icon more lenient
+- Detox GS-2071: Referrals Screen
+- Detox:Purge dhq scenario
+- Fix ISA-3836: Share dialog url param
+- CTE-501: Separate out lp registration to avoid race
+- Detox GS-2071: Minimised App
+- Detox GS-2068: Todays Activity Query
+- Bump axios from 1.12.2 to 1.13.0
+- Purge GS-2016: Purge gameShowWallet
+- (grafted) Merge branch 'detox/gs-2061-remove-birthdays-from-specs' into 'develop'
+- (grafted) Merge branch 'detox/gs-2060-duels-step-sync' into 'develop'
+
 ## [4.88.0] - 2025-11-05
 
 ### Features
