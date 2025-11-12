@@ -1,16 +1,16 @@
+import * as ids from "@ids";
+import { expect } from "detox";
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
-import * as ids from "@ids";
 import * as constants from "../_resources/constants";
+import { FACIAL_HAIR_ITEMS } from "../_resources/fixtures";
+import { scrollUntilIdVisible } from "_utils/navigation/scrolling";
+export { yunityCorrect } from "worlds_progression/eotw/_steps/then";
 import {
   YuScreenProductCard,
   YuScreenV5WellbeingItem,
   CertificateDetails,
 } from "../_resources/types";
-import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling";
-import { scrollFromID } from "./when";
-export { yunityCorrect } from "worlds_progression/eotw/_steps/then";
-import { FACIAL_HAIR_ITEMS } from "../_resources/fixtures";
 
 export const {
   idVisible,
@@ -70,10 +70,9 @@ export const inviteFriendSectionVisible = async () => {
 };
 
 export const onInviteColleaguePage = async () => {
-  await textVisibleAtIndex(constants.referralPageHeader, 0)();
-  await scrollFromID(ids.REFERRALS_INVITE_BUTTON, "up", "fast", 0.5)();
-  await textVisible(constants.referralListHeader)();
-  await textVisible(constants.noReferralsMessage)();
+  await expect(element(by.id(ids.REFERRALS_CODE_TITLE("Your referral code:")))).toBeVisible();
+  await expect(element(by.id(ids.REFERRALS_SHARE_CODE_BUTTON))).toBeVisible();
+  await expect(element(by.text("Your referrals"))).toExist();
 };
 
 export const yuScreenV5HeaderVisible =

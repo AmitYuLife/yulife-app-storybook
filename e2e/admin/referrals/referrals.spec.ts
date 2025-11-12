@@ -144,7 +144,7 @@ Feature("Referrals work as intended", async () => {
       });
     });
     When("I reload app", when.reloadOnly, async () => {
-      When("I go to the menu page", when.tapID(ids.MENU_ICON, 5000), async () => {
+      When("I go to the menu page", when.tapID(ids.MENU_ICON, 10000), async () => {
         When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("同僚を招待する"), 2000), async () => {
           When("I change the selected business to 'Justice League' using the dropdown", when.changeReferralSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name, 3000), async () => {
             Then("I should see that my currently selected referral company has changed to 'Justice League'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name), 2000));

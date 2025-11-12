@@ -18,12 +18,7 @@ export const {
   testMultipleIndexesVisibility,
 } = navigation.common;
 
-export const {
-  challengeNudgeVisible,
-  hqNudgeVisible,
-  completedHQNudgeVisible,
-  maximiseYucoinVisible,
-} = screens.yuscreen;
+export const { challengeNudgeVisible, hqNudgeVisible, maximiseYucoinVisible } = screens.yuscreen;
 
 export const { scrollUntilTextVisible, scrollFromID } = navigation.scrolling;
 

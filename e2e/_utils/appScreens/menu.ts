@@ -20,7 +20,7 @@ export const menuItemsVisible = (supportLevel: "basic" | "enhanced") => async ()
 };
 
 export const tapMenuItem = (menuItem: string) => async () => {
-  await navigateViaID(MENU_ITEM(menuItem), 5000);
+  await navigateViaID(MENU_ITEM(menuItem), 5000)();
 
   if (process.env.SKIP_ASSERTIONS) {
     // this is needed to wait for the following screen to open since Then won't wait for it

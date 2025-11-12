@@ -1,4 +1,3 @@
-import { dataManager } from "@yu-life/yulife-bdd-framework";
 import {
   BUTTON_CLOSE_HEADER,
   COUNTDOWN_UNIT,
@@ -7,12 +6,13 @@ import {
   NAV_BAR,
   NEXT_BUTTON_DUEL_ONBOARDING,
 } from "@ids";
-import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
-import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
-import { scrollUntilTextVisible } from "./scrolling";
+import { getLocalisedString as t } from "@i18n";
 import { DeviceLaunchAppConfig } from "detox/detox";
+import { scrollUntilTextVisible } from "./scrolling";
+import { dismissNewLooksModalIfVisible } from "./login";
+import { dataManager } from "@yu-life/yulife-bdd-framework";
 
 /**
  * If a CI/CD has a default language for its simulator e.g. en-US
@@ -88,7 +88,7 @@ export const reloadAppToTab =
   (tab: "yucoin" | "quests" | "leaderboard" | "rewards") => async () => {
     await device.reloadReactNative();
     await dismissNewLooksModalIfVisible();
-    await navigateViaID(NAV_BAR(tab));
+    await navigateViaID(NAV_BAR(tab), 5000)();
   };
 
 export const reloadOnly = async () => {
@@ -100,10 +100,13 @@ export const wait =
   async () =>
     new Promise((resolve) => setTimeout(resolve, timeout));
 
-export const navigateViaID = async (id: string, waitTime?: number) => {
-  await wait(waitTime)();
-  await element(by.id(id)).tap();
-};
+export const navigateViaID =
+  (id: string, waitTime = 1500) =>
+  async () => {
+    const target = element(by.id(id));
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
+    await target.tap();
+  };
 
 export const navigateViaLabel = async (label: string) => {
   await waitFor(element(by.label(label))).toBeVisible();
@@ -358,7 +361,7 @@ export const completeOnboardingIntro =
       LETS_GO_BUTTON_DUEL_ONBOARDING,
     ];
     for (const step of steps) {
-      await navigateViaID(step, waitTime);
+      await navigateViaID(step, waitTime)();
     }
   };
 

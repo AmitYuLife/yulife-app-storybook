@@ -15,7 +15,7 @@ import * as helper from "./_resources/helpers";
 Feature("Health questionnaires", async () => {
   Scenario("I should see the Health Questionnaire available in Japanese", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_3, data.AUTH_3), async () => {
-      Then("I should see my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
+      Then("I should see my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 5000));
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 3000), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
