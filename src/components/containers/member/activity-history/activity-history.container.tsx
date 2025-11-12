@@ -9,10 +9,11 @@ import { useBackHandler } from "@hooks";
 import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
-import { getUserFeatures } from "@redux/user/user.selectors";
+import { getUserFeatures, getUserPassiveChallengesLastUpdate } from "@redux/user/user.selectors";
 import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { has } from "lodash";
+import { randomUUID } from "crypto";
 
 interface IProps {
   componentId: string;
@@ -53,6 +54,8 @@ const ActivityHistoryContainer = ({ componentId }: IProps) => {
     getActivityHistory();
   }, [monthSelected]);
 
+  const { sessionId } = useSelector(getUserPassiveChallengesLastUpdate);
+
   const onRefresh = useCallback(async () => {
     Logger.logEvent("activity_history_updated");
 
@@ -72,10 +75,14 @@ const ActivityHistoryContainer = ({ componentId }: IProps) => {
 
     const payload = [...stepsResults, ...meditationResults, ...cyclingResults];
 
+    const querySessionId = sessionId || randomUUID();
+
     if (payload.length) {
       try {
+        // sessionId is only generated on sendAllPassiveActivitySinceLastUpdate.saga.
+        // If it exists, let it handle the sending of lastItem for session, else, allow this mutation to send hasLastItem
         const response = await upsertDailyPassivesMutation({
-          variables: { payload },
+          variables: { payload, sessionId: querySessionId, hasLastItem: !sessionId },
         });
 
         if (response?.data && has(response.data, "upsertDailyPassives")) {
@@ -87,7 +94,7 @@ const ActivityHistoryContainer = ({ componentId }: IProps) => {
         Logger.error(e, { event: "@activity_history_reload_catched" });
       }
     }
-  }, [features]);
+  }, [features, sessionId]);
 
   const onRightIconPress = useCallback(() => Navigation.pop(componentId), [componentId]);
   const onMonthSelected = useCallback(
