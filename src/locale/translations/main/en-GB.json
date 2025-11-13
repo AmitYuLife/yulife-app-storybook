@@ -282,13 +282,14 @@
       "or": "OR"
     },
     "breathing_exercise": {
-      "length": "Length",
+      "length": "Choose a length",
       "mouth": "Mouth",
       "nose": "Nose",
       "inhale": "Inhale",
       "exhale": "Exhale",
       "hold": "Hold",
-      "end": "End"
+      "end": "Well done!",
+      "completed_exercise": "You've completed the exercise"
     },
     "today_earning": {
       "heading": {
@@ -1727,6 +1728,10 @@
     }
   },
   "overlays": {
+    "breathing_exercise_duration_picker": {
+      "title": "Choose a length",
+      "button_label": "Start"
+    },
     "leaderboard_community": {
       "button_label": "View Leaderboard"
     },

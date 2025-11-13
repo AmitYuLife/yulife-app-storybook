@@ -200,6 +200,7 @@ export const MODALS = {
   sudokuLeaderboardConsent: "yulife.modals.sudokuLeaderboardConsent",
   leaderboardCommunityOverlay: "yulife.overlay.leaderboardCommunity",
   businessAccountsOverlay: "yulife.overlay.businessAccounts",
+  breathingExerciseDurationPicker: "yulife.overlay.breathingExerciseDurationPicker",
   challengeNoData: "yulife.modals.challengeNoData",
   joinLeaderboardOverlay: "yulife.overlay.joinLeaderboard",
   smokingCheckInOverlay: "yulife.overlay.smokingCheckIn",
