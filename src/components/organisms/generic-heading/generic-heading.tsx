@@ -22,6 +22,7 @@ function GenericHeading(props: IGenericHeadingProps) {
     rightIconTestID,
     leftIconTestID,
     disabled,
+    logoType,
   } = props;
 
   return (
@@ -47,7 +48,7 @@ function GenericHeading(props: IGenericHeadingProps) {
         style={styles.centerSection}
       >
         {!heading ? (
-          <Logo logo={logo} />
+          <Logo logo={logo} type={logoType} />
         ) : typeof heading === "string" ? (
           <Box style={styles.centerTextWrapper}>
             <TextTemplate numberOfLines={1} type="b1b" color={color} accessibilityLabel={heading}>
