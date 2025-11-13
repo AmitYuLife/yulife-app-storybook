@@ -1,6 +1,7 @@
 import { ViewStyle } from "react-native";
 import { ReactNode } from "react";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { IYuLifeLogoProps } from "@atoms/logo";
 
 type IRightIcon = "SETTINGS" | "CLOSE" | "EDIT" | "PLUS" | "Done" | "SAVE" | "COINS";
 export type GenericHeadingLogo = "yulife";
@@ -19,6 +20,7 @@ interface ICommonHeadingProps {
   RightIcon?: JSX.Element;
   rightIconTestID?: string;
   style?: ViewStyle;
+  logoType?: IYuLifeLogoProps["type"];
 }
 
 export type IGenericHeadingProps = ICommonHeadingProps;

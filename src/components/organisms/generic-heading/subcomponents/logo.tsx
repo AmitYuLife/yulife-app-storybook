@@ -1,16 +1,17 @@
 import React, { memo } from "react";
-import { default as YuLifeLogo } from "@atoms/logo";
+import { IYuLifeLogoProps, default as YuLifeLogo } from "@atoms/logo";
 
 interface Props {
   logo: "yulife";
+  type?: IYuLifeLogoProps["type"];
 }
 
-const _Logo = ({ logo }: Props) => {
+const _Logo = ({ logo, type }: Props) => {
   if (logo !== "yulife") {
     return null;
   }
 
-  return <YuLifeLogo />;
+  return <YuLifeLogo type={type} />;
 };
 
 export const Logo = memo(_Logo);

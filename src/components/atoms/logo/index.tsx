@@ -4,7 +4,7 @@ import { StyleProp, ViewStyle } from "react-native";
 import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 
 type IType = "full" | "logo-only" | "text-only" | "inverted";
-interface IProps {
+export interface IYuLifeLogoProps {
   type?: IType;
   scale?: number;
   colour?: string;
@@ -22,7 +22,7 @@ export const Logo = ({
   style = {},
   width,
   height,
-}: IProps) => {
+}: IYuLifeLogoProps) => {
   switch (type) {
     case "full":
       return (

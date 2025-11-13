@@ -258,7 +258,8 @@ const BreathingExerciseContainer = ({ data }: Props) => {
         </Box>
       </Box>
       <GenericHeadingAbsolute
-        logo="yulife" // TODO - introduce white logo in the next MR
+        logo="yulife"
+        logoType="inverted"
         rightIcon="CLOSE"
         onRightIconPress={handleClose}
         color={Colours.neutral.white}
