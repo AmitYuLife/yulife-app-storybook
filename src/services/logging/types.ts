@@ -97,7 +97,10 @@ export type MixpanelEvent =
   | "achievement_view"
   | "achievement_click"
   | "breathing_exercise_started"
-  | "breathing_exercise_completed";
+  | "breathing_exercise_completed"
+  | "breathing_exercise_paused"
+  | "breathing_exercise_resumed"
+  | "breathing_exercise_closed";
 
 export enum UserSupportLevel {
   Basic = "basic",
