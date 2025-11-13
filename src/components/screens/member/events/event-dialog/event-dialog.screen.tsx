@@ -263,16 +263,18 @@ const EventDialogScreen = ({
                   {progressText}
                 </TextTemplate>
               </Box>
-              <ProgressBar
-                max={maxProgress}
-                current={currentProgress}
-                width={PROGRESS_BAR_WIDTH}
-                isDisabled={!isEventActive}
-                milestones={milestones.map((value, index) => ({
-                  value,
-                  rewardClaimed: rewards[index]?.status === "claimed",
-                }))}
-              />
+              <Box pl={24} alignItems="center" justifyContent="center" dir="ltr">
+                <ProgressBar
+                  max={maxProgress}
+                  current={currentProgress}
+                  width={PROGRESS_BAR_WIDTH}
+                  isDisabled={!isEventActive}
+                  milestones={milestones.map((value, index) => ({
+                    value,
+                    rewardClaimed: rewards[index]?.status === "claimed",
+                  }))}
+                />
+              </Box>
             </>
           )}
 
