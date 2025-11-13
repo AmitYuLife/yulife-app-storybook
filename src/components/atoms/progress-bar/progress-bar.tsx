@@ -109,7 +109,7 @@ const ProgressBar = ({
 
   // these extra pixels are so that rounded edges and pulse animations are not cut off outside the viewBox
   const adjustedWidth = useMemo(() => fullWidth + 22, [fullWidth]);
-  const svgStyle = useMemo(() => ({ top: -1, start: -1, marginVertical: -11 }), []);
+  const svgStyle = useMemo(() => ({ marginVertical: -12 }), []);
   const svgHeight = adjustedHeight + 30;
 
   const progress = useMemo(() => (current > max ? max : current) / max, [current, max]);

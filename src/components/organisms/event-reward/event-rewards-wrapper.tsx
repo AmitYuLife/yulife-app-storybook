@@ -3,7 +3,7 @@ import React, { memo, useCallback } from "react";
 
 import { Style, StyleSheet } from "@styles";
 import EventReward, { IReward } from "./event-reward";
-import { FlashList, ListRenderItem } from "@shopify/flash-list";
+import { FlatList } from "@atoms";
 
 interface IEventRewardWrapperProps {
   rewards: IReward[];
@@ -22,8 +22,8 @@ const EventRewardWrapper = ({
 }: IEventRewardWrapperProps) => {
   const { width, marginHorizontal, paddingHorizontal } = getRewardStyles(rewards?.length);
 
-  const renderReward = useCallback<ListRenderItem<IReward>>(
-    ({ item }) => (
+  const renderReward = useCallback(
+    ({ item }: { item: IReward }) => (
       <EventReward
         reward={item}
         width={width}
@@ -38,22 +38,27 @@ const EventRewardWrapper = ({
 
   return (
     <View style={styles.wrapper}>
-      <FlashList
+      <FlatList
         data={rewards}
         horizontal={true}
         pagingEnabled={false}
         decelerationRate={0.9}
         renderItem={renderReward}
         keyExtractor={keyExtractor}
-        scrollEnabled={rewards?.length > 2}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        estimatedItemSize={ESTIMATED_ITEM_SIZE}
         contentContainerStyle={{ paddingHorizontal }}
+        getItemLayout={getItemLayout}
       />
     </View>
   );
 };
+
+const getItemLayout = (_: unknown, index: number) => ({
+  length: ESTIMATED_ITEM_SIZE,
+  offset: ESTIMATED_ITEM_SIZE * index,
+  index,
+});
 
 const keyExtractor = (reward: IReward) => reward.id;
 

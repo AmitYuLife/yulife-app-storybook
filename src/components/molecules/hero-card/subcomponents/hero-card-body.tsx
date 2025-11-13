@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { Box, ProgressBar } from "@atoms";
 import { HeroCardBody as HeroCardBodyProps, HeroCardProgressMilestoneState } from "@utils/heroCards";
+import { isRTL } from "@locale";
 
 const HeroCardBody = ({ progress, cardWidth, cardPadding }: HeroCardBodyProps) => {
   if (!progress?.milestones?.length) {
@@ -8,7 +9,7 @@ const HeroCardBody = ({ progress, cardWidth, cardPadding }: HeroCardBodyProps) =
   }
 
   return (
-    <Box flex={1}>
+    <Box flex={1} ml={isRTL() ? -20 : 0}>
       <ProgressBar
         type="compact"
         width={cardWidth - cardPadding * 2}
