@@ -225,7 +225,7 @@
     },
     "you": "أنت"
   },
-  "leaderboard": "قائمة المتصدرين",
+  "leaderboard": "الترتيب",
   "meditation": "تأمل",
   "meditation_progress": {
     "paused": "تم إيقاف التأمل مؤقتًا",
@@ -765,6 +765,17 @@
       "header_mid": "النشاط والتقدم",
       "header_right": "يوكوين",
       "heading": "تاريخ النشاط"
+    },
+    "animated_chest": {
+      "closed_chest": {
+        "cta_label": "افتح الصندوق",
+        "heading": "تم بلوغ معلم المستوى!",
+        "subheading": "لقد نجحت!"
+      },
+      "opened_chest": {
+        "cta_label": "استمرار",
+        "heading": "لقد ربحت يوكوين!"
+      }
     },
     "battle_pass": {
       "accessibility": {

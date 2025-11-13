@@ -766,6 +766,17 @@
       "header_right": "yucoin",
       "heading": "活動履歴"
     },
+    "animated_chest": {
+      "closed_chest": {
+        "cta_label": "コインボックスを開く",
+        "heading": "レベルの節目に到達しました！",
+        "subheading": "よくできました!"
+      },
+      "opened_chest": {
+        "cta_label": "続ける",
+        "heading": "YuCoin を獲得しました！"
+      }
+    },
     "battle_pass": {
       "accessibility": {
         "donate_button": "%{title}に%{amount}yucoinを寄付する",

@@ -766,6 +766,17 @@
       "header_right": "YuCoin",
       "heading": "Historial de actividades"
     },
+    "animated_chest": {
+      "closed_chest": {
+        "cta_label": "Abrir el cofre",
+        "heading": "¡Nivel alcanzado!",
+        "subheading": "¡Lo conseguiste!"
+      },
+      "opened_chest": {
+        "cta_label": "Continuar",
+        "heading": "¡Has ganado YuCoin!"
+      }
+    },
     "battle_pass": {
       "accessibility": {
         "donate_button": "Dona %{amount} YuCoin a %{title}",

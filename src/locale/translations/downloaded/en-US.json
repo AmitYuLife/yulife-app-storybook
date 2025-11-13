@@ -766,6 +766,17 @@
       "header_right": "yucoin",
       "heading": "Activity history"
     },
+    "animated_chest": {
+      "closed_chest": {
+        "cta_label": "Open the chest",
+        "heading": "Level milestone reached!",
+        "subheading": "You did it!"
+      },
+      "opened_chest": {
+        "cta_label": "Continue",
+        "heading": "You've earned YuCoin!"
+      }
+    },
     "battle_pass": {
       "accessibility": {
         "donate_button": "Donate %{amount} yu coin to %{title}",
