@@ -161,16 +161,16 @@ export const END_WALKING_CHALLENGE_FAKE_TIME = async () => {
     Then("I should see the well done screen", then.onChallengeComplete(3050, 7));
   });
   When("I tap collect on the well done screen", when.tapText("Collect", 1000), async () => {
-    Then("I should see the first day streak screen", then.textVisible("First day done!", 3000));
+    Then("I should see the chest modal appear", then.idVisible(ids.ANIMATED_CHEST_MODAL, 3000));
   });
-  When("I dismiss the streak screen", when.tapText("Done", 5000), async () => {
+  When("I tap collect to open the chest", when.tapText("Open the chest", 3000), async () => {
+    Then("I should see the chest unlocked screen", then.textVisible("You’ve earned YuCoin!", 3000));
+  });
+  When("I tap to continue", when.tapID(ids.ANIMATED_CHEST_BUTTON, 3000), async () => {
     Then(
-      "I should see the chest unlocked screen telling me I get 200 yucoin",
-      then.textVisible("You get 200 YuCoin", 2000)
+      "I should see the first day streak screen modal",
+      then.textVisible("First day done!", 3000)
     );
-  });
-  When("I tap collect on the collect reward screen", when.tapText("Collect", 1000), async () => {
-    Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(8), 3000));
   });
 
   jest.useRealTimers();
