@@ -96,11 +96,6 @@ const DailyStepsScreen = ({
     });
   }, [userSurge]);
 
-  const getScreenProps = useMemo(
-    () => (!hasPermission ? theme.dailyStepsScreen.offline : theme.dailyStepsScreen.online),
-    [hasPermission, theme]
-  );
-
   const leftIcons = useMemo(
     () => [
       {
@@ -151,7 +146,7 @@ const DailyStepsScreen = ({
       importantForAccessibility={androidImportantForAccessibility}
       accessibilityElementsHidden={accessibilityElementsHidden}
     >
-      <CentredScreen {...getScreenProps} testID={DAILY_STEPS_SCREEN}>
+      <CentredScreen {...theme.dailyStepsScreen.online} testID={DAILY_STEPS_SCREEN}>
         <Pad height={getPadHeight(hasEvents, currentLevel)} />
         <TouchableOpacityWithDelay
           onPress={onCoinPress}

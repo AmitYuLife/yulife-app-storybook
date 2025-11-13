@@ -23,12 +23,6 @@ const LINE_COLOR = Colours.activityHistoryHeading;
 
 export const yuniversalStyles: IThemeScreens = {
   dailyStepsScreen: {
-    offline: {
-      backgroundImage: require("@assets/yuniversal/gray_yuniversal_1.png"),
-      isLottie: false,
-      isFullScreen: true,
-      style: null,
-    },
     online: {
       backgroundImage: require("@assets/yuniversal/yuniversal_1.json"),
       isLottie: true,
@@ -94,12 +88,6 @@ export const planetStyles: ITheme = {
   [Planets.EARTH]: {
     [0]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"),
-          style: { backgroundColor: Colours.backgrounds.lightGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/earth/forest.png"),
           style: {
@@ -173,12 +161,6 @@ export const planetStyles: ITheme = {
     },
     [1]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-ocean.png"),
-          style: { backgroundColor: Colours.backgrounds.mediumGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/earth/ocean.png"),
           style: {
@@ -247,12 +229,6 @@ export const planetStyles: ITheme = {
     },
     [2]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-desert.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/earth/desert.png"),
           style: {
@@ -324,12 +300,6 @@ export const planetStyles: ITheme = {
     },
     [3]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-mountain.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/earth/mountain.png"),
           style: {
@@ -402,12 +372,6 @@ export const planetStyles: ITheme = {
   [Planets.RED]: {
     [0]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"),
-          style: { backgroundColor: Colours.backgrounds.lightGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/red/forest.png"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
@@ -474,12 +438,6 @@ export const planetStyles: ITheme = {
     },
     [1]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-ocean.png"),
-          style: { backgroundColor: Colours.backgrounds.mediumGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/red/ocean.png"),
           style: {
@@ -546,12 +504,6 @@ export const planetStyles: ITheme = {
     },
     [2]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-desert.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/red/desert.png"),
           style: {
@@ -621,12 +573,6 @@ export const planetStyles: ITheme = {
     },
     [3]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-mountain.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/red/mountain.png"),
           style: {
@@ -697,12 +643,6 @@ export const planetStyles: ITheme = {
   [Planets.BRIGHT]: {
     [0]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"),
-          style: { backgroundColor: Colours.backgrounds.lightGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/bright/forest.png"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
@@ -769,12 +709,6 @@ export const planetStyles: ITheme = {
     },
     [1]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-ocean.png"),
-          style: { backgroundColor: Colours.backgrounds.mediumGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/bright/ocean.png"),
           style: {
@@ -841,12 +775,6 @@ export const planetStyles: ITheme = {
     },
     [2]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-desert.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/bright/desert.png"),
           style: {
@@ -916,12 +844,6 @@ export const planetStyles: ITheme = {
     },
     [3]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-mountain.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/bright/mountain.png"),
           style: {
@@ -992,13 +914,6 @@ export const planetStyles: ITheme = {
   [Planets.ORANGE]: {
     [0]: {
       dailyStepsScreen: {
-        offline: {
-          // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"),
-          style: { backgroundColor: Colours.backgrounds.lightGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/orange/forest.png"),
@@ -1070,13 +985,6 @@ export const planetStyles: ITheme = {
     },
     [1]: {
       dailyStepsScreen: {
-        offline: {
-          // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-ocean.png"),
-          style: { backgroundColor: Colours.backgrounds.mediumGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/orange/ocean.png"),
@@ -1151,13 +1059,6 @@ export const planetStyles: ITheme = {
     },
     [2]: {
       dailyStepsScreen: {
-        offline: {
-          // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-desert.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/orange/desert.png"),
@@ -1233,12 +1134,6 @@ export const planetStyles: ITheme = {
     },
     [3]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-mountain.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/orange/mountain.png"),
@@ -1314,13 +1209,6 @@ export const planetStyles: ITheme = {
   [Planets.PURPLE]: {
     [0]: {
       dailyStepsScreen: {
-        offline: {
-          // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"),
-          style: { backgroundColor: Colours.backgrounds.lightGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/purple/forest.png"),
@@ -1394,13 +1282,6 @@ export const planetStyles: ITheme = {
     },
     [1]: {
       dailyStepsScreen: {
-        offline: {
-          // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-ocean.png"),
-          style: { backgroundColor: Colours.backgrounds.mediumGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/purple/ocean.png"),
@@ -1476,13 +1357,6 @@ export const planetStyles: ITheme = {
     },
     [2]: {
       dailyStepsScreen: {
-        offline: {
-          // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-desert.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/purple/desert.png"),
@@ -1558,12 +1432,6 @@ export const planetStyles: ITheme = {
     },
     [3]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-mountain.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/purple/mountain.png"),
@@ -1640,12 +1508,6 @@ export const planetStyles: ITheme = {
   [Planets.RING]: {
     [0]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"),
-          style: { backgroundColor: Colours.backgrounds.lightGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/ring/forest.webp"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
@@ -1714,12 +1576,6 @@ export const planetStyles: ITheme = {
     },
     [1]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-ocean.png"),
-          style: { backgroundColor: Colours.backgrounds.mediumGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/ring/ocean.webp"),
           style: {
@@ -1790,12 +1646,6 @@ export const planetStyles: ITheme = {
     },
     [2]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-desert.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/ring/desert.webp"),
           style: {
@@ -1867,12 +1717,6 @@ export const planetStyles: ITheme = {
     },
     [3]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-mountain.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/ring/mountain.webp"),
           style: {
@@ -1945,12 +1789,6 @@ export const planetStyles: ITheme = {
   [Planets.LUNAR]: {
     [0]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"),
-          style: { backgroundColor: Colours.backgrounds.lightGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/lunar/forest.webp"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
@@ -2019,12 +1857,6 @@ export const planetStyles: ITheme = {
     },
     [1]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-ocean.png"),
-          style: { backgroundColor: Colours.backgrounds.mediumGray, ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/lunar/ocean.webp"),
           style: {
@@ -2095,12 +1927,6 @@ export const planetStyles: ITheme = {
     },
     [2]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-desert.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/lunar/desert.webp"),
           style: {
@@ -2172,12 +1998,6 @@ export const planetStyles: ITheme = {
     },
     [3]: {
       dailyStepsScreen: {
-        offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-mountain.png"),
-          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
-          isLottie: false,
-          isFullScreen: false,
-        },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/lunar/mountain.webp"),
           style: {
