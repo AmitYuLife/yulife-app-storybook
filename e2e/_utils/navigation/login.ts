@@ -38,16 +38,20 @@ export const loginAsUser =
   ) =>
   async () => {
     // // wait for the app to load
-    await waitFor(element(by.id(LOGIN_HERO_LOGIN_BUTTON)));
+    await waitFor(element(by.id(LOGIN_HERO_LOGIN_BUTTON)))
+      .toBeVisible()
+      .withTimeout(15_000);
 
     await loginWithCredentials(customer.data.email, auth.data.password, region)();
 
     // wait for daily steps to load
-    await waitFor(element(by.label("YuCoin")));
+    await waitFor(element(by.label("YuCoin")))
+      .toBeVisible()
+      .withTimeout(10_000);
 
     if (fitkitAuth) {
       // wait for the daily steps container to initialise
-      await wait(1_000)();
+      await wait(5_000)();
 
       // auth fitkit
       await authoriseFitkit(fitkitAuth)();
@@ -64,7 +68,7 @@ export const logInAndGoToTab =
   ) =>
   async () => {
     await loginAsUser(customer, auth, fitkitAuth, region)();
-    await navigateViaID(NAV_BAR(tab), 5000)();
+    await navigateViaID(NAV_BAR(tab), 7_000)();
   };
 
 export const restartAndLoginToTab =
