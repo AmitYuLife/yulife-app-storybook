@@ -12,7 +12,6 @@ export interface IScreen {
 }
 export interface IThemeScreens {
   dailyStepsScreen: {
-    offline: IScreen;
     online: IScreen;
     hasWhiteGlow?: boolean;
     isLight?: boolean;
