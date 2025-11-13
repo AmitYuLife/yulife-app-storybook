@@ -10,6 +10,7 @@ import { Style, StyleSheet } from "@styles";
 import { SafeAreaView } from "react-native";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { t } from "@locale";
+import { ANIMATED_CHEST_BUTTON, ANIMATED_CHEST_MODAL } from "@ids";
 
 interface IProps {
   reward: number;
@@ -42,7 +43,7 @@ const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
 
   return (
     <>
-      <CentredScreen {...challengeSuccessScreen}>
+      <CentredScreen {...challengeSuccessScreen} testID={ANIMATED_CHEST_MODAL}>
         <ControlledYuCoinCounter
           coins={totalCoins}
           backgroundColor="transparent"
@@ -90,12 +91,7 @@ const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
           )}
         </Box>
         <SafeAreaView>
-          <Button
-            testID="animated-chest-screen-cta-button"
-            size="Large"
-            translatedLabel={ctaLabel}
-            onPress={onButtonPress}
-          />
+          <Button testID={ANIMATED_CHEST_BUTTON} size="Large" translatedLabel={ctaLabel} onPress={onButtonPress} />
         </SafeAreaView>
       </CentredScreen>
     </>

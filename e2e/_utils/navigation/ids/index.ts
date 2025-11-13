@@ -269,6 +269,7 @@ export const CONTENT_ITEM_SCALE = `CONTENT_ITEM_SCALE`;
 export const CONTENT_ITEM_SLIDER = `CONTENT_ITEM_SLIDER`;
 export const SLIDABLE_POSITION = (value: number) => `SLIDABLE_POSITION_${value}`;
 export const DRAGGABLE_SLIDER_POSITION = (value: number) => `DRAGGABLE_SLIDER_POSITION_${value}`;
+export const ANIMATED_CHEST_MODAL = "ANIMATED_CHEST_MODAL";
 
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`;

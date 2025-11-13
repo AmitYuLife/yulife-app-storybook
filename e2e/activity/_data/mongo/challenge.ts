@@ -336,7 +336,7 @@ export const CHALLENGE_USER_15_D = {
     ...CHALLENGE_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_15.data.customerId,
-    ...generateChallengeDates(moment().subtract(1, "days")),
+    ...generateChallengeDates(moment().subtract(1, "hour")),
     date: null,
     incomingData: {
       steps: 450,

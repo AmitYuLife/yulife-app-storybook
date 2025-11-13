@@ -946,7 +946,7 @@
         "cta_label": "Open the chest"
       },
       "opened_chest": {
-        "heading": "You’ve earned YuCoin! ",
+        "heading": "You’ve earned YuCoin!",
         "cta_label": "Continue"
       }
     },

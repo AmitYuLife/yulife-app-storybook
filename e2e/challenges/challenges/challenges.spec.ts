@@ -100,7 +100,7 @@ Feature("As a user I can take a challenge", async () => {
     When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {
       Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."));
     });
-    When("I tap 'lets do it'", when.tapText(t("Let's do it")), async () => {
+    When("I tap 'lets do it'", when.tapText("Let's do it", 3000), async () => {
       Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
       Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
       Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
@@ -112,21 +112,21 @@ Feature("As a user I can take a challenge", async () => {
     When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(3050, 7));
     });
-    When("I tap collect on the well done screen", when.tapText(t("Collect"), 3000), async () => {
-      When("I wait 10 seconds", when.wait(10000), async () => {
-        Then("I should see the first day streak screen", then.textVisible("First day done!"));
+    When("I tap collect on the well done screen", when.tapText("Collect", 3000), async () => {
+      Then("I should see the chest modal appear", then.idVisible(ids.ANIMATED_CHEST_MODAL, 3000));
+    });
+    When("I tap collect to open the chest", when.tapText("Open the chest", 3000), async () => {
+      Then("I should see the chest unlocked screen", then.textVisible("You’ve earned YuCoin!", 3000));
+    });
+    When("I tap to continue", when.tapID(ids.ANIMATED_CHEST_BUTTON, 3000), async () => {
+      Then("I should see the first day streak screen modal", then.textVisible("First day done!", 3000));
+    });
+    When("I dismiss the streak screen", when.tapText("Done", 5000), async () => {
+      When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
+        Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1050), 1000));
+        Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(3050), 1000));
+        Then("I should see the number of coins I've earned today (450)", then.textVisible("490 YuCoin today", 1000));
       });
-    });
-    When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
-      Then("I should see the chest unlocked screen telling me I get 200 yucoin", then.textVisible("You get 200 YuCoin", 2000));
-    });
-    When("I tap collect on the collect reward screen", when.tapText(t("Collect"), 1000), async () => {
-      Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(8), 3000));
-    });
-    When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1050)));
-      Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(3050)));
-      Then("I should see the number of coins I've earned today (450)", then.textVisible("490 YuCoin today"));
     });
   });
 
