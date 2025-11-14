@@ -37,7 +37,12 @@ const QuestMapEpisode = ({ episode, height }: IQuestMapDayProps) => {
 
       <View style={backgroundContainerStyle} pointerEvents="box-none">
         <View style={lottieStyles} pointerEvents="none">
-          <Image source={episode.episodeConfig.background} style={lottieStyles} resizeMode="contain" />
+          <Image
+            source={episode.episodeConfig.background}
+            style={lottieStyles}
+            resizeMode="contain"
+            resizeMethod="scale"
+          />
         </View>
         {!episode.levels?.length ? null : (
           <EpisodeLevels

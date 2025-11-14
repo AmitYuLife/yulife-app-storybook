@@ -76,30 +76,27 @@ const BackgroundWrapper: React.FC<PropsWithChildren> = ({ children }) => {
 };
 
 const Background = memo(({ isFullScreen, isLottie, backgroundImage, style }: IScreen) => {
-  if (isFullScreen && !isLottie) {
+  if (isLottie) {
     return (
-      <Image resizeMode="cover" source={backgroundImage} width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT} />
+      <LottieView
+        loop={true}
+        autoPlay={true}
+        source={backgroundImage}
+        resizeMode="cover"
+        style={{ ...styles.lottie, ...style }}
+      />
+    );
+  }
+
+  if (isFullScreen) {
+    return (
+      <Image contentFit="cover" source={backgroundImage} width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT} />
     );
   }
 
   return (
-    <>
-      {isLottie ? (
-        <LottieView
-          loop={true}
-          autoPlay={true}
-          source={backgroundImage}
-          resizeMode="cover"
-          style={{
-            ...styles.lottie,
-            ...style,
-          }}
-        />
-      ) : (
-        <BackgroundWrapper>
-          <RNImage resizeMode="cover" style={style as ImageStyle} source={backgroundImage} />
-        </BackgroundWrapper>
-      )}
-    </>
+    <BackgroundWrapper>
+      <RNImage resizeMode="cover" style={style as ImageStyle} source={backgroundImage} />
+    </BackgroundWrapper>
   );
 });
