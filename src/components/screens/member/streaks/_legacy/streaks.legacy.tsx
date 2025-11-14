@@ -75,7 +75,7 @@ export const StreaksLegacy = ({
   );
 };
 
-const lottieSize = Style.adjust(800);
+const lottieSize = Style.DEVICE_WIDTH * 2;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   lottieWrapper: {
     position: "absolute",
-    top: Style.adjust(-70),
+    top: -lottieSize * 0.1,
     left: (Style.DEVICE_WIDTH - lottieSize) / 2,
     alignItems: "center",
     justifyContent: "center",

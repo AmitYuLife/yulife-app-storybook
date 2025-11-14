@@ -1322,7 +1322,7 @@ export const planetStyles: ITheme = {
           ...challengeSuccessAndFailedStyle,
           backgroundColor: Colours.gradients.cyanSoft,
         },
-        textStyle: { color: Colours.neutral.n800 },
+        textStyle: { color: Colours.neutral.white },
         lineColour: LINE_COLOR,
       },
       challengeFailedScreen: {

@@ -91,7 +91,7 @@ export const earth: { [key: number]: IThemeScreens } = {
       isLottie: false,
       backgroundImage: require("@assets/challenge-success/planets/earth/ocean.webp"),
       style: { ...fullImageStyle, backgroundColor: "#0043CA" },
-      textStyle: { color: Colours.neutral.n900 },
+      textStyle: { color: Colours.neutral.white },
       lineColour: LINE_COLOR,
     },
     challengeFailedScreen: {
