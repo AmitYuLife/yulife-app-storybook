@@ -62,15 +62,12 @@ export const yuniversalStyles: IThemeScreens = {
     isFullScreen: false,
     isLottie: false,
     textColour: Colours.darkGray,
-    backgroundImage: require("@assets/offline-screen/planets/earth/forest.png"),
+    backgroundImage: require("@assets/offline-screen/planets/earth/forest.webp"),
     style: {
       ...commonStyles,
       backgroundColor: Colours.backgrounds.lightGray,
       height: Style.adjust(344),
     },
-  },
-  questsOfflineScreen: {
-    backgroundImage: require("@assets/yuniversal/gray_yuniversal_1.png"),
   },
 };
 
@@ -132,15 +129,12 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/forest.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/forest.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.lightGray,
           height: Style.adjust(344),
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/forest.png"),
       },
     },
     [1]: {
@@ -199,14 +193,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.neutral.white,
-        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.mediumGray,
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/ocean.png"),
       },
     },
     [2]: {
@@ -268,14 +259,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/desert.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/desert.png"),
       },
     },
     [3]: {
@@ -336,14 +324,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/mountain.png"),
       },
     },
   },
@@ -403,15 +388,12 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/forest.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/forest.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.lightGray,
           height: Style.adjust(344),
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/forest.png"),
       },
     },
     [1]: {
@@ -470,14 +452,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.neutral.white,
-        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.mediumGray,
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/ocean.png"),
       },
     },
     [2]: {
@@ -539,14 +518,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/desert.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/desert.png"),
       },
     },
     [3]: {
@@ -607,14 +583,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/mountain.png"),
       },
     },
   },
@@ -622,7 +595,6 @@ export const planetStyles: ITheme = {
     [0]: {
       dailyStepsScreen: {
         online: {
-          // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/orange/forest.webp"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
           isLottie: false,
@@ -639,7 +611,6 @@ export const planetStyles: ITheme = {
         },
       },
       challengeListScreen: {
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-list/planets/orange/forest.webp"),
         style: {
           ...fullImageStyle,
@@ -650,7 +621,6 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/orange/forest.webp"),
         style: {
           ...commonStyles,
@@ -664,7 +634,6 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/orange/forest.webp"),
         style: {
           ...commonStyles,
@@ -678,22 +647,17 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/offline-screen/planets/earth/forest.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/forest.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.lightGray,
           height: Style.adjust(344),
         },
       },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/forest.png"),
-      },
     },
     [1]: {
       dailyStepsScreen: {
         online: {
-          // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/orange/ocean.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanPrimary,
@@ -714,7 +678,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n800 },
       },
       challengeListScreen: {
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-list/planets/orange/ocean.webp"),
         style: {
           ...fullImageStyle,
@@ -725,7 +688,6 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/orange/ocean.webp"),
         style: {
           ...commonStyles,
@@ -738,7 +700,6 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/orange/ocean.webp"),
         style: {
           ...commonStyles,
@@ -752,22 +713,16 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.neutral.white,
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.mediumGray,
         },
       },
-      questsOfflineScreen: {
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/quests-offline/ocean.png"),
-      },
     },
     [2]: {
       dailyStepsScreen: {
         online: {
-          // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/orange/desert.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanVeryLight,
@@ -788,7 +743,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-list/planets/orange/desert.webp"),
         style: {
           ...fullImageStyle,
@@ -799,7 +753,6 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/orange/desert.webp"),
         style: {
           ...commonStyles,
@@ -812,7 +765,6 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/orange/desert.webp"),
         style: {
           ...commonStyles,
@@ -827,22 +779,16 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/offline-screen/planets/earth/desert.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
       },
-      questsOfflineScreen: {
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/quests-offline/desert.png"),
-      },
     },
     [3]: {
       dailyStepsScreen: {
         online: {
-          // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/orange/mountain.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanUltraLight,
@@ -863,7 +809,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-list/planets/orange/mountain.webp"),
         style: {
           ...fullImageStyle,
@@ -874,7 +819,6 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/orange/mountain.webp"),
         style: {
           ...commonStyles,
@@ -886,7 +830,6 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/orange/mountain.webp"),
         style: {
           ...commonStyles,
@@ -901,15 +844,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/mountain.png"),
       },
     },
   },
@@ -917,7 +856,6 @@ export const planetStyles: ITheme = {
     [0]: {
       dailyStepsScreen: {
         online: {
-          // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/purple/forest.webp"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
           isLottie: false,
@@ -934,7 +872,6 @@ export const planetStyles: ITheme = {
         },
       },
       challengeListScreen: {
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-list/planets/purple/forest.webp"),
         style: {
           ...fullImageStyle,
@@ -946,7 +883,6 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         // TODO: this is the same as challenge list? remove one asset?
         backgroundImage: require("@assets/challenge-success/planets/purple/forest.webp"),
         style: {
@@ -961,7 +897,6 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/purple/forest.webp"),
         style: {
           ...commonStyles,
@@ -975,22 +910,17 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/offline-screen/planets/earth/forest.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/forest.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.lightGray,
           height: Style.adjust(344),
         },
       },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/forest.png"),
-      },
     },
     [1]: {
       dailyStepsScreen: {
         online: {
-          // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/purple/ocean.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanPrimary,
@@ -1011,7 +941,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n800 },
       },
       challengeListScreen: {
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-list/planets/purple/ocean.webp"),
         style: {
           ...fullImageStyle,
@@ -1023,7 +952,6 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/purple/ocean.webp"),
         style: {
           ...commonStyles,
@@ -1036,7 +964,6 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/purple/ocean.webp"),
         style: {
           ...commonStyles,
@@ -1050,22 +977,16 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.neutral.white,
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.mediumGray,
         },
       },
-      questsOfflineScreen: {
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/quests-offline/ocean.png"),
-      },
     },
     [2]: {
       dailyStepsScreen: {
         online: {
-          // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/purple/desert.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanVeryLight,
@@ -1086,7 +1007,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-list/planets/purple/desert.webp"),
         style: {
           ...fullImageStyle,
@@ -1097,7 +1017,6 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/purple/desert.webp"),
         style: {
           ...commonStyles,
@@ -1110,7 +1029,6 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/purple/desert.webp"),
         style: {
           ...commonStyles,
@@ -1125,22 +1043,16 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/offline-screen/planets/earth/desert.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
       },
-      questsOfflineScreen: {
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/quests-offline/desert.png"),
-      },
     },
     [3]: {
       dailyStepsScreen: {
         online: {
-          // TODO: Replace with webps
           backgroundImage: require("@assets/daily-screen/planets/purple/mountain.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanUltraLight,
@@ -1161,7 +1073,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-list/planets/purple/mountain.webp"),
         style: {
           ...fullImageStyle,
@@ -1173,7 +1084,6 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/purple/mountain.webp"),
         style: {
           ...commonStyles,
@@ -1185,7 +1095,6 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        // TODO: Replace with webps
         backgroundImage: require("@assets/challenge-success/planets/purple/mountain.webp"),
         style: {
           ...commonStyles,
@@ -1200,15 +1109,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        // TODO: Replace with webps
-        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/mountain.png"),
       },
     },
   },
@@ -1270,15 +1175,12 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/forest.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/forest.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.lightGray,
           height: Style.adjust(344),
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/forest.png"),
       },
     },
     [1]: {
@@ -1341,14 +1243,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.neutral.white,
-        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.mediumGray,
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/ocean.png"),
       },
     },
     [2]: {
@@ -1412,14 +1311,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/desert.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/desert.png"),
       },
     },
     [3]: {
@@ -1482,14 +1378,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/mountain.png"),
       },
     },
   },
@@ -1551,15 +1444,12 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/forest.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/forest.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.lightGray,
           height: Style.adjust(344),
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/forest.png"),
       },
     },
     [1]: {
@@ -1622,14 +1512,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.neutral.white,
-        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.backgrounds.mediumGray,
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/ocean.png"),
       },
     },
     [2]: {
@@ -1693,14 +1580,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/desert.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/desert.png"),
       },
     },
     [3]: {
@@ -1763,14 +1647,11 @@ export const planetStyles: ITheme = {
         isFullScreen: false,
         isLottie: false,
         textColour: Colours.darkGray,
-        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.png"),
+        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
-      },
-      questsOfflineScreen: {
-        backgroundImage: require("@assets/quests-offline/mountain.png"),
       },
     },
   },

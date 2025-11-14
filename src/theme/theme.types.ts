@@ -50,9 +50,6 @@ export interface IThemeScreens {
     lineColour: string;
   };
   offlineScreen: IScreen & { textColour: string };
-  questsOfflineScreen: {
-    backgroundImage: Source;
-  };
 }
 
 export interface ITheme {
