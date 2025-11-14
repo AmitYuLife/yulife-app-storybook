@@ -1,13 +1,11 @@
-import { ImageStyle, ViewStyle } from "react-native";
-import { Style, StyleSheet } from "@styles";
+import { ViewStyle } from "react-native";
+import { Colours, Style, StyleSheet } from "@styles";
 
 const styles = StyleSheet.create({
   background: {
-    height: Style.DEVICE_HEIGHT,
-    width: Style.DEVICE_WIDTH,
-  } as ImageStyle,
-  backgroundWrapper: {
     ...StyleSheet.absoluteFillObject,
+    backgroundColor: Colours.neutral.n100,
+    opacity: 0.4,
   } as ViewStyle,
   headingWrapper: {
     alignItems: "center",

@@ -5,9 +5,10 @@ import { IIcon } from "@organisms/top-bar/subcomponents/left";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getTheme } from "@theme";
 import { memo } from "react";
-import { Image, Platform, SafeAreaView, View } from "react-native";
+import { Platform, View } from "react-native";
 import { useSelector } from "react-redux";
 import styles from "./quests-offline.styles";
+import { CentredScreen } from "@components/molecules";
 
 interface IProps {
   fitkitAvailable: boolean;
@@ -17,13 +18,11 @@ interface IProps {
 function QuestsScreenOffline({ fitkitAvailable, leftIcons }: IProps) {
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
-  const { questsOfflineScreen } = getTheme(currentLevel, yuniversalMap);
+  const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <View style={styles.backgroundWrapper}>
-        <Image resizeMode="cover" style={styles.background} source={questsOfflineScreen.backgroundImage} />
-      </View>
+    <CentredScreen {...dailyStepsScreen.online}>
+      <View style={styles.background} />
       <View style={styles.headingWrapper}>
         <View>
           <TextTemplate type="h1">
@@ -42,7 +41,7 @@ function QuestsScreenOffline({ fitkitAvailable, leftIcons }: IProps) {
       </View>
       <TopBar leftIcons={leftIcons} />
       <NavBar activeIndex={1} />
-    </SafeAreaView>
+    </CentredScreen>
   );
 }
 

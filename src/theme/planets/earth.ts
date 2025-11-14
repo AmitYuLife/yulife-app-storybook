@@ -49,15 +49,12 @@ export const earth: { [key: number]: IThemeScreens } = {
       isFullScreen: false,
       isLottie: false,
       textColour: Colours.darkGray,
-      backgroundImage: require("@assets/offline-screen/planets/earth/forest.png"),
+      backgroundImage: require("@assets/offline-screen/planets/earth/forest.webp"),
       style: {
         ...commonStyles,
         backgroundColor: Colours.backgrounds.lightGray,
         height: Style.adjust(344),
       },
-    },
-    questsOfflineScreen: {
-      backgroundImage: require("@assets/quests-offline/forest.png"),
     },
   },
   [1]: {
@@ -106,14 +103,11 @@ export const earth: { [key: number]: IThemeScreens } = {
       isFullScreen: false,
       isLottie: false,
       textColour: Colours.neutral.white,
-      backgroundImage: require("@assets/offline-screen/planets/earth/ocean.png"),
+      backgroundImage: require("@assets/offline-screen/planets/earth/ocean.webp"),
       style: {
         ...commonStyles,
         backgroundColor: Colours.backgrounds.mediumGray,
       },
-    },
-    questsOfflineScreen: {
-      backgroundImage: require("@assets/quests-offline/ocean.png"),
     },
   },
   [2]: {
@@ -162,14 +156,11 @@ export const earth: { [key: number]: IThemeScreens } = {
       isFullScreen: false,
       isLottie: false,
       textColour: Colours.darkGray,
-      backgroundImage: require("@assets/offline-screen/planets/earth/desert.png"),
+      backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
       style: {
         ...commonStyles,
         backgroundColor: "rgb(235,235,235)",
       },
-    },
-    questsOfflineScreen: {
-      backgroundImage: require("@assets/quests-offline/desert.png"),
     },
   },
   [3]: {
@@ -218,14 +209,11 @@ export const earth: { [key: number]: IThemeScreens } = {
       isFullScreen: false,
       isLottie: false,
       textColour: Colours.darkGray,
-      backgroundImage: require("@assets/offline-screen/planets/earth/mountain.png"),
+      backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
       style: {
         ...commonStyles,
         backgroundColor: "rgb(235,235,235)",
       },
-    },
-    questsOfflineScreen: {
-      backgroundImage: require("@assets/quests-offline/mountain.png"),
     },
   },
 };
