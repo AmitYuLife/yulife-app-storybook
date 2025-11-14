@@ -6,4 +6,5 @@ fragment UserPathways on UserPathways {
   pathwaysItems {
     ...UserPathwaysItem
   }
+  isStreaksEnabled
 }

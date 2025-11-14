@@ -19760,12 +19760,14 @@ export type UserPathwayAdviceItemFragment = {
 export type UserPathwaysFragment = {
   __typename?: "UserPathways";
   nextQuestionnaireLocalDate?: string | null;
+  isStreaksEnabled?: boolean | null;
   reflectionProgress: {
     __typename?: "UserPathwaysReflectionProgress";
     currentProgress: number;
     maxProgress: number;
     coins: number;
     reflectedToday: boolean;
+    streakAwardId?: string | null;
     reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
   };
   pathwaysItems?: Array<{
@@ -19791,6 +19793,7 @@ export type UserPathwaysReflectionProgressFragment = {
   maxProgress: number;
   coins: number;
   reflectedToday: boolean;
+  streakAwardId?: string | null;
   reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
 };
 
@@ -28474,12 +28477,14 @@ export type GetUserPathwaysQuery = {
   getUserPathways: {
     __typename?: "UserPathways";
     nextQuestionnaireLocalDate?: string | null;
+    isStreaksEnabled?: boolean | null;
     reflectionProgress: {
       __typename?: "UserPathwaysReflectionProgress";
       currentProgress: number;
       maxProgress: number;
       coins: number;
       reflectedToday: boolean;
+      streakAwardId?: string | null;
       reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
     };
     pathwaysItems?: Array<{
@@ -57167,6 +57172,7 @@ export const UserPathwaysReflectionProgressFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "coins" } },
           { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
+          { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
         ],
       },
     },
@@ -57268,6 +57274,7 @@ export const UserPathwaysFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserPathwaysItem" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "isStreaksEnabled" } },
         ],
       },
     },
@@ -57314,6 +57321,7 @@ export const UserPathwaysFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "coins" } },
           { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
+          { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
         ],
       },
     },
@@ -80338,6 +80346,7 @@ export const GetUserPathwaysDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "coins" } },
           { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
+          { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
         ],
       },
     },
@@ -80425,6 +80434,7 @@ export const GetUserPathwaysDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserPathwaysItem" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "isStreaksEnabled" } },
         ],
       },
     },

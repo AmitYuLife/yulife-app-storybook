@@ -6,4 +6,5 @@ fragment UserPathwaysReflectionProgress on UserPathwaysReflectionProgress {
   }
   coins
   reflectedToday
+  streakAwardId
 }
