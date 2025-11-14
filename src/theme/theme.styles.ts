@@ -80,7 +80,7 @@ export const planetStyles: ITheme = {
     [0]: {
       dailyStepsScreen: {
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/red/forest.png"),
+          backgroundImage: require("@assets/daily-screen/planets/red/forest.webp"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
           isLottie: false,
           isFullScreen: true,
@@ -146,7 +146,7 @@ export const planetStyles: ITheme = {
     [1]: {
       dailyStepsScreen: {
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/red/ocean.png"),
+          backgroundImage: require("@assets/daily-screen/planets/red/ocean.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanPrimary,
             width: "100%",
@@ -212,7 +212,7 @@ export const planetStyles: ITheme = {
     [2]: {
       dailyStepsScreen: {
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/red/desert.png"),
+          backgroundImage: require("@assets/daily-screen/planets/red/desert.webp"),
           style: {
             backgroundColor: Colours.gradients.peachLight,
             width: "100%",
@@ -281,7 +281,7 @@ export const planetStyles: ITheme = {
     [3]: {
       dailyStepsScreen: {
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/red/mountain.png"),
+          backgroundImage: require("@assets/daily-screen/planets/red/mountain.webp"),
           style: {
             backgroundColor: Colours.borders.veryLightPink,
             width: "100%",
@@ -351,7 +351,7 @@ export const planetStyles: ITheme = {
     [0]: {
       dailyStepsScreen: {
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/bright/forest.png"),
+          backgroundImage: require("@assets/daily-screen/planets/bright/forest.webp"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
           isLottie: false,
           isFullScreen: true,
@@ -417,7 +417,7 @@ export const planetStyles: ITheme = {
     [1]: {
       dailyStepsScreen: {
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/bright/ocean.png"),
+          backgroundImage: require("@assets/daily-screen/planets/bright/ocean.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanPrimary,
             width: "100%",
@@ -483,7 +483,7 @@ export const planetStyles: ITheme = {
     [2]: {
       dailyStepsScreen: {
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/bright/desert.png"),
+          backgroundImage: require("@assets/daily-screen/planets/bright/desert.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanVeryLight,
             width: "100%",
@@ -552,7 +552,7 @@ export const planetStyles: ITheme = {
     [3]: {
       dailyStepsScreen: {
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/bright/mountain.png"),
+          backgroundImage: require("@assets/daily-screen/planets/bright/mountain.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanUltraLight,
             width: "100%",
@@ -623,7 +623,7 @@ export const planetStyles: ITheme = {
       dailyStepsScreen: {
         online: {
           // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/orange/forest.png"),
+          backgroundImage: require("@assets/daily-screen/planets/orange/forest.webp"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
           isLottie: false,
           isFullScreen: true,
@@ -694,7 +694,7 @@ export const planetStyles: ITheme = {
       dailyStepsScreen: {
         online: {
           // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/orange/ocean.png"),
+          backgroundImage: require("@assets/daily-screen/planets/orange/ocean.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanPrimary,
             width: "100%",
@@ -768,7 +768,7 @@ export const planetStyles: ITheme = {
       dailyStepsScreen: {
         online: {
           // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/orange/desert.png"),
+          backgroundImage: require("@assets/daily-screen/planets/orange/desert.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanVeryLight,
             width: "100%",
@@ -843,7 +843,7 @@ export const planetStyles: ITheme = {
       dailyStepsScreen: {
         online: {
           // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/orange/mountain.png"),
+          backgroundImage: require("@assets/daily-screen/planets/orange/mountain.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanUltraLight,
             width: "100%",
@@ -918,7 +918,7 @@ export const planetStyles: ITheme = {
       dailyStepsScreen: {
         online: {
           // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/purple/forest.png"),
+          backgroundImage: require("@assets/daily-screen/planets/purple/forest.webp"),
           style: { backgroundColor: Colours.borders.lightestPink, width: "100%" },
           isLottie: false,
           isFullScreen: true,
@@ -991,7 +991,7 @@ export const planetStyles: ITheme = {
       dailyStepsScreen: {
         online: {
           // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/purple/ocean.png"),
+          backgroundImage: require("@assets/daily-screen/planets/purple/ocean.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanPrimary,
             width: "100%",
@@ -1066,7 +1066,7 @@ export const planetStyles: ITheme = {
       dailyStepsScreen: {
         online: {
           // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/purple/desert.png"),
+          backgroundImage: require("@assets/daily-screen/planets/purple/desert.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanVeryLight,
             width: "100%",
@@ -1141,7 +1141,7 @@ export const planetStyles: ITheme = {
       dailyStepsScreen: {
         online: {
           // TODO: Replace with webps
-          backgroundImage: require("@assets/daily-screen/planets/purple/mountain.png"),
+          backgroundImage: require("@assets/daily-screen/planets/purple/mountain.webp"),
           style: {
             backgroundColor: Colours.gradients.cyanUltraLight,
             width: "100%",
