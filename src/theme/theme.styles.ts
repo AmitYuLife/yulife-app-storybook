@@ -106,7 +106,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/red/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/red/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -119,7 +119,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/red/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/red/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -176,7 +176,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/red/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/red/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -187,7 +187,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/red/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/red/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -242,7 +242,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/red/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/red/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -254,7 +254,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/red/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/red/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -311,7 +311,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/red/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/red/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.borders.lightestPink,
@@ -322,7 +322,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/red/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/red/mountain.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -377,7 +377,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/bright/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/bright/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -390,7 +390,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/bright/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/bright/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -447,7 +447,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/bright/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/bright/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -458,7 +458,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/bright/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/bright/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -513,7 +513,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/bright/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/bright/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -525,7 +525,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/bright/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/bright/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -582,7 +582,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/bright/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/bright/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.borders.lightestPink,
@@ -593,7 +593,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/bright/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/bright/mountain.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -651,7 +651,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/orange/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/orange/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -665,7 +665,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/orange/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/orange/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -726,7 +726,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/orange/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/orange/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -739,7 +739,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/orange/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/orange/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -800,7 +800,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/orange/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/orange/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -813,7 +813,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/orange/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/orange/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -875,7 +875,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/orange/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/orange/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.gradients.cyanSoft,
@@ -887,7 +887,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/orange/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/orange/mountain.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -948,7 +948,7 @@ export const planetStyles: ITheme = {
         isLottie: false,
         // TODO: Replace with webps
         // TODO: this is the same as challenge list? remove one asset?
-        backgroundImage: require("@assets/challenge-success/planets/purple/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/purple/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -962,7 +962,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/purple/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/purple/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1024,7 +1024,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/purple/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/purple/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1037,7 +1037,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/purple/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/purple/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1098,7 +1098,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/purple/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/purple/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1111,7 +1111,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/purple/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/purple/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1174,7 +1174,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/purple/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/purple/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: Colours.gradients.cyanSoft,
@@ -1186,7 +1186,7 @@ export const planetStyles: ITheme = {
         isFullScreen: true,
         isLottie: false,
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-success/planets/purple/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/purple/mountain.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,

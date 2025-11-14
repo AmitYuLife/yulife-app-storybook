@@ -81,7 +81,7 @@ export default function ChallengeSuccessScreen({
             <View style={styles.plusPointsWrapper}>
               <AnimatedPlusPoints type="challenge-success" coins={reward} />
             </View>
-            <Image source={require("@assets/challenge-success/challenge-success.png")} />
+            <Image source={require("@assets/challenge-success/challenge-success.webp")} />
             <View style={styles.score}>
               <TextTemplate type="h2" color={styles.score.color} textAlign="center">
                 {renderScore(score, unit)}
