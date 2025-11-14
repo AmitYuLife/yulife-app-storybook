@@ -913,6 +913,7 @@ export type BusinessAccessUser = {
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
   jobTitle?: Maybe<Scalars["String"]["output"]>;
   lastName?: Maybe<Scalars["String"]["output"]>;
+  lockedPermissions?: Maybe<Array<BusinessAccessPermission>>;
   permissions?: Maybe<Array<BusinessAccessPermission>>;
   status?: Maybe<BusinessAccessUserStatus>;
 };
@@ -1066,7 +1067,6 @@ export type BusinessSessionSettings = {
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
   yuStoreEnabled: Scalars["Boolean"]["output"];
-  yucoinTopupsEnabled: Scalars["Boolean"]["output"];
 };
 
 export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
@@ -3536,12 +3536,6 @@ export type EmployeeDashboardWelcomeBanner = {
   illustration?: Maybe<RemoteImage>;
 };
 
-export type EmployeeExperienceStatistics = {
-  __typename?: "EmployeeExperienceStatistics";
-  checksum: Scalars["String"]["output"];
-  signedUrl: Scalars["String"]["output"];
-};
-
 export type EmployeeInput = {
   addressCountry?: InputMaybe<Scalars["String"]["input"]>;
   category?: InputMaybe<Scalars["String"]["input"]>;
@@ -4132,6 +4126,23 @@ export type GetCustomValuesResponse = {
   count: Scalars["Int"]["output"];
   customValues: Array<CustomValue>;
   totalCount: Scalars["Int"]["output"];
+};
+
+export type GetEmployeeExperienceFilesChecksums = {
+  contentChecksum?: InputMaybe<Scalars["String"]["input"]>;
+  statisticsChecksum?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type GetEmployeeExperienceFilesFileResult = {
+  __typename?: "GetEmployeeExperienceFilesFileResult";
+  checksum: Scalars["String"]["output"];
+  signedUrl: Scalars["String"]["output"];
+};
+
+export type GetEmployeeExperienceFilesResult = {
+  __typename?: "GetEmployeeExperienceFilesResult";
+  content?: Maybe<GetEmployeeExperienceFilesFileResult>;
+  statistics?: Maybe<GetEmployeeExperienceFilesFileResult>;
 };
 
 export type GetEmployeesByEmployeeIdsResult = {
@@ -4881,6 +4892,7 @@ export type HeroCardTheme = {
 export enum HeroCardType {
   Competition = "COMPETITION",
   Goal = "GOAL",
+  InviteDependants = "INVITE_DEPENDANTS",
   Journey = "JOURNEY",
   Smoking = "SMOKING",
 }
@@ -7984,6 +7996,8 @@ export type ProfilePersonalInfoInput = {
 
 export type QualitativeQuestionAnswerResult = {
   __typename?: "QualitativeQuestionAnswerResult";
+  /** The answer ID from the recipient_response table. */
+  answerId: Scalars["ID"]["output"];
   /** Department name of the answer. */
   departmentName: Scalars["String"]["output"];
   /** The text of the answer. */
@@ -8096,7 +8110,7 @@ export type Query = {
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
   getEmployeeExperienceAverageSalary?: Maybe<Scalars["Float"]["output"]>;
-  getEmployeeExperienceStatistics?: Maybe<EmployeeExperienceStatistics>;
+  getEmployeeExperienceFiles?: Maybe<GetEmployeeExperienceFilesResult>;
   getEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaignResponse;
   getEmployeeRecognitionCampaignBillingAddresses?: Maybe<Array<TeamEmployeeRecognitionCampaignBillingAddress>>;
   getEmployeeRecognitionCampaignRecipients: TeamEmployeeRecognitionCampaignRecipientsResponse;
@@ -8208,6 +8222,11 @@ export type Query = {
   /** Gets yumoji part type (e.g. Chest) associated to a product */
   getProductYumojiPart: GetProductYumojiPartResponse;
   getPublicYuAPIConfig: ApiConfig;
+  /**
+   * Gets qualitative question results for a specific question in a business survey campaign.
+   * Returns an array of qualitative question answer results with metrics for each answer in the question.
+   */
+  getQualitativeQuestionResults: Array<QualitativeQuestionAnswerResult>;
   getQuestMapLevel: QuestMapLevel;
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
@@ -8237,6 +8256,7 @@ export type Query = {
    * including cell type indicators (positive/negative/neutral) and formatted display text for easy consumption in the UI.
    */
   getSurveyHeatmapData: HeatmapData;
+  getSurveyQuestionInfo: SurveyQuestionInfo;
   /**
    * Gets survey summary results segmented by custom value filters(Department, Age, etc.).
    * Returns overall survey metrics for the whole survey.
@@ -8547,8 +8567,8 @@ export type QueryGetEmployeeDashboardArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetEmployeeExperienceStatisticsArgs = {
-  checksum?: InputMaybe<Scalars["String"]["input"]>;
+export type QueryGetEmployeeExperienceFilesArgs = {
+  checksums?: InputMaybe<GetEmployeeExperienceFilesChecksums>;
 };
 
 /** Default types to be extended / root query */
@@ -8851,6 +8871,15 @@ export type QueryGetProductYumojiPartArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetQualitativeQuestionResultsArgs = {
+  campaignId: Scalars["ID"]["input"];
+  customValueFilters?: InputMaybe<Array<CustomValueFilters>>;
+  page: Scalars["Int"]["input"];
+  pageSize: Scalars["Int"]["input"];
+  questionId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetQuestMapLevelArgs = {
   level: Scalars["Int"]["input"];
   yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8906,6 +8935,12 @@ export type QueryGetSudokuBoardArgs = {
 export type QueryGetSurveyHeatmapDataArgs = {
   campaignId: Scalars["ID"]["input"];
   segment: SegmentType;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetSurveyQuestionInfoArgs = {
+  campaignId: Scalars["ID"]["input"];
+  questionId: Scalars["ID"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -9639,6 +9674,8 @@ export type ScaleQuestionInfo = {
   __typename?: "ScaleQuestionInfo";
   /** The average score for this question. */
   averageScore: Scalars["Float"]["output"];
+  /** The question ID (stepId) for this question. */
+  questionId: Scalars["ID"]["output"];
   /** The title/text of the survey question. */
   title: Scalars["String"]["output"];
 };
@@ -10241,6 +10278,17 @@ export type Surge = {
   title: Scalars["String"]["output"];
 };
 
+/** Represents information about a survey question. */
+export type SurveyQuestionInfo = {
+  __typename?: "SurveyQuestionInfo";
+  /** The question ID (stepId) for this question. */
+  id: Scalars["ID"]["output"];
+  /** The title/text of the survey question. */
+  title: Scalars["String"]["output"];
+  /** The type of answer expected for this question. */
+  type: AnswerType;
+};
+
 /** Represents results for an individual survey question with statistics. */
 export type SurveyQuestionResult = {
   __typename?: "SurveyQuestionResult";
@@ -10256,6 +10304,8 @@ export type SurveyQuestionResult = {
   neutralPercentage?: Maybe<Scalars["Float"]["output"]>;
   /** Percentage of positive responses for this question (0-100, null if not applicable) for scale questions. */
   positivePercentage?: Maybe<Scalars["Float"]["output"]>;
+  /** The question ID (stepId) for this question. */
+  questionId: Scalars["ID"]["output"];
   /** The title of the survey question. Same as the journeys step title. */
   title: Scalars["String"]["output"];
   /** The type of answer expected for this question. */
@@ -10785,6 +10835,7 @@ export type TeamPortalPermission = {
   categoryKey: BusinessAccessPermissionCategory;
   categoryTitle: Scalars["String"]["output"];
   description: Scalars["String"]["output"];
+  isLocked: Scalars["Boolean"]["output"];
   key: BusinessAccessPermission;
   title: Scalars["String"]["output"];
   tooltip?: Maybe<Scalars["String"]["output"]>;
@@ -11714,6 +11765,7 @@ export type UserPathwayAdviceItem = {
 
 export type UserPathways = {
   __typename?: "UserPathways";
+  isStreaksEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   nextQuestionnaireLocalDate?: Maybe<Scalars["String"]["output"]>;
   pathwaysItems?: Maybe<Array<UserPathwaysItem>>;
   reflectionProgress: UserPathwaysReflectionProgress;
@@ -11734,6 +11786,7 @@ export type UserPathwaysReflectionProgress = {
   maxProgress: Scalars["Int"]["output"];
   reflectAction: SduiAction;
   reflectedToday: Scalars["Boolean"]["output"];
+  streakAwardId?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type UserPayload = {
@@ -19711,12 +19764,14 @@ export type UserPathwayAdviceItemFragment = {
 export type UserPathwaysFragment = {
   __typename?: "UserPathways";
   nextQuestionnaireLocalDate?: string | null;
+  isStreaksEnabled?: boolean | null;
   reflectionProgress: {
     __typename?: "UserPathwaysReflectionProgress";
     currentProgress: number;
     maxProgress: number;
     coins: number;
     reflectedToday: boolean;
+    streakAwardId?: string | null;
     reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
   };
   pathwaysItems?: Array<{
@@ -19742,6 +19797,7 @@ export type UserPathwaysReflectionProgressFragment = {
   maxProgress: number;
   coins: number;
   reflectedToday: boolean;
+  streakAwardId?: string | null;
   reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
 };
 
@@ -28425,12 +28481,14 @@ export type GetUserPathwaysQuery = {
   getUserPathways: {
     __typename?: "UserPathways";
     nextQuestionnaireLocalDate?: string | null;
+    isStreaksEnabled?: boolean | null;
     reflectionProgress: {
       __typename?: "UserPathwaysReflectionProgress";
       currentProgress: number;
       maxProgress: number;
       coins: number;
       reflectedToday: boolean;
+      streakAwardId?: string | null;
       reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
     };
     pathwaysItems?: Array<{
@@ -57118,6 +57176,7 @@ export const UserPathwaysReflectionProgressFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "coins" } },
           { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
+          { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
         ],
       },
     },
@@ -57219,6 +57278,7 @@ export const UserPathwaysFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserPathwaysItem" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "isStreaksEnabled" } },
         ],
       },
     },
@@ -57265,6 +57325,7 @@ export const UserPathwaysFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "coins" } },
           { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
+          { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
         ],
       },
     },
@@ -80289,6 +80350,7 @@ export const GetUserPathwaysDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "coins" } },
           { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
+          { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
         ],
       },
     },
@@ -80376,6 +80438,7 @@ export const GetUserPathwaysDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserPathwaysItem" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "isStreaksEnabled" } },
         ],
       },
     },

@@ -48,6 +48,9 @@ const PathwaysContainer = ({ componentId }: Props) => {
         reflectedToday: false,
         coins: 140,
         reflectAction: {},
+        currentStreak: 0,
+        maxProgress: 5,
+        streakAwardId: null as string | null,
       },
     [data]
   );
@@ -61,8 +64,11 @@ const PathwaysContainer = ({ componentId }: Props) => {
       moodSubmissions={moodSubmissions}
       reflectionProgress={reflectionProgress.currentProgress}
       reflectedToday={reflectionProgress.reflectedToday}
+      maxProgress={reflectionProgress.maxProgress}
+      streakAwardId={reflectionProgress.streakAwardId}
       nextQuestionnaireLocalDate={data?.getUserPathways?.nextQuestionnaireLocalDate ?? ""}
       adviceSection={data?.getUserPathwayAdviceSection || { heading: "", items: [] }}
+      isStreaksEnabled={data?.getUserPathways?.isStreaksEnabled}
     />
   );
 };

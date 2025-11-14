@@ -4,6 +4,7 @@ import { Button } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import moment from "moment";
 import ButtonPulseAnimationWrapper from "@components/molecules/button/animation/button-pulse-animation-wrapper";
+import { PathwayStreaks } from "./pathway-streaks";
 
 // prevent a white BG from showing on scroll
 const TOP_SCROLL_UNDERLAY_HEIGHT = 600;
@@ -17,9 +18,22 @@ interface Props {
   // TODO - re-instate progress UI in later pathways release
   reflectionProgress: number;
   reflectedToday: boolean;
+  maxProgress: number;
+  streakAwardId?: string;
+  isLoading: boolean;
+  isStreaksEnabled: boolean;
 }
 
-const PathwaysHeader = ({ onReflect, nextQuestionnaireLocalDate }: Props) => {
+const PathwaysHeader = ({
+  onReflect,
+  nextQuestionnaireLocalDate,
+  reflectedToday,
+  maxProgress,
+  streakAwardId,
+  isLoading,
+  reflectionProgress,
+  isStreaksEnabled,
+}: Props) => {
   // if the next questionnaire local date is today, enable the reflect button,
   // else disable it and count down to the next day
   const [timeRemaining, setTimeRemaining] = useState({ hasTimeRemaining: true, hours: 0, minutes: 0 });
@@ -56,6 +70,15 @@ const PathwaysHeader = ({ onReflect, nextQuestionnaireLocalDate }: Props) => {
           resizeMode="cover"
         />
       </Box>
+      {isStreaksEnabled ? (
+        <PathwayStreaks
+          currentStreak={reflectionProgress}
+          reflectedToday={reflectedToday}
+          maxProgress={maxProgress}
+          streakAwardId={streakAwardId}
+          isLoading={isLoading}
+        />
+      ) : null}
 
       <Box position="absolute" bottom={52} alignSelf="center">
         <ButtonPulseAnimationWrapper animatePulse={!timeRemaining.hasTimeRemaining} pulseVerticalOffset={5}>

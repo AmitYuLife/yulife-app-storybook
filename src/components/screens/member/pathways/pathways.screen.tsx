@@ -19,6 +19,9 @@ interface Props {
   nextQuestionnaireLocalDate: string;
   adviceSection: Omit<PathwayAdviceSectionProps, "isLoading">;
   isLoading: boolean;
+  maxProgress: number;
+  streakAwardId?: string;
+  isStreaksEnabled: boolean;
 }
 
 const PathwaysScreen = ({
@@ -31,6 +34,9 @@ const PathwaysScreen = ({
   onOpenMoodCalendar,
   adviceSection,
   isLoading,
+  maxProgress,
+  streakAwardId,
+  isStreaksEnabled,
 }: Props) => {
   const scrollY = useSharedValue(0);
 
@@ -54,6 +60,10 @@ const PathwaysScreen = ({
           reflectionProgress={reflectionProgress}
           reflectedToday={reflectedToday}
           nextQuestionnaireLocalDate={nextQuestionnaireLocalDate}
+          maxProgress={maxProgress}
+          streakAwardId={streakAwardId}
+          isLoading={isLoading}
+          isStreaksEnabled={isStreaksEnabled}
         />
 
         <Box minHeight={100} width={"100%"} gap={24} pt={27}>
