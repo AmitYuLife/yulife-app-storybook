@@ -555,6 +555,10 @@
     }
   },
   "overlays": {
+    "breathing_exercise_duration_picker": {
+      "button_label": "ابدأ",
+      "title": "اختر الطول"
+    },
     "business_account": {
       "button_label": "اختر",
       "title": "العضويات"
@@ -825,11 +829,12 @@
       }
     },
     "breathing_exercise": {
-      "end": "إنهاء",
+      "completed_exercise": "لقد أنهيت التمرين",
+      "end": "أحسنت",
       "exhale": "زفير",
       "hold": "احبس",
       "inhale": "استنشق",
-      "length": "المدة",
+      "length": "اختر الطول",
       "mouth": "فم",
       "nose": "أنف"
     },

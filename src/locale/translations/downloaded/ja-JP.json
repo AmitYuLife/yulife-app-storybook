@@ -555,6 +555,10 @@
     }
   },
   "overlays": {
+    "breathing_exercise_duration_picker": {
+      "button_label": "開始",
+      "title": "長さ を 選択"
+    },
     "business_account": {
       "button_label": "選択",
       "title": "メンバーシップ"
@@ -774,7 +778,7 @@
       },
       "opened_chest": {
         "cta_label": "続ける",
-        "heading": "YuCoin を獲得しました！"
+        "heading": "獲得した YuCoin!"
       }
     },
     "battle_pass": {
@@ -825,11 +829,12 @@
       }
     },
     "breathing_exercise": {
-      "end": "終了",
+      "completed_exercise": "エクササイズを完了しました",
+      "end": "お疲れ様でした!",
       "exhale": "吐く",
       "hold": "保持",
       "inhale": "吸い込んで",
-      "length": "長さ",
+      "length": "長さ を 選択",
       "mouth": "口",
       "nose": "鼻"
     },

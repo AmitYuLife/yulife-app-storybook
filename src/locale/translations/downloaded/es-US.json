@@ -555,6 +555,10 @@
     }
   },
   "overlays": {
+    "breathing_exercise_duration_picker": {
+      "button_label": "Inicio",
+      "title": "Elija una longitud"
+    },
     "business_account": {
       "button_label": "Seleccionar",
       "title": "Membresías"
@@ -825,11 +829,12 @@
       }
     },
     "breathing_exercise": {
-      "end": "Fin",
+      "completed_exercise": "Has completado el ejercicio",
+      "end": "¡Bien hecho!",
       "exhale": "Exhale",
       "hold": "Mantenga",
       "inhale": "Inhale",
-      "length": "Longitud",
+      "length": "Elija una longitud",
       "mouth": "Boca",
       "nose": "Nariz"
     },
