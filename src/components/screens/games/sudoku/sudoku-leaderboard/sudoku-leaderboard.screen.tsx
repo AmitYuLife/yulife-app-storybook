@@ -24,7 +24,7 @@ const SudokuLeaderboardScreen = ({ onBack, date, leaderboard, onListItemPress }:
 
   const onItemPress = useCallback(
     ({ item, index }: ListRenderItemInfo<SocialGroupLeaderboardItem>) => {
-      onListItemPress(item.id, index + 1);
+      onListItemPress(item.userId, index + 1);
     },
     [onListItemPress]
   );
