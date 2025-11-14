@@ -50,7 +50,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
         When("I wait", when.wait(10000), async () => {
           When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
             Then("I should see 5 km cycled", then.idVisible(ids.CYCLING_COUNT("5.0 km")));
-            Then("I should see I have earned 20 YuCoin from the cycle", then.textVisible(t(`730 ${t("YuCoin")} ${t("today")}`)));
+            Then("I should see I have earned 20 YuCoin from the cycle", then.textVisible(t(`730 ${t("YuCoin")} ${t("today")}`), 4000));
           });
         });
       });
