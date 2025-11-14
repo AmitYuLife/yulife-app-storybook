@@ -96,7 +96,7 @@ export const planetStyles: ITheme = {
         },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/red/forest.png"),
+        backgroundImage: require("@assets/challenge-list/planets/red/forest.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.borders.lightestPink,
@@ -166,7 +166,7 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n800 },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/red/ocean.png"),
+        backgroundImage: require("@assets/challenge-list/planets/red/ocean.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.gradients.cyanPrimary,
@@ -232,7 +232,7 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/red/desert.png"),
+        backgroundImage: require("@assets/challenge-list/planets/red/desert.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.gradients.peachLight,
@@ -301,7 +301,7 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/red/mountain.png"),
+        backgroundImage: require("@assets/challenge-list/planets/red/mountain.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.borders.veryLightPink,
@@ -367,7 +367,7 @@ export const planetStyles: ITheme = {
         },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/bright/forest.png"),
+        backgroundImage: require("@assets/challenge-list/planets/bright/forest.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.gradients.yellowPale,
@@ -437,7 +437,7 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n800 },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/bright/ocean.png"),
+        backgroundImage: require("@assets/challenge-list/planets/bright/ocean.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.gradients.cyanPale,
@@ -503,7 +503,7 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/bright/desert.png"),
+        backgroundImage: require("@assets/challenge-list/planets/bright/desert.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.gradients.cyanVeryLight,
@@ -572,7 +572,7 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/bright/mountain.png"),
+        backgroundImage: require("@assets/challenge-list/planets/bright/mountain.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.gradients.cyanUltraLight,
@@ -640,7 +640,7 @@ export const planetStyles: ITheme = {
       },
       challengeListScreen: {
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-list/planets/orange/forest.png"),
+        backgroundImage: require("@assets/challenge-list/planets/orange/forest.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.gradients.yellowSoft,
@@ -715,7 +715,7 @@ export const planetStyles: ITheme = {
       },
       challengeListScreen: {
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-list/planets/orange/ocean.png"),
+        backgroundImage: require("@assets/challenge-list/planets/orange/ocean.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.gradients.cyanPale,
@@ -789,7 +789,7 @@ export const planetStyles: ITheme = {
       },
       challengeListScreen: {
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-list/planets/orange/desert.png"),
+        backgroundImage: require("@assets/challenge-list/planets/orange/desert.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.borders.yellowGold,
@@ -864,7 +864,7 @@ export const planetStyles: ITheme = {
       },
       challengeListScreen: {
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-list/planets/orange/mountain.png"),
+        backgroundImage: require("@assets/challenge-list/planets/orange/mountain.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.borders.yellowGold,
@@ -935,7 +935,7 @@ export const planetStyles: ITheme = {
       },
       challengeListScreen: {
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-list/planets/purple/forest.png"),
+        backgroundImage: require("@assets/challenge-list/planets/purple/forest.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: "#F9E2FF",
@@ -1012,7 +1012,7 @@ export const planetStyles: ITheme = {
       },
       challengeListScreen: {
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-list/planets/purple/ocean.png"),
+        backgroundImage: require("@assets/challenge-list/planets/purple/ocean.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: "#D4E5FF",
@@ -1087,7 +1087,7 @@ export const planetStyles: ITheme = {
       },
       challengeListScreen: {
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-list/planets/purple/desert.png"),
+        backgroundImage: require("@assets/challenge-list/planets/purple/desert.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: Colours.borders.yellowGold,
@@ -1162,7 +1162,7 @@ export const planetStyles: ITheme = {
       },
       challengeListScreen: {
         // TODO: Replace with webps
-        backgroundImage: require("@assets/challenge-list/planets/purple/mountain.png"),
+        backgroundImage: require("@assets/challenge-list/planets/purple/mountain.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: "#F1E4FF",
