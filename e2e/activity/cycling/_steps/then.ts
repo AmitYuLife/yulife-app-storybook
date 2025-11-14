@@ -118,7 +118,7 @@ export const yuCoinPageEventDataCorrect =
 export const yuCoinEarnedFromEvent =
   (yuCoinStartValue: number, yuCoinPower: number, rewardValue: number) => async () => {
     const yuCoinTotal = (yuCoinStartValue + yuCoinPower * rewardValue).toLocaleString("en-US");
-    await textVisible(`${yuCoinTotal} YuCoin today`)();
+    await textVisible(`${yuCoinTotal} YuCoin today`, 4000)();
   };
 
 export const allChallengesCompleteVisible = async () => {

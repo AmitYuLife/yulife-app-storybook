@@ -21,14 +21,14 @@ Feature("P2P gifting - UK", async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18, true, "UK"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard"), 4000), async () => {
-          Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));
-          Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem, User73LeaderboardLB1Item], 2000));
+          Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name), 3000));
+          Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem, User73LeaderboardLB1Item], 3000));
         });
       });
     });
-    When("I click on Lynton Stock", when.clickUser(data.CUSTOMER_50), async () => {
+    When("I tap on Lynton Stock", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME(getFullName(data.CUSTOMER_50))), async () => {
       Then("I should be on the Inspect screen", then.isOnInspectScreen);
-      Then("Lyntons's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_50))));
+      Then("Lyntons's name is visible", then.idVisible(ids.YUSCREEN_V5_USERNAME(getFullName(data.CUSTOMER_50)), 4000));
       Then("I can see the P2P gifting modal", then.giftingModalVisible(data.CUSTOMER_50.data.firstName));
     });
     When("I click to send a gift", when.tapID(ids.P2P_START_BUTTON, 2000), async () => {

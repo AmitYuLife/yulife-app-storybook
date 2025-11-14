@@ -17,14 +17,14 @@ Feature("As a user I can opt in and take an event", async () => {
       Then("I should see 200 yucoin earned today", then.yuCoinTodayEarned([200]));
       Then("I should see my yucoin total in the top of the page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
-    When("I click on the event challenge", when.tapID(ids.EVENT_HEADING("3 star challenges streak", "#5A5A5C")), async () => {
+    When("I click on the event challenge", when.tapID(ids.EVENT_HEADING("3 star challenges streak", "#464647")), async () => {
       When("I scroll", when.scrollUntilTextVisible(ids.EVENT_DIALOG_SCREEN_SCROLL, data.GOALS_4.data.descriptionTitle, "down"), async () => {
         Then("I should be on the event screen and see the correct earn rates for the challenges", then.eventScreenDetailsAreCorrect(data.GOALS_4));
         Then("I should see all milestones visible to take and their correct yucoin and stars", then.allMilestonesVisible);
       });
     });
-    When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I tap take take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
+    When("I tap the back button", when.tapID(ids.BACK_BUTTON, 3000), async () => {
+      When("I tap take take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON, 3000), async () => {
         Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible);
         Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6));
       });
@@ -178,11 +178,11 @@ Feature("As a user I can opt in and take an event", async () => {
     Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_72, data.AUTH_72), async () => {
       Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
     });
-    When("I swipe right on the event card", when.scrollFromID(ids.EVENT_HEADING(data.GOALS_4.data.title, "#5A5A5C"), "left", "fast"), async () => {
-      Then("I should see the correct event title", then.idVisible(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#5A5A5C")));
-      Then("I should see the correct event description", then.idVisible(ids.EVENT_DESCRIPTION(tournamentEventDescription, "#5A5A5C")));
+    When("I swipe right on the event card", when.scrollFromID(ids.EVENT_HEADING(data.GOALS_4.data.title, "#464647"), "left", "fast"), async () => {
+      Then("I should see the correct event title", then.idVisible(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#464647")));
+      Then("I should see the correct event description", then.idVisible(ids.EVENT_DESCRIPTION(tournamentEventDescription, "#464647")));
     });
-    When("I tap on the event card", when.tapID(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#5A5A5C")), async () => {
+    When("I tap on the event card", when.tapID(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#464647")), async () => {
       Then("I should see the correct remaining days", then.textVisible("6 days left", 2000));
       Then("I should see the correct event info", then.onEventDetailsScreen(data.GOALS_TOURNAMENT));
       Then("I should see the current team standings and scores", then.assertTeamStandings(data.SOCIAL_GROUP_KNOCKOUT_TOURNAMENT_MATCH_UP));

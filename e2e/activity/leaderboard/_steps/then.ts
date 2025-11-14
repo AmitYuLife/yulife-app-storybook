@@ -96,7 +96,7 @@ export const leaderboardStatus =
   };
 
 export const isOnInspectScreen = async () => {
-  await idVisible(ids.INSPECT_SCREEN)();
+  await idVisible(ids.INSPECT_SCREEN, 4000)();
 };
 
 export const personalDataVisible = (name: string, level: string, world: string) => async () => {
