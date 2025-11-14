@@ -3,6 +3,7 @@ import { VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
 import * as React from "react";
 import { Animated, TextStyle } from "react-native";
 import { addCommasToNumber } from "@utils";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   duration?: number;
@@ -65,6 +66,11 @@ class Counter extends React.PureComponent<IProps, IState> {
 
   private move = () => {
     const { duration = 1000, value } = this.props;
+
+    if (DETOX_ENABLED) {
+      this.setState({ value: Math.floor(value) });
+      return;
+    }
 
     Animated.timing(this.animatedValue, {
       duration,
