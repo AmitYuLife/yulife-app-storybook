@@ -8,7 +8,14 @@ import {
   Image as RNImage,
   DimensionValue,
 } from "react-native";
-import { Image as ExpoImage, ImageLoadEventData, ImageSource as Source, ImageStyle, ImageProps } from "expo-image";
+import {
+  Image as ExpoImage,
+  ImageLoadEventData,
+  ImageSource as Source,
+  ImageStyle,
+  ImageProps,
+  ImageContentFit,
+} from "expo-image";
 import { Colours, StyleSheet } from "@styles";
 import { shallowEqual } from "react-redux";
 import { isWeb } from "@utils";
@@ -51,7 +58,9 @@ export interface IImageProps extends Omit<IBoxProps, "style"> {
   source: Source | number;
   theme?: "light" | "dark";
   testID?: string;
+  /** @deprecated */
   resizeMode?: "contain" | "cover" | "stretch" | "center";
+  contentFit?: ImageContentFit;
   /**
    * Has some known issues
    * @url https://github.com/expo/expo/issues/21530
@@ -90,6 +99,7 @@ export const Image = memo(
     accessibilityLabel,
     height: propHeight = 0,
     resizeMode = "contain",
+    contentFit,
     autoFlipForRTL = false,
     onError,
     ...props
@@ -196,6 +206,7 @@ export const Image = memo(
           source={source}
           transition={transition}
           resizeMode={resizeMode}
+          contentFit={contentFit}
           accessible={accessible}
           placeholder={placeholder}
           accessibilityLabel={accessibilityLabel}

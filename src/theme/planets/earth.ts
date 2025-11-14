@@ -169,7 +169,7 @@ export const earth: { [key: number]: IThemeScreens } = {
         backgroundImage: require("@assets/daily-screen/planets/earth/mountain.webp"),
         style: { ...fullImageStyle, backgroundColor: "#DBF1FF" },
         isLottie: false,
-        isFullScreen: false,
+        isFullScreen: true,
       },
       eventPanel: {
         fontColor: Colours.neutral.n900,
