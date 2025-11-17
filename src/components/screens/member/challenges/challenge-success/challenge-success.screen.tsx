@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Image, View } from "react-native";
-import { LevelLine, Box, Stars, TextTemplate } from "@atoms";
+import { View } from "react-native";
+import { LevelLine, Box, Stars, TextTemplate, RawImage } from "@atoms";
 import { t } from "@locale";
 import { AnimatedPlusPoints, Button, CentredScreen, YucoinPowerButtonMini } from "@molecules";
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
@@ -81,7 +81,10 @@ export default function ChallengeSuccessScreen({
             <View style={styles.plusPointsWrapper}>
               <AnimatedPlusPoints type="challenge-success" coins={reward} />
             </View>
-            <Image source={require("@assets/challenge-success/challenge-success.webp")} />
+            <RawImage
+              style={styles.successImage}
+              source={require("@assets/challenge-success/challenge-success.webp")}
+            />
             <View style={styles.score}>
               <TextTemplate type="h2" color={styles.score.color} textAlign="center">
                 {renderScore(score, unit)}
@@ -170,5 +173,9 @@ const styles = StyleSheet.create({
   hintWrapper: {
     paddingHorizontal: Style.adjust(24),
     paddingVertical: Style.adjust(48),
+  },
+  successImage: {
+    width: 375,
+    height: 182,
   },
 });
