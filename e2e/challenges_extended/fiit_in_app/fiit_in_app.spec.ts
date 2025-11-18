@@ -163,9 +163,10 @@ Feature("Fiit in app", async () => {
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
       When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200), async () => {
-        When("I pause the video", when.pauseVideo(true), async () => {
-          Then("I can see the video is paused", then.isVideoPaused(true));
-        });
+        Then("I can see the video is playing", then.isVideoPaused(false));
+      });
+      When("I pause the video", when.pauseVideo(true), async () => {
+        Then("I can see the video is paused", then.isVideoPaused(true));
       });
     });
     When("I unpause the video", when.pauseVideo(false), async () => {

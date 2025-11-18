@@ -96,7 +96,6 @@ export const canSeeVideoDescription =
 
 export const isVideoPaused = (paused: boolean) => async () => {
   await idExist(ids.VIDEO_PLAY_PAUSE_BUTTON(paused), 3000)();
-  await wait(3000)();
 };
 
 export const canSeeFiitChallengeRewardScreen =

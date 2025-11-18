@@ -197,7 +197,7 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should be back on the Quest tab", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1), 3000));
       When("I go to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
         Then("I should see the Hero Cards list", then.idVisible(ids.FLAT_LIST_EVENTS, 3000));
-        When("I swipe right to see the 'Profiles Viewed' hero card", when.scrollWithLimitedAttemptsUntilIdVisible(ids.FLAT_LIST_EVENTS, ids.EVENT_DESCRIPTION("0 / 5 profiles viewed", "#5A5A5C"), "left", 1, 3000, 0.8, 0.8), async () => {
+        When("I swipe right to see the 'Profiles Viewed' hero card", when.scrollWithLimitedAttemptsUntilIdVisible(ids.FLAT_LIST_EVENTS, ids.EVENT_DESCRIPTION("0 / 5 profiles viewed", "#464647"), "left", 1, 3000, 0.8, 0.8), async () => {
           Then("I should see the correct event for me to complete and the progress bar", then.eventToBeCompletedVisible(0, 0));
         });
       });
@@ -221,7 +221,7 @@ Feature("As a user I can take a challenge", async () => {
     helper.INSPECT_USER(data.CUSTOMER_55, "Forest", 2, data.CUSTOMER_52)();
 
     When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      Then("I should see the Hero Card for the profile view challenge", then.idVisible(ids.EVENT_DESCRIPTION("0 / 5 profiles viewed", "#5A5A5C"), 3000));
+      Then("I should see the Hero Card for the profile view challenge", then.idVisible(ids.EVENT_DESCRIPTION("0 / 5 profiles viewed", "#464647"), 3000));
       When("I click on the challenge profiles viewed", when.tapChallenge("0 / 5 " + t("profiles viewed")), async () => {
         Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(1, 0.2));
         Then("I should see Claim available for the first milestone", then.claimVisible(1));
