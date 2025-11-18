@@ -6,7 +6,7 @@ import { call, delay, spawn } from "redux-saga/effects";
 import leanplum from "@services/logging/leanplum";
 
 function* bootstrapLeanplum(userId: string) {
-  let hasStarted = call(leanplum.hasStarted);
+  let hasStarted: boolean = yield call(leanplum.hasStarted);
 
   if (!hasStarted) {
     yield call(leanplum.bootstrap);
