@@ -489,8 +489,7 @@ const VideoPlayer = ({
                 </View>
               </Animated.View>
             )}
-
-            <Animated.View style={progressTimeLandscape} testID={VIDEO_PLAY_PAUSE_BUTTON(state.isPaused)}>
+            <Animated.View style={progressTimeLandscape}>
               {orientation !== "landscape" ? null : (
                 <View style={styles.logoLandscape}>
                   <Logo type="inverted" width={24} height={24} />
@@ -501,6 +500,7 @@ const VideoPlayer = ({
                   onPress={onButtonAction}
                   isPaused={state.isPaused}
                   disabled={state.isLoadingEndOfSession}
+                  testID={VIDEO_PLAY_PAUSE_BUTTON(state.isPaused)}
                 />
               )}
             </Animated.View>

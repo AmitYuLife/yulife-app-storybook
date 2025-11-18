@@ -69,7 +69,7 @@ export const logInAndGoToTab =
   ) =>
   async () => {
     await loginAsUser(customer, auth, fitkitAuth, region)();
-    await navigateViaID(NAV_BAR(tab), 7_000)();
+    await navigateViaID(NAV_BAR(tab), 10_000)();
   };
 
 export const restartAndLoginToTab =

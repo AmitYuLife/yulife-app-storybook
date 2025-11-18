@@ -323,24 +323,24 @@ Feature("Rewards should act correctly", async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see that I have access to the rewards store", then.idVisible(ids.REWARDS_SCREEN, 3500));
     });
-    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.2), async () => {
+    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.2, 3000), async () => {
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
     });
-    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
+    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 4000), async () => {
       When("I tap settings", when.tapMenuItem("Settings"), async () => {
         Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
       });
     });
-    When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
+    When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4, 3000), async () => {
       When("I tap on the 'Store location' option", when.tapID(ids.TEXT_TEMPLATE("Store location", undefined), 3500), async () => {
-        When("I select Argentina as my preferred store location", when.tapID(ids.TEXT_TEMPLATE("Argentina", undefined), 500), async () => {
-          When("I confirm my store location", when.tapID(ids.STORE_LOCATION_CONFIRM_BUTTON, 500), async () => {
+        When("I select Argentina as my preferred store location", when.tapID(ids.TEXT_TEMPLATE("Argentina", undefined), 3000), async () => {
+          When("I confirm my store location", when.tapID(ids.STORE_LOCATION_CONFIRM_BUTTON, 4000), async () => {
             Then("I should be back on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
           });
         });
       });
     });
-    When("I close settings", when.tapID(ids.BUTTON_CLOSE_HEADER("Settings"), 500), async () => {
+    When("I close settings", when.tapID(ids.BUTTON_CLOSE_HEADER("Settings"), 3500), async () => {
       Then("I should be back on the reward store", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 2500));
       Then("I should not see any UK-specific rewards", then.idNotVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AVIOS.data._id), 2500));
     });

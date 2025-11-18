@@ -8,11 +8,12 @@ interface IProps {
   onPress: () => void;
   isPaused: boolean;
   disabled?: boolean;
+  testID?: string;
 }
 
-export const VidePlayerButton = memo(({ onPress, isPaused, disabled }: IProps) => {
+export const VidePlayerButton = memo(({ onPress, isPaused, disabled, testID }: IProps) => {
   return (
-    <Pressable delay={1000} onPress={onPress} style={styles.wrapper} disabled={disabled}>
+    <Pressable delay={1000} onPress={onPress} style={styles.wrapper} disabled={disabled} testID={testID}>
       {!isPaused ? (
         <Svg width={Style.adjust(40)} height={Style.adjust(40)} fill="none" viewBox="0 0 40 40">
           <Rect x={8.334} y={6.667} width={7.727} height={28.333} rx={3.864} fill={Colours.neutral.white} />
