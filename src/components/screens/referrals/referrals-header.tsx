@@ -1,15 +1,14 @@
 import { memo, useMemo } from "react";
 import { View } from "react-native";
 import { GetReferralInformationQuery } from "@graphql/__generated";
-import { REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN, REFERRALS_BUSINESS_ACCOUNT_NAME, REFERRALS_IMAGE_URI } from "@ids";
-import { Image } from "@atoms";
+import { REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN, REFERRALS_BUSINESS_ACCOUNT_NAME } from "@ids";
 import Markdown from "@molecules/markdown/markdown";
 import { CodeAndLinkCopy } from "@organisms";
-import { Style } from "@styles";
 import { styles, markdownStyles } from "./referrals.styles";
 import { MixpanelEvent } from "@services/logging/types";
 import { Item } from "./referrals.screen";
 import { BusinessAccountState, BusinessPicker } from "@components/molecules/business-picker";
+import { Box } from "@atoms";
 
 interface IHeaderProps {
   info: GetReferralInformationQuery["referralInformation"];
@@ -36,39 +35,34 @@ const ReferralsHeader = ({ data, info, componentId, businessAccountState, onShar
 
   const {
     referralCode,
-    background: { uri },
     codeDisclaimer,
     shareButton,
-    markdown: { headerSubtitle, headerTitle, historyTitle, codeHistoryEmptyMessage, shareBoxTitle },
+    markdown: { headerTitle, historyTitle, codeHistoryEmptyMessage, shareBoxTitle },
   } = info;
 
   return (
     <View>
-      <View style={styles.headerWrapper}>
-        <Image
-          width={Style.DEVICE_WIDTH}
-          loadingHeight={LOADING_IMAGE_HEIGHT}
-          source={{ uri }}
-          testID={REFERRALS_IMAGE_URI(uri)}
-        />
+      <View>
         <View style={styles.header}>
           <Markdown text={headerTitle} markdownStyles={markdownStyles} />
-          {activeBusinessAccounts.length === 0 ? null : (
-            <BusinessPicker
-              businessAccountState={businessAccountState}
-              testIds={{
-                box: REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN,
-                textTemplate: REFERRALS_BUSINESS_ACCOUNT_NAME(
-                  businessAccountState.selectedBusinessAccount.businessAccountName
-                ),
-              }}
-            />
-          )}
-          <Markdown text={headerSubtitle} markdownStyles={markdownStyles} />
+          <Box alignItems="center">
+            {activeBusinessAccounts.length === 0 ? null : (
+              <BusinessPicker
+                businessAccountState={businessAccountState}
+                testIds={{
+                  box: REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN,
+                  textTemplate: REFERRALS_BUSINESS_ACCOUNT_NAME(
+                    businessAccountState.selectedBusinessAccount.businessAccountName
+                  ),
+                }}
+              />
+            )}
+          </Box>
         </View>
       </View>
+
       <View style={styles.body}>
-        <View style={styles.tapToCopy}>
+        <View style={styles.codeAndLinkCopy}>
           <CodeAndLinkCopy
             code={referralCode}
             onShare={onShare}
@@ -78,13 +72,16 @@ const ReferralsHeader = ({ data, info, componentId, businessAccountState, onShar
             analyticsEvent={tapToCopyAnalytics}
           />
         </View>
-        <Markdown text={historyTitle} />
-        {data?.length ? null : <Markdown text={codeHistoryEmptyMessage} />}
+      </View>
+
+      <View style={styles.listContentBackground}>
+        <Box mh={24}>
+          <Markdown text={historyTitle} />
+          {data?.length ? null : <Markdown text={codeHistoryEmptyMessage} />}
+        </Box>
       </View>
     </View>
   );
 };
-
-const LOADING_IMAGE_HEIGHT = (Style.DEVICE_WIDTH / 375) * 295;
 
 export default memo(ReferralsHeader);
