@@ -13,6 +13,8 @@ import { getDateFormat } from "@locale";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import ReferralsHeader from "./referrals-header";
 import { BusinessAccountState } from "@components/molecules/business-picker";
+import { Image } from "@atoms";
+import { REFERRALS_IMAGE_URI } from "@ids";
 
 export type Item = GetReferralHistoryQuery["getReferralHistory"]["referralHistory"][0];
 
@@ -51,6 +53,16 @@ const ReferralsScreen = ({
 
   return (
     <View testID={REFERRALS_SCREEN} style={styles.wrapper}>
+      {info?.background?.uri ? (
+        <Image
+          style={styles.backgroundImageWrapper}
+          width={Style.DEVICE_WIDTH}
+          source={{ uri: info.background.uri }}
+          testID={REFERRALS_IMAGE_URI(info.background.uri)}
+          height={Style.DEVICE_HEIGHT}
+          resizeMode="cover"
+        />
+      ) : null}
       <GenericHeadingPad />
       <View style={styles.referralsWrapper}>
         <FlashList
@@ -74,7 +86,8 @@ const ReferralsScreen = ({
           ListFooterComponent={<View style={styles.footer} />}
         />
       </View>
-      <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} />
+      <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} backgroundColor="transparent" />
+      <View style={styles.safeAreaBackground} />
     </View>
   );
 };
@@ -83,13 +96,15 @@ const keyExtractor = (item: Item) => item.id;
 
 const renderItem = ({ item }: ListRenderItemInfo<Item>) => {
   return (
-    <View style={styles.listItem} testID={REFERRALS_SCREEN_NAME(item.name)}>
-      <UserAvatarCoinCard
-        name={item.name}
-        avatarUrl={item.avatarUrl}
-        subTitle={moment(item.date).format(getDateFormat())}
-        coin={item.coin}
-      />
+    <View style={styles.listItemWrapper}>
+      <View style={styles.listItem} testID={REFERRALS_SCREEN_NAME(item.name)}>
+        <UserAvatarCoinCard
+          name={item.name}
+          avatarUrl={item.avatarUrl}
+          subTitle={moment(item.date).format(getDateFormat())}
+          coin={item.coin}
+        />
+      </View>
     </View>
   );
 };
