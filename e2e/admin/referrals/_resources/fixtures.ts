@@ -4,5 +4,8 @@ export const referralImageURIForest =
 export const referralImageURIOcean =
   "https://yulife-develop.imgix.net/referral/background/full-without-clouds/Ocean.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=979869e166a5e2f38e0c443e4ace0030";
 
+export const referralBackgroundImage =
+  "https://yulife-develop.imgix.net/referral/background.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=e796997e07a6b3d5e62bc2eace8ed7ff";
+
 export const noReferralsMessage =
   "Nobody’s used your code just yet – time for a nudge? Once they sign up with your code, their names will appear below.";
