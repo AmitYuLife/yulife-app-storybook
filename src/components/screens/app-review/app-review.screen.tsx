@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   centerWrapper: {
     alignItems: "center",
     width: "100%",
+    paddingHorizontal: Style.adjust(24),
   },
   image: {
     width: Style.adjust(320),
@@ -93,7 +94,6 @@ const styles = StyleSheet.create({
   separator16: {
     marginTop: Style.adjust(16),
     marginBottom: Style.adjust(32),
-    paddingHorizontal: Style.adjust(24),
   },
   buttonWrapper: {
     marginTop: Style.adjust(8),
