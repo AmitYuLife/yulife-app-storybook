@@ -3,12 +3,14 @@ import { call, select, put, fork } from "redux-saga/effects";
 import { getActiveLevel, getVideoPlayerIsActive } from "../levels.selectors";
 import startChallenge from "./startChallenge.helper";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
 import { challengeResetSuccessAction } from "@redux/levels/levels.actions";
 import { Storage, StorageKey } from "@utils/storage";
 import moment from "moment";
 import { getMobileQuestLevelDetails } from "@graphql/challenges/getChallengeDetails.gql";
 import { cancelChallengeToggle } from "@graphql/challenges/cancelChallenge.gql";
 import setInitialSteps from "./setInitialSteps.helper";
+import { isForegroundServiceEnabled } from "@utils/yuHealth";
 
 export default function* startChallengeIfActiveSaga() {
   try {
@@ -28,6 +30,7 @@ export default function* startChallengeIfActiveSaga() {
       yuniversalMap,
     }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+    const activeProvider: ReturnType<typeof getActiveProvider> = yield select(getActiveProvider);
     const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
 
     const challengeId = id;
@@ -78,7 +81,7 @@ export default function* startChallengeIfActiveSaga() {
         createdBySource,
         yuHealth,
         challengeId: id,
-        enableForegroundService: features.tempEnableYuHealthForegroundService,
+        enableForegroundService: isForegroundServiceEnabled({ features, activeProvider }),
       });
     }
   } catch (error) {

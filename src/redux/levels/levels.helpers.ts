@@ -1,7 +1,13 @@
 import RNFitKit from "@services/fitkit/fitkit.service";
-import { HealthDataType, ISampleQueryResponse, getForegroundSteps } from "@yu-life/react-native-yu-health";
+import {
+  HealthDataType,
+  ISampleQueryResponse,
+  getForegroundSteps,
+  HealthProvider,
+} from "@yu-life/react-native-yu-health";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone } from "@utils";
+import { isForegroundServiceEnabled } from "@utils/yuHealth";
 import moment from "moment";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.types";
@@ -54,11 +60,21 @@ let hasLoggedError = false;
  * @remarks
  * Gets the end results for a challenge that is steps
  */
-const getPedometerEndResult = async (activeLevel: IActiveLevel, blacklistApps: string[], features: IFeature) => {
+const getPedometerEndResult = async ({
+  activeLevel,
+  blacklistApps,
+  activeProvider,
+  features,
+}: {
+  activeLevel: IActiveLevel;
+  blacklistApps: string[];
+  activeProvider?: HealthProvider;
+  features: IFeature;
+}) => {
   const { startDateTime, endDateTime, score } = activeLevel;
 
   let foregroundSteps = 0;
-  if (features.tempEnableYuHealthForegroundService) {
+  if (isForegroundServiceEnabled({ features, activeProvider })) {
     try {
       foregroundSteps = await getForegroundSteps();
     } catch (e) {
@@ -181,21 +197,36 @@ const getNonPedometerEndResult = async ({
   };
 };
 
-export async function getEndResult(activeLevel: IActiveLevel, blacklistApps: string[], features: IFeature) {
+export async function getEndResult({
+  active,
+  stepsBlackListApps,
+  activeProvider,
+  features,
+}: {
+  active: IActiveLevel;
+  stepsBlackListApps: string[];
+  activeProvider?: HealthProvider;
+  features: IFeature;
+}) {
   if (!features.tempGameEnableReleaseYuHealthV4) {
-    return getEndResultFitkit(activeLevel, blacklistApps, features);
+    return getEndResultFitkit(active, stepsBlackListApps, features);
   }
 
-  const { startDateTime, endDateTime, yuHealth } = activeLevel;
+  const { startDateTime, endDateTime, yuHealth } = active;
   if (!yuHealth?.dataType) {
     return { startDateTime, endDateTime, value: 0 };
   }
 
   if (yuHealth.dataType === HealthDataType.steps) {
-    return await getPedometerEndResult(activeLevel, blacklistApps, features);
+    return await getPedometerEndResult({
+      activeLevel: active,
+      blacklistApps: stepsBlackListApps,
+      activeProvider,
+      features,
+    });
   }
 
-  return getNonPedometerEndResult({ activeLevel, blacklistApps, features });
+  return getNonPedometerEndResult({ activeLevel: active, blacklistApps: stepsBlackListApps, features });
 }
 
 export async function getEndResultFitkit(

@@ -181,3 +181,13 @@ export const fetchStepsData = async ({ features, stepsBlackListApps, start, end 
 
   return fetchYuHealthStepsData({ features, stepsBlackListApps, start, end });
 };
+
+export const isForegroundServiceEnabled = ({
+  features,
+  activeProvider,
+}: {
+  features: { tempEnableYuHealthForegroundService?: boolean };
+  activeProvider?: HealthProvider;
+}): boolean => {
+  return features.tempEnableYuHealthForegroundService || activeProvider === HealthProvider.healthConnect;
+};

@@ -1,5 +1,6 @@
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { call, put, select, spawn, delay } from "redux-saga/effects";
@@ -45,8 +46,14 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
         const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
         const debugToolsEnabled: ReturnType<typeof getDebugToolsEnabled> = yield select(getDebugToolsEnabled);
         const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
+        const activeProvider: ReturnType<typeof getActiveProvider> = yield select(getActiveProvider);
 
-        const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, stepsBlackListApps, features);
+        const result: Unpacked<typeof getEndResult> = yield call(getEndResult, {
+          active,
+          stepsBlackListApps,
+          activeProvider,
+          features,
+        });
 
         if (result.value === 0 && !payload?.skipDefer && debugToolsEnabled && !isEmpty(active.fitKitTypes)) {
           yield spawn(async () => {
