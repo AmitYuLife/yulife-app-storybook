@@ -7,11 +7,10 @@ import { Style } from "@styles";
 
 interface IMoodCalendarProps {
   data: IMonth[];
-  onEndReached: () => void;
   loading?: boolean;
 }
 
-export const MoodCalendar = ({ data, onEndReached, loading }: IMoodCalendarProps) => {
+export const MoodCalendar = ({ data, loading }: IMoodCalendarProps) => {
   return (
     <Box flex={1}>
       <WeekDays />
@@ -23,8 +22,6 @@ export const MoodCalendar = ({ data, onEndReached, loading }: IMoodCalendarProps
         keyExtractor={keyExtractor}
         estimatedItemSize={Style.adjust(500)}
         showsVerticalScrollIndicator={false}
-        onEndReached={onEndReached}
-        onEndReachedThreshold={0.5}
       />
     </Box>
   );
