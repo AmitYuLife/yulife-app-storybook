@@ -6,7 +6,7 @@ import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
 import moment from "moment";
-import { noReferralsMessage, referralImageURIForest, referralImageURIOcean } from "./_resources/fixtures";
+import { noReferralsMessage, referralBackgroundImage } from "./_resources/fixtures";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("Referrals work as intended", async () => {
@@ -38,7 +38,7 @@ Feature("Referrals work as intended", async () => {
       Then("I should see the Lottie icon", then.idVisible(ids.LOTTIE_VIEW));
     });
     When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("Invite a Colleague"), 3000), async () => {
-      Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(referralImageURIForest, 2000));
+      Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(referralBackgroundImage, 2000));
     });
     When("I press the back button", when.tapID(ids.BACK_BUTTON, 2000), async () => {
       Then("I should be on the daily steps screen", then.onDailySteps());
@@ -86,7 +86,7 @@ Feature("Referrals work as intended", async () => {
       Then("I should see the Invite a colleague menu item", then.idVisible(ids.MENU_ITEM("Invite a Colleague")));
     });
     When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("Invite a Colleague")), async () => {
-      Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(referralImageURIOcean));
+      Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(referralBackgroundImage));
       Then("I should see the empty referral screen state", then.referralEmptyState);
     });
     When("I tap the back button ", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
