@@ -108,8 +108,8 @@ export const Logo = ({
     case "inverted":
       return (
         <Svg
-          width={Style.adjust(width || 15)}
-          height={Style.adjust(height || 16)}
+          width={Style.adjust(width || 24)}
+          height={Style.adjust(height || 24)}
           viewBox="0 0 15 16"
           fill="none"
           style={style}
