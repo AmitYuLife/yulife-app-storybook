@@ -69,7 +69,7 @@ export const translations: Record<Language, Translation> = {
     name: "العربية",
     intercomLanguage: "ar",
     flag: "🇸🇦",
-    isEnabled: false,
+    isEnabled: true,
     isEnabledForTest: true,
     load: () => require("./downloaded/ar-SA.json"),
     direction: "rtl",
