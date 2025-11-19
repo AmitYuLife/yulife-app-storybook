@@ -2,9 +2,9 @@ import moment from "moment";
 import Config from "react-native-config";
 import { Storage, StorageKey } from "@utils/storage";
 
-const MAX_CONFIG_AGE_IN_MINUTES = 60 * 24; // 24 hours
+const MAX_CONFIG_AGE_IN_MINUTES = 60 * 1; // 1 hour to avoid spamming the API, but short enough to support API changes
 
-export const REGION_LIST = ["UK", "US", "SA", "JP"] as const;
+export const REGION_LIST = ["UK", "US", "SA", "JP", "KSA"] as const;
 
 export type REGION = typeof REGION_LIST[number];
 
@@ -68,6 +68,7 @@ export class RegionService {
     US: Config.API_URL_US,
     SA: Config.API_URL_SA,
     JP: Config.API_URL_JP,
+    KSA: Config.API_URL_KSA,
   };
 
   public readonly OPTIONS = [
@@ -75,7 +76,8 @@ export class RegionService {
     { key: "US" as REGION, isEnabled: true, label: "United States" },
     { key: "SA" as REGION, isEnabled: true, label: "South Africa" },
     { key: "JP" as REGION, isEnabled: true, label: "日本 (Japan)" },
-  ];
+    { key: "KSA" as REGION, isEnabled: true, label: "السعودية (KSA)" },
+  ].filter((o) => !!this.API_URLS?.[o.key]);
 
   public getAvailableRegions = (limit?: REGION[]) =>
     this.OPTIONS.filter((o) => o.isEnabled && (!limit || limit.includes(o.key)));
@@ -139,14 +141,9 @@ export class RegionService {
   };
 
   public setConfig = async (config: RegionConfig) => {
-    if (config?.mixpanelKey) {
-      const now = new Date();
-      await Storage.setItem(
-        StorageKey.region,
-        JSON.stringify({ region: this.SELECTED_REGION, config, createdAt: now })
-      );
-      this.REGION_CONFIG = config;
-      this.REGION_CONFIG_LAST_UPDATED = now;
-    }
+    const now = new Date();
+    await Storage.setItem(StorageKey.region, JSON.stringify({ region: this.SELECTED_REGION, config, createdAt: now }));
+    this.REGION_CONFIG = config;
+    this.REGION_CONFIG_LAST_UPDATED = now;
   };
 }
