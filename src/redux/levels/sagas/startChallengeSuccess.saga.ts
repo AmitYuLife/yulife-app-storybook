@@ -6,6 +6,8 @@ import startChallenge from "./startChallenge.helper";
 import { ChallengeSourceType } from "../levels.types";
 import moment from "moment";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
+import { isForegroundServiceEnabled } from "@utils/yuHealth";
 
 export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
   const {
@@ -18,6 +20,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
   } = payload;
 
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+  const activeProvider: ReturnType<typeof getActiveProvider> = yield select(getActiveProvider);
 
   const initialPedometerSteps: ReturnType<typeof getSteps> = yield select(getSteps);
   yield put(pedometerStepsChallengeStarted(initialPedometerSteps));
@@ -37,7 +40,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       yuHealth,
       createdBySource: ChallengeSourceType.Phone,
       challengeId: id,
-      enableForegroundService: features.tempEnableYuHealthForegroundService,
+      enableForegroundService: isForegroundServiceEnabled({ features, activeProvider }),
     });
   }
 }
