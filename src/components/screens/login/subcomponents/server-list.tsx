@@ -50,6 +50,7 @@ const REGION_TO_FLAG_MAPPING = {
   US: Icon.FlagUS,
   SA: Icon.FlagSA,
   JP: Icon.FlagJP,
+  KSA: Icon.FlagKSA,
 };
 
 export const styles = StyleSheet.create({
