@@ -1712,7 +1712,25 @@
       "select_one": "Select one to continue",
       "claim_all_title": "Jackpot!",
       "claim_all_subtitle": "Check out what you’ve unlocked!",
-      "won_reward": "You've won %{reward}!"
+      "won_reward": "You've won %{reward}!",
+      "won_a_reward": "You've won a %{reward}!",
+      "reward_received": "%{reward} received!",
+      "power_up_received": "Power up received!",
+      "rewards_received": "Rewards received!",
+      "info_card": {
+        "yumoji_inventory": {
+          "title": "Reward collected!",
+          "description": "You can find your reward in your Yumoji inventory."
+        },
+        "power_up_inventory": {
+          "title": "Power up collected!",
+          "description": "You can find your power up in your Power Ups inventory."
+        },
+        "wallet": {
+          "title": "Reward collected!",
+          "description": "You can find your YuCoin in your Wallet in Store."
+        }
+      }
     },
     "reward_info": {
       "got_it": "Got it"

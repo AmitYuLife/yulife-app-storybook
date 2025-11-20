@@ -1,4 +1,4 @@
-import React, { memo, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { CloseSvg, Image } from "@atoms";
 import { Pressable } from "@molecules";
@@ -9,7 +9,6 @@ import { Style, StyleSheet } from "@styles";
 import ListPickReward from "./subcomponents/stages/pick-stages/list-pick-reward-stage";
 import { ChestStage, IPickStageProps } from "./open-random-chest.types";
 import GlowPickReward from "./subcomponents/stages/pick-stages/glow-pick-reward-stage";
-import ChestRedeemedStage from "./subcomponents/stages/chest-redeemed-stage";
 import { ChestStagingStage } from "./subcomponents/stages/chest-staging-stage";
 import ChestImagePreloader from "./subcomponents/chest-image-preloader";
 import { useInsetStyles } from "../../../hooks/useInsetStyles";
@@ -22,6 +21,9 @@ import { prizesAwarded } from "@redux/prizes/prizes.actions";
 import { isEmpty } from "lodash";
 import AllPickRewardStage from "./subcomponents/stages/pick-stages/all-pick-reward-stage";
 import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
+import DefaultRedeemedStage from "./subcomponents/stages/redeemed-stages/default-redeemed-stage";
+import SingleRedeemedRewardStage from "./subcomponents/stages/redeemed-stages/single-redeemed-reward-stage";
+import MultipleRedeemedRewardStage from "./subcomponents/stages/redeemed-stages/multiple-redeemed-reward-stage";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
@@ -42,7 +44,7 @@ const OpenRandomChestModal = ({
   backgroundImage,
   overlayImage,
 }: IOpenRandomChestModalProps) => {
-  const { data } = useQuery(gql("GetMobileGameBattlePassChestDetailsDocument"), {
+  const { data, refetch } = useQuery(gql("GetMobileGameBattlePassChestDetailsDocument"), {
     variables: { participationId, milestoneId },
     fetchPolicy: "network-only",
   });
@@ -51,12 +53,21 @@ const OpenRandomChestModal = ({
   const socialGroupId = useSelector(getActiveSocialGroupId);
 
   const [openChest, { loading: openLoading }] = useMutation(gql("OpenMobileGameBattlePassChestDocument"));
-  const [claimPrizes, { loading: claimLoading }] = useMutation(gql("ClaimMobileGameBattlePassChestPrizesDocument"), {
-    refetchQueries:
-      data?.details?.battlePassType === MobileGameBattlePassType.Unlockables
-        ? [{ query: gql("GetMobileUnlockableBattlePassVouchersDocument"), errorPolicy: "ignore" }]
-        : [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId }, errorPolicy: "ignore" }],
-  });
+  const [claimPrizes, { loading: claimLoading, data: claimedChestData }] = useMutation(
+    gql("ClaimMobileGameBattlePassChestPrizesDocument"),
+    {
+      refetchQueries:
+        data?.details?.battlePassType === MobileGameBattlePassType.Unlockables
+          ? [{ query: gql("GetMobileUnlockableBattlePassVouchersDocument"), errorPolicy: "ignore" }]
+          : [
+              {
+                query: gql("GetMobileGameBattlePassFullDocument"),
+                variables: { socialGroupId },
+                errorPolicy: "ignore",
+              },
+            ],
+    }
+  );
 
   const [stage, setStage] = useState<ChestStage>(ChestStage.loading);
   const [isDetailsLoading, setIsDetailsLoading] = useState(false);
@@ -65,6 +76,12 @@ const OpenRandomChestModal = ({
     const { openedRewards, possibleRewards, redeemedRewards } = data?.details || {};
 
     setStage(ChestStage.staging);
+
+    if (redeemedRewards?.length) {
+      setStage(ChestStage.redeemed);
+      return;
+    }
+
     if (openedRewards?.length) {
       setStage(ChestStage.pick);
       return;
@@ -72,11 +89,6 @@ const OpenRandomChestModal = ({
 
     if (possibleRewards?.length) {
       setStage(ChestStage.staging);
-      return;
-    }
-
-    if (redeemedRewards?.length) {
-      setStage(ChestStage.redeemed);
       return;
     }
   }, [data]);
@@ -89,25 +101,8 @@ const OpenRandomChestModal = ({
     setNewStage();
   }, [data?.details, setNewStage, stage]);
 
-  const onOpenPress = useCallback(async () => {
-    setIsDetailsLoading(true);
-    try {
-      await openChest({
-        variables: { rewardId: data?.details?.id, participationId },
-      });
-
-      setStage(ChestStage.ingest);
-    } finally {
-      setIsDetailsLoading(false);
-    }
-  }, [data?.details?.id, openChest, participationId]);
-
-  const onClosePress = useCallback(async () => {
-    Navigation.dismissAllModals();
-  }, []);
-
   const onClaimItems = useCallback(
-    async (rewardIds: string[]) => {
+    async (rewardIds: string[], shouldSetStage: boolean = true) => {
       const result = await claimPrizes({
         variables: {
           rewardId: data?.details?.id,
@@ -125,16 +120,46 @@ const OpenRandomChestModal = ({
       }
 
       dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
-      Navigation.dismissAllModals();
+
+      await refetch();
+
+      if (shouldSetStage) {
+        setStage(ChestStage.redeemed);
+      }
     },
-    [claimPrizes, data?.details?.id, dispatch, participationId]
+    [claimPrizes, data?.details?.id, dispatch, participationId, refetch]
   );
+
+  const onOpenPress = useCallback(async () => {
+    setIsDetailsLoading(true);
+    try {
+      const result = await openChest({
+        variables: { rewardId: data?.details?.id, participationId },
+      });
+
+      const { shouldClaimImmediately, openedRewards } = result.data.openMobileGameBattlePassChest.chest;
+
+      if (shouldClaimImmediately) {
+        await onClaimItems(
+          openedRewards.map((item) => item.id),
+          false
+        );
+      }
+
+      setStage(ChestStage.ingest);
+    } finally {
+      setIsDetailsLoading(false);
+    }
+  }, [data?.details?.id, onClaimItems, openChest, participationId]);
+
+  const onClosePress = useCallback(async () => {
+    Navigation.dismissAllModals();
+  }, []);
 
   const possibleItems = data?.details?.possibleRewards;
   const openedItems = data?.details?.openedRewards;
   const redeemedItems = data?.details?.redeemedRewards;
   const collectionType = data?.details?.collectionType;
-
   const contentNode = useMemo((): ReactNode => {
     if (stage === ChestStage.staging || stage === ChestStage.ingest) {
       return (
@@ -151,15 +176,36 @@ const OpenRandomChestModal = ({
       );
     }
 
-    if (stage === "redeemed") {
+    if (stage === ChestStage.redeemed) {
+      const claimedItems = claimedChestData?.claimMobileGameBattlePassChestPrizes.rewards;
+
+      // fallback in case the user somehow sees the redeemed stage when he shouldn't
+      if (!claimedItems?.length) {
+        return (
+          <ChestImagePreloader images={redeemedItems.map((item) => item.image.uri)}>
+            <DefaultRedeemedStage redeemedItems={redeemedItems} onClose={onClosePress} />
+          </ChestImagePreloader>
+        );
+      }
+
+      const awardedPrizeTypes = claimedItems.flatMap((prize) => prize.awardedPrizeTypes);
+      const title = claimedItems[0].title;
+
+      const RedeemedStage = redeemedItems.length === 1 ? SingleRedeemedRewardStage : MultipleRedeemedRewardStage;
+
       return (
         <ChestImagePreloader images={redeemedItems.map((item) => item.image.uri)}>
-          <ChestRedeemedStage redeemedItems={redeemedItems} onClose={onClosePress} />
+          <RedeemedStage
+            redeemedItems={redeemedItems}
+            onClose={onClosePress}
+            awardedPrizeTypes={awardedPrizeTypes}
+            title={title}
+          />
         </ChestImagePreloader>
       );
     }
 
-    if (stage === "pick") {
+    if (stage === ChestStage.pick) {
       const PickStage =
         CHEST_PICK_STAGE_TYPES[collectionType] ?? CHEST_PICK_STAGE_TYPES[MobileGameChestCollectionType.List];
 
@@ -190,6 +236,7 @@ const OpenRandomChestModal = ({
     redeemedItems,
     collectionType,
     isDetailsLoading,
+    claimedChestData,
   ]);
 
   const backgroundSource = useMemo(() => ({ uri: backgroundImage }), [backgroundImage]);

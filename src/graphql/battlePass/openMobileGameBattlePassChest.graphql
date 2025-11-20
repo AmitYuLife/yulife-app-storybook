@@ -2,6 +2,7 @@ mutation OpenMobileGameBattlePassChest($participationId: String, $rewardId: Stri
   openMobileGameBattlePassChest(participationId: $participationId, rewardId: $rewardId) {
     success
     chest {
+      shouldClaimImmediately
       ...MobileGameBattlePassChestDetails
     }
   }

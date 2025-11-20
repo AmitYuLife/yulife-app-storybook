@@ -3,9 +3,10 @@ import { memo } from "react";
 import { View } from "react-native";
 import { GetMobileGameBattlePassChestDetailsQuery } from "@graphql/__generated";
 import RadioBattlePassRewardItem from "@components/molecules/radio-battle-pass-reward-item/radio-battle-pass-reward-item";
-import Animated, { FadeOutDown } from "react-native-reanimated";
+import { FadeOutDown } from "react-native-reanimated";
 import { Button } from "@components/molecules";
-import ChestHeaderText from "../chest-header-text";
+import ChestHeaderText from "../../chest-header-text";
+import { Box } from "@atoms";
 
 interface IChestRedeemedStageProps {
   redeemedItems: GetMobileGameBattlePassChestDetailsQuery["details"]["redeemedRewards"];
@@ -26,9 +27,9 @@ const ChestRedeemedStage = ({ redeemedItems, onClose }: IChestRedeemedStageProps
         />
       ))}
     </View>
-    <Animated.View exiting={FadeOutDown.duration(800)} style={styles.buttonContainer}>
+    <Box exiting={FadeOutDown.duration(800)} mt={150}>
       <Button translationKey="labels.cta.close" onPress={onClose} />
-    </Animated.View>
+    </Box>
   </View>
 );
 
@@ -43,9 +44,6 @@ const styles = StyleSheet.create({
     width: "100%",
     gap: Style.adjust(15),
     paddingHorizontal: Style.adjust(30),
-  },
-  buttonContainer: {
-    marginTop: Style.adjust(150),
   },
 });
 export default memo(ChestRedeemedStage);
