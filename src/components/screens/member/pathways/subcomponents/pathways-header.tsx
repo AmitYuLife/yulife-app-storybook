@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Box, Image } from "@atoms";
 import { Button } from "@components/molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, TOP_BAR } from "@styles";
 import moment from "moment";
 import ButtonPulseAnimationWrapper from "@components/molecules/button/animation/button-pulse-animation-wrapper";
 import { PathwayStreaks } from "./pathway-streaks";
@@ -52,7 +52,7 @@ const PathwaysHeader = ({
   }, [updateTimeRemaining]);
 
   return (
-    <Box flex={1} height={512} width={"100%"} pt={100}>
+    <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} h={Style.adjust(512)}>
       <Box
         position="absolute"
         top={-TOP_SCROLL_UNDERLAY_HEIGHT}
