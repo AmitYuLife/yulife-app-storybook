@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.90.0] - 2025-11-20
+
+### Features
+
+- Feature GS-2032: Daily counter for streaks
+
+### Bugfixes
+
+- Bugfix: blurry mountain image
+- Bugfix: sudoku leaderboard userId
+- Bugfix GS-1898: Fix chest position on small screens
+
+### Tasks
+
+- Task GS-2067: fix breathing exercise pause on android
+- Task GS-2067: fix inverted logo size
+- Task GS-1318: fix padding issue on app review modal
+- Task GS-2088: Always enable foreground service if using health connect
+- Task GS-2040: reduce mood cal to 3 months
+- Task ISA-3759: Update referral screen
+- Task GS-2084: Fix challenge success image dimensions
+- Task CTE-511: offline screen
+- Task CTE-510: daily screen webp
+- Task CTE-509: challenge success/failure webp
+- Task CTE-508: challenge list webp
+- (grafted) Merge branch 'task/cte-505-replace-earth-webp' into 'develop'
+
+### Chores
+
+- Chore - Updated translations
+
+### Extra
+
+- Fixes for Referral Page Style Updates
+- CTE-001: enable arabic language
+- CTE-001: add KSA develop envs
+- Detox GS-2089: Workouts Start/Stop Video Player
+- Hotfix: missing yield for leanplum
+- Detox GS-2083: Leaderboard Gifting Flow
+- Detox GS-2082: Disable YuCoin Counter Animation
+- ISA-3842: GQL hero card update
+- (grafted) Detox GS-2081: Chest and Streak Modals
+
 ## [4.89.0] - 2025-11-12
 
 ### Features
