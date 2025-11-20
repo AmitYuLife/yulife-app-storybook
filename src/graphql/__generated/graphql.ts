@@ -5666,6 +5666,7 @@ export type MobileGameBattlePassChestDetails = {
   openedRewards: Array<MobileGameBattlePassChestPrize>;
   possibleRewards: Array<MobileGameBattlePassChestItem>;
   redeemedRewards: Array<MobileGameBattlePassChestItem>;
+  shouldClaimImmediately?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type MobileGameBattlePassChestItem = {
@@ -22815,6 +22816,7 @@ export type OpenMobileGameBattlePassChestMutation = {
     success: boolean;
     chest?: {
       __typename?: "MobileGameBattlePassChestDetails";
+      shouldClaimImmediately?: boolean | null;
       id: string;
       battlePassType: MobileGameBattlePassType;
       collectionType: MobileGameChestCollectionType;
@@ -70001,6 +70003,7 @@ export const OpenMobileGameBattlePassChestDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      { kind: "Field", name: { kind: "Name", value: "shouldClaimImmediately" } },
                       { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestDetails" } },
                     ],
                   },
