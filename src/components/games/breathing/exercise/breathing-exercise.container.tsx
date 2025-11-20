@@ -250,7 +250,7 @@ const BreathingExerciseContainer = ({ data }: Props) => {
             <Button translationKey="labels.cta.ok" onPress={handleClose} delay={300} />
           ) : (
             <Button
-              translationKey={isPlaying ? "labels.cta.pause" : "labels.cta.start"}
+              translationKey={isPlaying ? "labels.cta.pause" : "labels.cta.resume"}
               delay={300}
               onPress={togglePlaying}
             />

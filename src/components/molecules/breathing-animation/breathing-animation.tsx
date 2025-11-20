@@ -1,5 +1,5 @@
 import LottieView from "lottie-react-native";
-import { useCallback, useEffect, useRef, useMemo } from "react";
+import { useCallback, useEffect, useRef, useMemo, useState } from "react";
 import { ViewStyle } from "react-native";
 
 const PLAYABLE_PHASES = ["intro", "inhale", "exhale"];
@@ -15,34 +15,29 @@ const LOTTIE_FPS = 24;
 
 export const BreathingAnimation = ({ phase, phaseDurationMs, isPlaying, style }: IBreathingAnimationProps) => {
   const lottieRef = useRef<LottieView>(null);
+  const previousPhaseRef = useRef<string>("");
+  const previousIsPlayingRef = useRef<boolean>(false);
+  const pauseTimeRef = useRef<number | null>(null);
+  const phaseStartTimeRef = useRef<number | null>(null);
+  const [animationSpeed, setAnimationSpeed] = useState<number>(1);
 
   const calculateSpeed = useCallback((frameCount: number, desiredDurationMs: number): number => {
-    // At normal speed (1.0), this many frames would take (frameCount / FPS) seconds
-    const normalDurationSeconds = frameCount / LOTTIE_FPS;
-    const normalDurationMs = normalDurationSeconds * 1000;
-
-    // Speed multiplier: if we want it faster, speed > 1; if slower, speed < 1
-    // speed = normalDuration / desiredDuration
-    // e.g., 10 frames at 24fps = 0.417s = 417ms normally. To play in 4000ms: speed = 417 / 4000 = 0.104
-    const speed = normalDurationMs / desiredDurationMs;
-
-    return speed;
+    const normalDurationMs = (frameCount / LOTTIE_FPS) * 1000;
+    return normalDurationMs / desiredDurationMs;
   }, []);
 
-  const animationSpeed = useMemo(() => {
+  const baseSpeed = useMemo(() => {
     const mapping = FRAME_MAPPING[phase];
-
     if (!mapping) {
       return 1;
     }
 
     const frameCount = mapping.endFrame - mapping.startFrame;
-
     if (mapping.adhereToDuration && phaseDurationMs) {
       return calculateSpeed(frameCount, phaseDurationMs);
     }
 
-    return 1; // default speed for intro
+    return 1;
   }, [phase, phaseDurationMs, calculateSpeed]);
 
   useEffect(() => {
@@ -50,14 +45,71 @@ export const BreathingAnimation = ({ phase, phaseDurationMs, isPlaying, style }:
       return;
     }
 
-    if (!isPlaying || !PLAYABLE_PHASES.includes(phase)) {
-      lottieRef.current.pause();
-    } else {
-      const mapping = FRAME_MAPPING[phase];
+    const mapping = FRAME_MAPPING[phase];
+    const isPhaseChange = previousPhaseRef.current !== phase;
+    const isPlayablePhase = PLAYABLE_PHASES.includes(phase);
+    const wasPlaying = previousIsPlayingRef.current;
 
-      lottieRef.current.play(mapping.startFrame, mapping.endFrame);
+    // Update refs for next render
+    previousPhaseRef.current = phase;
+    previousIsPlayingRef.current = isPlaying;
+
+    // Handle phase changes
+    if (isPhaseChange) {
+      if (isPlayablePhase) {
+        // Only set timing for playable phases
+        phaseStartTimeRef.current = Date.now();
+        pauseTimeRef.current = null;
+        setAnimationSpeed(baseSpeed);
+      }
+
+      if (isPlaying && isPlayablePhase) {
+        lottieRef.current.play(mapping.startFrame, mapping.endFrame);
+      } else if (wasPlaying) {
+        lottieRef.current.pause();
+      }
+
+      return;
     }
-  }, [isPlaying, phase]);
+
+    // Handle play/pause changes within same phase
+    if (isPlaying !== wasPlaying) {
+      if (isPlaying && isPlayablePhase) {
+        // Starting or resuming
+        if (pauseTimeRef.current && phaseStartTimeRef.current && phaseDurationMs) {
+          // Resume: calculate current frame and adjusted speed
+          const elapsedMs = pauseTimeRef.current - phaseStartTimeRef.current;
+          const progress = Math.min(elapsedMs / phaseDurationMs, 1);
+          const currentFrame = mapping.startFrame + progress * (mapping.endFrame - mapping.startFrame);
+          const remainingFrames = mapping.endFrame - currentFrame;
+          const remainingMs = phaseDurationMs - elapsedMs;
+
+          if (remainingMs > 0 && remainingFrames > 0) {
+            if (mapping.adhereToDuration) {
+              // Calculate and set adjusted speed for remaining animation
+              const adjustedSpeed = calculateSpeed(remainingFrames, remainingMs);
+              setAnimationSpeed(adjustedSpeed);
+            } else {
+              setAnimationSpeed(baseSpeed);
+            }
+
+            phaseStartTimeRef.current = Date.now() - elapsedMs;
+            pauseTimeRef.current = null;
+            lottieRef.current.play(currentFrame, mapping.endFrame);
+          }
+        } else {
+          // Start fresh
+          setAnimationSpeed(baseSpeed);
+          phaseStartTimeRef.current = Date.now();
+          lottieRef.current.play(mapping.startFrame, mapping.endFrame);
+        }
+      } else if (!isPlaying || !isPlayablePhase) {
+        // Pausing
+        pauseTimeRef.current = Date.now();
+        lottieRef.current.pause();
+      }
+    }
+  }, [isPlaying, phase, phaseDurationMs, calculateSpeed, baseSpeed]);
 
   return (
     <LottieView
@@ -75,7 +127,7 @@ const FRAME_MAPPING: Record<
   IBreathingAnimationProps["phase"],
   { startFrame: number; endFrame: number; adhereToDuration: boolean }
 > = {
-  intro: { startFrame: 0, endFrame: 68, adhereToDuration: false },
+  intro: { startFrame: 0, endFrame: 68, adhereToDuration: true },
   inhale: { startFrame: 90, endFrame: 149, adhereToDuration: true },
   exhale: { startFrame: 364, endFrame: 430, adhereToDuration: true },
 };

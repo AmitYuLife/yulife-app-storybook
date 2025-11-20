@@ -113,6 +113,7 @@
       "submit": "Submit",
       "start": "Start",
       "pause": "Pause",
+      "resume": "Resume",
       "later": "Later",
       "connect": "Connect",
       "connect_health_app": "Connect %{healthApp}",
