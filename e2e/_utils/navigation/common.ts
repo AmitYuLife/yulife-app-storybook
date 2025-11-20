@@ -170,7 +170,15 @@ export const textNotVisible =
   };
 
 export const tapID =
-  (id: string, waitTime = 1500, tapXOffset = 0, tapYOffset = 0) =>
+  (id: string, waitTime = 1500) =>
+  async () => {
+    const target = element(by.id(id));
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
+    await target.tap();
+  };
+
+export const tapIDWithOffset =
+  (id: string, tapXOffset: number, tapYOffset: number, waitTime = 1500) =>
   async () => {
     const target = element(by.id(id));
     await waitFor(target).toBeVisible().withTimeout(waitTime);

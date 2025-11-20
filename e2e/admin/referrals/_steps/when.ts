@@ -26,6 +26,7 @@ export const {
   restartWithoutDelete,
   restartWithoutDeleteTwoTimes,
   reloadOnly,
+  tapIDWithOffset,
 } = navigation.common;
 
 export const { loginAsUser } = navigation.login;
@@ -34,7 +35,7 @@ export const changeReferralSelectedBusiness =
   (businessName: string, waitTime = 1000) =>
   async () => {
     await wait(waitTime)();
-    await tapID(ids.REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN, 500, 0, 5)();
+    await tapIDWithOffset(ids.REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN, 0, 5, 500)();
     await tapID(ids.GENERIC_SELECTOR_ITEM(businessName), 1000)();
     await tapID(ids.GENERIC_SELECTOR_CONFIRM, 500)();
   };
