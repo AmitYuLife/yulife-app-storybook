@@ -27,7 +27,7 @@ Feature("As a user I can take a challenge", async () => {
         Then("I should see the cancel button", then.idVisible(ids.BUTTON_CLOSE_CHALLENGE));
       });
     });
-    When("I tap this button", when.tapID(ids.BUTTON_CLOSE_CHALLENGE), async () => {
+    When("I tap this button", when.tapIDWithOffset(ids.BUTTON_CLOSE_CHALLENGE, 16, 16, 3000), async () => {
       Then("I should see the cancel challenge confirmation screen", then.textVisible("Call it quits?", 1500));
     });
     When("I tap exit", when.tapID(ids.CANCEL_CHALLENGE, 1500), async () => {

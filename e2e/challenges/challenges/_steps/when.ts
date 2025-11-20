@@ -24,6 +24,7 @@ export const {
   minimiseAndReopenApp,
   navigateTo,
   relaunchAppWithoutSync,
+  tapIDWithOffset,
 } = navigation.common;
 
 export const { dismissStreakIfVisible, restartAndLoginToTab, fullRestartAndLogin } =
