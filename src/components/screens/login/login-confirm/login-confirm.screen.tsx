@@ -7,7 +7,6 @@ import LoginFormWrapper from "../subcomponents/login-form-wrapper";
 import { Alert } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { openInbox, EmailException } from "react-native-email-link";
-import Logger from "@services/logging/logger";
 import { LinkButtonSpacing } from "../subcomponents/link-button-spacing";
 
 import { StyleSheet } from "@styles";
@@ -52,12 +51,14 @@ const LoginConfirmScreen = ({
           t("screens.login_confirm.no_email_app_installed.title"),
           t("screens.login_confirm.no_email_app_installed.message")
         );
+
         return;
       }
 
-      Logger.error(error, {
-        location: "login-confirm-screen.handleOpenEmail",
-      });
+      Alert.alert(
+        t("screens.login_confirm.generic_email_error.title"),
+        t("screens.login_confirm.generic_email_error.message")
+      );
     }
   }, [setHasOpenedEmailApp]);
 

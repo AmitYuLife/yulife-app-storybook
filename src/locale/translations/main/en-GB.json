@@ -394,6 +394,10 @@
       "no_email_app_installed": {
         "title": "No email app installed",
         "message": "If your email app isn’t recognised, try opening it manually."
+      },
+      "generic_email_error": {
+        "title": "Something went wrong",
+        "message": "If your email app isn’t recognised, try opening it manually."
       }
     },
     "login_password": {
