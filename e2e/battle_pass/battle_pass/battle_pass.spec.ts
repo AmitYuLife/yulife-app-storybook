@@ -44,14 +44,14 @@ Feature("I can view and use all battle pass features", async () => {
         Then("I should see 6 items available to claim", then.idVisible(ids.CLAIMED_REWARD_ITEMS(6), 2000));
       });
     });
-    When("I tap to claim my prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
+    When("I tap to continue", when.tapID(ids.CONTINUE_CHEST_PRIZE_BUTTON, 2000), async () => {
       Then("The wallet reward pop-up should be visible", then.assertWalletPopUp);
     });
     When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
       When("I donate to Clean the ocean and complete the next level", when.donate("ocean", 5), async () => {
         When("I tap to claim my prize", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
           When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
-            When("I tap to claim the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
+            When("I tap to continue", when.tapID(ids.CONTINUE_CHEST_PRIZE_BUTTON, 2000), async () => {
               When("I dismiss the reward pop-up again", when.dismissRewardPopUp, async () => {
                 Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 2000));
               });
@@ -119,7 +119,7 @@ Feature("I can view and use all battle pass features", async () => {
         Then("I should see 6 items available to claim", then.idVisible(ids.CLAIMED_REWARD_ITEMS(6), 2000));
       });
     });
-    When("I tap to claim my prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
+    When("I tap to continue", when.tapID(ids.CONTINUE_CHEST_PRIZE_BUTTON, 2000), async () => {
       Then("The wallet reward pop-up should be visible", then.assertWalletPopUp);
     });
     When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
@@ -200,7 +200,7 @@ Feature("I can view and use all battle pass features", async () => {
     When("I tap to open the spinning rewards chest", when.tapID(ids.CLAIM_REWARD_MODAL, 2000), async () => {
       Then("I should see the random extra challenge reward", then.extraChallengeRewardModalVisible);
     });
-    When("I tap to claim the extra challenge reward", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
+    When("I tap to continue", when.tapID(ids.CONTINUE_CHEST_PRIZE_BUTTON, 2000), async () => {
       When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
         Then("I should see that the reward has successfully been claimed", then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(2), 3000));
         Then("I should see level 3 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(10, 120, 2), 3000));

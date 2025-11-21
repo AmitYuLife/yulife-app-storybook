@@ -4,6 +4,7 @@ import { FadeInDown, FadeOutDown } from "react-native-reanimated";
 import { Box } from "@atoms";
 import { Button } from "@components/molecules";
 import RewardInfoCard from "./reward-info-card/reward-info-card";
+import { CONTINUE_CHEST_PRIZE_BUTTON } from "@ids";
 
 interface IRedeemedStageFooterProps {
   awardedPrizeTypes?: GamePrizeType[];
@@ -18,7 +19,7 @@ const RedeemedStageFooter = ({ awardedPrizeTypes = [], onClose }: IRedeemedStage
       </Box>
 
       <Box exiting={FadeOutDown.duration(250)} entering={FadeInDown.duration(250)}>
-        <Button onPress={onClose} testID="continueChestPrize" translationKey="labels.cta.continue" />
+        <Button onPress={onClose} testID={CONTINUE_CHEST_PRIZE_BUTTON} translationKey="labels.cta.continue" />
       </Box>
     </Box>
   );

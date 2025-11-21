@@ -9,6 +9,7 @@ import { noop } from "@utils";
 import { Box } from "@atoms";
 import ChestAnimatedRaysBackground from "../../chest-animated-rays-background";
 import RedeemedStageFooter from "../../redeemed-stage-footer";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IRedeemedStageProps {
   redeemedItems: GetMobileGameBattlePassChestDetailsQuery["details"]["redeemedRewards"];
@@ -35,7 +36,7 @@ const SingleRedeemedRewardStage = ({ redeemedItems, onClose, awardedPrizeTypes =
 
   return (
     <StageContainer>
-      <ChestAnimatedRaysBackground />
+      {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground />}
       <Box mt={130} justifyContent="center" alignItems="center">
         <Box justifyContent="center" alignItems="center">
           <Box entering={FadeInUp.delay(400).duration(1000)} width="100%" justifyContent="center" alignItems="center">

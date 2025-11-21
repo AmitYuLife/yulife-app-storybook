@@ -9,6 +9,7 @@ import { CLAIMED_REWARD_ITEMS } from "@ids";
 import { t } from "@locale";
 import ChestAnimatedRaysBackground from "../../chest-animated-rays-background";
 import RedeemedStageFooter from "../../redeemed-stage-footer";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IRedeemedStageProps {
   onClose?: () => void;
@@ -20,7 +21,7 @@ interface IRedeemedStageProps {
 const MultipleRedeemedRewardStage = ({ redeemedItems, onClose, awardedPrizeTypes = [] }: IRedeemedStageProps) => {
   return (
     <StageContainer>
-      <ChestAnimatedRaysBackground />
+      {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground />}
       <Box pt={65} w="100%" testID={CLAIMED_REWARD_ITEMS(redeemedItems?.length)}>
         <ShowcaseStack>
           {redeemedItems?.map((item) => (

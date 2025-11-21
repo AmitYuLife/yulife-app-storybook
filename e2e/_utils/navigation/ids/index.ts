@@ -1040,6 +1040,7 @@ export const END_OF_SEASON_TITLE = (title: string) => `END_OF_SEASON_TITLE_${tit
 export const END_OF_SEASON_ITEM_TITLE = (title: string) => `END_OF_SEASON_ITEM_TITLE_${title}`;
 export const END_OF_SEASON_ITEM_SCORE = (score: string) => `END_OF_SEASON_ITEM_SCORE_${score}`;
 export const SEASON_COMPLETE_NEW_SEASON_COMING = "SEASON_COMPLETE_NEW_SEASON_COMING";
+export const CONTINUE_CHEST_PRIZE_BUTTON = "CONTINUE_CHEST_PRIZE_BUTTON";
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";
