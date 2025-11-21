@@ -11,9 +11,11 @@ import { getFullName } from "_utils/users";
 
 Feature("As a user I can take a challenge", async () => {
   Scenario("I can take a challenge and cancel it", scenario.start, async () => {
-    Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
-      Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1), 3000));
+    Given("I login", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
+      When("I navigate to the quests screen", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
+        Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1), 3000));
+      });
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
       Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
