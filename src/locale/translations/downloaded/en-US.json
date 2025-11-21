@@ -192,6 +192,7 @@
       "open": "Open",
       "pause": "Pause",
       "quit": "Quit",
+      "resume": "Resume",
       "save": "Save",
       "select": "Select",
       "skip": "skip",
@@ -411,10 +412,28 @@
       "claim_all_subtitle": "Check out what you've unlocked!",
       "claim_all_title": "Jackpot!",
       "claim_reward": "Claim rewards",
+      "info_card": {
+        "power_up_inventory": {
+          "description": "You can find your power-up in your Power-Ups inventory.",
+          "title": "Power-up collected!"
+        },
+        "wallet": {
+          "description": "You can find your YuCoin in your Wallet in Store.",
+          "title": "Reward collected!"
+        },
+        "yumoji_inventory": {
+          "description": "You can find your reward in your Yumoji inventory.",
+          "title": "Reward collected!"
+        }
+      },
       "open": "Open",
       "open_chest": "Open chest",
+      "power_up_received": "Power-up received!",
+      "reward_received": "%{reward} received!",
+      "rewards_received": "Rewards received!",
       "select_one": "Select one to proceed",
       "title": "You got a reward!",
+      "won_a_reward": "You've won a %{reward}!",
       "won_reward": "You've won %{reward}!"
     },
     "push_notifications": {
@@ -1320,6 +1339,10 @@
       "cooldown": "Send a new link in %{seconds}s...",
       "description": "Use the link in the email we've just sent you.",
       "error_title": "Something went wrong",
+      "generic_email_error": {
+        "message": "If your email app isn’t recognized, try opening it manually.",
+        "title": "Something went wrong"
+      },
       "heading": "Ready to be your best Yu? Let's verify your account.",
       "login_with_password": "Log in with password instead",
       "no_email_app_installed": {

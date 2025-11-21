@@ -192,6 +192,7 @@
       "open": "Abrir",
       "pause": "Pausa",
       "quit": "Salir",
+      "resume": "Currículum",
       "save": "Guardar",
       "select": "Seleccionar",
       "skip": "omitir",
@@ -411,10 +412,28 @@
       "claim_all_subtitle": "¡Checa lo que has desbloqueado!",
       "claim_all_title": "¡Lotería!",
       "claim_reward": "Recoger recompensa",
+      "info_card": {
+        "power_up_inventory": {
+          "description": "Puedes encontrar tu potenciador en tu inventario de potenciadores.",
+          "title": "¡Potencia recogida!"
+        },
+        "wallet": {
+          "description": "Puedes encontrar tu YuCoin en tu Cartera en la Tienda.",
+          "title": "¡Recompensa recolectada!"
+        },
+        "yumoji_inventory": {
+          "description": "Puedes encontrar tu recompensa en tu inventario Yumoji.",
+          "title": "¡Recompensa recolectada!"
+        }
+      },
       "open": "Abrir",
       "open_chest": "Cofre abierto",
+      "power_up_received": "¡Potencia recibida!",
+      "reward_received": "%{reward} ¡Recibido!",
+      "rewards_received": "Recompensas recibidas",
       "select_one": "Seleccione uno para continuar",
       "title": "¡Tienes una recompensa!",
+      "won_a_reward": "¡Has ganado un %{reward}!",
       "won_reward": "¡Has ganado %{reward}!"
     },
     "push_notifications": {
@@ -1320,6 +1339,10 @@
       "cooldown": "Enviar un nuevo enlace a %{seconds}s...",
       "description": "Utiliza el enlace en el correo que acabamos de enviarte.",
       "error_title": "Algo salió mal",
+      "generic_email_error": {
+        "message": "Si no se reconoce tu aplicación de correo, intenta abrirla manualmente.",
+        "title": "Algo salió mal"
+      },
       "heading": "¿Listo para ser tu mejor Yu? Vamos a verificar tu cuenta.",
       "login_with_password": "Inicia sesión con la contraseña en su lugar.",
       "no_email_app_installed": {

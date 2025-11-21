@@ -192,6 +192,7 @@
       "open": "開く",
       "pause": "一時停止",
       "quit": "終了する",
+      "resume": "再開",
       "save": "保存",
       "select": "選択",
       "skip": "スキップ",
@@ -411,10 +412,28 @@
       "claim_all_subtitle": "早速ボックスを開けてみましょう!",
       "claim_all_title": "新アイテムを獲得しました",
       "claim_reward": "アイテムを受け取る",
+      "info_card": {
+        "power_up_inventory": {
+          "description": "パワーアップは Power Ups インベントリで見つけることができます。",
+          "title": "パワーアップ を収集しました!"
+        },
+        "wallet": {
+          "description": "ウォレット内ストアで YuCoin が見つかります。",
+          "title": "リワードを受け取りました!"
+        },
+        "yumoji_inventory": {
+          "description": "報酬は Yumoji インベントリで見つけることができます。",
+          "title": "リワードを受け取りました!"
+        }
+      },
       "open": "開く",
       "open_chest": "ボックスを開く",
+      "power_up_received": "パワーアップを受け取りました!",
+      "reward_received": "%{reward} 受け取りました！",
+      "rewards_received": "リワード 受け取りました！",
       "select_one": "続行するには1つ選択してください",
       "title": "新アイテムを獲得しました",
+      "won_a_reward": "%{reward} を獲得しました!",
       "won_reward": "%{reward}を獲得しました!"
     },
     "push_notifications": {
@@ -1320,6 +1339,10 @@
       "cooldown": "%{seconds}秒後に新しいリンクが送信されます。",
       "description": "送信されたメールに記載されているリンクを使用してください。",
       "error_title": "エラーが発生しました",
+      "generic_email_error": {
+        "message": "メールアプリが認識されない場合は、手動でお試しください。",
+        "title": "エラーが発生しました"
+      },
       "heading": "アカウントの認証を完了してください。",
       "login_with_password": "パスワードでログインしてください。",
       "no_email_app_installed": {

@@ -192,6 +192,7 @@
       "open": "افتح",
       "pause": "إيقاف",
       "quit": "إنهاء",
+      "resume": "استئناف",
       "save": "حفظ",
       "select": "اختر",
       "skip": "تخطي",
@@ -411,10 +412,28 @@
       "claim_all_subtitle": "اكتشف ما الذي فتحته!",
       "claim_all_title": "الجائزة الكبرى!",
       "claim_reward": "استلام المكافأة",
+      "info_card": {
+        "power_up_inventory": {
+          "description": "يمكنك العثور على تعزيزاتك في مخزون التعزيزات الخاص بك",
+          "title": "تم جمع التعزيز!"
+        },
+        "wallet": {
+          "description": "يمكنك العثور على اليكوين في محفظتك في المتجر.",
+          "title": "تم جمع المكافأة!"
+        },
+        "yumoji_inventory": {
+          "description": "يمكنك العثور على مكافأتك في مخزون اليموجي الخاص بك",
+          "title": "تم جمع المكافأة!"
+        }
+      },
       "open": "افتح",
       "open_chest": "افتح الصندوق",
+      "power_up_received": "تم استلام تعزيز القوة!",
+      "reward_received": "تم استلام %{reward}",
+      "rewards_received": "تم استلام المكافآت!",
       "select_one": "اختر واحدًا للاستمرار",
       "title": "لقد حصلت على مكافأة!",
+      "won_a_reward": "لقد فزت بـ %{reward}!",
       "won_reward": "لقد ربحت %{reward}!"
     },
     "push_notifications": {
@@ -1320,6 +1339,10 @@
       "cooldown": "إرسال رابط جديد في %{seconds}s...",
       "description": "استخدِم الرابط الموجود في البريد الإلكتروني الذي أرسلناه لك للتو.",
       "error_title": "هناك خطأ ما",
+      "generic_email_error": {
+        "message": "إذا لم يتم التعرف على تطبيق البريد الإلكتروني الخاص بك، حاول فتحه يدوياً.",
+        "title": "هناك خطأ ما"
+      },
       "heading": "مستعد أن تكون أفضل نسخة منك؟ لنتحقق من حسابك.",
       "login_with_password": "تسجيل الدخول باستخدام كلمة المرور بدلاً من ذلك.",
       "no_email_app_installed": {
