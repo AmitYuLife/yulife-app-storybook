@@ -12,6 +12,7 @@ export const {
   minimiseApp,
   typeViaID,
   typeViaIDAtIndex,
+  tapIDWithOffset,
 } = navigation.common;
 
 export const { tapMenuItem } = screens.menu;

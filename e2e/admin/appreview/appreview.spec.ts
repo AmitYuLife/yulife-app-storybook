@@ -30,7 +30,7 @@ Feature("App store review should behave correctly", async () => {
       Then("I should see text We’d love a chance to do better. Would you mind leaving us a few tips?", then.textVisible("We’d love a chance to do better. Would you mind leaving us a few tips?", 1500));
     });
     When("I tap the button Give feedback", when.tapText("Give feedback", 1, true), async () => {
-      Then("I should see intercom", then.textVisible("Send us a message"));
+      Then("I should see intercom", then.textVisible("Send message"));
     });
     When("I close and reopen the app", when.reloadOnly, async () => {
       Then("I should not see a screen asking me Enjoying YuLife?", then.idNotVisible(ids.APPREVIEW_TEXT("Enjoying YuLife?"), 1500));

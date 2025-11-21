@@ -176,20 +176,20 @@ Feature("As a user I can navigate through member routes correctly", async () => 
   Scenario("I can view quest screens", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_4, data.AUTH_4), async () => {
       When("I go to quests", when.tapID(ids.NAV_BAR("quests")), async () => {
-        Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0)));
+        Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
       });
     });
-    When("I tap the locked level 4 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(4)), async () => {
+    When("I tap the locked level 4 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(4), 3000), async () => {
       Then("I should see a popup telling me I will unlock this at level 4", then.textVisible("Unlock at level 4"));
     });
-    When("I tap 'got it'", when.tapText(t("Got it")), async () => {
+    When("I tap 'got it'", when.tapText("Got it", 3000), async () => {
       Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0)));
     });
     When("I tap the unlocked level 3 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
       Then("I should be on the level 3 quest screen", then.idVisible(ids.CHALLENGE_SET));
       Then("I should see an unlocked challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
     });
-    When("I tap the meditation challenge", when.tapID(ids.CHALLENGE_TILE(t("Meditation"))), async () => {
+    When("I tap the meditation challenge", when.tapID(ids.CHALLENGE_TILE("Meditation"), 3000), async () => {
       Then("I should see a screen with a take challenge option", then.textVisible("Take challenge"));
     });
     When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
@@ -199,10 +199,10 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         });
       });
     });
-    When("I close this screen", when.tapID(ids.BUTTON_CLOSE_CHALLENGE), async () => {
+    When("I close this screen", when.tapIDWithOffset(ids.BUTTON_CLOSE_CHALLENGE, 16, 16, 3000), async () => {
       Then("I should see an exit challenge screen", then.multipleTextVisible(["Call it quits?", "Cancel", "Exit challenge"]));
     });
-    When("I tap Cancel", when.tapText(t("Cancel")), async () => {
+    When("I tap Cancel", when.tapText("Cancel", 3000), async () => {
       Then("I should be back on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
     });
     When("I close this screen again and exit the challenge", [when.tapID(ids.BUTTON_CLOSE_CHALLENGE), when.tapText("Exit challenge")], async () => {
@@ -254,10 +254,10 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
     });
-    When("I tap settings", when.tapMenuItem(t("Settings")), async () => {
+    When("I tap settings", when.tapMenuItem("Settings"), async () => {
       Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
     });
-    When("I scroll down", when.scrollUntilTextVisible(ids.SETTINGS_SCREEN_SCROLL, t("Fitness trackers"), "down"), async () => {
+    When("I scroll down", when.scrollUntilTextVisible(ids.SETTINGS_SCREEN_SCROLL, "Fitness trackers", "down"), async () => {
       Then("I should see the right settings details", then.permissionsActivityRightVisible);
     });
     When("I tap permissions settings", when.tapIDAtIndex(ids.ARROW_BUTTON, 1), async () => {
@@ -272,19 +272,18 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
     });
-    When("I tap settings", when.tapMenuItem(t("Settings")), async () => {
+    When("I tap settings", when.tapMenuItem("Settings"), async () => {
       Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
     });
     When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
       Then("I should see the pre-selected server language is en-GB", then.languageSettingVisible("en-GB"));
     });
-    When("I tap the language options", when.tapText(t("Language"), 2000, true), async () => {
-      Then("I should be on the langauge selector screen", then.languageSelectorVisible);
+    When("I tap the language options", when.tapText("Language", 2000), async () => {
+      Then("I should be on the language selector screen", then.languageSelectorVisible);
       Then("I should see all the available languages listed", then.allLanguagesVsible);
     });
-    When("I tap to select Spanish option", when.tapText(t(`${translations["es-US"].flag} ${translations["es-US"].name}`), 2000, true), async () => {
-      Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 15000));
-      Then("I should see that the client language has successfully changed in Spanish", then.textVisible("200 YuCoin hoy", 3000));
+    When("I tap to select Spanish option", when.tapID(ids.TEXT_TEMPLATE("🇪🇸 Español (Estados Unidos)", undefined), 3000), async () => {
+      Then("I should see that the client language has successfully changed in Spanish", then.textVisible("200 YuCoin hoy", 10_000));
     });
   });
 

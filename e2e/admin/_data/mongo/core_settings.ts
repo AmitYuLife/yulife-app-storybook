@@ -38,6 +38,32 @@ export const BUSINESS_6_INTERCOM_SETTINGS = {
   },
 } as IDatabaseItem;
 
+export const BUSINESS_1_INTERCOM_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "support",
+    entityId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    entityType: "business",
+    settings: {
+      userSupportLevel: "enhanced",
+    },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_4_INTERCOM_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "support",
+    entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    entityType: "business",
+    settings: {
+      userSupportLevel: "enhanced",
+    },
+  },
+} as IDatabaseItem;
+
 export const BUSINESS_4_REFERRALS_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {
