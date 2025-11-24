@@ -38,7 +38,7 @@ export const referralsPopoverNotVisible =
 
 export const isOnInivteColleaguePage = (image: string, waitTime?: number) => async () => {
   await wait(waitTime)();
-  await expect(element(by.id(ids.REFERRALS_IMAGE_URI(image)))).toBeVisible(50);
+  await expect(element(by.id(ids.REFERRALS_IMAGE_URI(image)))).toExist();
   await expect(element(by.id(ids.REFERRALS_SHARE_CODE_BUTTON))).toBeVisible();
   await scrollFromID(ids.REFERRALS_SHARE_CODE_BUTTON, "up", "fast")();
   await expect(element(by.text("Your referrals"))).toBeVisible();

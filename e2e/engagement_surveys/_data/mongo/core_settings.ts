@@ -1,13 +1,7 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {} from "../postgres/business";
-import {
-  BUSINESS_ACCOUNT_1,
-  BUSINESS_ACCOUNT_2,
-  BUSINESS_ACCOUNT_3,
-  BUSINESS_ACCOUNT_4,
-  CUSTOMER_3,
-} from "engagement_surveys/_data";
+import { BUSINESS_ACCOUNT_3, CUSTOMER_3 } from "engagement_surveys/_data";
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
   type: "mongo",
@@ -36,6 +30,19 @@ export const CUSTOMER_3_GAME_GOALS_SETTINGS = {
     entityType: "user",
     settings: {
       createOnboardingGoalEvent: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_3_INTERCOM_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "support",
+    entityId: BUSINESS_ACCOUNT_3.data.business_account_id,
+    entityType: "business",
+    settings: {
+      userSupportLevel: "enhanced",
     },
   },
 } as IDatabaseItem;
