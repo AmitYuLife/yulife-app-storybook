@@ -144,7 +144,7 @@ export const USER_UNKNOWN_GIFT_B = {
   data: {
     _id: generateRandomMongoId(),
     fromUserId: customer.CUSTOMER_UNKNOWN.data.customerId,
-    toUserId: customer.CUSTOMER_19.data.customerId,
+    toUserId: customer.CUSTOMER_29.data.customerId,
     assetType: "yucoin",
     amount: 100,
     message: "Great work today!",

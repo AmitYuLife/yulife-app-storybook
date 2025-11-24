@@ -33,11 +33,11 @@ export const {
 export const { scrollUntilTextVisible } = navigation.scrolling;
 
 export const giftingModalVisible = (name: string) => async () => {
-  await idVisible(ids.P2P_GIFTING_CARD)();
+  await idVisible(ids.P2P_GIFTING_CARD, 3000)();
   await textVisible(translation.screens.gifting.send_prompt.title)();
   const descriptionTemplate = translation.screens.gifting.send_prompt.description;
   const newDescription = replaceName(descriptionTemplate, name);
-  await textVisible(newDescription)();
+  await textVisible(newDescription, 3000)();
 };
 
 export const giftingSelectionScreenVisible = (selectUsers: typeof CUSTOMER_1[]) => async () => {
@@ -102,7 +102,7 @@ export const onGiftingSuccessScreen = (recipients: number) => async () => {
   const newTexts = [description, title].map((text) => splitPlural(text, recipients));
 
   for (const text of newTexts) {
-    await textVisible(text)();
+    await textVisible(text, 4000)();
   }
 };
 
