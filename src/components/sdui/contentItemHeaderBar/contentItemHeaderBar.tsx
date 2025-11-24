@@ -25,6 +25,7 @@ type Props = Omit<
   publishKeyHeight?: string;
   color: string;
   backgroundColor?: string | null;
+  logoType?: ComponentProps<typeof GenericHeading>["logoType"];
 };
 
 export const ContentItemHeaderBar = memo((props: Props) => {
@@ -38,6 +39,7 @@ export const ContentItemHeaderBar = memo((props: Props) => {
     publishKeyHeight,
     color = Colours.neutral.n800,
     backgroundColor,
+    logoType,
   } = props;
   const { handleSduiAction: handleLeftIconPress } = useSduiCallbackFunctionOrReduxAction(onLeftIconPress);
   const { handleSduiAction: handleRightIconPress } = useSduiCallbackFunctionOrReduxAction(onRightIconPress);
@@ -87,6 +89,7 @@ export const ContentItemHeaderBar = memo((props: Props) => {
         onRightIconPress={!onRightIconPress ? null : handleRightIconPress}
         disabled={isSduiLoading}
         color={colorGuard}
+        logoType={logoType}
       />
     </View>
   );

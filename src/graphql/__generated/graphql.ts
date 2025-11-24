@@ -1964,6 +1964,7 @@ export type ContentItemHeaderBar = {
   id: Scalars["ID"]["output"];
   leftIcon?: Maybe<Scalars["String"]["output"]>;
   logo?: Maybe<Scalars["String"]["output"]>;
+  logoType?: Maybe<Scalars["String"]["output"]>;
   onLeftIconPress?: Maybe<SduiAction>;
   onRightIconPress?: Maybe<SduiAction>;
   publishKeyHeight?: Maybe<Scalars["String"]["output"]>;
@@ -9720,6 +9721,8 @@ export enum SduiActionType {
   SduiActionGenericNavigateBack = "SDUI_ACTION_GENERIC_NAVIGATE_BACK",
   /** Generic: Navigate back; RN client version >= 3.65.0 */
   SduiActionGenericNavigateBackToRoot = "SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT",
+  /** Generic: Navigate pop to route ID. RN client version >= 4.90.0 */
+  SduiActionGenericNavigatePopTo = "SDUI_ACTION_GENERIC_NAVIGATE_POP_TO",
   /** Generic: Logs an event to mixpanel from the client */
   SduiActionLogEvent = "SDUI_ACTION_LOG_EVENT",
   /** Generic: Accepts client-side route constant as payload. Needs to be stringified. E.g: {"routeId":"some.screen","props":{}} */
@@ -13848,6 +13851,7 @@ export type AbsoluteContentItemFragment = {
         publishKeyHeight?: string | null;
         color?: string | null;
         backgroundColor?: string | null;
+        logoType?: string | null;
         contentItemHeaderBarRightIcon?: string | null;
         onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -15590,6 +15594,7 @@ type ContentItem_ContentItemHeaderBar_Fragment = {
   publishKeyHeight?: string | null;
   color?: string | null;
   backgroundColor?: string | null;
+  logoType?: string | null;
   contentItemHeaderBarRightIcon?: string | null;
   onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17545,6 +17550,7 @@ export type ContentItemHeaderBarFragment = {
   publishKeyHeight?: string | null;
   color?: string | null;
   backgroundColor?: string | null;
+  logoType?: string | null;
   contentItemHeaderBarRightIcon?: string | null;
   onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -20410,6 +20416,7 @@ export type SduiSectionFragment = {
           publishKeyHeight?: string | null;
           color?: string | null;
           backgroundColor?: string | null;
+          logoType?: string | null;
           contentItemHeaderBarRightIcon?: string | null;
           onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -25187,6 +25194,7 @@ export type GetSduiJourneyQuery = {
           publishKeyHeight?: string | null;
           color?: string | null;
           backgroundColor?: string | null;
+          logoType?: string | null;
           contentItemHeaderBarRightIcon?: string | null;
           onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -26889,6 +26897,7 @@ export type GetSduiJourneyQuery = {
             publishKeyHeight?: string | null;
             color?: string | null;
             backgroundColor?: string | null;
+            logoType?: string | null;
             contentItemHeaderBarRightIcon?: string | null;
             onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -29751,6 +29760,7 @@ export type GetYuScreenProductDetailsQuery = {
           publishKeyHeight?: string | null;
           color?: string | null;
           backgroundColor?: string | null;
+          logoType?: string | null;
           contentItemHeaderBarRightIcon?: string | null;
           onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -31024,6 +31034,7 @@ export type GetSduiStaticStepQuery = {
           publishKeyHeight?: string | null;
           color?: string | null;
           backgroundColor?: string | null;
+          logoType?: string | null;
           contentItemHeaderBarRightIcon?: string | null;
           onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -32726,6 +32737,7 @@ export type GetSduiStaticStepQuery = {
             publishKeyHeight?: string | null;
             color?: string | null;
             backgroundColor?: string | null;
+            logoType?: string | null;
             contentItemHeaderBarRightIcon?: string | null;
             onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -37154,6 +37166,7 @@ export type GetYuScreenV5Query = {
                   publishKeyHeight?: string | null;
                   color?: string | null;
                   backgroundColor?: string | null;
+                  logoType?: string | null;
                   contentItemHeaderBarRightIcon?: string | null;
                   onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
                   onRightIconPress?: {
@@ -39125,6 +39138,7 @@ export type GetYuScreenV5SectionsQuery = {
                 publishKeyHeight?: string | null;
                 color?: string | null;
                 backgroundColor?: string | null;
+                logoType?: string | null;
                 contentItemHeaderBarRightIcon?: string | null;
                 onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
                 onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -41480,6 +41494,7 @@ type YuScreenSection_SduiSection_Fragment = {
           publishKeyHeight?: string | null;
           color?: string | null;
           backgroundColor?: string | null;
+          logoType?: string | null;
           contentItemHeaderBarRightIcon?: string | null;
           onLeftIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onRightIconPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -46697,6 +46712,7 @@ export const ContentItemHeaderBarFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
@@ -50376,6 +50392,7 @@ export const ContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
@@ -52437,6 +52454,7 @@ export const AbsoluteContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
@@ -61045,6 +61063,7 @@ export const SduiSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
@@ -65344,6 +65363,7 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
@@ -77549,6 +77569,7 @@ export const GetSduiJourneyDocument = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
@@ -82741,6 +82762,7 @@ export const GetYuScreenProductDetailsDocument = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
@@ -85651,6 +85673,7 @@ export const GetSduiStaticStepDocument = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
@@ -95877,6 +95900,7 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
@@ -98949,6 +98973,7 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "color" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "logoType" } },
         ],
       },
     },
