@@ -43,11 +43,7 @@ export const INSPECT_USER =
         );
         When(
           "I swipe up to scroll down to the challenge button",
-          when.scrollWithLimitedAttemptsUntilIdVisible(
-            ids.INSPECT_SCREEN,
-            ids.COMPARISON_ACTIVITY("Average mindfulness"),
-            "up"
-          ),
+          when.scrollFromID(ids.INSPECT_SCREEN, "up", "fast", 0.8, 3000),
           async () => {
             Then(
               "I should see the Average mindfulness section",
