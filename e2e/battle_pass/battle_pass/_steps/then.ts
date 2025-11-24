@@ -58,7 +58,7 @@ export const extraChallengesInfoModalVisible = async () => {
 export const extraChallengeRewardModalVisible = async () => {
   for (const challenge of challengeTypes) {
     try {
-      await expect(element(by.text(`You've won ${challenge}!`))).toBeVisible();
+      await expect(element(by.text(`You've won a ${challenge}!`))).toBeVisible();
       return;
     } catch {
       // Ignore and try next challenge

@@ -9,3 +9,6 @@ export const GiftNpcAltra: Gift = {
   backgroundId: "yuniversal",
   stickerId: "lantern",
 };
+
+export const extraLongGiftMessage =
+  "Hello, world! Another great day to receive a gift for hardworking. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Hello, world! Another great day to receive a gift for hardworking.";
