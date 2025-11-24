@@ -19,6 +19,7 @@ import { sduiActionDisplayStepFeedback } from "./sduiActionDisplayStepFeedback.s
 import { sduiActionRefetchQueriesSaga } from "./sduiActionRefetchQueries.saga";
 import { sduiActionDismissModal } from "./sduiActionDismissModal.saga";
 import { sduiActionOpenShareDialogSaga } from "./sduiActionOpenShareDialog.saga";
+import { sduiActionGenericNavigatePopToSaga } from "./sduiActionGenericNavigatePopTo";
 
 export default [
   takeLeading(SduiActionType.SduiActionShowOverlayListPicker, sduiActionShowOverlayListPicker),
@@ -40,4 +41,5 @@ export default [
   takeEvery(SduiActionType.SduiActionShowFloatingModal, sduiActionShowFloatingModal),
   takeLeading(SduiActionType.SduiActionRefetchQueries, sduiActionRefetchQueriesSaga),
   takeLeading(SduiActionType.SduiActionOpenShareDialog, sduiActionOpenShareDialogSaga),
+  takeLeading(SduiActionType.SduiActionGenericNavigatePopTo, sduiActionGenericNavigatePopToSaga),
 ];

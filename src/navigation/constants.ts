@@ -112,6 +112,8 @@ export const ROUTES = {
   fiitMediaList: "yulife.fiit.media.list",
   mediaPlayer: "yulife.media.player",
 
+  mediaPlayerSdui: "yulife.media.player.sdui",
+
   // sdui static not registered
   pensionDetails: "yulife.sdui.static.smartPensionDetails",
   pensionConnection: "yulife.sdui.static.pensionConnection",

@@ -13,4 +13,5 @@ fragment ContentItemHeaderBar on ContentItemHeaderBar {
   publishKeyHeight
   color
   backgroundColor
+  logoType
 }

@@ -87,6 +87,7 @@ export enum SduiActionType {
   SduiActionSetDynamicStylesOnValueChange = "SDUI_ACTION_SET_DYNAMIC_STYLES_ON_VALUE_CHANGE",
   SduiActionRefetchQueries = "SDUI_ACTION_REFETCH_QUERIES",
   SduiActionOpenShareDialog = "SDUI_ACTION_OPEN_SHARE_DIALOG",
+  SduiActionGenericNavigatePopTo = "SDUI_ACTION_GENERIC_NAVIGATE_POP_TO",
 }
 
 export enum CoverType {

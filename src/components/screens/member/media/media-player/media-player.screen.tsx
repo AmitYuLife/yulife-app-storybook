@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react";
+import { memo, useMemo } from "react";
 import { VideoPlayer } from "@organisms";
 import { IVideoPlayerProps } from "@organisms/video-player/video-player";
 import { t } from "@locale";
@@ -24,6 +24,7 @@ interface IMediaPlayerScreenProps
     | "startErrorMessage"
     | "startTimeInSeconds"
     | "startChallengeButtonLabel"
+    | "logoType"
   > {
   video: IVideo;
 }
@@ -42,6 +43,7 @@ const MediaPlayerScreen = ({
   orientation,
   startChallengeButtonLabel,
   autoPlay,
+  logoType,
 }: IMediaPlayerScreenProps) => {
   const subtitle = useMemo(() => t(`screens.video_player.video_type.${eventType}`), [eventType]);
 
@@ -74,6 +76,7 @@ const MediaPlayerScreen = ({
       orientation={orientation}
       startChallengeButtonLabel={startChallengeButtonLabel}
       videoSourceType={video.sourceType}
+      logoType={logoType}
     />
   );
 };

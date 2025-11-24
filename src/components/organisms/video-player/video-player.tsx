@@ -48,6 +48,7 @@ import { AppDataType } from "@redux/user/user.types";
 import { ChallengeSubmissionStatus } from "@redux/levels/levels.types";
 import { useNetInfoInstance } from "@react-native-community/netinfo";
 import { getUserDataSaverModeEnabled } from "@redux/user/user.selectors";
+import { IYuLifeLogoProps } from "@atoms/logo";
 export interface IVideoPlayerProps {
   source: string;
   poster?: string;
@@ -77,6 +78,7 @@ export interface IVideoPlayerProps {
   startChallengeButtonLabel: string;
   startTimeInSeconds?: number;
   autoPlay?: boolean;
+  logoType?: IYuLifeLogoProps["type"];
 }
 
 const commonProps = {
@@ -112,6 +114,7 @@ const VideoPlayer = ({
   startChallengeButtonLabel,
   autoPlay = false,
   thumbnail,
+  logoType,
 }: IVideoPlayerProps) => {
   const playerRef = useRef<VideoRef>();
   const reduxDispatch = useDispatch();
@@ -358,7 +361,7 @@ const VideoPlayer = ({
   );
 
   const showYuLogo: { logo: GenericHeadingLogo } | null = useMemo(
-    () => (orientation === "portrait" ? { logo: "yulife" } : null),
+    () => (orientation === "portrait" ? { logo: "yulife", logoType } : null),
     [orientation]
   );
 

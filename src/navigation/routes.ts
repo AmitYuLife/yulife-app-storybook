@@ -277,6 +277,10 @@ const routesForRegistration = [
     name: ROUTES.mediaPlayer,
     component: require("../components/containers/member/media/media-player/media-player.container").default,
   },
+  {
+    name: ROUTES.mediaPlayerSdui,
+    component: require("../components/containers/member/media/media-player/media-player-sdui.container").default,
+  },
 
   // settings
   {
