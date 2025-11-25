@@ -515,11 +515,11 @@ export const closeScreen = (option: "button_only" | "yulife" | "Activity history
 
 export const navigateTo =
   (menuItem: "yucoin" | "quests" | "yu" | "leaderboard" | "rewards") => async () => {
-    await tapID(NAV_BAR(menuItem))();
+    await tapID(NAV_BAR(menuItem), 5000)();
   };
 
 export const tapYuCoinIcon = async () => {
-  await tapID(DAILYSTEP_SCREEN_COIN)();
+  await tapID(DAILYSTEP_SCREEN_COIN, 4000)();
 };
 
 export const dismissNotificationScreenIfVisible = async () => {
