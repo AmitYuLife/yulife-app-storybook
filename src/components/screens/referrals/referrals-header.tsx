@@ -8,7 +8,7 @@ import { styles, markdownStyles } from "./referrals.styles";
 import { MixpanelEvent } from "@services/logging/types";
 import { Item } from "./referrals.screen";
 import { BusinessAccountState, BusinessPicker } from "@components/molecules/business-picker";
-import { Box } from "@atoms";
+import { Box, SkeletonLoading } from "@atoms";
 
 interface IHeaderProps {
   info: GetReferralInformationQuery["referralInformation"];
@@ -16,9 +16,10 @@ interface IHeaderProps {
   data: Item[];
   businessAccountState: BusinessAccountState;
   onShare: () => Promise<void>;
+  loading: boolean;
 }
 
-const ReferralsHeader = ({ data, info, componentId, businessAccountState, onShare }: IHeaderProps) => {
+const ReferralsHeader = ({ data, info, componentId, businessAccountState, onShare, loading }: IHeaderProps) => {
   const tapToCopyAnalytics = useMemo(
     () => ({
       name: "referral_link_copied" as MixpanelEvent,
@@ -42,23 +43,21 @@ const ReferralsHeader = ({ data, info, componentId, businessAccountState, onShar
 
   return (
     <View>
-      <View>
-        <View style={styles.header}>
-          <Markdown text={headerTitle} markdownStyles={markdownStyles} />
-          <Box alignItems="center">
-            {activeBusinessAccounts.length === 0 ? null : (
-              <BusinessPicker
-                businessAccountState={businessAccountState}
-                testIds={{
-                  box: REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN,
-                  textTemplate: REFERRALS_BUSINESS_ACCOUNT_NAME(
-                    businessAccountState.selectedBusinessAccount.businessAccountName
-                  ),
-                }}
-              />
-            )}
-          </Box>
-        </View>
+      <View style={styles.header}>
+        <Markdown text={headerTitle} markdownStyles={markdownStyles} />
+        <Box alignItems="center">
+          {activeBusinessAccounts.length === 0 ? null : (
+            <BusinessPicker
+              businessAccountState={businessAccountState}
+              testIds={{
+                box: REFERRALS_BUSINESS_ACCOUNT_DROP_DOWN,
+                textTemplate: REFERRALS_BUSINESS_ACCOUNT_NAME(
+                  businessAccountState.selectedBusinessAccount.businessAccountName
+                ),
+              }}
+            />
+          )}
+        </Box>
       </View>
 
       <View style={styles.body}>
@@ -77,7 +76,8 @@ const ReferralsHeader = ({ data, info, componentId, businessAccountState, onShar
       <View style={styles.listContentBackground}>
         <Box mh={24}>
           <Markdown text={historyTitle} />
-          {data?.length ? null : <Markdown text={codeHistoryEmptyMessage} />}
+          {loading && !data?.length ? <SkeletonLoading style={styles.emptyMessageSkeleton} /> : null}
+          {!loading && !data?.length ? <Markdown text={codeHistoryEmptyMessage} /> : null}
         </Box>
       </View>
     </View>

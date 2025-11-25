@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
   header: {
     width: "100%",
     paddingHorizontal: Style.adjust(44),
+    zIndex: 10,
   },
   codeAndLinkCopy: {
     marginTop: Style.adjust(-18),
@@ -73,6 +74,11 @@ export const styles = StyleSheet.create({
     right: 0,
     height: Style.adjust(50),
     backgroundColor: "white",
+  },
+  emptyMessageSkeleton: {
+    width: "100%",
+    height: Style.adjust(20),
+    marginTop: Style.adjust(8),
   },
 });
 
