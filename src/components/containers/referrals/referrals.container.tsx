@@ -114,7 +114,7 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
       componentId={componentId}
       info={data?.referralInformation}
       handleClose={handleClose}
-      loading={loadingData && loading}
+      loading={loading}
       onFetchMoreData={handleEndReached}
       onRefresh={handleRefreshScreen}
       businessAccountState={{ activeBusinessAccounts, selectedBusinessAccount, setSelectedBusinessAccount }}

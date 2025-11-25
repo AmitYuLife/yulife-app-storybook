@@ -81,6 +81,7 @@ const ReferralsScreen = ({
               data={data}
               info={info}
               componentId={componentId}
+              loading={loading}
             />
           }
           ListFooterComponent={<View style={styles.footer} />}
