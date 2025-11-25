@@ -3,7 +3,7 @@ lint-bitrise:
     # Bitrise CLI doesn't build binary for arm64
     - linux_amd64
   stage: quality
-  image: golang:1.17
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/golang:1.17
   allow_failure: true
   variables:
         GIT_DEPTH: 0 # disable shallow clone for 'git diff'

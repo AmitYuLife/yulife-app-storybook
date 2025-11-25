@@ -70,7 +70,7 @@ release-production-build:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "release-production-build"
 
 release-production-ios-internal:
-  image: ruby:3.2
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/ruby:3.2
   stage: release
   script:
     - ruby -v
@@ -81,7 +81,7 @@ release-production-ios-internal:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "release-production-ios-internal"
 
 release-production-product-and-tech:
-  image: ruby:3.2
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/ruby:3.2
   stage: release
   script:
     - ruby -v
@@ -93,7 +93,7 @@ release-production-product-and-tech:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "release-production-product-and-tech"
 
 release-production-yucrew:
-  image: ruby:3.2
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/ruby:3.2
   stage: release
   script:
     - ruby -v
