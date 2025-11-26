@@ -449,4 +449,35 @@ Feature("I am able to use the yuscreen v5", async () => {
       });
     });
   });
+
+  Scenario("As a user with dependants on my Bupa Health product, I should be able to invite my dependants to the app experience via my product details page", scenario.start, async () => {
+    Given("I login as a policy holder", given.loginAsUser(data.CUSTOMER_145.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see the 'Rewards for your family' hero card", then.idVisible(ids.EVENT_CARD("Rewards for your family")));
+    });
+    When("I navigate to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 2000), async () => {
+      Then("I should see the my YuScreen", then.yuScreenV5HeaderVisible(false, "Jeir Amy", "Forest", "1", true));
+    });
+    When("I scroll down until my Bupa health product is visible", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.2), async () => {
+      Then("I should see my Bupa health product", then.productCardVisible(bupaHealthInsuranceProductItem));
+    });
+    When("I tap my Bupa health product", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
+      When("I scroll down to see my dependants", when.scrollFromID(ids.TEXT_TEMPLATE("Health Insurance"), "up", "fast", 0.9), async () => {
+        Then("I should see my dependant Polly", then.idVisible(ids.TEXT_TEMPLATE("Polly Amy", "b2b")));
+        Then("I should see that Polly has already signed up", then.idVisible(ids.TEXT_TEMPLATE("Signed up", "b2")));
+        Then("I should see my dependant Paulie", then.idVisible(ids.TEXT_TEMPLATE("Paulie Amy", "b2b")));
+        Then("I should see my dependant Jimmy", then.idVisible(ids.TEXT_TEMPLATE("Jinny Amy", "b2b")));
+        Then("I should see only one remaining option on Paulie to 'Invite to YuLife', as Jinny is a child and is therefore not eligible to join the app", then.idVisible(ids.TEXT_TEMPLATE("Invite to YuLife", "b2")));
+      });
+    });
+    When("I scroll back up to the top of the page", when.scrollFromID(ids.TEXT_TEMPLATE("Polly Amy", "b2b"), "up", "fast", 1), async () => {
+      When("I close the product details page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only"), 2000), async () => {
+        When("I navigate back to the YuCoin page", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
+          Then("I should still see the 'Rewards for your family' hero card", then.idVisible(ids.EVENT_CARD("Rewards for your family")));
+        });
+      });
+    });
+    When("I tap on the 'Rewards for your family' hero card", when.tapID(ids.EVENT_CARD("Rewards for your family"), 2000), async () => {
+      Then("I should be brought straight to my product's details page", then.idVisible(ids.TEXT_TEMPLATE("Health Insurance", "undefined")));
+    });
+  });
 });

@@ -73,6 +73,19 @@ export const BUSINESS_6_PENSION_SETTINGS = {
   },
 } as IDatabaseItem;
 
+export const BUSINESS_6_TEMP_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    entityId: BUSINESS_ACCOUNT_6.data.business_account_id,
+    entityType: "business",
+    domain: "temp",
+    settings: {
+      enableDependantInviting: true,
+    },
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_138_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {

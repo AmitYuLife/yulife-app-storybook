@@ -1,5 +1,6 @@
 import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
 import { CPE_93_GDent } from "./customer_product_entity";
+import moment from "moment";
 
 const type = "postgres";
 const modelName = "customer_product_entity_dependant";

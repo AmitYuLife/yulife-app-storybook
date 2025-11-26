@@ -14,6 +14,7 @@ import {
   BUSINESS_PRODUCT_5_WB,
   BUSINESS_PRODUCT_9_GDent,
   BUSINESS_PRODUCT_12_REWARD_PASS,
+  BUSINESS_PRODUCT_4_GHI,
 } from "./business_product";
 import * as cpe from "./customer_product_entity";
 import * as customers from "./customers";
@@ -469,6 +470,22 @@ export const CGP_139_GDENT = {
   data: {
     business_product_id: BUSINESS_PRODUCT_4_GDental_CHOICE.product.data.product_id,
     customer_product_id: cpe.CPE_139_GDent.data.customer_product_id,
+    category_id: 1,
+    start_date: customers.CUSTOMER_139.data.start_date,
+    data: {
+      date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
+      salary: 100000,
+      country: "UK",
+    },
+  },
+} as IDatabaseItem;
+
+export const CGP_139_GHI = {
+  type,
+  modelName,
+  data: {
+    business_product_id: BUSINESS_PRODUCT_4_GHI.product.data.product_id,
+    customer_product_id: cpe.CPE_139_GHI.data.customer_product_id,
     category_id: 1,
     start_date: customers.CUSTOMER_139.data.start_date,
     data: {
