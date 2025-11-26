@@ -297,6 +297,7 @@ DEPENDENCIES
   cocoapods-bugsnag (~> 2.3)
   cocoapods-patch (>= 1.3.0)
   fastlane
+  jwt (~> 2.7)
   plist
 
 RUBY VERSION

@@ -13,6 +13,9 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+require 'json'
+require 'jwt'
+
 opt_out_usage
 
 # Global configuration: Increment value added to CI_PIPELINE_IID for build numbers
@@ -33,6 +36,123 @@ def get_build_number
   rescue
     return base_build_number
   end
+end
+
+# Helper method to upload binaries to S3 bucket
+# This method is available to all lanes and works for both Android (APKs) and iOS (IPAs)
+def upload_to_s3(options)
+  bucket_name = options[:bucket_name] || ENV['BINARY_S3_BUCKET_NAME']
+  architecture = options[:architecture]
+  build_number = options[:build_number] || get_build_number || "0"
+  environment = options[:environment] || ENV['RELEASE_ENVIRONMENT'] || "develop"
+  file_path = options[:file_path]
+  platform = options[:platform] # 'android' or 'ios'
+  version = options[:version] || get_package_version
+  
+  # Validate required parameters
+  unless bucket_name && file_path && platform
+    UI.user_error!("upload_to_s3 requires: bucket_name, file_path, and platform")
+  end
+  
+  # Check if file exists
+  unless File.exist?(file_path)
+    UI.user_error!("File not found: #{file_path}")
+  end
+  
+  # Build S3 key path: platform/environment/version/build_number/filename
+  # For iOS: platform/environment/version/build_number/yulife.ipa (no architecture)
+  # For Android: platform/environment/version/build_number/yulife_architecture.apk
+  if platform == "ios"
+    file_name = "yulife.ipa"
+  elsif platform == "android"
+    file_name = "yulife_#{architecture}.apk"
+  else
+    UI.user_error!("Unsupported platform: #{platform}")
+  end
+  s3_key = [platform, environment, version, build_number, file_name].join('/')
+  
+  # Construct full S3 URI
+  s3_uri = "s3://#{bucket_name}/#{s3_key}"
+  
+  UI.message("Uploading #{platform.upcase} binary to S3...")
+  UI.message("  File: #{File.basename(file_path)}")
+  UI.message("  Bucket: #{bucket_name}")
+  UI.message("  S3 Key: #{s3_key}")
+  UI.message("  Platform: #{platform}")
+  UI.message("  Environment: #{environment}")
+  UI.message("  Version: #{version}")
+  UI.message("  Build Number: #{build_number}")
+  UI.message("  Architecture: #{architecture || 'N/A'}") if platform == 'android'
+  
+  # Upload using AWS CLI
+  upload_command = "aws s3 cp \"#{file_path}\" \"#{s3_uri}\""
+
+  # For ios, add the content type
+  if platform == "ios"
+    upload_command += " --content-type 'application/octet-stream'"
+  end
+  
+  begin
+    sh(upload_command)
+    UI.success("✅ Successfully uploaded to S3: #{s3_uri}")
+  rescue => ex
+    UI.user_error!("❌ Failed to upload to S3: #{ex.message}")
+  end
+end
+
+# Helper method to generate signed download URL using JWT
+# This generates a 30 days download link for binaries
+def generate_download_url(options)
+  lambda_url = ENV['LAMBDA_DOWNLOADS_URL']
+  secret_key = ENV['DOWNLOAD_URL_SECRET_KEY']
+  
+  unless secret_key
+    UI.user_error!("DOWNLOAD_URL_SECRET_KEY environment variable is required for generate_download_url")
+  end
+  
+  version = options[:version]
+  build_number = options[:build_number]
+  platform = options[:platform] # 'android' or 'ios'
+  architecture = options[:architecture] # Optional, only for Android
+  environment = options[:environment]
+  
+  # Build JWT payload with expiration (30 days from now, same as S3 bucket expiration)
+  expiration_time = Time.now.to_i + (30 * 24 * 60 * 60) # 30 days in seconds
+  payload = {
+    version: version,
+    build_number: build_number,
+    platform: platform,
+    environment: environment,
+    exp: expiration_time
+  }
+  
+  # Add architecture to payload if provided (for Android)
+  payload[:architecture] = architecture if architecture && !architecture.empty?
+  
+  # Generate JWT with payload and sign with secret key
+  begin
+    jwt = JWT.encode(payload, secret_key, 'HS256')
+    download_url = "#{lambda_url}?token=#{jwt}"
+    UI.success("✅ Generated download URL (valid for 30 days)")
+    return download_url
+  rescue => ex
+    UI.user_error!("❌ Failed to generate download URL: #{ex.message}")
+  end
+end
+
+# Helper method to get version from package.json (return only major.minor version)
+def get_package_version
+  package_json_path = File.expand_path(File.join(ENV['CI_PROJECT_DIR'] || Dir.pwd, 'package.json'))
+  if File.exist?(package_json_path)
+    begin
+      package_json = JSON.parse(File.read(package_json_path))
+      return package_json['version'].split('.')[0..1].join('.')
+    rescue => ex
+      UI.important("Could not read package.json version: #{ex.message}")
+      return 'unknown'
+    end
+  end
+  return 'unknown'
 end
 
 platform :ios do
@@ -74,7 +194,6 @@ platform :ios do
     ios_project_path = "ios/YuLife.xcodeproj"
     ios_workspace_path = "ios/YuLife.xcworkspace"
     ios_signing_identity = "Apple Distribution: Yu Life Limited (#{ENV["FL_TEAM_ID"]})"
-    ipa_artifact_url = "#{ENV['CI_PROJECT_URL']}/-/jobs/#{ENV['CI_JOB_ID']}/artifacts/file/builds/ios/YuLife.ipa"
 
     update_code_signing_settings(
       use_automatic_signing: false,
@@ -110,24 +229,55 @@ platform :ios do
       }
     )
     
+    # Upload IPA to S3
+    ipa_path = File.expand_path(File.join(ENV['CI_PROJECT_DIR'], "builds/ios/YuLife.ipa"))
+    version = get_package_version
+    build_number = get_build_number
+    if File.exist?(ipa_path)
+      s3_url = upload_to_s3(
+        bucket_name: ENV['BINARY_S3_BUCKET_NAME'],
+        build_number: build_number,
+        environment: "develop",
+        file_path: ipa_path,
+        platform: "ios",
+        version: version,
+      )
+
+      ipa_artifact_url = generate_download_url(
+        build_number: build_number,
+        environment: "develop",
+        platform: "ios",
+        version: version,
+      )
+    else
+      UI.important("IPA file not found at #{ipa_path}, skipping download URL generation")
+    end
+    
     slack(
-      message: "YuLife iOS develop build completed successfully",
+      message: "✅ YuLife iOS develop build completed successfully",
       channel: "#alerts-engineering",
       slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
       username: "Gitlab CI MacOS Runner",
       icon_emoji: ":apple-icon:",
       default_payloads: ["git_branch", "git_author", "last_git_commit", "last_git_commit_hash"],
       payload: {
-        "Build Status" => "✅ Success",
-        "Build Number" => get_build_number || ENV['CI_PIPELINE_IID']
+        "Build Version" => version,
+        "Build Number" => get_build_number
       },
       attachment_properties: {
         color: "good",
         fields: [
           {
-            title: "🔗 Quick Actions",
-            value: "<#{ENV['CI_JOB_URL']}|📱 View Build> | <#{ipa_artifact_url}|📦 Install App>",
-            short: false
+            title: "View Build",
+            value: "<#{ENV['CI_JOB_URL']}|:gitlab: Open GitLab Job>",
+            short: true
+          }
+        ],
+        actions: [
+          {
+            type: "button",
+            text: "📱 Install App",
+            url: ipa_artifact_url,
           }
         ]
       }
@@ -352,8 +502,82 @@ platform :android do
     bugsnag_publish(release_environment: environment)
     
     # For production, upload to Google Play Store (TODO: To be tested on production builds)
-    if environment == 'production'
-      
+    if environment != 'production'
+       # If not production build, upload all APKs to S3
+       build_number = get_build_number || "0"
+       version = get_package_version
+       arch_links = []
+       signed_apks.each do |apk_path|
+
+        apk_name = File.basename(apk_path)
+        architecture = nil
+        download_text = nil
+        if apk_name.include?('armeabi-v7a')
+          architecture = 'armeabi-v7a'
+          download_text = "ARM 32-bit"
+        elsif apk_name.include?('arm64-v8a')
+          architecture = 'arm64-v8a'
+          download_text = "ARM 64-bit"
+        elsif apk_name.include?('x86_64')
+          architecture = 'x86_64'
+          download_text = "x86_64"
+        elsif apk_name.include?('x86')
+          architecture = 'x86'
+          download_text = "x86"
+        end
+
+        upload_to_s3(
+          bucket_name: ENV['BINARY_S3_BUCKET_NAME'],
+          architecture: architecture,
+          build_number: build_number,
+          environment: environment,
+          file_path: apk_path,
+          platform: "android",
+          version: version,
+        )
+        download_url = generate_download_url(
+          architecture: architecture,
+          build_number: build_number,
+          environment: environment,
+          platform: "android",
+          version: version,
+        )
+
+        arch_links << { text: download_text, url: download_url }
+
+      end
+      UI.message("Signed APKs: #{signed_apks.join(', ')}")
+      slack(
+        message: "✅ YuLife Android #{environment} build completed successfully",
+        channel: "#alerts-engineering",
+        slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
+        username: "Gitlab CI MacOS Runner",
+        icon_emoji: ":android-icon:",
+        default_payloads: ["git_branch", "git_author", "last_git_commit", "last_git_commit_hash"],
+        payload: {
+          "Build Version" => version,
+          "Build Number" => build_number
+        },
+        attachment_properties: {
+          color: "good",
+          fields: [
+            {
+              title: "View Build",
+              value: "<#{ENV['CI_JOB_URL']}|:gitlab: Open GitLab Job>",
+              short: true
+            }
+          ],
+          actions: arch_links.map do |link|
+            {
+              type: "button",
+              text: "📱 #{link[:text]}",
+              url: link[:url]
+            }
+          end
+        }
+      )
+      UI.success("Successfully sent Slack notification")
+    else
       # Upload to Google Play Store internal track
       upload_to_play_store(
         package_name: ENV['BUNDLE_ID'],
@@ -365,62 +589,10 @@ platform :android do
       )
       
       UI.success("Successfully deployed to Google Play Store (internal track)")
+     
     end
     
     UI.success("Android #{environment} build completed successfully!")
-    UI.message("Signed APKs: #{signed_apks.join(', ')}")
-
-    # Build architecture-specific download links
-    base_artifact_url = "#{ENV['CI_PROJECT_URL']}/-/jobs/#{ENV['CI_JOB_ID']}/artifacts/file"
-    arch_links = []
-    
-    # Map APK files to their architectures
-    signed_apks.each do |apk_path|
-      apk_name = File.basename(apk_path)
-      # Convert absolute path to relative path from project root
-      relative_path = apk_path.gsub("#{ENV['CI_PROJECT_DIR']}/", "")
-
-      if apk_name.include?('armeabi-v7a')
-        arch_links << { text: "ARM 32-bit", url: "#{base_artifact_url}/#{relative_path}" }
-      elsif apk_name.include?('arm64-v8a')
-        arch_links << { text: "ARM 64-bit", url: "#{base_artifact_url}/#{relative_path}" }
-      elsif apk_name.include?('x86_64')
-        arch_links << { text: "x86_64", url: "#{base_artifact_url}/#{relative_path}" }
-      elsif apk_name.include?('x86')
-        arch_links << { text: "x86", url: "#{base_artifact_url}/#{relative_path}" }
-      end
-    end
-
-    slack(
-      message: "YuLife Android #{environment} build completed successfully",
-      channel: "#alerts-engineering",
-      slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
-      username: "Gitlab CI MacOS Runner",
-      icon_emoji: ":android-icon:",
-      default_payloads: ["git_branch", "git_author", "last_git_commit", "last_git_commit_hash"],
-      payload: {
-        "Build Status" => "✅ Success",
-        "Build Number" => get_build_number || ENV['CI_PIPELINE_IID']
-      },
-      attachment_properties: {
-        color: "good",
-        fields: [
-          {
-            title: "📱 View Build",
-            value: "<#{ENV['CI_JOB_URL']}|Open GitLab Job>",
-            short: true
-          }
-        ],
-        actions: arch_links.map do |link|
-          {
-            type: "button",
-            text: link[:text],
-            url: link[:url]
-          }
-        end
-      }
-    )
-    UI.success("Successfully sent Slack notification")
   end
 
   desc "Android Develop build"
