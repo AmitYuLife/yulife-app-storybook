@@ -1,5 +1,7 @@
 android-develop-build:
-  extends: .base-macos-vm
+  extends:
+    - .assume-aws-role-with-web-identity:devops:develop-builds
+    - .base-macos-vm
   stage: build
   interruptible: false
   timeout: 75m
@@ -21,7 +23,6 @@ android-develop-build:
     - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
     # Build Android release
     - fastlane android develop_build --verbose
-    # Sourcemaps upload moved into Fastlane
   artifacts:
     paths:
       - android/app/build/outputs/**/*.apk

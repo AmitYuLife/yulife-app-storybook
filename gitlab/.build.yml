@@ -52,7 +52,7 @@ build:e2e:
 
 ios-develop-build:
   extends:
-    - .assume-aws-role-with-web-identity:devops:ios-develop-builds
+    - .assume-aws-role-with-web-identity:devops:develop-builds
     - .base-macos-vm
   stage: build
   interruptible: false
