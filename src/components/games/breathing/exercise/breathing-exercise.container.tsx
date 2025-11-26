@@ -18,6 +18,8 @@ import { ArrowIcon } from "@atoms/icon/arrow";
 import GenericSelectorModal from "@components/modals/generic-selector-modal/generic-selector-modal";
 import { showFloatingModal } from "@components/modals";
 import { MODALS } from "@navigation/constants";
+import { useAppState } from "@hooks";
+import { AppStateStatus } from "react-native";
 
 const FOREST_COLOUR = "#018547";
 const PROGRESS_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
@@ -114,6 +116,17 @@ const BreathingExerciseContainer = ({ data }: Props) => {
 
     Navigation.pop(componentId);
   }, [componentId, selectedDurationMs, data.id, dispatch]);
+
+  // Pause exercise when app goes to background
+  const handleAppStateChange = useCallback(
+    (appState: AppStateStatus) => {
+      if ((appState === "background" || appState === "inactive") && isPlaying) {
+        togglePlaying();
+      }
+    },
+    [isPlaying, togglePlaying]
+  );
+  useAppState(handleAppStateChange);
 
   const progressStyle = useAnimatedStyle(() => ({
     width: progress.value * PROGRESS_WIDTH,
