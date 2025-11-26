@@ -59,7 +59,7 @@ const buildDays = ({
   return Array.from({ length: maxProgress }, (_, index) => ({
     day: index + 1,
     completed: getCompleted({ streakAwardId, reflectedToday, currentStreak, index }),
-    isToday: index + 1 === currentStreak,
+    isToday: currentStreak === index + (reflectedToday ? 1 : 0),
     isChest: maxProgress === index + 1,
     isActive: getIsActive({ streakAwardId, currentStreak, reflectedToday, index }),
   }));
