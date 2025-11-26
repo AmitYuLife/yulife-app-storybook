@@ -124,8 +124,20 @@ export const BUSINESS_PRODUCT_1_OM_MeGL = generateProductRecords({
       versionArchived: false,
       earnRate: 0,
       isClosed: false,
-      customData:
-        '{"BasisOfCover":"Unapproved","FreeCoverLimit":2000000,"MultipleOfSalarySpouse":0,"ReplacementRatio":0,"FixedCoverAmountSpouse":100000,"ChildCoverAmountStillBorn":25000,"ChildCoverAmount0105":30000,"ChildCoverAmount0613":40000,"ChildCoverAmount1421":50000,"RepatriationMaxCoverAmount":0,"INITIALPERIOD":0,"DeferedPeriod":0}',
+      customData: {
+        BasisOfCover: "Unapproved",
+        FreeCoverLimit: 2000000,
+        MultipleOfSalarySpouse: 0,
+        ReplacementRatio: 0,
+        FixedCoverAmountSpouse: 100000,
+        ChildCoverAmountStillBorn: 25000,
+        ChildCoverAmount0105: 30000,
+        ChildCoverAmount0613: 40000,
+        ChildCoverAmount1421: 50000,
+        RepatriationMaxCoverAmount: 0,
+        INITIALPERIOD: 0,
+        DeferedPeriod: 0,
+      },
     },
   ],
 });

@@ -1,4 +1,9 @@
-import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework";
+import {
+  BenefitBasis,
+  Carrier,
+  ProductCode,
+  generateProductRecords,
+} from "@yu-life/yulife-bdd-framework";
 import {
   BUSINESS_ACCOUNT_2,
   BUSINESS_ACCOUNT_4,
@@ -60,6 +65,32 @@ export const BUSINESS_PRODUCT_4_GDental_CHOICE = generateProductRecords({
   policyName: "Justice League Policy GDental",
   businessAccountId: BUSINESS_ACCOUNT_6.data.business_account_id,
   startDate: "2020-02-02T00:00:00Z",
+});
+
+export const BUSINESS_PRODUCT_4_GHI = generateProductRecords({
+  productCode: ProductCode.groupHealth,
+  carrier: Carrier.Bupa,
+  productId: "YUG1020308",
+  policyName: "Justice League Policy GHI",
+  businessAccountId: BUSINESS_ACCOUNT_6.data.business_account_id,
+  startDate: "2020-02-02T00:00:00Z",
+  categories: [
+    {
+      categoryId: "1",
+      categoryDescription: "All employees",
+      earnRate: 10,
+      benefitBasis: BenefitBasis.MultipleOfSalary,
+      multipleOrAmount: 9,
+      benefitDefinition: "Basic annual salary as at the date of death",
+      minEntryAge: 16,
+      eligibilityConditions: "All employees",
+      categoryName: "All employees",
+      versionId: 1,
+      versionArchived: false,
+      benefit_set_product_version_id: "Bupa_GHealth_01",
+      default_product_version_benefit_set_id: "Select Key | Family",
+    },
+  ],
 });
 
 export const BUSINESS_PRODUCT_5_WB = generateProductRecords({

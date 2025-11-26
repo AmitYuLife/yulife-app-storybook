@@ -88,7 +88,7 @@
     "@yu-life/react-native-fitkit": "1.0.41",
     "@yu-life/react-native-yu-health": "^1.4.2",
     "@yu-life/react-native-yu-watch": "^1.0.2",
-    "@yu-life/yulife-bdd-framework": "^0.0.130",
+    "@yu-life/yulife-bdd-framework": "^0.2.6",
     "ajv": "^8.12.0",
     "apollo-cache-persist": "^0.1.1",
     "clevertap-react-native": "2.2.1",

@@ -4,10 +4,12 @@ import {
   generateRandomInbox,
   createCustomerRecords,
   generateRandomPostgresId,
+  DependantType,
 } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
 
-import { BUSINESS_ACCOUNT_1 } from "./business";
+import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_6 } from "./business";
+import { BUSINESS_PRODUCT_4_GHI } from "./business_product";
 
 const type = "postgres";
 const modelName = "customer";
@@ -473,6 +475,68 @@ export const CUSTOMER_144 = createCustomerRecords({
           displayProgress: false,
         },
       },
+    },
+  ],
+});
+
+export const CUSTOMER_145 = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  email: generateRandomInbox(),
+  firstName: "Jeir",
+  lastName: "Amy",
+  firstAppOpenDate: new Date(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_6.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [
+        {
+          archived: false,
+          productId: BUSINESS_PRODUCT_4_GHI.product.data.product_id,
+          productVariantId: "Bupa_GHealth_01_01",
+          startDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+          endDate: moment().add(1, "y").format("YYYY-MM-DD"),
+          category: 1,
+          earnRate: 10,
+          takenUp: true,
+          customerData: {
+            dateOfBirth: moment().subtract(30, "y").format("YYYY-MM-DD"),
+            sex: "M",
+          },
+          dependants: [
+            {
+              firstName: "Polly",
+              lastName: "Amy",
+              dateOfBirth: moment().subtract(25, "y").format("YYYY-MM-DD"),
+              sex: "F",
+              type: DependantType.spouse,
+              archived: false,
+              dependantCustomerStatus: "onboarded",
+              dependantFirstAppOpenDate: new Date(),
+            },
+            {
+              firstName: "Paulie",
+              lastName: "Amy",
+              dateOfBirth: moment().subtract(26, "y").format("YYYY-MM-DD"),
+              sex: "M",
+              type: DependantType.spouse,
+              archived: false,
+            },
+            {
+              firstName: "Jinny",
+              lastName: "Amy",
+              dateOfBirth: moment().subtract(10, "y").format("YYYY-MM-DD"),
+              sex: "F",
+              type: DependantType.child,
+              archived: false,
+            },
+          ],
+        },
+      ],
     },
   ],
 });
