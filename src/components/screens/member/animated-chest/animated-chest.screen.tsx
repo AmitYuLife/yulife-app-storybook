@@ -7,7 +7,6 @@ import { LottieView } from "@molecules";
 import { Box, TextTemplate } from "@atoms";
 import { ControlledYuCoinCounter } from "@organisms";
 import { Style, StyleSheet } from "@styles";
-import { SafeAreaView } from "react-native";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { t } from "@locale";
 import { ANIMATED_CHEST_BUTTON, ANIMATED_CHEST_MODAL } from "@ids";
@@ -16,6 +15,8 @@ interface IProps {
   reward: number;
   onPressCta: () => void;
 }
+
+const LOTTIE_SIZE = 250;
 
 const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
   const [isLocked, setIsLocked] = useState(true);
@@ -51,11 +52,11 @@ const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
         />
 
         {isLocked || !reward ? null : (
-          <Box top={130}>
+          <Box top={90}>
             <AnimatedPlusPoints type="collect-reward" coins={reward} textType="h3" />
           </Box>
         )}
-        <Box position="absolute" top={70}>
+        <Box mt={90} mb={-LOTTIE_SIZE * 0.1}>
           {isLocked ? (
             <LottieView
               source={require("./assets/chest-closed.json")}
@@ -64,23 +65,17 @@ const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
               style={styles.lottie}
             />
           ) : (
-            <>
+            <Box ml={23} dir="ltr">
               <LottieView
                 source={require("./assets/chest-opened.json")}
                 autoPlay={true}
                 loop={false}
                 style={styles.lottie}
               />
-            </>
+            </Box>
           )}
         </Box>
-        <Box
-          flex={1}
-          alignItems="center"
-          justifyContent="flex-start"
-          pt={Style.DEVICE_HEIGHT * 0.4}
-          disableAutoAdjust={true}
-        >
+        <Box flex={1} alignItems="center" justifyContent="flex-start" disableAutoAdjust={true}>
           <TextTemplate type={Style.isShortToMedium() ? "h3" : "h2"} textAlign="center">
             {heading}
           </TextTemplate>
@@ -90,9 +85,16 @@ const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
             </TextTemplate>
           )}
         </Box>
-        <SafeAreaView>
-          <Button testID={ANIMATED_CHEST_BUTTON} size="Large" translatedLabel={ctaLabel} onPress={onButtonPress} />
-        </SafeAreaView>
+
+        <Box ph={32} alignSelf="stretch">
+          <Button
+            testID={ANIMATED_CHEST_BUTTON}
+            size="Fill"
+            translatedLabel={ctaLabel}
+            onPress={onButtonPress}
+            wrapperStyle={styles.cta}
+          />
+        </Box>
       </CentredScreen>
     </>
   );
@@ -102,8 +104,11 @@ export default memo(AnimatedChestScreen);
 
 const styles = StyleSheet.create({
   lottie: {
-    width: Style.adjust(800),
-    height: Style.adjust(800),
+    width: Style.adjust(LOTTIE_SIZE),
+    height: Style.adjust(LOTTIE_SIZE),
+  },
+  cta: {
+    marginBottom: Style.adjust(32),
   },
 });
 
