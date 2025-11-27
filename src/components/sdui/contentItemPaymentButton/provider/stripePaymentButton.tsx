@@ -21,6 +21,7 @@ const errorsToSkip = [
    * Occurs when payment sheet is closed by the user.
    */
   "The payment has been canceled",
+  "The payment flow has been canceled",
   /**
    * When user attempts to pay right away after a failed paymentt
    */
@@ -76,10 +77,9 @@ const StripePaymentButton = memo((props: Props) => {
       await handleSduiAction(); // TODO: Hook up event tracking
     } catch (err) {
       if (!errorsToSkip.includes(err.message)) {
+        Logger.error(err.message, { file: "stripePaymentButton.openPaymentSheet" });
         Alert.alert("Error", err.message);
       }
-
-      Logger.error(err.message, { file: "stripePaymentButton.openPaymentSheet" });
     } finally {
       setIsSubmitting(false);
     }
