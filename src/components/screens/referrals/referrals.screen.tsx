@@ -1,5 +1,5 @@
-import React, { memo, useEffect } from "react";
-import { View } from "react-native";
+import React, { memo, useCallback, useEffect, useState } from "react";
+import { NativeScrollEvent, NativeSyntheticEvent, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
 import moment from "moment";
@@ -13,8 +13,7 @@ import { getDateFormat } from "@locale";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import ReferralsHeader from "./referrals-header";
 import { BusinessAccountState } from "@components/molecules/business-picker";
-import { Image } from "@atoms";
-import { REFERRALS_IMAGE_URI } from "@ids";
+import { Box } from "@atoms";
 
 export type Item = GetReferralHistoryQuery["getReferralHistory"]["referralHistory"][0];
 
@@ -43,8 +42,21 @@ const ReferralsScreen = ({
 }: IProps) => {
   const dispatch = useDispatch();
 
+  // We need to keep track of the scroll position.
+  // This is so we can show the image background colour when pulling
+  // down to refresh, and hide it when scrolling up.
+  // We can’t set a background component for all of the list items, so we just use
+  // the white background of the parent view itself. If we don’t hide the box on scroll,
+  // eventually the box will be visible at the top in a long enough referral list.
+  const [isAtTop, setIsAtTop] = useState(true);
+
   useEffect(() => {
     dispatch(setOnboardingReferralsBadge({ showReferralsBadge: false }));
+  }, []);
+
+  const handleScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const scrollY = event.nativeEvent.contentOffset.y;
+    setIsAtTop(scrollY <= 20);
   }, []);
 
   if (!data) {
@@ -53,17 +65,10 @@ const ReferralsScreen = ({
 
   return (
     <View testID={REFERRALS_SCREEN} style={styles.wrapper}>
-      {info?.background?.uri ? (
-        <Image
-          style={styles.backgroundImageWrapper}
-          width={Style.DEVICE_WIDTH}
-          source={{ uri: info.background.uri }}
-          testID={REFERRALS_IMAGE_URI(info.background.uri)}
-          height={Style.DEVICE_HEIGHT}
-          resizeMode="cover"
-        />
-      ) : null}
       <GenericHeadingPad />
+
+      {isAtTop ? <Box bg="#D9F7FF" position="absolute" height={450} left={0} right={0} top={0} /> : null}
+
       <View style={styles.referralsWrapper}>
         <FlashList
           renderItem={renderItem}
@@ -71,6 +76,8 @@ const ReferralsScreen = ({
           refreshing={loading}
           onEndReached={onFetchMoreData}
           onRefresh={onRefresh}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
           estimatedItemSize={Style.adjust(70)}
           keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
@@ -84,10 +91,10 @@ const ReferralsScreen = ({
               loading={loading}
             />
           }
-          ListFooterComponent={<View style={styles.footer} />}
+          ListFooterComponent={<Box bg="white" height={50} />}
         />
       </View>
-      <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} backgroundColor="transparent" />
+      <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} backgroundColor="#D9F7FF" />
       <View style={styles.safeAreaBackground} />
     </View>
   );
