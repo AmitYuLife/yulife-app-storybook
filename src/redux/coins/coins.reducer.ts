@@ -110,7 +110,7 @@ const updateDailyStepsSuccess = (
 ): ICoinsStore => ({
   ...state,
   dailyStepsEarned: challenge?.yuCoinAwarded || 0,
-  total: currentBalance || state.total,
+  total: currentBalance ?? state.total,
   lastUpdated: moment().format(DATE_FORMAT),
 });
 
@@ -132,14 +132,14 @@ const updateDailyPension = (state: ICoinsStore, pension: DailyPension): ICoinsSt
 
 const coinLedgerSuccess = (state: ICoinsStore, coinLedger: ICoinsStoreGetCoinLedger): ICoinsStore => ({
   ...state,
-  total: coinLedger?.total || state.total,
+  total: coinLedger?.total ?? state.total,
   lastUpdated: moment().format(DATE_FORMAT),
 });
 
 const todayActivitySuccess = (state: ICoinsStore, res: ICoinsTodayEarned): ICoinsStore => ({
   ...state,
   dailyChallengeEarned: sumCompletedChallenges(res?.todayActivity),
-  dailyCyclingEarned: res?.dailyCyclingEarned || state.dailyCyclingEarned,
+  dailyCyclingEarned: res?.dailyCyclingEarned ?? state.dailyCyclingEarned,
   lastUpdated: moment().format(DATE_FORMAT),
 });
 
