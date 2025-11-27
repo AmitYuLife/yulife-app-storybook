@@ -25,6 +25,7 @@ export default function* getChestModalDetails() {
           yuniversalMap: yuniversalProgress.yuniversalMap,
           assets,
           avatar,
+          // TODO: investigate, this will probably be undefined (putting a function in the redux store?)
           onPressCta: () => {
             Navigation.mergeOptions(ROUTES.dailySteps, {
               bottomTabs: {

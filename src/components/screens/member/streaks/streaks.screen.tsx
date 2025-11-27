@@ -28,7 +28,7 @@ interface IProps {
   streakMax: number;
   primaryButtonLabel: string;
   reward: string;
-  onSubmit: (() => void) | null;
+  onSubmit?: (() => void) | null;
   onPressCtaSecondary?: (() => void) | null;
   onIconPress: VoidFunction;
   children?: React.ReactNode;
@@ -88,7 +88,7 @@ const StreaksScreen = ({
   );
 
   const handlePress = useCallback(() => {
-    onSubmit();
+    onSubmit?.();
     dispatch(dismissStreakModal());
   }, [onSubmit]);
 
