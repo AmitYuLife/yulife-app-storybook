@@ -1,5 +1,3 @@
-import { MODALS } from "@navigation/constants";
-import { Navigation } from "@navigation/main";
 import { select, take, call } from "redux-saga/effects";
 import { getRouteState } from "../../app/app.selectors";
 import { GET_USER_ACTIVE_STREAK_SUCCESS } from "../../user/user.actions";
@@ -28,9 +26,6 @@ export default function* getStreakModalDetails() {
   if (features.showStreaks && streaksBeforeUpdate.currentStreak !== streaks.currentStreak) {
     return {
       isDoneToday: true,
-      onPressCtaPrimary: () => {
-        Navigation.dismissModal(MODALS.streaks);
-      },
       onPressCtaSecondary: null as unknown,
       reward: streaks.reward,
       type: streaks.type,
