@@ -414,26 +414,26 @@
       "claim_reward": "استلام المكافأة",
       "info_card": {
         "power_up_inventory": {
-          "description": "يمكنك العثور على تعزيزاتك في مخزون التعزيزات الخاص بك",
+          "description": "يمكنك العثور على التعزيز الخاص بك في مستودع التعزيزات الخاص بك.",
           "title": "تم جمع التعزيز!"
         },
         "wallet": {
-          "description": "يمكنك العثور على اليكوين في محفظتك في المتجر.",
+          "description": "يمكنك العثور على عملة يوكوين في محفظتك في المتجر.",
           "title": "تم جمع المكافأة!"
         },
         "yumoji_inventory": {
-          "description": "يمكنك العثور على مكافأتك في مخزون اليموجي الخاص بك",
+          "description": "يمكنك العثور على جائزتك في مستودع يوموجي الخاص بك.",
           "title": "تم جمع المكافأة!"
         }
       },
       "open": "افتح",
       "open_chest": "افتح الصندوق",
-      "power_up_received": "تم استلام تعزيز القوة!",
-      "reward_received": "تم استلام %{reward}",
-      "rewards_received": "تم استلام المكافآت!",
+      "power_up_received": "تعزيز القوة تم استلامه!",
+      "reward_received": "%{reward} استلمت!",
+      "rewards_received": "المكافآت استلمت!",
       "select_one": "اختر واحدًا للاستمرار",
       "title": "لقد حصلت على مكافأة!",
-      "won_a_reward": "لقد فزت بـ %{reward}!",
+      "won_a_reward": "لقد ربحت %{reward}!",
       "won_reward": "لقد ربحت %{reward}!"
     },
     "push_notifications": {
@@ -576,7 +576,7 @@
   "overlays": {
     "breathing_exercise_duration_picker": {
       "button_label": "ابدأ",
-      "title": "اختر الطول"
+      "title": "اختر طولًا"
     },
     "business_account": {
       "button_label": "اختر",
@@ -797,7 +797,7 @@
       },
       "opened_chest": {
         "cta_label": "استمرار",
-        "heading": "لقد ربحت يوكوين!"
+        "heading": "لقد كسبت يوكوين!"
       }
     },
     "battle_pass": {
@@ -853,7 +853,7 @@
       "exhale": "زفير",
       "hold": "احبس",
       "inhale": "استنشق",
-      "length": "اختر الطول",
+      "length": "اختر طولًا",
       "mouth": "فم",
       "nose": "أنف"
     },

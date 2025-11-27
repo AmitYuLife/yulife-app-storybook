@@ -414,7 +414,7 @@
       "claim_reward": "Claim rewards",
       "info_card": {
         "power_up_inventory": {
-          "description": "You can find your power-up in your Power-Ups inventory.",
+          "description": "You'll find your power up in your Power Ups inventory.",
           "title": "Power-up collected!"
         },
         "wallet": {
@@ -422,13 +422,13 @@
           "title": "Reward collected!"
         },
         "yumoji_inventory": {
-          "description": "You can find your reward in your Yumoji inventory.",
+          "description": "You'll find your reward in your Yumoji inventory.",
           "title": "Reward collected!"
         }
       },
       "open": "Open",
       "open_chest": "Open chest",
-      "power_up_received": "Power-up received!",
+      "power_up_received": "Power up received!",
       "reward_received": "%{reward} received!",
       "rewards_received": "Rewards received!",
       "select_one": "Select one to proceed",
