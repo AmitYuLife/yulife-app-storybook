@@ -59,16 +59,7 @@ const CodeAndLinkCopy = ({ code, onShare, title, disclaimer, analyticsEvent, but
   const copyColor = isCopied ? Colours.event.claimedColor : Colours.inkStrong;
 
   return (
-    <Box
-      w="100%"
-      py={22}
-      ph={20}
-      borderWidth={1}
-      br={8}
-      borderColor={Colours.neutral.n100}
-      bg={Colours.neutral.white}
-      mt={24}
-    >
+    <Box w="100%" py={22} ph={20} borderWidth={1} br={8} borderColor={Colours.neutral.n100} bg={Colours.neutral.white}>
       <Box mb={18}>
         <TextTemplate type="b1b" textAlign="center" testID={REFERRALS_CODE_TITLE(title)}>
           {title}
@@ -83,19 +74,23 @@ const CodeAndLinkCopy = ({ code, onShare, title, disclaimer, analyticsEvent, but
           minWidth={0}
           flex={1}
         >
-          <Box flexDirection="row" alignItems="center" w="100%" ph={38}>
-            <Box flex={1}>
-              <TextTemplate
-                type="l2b"
-                numberOfLines={1}
-                color={Colours.inkStrong}
-                textAlign="center"
-                testID={REFERRALS_CODE(code)}
-              >
-                {code}
-              </TextTemplate>
+          <Box flexDirection="row" alignItems="center" w="100%" justifyContent="center">
+            <Box flexDirection="row" flex={0.6} alignItems="center" justifyContent="flex-start">
+              <Box pr={10}>
+                <TextTemplate
+                  type="l2b"
+                  numberOfLines={1}
+                  color={Colours.inkStrong}
+                  textAlign="center"
+                  testID={REFERRALS_CODE(code)}
+                >
+                  {code}
+                </TextTemplate>
+              </Box>
+              <Box>
+                <CopyIcon color={copyColor} height={Style.adjust(16)} width={Style.adjust(16)} />
+              </Box>
             </Box>
-            <CopyIcon color={copyColor} height={Style.adjust(16)} width={Style.adjust(16)} />
           </Box>
         </Pressable>
         <Box w={130} flexShrink={0} alignSelf="stretch">
