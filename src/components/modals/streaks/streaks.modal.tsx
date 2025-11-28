@@ -20,6 +20,7 @@ import Hint from "@components/molecules/hint/hint";
 import { getStreakAwardId } from "@redux/streaks/streaks.selectors";
 import { Navigation } from "@navigation/main";
 
+// TODO: needs refactor to bring everything together, logic is all over the place and 12 files for so little functionality
 const StreaksModal: React.FC<Props> = ({
   componentId,
   onPressCtaPrimary,

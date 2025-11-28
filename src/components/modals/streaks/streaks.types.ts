@@ -1,7 +1,7 @@
 export interface IProps {
   componentId: string;
   isDoneToday: boolean;
-  onPressCtaPrimary: () => void;
+  onPressCtaPrimary?: () => void;
   reward: string;
   onPressCtaSecondary: (() => void) | null;
   streakCompleted: number;
