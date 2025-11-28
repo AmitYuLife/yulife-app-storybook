@@ -9,9 +9,11 @@ import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
   Scenario("I can't transition from the first world (forest) to the second world (ocean) on the same day", scenario.start, () => {
-    Given("I login as a user on level 49", given.logInAndGoToTab("quests", data.CUSTOMER_60, data.AUTH_60), async () => {
-      Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 5000));
-      Then("I should see the level 49 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(49), 3000));
+    Given("I login as a user on level 49", given.loginAsUser(data.CUSTOMER_60, data.AUTH_60), async () => {
+      When("I go to the YuCoin screen", when.tapID(ids.NAV_BAR("quests"), 5000), async () => {
+        Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 5000));
+        Then("I should see the level 49 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(49), 3000));
+      });
     });
     When("I complete a walking challenge", when.completeNewWorldShortStroll(49), async () => {
       Then("I should see the level 50 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)));

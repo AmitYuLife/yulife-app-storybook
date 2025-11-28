@@ -94,8 +94,8 @@ export const claimVisible = (numOfStars: number) => async () => {
 
 export const onCompletedEventMilestonePage = (yuCoin: string, numOfStars: number) => async () => {
   const eventTitle = `${data.GOALS_3.data.title} event`;
-  await textVisible(eventTitle)();
-  await textVisible("Great job!")();
+  await textVisible(eventTitle, 5000)();
+  await textVisible("Great job!", 5000)();
   await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")();
   await textVisible(`${yuCoin} YuCoin`)();
   await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))();

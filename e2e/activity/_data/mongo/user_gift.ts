@@ -18,7 +18,7 @@ export const USER_18_GIFT_A = {
     message: "Great work today!",
     background: "forest",
     sticker: "lantern",
-    createdAt: moment().subtract(3, "hours").toISOString(),
+    createdAt: moment().subtract(30, "minutes").toISOString(),
   },
 } as IDatabaseItem;
 

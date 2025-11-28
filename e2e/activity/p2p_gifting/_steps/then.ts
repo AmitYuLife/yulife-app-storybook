@@ -123,13 +123,13 @@ export const cycleThroughStickers = async () => {
   for (let i = 0; i < P2P_GIFTING_STICKERS.length; i++) {
     const id = P2P_GIFTING_STICKERS[i];
     const testID = ids.P2P_STICKER_ITEMS(id);
-    await idVisible(testID)();
+    await idVisible(testID, 2000)();
 
     const isLastSticker = i === P2P_GIFTING_STICKERS.length - 1;
 
     if (!isLastSticker && (i + 1) % VISIBLE_PER_SCROLL === 0) {
       const scrollAnchorID = ids.P2P_STICKER_ITEMS(P2P_GIFTING_STICKERS[i]);
-      await scrollFromID(scrollAnchorID, "up", "fast", 0.14)();
+      await scrollFromID(scrollAnchorID, "up", "fast", 0.14, 1500)();
     }
   }
 };
