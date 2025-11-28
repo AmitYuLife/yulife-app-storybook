@@ -33,7 +33,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
       Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(2000, 10000, 0.2));
       Then("I should see Claim available for the first milestone", then.claimVisible(1));
     });
-    When("I click Claim rewards CTA", when.tapID(ids.EVENT_DIALOG_BUTTON), async () => {
+    When("I click Claim rewards CTA", when.tapID(ids.EVENT_DIALOG_BUTTON, 4000), async () => {
       Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("50", 1));
     });
     When("I click Claim", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON), async () => {

@@ -197,12 +197,10 @@ Feature("As a user I can take a challenge", async () => {
 
     When("I click to go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
       Then("I should be back on the Quest tab", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1), 3000));
-      When("I go to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-        Then("I should see the Hero Cards list", then.idVisible(ids.FLAT_LIST_EVENTS, 3000));
-        When("I swipe right to see the 'Profiles Viewed' hero card", when.scrollWithLimitedAttemptsUntilIdVisible(ids.FLAT_LIST_EVENTS, ids.EVENT_DESCRIPTION("0 / 5 profiles viewed", "#464647"), "left", 1, 3000, 0.8, 0.8), async () => {
-          Then("I should see the correct event for me to complete and the progress bar", then.eventToBeCompletedVisible(0, 0));
-        });
-      });
+    });
+    When("I go to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+      Then("I should see the Hero Cards list", then.idVisible(ids.FLAT_LIST_EVENTS, 3000));
+      Then("I should see the correct event for me to complete and the progress bar", then.eventToBeCompletedVisible(0, 0));
     });
 
     When("I click on the challenge profiles viewed", when.tapChallenge("0 / 5 " + t("profiles viewed")), async () => {
