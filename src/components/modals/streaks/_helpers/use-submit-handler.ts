@@ -1,13 +1,16 @@
 import { ApolloCache, DefaultContext, FetchResult, MutationFunctionOptions } from "@apollo/client";
 import { CollectAwardMutation, Exact } from "@graphql/__generated";
+import { MODALS } from "@navigation/constants";
+import { Navigation } from "@navigation/main";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
+import Logger from "@services/logging/logger";
 import { VoidFunction } from "@utils";
 import { useDispatch } from "react-redux";
 
 interface UseSubmitHandlerProps {
   streakAwardId: string;
-  onPressCtaPrimary: VoidFunction;
+  onPressCtaPrimary?: VoidFunction;
   setLoading: (isLoading: boolean) => void;
   collectAward: (
     options?: MutationFunctionOptions<
@@ -28,11 +31,6 @@ export function useSubmitHandler({
   collectAward,
 }: UseSubmitHandlerProps) {
   const dispatch = useDispatch();
-
-  if (!streakAwardId) {
-    return onPressCtaPrimary;
-  }
-
   const submitHandler = buildSubmitHandler({ setLoading, streakAwardId, collectAward, dispatch, onPressCtaPrimary });
 
   return submitHandler;
@@ -54,23 +52,27 @@ function buildSubmitHandler({
 }: BuildSubmitHandlerProps) {
   return async () => {
     try {
-      setLoading(true);
-      const result = await collectAward({
-        variables: {
-          awardId: streakAwardId,
-        },
-      });
+      if (streakAwardId) {
+        setLoading(true);
+        const result = await collectAward({
+          variables: {
+            awardId: streakAwardId,
+          },
+        });
 
-      if (result?.data?.collectAward) {
-        dispatch(
-          getUserDataStart({
-            types: [AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.activeStreak],
-          })
-        );
+        if (result?.data?.collectAward) {
+          dispatch(
+            getUserDataStart({
+              types: [AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.activeStreak],
+            })
+          );
+        }
       }
-    } catch (e) {
+    } catch (error) {
+      Logger.error(error, { location: "streaks useSubmitHandler" });
     } finally {
-      onPressCtaPrimary();
+      Navigation.dismissModal(MODALS.streaks);
+      onPressCtaPrimary?.();
       setLoading(false);
     }
   };
