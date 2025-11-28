@@ -72,6 +72,10 @@
     "region": "UK",
     "specs": ["activity/steps/*.spec.ts"]
   },
+  "smoking": {
+    "region": "UK",
+    "specs": ["smoking_cessation/*.spec.ts"]
+  },
   "surveys": {
     "region": "UK",
     "specs": ["engagement_surveys/**/*.spec.ts"]
