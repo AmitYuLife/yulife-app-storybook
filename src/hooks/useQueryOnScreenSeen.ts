@@ -7,11 +7,15 @@ import { useSelector } from "react-redux";
 type ScreenSeenHookOptions = {
   refetch?: boolean;
   disabled?: boolean;
+  fetchImmediately?: boolean;
 };
 
 const DEFAULT_SCREEN_SEEN_HOOK_OPTIONS = {
   refetch: true,
   disabled: false,
+
+  // if set to true, the query will be fetched immediately when the hook fires (potentially before the screen is active)
+  fetchImmediately: false,
 };
 
 /**
@@ -40,7 +44,7 @@ export function useQueryOnScreenSeen<T = any, TVariables = OperationVariables>(
       return;
     }
 
-    if (!isScreenActive) {
+    if (!isScreenActive && !screenSeenHookOptions.fetchImmediately) {
       return;
     }
 
@@ -49,10 +53,15 @@ export function useQueryOnScreenSeen<T = any, TVariables = OperationVariables>(
       hasBeenQueried.current = true;
     }
 
+    if (!isScreenActive) {
+      // query has been queried at least once and screen is not active, so we don't need to refetch
+      return;
+    }
+
     if (screenSeenHookOptions.refetch) {
       queryResult.refetch();
     }
-  }, [isScreenActive, screenSeenHookOptions.refetch]);
+  }, [isScreenActive, screenSeenHookOptions.refetch, screenSeenHookOptions.fetchImmediately]);
 
   return [query, queryResult];
 }

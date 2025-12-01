@@ -27,9 +27,7 @@ const PathwayStreaks = ({ currentStreak, reflectedToday, maxProgress, streakAwar
   if (isLoading) {
     return (
       <Box w="100%" gap={24} br={12} flexDirection="row" justifyContent="center" alignItems="center">
-        {days.map((val) => (
-          <SkeletonLoading key={`day-${val.day || "today"}`} height={64} width={44} />
-        ))}
+        <SkeletonLoading height={64} width={"100%"} />
       </Box>
     );
   }

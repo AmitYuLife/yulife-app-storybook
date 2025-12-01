@@ -9,7 +9,7 @@ export const getMoodSubmission = (data: GetUserPathwaysQuery) => {
     const submission = data?.getUserMoodSubmissions?.submissions.find((s) => s.date === date.format("YYYY-MM-DD"));
 
     return {
-      dayLabel: date.format("ddd"),
+      dayLabel: date.format("dd"),
       isToday: date.isSame(moment(), "day"),
       iconUrl: submission?.icon?.uri,
     };

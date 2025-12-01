@@ -21,7 +21,7 @@ export const MoodMonth = ({ monthSection }: { monthSection: IMonth }) => {
       <Box mb={12}>
         <TextTemplate type="h2">{monthSection.monthLabel}</TextTemplate>
       </Box>
-      <Box flexDirection="row" flexWrap="wrap">
+      <Box dir="ltr" flexDirection="row" flexWrap="wrap">
         {monthSection.days.map((day, index) => {
           if (!day) {
             return <Box key={`empty-${index}`} width="14.285%" py={4} />;

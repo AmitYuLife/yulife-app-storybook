@@ -1,13 +1,12 @@
 import React, { memo } from "react";
-import { Box } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MoodWeekView, { MoodData } from "@organisms/mood-week-view/mood-week-view";
 import PathwaysHeader from "./subcomponents/pathways-header";
 import { t } from "@locale";
 import { Colours, Style, StyleSheet } from "@styles";
-
-import { AdviceSection, PathwayAdviceSectionProps } from "./subcomponents/advice-section";
+import { AdviceSection, PathwayAdviceSectionProps } from "./subcomponents/advice-section/advice-section";
 
 interface Props {
   onClose: () => void;
@@ -17,7 +16,7 @@ interface Props {
   reflectionProgress: number;
   reflectedToday: boolean;
   nextQuestionnaireLocalDate: string;
-  adviceSection: Omit<PathwayAdviceSectionProps, "isLoading">;
+  adviceSection: PathwayAdviceSectionProps;
   isLoading: boolean;
   maxProgress: number;
   streakAwardId?: string;
@@ -25,8 +24,8 @@ interface Props {
 }
 
 const PathwaysScreen = ({
-  onClose,
   onReflect,
+  onClose,
   moodSubmissions,
   reflectionProgress,
   reflectedToday,
@@ -45,9 +44,8 @@ const PathwaysScreen = ({
       scrollY.value = event.contentOffset.y;
     },
   });
-
   return (
-    <Box flex={1} bg="white">
+    <Box flex={1} bg={Colours.pathways.background}>
       <Animated.ScrollView
         style={{ flex: 1 }}
         contentInsetAdjustmentBehavior="never"
@@ -55,6 +53,14 @@ const PathwaysScreen = ({
         onScroll={scrollHandler}
         scrollEventThrottle={16}
       >
+        <Box position="absolute" top={0} width={"100%"}>
+          <Image
+            source={require("@assets/pathways/pathway-background.webp")}
+            width={"100%"}
+            height={Style.adjust(1144)}
+            contentFit="cover"
+          />
+        </Box>
         <PathwaysHeader
           onReflect={onReflect}
           reflectionProgress={reflectionProgress}
@@ -66,27 +72,32 @@ const PathwaysScreen = ({
           isStreaksEnabled={isStreaksEnabled}
         />
 
-        <Box minHeight={100} width={"100%"} gap={24} pt={27}>
+        <Box minHeight={100} width={"100%"} gap={20} ph={16}>
           {/* <Box mt={27}>
             <CarouselPathways pathways={[]} />
           </Box> */}
-          <MoodWeekView
-            data={moodSubmissions}
-            openCalendar={() => {
-              onOpenMoodCalendar();
-            }}
-          />
-          {adviceSection?.items?.length > 0 ? (
-            <AdviceSection heading={adviceSection.heading} items={adviceSection.items} isLoading={isLoading} />
-          ) : null}
+          <Box gap={16}>
+            <Box ph={8}>
+              <TextTemplate type="b1b" color={Colours.neutral.white}>
+                {t("screens.pathways.health_insights")}
+              </TextTemplate>
+            </Box>
+            <MoodWeekView
+              data={moodSubmissions}
+              openCalendar={() => {
+                onOpenMoodCalendar();
+              }}
+            />
+          </Box>
+          <AdviceSection items={adviceSection?.items} />
         </Box>
         {/* <Box mv={24}>
           <SecondaryButton translationKey="screens.pathways.secondary_button_label" size="Large" onPress={onClose} />
         </Box> */}
       </Animated.ScrollView>
       <GenericHeadingAbsolute
-        onLeftIconPress={onClose}
         backgroundColor={Colours.pathways.background}
+        onLeftIconPress={onClose}
         heading={t("screens.pathways.header")}
         color="white"
         hasShadow={true}
