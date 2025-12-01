@@ -84,7 +84,7 @@ The GitLab implementation uses several built-in and custom environment variables
 | Variable | Purpose | Example Values | Notes |
 |----------|---------|----------------|-------|
 | `$IPHONE_DEVICE` | iOS Simulator device name | `iPhone 16 Pro`, `iPhone 15 Pro`, `iPhone 14 Pro` | Must match available simulator |
-| `$DETOX_TEST_TYPE` | Test suite identifier | `healthcheck`, `smoke`, `admin`, `admin:2`, `activity`, `activity:2`, `battle-pass`, `benefits`, `challenges`, `challenges:2`, `challenges-extended`, `personal`, `sa`, `surveys`, `usa`, `jp`, `worlds`, `worlds:2`, `yuscreen`, `reward-passes`, `modified-files` | Determines which tests to run |
+| `$DETOX_TEST_TYPE` | Test suite identifier | `healthcheck`, `smoke`, `admin`, `admin:2`, `activity`, `activity:2`, `battle-pass`, `benefits`, `challenges`, `challenges:2`, `challenges-extended`, `personal`, `sa`, `smoking`, `surveys`, `usa`, `jp`, `worlds`, `worlds:2`, `yuscreen`, `reward-passes`, `modified-files` | Determines which tests to run |
 | `$DETOX_LOG_LEVEL` | Logging verbosity | `error`, `warn`, `info`, `debug` | Default: `warn` |
 | `$TARGET_LOCALE` | Locale for internationalization testing | `en-GB`, `ja-JP`, `en-ZA`, `en-US` | Affects app language and test translations |
 | `$DETOX_BUILD_CONFIG` | Build configuration | `ios.sim.release`, `ios.sim.debug` | Release is faster, debug has more logging |
@@ -225,6 +225,7 @@ The following test suites run automatically on schedule (`SCHEDULE_JOB=overnight
 - **`ios-detox-challenges`** & **`ios-detox-challenges-2`** & **`ios-detox-challenges-extended`**: Challenge system tests
 - **`ios-detox-personal`**: Personal profile tests
 - **`ios-detox-sa`**: South Africa region tests (`API_REGION: SA`)
+- **`ios-detox-smoking`**: Smoking feature tests
 - **`ios-detox-surveys`**: Survey functionality tests
 - **`ios-detox-usa`**: USA region tests (`API_REGION: US`)
 - **`ios-detox-jp`**: Japan region tests (`API_REGION: JP`, `TARGET_LOCALE: ja-JP`)
