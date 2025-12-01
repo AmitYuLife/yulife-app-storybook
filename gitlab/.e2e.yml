@@ -22,6 +22,7 @@ spec:
         - sa
         - screenshots
         - smoke
+        - smoking
         - surveys
         - usa
         - worlds
@@ -307,6 +308,15 @@ ios-detox-sa:
   rules:
     - !reference [.detox-overnight-rules, rules]
     - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "sa"'
+      interruptible: false
+
+ios-detox-smoking:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: smoking
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "smoking"'
       interruptible: false
 
 ios-detox-surveys:
