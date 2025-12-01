@@ -55,25 +55,25 @@ const InventoryItem = ({
       styles.container,
       isActive ? styles.containerSelected : {},
       activeUntil ? styles.containerActivated : {},
-      disabledUntil ? styles.containerDisabled : {},
+      disabledUntil || isDisabled ? styles.containerDisabled : {},
     ];
-  }, [activeUntil, disabledUntil, isActive]);
+  }, [activeUntil, disabledUntil, isActive, isDisabled]);
 
   const iconSource = useMemo(() => {
     return iconUri ? { uri: iconUri } : PLACEHOLDER_IMAGE;
   }, [iconUri]);
 
   const iconStyles = useMemo(() => {
-    return [styles.icon, disabledUntil ? styles.disabledIcon : {}];
-  }, [disabledUntil]);
+    return [styles.icon, disabledUntil || isDisabled ? styles.disabledIcon : {}];
+  }, [disabledUntil, isDisabled]);
 
   const textColor = useMemo(() => {
-    if (disabledUntil) {
+    if (disabledUntil || isDisabled) {
       return Colours.neutral.n250;
     }
 
     return "#5C5757";
-  }, [disabledUntil]);
+  }, [disabledUntil, isDisabled]);
 
   const containerRef = useRef();
 
