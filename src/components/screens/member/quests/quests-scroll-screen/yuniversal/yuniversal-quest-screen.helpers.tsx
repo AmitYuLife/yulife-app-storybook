@@ -90,11 +90,11 @@ export const slotColours: Record<string, SlotColours> = {
     notificationColour: Colours.primary.p600,
   },
   waiting: {
-    backgroundColour: "rgb(145,0,76)",
-    shadowColour: "rgb(100,0,50)",
+    backgroundColour: Colours.quest.yuniversal.background,
+    shadowColour: Colours.quest.yuniversal.shadow,
     textColour: Colours.neutral.white,
-    pressColour: "rgb(100,0,50)",
-    notificationColour: "rgb(145,0,76)",
+    pressColour: Colours.quest.yuniversal.press,
+    notificationColour: Colours.quest.yuniversal.notification,
   },
   done: {
     backgroundColour: Colours.ocean.us106,

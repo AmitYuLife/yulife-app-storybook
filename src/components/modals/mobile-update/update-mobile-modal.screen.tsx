@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   } as TextStyle,
   contentWrapper: {
     alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.9)",
+    backgroundColor: Colours.overlay.white90,
     flex: 1,
     justifyContent: "center",
   } as ViewStyle,

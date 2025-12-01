@@ -25,7 +25,7 @@ export default StyleSheet.create({
   isDisabledIcon: {
     width: Style.adjust(16),
     height: Style.adjust(16),
-    backgroundColor: "rgba(250,250,254,0.5)",
+    backgroundColor: Colours.overlay.lightPurple,
     position: "absolute",
   },
   yuCoinSubTotal: {
@@ -52,14 +52,14 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   joinedActivityBlock: {
-    backgroundColor: "rgb(250,250,250)",
+    backgroundColor: Colours.overlay.lightGray1,
   },
   completedActivityBlock: {
     backgroundColor: Colours.products.fib.commonLight,
     borderColor: Colours.status.su400,
   },
   selectedActivityBlock: {
-    borderColor: "rgb(138,95,255)",
+    borderColor: Colours.overlay.purpleBorder,
     backgroundColor: "rgb(248,245,255)",
   },
   selectedCheck: {

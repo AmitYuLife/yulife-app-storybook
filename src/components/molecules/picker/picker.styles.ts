@@ -11,7 +11,7 @@ export default StyleSheet.create({
   } as TextStyle,
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(255,255,255,0.7)",
+    backgroundColor: Colours.overlay.white70,
   } as ViewStyle,
   placeholder: {
     color: Colours.lightGray,

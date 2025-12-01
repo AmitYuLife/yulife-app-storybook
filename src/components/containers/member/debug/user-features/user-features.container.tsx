@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     height: Style.DEVICE_HEIGHT,
   },
   search: {
-    borderBottomColor: "rgb(233,233,233)",
+    borderBottomColor: Colours.debug.bottomBorder,
     borderBottomWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",

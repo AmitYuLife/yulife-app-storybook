@@ -1,7 +1,7 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 import { Button, LinkButton } from "@molecules";
-import { Style, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 import { GP_CONTINUE } from "@ids";
 
@@ -45,7 +45,7 @@ const _CTA = ({
       {removeCtaFade ? null : (
         <LinearGradient
           pointerEvents="none"
-          colors={["rgba(255,255,255,1)", "rgba(255,255,255,1)", "rgba(255,255,255,0)"]}
+          colors={[Colours.overlay.whiteSolid, Colours.overlay.whiteSolid, Colours.overlay.whiteTransparent]}
           style={styles.gradient}
           start={{ x: 1, y: 1 }}
           end={{ x: 1, y: 0 }}

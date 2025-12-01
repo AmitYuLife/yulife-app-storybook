@@ -2,7 +2,7 @@ import { TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { setActiveYuHealthProvider } from "@redux/yu-health/yu-health.actions";
 import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
-import { Style, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import {
   HealthProvider,
@@ -18,11 +18,11 @@ import { useDispatch, useSelector } from "react-redux";
 const getStateColor = (state: string) => {
   switch (state) {
     case HealthProviderAvailability.available:
-      return "rgb(0,155,0)";
+      return Colours.debug.greenText;
     case HealthProviderAvailability.not_available:
-      return "rgb(155,0,0)";
+      return Colours.debug.redText;
     case HealthProviderAvailability.update_required:
-      return "rgb(155,100,0)";
+      return Colours.debug.orangeText;
     default:
       return "black";
   }

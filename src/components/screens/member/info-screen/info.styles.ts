@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../styles";
 
@@ -19,7 +20,7 @@ export default StyleSheet.create({
     marginBottom: Style.adjust(27),
   },
   wrapper: {
-    backgroundColor: "rgba(255,255,255,0.9)",
+    backgroundColor: Colours.overlay.white90,
     paddingHorizontal: Style.adjust(24),
     flex: 1,
     justifyContent: "center",

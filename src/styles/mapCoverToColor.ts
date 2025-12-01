@@ -18,7 +18,7 @@ export const mapCoverToColor = (coverType?: CoverType) => {
         cornerFlower: Colours.secondary.s50S3,
         cornerFlowerAccent: Colours.secondary.s20S3,
         concentricCircles: Colours.secondary.s20S3,
-        medalBorder: "#CAB5FF",
+        medalBorder: Colours.products.fib.epicMedal,
         certificateBackground: Colours.secondary.s10S3,
         certificatePrimary: Colours.products.fib.epic,
       };
@@ -30,10 +30,10 @@ export const mapCoverToColor = (coverType?: CoverType) => {
         separator,
         shadow,
         solidBorder: Colours.blue.dp305,
-        cornerFlower: "#96D8F3",
+        cornerFlower: Colours.products.fib.rareFlower,
         cornerFlowerAccent: Colours.secondary.s20S2,
-        concentricCircles: "#CAEFF9",
-        medalBorder: "#8CE7FF",
+        concentricCircles: Colours.products.fib.rareCircle,
+        medalBorder: Colours.products.fib.rareMedal,
         certificateBackground: Colours.secondary.s10S2,
         certificatePrimary: Colours.products.fib.rare,
       };
@@ -44,13 +44,13 @@ export const mapCoverToColor = (coverType?: CoverType) => {
         border,
         separator,
         shadow,
-        solidBorder: "#37C4A0",
+        solidBorder: Colours.products.fib.commonBorder1,
         cornerFlower: Colours.secondary.s50S1,
         cornerFlowerAccent: Colours.secondary.s20S1,
         concentricCircles: Colours.secondary.s20S1,
-        medalBorder: "#71F1D0",
-        certificateBackground: "#F4FFFB",
-        certificatePrimary: "#37C4A0",
+        medalBorder: Colours.products.fib.commonBorder2,
+        certificateBackground: Colours.products.fib.commonCertificate,
+        certificatePrimary: Colours.products.fib.commonBorder1,
       };
     default:
       return {
@@ -111,22 +111,22 @@ const getSeparatorColor = (coverType: CoverType) => {
 const getBorderColor = (coverType: CoverType) => {
   switch (coverType) {
     case CoverType.Common: {
-      const common1 = `rgb(30, 190, 136)`;
-      const common2 = `rgb(194, 238, 223)`;
+      const common1 = Colours.borders.commonGreen1;
+      const common2 = Colours.borders.commonGreen2;
 
       return [common1, common2];
     }
 
     case CoverType.Epic: {
-      const epic1 = `rgb(179, 150, 255)`;
-      const epic2 = `rgb(233, 224, 255)`;
+      const epic1 = Colours.borders.epicPurple1;
+      const epic2 = Colours.borders.epicPurple2;
 
       return [epic1, epic2];
     }
 
     case CoverType.Rare: {
-      const rare1 = `rgb(48, 167, 217)`;
-      const rare2 = `rgb(206, 234, 245)`;
+      const rare1 = Colours.borders.rareBlue1;
+      const rare2 = Colours.borders.rareBlue2;
 
       return [rare1, rare2];
     }
@@ -164,7 +164,7 @@ const getShadowColor = (coverType: CoverType) => {
     }
 
     default: {
-      return "rgba(0,0,0,0.04)";
+      return Colours.overlay.black04;
     }
   }
 };

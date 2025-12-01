@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(255,255,255,0.9)",
+    backgroundColor: Colours.overlay.white90,
   },
   confirmDeleteBeneficiaryHeading: {
     color: Colours.neutral.n800,

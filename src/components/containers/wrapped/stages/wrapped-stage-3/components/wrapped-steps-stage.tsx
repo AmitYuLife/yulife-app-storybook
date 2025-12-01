@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import { Box, Text, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { t } from "@locale";
@@ -30,7 +31,7 @@ const WrappedStepsStage = ({ totalSteps, onPress }: IWrappedStepsStage) => {
             mt={40}
             pr={4}
             br={12}
-            bg="rgba(0,0,0,.1)"
+            bg={Colours.overlay.black10}
             entering={FadeInUp.delay(CONTENT_DELAY + 1000).duration(1000)}
           >
             <Box justifyContent="center" alignItems="center" gap={5} bg="white" px={20} py={Style.adjust(20)} br={10}>

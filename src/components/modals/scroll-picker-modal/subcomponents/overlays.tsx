@@ -9,12 +9,12 @@ export const Overlays = memo(() => (
     <View pointerEvents="none" style={styles.highlighter} />
     <LinearGradient
       pointerEvents="none"
-      colors={["rgba(255,255,255,1)", "rgba(255,255,255,0)"]}
+      colors={[Colours.overlay.whiteSolid, Colours.overlay.whiteTransparent]}
       style={[styles.whiteFade, styles.top]}
     />
     <LinearGradient
       pointerEvents="none"
-      colors={["rgba(255,255,255,0)", "rgba(255,255,255,1)"]}
+      colors={[Colours.overlay.whiteTransparent, Colours.overlay.whiteSolid]}
       style={[styles.whiteFade, styles.bottom]}
     />
   </View>

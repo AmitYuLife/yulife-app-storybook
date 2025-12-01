@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { Animated, Easing, View, ViewStyle } from "react-native";
-import { Style, Colours, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 
 const ProgressItem = ({
@@ -14,7 +14,7 @@ const ProgressItem = ({
   foregroundColor?: string;
   backgroundColor?: string;
 }) => (
-  <View style={[styles.progressBar, { width, backgroundColor: backgroundColor || "rgba(255,255,255,0.32)" }]}>
+  <View style={[styles.progressBar, { width, backgroundColor: backgroundColor || Colours.overlay.white32 }]}>
     <Animated.View
       style={[
         styles.animatedProgressBar,
@@ -98,7 +98,7 @@ export const ProgressItems = ({
 const styles = StyleSheet.create({
   progressBar: {
     marginHorizontal: Style.adjust(4),
-    backgroundColor: "rgba(255,255,255,0.32)",
+    backgroundColor: Colours.overlay.white32,
     height: Style.adjust(8),
     borderRadius: 999,
     flex: 1,

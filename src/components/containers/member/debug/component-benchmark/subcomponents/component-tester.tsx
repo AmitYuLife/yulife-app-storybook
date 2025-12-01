@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import { Box, TextTemplate } from "@atoms";
 import { memo, useState, useCallback, useEffect } from "react";
 import { ChildrenUpdateTest } from "../tests/children-update-test";
@@ -142,7 +143,7 @@ export const ComponentTester = memo(({ Component, itemHeight, name, getProps }: 
 
       {testType === TestType.NONE && stage === TestStage.DONE ? (
         <Box p={20}>
-          <Box bg="rgba(0,0,0,.05)" p={24} center={true} gap={40}>
+          <Box bg={Colours.debug.componentBg} p={24} center={true} gap={40}>
             <Box gap={10}>
               <ResultsRow label="Total initial render time" value={`${results.totalInitialRenderTime.toFixed(2)}ms`} />
               <ResultsRow

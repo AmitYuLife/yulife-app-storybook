@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import { SmokingStreakCelebrationModal } from "@components/modals";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { MODALS } from "@navigation/constants";
@@ -16,7 +17,7 @@ export const showSmokingStreakCelebrationModal = (
     passProps: {
       blurType: "light",
       blurAmount: 8,
-      backgroundColor: "rgba(0,0,0,.8)",
+      backgroundColor: Colours.overlay.black80,
     },
   });
 };

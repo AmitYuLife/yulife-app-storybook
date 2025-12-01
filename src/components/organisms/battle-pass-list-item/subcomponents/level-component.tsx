@@ -28,7 +28,7 @@ export const LevelComponent = memo((props: Props) => {
       height={24}
       alignItems="center"
       justifyContent="center"
-      bg="rgba(0,0,0,0.1)"
+      bg={Colours.overlay.black10}
     >
       <TextTemplate
         type="l1b"

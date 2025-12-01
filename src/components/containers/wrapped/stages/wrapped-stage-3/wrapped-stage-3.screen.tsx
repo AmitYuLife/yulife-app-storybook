@@ -173,7 +173,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
             w="100%"
             h="100%"
             position="absolute"
-            bg="rgba(255,255,200,1)"
+            bg={Colours.backgrounds.lightYellow}
             entering={FadeIn.delay(1000).duration(3000)}
             exiting={FadeOut.duration(1000)}
           />

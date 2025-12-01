@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     color: Colours.progressBar.oceanWhite.heading,
   },
   stepsTextPink: {
-    color: "rgb(231, 116, 121)",
+    color: Colours.challenge.progressBar.red,
   },
   timeLabel: {
     lineHeight: Platform.OS === "ios" ? Style.SCALE_UP_AND_DOWN(26) : Style.SCALE_UP_AND_DOWN(35),

@@ -1,10 +1,11 @@
+import { Colours } from "@styles";
 import { TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../styles";
 
 import { StyleSheet } from "@styles";
 export const commonStyles = StyleSheet.create({
   heading: {
-    color: "rgb(51,51,51)",
+    color: Colours.darkestGray,
     fontSize: Style.SCALE_UP_AND_DOWN(40),
     marginBottom: Style.SCALE_UP_AND_DOWN(16),
     marginTop: Style.SCALE_UP_AND_DOWN(6),

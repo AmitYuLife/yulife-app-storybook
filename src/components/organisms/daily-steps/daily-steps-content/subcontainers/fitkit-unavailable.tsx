@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import React from "react";
 import { Platform, TextStyle } from "react-native";
 import { Text } from "@atoms";
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     fontSize: Style.SCALE_UP_AND_DOWN(25),
   } as TextStyle,
   content: {
-    color: "rgb(96,96,96)",
+    color: Colours.gray,
     fontSize: Style.SCALE_UP_AND_DOWN(15),
     lineHeight: Style.SCALE_UP_AND_DOWN(22),
     marginTop: Style.SCALE_UP_AND_DOWN(15),

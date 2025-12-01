@@ -24,7 +24,7 @@ const BattlePassLeaderboardHeaderFilterButton = ({ label, onPress }: IBattlePass
         flexDirection="row"
         forceAnimated={true}
         style={animatedStyle}
-        borderColor="rgba(0,0,0,.2)"
+        borderColor={Colours.overlay.black20}
         maxWidth={200}
       >
         <TextTemplate numberOfLines={1} type="b2b">
