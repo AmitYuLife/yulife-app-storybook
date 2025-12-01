@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.91.0] - 2025-12-01
+
+### Features
+
+- Feature GS-2065: Media player SDUI & popTo SDUI action
+
+### Bugfixes
+
+- Bugfix GS-2116: Streaks modal infinite loading
+- Bugfix NVS-000: Prevent override of zero YuCoin balance
+- Bugfix ENG-4370: Streaks modal onPress fix
+- Bugfix GS-1899: Fix screen sizes
+- Bugfix GS-2032: Daily counter label issue on streaks
+- Bugfix ISA-3885: Resolve referral list loading issue
+- Bugfix ENG-4367: Silence error for email opener sheet
+- (grafted) Bugfix GS-2032: padding issue pathway streaks on android
+
+### Tasks
+
+- Task ENG-4368: ignore stripe cancel sheet err
+- Task ISA-3759: fix referral screen issues on large iOS devices
+- Task GS-2067: pause breathing exercise on background
+- Task DEVOPS-4672: Split fastlane Fastfile into multiple files
+- Task DEVOPS-4587: Upload builds to S3 bucket
+- (grafted) Merge branch 'task/claimed-stage-for-impact-pass-modal-rewards' into 'develop'
+- (grafted) Task ISA-3759: Update referral screen
+- (grafted) Merge branch 'task/fix-success-webp' into 'develop'
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- chore DEVOPS-4493: Use GitLab Dependency Proxy for Docker Hub public images
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Improvements
+
+- Detox GS-2113: Improve Login Flow
+
+### Extra
+
+- Detox GS-2118: Enable Smoking for UK in CI
+- Hotfix: Add blank KSA env var to avoid overrides
+- ISA-3811: Inviting Dependants to App Via Product Details Page
+- Detox GS-2102 : Active Connected Pension
+- Detox GS-2099 : Referrals Nav Fix
+- Detox GS-2097: Fix and Unskip Gifting
+- Detox GS-2096: Donations Reward Modals
+- Detox GS-2095: Intercom User Support Level
+- Detox GS-2092: Revert tapID Offset
+- Hotfix: missing yield for leanplum
+
 ## [4.90.0] - 2025-11-20
 
 ### Features
