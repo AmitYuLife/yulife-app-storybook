@@ -7,4 +7,5 @@ fragment GameConsumable on GameConsumable {
     ...RemoteImage
   }
   gameConsumables
+  isUsable
 }

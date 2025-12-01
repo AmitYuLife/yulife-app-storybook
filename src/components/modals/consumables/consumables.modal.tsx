@@ -1,4 +1,3 @@
-import * as React from "react";
 import { LayoutChangeEvent, View } from "react-native";
 import { Style, StyleSheet } from "@styles";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
@@ -128,6 +127,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<GetGameConsumablesQuery["getGameConsumables"]["consumables"][0]>) => {
+      const isDisabled = isActivateLoading || (!item.isUsable && !item.activatedUntil);
       return (
         <InventoryItem
           name={item.title}
@@ -135,7 +135,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
           quantity={item.quantity}
           activeUntil={item.activatedUntil}
           disabledUntil={item.disabledUntil}
-          isDisabled={isActivateLoading}
+          isDisabled={isDisabled}
           isActive={selectedConsumable === first(item.gameConsumables)}
           onPress={() => onPressConsumable(first(item.gameConsumables))}
         />
