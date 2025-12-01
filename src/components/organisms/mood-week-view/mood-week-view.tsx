@@ -19,18 +19,22 @@ interface IMoodViewProps {
 
 const MoodWeekView = ({ data = [], openCalendar }: IMoodViewProps) => {
   return (
-    <Box flexDirection="column" ph={24}>
+    <Box flexDirection="column" pv={16} ph={16} br={16} bg={Colours.neutral.white}>
       <Box flexDirection="row" justifyContent="space-between" alignItems="center" mb={16}>
-        <TextTemplate type="b1b">{t("screens.pathways.user_mood.heading")}</TextTemplate>
+        <TextTemplate color={Colours.inkStrong} type="b1b">
+          {t("screens.pathways.user_mood.heading")}
+        </TextTemplate>
         <TouchableOpacityWithDelay onPress={openCalendar}>
           <Box flexDirection="row" alignItems="center" gap={8}>
-            <TextTemplate type="b2">{t("screens.pathways.user_mood.view_calendar")}</TextTemplate>
+            <TextTemplate color={Colours.inkStrong} type="b2">
+              {t("screens.pathways.user_mood.view_calendar")}
+            </TextTemplate>
             <ArrowButton color={Colours.primary.p600} size={16} />
           </Box>
         </TouchableOpacityWithDelay>
       </Box>
 
-      <Box flexDirection="row" justifyContent="space-between" alignItems="center">
+      <Box dir="ltr" flexDirection="row" justifyContent="space-between" alignItems="center">
         {data.map(({ dayLabel, iconUrl, isToday }, index) => (
           <MoodDay key={`${dayLabel}-${index}`} dayLabel={dayLabel} isToday={isToday} iconUrl={iconUrl} />
         ))}

@@ -18,13 +18,20 @@ const PathwaysContainer = ({ componentId }: Props) => {
     Navigation.pop(componentId);
   }, [componentId]);
 
-  const [, { data, loading }] = useQueryOnScreenSeen(gql("GetUserPathwaysDocument"), componentId, {
-    fetchPolicy: "cache-and-network",
-    variables: {
-      startDate: moment().startOf("week").format("YYYY-MM-DD"),
-      endDate: moment().endOf("week").format("YYYY-MM-DD"),
+  const [, { data, loading }] = useQueryOnScreenSeen(
+    gql("GetUserPathwaysDocument"),
+    componentId,
+    {
+      fetchPolicy: "cache-and-network",
+      variables: {
+        startDate: moment().startOf("week").format("YYYY-MM-DD"),
+        endDate: moment().endOf("week").format("YYYY-MM-DD"),
+      },
     },
-  });
+    {
+      fetchImmediately: true,
+    }
+  );
 
   const moodSubmissions = useMemo(() => getMoodSubmission(data), [data]);
 
@@ -67,7 +74,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
       maxProgress={reflectionProgress.maxProgress}
       streakAwardId={reflectionProgress.streakAwardId}
       nextQuestionnaireLocalDate={data?.getUserPathways?.nextQuestionnaireLocalDate ?? ""}
-      adviceSection={data?.getUserPathwayAdviceSection || { heading: "", items: [] }}
+      adviceSection={data?.getUserPathwayAdviceSection}
       isStreaksEnabled={data?.getUserPathways?.isStreaksEnabled}
     />
   );

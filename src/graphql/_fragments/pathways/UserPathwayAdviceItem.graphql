@@ -4,6 +4,7 @@ fragment UserPathwayAdviceItem on UserPathwayAdviceItem {
     ...SduiAction
   }
   backgroundColor
+  shadowColor
   image {
     ...RemoteImage
   }

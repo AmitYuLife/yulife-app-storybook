@@ -184,9 +184,10 @@
       "title": "Mood Calendar"
     },
     "pathways": {
-      "header": "Daily Reflection",
+      "header": "Today's reflection",
+      "health_insights": "Health Insights",
       "user_mood": {
-        "heading": "Your week",
+        "heading": "Your Mood",
         "view_calendar": "View calendar"
       },
       "personal_health_path": {
@@ -196,7 +197,10 @@
       "day": "Day %{day}",
       "reflect": "Reflect",
       "reflect_in": "Reflect in %{hours}h %{minutes}m",
-      "secondary_button_label": "Go to Wellbeing Hub"
+      "secondary_button_label": "Go to Wellbeing Hub",
+      "advice_empty_section": {
+        "title": "You’re getting closer to your insights!"
+      }
     },
     "products": {
       "beneficiary": {

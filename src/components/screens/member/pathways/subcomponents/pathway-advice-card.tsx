@@ -5,11 +5,12 @@ import { Style } from "@styles";
 import { useSduiActionHandler } from "@components/containers/member/yu/hooks/useSduiActionHandler";
 import { SduiAction } from "@graphql/__generated";
 
-interface PathwayHeroCardProps {
+interface PathwayAdviceCardProps {
   heading: string;
   label: string;
   image?: string;
   backgroundColor: string;
+  shadowColor: string;
   width?: number;
   imageWidth?: number;
   onPress: SduiAction;
@@ -17,42 +18,51 @@ interface PathwayHeroCardProps {
 
 const CARD_PADDING = Style.adjust(16);
 
-export const PATHWAY_HERO_CARD_HEIGHT = 152;
-export const PATHWAY_HERO_CARD_WIDTH = Style.DEVICE_WIDTH - Style.adjust(64);
-
-const PathwayHeroCard = ({
+const PathwayAdviceCard = ({
   heading,
   label,
   onPress: onPressProp,
   image,
   backgroundColor,
-  width = PATHWAY_HERO_CARD_WIDTH,
-  imageWidth = PATHWAY_HERO_CARD_WIDTH / 3,
-}: PathwayHeroCardProps) => {
+  shadowColor,
+  imageWidth = 100,
+}: PathwayAdviceCardProps) => {
   const onPress = useSduiActionHandler({
     onPress: onPressProp,
   });
 
   return (
     <TouchableOpacityWithDelay onPress={onPress}>
-      <Box br={16} overflow="hidden" bg={backgroundColor} width={width} height={PATHWAY_HERO_CARD_HEIGHT}>
+      <Box
+        br={16}
+        bg={backgroundColor}
+        width={"100%"}
+        shadowColor={shadowColor}
+        shadowOffset={{ width: 0, height: 4 }}
+        shadowOpacity={1}
+        shadowRadius={0}
+        borderColor={shadowColor}
+        borderWidth={1}
+      >
         <Box flex={1} p={CARD_PADDING}>
-          <Box maxWidth={width - imageWidth - CARD_PADDING} justifyContent="center" gap={Style.adjust(8)}>
-            <TextTemplate type="b1b" color="white" lineHeight={Style.adjust(20)}>
-              {heading}
-            </TextTemplate>
-            <TextTemplate type="b2" color="white" lineHeight={Style.adjust(24)} numberOfLines={4}>
+          <Box justifyContent="center" gap={8} mr={imageWidth + 20}>
+            <Box opacity={0.6}>
+              <TextTemplate type="l2b" color="white">
+                {heading}
+              </TextTemplate>
+            </Box>
+            <TextTemplate type="l1b" color="white">
               {label}
             </TextTemplate>
           </Box>
         </Box>
 
         <Box position="absolute" right={0} bottom={0}>
-          <Image source={{ uri: image }} width={imageWidth} />
+          <Image source={{ uri: image }} width={imageWidth} autoFlipForRTL={true} />
         </Box>
       </Box>
     </TouchableOpacityWithDelay>
   );
 };
 
-export default memo(PathwayHeroCard);
+export default memo(PathwayAdviceCard);

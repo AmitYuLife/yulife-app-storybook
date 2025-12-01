@@ -89,6 +89,7 @@ export default {
   pastelViolet: "#E5BAFF",
   inkSubtle: "rgb(160,160,155)", // #A0A09B
   inkStrong: "rgb(70,70,71)", // #464647
+  inkBase: "#5C5757",
   leaderboards: {
     first: "rgb(244,186,0)",
     second: "rgb(204,204,204)",

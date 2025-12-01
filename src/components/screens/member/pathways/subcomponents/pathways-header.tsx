@@ -1,21 +1,14 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Box, Image } from "@atoms";
-import { Button } from "@components/molecules";
-import { Colours, Style, TOP_BAR } from "@styles";
+import { Style, TOP_BAR } from "@styles";
+import { PathwayStreaks } from "./pathway-streaks";
 import moment from "moment";
 import ButtonPulseAnimationWrapper from "@components/molecules/button/animation/button-pulse-animation-wrapper";
-import { PathwayStreaks } from "./pathway-streaks";
-
-// prevent a white BG from showing on scroll
-const TOP_SCROLL_UNDERLAY_HEIGHT = 600;
-
-const TIME_REMAINING_REFRESH_RATE_MS = 5000; // 5 seconds
+import { Button } from "@components/molecules";
 
 interface Props {
   onReflect: () => void;
   nextQuestionnaireLocalDate: string;
-
-  // TODO - re-instate progress UI in later pathways release
   reflectionProgress: number;
   reflectedToday: boolean;
   maxProgress: number;
@@ -23,6 +16,8 @@ interface Props {
   isLoading: boolean;
   isStreaksEnabled: boolean;
 }
+
+const TIME_REMAINING_REFRESH_RATE_MS = 5000;
 
 const PathwaysHeader = ({
   onReflect,
@@ -36,7 +31,11 @@ const PathwaysHeader = ({
 }: Props) => {
   // if the next questionnaire local date is today, enable the reflect button,
   // else disable it and count down to the next day
-  const [timeRemaining, setTimeRemaining] = useState({ hasTimeRemaining: true, hours: 0, minutes: 0 });
+  const [timeRemaining, setTimeRemaining] = useState({
+    hasTimeRemaining: true,
+    hours: 0,
+    minutes: 0,
+  });
 
   const updateTimeRemaining = useCallback(() => {
     const secondsRemaining = moment(nextQuestionnaireLocalDate).diff(moment(), "seconds");
@@ -52,22 +51,13 @@ const PathwaysHeader = ({
   }, [updateTimeRemaining]);
 
   return (
-    <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} h={Style.adjust(512)}>
-      <Box
-        position="absolute"
-        top={-TOP_SCROLL_UNDERLAY_HEIGHT}
-        left={0}
-        right={0}
-        height={TOP_SCROLL_UNDERLAY_HEIGHT}
-        bg={Colours.pathways.background}
-      />
-
-      <Box position="absolute" top={0} height={512} width={"100%"}>
+    <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} h={Style.adjust(550)}>
+      <Box position="absolute" top={-50} width={"100%"}>
         <Image
-          source={require("@assets/pathways/reflection-background.webp")}
+          source={require("@assets/pathways/pathway-header-background.webp")}
           width={"100%"}
           height={Style.adjust(512)}
-          resizeMode="cover"
+          contentFit="cover"
         />
       </Box>
       {isStreaksEnabled ? (
@@ -79,8 +69,7 @@ const PathwaysHeader = ({
           isLoading={isLoading}
         />
       ) : null}
-
-      <Box position="absolute" bottom={52} alignSelf="center">
+      <Box position="absolute" bottom={50} alignSelf="center">
         <ButtonPulseAnimationWrapper animatePulse={!timeRemaining.hasTimeRemaining} pulseVerticalOffset={5}>
           <Button
             size="Medium"
@@ -91,9 +80,6 @@ const PathwaysHeader = ({
           />
         </ButtonPulseAnimationWrapper>
       </Box>
-      {/* <Box width={"100%"} px={16}>
-        <PathwaysReflectProgress progress={reflectionProgress} completedToday={reflectedToday} />
-      </Box> */}
     </Box>
   );
 };
