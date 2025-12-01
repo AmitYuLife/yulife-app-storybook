@@ -1,10 +1,11 @@
+import { Colours } from "@styles";
 import { ViewStyle, Platform, ImageStyle } from "react-native";
 
 import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   wrapper: {
     alignItems: "center",
-    backgroundColor: "rgb(240,247,254)",
+    backgroundColor: Colours.challenge.background.lightBlue,
     flex: 1,
     justifyContent: "center",
   } as ViewStyle,

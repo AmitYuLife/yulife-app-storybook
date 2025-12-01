@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import { TextStyle, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style, TOP_BAR, StyleSheet } from "@styles";
@@ -17,7 +18,7 @@ export default StyleSheet.create({
     fontSize: Style.SCALE_UP_AND_DOWN(25),
   } as TextStyle,
   lastUpdate: {
-    color: "rgb(96,96,96)",
+    color: Colours.gray,
     fontSize: Style.SCALE_UP_AND_DOWN(15),
     lineHeight: Style.SCALE_UP_AND_DOWN(22),
     marginTop: Style.SCALE_UP_AND_DOWN(15),
@@ -30,7 +31,7 @@ export default StyleSheet.create({
     position: "absolute",
   } as ViewStyle,
   permissionText: {
-    color: "rgb(96,96,96)",
+    color: Colours.gray,
     lineHeight: Style.SCALE_UP_AND_DOWN(22),
     marginBottom: Style.SCALE_UP_AND_DOWN(20),
     textAlign: "center",

@@ -11,13 +11,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.progressBar.black.shadow,
   },
   barColorMountainPink: {
-    backgroundColor: "rgb(231, 116, 121)",
+    backgroundColor: Colours.challenge.progressBar.red,
   },
   barColorDesertBrown: {
-    backgroundColor: "rgb(252,194,116)",
+    backgroundColor: Colours.challenge.progressBar.orange,
   },
   barColorDesertCycling: {
-    backgroundColor: "rgb(248,111,99)",
+    backgroundColor: Colours.challenge.progressBar.desertOrange,
   },
   barColorOceanBlack: {
     backgroundColor: Colours.progressBar.oceanBlack.shadow,
@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.progressBar.oceanWhite.shadow,
   },
   barColorOceanLightBlue: {
-    backgroundColor: "rgb(216,240,255)",
+    backgroundColor: Colours.challenge.progressBar.blueLight,
   },
   barColorForestWhite: {
-    backgroundColor: "rgb(253, 251, 251)",
+    backgroundColor: Colours.challenge.progressBar.whitish,
   },
   barColorForestGreen: {
-    backgroundColor: "rgb(64, 135, 95)",
+    backgroundColor: Colours.challenge.progressBar.green,
   },
   goal: {
     alignItems: "flex-end",
@@ -47,16 +47,16 @@ const styles = StyleSheet.create({
     color: Colours.progressBar.black.heading,
   },
   goalTextColorLightBlue: {
-    color: "rgb(216,240,255)",
+    color: Colours.challenge.progressBar.blueLight,
   },
   goalTextColorDesertBrown: {
-    color: "rgb(252,194,116)",
+    color: Colours.challenge.progressBar.orange,
   },
   goalTextColorDesertPink: {
-    color: "rgb(231, 116, 121)",
+    color: Colours.challenge.progressBar.red,
   },
   goalTextColorDesertCycling: {
-    color: "rgb(248,111,99)",
+    color: Colours.challenge.progressBar.desertOrange,
   },
   goalTextColorOceanBlack: {
     color: Colours.progressBar.oceanBlack.shadow,
@@ -65,13 +65,13 @@ const styles = StyleSheet.create({
     color: Colours.progressBar.oceanWhite.shadow,
   },
   goalTextPink: {
-    color: "rgb(231, 116, 121)",
+    color: Colours.challenge.progressBar.red,
   },
   goalTextYellow: {
-    color: "rgb(241, 175, 0)",
+    color: Colours.challenge.progressBar.yellow,
   },
   goalTextGreen: {
-    color: "rgb(103, 184, 138)",
+    color: Colours.challenge.progressBar.lightGreen,
   },
   progress: {
     flex: 1,

@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import React, { ComponentProps, RefObject } from "react";
 import { View, ViewStyle, Platform } from "react-native";
 import TopBar from "./top-bar";
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     end: 0,
     width: "100%",
     height: Platform.select({ ios: StyleSheet.hairlineWidth, android: 1 }),
-    backgroundColor: "rgba(0,0,0,0.2)",
+    backgroundColor: Colours.overlay.black20,
   } as ViewStyle,
   whiteBackground: {
     backgroundColor: "white",

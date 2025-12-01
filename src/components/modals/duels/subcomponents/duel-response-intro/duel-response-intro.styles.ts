@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     color: Colours.primary.p600,
   } as TextStyle,
   heading: {
-    color: "rgb(51,51,51)",
+    color: Colours.darkestGray,
     paddingTop: Style.adjust(24),
     paddingBottom: Style.adjust(18),
     fontSize: Style.adjust(32),
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   } as TextStyle,
   boldHeading: {
-    color: "rgb(51,51,51)",
+    color: Colours.darkestGray,
     fontSize: Style.adjust(40),
     paddingHorizontal: Style.adjust(20),
     textAlign: "center",

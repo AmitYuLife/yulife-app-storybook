@@ -37,9 +37,9 @@ export const yuniversalStyles: IThemeScreens = {
       height: "100%",
       backgroundColor: Colours.backgrounds.yuniversalDark,
     },
-    tileBackgroundColour: "#5727C8",
-    durationBackgroundColour: "#9048F3",
-    durationTextColour: "white",
+    tileBackgroundColour: Colours.yuniversal.tilePurple,
+    durationBackgroundColour: Colours.yuniversal.durationPurple,
+    durationTextColour: Colours.neutral.white,
     topBarType: "white",
   },
   challengeSuccessScreen: {
@@ -262,7 +262,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -327,7 +327,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -521,7 +521,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -586,7 +586,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -668,8 +668,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#98D4FF",
-          backgroundColor: "#C0FBFF",
+          borderColor: Colours.planetThemes.blueLight,
+          backgroundColor: Colours.planetThemes.blueLighter,
         },
         hasWhiteGlow: false,
         isLight: true,
@@ -733,8 +733,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#FFB37B",
-          backgroundColor: "#FFEAC2",
+          borderColor: Colours.planetThemes.orangeLight,
+          backgroundColor: Colours.planetThemes.orangeLighter,
         },
         hasWhiteGlow: true,
         isLight: false,
@@ -782,7 +782,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -847,7 +847,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -867,17 +867,17 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#AAE089",
-          backgroundColor: "#E9FEDD",
+          borderColor: Colours.planetThemes.greenLight,
+          backgroundColor: Colours.planetThemes.greenLighter,
         },
       },
       challengeListScreen: {
         backgroundImage: require("@assets/challenge-list/planets/purple/forest.webp"),
         style: {
           ...fullImageStyle,
-          backgroundColor: "#F9E2FF",
+          backgroundColor: Colours.planetThemes.purpleLighter,
         },
-        tileBackgroundColour: "rgba(237, 170, 254, 0.5)",
+        tileBackgroundColour: Colours.overlay.purpleFade1,
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -931,8 +931,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#DDA5FF",
-          backgroundColor: "#F9E3FF",
+          borderColor: Colours.planetThemes.purpleLight1,
+          backgroundColor: Colours.planetThemes.purpleLighter,
         },
         hasWhiteGlow: false,
         isLight: true,
@@ -944,9 +944,9 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/challenge-list/planets/purple/ocean.webp"),
         style: {
           ...fullImageStyle,
-          backgroundColor: "#D4E5FF",
+          backgroundColor: Colours.planetThemes.purpleBright,
         },
-        tileBackgroundColour: "rgba(161, 199, 255, 0.5)",
+        tileBackgroundColour: Colours.overlay.purpleFade2,
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -997,8 +997,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#FFCA43",
-          backgroundColor: "#FFEBB7",
+          borderColor: Colours.planetThemes.yellowGold,
+          backgroundColor: Colours.planetThemes.yellowGoldLight,
         },
         hasWhiteGlow: true,
         isLight: false,
@@ -1046,7 +1046,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -1063,8 +1063,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#DDA5FF",
-          backgroundColor: "#F9E3FF",
+          borderColor: Colours.planetThemes.purpleLight1,
+          backgroundColor: Colours.planetThemes.purpleLighter,
         },
         hasWhiteGlow: true,
         isLight: false,
@@ -1076,9 +1076,9 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/challenge-list/planets/purple/mountain.webp"),
         style: {
           ...fullImageStyle,
-          backgroundColor: "#F1E4FF",
+          backgroundColor: Colours.planetThemes.purplePale,
         },
-        tileBackgroundColour: "rgba(219, 186, 252, 0.5)",
+        tileBackgroundColour: Colours.overlay.purpleFade3,
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -1112,7 +1112,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -1132,18 +1132,18 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#AAE089",
-          backgroundColor: "#E9FEDD",
+          borderColor: Colours.planetThemes.greenLight,
+          backgroundColor: Colours.planetThemes.greenLighter,
         },
       },
       challengeListScreen: {
         backgroundImage: require("@assets/challenge-list/planets/ring/forest.webp"),
         style: {
           ...fullImageStyle,
-          backgroundColor: "#F9E2FF",
+          backgroundColor: Colours.planetThemes.purpleLighter,
         },
-        tileBackgroundColour: "rgba(207, 188, 255, 0.5)",
-        durationBackgroundColour: "#FFFFFF",
+        tileBackgroundColour: Colours.overlay.purpleFade4,
+        durationBackgroundColour: Colours.planetThemes.white,
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -1196,8 +1196,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#DDA5FF",
-          backgroundColor: "#F9E3FF",
+          borderColor: Colours.planetThemes.purpleLight1,
+          backgroundColor: Colours.planetThemes.purpleLighter,
         },
         hasWhiteGlow: false,
         isLight: true,
@@ -1209,10 +1209,10 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/challenge-list/planets/ring/ocean.webp"),
         style: {
           ...fullImageStyle,
-          backgroundColor: "#D4E5FF",
+          backgroundColor: Colours.planetThemes.purpleBright,
         },
-        tileBackgroundColour: "rgba(222, 197, 255, 0.5)",
-        durationBackgroundColour: "#FFFFFF",
+        tileBackgroundColour: Colours.overlay.purpleFade5,
+        durationBackgroundColour: Colours.planetThemes.white,
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -1263,8 +1263,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#FFCA43",
-          backgroundColor: "#FFEBB7",
+          borderColor: Colours.planetThemes.yellowGold,
+          backgroundColor: Colours.planetThemes.yellowGoldLight,
         },
         hasWhiteGlow: true,
         isLight: false,
@@ -1279,8 +1279,8 @@ export const planetStyles: ITheme = {
           backgroundColor: Colours.borders.yellowGold,
         },
         topBarType: "default",
-        tileBackgroundColour: "rgba(255, 198, 253, 0.5)",
-        durationBackgroundColour: "#FFFFFF",
+        tileBackgroundColour: Colours.overlay.purpleFade6,
+        durationBackgroundColour: Colours.planetThemes.white,
       },
       challengeSuccessScreen: {
         isFullScreen: true,
@@ -1314,7 +1314,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -1331,8 +1331,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#DDA5FF",
-          backgroundColor: "#F9E3FF",
+          borderColor: Colours.planetThemes.purpleLight1,
+          backgroundColor: Colours.planetThemes.purpleLighter,
         },
         hasWhiteGlow: true,
         isLight: false,
@@ -1344,10 +1344,10 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/challenge-list/planets/ring/mountain.webp"),
         style: {
           ...fullImageStyle,
-          backgroundColor: "#F1E4FF",
+          backgroundColor: Colours.planetThemes.purplePale,
         },
-        tileBackgroundColour: "rgba(219, 186, 252, 0.5)",
-        durationBackgroundColour: "#FFFFFF",
+        tileBackgroundColour: Colours.overlay.purpleFade3,
+        durationBackgroundColour: Colours.planetThemes.white,
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -1381,7 +1381,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -1401,18 +1401,18 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
         eventPanel: {
           fontColor: Colours.neutral.n900,
-          borderColor: "#43E1F5",
-          backgroundColor: "#7AF0FF",
+          borderColor: Colours.planetThemes.blueBright,
+          backgroundColor: Colours.planetThemes.blueBrighter,
         },
       },
       challengeListScreen: {
         backgroundImage: require("@assets/challenge-success/planets/lunar/forest.webp"),
         style: {
           ...fullImageStyle,
-          backgroundColor: "#F9E2FF",
+          backgroundColor: Colours.planetThemes.purpleLighter,
         },
-        tileBackgroundColour: "rgba(210, 215, 255, 0.5)",
-        durationBackgroundColour: "#FFFFFF",
+        tileBackgroundColour: Colours.overlay.purpleFade7,
+        durationBackgroundColour: Colours.planetThemes.white,
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -1465,8 +1465,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n900,
-          borderColor: "#999EFF",
-          backgroundColor: "#D7D8FF",
+          borderColor: Colours.planetThemes.bluePurple1,
+          backgroundColor: Colours.planetThemes.purpleMedium,
         },
         hasWhiteGlow: false,
         isLight: true,
@@ -1478,10 +1478,10 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/challenge-success/planets/lunar/ocean.webp"),
         style: {
           ...fullImageStyle,
-          backgroundColor: "#D4E5FF",
+          backgroundColor: Colours.planetThemes.purpleBright,
         },
-        tileBackgroundColour: "rgba(176, 178, 255, 0.5)",
-        durationBackgroundColour: "#FFFFFF",
+        tileBackgroundColour: Colours.overlay.purpleFade8,
+        durationBackgroundColour: Colours.planetThemes.white,
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -1532,8 +1532,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n900,
-          borderColor: "#FF8AC2",
-          backgroundColor: "#FFCBE4",
+          borderColor: Colours.planetThemes.pinkLight,
+          backgroundColor: Colours.planetThemes.pinkLighter,
         },
         hasWhiteGlow: true,
         isLight: false,
@@ -1548,8 +1548,8 @@ export const planetStyles: ITheme = {
           backgroundColor: Colours.borders.yellowGold,
         },
         topBarType: "default",
-        tileBackgroundColour: "rgba(175, 119, 255, 0.5)",
-        durationBackgroundColour: "#FFFFFF",
+        tileBackgroundColour: Colours.overlay.purpleFade9,
+        durationBackgroundColour: Colours.planetThemes.white,
       },
       challengeSuccessScreen: {
         isFullScreen: true,
@@ -1583,7 +1583,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/desert.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },
@@ -1600,8 +1600,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n900,
-          borderColor: "#43C8FF",
-          backgroundColor: "#B0E8FF",
+          borderColor: Colours.planetThemes.blueCyan,
+          backgroundColor: Colours.planetThemes.blueCyanLight,
         },
         hasWhiteGlow: true,
         isLight: false,
@@ -1613,10 +1613,10 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/challenge-success/planets/lunar/mountain.webp"),
         style: {
           ...fullImageStyle,
-          backgroundColor: "#F1E4FF",
+          backgroundColor: Colours.planetThemes.purplePale,
         },
-        tileBackgroundColour: "rgba(140, 142, 255, 0.5)",
-        durationBackgroundColour: "#FFFFFF",
+        tileBackgroundColour: Colours.overlay.purpleFade10,
+        durationBackgroundColour: Colours.planetThemes.white,
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -1650,7 +1650,7 @@ export const planetStyles: ITheme = {
         backgroundImage: require("@assets/offline-screen/planets/earth/mountain.webp"),
         style: {
           ...commonStyles,
-          backgroundColor: "rgb(235,235,235)",
+          backgroundColor: Colours.backgrounds.lightGray,
         },
       },
     },

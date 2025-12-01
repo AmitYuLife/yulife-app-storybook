@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   isDisabledIcon: {
     width: Style.adjust(16),
     height: Style.adjust(16),
-    backgroundColor: "rgba(250,250,254,0.5)",
+    backgroundColor: Colours.overlay.lightPurple,
     position: "absolute",
   },
   subtotal: {

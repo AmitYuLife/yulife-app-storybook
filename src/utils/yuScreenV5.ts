@@ -1,5 +1,6 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { ImageSourcePropType } from "react-native";
+import Colours from "@styles/colours";
 
 interface IInfoBar {
   image: ImageSourcePropType;
@@ -44,10 +45,10 @@ const WORLD_BACKGROUNDS: IWorldBackground[] = [
     imageSize: BACKGROUND_IMAGE_SIZE,
     infoBar: INFO_BARS.clouds,
     colours: {
-      sky: "#E0FF9F",
-      ground: "#C1EB67",
-      cloud: "#CAF66B",
-      yumojiPromptBackground: "rgba(255,255,255,0.64)",
+      sky: Colours.yuscreen.forestSky,
+      ground: Colours.yuscreen.forestGround,
+      cloud: Colours.yuscreen.forestCloud,
+      yumojiPromptBackground: Colours.overlay.white64,
     },
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -56,9 +57,9 @@ const WORLD_BACKGROUNDS: IWorldBackground[] = [
     imageSize: BACKGROUND_IMAGE_SIZE,
     infoBar: INFO_BARS.wave,
     colours: {
-      sky: "#A8EFFF",
-      ground: "#FFE08F",
-      yumojiPromptBackground: "rgba(255,255,255,0.64)",
+      sky: Colours.yuscreen.oceanSky,
+      ground: Colours.yuscreen.oceanGround,
+      yumojiPromptBackground: Colours.overlay.white64,
     },
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -67,10 +68,10 @@ const WORLD_BACKGROUNDS: IWorldBackground[] = [
     imageSize: BACKGROUND_IMAGE_SIZE,
     infoBar: INFO_BARS.wave,
     colours: {
-      sky: "#FFEF9A",
-      ground: "#FFA114",
-      cloud: "#FFDC80",
-      yumojiPromptBackground: "rgba(255,255,255,0.64)",
+      sky: Colours.yuscreen.desertSky,
+      ground: Colours.yuscreen.desertGround,
+      cloud: Colours.yuscreen.desertCloud,
+      yumojiPromptBackground: Colours.overlay.white64,
     },
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -79,10 +80,10 @@ const WORLD_BACKGROUNDS: IWorldBackground[] = [
     imageSize: BACKGROUND_IMAGE_SIZE,
     infoBar: INFO_BARS.clouds,
     colours: {
-      sky: "#DBC8FF",
-      ground: "#FFBB6A",
-      cloud: "#F0E8FF",
-      yumojiPromptBackground: "rgba(255,255,255,0.64)",
+      sky: Colours.yuscreen.mountainSky,
+      ground: Colours.yuscreen.mountainGround,
+      cloud: Colours.yuscreen.mountainCloud,
+      yumojiPromptBackground: Colours.overlay.white64,
     },
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -92,9 +93,9 @@ const YUNIVERSAL_BACKGROUND: IWorldBackground = {
   infoBar: INFO_BARS.wave,
   imageSize: BACKGROUND_IMAGE_SIZE,
   colours: {
-    sky: "#3D0139",
-    nameAndLevelText: "#FFFFFF",
-    yumojiPromptBackground: "#FFFFFF",
+    sky: Colours.yuscreen.yuniversalSky,
+    nameAndLevelText: Colours.neutral.white,
+    yumojiPromptBackground: Colours.neutral.white,
   },
   topBarType: TOP_BAR_TYPES.WHITE,
 };

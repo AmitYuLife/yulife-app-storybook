@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import { ImageStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../styles";
 
@@ -7,7 +8,7 @@ export default StyleSheet.create({
     transform: [{ rotate: "180deg" }],
   } as ImageStyle,
   itemWrapper: {
-    borderBottomColor: "rgb(233,233,233)",
+    borderBottomColor: Colours.debug.bottomBorder,
     borderBottomWidth: 1,
     flex: 1,
     flexDirection: "row",

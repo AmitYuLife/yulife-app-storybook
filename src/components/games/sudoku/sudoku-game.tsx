@@ -82,6 +82,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     flexDirection: "column",
     justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,.9)",
+    backgroundColor: Colours.overlay.black90,
   },
 });

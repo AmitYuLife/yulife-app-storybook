@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   } as TextStyle,
   contentWrapper: {
     paddingHorizontal: Style.adjust(32),
-    backgroundColor: "rgba(255,255,255,0.9)",
+    backgroundColor: Colours.overlay.white90,
   } as ViewStyle,
   scrollViewContentWrapper: {
     flexGrow: 1,

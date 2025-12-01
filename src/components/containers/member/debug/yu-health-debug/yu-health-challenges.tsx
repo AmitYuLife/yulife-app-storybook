@@ -1,7 +1,7 @@
 import { useVerifyAndAuthorizeCapability } from "@hooks";
 import { TextTemplate } from "@atoms";
 import { getCapabilityStatuses } from "@redux/yu-health/yu-health.selectors";
-import { Style, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import { HealthPermissionStatus, HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { memo } from "react";
@@ -22,13 +22,13 @@ const YuHealthChallenges = () => {
 
     switch (status) {
       case HealthPermissionStatus.granted:
-        return "rgba(0,255,0,0.1)";
+        return Colours.debug.greenSuccess;
       case HealthPermissionStatus.notDetermined:
-        return "rgba(0,155,155,0.1)";
+        return Colours.debug.tealInfo;
       case HealthPermissionStatus.notAsked:
-        return "rgba(255,150,0,0.1)";
+        return Colours.debug.orangeWarning;
       default:
-        return "rgba(255,0,0,0.1)";
+        return Colours.debug.redError;
     }
   };
 

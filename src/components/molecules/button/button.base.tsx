@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import React, { ComponentProps, memo, useEffect, useState } from "react";
 import {
   Animated,
@@ -364,7 +365,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   disableOverlay: {
     width: "100%",
-    backgroundColor: "rgba(255,255,255,0.5)",
+    backgroundColor: Colours.overlay.white50,
   } as ViewStyle,
   buttonContent: {
     flexDirection: "row",

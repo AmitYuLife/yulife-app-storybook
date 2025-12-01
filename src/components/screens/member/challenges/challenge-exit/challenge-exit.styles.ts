@@ -1,10 +1,11 @@
+import { Colours } from "@styles";
 import { Style } from "@styles/index";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   wrapper: {
-    backgroundColor: "rgba(255,255,255,0.9)",
+    backgroundColor: Colours.overlay.white90,
     flex: 1,
     alignItems: "center",
   } as ViewStyle,

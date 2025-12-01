@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import * as React from "react";
 import { View } from "react-native";
 import { LevelLine, Box, Stars, TextTemplate, RawImage } from "@atoms";
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
   },
   level: {
     textAlign: "center",
-    color: "rgb(168, 105, 22)",
+    color: Colours.text.goldBrown,
     fontSize: Style.adjust(14),
     marginTop: Style.adjust(-10),
   },
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: Style.adjust(24),
     fontSize: Style.adjust(25),
-    color: "rgb(168, 105, 22)",
+    color: Colours.text.goldBrown,
   },
   hintWrapper: {
     paddingHorizontal: Style.adjust(24),

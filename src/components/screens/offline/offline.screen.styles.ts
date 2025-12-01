@@ -1,3 +1,4 @@
+import { Colours } from "@styles";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
@@ -13,12 +14,12 @@ export default StyleSheet.create({
     width: Style.DEVICE_WIDTH,
   } as ImageStyle,
   heading: {
-    color: "rgb(51,51,51)",
+    color: Colours.darkestGray,
     fontSize: Style.SCALE_UP_AND_DOWN(35),
     textAlign: "center",
   } as TextStyle,
   subheading: {
-    color: "rgb(96,96,96)",
+    color: Colours.gray,
     fontSize: Style.SCALE_UP_AND_DOWN(16),
     marginStart: Style.SCALE_UP_AND_DOWN(35),
     marginEnd: Style.SCALE_UP_AND_DOWN(35),

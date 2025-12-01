@@ -1,10 +1,11 @@
 import React from "react";
 import { PureComponent } from "react";
 import Svg, { Circle } from "react-native-svg";
+import Colours from "@styles/colours";
 
 const First = () => (
   <>
-    <Circle cx="-20" cy="40" r="10" fill="rgb(248,227,49)" />
+    <Circle cx="-20" cy="40" r="10" fill={Colours.text.loadingYellow} />
     <Circle cx="25" cy="40" r="10" fill="rgba(248,227,49,0.3)" />
     <Circle cx="70" cy="40" r="10" fill="rgba(248,227,49,0.6)" />
   </>
@@ -12,7 +13,7 @@ const First = () => (
 const Second = () => (
   <>
     <Circle cx="-20" cy="40" r="10" fill="rgba(248,227,49,0.6)" />
-    <Circle cx="25" cy="40" r="10" fill="rgb(248,227,49)" />
+    <Circle cx="25" cy="40" r="10" fill={Colours.text.loadingYellow} />
     <Circle cx="70" cy="40" r="10" fill="rgba(248,227,49,0.3)" />
   </>
 );
@@ -20,7 +21,7 @@ const Third = () => (
   <>
     <Circle cx="-20" cy="40" r="10" fill="rgba(248,227,49,0.3)" />
     <Circle cx="25" cy="40" r="10" fill="rgba(248,227,49,0.6)" />
-    <Circle cx="70" cy="40" r="10" fill="rgb(248,227,49)" />
+    <Circle cx="70" cy="40" r="10" fill={Colours.text.loadingYellow} />
   </>
 );
 

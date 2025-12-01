@@ -1,9 +1,10 @@
+import { Colours } from "@styles";
 import { ViewStyle } from "react-native";
 
 import { StyleSheet } from "@styles";
 export default StyleSheet.create({
   safeAreaWrapper: {
-    backgroundColor: "rgb(240,247,254)",
+    backgroundColor: Colours.challenge.background.lightBlue,
     ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
 });
