@@ -37,13 +37,21 @@ Download certificates and provisioning profiles. This action creates a new keych
 
 Then it downloads the certificates and provisioning profiles using the match action.
 
-### ios ci_develop_build
+### ios develop_build
 
 ```sh
-[bundle exec] fastlane ios ci_develop_build
+[bundle exec] fastlane ios develop_build
 ```
 
 iOS Develop build
+
+### ios uat_build
+
+```sh
+[bundle exec] fastlane ios uat_build
+```
+
+iOS UAT build
 
 ### ios develop_certs_and_profiles
 
@@ -52,6 +60,18 @@ iOS Develop build
 ```
 
 Generate new develop certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)
+
+Matchfile needs to be updated with the correct environment variables.
+
+### ios uat_certs_and_profiles
+
+```sh
+[bundle exec] fastlane ios uat_certs_and_profiles
+```
+
+Generate new UAT certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)
+
+Matchfile needs to be updated with the correct environment variables.
 
 ### ios local_build
 
