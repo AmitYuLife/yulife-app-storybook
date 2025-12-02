@@ -13,7 +13,9 @@ import { WellbeingHubSection as IWellbeingHubSection } from "@redux/yu-screen/yu
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 
-export const WellbeingHubSection = ({ sectionInstanceId, content }: IWellbeingHubSection) => {
+type Props = IWellbeingHubSection;
+
+export const WellbeingHubSection = ({ sectionInstanceId, content }: Props) => {
   const currentRoute = useSelector(getRouteState);
 
   const onCardPress = useCallback((itemId: string, route: string) => {
@@ -55,7 +57,7 @@ export const WellbeingHubSection = ({ sectionInstanceId, content }: IWellbeingHu
   const { items, buttonLabel } = content || {};
 
   return (
-    <View key={sectionInstanceId} style={containerStyle}>
+    <View key={sectionInstanceId}>
       {items.map(({ id: itemId, title: itemTitle, description, image, route }, index) => (
         <BoxOptionCard
           key={itemId}
@@ -77,12 +79,6 @@ export const WellbeingHubSection = ({ sectionInstanceId, content }: IWellbeingHu
       />
     </View>
   );
-};
-
-const containerStyle = {
-  paddingTop: Style.adjust(16),
-  paddingBottom: Style.adjust(20),
-  paddingHorizontal: Style.adjust(24),
 };
 
 const itemTitleStyle = {

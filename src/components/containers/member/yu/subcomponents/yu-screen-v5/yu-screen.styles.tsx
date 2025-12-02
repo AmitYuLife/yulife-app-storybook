@@ -1,5 +1,5 @@
 import { Colours, Style, TOP_BAR, StyleSheet } from "@styles";
-export const FOOTER_HEIGHT = Style.adjust(80);
+export const FOOTER_HEIGHT = Style.adjust(100);
 export const FOOTER_HIDE_BACKGROUND_HEIGHT = Style.adjust(1000);
 
 export const PLATFORM_SIZE = {
@@ -60,6 +60,7 @@ export const styles = StyleSheet.create({
   },
   sections: {
     backgroundColor: Colours.neutral.white,
+    paddingHorizontal: Style.adjust(24),
   },
   bottomPad: {
     backgroundColor: Colours.neutral.white,

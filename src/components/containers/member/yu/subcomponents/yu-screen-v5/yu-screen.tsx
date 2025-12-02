@@ -18,7 +18,7 @@ import { FC, memo, useCallback, useContext, useEffect, useMemo, useRef, useState
 import { Animated, LayoutChangeEvent, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { YuScreenContext } from "../../context/yu-screen.context";
-import { renderSection } from "../yu-screen-sections";
+import { renderSduiSection } from "@components/sdui-sections";
 import { HeroHeaderBackground } from "./hero-header-background";
 import { HeroHeaderForeground } from "./hero-header-foreground";
 import { HeroHeaderGradient } from "./hero-header-gradient";
@@ -27,6 +27,7 @@ import { INITIAL_SCROLL, MIN_SECTIONS_HEIGHT, styles } from "./yu-screen.styles"
 import { YumojiPrompt } from "./yumoji-prompt";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { IAchievement } from "@organisms/achievements-showcase/achievements-showcase";
+import { Box } from "@atoms";
 
 interface IProps {
   onNotificationPress: () => void;
@@ -160,6 +161,11 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, sh
     }),
     [showAchievements]
   );
+
+  const sectionsWithContent = useMemo(() => {
+    return sections.filter((section) => !!section.content);
+  }, [sections]);
+
   return (
     <View style={memoizedStyles.wrapper}>
       <View style={styles.contentWrapper}>
@@ -194,9 +200,9 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, sh
               showAchievements={showAchievements}
               achievement={achievement}
             />
-            <View style={sectionsStyle} onLayout={handleLayout}>
-              {sections.map(renderSection)}
-            </View>
+            <Box style={sectionsStyle} onLayout={handleLayout} gap={24}>
+              {sectionsWithContent.map((section) => renderSduiSection(section))}
+            </Box>
             <View style={memoizedStyles.bottomPad} />
             <View style={styles.footerPadding} />
           </Animated.ScrollView>

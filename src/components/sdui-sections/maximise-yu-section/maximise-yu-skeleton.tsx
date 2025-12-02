@@ -29,9 +29,6 @@ export const MaximiseYuSkeleton = () => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginHorizontal: Style.adjust(24),
-    marginTop: Style.adjust(24),
-    marginBottom: Style.adjust(12),
     borderWidth: 1,
     paddingBottom: Style.adjust(16),
     backgroundColor: Colours.neutral.white,

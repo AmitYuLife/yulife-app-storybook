@@ -74,8 +74,7 @@ const onPress = () =>
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingVertical: Style.adjust(20),
-    paddingHorizontal: Style.adjust(40),
+    paddingHorizontal: Style.adjust(20),
     display: "flex",
     alignItems: "center",
   },

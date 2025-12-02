@@ -18,9 +18,6 @@ fragment YuScreenSection on YuScreenSection {
   ... on ReferralSection {
     ...ReferralSection
   }
-  ... on SmokingSection {
-    ...SmokingSection
-  }
   ... on FeatureCardSection {
     ...FeatureCardSection
   }
