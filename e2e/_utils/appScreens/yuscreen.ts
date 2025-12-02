@@ -552,18 +552,18 @@ export const yuscreenV5CreateYumojiVisible = async () => {
 export const yuScreenV5HeaderVisible =
   (collapsed: boolean, name: string, world: string, level: string, emptyAvatar = false) =>
   async () => {
-    await idVisibleAtIndex(ids.YUSCREEN_V5_USERNAME(name), 0)();
-    await idVisibleAtIndex(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 0)();
+    await idVisibleAtIndex(ids.YUSCREEN_V5_USERNAME(name), 0, 5000)();
+    await idVisibleAtIndex(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 0, 3000)();
 
     if (!collapsed && emptyAvatar) {
-      await idVisible(ids.EMPTY_USER_YUMOJI_AVATAR)();
+      await idVisible(ids.EMPTY_USER_YUMOJI_AVATAR, 4000)();
     } else {
-      await idNotVisible(ids.EMPTY_USER_YUMOJI_AVATAR)();
+      await idNotVisible(ids.EMPTY_USER_YUMOJI_AVATAR, 4000)();
     }
 
     if (!collapsed && !emptyAvatar) {
-      await idVisible(ids.YUMOJI_YUSCREEN_V5)();
+      await idVisible(ids.YUMOJI_YUSCREEN_V5, 4000)();
     } else {
-      await idNotVisible(ids.YUMOJI_YUSCREEN_V5)();
+      await idNotVisible(ids.YUMOJI_YUSCREEN_V5, 4000)();
     }
   };
