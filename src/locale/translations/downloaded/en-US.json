@@ -1451,8 +1451,12 @@
       "subheading": "Check your internet connection."
     },
     "pathways": {
+      "advice_empty_section": {
+        "title": "You're getting closer to your insights!"
+      },
       "day": "Day %{day}",
-      "header": "Daily Reflection",
+      "header": "Today's reflection",
+      "health_insights": "Health Insights",
       "personal_health_path": {
         "heading": "Personal Health Path"
       },
@@ -1461,7 +1465,7 @@
       "secondary_button_label": "Go to Wellbeing Hub",
       "today": "Today",
       "user_mood": {
-        "heading": "Your week",
+        "heading": "Your Mood",
         "view_calendar": "View calendar"
       }
     },

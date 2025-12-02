@@ -1451,8 +1451,12 @@
       "subheading": "Comprueba tu conexión a Internet."
     },
     "pathways": {
+      "advice_empty_section": {
+        "title": "Cada vez estás más cerca de tus ideas."
+      },
       "day": "Día %{day}",
-      "header": "Reflexión diaria",
+      "header": "Reflexión de hoy",
+      "health_insights": "Información sanitaria",
       "personal_health_path": {
         "heading": "Trayectoria personal de salud"
       },
@@ -1461,7 +1465,7 @@
       "secondary_button_label": "Ir a Wellbeing Hub",
       "today": "Hoy",
       "user_mood": {
-        "heading": "Su semana",
+        "heading": "Tu estado de ánimo",
         "view_calendar": "Ver el calendario"
       }
     },

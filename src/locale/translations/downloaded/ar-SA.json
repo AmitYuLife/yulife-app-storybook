@@ -1451,8 +1451,12 @@
       "subheading": "تحقق من اتصالك بالإنترنت."
     },
     "pathways": {
+      "advice_empty_section": {
+        "title": "أنت تقترب من أفكارك!"
+      },
       "day": "يوم %{day}",
-      "header": "تأمل يومي",
+      "header": "تأمل اليوم",
+      "health_insights": "رؤى صحية",
       "personal_health_path": {
         "heading": "مسار الصحة الشخصية"
       },
@@ -1461,7 +1465,7 @@
       "secondary_button_label": "اذهب إلى مركز الرفاهية",
       "today": "اليوم",
       "user_mood": {
-        "heading": "أسبوعك",
+        "heading": "مزاجك",
         "view_calendar": "عرض التقويم"
       }
     },
