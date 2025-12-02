@@ -7,6 +7,8 @@ import PathwaysHeader from "./subcomponents/pathways-header";
 import { t } from "@locale";
 import { Colours, Style, StyleSheet } from "@styles";
 import { AdviceSection, PathwayAdviceSectionProps } from "./subcomponents/advice-section/advice-section";
+import { YuScreenSection } from "@graphql/__generated";
+import { InterventionItemsSection } from "./subcomponents/intervention-items-section";
 
 interface Props {
   onClose: () => void;
@@ -17,6 +19,7 @@ interface Props {
   reflectedToday: boolean;
   nextQuestionnaireLocalDate: string;
   adviceSection: PathwayAdviceSectionProps;
+  interventionSections: YuScreenSection[];
   isLoading: boolean;
   maxProgress: number;
   streakAwardId?: string;
@@ -32,6 +35,7 @@ const PathwaysScreen = ({
   nextQuestionnaireLocalDate,
   onOpenMoodCalendar,
   adviceSection,
+  interventionSections,
   isLoading,
   maxProgress,
   streakAwardId,
@@ -73,10 +77,8 @@ const PathwaysScreen = ({
         />
 
         <Box minHeight={100} width={"100%"} gap={20} ph={16}>
-          {/* <Box mt={27}>
-            <CarouselPathways pathways={[]} />
-          </Box> */}
           <Box gap={16}>
+            {interventionSections?.length ? <InterventionItemsSection sections={interventionSections} /> : null}
             <Box ph={8}>
               <TextTemplate type="b1b" color={Colours.neutral.white}>
                 {t("screens.pathways.health_insights")}

@@ -1,6 +1,7 @@
 fragment SduiSection on SduiSection {
   __typename
   id
+  sectionInstanceId
   ready
   updateOnView
   loadingGroup

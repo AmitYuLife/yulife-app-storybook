@@ -185,7 +185,8 @@
     },
     "pathways": {
       "header": "Today's reflection",
-      "health_insights": "Health Insights",
+      "health_insights": "Health insights",
+      "recommended_for_you": "Recommended for you",
       "user_mood": {
         "heading": "Your Mood",
         "view_calendar": "View calendar"
