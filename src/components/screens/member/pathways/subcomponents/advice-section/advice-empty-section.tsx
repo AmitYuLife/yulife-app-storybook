@@ -14,7 +14,7 @@ const AdviceEmptySection = () => {
   return (
     <Box position="relative" pt={20}>
       <Box justifyContent="center" alignItems="center">
-        <Box bg={"#07F"} pv={10} ph={16} br={16} maxWidth={160} onLayout={onBubbleContainerLayout}>
+        <Box pv={10} ph={16} maxWidth={160} onLayout={onBubbleContainerLayout}>
           <TextTemplate type="l1b" color={Colours.neutral.white} textAlign="center">
             {t("screens.pathways.advice_empty_section.title")}
           </TextTemplate>
@@ -29,7 +29,7 @@ const AdviceEmptySection = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Image source={require("@assets/pathways/sea-otter-with-caret.webp")} width={172} autoFlipForRTL={true} />
+        <Image source={require("@assets/pathways/sea-otter.webp")} width={165} autoFlipForRTL={true} />
       </Box>
     </Box>
   );
