@@ -59,23 +59,18 @@ export const privacyLinkVisible = async (): Promise<void> => {
 };
 
 export const rewardScreenVisible = async (): Promise<void> => {
-  const check1 = element(by.text(t("Here’s a sprinkle of\nYuCoin for logging in")));
-  await waitFor(check1).toExist();
-  await expect(check1).toBeVisible();
+  const loginReward = element(by.text("Here’s a sprinkle of\nYuCoin for logging in"));
+  await waitFor(loginReward).toBeVisible().withTimeout(3000);
 };
 
 export const given200coins = async (): Promise<void> => {
-  const target = element(by.label("200"));
-  await waitFor(target).toExist();
-  await expect(target).toBeVisible();
+  const visibleElements = [element(by.label("200")), element(by.id(ids.VIEW_CONFETTI_COIN(200)))];
 
-  const target2 = element(by.id(ids.VIEW_CONFETTI_COIN(200)));
-  await waitFor(target2).toExist();
-  await expect(target2).toBeVisible();
+  for (const element of visibleElements) {
+    await waitFor(element).toBeVisible().withTimeout(2_000);
+  }
 
-  const target3 = element(by.label("300"));
-  await waitFor(target3).toNotExist();
-  await expect(target3).toNotExist();
+  await expect(element(by.label("300"))).not.toExist();
 };
 
 export const givenCoinsTopRight = (coins: number) => async (): Promise<void> => {

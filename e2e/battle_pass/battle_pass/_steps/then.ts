@@ -31,22 +31,24 @@ export const { scrollUntilTextVisibleAtIndex, scrollUntilIdVisible } = navigatio
 
 export const { unlockedYumojiItemsVisible } = screens.yuscreen;
 
-export const impactCardsVisible = async (waitTime = 2000) => {
-  const titles = ["Plant trees", "Provide water", "Feed families", "Clean the ocean"];
-  const donationButtons: IMPACT_DONATION[] = ["tree", "water", "meal", "ocean"];
+export const impactCardsVisible =
+  (waitTime = 2000) =>
+  async () => {
+    const titles = ["Plant trees", "Provide water", "Feed families", "Clean the ocean"];
+    const donationButtons: IMPACT_DONATION[] = ["tree", "water", "meal", "ocean"];
 
-  for (const [index, title] of titles.entries()) {
-    const donationButton = donationButtons[index];
-    const imageUri = impactDonationImages[donationButton];
+    for (const [index, title] of titles.entries()) {
+      const donationButton = donationButtons[index];
+      const imageUri = impactDonationImages[donationButton];
 
-    await idVisible(ids.IMPACT_DONATION_TITLE(title), waitTime)();
-    await idVisible(ids.DONATION_BUTTON(donationButton), waitTime)();
-    await idVisible(ids.IMPACT_DONATION_IMAGE(imageUri), waitTime)();
-    if (index == 1) {
-      await scrollFromID(ids.DONATIONS_LIST, "up", "slow", 0.2)();
+      await idVisible(ids.IMPACT_DONATION_TITLE(title), waitTime)();
+      await idVisible(ids.DONATION_BUTTON(donationButton), waitTime)();
+      await idVisible(ids.IMPACT_DONATION_IMAGE(imageUri), waitTime)();
+      if (index == 1) {
+        await scrollFromID(ids.DONATIONS_LIST, "up", "slow", 0.2, waitTime)();
+      }
     }
-  }
-};
+  };
 
 export const extraChallengesInfoModalVisible = async () => {
   for (const type of challengeTypes) {
