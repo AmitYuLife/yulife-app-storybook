@@ -53,7 +53,7 @@ const PathwaysScreen = ({
         onScroll={scrollHandler}
         scrollEventThrottle={16}
       >
-        <Box position="absolute" top={0} width={"100%"}>
+        <Box position="absolute" bottom={0} width={"100%"}>
           <Image
             source={require("@assets/pathways/pathway-background.webp")}
             width={"100%"}
