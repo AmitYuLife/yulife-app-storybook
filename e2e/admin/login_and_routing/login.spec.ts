@@ -33,8 +33,8 @@ Feature("As a user I can get past the login screen", async () => {
       });
     });
     When("I enter the correct password", when.replaceTextViaID(ids.INPUT_LOGIN_PASSWORD("Password"), data.AUTH_11.data.password), async () => {
-      When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER), async () => {
-        When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false)), async () => {
+      When("I tap the text to lower the keyboard", when.tapID(ids.LOGIN_SCREEN_HEADER, 3000), async () => {
+        When("I tap the button to login", when.tapID(ids.BUTTON_LOGIN(false), 3000), async () => {
           Then("I should see the sign up reward screen", then.rewardScreenVisible);
           Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
         });

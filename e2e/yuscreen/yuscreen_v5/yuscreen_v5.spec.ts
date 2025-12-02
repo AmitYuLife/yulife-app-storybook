@@ -35,18 +35,18 @@ Feature("I am able to use the yuscreen v5", async () => {
     When("I tap on my yumoji", when.tapID(ids.YUMOJI_YUSCREEN_V5), async () => {
       Then("I should be on the edit Yumoji screen", then.textVisible("Pick a body type"));
     });
-    When("I tap to close", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
-      When("I scroll down on the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.2), async () => {
-        Then("I can see the See all benefits button, as my location has not been set yet", then.textVisible("See all benefits"));
-        Then("I should not see the MetLife GP24 perk, as I need to set my location first", then.textNotVisible("MetLife GP24"));
-        Then("I should not see the YuMatter perk, as I need to set my location first", then.textNotVisible("YuMatter"));
+    When("I tap to close", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife"), 2000), async () => {
+      When("I scroll down on the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.2, 2000), async () => {
+        Then("I can see the See all benefits button, as my location has not been set yet", then.textVisible("See all benefits", 1500));
+        Then("I should not see the MetLife GP24 perk, as I need to set my location first", then.textNotVisible("MetLife GP24", 1500));
+        Then("I should not see the YuMatter perk, as I need to set my location first", then.textNotVisible("YuMatter", 1500));
       });
     });
-    When("I tap See all benefits", when.tapID(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW), async () => {
+    When("I tap See all benefits", when.tapID(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, 2000), async () => {
       Then("I should be on the wellbeing hub, and see the location welcome modal", then.wellbeingHubLocationModalVisible);
     });
     When("I tap confirm selection", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
-      When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+      When("I go back", when.tapID(ids.BACK_BUTTON, 2000), async () => {
         When("I swipe down to see the perks", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, "down"), async () => {
           Then("I can see the Wellbeing section is correct", then.yuScreenV5WellbeingSectionVisible([metLifeGPWellbeingItem, metLyfeGPWellbeingItem, yuniversityWellbeingItem], 4000, 0));
         });

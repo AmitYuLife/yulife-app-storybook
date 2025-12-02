@@ -24,7 +24,7 @@ Feature("I can view and use all battle pass features", async () => {
     When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
       Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
       Then("I should see no progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 60, 0), 2000));
-      Then("I should see all impact cards available", then.impactCardsVisible);
+      Then("I should see all impact cards available", then.impactCardsVisible());
     });
     When("I donate to Feed families", when.donate("meal", 2), async () => {
       Then("I should see progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(40, 60, 0), 2000));
@@ -35,7 +35,7 @@ Feature("I can view and use all battle pass features", async () => {
     When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
       When("I tap X to close the prize modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1, 2000), async () => {
         Then("I should see the first reward is now available to claim", then.idVisible(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", 1), 2000));
-        Then("I should see my updated coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85140)));
+        Then("I should see my updated coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85140), 2000));
         Then("I should see level 2 on the progress bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
       });
     });
@@ -60,7 +60,7 @@ Feature("I can view and use all battle pass features", async () => {
         });
       });
     });
-    When("I scroll up the donations list", when.scrollFromID(ids.IMPACT_DONATION_TITLE("Feed families"), "down", "slow", 0.3), async () => {
+    When("I scroll up the donations list", when.scrollFromID(ids.IMPACT_DONATION_TITLE("Feed families"), "down", "slow", 0.3, 2000), async () => {
       When("I donate to 'Provide water' and complete the season", when.donate("water", 6), async () => {
         When("I tap to claim my prize", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
           When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
@@ -82,9 +82,11 @@ Feature("I can view and use all battle pass features", async () => {
   Scenario("I can successfully level up and claim a mystery box as the first reward", scenario.start, () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
-        Given("I login and navigate to the 'Quest' screen", given.logInAndGoToTab("quests", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          When("I tap level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10)), async () => {
-            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll"), 2500));
+        Given("I login", given.loginAsUser(data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+          When("I navigate to the 'Quest' screen", when.tapID(ids.NAV_BAR("quests"), 5000), async () => {
+            When("I tap level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10), 3000), async () => {
+              Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll"), 2500));
+            });
           });
         });
       });
@@ -143,8 +145,10 @@ Feature("I can view and use all battle pass features", async () => {
   Scenario("I can successfully level up and claim an extra challenge power-up", scenario.start, () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
-        Given("I login and go to the YuCoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          Then("I see that I have only one challenge available for today", then.textVisible("Take a challenge (1 left today)"));
+        Given("I login", given.loginAsUser(data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+          When("I navigate to the 'YuCoin' screen", when.tapID(ids.NAV_BAR("yucoin"), 5000), async () => {
+            Then("I see that I have only one challenge available for today", then.textVisible("Take a challenge (1 left today)", 3000));
+          });
         });
       });
     });

@@ -17,16 +17,16 @@ Feature("As a user I can take a challenge", async () => {
         Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1), 3000));
       });
     });
-    When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-      Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
+    When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1), 2000), async () => {
+      Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll"), 2000));
     });
-    When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
+    When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll"), 2000), async () => {
       Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_1.data.earnRate));
     });
     When("I tap 'take challenge'", when.tapText("Take challenge", 2000), async () => {
       When("I dismiss this screen if visible", when.dismissNotificationScreenIfVisible, async () => {
-        Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR));
-        Then("I should see the cancel button", then.idVisible(ids.BUTTON_CLOSE_CHALLENGE));
+        Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR, 3000));
+        Then("I should see the cancel button", then.idVisible(ids.BUTTON_CLOSE_CHALLENGE, 3000));
       });
     });
     When("I tap this button", when.tapIDWithOffset(ids.BUTTON_CLOSE_CHALLENGE, 16, 16, 3000), async () => {
