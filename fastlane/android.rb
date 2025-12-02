@@ -31,7 +31,7 @@ platform :android do
 
     UI.message("Bugsnag Release Version: #{bugsnag_release_version}")
     UI.message("Bugsnag Release Environment: #{release_environment}")
-    UI.message("App Version: #{package_version}")
+    UI.message("App Version: #{prefix_version}")
 
     # Resolve sourcemap/bundle paths
     bundle_output_folder = ENV['BUNDLE_OUTPUT_FOLDER']
@@ -49,7 +49,7 @@ platform :android do
         '--platform android',
         "--source-map \"#{source_map_path}\"",
         "--bundle \"#{bundle_path}\"",
-        "--app-version \"#{package_version}\"",
+        "--app-version \"#{bugsnag_release_version}\"",
         "--app-version-code \"#{app_version_code}\""
       ].join(' ')
     )
@@ -83,10 +83,10 @@ platform :android do
         run_clean_gradle: false
       },
       'uat' => {
-        bundle_output_folder: 'uat',
-        bundle_output_assets_folder: 'createBundleUatJsAndAssets',
+        bundle_output_folder: 'release',
+        bundle_output_assets_folder: 'createBundleReleaseJsAndAssets',
         gradle_task: 'assembleRelease',
-        run_clean_gradle: false
+        run_clean_gradle: true
       },
       'production' => {
         bundle_output_folder: 'production',
@@ -191,7 +191,8 @@ platform :android do
         default_payloads: ["git_branch", "git_author", "last_git_commit", "last_git_commit_hash"],
         payload: {
           "Build Version" => version,
-          "Build Number" => build_number
+          "Build Number" => build_number,
+          "Environment" => environment
         },
         attachment_properties: {
           color: "good",
@@ -234,7 +235,7 @@ platform :android do
   lane :develop_build do
     android_build(environment: 'develop')
   end
-  # TODO: This hasn't been tested yet
+
   desc "Android UAT build"
   lane :uat_build do
     android_build(environment: 'uat')

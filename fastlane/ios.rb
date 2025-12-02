@@ -30,8 +30,18 @@ platform :ios do
       readonly: true,
     )
   end
-  desc "iOS Develop build"
-  lane :ci_develop_build do
+  # Private lane for generic iOS build
+  private_lane :ios_build do |options|
+    environment = options[:environment]
+    
+    unless environment
+      UI.user_error!("Environment parameter is required. Supported: develop, uat")
+    end
+    
+    unless ['develop', 'uat'].include?(environment)
+      UI.user_error!("Unknown environment: #{environment}. Supported: develop, uat")
+    end
+    
     ci_certificates
     profile_mapping = Actions.lane_context[SharedValues::MATCH_PROVISIONING_PROFILE_MAPPING]
     ios_project_path = "ios/YuLife.xcodeproj"
@@ -72,62 +82,113 @@ platform :ios do
       }
     )
     
-    # Upload IPA to S3
-    ipa_path = File.expand_path(File.join(ENV['CI_PROJECT_DIR'], "builds/ios/YuLife.ipa"))
-    version = get_package_version
-    build_number = get_build_number
-    if File.exist?(ipa_path)
-      s3_url = upload_to_s3(
-        bucket_name: ENV['BINARY_S3_BUCKET_NAME'],
-        build_number: build_number,
-        environment: "develop",
-        file_path: ipa_path,
-        platform: "ios",
-        version: version,
-      )
+    # Upload IPA to S3 (only develop builds)
+    if environment == "develop"
+      ipa_path = File.expand_path(File.join(ENV['CI_PROJECT_DIR'], "builds/ios/YuLife.ipa"))
+      version = get_package_version
+      build_number = get_build_number
+      full_version = "#{version}.#{build_number}"
+      if File.exist?(ipa_path)
+        s3_url = upload_to_s3(
+          bucket_name: ENV['BINARY_S3_BUCKET_NAME'],
+          build_number: build_number,
+          environment: environment,
+          file_path: ipa_path,
+          platform: "ios",
+          version: version,
+        )
 
-      ipa_artifact_url = generate_download_url(
-        build_number: build_number,
-        environment: "develop",
-        platform: "ios",
-        version: version,
+        ipa_artifact_url = generate_download_url(
+          build_number: build_number,
+          environment: environment,
+          platform: "ios",
+          version: version,
+        )
+      else
+        UI.important("IPA file not found at #{ipa_path}, skipping download URL generation")
+      end
+
+      slack(
+        message: "✅ YuLife iOS #{environment} build completed successfully",
+        channel: "#alerts-engineering",
+        slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
+        username: "Gitlab CI MacOS Runner",
+        icon_emoji: ":apple-icon:",
+        default_payloads: ["git_branch", "git_author", "last_git_commit", "last_git_commit_hash"],
+        payload: {
+          "Build Version" => version,
+          "Build Number" => build_number,
+          "Environment" => environment
+        },
+        attachment_properties: {
+          color: "good",
+          fields: [
+            {
+              title: "View Build",
+              value: "<#{ENV['CI_JOB_URL']}|:gitlab: Open GitLab Job>",
+              short: true
+            }
+          ],
+          actions: [
+            {
+              type: "button",
+              text: "📱 Install App",
+              url: ipa_artifact_url,
+            }
+          ]
+        }
       )
-    else
-      UI.important("IPA file not found at #{ipa_path}, skipping download URL generation")
     end
     
-    slack(
-      message: "✅ YuLife iOS develop build completed successfully",
-      channel: "#alerts-engineering",
-      slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
-      username: "Gitlab CI MacOS Runner",
-      icon_emoji: ":apple-icon:",
-      default_payloads: ["git_branch", "git_author", "last_git_commit", "last_git_commit_hash"],
-      payload: {
-        "Build Version" => version,
-        "Build Number" => get_build_number
-      },
-      attachment_properties: {
-        color: "good",
-        fields: [
-          {
-            title: "View Build",
-            value: "<#{ENV['CI_JOB_URL']}|:gitlab: Open GitLab Job>",
-            short: true
-          }
-        ],
-        actions: [
-          {
-            type: "button",
-            text: "📱 Install App",
-            url: ipa_artifact_url,
-          }
-        ]
-      }
-    )
+    if environment == "uat"
+      upload_to_testflight(
+        app_identifier: ENV["FL_APP_IDENTIFIER"],
+        app_platform: "ios",
+        ipa: ENV["IPA_OUTPUT_PATH"],
+        pkg: ENV["PKG_OUTPUT_PATH"],
+        notify_external_testers: false,
+        skip_waiting_for_build_processing: true,
+        app_version: full_version,
+        build_number: build_number,
+      )
+      slack(
+        message: "✅ YuLife iOS #{environment} build completed successfully",
+        channel: "#alerts-engineering",
+        slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
+        username: "Gitlab CI MacOS Runner",
+        icon_emoji: ":apple-icon:",
+        default_payloads: ["git_branch", "git_author"],
+        payload: {
+          "Build Version" => version,
+          "Build Number" => build_number,
+          "Environment" => environment
+        },
+        attachment_properties: {
+          color: "good",
+          fields: [
+            {
+              title: "View Build",
+              value: "<#{ENV['CI_JOB_URL']}|:gitlab: Open GitLab Job>",
+              short: true
+            }
+          ]
+        }
+      )
+    end
+  end
+
+  desc "iOS Develop build"
+  lane :develop_build do
+    ios_build(environment: 'develop')
+  end
+
+  desc "iOS UAT build"
+  lane :uat_build do
+    ios_build(environment: 'uat')
   end
 
   desc "Generate new develop certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)"
+  desc "Matchfile needs to be updated with the correct environment variables."
   lane :develop_certs_and_profiles do
     # Develop builds
     match(
@@ -135,6 +196,20 @@ platform :ios do
       type: "adhoc", 
       readonly: false,
       force_for_new_devices: true
+    )
+  end
+
+  desc "Generate new UAT certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)"
+  desc "Matchfile needs to be updated with the correct environment variables."
+  lane :uat_certs_and_profiles do
+    # Needs the following environment variables:
+    # FL_MATCH_S3_BUCKET - Can be found in .build-ios.yml (S3 buckets on DevOps AWS account)
+    # FL_MATCH_PASSWORD - Can be found in CI/CD Variables (CDK)
+    # FL_TEAM_ID - Can be found in .build-ios.yml (Team ID on Developer Portal)
+    match(
+      app_identifier: ["com.yulife.develop","com.yulife.develop.yuwatch"], 
+      type: "appstore", 
+      readonly: false
     )
   end
 
