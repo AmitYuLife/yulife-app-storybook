@@ -116,29 +116,28 @@ const styles = StyleSheet.create({
     display: "flex",
   },
   heading: {
-    paddingStart: Style.adjust(36),
+    paddingStart: Style.adjust(12),
   },
   skeletonHeading: {
-    marginStart: Style.adjust(36),
+    marginStart: Style.adjust(12),
     width: Style.adjust(170),
     height: Style.adjust(24),
     borderRadius: Style.adjust(4),
   },
   flatList: {
-    paddingVertical: Style.adjust(12),
-    paddingHorizontal: Style.adjust(16),
+    paddingTop: Style.adjust(12),
   },
   cardWrapper: {
     display: "flex",
     gap: Style.adjust(16),
-    padding: Style.adjust(8),
+    paddingTop: Style.adjust(8),
+    paddingEnd: Style.adjust(12),
   },
   button: {
     paddingHorizontal: Style.adjust(24),
     paddingBottom: Style.adjust(12),
   },
   skeletonButton: {
-    marginHorizontal: Style.adjust(24),
     marginBottom: Style.adjust(20),
     height: Style.adjust(32),
     borderRadius: Style.adjust(16),
