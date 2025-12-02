@@ -21,13 +21,12 @@ const styles = StyleSheet.create({
     display: "flex",
   },
   heading: {
-    marginStart: Style.adjust(36),
+    marginStart: Style.adjust(12),
     width: Style.adjust(170),
     height: Style.adjust(24),
     borderRadius: Style.adjust(4),
   },
   cardList: {
     paddingVertical: Style.adjust(20),
-    paddingHorizontal: Style.adjust(24),
   },
 });
