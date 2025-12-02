@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { Navigation } from "@navigation/main";
 import { PathwaysScreen } from "@components/screens";
-import { gql } from "@graphql/__generated";
+import { gql, YuScreenSection } from "@graphql/__generated";
 import moment from "moment";
 import { getMoodSubmission } from "./utils/getMoodSubmission";
 import { useDispatch } from "react-redux";
@@ -75,6 +75,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
       streakAwardId={reflectionProgress.streakAwardId}
       nextQuestionnaireLocalDate={data?.getUserPathways?.nextQuestionnaireLocalDate ?? ""}
       adviceSection={data?.getUserPathwayAdviceSection}
+      interventionSections={data?.getInterventionItems?.sections as YuScreenSection[]}
       isStreaksEnabled={data?.getUserPathways?.isStreaksEnabled}
     />
   );

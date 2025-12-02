@@ -1,4 +1,5 @@
 fragment ProductCardCarouselSectionItem on ProductCardCarouselSectionItem {
+  id
   illustrations {
     square {
       ...RemoteImage

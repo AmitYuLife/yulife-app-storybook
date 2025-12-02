@@ -10,4 +10,10 @@ query GetUserPathways($startDate: String, $endDate: String) {
       ...UserPathwayAdviceItem
     }
   }
+  getInterventionItems {
+    id
+    sections {
+      ...YuScreenSection
+    }
+  }
 }

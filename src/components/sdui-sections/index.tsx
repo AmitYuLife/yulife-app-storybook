@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { View } from "react-native";
 import { SduiSection } from "@components/sdui/_renderer/section/sdui-section";
 import { ProductCardCarouselSection } from "./product-card-carousel-section";
-import { YuScreenSection } from "@redux/yu-screen/yu-screen.types";
+import { YuScreenSection } from "@graphql/__generated";
 import { WellbeingHubSection } from "./wellbeing-hub-section";
 import { ReferralSection } from "./referral-section";
 import { FeatureCardSection } from "./feature-card-section";
@@ -19,7 +19,11 @@ const sectionMap = {
   HeroCardSection,
 } as Record<string, (props: any) => ReactNode>;
 
-export const renderSduiSection = (section: YuScreenSection): ReactNode => {
+type RenderSduiSectionOptions = {
+  buttonColor?: string;
+};
+
+export const renderSduiSection = (section: YuScreenSection, options?: RenderSduiSectionOptions): ReactNode => {
   const Component = sectionMap[section.__typename];
 
   if (!Component) {
@@ -28,7 +32,7 @@ export const renderSduiSection = (section: YuScreenSection): ReactNode => {
 
   return (
     <View key={section.sectionInstanceId}>
-      <Component {...section} />
+      <Component {...section} {...options} />
     </View>
   );
 };

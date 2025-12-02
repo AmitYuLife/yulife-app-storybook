@@ -13,9 +13,11 @@ import { WellbeingHubSection as IWellbeingHubSection } from "@redux/yu-screen/yu
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 
-type Props = IWellbeingHubSection;
+type Props = IWellbeingHubSection & {
+  buttonColor?: string;
+};
 
-export const WellbeingHubSection = ({ sectionInstanceId, content }: Props) => {
+export const WellbeingHubSection = ({ sectionInstanceId, content, buttonColor }: Props) => {
   const currentRoute = useSelector(getRouteState);
 
   const onCardPress = useCallback((itemId: string, route: string) => {
@@ -76,6 +78,8 @@ export const WellbeingHubSection = ({ sectionInstanceId, content }: Props) => {
         translatedLabel={buttonLabel}
         size={BUTTON_SIZES.NARROW}
         testID={YUSCREEN_V5_WELLBEING_SECTION_BUTTON}
+        textColor={buttonColor}
+        borderColor={buttonColor}
       />
     </View>
   );

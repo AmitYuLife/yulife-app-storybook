@@ -91,6 +91,17 @@ export const gqlInMemoryCache = () => {
     cache = new InMemoryCache({
       dataIdFromObject,
       typePolicies,
+      possibleTypes: {
+        YuScreenSection: [
+          "SduiSection",
+          "FeatureCardSection",
+          "ProductCardCarouselSection",
+          "WellbeingHubSection",
+          "ReferralSection",
+          "MaximiseYuSection",
+          "HeroCardSection",
+        ],
+      },
     });
   }
 
