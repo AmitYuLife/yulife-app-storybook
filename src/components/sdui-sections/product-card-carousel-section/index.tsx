@@ -113,7 +113,6 @@ const snapToInterval = Style.DEVICE_WIDTH / 2 - Style.adjust(16);
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: Style.adjust(20),
     display: "flex",
   },
   heading: {

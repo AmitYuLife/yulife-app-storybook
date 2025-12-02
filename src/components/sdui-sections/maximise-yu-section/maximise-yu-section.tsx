@@ -82,11 +82,10 @@ export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximi
   return (
     <Box key={sectionInstanceId} testID={MAXIMISE_YU_COMPONENT}>
       {showTransitionAnimation ? <BorderOpacityAnimation /> : null}
-      <Box pb={12} pt={12}>
+      <Box>
         {showTransitionAnimation ? <StarOpacityAnimation /> : null}
         <Box
           mt={0}
-          mh={24}
           pb={16}
           br={8}
           borderWidth={1}

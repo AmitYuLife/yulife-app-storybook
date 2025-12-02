@@ -272,6 +272,12 @@ const documents = {
   GetMobileRewardsListItemsDocument: types.GetMobileRewardsListItemsDocument,
   GetMobileUnlockableBattlePassVouchersDocument: types.GetMobileUnlockableBattlePassVouchersDocument,
   GetSduiStaticStepDocument: types.GetSduiStaticStepDocument,
+  FeatureCardSectionContentFragmentDoc: types.FeatureCardSectionContentFragmentDoc,
+  HeroCardSectionContentFragmentDoc: types.HeroCardSectionContentFragmentDoc,
+  MaximiseYuSectionContentProgressFragmentDoc: types.MaximiseYuSectionContentProgressFragmentDoc,
+  ProductCardCarouselSectionItemFragmentDoc: types.ProductCardCarouselSectionItemFragmentDoc,
+  ReferralSectionContentFragmentDoc: types.ReferralSectionContentFragmentDoc,
+  WellbeingHubSectionContentFragmentDoc: types.WellbeingHubSectionContentFragmentDoc,
   GetHealthSmokingStateDocument: types.GetHealthSmokingStateDocument,
   HealthSmokingStateFragmentDoc: types.HealthSmokingStateFragmentDoc,
   StartSmokingStreakDocument: types.StartSmokingStreakDocument,
@@ -333,13 +339,6 @@ const documents = {
   ProductPaymentHistoryInfoPanelButtonFragmentDoc: types.ProductPaymentHistoryInfoPanelButtonFragmentDoc,
   GetYuScreenV5Document: types.GetYuScreenV5Document,
   GetYuScreenV5SectionsDocument: types.GetYuScreenV5SectionsDocument,
-  FeatureCardSectionContentFragmentDoc: types.FeatureCardSectionContentFragmentDoc,
-  HeroCardSectionContentFragmentDoc: types.HeroCardSectionContentFragmentDoc,
-  MaximiseYuSectionContentProgressFragmentDoc: types.MaximiseYuSectionContentProgressFragmentDoc,
-  ProductCardCarouselSectionItemFragmentDoc: types.ProductCardCarouselSectionItemFragmentDoc,
-  ReferralSectionContentFragmentDoc: types.ReferralSectionContentFragmentDoc,
-  SmokingSectionContentFragmentDoc: types.SmokingSectionContentFragmentDoc,
-  WellbeingHubSectionContentFragmentDoc: types.WellbeingHubSectionContentFragmentDoc,
   YuScreenSectionFragmentDoc: types.YuScreenSectionFragmentDoc,
   YumojiRemotePartFragmentDoc: types.YumojiRemotePartFragmentDoc,
 };
@@ -1575,6 +1574,38 @@ export function gql(source: "GetSduiStaticStepDocument"): typeof documents["GetS
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(
+  source: "FeatureCardSectionContentFragmentDoc"
+): typeof documents["FeatureCardSectionContentFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "HeroCardSectionContentFragmentDoc"): typeof documents["HeroCardSectionContentFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "MaximiseYuSectionContentProgressFragmentDoc"
+): typeof documents["MaximiseYuSectionContentProgressFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "ProductCardCarouselSectionItemFragmentDoc"
+): typeof documents["ProductCardCarouselSectionItemFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ReferralSectionContentFragmentDoc"): typeof documents["ReferralSectionContentFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "WellbeingHubSectionContentFragmentDoc"
+): typeof documents["WellbeingHubSectionContentFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "GetHealthSmokingStateDocument"): typeof documents["GetHealthSmokingStateDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -1848,42 +1879,6 @@ export function gql(source: "GetYuScreenV5Document"): typeof documents["GetYuScr
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetYuScreenV5SectionsDocument"): typeof documents["GetYuScreenV5SectionsDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "FeatureCardSectionContentFragmentDoc"
-): typeof documents["FeatureCardSectionContentFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "HeroCardSectionContentFragmentDoc"): typeof documents["HeroCardSectionContentFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "MaximiseYuSectionContentProgressFragmentDoc"
-): typeof documents["MaximiseYuSectionContentProgressFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "ProductCardCarouselSectionItemFragmentDoc"
-): typeof documents["ProductCardCarouselSectionItemFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "ReferralSectionContentFragmentDoc"): typeof documents["ReferralSectionContentFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "SmokingSectionContentFragmentDoc"): typeof documents["SmokingSectionContentFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "WellbeingHubSectionContentFragmentDoc"
-): typeof documents["WellbeingHubSectionContentFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

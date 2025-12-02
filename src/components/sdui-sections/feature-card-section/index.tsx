@@ -50,7 +50,7 @@ export const FeatureCardSection = (props: IFeatureCardSection) => {
   }
 
   return (
-    <View key={id} style={styles.wrapper}>
+    <View key={id}>
       <TouchableOpacity
         style={[
           styles.cardWrapper,
@@ -67,7 +67,7 @@ export const FeatureCardSection = (props: IFeatureCardSection) => {
         {backgroundImage ? (
           <Image
             style={styles.backgroundImage}
-            width={CARD_WIDTH - 2}
+            width={"100%"}
             height={cardHeight}
             source={backgroundImage}
             resizeMode="cover"
@@ -117,8 +117,6 @@ export const FeatureCardSection = (props: IFeatureCardSection) => {
   );
 };
 
-const CARD_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
-
 const getMarkdownStyles = (hasButton: SduiAction) => ({
   text: {
     ...(hasButton ? templateTextStyles.l2 : templateTextStyles.l1),
@@ -139,12 +137,6 @@ const getMarkdownStyles = (hasButton: SduiAction) => ({
 });
 
 const styles = StyleSheet.create({
-  wrapper: {
-    paddingHorizontal: Style.adjust(24),
-    paddingTop: Style.adjust(16),
-    paddingBottom: Style.adjust(20),
-    backgroundColor: colours.neutral.white,
-  },
   caretWrapper: {
     position: "absolute",
     top: Style.adjust(16),
