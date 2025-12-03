@@ -49,6 +49,8 @@ ios-develop-build:
     FL_IOS_EXPORT_METHOD: ad-hoc
     FL_MATCH_S3_BUCKET: yu-develop-react-native-certificates
     MATCH_PASSWORD: $FL_DEVELOP_MATCH_PASSWORD
+    SPACESHIP_CONNECT_API_KEY_FILEPATH: $SPACESHIP_CONNECT_DEVELOPER_API_KEY_FILEPATH
+    SPACESHIP_CONNECT_API_KEY_ID: $SPACESHIP_CONNECT_DEVELOPER_API_KEY_ID
     # Expo variables
     ENVFILE: ".env.develop"
     BUNDLE_ID: com.yulife.develop
@@ -70,9 +72,6 @@ ios-develop-build:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: manual
       allow_failure: true
-      variables:
-        SPACESHIP_CONNECT_API_KEY_FILEPATH: $SPACESHIP_CONNECT_DEVELOPER_API_KEY_FILEPATH
-        SPACESHIP_CONNECT_API_KEY_ID: $SPACESHIP_CONNECT_DEVELOPER_API_KEY_ID
 
 ios-uat-build:
   extends:

@@ -7,7 +7,10 @@ android-develop-build:
   timeout: 75m
   variables:
     # Fastlane variables
-    FL_ANDROID_KEY_ALIAS: yulife-android-develop
+    FL_ANDROID_KEY_ALIAS: $FL_ANDROID_DEVELOP_KEY_ALIAS
+    FL_ANDROID_KEYSTORE_PATH: $FL_ANDROID_DEVELOP_KEYSTORE_PATH
+    FL_ANDROID_KEYSTORE_PASSWORD: $FL_ANDROID_DEVELOP_KEYSTORE_PASSWORD
+    FL_ANDROID_KEY_PASSWORD: $FL_ANDROID_DEVELOP_KEY_PASSWORD
     # Project variables
     ENVFILE: ".env.develop"
     BUNDLE_ID: com.yulife.release
@@ -42,7 +45,10 @@ android-uat-build:
   timeout: 75m
   variables:
     # Fastlane variables
-    FL_ANDROID_KEY_ALIAS: yulife-android-develop
+    FL_ANDROID_KEY_ALIAS: $FL_ANDROID_DEVELOP_KEY_ALIAS
+    FL_ANDROID_KEYSTORE_PATH: $FL_ANDROID_DEVELOP_KEYSTORE_PATH
+    FL_ANDROID_KEYSTORE_PASSWORD: $FL_ANDROID_DEVELOP_KEYSTORE_PASSWORD
+    FL_ANDROID_KEY_PASSWORD: $FL_ANDROID_DEVELOP_KEY_PASSWORD
     # Project variables
     ENVFILE: ".env.uat"
     BUNDLE_ID: com.yulife.release
