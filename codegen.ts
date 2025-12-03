@@ -19,6 +19,12 @@ const config: CodegenConfig = {
         // hashAlgorithm: "sha256",
       },
     },
+    "src/graphql/__generated/possibleTypes.ts": {
+      plugins: ["fragment-matcher"],
+      config: {
+        apolloClientVersion: 3,
+      },
+    },
   },
 };
 
