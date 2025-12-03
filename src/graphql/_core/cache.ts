@@ -1,4 +1,5 @@
 import { defaultDataIdFromObject, InMemoryCache, TypePolicies } from "@apollo/client";
+import fragmentMatcher from "../__generated/possibleTypes";
 
 const defaultYuLifeIdFromObject = (object: any) => `${object.__typename}-${object.id}`;
 
@@ -91,17 +92,7 @@ export const gqlInMemoryCache = () => {
     cache = new InMemoryCache({
       dataIdFromObject,
       typePolicies,
-      possibleTypes: {
-        YuScreenSection: [
-          "SduiSection",
-          "FeatureCardSection",
-          "ProductCardCarouselSection",
-          "WellbeingHubSection",
-          "ReferralSection",
-          "MaximiseYuSection",
-          "HeroCardSection",
-        ],
-      },
+      possibleTypes: fragmentMatcher.possibleTypes,
     });
   }
 

@@ -76,6 +76,11 @@ export type ApiConfigUrls = {
   appDeeplink: Scalars["String"]["output"];
   cookiePolicy: Scalars["String"]["output"];
   employeeExperience: Scalars["String"]["output"];
+  employeeExperienceAbsenteeism: Scalars["String"]["output"];
+  employeeExperienceBurnout: Scalars["String"]["output"];
+  employeeExperienceMental: Scalars["String"]["output"];
+  employeeExperiencePhysical: Scalars["String"]["output"];
+  employeeExperienceTurnover: Scalars["String"]["output"];
   eula: Scalars["String"]["output"];
   forgotPassword: Scalars["String"]["output"];
   helpCentre: Scalars["String"]["output"];
@@ -524,6 +529,13 @@ export type AvatarRemoteFiles = {
 
 export type AvatarRemoteFilesImageArgs = {
   options?: InputMaybe<AvatarRemoteFileOption>;
+};
+
+export type BasicMemberDataConnection = {
+  __typename?: "BasicMemberDataConnection";
+  connectionType: ConnectionType;
+  id: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
 };
 
 export type BasicProductInformation = {
@@ -6591,6 +6603,7 @@ export type Mutation = {
   updateWellbeingHubCategory: TeamWellbeingHubCategory;
   updateWellbeingHubItem: Scalars["Boolean"]["output"];
   upsertDailyPassives: PassiveChallengesResponse;
+  upsertMemberDataConnection: BasicMemberDataConnection;
   upsertMobileConsent?: Maybe<MobileConsent>;
   upsertOnboardingChallenge?: Maybe<OnboardingResponse>;
   validateBusinessClaim: ValidateBusinessClaimKeyResponse;
@@ -7550,6 +7563,10 @@ export type MutationUpsertDailyPassivesArgs = {
   hasLastItem?: InputMaybe<Scalars["Boolean"]["input"]>;
   payload: Array<ChallengesPayload>;
   sessionId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationUpsertMemberDataConnectionArgs = {
+  input: UpsertMemberDataConnectionInput;
 };
 
 export type MutationUpsertMobileConsentArgs = {
@@ -11522,6 +11539,12 @@ export type UpdateTeamSocialGroupInput = {
   eligibility?: InputMaybe<Array<SearchQueryInput>>;
   isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
   name?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type UpsertMemberDataConnectionInput = {
+  connectionId?: InputMaybe<Scalars["String"]["input"]>;
+  connectionType: ConnectionType;
+  name: Scalars["String"]["input"];
 };
 
 /** Represents uptake results for a survey. */
