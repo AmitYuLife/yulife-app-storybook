@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.92.0] - 2025-12-03
+
+### Features
+
+- Feature GS-2109: Update pathways UI
+
+### Tasks
+
+- Task CTE-536: codegen fragment matcher
+- Task DEVOPS-4551: Android/iOS environment variable for builds
+- Task CTE-535: use text template for counter
+- Task GS-2115: intervention section
+- Task GS-2115: otter no speak
+- Task GS-2115: fix product cards carousel padding
+- Task GS-2115: restructure sections from yuscreen
+- Task DEVOPS-4674: Gitlab CI UAT builds
+- Task CTE-454: more colours into the one file
+- Task GS-2075: Single usage consumables
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- chore DEVOPS-4493: Use GitLab Dependency Proxy for Docker Hub public images
+
+### Extra
+
+- Detox GS-2113: Fix Login Defects for CI
+- Detox GS-2125: Update Smoking Cessation Journey
+- Detox GS-2118: Enable Smoking Tests for GitLab CI
+- Detox GS-2102 : Active Connected Pension
+
 ## [4.91.0] - 2025-12-01
 
 ### Features
