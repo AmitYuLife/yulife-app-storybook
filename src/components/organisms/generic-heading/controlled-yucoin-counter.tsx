@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { TextStyle } from "react-native";
 import { Counter } from "@molecules";
-import { TOP_BAR, Colours, Style, StyleSheet } from "@styles";
+import { TOP_BAR, Colours } from "@styles";
 import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
 import { Box } from "@atoms";
 
@@ -32,14 +32,11 @@ const ControlledYuCoinCounter = ({
       right={0}
     >
       <Box alignItems="center" alignSelf="flex-end" justifyContent="center" flexDirection="row" height="100%">
-        <Box>
+        <Box mr={8}>
           <Counter
             value={coins || 0}
-            textStyle={StyleSheet.flatten([
-              styles.coinsText,
-              textStyle,
-              shouldHighlightCoins ? { color: Colours.darkHotPink } : null,
-            ])}
+            type="b2"
+            color={shouldHighlightCoins ? Colours.darkHotPink : (textStyle.color as string)}
           />
         </Box>
         <Box>
@@ -49,12 +46,5 @@ const ControlledYuCoinCounter = ({
     </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  coinsText: {
-    fontSize: Style.adjust(18),
-    marginEnd: Style.adjust(8),
-  },
-});
 
 export default memo(ControlledYuCoinCounter);

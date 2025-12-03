@@ -18,13 +18,7 @@ export const renderProgressLabel = ({ amount, styleType, type }: Partial<IProps>
   switch (type) {
     case "steps":
     case "calories":
-      return (
-        <Counter
-          value={amount}
-          textStyle={StyleSheet.flatten([styles.stepsText, textColorStyle])}
-          textAfterValue={typeText}
-        />
-      );
+      return <Counter value={amount} type="big40" color={styleType.progressTextColor} textAfterValue={typeText} />;
 
     case "minutes":
       if (amount === 0) {

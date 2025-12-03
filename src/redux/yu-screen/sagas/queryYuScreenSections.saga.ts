@@ -45,6 +45,7 @@ export default function* queryYuScreenSectionsSaga(action: SduiSagaAction) {
         fetchPolicy: "no-cache",
       })
     );
+
     if (data?.getYuScreenV5Sections) {
       yield put(updateYuScreenSections(data.getYuScreenV5Sections as YuScreenSection[]));
     }

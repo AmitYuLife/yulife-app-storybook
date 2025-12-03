@@ -5,7 +5,7 @@ import { TextTemplate } from "@atoms";
 import { ActivityList, Button, Counter, HeroCards, Panel, Pressable } from "@molecules";
 import { displaySecondsAsMinutes } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
-import { NAV_BAR, Style, templateTextStyles } from "@styles";
+import { NAV_BAR, Style } from "@styles";
 import { getUserHeroCards } from "@redux/user/user.selectors";
 import { getDailyPanelSelector, getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
@@ -60,14 +60,6 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
   const fitkit = useFitKit();
 
   const heroCards = useSelector(getUserHeroCards);
-
-  const counterStyle = useMemo(
-    () => ({
-      ...templateTextStyles.h1,
-      color: dailyStepsScreen.textStyle.color,
-    }),
-    [dailyStepsScreen.textStyle.color]
-  );
 
   const hideButtons = isShort && heroCards.length > 0;
   const showChallengeButton = isAvailable && availableForToday > 0;
@@ -165,7 +157,8 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
               coins: dailyEarnedCoins,
             })}
           >
-            <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> {yuCoinTodayText}
+            <Counter duration={1200} value={dailyEarnedCoins} type="h1" color={dailyStepsScreen.textStyle.color} />{" "}
+            {yuCoinTodayText}
           </TextTemplate>
         </View>
 

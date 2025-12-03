@@ -1,10 +1,10 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
 import { CyclingIcon } from "@atoms/icon/cycling-icon";
 import { MindfulnessIcon } from "@atoms/icon/mindfulness-icon";
 import { StepsIcon } from "@atoms/icon/steps-icon";
 import { TextTemplate } from "@atoms";
-import { Style, Colours, templateTextStyles, StyleSheet } from "@styles";
+import { Style, Colours, StyleSheet } from "@styles";
 import { Counter } from "@molecules";
 import { STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
 import { t } from "@locale";
@@ -38,14 +38,6 @@ const ActivityList = memo(
     textColor = Colours.neutral.n900,
     showUnsynced,
   }: IProps) => {
-    const counterStyle = useMemo(
-      () => ({
-        ...templateTextStyles.b2,
-        color: textColor,
-      }),
-      [textColor]
-    );
-
     return (
       <View style={styles.wrapper}>
         <View style={styles.container} accessibilityLabel={stepsAccessibilityLabel}>
@@ -58,7 +50,8 @@ const ActivityList = memo(
                 <Counter
                   duration={1200}
                   value={steps}
-                  textStyle={counterStyle}
+                  type="b2"
+                  color={textColor}
                   textAfterValue={steps === 1 ? t("activity_types.steps.singular") : t("activity_types.steps.plural")}
                 />
               )}

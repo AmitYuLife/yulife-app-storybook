@@ -1,7 +1,7 @@
 import { Box, TextTemplate } from "@atoms";
 import { Counter } from "@components/molecules";
 import { isRTL } from "@locale";
-import { Colours, templateTextStyles, StyleSheet } from "@styles";
+import { Colours } from "@styles";
 import { memo, useEffect, useMemo, useState } from "react";
 
 type Props = {
@@ -45,9 +45,9 @@ export const ProgressText = memo(({ progress, animate }: Props) => {
       <Box flexDirection="row" dir="ltr">
         <Box justifyContent="flex-end">
           {animateCounter ? (
-            <Counter duration={1200} value={currentValue} textStyle={styles.current} />
+            <Counter duration={1200} value={currentValue} type="h3" color={Colours.primary.p600} />
           ) : (
-            <TextTemplate type="h3" color={styles.current.color}>
+            <TextTemplate type="h3" color={Colours.primary.p600}>
               {progress.current}
             </TextTemplate>
           )}
@@ -67,10 +67,3 @@ const buildMaxProps = () => {
     ...(isRTL() ? { mr: 4 } : { ml: 4 }),
   } as const;
 };
-
-const styles = StyleSheet.create({
-  current: {
-    ...templateTextStyles.h3,
-    color: Colours.primary.p600,
-  },
-});
