@@ -1456,10 +1456,11 @@
       },
       "day": "Day %{day}",
       "header": "Today's reflection",
-      "health_insights": "Health Insights",
+      "health_insights": "Health insights",
       "personal_health_path": {
         "heading": "Personal Health Path"
       },
+      "recommended_for_you": "Recommended for you",
       "reflect": "Reflect",
       "reflect_in": "Reflect in %{hours}h %{minutes}m",
       "secondary_button_label": "Go to Wellbeing Hub",

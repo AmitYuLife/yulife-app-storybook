@@ -1456,10 +1456,11 @@
       },
       "day": "%{day}日目",
       "header": "今日 の 反省",
-      "health_insights": "健康 インサイト",
+      "health_insights": "ヘルスインサイト",
       "personal_health_path": {
         "heading": "健康管理プログラム"
       },
+      "recommended_for_you": "あなたへのおすすめ",
       "reflect": "振り返りに進む",
       "reflect_in": "あと%{hours}時間%{minutes}分",
       "secondary_button_label": "Well-beingセンターに移動",

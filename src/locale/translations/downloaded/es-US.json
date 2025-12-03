@@ -1460,6 +1460,7 @@
       "personal_health_path": {
         "heading": "Trayectoria personal de salud"
       },
+      "recommended_for_you": "Recomendado para usted",
       "reflect": "Reflect",
       "reflect_in": "Reflejar en %{hours}h %{minutes}m",
       "secondary_button_label": "Ir a Wellbeing Hub",

@@ -1456,10 +1456,11 @@
       },
       "day": "يوم %{day}",
       "header": "تأمل اليوم",
-      "health_insights": "رؤى صحية",
+      "health_insights": "التحليلات الصحية",
       "personal_health_path": {
         "heading": "مسار الصحة الشخصية"
       },
+      "recommended_for_you": "موصى به لك",
       "reflect": "يعكس",
       "reflect_in": "سيتم التنفيذ خلال %{hours} ساعة و %{minutes} دقيقة",
       "secondary_button_label": "اذهب إلى مركز الرفاهية",
