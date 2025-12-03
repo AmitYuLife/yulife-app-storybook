@@ -59,19 +59,21 @@ const Left = ({ icons = [], colour, label, textStyle, badges }: Props) => {
 export default memo(Left);
 
 function Badge() {
-  return (
-    <Box
-      position="absolute"
-      top={8}
-      right={-4}
-      width={8}
-      height={8}
-      bg="#FF5F5F"
-      borderWidth={1}
-      borderColor={Colours.neutral.white}
-      br={4}
-    />
-  );
+  const props = useMemo(() => {
+    return {
+      [isRTL() ? "left" : "right"]: -4,
+      top: 8,
+      position: "absolute",
+      width: 8,
+      height: 8,
+      bg: Colours.status.er300,
+      borderWidth: 1,
+      borderColor: Colours.neutral.white,
+      br: 4,
+    } as ViewStyle;
+  }, []);
+
+  return <Box {...props} />;
 }
 
 const getAccessibilityLabel = (iconType: LeftIcon) => {
