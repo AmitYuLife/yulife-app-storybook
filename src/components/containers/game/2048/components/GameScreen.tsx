@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef, memo, useCallback, useEffect, useMemo } from "react";
 import { Alert, View } from "react-native";
 import { Button, Counter, Switch } from "@components/molecules";
-import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import * as Haptics from "expo-haptics";
 import { Image } from "expo-image";
 import {
@@ -121,14 +121,6 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
     [enableHaptics, gameState, move]
   );
 
-  const currentScoreStyle = useMemo(
-    () => ({
-      ...styles.counter,
-      color: highScore && score > highScore ? "#FFD600" : Colours.neutral.white,
-    }),
-    [score, highScore]
-  );
-
   const timerOptions = useMemo(
     () => ({
       ...(gameOptions?.timer || {}),
@@ -147,7 +139,8 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
           <Counter
             duration={score === 0 ? 0 : COUNTER_ANIMATION_SPEED}
             value={score || 0}
-            textStyle={currentScoreStyle}
+            type="b2b"
+            color={highScore && score > highScore ? Colours.yellow.y100 : Colours.neutral.white}
           />
         </View>
         {!highScore ? null : (
@@ -160,7 +153,8 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
               <Counter
                 duration={COUNTER_ANIMATION_SPEED}
                 value={highScore}
-                textStyle={styles.counter}
+                type="b2b"
+                color={Colours.yellow.y100}
                 testIDFn={SMOKING_GAME_HIGH_SCORE}
               />
             </View>
@@ -233,10 +227,6 @@ const styles = StyleSheet.create({
     width: Style.adjust(16),
     height: Style.adjust(16),
     marginTop: Style.adjust(2),
-  },
-  counter: {
-    ...templateTextStyles.b2b,
-    color: "#FFD600",
   },
   buttonContainer: {
     padding: Style.adjust(16),

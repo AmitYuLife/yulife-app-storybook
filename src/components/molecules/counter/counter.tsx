@@ -1,83 +1,75 @@
-import { Text } from "@atoms/index";
+import { TextTemplate } from "@atoms/index";
 import { VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
-import * as React from "react";
-import { Animated, TextStyle } from "react-native";
+import { FC, memo, useCallback, useEffect, useRef, useState } from "react";
+import { Animated } from "react-native";
 import { addCommasToNumber } from "@utils";
 import { DETOX_ENABLED } from "@services/socket";
+import { TemplateTextType } from "@styles/textStyles";
 
-interface IProps {
+interface CounterProps {
   duration?: number;
   value: number;
   textAfterValue?: string;
   textBeforeValue?: string;
-  textStyle?: TextStyle;
+  type: TemplateTextType;
+  color?: string;
   testIDFn?: (value: number) => string;
 }
 
-interface IState {
-  value: number;
-}
+const Counter: FC<CounterProps> = memo(
+  ({ duration = 1000, value, textAfterValue = "", textBeforeValue = "", type, color, testIDFn }) => {
+    const [displayValue, setDisplayValue] = useState(value);
+    const animatedValueRef = useRef(new Animated.Value(value));
+    const prevValueRef = useRef(value);
 
-// @TODO: Refactor this component to be functional component and use TextTemplate
-class Counter extends React.PureComponent<IProps, IState> {
-  private animatedValue: Animated.Value;
-  constructor(props: IProps) {
-    super(props);
+    const onValueChanged = useCallback((e: { value: number }) => {
+      setDisplayValue(Math.floor(e.value));
+    }, []);
 
-    const { value } = props;
+    useEffect(() => {
+      const animatedValue = animatedValueRef.current;
+      animatedValue.addListener(onValueChanged);
 
-    this.animatedValue = new Animated.Value(value);
-    this.animatedValue.addListener(this.onValueChanged);
+      return () => {
+        animatedValue.stopAnimation();
+        animatedValue.removeAllListeners();
+      };
+    }, [onValueChanged]);
 
-    this.state = { value };
-  }
+    useEffect(() => {
+      if (prevValueRef.current !== value) {
+        prevValueRef.current = value;
+        const animatedValue = animatedValueRef.current;
+        animatedValue.stopAnimation();
 
-  public componentDidUpdate({ value }: IProps) {
-    if (value !== this.props.value) {
-      this.animatedValue.stopAnimation();
-      this.move();
-    }
-  }
+        if (DETOX_ENABLED) {
+          setDisplayValue(Math.floor(value));
+          return;
+        }
 
-  public componentWillUnmount() {
-    this.animatedValue.stopAnimation();
-    this.animatedValue.removeAllListeners();
-  }
+        const animation = Animated.timing(animatedValue, {
+          duration,
+          toValue: value,
+          useNativeDriver: true,
+        });
 
-  public render() {
-    const { textAfterValue = "", textBeforeValue = "", textStyle } = this.props;
-    const { value } = this.state;
-    const renderValue = `${textBeforeValue} ${addCommasToNumber(value)} ${textAfterValue}`.trim();
-    const { testIDFn } = this.props;
+        animation.start();
+
+        return () => {
+          animation.stop();
+        };
+      }
+    }, [value, duration]);
+
+    const renderValue = `${textBeforeValue} ${addCommasToNumber(displayValue)} ${textAfterValue}`.trim();
     const resolvedTestID = testIDFn ?? VIEW_TOP_RIGHT_COIN_COUNTER;
 
     return (
-      <Text style={textStyle} testID={resolvedTestID(value)}>
+      <TextTemplate type={type} color={color} testID={resolvedTestID(displayValue)}>
         {renderValue}
-      </Text>
+      </TextTemplate>
     );
   }
-
-  private onValueChanged = (e: Partial<IProps>) => {
-    this.setState({
-      value: Math.floor(e.value),
-    });
-  };
-
-  private move = () => {
-    const { duration = 1000, value } = this.props;
-
-    if (DETOX_ENABLED) {
-      this.setState({ value: Math.floor(value) });
-      return;
-    }
-
-    Animated.timing(this.animatedValue, {
-      duration,
-      toValue: value,
-      useNativeDriver: true,
-    }).start();
-  };
-}
+);
 
 export default Counter;
