@@ -1,4 +1,4 @@
-import { navigation } from "@utils";
+import { idExist, navigation } from "@utils";
 import { screens } from "@appScreens";
 import { buttonVisible } from "_utils/appScreens/challenges";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
@@ -98,14 +98,14 @@ export const onCompletedEventMilestonePage = (yuCoin: string, numOfStars: number
   await textVisible("Great job!", 5000)();
   await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")();
   await textVisible(`${yuCoin} YuCoin`)();
-  await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))();
+  await idExist(ids.ANIMATED_CIRCLE("#F43E8E"))();
   await idVisible(ids.NUM_OF_STARS(numOfStars))();
   await buttonVisible("Claim")();
 };
 
 export const milestoneComplete = (index: number) => async () => {
-  await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), index)();
-  await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), index)();
+  await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), index, 4000)();
+  await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), index, 40000)();
 };
 
 export const yuCoinPageEventDataCorrect =

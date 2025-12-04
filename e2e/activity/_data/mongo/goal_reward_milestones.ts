@@ -1,5 +1,5 @@
 import { GOALS_3, GOALS_6, GOALS_FTUE } from "./goals";
-import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 const type = "mongo";
 const modelName = "goal_reward_milestones";
@@ -20,7 +20,7 @@ export const GOAL_REWARD_MILESTONE_6 = {
     parentType: "goals",
     earnRateBased: true,
   },
-};
+} as IDatabaseItem;
 
 export const GOAL_REWARD_MILESTONE_7 = {
   type,
@@ -38,7 +38,7 @@ export const GOAL_REWARD_MILESTONE_7 = {
     parentType: "goals",
     earnRateBased: true,
   },
-};
+} as IDatabaseItem;
 
 export const GOAL_REWARD_MILESTONE_8 = {
   type,
@@ -56,7 +56,7 @@ export const GOAL_REWARD_MILESTONE_8 = {
     parentType: "goals",
     earnRateBased: true,
   },
-};
+} as IDatabaseItem;
 
 export const GOAL_REWARD_MILESTONE_29_GHI_REWARDS = {
   type,
@@ -83,7 +83,7 @@ export const GOAL_REWARD_MILESTONE_29_GHI_REWARDS = {
     _migrated: true,
     __v: 0,
   },
-};
+} as IDatabaseItem;
 
 export const GOAL_REWARD_MILESTONE_FTUE_1 = {
   type,
@@ -113,7 +113,7 @@ export const GOAL_REWARD_MILESTONE_FTUE_1 = {
     _migrated: true,
     __v: 0,
   },
-};
+} as IDatabaseItem;
 
 export const GOAL_REWARD_MILESTONE_FTUE_2 = {
   type,
@@ -140,4 +140,4 @@ export const GOAL_REWARD_MILESTONE_FTUE_2 = {
     _migrated: true,
     __v: 0,
   },
-};
+} as IDatabaseItem;

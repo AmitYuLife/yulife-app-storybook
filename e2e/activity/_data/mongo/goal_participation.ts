@@ -8,6 +8,7 @@ export const GOAL_PARTICIPATION_3 = {
   type: "mongo",
   modelName: "goal_participation",
   data: {
+    _id: generateRandomMongoId(),
     status: "active",
     typesToTrack: ["passive_challenge_cycling"],
     synchronousProgress: true,

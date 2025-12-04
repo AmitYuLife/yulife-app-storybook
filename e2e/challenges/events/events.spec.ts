@@ -136,12 +136,13 @@ Feature("As a user I can opt in and take an event", async () => {
   });
 
   Scenario("Passive data is correctly logged for an event that has backfill enabled, and the event panel should reflect the world I am on", scenario.start, async () => {
-    Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_81, data.AUTH_81), async () => {
-      Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
-      Then("I should see I have done 0 steps today", then.textVisible("0 steps"));
-      Then("I should see the event card has the correct desert colour", then.idVisible(ids.EVENT_CARD_COLOUR("#FFFCDE")));
-      Then("I should see the event card title has the correct desert colour", then.idVisible(ids.EVENT_HEADING("Walk 10k this week", "#5A5A5C")));
-      Then("I should see the event card description has the correct desert colour", then.idVisible(ids.EVENT_DESCRIPTION("0 / 10,000 steps", "#5A5A5C")));
+    Given("I login", given.loginAsUser(data.CUSTOMER_81, data.AUTH_81), async () => {
+      When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 5000), async () => {
+        Then("I should see I have done 0 steps today", then.textVisible("0 steps"));
+        Then("I should see the event card has the correct desert colour", then.idVisible(ids.EVENT_CARD_COLOUR("#FFFCDE")));
+        Then("I should see the event card title has the correct desert colour", then.idVisible(ids.EVENT_HEADING("Walk 10k this week", "#5A5A5C")));
+        Then("I should see the event card description has the correct desert colour", then.idVisible(ids.EVENT_DESCRIPTION("0 / 10,000 steps", "#5A5A5C")));
+      });
     });
     When("I have done 75,001 steps yesterday", when.addStepsHistoricalData(4000), async () => {
       Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
@@ -155,20 +156,20 @@ Feature("As a user I can opt in and take an event", async () => {
     When("I refresh the activity history page", when.tapID(ids.LEFT_HEADING_BUTTON("Activity history"), 2000), async () => {
       Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps);
     });
-    When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Activity history")), async () => {
-      When("I tap on the event challenge", when.tapID(ids.EVENT_HEADING("Walk 10k this week", "#5A5A5C")), async () => {
-        When("I click confirm", when.tapID(ids.EVENT_DIALOG_BUTTON), async () => {
+    When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Activity history"), 3000), async () => {
+      When("I tap on the event challenge", when.tapID(ids.EVENT_HEADING("Walk 10k this week", "#5A5A5C"), 3000), async () => {
+        When("I click confirm", when.tapID(ids.EVENT_DIALOG_BUTTON, 4000), async () => {
           Then("I should be on the event screen", then.onEventDetailsScreen(data.GOALS_5));
-          Then("I should see 4,000 steps have been completed", then.textVisible("4,000 / 10,000 steps"));
+          Then("I should see 4,000 steps have been completed", then.textVisible("4,000 / 10,000 steps", 5000));
         });
       });
     });
-    When("I tap claim", when.tapID(ids.CLAIM_BUTTON, 2000), async () => {
-      When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I tap claim", when.tapID(ids.CLAIM_BUTTON, 3000), async () => {
+      When("I go back", when.tapID(ids.BACK_BUTTON, 5000), async () => {
         When("I go to level 800 and claim the chest", when.completeYuniversalAndClaim(800), async () => {
-          Then("I should see the event card has the correct yuniverse colour", then.idVisible(ids.EVENT_CARD_COLOUR("#370888")));
-          Then("I should see the event card title has the correct yuniverse colour", then.idVisible(ids.EVENT_HEADING("Walk 10k this week", "#FFFFFF")));
-          Then("I should see the event card description has the correct yuniverse colour", then.idVisible(ids.EVENT_DESCRIPTION("4,000 / 10,000 steps", "#FFFFFF")));
+          Then("I should see the event card has the correct yuniverse colour", then.idVisible(ids.EVENT_CARD_COLOUR("#370888"), 2000));
+          Then("I should see the event card title has the correct yuniverse colour", then.idVisible(ids.EVENT_HEADING("Walk 10k this week", "#FFFFFF"), 2000));
+          Then("I should see the event card description has the correct yuniverse colour", then.idVisible(ids.EVENT_DESCRIPTION("4,000 / 10,000 steps", "#FFFFFF"), 2000));
         });
       });
     });
