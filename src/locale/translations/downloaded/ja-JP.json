@@ -1577,8 +1577,8 @@
       },
       "list": {
         "history": "購入履歴",
-        "recently_used": "最近使用",
-        "reward_passes": "あなたの報酬パス",
+        "recently_used": "最近使用したリワード",
+        "reward_passes": "リワードプログラム",
         "rewards": "リワード",
         "store": "ストア"
       },
@@ -2219,7 +2219,7 @@
     "description": "獲得できるYuCoin",
     "power": "Power",
     "tool_tip": {
-      "description": "50レベルごとにアンロックされる合計4つの追加チャレンジで毎日の活動量を最大化し、コインボックスを開けて連続チャレンジを達成すると、毎月この量のYuCoinを獲得できます。",
+      "description": "50レベルごとにアンロックされる合計4つのボーナスチャレンジで毎日の活動量を最大化し、コインボックスを開けて連続チャレンジを達成すると、毎月この量のYuCoinを獲得できます。",
       "title": "獲得できるYuCoin"
     },
     "yucoin": "YuCoin"
