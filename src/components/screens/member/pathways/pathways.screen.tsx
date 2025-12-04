@@ -98,7 +98,7 @@ const PathwaysScreen = ({
         </Box> */}
       </Animated.ScrollView>
       <GenericHeadingAbsolute
-        backgroundColor={Colours.pathways.background}
+        backgroundColor={Colours.pathways.header}
         onLeftIconPress={onClose}
         heading={t("screens.pathways.header")}
         color="white"
