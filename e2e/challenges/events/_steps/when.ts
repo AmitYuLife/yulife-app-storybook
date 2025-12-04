@@ -53,10 +53,12 @@ export const triggerAppUpdateState = async (): Promise<void> => {
   await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
 };
 
-export const completeYuniversalAndClaim = (level: number) => async () => {
-  await tapID(ids.NAV_BAR("quests"))();
-  await tapID(ids.LEVEL_CHALLENGE_BUTTON(level))();
-  await tapText("Continue")();
-  await tapText("Open the chest")();
-  await tapText("Claim rewards")();
-};
+export const completeYuniversalAndClaim =
+  (level: number, waitTime = 3000) =>
+  async () => {
+    await tapID(ids.NAV_BAR("quests"), waitTime)();
+    await tapID(ids.LEVEL_CHALLENGE_BUTTON(level), waitTime)();
+    await tapText("Continue", waitTime)();
+    await tapText("Open the chest", waitTime)();
+    await tapText("Claim rewards", waitTime)();
+  };
