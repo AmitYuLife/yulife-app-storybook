@@ -47,14 +47,10 @@ meta:
     machine_type_id: g2-m1.4core
     stack: osx-xcode-16.2.x
 trigger_map:
-- pipeline: pipeline-develop
-  push_branch: develop
 - pipeline: pipeline-release-uat
   push_branch: release/*
 - workflow: ios-detox-build-70
   push_branch: release/**
-- workflow: ios-develop
-  push_branch: upgrade/*
 - pipeline: pipeline-test-branch
   tag: test-branch*
 - pipeline: pipeline-release-prod
