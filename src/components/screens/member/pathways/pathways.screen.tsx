@@ -49,13 +49,16 @@ const PathwaysScreen = ({
     },
   });
   return (
-    <Box flex={1} bg={Colours.pathways.background}>
+    <Box flex={1} bg={Colours.pathways.header}>
       <Animated.ScrollView
-        style={{ flex: 1 }}
+        style={styles.flex}
         contentInsetAdjustmentBehavior="never"
         contentContainerStyle={styles.contentContainer}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
+        overScrollMode="never"
+        showsVerticalScrollIndicator={false}
+        bounces={false}
       >
         <Box position="absolute" bottom={0} width={"100%"}>
           <Image
@@ -110,6 +113,7 @@ const PathwaysScreen = ({
 };
 
 const styles = StyleSheet.create({
+  flex: { flex: 1 },
   contentContainer: {
     paddingBottom: Style.adjust(40),
   },
