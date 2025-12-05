@@ -189,18 +189,12 @@ const OpenRandomChestModal = ({
       }
 
       const awardedPrizeTypes = claimedItems.flatMap((prize) => prize.awardedPrizeTypes);
-      const title = claimedItems[0].title;
 
       const RedeemedStage = redeemedItems.length === 1 ? SingleRedeemedRewardStage : MultipleRedeemedRewardStage;
 
       return (
         <ChestImagePreloader images={redeemedItems.map((item) => item.image.uri)}>
-          <RedeemedStage
-            redeemedItems={redeemedItems}
-            onClose={onClosePress}
-            awardedPrizeTypes={awardedPrizeTypes}
-            title={title}
-          />
+          <RedeemedStage redeemedItems={redeemedItems} onClose={onClosePress} awardedPrizeTypes={awardedPrizeTypes} />
         </ChestImagePreloader>
       );
     }

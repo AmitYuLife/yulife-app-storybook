@@ -6,14 +6,17 @@ import RadioBattlePassRewardItem from "@components/molecules/radio-battle-pass-r
 import ClaimPrizeButton from "../../claim-prize-button";
 import { Style, StyleSheet } from "@styles";
 import ChestHeaderText from "../../chest-header-text";
-import { GlowingSpinner, Image, TextTemplate } from "@atoms";
+import { Box, GlowingSpinner, Image, TextTemplate } from "@atoms";
 import StageContainer from "../../stage-container";
 import { t } from "@locale";
 import { DETOX_ENABLED } from "@services/socket";
 import { first } from "lodash";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: IPickStageProps) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+
+  const { top } = useSafeAreaInsets();
 
   const isSingleReward = openedItems?.length === 1;
   const singleRewardItem = first(openedItems)?.item;
@@ -34,15 +37,17 @@ const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: 
   return (
     <StageContainer>
       <View style={styles.wrapper}>
-        <ChestHeaderText
-          label={
-            isSingleReward
-              ? t("modals.open_random_chest.won_reward", {
-                  reward: singleRewardItem.title,
-                })
-              : t("modals.open_random_chest.title")
-          }
-        />
+        <Box mt={top}>
+          <ChestHeaderText
+            label={
+              isSingleReward
+                ? t("modals.open_random_chest.won_reward", {
+                    reward: singleRewardItem.title,
+                  })
+                : t("modals.open_random_chest.title")
+            }
+          />
+        </Box>
         {image ? (
           <Animated.View entering={FadeInUp.delay(300).duration(400)} style={styles.imageContainer}>
             {!DETOX_ENABLED ? <GlowingSpinner size={Style.adjust(260)} /> : null}

@@ -9,9 +9,13 @@ import { YumojiRewardPicker } from "@components/molecules";
 import StageContainer from "../../stage-container";
 import { first } from "lodash";
 import { t } from "@locale";
+import { Box } from "@atoms";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProps) => {
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
+
+  const { top } = useSafeAreaInsets();
 
   const onClaimPress = useCallback(() => {
     onClaim([selectedItemId]);
@@ -44,7 +48,12 @@ const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProp
   return (
     <StageContainer>
       <View style={styles.wrapper}>
-        <ChestHeaderText label={t("modals.open_random_chest.title")} body={t("modals.open_random_chest.select_one")} />
+        <Box mt={top}>
+          <ChestHeaderText
+            label={t("modals.open_random_chest.title")}
+            body={t("modals.open_random_chest.select_one")}
+          />
+        </Box>
 
         <Animated.View entering={FadeInUp.delay(400).duration(1000)} style={styles.contentContainer}>
           <YumojiRewardPicker activeItem={selectedItemId} onPress={onPressItem} items={items} />
