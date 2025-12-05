@@ -31,6 +31,7 @@ const ShowcaseStackRow = ({ children }: IShowcaseRowProps) => {
 
     return (
       <Box
+        mt={20}
         key={index}
         flex={1}
         justifyContent="center"
@@ -50,15 +51,7 @@ const ShowcaseStackRow = ({ children }: IShowcaseRowProps) => {
         key={index}
         entering={FadeInUp.delay(ENTER_DELAY).duration(ENTER_TIME)}
       >
-        <Box
-          mt={-20}
-          h={"100%"}
-          key={index}
-          flex={1 / 3}
-          alignItems="center"
-          flexDirection="row"
-          justifyContent="center"
-        >
+        <Box h={"100%"} key={index} flex={1 / 3} alignItems="center" flexDirection="row" justifyContent="center">
           {child}
         </Box>
       </Box>

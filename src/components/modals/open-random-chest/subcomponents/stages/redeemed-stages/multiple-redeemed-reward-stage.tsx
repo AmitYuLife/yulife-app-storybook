@@ -10,6 +10,7 @@ import { t } from "@locale";
 import ChestAnimatedRaysBackground from "../../chest-animated-rays-background";
 import RedeemedStageFooter from "../../redeemed-stage-footer";
 import { DETOX_ENABLED } from "@services/socket";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface IRedeemedStageProps {
   onClose?: () => void;
@@ -19,10 +20,12 @@ interface IRedeemedStageProps {
 }
 
 const MultipleRedeemedRewardStage = ({ redeemedItems, onClose, awardedPrizeTypes = [] }: IRedeemedStageProps) => {
+  const { top } = useSafeAreaInsets();
+
   return (
     <StageContainer>
       {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground />}
-      <Box pt={65} w="100%" testID={CLAIMED_REWARD_ITEMS(redeemedItems?.length)}>
+      <Box mt={top} w="100%" testID={CLAIMED_REWARD_ITEMS(redeemedItems?.length)}>
         <ShowcaseStack>
           {redeemedItems?.map((item) => (
             <ClaimedRewardCard
@@ -36,7 +39,7 @@ const MultipleRedeemedRewardStage = ({ redeemedItems, onClose, awardedPrizeTypes
             />
           ))}
         </ShowcaseStack>
-        <ChestHeaderText label={t("modals.open_random_chest.rewards_received")} />
+        <ChestHeaderText label={t("modals.open_random_chest.rewards_collected")} />
       </Box>
       <RedeemedStageFooter awardedPrizeTypes={awardedPrizeTypes} onClose={onClose} />
     </StageContainer>

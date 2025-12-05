@@ -15,7 +15,7 @@ const ShowcaseStack = ({ children }: IShowcaseStackProps) => {
     if (isRows) {
       const rows = chunk(children, 3);
       return (
-        <Box pb={20} gap={50}>
+        <Box pb={20} gap={25}>
           {rows.map((row, index) => (
             <ShowcaseStackRow key={index}>{row}</ShowcaseStackRow>
           ))}
