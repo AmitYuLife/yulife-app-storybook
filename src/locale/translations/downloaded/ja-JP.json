@@ -418,7 +418,7 @@
           "title": "パワーアップを 収集しました!"
         },
         "wallet": {
-          "description": "ウォレット に ユーコイン を ストア で見つけることができます。",
+          "description": "ストアの ウォレット であなたの報酬を見つけることができます。",
           "title": "リワードを受け取りました!"
         },
         "yumoji_inventory": {
@@ -428,12 +428,10 @@
       },
       "open": "開く",
       "open_chest": "ボックスを開く",
-      "power_up_received": "パワー アップ 受信完了！",
-      "reward_received": "%{reward} 受け取った！",
-      "rewards_received": "リワード 受け取った！",
+      "reward_collected": "%{reward} を受け取りました!",
+      "rewards_collected": "手に入れたすべてが こちらです！",
       "select_one": "続行するには1つ選択してください",
       "title": "新アイテムを獲得しました",
-      "won_a_reward": "%{reward}を獲得しました!",
       "won_reward": "%{reward}を獲得しました!"
     },
     "push_notifications": {

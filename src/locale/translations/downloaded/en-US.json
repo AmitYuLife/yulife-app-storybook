@@ -418,7 +418,7 @@
           "title": "Power-up collected!"
         },
         "wallet": {
-          "description": "You can find your YuCoin in your Wallet in Store.",
+          "description": "You'll find your reward in your Wallet in Store.",
           "title": "Reward collected!"
         },
         "yumoji_inventory": {
@@ -428,12 +428,10 @@
       },
       "open": "Open",
       "open_chest": "Open chest",
-      "power_up_received": "Power up received!",
-      "reward_received": "%{reward} received!",
-      "rewards_received": "Rewards received!",
+      "reward_collected": "%{reward} collected!",
+      "rewards_collected": "Here’s everything you got!",
       "select_one": "Select one to proceed",
       "title": "You got a reward!",
-      "won_a_reward": "You've won a %{reward}!",
       "won_reward": "You've won %{reward}!"
     },
     "push_notifications": {
