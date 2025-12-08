@@ -9,6 +9,7 @@
     paths:
       - .cocoapods_cache
       - .yarn-cache/
+      - $COREPACK_HOME
 
 .ios-pre-build:
   script:

@@ -398,6 +398,7 @@ detox-test-mr-reporter:
   extends:
     - .generic-node-arm64
     - .assume-aws-role-with-web-identity:qa-reporter
+    - .cache-pull
   stage: test-report
   variables:
     REPORT_DNS_NAME: reports.qa.yulife.engineering

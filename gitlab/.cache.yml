@@ -1,0 +1,18 @@
+# Cache will be a opt in option for the pipeline. Any job that needs to use the cache will need to extend the .cache-pull or .cache-pull-push job.
+.cache-base:
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+        - $COREPACK_HOME
+
+.cache-pull:
+  extends: .cache-base
+  cache:
+    policy: pull
+
+.cache-pull-push:
+  extends: .cache-base
+  cache:
+    policy: pull-push

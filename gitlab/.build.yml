@@ -1,5 +1,7 @@
 build:e2e:
-  extends: .generic-node-arm64
+  extends:
+    - .generic-node-arm64
+    - .cache-pull
   stage: build
   interruptible: true
   script:

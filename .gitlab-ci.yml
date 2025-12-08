@@ -35,6 +35,7 @@ spec:
 ---
 include:
   - local: "gitlab/.build.yml"
+  - local: "gitlab/.cache.yml"
   - local: "gitlab/.quality.yml"
   - local: "gitlab/.release.yml"
   - local: "gitlab/.storybook.yml"
@@ -77,6 +78,7 @@ variables:
   FL_ANDROID_DEVELOP_KEY_ALIAS: yulife-android-develop
   FL_ITC_TEAM_ID: 118777487
   FL_TEAM_ID: 739BJV2T6V
+  COREPACK_HOME: "$CI_PROJECT_DIR/.cache/node/corepack"
 
 stages:
   - build

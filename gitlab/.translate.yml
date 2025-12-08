@@ -1,5 +1,7 @@
 translate:
-  extends: .generic-node-arm64
+  extends:
+    - .generic-node-arm64
+    - .cache-pull
   stage: translate
   retry: 2
   script:
