@@ -3,7 +3,7 @@ import { StreakSaverIcon } from "@atoms/icon/streak-saver-icon";
 import { Button, InventoryItem } from "@components/molecules";
 import { useTranslation } from "@hooks";
 import { Style, StyleSheet } from "@styles";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { View } from "react-native";
 import { FloatingModal } from "..";
 // eslint-disable-next-line rulesdir/no-restricted-imports-clone
@@ -11,6 +11,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
+import { useMutation } from "@apollo/client";
+import { gql } from "@graphql/__generated";
 
 interface IStreakSavedModalProps {
   onClose: () => void;
@@ -21,6 +23,8 @@ const MODAL_ICON = require("@assets/icons/streak-saver.webp");
 
 const StreakSavedModal = ({ onClose, streakSaverCount }: IStreakSavedModalProps) => {
   const dispatch = useDispatch();
+
+  const [restoreStreakMutation, { loading: isRestoreStreakLoading }] = useMutation(gql("RestoreStreakDocument"));
 
   const t = useTranslation([
     "modals.streak_saver.title",
@@ -38,6 +42,10 @@ const StreakSavedModal = ({ onClose, streakSaverCount }: IStreakSavedModalProps)
 
     onClose();
   }, [dispatch, onClose]);
+
+  useEffect(() => {
+    restoreStreakMutation();
+  }, [restoreStreakMutation]);
 
   return (
     <View style={styles.wrapper}>
@@ -71,7 +79,11 @@ const StreakSavedModal = ({ onClose, streakSaverCount }: IStreakSavedModalProps)
           </View>
 
           <View style={styles.confirmButton}>
-            <Button translationKey="modals.streak_saver.button" onPress={onCloseHandler} />
+            <Button
+              translationKey="modals.streak_saver.button"
+              onPress={onCloseHandler}
+              isLoading={isRestoreStreakLoading}
+            />
           </View>
         </>
       </FloatingModal>
