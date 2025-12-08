@@ -2,6 +2,7 @@ android-develop-build:
   extends:
     - .assume-aws-role-with-web-identity:devops:develop-builds
     - .base-macos-vm
+    - .cache-pull
   stage: build
   interruptible: false
   timeout: 75m
@@ -40,6 +41,7 @@ android-uat-build:
   extends:
     - .assume-aws-role-with-web-identity:devops:develop-builds
     - .base-macos-vm
+    - .cache-pull
   stage: build
   interruptible: false
   timeout: 75m

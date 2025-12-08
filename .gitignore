@@ -127,3 +127,6 @@ artifacts/
 
 # Fastlane builds
 builds/
+
+# corepack
+.cache/node/corepack/

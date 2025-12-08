@@ -1,5 +1,7 @@
 test:
-  extends: .generic-node-arm64
+  extends:
+    - .generic-node-arm64
+    - .cache-pull
   stage: test
   interruptible: true
   variables:

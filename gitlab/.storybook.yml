@@ -2,6 +2,7 @@ deploy:dev:storybook:
   extends:
     - .assume-aws-role-with-web-identity:uk-dev:app-components
     - .generic-node-arm64
+    - .cache-pull
   stage: release
   # Do not cancel this job if newer commit made
   interruptible: false
@@ -30,7 +31,9 @@ deploy:dev:storybook:
     - if: $CI_COMMIT_BRANCH == "develop"
 
 storybook-build:
-  extends: .generic-node-arm64
+  extends:
+    - .generic-node-arm64
+    - .cache-pull-push
   stage: quality
   interruptible: false
   variables:
