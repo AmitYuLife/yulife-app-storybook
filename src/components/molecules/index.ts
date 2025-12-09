@@ -15,6 +15,7 @@ export * from "./checklist-info-card";
 export { default as ChallengesList, IChallengesListProps } from "./challenges-list/challenges-list";
 export { default as ChallengesListAccessibility } from "./challenges-list/challenges-list-accessibility";
 export { default as ChallengeTile, IChallengeTileProps } from "./challenge-tile/challenge-tile";
+export { default as PathwayChallengeTile, IPathwayChallengeTileProps } from "./challenge-tile/pathway-challenge-tile";
 export { default as Counter } from "./counter/counter";
 export { default as Instruction } from "./instruction/instruction";
 export { default as LinkGroup } from "./link-group/link-group";

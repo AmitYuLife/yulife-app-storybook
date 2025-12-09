@@ -18,7 +18,7 @@ export interface IChallengeTileProps {
   availableAtLevel?: number;
   onPress?: () => void;
   reward?: string;
-  imageUri: string;
+  imageUri?: string;
   tileColour?: string;
   durationColour?: string;
   durationTextColour?: string;

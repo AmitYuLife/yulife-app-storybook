@@ -19,6 +19,7 @@ interface IProps {
   accessible?: boolean;
   lineHeight?: TextStyle["lineHeight"];
   writingDirection?: TextStyle["writingDirection"];
+  fontVariant?: TextStyle["fontVariant"];
 }
 
 export const TextTemplate = memo(
@@ -35,12 +36,14 @@ export const TextTemplate = memo(
     accessible = true,
     lineHeight: customLineHeight,
     writingDirection,
+    fontVariant,
   }: IProps) => {
     const alignment = { textAlign };
     const fontColor = { color: color || Colours.neutral.n800 };
     const decorationStyle = !decoration || decoration === "none" ? null : styles[decoration];
     const lineHeight = buildLineHeightStyle({ customLineHeight, type });
     const writingDirectionStyle = writingDirection ? { writingDirection } : {};
+    const fontVariantStyle = fontVariant ? { fontVariant } : {};
 
     return (
       <Text
@@ -51,6 +54,7 @@ export const TextTemplate = memo(
           decorationStyle,
           lineHeight,
           writingDirectionStyle,
+          fontVariantStyle,
         ])}
         allowFontScaling={false}
         testID={testID}

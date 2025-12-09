@@ -1,0 +1,6 @@
+mutation CompletePathwayChallenge($challengeId: ID!) {
+  completePathwayChallenge(challengeId: $challengeId) {
+    success
+    yuCoinAwarded
+  }
+}

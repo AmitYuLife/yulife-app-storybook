@@ -1438,6 +1438,12 @@ export type CompleteGame2048Input = {
   score: Scalars["Int"]["input"];
 };
 
+export type CompletePathwayChallengeResponse = {
+  __typename?: "CompletePathwayChallengeResponse";
+  success: Scalars["Boolean"]["output"];
+  yuCoinAwarded: Scalars["Int"]["output"];
+};
+
 export enum ConditionalOperator {
   Equals = "EQUALS",
   Exists = "EXISTS",
@@ -6395,6 +6401,7 @@ export type Mutation = {
   completeGoal?: Maybe<Scalars["Boolean"]["output"]>;
   completeInAppYuniversityModuleChapter: Scalars["Boolean"]["output"];
   completeMobileGameBattlePassSeason?: Maybe<MobileGameBattlePass>;
+  completePathwayChallenge: CompletePathwayChallengeResponse;
   completeSignup: Scalars["Boolean"]["output"];
   configureHrisConnection: Scalars["Boolean"]["output"];
   configureMessagingConnection: Scalars["Boolean"]["output"];
@@ -6526,6 +6533,7 @@ export type Mutation = {
   setShareOfBenefitForProduct: CustomerProductBeneficiaries;
   setUserQuestProgress?: Maybe<Scalars["Boolean"]["output"]>;
   startMembersBulkUpload: BulkMemberImportStart;
+  startPathwayChallenge: StartPathwayChallengeResponse;
   startSmokingStreak?: Maybe<HealthSmokingState>;
   submitAppStoreReviewAction: Scalars["Boolean"]["output"];
   submitChallengeDebugData?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6773,6 +6781,10 @@ export type MutationCompleteMobileGameBattlePassSeasonArgs = {
   goalId: Scalars["String"]["input"];
   socialGroupId?: InputMaybe<Scalars["String"]["input"]>;
   startNew?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type MutationCompletePathwayChallengeArgs = {
+  challengeId: Scalars["ID"]["input"];
 };
 
 export type MutationConfigureHrisConnectionArgs = {
@@ -7244,6 +7256,10 @@ export type MutationStartMembersBulkUploadArgs = {
   dataFormatId?: InputMaybe<Scalars["String"]["input"]>;
   fileName: Scalars["String"]["input"];
   uploadType: BulkMemberUploadType;
+};
+
+export type MutationStartPathwayChallengeArgs = {
+  challengeId: Scalars["ID"]["input"];
 };
 
 export type MutationSubmitAppStoreReviewActionArgs = {
@@ -7807,6 +7823,17 @@ export type PathwayAdviceSection = {
   items: Array<UserPathwayAdviceItem>;
 };
 
+export type PathwayChallengeSlot = {
+  __typename?: "PathwayChallengeSlot";
+  action: SduiAction;
+  expiresAt: Scalars["String"]["output"];
+  heading: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  isCompleted: Scalars["Boolean"]["output"];
+  isLocked: Scalars["Boolean"]["output"];
+  reward: Scalars["String"]["output"];
+};
+
 export enum PathwaysItemResponseDecision {
   Accepted = "Accepted",
   Rejected = "Rejected",
@@ -8252,6 +8279,7 @@ export type Query = {
   getOnboardingConfiguration?: Maybe<GetOnboardingConfigurationResult>;
   getOptionsForGift: OptionsForGift;
   getPassiveChallengesLastUpdate: PassiveChallengesLastUpdate;
+  getPathwayChallenge?: Maybe<PathwayChallengeSlot>;
   /** Get user stripe payment details */
   getPaymentDetails?: Maybe<GetPaymentDetailsResponse>;
   getPendingInvitesCount: Scalars["Int"]["output"];
@@ -10138,6 +10166,11 @@ export type SpaCheckBusinessType = {
   ownerLastName?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type StartPathwayChallengeResponse = {
+  __typename?: "StartPathwayChallengeResponse";
+  success: Scalars["Boolean"]["output"];
+};
+
 export type StartSessionResponse = {
   __typename?: "StartSessionResponse";
   hasExistingAccount?: Maybe<Scalars["Boolean"]["output"]>;
@@ -11255,6 +11288,7 @@ export type TeamYucoinWalletHistory = {
   date: Scalars["String"]["output"];
   description: Scalars["String"]["output"];
   id: Scalars["String"]["output"];
+  /** @deprecated Not supported yet, can be removed if not used */
   invoiceDownloadUrl?: Maybe<Scalars["String"]["output"]>;
   requestedBy?: Maybe<Scalars["String"]["output"]>;
   sourceId?: Maybe<Scalars["String"]["output"]>;
@@ -11404,8 +11438,12 @@ export enum TopBarType {
 }
 
 export enum TransactionHistorySourceType {
+  ManuallyIssued = "manuallyIssued",
   RecognitionCampaign = "recognitionCampaign",
+  SurveyCampaign = "surveyCampaign",
+  SurveyRefund = "surveyRefund",
   Topup = "topup",
+  YustoreConversion = "yustoreConversion",
 }
 
 export enum TransactionHistoryStatus {
@@ -23139,6 +23177,19 @@ export type CancelMobileQuestLevelChallengeMutation = {
   cancelMobileQuestLevelChallenge?: { __typename?: "MobileQuestChallenge"; id: string; status: string } | null;
 };
 
+export type CompletePathwayChallengeMutationVariables = Exact<{
+  challengeId: Scalars["ID"]["input"];
+}>;
+
+export type CompletePathwayChallengeMutation = {
+  __typename?: "Mutation";
+  completePathwayChallenge: {
+    __typename?: "CompletePathwayChallengeResponse";
+    success: boolean;
+    yuCoinAwarded: number;
+  };
+};
+
 export type CreateMobileQuestLevelChallengeMutationVariables = Exact<{
   level: Scalars["Int"]["input"];
   levelSlotTemplateId: Scalars["String"]["input"];
@@ -23331,6 +23382,22 @@ export type GetPassiveChallengesLastUpdateQuery = {
     meditation?: string | null;
     steps?: string | null;
   };
+};
+
+export type GetPathwayChallengeQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetPathwayChallengeQuery = {
+  __typename?: "Query";
+  getPathwayChallenge?: {
+    __typename?: "PathwayChallengeSlot";
+    id: string;
+    heading: string;
+    isLocked: boolean;
+    isCompleted: boolean;
+    reward: string;
+    expiresAt: string;
+    action: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  } | null;
 };
 
 export type GetQuestMapQueryVariables = Exact<{ [key: string]: never }>;
@@ -72245,6 +72312,46 @@ export const CancelMobileQuestLevelChallengeDocument = {
     },
   ],
 } as unknown as DocumentNode<CancelMobileQuestLevelChallengeMutation, CancelMobileQuestLevelChallengeMutationVariables>;
+export const CompletePathwayChallengeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CompletePathwayChallenge" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "challengeId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "completePathwayChallenge" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "challengeId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "challengeId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "success" } },
+                { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CompletePathwayChallengeMutation, CompletePathwayChallengeMutationVariables>;
 export const CreateMobileQuestLevelChallengeDocument = {
   kind: "Document",
   definitions: [
@@ -72935,6 +73042,56 @@ export const GetPassiveChallengesLastUpdateDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPassiveChallengesLastUpdateQuery, GetPassiveChallengesLastUpdateQueryVariables>;
+export const GetPathwayChallengeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPathwayChallenge" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getPathwayChallenge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "heading" } },
+                { kind: "Field", name: { kind: "Name", value: "isLocked" } },
+                { kind: "Field", name: { kind: "Name", value: "isCompleted" } },
+                { kind: "Field", name: { kind: "Name", value: "reward" } },
+                { kind: "Field", name: { kind: "Name", value: "expiresAt" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "action" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetPathwayChallengeQuery, GetPathwayChallengeQueryVariables>;
 export const GetQuestMapDocument = {
   kind: "Document",
   definitions: [

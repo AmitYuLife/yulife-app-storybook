@@ -3,7 +3,12 @@ import { CHALLENGE_SCREEN } from "@ids";
 import { getTheme } from "@theme";
 import { t } from "@locale";
 import { ChallengeBackground } from "@atoms";
-import { ChallengesList, ChallengesListAccessibility, IChallengesListProps } from "@molecules";
+import {
+  ChallengesList,
+  ChallengesListAccessibility,
+  IChallengesListProps,
+  IPathwayChallengeTileProps,
+} from "@molecules";
 import { View } from "react-native";
 import { GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -23,6 +28,7 @@ interface IChallengeListScreenProps extends IChallengesListProps {
   challenges: IFormattedChallenge[];
   loading?: boolean;
   openConsumables?: () => void;
+  pathwayChallenge: IPathwayChallengeTileProps;
 }
 
 interface IFormattedChallenge {
@@ -44,6 +50,7 @@ interface IFormattedChallenge {
 }
 
 const ChallengesListScreen = ({
+  pathwayChallenge,
   challenges,
   currentLevel,
   yuniversalMap,
@@ -75,6 +82,7 @@ const ChallengesListScreen = ({
       <View style={styles.challengeSetWrapper}>
         {isScreenReaderEnabled ? (
           <ChallengesListAccessibility
+            pathwayChallenge={pathwayChallenge}
             challenges={challenges}
             loading={loading}
             tileColour={challengeListScreen.tileBackgroundColour}
@@ -83,6 +91,7 @@ const ChallengesListScreen = ({
           />
         ) : (
           <ChallengesList
+            pathwayChallenge={pathwayChallenge}
             challenges={challenges}
             loading={loading}
             tileColour={challengeListScreen.tileBackgroundColour}
