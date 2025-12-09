@@ -73,3 +73,39 @@ android-uat-build:
     expire_in: 15 days
   rules:
     - if: $CI_COMMIT_BRANCH =~ /^release\/.*$/
+
+android-production-build:
+  extends:
+    - .assume-aws-role-with-web-identity:devops:production-builds
+    - .base-macos-vm
+  stage: build
+  interruptible: false
+  timeout: 75m
+  variables:
+    # Fastlane variables
+    FL_ANDROID_KEY_ALIAS: $FL_ANDROID_PRODUCTION_KEY_ALIAS
+    FL_ANDROID_KEYSTORE_PATH: $FL_ANDROID_PRODUCTION_KEYSTORE_PATH
+    FL_ANDROID_KEYSTORE_PASSWORD: $FL_ANDROID_PRODUCTION_KEYSTORE_PASSWORD
+    FL_ANDROID_KEY_PASSWORD: $FL_ANDROID_PRODUCTION_KEY_PASSWORD
+    # Project variables
+    ENVFILE: ".env.production"
+    BUNDLE_ID: com.yulife.app
+    PLATFORM: android
+  script:
+    - nvm install -b
+    - corepack enable
+    - yarn install --frozen-lockfile --cache-folder .yarn-cache
+    - yarn tsc
+    - node ./scripts/replace-package-versionCodes.js "$CI_PIPELINE_IID"
+    - EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --clean --no-install
+    # Download secure files (App Store Connect API Key)
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    # Build Android release
+    - fastlane android production_build --verbose
+  artifacts:
+    paths:
+      - android/app/build/outputs/**/*.apk
+    expire_in: 15 days
+  rules:
+    - if: $CI_COMMIT_BRANCH =~ /^release\/.*$/
+      when: manual
