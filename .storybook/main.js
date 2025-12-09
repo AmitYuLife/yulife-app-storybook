@@ -64,7 +64,9 @@ const CUSTOM_CONFIG = {
   ],
 };
 module.exports = {
-  stories: ["../src/components/@(atoms|molecules|organisms|screens|sdui|modals)/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/components/@(atoms|molecules|organisms|screens|sdui|modals)/**/*.stories.@(js|jsx|ts|tsx)",
+    "../src/modules/**/components/**/*.stories.@(js|jsx|ts|tsx)"
+  ],
 
   addons: [
     "@storybook/addon-links",
