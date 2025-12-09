@@ -1,10 +1,9 @@
-import { Box } from "@atoms";
+import { Box, FlatList } from "@atoms";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
 import { RewardSectionHeader } from "@components/molecules";
 import { GetMobileRecentlyUsedRewardsListQuery } from "@graphql/__generated";
 import { t } from "@locale";
 import { RecentRewardCard } from "@organisms";
-import { FlashList } from "@shopify/flash-list";
 import { Style, StyleSheet } from "@styles";
 import { isEmpty } from "lodash";
 import { memo, useCallback } from "react";
@@ -55,20 +54,26 @@ const RewardRecentlyUsedSectionContainer = ({
   return (
     <Box pb={15}>
       <RewardSectionHeader>{t("screens.rewards.list.recently_used")}</RewardSectionHeader>
-      <FlashList
+      <FlatList
         horizontal={true}
         renderItem={renderItem}
-        estimatedItemSize={Style.adjust(ITEM_WIDTH)}
         keyExtractor={(item) => item.id}
         showsHorizontalScrollIndicator={false}
         data={recentRewards.recentlyUsedRewards}
         contentContainerStyle={styles.container}
+        getItemLayout={getItemLayout}
       />
     </Box>
   );
 };
 
 export default memo(RewardRecentlyUsedSectionContainer);
+
+const getItemLayout = (_: unknown, index: number) => ({
+  length: ITEM_WIDTH,
+  offset: ITEM_WIDTH * index,
+  index,
+});
 
 const styles = StyleSheet.create({
   container: {
