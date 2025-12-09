@@ -116,6 +116,7 @@ export default {
   pathways: {
     header: "#0177FF",
     background: "#0050DB",
+    darkBackground: "#013BA0",
   },
   slider: {
     inactive: "#BFBFC2",
