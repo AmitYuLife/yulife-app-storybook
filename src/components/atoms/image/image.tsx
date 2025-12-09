@@ -58,7 +58,7 @@ export interface IImageProps extends Omit<IBoxProps, "style"> {
   source: Source | number;
   theme?: "light" | "dark";
   testID?: string;
-  /** @deprecated */
+  /** @deprecated use contentFit instead */
   resizeMode?: "contain" | "cover" | "stretch" | "center";
   contentFit?: ImageContentFit;
   /**
@@ -225,12 +225,13 @@ export const Image = memo(
     shallowEqual(prevProps, nextProp) && shallowEqual(prevSource, nextSource)
 );
 
-export const RawImage = ({ cachePolicy, ...props }: ImageProps) => {
+export const RawImage = ({ cachePolicy, style: propStyle, ...props }: ImageProps & IBoxProps) => {
   const { gameEnableExpoImageDiskCachingPolicy } = useUserFeatures();
+  const { style: boxStyle } = useBoxProps(props);
 
   const defaultCachePolicy = gameEnableExpoImageDiskCachingPolicy ? ImageCachePolicy.disk : ImageCachePolicy.memoryDisk;
 
-  return <ExpoImage cachePolicy={cachePolicy || defaultCachePolicy} {...props} />;
+  return <ExpoImage style={[boxStyle, propStyle]} cachePolicy={cachePolicy || defaultCachePolicy} {...props} />;
 };
 
 const styles = StyleSheet.create({
