@@ -1,0 +1,14 @@
+query GetPathwayChallenge {
+  getPathwayChallenge {
+    id
+    heading
+    isLocked
+    isCompleted
+    reward
+    expiresAt
+    action {
+      ...SduiAction
+    }
+  }
+}
+

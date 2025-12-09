@@ -1,6 +1,8 @@
+import { useMutation } from "@apollo/client";
 import { Box, TextTemplate } from "@atoms";
 import { BoxOption, Button } from "@components/molecules";
 import { Navigation } from "@navigation/main";
+import { ROUTES } from "@navigation/constants";
 import { useNavigation } from "@navigation/navigation.context";
 import { GenericHeadingAbsolute } from "@organisms";
 import { Colours, Style, StyleSheet } from "@styles";
@@ -13,6 +15,8 @@ import { useKeepAwake } from "expo-keep-awake";
 import { BreathingExerciseOptionPartType, useBreathingExercise } from "./hooks/use-breathing-exercise";
 import { BreathingAnimation } from "@components/molecules/breathing-animation/breathing-animation";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 import { useDispatch } from "react-redux";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import GenericSelectorModal from "@components/modals/generic-selector-modal/generic-selector-modal";
@@ -20,6 +24,7 @@ import { showFloatingModal } from "@components/modals";
 import { MODALS } from "@navigation/constants";
 import { useAppState } from "@hooks";
 import { AppStateStatus } from "react-native";
+import { gql } from "@graphql/__generated";
 
 const FOREST_COLOUR = "#018547";
 const PROGRESS_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
@@ -55,11 +60,15 @@ type Props = {
       type: BreathingExerciseOptionPartType;
     }[];
   };
+  challengeId: string;
 };
 
-const BreathingExerciseContainer = ({ data }: Props) => {
+const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   const { componentId } = useNavigation();
   const dispatch = useDispatch();
+  const [completePathwayChallenge] = useMutation(gql("CompletePathwayChallengeDocument"), {
+    refetchQueries: [{ query: gql("GetPathwayChallengeDocument") }],
+  });
 
   const {
     startPlaying,
@@ -72,7 +81,8 @@ const BreathingExerciseContainer = ({ data }: Props) => {
   } = useBreathingExercise({
     parts: data.parts.map((part) => ({ ...part })),
     defaultDuration: data.defaultDuration || DEFAULT_DURATION_MS,
-    onCompleted: () => {
+    onCompleted: async () => {
+      await completePathwayChallenge({ variables: { challengeId } });
       dispatch(
         logMixpanelEventActionCreator("breathing_exercise_completed", {
           duration: selectedDurationMs,
@@ -114,8 +124,13 @@ const BreathingExerciseContainer = ({ data }: Props) => {
       })
     );
 
-    Navigation.pop(componentId);
-  }, [componentId, selectedDurationMs, data.id, dispatch]);
+    if (currentPart.type === BreathingExerciseOptionPartType.End) {
+      Navigation.popTo(ROUTES.questsChallengesList);
+      dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
+    } else {
+      Navigation.pop(componentId);
+    }
+  }, [dispatch, selectedDurationMs, data.id, currentPart.type, componentId]);
 
   // Pause exercise when app goes to background
   const handleAppStateChange = useCallback(

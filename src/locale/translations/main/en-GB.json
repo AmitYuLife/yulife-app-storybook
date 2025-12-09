@@ -878,7 +878,8 @@
       "level_completed": "Completed",
       "accessibility": {
         "description": "%{heading} %{reward} yucoin %{duration}"
-      }
+      },
+      "time_remaining": "Time remaining"
     },
     "challenge_details": {
       "accessibility": {

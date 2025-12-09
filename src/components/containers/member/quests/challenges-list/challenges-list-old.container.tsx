@@ -13,6 +13,7 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
 import { usePopToQuestsRootOnNewDate, useConsumableModal, useScreenReaderChange } from "@hooks";
+import { usePathwayChallenge } from "./hooks/usePathwayChallenge";
 import { getActiveChallengeState, getCreateChallengeError } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
@@ -48,6 +49,8 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
     variables: { level, yuniversalMap },
     fetchPolicy: "cache-and-network",
   });
+
+  const { pathwayChallenge, pathwayChallengeLoading } = usePathwayChallenge();
 
   const { openConsumables } = useConsumableModal(refetch);
 
@@ -220,6 +223,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       render={({ showOverlay }: IToggleBlur) => (
         <>
           <ChallengesListScreen
+            pathwayChallenge={pathwayChallenge}
             openConsumables={hasDonationBattlepass ? openConsumables : undefined}
             challenges={slots.map((levelSlot) => {
               const formattedSlot = {
@@ -253,7 +257,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
               };
             })}
             currentLevel={level}
-            loading={loading}
+            loading={loading || pathwayChallengeLoading}
             yuniversalMap={yuniversalMap}
             name={name}
             onPressLeftIcon={handleNavPress}

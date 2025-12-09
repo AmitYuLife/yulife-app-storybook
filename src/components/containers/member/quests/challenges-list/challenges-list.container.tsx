@@ -17,6 +17,7 @@ import {
   useUserFeatures,
   useVerifyAndAuthorizeCapability,
 } from "@hooks";
+import { usePathwayChallenge } from "./hooks/usePathwayChallenge";
 import { getActiveChallengeState, getCreateChallengeError } from "@redux/levels/levels.selectors";
 import { handleInternalContentChallenge, onPressChallengeTile } from "@utils/challenges";
 import { ActiveLevelState } from "@redux/levels/levels.types";
@@ -58,6 +59,8 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     variables: { level, yuniversalMap },
     fetchPolicy: "cache-and-network",
   });
+
+  const { pathwayChallenge, pathwayChallengeLoading } = usePathwayChallenge();
 
   const { openConsumables } = useConsumableModal(refetch);
 
@@ -227,18 +230,30 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
 
       return (
         <ChallengesListScreen
+          pathwayChallenge={pathwayChallenge}
           challenges={slots}
           onLayout={onLayout}
           currentLevel={level}
           yuniversalMap={yuniversalMap}
           name={currentLevelName}
           onPressLeftIcon={handleNavPress}
-          loading={loading}
+          loading={loading || pathwayChallengeLoading}
           openConsumables={hasDonationBattlepass ? openConsumables : undefined}
         />
       );
     },
-    [slots, level, yuniversalMap, currentLevelName, handleNavPress, loading, openConsumables, hasDonationBattlepass]
+    [
+      slots,
+      level,
+      yuniversalMap,
+      currentLevelName,
+      handleNavPress,
+      loading,
+      pathwayChallengeLoading,
+      openConsumables,
+      hasDonationBattlepass,
+      pathwayChallenge,
+    ]
   );
 
   const renderOverlay = useCallback(

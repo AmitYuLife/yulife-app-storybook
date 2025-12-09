@@ -7,6 +7,7 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import { Style, StyleSheet } from "@styles";
 import { useSelector } from "react-redux";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
+import { IPathwayChallengeTileProps, PathwayChallengeTile } from "..";
 
 export interface IChallengesListProps {
   challenges: IChallengeTileProps[];
@@ -14,9 +15,17 @@ export interface IChallengesListProps {
   durationColour?: string;
   durationTextColour?: string;
   loading?: boolean;
+  pathwayChallenge?: IPathwayChallengeTileProps;
 }
 
-function ChallengeSet({ challenges, tileColour, durationColour, durationTextColour, loading }: IChallengesListProps) {
+function ChallengeSet({
+  challenges,
+  tileColour,
+  durationColour,
+  durationTextColour,
+  loading,
+  pathwayChallenge,
+}: IChallengesListProps) {
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
   const scrollContentStyles = useMemo(() => {
     return {
@@ -35,6 +44,7 @@ function ChallengeSet({ challenges, tileColour, durationColour, durationTextColo
     >
       <View testID={CHALLENGE_SET} style={styles.wrapper}>
         <Animated.View style={styles.leftColumnWrapper} entering={FadeInDown.delay(200).duration(500)}>
+          {pathwayChallenge ? <PathwayChallengeTile {...pathwayChallenge} /> : null}
           {!loading
             ? challenges
                 ?.filter((_, i) => !(i % 2))

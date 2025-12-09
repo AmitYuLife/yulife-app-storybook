@@ -3,12 +3,12 @@ import { Colours, Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 
 export const IMAGE_SIZE = Style.DEVICE_WIDTH / 2 - Style.adjust(23);
+export const TOP_HEIGHT = (IMAGE_SIZE / 165) * 124;
+export const BOTTOM_HEIGHT = Style.adjust(88);
+export const SHADOW_WIDTH = Style.adjust(5);
+export const BORDER_RADIUS = Style.adjust(20);
 
-const TOP_HEIGHT = (IMAGE_SIZE / 165) * 124;
-const BOTTOM_HEIGHT = Style.adjust(88);
-const SHADOW_WIDTH = Style.adjust(5);
 const FULL_HEIGHT = TOP_HEIGHT + BOTTOM_HEIGHT + SHADOW_WIDTH;
-const BORDER_RADIUS = Style.adjust(20);
 
 const styles = StyleSheet.create({
   contentRewardWrapper: {

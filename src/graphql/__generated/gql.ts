@@ -174,10 +174,12 @@ const documents = {
   GetSudokuStatsDocument: types.GetSudokuStatsDocument,
   SubmitMobileQuestLevelSudokuSolutionDocument: types.SubmitMobileQuestLevelSudokuSolutionDocument,
   CancelMobileQuestLevelChallengeDocument: types.CancelMobileQuestLevelChallengeDocument,
+  CompletePathwayChallengeDocument: types.CompletePathwayChallengeDocument,
   CreateMobileQuestLevelChallengeDocument: types.CreateMobileQuestLevelChallengeDocument,
   GetMobileQuestLevelChallengeContentDocument: types.GetMobileQuestLevelChallengeContentDocument,
   GetMobileQuestLevelChallengeDetailsDocument: types.GetMobileQuestLevelChallengeDetailsDocument,
   GetPassiveChallengesLastUpdateDocument: types.GetPassiveChallengesLastUpdateDocument,
+  GetPathwayChallengeDocument: types.GetPathwayChallengeDocument,
   GetQuestMapDocument: types.GetQuestMapDocument,
   GetQuestMapLevelDocument: types.GetQuestMapLevelDocument,
   GetUnityRewardsDocument: types.GetUnityRewardsDocument,
@@ -1138,6 +1140,10 @@ export function gql(
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "CompletePathwayChallengeDocument"): typeof documents["CompletePathwayChallengeDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(
   source: "CreateMobileQuestLevelChallengeDocument"
 ): typeof documents["CreateMobileQuestLevelChallengeDocument"];
@@ -1159,6 +1165,10 @@ export function gql(
 export function gql(
   source: "GetPassiveChallengesLastUpdateDocument"
 ): typeof documents["GetPassiveChallengesLastUpdateDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetPathwayChallengeDocument"): typeof documents["GetPathwayChallengeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
