@@ -59,6 +59,10 @@ include:
     inputs:
       job_name: assume-aws-role-with-web-identity:devops:develop-builds
       role_arn: $DEVELOP_BUILDS_ROLE_ARN
+  - component: $CI_SERVER_FQDN/yu-life/infrastructure/yulife-devops-shared-config/assume-aws-role-with-web-identity@assume-aws-role-with-web-identity-2.0.0
+    inputs:
+      job_name: assume-aws-role-with-web-identity:devops:production-builds
+      role_arn: $PRODUCTION_BUILDS_ROLE_ARN
 
 variables:
   UK_DEV_AWS_ACCOUNT_ID: 846880112034
@@ -75,6 +79,8 @@ variables:
   LAMBDA_DOWNLOADS_URL: https://taiecnsb42.execute-api.eu-west-2.amazonaws.com/download
   FL_ANDROID_DEVELOP_KEYSTORE_PATH: .secure_files/yulife-android-develop.keystore
   FL_ANDROID_DEVELOP_KEY_ALIAS: yulife-android-develop
+  FL_ANDROID_PRODUCTION_KEYSTORE_PATH: .secure_files/yulife-react-native-client.jks
+  FL_ANDROID_PRODUCTION_KEY_ALIAS: yulife
   FL_ITC_TEAM_ID: 118777487
   FL_TEAM_ID: 739BJV2T6V
 

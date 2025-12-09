@@ -108,3 +108,38 @@ ios-uat-build:
     expire_in: 15 days
   rules:
     - if: $CI_COMMIT_BRANCH =~ /^release\/.*$/
+
+ios-production-build:
+  extends:
+    - .assume-aws-role-with-web-identity:devops:production-builds
+    - .base-macos-vm
+  stage: build
+  interruptible: false
+  variables:
+    # Fastlane variables
+    FL_APP_IDENTIFIER: com.yulife.main
+    FL_WATCH_APP_IDENTIFIER: com.yulife.main.yuwatch
+    FL_TEAM_ID: 739BJV2T6V
+    FL_IOS_CERT_TYPE: appstore
+    FL_IOS_EXPORT_METHOD: app-store
+    FL_MATCH_S3_BUCKET: yu-production-react-native-certificates
+    MATCH_PASSWORD: $FL_PRODUCTION_MATCH_PASSWORD
+    # Expo variables
+    ENVFILE: ".env.production"
+    BUNDLE_ID: com.yulife.main
+    PLATFORM: ios
+    ENABLE_YUWATCH: 1
+    # Project variables
+    # Set cocoapods cache path to local folder to allow gitlab cache it
+    CP_HOME_DIR: "$CI_PROJECT_DIR/.cocoapods_cache"
+  script:
+    - !reference [.ios-pre-build, script]
+    # Build ipa for distribution
+    - fastlane ios production_build
+  artifacts:
+    paths:
+      - builds/ios/
+    expire_in: 15 days
+  rules:
+    - if: $CI_COMMIT_BRANCH =~ /^release\/.*$/
+      when: manual

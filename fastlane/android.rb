@@ -89,8 +89,8 @@ platform :android do
         run_clean_gradle: true
       },
       'production' => {
-        bundle_output_folder: 'production',
-        bundle_output_assets_folder: 'createBundleProductionJsAndAssets',
+        bundle_output_folder: 'release',
+        bundle_output_assets_folder: 'createBundleReleaseJsAndAssets',
         gradle_task: 'assembleRelease',
         run_clean_gradle: false
       }
@@ -136,11 +136,11 @@ platform :android do
     # Publish Bugsnag release (metadata + sourcemaps)
     bugsnag_publish(release_environment: environment)
     
+    build_number = get_build_number || "0"
+    version = get_package_version
     # For production, upload to Google Play Store (TODO: To be tested on production builds)
     if environment != 'production'
        # If not production build, upload all APKs to S3
-       build_number = get_build_number || "0"
-       version = get_package_version
        arch_links = []
        signed_apks.each do |apk_path|
 
@@ -219,12 +219,27 @@ platform :android do
         package_name: ENV['BUNDLE_ID'],
         track: 'internal',
         apk_paths: ENV['GRADLE_ALL_APK_OUTPUT_PATHS'],
+        version_name: "#{version}.#{build_number}",
         skip_upload_metadata: true,
         skip_upload_images: true,
         skip_upload_screenshots: true
       )
-      
+
       UI.success("Successfully deployed to Google Play Store (internal track)")
+
+      slack(
+        message: "✅ YuLife Android #{environment} build completed successfully",
+        channel: "#alerts-engineering",
+        slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
+        username: "Gitlab CI MacOS Runner",
+        icon_emoji: ":android-icon:",
+        default_payloads: ["git_branch", "git_author"],
+        payload: {
+          "Build Version" => version,
+          "Build Number" => build_number,
+          "Environment" => environment
+        }
+      )
      
     end
     
@@ -240,7 +255,7 @@ platform :android do
   lane :uat_build do
     android_build(environment: 'uat')
   end
-  # TODO: This hasn't been tested yet
+
   desc "Android Production build"
   lane :production_build do
     android_build(environment: 'production')

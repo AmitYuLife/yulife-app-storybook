@@ -53,6 +53,14 @@ iOS Develop build
 
 iOS UAT build
 
+### ios production_build
+
+```sh
+[bundle exec] fastlane ios production_build
+```
+
+iOS Production build
+
 ### ios develop_certs_and_profiles
 
 ```sh
@@ -70,6 +78,16 @@ Matchfile needs to be updated with the correct environment variables.
 ```
 
 Generate new UAT certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)
+
+Matchfile needs to be updated with the correct environment variables.
+
+### ios production_certs_and_profiles
+
+```sh
+[bundle exec] fastlane ios production_certs_and_profiles
+```
+
+Generate new production certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)
 
 Matchfile needs to be updated with the correct environment variables.
 

@@ -35,11 +35,11 @@ platform :ios do
     environment = options[:environment]
     
     unless environment
-      UI.user_error!("Environment parameter is required. Supported: develop, uat")
+      UI.user_error!("Environment parameter is required. Supported: develop, uat, production")
     end
     
-    unless ['develop', 'uat'].include?(environment)
-      UI.user_error!("Unknown environment: #{environment}. Supported: develop, uat")
+    unless ['develop', 'uat', 'production'].include?(environment)
+      UI.user_error!("Unknown environment: #{environment}. Supported: develop, uat, production")
     end
     
     ci_certificates
@@ -66,28 +66,45 @@ platform :ios do
       targets: ["YuWatch"]
     )
 
+    # Replace app group for watch (production only)
+    if environment == "production"
+      UI.message("Replacing app group for watch in production build...")
+      yulife_entitlements_path = "#{ENV['CI_PROJECT_DIR']}/ios/YuLife/YuLife.entitlements"
+      yuwatch_entitlements_path = "#{ENV['CI_PROJECT_DIR']}/targets/YuWatch/yuwatch.entitlements"
+      info_plist_path = "#{ENV['CI_PROJECT_DIR']}/ios/YuLife/Info.plist"
+      project_pbxproj_path = "#{ENV['CI_PROJECT_DIR']}/ios/YuLife.xcodeproj/project.pbxproj"
+      sh("sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' #{yulife_entitlements_path}")
+      sh("cat #{yulife_entitlements_path}")
+      sh("sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' #{yuwatch_entitlements_path}")
+      sh("cat #{yuwatch_entitlements_path}")
+      sh("/usr/libexec/PlistBuddy -c \"Set :WKCompanionAppBundleIdentifier com.yulife.main.yuwatch\" \"#{info_plist_path}\"")
+      sh("sed -i '' 's/INFOPLIST_KEY_WKCompanionAppBundleIdentifier = [^;]*;/INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.yulife.main;/' #{project_pbxproj_path}")
+      UI.message("App group replacement completed")
+    end
+
     build_app(
       clean: true,
       codesigning_identity: ios_signing_identity,
       configuration: "Release",
       export_method: ENV["FL_IOS_EXPORT_METHOD"],
-      output_directory: "builds/ios",
-      scheme: "YuLife",
-      workspace: ios_workspace_path, 
       export_options: {
         installerSigningCertificate: ios_signing_identity,
         method: ENV["FL_IOS_EXPORT_METHOD"],
         provisioningProfiles: ENV["MATCH_PROVISIONING_PROFILE_MAPPING"],
         signingCertificate: "Apple Distribution",
-      }
+      },
+      output_directory: "builds/ios",
+      scheme: "YuLife",
+      workspace: ios_workspace_path,
     )
+    
+    version = get_package_version
+    build_number = get_build_number
+    full_version = "#{version}.#{build_number}"
     
     # Upload IPA to S3 (only develop builds)
     if environment == "develop"
       ipa_path = File.expand_path(File.join(ENV['CI_PROJECT_DIR'], "builds/ios/YuLife.ipa"))
-      version = get_package_version
-      build_number = get_build_number
-      full_version = "#{version}.#{build_number}"
       if File.exist?(ipa_path)
         s3_url = upload_to_s3(
           bucket_name: ENV['BINARY_S3_BUCKET_NAME'],
@@ -140,7 +157,8 @@ platform :ios do
       )
     end
     
-    if environment == "uat"
+    # Upload to TestFlight for UAT and production (both use identical configuration)
+    if environment == "uat" || environment == "production"
       upload_to_testflight(
         app_identifier: ENV["FL_APP_IDENTIFIER"],
         app_platform: "ios",
@@ -182,10 +200,15 @@ platform :ios do
     ios_build(environment: 'develop')
   end
 
-  desc "iOS UAT build"
-  lane :uat_build do
-    ios_build(environment: 'uat')
-  end
+    desc "iOS UAT build"
+    lane :uat_build do
+      ios_build(environment: 'uat')
+    end
+
+    desc "iOS Production build"
+    lane :production_build do
+      ios_build(environment: 'production')
+    end
 
   desc "Generate new develop certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)"
   desc "Matchfile needs to be updated with the correct environment variables."
@@ -195,7 +218,11 @@ platform :ios do
       app_identifier: ["com.yulife.develop","com.yulife.develop.yuwatch"], 
       type: "adhoc", 
       readonly: false,
-      force_for_new_devices: true
+      force_for_new_devices: true,
+      storage_mode: "s3",
+      s3_bucket: "yu-develop-react-native-certificates",
+      s3_region: "eu-west-2",
+      team_id: "739BJV2T6V"
     )
   end
 
@@ -203,13 +230,31 @@ platform :ios do
   desc "Matchfile needs to be updated with the correct environment variables."
   lane :uat_certs_and_profiles do
     # Needs the following environment variables:
-    # FL_MATCH_S3_BUCKET - Can be found in .build-ios.yml (S3 buckets on DevOps AWS account)
     # FL_MATCH_PASSWORD - Can be found in CI/CD Variables (CDK)
-    # FL_TEAM_ID - Can be found in .build-ios.yml (Team ID on Developer Portal)
     match(
       app_identifier: ["com.yulife.develop","com.yulife.develop.yuwatch"], 
       type: "appstore", 
-      readonly: false
+      readonly: false,
+      storage_mode: "s3",
+      s3_bucket: "yu-develop-react-native-certificates",
+      s3_region: "eu-west-2",
+      team_id: "739BJV2T6V"
+    )
+  end
+
+  desc "Generate new production certificates and provisioning profiles. To be run locally. Need S3 Bucket access permissions.(Lane for DevOps team)"
+  desc "Matchfile needs to be updated with the correct environment variables."
+  lane :production_certs_and_profiles do
+    # Needs the following environment variables:
+    # FL_MATCH_PASSWORD - Can be found in CI/CD Variables (CDK)
+    match(
+      app_identifier: ["com.yulife.main","com.yulife.main.yuwatch"], 
+      type: "appstore", 
+      readonly: false,
+      storage_mode: "s3",
+      s3_bucket: "yu-production-react-native-certificates",
+      s3_region: "eu-west-2",
+      team_id: "739BJV2T6V"
     )
   end
 
