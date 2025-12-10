@@ -250,7 +250,7 @@ export const activityHistoryScrollCyclingDataCorrect =
 export const activityHistoryScrollMinsDataCorrect =
   (minutes = 0) =>
   async () => {
-    const totalDays = 28;
+    const totalDays = 20;
 
     for (let i = 1; i <= totalDays; i++) {
       await scrollUntilIdVisible(

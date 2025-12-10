@@ -113,8 +113,10 @@ Feature("Smart Pension", async () => {
         Then("I can see a paused pension contribution page", then.canSeePensionContributionPage("paused", PensionInfoUser114));
       });
     });
-    When("I tap the piggy bank toggle", when.tapID(ids.SDUI_SWITCH(undefined), 4000), async () => {
-      Then("I can see the value has changed", then.idVisible(ids.SDUI_SWITCH(true)));
+    When("I scroll further down", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.2, 4000), async () => {
+      When("I tap the piggy bank toggle", when.tapID(ids.SDUI_SWITCH(undefined), 4000), async () => {
+        Then("I can see the value has changed", then.idVisible(ids.SDUI_SWITCH(true)));
+      });
     });
     When("I dismiss the product page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 5000), async () => {
       When("I go to the Yu tab", when.navigateTo("yucoin"), async () => {
