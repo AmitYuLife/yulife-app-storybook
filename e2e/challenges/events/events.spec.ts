@@ -176,12 +176,12 @@ Feature("As a user I can opt in and take an event", async () => {
   });
 
   Scenario("I can view the active Team vs Team tournament with the remaining days and current team standings", scenario.start, async () => {
-    Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_72, data.AUTH_72), async () => {
-      Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
-    });
-    When("I swipe right on the event card", when.scrollFromID(ids.EVENT_HEADING(data.GOALS_4.data.title, "#464647"), "left", "fast"), async () => {
-      Then("I should see the correct event title", then.idVisible(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#464647")));
-      Then("I should see the correct event description", then.idVisible(ids.EVENT_DESCRIPTION(tournamentEventDescription, "#464647")));
+    Given("I login", given.loginAsUser(data.CUSTOMER_76, data.AUTH_76), async () => {
+      When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 5000), async () => {
+        Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 4000));
+        Then("I should see the correct event title", then.idVisible(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#464647"), 4000));
+        Then("I should see the correct event description", then.idVisible(ids.EVENT_DESCRIPTION(tournamentEventDescription, "#464647"), 4000));
+      });
     });
     When("I tap on the event card", when.tapID(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#464647")), async () => {
       Then("I should see the correct remaining days", then.textVisible("6 days left", 2000));
