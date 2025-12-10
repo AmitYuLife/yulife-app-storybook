@@ -1,5 +1,5 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_52, CUSTOMER_72, CUSTOMER_81 } from "../postgres/customers";
+import { CUSTOMER_52, CUSTOMER_72, CUSTOMER_76, CUSTOMER_81 } from "../postgres/customers";
 import { GOALS_5, GOALS_TOURNAMENT } from "./goals";
 import moment from "moment";
 
@@ -23,7 +23,7 @@ export const GOAL_INVITATION_TOURNAMENT_72 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_72.data.customerId,
+    userId: CUSTOMER_76.data.customerId,
     goal: GOALS_TOURNAMENT.data._id,
     endDateTime: moment().add(7, "days").format("YYYY-MM-DDTHH:mm:ss"),
   },
