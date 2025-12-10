@@ -10,7 +10,8 @@ import LinearGradient from "react-native-linear-gradient";
 import { useSelector } from "react-redux";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import PathwayNoAvatar from "./pathway-no-avatar";
-import PathwayTileShine from "./pathway-tile-shine";
+import LottieView from "lottie-react-native";
+import shineAnimation from "./pathway-challenge-shine.json";
 import moment from "moment";
 import Pressable from "../pressable/pressable";
 
@@ -94,7 +95,12 @@ const PathwayChallengeTile: React.FC<IPathwayChallengeTileProps> = ({
               borderTopRadius={BORDER_RADIUS - Style.adjust(2)}
               overflow="hidden"
             >
-              <PathwayTileShine />
+              <LottieView
+                source={shineAnimation}
+                autoPlay={true}
+                loop={true}
+                style={{ width: IMAGE_SIZE, height: TOP_HEIGHT }}
+              />
             </Box>
           </Box>
           <Box
