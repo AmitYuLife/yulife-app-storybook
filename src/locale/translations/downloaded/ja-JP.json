@@ -879,7 +879,8 @@
       },
       "level_boosted": "ブースト",
       "level_completed": "完了",
-      "level_locked": "ロック状態"
+      "level_locked": "ロック状態",
+      "time_remaining": "残り時間"
     },
     "challenge_next_modal": {
       "cta_reject": "後で設定する",

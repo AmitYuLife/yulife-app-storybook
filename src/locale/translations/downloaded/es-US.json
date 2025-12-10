@@ -879,7 +879,8 @@
       },
       "level_boosted": "Aumentar",
       "level_completed": "Completado",
-      "level_locked": "Bloqueado"
+      "level_locked": "Bloqueado",
+      "time_remaining": "Tiempo restante"
     },
     "challenge_next_modal": {
       "cta_reject": "Tal vez más tarde",

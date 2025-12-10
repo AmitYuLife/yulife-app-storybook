@@ -414,7 +414,7 @@
       "claim_reward": "استلام المكافأة",
       "info_card": {
         "power_up_inventory": {
-          "description": "يمكنك العثور على التعزيز الخاص بك في مستودع التعزيزات الخاص بك.",
+          "description": "يمكنك العثور على معزّزك داخل مخزون المعزّزات",
           "title": "تم جمع التعزيز!"
         },
         "wallet": {
@@ -548,7 +548,7 @@
     "leaderboard": {
       "accessibility_label": "افتح قائمة المتصدرين",
       "accessibility_text_value": "٤ من ٥",
-      "label": "قائمة المتصدرين"
+      "label": "الترتيب"
     },
     "quest": {
       "accessibility_label": "افتح المهمة",
@@ -790,7 +790,7 @@
     "animated_chest": {
       "closed_chest": {
         "cta_label": "افتح الصندوق",
-        "heading": "تم بلوغ معلم المستوى!",
+        "heading": "إنجاز جديد، وصلت إلى مستوى جديد",
         "subheading": "لقد نجحت!"
       },
       "opened_chest": {
@@ -879,7 +879,8 @@
       },
       "level_boosted": "تعزيز",
       "level_completed": "المكتمل",
-      "level_locked": "مغلق"
+      "level_locked": "مغلق",
+      "time_remaining": "الوقت المتبقي"
     },
     "challenge_next_modal": {
       "cta_reject": "ربما لاحقاً",
@@ -1339,7 +1340,7 @@
       "error_title": "هناك خطأ ما",
       "generic_email_error": {
         "message": "إذا لم يتم التعرف على تطبيق البريد الإلكتروني الخاص بك، حاول فتحه يدوياً.",
-        "title": "هناك خطأ ما"
+        "title": "حدث خطأ ما!"
       },
       "heading": "مستعد أن تكون أفضل نسخة منك؟ لنتحقق من حسابك.",
       "login_with_password": "تسجيل الدخول باستخدام كلمة المرور بدلاً من ذلك.",
@@ -1450,7 +1451,7 @@
     },
     "pathways": {
       "advice_empty_section": {
-        "title": "أنت تقترب من أفكارك!"
+        "title": "أنت على بُعد خطوة من تحليلاتك"
       },
       "day": "يوم %{day}",
       "header": "تأمل اليوم",
@@ -2270,10 +2271,10 @@
       "title": "لماذا أحتاج هذا؟"
     },
     "foreground_service": {
-      "active_body": "سنحسب خطواتك! استمر في الحركة واربح المزيد من يو كوين!",
+      "active_body": "لقد قمنا بتغطية خطواتك! واصل التحرك واكسب يوكوين!",
       "active_title": "%{steps} خطوات",
       "ended_body": "تحقق مرة أخرى لترى كيف كانت نتيجتك!",
-      "ended_title": "انتهاء التحدي"
+      "ended_title": "انتهى التحدي"
     },
     "providers": {
       "generic": "مزود الرعاية الصحية",
