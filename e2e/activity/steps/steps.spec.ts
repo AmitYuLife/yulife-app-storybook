@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, WhenSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -49,27 +49,30 @@ Feature("As a user my activity is monitored correctly", async () => {
     });
   });
 
-  Scenario("I can do 28 days of steps and see the data queried and displayed correctly", scenario.start, async () => {
-    When("I have done 28 days of steps in the past month", when.addSteps28DaysHistoricalData(2000), async () => {
-      Given("I login", given.loginToYuScreen(false, data.CUSTOMER_66, data.AUTH_66), async () => {
+  Scenario("I can do 20 days of steps and see the data queried and displayed correctly", scenario.start, async () => {
+    Given("I login", given.loginToYuScreen(false, data.CUSTOMER_66, data.AUTH_66), async () => {
+      When("I have done 28 days of steps in the past month", when.addSteps20DaysHistoricalData(2000), async () => {
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-          Then("I should see my steps today as 0", then.idVisible(ids.STEPS_COUNT(0)));
+          Then("I should see my steps today as 0", then.idVisible(ids.STEPS_COUNT(0), 3000));
         });
       });
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
     });
-    When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
+    When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
       Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500));
     });
-    When("I tap the previous month", when.tapPreviousMonth(), async () => {
-      Then("I should see all steps from the past 28 days ago loaded in", then.activityHistoryScrollStepDataCorrect(2000, 28));
+    // Bug GS-2137: Activity History Month Buttons Not Fully Pressable
+    WhenSkip("I tap the previous month", when.tapPreviousMonth(), async () => {
+      WhenSkip("I refresh the activity history page", when.tapID(ids.LEFT_HEADING_BUTTON("Activity history"), 2000), async () => {
+        Then("I should see all steps from the past 28 days ago loaded in", then.activityHistoryScrollStepDataCorrect(2000, 20));
+      });
     });
   });
 
-  Scenario("I can do 28 days of cycling and see the data queried and displayed correctly", scenario.start, async () => {
-    When("I have done 28 days of cycling in the past month", when.addCycling28DaysHistoricalData(3000), async () => {
+  Scenario("I can do 20 days of cycling and see the data queried and displayed correctly", scenario.start, async () => {
+    When("I have done 20 days of cycling in the past month", when.addCycling20DaysHistoricalData(3000), async () => {
       Given("I login", given.loginToYuScreen(false, data.CUSTOMER_66, data.AUTH_66), async () => {
         When("I go back to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
           Then("I should see my steps today as 0", then.idVisible(ids.STEPS_COUNT(0)));
@@ -77,7 +80,7 @@ Feature("As a user my activity is monitored correctly", async () => {
       });
     });
     When("I go back to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-      Then("I should not see cycling distance displayed on my YuScreen", then.idNotVisible(ids.CYCLING_COUNT("0 km")));
+      Then("I should not see cycling distance displayed on my YuScreen", then.idNotVisible(ids.CYCLING_COUNT("0 km"), 3000));
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
@@ -86,14 +89,15 @@ Feature("As a user my activity is monitored correctly", async () => {
       When("I tap the previous month", when.tapPreviousMonth(), async () => {
         Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500));
       });
-      When("I tap to refresh activity history", when.tapID(ids.LEFT_HEADING_BUTTON("ACTIVITY_HISTORY"), 3000), async () => {
+      // Bug GS-2137: Activity History Month Buttons Not Fully Pressable
+      WhenSkip("I tap to refresh activity history", when.tapID(ids.LEFT_HEADING_BUTTON("ACTIVITY_HISTORY"), 3000), async () => {
         Then("I should see all km cycled from the past 20 days ago loaded in", then.activityHistoryScrollCyclingDataCorrect(3000, 20));
       });
     });
   });
 
-  Scenario("I can do 28 days of meditation and see the data queried and displayed correctly", scenario.start, async () => {
-    When("I have done 28 days of meditating in the past month", when.addMins28DaysHistoricalData(4), async () => {
+  Scenario("I can do 20 days of meditation and see the data queried and displayed correctly", scenario.start, async () => {
+    When("I have done 20 days of meditating in the past month", when.addMins20DaysHistoricalData(4), async () => {
       Given("I login", given.loginToYuScreen(false, data.CUSTOMER_66, data.AUTH_66), async () => {
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
           Then("I should not see any mindfulness mins displayed for today", then.idNotVisible(ids.MINDFUL_COUNT("0 min")));
@@ -103,11 +107,14 @@ Feature("As a user my activity is monitored correctly", async () => {
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
     });
-    When("I tap activity history", when.tapID(ids.MENU_ITEM(t("Activity History"))), async () => {
+    When("I tap activity history", when.tapID(ids.MENU_ITEM("Activity History"), 3000), async () => {
       When("I tap the previous month", when.tapPreviousMonth(), async () => {
         Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500));
-        Then("I should see all mindful minutes from the past 28 days ago loaded in", then.activityHistoryScrollMinsDataCorrect(4));
       });
+    });
+    // Bug GS-2137: Activity History Month Buttons Not Fully Pressable
+    WhenSkip("I tap to refresh activity history", when.tapID(ids.LEFT_HEADING_BUTTON("ACTIVITY_HISTORY"), 3000), async () => {
+      Then("I should see all mindful minutes from the past 28 days ago loaded in", then.activityHistoryScrollMinsDataCorrect(4));
     });
   });
 

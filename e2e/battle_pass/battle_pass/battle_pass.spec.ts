@@ -299,7 +299,7 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I tap to continue to payment", when.tapID(ids.BUTTON_BASE("Continue to Payment", false), 2500), async () => {
       When("I fill in the required card details on the Stripe payment modal", when.completeStripePayment(cardDetails, "67.50"), async () => {
-        Then("I should see the purchase success screen", then.idVisible(ids.TEXT_TEMPLATE("You've successfully purchased a gift card!", undefined), 4000));
+        Then("I should see the purchase success screen", then.idVisible(ids.TEXT_TEMPLATE("You've successfully purchased a gift card!", "b2"), 4000));
       });
     });
     When("I tap to view my gift card", when.tapID(ids.BUTTON_BASE("View gift card", false), 4000), async () => {

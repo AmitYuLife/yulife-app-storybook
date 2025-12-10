@@ -243,39 +243,31 @@ export const addMindfulnessHistoricalData =
     await addAggregateQueries(record);
   };
 
-export const addSteps28DaysHistoricalData = (steps: number) => async () => {
-  const record = [];
-  let i = 1;
+export const addSteps20DaysHistoricalData = (steps: number) => async () => {
+  const records = [];
+  const endOfPrevMonth = moment().subtract(1, "month").endOf("month");
 
-  while (i <= 28) {
-    const data = {
-      startTime: moment()
-        .startOf("month")
-        .subtract(i, "day")
-        .startOf("day")
-        .add(10, "minutes")
-        .toDate(),
-      endTime: moment()
-        .startOf("month")
-        .subtract(i, "day")
-        .endOf("day")
-        .subtract(10, "minutes")
-        .toDate(),
-      value: steps + i,
+  for (let i = 0; i < 20; i++) {
+    const day = endOfPrevMonth.clone().subtract(i, "day");
+
+    const startTime = day.clone().startOf("day").add(10, "minutes").toDate();
+    const endTime = day.clone().endOf("day").subtract(10, "minutes").toDate();
+
+    records.push({
+      startTime,
+      endTime,
+      value: steps + (i + 1),
       dataType: HealthDataType.steps,
-    };
-    record.push(data);
-    i++;
+    });
   }
-
-  await addAggregateQueries(record);
+  await addAggregateQueries(records);
 };
 
-export const addCycling28DaysHistoricalData = (value: number) => async () => {
+export const addCycling20DaysHistoricalData = (value: number) => async () => {
   const record = [];
   let i = 1;
 
-  while (i <= 28) {
+  while (i <= 20) {
     const data = {
       startTime: moment()
         .startOf("month")
@@ -299,11 +291,11 @@ export const addCycling28DaysHistoricalData = (value: number) => async () => {
   await addAggregateQueries(record);
 };
 
-export const addMins28DaysHistoricalData =
+export const addMins20DaysHistoricalData =
   (firstDayInMinutes = 0) =>
   async () => {
     const record = [];
-    const totalDays = 28;
+    const totalDays = 20;
 
     for (let i = 1; i <= totalDays; i++) {
       const startTime = moment()

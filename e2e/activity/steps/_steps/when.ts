@@ -3,13 +3,14 @@ export {
   sendSteps,
   addSteps3DaysHistoricalData,
   addStepsHistoricalData,
-  addSteps28DaysHistoricalData,
-  addCycling28DaysHistoricalData,
-  addMins28DaysHistoricalData,
+  addSteps20DaysHistoricalData,
+  addCycling20DaysHistoricalData,
+  addMins20DaysHistoricalData,
   addMindfulnessHistoricalData,
 } from "@socket";
 import { screens } from "@appScreens";
 import moment from "moment";
+import { ACTIVITY_HISTORY_MONTH } from "@ids";
 
 export const {
   tapID,
@@ -45,5 +46,5 @@ export const { tapMenuItem } = screens.menu;
 
 export const tapPreviousMonth = () => async () => {
   const previousMonth = moment().subtract(1, "months").format("MMMM");
-  await tapText(previousMonth)();
+  await tapID(ACTIVITY_HISTORY_MONTH(previousMonth), 3_000)();
 };
