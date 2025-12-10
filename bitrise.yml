@@ -46,17 +46,7 @@ meta:
     machine_type: performance
     machine_type_id: g2-m1.4core
     stack: osx-xcode-16.2.x
-trigger_map:
-- pipeline: pipeline-release-uat
-  push_branch: release/*
-- workflow: ios-detox-build-70
-  push_branch: release/**
-- pipeline: pipeline-test-branch
-  tag: test-branch*
-- pipeline: pipeline-release-prod
-  tag: release*
-- workflow: android-production
-  tag: android-release*
+trigger_map: []
 pipelines:
   pipeline-develop:
     stages:
