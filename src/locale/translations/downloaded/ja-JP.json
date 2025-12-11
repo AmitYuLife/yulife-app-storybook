@@ -1343,7 +1343,7 @@
         "title": "エラーが発生しました"
       },
       "heading": "アカウントの認証を完了してください。",
-      "login_with_password": "パスワードでログインしてください。",
+      "login_with_password": "パスワードでログインする場合はこちら",
       "no_email_app_installed": {
         "message": "メールアプリが認識されない場合は、手動でお試しください。",
         "title": "メールアプリがインストールされていません"
