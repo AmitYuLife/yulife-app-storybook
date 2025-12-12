@@ -77,7 +77,7 @@ const SharableCard = ({ viewShotRef, stats }: ISharableCardProps) => {
                 height={150}
               />
               <Box pl={5} w="100%" pr={5} flexDirection="row" justifyContent="flex-end" mt={-10}>
-                <WrappedLogo size="small" />
+                <WrappedLogo size="small" wrappedLogo={stats.wrappedLogo} />
               </Box>
               <Box justifyContent="center" position="absolute" mt={10}>
                 <Yumoji uri={yumojiRemoteUrl} width={Style.DEVICE_WIDTH - 80} height={300} />

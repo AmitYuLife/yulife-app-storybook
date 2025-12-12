@@ -68,7 +68,7 @@ const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
               <Box flex={1} justifyContent="center">
                 <Box gap={10} justifyContent="center" alignItems="center" mb={30}>
                   <Box entering={FadeInUp.delay(CONTENT_DELAY).duration(800)} mt={-20}>
-                    <WrappedLogo />
+                    <WrappedLogo wrappedLogo={stats?.wrappedLogo} />
                   </Box>
                 </Box>
                 <Box entering={FadeInUp.delay(CONTENT_DELAY + 1000).duration(800)}>
