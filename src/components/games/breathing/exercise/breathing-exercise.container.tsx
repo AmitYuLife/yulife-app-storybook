@@ -66,6 +66,7 @@ type Props = {
 const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   const { componentId } = useNavigation();
   const dispatch = useDispatch();
+  const [rewardAmount, setRewardAmount] = useState<number>(0);
   const [completePathwayChallenge] = useMutation(gql("CompletePathwayChallengeDocument"), {
     refetchQueries: [{ query: gql("GetPathwayChallengeDocument") }],
   });
@@ -82,7 +83,9 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
     parts: data.parts.map((part) => ({ ...part })),
     defaultDuration: data.defaultDuration || DEFAULT_DURATION_MS,
     onCompleted: async () => {
-      await completePathwayChallenge({ variables: { challengeId } });
+      const result = await completePathwayChallenge({ variables: { challengeId } });
+      const yuCoinAwarded = result.data?.completePathwayChallenge?.yuCoinAwarded || 0;
+      setRewardAmount(yuCoinAwarded);
       dispatch(
         logMixpanelEventActionCreator("breathing_exercise_completed", {
           duration: selectedDurationMs,
@@ -125,12 +128,19 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
     );
 
     if (currentPart.type === BreathingExerciseOptionPartType.End) {
-      Navigation.popTo(ROUTES.questsChallengesList);
+      Navigation.push(componentId, {
+        component: {
+          name: ROUTES.pathwayChallengeSuccess,
+          passProps: {
+            reward: rewardAmount,
+          },
+        },
+      });
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
     } else {
       Navigation.pop(componentId);
     }
-  }, [dispatch, selectedDurationMs, data.id, currentPart.type, componentId]);
+  }, [dispatch, selectedDurationMs, data.id, currentPart.type, componentId, rewardAmount]);
 
   // Pause exercise when app goes to background
   const handleAppStateChange = useCallback(
