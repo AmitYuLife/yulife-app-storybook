@@ -114,6 +114,7 @@ export default {
     border: "white",
   },
   pathways: {
+    sand: "#FFF7AE",
     header: "#0177FF",
     background: "#0050DB",
     darkBackground: "#013BA0",
