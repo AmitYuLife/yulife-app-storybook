@@ -5,9 +5,10 @@ import { memo } from "react";
 
 interface IWrappedLogoProps {
   size?: "small" | "large";
+  wrappedLogo?: { uri?: string | null };
 }
 
-const WrappedLogo = ({ size = "large" }: IWrappedLogoProps) => {
+const WrappedLogo = ({ size = "large", wrappedLogo }: IWrappedLogoProps) => {
   const LOGO_SIZE = Style.adjust(size === "large" ? 60 : 15);
   const YEAR_SIZE = Style.adjust(size === "large" ? 55 : 25);
 
@@ -24,15 +25,17 @@ const WrappedLogo = ({ size = "large" }: IWrappedLogoProps) => {
           {t("screens.wrapped.title")}
         </TextTemplate>
       </Box>
-      <Box position="absolute" right={0} bottom={size === "large" ? Style.adjust(-15) : Style.adjust(-5)}>
-        <Image
-          suppressLoadingUi={true}
-          width={YEAR_SIZE}
-          height={YEAR_SIZE}
-          resizeMode="contain"
-          source={require("../assets/wrapped-2024.webp")}
-        />
-      </Box>
+      {wrappedLogo?.uri ? (
+        <Box position="absolute" right={0} bottom={size === "large" ? Style.adjust(-15) : Style.adjust(-5)}>
+          <Image
+            suppressLoadingUi={true}
+            width={YEAR_SIZE}
+            height={YEAR_SIZE}
+            resizeMode="contain"
+            source={{ uri: wrappedLogo.uri }}
+          />
+        </Box>
+      ) : null}
     </Box>
   );
 };

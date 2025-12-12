@@ -1320,7 +1320,7 @@
         }
       },
       "stage_3": {
-        "title": "In 2024 you walked...",
+        "title": "This year you walked...",
         "subtitle": "You smashed it!",
         "collected": "You collected...",
         "yucoin_amount": "%{amount} YuCoin",

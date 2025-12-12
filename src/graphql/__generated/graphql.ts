@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -78,6 +79,7 @@ export type ApiConfigUrls = {
   employeeExperience: Scalars["String"]["output"];
   employeeExperienceAbsenteeism: Scalars["String"]["output"];
   employeeExperienceBurnout: Scalars["String"]["output"];
+  employeeExperienceEnps: Scalars["String"]["output"];
   employeeExperienceMental: Scalars["String"]["output"];
   employeeExperiencePhysical: Scalars["String"]["output"];
   employeeExperienceTurnover: Scalars["String"]["output"];
@@ -3241,8 +3243,6 @@ export type DefaultOnboardingDetails = {
   dateOfBirth?: Maybe<Scalars["String"]["output"]>;
   /** The user's email address, either from the users customer record or their employee record */
   email?: Maybe<Scalars["String"]["output"]>;
-  /** Whether the new referral process should be used during onboarding */
-  enableCodeBasedReferrals?: Maybe<Scalars["Boolean"]["output"]>;
   /** The user's first name, either from the users customer record or their employee record */
   firstName?: Maybe<Scalars["String"]["output"]>;
   /** The user's full name, either from the users customer record or their employee record with ordering as per locale */
@@ -4209,6 +4209,7 @@ export type GetMobileUserContentLocation = {
 
 export type GetOnboardingConfigurationResult = {
   __typename?: "GetOnboardingConfigurationResult";
+  activeEmployeeCount?: Maybe<Scalars["Int"]["output"]>;
   connectionCount?: Maybe<Scalars["Int"]["output"]>;
   employeeCount?: Maybe<Scalars["Int"]["output"]>;
   importCount?: Maybe<Scalars["Int"]["output"]>;
@@ -4784,6 +4785,8 @@ export type HeatmapData = {
   columns: Array<Scalars["String"]["output"]>;
   /** Whether the survey has partial segment data. */
   hasPartialSegmentData: Scalars["Boolean"]["output"];
+  /** The campaign ID - used as a stable identifier for UI caching. */
+  id: Scalars["ID"]["output"];
 };
 
 export type HeroCard = {
@@ -6252,6 +6255,7 @@ export type MobileUserWrapped = {
   totalYuCoin: Scalars["Int"]["output"];
   totalYudokuTime: Scalars["Int"]["output"];
   totalYudokus: Scalars["Int"]["output"];
+  wrappedLogo: RemoteImage;
 };
 
 export type MobileWeeklyActivityProgress = {
@@ -6358,6 +6362,8 @@ export type MultipleChoiceQuestionResults = {
   answers: Array<MultipleChoiceQuestionAnswerResult>;
   /** Whether the survey has partial segment data. */
   hasPartialSegmentData: Scalars["Boolean"]["output"];
+  /** The question ID (stepId) - used as a stable identifier for UI caching. */
+  id: Scalars["ID"]["output"];
 };
 
 export type Mutation = {
@@ -7666,6 +7672,8 @@ export type NpsQuestionAnswerResult = {
   hasPartialSegmentData: Scalars["Boolean"]["output"];
   /** Historical NPS scores for the company this question is part of. */
   historicalScores: Array<NpsScore>;
+  /** The question ID (stepId) - used as a stable identifier for UI caching. */
+  id: Scalars["ID"]["output"];
 };
 
 /** Represents segmented breakdown results for a NPS question. */
@@ -7765,6 +7773,8 @@ export type PaginatedQualitativeQuestionResults = {
   data: Array<QualitativeQuestionAnswerResult>;
   /** Whether the survey has partial segment data. */
   hasPartialSegmentData: Scalars["Boolean"]["output"];
+  /** The question ID (stepId) - used as a stable identifier for UI caching. */
+  id: Scalars["ID"]["output"];
   /** The total number of pages available. */
   totalPages: Scalars["Int"]["output"];
 };
@@ -9767,6 +9777,8 @@ export type ScaleQuestionAnswerResult = {
   __typename?: "ScaleQuestionAnswerResult";
   /** Whether the survey has partial segment data. */
   hasPartialSegmentData: Scalars["Boolean"]["output"];
+  /** The question ID (stepId) - used as a stable identifier for UI caching. */
+  id: Scalars["ID"]["output"];
   /** Overview statistics for scale questions in the survey. */
   scaleOverviewStatistics: ScaleOverviewStatistics;
   /** Breakdown of results by segment for this scale question. */
@@ -10407,6 +10419,8 @@ export type Surge = {
 /** Represents information about a survey question. */
 export type SurveyQuestionInfo = {
   __typename?: "SurveyQuestionInfo";
+  /** The category of the survey question. */
+  category: Scalars["String"]["output"];
   /** The question ID (stepId) for this question. */
   id: Scalars["ID"]["output"];
   /** The title/text of the survey question. */
@@ -10443,6 +10457,8 @@ export type SurveySummaryResult = {
   __typename?: "SurveySummaryResult";
   /** Whether the survey has partial segment data. */
   hasPartialSegmentData: Scalars["Boolean"]["output"];
+  /** The campaign ID - used as a stable identifier for UI caching. */
+  id: Scalars["ID"]["output"];
   /** A max of 3 questions with the highest scores in the survey. */
   maxScoreQuestions: Array<ScaleQuestionInfo>;
   /** A max of 3 questions with the lowest scores in the survey. */
@@ -10852,6 +10868,7 @@ export type TeamEmployeeRecognitionCampaignRecipientsResponse = {
 export type TeamEmployeeRecognitionCampaignResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignResponse";
   campaign: TeamEmployeeRecognitionCampaign;
+  maxYucoinAmountPerGift: Scalars["Int"]["output"];
   timezone: Scalars["String"]["output"];
   timezoneOffset: Scalars["Int"]["output"];
 };
@@ -11590,6 +11607,8 @@ export type UptakeResults = {
   __typename?: "UptakeResults";
   /** Whether the survey has partial segment data. */
   hasPartialSegmentData: Scalars["Boolean"]["output"];
+  /** The campaign ID - used as a stable identifier for UI caching. */
+  id: Scalars["ID"]["output"];
   /** The uptake results for the survey. */
   uptakeResults: Array<UptakeResultsBySegment>;
 };
@@ -22137,6 +22156,7 @@ export type MobileUserWrappedFragment = {
   bestYudokuTime: number;
   totalYudokus: number;
   totalYudokuTime: number;
+  wrappedLogo: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   challengeRatings: Array<{ __typename?: "WrappedChallengeRating"; rating: number; count: number }>;
   challengeCounts: Array<{
     __typename?: "WrappedChallengeCount";
@@ -38380,6 +38400,7 @@ export type GetMobileUserWrappedQuery = {
     bestYudokuTime: number;
     totalYudokus: number;
     totalYudokuTime: number;
+    wrappedLogo: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     challengeRatings: Array<{ __typename?: "WrappedChallengeRating"; rating: number; count: number }>;
     challengeCounts: Array<{
       __typename?: "WrappedChallengeCount";
@@ -60571,6 +60592,14 @@ export const MobileUserWrappedFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrappedLogo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "challengeRatings" },
@@ -97755,6 +97784,14 @@ export const GetMobileUserWrappedDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrappedLogo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "challengeRatings" },

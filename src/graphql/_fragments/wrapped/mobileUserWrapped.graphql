@@ -1,5 +1,8 @@
 fragment MobileUserWrapped on MobileUserWrapped {
     id
+    wrappedLogo {
+        ...RemoteImage
+    }
     challengeRatings {
         rating
         count

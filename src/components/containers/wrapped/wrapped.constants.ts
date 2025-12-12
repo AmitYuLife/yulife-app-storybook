@@ -4,6 +4,7 @@ export const FAKE_STATS: IWrappedStats = {
   totalChallenges: 32,
   totalSteps: 420690,
   totalYuCoin: 69696,
+  wrappedLogo: { id: "1", uri: "example.com/test.png" },
   bestYudokuTime: 69,
   totalYudokus: 10,
   totalYudokuTime: 420,

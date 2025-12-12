@@ -1,3 +1,5 @@
+import { RemoteImage } from "@graphql/__generated";
+
 export interface IWrappedStats {
   totalSteps: number;
   totalYuCoin: number;
@@ -7,6 +9,7 @@ export interface IWrappedStats {
   totalYudokuTime: number;
   challengeRatings: { rating: number; count: number }[];
   challengeCounts: { label: string; count: number; icon: { uri?: string } }[];
+  wrappedLogo: RemoteImage;
 }
 
 export interface IWrappedStageProps {

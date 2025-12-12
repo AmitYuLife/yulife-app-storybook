@@ -86,6 +86,7 @@ const WrappedContainer: FC<IProps> = ({ wrappedId }: IProps) => {
         onAnimationEnd={nextStage}
         onStartPress={onStartPress}
         isLoading={isLoading || isMarkLoading}
+        wrappedLogo={data?.getMobileUserWrapped?.wrappedLogo}
       />
     );
   }

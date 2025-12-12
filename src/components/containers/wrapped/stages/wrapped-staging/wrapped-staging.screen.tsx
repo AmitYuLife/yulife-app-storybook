@@ -12,6 +12,7 @@ import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 import { t } from "@locale";
 import { GenericHeadingPad } from "@organisms";
 import { HEIGHT } from "@styles/top-bar.styles";
+import { RemoteImage } from "@graphql/__generated";
 
 const EXIT_DELAY = 5000;
 
@@ -21,6 +22,7 @@ interface IWrappedStagingScreenProps {
   onBack?: () => void;
   onStartPress?: () => void;
   onAnimationEnd?: () => void;
+  wrappedLogo?: RemoteImage;
 }
 
 const WrappedStagingScreen = ({
@@ -29,6 +31,7 @@ const WrappedStagingScreen = ({
   onBack,
   isError,
   isLoading,
+  wrappedLogo,
 }: IWrappedStagingScreenProps) => {
   const insets = useSafeAreaInsets();
   const [isExiting, setIsExiting] = useState(false);
@@ -87,7 +90,7 @@ const WrappedStagingScreen = ({
                     <TextTemplate type="b1">{t("screens.wrapped.staging.title")}</TextTemplate>
                   </Box>
                   <Box transform={[{ scale: 1.2 }]} mt={20}>
-                    <WrappedLogo size="large" />
+                    <WrappedLogo size="large" wrappedLogo={wrappedLogo} />
                   </Box>
                 </Box>
                 <Box pb={80}>
