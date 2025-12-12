@@ -102,26 +102,22 @@ Feature("Health questionnaires", async () => {
     When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
+    When("I close the HQ", when.tapID(ids.SCREEN_CLOSE, 3000), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.LEFT_HEADING_BUTTON("Today’s Earnings")), async () => {
         Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("Daily health questions")));
         Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("Earn **60**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7) by discovering more about your health.", "#464647")));
         Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON));
       });
     });
-    When("I tap the event panel for the HQ", when.tapID(ids.EVENT_CARD("Daily health questions")), async () => {
+    When("I tap the event panel for the HQ", when.tapID(ids.EVENT_CARD("Daily health questions"), 2000), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
-      When("I press the next button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
-        Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
-      });
+    When(`I press the '${hqInfoCopy.cta}' button`, when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false), 2000), async () => {
+      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
     });
-    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
-      When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
-        Then("I should see the reflection.rested_today step", then.textVisible(hqReflectionRestedTodayCopy.title));
-        Then("I should see the progress bar in the start position", then.progressBarVisible(50, 600));
-      });
+    When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false), 4000), async () => {
+      Then("I should see the reflection.rested_today step", then.textVisible(hqReflectionRestedTodayCopy.title, 2000));
+      Then("I should see the progress bar in the start position", then.progressBarVisible(50, 600));
     });
     When("I select the first option for reflection.rested_today", when.tapText(hqReflectionRestedTodayCopy.option), async () => {
       When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
@@ -250,15 +246,11 @@ Feature("Health questionnaires", async () => {
     When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
-      When("I press the 'See terms and conditions' button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
-        Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
-      });
+    When("I press the 'See terms and conditions' button", when.tapID(ids.BUTTON_BASE(hqInfoCopy.cta, false)), async () => {
+      Then("I should see the terms and conditions screen", then.onHQConsentScreen(hqConsentCopy));
     });
-    When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
-      When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
-        Then("I should see the reflection.rested_today step", then.textVisible(hqReflectionRestedTodayCopy.title));
-      });
+    When("I accept the terms and conditions", when.tapID(ids.BUTTON_BASE(hqConsentCopy.cta, false)), async () => {
+      Then("I should see the reflection.rested_today step", then.textVisible(hqReflectionRestedTodayCopy.title));
     });
     When("I select the first option for reflection.rested_today", when.tapText(hqReflectionRestedTodayCopy.option), async () => {
       When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
@@ -380,7 +372,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
       Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"));
-      Then("I should see that I completed the questionnaire", then.textVisible("Quiz"));
+      Then("I should see that I completed the questionnaire", then.textVisible("Daily Reflection"));
       Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("6", 1500));
     });
   });
@@ -520,9 +512,9 @@ Feature("Health questionnaires", async () => {
       });
     });
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
-      When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5), async () => {
-        Then("I should see Additional rewards showing the questionnaire", then.textVisible("Quiz"));
-        Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("60"));
+      When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5, 2000), async () => {
+        Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("60", 2000));
+        Then("I should see Additional rewards showing the questionnaire", then.textVisible("Daily Reflection"));
       });
     });
   });

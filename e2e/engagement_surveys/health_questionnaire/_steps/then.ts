@@ -79,7 +79,7 @@ export const onHQInformationScreen = (copy: { title: string }) => async () => {
 };
 
 export const onHQConsentScreen = (copy: { title: string }) => async () => {
-  await textVisible(copy.title)();
+  await idExist(ids.TEXT_TEMPLATE(copy.title, "h3"), 2000)();
 };
 
 export const onHQRadioQuestion = (journeyStep: any) => async () => {
