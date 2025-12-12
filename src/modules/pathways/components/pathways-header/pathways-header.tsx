@@ -1,10 +1,10 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Box, Image } from "@atoms";
 import { Style, TOP_BAR } from "@styles";
-import { PathwayStreaks } from "./pathway-streaks";
 import moment from "moment";
 import ButtonPulseAnimationWrapper from "@components/molecules/button/animation/button-pulse-animation-wrapper";
 import { Button } from "@components/molecules";
+import PathwayStreaks from "../pathway-streaks/pathway-streaks";
 
 interface Props {
   onReflect: () => void;
@@ -54,7 +54,7 @@ const PathwaysHeader = ({
     <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} h={Style.adjust(550)}>
       <Box position="absolute" top={-50} width={"100%"}>
         <Image
-          source={require("@assets/pathways/pathway-header-background.webp")}
+          source={require("./pathways-header-background.webp")}
           width={"100%"}
           height={Style.adjust(512)}
           contentFit="cover"

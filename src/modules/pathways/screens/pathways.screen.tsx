@@ -3,12 +3,15 @@ import { Box, Image, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MoodWeekView, { MoodData } from "@organisms/mood-week-view/mood-week-view";
-import PathwaysHeader from "./subcomponents/pathways-header";
+import PathwaysHeader from "../components/pathways-header/pathways-header";
 import { t } from "@locale";
 import { Colours, Style, StyleSheet } from "@styles";
-import { AdviceSection, PathwayAdviceSectionProps } from "./subcomponents/advice-section/advice-section";
+import {
+  PathwaysAdviceSection,
+  PathwayAdviceSectionProps,
+} from "../components/pathways-advice-section/pathways-advice-section";
 import { YuScreenSection } from "@graphql/__generated";
-import { InterventionItemsSection } from "./subcomponents/intervention-items-section";
+import { PathwaysInterventionSection } from "../components/pathways-intervention-section/pathways-intervention-section";
 
 interface Props {
   onClose: () => void;
@@ -62,7 +65,7 @@ const PathwaysScreen = ({
       >
         <Box position="absolute" bottom={0} width={"100%"}>
           <Image
-            source={require("@assets/pathways/pathway-background.webp")}
+            source={require("../assets/pathways-background.webp")}
             width={"100%"}
             height={Style.adjust(1144)}
             contentFit="cover"
@@ -81,7 +84,7 @@ const PathwaysScreen = ({
 
         <Box minHeight={100} width={"100%"} gap={20} ph={16}>
           <Box gap={16}>
-            {interventionSections?.length ? <InterventionItemsSection sections={interventionSections} /> : null}
+            {interventionSections?.length ? <PathwaysInterventionSection sections={interventionSections} /> : null}
             <Box ph={8}>
               <TextTemplate type="b1b" color={Colours.neutral.white}>
                 {t("screens.pathways.health_insights")}
@@ -94,7 +97,7 @@ const PathwaysScreen = ({
               }}
             />
           </Box>
-          <AdviceSection items={adviceSection?.items} />
+          <PathwaysAdviceSection items={adviceSection?.items} />
         </Box>
         {/* <Box mv={24}>
           <SecondaryButton translationKey="screens.pathways.secondary_button_label" size="Large" onPress={onClose} />

@@ -29,7 +29,7 @@ const AdviceEmptySection = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Image source={require("@assets/pathways/sea-otter.webp")} width={165} autoFlipForRTL={true} />
+        <Image source={require("./sea-otter.webp")} width={165} autoFlipForRTL={true} />
       </Box>
     </Box>
   );

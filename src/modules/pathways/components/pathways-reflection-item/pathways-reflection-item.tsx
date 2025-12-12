@@ -1,8 +1,8 @@
 import { memo } from "react";
 import { Box, RawImage } from "@atoms";
-import PathwaysReflectionCard from "../subcomponents/pathways-reflection-card";
-import PathwaysReflectionHeader from "../subcomponents/pathways-reflection-header";
-import { PathwaysReflectionReward } from "../subcomponents/pathways-reflection-reward";
+import PathwaysReflectionCard from "../pathways-reflection-card/pathways-reflection-card";
+import PathwaysReflectionHeader from "./pathways-reflection-header";
+import { PathwaysReflectionReward } from "./pathways-reflection-reward";
 
 interface IPathwaysReflectionItemProps {
   label: string;

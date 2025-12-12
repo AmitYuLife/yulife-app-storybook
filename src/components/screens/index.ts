@@ -86,4 +86,4 @@ export { default as LevelLockedScreen } from "./member/challenges/level-locked/l
 export { default as AchievementsScreen } from "./achievements/achievements.screen";
 
 // pathways
-export { default as PathwaysScreen } from "./member/pathways/pathways.screen";
+export { default as PathwaysScreen } from "../../modules/pathways/screens/pathways.screen";

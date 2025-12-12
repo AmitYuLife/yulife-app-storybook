@@ -7,7 +7,7 @@ type YuCoinConfettiProps = {
   height?: number;
 };
 
-export const YuCoinConfetti: FC<YuCoinConfettiProps> = ({ width = 375, height = 160 }) => {
+export const PathwaysYuCoinConfetti: FC<YuCoinConfettiProps> = ({ width = 375, height = 160 }) => {
   return (
     <Svg width={Style.adjust(width)} height={Style.adjust(height)} viewBox="0 0 375 160" fill="none">
       <G clipPath="url(#clip0_23_110621)">

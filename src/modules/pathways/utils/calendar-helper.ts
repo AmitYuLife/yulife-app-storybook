@@ -1,6 +1,6 @@
 import moment from "moment";
-import { MonthMoodData } from "./mood-calendar.container";
-import { CalendarDay, IMonth } from "../../../organisms/mood-calendar/mood-month";
+import { MonthMoodData } from "../containers/pathways-mood-calendar.container";
+import { CalendarDay, IMonth } from "../../../components/organisms/mood-calendar/mood-month";
 import { GetUserMoodSubmissionsQuery } from "@graphql/__generated";
 import { DATE_FORMAT, DATE_FORMAT_MONTH } from "@utils";
 

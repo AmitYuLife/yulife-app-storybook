@@ -18,7 +18,7 @@ interface PathwayAdviceCardProps {
 
 const CARD_PADDING = Style.adjust(16);
 
-const PathwayAdviceCard = ({
+const PathwaysAdviceCard = ({
   heading,
   label,
   onPress: onPressProp,
@@ -65,4 +65,4 @@ const PathwayAdviceCard = ({
   );
 };
 
-export default memo(PathwayAdviceCard);
+export default memo(PathwaysAdviceCard);

@@ -2,9 +2,9 @@ import { memo } from "react";
 import { TextTemplate } from "@components/atoms/text/text-template";
 import { Box, RawImage } from "@atoms";
 import { Colours } from "@styles";
-import PathwaysReflectionCard from "../subcomponents/pathways-reflection-card";
-import PathwaysReflectionHeader from "../subcomponents/pathways-reflection-header";
-import { PathwaysReflectionReward } from "../subcomponents/pathways-reflection-reward";
+import PathwaysReflectionCard from "../pathways-reflection-card/pathways-reflection-card";
+import PathwaysReflectionHeader from "../pathways-reflection-item/pathways-reflection-header";
+import { PathwaysReflectionReward } from "../pathways-reflection-item/pathways-reflection-reward";
 import { PathwaysReflectionStatus } from "../../pathways.types";
 
 interface IPathwayReflectChestProps {

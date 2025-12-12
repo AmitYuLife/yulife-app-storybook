@@ -1,5 +1,4 @@
 import { Box, TextTemplate } from "@atoms";
-import { YuCoinConfetti } from "./yu-coin-confetti";
 import { t } from "@locale";
 import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
 import { getTheme } from "@theme";
@@ -8,6 +7,7 @@ import { Style, StyleSheet } from "@styles";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { useSelector } from "react-redux";
 import { memo } from "react";
+import { PathwaysYuCoinConfetti } from "../components/pathways-yucoin-confetti/pathways-yucoin-confetti";
 
 interface IProps {
   onPressCta: () => void;
@@ -33,7 +33,7 @@ const PathwayChallengeSuccessScreen = ({ reward, loading, onPressCta }: IProps) 
             <AnimatedPlusPoints type="challenge-success" coins={reward} />
           </Box>
           <Box gap={48}>
-            <YuCoinConfetti />
+            <PathwaysYuCoinConfetti />
           </Box>
         </Box>
         <Box alignSelf="stretch" px={16}>

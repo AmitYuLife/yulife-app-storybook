@@ -21,7 +21,7 @@ interface Props {
 const PathwayStreaks = ({ currentStreak, reflectedToday, maxProgress, streakAwardId, isLoading }: Props) => {
   const days = useMemo(
     () => buildDays({ currentStreak, reflectedToday, maxProgress, streakAwardId }),
-    [currentStreak, reflectedToday, maxProgress]
+    [currentStreak, reflectedToday, maxProgress, streakAwardId]
   );
 
   if (isLoading) {
