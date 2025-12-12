@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.93.0] - 2025-12-12
+
+### Bugfixes
+
+- Bugfix ENG-4304: Streak saver race
+- Bugfix GS-2043: Copy and padding fixes
+
+### Tasks
+
+- Task DEVOPS-4728: Disable Bitrise triggers
+- Task: Pathway components (reflection item, reflection chest)
+- Task: Add box props to RawImage
+- Task CTE-502: rtl recent rewards
+- Task DEVOPS-4688: Android/iOS production builds
+- Task GS-2110: Health challenge (breathing exercise)
+- Task DEVOPS-4709: Disable Bitrise develop builds
+- Task GS-2109: pathway header update
+- Task GS-2109: pathway header bg update
+- Task DEVOPS-4395: Codemagic purge
+- Task CTE-354: android text updates for arabic
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore - Updated translations
+- chore DEVOPS-4616: Configure GitLab CI Pipelines to cache corepack package managers
+- Chore - Updated translations
+- chore: DEVOPS-4706: Bump `assume-aws-role-with-web-identity` to latest v2
+- Chore - Updated translations
+
+### Extra
+
+- GS-2110: Change svg overlay to nice lottie overlay
+- Detox GS-2138: User Activity Historic Data Seeding
+- Detox GS-2136: Decouple Users from Events
+- Detox GS-2126: Cycling Events
+
 ## [4.92.0] - 2025-12-03
 
 ### Features
