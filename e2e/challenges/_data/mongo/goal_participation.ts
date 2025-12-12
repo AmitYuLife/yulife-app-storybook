@@ -86,7 +86,7 @@ export const GOAL_PARTICIPATION_6 = {
   modelName: "goal_participation",
   data: {
     _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_52.data.customerId,
+    userId: customer.CUSTOMER_54.data.customerId,
     parentType: "goals",
     goal: GOALS_TOURNAMENT.data._id,
     team: GOAL_TEAM_7.data._id,

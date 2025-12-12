@@ -27,28 +27,28 @@ Feature("Miscellaneous surveys and surveys stored in the database", async () => 
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "UK"), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Automated QA Test Journey 10 Multiplier", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
     });
-    When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN"), async () => {
+    When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN", 3000), async () => {
       Then("I should see Today you've earned '0 YuCoin'", then.textVisible("0 YuCoin"));
     });
-    When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I press the back button", when.tapID(ids.BACK_BUTTON, 2000), async () => {
       When("I click on the Automated QA Test Journey 10 Multiplier card", when.tapIDAtIndex(ids.EVENT_CARD("Automated QA Test Journey 10 Multiplier"), 0, 2000), async () => {
         Then("I should see the 'The choice is yours' question", then.idVisible(ids.TEXT_TEMPLATE("The choice is yours.", "b2b"), 1000));
       });
     });
-    When("I select the first choice", when.tapID(ids.CHECKBOX_SELECTORS("initial_multiplier_choice", "red_pill")), async () => {
+    When("I select the first choice", when.tapID(ids.CHECKBOX_SELECTORS("initial_multiplier_choice", "red_pill"), 2000), async () => {
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
         Then("I should see the Thank you for answering", then.idVisible(ids.TEXT_TEMPLATE("Thank you for answering", "h2")));
       });
     });
-    When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit")), async () => {
+    When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit"), 2000), async () => {
       Then("I should see my YuCoin balance go up by 10", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10)));
     });
-    When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN"), async () => {
+    When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN", 2000), async () => {
       Then("I should see Today you've earned '10 YuCoin'", then.textVisible("10 YuCoin"));
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5), async () => {
-      Then("I should see Additional rewards showing the questionnaire", then.textVisible("Quiz"));
+    When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5, 2000), async () => {
       Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("10"));
+      Then("I should see Additional rewards showing the questionnaire", then.textVisible("Quiz"));
     });
   });
 
@@ -56,30 +56,30 @@ Feature("Miscellaneous surveys and surveys stored in the database", async () => 
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Automated QA Test Journey 10 Multiplier", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
     });
-    When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN"), async () => {
+    When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN", 2000), async () => {
       Then("I should see Today you've earned '0 YuCoin'", then.textVisible("0 YuCoin"));
     });
-    When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I press the back button", when.tapID(ids.BACK_BUTTON, 2000), async () => {
       When("I swipe left on the Automated QA Test Journey 10 Multiplier card", when.scrollFromID(ids.EVENT_CARD("Automated QA Test Journey 10 Multiplier"), "left", "fast", 0.5), async () => {
         When("I click on the Automated QA Test Journey 500 YuCoin Flat Amount card", when.tapID(ids.EVENT_CARD("Automated QA Test Journey 500 YuCoin Flat Amount")), async () => {
           Then("I should see the 'The choice is yours' question", then.idVisible(ids.TEXT_TEMPLATE("The choice is yours.", "b2b")));
         });
       });
     });
-    When("I select the first choice", when.tapID(ids.CHECKBOX_SELECTORS("initial_flat_choice", "red_pill")), async () => {
+    When("I select the first choice", when.tapID(ids.CHECKBOX_SELECTORS("initial_flat_choice", "red_pill"), 2000), async () => {
       When("I click on the 'Next' button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
         Then("I should see the Thank you for answering", then.idVisible(ids.TEXT_TEMPLATE("Thank you for answering", "h2")));
       });
     });
-    When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit")), async () => {
+    When("I click on the 'Submit' button", when.tapID(ids.BUTTON_BASE("Submit"), 2000), async () => {
       Then("I should see my YuCoin balance go up by 500", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(500)));
     });
-    When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN"), async () => {
+    When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN", 2000), async () => {
       Then("I should see Today you've earned '500 YuCoin'", then.textVisible("500 YuCoin"));
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5), async () => {
-      Then("I should see Additional rewards showing the questionnaire", then.textVisible("Quiz"));
+    When("I swipe to the bottom", when.scrollFromID(ids.ARROW_BUTTON, "up", "fast", 0.5, 2000), async () => {
       Then("I should see amount of YuCoin given for the questionnaire", then.textVisible("500"));
+      Then("I should see Additional rewards showing the questionnaire", then.textVisible("Quiz"));
     });
   });
 
