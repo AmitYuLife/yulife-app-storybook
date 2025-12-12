@@ -1,9 +1,8 @@
-import React, { memo } from "react";
-import { View, ViewStyle } from "react-native";
-import { StyleSheet } from "@styles";
+import { memo } from "react";
 import { GenericHeadingAbsolute, GenericHeadingPad, MoodCalendar } from "@organisms";
 import { IMonth } from "@organisms/mood-calendar/mood-month";
 import { t } from "@locale";
+import { Box } from "@atoms";
 
 export interface IMoodCalendarScreenProps {
   onClose: () => void;
@@ -11,20 +10,14 @@ export interface IMoodCalendarScreenProps {
   loading: boolean;
 }
 
-const MoodCalendarScreen = memo(({ onClose, data, loading }: IMoodCalendarScreenProps) => {
+const PathwaysMoodCalendarScreen = ({ onClose, data, loading }: IMoodCalendarScreenProps) => {
   return (
-    <View style={styles.wrapper}>
+    <Box flex={1}>
       <GenericHeadingPad />
       <MoodCalendar data={data} loading={loading} />
       <GenericHeadingAbsolute heading={t("screens.mood-calendar.title")} onRightIconPress={onClose} />
-    </View>
+    </Box>
   );
-});
+};
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  } as ViewStyle,
-});
-
-export default memo(MoodCalendarScreen);
+export default memo(PathwaysMoodCalendarScreen);

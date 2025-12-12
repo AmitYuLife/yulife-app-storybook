@@ -1,7 +1,7 @@
 import Box from "@atoms/box/box";
 import { SduiAction } from "@redux/user/user.types";
-import PathwayAdviceCard from "../pathway-advice-card";
-import AdviceEmptySection from "./advice-empty-section";
+import PathwaysAdviceCard from "../pathways-advice-card/pathways-advice-card";
+import AdviceEmptySection from "./pathways-advice-empty-section";
 
 type UserPathwayItem = {
   onPress: SduiAction;
@@ -20,7 +20,7 @@ export type PathwayAdviceSectionProps = {
   items: Array<UserPathwayItem>;
 };
 
-export const AdviceSection = ({ items }: PathwayAdviceSectionProps) => {
+export const PathwaysAdviceSection = ({ items }: PathwayAdviceSectionProps) => {
   if (!items) {
     return null;
   }
@@ -32,7 +32,7 @@ export const AdviceSection = ({ items }: PathwayAdviceSectionProps) => {
   return (
     <Box gap={20}>
       {items.map((val) => (
-        <PathwayAdviceCard
+        <PathwaysAdviceCard
           key={val.id}
           heading={val.heading}
           label={val.label}

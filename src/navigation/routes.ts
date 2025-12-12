@@ -427,18 +427,17 @@ const routesForRegistration = [
   // pathways
   {
     name: ROUTES.pathways,
-    component: require("../components/containers/member/pathways/pathways.container").default,
+    component: require("../modules/pathways/containers/pathways.container").default,
   },
   {
     name: ROUTES.pathwayChallengeSuccess,
-    component: require("../modules/pathways/containers/pathway-challenge-success/pathway-challenge-success.container")
-      .default,
+    component: require("../modules/pathways/containers/pathways-challenge-success.container").default,
   },
 
   // mood calendar
   {
     name: ROUTES.moodCalendar,
-    component: require("../components/containers/member/mood-calendar/mood-calendar.container").default,
+    component: require("../modules/pathways/containers/pathways-mood-calendar.container"),
   },
 
   // modals

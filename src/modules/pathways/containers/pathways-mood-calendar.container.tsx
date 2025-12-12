@@ -4,9 +4,9 @@ import moment from "moment";
 import { GetUserMoodSubmissionsQuery, gql } from "@graphql/__generated";
 import { Box } from "@atoms";
 import { ActivityIndicator } from "react-native";
-import { generateMissingData } from "@components/containers/member/mood-calendar/calendar-helper";
+import { generateMissingData } from "@app/modules/pathways/utils/calendar-helper";
 import { DATE_FORMAT } from "@utils";
-import MoodCalendarScreen from "@components/screens/member/pathways/mood-calendar.screen";
+import PathwaysMoodCalendarScreen from "@app/modules/pathways/screens/pathways-mood-calendar.screen";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 
@@ -20,7 +20,7 @@ export interface MonthMoodData {
   days: MoodDayData[];
 }
 
-const MoodCalendarContainer = () => {
+const PathwaysMoodCalendarContainer = () => {
   const startDate = moment().subtract(MONTHS_PER_PAGE, "months").startOf("month").format(DATE_FORMAT);
   const endDate = moment().endOf("month").format(DATE_FORMAT);
 
@@ -52,7 +52,7 @@ const MoodCalendarContainer = () => {
     );
   }
 
-  return <MoodCalendarScreen onClose={onClose} data={moodData} loading={loading} />;
+  return <PathwaysMoodCalendarScreen onClose={onClose} data={moodData} loading={loading} />;
 };
 
-export default memo(MoodCalendarContainer);
+export default memo(PathwaysMoodCalendarContainer);

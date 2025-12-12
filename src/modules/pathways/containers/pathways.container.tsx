@@ -3,7 +3,7 @@ import { Navigation } from "@navigation/main";
 import { PathwaysScreen } from "@components/screens";
 import { gql, YuScreenSection } from "@graphql/__generated";
 import moment from "moment";
-import { getMoodSubmission } from "./utils/getMoodSubmission";
+import { getMoodSubmission } from "../utils/get-mood-submission";
 import { useDispatch } from "react-redux";
 import { ROUTES } from "@navigation/constants";
 import { useQueryOnScreenSeen } from "@hooks";

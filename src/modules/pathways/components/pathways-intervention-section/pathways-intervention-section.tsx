@@ -4,7 +4,7 @@ import { Colours } from "@styles";
 import { t } from "@locale";
 import { renderSduiSection } from "@components/sdui-sections";
 
-export const InterventionItemsSection = ({ sections }: { sections: YuScreenSection[] }) => {
+export const PathwaysInterventionSection = ({ sections }: { sections: YuScreenSection[] }) => {
   return (
     <Box gap={16}>
       <Box ph={8}>

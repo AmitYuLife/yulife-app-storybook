@@ -36,6 +36,3 @@ export { default as MediaPlayerContainer } from "./member/media/media-player/med
 
 //  achievements
 export { default as AchievementsContainer } from "./achievements/achievements.container";
-
-// mood calendar
-export { default as MoodCalendarContainer } from "./member/mood-calendar/mood-calendar.container";
