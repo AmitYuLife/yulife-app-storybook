@@ -429,6 +429,11 @@ const routesForRegistration = [
     name: ROUTES.pathways,
     component: require("../components/containers/member/pathways/pathways.container").default,
   },
+  {
+    name: ROUTES.pathwayChallengeSuccess,
+    component: require("../modules/pathways/containers/pathway-challenge-success/pathway-challenge-success.container")
+      .default,
+  },
 
   // mood calendar
   {
