@@ -1,20 +1,17 @@
 import React, { memo } from "react";
-import { Box, RawImage, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MoodWeekView, { MoodData } from "@organisms/mood-week-view/mood-week-view";
 import PathwaysHeader from "../components/pathways-header/pathways-header";
 import { t } from "@locale";
-import { Colours, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import {
-  PathwayAdviceSectionProps,
   PathwaysAdviceSection,
+  PathwayAdviceSectionProps,
 } from "../components/pathways-advice-section/pathways-advice-section";
-import { YuScreenSection } from "@graphql/__generated";
-import { useWindowDimensions } from "react-native";
-import { PathwaysInterventionSection } from "../components/pathways-intervention-section/pathways-intervention-section";
 
-interface IPathwaysScreenProps {
+interface Props {
   onClose: () => void;
   moodSubmissions: MoodData[];
   onReflect: () => void;
@@ -23,13 +20,12 @@ interface IPathwaysScreenProps {
   reflectedToday: boolean;
   nextQuestionnaireLocalDate: string;
   adviceSection: PathwayAdviceSectionProps;
-  interventionSections: YuScreenSection[];
   isLoading: boolean;
   maxProgress: number;
   streakAwardId?: string;
 }
 
-const PathwaysScreen = ({
+const PathwaysOldScreen = ({
   onReflect,
   onClose,
   moodSubmissions,
@@ -38,70 +34,37 @@ const PathwaysScreen = ({
   nextQuestionnaireLocalDate,
   onOpenMoodCalendar,
   adviceSection,
-  interventionSections,
   isLoading,
   maxProgress,
   streakAwardId,
-}: IPathwaysScreenProps) => {
+}: Props) => {
   const scrollY = useSharedValue(0);
-  const { width, height } = useWindowDimensions();
-  const bottomBackgroundHeight = (1636 / 1125) * width;
-  const topBackgroundHeight = (4656 / 1125) * width;
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
       scrollY.value = event.contentOffset.y;
     },
   });
-
   return (
-    <Box flex={1}>
-      <Box position="absolute" top={0} width={"100%"} bg={Colours.pathways.header} h={height / 2} />
+    <Box flex={1} bg={Colours.pathways.header}>
       <Animated.ScrollView
         style={styles.flex}
         contentInsetAdjustmentBehavior="never"
+        contentContainerStyle={styles.contentContainer}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
         overScrollMode="never"
         showsVerticalScrollIndicator={false}
+        bounces={false}
       >
-        <Box position="absolute" bg={Colours.pathways.background} h="100%" top={0} w="100%" />
-        <Box position="absolute" top={0} width={"100%"}>
-          <RawImage
-            source={require("../assets/pathways-background-top.webp")}
-            width={width}
-            disableAutoAdjust={true}
-            h={topBackgroundHeight}
-            contentPosition={{ top: 0, left: 0 }}
-            contentFit="contain"
-            bg={Colours.pathways.background}
-          />
-        </Box>
-
-        <Box
-          position="absolute"
-          bottom={bottomBackgroundHeight * 0.6}
-          width={"100%"}
-          bg={Colours.pathways.background}
-          disableAutoAdjust={true}
-        >
-          <Box
-            position="absolute"
-            bottom={-height}
+        <Box position="absolute" bottom={0} width={"100%"}>
+          <Image
+            source={require("../assets/pathways-background.webp")}
             width={"100%"}
-            bg={Colours.pathways.sand}
-            h={height}
-            disableAutoAdjust={true}
-          />
-          <RawImage
-            source={require("../assets/pathways-bottom-background.webp")}
-            width={width}
-            height={bottomBackgroundHeight}
-            disableAutoAdjust={true}
-            contentFit="contain"
+            height={Style.adjust(1144)}
+            contentFit="cover"
           />
         </Box>
-
         <PathwaysHeader
           onReflect={onReflect}
           reflectionProgress={reflectionProgress}
@@ -110,12 +73,11 @@ const PathwaysScreen = ({
           maxProgress={maxProgress}
           streakAwardId={streakAwardId}
           isLoading={isLoading}
-          isStreaksEnabled={true}
+          isStreaksEnabled={false}
         />
 
-        <Box minHeight={500} width={"100%"} gap={20} ph={12}>
+        <Box minHeight={100} width={"100%"} gap={20} ph={16}>
           <Box gap={16}>
-            {interventionSections?.length ? <PathwaysInterventionSection sections={interventionSections} /> : null}
             <Box ph={8}>
               <TextTemplate type="b1b" color={Colours.neutral.white}>
                 {t("screens.pathways.health_insights")}
@@ -128,14 +90,11 @@ const PathwaysScreen = ({
               }}
             />
           </Box>
-          <Box pb={0}>
-            <PathwaysAdviceSection items={adviceSection?.items} />
-          </Box>
+          <PathwaysAdviceSection items={adviceSection?.items} />
         </Box>
         {/* <Box mv={24}>
           <SecondaryButton translationKey="screens.pathways.secondary_button_label" size="Large" onPress={onClose} />
         </Box> */}
-        <Box pb={bottomBackgroundHeight * 0.8} />
       </Animated.ScrollView>
       <GenericHeadingAbsolute
         backgroundColor={Colours.pathways.header}
@@ -151,6 +110,9 @@ const PathwaysScreen = ({
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
+  contentContainer: {
+    paddingBottom: Style.adjust(40),
+  },
 });
 
-export default memo(PathwaysScreen);
+export default memo(PathwaysOldScreen);

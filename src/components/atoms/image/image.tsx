@@ -15,6 +15,7 @@ import {
   ImageStyle,
   ImageProps,
   ImageContentFit,
+  ImageContentPosition,
 } from "expo-image";
 import { Colours, StyleSheet } from "@styles";
 import { shallowEqual } from "react-redux";
@@ -61,6 +62,7 @@ export interface IImageProps extends Omit<IBoxProps, "style"> {
   /** @deprecated use contentFit instead */
   resizeMode?: "contain" | "cover" | "stretch" | "center";
   contentFit?: ImageContentFit;
+  contentPosition?: ImageContentPosition;
   /**
    * Has some known issues
    * @url https://github.com/expo/expo/issues/21530
@@ -100,6 +102,7 @@ export const Image = memo(
     height: propHeight = 0,
     resizeMode = "contain",
     contentFit,
+    contentPosition,
     autoFlipForRTL = false,
     onError,
     ...props
@@ -207,6 +210,7 @@ export const Image = memo(
           transition={transition}
           resizeMode={resizeMode}
           contentFit={contentFit}
+          contentPosition={contentPosition}
           accessible={accessible}
           placeholder={placeholder}
           accessibilityLabel={accessibilityLabel}

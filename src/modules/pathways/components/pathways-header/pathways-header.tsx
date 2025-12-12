@@ -52,14 +52,16 @@ const PathwaysHeader = ({
 
   return (
     <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} h={Style.adjust(550)}>
-      <Box position="absolute" top={-50} width={"100%"}>
-        <Image
-          source={require("./pathways-header-background.webp")}
-          width={"100%"}
-          height={Style.adjust(512)}
-          contentFit="cover"
-        />
-      </Box>
+      {!isStreaksEnabled ? (
+        <Box position="absolute" top={-50} width={"100%"}>
+          <Image
+            source={require("./pathways-header-background.webp")}
+            width={"100%"}
+            height={Style.adjust(512)}
+            contentFit="cover"
+          />
+        </Box>
+      ) : null}
       {isStreaksEnabled ? (
         <PathwayStreaks
           currentStreak={reflectionProgress}
