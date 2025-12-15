@@ -67,12 +67,14 @@ const challengesStatusSelector = (state: State) => {
 
   const availableForToday = getAvailableChallengesForToday(state.level, done, available, state.nextLevelAvailableAt);
 
+  const pathwaysChallengesAvailable = state.pathwaysChallengeAmountAvailable ?? 0;
+
   return {
     available: available,
     done,
-    isAvailable: state.dailyChallengeAmountAvailableWithUnactivatedPowerUps - done > 0,
+    isAvailable: state.dailyChallengeAmountAvailableWithUnactivatedPowerUps + pathwaysChallengesAvailable - done > 0,
     hasDone: done > 0,
-    availableForToday: availableForToday,
+    availableForToday: availableForToday + pathwaysChallengesAvailable,
   } as ITodayChallengesStatus;
 };
 

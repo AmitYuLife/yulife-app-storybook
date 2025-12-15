@@ -2,7 +2,6 @@ import { useMutation } from "@apollo/client";
 import { Box, TextTemplate } from "@atoms";
 import { BoxOption, Button } from "@components/molecules";
 import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
 import { useNavigation } from "@navigation/navigation.context";
 import { GenericHeadingAbsolute } from "@organisms";
 import { Colours, Style, StyleSheet } from "@styles";
@@ -21,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import GenericSelectorModal from "@components/modals/generic-selector-modal/generic-selector-modal";
 import { showFloatingModal } from "@components/modals";
-import { MODALS } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { useAppState } from "@hooks";
 import { AppStateStatus } from "react-native";
 import { gql } from "@graphql/__generated";
@@ -66,7 +65,6 @@ type Props = {
 const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   const { componentId } = useNavigation();
   const dispatch = useDispatch();
-  const [rewardAmount, setRewardAmount] = useState<number>(0);
   const [completePathwayChallenge] = useMutation(gql("CompletePathwayChallengeDocument"), {
     refetchQueries: [{ query: gql("GetPathwayChallengeDocument") }],
   });
@@ -85,13 +83,23 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
     onCompleted: async () => {
       const result = await completePathwayChallenge({ variables: { challengeId } });
       const yuCoinAwarded = result.data?.completePathwayChallenge?.yuCoinAwarded || 0;
-      setRewardAmount(yuCoinAwarded);
+      Navigation.push(componentId, {
+        component: {
+          name: ROUTES.pathwayChallengeSuccess,
+          passProps: {
+            reward: yuCoinAwarded,
+          },
+        },
+      });
+
       dispatch(
         logMixpanelEventActionCreator("breathing_exercise_completed", {
           duration: selectedDurationMs,
           id: data.id,
         })
       );
+
+      dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.dailyChallengeAmountAvailable] }));
     },
     onStarted: () => {
       dispatch(
@@ -127,20 +135,8 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
       })
     );
 
-    if (currentPart.type === BreathingExerciseOptionPartType.End) {
-      Navigation.push(componentId, {
-        component: {
-          name: ROUTES.pathwayChallengeSuccess,
-          passProps: {
-            reward: rewardAmount,
-          },
-        },
-      });
-      dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
-    } else {
-      Navigation.pop(componentId);
-    }
-  }, [dispatch, selectedDurationMs, data.id, currentPart.type, componentId, rewardAmount]);
+    Navigation.pop(componentId);
+  }, [dispatch, selectedDurationMs, data.id, componentId]);
 
   // Pause exercise when app goes to background
   const handleAppStateChange = useCallback(
@@ -284,15 +280,12 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
           </Box>
         </Box>
         <Box justifyContent="center" alignItems="center" flex={1} mb={16}>
-          {currentPart.type === BreathingExerciseOptionPartType.End ? (
-            <Button translationKey="labels.cta.ok" onPress={handleClose} delay={300} />
-          ) : (
-            <Button
-              translationKey={isPlaying ? "labels.cta.pause" : "labels.cta.resume"}
-              delay={300}
-              onPress={togglePlaying}
-            />
-          )}
+          <Button
+            translationKey={isPlaying ? "labels.cta.pause" : "labels.cta.resume"}
+            delay={300}
+            onPress={togglePlaying}
+            isLoading={currentPart.type === BreathingExerciseOptionPartType.End}
+          />
         </Box>
       </Box>
       <GenericHeadingAbsolute
