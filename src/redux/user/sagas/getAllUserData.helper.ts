@@ -194,6 +194,7 @@ const toUserDailyChallengeAmountAvailable = (dailyChallengeAmount: UserDailyChal
   dailyChallengeAmountAvailable: dailyChallengeAmount?.dailyChallengeAmountAvailable,
   dailyChallengeAmountAvailableWithUnactivatedPowerUps:
     dailyChallengeAmount?.dailyChallengeAmountAvailableWithUnactivatedPowerUps,
+  pathwaysChallengeAmountAvailable: dailyChallengeAmount?.pathwaysChallengeAmountAvailable ?? 0,
 });
 
 const toInventoryInfo = (inventoryInfo: MobileInventoryInfoFragment) => ({

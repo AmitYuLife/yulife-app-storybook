@@ -11861,6 +11861,7 @@ export type UserDailyChallengeAmountAvailable = {
   __typename?: "UserDailyChallengeAmountAvailable";
   dailyChallengeAmountAvailable: Scalars["Int"]["output"];
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: Scalars["Int"]["output"];
+  pathwaysChallengeAmountAvailable: Scalars["Int"]["output"];
 };
 
 export type UserFeature = {
@@ -19580,6 +19581,7 @@ export type UserDailyChallengeAmountAvailableFragment = {
   __typename?: "UserDailyChallengeAmountAvailable";
   dailyChallengeAmountAvailable: number;
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
+  pathwaysChallengeAmountAvailable: number;
 };
 
 export type DailyPensionContributionFragment = {
@@ -37908,6 +37910,7 @@ export type GetUserDailyChallengeAmountAvailableQuery = {
     __typename?: "UserDailyChallengeAmountAvailable";
     dailyChallengeAmountAvailable: number;
     dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
+    pathwaysChallengeAmountAvailable: number;
   };
 };
 
@@ -57779,6 +57782,7 @@ export const UserDailyChallengeAmountAvailableFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailableWithUnactivatedPowerUps" } },
+          { kind: "Field", name: { kind: "Name", value: "pathwaysChallengeAmountAvailable" } },
         ],
       },
     },
@@ -95886,6 +95890,7 @@ export const GetUserDailyChallengeAmountAvailableDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailableWithUnactivatedPowerUps" } },
+          { kind: "Field", name: { kind: "Name", value: "pathwaysChallengeAmountAvailable" } },
         ],
       },
     },
