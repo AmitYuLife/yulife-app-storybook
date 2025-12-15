@@ -55,7 +55,6 @@ const PathwaysOldScreen = ({
         scrollEventThrottle={16}
         overScrollMode="never"
         showsVerticalScrollIndicator={false}
-        bounces={false}
       >
         <Box position="absolute" bottom={0} width={"100%"}>
           <Image
