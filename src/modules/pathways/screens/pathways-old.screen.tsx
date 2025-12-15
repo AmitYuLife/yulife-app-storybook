@@ -3,13 +3,13 @@ import { Box, Image, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MoodWeekView, { MoodData } from "@organisms/mood-week-view/mood-week-view";
-import PathwaysHeader from "../components/pathways-header/pathways-header";
 import { t } from "@locale";
 import { Colours, Style, StyleSheet } from "@styles";
 import {
   PathwaysAdviceSection,
   PathwayAdviceSectionProps,
 } from "../components/pathways-advice-section/pathways-advice-section";
+import PathwaysHeaderOld from "../components/pathways-header/pathways-header-old";
 
 interface Props {
   onClose: () => void;
@@ -65,7 +65,7 @@ const PathwaysOldScreen = ({
             contentFit="cover"
           />
         </Box>
-        <PathwaysHeader
+        <PathwaysHeaderOld
           onReflect={onReflect}
           reflectionProgress={reflectionProgress}
           reflectedToday={reflectedToday}

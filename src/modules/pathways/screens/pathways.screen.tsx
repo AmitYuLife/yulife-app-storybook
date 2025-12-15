@@ -78,16 +78,10 @@ const PathwaysScreen = ({
           />
         </Box>
 
-        <Box
-          position="absolute"
-          bottom={bottomBackgroundHeight * 0.6}
-          width={"100%"}
-          bg={Colours.pathways.background}
-          disableAutoAdjust={true}
-        >
+        <Box position="absolute" bottom={0} width={"100%"} bg={Colours.pathways.background} disableAutoAdjust={true}>
           <Box
             position="absolute"
-            bottom={-height}
+            bottom={-height + 1}
             width={"100%"}
             bg={Colours.pathways.sand}
             h={height}
@@ -99,6 +93,7 @@ const PathwaysScreen = ({
             height={bottomBackgroundHeight}
             disableAutoAdjust={true}
             contentFit="contain"
+            contentPosition={{ bottom: 0 }}
           />
         </Box>
 
@@ -113,7 +108,7 @@ const PathwaysScreen = ({
           isStreaksEnabled={true}
         />
 
-        <Box minHeight={500} width={"100%"} gap={20} ph={12}>
+        <Box minHeight={500} width={"100%"} gap={20} ph={12} pt={30}>
           <Box gap={16}>
             {interventionSections?.length ? <PathwaysInterventionSection sections={interventionSections} /> : null}
             <Box ph={8}>
@@ -135,7 +130,7 @@ const PathwaysScreen = ({
         {/* <Box mv={24}>
           <SecondaryButton translationKey="screens.pathways.secondary_button_label" size="Large" onPress={onClose} />
         </Box> */}
-        <Box pb={bottomBackgroundHeight * 0.8} />
+        <Box pb={bottomBackgroundHeight * 0.3} />
       </Animated.ScrollView>
       <GenericHeadingAbsolute
         backgroundColor={Colours.pathways.header}
