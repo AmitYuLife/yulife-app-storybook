@@ -33,4 +33,5 @@ Navigation.events().registerAppLaunchedListener(async () => {
 // TODO: purge when upgrading to RN >=76
 if (__DEV__) {
   require("react-native-devsettings");
+  LogBox.ignoreLogs(["[Datadog SDK]"]);
 }
