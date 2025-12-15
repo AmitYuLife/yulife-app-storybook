@@ -6,7 +6,7 @@ import { ImageBackground } from "expo-image";
 import { ScrollView } from "react-native";
 import { StyleSheet } from "@styles";
 import colours from "@styles/colours";
-import PathwayStreaks from "@components/screens/member/pathways/subcomponents/pathway-streaks/pathway-streaks";
+import PathwayStreaks from "../../components/pathway-streaks/pathway-streaks";
 import { Button } from "@components/molecules";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ItemDetailsReward } from "@organisms";
