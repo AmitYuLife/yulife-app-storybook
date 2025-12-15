@@ -158,6 +158,7 @@ export const ROUTES = {
 
   // pathways
   pathways: "yulife.member.pathways",
+  pathwaysReflected: "yulife.member.pathwaysReflected",
   pathwayChallengeSuccess: "yulife.member.pathways.challengeSuccess",
 
   // mood calendar

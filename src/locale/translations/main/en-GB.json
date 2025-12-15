@@ -205,6 +205,10 @@
       "secondary_button_label": "Go to Wellbeing Hub",
       "advice_empty_section": {
         "title": "You’re getting closer to your insights!"
+      },
+      "reflected": {
+        "title": "days of reflection",
+        "subtitle": "Your personalised insights are unlocked!"
       }
     },
     "products": {
