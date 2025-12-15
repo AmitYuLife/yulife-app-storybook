@@ -25,7 +25,7 @@ const PathwayReflectChest = ({ label, description, onPress, yucoinAmount, status
             {description}
           </TextTemplate>
         </Box>
-        <PathwaysReflectionReward position="absolute" left={8} bottom={8} yucoinAmount={yucoinAmount} />
+        <PathwaysReflectionReward position="absolute" left={10} bottom={10} yucoinAmount={yucoinAmount} />
       </Box>
       <Box position="absolute" bottom={5} right={12}>
         <RawImage source={require("./chest.png")} w={100} h={100} contentFit="contain" />

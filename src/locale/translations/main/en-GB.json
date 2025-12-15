@@ -194,6 +194,10 @@
       "personal_health_path": {
         "heading": "Personal Health Path"
       },
+      "journey_header": "Journey %{count}",
+      "journey_header_starts": "Starting the reflection",
+      "journey_header_starts_in": "New reflection in %{hours}:%{minutes}:%{seconds}",
+      "daily_reflection": "Reflection %{count}",
       "today": "Today",
       "day": "Day %{day}",
       "reflect": "Reflect",

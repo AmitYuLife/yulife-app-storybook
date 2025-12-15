@@ -17,11 +17,18 @@ const PathwaysReflectionCard = ({ children, onPress, status, ...boxProps }: IPat
   const isLocked = status === "locked";
 
   return (
-    <Pressable enableAnimation={true} pressedTranslation={3} onPress={onPress} disabled={!onPress} w="100%">
+    <Pressable
+      enableAnimation={true}
+      pressedTranslation={3}
+      onPress={onPress}
+      disabled={!onPress}
+      w="100%"
+      flexDirection="row"
+    >
       <StackedShadowWrapper stackColors={BORDER_COLORS} style={styles.shadowWrapper}>
         <Box
           br={14}
-          h="100%"
+          // h="100%"
           w="100%"
           borderWidth={1}
           flexDirection="row"
@@ -42,7 +49,6 @@ const PathwaysReflectionCard = ({ children, onPress, status, ...boxProps }: IPat
 const styles = StyleSheet.create({
   shadowWrapper: {
     width: "100%",
-    height: "100%",
     borderRadius: Style.adjust(16),
   },
 });
