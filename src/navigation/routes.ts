@@ -441,7 +441,7 @@ const routesForRegistration = [
   // mood calendar
   {
     name: ROUTES.moodCalendar,
-    component: require("../modules/pathways/containers/pathways-mood-calendar.container"),
+    component: require("../modules/pathways/containers/pathways-mood-calendar.container").default,
   },
 
   // modals
