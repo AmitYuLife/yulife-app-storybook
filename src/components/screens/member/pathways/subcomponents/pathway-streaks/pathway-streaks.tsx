@@ -15,10 +15,20 @@ interface Props {
   currentStreak: number;
   maxProgress: number;
   streakAwardId?: string;
+  showCoin?: boolean;
   isLoading: boolean;
+  textColor?: string;
 }
 
-const PathwayStreaks = ({ currentStreak, reflectedToday, maxProgress, streakAwardId, isLoading }: Props) => {
+const PathwayStreaks = ({
+  currentStreak,
+  reflectedToday,
+  maxProgress,
+  streakAwardId,
+  isLoading,
+  textColor,
+  showCoin = true,
+}: Props) => {
   const days = useMemo(
     () => buildDays({ currentStreak, reflectedToday, maxProgress, streakAwardId }),
     [currentStreak, reflectedToday, maxProgress]
@@ -35,7 +45,12 @@ const PathwayStreaks = ({ currentStreak, reflectedToday, maxProgress, streakAwar
   return (
     <Box w="100%" gap={24} br={12} flexDirection="row" justifyContent="center" alignItems="center">
       {days.map((item, index) => (
-        <PathwayStreakItem key={`day-${item.day || "today"}-${index}`} {...item} />
+        <PathwayStreakItem
+          key={`day-${item.day || "today"}-${index}`}
+          {...item}
+          textColor={textColor}
+          showCoin={showCoin}
+        />
       ))}
     </Box>
   );

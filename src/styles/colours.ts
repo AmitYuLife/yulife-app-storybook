@@ -117,6 +117,9 @@ export default {
     header: "#0177FF",
     background: "#0050DB",
     darkBackground: "#013BA0",
+    tick: "#00D68F",
+    streak_border: "#B2B2B2",
+    streak_background: "#E7E7EB",
   },
   slider: {
     inactive: "#BFBFC2",

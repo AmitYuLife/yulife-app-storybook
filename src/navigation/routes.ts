@@ -430,6 +430,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/pathways/pathways.container").default,
   },
   {
+    name: ROUTES.pathwaysReflected,
+    component: require("../modules/pathways/screens/pathways-reflected/pathways-reflected.screen").default,
+  },
+  {
     name: ROUTES.pathwayChallengeSuccess,
     component: require("../modules/pathways/containers/pathway-challenge-success/pathway-challenge-success.container")
       .default,
