@@ -142,5 +142,4 @@ ios-production-build:
       - builds/ios/
     expire_in: 15 days
   rules:
-    - if: $CI_COMMIT_BRANCH =~ /^release\/.*$/
-      when: manual
+    - if: $CI_COMMIT_TAG =~ /^release\/.*$/
