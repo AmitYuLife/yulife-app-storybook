@@ -50,7 +50,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
     fetchPolicy: "cache-and-network",
   });
 
-  const { pathwayChallenge, pathwayChallengeLoading } = usePathwayChallenge();
+  const { pathwayChallenge, pathwayChallengeLoading } = usePathwayChallenge({ componentId });
 
   const { openConsumables } = useConsumableModal(refetch);
 

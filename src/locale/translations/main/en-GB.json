@@ -204,7 +204,15 @@
       "reflect_in": "Reflect in %{hours}h %{minutes}m",
       "secondary_button_label": "Go to Wellbeing Hub",
       "advice_empty_section": {
-        "title": "You’re getting closer to your insights!"
+        "title": "You're getting closer to your insights!"
+      },
+      "challenge_intro": {
+        "heading": "Health Quest",
+        "title": "Designed for Yu",
+        "description": "The health challenge gives you targeted and personalised content based on your daily reflection answers.",
+        "bullet_point_1": "Personalised based on your health questionnaire answers",
+        "bullet_point_2": "Adapt to you and your needs over time",
+        "bullet_point_3": "Aims to prevent health issues before they are a problem"
       },
       "reflected": {
         "title": "days of reflection",
