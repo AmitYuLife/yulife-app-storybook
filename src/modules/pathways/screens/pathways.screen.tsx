@@ -39,7 +39,6 @@ const PathwaysScreen = ({
   onOpenMoodCalendar,
   adviceSection,
   interventionSections,
-  isLoading,
   maxProgress,
   streakAwardId,
 }: IPathwaysScreenProps) => {
@@ -104,8 +103,6 @@ const PathwaysScreen = ({
           nextQuestionnaireLocalDate={nextQuestionnaireLocalDate}
           maxProgress={maxProgress}
           streakAwardId={streakAwardId}
-          isLoading={isLoading}
-          isStreaksEnabled={true}
         />
 
         <Box minHeight={500} width={"100%"} gap={20} ph={12} pt={30}>

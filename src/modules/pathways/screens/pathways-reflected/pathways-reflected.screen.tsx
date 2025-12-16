@@ -44,13 +44,16 @@ const PathwaysReflectedScreen = () => {
 
               <Box bg="white" br={10} px={20} py={35}>
                 <PathwayStreaks
-                  currentStreak={5}
+                  currentStreak={1}
                   reflectedToday={true}
                   maxProgress={5}
                   streakAwardId={undefined}
-                  isLoading={false}
-                  showCoin={false}
                   textColor={colours.neutral.n900}
+                  completedBorderColor={null}
+                  notCompletedBorderColor={colours.pathways.reflectionCompletedStreakBorder}
+                  notCompletedColor={colours.pathways.reflectionCompletedStreakBackground}
+                  notCompletedChestForegroundColor={colours.pathways.reflectionCompletedStreakBackground}
+                  notCompletedChestBackgroundColor={colours.pathways.reflectionCompletedStreakBorder}
                 />
               </Box>
             </Box>

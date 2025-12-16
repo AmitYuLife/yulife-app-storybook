@@ -29,14 +29,9 @@ const PathwaysOldScreen = ({
   onReflect,
   onClose,
   moodSubmissions,
-  reflectionProgress,
-  reflectedToday,
   nextQuestionnaireLocalDate,
   onOpenMoodCalendar,
   adviceSection,
-  isLoading,
-  maxProgress,
-  streakAwardId,
 }: Props) => {
   const scrollY = useSharedValue(0);
 
@@ -64,16 +59,7 @@ const PathwaysOldScreen = ({
             contentFit="cover"
           />
         </Box>
-        <PathwaysHeaderOld
-          onReflect={onReflect}
-          reflectionProgress={reflectionProgress}
-          reflectedToday={reflectedToday}
-          nextQuestionnaireLocalDate={nextQuestionnaireLocalDate}
-          maxProgress={maxProgress}
-          streakAwardId={streakAwardId}
-          isLoading={isLoading}
-          isStreaksEnabled={false}
-        />
+        <PathwaysHeaderOld onReflect={onReflect} nextQuestionnaireLocalDate={nextQuestionnaireLocalDate} />
 
         <Box minHeight={100} width={"100%"} gap={20} ph={16}>
           <Box gap={16}>

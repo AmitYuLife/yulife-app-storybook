@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { Box, SkeletonLoading } from "@atoms";
+import { Box } from "@atoms";
 import PathwayStreakItem from "./pathway-streak-item";
 
 interface IDayItem {
@@ -7,7 +7,6 @@ interface IDayItem {
   completed: boolean;
   isToday: boolean;
   isChest: boolean;
-  isActive: boolean;
 }
 
 interface Props {
@@ -15,9 +14,12 @@ interface Props {
   currentStreak: number;
   maxProgress: number;
   streakAwardId?: string;
-  showCoin?: boolean;
-  isLoading: boolean;
-  textColor?: string;
+  textColor: string;
+  completedBorderColor: string | null;
+  notCompletedBorderColor: string | null;
+  notCompletedColor: string;
+  notCompletedChestForegroundColor: string;
+  notCompletedChestBackgroundColor: string;
 }
 
 const PathwayStreaks = ({
@@ -25,31 +27,30 @@ const PathwayStreaks = ({
   reflectedToday,
   maxProgress,
   streakAwardId,
-  isLoading,
   textColor,
-  showCoin = true,
+  completedBorderColor,
+  notCompletedBorderColor,
+  notCompletedColor,
+  notCompletedChestForegroundColor,
+  notCompletedChestBackgroundColor,
 }: Props) => {
   const days = useMemo(
     () => buildDays({ currentStreak, reflectedToday, maxProgress, streakAwardId }),
     [currentStreak, reflectedToday, maxProgress, streakAwardId]
   );
 
-  if (isLoading) {
-    return (
-      <Box w="100%" gap={24} br={12} flexDirection="row" justifyContent="center" alignItems="center">
-        <SkeletonLoading height={64} width={"100%"} />
-      </Box>
-    );
-  }
-
   return (
-    <Box w="100%" gap={24} br={12} flexDirection="row" justifyContent="center" alignItems="center">
+    <Box w="100%" gap={24} flexDirection="row" justifyContent="center" alignItems="center">
       {days.map((item, index) => (
         <PathwayStreakItem
           key={`day-${item.day || "today"}-${index}`}
           {...item}
           textColor={textColor}
-          showCoin={showCoin}
+          completedBorderColor={completedBorderColor}
+          notCompletedBorderColor={notCompletedBorderColor}
+          notCompletedColor={notCompletedColor}
+          notCompletedChestForegroundColor={notCompletedChestForegroundColor}
+          notCompletedChestBackgroundColor={notCompletedChestBackgroundColor}
         />
       ))}
     </Box>
@@ -74,30 +75,7 @@ const buildDays = ({
     completed: getCompleted({ streakAwardId, reflectedToday, currentStreak, index }),
     isToday: currentStreak === index + (reflectedToday ? 1 : 0),
     isChest: maxProgress === index + 1,
-    isActive: getIsActive({ streakAwardId, currentStreak, reflectedToday, index }),
   }));
-};
-
-const getIsActive = ({
-  streakAwardId,
-  currentStreak,
-  reflectedToday,
-  index,
-}: {
-  streakAwardId: string;
-  currentStreak: number;
-  reflectedToday: boolean;
-  index: number;
-}) => {
-  if (streakAwardId) {
-    return true;
-  }
-
-  if (reflectedToday) {
-    return index < currentStreak;
-  }
-
-  return index <= currentStreak;
 };
 
 const getCompleted = ({
