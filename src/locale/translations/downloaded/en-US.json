@@ -1453,14 +1453,22 @@
       "advice_empty_section": {
         "title": "You're getting closer to your insights!"
       },
+      "daily_reflection": "Reflection %{count}",
       "day": "Day %{day}",
       "header": "Today's reflection",
       "health_insights": "Health insights",
+      "journey_header": "Journey %{count}",
+      "journey_header_starts": "Starting the reflection",
+      "journey_header_starts_in": "New reflection in %{hours}:%{minutes}:%{seconds}",
       "personal_health_path": {
         "heading": "Personal Health Path"
       },
       "recommended_for_you": "Recommended for you",
       "reflect": "Reflect",
+      "reflected": {
+        "subtitle": "Your personalized insights are unlocked!",
+        "title": "periods of reflection"
+      },
       "reflect_in": "Reflect in %{hours}h %{minutes}m",
       "secondary_button_label": "Go to Wellbeing Hub",
       "today": "Today",

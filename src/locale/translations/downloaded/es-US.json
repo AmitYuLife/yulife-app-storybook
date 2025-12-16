@@ -1453,14 +1453,22 @@
       "advice_empty_section": {
         "title": "Cada vez estás más cerca de tus ideas."
       },
+      "daily_reflection": "Reflexión %{count}",
       "day": "Día %{day}",
       "header": "Reflexión de hoy",
       "health_insights": "Información sanitaria",
+      "journey_header": "Viaje %{count}",
+      "journey_header_starts": "Iniciar la reflexión",
+      "journey_header_starts_in": "Nuevo reflejo en %{hours}:%{minutes}:%{seconds}",
       "personal_health_path": {
         "heading": "Trayectoria personal de salud"
       },
       "recommended_for_you": "Recomendado para usted",
       "reflect": "Reflect",
+      "reflected": {
+        "subtitle": "Desbloquea tus conocimientos personalizados.",
+        "title": "jornadas de reflexión"
+      },
       "reflect_in": "Reflejar en %{hours}h %{minutes}m",
       "secondary_button_label": "Ir a Wellbeing Hub",
       "today": "Hoy",

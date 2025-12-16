@@ -1453,14 +1453,22 @@
       "advice_empty_section": {
         "title": "أنت على بُعد خطوة من تحليلاتك"
       },
+      "daily_reflection": "انعكاس %{count}",
       "day": "يوم %{day}",
       "header": "تأمل اليوم",
       "health_insights": "التحليلات الصحية",
+      "journey_header": "الرحلة %{count}",
+      "journey_header_starts": "بدء التأمل",
+      "journey_header_starts_in": "التأمل الجديد يبدأ خلال %{hours}:%{minutes}:%{seconds}",
       "personal_health_path": {
         "heading": "مسار الصحة الشخصية"
       },
       "recommended_for_you": "موصى به لك",
       "reflect": "يعكس",
+      "reflected": {
+        "subtitle": "لقد تم فتح رؤى التخصيص الخاصة بك!",
+        "title": "أيام التأمل"
+      },
       "reflect_in": "سيتم التنفيذ خلال %{hours} ساعة و %{minutes} دقيقة",
       "secondary_button_label": "اذهب إلى مركز الرفاهية",
       "today": "اليوم",
