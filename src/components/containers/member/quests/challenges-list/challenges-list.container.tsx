@@ -60,7 +60,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     fetchPolicy: "cache-and-network",
   });
 
-  const { pathwayChallenge, pathwayChallengeLoading } = usePathwayChallenge();
+  const { pathwayChallenge, pathwayChallengeLoading } = usePathwayChallenge({ componentId });
 
   const { openConsumables } = useConsumableModal(refetch);
 

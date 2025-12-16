@@ -16,7 +16,7 @@ const PathwayChallengeSuccessContainer = ({ reward }: Props) => {
     Navigation.popTo(isAvailable ? ROUTES.questsChallengesList : ROUTES.quests);
   }, [isAvailable]);
 
-  return <PathwayChallengeSuccessScreen reward={reward} loading={false} onPressCta={onPressCta} />;
+  return <PathwayChallengeSuccessScreen reward={reward} onPressCta={onPressCta} />;
 };
 
 export default memo(PathwayChallengeSuccessContainer);

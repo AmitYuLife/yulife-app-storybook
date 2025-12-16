@@ -1,11 +1,14 @@
 import { useCallback, useMemo } from "react";
-import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
+import { Navigation } from "@navigation/main";
+import { ROUTES } from "@navigation/constants";
 
-export const usePathwayChallenge = () => {
-  const dispatch = useDispatch();
+interface UsePathwayChallengeArgs {
+  componentId: string;
+}
 
+export const usePathwayChallenge = ({ componentId }: UsePathwayChallengeArgs) => {
   const { data: pathwayChallengeData, loading: pathwayChallengeLoading } = useQuery(
     gql("GetPathwayChallengeDocument"),
     {
@@ -15,13 +18,18 @@ export const usePathwayChallenge = () => {
 
   const handlePathwayTilePress = useCallback(() => {
     const action = pathwayChallengeData?.getPathwayChallenge?.action;
-    if (action?.type) {
-      dispatch({
-        type: action.type,
-        payload: { serverPayload: action.payload },
-      });
-    }
-  }, [dispatch, pathwayChallengeData?.getPathwayChallenge?.action]);
+
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.pathwayChallengeIntro,
+        name: ROUTES.pathwayChallengeIntro,
+        passProps: {
+          onPress: action,
+          componentId,
+        },
+      },
+    });
+  }, [componentId, pathwayChallengeData?.getPathwayChallenge?.action]);
 
   const pathwayChallenge = useMemo(() => {
     if (!pathwayChallengeData?.getPathwayChallenge) {

@@ -11,11 +11,10 @@ import { PathwaysYuCoinConfetti } from "../components/pathways-yucoin-confetti/p
 
 interface IProps {
   onPressCta: () => void;
-  loading: boolean;
   reward: number;
 }
 
-const PathwayChallengeSuccessScreen = ({ reward, loading, onPressCta }: IProps) => {
+const PathwayChallengeSuccessScreen = ({ reward, onPressCta }: IProps) => {
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const { challengeSuccessScreen } = getTheme(currentLevel, yuniversalMap);
@@ -37,13 +36,7 @@ const PathwayChallengeSuccessScreen = ({ reward, loading, onPressCta }: IProps) 
           </Box>
         </Box>
         <Box alignSelf="stretch" px={16}>
-          <Button
-            translationKey="labels.cta.collect"
-            isLoading={loading}
-            onPress={onPressCta}
-            size="Fill"
-            wrapperStyle={styles.cta}
-          />
+          <Button translationKey="labels.cta.collect" onPress={onPressCta} size="Fill" wrapperStyle={styles.cta} />
         </Box>
       </Box>
     </CentredScreen>
