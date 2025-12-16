@@ -4,31 +4,15 @@ import { Style, TOP_BAR } from "@styles";
 import moment from "moment";
 import ButtonPulseAnimationWrapper from "@components/molecules/button/animation/button-pulse-animation-wrapper";
 import { Button } from "@components/molecules";
-import PathwayStreaks from "../pathway-streaks/pathway-streaks";
 
 interface Props {
   onReflect: () => void;
   nextQuestionnaireLocalDate: string;
-  reflectionProgress: number;
-  reflectedToday: boolean;
-  maxProgress: number;
-  streakAwardId?: string;
-  isLoading: boolean;
-  isStreaksEnabled: boolean;
 }
 
 const TIME_REMAINING_REFRESH_RATE_MS = 5000;
 
-const PathwaysHeaderOld = ({
-  onReflect,
-  nextQuestionnaireLocalDate,
-  reflectedToday,
-  maxProgress,
-  streakAwardId,
-  isLoading,
-  reflectionProgress,
-  isStreaksEnabled,
-}: Props) => {
+const PathwaysHeaderOld = ({ onReflect, nextQuestionnaireLocalDate }: Props) => {
   // if the next questionnaire local date is today, enable the reflect button,
   // else disable it and count down to the next day
   const [timeRemaining, setTimeRemaining] = useState({
@@ -52,25 +36,14 @@ const PathwaysHeaderOld = ({
 
   return (
     <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} h={Style.adjust(550)}>
-      {!isStreaksEnabled ? (
-        <Box position="absolute" top={-50} width={"100%"}>
-          <Image
-            source={require("./pathways-header-background.webp")}
-            width={"100%"}
-            height={Style.adjust(512)}
-            contentFit="cover"
-          />
-        </Box>
-      ) : null}
-      {isStreaksEnabled ? (
-        <PathwayStreaks
-          currentStreak={reflectionProgress}
-          reflectedToday={reflectedToday}
-          maxProgress={maxProgress}
-          streakAwardId={streakAwardId}
-          isLoading={isLoading}
+      <Box position="absolute" top={-50} width={"100%"}>
+        <Image
+          source={require("./pathways-header-background.webp")}
+          width={"100%"}
+          height={Style.adjust(512)}
+          contentFit="cover"
         />
-      ) : null}
+      </Box>
       <Box position="absolute" bottom={50} alignSelf="center">
         <ButtonPulseAnimationWrapper animatePulse={!timeRemaining.hasTimeRemaining} pulseVerticalOffset={5}>
           <Button

@@ -15,6 +15,9 @@ const IconographyComponent = () => {
             style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: 1, flexBasis: "auto" }}
           >
             <Icon
+              active={true}
+              inactiveForegroundColor="blue"
+              inactiveBackgroundColor="grey"
               checked={true}
               label={name}
               isDoneToday={false}
