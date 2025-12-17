@@ -50,6 +50,7 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
     },
     text: {
       ...templateTextStyles.b2,
+      lineHeight: Style.adjust(24),
       color: Colours.neutral.n800,
       ...props?.text,
     },
