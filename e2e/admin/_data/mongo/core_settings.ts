@@ -33,7 +33,7 @@ export const BUSINESS_6_INTERCOM_SETTINGS = {
     entityId: BUSINESS_ACCOUNT_6.data.business_account_id,
     entityType: "business",
     settings: {
-      userSupportLevel: "basic",
+      userSupportLevelForOnboardingPeriod: "basic",
     },
   },
 } as IDatabaseItem;
