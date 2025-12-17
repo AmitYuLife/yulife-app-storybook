@@ -1,54 +1,51 @@
 import { Box, TextTemplate } from "@atoms";
+import { Markdown } from "@components/molecules";
 import { t } from "@locale";
-import { Colours } from "@styles";
-import moment from "moment";
-import { memo, useCallback, useEffect, useState } from "react";
+import { Colours, StyleSheet, templateTextStyles } from "@styles";
+import { padNum } from "@utils";
+import { memo } from "react";
 
 interface IPathwaysJourneyHeaderProps {
-  count: number;
-  nextQuestionnaireLocalDate: string;
+  maxProgress: number;
+  timeToNextQuestionnaire: {
+    hours: number;
+    minutes: number;
+    seconds: number;
+    hasTimeRemaining: boolean;
+  };
 }
 
-const TIME_REMAINING_REFRESH_RATE_MS = 1000;
-
-const PathwaysJourneyHeader = ({ count, nextQuestionnaireLocalDate }: IPathwaysJourneyHeaderProps) => {
-  const [timeRemaining, setTimeRemaining] = useState({
-    hasTimeRemaining: true,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  const updateTimeRemaining = useCallback(() => {
-    const secondsRemaining = moment(nextQuestionnaireLocalDate).diff(moment(), "seconds");
-    const hours = Math.floor(secondsRemaining / 3600);
-    const minutes = Math.floor((secondsRemaining % 3600) / 60);
-    const seconds = secondsRemaining % 60;
-    setTimeRemaining({ hasTimeRemaining: secondsRemaining > 0, hours, minutes, seconds });
-  }, [nextQuestionnaireLocalDate]);
-
-  useEffect(() => {
-    updateTimeRemaining();
-    const interval = setInterval(updateTimeRemaining, TIME_REMAINING_REFRESH_RATE_MS);
-    return () => clearInterval(interval);
-  }, [updateTimeRemaining]);
-
+const PathwaysJourneyHeader = ({ maxProgress, timeToNextQuestionnaire }: IPathwaysJourneyHeaderProps) => {
   return (
-    <Box gap={5} w="100%" alignItems="center">
+    <Box gap={5} alignItems="center">
       <TextTemplate type="b1b" color={Colours.neutral.white}>
-        {t("screens.pathways.journey_header", { count })}
+        {t("screens.pathways.journey_header")}
       </TextTemplate>
-      <TextTemplate type="b2" color={Colours.neutral.white}>
-        {timeRemaining.hasTimeRemaining
-          ? t("screens.pathways.journey_header_starts_in", {
-              hours: timeRemaining.hours,
-              minutes: timeRemaining.minutes,
-              seconds: timeRemaining.seconds || "00",
-            })
-          : t("screens.pathways.journey_header_starts")}
-      </TextTemplate>
+      <Markdown
+        markdownStyles={markdownStyles}
+        text={
+          timeToNextQuestionnaire.hasTimeRemaining
+            ? t("screens.pathways.journey_header_starts_in", {
+                hours: timeToNextQuestionnaire.hours,
+                minutes: padNum(timeToNextQuestionnaire.minutes || 0),
+                seconds: padNum(timeToNextQuestionnaire.seconds || 0),
+              })
+            : t("screens.pathways.journey_header_starts", { maxProgress })
+        }
+      />
     </Box>
   );
 };
+
+const markdownStyles = StyleSheet.create({
+  paragraph: {
+    paddingVertical: 0,
+  },
+  text: {
+    ...templateTextStyles.l1,
+    color: Colours.neutral.white,
+    fontVariant: ["tabular-nums"],
+  },
+});
 
 export default memo(PathwaysJourneyHeader);

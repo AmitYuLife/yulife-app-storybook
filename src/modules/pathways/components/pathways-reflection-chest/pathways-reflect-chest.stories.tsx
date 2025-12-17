@@ -13,8 +13,6 @@ const meta: Meta<typeof Component> = {
     },
   },
   args: {
-    label: "Reflection",
-    description: "Take a moment to reflect on your progress",
     onPress: noop,
     yucoinAmount: 50,
     status: "active",

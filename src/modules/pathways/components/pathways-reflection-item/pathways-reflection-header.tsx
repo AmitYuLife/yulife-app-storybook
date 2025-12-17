@@ -4,15 +4,44 @@ import { Box } from "@atoms";
 import { Colours } from "@styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { CheckIcon } from "@atoms/icon/check";
+import { t } from "@locale";
+import { padNum } from "@utils";
 
 interface IPathwayReflectionHeaderProps {
   label: string;
-  status: "completed" | "active" | "locked";
+  status: "completed" | "active" | "locked" | "next";
+  timeToNextQuestionnaire: {
+    hours: number;
+    minutes: number;
+    seconds: number;
+    hasTimeRemaining: boolean;
+  };
 }
 
-const PathwayReflectionHeader = ({ label, status }: IPathwayReflectionHeaderProps) => {
+const PathwayReflectionHeader = ({ label, status, timeToNextQuestionnaire }: IPathwayReflectionHeaderProps) => {
   const isActive = status === "active";
   const isLocked = status === "locked";
+
+  if (status === "next") {
+    return (
+      <Box alignSelf="flex-start" flexDirection="row" gap={4} p={2} bg={Colours.neutral.white} br={20} flex={1}>
+        <Box bg={Colours.primary.p600} br={20} px={4} py={2} justifyContent="center" alignItems="center">
+          <TextTemplate type="l3b" color={Colours.neutral.white}>
+            {t("screens.pathways.reflection_unlocks_in")}
+          </TextTemplate>
+        </Box>
+        <Box justifyContent="center" alignItems="center" pr={4} py={2}>
+          <TextTemplate type="l3b" color={Colours.primary.p600} fontVariant={["tabular-nums"]}>
+            {t("screens.pathways.reflection_countdown", {
+              hours: timeToNextQuestionnaire.hours,
+              minutes: padNum(timeToNextQuestionnaire.minutes || 0),
+              seconds: padNum(timeToNextQuestionnaire.seconds || 0),
+            })}
+          </TextTemplate>
+        </Box>
+      </Box>
+    );
+  }
 
   return (
     <Box w="100%" justifyContent="space-between" flexDirection="row" alignItems="center" opacity={isLocked ? 0.5 : 1}>

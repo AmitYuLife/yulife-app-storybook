@@ -1,18 +1,27 @@
-import { Box, RawImage, TextTemplate } from "@atoms";
+import { Box, RawImage } from "@atoms";
 import { IBoxProps } from "@atoms/box/box.types";
-import { Colours } from "@styles";
+import { Markdown } from "@components/molecules";
+import { Colours, StyleSheet, templateTextStyles } from "@styles";
 
 interface IPathwaysReflectionRewardProps extends IBoxProps {
-  yucoinAmount: number;
+  yucoinAmount: string;
 }
 
 export const PathwaysReflectionReward = ({ yucoinAmount, ...props }: IPathwaysReflectionRewardProps) => {
   return (
     <Box gap={5} flexDirection="row" alignItems="center" justifyContent="center" {...props}>
-      <TextTemplate type="l1b" color={Colours.neutral.white}>
-        {yucoinAmount}
-      </TextTemplate>
+      <Markdown markdownStyles={markdownStyles} text={yucoinAmount} />
       <RawImage source={require("@assets/icons/yucoin.png")} w={15} h={15} contentFit="contain" />
     </Box>
   );
 };
+
+const markdownStyles = StyleSheet.create({
+  paragraph: {
+    paddingVertical: 0,
+  },
+  text: {
+    ...templateTextStyles.l1,
+    color: Colours.neutral.white,
+  },
+});

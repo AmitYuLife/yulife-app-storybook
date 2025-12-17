@@ -20,6 +20,7 @@ interface IPathwaysScreenProps {
   onReflect: () => void;
   onOpenMoodCalendar: () => void;
   reflectionProgress: number;
+  coinAwards: number[];
   reflectedToday: boolean;
   nextQuestionnaireLocalDate: string;
   adviceSection: PathwayAdviceSectionProps;
@@ -34,6 +35,7 @@ const PathwaysScreen = ({
   onClose,
   moodSubmissions,
   reflectionProgress,
+  coinAwards,
   reflectedToday,
   nextQuestionnaireLocalDate,
   onOpenMoodCalendar,
@@ -101,6 +103,7 @@ const PathwaysScreen = ({
           reflectionProgress={reflectionProgress}
           reflectedToday={reflectedToday}
           nextQuestionnaireLocalDate={nextQuestionnaireLocalDate}
+          coinAwards={coinAwards}
           maxProgress={maxProgress}
           streakAwardId={streakAwardId}
         />
@@ -130,9 +133,8 @@ const PathwaysScreen = ({
         <Box pb={bottomBackgroundHeight * 0.3} />
       </Animated.ScrollView>
       <GenericHeadingAbsolute
-        backgroundColor={Colours.pathways.header}
+        backgroundColor={"transparent"}
         onLeftIconPress={onClose}
-        heading={t("screens.pathways.header")}
         color="white"
         hasShadow={true}
         scrollValue={scrollY}

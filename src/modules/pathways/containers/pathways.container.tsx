@@ -54,7 +54,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
       data?.getUserPathways?.reflectionProgress || {
         currentProgress: 0,
         reflectedToday: false,
-        coins: 140,
+        coinAwards: [0, 0, 0, 0, 0],
         reflectAction: {},
         currentStreak: 0,
         maxProgress: 5,
@@ -71,6 +71,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
       onOpenMoodCalendar: onOpenMoodCalendar,
       moodSubmissions: moodSubmissions,
       reflectionProgress: reflectionProgress.currentProgress,
+      coinAwards: reflectionProgress.coinAwards,
       reflectedToday: reflectionProgress.reflectedToday,
       maxProgress: reflectionProgress.maxProgress,
       streakAwardId: reflectionProgress.streakAwardId,
