@@ -1453,6 +1453,14 @@
       "advice_empty_section": {
         "title": "Cada vez estás más cerca de tus ideas."
       },
+      "challenge_intro": {
+        "bullet_point_1": "Personalizado en función de las respuestas a su cuestionario de salud",
+        "bullet_point_2": "Adaptarse a usted y a sus necesidades a lo largo del tiempo",
+        "bullet_point_3": "Prevenir los problemas de salud antes de que se conviertan en un problema",
+        "description": "El reto de salud le ofrece contenidos específicos y personalizados basados en las respuestas de su reflexión diaria.",
+        "heading": "Búsqueda de la Salud",
+        "title": "Diseñado para Yu"
+      },
       "daily_reflection": "Reflexión %{count}",
       "day": "Día %{day}",
       "header": "Reflexión de hoy",

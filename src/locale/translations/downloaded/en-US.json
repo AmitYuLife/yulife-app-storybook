@@ -1453,6 +1453,14 @@
       "advice_empty_section": {
         "title": "You're getting closer to your insights!"
       },
+      "challenge_intro": {
+        "bullet_point_1": "Personalized based on your health questionnaire answers",
+        "bullet_point_2": "Adapt to you and your needs over time",
+        "bullet_point_3": "Aims to prevent health issues before they become a problem",
+        "description": "The health challenge gives you targeted and personalized content based on your daily reflection answers.",
+        "heading": "Health Quest",
+        "title": "Designed for You"
+      },
       "daily_reflection": "Reflection %{count}",
       "day": "Day %{day}",
       "header": "Today's reflection",

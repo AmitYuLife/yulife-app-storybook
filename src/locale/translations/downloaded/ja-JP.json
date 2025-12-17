@@ -1451,7 +1451,15 @@
     },
     "pathways": {
       "advice_empty_section": {
-        "title": "インサイト に 近づいています！"
+        "title": "インサイトに  近づいています！"
+      },
+      "challenge_intro": {
+        "bullet_point_1": "健康 クエスチョンとは に基づいて パーソナライズ",
+        "bullet_point_2": "時間 をかけて あなた に適応 し 、 ニーズ に応え ます",
+        "bullet_point_3": "問題になる前に健康問題を防ぐことを目指す",
+        "description": "ヘルス チャレンジ は、 毎日 の レフレクション の 答え に 基づいて、 あなた に 合っ た コンテンツ を 提供 し ます。",
+        "heading": "ヘルス クエスト",
+        "title": "Yumoji 向けにデザインされました"
       },
       "daily_reflection": "リフレクション%{count}",
       "day": "%{day}日目",
