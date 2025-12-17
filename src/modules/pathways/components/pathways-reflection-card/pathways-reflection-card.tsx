@@ -14,7 +14,7 @@ interface IPathwaysReflectionCardProps extends IBoxProps {
 const BORDER_COLORS = [Colours.pathways.darkBackground];
 
 const PathwaysReflectionCard = ({ children, onPress, status, ...boxProps }: IPathwaysReflectionCardProps) => {
-  const isLocked = status === "locked";
+  const isActive = status === "active";
 
   return (
     <Pressable
@@ -27,17 +27,12 @@ const PathwaysReflectionCard = ({ children, onPress, status, ...boxProps }: IPat
     >
       <StackedShadowWrapper stackColors={BORDER_COLORS} style={styles.shadowWrapper}>
         <Box
-          br={14}
-          // h="100%"
           w="100%"
-          borderWidth={1}
           flexDirection="row"
-          borderRightWidth={1}
-          borderColor={Colours.pathways.darkBackground}
-          bg={isLocked ? Colours.pathways.darkBackground : Colours.pathways.header}
+          bg={isActive ? Colours.pathways.header : Colours.pathways.darkBackground}
           {...boxProps}
         >
-          <Box opacity={isLocked ? 0.5 : 1} w="100%" h="100%">
+          <Box opacity={isActive ? 1 : 0.5} w="100%" h="100%">
             {children}
           </Box>
         </Box>
@@ -49,7 +44,7 @@ const PathwaysReflectionCard = ({ children, onPress, status, ...boxProps }: IPat
 const styles = StyleSheet.create({
   shadowWrapper: {
     width: "100%",
-    borderRadius: Style.adjust(16),
+    borderRadius: Style.adjust(14),
   },
 });
 

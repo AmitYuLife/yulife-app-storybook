@@ -1,35 +1,61 @@
-import { memo } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Box } from "@atoms";
 import { Colours, TOP_BAR } from "@styles";
 import PathwayStreaks from "../pathway-streaks/pathway-streaks";
 import PathwaysJourneyHeader from "../pathways-journey-header/pathways-journey-header";
 import PathwaysReflectionItem from "../pathways-reflection-item/pathways-reflection-item";
-import { useWindowDimensions } from "react-native";
 import PathwaysReflectChest from "../pathways-reflection-chest/pathways-reflect-chest";
 import { t } from "@locale";
+import moment from "moment";
 
 interface IPathwaysHeaderProps {
   onReflect: () => void;
   nextQuestionnaireLocalDate: string;
   reflectionProgress: number;
   reflectedToday: boolean;
+  coinAwards: number[];
   maxProgress: number;
   streakAwardId?: string;
 }
 
-const ITEM_GAP = 10;
-const PAGE_PADDING = 20;
+const BOX_SIZE = 134;
+const BOX_GAP = 16;
+
+const TIME_REMAINING_REFRESH_RATE_MS = 1000;
 
 const PathwaysHeader = ({
   onReflect,
   nextQuestionnaireLocalDate,
   reflectedToday,
   maxProgress,
+  coinAwards,
   streakAwardId,
   reflectionProgress,
 }: IPathwaysHeaderProps) => {
-  const { width } = useWindowDimensions();
-  const itemWidth = (width - PAGE_PADDING * 2) / 2;
+  const finalItemStatus = useMemo(() => {
+    return getReflectionItemStatus(maxProgress - 1, reflectionProgress, reflectedToday);
+  }, [maxProgress, reflectionProgress, reflectedToday]);
+
+  const [timeRemaining, setTimeRemaining] = useState({
+    hasTimeRemaining: true,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  const updateTimeRemaining = useCallback(() => {
+    const secondsRemaining = moment(nextQuestionnaireLocalDate).diff(moment(), "seconds");
+    const hours = Math.floor(secondsRemaining / 3600);
+    const minutes = Math.floor((secondsRemaining % 3600) / 60);
+    const seconds = secondsRemaining % 60;
+    setTimeRemaining({ hasTimeRemaining: secondsRemaining > 0, hours, minutes, seconds });
+  }, [nextQuestionnaireLocalDate]);
+
+  useEffect(() => {
+    updateTimeRemaining();
+    const interval = setInterval(updateTimeRemaining, TIME_REMAINING_REFRESH_RATE_MS);
+    return () => clearInterval(interval);
+  }, [updateTimeRemaining]);
 
   return (
     <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} mt={7}>
@@ -46,40 +72,34 @@ const PathwaysHeader = ({
         notCompletedChestBackgroundColor={Colours.pathways.background}
       />
       <Box mt={30} gap={20}>
-        {/* TODO: total journey count */}
-        <PathwaysJourneyHeader count={1} nextQuestionnaireLocalDate={nextQuestionnaireLocalDate} />
-        <Box flexWrap="wrap" flexDirection="row" w="100%" alignItems="center" px={PAGE_PADDING}>
+        <PathwaysJourneyHeader maxProgress={maxProgress} timeToNextQuestionnaire={timeRemaining} />
+        <Box flexWrap="wrap" flexDirection="row" gap={BOX_GAP} justifyContent="center">
           {Array.from({ length: 4 }).map((_, index) => {
-            const isLeft = index % 2 === 0;
-
-            const itemStatus = getReflectionItemStatus(index, reflectionProgress);
+            const itemStatus = getReflectionItemStatus(index, reflectionProgress, reflectedToday);
             const onPress = itemStatus === "active" ? onReflect : undefined;
 
             return (
-              <Box
-                pl={isLeft ? 0 : ITEM_GAP}
-                pr={isLeft ? ITEM_GAP : 0}
-                w={itemWidth}
-                key={index}
-                flexDirection="row"
-                pb={ITEM_GAP}
-              >
+              <Box w={BOX_SIZE} key={index} flexDirection="row">
                 <PathwaysReflectionItem
-                  label={t("screens.pathways.daily_reflection", { count: index + 1 })}
+                  label={
+                    itemStatus === "active"
+                      ? t("screens.pathways.reflection_active_label")
+                      : t("screens.pathways.reflection_inactive_label")
+                  }
                   onPress={onPress}
-                  yucoinAmount={25}
-                  status={getReflectionItemStatus(index, reflectionProgress)}
+                  yucoinAmount={coinAwards[index]}
+                  status={itemStatus}
+                  timeToNextQuestionnaire={timeRemaining}
                 />
               </Box>
             );
           })}
-          <Box w="100%" flexDirection="row" mt={ITEM_GAP}>
+          <Box w={BOX_SIZE * 2 + BOX_GAP} flexDirection="row">
             <PathwaysReflectChest
-              label="Daily Reflection"
-              description="Daily Reflection"
-              onPress={reflectionProgress >= 5 ? onReflect : undefined}
-              yucoinAmount={25}
-              status={getReflectionItemStatus(5, reflectionProgress)}
+              onPress={reflectionProgress >= maxProgress - 1 ? onReflect : undefined}
+              yucoinAmount={coinAwards[coinAwards.length - 1]}
+              status={finalItemStatus}
+              timeToNextQuestionnaire={timeRemaining}
             />
           </Box>
         </Box>
@@ -88,9 +108,14 @@ const PathwaysHeader = ({
   );
 };
 
-const getReflectionItemStatus = (index: number, reflectionProgress: number) => {
+const getReflectionItemStatus = (index: number, reflectionProgress: number, reflectedToday: boolean) => {
   if (reflectionProgress < index) {
     return "locked";
+  }
+
+  if (reflectedToday && reflectionProgress === index) {
+    // this item will be unlocked tomorrow
+    return "next";
   }
 
   if (reflectionProgress === index) {

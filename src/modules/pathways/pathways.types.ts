@@ -1,1 +1,1 @@
-export type PathwaysReflectionStatus = "completed" | "active" | "locked";
+export type PathwaysReflectionStatus = "completed" | "active" | "locked" | "next";

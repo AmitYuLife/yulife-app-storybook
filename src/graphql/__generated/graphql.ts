@@ -4912,7 +4912,6 @@ export type HeroCardTheme = {
 export enum HeroCardType {
   Competition = "COMPETITION",
   Goal = "GOAL",
-  InviteDependants = "INVITE_DEPENDANTS",
   Journey = "JOURNEY",
   Smoking = "SMOKING",
 }
@@ -11950,7 +11949,9 @@ export type UserPathwaysItem = {
 
 export type UserPathwaysReflectionProgress = {
   __typename?: "UserPathwaysReflectionProgress";
-  coins: Scalars["Int"]["output"];
+  coinAwards: Array<Scalars["Int"]["output"]>;
+  /** @deprecated Use coinAwards array instead */
+  coins?: Maybe<Scalars["Int"]["output"]>;
   currentProgress: Scalars["Int"]["output"];
   maxProgress: Scalars["Int"]["output"];
   reflectAction: SduiAction;
@@ -19944,7 +19945,7 @@ export type UserPathwaysFragment = {
     __typename?: "UserPathwaysReflectionProgress";
     currentProgress: number;
     maxProgress: number;
-    coins: number;
+    coinAwards: Array<number>;
     reflectedToday: boolean;
     streakAwardId?: string | null;
     reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
@@ -19963,7 +19964,7 @@ export type UserPathwaysReflectionProgressFragment = {
   __typename?: "UserPathwaysReflectionProgress";
   currentProgress: number;
   maxProgress: number;
-  coins: number;
+  coinAwards: Array<number>;
   reflectedToday: boolean;
   streakAwardId?: string | null;
   reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
@@ -28689,7 +28690,7 @@ export type GetUserPathwaysQuery = {
       __typename?: "UserPathwaysReflectionProgress";
       currentProgress: number;
       maxProgress: number;
-      coins: number;
+      coinAwards: Array<number>;
       reflectedToday: boolean;
       streakAwardId?: string | null;
       reflectAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
@@ -59218,6 +59219,7 @@ export const UserPathwaysReflectionProgressFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "currentProgress" } },
           { kind: "Field", name: { kind: "Name", value: "maxProgress" } },
+          { kind: "Field", name: { kind: "Name", value: "coinAwards" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "reflectAction" },
@@ -59226,7 +59228,6 @@ export const UserPathwaysReflectionProgressFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "coins" } },
           { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
           { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
         ],
@@ -59290,6 +59291,7 @@ export const UserPathwaysFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "currentProgress" } },
           { kind: "Field", name: { kind: "Name", value: "maxProgress" } },
+          { kind: "Field", name: { kind: "Name", value: "coinAwards" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "reflectAction" },
@@ -59298,7 +59300,6 @@ export const UserPathwaysFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "coins" } },
           { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
           { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
         ],
@@ -82180,6 +82181,7 @@ export const GetUserPathwaysDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "currentProgress" } },
           { kind: "Field", name: { kind: "Name", value: "maxProgress" } },
+          { kind: "Field", name: { kind: "Name", value: "coinAwards" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "reflectAction" },
@@ -82188,7 +82190,6 @@ export const GetUserPathwaysDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "coins" } },
           { kind: "Field", name: { kind: "Name", value: "reflectedToday" } },
           { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
         ],

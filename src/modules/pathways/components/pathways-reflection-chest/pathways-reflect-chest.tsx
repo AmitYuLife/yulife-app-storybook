@@ -6,29 +6,47 @@ import PathwaysReflectionCard from "../pathways-reflection-card/pathways-reflect
 import PathwaysReflectionHeader from "../pathways-reflection-item/pathways-reflection-header";
 import { PathwaysReflectionReward } from "../pathways-reflection-item/pathways-reflection-reward";
 import { PathwaysReflectionStatus } from "../../pathways.types";
+import { t } from "@locale";
 
 interface IPathwayReflectChestProps {
-  label: string;
-  description: string;
+  timeToNextQuestionnaire: {
+    hours: number;
+    minutes: number;
+    seconds: number;
+    hasTimeRemaining: boolean;
+  };
   onPress: () => void;
   yucoinAmount?: number;
   status: PathwaysReflectionStatus;
 }
 
-const PathwayReflectChest = ({ label, description, onPress, yucoinAmount, status }: IPathwayReflectChestProps) => {
+const CHEST_IMAGE_SIZE = 100;
+
+const PathwayReflectChest = ({ timeToNextQuestionnaire, onPress, yucoinAmount, status }: IPathwayReflectChestProps) => {
   return (
     <PathwaysReflectionCard onPress={onPress} status={status}>
-      <Box p={8} flex={1} gap={5} minHeight={120}>
-        <Box gap={5} h="100%">
-          <PathwaysReflectionHeader label={label} status={status} />
-          <TextTemplate type="b2" color={Colours.neutral.white}>
-            {description}
+      <Box p={16} gap={8} mr={CHEST_IMAGE_SIZE} flexDirection="column" alignItems="flex-start">
+        <PathwaysReflectionHeader
+          label={
+            status === "active"
+              ? t("screens.pathways.reflection_active_label")
+              : t("screens.pathways.reflection_inactive_label")
+          }
+          status={status}
+          timeToNextQuestionnaire={timeToNextQuestionnaire}
+        />
+        <Box flexDirection="row" gap={4}>
+          <RawImage source={require("./extra-challenge.png")} w={15} h={15} contentFit="contain" />
+          <TextTemplate type="l1" color={Colours.neutral.white}>
+            {t("screens.pathways.reflection_chest_health_challenge")}
           </TextTemplate>
         </Box>
-        <PathwaysReflectionReward position="absolute" left={10} bottom={10} yucoinAmount={yucoinAmount} />
+        <PathwaysReflectionReward
+          yucoinAmount={t("screens.pathways.reflection_chest_reward", { amount: yucoinAmount })}
+        />
       </Box>
-      <Box position="absolute" bottom={5} right={12}>
-        <RawImage source={require("./chest.png")} w={100} h={100} contentFit="contain" />
+      <Box position="absolute" bottom={0} right={12}>
+        <RawImage source={require("./chest.png")} w={CHEST_IMAGE_SIZE} h={CHEST_IMAGE_SIZE} contentFit="contain" />
       </Box>
     </PathwaysReflectionCard>
   );

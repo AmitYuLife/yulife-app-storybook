@@ -1,10 +1,10 @@
 fragment UserPathwaysReflectionProgress on UserPathwaysReflectionProgress {
   currentProgress
   maxProgress
+  coinAwards
   reflectAction {
     ...SduiAction
   }
-  coins
   reflectedToday
   streakAwardId
 }
