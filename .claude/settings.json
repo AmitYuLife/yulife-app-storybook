@@ -1,11 +1,6 @@
 {
   "permissions": {
-    "allow": [
-      "Edit(*)",
-      "Write(*)",
-      "Bash(yarn update)",
-      "mcp__ide__getDiagnostics",
-    ],
+    "allow": ["Edit(*)", "Write(*)", "Bash(yarn update)", "mcp__ide__getDiagnostics"],
     "deny": [],
     "ask": []
   }
