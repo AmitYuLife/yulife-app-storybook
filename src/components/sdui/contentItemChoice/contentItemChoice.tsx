@@ -12,6 +12,7 @@ import { CheckBox } from "@molecules";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 import { CONTENT_ITEM_CHOICE } from "@ids";
 import colours from "@styles/colours";
+import { templateTextStylesLineHeight } from "@styles/textStyles";
 
 export type ChoiceAnswerValue = Record<string, boolean | string> | undefined;
 
@@ -221,12 +222,15 @@ const getTemplateTextStyles = (textType?: TemplateTextType) => {
 
   const textStyles = templateTextStyles[textType];
 
+  // we use the line height from the text styles to calc min/max heights
+  const lineHeight = templateTextStylesLineHeight[textType];
+
   return textStyles
     ? {
         ...textStyles,
         lineHeight: undefined,
-        minHeight: Style.adjust(Number(textStyles.lineHeight) || 20),
-        maxHeight: Style.adjust(Number(textStyles.lineHeight) * 3), // 3 lines
+        minHeight: Style.adjust(lineHeight || 20),
+        maxHeight: Style.adjust(lineHeight * 3), // 3 lines
       }
     : {};
 };
