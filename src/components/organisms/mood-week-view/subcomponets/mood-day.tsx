@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { TextTemplate } from "@components/atoms/text/text-template";
 import { Box, Image } from "@atoms";
 import { Colours } from "@styles";
+import { MOOD_TODAY_COMPLETED } from "@ids";
 
 interface Props {
   dayLabel: string;
@@ -11,7 +12,14 @@ interface Props {
 
 const MoodDay = ({ dayLabel, isToday, iconUrl }: Props) => {
   return (
-    <Box key={dayLabel} width={32} flexDirection="column" justifyContent="space-between" alignItems="center">
+    <Box
+      key={dayLabel}
+      width={32}
+      flexDirection="column"
+      justifyContent="space-between"
+      alignItems="center"
+      testID={isToday ? MOOD_TODAY_COMPLETED(Boolean(iconUrl)) : undefined}
+    >
       <Box mb={12}>
         <TextTemplate type={isToday ? "b2b" : "b2"} color={isToday ? Colours.inkStrong : Colours.inkBase}>
           {dayLabel}

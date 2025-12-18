@@ -46,3 +46,5 @@ export const hqReflectionHowYouFeelTodayCopy = {
   title: "How are you feeling today?",
   option: "Happy",
 };
+
+export const healthPathUnlockedCopy = "Keep reflecting to learn more about your health.";

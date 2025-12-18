@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import {} from "../postgres/business";
+import { BUSINESS_ACCOUNT_4 } from "../postgres/business";
 import { BUSINESS_ACCOUNT_3, CUSTOMER_3 } from "engagement_surveys/_data";
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
@@ -17,6 +17,7 @@ export const BUSINESS_3_SETTINGS = {
     entityType: "business",
     settings: {
       isMoodMonitorEnabled: false,
+      isQuestionnaireEnabled: true,
     },
   },
 } as IDatabaseItem;
@@ -43,6 +44,19 @@ export const BUSINESS_3_INTERCOM_SETTINGS = {
     entityType: "business",
     settings: {
       userSupportLevel: "enhanced",
+    },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_4_PATHWAYS_STREAKS_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "temp",
+    entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    entityType: "everyone",
+    settings: {
+      gameEnablePathwaysStreaks: true,
     },
   },
 } as IDatabaseItem;

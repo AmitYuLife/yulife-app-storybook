@@ -13,6 +13,7 @@ import {
 import { YuScreenSection } from "@graphql/__generated";
 import { useWindowDimensions } from "react-native";
 import { PathwaysInterventionSection } from "../components/pathways-intervention-section/pathways-intervention-section";
+import { PATHWAYS_SCREEN } from "@ids";
 
 interface IPathwaysScreenProps {
   onClose: () => void;
@@ -56,7 +57,7 @@ const PathwaysScreen = ({
   });
 
   return (
-    <Box flex={1}>
+    <Box flex={1} testID={PATHWAYS_SCREEN}>
       <Box position="absolute" top={0} width={"100%"} bg={Colours.pathways.header} h={height / 2} />
       <Animated.ScrollView
         style={styles.flex}

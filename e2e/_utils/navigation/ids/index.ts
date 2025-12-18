@@ -1111,3 +1111,23 @@ export const P2P_THANK_THEM_HEART = (hasSaidThankYou: boolean) =>
   `HEART_${hasSaidThankYou ? "PINK_HEART_COLOURS" : "GREY_HEART_COLOURS"}`;
 
 export const TEXT = (id: string) => `${id}_TEXT`;
+
+// Pathways
+export const PATHWAYS_SCREEN = "PATHWAYS_SCREEN";
+export const PATHWAYS_STREAKS = "PATHWAYS_STREAKS";
+export const PATHWAY_STREAK_DAY = (item: number, completed: boolean) =>
+  `PATHWAY_STREAK_DAY_${item}_${completed ? "" : "not_"}completed`;
+export const PATHWAYS_REFLECTION_ITEMS = (totalItems: number) =>
+  `PATHWAYS_REFLECTION_ITEMS_${totalItems}`;
+export const PATHWAYS_REFLECT_CHEST = (status: "locked" | "next" | "active" | "completed") =>
+  `PATHWAYS_REFLECT_CHEST_${status}`;
+export const PATHWAYS_REFLECTION_ITEM = (
+  item: number,
+  status: "locked" | "next" | "active" | "completed"
+) => `PATHWAYS_REFLECTION_ITEM_${item}_${status}`;
+export const MOOD_WEEK_VIEW = "MOOD_WEEK_VIEW";
+export const MOOD_TODAY_COMPLETED = (completed: boolean) =>
+  `MOOD_TODAY_${completed ? "" : "not_"}completed`;
+export const MOOD_VIEW_CALENDAR = "MOOD_VIEW_CALENDAR";
+export const MOOD_VIEW_CALENDAR_TODAY_COMPLETED = (completed: boolean) =>
+  `MOOD_VIEW_CALENDAR_TODAY_${completed ? "" : "not_"}completed`;

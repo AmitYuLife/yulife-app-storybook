@@ -6,6 +6,7 @@ import PathwaysJourneyHeader from "../pathways-journey-header/pathways-journey-h
 import PathwaysReflectionItem from "../pathways-reflection-item/pathways-reflection-item";
 import PathwaysReflectChest from "../pathways-reflection-chest/pathways-reflect-chest";
 import { t } from "@locale";
+import { PATHWAYS_REFLECTION_ITEMS, PATHWAYS_REFLECTION_ITEM, PATHWAYS_REFLECT_CHEST } from "@ids";
 import moment from "moment";
 
 interface IPathwaysHeaderProps {
@@ -22,6 +23,8 @@ const BOX_SIZE = 134;
 const BOX_GAP = 16;
 
 const TIME_REMAINING_REFRESH_RATE_MS = 1000;
+
+const MAX_REFLECTION_ITEMS = 4;
 
 const PathwaysHeader = ({
   onReflect,
@@ -73,13 +76,19 @@ const PathwaysHeader = ({
       />
       <Box mt={30} gap={20}>
         <PathwaysJourneyHeader maxProgress={maxProgress} timeToNextQuestionnaire={timeRemaining} />
-        <Box flexWrap="wrap" flexDirection="row" gap={BOX_GAP} justifyContent="center">
-          {Array.from({ length: 4 }).map((_, index) => {
+        <Box
+          flexWrap="wrap"
+          flexDirection="row"
+          gap={BOX_GAP}
+          justifyContent="center"
+          testID={PATHWAYS_REFLECTION_ITEMS(MAX_REFLECTION_ITEMS)}
+        >
+          {Array.from({ length: MAX_REFLECTION_ITEMS }).map((_, index) => {
             const itemStatus = getReflectionItemStatus(index, reflectionProgress, reflectedToday);
             const onPress = itemStatus === "active" ? onReflect : undefined;
 
             return (
-              <Box w={BOX_SIZE} key={index} flexDirection="row">
+              <Box w={BOX_SIZE} key={index} flexDirection="row" testID={PATHWAYS_REFLECTION_ITEM(index, itemStatus)}>
                 <PathwaysReflectionItem
                   label={
                     itemStatus === "active"
@@ -94,7 +103,7 @@ const PathwaysHeader = ({
               </Box>
             );
           })}
-          <Box w={BOX_SIZE * 2 + BOX_GAP} flexDirection="row">
+          <Box w={BOX_SIZE * 2 + BOX_GAP} flexDirection="row" testID={PATHWAYS_REFLECT_CHEST(finalItemStatus)}>
             <PathwaysReflectChest
               onPress={reflectionProgress >= maxProgress - 1 ? onReflect : undefined}
               yucoinAmount={coinAwards[coinAwards.length - 1]}
