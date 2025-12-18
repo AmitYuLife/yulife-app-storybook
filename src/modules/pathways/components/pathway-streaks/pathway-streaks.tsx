@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { Box } from "@atoms";
 import PathwayStreakItem from "./pathway-streak-item";
+import { PATHWAYS_STREAKS } from "@ids";
 
 interface IDayItem {
   day: number;
@@ -40,7 +41,7 @@ const PathwayStreaks = ({
   );
 
   return (
-    <Box w="100%" gap={24} flexDirection="row" justifyContent="center" alignItems="center">
+    <Box w="100%" gap={24} flexDirection="row" justifyContent="center" alignItems="center" testID={PATHWAYS_STREAKS}>
       {days.map((item, index) => (
         <PathwayStreakItem
           key={`day-${item.day || "today"}-${index}`}

@@ -3,6 +3,7 @@ import { Box, TextTemplate } from "@atoms";
 import { Colours } from "@styles";
 import Icon from "@components/atoms/icon";
 import { useMemo } from "react";
+import { PATHWAY_STREAK_DAY } from "@ids";
 
 interface IProps {
   day: number;
@@ -74,7 +75,7 @@ const PathwayStreakItem = ({
   ]);
 
   return (
-    <Box alignItems="center" gap={8}>
+    <Box alignItems="center" gap={8} testID={PATHWAY_STREAK_DAY(day, completed)}>
       <TextTemplate type={isToday ? "b2b" : "b2"} color={textColor ?? Colours.neutral.white} textAlign="center">
         {label}
       </TextTemplate>

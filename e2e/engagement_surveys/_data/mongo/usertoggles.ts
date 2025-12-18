@@ -63,6 +63,7 @@ export const CUSTOMER_3_TOGGLES = {
       useNewLeaderboardServices: true,
       showNotificationCentre: true,
       showCommunityGoals: true,
+      gameEnablePathwaysStreaks: true,
     },
   },
 } as IDatabaseItem;

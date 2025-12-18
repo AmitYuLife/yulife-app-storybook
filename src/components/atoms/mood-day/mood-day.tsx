@@ -3,6 +3,7 @@ import { Image } from "@atoms";
 import { TextTemplate } from "../text/text-template";
 import { Colours } from "@styles";
 import Box from "../box/box";
+import { MOOD_VIEW_CALENDAR_TODAY_COMPLETED } from "@ids";
 
 interface IProps {
   day: number;
@@ -25,7 +26,12 @@ const MoodDay = ({ day, moodImage, isToday = false }: IProps) => {
   }, [isToday]);
 
   return (
-    <Box alignItems="center" justifyContent="center" gap={8}>
+    <Box
+      alignItems="center"
+      justifyContent="center"
+      gap={8}
+      testID={isToday ? MOOD_VIEW_CALENDAR_TODAY_COMPLETED(Boolean(moodImage)) : undefined}
+    >
       <Box height={33} width={33} alignItems="center" justifyContent="center" {...isTodayProps}>
         <TextTemplate type={isToday ? "b2b" : "b2"} color={isToday ? Colours.neutral.white : Colours.neutral.n800}>
           {day}
