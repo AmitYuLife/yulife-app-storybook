@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.94.0] - 2025-12-18
+
+### Bugfixes
+
+- Bugfix CTE-354: markdown text line height
+- Bugfix GS-2146: Count pathway challenge separately for daily limit
+
+### Tasks
+
+- Task GS-2111: pathway reflection boxes
+- Task GS-2132: Challenge intro screen
+- Task DEVOPS-4743: Prod release via git tags
+- Task GS-2111: streaks design fixes
+- Task GS-2147: Pathways reflected screen
+- Task: Pathway reflections
+- Task: Pathways improvements & bounciness
+- Task: Restructure pathways to use modules structure
+- Task GS-2133: Challenge success screen
+- Task GS-2139: Wrapped 2025
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: ignore DD warning
+- Chore - Updated translations
+
+### Extra
+
+- Fix CTE-354: markdown line height variances
+- Detox GS-2160: Remove Dependants Hero Card
+- Detox GS-2151: Update userSupportLevel
+- Fix: pathway mood cal import
+- Fix: pathway module imports
+- Detox GS-2148: Daily Reflection Copy in YuCoin History
+
 ## [4.93.0] - 2025-12-12
 
 ### Bugfixes
