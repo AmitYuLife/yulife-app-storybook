@@ -122,6 +122,11 @@ export default {
     streakBorder: "#4495FF",
     reflectionCompletedStreakBorder: "#B2B2B2",
     reflectionCompletedStreakBackground: "#E7E7EB",
+    brightYellow: "#FFEE00",
+    orange: "#FFAC00",
+    lightOrange: "#fbb61a",
+    darkOrange: "#FF7C26",
+    brown: "#EA9E2F",
   },
   slider: {
     inactive: "#BFBFC2",

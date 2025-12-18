@@ -2,7 +2,7 @@ import { Image, TextTemplate } from "@atoms";
 import { HintIcon } from "@atoms/icon/hint-icon";
 import { Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
-import { memo, useCallback, useState, JSX } from "react";
+import { memo, useCallback, useState, ReactNode } from "react";
 import { View } from "react-native";
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { TouchableOpacityWithDelay } from "..";
@@ -15,7 +15,8 @@ interface IHintProps {
   label: string;
   description?: string;
   markdownDescription?: string;
-  image?: { uri?: string; Element?: JSX.Element };
+  // should be | ReactNode - but maybe this is used by SDUI?
+  image?: { uri?: string; Element?: ReactNode };
   onPress?: () => void;
   variant?: "default" | "challenges";
 }

@@ -61,6 +61,7 @@ enum DebugCodes {
   breathingExercise = "breathing-exercise",
   pathways = "pathways",
   pathwaysReflected = "pathways-reflected",
+  pathwaysClaim = "pathways-claim",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -377,6 +378,15 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
               component: {
                 id: ROUTES.pathwaysReflected,
                 name: ROUTES.pathwaysReflected,
+              },
+            });
+          }
+
+          case DebugCodes.pathwaysClaim: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.pathwaysClaim,
+                name: ROUTES.pathwaysClaim,
               },
             });
           }

@@ -226,6 +226,13 @@
       "reflected": {
         "title": "days of reflection",
         "subtitle": "Your personalised insights are unlocked!"
+      },
+      "claim": {
+        "title": "Here's everything you got today!",
+        "yucoin": "YuCoin",
+        "health_challenge": "Health Challenge",
+        "reward_title": "Reward collected!",
+        "reward_subtitle": "You can find it in the challenges list."
       }
     },
     "products": {

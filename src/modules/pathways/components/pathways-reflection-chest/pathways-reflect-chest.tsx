@@ -69,7 +69,12 @@ const PathwayReflectChest = ({ timeToNextQuestionnaire, onPress, yucoinAmount, s
         <PathwaysReflectionMarkdown text={extraChallengeText} />
         <PathwaysReflectionMarkdown text={rewardText} />
         <Box position="absolute" bottom={0} right={12}>
-          <RawImage source={require("./chest.png")} w={CHEST_IMAGE_SIZE} h={CHEST_IMAGE_SIZE} contentFit="contain" />
+          <RawImage
+            source={require("../../assets/pathways-chest.png")}
+            w={CHEST_IMAGE_SIZE}
+            h={CHEST_IMAGE_SIZE}
+            contentFit="contain"
+          />
         </Box>
       </Box>
       {status === "completed" && onPress ? (
