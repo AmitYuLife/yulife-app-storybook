@@ -8,6 +8,8 @@ interface UsePathwayChallengeArgs {
   componentId: string;
 }
 
+export type PathwayChallenge = ReturnType<typeof usePathwayChallenge>["pathwayChallenge"];
+
 export const usePathwayChallenge = ({ componentId }: UsePathwayChallengeArgs) => {
   const { data: pathwayChallengeData, loading: pathwayChallengeLoading } = useQuery(
     gql("GetPathwayChallengeDocument"),

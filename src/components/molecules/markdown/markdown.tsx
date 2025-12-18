@@ -7,6 +7,7 @@ import { TEXT } from "@ids";
 
 import { StyleSheet } from "@styles";
 import { isRTL } from "@locale";
+import { isNaN } from "lodash";
 interface IProps {
   text: string;
   markdownStyles?: StyleProp<any>;
@@ -67,9 +68,14 @@ export const MarkdownContext = createContext<{
 const MarkdownImage = ({ node, nodeKey: key }: { node: React.ReactElement; nodeKey: string }) => {
   const { styles } = useContext(MarkdownContext);
 
+  const src = node.props.src;
+
+  // handle local assets (numeric IDs from require()) vs remote URLs
+  const source = isNaN(Number(src)) ? { uri: src } : Number(src);
+
   return (
     <View style={styles.imageWrapper} key={"imageWrapper_" + key}>
-      <Image source={{ uri: node.props.src }} style={styles.image} />
+      <Image source={source} style={styles.image} />
     </View>
   );
 };

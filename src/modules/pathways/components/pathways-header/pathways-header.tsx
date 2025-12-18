@@ -5,9 +5,10 @@ import PathwayStreaks from "../pathway-streaks/pathway-streaks";
 import PathwaysJourneyHeader from "../pathways-journey-header/pathways-journey-header";
 import PathwaysReflectionItem from "../pathways-reflection-item/pathways-reflection-item";
 import PathwaysReflectChest from "../pathways-reflection-chest/pathways-reflect-chest";
-import { t } from "@locale";
 import { PATHWAYS_REFLECTION_ITEMS, PATHWAYS_REFLECTION_ITEM, PATHWAYS_REFLECT_CHEST } from "@ids";
 import moment from "moment";
+import { PathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
+import { PathwaysReflectionStatus } from "../../pathways.types";
 
 interface IPathwaysHeaderProps {
   onReflect: () => void;
@@ -16,7 +17,7 @@ interface IPathwaysHeaderProps {
   reflectedToday: boolean;
   coinAwards: number[];
   maxProgress: number;
-  streakAwardId?: string;
+  pathwayChallenge: PathwayChallenge;
 }
 
 const BOX_SIZE = 134;
@@ -32,12 +33,24 @@ const PathwaysHeader = ({
   reflectedToday,
   maxProgress,
   coinAwards,
-  streakAwardId,
   reflectionProgress,
+  pathwayChallenge,
 }: IPathwaysHeaderProps) => {
   const finalItemStatus = useMemo(() => {
-    return getReflectionItemStatus(maxProgress - 1, reflectionProgress, reflectedToday);
+    return getReflectionItemStatus(maxProgress - 1, reflectionProgress, reflectedToday, maxProgress);
   }, [maxProgress, reflectionProgress, reflectedToday]);
+
+  const finalItemOnPress = useMemo(() => {
+    if (finalItemStatus === "active") {
+      return onReflect;
+    }
+
+    if (finalItemStatus === "completed") {
+      return pathwayChallenge?.onPress;
+    }
+
+    return undefined;
+  }, [onReflect, pathwayChallenge, finalItemStatus]);
 
   const [timeRemaining, setTimeRemaining] = useState({
     hasTimeRemaining: true,
@@ -66,7 +79,6 @@ const PathwaysHeader = ({
         currentStreak={reflectionProgress}
         reflectedToday={reflectedToday}
         maxProgress={maxProgress}
-        streakAwardId={streakAwardId}
         textColor={Colours.neutral.white}
         completedBorderColor={Colours.pathways.streakBorder}
         notCompletedBorderColor={Colours.pathways.streakBorder}
@@ -74,7 +86,7 @@ const PathwaysHeader = ({
         notCompletedChestForegroundColor={Colours.pathways.streakBorder}
         notCompletedChestBackgroundColor={Colours.pathways.background}
       />
-      <Box mt={30} gap={20}>
+      <Box mt={20} gap={20}>
         <PathwaysJourneyHeader maxProgress={maxProgress} timeToNextQuestionnaire={timeRemaining} />
         <Box
           flexWrap="wrap"
@@ -84,28 +96,24 @@ const PathwaysHeader = ({
           testID={PATHWAYS_REFLECTION_ITEMS(MAX_REFLECTION_ITEMS)}
         >
           {Array.from({ length: MAX_REFLECTION_ITEMS }).map((_, index) => {
-            const itemStatus = getReflectionItemStatus(index, reflectionProgress, reflectedToday);
+            const itemStatus = getReflectionItemStatus(index, reflectionProgress, reflectedToday, maxProgress);
             const onPress = itemStatus === "active" ? onReflect : undefined;
 
             return (
               <Box w={BOX_SIZE} key={index} flexDirection="row" testID={PATHWAYS_REFLECTION_ITEM(index, itemStatus)}>
                 <PathwaysReflectionItem
-                  label={
-                    itemStatus === "active"
-                      ? t("screens.pathways.reflection_active_label")
-                      : t("screens.pathways.reflection_inactive_label")
-                  }
                   onPress={onPress}
                   yucoinAmount={coinAwards[index]}
                   status={itemStatus}
                   timeToNextQuestionnaire={timeRemaining}
+                  height={BOX_SIZE}
                 />
               </Box>
             );
           })}
           <Box w={BOX_SIZE * 2 + BOX_GAP} flexDirection="row" testID={PATHWAYS_REFLECT_CHEST(finalItemStatus)}>
             <PathwaysReflectChest
-              onPress={reflectionProgress >= maxProgress - 1 ? onReflect : undefined}
+              onPress={finalItemOnPress}
               yucoinAmount={coinAwards[coinAwards.length - 1]}
               status={finalItemStatus}
               timeToNextQuestionnaire={timeRemaining}
@@ -117,7 +125,19 @@ const PathwaysHeader = ({
   );
 };
 
-const getReflectionItemStatus = (index: number, reflectionProgress: number, reflectedToday: boolean) => {
+const getReflectionItemStatus = (
+  index: number,
+  reflectionProgress: number,
+  reflectedToday: boolean,
+  maxProgress: number
+): PathwaysReflectionStatus => {
+  if (index === maxProgress - 1 && reflectedToday) {
+    // they have completed the final item today
+    // the progress will be reset to 0 already, so we
+    // need to show the item as completed not locked
+    return "completed";
+  }
+
   if (reflectionProgress < index) {
     return "locked";
   }

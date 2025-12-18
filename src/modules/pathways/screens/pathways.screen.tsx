@@ -14,6 +14,7 @@ import { YuScreenSection } from "@graphql/__generated";
 import { useWindowDimensions } from "react-native";
 import { PathwaysInterventionSection } from "../components/pathways-intervention-section/pathways-intervention-section";
 import { PATHWAYS_SCREEN } from "@ids";
+import { PathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 
 interface IPathwaysScreenProps {
   onClose: () => void;
@@ -28,7 +29,7 @@ interface IPathwaysScreenProps {
   interventionSections: YuScreenSection[];
   isLoading: boolean;
   maxProgress: number;
-  streakAwardId?: string;
+  pathwayChallenge: PathwayChallenge;
 }
 
 const PathwaysScreen = ({
@@ -43,7 +44,7 @@ const PathwaysScreen = ({
   adviceSection,
   interventionSections,
   maxProgress,
-  streakAwardId,
+  pathwayChallenge,
 }: IPathwaysScreenProps) => {
   const scrollY = useSharedValue(0);
   const { width, height } = useWindowDimensions();
@@ -106,7 +107,7 @@ const PathwaysScreen = ({
           nextQuestionnaireLocalDate={nextQuestionnaireLocalDate}
           coinAwards={coinAwards}
           maxProgress={maxProgress}
-          streakAwardId={streakAwardId}
+          pathwayChallenge={pathwayChallenge}
         />
 
         <Box minHeight={500} width={"100%"} gap={20} ph={12} pt={30}>

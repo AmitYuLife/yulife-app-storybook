@@ -14,7 +14,6 @@ interface Props {
   reflectedToday: boolean;
   currentStreak: number;
   maxProgress: number;
-  streakAwardId?: string;
   textColor: string;
   completedBorderColor: string | null;
   notCompletedBorderColor: string | null;
@@ -27,7 +26,6 @@ const PathwayStreaks = ({
   currentStreak,
   reflectedToday,
   maxProgress,
-  streakAwardId,
   textColor,
   completedBorderColor,
   notCompletedBorderColor,
@@ -36,8 +34,8 @@ const PathwayStreaks = ({
   notCompletedChestBackgroundColor,
 }: Props) => {
   const days = useMemo(
-    () => buildDays({ currentStreak, reflectedToday, maxProgress, streakAwardId }),
-    [currentStreak, reflectedToday, maxProgress, streakAwardId]
+    () => buildDays({ currentStreak, reflectedToday, maxProgress }),
+    [currentStreak, reflectedToday, maxProgress]
   );
 
   return (
@@ -64,32 +62,29 @@ const buildDays = ({
   currentStreak,
   reflectedToday,
   maxProgress,
-  streakAwardId,
 }: {
   currentStreak: number;
   reflectedToday: boolean;
   maxProgress: number;
-  streakAwardId: string;
 }): IDayItem[] => {
   return Array.from({ length: maxProgress }, (_, index) => ({
     day: index + 1,
-    completed: getCompleted({ streakAwardId, reflectedToday, currentStreak, index }),
+    completed: getCompleted({ reflectedToday, currentStreak, index }),
     isToday: currentStreak === index + (reflectedToday ? 1 : 0),
     isChest: maxProgress === index + 1,
   }));
 };
 
 const getCompleted = ({
-  streakAwardId,
+  reflectedToday,
   currentStreak,
   index,
 }: {
-  streakAwardId: string;
   reflectedToday: boolean;
   currentStreak: number;
   index: number;
 }) => {
-  if (streakAwardId) {
+  if (reflectedToday && currentStreak === 0) {
     return true;
   }
 

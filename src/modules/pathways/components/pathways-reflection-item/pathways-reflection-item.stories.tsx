@@ -21,7 +21,6 @@ const meta: Meta<typeof Component> = {
     },
   },
   args: {
-    label: "Daily Reflection",
     onPress: noop,
     yucoinAmount: 25,
     status: "active",
