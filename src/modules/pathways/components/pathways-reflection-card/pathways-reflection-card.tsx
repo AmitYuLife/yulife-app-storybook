@@ -3,19 +3,16 @@ import { Box, StackedShadowWrapper } from "@atoms";
 import { Colours, Style, StyleSheet } from "@styles";
 import { IBoxProps } from "@atoms/box/box.types";
 import { Pressable } from "@components/molecules";
-import { PathwaysReflectionStatus } from "../../pathways.types";
 
 interface IPathwaysReflectionCardProps extends IBoxProps {
   children: ReactNode;
   onPress: () => void;
-  status: PathwaysReflectionStatus;
+  isDisabled: boolean;
 }
 
 const BORDER_COLORS = [Colours.pathways.darkBackground];
 
-const PathwaysReflectionCard = ({ children, onPress, status, ...boxProps }: IPathwaysReflectionCardProps) => {
-  const isActive = status === "active";
-
+const PathwaysReflectionCard = ({ children, onPress, isDisabled, ...boxProps }: IPathwaysReflectionCardProps) => {
   return (
     <Pressable
       enableAnimation={true}
@@ -29,10 +26,10 @@ const PathwaysReflectionCard = ({ children, onPress, status, ...boxProps }: IPat
         <Box
           w="100%"
           flexDirection="row"
-          bg={isActive ? Colours.pathways.header : Colours.pathways.darkBackground}
+          bg={isDisabled ? Colours.pathways.darkBackground : Colours.pathways.header}
           {...boxProps}
         >
-          <Box opacity={isActive ? 1 : 0.5} w="100%" h="100%">
+          <Box opacity={isDisabled ? 0.5 : 1} w="100%" h="100%">
             {children}
           </Box>
         </Box>

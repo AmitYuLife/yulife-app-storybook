@@ -47,7 +47,6 @@ const PathwaysReflectedScreen = () => {
                   currentStreak={1}
                   reflectedToday={true}
                   maxProgress={5}
-                  streakAwardId={undefined}
                   textColor={colours.neutral.n900}
                   completedBorderColor={null}
                   notCompletedBorderColor={colours.pathways.reflectionCompletedStreakBorder}

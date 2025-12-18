@@ -8,6 +8,7 @@ import { ROUTES } from "@navigation/constants";
 import { useQueryOnScreenSeen } from "@hooks";
 import PathwaysOldScreen from "../screens/pathways-old.screen";
 import PathwaysScreen from "../screens/pathways.screen";
+import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 
 interface Props {
   componentId: string;
@@ -34,6 +35,8 @@ const PathwaysContainer = ({ componentId }: Props) => {
     }
   );
 
+  const { pathwayChallenge } = usePathwayChallenge({ componentId });
+
   const moodSubmissions = useMemo(() => getMoodSubmission(data), [data]);
 
   const onReflect = useCallback(() => {
@@ -58,7 +61,6 @@ const PathwaysContainer = ({ componentId }: Props) => {
         reflectAction: {},
         currentStreak: 0,
         maxProgress: 5,
-        streakAwardId: null as string | null,
       },
     [data]
   );
@@ -74,12 +76,12 @@ const PathwaysContainer = ({ componentId }: Props) => {
       coinAwards: reflectionProgress.coinAwards,
       reflectedToday: reflectionProgress.reflectedToday,
       maxProgress: reflectionProgress.maxProgress,
-      streakAwardId: reflectionProgress.streakAwardId,
       nextQuestionnaireLocalDate: data?.getUserPathways?.nextQuestionnaireLocalDate ?? "",
       adviceSection: data?.getUserPathwayAdviceSection,
       interventionSections: data?.getInterventionItems?.sections as YuScreenSection[],
+      pathwayChallenge: pathwayChallenge,
     }),
-    [data, loading, onClose, onReflect, onOpenMoodCalendar, moodSubmissions, reflectionProgress]
+    [data, loading, onClose, onReflect, onOpenMoodCalendar, moodSubmissions, reflectionProgress, pathwayChallenge]
   );
 
   if (!data?.getUserPathways?.isStreaksEnabled) {
