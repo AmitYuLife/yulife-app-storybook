@@ -5,7 +5,7 @@ import { CaptchaCancelledError, CaptchaHandleExecuteResponse } from "./types";
 import { t } from "@locale";
 import { Box } from "@atoms";
 import { Markdown } from "@components/molecules";
-import { Colours, templateTextStyles, StyleSheet } from "@styles";
+import { Colours, templateTextMarkdownStyles, StyleSheet } from "@styles";
 
 export type HcaptchaHandle = {
   execute: () => Promise<CaptchaHandleExecuteResponse>;
@@ -96,7 +96,7 @@ export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, si
 
 const markdownStyles = StyleSheet.create({
   text: {
-    ...templateTextStyles.l1,
+    ...templateTextMarkdownStyles.l1,
     textAlign: "center",
   },
   link: {

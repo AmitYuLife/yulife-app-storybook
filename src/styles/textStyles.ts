@@ -149,3 +149,42 @@ export const styleDefinitions = {
 } as Record<TemplateTextType, NamedStyles<any>>;
 
 export const templateTextStyles: Record<TemplateTextType, NamedStyles<any>> = StyleSheet.create(styleDefinitions);
+
+// use this to apply specific line height to text styles within the Markdown component
+// we shouldn't apply line height to the text styles themselves, as it breaks Arabic text
+const templateTextStylesLineHeight: Record<TemplateTextType, number> = {
+  h1: Style.adjust(40),
+  h2: Style.adjust(32),
+  h3: Style.adjust(32),
+  b1: Style.adjust(24),
+  b1b: Style.adjust(24),
+  b2: Style.adjust(24),
+  b2b: Style.adjust(24),
+  l1: Style.adjust(18),
+  l1b: Style.adjust(18),
+  l2: Style.adjust(16),
+  l2b: Style.adjust(16),
+  l3: Style.adjust(16),
+  l3b: Style.adjust(16),
+  l4: Style.adjust(16),
+  l4b: Style.adjust(16),
+  time: Style.adjust(58),
+  bigYuCoin: Style.adjust(40),
+  big64: Style.adjust(64),
+  big40: Style.adjust(42),
+  big88: Style.adjust(96),
+};
+
+// Markdown-specific text styles that include lineHeight (for use in Markdown component markdownStyles)
+const markdownStyleDefinitions = Object.keys(styleDefinitions).reduce((acc, key) => {
+  const textType = key as TemplateTextType;
+  acc[textType] = {
+    ...styleDefinitions[textType],
+    lineHeight: templateTextStylesLineHeight[textType],
+  };
+  return acc;
+}, {} as Record<TemplateTextType, NamedStyles<unknown>>);
+
+export const templateTextMarkdownStyles: Record<TemplateTextType, NamedStyles<unknown>> = StyleSheet.create(
+  markdownStyleDefinitions
+);

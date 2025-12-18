@@ -5,7 +5,7 @@ import { ROUTES } from "@navigation/constants";
 import { Box, TextTemplate } from "@atoms";
 import { AnimationHandle, Markdown, SmokingChips, TouchableOpacityWithDelay } from "@components/molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style, templateTextStyles, TOP_BAR, StyleSheet } from "@styles";
+import { Colours, Style, templateTextMarkdownStyles, TOP_BAR, StyleSheet } from "@styles";
 import { SmokingMilestones, SmokingSponsorshipCard, SmokingTips } from "./subcomponents";
 import {
   MOMENTS_TO_MONITOR,
@@ -259,6 +259,6 @@ const styles = StyleSheet.create({
 const markdownStyles = {
   text: {
     textAlign: "center",
-    ...templateTextStyles.l1,
+    ...templateTextMarkdownStyles.l1,
   },
 };

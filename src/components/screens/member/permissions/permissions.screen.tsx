@@ -1,5 +1,5 @@
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
+import { Colours, Style, templateTextMarkdownStyles, StyleSheet } from "@styles";
 import React, { memo, useCallback, useMemo } from "react";
 import { Linking, Platform, ScrollView, View } from "react-native";
 import { t } from "@locale";
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
 });
 
 const sparseMarkdownStyles = {
-  text: templateTextStyles.b2,
+  text: templateTextMarkdownStyles.b2,
   paragraph: {
     paddingVertical: Style.adjust(8),
   },

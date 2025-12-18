@@ -1,7 +1,7 @@
 import { Box, TextTemplate } from "@atoms";
 import { Markdown } from "@components/molecules";
 import { t } from "@locale";
-import { Colours, StyleSheet, templateTextStyles } from "@styles";
+import { Colours, StyleSheet, templateTextMarkdownStyles } from "@styles";
 import { padNum } from "@utils";
 import { memo } from "react";
 
@@ -42,7 +42,7 @@ const markdownStyles = StyleSheet.create({
     paddingVertical: 0,
   },
   text: {
-    ...templateTextStyles.l1,
+    ...templateTextMarkdownStyles.l1,
     color: Colours.neutral.white,
     fontVariant: ["tabular-nums"],
   },
