@@ -152,7 +152,7 @@ export const templateTextStyles: Record<TemplateTextType, NamedStyles<any>> = St
 
 // use this to apply specific line height to text styles within the Markdown component
 // we shouldn't apply line height to the text styles themselves, as it breaks Arabic text
-const templateTextStylesLineHeight: Record<TemplateTextType, number> = {
+export const templateTextStylesLineHeight: Record<TemplateTextType, number> = {
   h1: Style.adjust(40),
   h2: Style.adjust(32),
   h3: Style.adjust(32),
