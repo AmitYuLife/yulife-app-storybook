@@ -1,5 +1,6 @@
-import { memo, ReactNode, useCallback } from "react";
+import { memo, ReactNode, useCallback, useMemo } from "react";
 import { useWindowDimensions } from "react-native";
+import Animated from "react-native-reanimated";
 import LinearGradient from "react-native-linear-gradient";
 import { useSelector } from "react-redux";
 import { Box, TextTemplate, Image } from "@atoms";
@@ -17,10 +18,14 @@ import { GenericHeadingAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Navigation } from "@navigation/main";
 
-const HEADER_HEIGHT = 300;
 const GRADIENT_COLORS = ["#FFEE00", "#FFAC00"] as const;
-const AVATAR_SIZE = Style.adjust(200);
-const AVATAR_SCALE = 1.75;
+const AVATAR_HEIGHT_RATIO = 1.3;
+const MISSING_AVATAR_HEIGHT_RATIO = 0.6;
+const MIN_BUTTON_SPACING = Style.adjust(32);
+const HEADER_PARTITION = 3;
+
+const AVATAR_TRANSLATE_Y_RATIO = 0.6;
+const MISSING_AVATAR_TRANSLATE_Y_RATIO = 0.1;
 
 interface IProps {
   onPressCta: () => void;
@@ -29,58 +34,79 @@ interface IProps {
 
 const PathwaysChallengeIntroScreen = ({ onPressCta, componentId }: IProps) => {
   const { bottom } = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const userAvatar = useSelector(getUserAvatar);
 
   const onPressBack = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
 
+  const headerHeight = height / HEADER_PARTITION;
+  const avatarSize = headerHeight * AVATAR_HEIGHT_RATIO;
+  const missingAvatarHeight = headerHeight * MISSING_AVATAR_HEIGHT_RATIO;
+
+  const scrollContentStyle = useMemo(() => {
+    const availableHeight = height - headerHeight;
+    return {
+      minHeight: availableHeight,
+      flexGrow: 1,
+    };
+  }, [height, headerHeight]);
+
   return (
     <Box flex={1} bg={Colours.neutral.white}>
-      <Box h={HEADER_HEIGHT} alignItems="center" justifyContent="flex-start" overflow="hidden">
+      <Box h={headerHeight} alignItems="center" justifyContent="flex-start" overflow="hidden">
         <LinearGradient colors={[...GRADIENT_COLORS]} style={styles.headerGradient} />
         <Box position="absolute" top={0} left={0} right={0} alignItems="center">
-          <PathwaysHeadingBackground width={width} height={HEADER_HEIGHT} />
+          <PathwaysHeadingBackground width={width} height={headerHeight} />
         </Box>
 
         <Box flex={1} justifyContent="flex-end" alignItems="center">
           {userAvatar?.avatarRemoteFiles?.svgFull ? (
             <Image
               source={{ uri: userAvatar.avatarRemoteFiles.svgFull }}
-              width={AVATAR_SIZE * AVATAR_SCALE}
-              height={AVATAR_SIZE * AVATAR_SCALE}
+              width={avatarSize}
+              height={avatarSize}
               theme="light"
-              style={[styles.avatar, { transform: [{ translateY: AVATAR_SIZE * 0.9 }] }]}
+              style={[{ transform: [{ translateY: avatarSize * AVATAR_TRANSLATE_Y_RATIO }] }]}
               suppressLoadingUi={true}
+              disableAutoAdjust={true}
             />
           ) : (
-            <Box style={[styles.avatar, { transform: [{ translateY: AVATAR_SIZE * 0.5 }] }]}>
-              <PathwaysMissingAvatar height={AVATAR_SIZE * AVATAR_SCALE} />
+            <Box style={[{ transform: [{ translateY: missingAvatarHeight * MISSING_AVATAR_TRANSLATE_Y_RATIO }] }]}>
+              <PathwaysMissingAvatar width={missingAvatarHeight} height={missingAvatarHeight} />
             </Box>
           )}
         </Box>
       </Box>
 
-      <Box flex={1} px={24} pt={24}>
-        <Box gap={8} mb={24}>
-          <TextTemplate type="h3" color={Colours.neutral.n800}>
-            {t("screens.pathways.challenge_intro.title")}
-          </TextTemplate>
-          <TextTemplate type="b2" color={Colours.neutral.n800}>
-            {t("screens.pathways.challenge_intro.description")}
-          </TextTemplate>
-        </Box>
+      <Animated.ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={scrollContentStyle}
+        showsVerticalScrollIndicator={false}
+        bounces={true}
+      >
+        <Box flex={1} justifyContent="space-between" gap={MIN_BUTTON_SPACING}>
+          <Box px={24} pt={24}>
+            <Box gap={8} mb={24}>
+              <TextTemplate type="h3" color={Colours.neutral.n800}>
+                {t("screens.pathways.challenge_intro.title")}
+              </TextTemplate>
+              <TextTemplate type="b2" color={Colours.neutral.n800}>
+                {t("screens.pathways.challenge_intro.description")}
+              </TextTemplate>
+            </Box>
 
-        <Box gap={24}>
-          <BulletItem icon={<PathwaysHeartIcon />} text={t("screens.pathways.challenge_intro.bullet_point_1")} />
-          <BulletItem icon={<PathwaysWorkoutIcon />} text={t("screens.pathways.challenge_intro.bullet_point_2")} />
-          <BulletItem icon={<PathwaysDonateIcon />} text={t("screens.pathways.challenge_intro.bullet_point_3")} />
+            <Box gap={24}>
+              <BulletItem icon={<PathwaysHeartIcon />} text={t("screens.pathways.challenge_intro.bullet_point_1")} />
+              <BulletItem icon={<PathwaysWorkoutIcon />} text={t("screens.pathways.challenge_intro.bullet_point_2")} />
+              <BulletItem icon={<PathwaysDonateIcon />} text={t("screens.pathways.challenge_intro.bullet_point_3")} />
+            </Box>
+          </Box>
         </Box>
-      </Box>
-
+      </Animated.ScrollView>
       <Box px={32} pb={32} style={{ paddingBottom: Math.max(bottom, 32) }}>
-        <Button translationKey="labels.cta.continue" onPress={onPressCta} size="Fill" wrapperStyle={styles.cta} />
+        <Button translationKey="labels.cta.continue" onPress={onPressCta} size="Fill" />
       </Box>
 
       <GenericHeadingAbsolute
@@ -94,9 +120,6 @@ const PathwaysChallengeIntroScreen = ({ onPressCta, componentId }: IProps) => {
 };
 
 const styles = StyleSheet.create({
-  cta: {
-    marginBottom: Style.adjust(0),
-  },
   headerGradient: {
     position: "absolute",
     top: 0,
@@ -104,8 +127,8 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  avatar: {
-    transform: [{ translateY: AVATAR_SIZE * 0.55 }],
+  scrollView: {
+    flex: 1,
   },
 });
 
