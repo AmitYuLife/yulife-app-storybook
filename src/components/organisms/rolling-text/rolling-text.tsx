@@ -1,7 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { RollingTextItem } from "@molecules";
 import { Box } from "@atoms";
-import { Style, StyleSheet } from "@styles";
 
 interface IRollingTextSpinProps {
   previousValue: string | number;
@@ -19,14 +18,10 @@ const RollingTextSpin = ({ previousValue, newValue }: IRollingTextSpinProps) => 
   }, [previousValue, newValue]);
 
   return (
-    <Box style={styles.container} gap={0} flexDirection="row" justifyContent={"center"}>
+    <Box gap={0} flexDirection="row" justifyContent={"center"} overflow="hidden" h={62}>
       {elements}
     </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { overflow: "hidden", height: Style.adjust(52) },
-});
 
 export default memo(RollingTextSpin);
