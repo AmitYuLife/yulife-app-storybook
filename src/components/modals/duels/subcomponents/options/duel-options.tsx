@@ -13,7 +13,7 @@ import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { gql } from "@graphql/__generated";
-import { templateTextStyles, StyleSheet } from "@styles";
+import { templateTextMarkdownStyles, StyleSheet } from "@styles";
 
 interface IOptions {
   id: string;
@@ -127,7 +127,7 @@ export default function DuelOptions({
 }
 
 export const markdownStyles = StyleSheet.create({
-  text: templateTextStyles.b1,
+  text: templateTextMarkdownStyles.b1,
   paragraph: {
     paddingVertical: 0,
   },

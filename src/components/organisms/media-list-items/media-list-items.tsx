@@ -3,7 +3,7 @@ import { Image as RNImage, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { MEDIA_LIST_ITEM_DESCRIPTION, MEDIA_LIST_ITEM_TITLE, PARTNER_LOGO } from "@ids";
 import { BoxOption } from "@molecules";
-import { Colours, Style, templateTextStyles } from "@styles";
+import { Colours, Style, templateTextMarkdownStyles } from "@styles";
 import { BOX_HEIGHT, IMAGE_HEIGHT, IMAGE_WIDTH, styles } from "./media-list-items.styles";
 import MediaListItemsLoading from "./media-list-items-loading";
 import { t } from "@locale";
@@ -123,7 +123,7 @@ const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
 };
 
 const markdownStyle = {
-  text: templateTextStyles.l2,
+  text: templateTextMarkdownStyles.l2,
 };
 
 export default memo(MediaListItems);

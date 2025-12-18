@@ -3,7 +3,7 @@ import { View, Keyboard, AccessibilityPropsAndroid } from "react-native";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import { Box, Pad, TextTemplate } from "@atoms";
 import { Button, LinkGroup, Markdown, Pressable, TextInput, TextInputError } from "@molecules";
-import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
+import { Colours, Style, templateTextMarkdownStyles, StyleSheet } from "@styles";
 import { getModalState } from "@redux/app/app.selectors";
 import { useSelector } from "react-redux";
 import { MODALS } from "@navigation/constants";
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
 
 const markdownStyles = {
   text: {
-    ...templateTextStyles.l1,
+    ...templateTextMarkdownStyles.l1,
     textAlign: "center",
   },
   link: {

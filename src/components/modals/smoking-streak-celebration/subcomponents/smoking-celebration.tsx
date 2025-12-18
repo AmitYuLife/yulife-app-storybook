@@ -15,7 +15,7 @@ import { Box, Image, TextTemplate } from "@atoms";
 import { GenericYucoin } from "@atoms/yucoin-badge";
 import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
 import { Spotlight, SpotlightProps, TipCard } from "@organisms";
-import { Colours, Style, templateTextStyles, StyleSheet } from "@styles";
+import { Colours, Style, templateTextMarkdownStyles, StyleSheet } from "@styles";
 import { Button, Markdown } from "@components/molecules";
 import { VoidFunctionOrPromise } from "@utils";
 import {
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
 });
 const markdownStyles = StyleSheet.create({
   text: {
-    ...templateTextStyles.b1b,
+    ...templateTextMarkdownStyles.b1b,
     color: Colours.neutral.white,
     textAlign: "center",
   },

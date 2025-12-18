@@ -1,5 +1,5 @@
 import { Box, TextTemplate } from "@atoms";
-import { Colours, templateTextStyles } from "@styles";
+import { Colours, templateTextMarkdownStyles } from "@styles";
 import { memo, ReactNode } from "react";
 import Markdown from "../markdown/markdown";
 import { Button } from "../button";
@@ -51,7 +51,7 @@ export default memo(Card);
 
 const markdownStyles = {
   text: {
-    ...templateTextStyles.b2,
+    ...templateTextMarkdownStyles.b2,
     textAlign: "center",
   },
 };

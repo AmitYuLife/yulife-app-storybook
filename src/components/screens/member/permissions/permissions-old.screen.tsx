@@ -5,7 +5,7 @@ import {
   HealthPermissionsSection,
   SwitchGoogleFitSection,
 } from "@organisms";
-import { Style, templateTextStyles, StyleSheet } from "@styles";
+import { Style, templateTextMarkdownStyles, StyleSheet } from "@styles";
 import React, { memo, useCallback, useMemo } from "react";
 import { Platform, ScrollView, View } from "react-native";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
 });
 
 const sparseMarkdownStyles = {
-  text: templateTextStyles.b2,
+  text: templateTextMarkdownStyles.b2,
   paragraph: {
     paddingVertical: Style.adjust(8),
   },

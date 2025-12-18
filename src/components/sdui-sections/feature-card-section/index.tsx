@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Animated, LayoutChangeEvent, Platform, TouchableOpacity, View } from "react-native";
-import { Colours, Style, StyleSheet, templateTextStyles } from "@styles";
+import { Colours, Style, StyleSheet, templateTextMarkdownStyles } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { Button, Markdown } from "@components/molecules";
 import colours from "@styles/colours";
@@ -119,7 +119,7 @@ export const FeatureCardSection = (props: IFeatureCardSection) => {
 
 const getMarkdownStyles = (hasButton: SduiAction) => ({
   text: {
-    ...(hasButton ? templateTextStyles.l2 : templateTextStyles.l1),
+    ...(hasButton ? templateTextMarkdownStyles.l2 : templateTextMarkdownStyles.l1),
   },
   imageWrapper: {
     width: Style.adjust(16),

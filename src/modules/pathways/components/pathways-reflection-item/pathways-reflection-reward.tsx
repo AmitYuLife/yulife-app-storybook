@@ -1,7 +1,7 @@
 import { Box, RawImage } from "@atoms";
 import { IBoxProps } from "@atoms/box/box.types";
 import { Markdown } from "@components/molecules";
-import { Colours, StyleSheet, templateTextStyles } from "@styles";
+import { Colours, StyleSheet, templateTextMarkdownStyles } from "@styles";
 
 interface IPathwaysReflectionRewardProps extends IBoxProps {
   yucoinAmount: string;
@@ -21,7 +21,7 @@ const markdownStyles = StyleSheet.create({
     paddingVertical: 0,
   },
   text: {
-    ...templateTextStyles.l1,
+    ...templateTextMarkdownStyles.l1,
     color: Colours.neutral.white,
   },
 });
