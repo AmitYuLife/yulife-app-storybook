@@ -1461,13 +1461,12 @@
         "heading": "Health Quest",
         "title": "Designed for You"
       },
-      "daily_reflection": "Reflection %{count}",
       "day": "Day %{day}",
       "header": "Today's reflection",
       "health_insights": "Health insights",
-      "journey_header": "Journey %{count}",
-      "journey_header_starts": "Starting the reflection",
-      "journey_header_starts_in": "New reflection in %{hours}:%{minutes}:%{seconds}",
+      "journey_header": "Current journey",
+      "journey_header_starts": "Reflect for %{maxProgress} days to unlock bonus challenge",
+      "journey_header_starts_in": "New reflection unlocks in **%{hours}:%{minutes}:%{seconds}**",
       "personal_health_path": {
         "heading": "Personal Health Path"
       },
@@ -1478,6 +1477,12 @@
         "title": "periods of reflection"
       },
       "reflect_in": "Reflect in %{hours}h %{minutes}m",
+      "reflection_active_label": "Reflect",
+      "reflection_chest_health_challenge": "Bonus Health Challenge",
+      "reflection_chest_reward": "Earn %{amount}",
+      "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
+      "reflection_inactive_label": "Reflection",
+      "reflection_unlocks_in": "Unlocks in",
       "secondary_button_label": "Go to Wellbeing Hub",
       "today": "Today",
       "user_mood": {

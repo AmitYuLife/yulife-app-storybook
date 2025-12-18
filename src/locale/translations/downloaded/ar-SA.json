@@ -1461,13 +1461,12 @@
         "heading": "مهمة الصحة",
         "title": "مصمم لـ يو"
       },
-      "daily_reflection": "انعكاس %{count}",
       "day": "يوم %{day}",
       "header": "تأمل اليوم",
       "health_insights": "التحليلات الصحية",
-      "journey_header": "الرحلة %{count}",
-      "journey_header_starts": "بدء التأمل",
-      "journey_header_starts_in": "التأمل الجديد يبدأ خلال %{hours}:%{minutes}:%{seconds}",
+      "journey_header": "الرحلة الحالية",
+      "journey_header_starts": "انعكس ل%{maxProgress} يومًا لفتح التحدي الإضافي",
+      "journey_header_starts_in": "فتح تأمل جديد في **%{hours}:%{minutes}:%{seconds}**",
       "personal_health_path": {
         "heading": "مسار الصحة الشخصية"
       },
@@ -1478,6 +1477,12 @@
         "title": "أيام التأمل"
       },
       "reflect_in": "سيتم التنفيذ خلال %{hours} ساعة و %{minutes} دقيقة",
+      "reflection_active_label": "يعكس",
+      "reflection_chest_health_challenge": "تحدي الصحة الإضافي",
+      "reflection_chest_reward": "احصل على %{amount}",
+      "reflection_countdown": "%{الساعات}:%{الدقائق}:%{الثواني}",
+      "reflection_inactive_label": "انعكاس",
+      "reflection_unlocks_in": "يفتح في",
       "secondary_button_label": "اذهب إلى مركز الرفاهية",
       "today": "اليوم",
       "user_mood": {

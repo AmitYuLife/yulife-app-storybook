@@ -1461,13 +1461,12 @@
         "heading": "Búsqueda de la Salud",
         "title": "Diseñado para Yu"
       },
-      "daily_reflection": "Reflexión %{count}",
       "day": "Día %{day}",
       "header": "Reflexión de hoy",
       "health_insights": "Información sanitaria",
-      "journey_header": "Viaje %{count}",
-      "journey_header_starts": "Iniciar la reflexión",
-      "journey_header_starts_in": "Nuevo reflejo en %{hours}:%{minutes}:%{seconds}",
+      "journey_header": "Viaje actual",
+      "journey_header_starts": "Reflexiona durante %{maxProgress} días para desbloquear el desafío extra",
+      "journey_header_starts_in": "El nuevo reflejo se desbloquea en **%{hours}:%{minutes}:%{seconds}**",
       "personal_health_path": {
         "heading": "Trayectoria personal de salud"
       },
@@ -1478,6 +1477,12 @@
         "title": "jornadas de reflexión"
       },
       "reflect_in": "Reflejar en %{hours}h %{minutes}m",
+      "reflection_active_label": "Reflect",
+      "reflection_chest_health_challenge": "Bonificación Desafío Salud",
+      "reflection_chest_reward": "**Gana** %{amount}",
+      "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
+      "reflection_inactive_label": "Reflexión",
+      "reflection_unlocks_in": "Desbloquea en",
       "secondary_button_label": "Ir a Wellbeing Hub",
       "today": "Hoy",
       "user_mood": {
