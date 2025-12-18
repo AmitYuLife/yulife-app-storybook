@@ -1,6 +1,6 @@
 import { forwardRef, memo, useCallback, useImperativeHandle, useRef, useState } from "react";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
-import { Colours, Style, templateTextStyles } from "@styles";
+import { Colours, Style } from "@styles";
 import { Box, Image, TextTemplate } from "@atoms";
 import { AnimationHandle, HorizontalNumberDisplay, Yumoji } from "@molecules";
 import SmokingStatsCard from "./smoking-stats-card/smoking-stats-card";
@@ -9,6 +9,7 @@ import { getUserAvatar } from "@redux/user/user.selectors";
 import { SMOKING_HEADER_DAYS, YUMOJI_EQUIPMENT } from "@ids";
 import { runOnJS, SharedValue, useAnimatedStyle, useSharedValue, withDelay, withTiming } from "react-native-reanimated";
 import { createDeferredPromise } from "@utils/promise";
+import { templateTextStylesLineHeight } from "@styles/textStyles";
 
 export const HEADER_HEIGHT = 340;
 const HEADER_BUMP_HEIGHT = 40;
@@ -201,7 +202,7 @@ const SmokingHubStatus = forwardRef<AnimationHandle, SmokingHubStatusProps>(
               </Box>
             ) : (
               <Box justifyContent="center">
-                <Box w={LEFT_DISPLAY_WIDTH} h={templateTextStyles.big88.lineHeight as number}>
+                <Box w={LEFT_DISPLAY_WIDTH} h={templateTextStylesLineHeight.big88}>
                   <Box
                     forceAnimated={true}
                     style={horizontalNumberDisplayAnimatedStyle}
