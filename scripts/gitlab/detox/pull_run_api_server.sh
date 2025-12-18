@@ -104,11 +104,15 @@ case $API_REGION in
     ;;
 esac
 
+# Install PM2
+pnpm add pm2@5.4.2
+
 # shellcheck disable=SC2086 # Do not quote to split arguments
 env -S ${API_ENV_OVERRIDES} \
 NODE_ENV=detox \
 DEBUG="yu:*" \
 pnpm pm2 start ./src/app/index.ts \
+--cwd "$PWD" \
 --name api-server \
 --interpreter ./node_modules/.bin/ts-node \
 --output "$OUTPUTS_DIR/api-server.out.log" \
