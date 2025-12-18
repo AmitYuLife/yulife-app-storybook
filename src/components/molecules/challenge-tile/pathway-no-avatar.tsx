@@ -2,8 +2,13 @@ import { memo } from "react";
 import Svg, { Circle, Defs, G, LinearGradient, Path, Stop } from "react-native-svg";
 import { Style } from "@styles";
 
-const PathwayNoAvatar = () => (
-  <Svg width={Style.adjust(104)} height={Style.adjust(104)} viewBox="0 0 104 104" fill="none">
+interface IProps {
+  width?: number;
+  height?: number;
+}
+
+const PathwayNoAvatar = ({ width = 104, height = 104 }: IProps) => (
+  <Svg width={Style.adjust(width)} height={Style.adjust(height)} viewBox="0 0 104 104" fill="none">
     <Defs>
       <LinearGradient id="paint0_linear_23_110621" x1={52} y1={0} x2={52} y2={153.5} gradientUnits="userSpaceOnUse">
         <Stop stopColor="#FFEE00" />

@@ -25,7 +25,8 @@ export interface IPathwayChallengeTileProps {
 }
 
 const DEFAULT_IMAGE_SCALE = 1.75;
-const DEFAULT_IMAGE_OFFSET_Y = 185;
+const DEFAULT_IMAGE_OFFSET_Y_RATIO = 1.5;
+const NO_AVATAR_SIZE_RATIO = 0.6;
 
 const PathwayChallengeTile: React.FC<IPathwayChallengeTileProps> = ({
   isLocked,
@@ -77,15 +78,16 @@ const PathwayChallengeTile: React.FC<IPathwayChallengeTileProps> = ({
                 style={[
                   styles.remoteImage,
                   {
-                    transform: [{ translateY: DEFAULT_IMAGE_OFFSET_Y }],
+                    transform: [{ translateY: TOP_HEIGHT * DEFAULT_IMAGE_OFFSET_Y_RATIO }],
                     left: -(IMAGE_SIZE * (DEFAULT_IMAGE_SCALE - 1)) / 2,
                   },
                 ]}
                 suppressLoadingUi={true}
+                disableAutoAdjust={true}
               />
             ) : (
-              <Box alignItems="center" pt={25}>
-                <PathwayNoAvatar />
+              <Box alignItems="center" justifyContent="center" h={TOP_HEIGHT}>
+                <PathwayNoAvatar width={IMAGE_SIZE * NO_AVATAR_SIZE_RATIO} height={IMAGE_SIZE * NO_AVATAR_SIZE_RATIO} />
               </Box>
             )}
             <Box
