@@ -47,6 +47,10 @@ Navigation wrapper: `src/navigation/main.ts`
 - Bottom tabs for main screens
 - Modal and overlay support
 
+**Navigation rules**:
+
+- All screens must be rendered via a `container` rather than adding the screen file directly to navigation. This is usually via a `screen-name.container.tsx` file.
+
 ### Localization (Tolgee)
 
 Translation management:
@@ -66,17 +70,3 @@ Test structure: `e2e/feature/sub-feature/*.spec.ts`
 1. Terminal 1: `yarn start:e2e` (bundler + TypeScript watch)
 2. Terminal 2: `yarn detox:run` (or specific suite)
 3. Backend: In api-server repo, run `yarn detox:start` (request the user to do this separately)
-
-## Common Gotchas
-
-### Detox Build Failures
-
-If `detox:build` fails with "package was built for iOS not iOS Simulator", add `EXCLUDED_ARCHS=arm64` to the xcodebuild command in package.json.
-
-If SwiftEmitModule errors occur:
-
-```bash
-cd ios && bundle exec pod install
-cd .. && yarn detox:build
-git reset --hard HEAD  # Only if no important changes
-```

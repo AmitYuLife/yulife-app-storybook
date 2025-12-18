@@ -1,31 +1,53 @@
 import { Box } from "@atoms";
-import { ReactNode, memo } from "react";
+import { IBoxProps } from "@atoms/box/box.types";
+import { ReactNode, memo, useMemo } from "react";
 import { FadeInUp } from "react-native-reanimated";
 
-interface IShowcaseStackGridProps {
-  children: ReactNode[];
+interface IShowcaseStackGridProps extends IBoxProps {
+  children: ReactNode[] | ReactNode;
+  itemProps?: IBoxProps;
 }
 
 const GAP = 60;
 const ENTER_DELAY = 150;
 const ENTER_TIME = 400;
-const ShowcaseStackGrid = ({ children }: IShowcaseStackGridProps) => {
-  const [, , , , floatingItem] = children;
+const ShowcaseStackGrid = ({ children, itemProps, gap = GAP, ...props }: IShowcaseStackGridProps) => {
+  const childrenArray = useMemo(() => (Array.isArray(children) ? children : [children]).filter(Boolean), [children]);
+
+  if (childrenArray.length === 1) {
+    return (
+      <Box flexDirection="row" center={true} flexWrap="wrap" w="100%" alignItems="center" {...props}>
+        <Box
+          key={0}
+          pb={GAP}
+          w={"100%"}
+          center={true}
+          entering={FadeInUp.delay(0 * ENTER_DELAY).duration(ENTER_TIME)}
+          {...itemProps}
+        >
+          {childrenArray[0]}
+        </Box>
+      </Box>
+    );
+  }
+
+  const [, , , , floatingItem] = childrenArray;
 
   return (
     <>
-      <Box flexDirection="row" center={true} flexWrap="wrap" w="100%">
-        {children.slice(0, 4).map((child, index) => (
+      <Box flexDirection="row" center={true} flexWrap="wrap" w="100%" {...props}>
+        {childrenArray.slice(0, 4).map((child, index) => (
           <Box
             pb={GAP}
             w={"50%"}
             key={index}
             center={true}
             flexDirection="row"
-            pr={index % 2 === 0 ? GAP / 2 : 0}
-            pl={index % 2 !== 0 ? GAP / 2 : 0}
-            entering={FadeInUp.delay(index * ENTER_DELAY).duration(ENTER_TIME)}
+            pr={index % 2 === 0 ? gap / 2 : 0}
+            pl={index % 2 !== 0 ? gap / 2 : 0}
             justifyContent={index % 2 === 0 ? "flex-end" : "flex-start"}
+            entering={FadeInUp.delay(index * ENTER_DELAY).duration(ENTER_TIME)}
+            {...itemProps}
           >
             {child}
           </Box>
