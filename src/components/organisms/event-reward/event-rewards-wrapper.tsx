@@ -1,5 +1,5 @@
-import { View } from "react-native";
-import React, { memo, useCallback } from "react";
+import { View, ViewStyle } from "react-native";
+import React, { memo, useCallback, useMemo } from "react";
 
 import { Style, StyleSheet } from "@styles";
 import EventReward, { IReward } from "./event-reward";
@@ -36,6 +36,19 @@ const EventRewardWrapper = ({
     [width, eventTitle, onClaimReward, isClaimRewardEnabled, marginHorizontal]
   );
 
+  const contentContainerStyles = useMemo((): ViewStyle => {
+    if (rewards?.length === 1) {
+      return {
+        width: "100%",
+        justifyContent: "center",
+      };
+    }
+
+    return {
+      paddingHorizontal,
+    };
+  }, [paddingHorizontal, rewards?.length]);
+
   return (
     <View style={styles.wrapper}>
       <FlatList
@@ -47,7 +60,7 @@ const EventRewardWrapper = ({
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal }}
+        contentContainerStyle={contentContainerStyles}
         getItemLayout={getItemLayout}
       />
     </View>
