@@ -1451,18 +1451,25 @@
     },
     "pathways": {
       "advice_empty_section": {
-        "title": "インサイトに  近づいています！"
+        "title": "この調子で記録を続けましょう!"
       },
       "challenge_intro": {
-        "bullet_point_1": "健康 クエスチョンとは に基づいて パーソナライズ",
-        "bullet_point_2": "時間 をかけて あなた に適応 し 、 ニーズ に応え ます",
-        "bullet_point_3": "問題になる前に健康問題を防ぐことを目指す",
-        "description": "ヘルス チャレンジ は、 毎日 の レフレクション の 答え に 基づいて、 あなた に 合っ た コンテンツ を 提供 し ます。",
-        "heading": "ヘルス クエスト",
-        "title": "Yumoji 向けにデザインされました"
+        "bullet_point_1": "健康チェックの回答に基づいてカスタマイズ",
+        "bullet_point_2": "あなたのニーズに合わせたエクササイズ",
+        "bullet_point_3": "不調を未然に防ぐ、プロアクティブなセルフケア",
+        "description": "ヘルスチャレンジでは、毎日の振り返りの回答をもとに、あなたに合ったコンテンツをお届けします。",
+        "heading": "ヘルスクエスト",
+        "title": "ヘルスチャレンジについて"
+      },
+      "claim": {
+        "health_challenge": "健康チャレンジ",
+        "reward_subtitle": "チャレンジリスト で 見つかります",
+        "reward_title": "リワードを受け取りました!",
+        "title": "今日は手に入れたすべてが こちらです！",
+        "yucoin": "YuCoin"
       },
       "day": "%{day}日目",
-      "header": "今日 の 反省",
+      "header": "毎日の振り返り",
       "health_insights": "ヘルスインサイト",
       "journey_header": "現在のジャーニー",
       "journey_header_starts": "%{maxProgress} 日間 リフレクトするとボーナス チャレンジがアンロック",
@@ -1478,11 +1485,15 @@
       },
       "reflect_in": "あと%{hours}時間%{minutes}分",
       "reflection_active_label": "振り返りに進む",
-      "reflection_chest_health_challenge": "ボーナス ヘルス チャレンジ",
-      "reflection_chest_reward": "獲得 %{amount}",
+      "reflection_chest_button_label": "健康チャレンジ",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) ボーナス健康チャレンジ",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) ボーナス健康チャレンジ",
+      "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
+      "reflection_chest_reward_to_earn_markdown": "獲得: %{amount} ![](%{yucoinUrl})",
       "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
       "reflection_inactive_label": "振り返り",
       "reflection_unlocks_in": "アンロックまで",
+      "reflection_yucoin_amount": "%{amount} ![](%{yucoinUrl})",
       "secondary_button_label": "Well-beingセンターに移動",
       "today": "今日",
       "user_mood": {

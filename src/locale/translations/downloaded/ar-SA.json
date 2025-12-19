@@ -1461,6 +1461,13 @@
         "heading": "مهمة الصحة",
         "title": "مصمم لـ يو"
       },
+      "claim": {
+        "health_challenge": "تحدي الصحة",
+        "reward_subtitle": "يمكنك العثور عليه في قائمة التحديات.",
+        "reward_title": "تم جمع المكافأة!",
+        "title": "إليك كل ما حصلت عليه اليوم!",
+        "yucoin": "يوكوين"
+      },
       "day": "يوم %{day}",
       "header": "تأمل اليوم",
       "health_insights": "التحليلات الصحية",
@@ -1478,11 +1485,15 @@
       },
       "reflect_in": "سيتم التنفيذ خلال %{hours} ساعة و %{minutes} دقيقة",
       "reflection_active_label": "يعكس",
-      "reflection_chest_health_challenge": "تحدي الصحة الإضافي",
-      "reflection_chest_reward": "احصل على %{amount}",
+      "reflection_chest_button_label": "تحدي الصحة",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) تحدي الصحة الإضافي",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) تحدي الصحة الإضافي",
+      "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
+      "reflection_chest_reward_to_earn_markdown": "اكسب: %{amount} ![](%{yucoinUrl})",
       "reflection_countdown": "%{الساعات}:%{الدقائق}:%{الثواني}",
       "reflection_inactive_label": "انعكاس",
       "reflection_unlocks_in": "يفتح في",
+      "reflection_yucoin_amount": "%{amount} ![](%{yucoinUrl})",
       "secondary_button_label": "اذهب إلى مركز الرفاهية",
       "today": "اليوم",
       "user_mood": {

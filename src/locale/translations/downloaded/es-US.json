@@ -1461,6 +1461,13 @@
         "heading": "Búsqueda de la Salud",
         "title": "Diseñado para Yu"
       },
+      "claim": {
+        "health_challenge": "Reto sanitario",
+        "reward_subtitle": "Puede encontrarlo en la lista de retos.",
+        "reward_title": "¡Recompensa recolectada!",
+        "title": "¡Aquí está todo lo que tienes hoy!",
+        "yucoin": "YuCoin"
+      },
       "day": "Día %{day}",
       "header": "Reflexión de hoy",
       "health_insights": "Información sanitaria",
@@ -1478,11 +1485,15 @@
       },
       "reflect_in": "Reflejar en %{hours}h %{minutes}m",
       "reflection_active_label": "Reflect",
-      "reflection_chest_health_challenge": "Bonificación Desafío Salud",
-      "reflection_chest_reward": "**Gana** %{amount}",
+      "reflection_chest_button_label": "Reto sanitario",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) Reto de salud extra",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) Reto de salud extra",
+      "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
+      "reflection_chest_reward_to_earn_markdown": "Gana: **%{amount}** ![](%{yucoinUrl})",
       "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
       "reflection_inactive_label": "Reflexión",
       "reflection_unlocks_in": "Desbloquea en",
+      "reflection_yucoin_amount": "**%{amount}** ![](%{yucoinUrl})",
       "secondary_button_label": "Ir a Wellbeing Hub",
       "today": "Hoy",
       "user_mood": {
