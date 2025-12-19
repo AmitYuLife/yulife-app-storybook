@@ -2,7 +2,7 @@ import { GOALS_3, GOALS_6, GOALS_FTUE } from "./goals";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 const type = "mongo";
-const modelName = "goal_reward_milestones";
+const modelName = "goal_reward_milestones_for_global";
 
 export const GOAL_REWARD_MILESTONE_6 = {
   type,
