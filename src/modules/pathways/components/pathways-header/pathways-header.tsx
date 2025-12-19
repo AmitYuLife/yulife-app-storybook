@@ -86,7 +86,7 @@ const PathwaysHeader = ({
         notCompletedChestForegroundColor={Colours.pathways.streakBorder}
         notCompletedChestBackgroundColor={Colours.pathways.background}
       />
-      <Box mt={20} gap={20}>
+      <Box mt={20} gap={20} alignItems="center">
         <PathwaysJourneyHeader maxProgress={maxProgress} timeToNextQuestionnaire={timeRemaining} />
         <Box
           flexWrap="wrap"
@@ -94,6 +94,7 @@ const PathwaysHeader = ({
           gap={BOX_GAP}
           justifyContent="center"
           testID={PATHWAYS_REFLECTION_ITEMS(MAX_REFLECTION_ITEMS)}
+          maxWidth={(BOX_GAP + BOX_SIZE) * 2}
         >
           {Array.from({ length: MAX_REFLECTION_ITEMS }).map((_, index) => {
             const itemStatus = getReflectionItemStatus(index, reflectionProgress, reflectedToday, maxProgress);

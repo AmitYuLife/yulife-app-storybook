@@ -110,7 +110,7 @@ const PathwaysScreen = ({
           pathwayChallenge={pathwayChallenge}
         />
 
-        <Box minHeight={500} width={"100%"} gap={20} ph={12} pt={30}>
+        <Box minHeight={500} width={"100%"} gap={20} ph={16} pt={30}>
           <Box gap={16}>
             {interventionSections?.length ? <PathwaysInterventionSection sections={interventionSections} /> : null}
             <Box ph={8}>
