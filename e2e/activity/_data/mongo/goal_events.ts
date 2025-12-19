@@ -2,7 +2,7 @@ import { IDatabaseItem, generateRandomMongoId } from "@yu-life/yulife-bdd-framew
 import { GOALS_1, GOALS_3 } from "./goals";
 
 const type = "mongo";
-const modelName = "goal_events";
+const modelName = "goal_events_for_global";
 
 export const GOAL_EVENTS_1 = {
   type,

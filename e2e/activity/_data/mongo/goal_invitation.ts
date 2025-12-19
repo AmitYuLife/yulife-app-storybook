@@ -4,7 +4,7 @@ import { GOALS_1, GOALS_6, GOALS_FTUE } from "./goals";
 import { CUSTOMER_20, CUSTOMER_73, CUSTOMER_141 } from "../postgres/customers";
 
 const type = "mongo";
-const modelName = "goal_invitation";
+const modelName = "goal_invitation_for_global";
 
 export const GOAL_INVITATION_2 = {
   type,
