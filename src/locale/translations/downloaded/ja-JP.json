@@ -1470,12 +1470,12 @@
       },
       "day": "%{day}日目",
       "header": "今日の振り返り",
-      "health_insights": "健康に関するインサイト",
+      "health_insights": "健康に関するアドバイス",
       "journey_header": "これまでの進捗",
       "journey_header_starts": "%{maxProgress}日間の振り返りでボーナスチャレンジをプレゼント",
       "journey_header_starts_in": "次回の振り返りまであと**%{hours}:%{minutes}:%{seconds}**",
       "personal_health_path": {
-        "heading": "健康管理プログラム"
+        "heading": "健康管理"
       },
       "recommended_for_you": "あなたへのおすすめ",
       "reflect": "振り返りに進む",
