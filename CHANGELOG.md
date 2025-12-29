@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.95.0] - 2025-12-29
+
+### Bugfixes
+
+- Bugfix GS-2132: Pathway challenge avatar fixes
+- Bugfix: Level counter height fix
+
+### Tasks
+
+- Task GS-2112: fixing layout on reflections
+- Task: Single event milestone UI centering
+- Task: Global goal detox data
+- Task GS-2154: Pathways collect screen
+- Task GS-2111: pathway reflection completed states
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Fix CTE-354: smoking large streak
+- Fix NVS-000: Fix malformed Claude settings JSON
+- Detox GS-1922: Pathways Entry Initial State
+- DEVOPS-4631 - Replace API PM2 command with local PM2 version
+- Fix CTE-353: line height for smoking
+
 ## [4.94.0] - 2025-12-18
 
 ### Bugfixes
