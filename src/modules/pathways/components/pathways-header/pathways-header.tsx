@@ -132,7 +132,7 @@ const getReflectionItemStatus = (
   reflectedToday: boolean,
   maxProgress: number
 ): PathwaysReflectionStatus => {
-  if (index === maxProgress - 1 && reflectedToday) {
+  if (reflectionProgress === 0 && index === maxProgress - 1 && reflectedToday) {
     // they have completed the final item today
     // the progress will be reset to 0 already, so we
     // need to show the item as completed not locked
