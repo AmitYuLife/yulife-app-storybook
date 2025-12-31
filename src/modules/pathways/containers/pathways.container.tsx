@@ -5,7 +5,7 @@ import moment from "moment";
 import { getMoodSubmission } from "../utils/get-mood-submission";
 import { useDispatch } from "react-redux";
 import { ROUTES } from "@navigation/constants";
-import { useQueryOnScreenSeen } from "@hooks";
+import { useQueryOnScreenSeen, useUserFeatures } from "@hooks";
 import PathwaysOldScreen from "../screens/pathways-old.screen";
 import PathwaysScreen from "../screens/pathways.screen";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
@@ -19,6 +19,8 @@ const PathwaysContainer = ({ componentId }: Props) => {
   const onClose = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
+
+  const { tempGameEnablePathwaysStreaks } = useUserFeatures();
 
   const [, { data, loading }] = useQueryOnScreenSeen(
     gql("GetUserPathwaysDocument"),
@@ -84,7 +86,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
     [data, loading, onClose, onReflect, onOpenMoodCalendar, moodSubmissions, reflectionProgress, pathwayChallenge]
   );
 
-  if (!data?.getUserPathways?.isStreaksEnabled) {
+  if (!tempGameEnablePathwaysStreaks) {
     return <PathwaysOldScreen {...props} />;
   }
 

@@ -138,7 +138,6 @@ const PathwaysScreen = ({
         backgroundColor={"transparent"}
         onLeftIconPress={onClose}
         color="white"
-        hasShadow={true}
         scrollValue={scrollY}
       />
     </Box>

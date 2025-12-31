@@ -62,4 +62,5 @@ export const features = [
   "tempGameShowAchievements",
   "tempGameShowCouponPrizeTemplates",
   "tempEnableYuHealthForegroundService",
+  "tempGameEnablePathwaysStreaks",
 ] as const;
