@@ -10,12 +10,15 @@ import PathwayStreaks from "../../components/pathway-streaks/pathway-streaks";
 import { Button } from "@components/molecules";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ItemDetailsReward } from "@organisms";
-import { noop } from "@utils";
 import { t } from "@locale";
 
 const TODO_REFLECTION_DAYS = 5;
 
-const PathwaysReflectedScreen = () => {
+interface IPathwaysReflectedScreenProps {
+  onClose: () => void;
+}
+
+const PathwaysReflectedScreen = ({ onClose }: IPathwaysReflectedScreenProps) => {
   const { bottom } = useSafeAreaInsets();
 
   return (
@@ -60,7 +63,7 @@ const PathwaysReflectedScreen = () => {
         </Box>
       </ScrollView>
       <Box position="absolute" bottom={0} width="100%" pb={bottom}>
-        <Button testID="continue_button" onPress={noop} translatedLabel="Continue" />
+        <Button testID="continue_button" onPress={onClose} translatedLabel="Continue" />
       </Box>
     </Box>
   );
