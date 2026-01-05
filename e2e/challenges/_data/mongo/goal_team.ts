@@ -1,6 +1,6 @@
 import { IDatabaseItem, generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import * as customer from "../postgres/customers";
-import { GOALS_2, GOALS_3, GOALS_4, GOALS_5, GOALS_TOURNAMENT } from "./goals";
+import { GOALS_2, GOALS_3, GOALS_4, GOALS_5, GOALS_TOURNAMENT } from "./goals_for_global";
 import moment from "moment";
 
 export const GOAL_TEAM_1 = {

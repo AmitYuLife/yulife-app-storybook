@@ -1,6 +1,6 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
-import { GOALS_1, GOALS_6, GOALS_FTUE } from "./goals";
+import { GOALS_1, GOALS_6, GOALS_FTUE } from "./goals_for_global";
 import { CUSTOMER_20, CUSTOMER_73, CUSTOMER_141 } from "../postgres/customers";
 
 const type = "mongo";

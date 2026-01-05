@@ -1,5 +1,5 @@
 import { IDatabaseItem, generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
-import { GOALS_1, GOALS_3 } from "./goals";
+import { GOALS_1, GOALS_3 } from "./goals_for_global";
 
 const type = "mongo";
 const modelName = "goal_events_for_global";

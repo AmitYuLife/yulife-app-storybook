@@ -1,9 +1,9 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
-import { GOALS_1 } from "./goals";
+import { GOALS_1 } from "./goals_for_global";
 
 const type = "mongo";
-const modelName = "goal_invitation";
+const modelName = "goal_invitation_for_global";
 
 export const GOAL_INVITATION_1 = {
   type,

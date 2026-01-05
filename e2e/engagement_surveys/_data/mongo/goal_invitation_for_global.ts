@@ -1,10 +1,10 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
-import { GOALS_1, GOALS_FTUE } from "./goals";
+import { GOALS_1, GOALS_FTUE } from "./goals_for_global";
 import { CUSTOMER_5, CUSTOMER_7 } from "../postgres/customers";
 
 const type = "mongo";
-const modelName = "goal_invitation";
+const modelName = "goal_invitation_for_global";
 
 export const GOAL_INVITATION_1 = {
   type,

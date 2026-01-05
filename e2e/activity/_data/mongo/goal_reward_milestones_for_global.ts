@@ -1,4 +1,4 @@
-import { GOALS_3, GOALS_6, GOALS_FTUE } from "./goals";
+import { GOALS_3, GOALS_6, GOALS_FTUE } from "./goals_for_global";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 const type = "mongo";

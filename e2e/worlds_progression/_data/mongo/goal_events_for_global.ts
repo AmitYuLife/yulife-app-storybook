@@ -1,9 +1,9 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { GOALS_1, GOALS_2, GOALS_3, GOALS_4, GOALS_5 } from "./goals";
-import { WEEKLY_GOAL_1 } from "./goal_weeklies";
+import { GOALS_1, GOALS_2, GOALS_3, GOALS_4, GOALS_5 } from "./goals_for_global";
+import { WEEKLY_GOAL_1 } from "./goal_weeklies_for_global";
 
 const type = "mongo";
-const modelName = "goal_events";
+const modelName = "goal_events_for_global";
 
 export const GOAL_EVENTS_1 = {
   type,
@@ -54,7 +54,7 @@ export const WEEKLY_GOAL_EVENT_1 = {
   data: {
     _id: generateRandomMongoId(),
     goal: WEEKLY_GOAL_1.data._id,
-    parentType: "goal_weeklies",
+    parentType: "goal_weeklies_for_global",
     type: "active_challenge",
     targetValue: 2,
     goalWeight: 1,

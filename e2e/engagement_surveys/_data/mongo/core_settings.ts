@@ -26,7 +26,7 @@ export const CUSTOMER_3_GAME_GOALS_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {
     _id: generateRandomMongoId(),
-    domain: "game.goals",
+    domain: "game.goals_for_global",
     entityId: CUSTOMER_3.data.customerId,
     entityType: "user",
     settings: {
