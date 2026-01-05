@@ -41,6 +41,7 @@ const result: PossibleTypesResultData = {
       "ContentItemInfoCard",
       "ContentItemKeyValueBox",
       "ContentItemLinearGradient",
+      "ContentItemLoader",
       "ContentItemLottie",
       "ContentItemMarkdown",
       "ContentItemMarkdownBlock",

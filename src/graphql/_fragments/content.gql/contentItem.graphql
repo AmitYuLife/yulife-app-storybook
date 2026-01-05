@@ -103,4 +103,7 @@ fragment ContentItem on ContentItem {
   ... on ContentItemBlurredRaysWrapper {
     ...ContentItemBlurredRaysWrapper
   }
+  ... on ContentItemLoader {
+    ...ContentItemLoader
+  }
 }

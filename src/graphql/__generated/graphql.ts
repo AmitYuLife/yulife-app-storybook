@@ -1547,6 +1547,7 @@ export enum ConnectionState {
   Active = "ACTIVE",
   ConnectionSampling = "CONNECTION_SAMPLING",
   ConnectionSamplingFailed = "CONNECTION_SAMPLING_FAILED",
+  ConnectionWaitingForData = "CONNECTION_WAITING_FOR_DATA",
   NotConnected = "NOT_CONNECTED",
   Paused = "PAUSED",
   Preview = "PREVIEW",
@@ -1590,6 +1591,7 @@ export type ContentItem =
   | ContentItemInfoCard
   | ContentItemKeyValueBox
   | ContentItemLinearGradient
+  | ContentItemLoader
   | ContentItemLottie
   | ContentItemMarkdown
   | ContentItemMarkdownBlock
@@ -2117,6 +2119,17 @@ export type ContentItemListItemText = {
   __typename?: "ContentItemListItemText";
   colour: Scalars["String"]["output"];
   value: Scalars["String"]["output"];
+};
+
+/**
+ * A loader component that auto-triggers an action when mounted.
+ * The client will automatically call the onLoad action when this component is rendered.
+ */
+export type ContentItemLoader = {
+  __typename?: "ContentItemLoader";
+  id: Scalars["ID"]["output"];
+  onLoad: SduiAction;
+  styles?: Maybe<Array<SduiStyle>>;
 };
 
 export type ContentItemLottie = {
@@ -3391,6 +3404,11 @@ export type DuelsCompletedResponse = {
 export type EmailConnectionConfig = {
   __typename?: "EmailConnectionConfig";
   allowedSenders: Array<Scalars["String"]["output"]>;
+  ingestEmail: Scalars["String"]["output"];
+};
+
+export type EmailConnectionSettingsInput = {
+  allowedSenders?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 export type EmployeeBulkProcessResult = {
@@ -4937,10 +4955,11 @@ export type HrisConnectionImportEvent = {
   __typename?: "HrisConnectionImportEvent";
   businessMemberDataConnectionEventId: Scalars["String"]["output"];
   businessMemberDataConnectionId: Scalars["String"]["output"];
-  businessMemberDataImportId: Scalars["String"]["output"];
+  businessMemberDataImportId?: Maybe<Scalars["String"]["output"]>;
   completedAt?: Maybe<Scalars["String"]["output"]>;
   createdAt: Scalars["String"]["output"];
   eventType?: Maybe<ConnectionEventType>;
+  failureDescription?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
   importDisplayStatus?: Maybe<BulkUploadPublicStatus>;
   startedAt?: Maybe<Scalars["String"]["output"]>;
@@ -11597,7 +11616,11 @@ export type UpdateTeamSocialGroupInput = {
 export type UpsertMemberDataConnectionInput = {
   connectionId?: InputMaybe<Scalars["String"]["input"]>;
   connectionType: ConnectionType;
-  name: Scalars["String"]["input"];
+  emailSettings?: InputMaybe<EmailConnectionSettingsInput>;
+  hrisSettings?: InputMaybe<HrisConnectionSettingsInput>;
+  name?: InputMaybe<Scalars["String"]["input"]>;
+  ownerIds?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  shouldAutoInvite?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 /** Represents uptake results for a survey. */
@@ -14270,6 +14293,30 @@ export type AbsoluteContentItemFragment = {
         end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
       }
     | {
+        __typename: "ContentItemLoader";
+        id: string;
+        onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+        styles?: Array<{
+          __typename?: "SduiStyle";
+          property: string;
+          value: string;
+          conditionalValue?: Array<{
+            __typename?: "ConditionalValue";
+            value: string;
+            conditions: Array<{
+              __typename?: "ConditionalValueCondition";
+              logicalOperator?: ConditionalValueLogicalOperator | null;
+              expressions: Array<{
+                __typename?: "ConditionalValueConditionExpression";
+                operand: ConditionalValueOperand;
+                comparisonOperator: ConditionalValueComparisonOperator;
+                value: string;
+              }>;
+            }>;
+          }> | null;
+        }> | null;
+      }
+    | {
         __typename: "ContentItemLottie";
         id: string;
         uri: string;
@@ -16020,6 +16067,31 @@ type ContentItem_ContentItemLinearGradient_Fragment = {
   end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
 };
 
+type ContentItem_ContentItemLoader_Fragment = {
+  __typename: "ContentItemLoader";
+  id: string;
+  onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+};
+
 type ContentItem_ContentItemLottie_Fragment = {
   __typename: "ContentItemLottie";
   id: string;
@@ -16989,6 +17061,7 @@ export type ContentItemFragment =
   | ContentItem_ContentItemInfoCard_Fragment
   | ContentItem_ContentItemKeyValueBox_Fragment
   | ContentItem_ContentItemLinearGradient_Fragment
+  | ContentItem_ContentItemLoader_Fragment
   | ContentItem_ContentItemLottie_Fragment
   | ContentItem_ContentItemMarkdown_Fragment
   | ContentItem_ContentItemMarkdownBlock_Fragment
@@ -18080,6 +18153,31 @@ export type ContentItemListFragment = {
       }> | null;
     }> | null;
   }>;
+};
+
+export type ContentItemLoaderFragment = {
+  __typename?: "ContentItemLoader";
+  id: string;
+  onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
 };
 
 export type ContentItemLottieFragment = {
@@ -20829,6 +20927,30 @@ export type SduiSectionFragment = {
           }> | null;
           start?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
           end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
+        }
+      | {
+          __typename: "ContentItemLoader";
+          id: string;
+          onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
         }
       | {
           __typename: "ContentItemLottie";
@@ -25639,6 +25761,30 @@ export type GetSduiJourneyQuery = {
           end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
         }
       | {
+          __typename: "ContentItemLoader";
+          id: string;
+          onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
+      | {
           __typename: "ContentItemLottie";
           id: string;
           uri: string;
@@ -27340,6 +27486,30 @@ export type GetSduiJourneyQuery = {
             }> | null;
             start?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
             end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
+          }
+        | {
+            __typename: "ContentItemLoader";
+            id: string;
+            onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
           }
         | {
             __typename: "ContentItemLottie";
@@ -29676,6 +29846,30 @@ export type GetUserPathwaysQuery = {
                   end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
                 }
               | {
+                  __typename: "ContentItemLoader";
+                  id: string;
+                  onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+                  styles?: Array<{
+                    __typename?: "SduiStyle";
+                    property: string;
+                    value: string;
+                    conditionalValue?: Array<{
+                      __typename?: "ConditionalValue";
+                      value: string;
+                      conditions: Array<{
+                        __typename?: "ConditionalValueCondition";
+                        logicalOperator?: ConditionalValueLogicalOperator | null;
+                        expressions: Array<{
+                          __typename?: "ConditionalValueConditionExpression";
+                          operand: ConditionalValueOperand;
+                          comparisonOperator: ConditionalValueComparisonOperator;
+                          value: string;
+                        }>;
+                      }>;
+                    }> | null;
+                  }> | null;
+                }
+              | {
                   __typename: "ContentItemLottie";
                   id: string;
                   uri: string;
@@ -30868,6 +31062,7 @@ export type GetPerkSubscriptionInfoQuery = {
       | { __typename: "ContentItemInfoCard" }
       | { __typename: "ContentItemKeyValueBox" }
       | { __typename: "ContentItemLinearGradient" }
+      | { __typename: "ContentItemLoader" }
       | { __typename: "ContentItemLottie" }
       | {
           __typename: "ContentItemMarkdown";
@@ -33409,6 +33604,30 @@ export type GetSduiStaticStepQuery = {
           end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
         }
       | {
+          __typename: "ContentItemLoader";
+          id: string;
+          onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
+      | {
           __typename: "ContentItemLottie";
           id: string;
           uri: string;
@@ -35110,6 +35329,30 @@ export type GetSduiStaticStepQuery = {
             }> | null;
             start?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
             end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
+          }
+        | {
+            __typename: "ContentItemLoader";
+            id: string;
+            onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
           }
         | {
             __typename: "ContentItemLottie";
@@ -39927,6 +40170,30 @@ export type GetYuScreenV5Query = {
                   end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
                 }
               | {
+                  __typename: "ContentItemLoader";
+                  id: string;
+                  onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+                  styles?: Array<{
+                    __typename?: "SduiStyle";
+                    property: string;
+                    value: string;
+                    conditionalValue?: Array<{
+                      __typename?: "ConditionalValue";
+                      value: string;
+                      conditions: Array<{
+                        __typename?: "ConditionalValueCondition";
+                        logicalOperator?: ConditionalValueLogicalOperator | null;
+                        expressions: Array<{
+                          __typename?: "ConditionalValueConditionExpression";
+                          operand: ConditionalValueOperand;
+                          comparisonOperator: ConditionalValueComparisonOperator;
+                          value: string;
+                        }>;
+                      }>;
+                    }> | null;
+                  }> | null;
+                }
+              | {
                   __typename: "ContentItemLottie";
                   id: string;
                   uri: string;
@@ -41875,6 +42142,30 @@ export type GetYuScreenV5SectionsQuery = {
                 end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
               }
             | {
+                __typename: "ContentItemLoader";
+                id: string;
+                onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+                styles?: Array<{
+                  __typename?: "SduiStyle";
+                  property: string;
+                  value: string;
+                  conditionalValue?: Array<{
+                    __typename?: "ConditionalValue";
+                    value: string;
+                    conditions: Array<{
+                      __typename?: "ConditionalValueCondition";
+                      logicalOperator?: ConditionalValueLogicalOperator | null;
+                      expressions: Array<{
+                        __typename?: "ConditionalValueConditionExpression";
+                        operand: ConditionalValueOperand;
+                        comparisonOperator: ConditionalValueComparisonOperator;
+                        value: string;
+                      }>;
+                    }>;
+                  }> | null;
+                }> | null;
+              }
+            | {
                 __typename: "ContentItemLottie";
                 id: string;
                 uri: string;
@@ -43796,6 +44087,30 @@ type YuScreenSection_SduiSection_Fragment = {
           }> | null;
           start?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
           end?: { __typename?: "LinearGradientOrientation"; x: number; y: number } | null;
+        }
+      | {
+          __typename: "ContentItemLoader";
+          id: string;
+          onLoad: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
         }
       | {
           __typename: "ContentItemLottie";
@@ -51042,6 +51357,103 @@ export const ContentItemBlurredRaysWrapperFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemBlurredRaysWrapperFragment, unknown>;
+export const ContentItemLoaderFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConditionalValue" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ConditionalValue" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "logicalOperator" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "expressions" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "operand" } },
+                      { kind: "Field", name: { kind: "Name", value: "comparisonOperator" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditionalValue" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemLoaderFragment, unknown>;
 export const ContentItemFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -51325,6 +51737,14 @@ export const ContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLoader" } }],
             },
           },
         ],
@@ -53381,6 +53801,33 @@ export const ContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "showRays" } },
           { kind: "Field", name: { kind: "Name", value: "testID" } },
           { kind: "Field", name: { kind: "Name", value: "accessibilityLabelTitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
         ],
       },
     },
@@ -55480,6 +55927,33 @@ export const AbsoluteContentItemFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -55758,6 +56232,14 @@ export const AbsoluteContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLoader" } }],
             },
           },
         ],
@@ -64052,6 +64534,33 @@ export const SduiSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -64330,6 +64839,14 @@ export const SduiSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLoader" } }],
             },
           },
         ],
@@ -68135,6 +68652,33 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -68413,6 +68957,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLoader" } }],
             },
           },
         ],
@@ -80364,6 +80916,33 @@ export const GetSduiJourneyDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -80642,6 +81221,14 @@ export const GetSduiJourneyDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLoader" } }],
             },
           },
         ],
@@ -84259,6 +84846,33 @@ export const GetUserPathwaysDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -84537,6 +85151,14 @@ export const GetUserPathwaysDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLoader" } }],
             },
           },
         ],
@@ -91381,6 +92003,33 @@ export const GetSduiStaticStepDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -91659,6 +92308,14 @@ export const GetSduiStaticStepDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLoader" } }],
             },
           },
         ],
@@ -101619,6 +102276,33 @@ export const GetYuScreenV5Document = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -101897,6 +102581,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLoader" } }],
             },
           },
         ],
@@ -104617,6 +105309,33 @@ export const GetYuScreenV5SectionsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLoader" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onLoad" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -104895,6 +105614,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemBlurredRaysWrapper" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLoader" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLoader" } }],
             },
           },
         ],
