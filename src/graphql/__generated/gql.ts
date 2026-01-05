@@ -63,6 +63,7 @@ const documents = {
   ContentItemKeyValueBoxFragmentDoc: types.ContentItemKeyValueBoxFragmentDoc,
   ContentItemLinearGradientFragmentDoc: types.ContentItemLinearGradientFragmentDoc,
   ContentItemListFragmentDoc: types.ContentItemListFragmentDoc,
+  ContentItemLoaderFragmentDoc: types.ContentItemLoaderFragmentDoc,
   ContentItemLottieFragmentDoc: types.ContentItemLottieFragmentDoc,
   ContentItemMarkdownFragmentDoc: types.ContentItemMarkdownFragmentDoc,
   ContentItemMediaFragmentDoc: types.ContentItemMediaFragmentDoc,
@@ -607,6 +608,10 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "ContentItemListFragmentDoc"): typeof documents["ContentItemListFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ContentItemLoaderFragmentDoc"): typeof documents["ContentItemLoaderFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

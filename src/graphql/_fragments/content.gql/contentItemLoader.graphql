@@ -1,0 +1,9 @@
+fragment ContentItemLoader on ContentItemLoader {
+  id
+  onLoad {
+    ...SduiAction
+  }
+  styles {
+    ...SduiStyle
+  }
+}

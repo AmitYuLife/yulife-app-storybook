@@ -44,3 +44,4 @@ export * from "./contentItemChoice/contentItemChoice";
 export * from "./contentItemScrollPicker/contentItemScrollPicker";
 export * from "./contentItemStackedShadowWrapper/contentItemStackedShadowWrapper";
 export * from "./contentItemBlurredRaysWrapper/contentItemBlurredRaysWrapper";
+export * from "./contentItemLoader/contentItemLoader";

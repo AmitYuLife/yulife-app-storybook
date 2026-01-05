@@ -35,6 +35,7 @@ import {
   ContentItemConfirm,
   ContentItemStackedShadowWrapper,
   ContentItemBlurredRaysWrapper,
+  ContentItemLoader,
 } from "@components/sdui";
 import { GetSduiJourneyQuery } from "@graphql/__generated";
 import { mapDynamicProps } from "../_utils/mapDynamicProps";
@@ -83,6 +84,7 @@ let componentMap: Record<string, (props: unknown) => ReactNode>;
       ContentItemConfirm,
       ContentItemStackedShadowWrapper,
       ContentItemBlurredRaysWrapper,
+      ContentItemLoader,
     };
   });
 })();
