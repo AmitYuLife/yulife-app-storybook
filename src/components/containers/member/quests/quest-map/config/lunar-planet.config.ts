@@ -1,6 +1,7 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
 import { MOUNTAIN_SNAP_OFFSET, createLevelsCoordinatesTemplate } from "./constants";
+import { Media, Style } from "@styles";
 
 export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   193: {
@@ -242,7 +243,15 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     background: require("../episodes/lunar/ocean/lunar-ocean-7.webp"),
     topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 684,
-    snapOffsetY: -25,
+    snapOffsetY: Media.select(
+      [
+        {
+          condition: Style.isIphone8(),
+          value: 0,
+        },
+      ],
+      -25
+    ),
     episodeWidth: 375,
     episodeKey: 80,
     snapPosition: "center",
