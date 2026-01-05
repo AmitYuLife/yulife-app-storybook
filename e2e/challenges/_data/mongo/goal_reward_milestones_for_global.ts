@@ -1,8 +1,8 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { GOALS_2, GOALS_4, GOALS_5, GOALS_TOURNAMENT } from "./goals";
+import { GOALS_2, GOALS_4, GOALS_5, GOALS_TOURNAMENT } from "./goals_for_global";
 
 const type = "mongo";
-const modelName = "goal_reward_milestones";
+const modelName = "goal_reward_milestones_for_global";
 
 export const GOAL_REWARD_MILESTONE_3 = {
   type,

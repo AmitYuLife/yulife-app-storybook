@@ -1,7 +1,7 @@
 import { SOCIAL_GROUP_KNOCKOUT_TOURNAMENT } from "./social_group_knockout_tournaments";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { SOCIAL_GROUP_1, SOCIAL_GROUP_7 } from "./social_groups";
-import { GOALS_TOURNAMENT } from "./goals";
+import { GOALS_TOURNAMENT } from "./goals_for_global";
 import moment from "moment";
 
 const type = "mongo";

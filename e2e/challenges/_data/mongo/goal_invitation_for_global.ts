@@ -6,11 +6,11 @@ import {
   CUSTOMER_76,
   CUSTOMER_81,
 } from "../postgres/customers";
-import { GOALS_5, GOALS_TOURNAMENT } from "./goals";
+import { GOALS_5, GOALS_TOURNAMENT } from "./goals_for_global";
 import moment from "moment";
 
 const type = "mongo";
-const modelName = "goal_invitation";
+const modelName = "goal_invitation_for_global";
 
 export const GOAL_INVITATION_5 = {
   type,
