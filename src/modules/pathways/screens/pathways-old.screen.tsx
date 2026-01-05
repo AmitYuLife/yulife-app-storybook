@@ -96,6 +96,7 @@ const PathwaysOldScreen = ({
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   contentContainer: {
+    paddingTop: Style.adjust(16),
     paddingBottom: Style.adjust(40),
   },
 });
