@@ -1142,7 +1142,7 @@ PODS:
     - React-Core
   - react-native-netinfo (11.3.1):
     - React-Core
-  - react-native-safe-area-context (4.10.5):
+  - react-native-safe-area-context (5.4.0):
     - React-Core
   - react-native-video (6.8.2):
     - DoubleConversion
@@ -1187,9 +1187,28 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-view-shot (3.8.0):
+  - react-native-view-shot (4.0.3):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Codegen
     - React-Core
-  - react-native-webview (13.8.6):
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - react-native-webview (13.13.5):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1512,7 +1531,7 @@ PODS:
     - React
   - RNFlashList (1.6.4):
     - React-Core
-  - RNGestureHandler (2.16.2):
+  - RNGestureHandler (2.21.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1641,7 +1660,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNSVG (15.2.0):
+  - RNSVG (15.11.2):
     - React-Core
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
@@ -2126,10 +2145,10 @@ SPEC CHECKSUMS:
   react-native-in-app-review: db8bb167a5f238e7ceca5c242d6b36ce8c4404a4
   react-native-leanplum: 1040772f934a7ff8855a74188ff4e2d9d6848316
   react-native-netinfo: bdb108d340cdb41875c9ced535977cac6d2ff321
-  react-native-safe-area-context: a240ad4b683349e48b1d51fed1611138d1bdad97
+  react-native-safe-area-context: 8870dc3e45c8d241336cd8ee3fa3fc76f3a040ac
   react-native-video: 0d5d432c94ee0dafe05ed4927db19ed89b8c3ea5
-  react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
-  react-native-webview: 05bae3a03a1e4f59568dfc05286c0ebf8954106c
+  react-native-view-shot: a6308bd6bab513b43cd86293b9ea4aa9393eb5f6
+  react-native-webview: db97533d0b7534225f48ad4e0c313b83cfae8a20
   react-native-yu-health: 66fb825dc38e05296fcbfc3165bef5fcdbf23454
   react-native-yu-watch: 335f5bf7336d74e6097eceaa42d5b1d22afbf1bf
   React-nativeconfig: ba9a2e54e2f0882cf7882698825052793ed4c851
@@ -2165,10 +2184,10 @@ SPEC CHECKSUMS:
   RNDeviceInfo: 8b6fa8379062949dd79a009cf3d6b02a9c03ca59
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
   RNFlashList: b521ebdd7f9352673817f1d98e8bdc0c8cf8545b
-  RNGestureHandler: 2282cfbcf86c360d29f44ace393203afd5c6cff7
+  RNGestureHandler: 6fee3422fd8c81c5ee756fa72e3d1780e9943d9d
   RNReanimated: b0728bed09875d78b9a3a0ba0e2d1171f63f8b5a
   RNShare: 3258b1b38b3336ef2d93b17a800770d75e424e21
-  RNSVG: 43b64ed39c14ce830d840903774154ca0c1f27ec
+  RNSVG: e451741721b9fd3db71b06aafe9335d09a189692
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageAVIFCoder: 8348fef6d0ec69e129c66c9fe4d74fbfbf366112
   SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c

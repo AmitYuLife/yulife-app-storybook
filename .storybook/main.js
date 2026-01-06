@@ -42,9 +42,18 @@ const CUSTOM_CONFIG = {
     rules: [
       {
         test: /\.(ts|js)x?$/,
-        exclude: /node_modules\/(?!()\/).*/,
+        exclude: /node_modules\/(?!(react-native-reanimated|@react-native\/assets-registry)\/).*/,
         use: {
           loader: "babel-loader",
+          options: {
+            presets: [
+              ["@babel/preset-env", { targets: { browsers: ["last 2 versions"] } }],
+              ["@babel/preset-react", { runtime: "automatic" }],
+              "@babel/preset-typescript",
+              "@babel/preset-flow",
+            ],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
         },
       },
       {
@@ -64,8 +73,9 @@ const CUSTOM_CONFIG = {
   ],
 };
 module.exports = {
-  stories: ["../src/components/@(atoms|molecules|organisms|screens|sdui|modals)/**/*.stories.@(js|jsx|ts|tsx)",
-    "../src/modules/**/components/**/*.stories.@(js|jsx|ts|tsx)"
+  stories: [
+    "../src/components/@(atoms|molecules|organisms|screens|sdui|modals)/**/*.stories.@(js|jsx|ts|tsx)",
+    "../src/modules/**/components/**/*.stories.@(js|jsx|ts|tsx)",
   ],
 
   addons: [
