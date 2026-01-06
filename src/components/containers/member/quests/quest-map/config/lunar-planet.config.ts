@@ -109,6 +109,15 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 72,
     snapPosition: "center",
     bubbleOffsetY: -35,
+    snapOffsetY: Media.select(
+      [
+        {
+          condition: Style.isShortAndroid(),
+          value: 15,
+        },
+      ],
+      0
+    ),
     seperator: {
       width: 1080,
       height: 518,
@@ -249,8 +258,16 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
           condition: Style.isIphone8(),
           value: 0,
         },
+        {
+          condition: Style.isShortAndroid(),
+          value: 20,
+        },
+        {
+          condition: Style.isTallAndroid() && Style.PIXEL_RATIO < 3,
+          value: 20,
+        },
       ],
-      -25
+      -20
     ),
     episodeWidth: 375,
     episodeKey: 80,
@@ -390,7 +407,23 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 88,
     episodeWidth: 375,
     snapPosition: "center",
-    snapOffsetY: -60,
+    snapOffsetY: Media.select(
+      [
+        {
+          condition: Style.isIphone8(),
+          value: -20,
+        },
+        {
+          condition: Style.isShortAndroid(),
+          value: -10,
+        },
+        {
+          condition: Style.isTallAndroid() && Style.PIXEL_RATIO < 3,
+          value: -20,
+        },
+      ],
+      -40
+    ),
     bubbleOffsetY: 80,
     seperator: {
       width: 1080,
@@ -413,7 +446,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeHeight: 482,
     episodeKey: 89,
     episodeWidth: 375,
-    snapPosition: "top",
+    snapPosition: "center",
     levels: { 1350: { x: 375 / 2, y: 140 } },
   },
 
@@ -505,7 +538,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   222: {
     background: require("../episodes/lunar/mountain/lunar-mountain-6.webp"),
-    lottieAspectRatio: 0.4765,
+    lottieAspectRatio: 0.477,
     topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 785,
     episodeKey: 95,
