@@ -178,8 +178,7 @@ platform :android do
           version: version,
         )
 
-        arch_links << { text: download_text, url: download_url }
-
+        arch_links << { text: download_text, url: download_url, architecture: architecture }
       end
       UI.message("Signed APKs: #{signed_apks.join(', ')}")
       slack(
@@ -213,6 +212,13 @@ platform :android do
         }
       )
       UI.success("Successfully sent Slack notification")
+      if environment == 'uat'
+        # Update bug bounty Android asset links
+        UI.message("Updating bug bounty Android asset...")
+        script_path = File.expand_path(File.join(Dir.pwd, 'actions', 'update-bug-bounty-android-asset.js'))
+        sh("node #{script_path} '#{arch_links.to_json}'")
+        UI.success("Bug bounty Android asset updated successfully!")
+      end
     else
       # Upload to Google Play Store internal track
       upload_to_play_store(
