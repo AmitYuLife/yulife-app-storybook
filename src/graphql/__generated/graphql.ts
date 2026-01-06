@@ -23744,6 +23744,15 @@ export type GetUserChallengesDoneTodayQuery = {
   getUserChallengesDoneToday: { __typename?: "UserChallengesDoneToday"; challengesDoneToday: number };
 };
 
+export type StartPathwayChallengeMutationVariables = Exact<{
+  challengeId: Scalars["ID"]["input"];
+}>;
+
+export type StartPathwayChallengeMutation = {
+  __typename?: "Mutation";
+  startPathwayChallenge: { __typename?: "StartPathwayChallengeResponse"; success: boolean };
+};
+
 export type SubmitUnityMutationVariables = Exact<{
   levelId: Scalars["String"]["input"];
 }>;
@@ -74387,6 +74396,43 @@ export const GetUserChallengesDoneTodayDocument = {
     },
   ],
 } as unknown as DocumentNode<GetUserChallengesDoneTodayQuery, GetUserChallengesDoneTodayQueryVariables>;
+export const StartPathwayChallengeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "StartPathwayChallenge" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "challengeId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "startPathwayChallenge" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "challengeId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "challengeId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "success" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StartPathwayChallengeMutation, StartPathwayChallengeMutationVariables>;
 export const SubmitUnityDocument = {
   kind: "Document",
   definitions: [

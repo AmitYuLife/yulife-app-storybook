@@ -1,4 +1,3 @@
-import { useMutation } from "@apollo/client";
 import { Box, TextTemplate } from "@atoms";
 import { BoxOption, Button } from "@components/molecules";
 import { Navigation } from "@navigation/main";
@@ -23,7 +22,7 @@ import { showFloatingModal } from "@components/modals";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useAppState } from "@hooks";
 import { AppStateStatus } from "react-native";
-import { gql } from "@graphql/__generated";
+import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 
 const FOREST_COLOUR = "#018547";
 const PROGRESS_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
@@ -65,9 +64,8 @@ type Props = {
 const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   const { componentId } = useNavigation();
   const dispatch = useDispatch();
-  const [completePathwayChallenge] = useMutation(gql("CompletePathwayChallengeDocument"), {
-    refetchQueries: [{ query: gql("GetPathwayChallengeDocument") }],
-  });
+
+  const { completeChallenge } = usePathwayChallenge({ componentId, challengeId, skipQuery: true });
 
   const {
     startPlaying,
@@ -81,8 +79,7 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
     parts: data.parts.map((part) => ({ ...part })),
     defaultDuration: data.defaultDuration || DEFAULT_DURATION_MS,
     onCompleted: async () => {
-      const result = await completePathwayChallenge({ variables: { challengeId } });
-      const yuCoinAwarded = result.data?.completePathwayChallenge?.yuCoinAwarded || 0;
+      const yuCoinAwarded = await completeChallenge();
       Navigation.push(componentId, {
         component: {
           name: ROUTES.pathwayChallengeSuccess,

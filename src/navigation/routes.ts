@@ -443,8 +443,11 @@ const routesForRegistration = [
   },
   {
     name: ROUTES.pathwayChallengeIntro,
-    component: require("../modules/pathways/containers/pathways-challenge-intro/pathways-challenge-intro.container")
-      .default,
+    component: require("../modules/pathways/containers/pathways-challenge-intro.container").default,
+  },
+  {
+    name: ROUTES.pathwaysMediaPlayer,
+    component: require("../modules/pathways/containers/pathways-media-player.container").default,
   },
 
   // mood calendar

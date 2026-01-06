@@ -185,6 +185,7 @@ const documents = {
   GetQuestMapLevelDocument: types.GetQuestMapLevelDocument,
   GetUnityRewardsDocument: types.GetUnityRewardsDocument,
   GetUserChallengesDoneTodayDocument: types.GetUserChallengesDoneTodayDocument,
+  StartPathwayChallengeDocument: types.StartPathwayChallengeDocument,
   SubmitUnityDocument: types.SubmitUnityDocument,
   ToggleMobileQuestLevelChallengePauseDocument: types.ToggleMobileQuestLevelChallengePauseDocument,
   UpdateMobileQuestLevelChallengeDocument: types.UpdateMobileQuestLevelChallengeDocument,
@@ -1192,6 +1193,10 @@ export function gql(source: "GetUnityRewardsDocument"): typeof documents["GetUni
 export function gql(
   source: "GetUserChallengesDoneTodayDocument"
 ): typeof documents["GetUserChallengesDoneTodayDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "StartPathwayChallengeDocument"): typeof documents["StartPathwayChallengeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

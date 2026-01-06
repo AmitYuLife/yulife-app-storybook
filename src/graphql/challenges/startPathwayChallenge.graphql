@@ -1,0 +1,5 @@
+mutation StartPathwayChallenge($challengeId: ID!) {
+  startPathwayChallenge(challengeId: $challengeId) {
+    success
+  }
+}
