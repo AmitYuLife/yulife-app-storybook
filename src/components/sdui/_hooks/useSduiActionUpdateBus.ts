@@ -7,7 +7,7 @@ export const useSduiActionUpdateBus = () => {
   const sduiDispatch = useContext(SduiDispatchContext);
 
   const updateBus = useCallback(
-    (key: string, value: string | number | SharedValue<number>) => {
+    (key: string, value: string | number | SharedValue<number>): void => {
       if (!key) {
         return null;
       }

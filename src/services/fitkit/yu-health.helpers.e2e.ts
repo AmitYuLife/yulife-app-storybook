@@ -13,6 +13,7 @@ import {
   IPedometerParams,
   ISampleQueryParams,
   ISampleQueryResponse,
+  SystemPermission,
 } from "@yu-life/react-native-yu-health";
 import { IFetchActivityResponse } from "@services/fitkit/fitkit.helpers";
 import { IFetchActivityRequest } from "./fitkit.types";
@@ -218,7 +219,7 @@ export const getHealthPermissionStatuses = async (
       identifier: allPermissions.providerPermissions.find((permission) => permission.capability === capability)
         ?.identifier,
       status: isGranted ? HealthPermissionStatus.granted : HealthPermissionStatus.notDetermined,
-      systemPermissionsRequired: [],
+      systemPermissionsRequired: [] as SystemPermission[],
       capability,
     };
   });

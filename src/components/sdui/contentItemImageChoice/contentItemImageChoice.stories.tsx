@@ -94,7 +94,7 @@ export const SmallImageGrid: Story = {
     columns: 3,
     options: options.map((option) => ({
       ...option,
-      label: null,
+      label: undefined as string,
     })),
     imageStyles: [
       {

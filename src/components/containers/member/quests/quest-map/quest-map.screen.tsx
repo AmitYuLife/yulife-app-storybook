@@ -121,7 +121,7 @@ const QuestMapScreen = ({
     return () => clearTimeout(timeoutId);
   }, [currentLevel, scrollToLevel]);
 
-  const overrideItemLayout = useCallback((layout: { span?: number; size?: number }, item: IQuestMapItem) => {
+  const overrideItemLayout = useCallback((layout: { span?: number; size?: number }, item: IQuestMapItem): void => {
     if (!item) {
       return null;
     }
