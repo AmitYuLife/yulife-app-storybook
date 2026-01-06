@@ -40,7 +40,7 @@ function* showCompletedEvents(completedEvents: Partial<Events>[]) {
         name: MODALS.collectEventReward,
         passProps: {
           goalIds: completedEvents.map((event) => event.id),
-          event: completedEvents.length === 1 && completedEvents[0].title,
+          event: completedEvents.length === 1 ? completedEvents[0].title : "",
           completed: true,
           rewards,
         },

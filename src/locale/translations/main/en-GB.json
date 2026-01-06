@@ -860,6 +860,7 @@
     },
     "collect_reward_modal": {
       "title": "%{event} event",
+      "multiple_events_title": "A couple of your events",
       "description_title": "Great job!",
       "description": "You have reached the event milestone!\nCongratulations. Claim your rewards",
       "cta": "Claim"

@@ -111,7 +111,10 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
   const { title, descriptionTitle, description, cta, status } = useMemo(() => {
     if (eventFinished) {
       return {
-        title: t("screens.event_completed.title", { event }),
+        title:
+          goalIds?.length > 1
+            ? t("screens.event_completed.multiple_events_title")
+            : t("screens.event_completed.title", { event }),
         descriptionTitle: t("screens.event_completed.description_title"),
         description: t("screens.event_completed.description"),
         cta: t("labels.cta.great"),
@@ -120,13 +123,16 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
     }
 
     return {
-      title: t("screens.collect_reward_modal.title", { event }),
+      title:
+        goalIds?.length > 1
+          ? t("screens.collect_reward_modal.multiple_events_title")
+          : t("screens.collect_reward_modal.title", { event }),
       descriptionTitle: t("screens.collect_reward_modal.description_title"),
       description: t("screens.collect_reward_modal.description"),
       cta: t("screens.collect_reward_modal.cta"),
       status: eventState.IN_PROGRESS,
     };
-  }, [eventFinished]);
+  }, [eventFinished, goalIds?.length]);
   return (
     <CollectEventRewardScreen
       title={title}
