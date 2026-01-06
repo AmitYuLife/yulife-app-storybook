@@ -1524,7 +1524,7 @@
       },
       "on_meditopia_error": {
         "heading": "Uh oh, something’s not quite right.",
-        "subheading": "We couldn’t load the media. Please check your connection and try again. If you continue to see this message reach out to us via chat.",
+        "subheading": "We couldn’t load the media. Please check your connection and try again. If you continue to see this message, reach out to us via chat.",
         "cta_label": "Retry",
         "cta_label_secondary": "Quest menu"
       },
@@ -1532,6 +1532,12 @@
         "heading": "Yu look great!",
         "subheading": "Do you want to save these changes?",
         "cta_label": "Save changes"
+      },
+      "on_pathways_media_error": {
+        "heading": "Uh oh, something’s not quite right.",
+        "subheading": "We couldn’t load the media. Please check your connection and try again. If you continue to see this message, reach out to us via chat.",
+        "cta_label": "Retry",
+        "cta_label_secondary": "Challenges menu"
       }
     },
     "generic_connection_error": {

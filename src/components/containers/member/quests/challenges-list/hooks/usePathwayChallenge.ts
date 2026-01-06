@@ -1,22 +1,35 @@
 import { useCallback, useMemo } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
+import { useDispatch } from "react-redux";
+import { AppDataType } from "@redux/user/user.types";
+import { getUserDataStart } from "@redux/user/user.actions";
 
 interface UsePathwayChallengeArgs {
   componentId: string;
+  challengeId?: string;
+  skipQuery?: boolean;
 }
 
 export type PathwayChallenge = ReturnType<typeof usePathwayChallenge>["pathwayChallenge"];
 
-export const usePathwayChallenge = ({ componentId }: UsePathwayChallengeArgs) => {
+export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = false }: UsePathwayChallengeArgs) => {
+  const dispatch = useDispatch();
+
   const { data: pathwayChallengeData, loading: pathwayChallengeLoading } = useQuery(
     gql("GetPathwayChallengeDocument"),
     {
       fetchPolicy: "cache-and-network",
+      skip: skipQuery,
     }
   );
+
+  const [startPathwayChallenge] = useMutation(gql("StartPathwayChallengeDocument"));
+  const [completePathwayChallenge] = useMutation(gql("CompletePathwayChallengeDocument"), {
+    refetchQueries: [{ query: gql("GetPathwayChallengeDocument") }],
+  });
 
   const handlePathwayTilePress = useCallback(() => {
     const action = pathwayChallengeData?.getPathwayChallenge?.action;
@@ -33,6 +46,34 @@ export const usePathwayChallenge = ({ componentId }: UsePathwayChallengeArgs) =>
     });
   }, [componentId, pathwayChallengeData?.getPathwayChallenge?.action]);
 
+  const startChallenge = useCallback(async () => {
+    if (!challengeId) {
+      return;
+    }
+
+    await startPathwayChallenge({ variables: { challengeId } });
+  }, [challengeId, startPathwayChallenge]);
+
+  const completeChallenge = useCallback(async () => {
+    if (!challengeId) {
+      return;
+    }
+
+    const result = await completePathwayChallenge({ variables: { challengeId } });
+    const yuCoinAwarded = result.data?.completePathwayChallenge?.yuCoinAwarded || 0;
+    Navigation.push(componentId, {
+      component: {
+        name: ROUTES.pathwayChallengeSuccess,
+        passProps: {
+          reward: yuCoinAwarded,
+        },
+      },
+    });
+    dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.dailyChallengeAmountAvailable] }));
+
+    return yuCoinAwarded;
+  }, [challengeId, completePathwayChallenge, componentId, dispatch]);
+
   const pathwayChallenge = useMemo(() => {
     if (!pathwayChallengeData?.getPathwayChallenge) {
       return undefined;
@@ -47,5 +88,7 @@ export const usePathwayChallenge = ({ componentId }: UsePathwayChallengeArgs) =>
   return {
     pathwayChallenge,
     pathwayChallengeLoading,
+    startChallenge,
+    completeChallenge,
   };
 };
