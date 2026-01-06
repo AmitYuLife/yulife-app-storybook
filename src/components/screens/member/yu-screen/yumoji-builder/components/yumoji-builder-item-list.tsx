@@ -42,7 +42,7 @@ const getItemLayout = (_: unknown, index: number) => ({
 
 const loadingItemData = Array(12)
   .fill(0)
-  .map((_, index) => ({ bodyElements: null, parts: [{ partId: `loading_item_${index}` }] }));
+  .map((_, index) => ({ parts: [{ partId: `loading_item_${index}` }] }));
 
 const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selectedCategoryId, emptyMessage }) => {
   const flatListRef = useRef<FlatList | null>(null);

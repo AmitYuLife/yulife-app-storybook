@@ -38,7 +38,7 @@ export const useNotifications = () => {
       iconImageUrl: m?.iconImage?.uri,
       deliveryTimestamp: m.sentAt,
       isRead: m.isRead,
-      expirationTimestamp: undefined,
+      expirationTimestamp: undefined as string,
       source: "api",
       data: {
         source: "api",
