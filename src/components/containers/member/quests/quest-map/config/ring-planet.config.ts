@@ -1,6 +1,7 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
 import { MOUNTAIN_SNAP_OFFSET, createLevelsCoordinatesTemplate } from "./constants";
+import { Media, Style } from "@styles";
 
 export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   161: {
@@ -327,6 +328,15 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 85,
     episodeWidth: 375,
     bubbleOffsetY: -65,
+    snapOffsetY: Media.select(
+      [
+        {
+          condition: Style.isShortAndroid(),
+          value: 15,
+        },
+      ],
+      0
+    ),
     snapPosition: "center",
     levels: {
       1122: { x: 375 / 2, y: 510 },
@@ -379,7 +389,15 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 88,
     episodeWidth: 375,
     snapPosition: "center",
-    snapOffsetY: -30,
+    snapOffsetY: Media.select(
+      [
+        {
+          condition: Style.isShortAndroid(),
+          value: -15,
+        },
+      ],
+      -30
+    ),
     bubbleOffsetY: 80,
     seperator: {
       width: 1080,
@@ -402,7 +420,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeHeight: 482,
     episodeKey: 89,
     episodeWidth: 375,
-    snapPosition: "top",
+    snapPosition: "center",
     levels: { 1150: { x: 375 / 2, y: 140 } },
   },
 
