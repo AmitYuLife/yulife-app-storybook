@@ -1,14 +1,26 @@
-import { call, put, select } from "redux-saga/effects";
+import { call, put, select, take } from "redux-saga/effects";
 import { getModalsQueue } from "@redux/modal/modal.selectors";
 import { showYuModal } from "@navigation/root";
-import { UPDATE_CURRENT_MODAL } from "@redux/app/app.actions";
+import { UPDATE_CURRENT_MODAL, UPDATE_CURRENT_ROUTE } from "@redux/app/app.actions";
 import { ADD_MODALS_TO_QUEUE, removeModalFromQueue } from "@redux/modal/modal.actions";
-import { getModalState } from "@redux/app/app.selectors";
+import { getModalState, getRouteState } from "@redux/app/app.selectors";
+import { ROUTES } from "@navigation/constants";
+import { UpdateCurrentRoutePayload } from "@redux/app/app.types";
+
+// Defer modals showing until we navigate away from these routes
+const BLOCKED_ROUTES = [ROUTES.sudokuGame, ROUTES.sudokuCompleted];
 
 export default function* showModalsOnQueue({ type, payload }: { type: string; payload: any }) {
   const modalsQueue: ReturnType<typeof getModalsQueue> = yield select(getModalsQueue);
   const currentModal: ReturnType<typeof getModalState> = yield select(getModalState);
   const modal = modalsQueue[0];
+
+  let currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+
+  while (BLOCKED_ROUTES.includes(currentRoute)) {
+    const routePayload: { payload: UpdateCurrentRoutePayload } = yield take(UPDATE_CURRENT_ROUTE);
+    currentRoute = routePayload.payload.route;
+  }
 
   if (!modal || currentModal) {
     return;
