@@ -60,7 +60,15 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
     }
 
     const result = await completePathwayChallenge({ variables: { challengeId } });
+
+    dispatch(
+      getUserDataStart({
+        types: [AppDataType.coinLedger, AppDataType.dailyChallengeAmountAvailable, AppDataType.todayActivity],
+      })
+    );
+
     const yuCoinAwarded = result.data?.completePathwayChallenge?.yuCoinAwarded || 0;
+
     Navigation.push(componentId, {
       component: {
         name: ROUTES.pathwayChallengeSuccess,
@@ -69,9 +77,6 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
         },
       },
     });
-    dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.dailyChallengeAmountAvailable] }));
-
-    return yuCoinAwarded;
   }, [challengeId, completePathwayChallenge, componentId, dispatch]);
 
   const pathwayChallenge = useMemo(() => {

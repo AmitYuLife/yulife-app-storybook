@@ -13,13 +13,11 @@ import { useKeepAwake } from "expo-keep-awake";
 import { BreathingExerciseOptionPartType, useBreathingExercise } from "./hooks/use-breathing-exercise";
 import { BreathingAnimation } from "@components/molecules/breathing-animation/breathing-animation";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { getUserDataStart } from "@redux/user/user.actions";
-import { AppDataType } from "@redux/user/user.types";
 import { useDispatch } from "react-redux";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import GenericSelectorModal from "@components/modals/generic-selector-modal/generic-selector-modal";
 import { showFloatingModal } from "@components/modals";
-import { MODALS, ROUTES } from "@navigation/constants";
+import { MODALS } from "@navigation/constants";
 import { useAppState } from "@hooks";
 import { AppStateStatus } from "react-native";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
@@ -79,16 +77,6 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
     parts: data.parts.map((part) => ({ ...part })),
     defaultDuration: data.defaultDuration || DEFAULT_DURATION_MS,
     onCompleted: async () => {
-      const yuCoinAwarded = await completeChallenge();
-      Navigation.push(componentId, {
-        component: {
-          name: ROUTES.pathwayChallengeSuccess,
-          passProps: {
-            reward: yuCoinAwarded,
-          },
-        },
-      });
-
       dispatch(
         logMixpanelEventActionCreator("breathing_exercise_completed", {
           duration: selectedDurationMs,
@@ -96,7 +84,7 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
         })
       );
 
-      dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.dailyChallengeAmountAvailable] }));
+      await completeChallenge();
     },
     onStarted: () => {
       dispatch(
