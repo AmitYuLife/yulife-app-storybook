@@ -7,6 +7,95 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.96.0] - 2026-01-07
+
+### Features
+
+- Feature GS-2109: Update pathways UI
+- Feature GS-2065: Media player SDUI & popTo SDUI action
+
+### Bugfixes
+
+- Bugfix GS-2163: Increment dailyChallengeEarned on pathway challenge complete
+- Bugfix ENG-4378: multiple events collect modal
+- Bugfix GS-2161: More lunar bugfixes for levels
+- Bugfix GS-2161: Fix level 1299 offset for iphone SE
+- Bugfix GS-2116: Streaks modal infinite loading
+- Bugfix NVS-000: Prevent override of zero YuCoin balance
+- Bugfix ENG-4370: Streaks modal onPress fix
+- Bugfix GS-1899: Fix screen sizes
+- Bugfix GS-2032: Daily counter label issue on streaks
+- Bugfix ISA-3885: Resolve referral list loading issue
+- (grafted) Bugfix ENG-4367: Silence error for email opener sheet
+
+### Tasks
+
+- Task CTE-560: fix tsc issues before doing the upgrade
+- Task GS-2114: Defer streak modal until after sudoku success screen
+- Task ISA-4008: Product details page enhancements
+- Task CTE-561: upgrade 3rd party libs
+- Task DEVOPS-4680: Update Android assets for bug bounty program
+- Task GS-2134: Handle pathways media
+- Task CTE-560: upgrade TS
+- Task CTE-556: TS LSP for claude
+- Task GS-2157: Pathways auto load
+- Task: Old pathway header issue
+- Task GS-2112: pathway fixes
+- Task: Add pathways reflected container
+- Task CTE-354: android text updates for arabic
+- Task CTE-536: codegen fragment matcher
+- Task DEVOPS-4551: Android/iOS environment variable for builds
+- Task CTE-535: use text template for counter
+- Task GS-2115: intervention section
+- Task GS-2115: otter no speak
+- Task GS-2115: fix product cards carousel padding
+- Task GS-2115: restructure sections from yuscreen
+- Task DEVOPS-4674: Gitlab CI UAT builds
+- Task CTE-454: more colours into the one file
+- Task GS-2075: Single usage consumables
+- Task ENG-4368: ignore stripe cancel sheet err
+- Task ISA-3759: fix referral screen issues on large iOS devices
+- Task GS-2067: pause breathing exercise on background
+- Task DEVOPS-4672: Split fastlane Fastfile into multiple files
+- Task DEVOPS-4587: Upload builds to S3 bucket
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- chore DEVOPS-4493: Use GitLab Dependency Proxy for Docker Hub public images
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Improvements
+
+- Detox GS-2113: Improve Login Flow
+
+### Extra
+
+- [Security] Bump qs from 6.13.0 to 6.14.1
+- Bump axios from 1.13.1 to 1.13.2
+- [Security] Bump node-forge from 1.3.1 to 1.3.3
+- [Security] Bump storybook from 7.6.0 to 7.6.21
+- Fix GS-2176: prevent sending requests to empty KSA API URL during login
+- Detox GS-2169: Global Goal Seed Data
+- Detox GS-2113: Fix Login Defects for CI
+- Detox GS-2125: Update Smoking Cessation Journey
+- Detox GS-2118: Enable Smoking Tests for GitLab CI
+- Detox GS-2118: Enable Smoking for UK in CI
+- Hotfix: Add blank KSA env var to avoid overrides
+- ISA-3811: Inviting Dependants to App Via Product Details Page
+- Detox GS-2102 : Active Connected Pension
+- Detox GS-2099 : Referrals Nav Fix
+- (grafted) Detox GS-2097: Fix and Unskip Gifting
+- Detox GS-2096: Donations Reward Modals
+- Detox GS-2095: Intercom User Support Level
+- (grafted) Merge branch 'detox/gs-2092-revert-offset-tapid' into 'develop'
+- (grafted) Merge branch 'hotfix/missing-yield' into 'develop'
+
 ## [4.95.0] - 2025-12-29
 
 ### Bugfixes
