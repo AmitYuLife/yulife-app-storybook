@@ -381,7 +381,13 @@
         "cta_label": "再試行する",
         "cta_label_secondary": "クエスト画面に戻る",
         "heading": "エラーが発生しました。",
-        "subheading": "メディアの読み込みに失敗しました。接続を確認してもう一度お試しください。このメッセージが表示され続ける場合は、チャットでお問い合わせください。"
+        "subheading": "メディア を読み込めませんでした。 接続を確認して再度お試しください。 メッセージが続く場合は、 チャット を通じて私たちに連絡してください。"
+      },
+      "on_pathways_media_error": {
+        "cta_label": "再試行する",
+        "cta_label_secondary": "チャレンジ メニュー",
+        "heading": "エラーが発生しました。",
+        "subheading": "メディア を読み込めませんでした。 接続を確認して再度お試しください。 メッセージが続く場合は、 チャット を通じて私たちに連絡してください。"
       },
       "yumoji_builder": {
         "cta_label": "変更を保存する",
@@ -980,6 +986,7 @@
       "cta": "受け取る",
       "description": "マイルストーンが達成されました。\nボーナスYuCoinをお受け取りください。",
       "description_title": "素晴らしい!",
+      "multiple_events_title": "一部のイベント",
       "title": "%{event}\nイベントのマイルストーン達成!"
     },
     "content_location": {

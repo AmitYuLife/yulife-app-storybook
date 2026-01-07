@@ -381,7 +381,13 @@
         "cta_label": "Retry",
         "cta_label_secondary": "Quest menu",
         "heading": "Uh oh, something’s not quite right.",
-        "subheading": "We couldn’t load the media. Please check your connection and try again. If you continue to see this message reach out to us via chat."
+        "subheading": "We couldn’t load the media. Please check your connection and try again. If you continue to see this message, reach out to us via chat."
+      },
+      "on_pathways_media_error": {
+        "cta_label": "Retry",
+        "cta_label_secondary": "Challenges menu",
+        "heading": "Uh oh, something’s not quite right.",
+        "subheading": "We couldn’t load the media. Please check your connection and try again. If you continue to see this message, reach out to us via chat."
       },
       "yumoji_builder": {
         "cta_label": "Save changes",
@@ -980,6 +986,7 @@
       "cta": "Claim",
       "description": "You have reached the event milestone!\nCongratulations. Claim your rewards",
       "description_title": "Great job!",
+      "multiple_events_title": "A couple of your events",
       "title": "%{event} event"
     },
     "content_location": {

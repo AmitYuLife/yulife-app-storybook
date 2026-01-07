@@ -381,7 +381,13 @@
         "cta_label": "Reintentar",
         "cta_label_secondary": "Menú Misión",
         "heading": "Oh oh, algo no está del todo bien.",
-        "subheading": "No podemos cargar la página. Comprueba tu conexión e inténtalo de nuevo. Si sigues viendo este mensaje, contáctanos vía chat."
+        "subheading": "No hemos podido cargar el archivo. Comprueba tu conexión e inténtalo de nuevo. Si sigues viendo este mensaje, ponte en contacto con nosotros a través del chat."
+      },
+      "on_pathways_media_error": {
+        "cta_label": "Reintentar",
+        "cta_label_secondary": "Menú Desafíos",
+        "heading": "Oh oh, algo no está del todo bien.",
+        "subheading": "No hemos podido cargar el archivo. Comprueba tu conexión e inténtalo de nuevo. Si sigues viendo este mensaje, ponte en contacto con nosotros a través del chat."
       },
       "yumoji_builder": {
         "cta_label": "Guardar cambios",
@@ -980,6 +986,7 @@
       "cta": "Recolectar",
       "description": "¡Has alcanzado la meta del evento!\nFelicidades. Recolecta tus recompensas",
       "description_title": "¡Buen trabajo!",
+      "multiple_events_title": "Un par de sus eventos",
       "title": "Evento %{event}"
     },
     "content_location": {
