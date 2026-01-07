@@ -20,7 +20,7 @@ interface IIcons {
 
 export interface IList {
   name: string;
-  Icon?: React.MemoExoticComponent<({ width, height, colour }: IIcon) => JSX.Element>;
+  Icon?: React.MemoExoticComponent<React.FC<IIcon>>;
   icons?: IIcons;
   onPress: () => void;
   testID?: string;

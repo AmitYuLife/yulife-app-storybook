@@ -114,7 +114,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
       })
       .find((item) => item.activatedUntil && moment(item.activatedUntil).isAfter(moment()));
 
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
     if (nextExpiringItem) {
       timeout = setTimeout(() => {
         reconcileItems();

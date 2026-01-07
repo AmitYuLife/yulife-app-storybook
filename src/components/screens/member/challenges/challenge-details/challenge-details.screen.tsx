@@ -45,7 +45,7 @@ function ChallengeDetailsScreen({
   onPressSetUp = null,
 }: IChallengeDetailsScreenProps) {
   const dispatch = useDispatch();
-  const bonusInfoButtonRef = useRef<View>();
+  const bonusInfoButtonRef = useRef<View>(null);
   const scrollY = useRef(new Animated.Value(0));
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);

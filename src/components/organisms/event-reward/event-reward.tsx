@@ -86,7 +86,7 @@ const EventReward = ({
   } = reward;
 
   const dispatch = useDispatch();
-  const questionMarkRef = useRef<View>();
+  const questionMarkRef = useRef<View>(null);
   const scaleAnimationRef = useSharedValue<number>(1);
   const explosionAnimationRef = useRef<Lottie>(null);
   const [initialStatus] = useState<GoalRewardStatus>(status);
@@ -158,7 +158,7 @@ const EventReward = ({
     }
   }, [isClaimRewardEnabled, isRewardDelayedStatusCompleted, onClaimReward, reward, dispatch]);
 
-  const shineAnimation = useMemo((): JSX.Element => {
+  const shineAnimation = useMemo((): React.ReactNode => {
     if (!animated && !isRewardDelayedStatusCompleted) {
       return null;
     }

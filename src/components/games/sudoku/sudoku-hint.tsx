@@ -17,7 +17,7 @@ interface IProps {
 
 const SudokuHint = ({ invert }: IProps) => {
   const [timeAgo, setTimeAgo] = useState<number>(0);
-  const containerRef = useRef<TouchableOpacity>(null);
+  const containerRef = useRef<React.ElementRef<typeof TouchableOpacity>>(null);
   const { lastHintTime, selectedCell, endTime, config, getHint } = useSudokuContext();
   const { startTime, penalties, getDurationText, lastPauseTime } = useSudokuContext();
   const t = useTranslation(["time_units.short_seconds"]);

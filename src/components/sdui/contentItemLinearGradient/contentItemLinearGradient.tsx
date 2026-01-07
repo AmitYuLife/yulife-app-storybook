@@ -18,7 +18,7 @@ const _ContentItemLinearGradient = (props: Props) => {
       colors={colors}
       style={{
         ...innerStyles.gradient,
-        ...styles,
+        ...(styles as unknown as ViewStyle),
       }}
       start={start}
       end={end}

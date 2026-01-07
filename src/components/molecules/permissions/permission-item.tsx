@@ -41,7 +41,7 @@ const PermissionItem = ({
     [status]
   );
 
-  const permissionRef = useRef<View>();
+  const permissionRef = useRef<View>(null);
   const onPress = useCallback(() => {
     // Fitkit
     if (status === "not_determined") {

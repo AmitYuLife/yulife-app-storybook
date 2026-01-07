@@ -1,5 +1,11 @@
 import React from "react";
-import { Provider } from "react-redux";
+import { Provider as ReduxProvider } from "react-redux";
+
+// Type cast to work around React 19 type incompatibility with react-redux
+const Provider = ReduxProvider as unknown as React.FC<{
+  store: typeof import("@redux/_core/store").store;
+  children: React.ReactNode;
+}>;
 import { ApolloProvider } from "@apollo/client";
 import { store } from "@redux/_core/store";
 import createClient from "@graphql/_core/client";

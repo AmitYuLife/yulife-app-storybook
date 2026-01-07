@@ -14,7 +14,7 @@ type IIcon = IGenericHeadingProps["rightIcon"];
 
 interface IProps {
   icon: IIcon;
-  Icon?: JSX.Element;
+  Icon?: React.ReactNode;
   color?: string;
   onPress: () => void;
   testID: string;

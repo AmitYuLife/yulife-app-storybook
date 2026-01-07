@@ -67,7 +67,9 @@ const FloatingModal = ({
 
   const content = useMemo(() => {
     if (isValidElement(children)) {
-      return cloneElement(children as ReactElement, { closeActiveOverlay: closeOverlay });
+      return cloneElement(children as ReactElement<{ closeActiveOverlay: () => void }>, {
+        closeActiveOverlay: closeOverlay,
+      });
     }
 
     const Content = children as FloatingModalComponent;

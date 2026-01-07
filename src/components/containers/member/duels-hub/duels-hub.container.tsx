@@ -42,7 +42,7 @@ function DuelsHubContainer({ componentId }: Props) {
     Navigation.pop(componentId);
   }, [componentId]);
 
-  const swiper: RefObject<FlatList> = useRef();
+  const swiper: RefObject<FlatList> = useRef(null);
 
   // Using useRef here because I encounter an error on useCallback
   // Changing onViewableItemsChanged on the fly is not supported

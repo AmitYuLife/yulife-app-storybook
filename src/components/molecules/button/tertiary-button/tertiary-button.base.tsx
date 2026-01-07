@@ -19,8 +19,8 @@ interface IProps {
   height?: number;
   iconUri?: string;
   rightIconUri?: string;
-  LeftIcon?: JSX.Element;
-  RightIcon?: JSX.Element;
+  LeftIcon?: React.ReactNode;
+  RightIcon?: React.ReactNode;
 }
 
 export function TertiaryButtonBase(props: IProps) {

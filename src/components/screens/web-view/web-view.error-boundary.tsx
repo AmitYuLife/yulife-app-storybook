@@ -54,7 +54,7 @@ interface WebViewFallbackProps {
   handleCloseWebView: () => void;
 }
 
-function WebViewFallback(props: WebViewFallbackProps): JSX.Element {
+const WebViewFallback: React.FC<WebViewFallbackProps> = (props) => {
   useEffect(() => {
     async function openURL() {
       try {
@@ -72,4 +72,4 @@ function WebViewFallback(props: WebViewFallbackProps): JSX.Element {
       <GenericHeadingAbsolute onRightIconPress={props.handleCloseWebView} heading={props.title} />
     </SafeAreaView>
   );
-}
+};

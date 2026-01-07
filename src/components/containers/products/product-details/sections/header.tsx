@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: IPropsHeader[0]): JSX.Element => {
+const renderItemContent = (item: IPropsHeader[0]): React.ReactNode => {
   switch (item.__typename) {
     case "ContentItemHeaderBar":
       return <ProductDetailsHeaderBar key={item.__typename} {...item} />;

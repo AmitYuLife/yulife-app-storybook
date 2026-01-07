@@ -28,9 +28,9 @@ const ContentItemScale = (props: Props) => {
 
   const { width, imageHeight, totalHeight } = useMemo(() => {
     const styles = mapServerStyles(data.styles);
-    const parsedWidth = parse(styles?.width) ?? 0;
-    const parsedHeight = parse(styles?.height) ?? 0;
-    const parsedMarginTop = parse(styles?.marginTop) ?? 0;
+    const parsedWidth = parse(styles?.width as string | number | undefined) ?? 0;
+    const parsedHeight = parse(styles?.height as string | number | undefined) ?? 0;
+    const parsedMarginTop = parse(styles?.marginTop as string | number | undefined) ?? 0;
 
     return {
       width: parsedWidth,

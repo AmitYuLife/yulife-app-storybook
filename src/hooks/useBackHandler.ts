@@ -11,10 +11,10 @@ export function useBackHandler(backHandler: () => boolean) {
   };
 
   React.useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+    const subscription = BackHandler.addEventListener("hardwareBackPress", handleBackPress);
 
     return () => {
-      BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
+      subscription.remove();
     };
   }, [backHandler]);
 }

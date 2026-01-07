@@ -93,7 +93,7 @@ interface Props {
   item: GetSduiJourneyQuery["getSduiJourney"]["body"][number];
 }
 
-export const Renderer = ({ item }: Props): JSX.Element | null => {
+export const Renderer: React.FC<Props> = ({ item }) => {
   const sduiState = useContext(SduiStateContext);
   const sduiId = useContext(SduiIdContext);
 

@@ -57,7 +57,7 @@ export const ContentItemChoiceBase = (props: Props) => {
     }
   }, [value, otherOptionInputKey]);
 
-  const textInputRef = useRef<TextInput>();
+  const textInputRef = useRef<TextInput>(null);
 
   const focusTextInput = useCallback(() => {
     // Small delay for new state to process (and input field become enabled)
@@ -253,7 +253,7 @@ const baseStyles = StyleSheet.create({
   inputItemWeb: {
     outlineStyle: "none",
     alignContent: "center",
-  } as ViewStyle,
+  } as unknown as ViewStyle,
   uncheckedInput: {
     color: colours.neutral.n400,
   },

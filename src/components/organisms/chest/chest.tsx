@@ -83,7 +83,7 @@ const Chest: FC<IProps> = ({
   }, [chestType]);
 
   const { chestShakingLottie, chestOpeningLottie } = useAssets(chestType, currentPlanet);
-  const lottieChestRef = useRef<Lottie>();
+  const lottieChestRef = useRef<Lottie>(null);
 
   const openingChestOpacity = useRef(new Animated.Value(0.1));
 

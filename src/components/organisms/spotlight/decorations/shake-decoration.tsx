@@ -50,7 +50,7 @@ const ShakeDecoration = ({
   const rotateZ = useSharedValue(0);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     const shake = () => {
       const step = shakeDuration / 6;

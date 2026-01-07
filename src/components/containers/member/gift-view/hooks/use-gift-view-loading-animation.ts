@@ -14,7 +14,7 @@ type Props = {
 
 export const useGiftViewLoadingAnimation = ({ loading, hasError, onClose }: Props) => {
   const [finishedAnimation, setFinishedAnimation] = useState(false);
-  const [maxTimeoutId, setMaxTimeoutId] = useState<NodeJS.Timeout>(null);
+  const [maxTimeoutId, setMaxTimeoutId] = useState<ReturnType<typeof setTimeout> | null>(null);
   const [minimumTimeReached, setMinimumTimeReached] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showAnimation, setShowAnimation] = useState(true);

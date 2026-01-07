@@ -52,7 +52,7 @@ const BattlePassItemAnimatedIcon = ({
   return (
     <MaskedView style={style} maskElement={<View style={wrapperStyle} />}>
       <BattlePassListItemTeaserAnimation key={activeImage}>
-        <AnimatedImage source={images[activeImage]} style={imageStyle} resizeMode={resizeMode} />
+        <AnimatedImage source={images[activeImage]} style={imageStyle} contentFit={resizeMode} />
       </BattlePassListItemTeaserAnimation>
     </MaskedView>
   );

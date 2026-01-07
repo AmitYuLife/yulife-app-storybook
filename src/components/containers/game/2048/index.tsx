@@ -43,7 +43,7 @@ export const Game2048 = ({
   gameOptions: gameOptionsParams,
 }: IGame2048Props) => {
   const dispatch = useDispatch();
-  const gameScreenRef = useRef<GameEarlyExitHandle>();
+  const gameScreenRef = useRef<GameEarlyExitHandle>(null);
 
   const gameOptions = useMemo(
     () =>

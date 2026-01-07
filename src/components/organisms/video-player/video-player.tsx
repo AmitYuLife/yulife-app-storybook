@@ -14,7 +14,7 @@ import Lottie from "lottie-react-native";
 import Config from "react-native-config";
 import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
 import { Colours, Style, StyleSheet } from "@styles";
-import { IState, IAction, reducer, INITIAL_STATE, ActionTypes } from "./video-player.reducer";
+import { reducer, INITIAL_STATE, ActionTypes } from "./video-player.reducer";
 import { Button, LottieView, Pressable, VidePlayerButton } from "@molecules";
 import {
   AvPlayerDescription,
@@ -116,16 +116,16 @@ const VideoPlayer = ({
   thumbnail,
   logoType,
 }: IVideoPlayerProps) => {
-  const playerRef = useRef<VideoRef>();
+  const playerRef = useRef<VideoRef>(null);
   const reduxDispatch = useDispatch();
-  const lottieRef = useRef<Lottie>();
+  const lottieRef = useRef<Lottie>(null);
   const opacity = useRef(new Animated.Value(1)).current;
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
   const dataSaverModeEnabled = useSelector(getUserDataSaverModeEnabled);
 
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
   const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(lottie?.uri);
-  const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   const activeLevel = useSelector(getActiveLevel);
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
