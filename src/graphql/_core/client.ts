@@ -116,6 +116,13 @@ export default () => {
 };
 
 export const regionalClients = REGION_LIST.map((r) => {
+  const isValidRegion = !!region.getRegionUri(r);
+
+  if (!isValidRegion) {
+    // the region doesn't have a valid API URL set, so we don't need to create a client for it
+    return null;
+  }
+
   const client = new ApolloClient({
     cache: gqlInMemoryCache(),
     link: from([authMiddleware(r), httpLink(r)]),

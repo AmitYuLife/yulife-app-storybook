@@ -33,7 +33,7 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
       errors.current = [];
 
       const funcs = regionalClients
-        .filter((client) => !regions?.length || regions.includes(client.__REGION))
+        .filter((client) => client && (!regions?.length || regions.includes(client.__REGION)))
         .map((client) =>
           (async () => {
             try {
