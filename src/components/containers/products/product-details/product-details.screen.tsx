@@ -47,7 +47,12 @@ export const ProductDetailsScreen = memo((props: Props) => {
     >
       <View style={[styles.wrapper, mapServerStyles(containerStyles)]}>
         <Absolute absolute={background} />
-        <Body headerHeight={headerHeight} body={body} contentInsetAdjustmentBehavior={contentInsetAdjustmentBehavior} />
+        <Body
+          headerHeight={headerHeight}
+          body={body}
+          containerStyles={containerStyles}
+          contentInsetAdjustmentBehavior={contentInsetAdjustmentBehavior}
+        />
         <Absolute absolute={foreground} />
         <Header onLayout={handleHeaderLayout} header={header} />
       </View>

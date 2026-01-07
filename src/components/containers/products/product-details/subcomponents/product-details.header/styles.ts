@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(86),
     marginBottom: Style.adjust(24),
     marginHorizontal: Style.adjust(32),
+    justifyContent: "flex-end",
   } as ViewStyle,
   inner: {
     paddingTop: Style.adjust(54),

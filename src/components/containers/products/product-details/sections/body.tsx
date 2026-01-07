@@ -16,19 +16,21 @@ import {
   ContentItemWrapper,
   ContentItemHint,
   ContentItemBoxOptionCard,
+  mapServerStyles,
 } from "@components/sdui";
 import { ProductDetailsButton } from "../subcomponents/product-details.button";
 import media from "@styles/media";
 import { Colours, Style, StyleSheet } from "@styles";
 import { ProductDetailsHoldingHeader } from "../subcomponents/product-details.holding-header/product-details.holding-header";
 import { PRODUCT_DETAILS_SCROLL_VIEW } from "@ids";
-import { GetYuScreenProductDetailsQuery } from "@graphql/__generated";
+import { GetYuScreenProductDetailsQuery, SduiStyle } from "@graphql/__generated";
 
 type IGetYuScreenProductDetails = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"];
 
 interface Props {
   body: IGetYuScreenProductDetails["body"];
   headerHeight?: number;
+  containerStyles?: SduiStyle[];
   contentInsetAdjustmentBehavior: IGetYuScreenProductDetails["contentInsetAdjustmentBehavior"];
 }
 
@@ -47,8 +49,19 @@ const DEFAULT_EXTRA_TOP_PADDING = media.select(
 );
 
 export const Body = (props: Props) => {
-  const { body, headerHeight, contentInsetAdjustmentBehavior } = props;
+  const { body, headerHeight, containerStyles, contentInsetAdjustmentBehavior } = props;
+
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
+
+  const containerStyleObj: Record<string, string | number> = useMemo(() => {
+    const result = mapServerStyles(containerStyles);
+
+    return {
+      ...result,
+      backgroundColor: result?.backgroundColor || Colours.neutral.white,
+    };
+  }, [containerStyles]);
+
   const uiContext = useContext(UiContext);
 
   return (
@@ -65,7 +78,7 @@ export const Body = (props: Props) => {
     >
       <View>
         {!headerHeight ? null : <View style={headerPadStyle} />}
-        <View style={styles.background}>{body.map(renderItemContent)}</View>
+        <View style={containerStyleObj}>{body.map(renderItemContent)}</View>
       </View>
     </Animated.ScrollView>
   );
