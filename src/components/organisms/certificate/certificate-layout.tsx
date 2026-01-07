@@ -7,7 +7,7 @@ import { CornerFlowerSet } from "./background-corner-flower";
 import { CoverType } from "@graphql/__generated";
 
 interface Props {
-  children: React.ReactChild | React.ReactChild[];
+  children: React.ReactNode;
   coverType: CoverType;
 }
 

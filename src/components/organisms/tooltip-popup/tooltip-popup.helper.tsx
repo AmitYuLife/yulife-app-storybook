@@ -10,7 +10,7 @@ import { isRTL } from "@locale";
 import { Style } from "@styles";
 
 interface PopoverProps {
-  viewRef: React.MutableRefObject<View | TouchableOpacity>;
+  viewRef: React.MutableRefObject<View | React.ElementRef<typeof TouchableOpacity>>;
   children: React.ReactNode | (({ onClose }: { onClose: () => void }) => ReactElement);
   style?: ViewStyle;
   beakPosition?: BeakPosition;
@@ -41,7 +41,7 @@ export const showTooltipPopupRelativeToView = ({
   beakPosition = "autoVertical",
   withModal = false,
 }: PopoverProps) => {
-  viewRef?.current?.measure((_fx, _fy, width, height, pageX, pageY) => {
+  viewRef?.current?.measure((_fx: number, _fy: number, width: number, height: number, pageX: number, pageY: number) => {
     const infoView = (
       <TooltipPopupWrapper
         relativePosition={{

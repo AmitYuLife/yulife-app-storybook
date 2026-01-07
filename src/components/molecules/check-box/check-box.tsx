@@ -11,7 +11,7 @@ interface ICheckBox {
   value: string;
   label: string;
   onChange: (value: string) => void;
-  children?: React.ReactChild;
+  children?: React.ReactNode;
   testID?: string;
   colour?: string;
   strokeColor?: string;

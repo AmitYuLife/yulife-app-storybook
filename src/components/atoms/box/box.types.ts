@@ -1,5 +1,5 @@
 import { Component, ReactNode, RefObject } from "react";
-import { View, ViewStyle } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 import { AnimatedRef, BaseAnimationBuilder } from "react-native-reanimated";
 
 export const PROPERTY_MAP = {
@@ -123,7 +123,7 @@ export const excludeAutoAdjustPropertyMap = EXCLUDE_AUTO_ADJUST_PROPERTIES.reduc
 }, {} as Record<string, true>);
 
 interface IBoxSpecialProps {
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
   children?: ReactNode;
   disableAutoAdjust?: boolean;
   viewRef?: AnimatedRef<Component> | RefObject<View>;

@@ -162,7 +162,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     Navigation.popToRoot(componentId);
   }, [componentId]);
 
-  const showOverlayRef = useRef<() => void>();
+  const showOverlayRef = useRef<() => void>(null);
 
   const slots = useMemo(() => {
     return data?.getQuestMapLevel?.slots.map((levelSlot) => {

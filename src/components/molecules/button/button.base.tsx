@@ -24,9 +24,9 @@ interface IProps {
   onPress: (event: GestureResponderEvent) => void;
   isLoading?: boolean;
   title?: string;
-  leftIcon?: JSX.Element;
+  leftIcon?: React.ReactNode;
   iconUri?: string;
-  rightIcon?: JSX.Element;
+  rightIcon?: React.ReactNode;
   borderColor?: string;
   color?: string;
   backgroundColor?: string;
@@ -241,12 +241,12 @@ function Main({
 
 interface ContentProps {
   title: string;
-  leftIcon?: JSX.Element;
+  leftIcon?: React.ReactNode;
   iconUri?: string;
-  rightIcon?: JSX.Element;
+  rightIcon?: React.ReactNode;
   isLoading: boolean;
   color: string;
-  children: React.ReactElement;
+  children: React.ReactNode;
   testID: string;
   size: Sizes;
   contentWrapperStyle?: ViewStyle;

@@ -13,7 +13,7 @@ type DefaultProps = {
   delay?: number;
   disabled?: boolean;
   iconUri?: string;
-  leftIcon?: JSX.Element;
+  leftIcon?: React.ReactNode;
   testID?: string;
   show?: boolean;
   size?: Sizes;

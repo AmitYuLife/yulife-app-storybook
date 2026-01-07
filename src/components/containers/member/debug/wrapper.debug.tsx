@@ -6,7 +6,7 @@ import { ScrollView, View } from "react-native";
 import { Navigation } from "@navigation/main";
 
 interface IProps {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 }
 
 const WrapperDebug = ({ children }: IProps) => {

@@ -4,7 +4,7 @@ import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 type LocalStyle = ViewStyle | TextStyle | ImageStyle;
 
-export const mapServerStyles = (styles: SduiStyle[] = []) => {
+export const mapServerStyles = (styles: SduiStyle[] = []): ViewStyle | null => {
   if (!styles?.length) {
     return null;
   }
@@ -17,7 +17,7 @@ export const mapServerStyles = (styles: SduiStyle[] = []) => {
     return acc;
   }, {} as Record<string, string | number>);
 
-  return style;
+  return style as ViewStyle;
 };
 
 export const mapDynamicServerStyles = (

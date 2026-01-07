@@ -104,7 +104,9 @@ function _DuelAvatar({ reverse, uri, shouldAnimate = true }: IProps) {
         <Animated.View
           style={[
             styles.innerWrapper,
-            { transform: shouldAnimate ? bounceStyle : [nonAnimatedRotateStyle, perspectiveStyle] } as ViewStyle,
+            {
+              transform: shouldAnimate ? bounceStyle : [nonAnimatedRotateStyle, perspectiveStyle],
+            } as unknown as ViewStyle,
           ]}
         >
           <Animated.View style={{ opacity }}>

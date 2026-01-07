@@ -23,7 +23,7 @@ const CONTENT_DELAY = 10;
 
 const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
   const insets = useSafeAreaInsets();
-  const viewShotRef = useRef<ViewShot>();
+  const viewShotRef = useRef<ViewShot>(null);
   const dispatch = useDispatch();
 
   const share = useCallback(async () => {

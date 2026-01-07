@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import { useMutation, useLazyQuery, useQuery } from "@apollo/client";
 import { Loading } from "@atoms";
 import YumojiBuilder from "@components/screens/member/yu-screen/yumoji-builder/yumoji-builder";
-import { ActionTypes, IAction, INITIAL_STATE, IState, reducer } from "./yumoji-builder.reducer";
+import { ActionTypes, INITIAL_STATE, reducer } from "./yumoji-builder.reducer";
 import SelectBody from "@components/screens/member/yu-screen/select-body/select-body";
 import { showAwardModal, returnToYuScreen, showExitModal } from "./yumoji-builder.helpers";
 import Logger from "@services/logging/logger";
@@ -19,7 +19,7 @@ import { getRouteState } from "@redux/app/app.selectors";
 import { ROUTES } from "@navigation/constants";
 
 const YumojiBuilderContainer = () => {
-  const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
   const currentScreen = useSelector(getRouteState);
   const appDispatch = useDispatch();

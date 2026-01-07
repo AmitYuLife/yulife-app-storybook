@@ -95,7 +95,7 @@ export const LeaderboardScreen = ({
   currentUserIsOutOfBounds,
 }: IProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
-  const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef();
+  const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef(null);
   const { tempGameEnableAnimatedLeaderboardRays } = useUserFeatures();
   const showYudokuEmptyMessage = useMemo(
     () => !items.length && activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku,

@@ -53,7 +53,7 @@ const SmokingHubScreen = ({
   animationsEnabled,
   initialSmokingState,
 }: Props) => {
-  const smokingHubStatusRef = useRef<AnimationHandle>();
+  const smokingHubStatusRef = useRef<AnimationHandle>(null);
   const horizontalNumberDisplayJumped = useRef<boolean>(false);
   const stateActive = useRef<boolean>(true);
 

@@ -65,7 +65,7 @@ export const MarkdownContext = createContext<{
   linkActions: {},
 });
 
-const MarkdownImage = ({ node, nodeKey: key }: { node: React.ReactElement; nodeKey: string }) => {
+const MarkdownImage = ({ node, nodeKey: key }: { node: React.ReactElement<any>; nodeKey: string }) => {
   const { styles } = useContext(MarkdownContext);
 
   const src = node.props.src;
@@ -91,7 +91,7 @@ const MarkdownList = ({
   node,
   isOrdered,
 }: {
-  node: React.ReactElement;
+  node: React.ReactElement<any>;
   nodeKey: string;
   isOrdered: boolean;
 }) => {
@@ -124,7 +124,7 @@ const MarkdownListItem = ({
   extras,
   index,
 }: {
-  node: React.ReactElement;
+  node: React.ReactElement<{ children: React.ReactElement<unknown>[] }>;
   nodeKey: string;
   index: number;
   extras: IExtras;
@@ -148,7 +148,7 @@ const MarkdownText = ({
   extras,
   testID,
 }: {
-  node: React.ReactElement;
+  node: React.ReactElement<{ children: React.ReactElement<unknown>[] }>;
   nodeKey: string;
   extras: IExtras;
   testID?: string;
@@ -176,7 +176,7 @@ const MarkdownInlineLink = ({
   nodeKey: key,
   extras,
 }: {
-  node: React.ReactElement;
+  node: React.ReactElement<{ href?: string; children: React.ReactElement<unknown>[] }>;
   nodeKey: string;
   extras: IExtras;
 }) => {
@@ -217,7 +217,7 @@ const MarkdownBlock = ({
   nodeKey: key,
   extras,
 }: {
-  node: React.ReactElement;
+  node: React.ReactElement<{ children: React.ReactElement<unknown>[] }>;
   nodeKey: string;
   extras: IExtras;
 }) => {
@@ -237,7 +237,7 @@ const MarkdownNode = ({
   extras,
   testID,
 }: {
-  node: React.ReactElement;
+  node: React.ReactElement<{ className: string; children: React.ReactElement<unknown>[] }>;
   nodeKey: string;
   index: number;
   extras: IExtras;

@@ -53,7 +53,7 @@ export const Body = (props: Props) => {
 
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
 
-  const containerStyleObj: Record<string, string | number> = useMemo(() => {
+  const containerStyleObj = useMemo(() => {
     const result = mapServerStyles(containerStyles);
 
     return {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: IGetYuScreenProductDetails["body"][number]): JSX.Element => {
+const renderItemContent = (item: IGetYuScreenProductDetails["body"][number]): React.ReactNode => {
   switch (item.__typename) {
     case "ContentItemProductDetailsHeader":
       return <ProductDetailsHeader key={item.id} {...item} />;

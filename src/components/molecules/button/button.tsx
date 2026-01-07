@@ -14,8 +14,8 @@ import { DETOX_ENABLED } from "@services/socket";
 type DefaultProps = {
   isLoading?: boolean;
   onPress: () => void;
-  leftIcon?: JSX.Element;
-  rightIcon?: JSX.Element;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
   wrapperStyle?: ViewStyle;
   disabled?: boolean;
   testID?: string;

@@ -80,11 +80,11 @@ const Unity: FC<IProps> = ({ level, yuniversalLevel, yuniversalMap, repeatedUnit
     []
   );
 
-  const foregroundAnim = useRef<LottieView>();
-  const backgroundAnim = useRef<LottieView>();
+  const foregroundAnim = useRef<LottieView>(null);
+  const backgroundAnim = useRef<LottieView>(null);
   const travelRef = useRef<LottieView>(null);
 
-  const timeout = useRef<NodeJS.Timeout>();
+  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const fadeInIntroPageHeading = useMemo(() => createAnimation(animatedValues.introPageHeadingOpacity, 1, 0, 500), []);
   const fadeInIntroPageButton = useMemo(() => createAnimation(animatedValues.introPageButtonOpacity, 1, 0, 500), []);

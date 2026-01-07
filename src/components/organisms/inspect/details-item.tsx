@@ -27,7 +27,7 @@ interface IProps {
 }
 
 const InspectDetailsItem = ({ text, infoText, value, remoteImage, label, showInfoPopup }: IProps) => {
-  const questionMarkRef = useRef<View>();
+  const questionMarkRef = useRef<View>(null);
   const showPopup = useCallback(
     () => showInfoPopup(questionMarkRef, infoText),
     [questionMarkRef, infoText, showInfoPopup]

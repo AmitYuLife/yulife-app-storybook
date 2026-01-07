@@ -71,7 +71,7 @@ const BattlePassLeaderboardScreen = ({
   activeSocialGroup,
   onPressSocialGroup,
 }: IProps) => {
-  const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef();
+  const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef(null);
   const scrollValue = useRef(new Animated.Value(0)).current;
 
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(details?.rewardInfo?.onPress);

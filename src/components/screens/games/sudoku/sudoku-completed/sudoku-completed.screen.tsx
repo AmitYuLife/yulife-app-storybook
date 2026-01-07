@@ -34,7 +34,7 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
   const currentLevel = useSelector(getCurrentLevel);
   const showChallengesHint = currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
 
-  const lottie = useRef<Lottie>();
+  const lottie = useRef<Lottie>(null);
   const t = useTranslation([
     "sudoku.title",
     "sudoku.completed.title",

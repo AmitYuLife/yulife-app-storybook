@@ -40,7 +40,7 @@ type SmokingHubStatusProps = {
 
 const SmokingHubStatus = forwardRef<AnimationHandle, SmokingHubStatusProps>(
   ({ initialSmokingStreak, smokingState, backgroundImageOpacity }, ref) => {
-    const horizontalNumberDisplayRef = useRef<AnimationHandle>();
+    const horizontalNumberDisplayRef = useRef<AnimationHandle>(null);
     const avatar = useSelector(getUserAvatar);
 
     const horizontalNumberDisplayOpacity = useSharedValue(smokingState.currentStreak <= smokingState.maxStreak ? 1 : 0);

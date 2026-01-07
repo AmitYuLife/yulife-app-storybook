@@ -34,7 +34,7 @@ const ChallengeProgressDebugInfo = ({
   historySteps,
   startDateTime,
 }: Props) => {
-  const flashListRef = useRef<FlashList<IPedometerHistoryEntry>>();
+  const flashListRef = useRef<FlashList<IPedometerHistoryEntry>>(null);
   const dispatch = useDispatch();
 
   const [submitChallengeDebugData, { loading }] = useMutation(gql("SubmitChallengeDebugDataDocument"));

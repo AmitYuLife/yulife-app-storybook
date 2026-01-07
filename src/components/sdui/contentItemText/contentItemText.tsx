@@ -16,7 +16,7 @@ export const ContentItemText = memo(({ id, text, textType, textAlign, styles, co
   }
 
   const mappedServerStyle = mapServerStyles(styles) || {};
-  const mappedServerStyleColor: string | undefined = mappedServerStyle.color as string;
+  const mappedServerStyleColor: string | undefined = (mappedServerStyle as Record<string, unknown>).color as string;
 
   return (
     <View style={mappedServerStyle} testID={id}>

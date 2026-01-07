@@ -5,7 +5,7 @@ export interface ISelectInputOption {
 
 export interface ISelectInput {
   iconUri?: string;
-  icon?: JSX.Element;
+  icon?: React.ReactNode;
   onChange: (e: string | number) => void;
   placeholder?: string;
   modalPlaceHolder: string;

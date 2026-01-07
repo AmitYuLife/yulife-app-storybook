@@ -6,7 +6,7 @@ export type IProps = Omit<TouchableWithoutFeedbackProps, "onPress"> &
   ViewProps & {
     onPress: () => void;
     debounce?: boolean;
-    children?: React.ReactChild | React.ReactChild[];
+    children?: React.ReactNode;
     delay?: number;
   };
 

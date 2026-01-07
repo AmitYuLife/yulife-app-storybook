@@ -22,8 +22,8 @@ interface Props {
   size?: Sizes;
   iconUri?: string;
   rightIconUri?: string;
-  LeftIcon?: JSX.Element;
-  RightIcon?: JSX.Element;
+  LeftIcon?: React.ReactNode;
+  RightIcon?: React.ReactNode;
 }
 
 const DEFAULT_HEIGHT = Style.adjust(60);

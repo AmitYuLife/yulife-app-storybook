@@ -205,7 +205,7 @@ export const Image = memo(
         <RawImage
           onLoadStart={handleLoadStart}
           onLoad={handleLoadState}
-          style={[imageStyles, boxStyle, rtlImageStyle]}
+          style={[...imageStyles, boxStyle, rtlImageStyle]}
           source={source}
           transition={transition}
           resizeMode={resizeMode}
@@ -235,7 +235,9 @@ export const RawImage = ({ cachePolicy, style: propStyle, ...props }: ImageProps
 
   const defaultCachePolicy = gameEnableExpoImageDiskCachingPolicy ? ImageCachePolicy.disk : ImageCachePolicy.memoryDisk;
 
-  return <ExpoImage style={[boxStyle, propStyle]} cachePolicy={cachePolicy || defaultCachePolicy} {...props} />;
+  return (
+    <ExpoImage style={[boxStyle as ImageStyle, propStyle]} cachePolicy={cachePolicy || defaultCachePolicy} {...props} />
+  );
 };
 
 const styles = StyleSheet.create({

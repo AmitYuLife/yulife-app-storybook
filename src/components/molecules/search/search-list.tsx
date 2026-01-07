@@ -12,7 +12,7 @@ interface Props {
   networkStatus: NetworkStatus;
   onRefresh: () => Promise<void>;
   emptyText?: string;
-  emptyElement?: JSX.Element;
+  emptyElement?: React.ReactElement;
   loading: boolean;
   keyExtractor: (item: any, index: number) => string;
   searchItem: ListRenderItem<ISearchItem<any>>;

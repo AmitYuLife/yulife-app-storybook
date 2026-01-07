@@ -1,3 +1,4 @@
+import React from "react";
 import { EditSvg, EditSvgGrey } from "../icons/edit-svg";
 import Icon from "@atoms/icon";
 
@@ -15,4 +16,4 @@ export const iconHashMap = {
   [BUTTON_ICON.EDIT]: EditSvg,
   [BUTTON_ICON.EDIT_GREY]: EditSvgGrey,
   [BUTTON_ICON.ARROW_RIGHT]: Icon.ArrowIcon,
-} as Record<BUTTON_ICON, ({ color }: IconProps) => JSX.Element>;
+} as Record<BUTTON_ICON, React.FC<IconProps>>;

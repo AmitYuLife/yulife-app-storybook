@@ -26,7 +26,7 @@ const Third = () => (
 );
 
 interface IState {
-  animationStates: (() => JSX.Element)[];
+  animationStates: React.FC[];
   animationStateIndex: number;
 }
 
@@ -36,7 +36,7 @@ export class DailyStepsLoading extends PureComponent<Record<string, unknown>, IS
     animationStates: [First, Second, Third, Third, Third, Third],
   };
 
-  private interval: NodeJS.Timer;
+  private interval: ReturnType<typeof setInterval>;
 
   public componentWillUnmount() {
     clearInterval(this.interval);

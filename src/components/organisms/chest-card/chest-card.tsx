@@ -28,7 +28,7 @@ const ChestCard: FC<IProps> = ({
   icon,
   hasTooltip,
 }) => {
-  const tooltipIconRef = useRef<View>();
+  const tooltipIconRef = useRef<View>(null);
 
   const cardOuterStyle = useMemo(() => [styles.cardOuter, { backgroundColor: shadowColour }], [shadowColour]);
   const cardInnerStyle = useMemo(() => [styles.cardInner, { backgroundColor: backgroundColour }], [backgroundColour]);

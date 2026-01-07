@@ -15,7 +15,7 @@ const AnimalLoader = ({ isLoading }: IQuestMapLoaderProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(isLoading);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
     if (!isLoading && isVisible) {
       timeout = setTimeout(() => {
         setIsVisible(false);

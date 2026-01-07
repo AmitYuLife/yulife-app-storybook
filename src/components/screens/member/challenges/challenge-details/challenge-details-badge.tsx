@@ -12,11 +12,11 @@ export enum ChallengeDetailsBadgeIntent {
 
 export interface IChallengeDetailsBadgeProps {
   text: string;
-  icon?: JSX.Element;
+  icon?: React.ReactNode;
   intent: ChallengeDetailsBadgeIntent;
 }
 
-export const ChallengeDetailsBadge = memo(({ text, intent, icon }: IChallengeDetailsBadgeProps): JSX.Element => {
+const ChallengeDetailsBadgeComponent: React.FC<IChallengeDetailsBadgeProps> = ({ text, intent, icon }) => {
   const intentStyles = useMemo((): { background: string; text: string } => {
     switch (intent) {
       case ChallengeDetailsBadgeIntent.boost:
@@ -34,7 +34,9 @@ export const ChallengeDetailsBadge = memo(({ text, intent, icon }: IChallengeDet
       </TextTemplate>
     </View>
   );
-});
+};
+
+export const ChallengeDetailsBadge = memo(ChallengeDetailsBadgeComponent);
 
 const styles = StyleSheet.create({
   badge: {

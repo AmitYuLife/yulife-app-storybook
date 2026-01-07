@@ -11,7 +11,12 @@ interface IShowcaseStackGridProps extends IBoxProps {
 const GAP = 60;
 const ENTER_DELAY = 150;
 const ENTER_TIME = 400;
-const ShowcaseStackGrid = ({ children, itemProps, gap = GAP, ...props }: IShowcaseStackGridProps) => {
+const ShowcaseStackGrid = ({
+  children,
+  itemProps,
+  gap = GAP,
+  ...props
+}: IShowcaseStackGridProps & { gap?: number }) => {
   const childrenArray = useMemo(() => (Array.isArray(children) ? children : [children]).filter(Boolean), [children]);
 
   if (childrenArray.length === 1) {

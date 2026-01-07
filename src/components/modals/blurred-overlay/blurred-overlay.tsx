@@ -83,7 +83,7 @@ const BlurredOverlay = ({
       <Animated.View testID="blur-provider.overlay-container" style={wrapperStyles} accessibilityViewIsModal={true}>
         {!withBlurBackground ? null : <BlurView blurAmount={blurAmount} blurType={blurType} style={styles.blur} />}
         <View style={styles.blur} onTouchStart={closeOnBlur ? handlePress : null} />
-        {cloneElement(children, { closeOverlay: handlePress })}
+        {cloneElement(children as React.ReactElement<{ closeOverlay: () => void }>, { closeOverlay: handlePress })}
       </Animated.View>
     ),
     [wrapperStyles, withBlurBackground, blurAmount, blurType, closeOnBlur, children, handlePress]

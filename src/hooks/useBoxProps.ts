@@ -17,7 +17,7 @@ export const useBoxProps = ({
   withBorder,
   ...props
 }: IBoxProps) => {
-  const style = useMemo((): Omit<ViewStyle, "overflow">[] => {
+  const style = useMemo((): (ViewStyle | undefined)[] => {
     const adjust = (value: number) => (disableAutoAdjust ? value : Style.adjust(value));
 
     const mappedStyles = Object.entries(props).reduce((acc, [key, value]) => {
@@ -64,7 +64,7 @@ export const useBoxProps = ({
         : null),
     };
 
-    return [specialStyles, mappedStyles as ViewStyle, propStyle].filter(Boolean);
+    return [specialStyles, mappedStyles as ViewStyle, propStyle as ViewStyle].filter(Boolean);
   }, [
     props,
     center,

@@ -110,7 +110,7 @@ const EventDialogScreen = ({
   tasks,
 }: IEventDialogScreenProps) => {
   const { title, labels, source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress } = headerProps;
-  const questionMarkRef = useRef<View>();
+  const questionMarkRef = useRef<View>(null);
   const scrollY = useRef(new Animated.Value(0)).current;
   const [showHeading, setHeadingVisibilty] = useState<boolean>(true);
 
@@ -170,7 +170,7 @@ const EventDialogScreen = ({
   const isEventActive = event?.status === UserProfileEventStatus.Active;
 
   const heading = useMemo(
-    (): JSX.Element => (
+    (): React.ReactNode => (
       <>
         <TextTemplate textAlign="center" numberOfLines={1} type="b1b" color={headerTextColor}>
           {title}

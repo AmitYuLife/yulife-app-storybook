@@ -75,7 +75,7 @@ const InventoryItem = ({
     return "#5C5757";
   }, [disabledUntil, isDisabled]);
 
-  const containerRef = useRef();
+  const containerRef = useRef<View>(null);
 
   const openPopUp = useCallback(() => {
     track("information_viewed", { name, type: "consumable" });

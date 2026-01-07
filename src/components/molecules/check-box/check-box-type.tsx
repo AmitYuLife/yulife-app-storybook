@@ -26,11 +26,11 @@ export const CheckBoxType = (props: Props) => {
 const checkboxHashMap = {
   circular: Circular,
   cubic: Cubic,
-} as Record<CheckboxType, () => JSX.Element>;
+} as Record<CheckboxType, React.FC<SvgProps>>;
 
 const animatedCheckboxHashMap = {
   circular: AnimatedCircular,
-} as Record<CheckboxType, () => JSX.Element>;
+} as Record<CheckboxType, React.FC<SvgProps>>;
 
 interface SvgProps {
   checked: boolean;

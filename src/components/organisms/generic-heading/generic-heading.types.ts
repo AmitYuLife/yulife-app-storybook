@@ -17,7 +17,7 @@ interface ICommonHeadingProps {
   onLeftIconPress?: () => void;
   onRightIconPress?: () => void;
   rightIcon?: IRightIcon;
-  RightIcon?: JSX.Element;
+  RightIcon?: ReactNode;
   rightIconTestID?: string;
   style?: ViewStyle;
   logoType?: IYuLifeLogoProps["type"];

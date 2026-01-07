@@ -40,7 +40,7 @@ export const useBreathingExercise = ({
   const [partIndex, setPartIndex] = useState(START_PART_INDEX);
   const progress = useSharedValue(0);
 
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const totalElapsedMs = useRef(0);
   const phaseStartTime = useRef<number | null>(null);
   const phaseRemainingMs = useRef<number | null>(null);

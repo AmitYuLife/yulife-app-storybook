@@ -68,7 +68,7 @@ const ActivityFeed = ({
   const [locationPermissionsGranted, setLocationPermissions] = useState(null);
   const [googleFitCyclingPermissionGranted, setGoogleFitCyclingPermission] = useState(null);
   const dispatch = useDispatch();
-  const questionMarkRef = useRef<View>();
+  const questionMarkRef = useRef<View>(null);
   const { authorise, authoriseFitKitTypes } = useFitKit();
   const t = useTranslation([
     "screens.today_earning.alert.never_ask_again.title",
