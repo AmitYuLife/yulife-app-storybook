@@ -18,6 +18,8 @@ type Props = {
   handleHeight: number;
   handle: string;
   contentItemScaleOptions: Array<{ label: string; value: string }>;
+  labelTippedColor?: string;
+  labelUntippedColor?: string;
 };
 
 const ContentItemScale = (props: Props) => {
@@ -84,6 +86,8 @@ const ContentItemScale = (props: Props) => {
         handleWidth={width}
         labelMax={props.labelMax}
         labelMin={props.labelMin}
+        labelTippedColor={props.labelTippedColor}
+        labelUntippedColor={props.labelUntippedColor}
       >
         <Box h={totalHeight} w={width} borderWidth={1} borderColor="transparent">
           <ContentItemWrapper {...data} />

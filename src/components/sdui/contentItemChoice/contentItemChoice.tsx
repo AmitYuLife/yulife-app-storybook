@@ -35,6 +35,7 @@ export const ContentItemChoiceBase = (props: Props) => {
     rowStyles,
     design: serverDesign,
     alignTop = false,
+    selectedStyles,
   } = props;
   const value = useMemo(() => serverValue || {}, [serverValue]);
   const design = serverDesign ?? ContentItemChoiceDesign.Default;
@@ -114,6 +115,7 @@ export const ContentItemChoiceBase = (props: Props) => {
 
   const serverTextStyles = useMemo(() => mapServerStyles(textStyles), [textStyles]);
   const serverRowStyles = useMemo(() => mapServerStyles(rowStyles), [rowStyles]);
+  const serverSelectedStyles = useMemo(() => mapServerStyles(selectedStyles), [selectedStyles]);
 
   const renderOptions = useMemo(() => (otherOption ? [...options, otherOption] : options), [options, otherOption]);
 
@@ -156,7 +158,9 @@ export const ContentItemChoiceBase = (props: Props) => {
                 ...(designStyles.rowStyles || {}),
                 ...(isChecked ? designStyles.checkedRowStyles || {} : {}),
                 ...serverRowStyles,
+                ...(isChecked ? serverSelectedStyles : {}),
               }}
+              colour={serverTextStyles?.color as string}
               touchCheckboxOnly={isOtherOption}
               animated={true}
               shouldAlignTop={alignTopCheckbox && isOtherOption} // for internal checkbox marginTop

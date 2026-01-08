@@ -6,11 +6,12 @@ import { CheckBoxType } from "@components/molecules/check-box/check-box-type";
 interface Props {
   isChecked: boolean;
   checkboxVisible: boolean;
+  style?: ViewStyle;
 }
 
-export const ImageChoiceActiveIndicator = memo(({ isChecked, checkboxVisible }: Props) => {
+export const ImageChoiceActiveIndicator = memo(({ isChecked, checkboxVisible, style }: Props) => {
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, isChecked ? styles.activeWrapper : null])}>
+    <View style={StyleSheet.flatten([styles.wrapper, isChecked ? styles.activeWrapper : null, style])}>
       {checkboxVisible ? (
         <View style={styles.absoluteUpperRight}>
           <CheckBoxType

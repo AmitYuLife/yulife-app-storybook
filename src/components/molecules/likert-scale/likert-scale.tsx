@@ -28,9 +28,21 @@ type Props = {
      */
     scalePoint: number
   ) => void;
+  labelTippedColor?: string;
+  labelUntippedColor?: string;
 };
 
-const LikertScale = ({ children, handleWidth, handleHeight, labelMax, labelMin, value, onChange }: Props) => {
+const LikertScale = ({
+  children,
+  handleWidth,
+  handleHeight,
+  labelMax,
+  labelMin,
+  value,
+  onChange,
+  labelTippedColor: initialLabelTippedColor,
+  labelUntippedColor: initialLabelUntippedColor,
+}: Props) => {
   const left = useSharedValue(0);
   const { width: windowWidth } = useWindowDimensions();
 
@@ -46,6 +58,14 @@ const LikertScale = ({ children, handleWidth, handleHeight, labelMax, labelMin, 
     height: Style.adjust(CONFIG.SCALE_HEIGHT),
     offsetX: Style.adjust(CONFIG.WRAPPER_PADDING_HORIZONTAL),
   });
+
+  const labelTippedColor = useMemo(() => {
+    return initialLabelTippedColor || Colours.neutral.n900;
+  }, [initialLabelTippedColor]);
+
+  const labelUntippedColor = useMemo(() => {
+    return initialLabelUntippedColor || Colours.neutral.n250;
+  }, [initialLabelUntippedColor]);
 
   const handleLayout = useCallback(
     ({ nativeEvent }: LayoutChangeEvent) => {
@@ -127,8 +147,8 @@ const LikertScale = ({ children, handleWidth, handleHeight, labelMax, labelMin, 
         </Draggable>
       </Box>
       <LikertScaleLabels
-        minColor={typeof value === "number" && value < CONFIG.MID_POINT ? Colours.neutral.n900 : Colours.neutral.n250}
-        maxColor={typeof value === "number" && value > CONFIG.MID_POINT ? Colours.neutral.n900 : Colours.neutral.n250}
+        minColor={typeof value === "number" && value < CONFIG.MID_POINT ? labelTippedColor : labelUntippedColor}
+        maxColor={typeof value === "number" && value > CONFIG.MID_POINT ? labelTippedColor : labelUntippedColor}
         min={labelMin}
         max={labelMax}
       />

@@ -6,4 +6,5 @@ fragment ContentItemProgressBar on ContentItemProgressBar {
   publishKeyHeight
   animateYuCoin
   yucoinDisplayedAmount
+  yuCoinColor
 }

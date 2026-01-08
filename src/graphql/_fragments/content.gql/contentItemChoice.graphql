@@ -23,4 +23,7 @@ fragment ContentItemChoice on ContentItemChoice {
   textStyles {
     ...SduiStyle
   }
+  selectedStyles {
+    ...SduiStyle
+  }
 }

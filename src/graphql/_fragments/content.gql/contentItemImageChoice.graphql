@@ -24,5 +24,11 @@ fragment ContentItemImageChoice on ContentItemImageChoice {
   textStyles {
     ...SduiStyle
   }
+  selectedStyles {
+    ...SduiStyle
+  }
+  unselectedStyles {
+    ...SduiStyle
+  }
   labelTextType
 }

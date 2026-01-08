@@ -14,10 +14,12 @@ interface Props {
 
 export const ImageChoiceLabel = ({ label, labelTextType, textStyles }: Props) => {
   const textType = (labelTextType as TemplateTextType) || "b2";
+  const mappedTextStyles = mapServerStyles(textStyles);
+  const colorTextStyle = mappedTextStyles?.color ? String(mappedTextStyles?.color) : Colours.neutral.n800;
 
   return (
     <View style={[styles.textWrapper, mapServerStyles(textStyles)]} testID={IMAGE_CHOICE_LABEL(label)}>
-      <TextTemplate type={textType} color={Colours.neutral.n800} textAlign="center">
+      <TextTemplate type={textType} color={colorTextStyle} textAlign="center">
         {label}
       </TextTemplate>
     </View>

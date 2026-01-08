@@ -10,27 +10,30 @@ type Props = ComponentProps<typeof ProgressBar> & {
   yuCoin: number;
   animateYuCoin?: boolean;
   yucoinDisplayedAmount?: number;
+  yuCoinColor?: string;
 };
 
 const YU_COIN_IMAGE_AND_TEXT_WIDTH = Style.adjust(58);
 
-export const ProgressBarYuCoin = memo(({ yuCoin, animateYuCoin, yucoinDisplayedAmount, ...props }: Props) => {
-  return (
-    <>
-      {!animateYuCoin || DETOX_ENABLED ? null : <YuCoinAnimation />}
-      <ProgressBar {...props} childrenWidth={YU_COIN_IMAGE_AND_TEXT_WIDTH}>
-        <View style={styles.wrapper}>
-          <YuCoinMiniSvg style={styles.yuCoin} />
-          <View style={styles.textWrapper}>
-            <TextTemplate type="l1b" color={Colours.orange}>
-              {yucoinDisplayedAmount ?? yuCoin}
-            </TextTemplate>
+export const ProgressBarYuCoin = memo(
+  ({ yuCoin, animateYuCoin, yucoinDisplayedAmount, yuCoinColor, ...props }: Props) => {
+    return (
+      <>
+        {!animateYuCoin || DETOX_ENABLED ? null : <YuCoinAnimation />}
+        <ProgressBar {...props} childrenWidth={YU_COIN_IMAGE_AND_TEXT_WIDTH}>
+          <View style={styles.wrapper}>
+            <YuCoinMiniSvg style={styles.yuCoin} />
+            <View style={styles.textWrapper}>
+              <TextTemplate type="l1b" color={yuCoinColor || Colours.orange}>
+                {yucoinDisplayedAmount ?? yuCoin}
+              </TextTemplate>
+            </View>
           </View>
-        </View>
-      </ProgressBar>
-    </>
-  );
-});
+        </ProgressBar>
+      </>
+    );
+  }
+);
 
 export default ProgressBarYuCoin;
 
