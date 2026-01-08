@@ -36,7 +36,7 @@ export interface IMediaPlayerContainerProps {
   // to be used for challengeStartAction
   levelSlotTemplateId: string;
   onLeftIconPress: () => void;
-  eventType: "workout" | "mindfullness";
+  eventType: "workout" | "mindfulness";
   orientation: "landscape" | "portrait";
   startChallengeButtonLabel: string;
   trackingInfo: ITrackingInfo;

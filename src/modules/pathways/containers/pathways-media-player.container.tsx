@@ -57,12 +57,16 @@ const PathwaysMediaPlayerContainer = ({
     Navigation.popTo(ROUTES.questsChallengesList);
   }, []);
 
+  const handleEnd = useCallback(() => {
+    completeChallenge({ durationInSeconds: video.duration, challengeType: eventType });
+  }, [completeChallenge, video.duration, eventType]);
+
   return (
     <>
       <MediaPlayerScreen
         startTimeInSeconds={startTimeInSeconds}
         onStart={startChallenge}
-        onEnd={completeChallenge}
+        onEnd={handleEnd}
         onLeftIconPress={onIconPress}
         onRightIconPress={onIconPress}
         onError={onError}

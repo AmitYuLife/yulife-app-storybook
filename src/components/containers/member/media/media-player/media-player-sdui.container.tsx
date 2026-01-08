@@ -14,7 +14,7 @@ interface IVideo extends MediaFragment {
 
 export interface IMediaPlayerSduiContainerProps {
   video: IVideo;
-  eventType: "workout" | "mindfullness";
+  eventType: "workout" | "mindfulness";
   orientation: "landscape" | "portrait";
   startChallengeButtonLabel?: string;
   autoPlay?: boolean;

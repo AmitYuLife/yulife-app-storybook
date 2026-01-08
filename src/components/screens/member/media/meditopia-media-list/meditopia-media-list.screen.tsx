@@ -56,7 +56,7 @@ const MeditopiaMediaListScreen = ({
         passProps: {
           video,
           onLeftIconPress: () => Navigation.popTo(ROUTES.meditopiaMediaList),
-          eventType: "mindfullness",
+          eventType: "mindfulness",
           orientation: "portrait",
           startChallengeButtonLabel: t("screens.meditopia_media_list.startChallengeButtonLabel"),
           level,

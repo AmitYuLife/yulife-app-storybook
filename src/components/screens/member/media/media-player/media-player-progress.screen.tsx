@@ -167,7 +167,7 @@ const MediaPlayerProgressScreen = ({
           autoPlay: true,
           trackingInfo: {},
           orientation: "portrait",
-          eventType: "mindfullness",
+          eventType: "mindfulness",
           level: activeLevel?.level,
           levelSlotTemplateId: activeLevel?.levelSlotTemplateId,
           yuniversalMap: activeLevel?.yuniversalMap,

@@ -84,7 +84,7 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
         })
       );
 
-      await completeChallenge();
+      await completeChallenge({ durationInSeconds: selectedDurationMs / 1000, challengeType: "mindfulness" });
     },
     onStarted: () => {
       dispatch(
