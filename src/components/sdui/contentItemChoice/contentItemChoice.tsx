@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Platform, TextInput, TouchableOpacity, View, ViewStyle } from "react-native";
+import { Platform, TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
 import { isEmpty, omit, omitBy } from "lodash";
 import {
   ContentItemChoiceDesign,
@@ -113,7 +113,7 @@ export const ContentItemChoiceBase = (props: Props) => {
 
   const textType = (labelTextType as TemplateTextType) || "b2";
 
-  const serverTextStyles = useMemo(() => mapServerStyles(textStyles), [textStyles]);
+  const serverTextStyles = useMemo(() => mapServerStyles(textStyles) as TextStyle, [textStyles]);
   const serverRowStyles = useMemo(() => mapServerStyles(rowStyles), [rowStyles]);
   const serverSelectedStyles = useMemo(() => mapServerStyles(selectedStyles), [selectedStyles]);
 

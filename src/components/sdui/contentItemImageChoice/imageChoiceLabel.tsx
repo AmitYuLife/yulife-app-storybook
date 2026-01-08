@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ViewStyle } from "react-native";
+import { TextStyle, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Style, Colours, TemplateTextType, StyleSheet } from "@styles";
 import { ContentItemImageChoiceFragment } from "@graphql/__generated";
@@ -14,7 +14,7 @@ interface Props {
 
 export const ImageChoiceLabel = ({ label, labelTextType, textStyles }: Props) => {
   const textType = (labelTextType as TemplateTextType) || "b2";
-  const mappedTextStyles = mapServerStyles(textStyles);
+  const mappedTextStyles = mapServerStyles(textStyles) as TextStyle;
   const colorTextStyle = mappedTextStyles?.color ? String(mappedTextStyles?.color) : Colours.neutral.n800;
 
   return (
