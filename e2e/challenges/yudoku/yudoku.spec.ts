@@ -288,19 +288,20 @@ Feature("Yudoku", async () => {
         When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
           When("I tap the soduku challenge", when.tapSudoku, async () => {
             When("I complete the Yudoku", when.completeYudoku(false), async () => {
-              When("I tap done", when.tapText("Done"), async () => {
-                When("I scroll down the challenges info hint", when.scrollFromID(ids.HINT_VARIANT("challenges"), "up", "fast"), async () => {
-                  When("I tap collect", when.tapText("Collect"), async () => {
-                    When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                      Then("I can see the slot for a completed yudoku", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)));
-                      Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"));
-                    });
-                  });
+              When("I scroll down the challenges info hint", when.scrollFromID(ids.HINT_VARIANT("challenges"), "up", "fast"), async () => {
+                When("I tap collect", when.tapText("Collect"), async () => {
+                  Then("I should see my first streak completed", then.idVisible(ids.STREAK_TICKS("1", true), 5000));
                 });
               });
             });
           });
         });
+      });
+    });
+    When("I tap to collect my streak reward", when.tapID(ids.STREAKS_SCREEN_BUTTON, 3000), async () => {
+      When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+        Then("I can see the slot for a completed yudoku", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)));
+        Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"));
       });
     });
     When("I tap yudoku leaderboard", when.tapID(ids.LEVEL_SUMMARY_YUDOKU_LEADERBOARD("Today")), async () => {
@@ -362,7 +363,7 @@ Feature("Yudoku", async () => {
     Given("I login as a user with 4/5 streaks", given.logInAndGoToTab("yucoin", data.CUSTOMER_7, data.AUTH_7), async () => {
       Then("I should see 640 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(640)));
     });
-    When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
+    When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 2000), async () => {
       Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)));
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5), 2000), async () => {
@@ -370,21 +371,22 @@ Feature("Yudoku", async () => {
         Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
       });
     });
-    When("I tap the soduku challenge", when.tapSudoku, async () => {
+    When("I tap the Yudoku challenge", when.tapSudoku, async () => {
       Then("I am on the sudoku page", then.amOnSudokuPage);
     });
     When("I complete the Yudoku", when.completeYudoku(false), async () => {
-      Then("I should see my reward of 300 coins", then.textVisible(t("Collect %{reward} %{type}", { reward: 300, type: "YuCoin" }), 4000));
-    });
-    When("I tap collect 300 yucoin", when.tapText(t("Collect %{reward} %{type}", { reward: 300, type: "YuCoin" })), async () => {
-      Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible);
+      Then("I should see my reward of 60 coins", then.idVisible(ids.SUDOKU_STAT("Reward", "60"), 4000));
+      Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
     });
     When("I tap collect", when.tapCollect, async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+      Then("I should see my completed streak modal", then.idVisible(ids.STREAK_TICKS("5", true), 5000));
     });
-    When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      Then("I should see the coins I earned today", then.textVisible("560 YuCoin today"));
-      Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1000)));
+    When("I tap to collect my streak reward", when.tapID(ids.STREAKS_SCREEN_BUTTON, 3000), async () => {
+      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
+    });
+    When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
+      Then("I should see the coins I earned today", then.textVisible("560 YuCoin today", 1500));
+      Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1000), 2000));
     });
   });
 
