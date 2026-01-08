@@ -21,6 +21,8 @@ const meta: Meta<typeof ContentItemScale> = {
     handleWidth: 24,
     handleHeight: 24,
     handle: "",
+    labelTippedColor: "blue",
+    labelUntippedColor: "red",
   },
 };
 

@@ -32,6 +32,8 @@ const ContentItemImageChoiceBase = memo(
     labelTextType,
     hideCheckbox,
     onChange,
+    selectedStyles,
+    unselectedStyles,
   }: Props) => {
     const value = useMemo(() => serverValue || {}, [serverValue]);
 
@@ -80,6 +82,8 @@ const ContentItemImageChoiceBase = memo(
             {row.map(({ value: optionKey, label, image }) => {
               const isChecked = !!value[optionKey];
 
+              const mappedWrapperStyles = mapServerStyles(isChecked ? selectedStyles : unselectedStyles);
+
               return (
                 <TouchableOpacityWithDelay
                   key={optionKey}
@@ -88,7 +92,11 @@ const ContentItemImageChoiceBase = memo(
                   onPress={() => handleValueChange(optionKey, !isChecked)}
                   delay={50}
                 >
-                  <ImageChoiceActiveIndicator checkboxVisible={multiSelect && !hideCheckbox} isChecked={isChecked} />
+                  <ImageChoiceActiveIndicator
+                    checkboxVisible={multiSelect && !hideCheckbox}
+                    isChecked={isChecked}
+                    style={mappedWrapperStyles as ViewStyle}
+                  />
 
                   <View style={styles.viewWrapper} testID={IMAGE_CHOICE_CHECKBOX(optionKey, isChecked)}>
                     <View style={[styles.imageWrapper, imageStyles]} testID={IMAGE_CHOICE(image.id)}>
