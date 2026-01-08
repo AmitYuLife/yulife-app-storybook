@@ -26,7 +26,7 @@ function GenericHeading(props: IGenericHeadingProps) {
   } = props;
 
   return (
-    <Box style={styles.wrapper}>
+    <Box style={styles.wrapper} pointerEvents="box-none">
       <Box alignSelf="center" justifyContent="flex-start" style={styles.leftSection}>
         {!onLeftIconPress ? (
           <View style={styles.leftSection} />
