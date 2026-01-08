@@ -1,5 +1,5 @@
 import { Given, When, Then, Feature, Scenario, ScenarioOnly, WhenSkip } from "@yu-life/yulife-bdd-framework";
-import { couponsTermsAndConditions, endOfSeasonHarmonyTitle, EndOfSeasonMockItems } from "./_resources/fixtures";
+import { couponsTermsAndConditions, endOfSeasonHarmonyTitle, EndOfSeasonMockItems, rewardHints } from "./_resources/fixtures";
 import { outOfCoinsMessage, cardDetails } from "./_resources/constants";
 import { BUSINESS_THE_BEAR, BUSINESS_ACCOUNT_2 } from "battle_pass/_data";
 import * as scenario from "../_common/scenario";
@@ -42,6 +42,7 @@ Feature("I can view and use all battle pass features", async () => {
     When("I tap to claim my first reward", when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", 1), 2000), async () => {
       When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
         Then("I should see 6 items available to claim", then.idVisible(ids.CLAIMED_REWARD_ITEMS(6), 2000));
+        Then("I should see the wallet reward hint info card", then.multipleTextVisible([rewardHints.wallet.title, rewardHints.wallet.description]));
       });
     });
     When("I tap to continue", when.tapID(ids.CONTINUE_CHEST_PRIZE_BUTTON, 2000), async () => {
@@ -203,6 +204,7 @@ Feature("I can view and use all battle pass features", async () => {
     });
     When("I tap to open the spinning rewards chest", when.tapID(ids.CLAIM_REWARD_MODAL, 2000), async () => {
       Then("I should see the random extra challenge reward", then.extraChallengeRewardModalVisible);
+      Then("I should see the power-up reward hint info card", then.multipleTextVisible([rewardHints.powerUp.title, rewardHints.powerUp.description]));
     });
     When("I tap to continue", when.tapID(ids.CONTINUE_CHEST_PRIZE_BUTTON, 2000), async () => {
       When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {

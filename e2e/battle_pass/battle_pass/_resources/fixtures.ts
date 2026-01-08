@@ -11,3 +11,14 @@ export const EndOfSeasonMockItems: EndOfSeasonItems = [
   { type: "meal", title: "Meals donated", score: "+0.1" },
   { type: "ocean", title: "Plastic removed", score: "+0kg" },
 ];
+
+export const rewardHints = {
+  wallet: {
+    title: "Reward collected!",
+    description: "You can find your reward in your Wallet in Store.",
+  },
+  powerUp: {
+    title: "Power up collected!",
+    description: "You can find your power up in your Power Ups inventory.",
+  },
+} as const;

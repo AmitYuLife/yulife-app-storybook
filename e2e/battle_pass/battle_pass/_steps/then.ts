@@ -1,7 +1,7 @@
 import * as ids from "@ids";
 import { expect } from "detox";
 import { screens } from "@appScreens";
-import { multipleTextVisible, navigation } from "@utils";
+import { navigation } from "@utils";
 import { readInbox } from "@yu-life/yulife-bdd-framework";
 import { scrollFromID } from "_utils/navigation/scrolling";
 import { EndOfSeasonItems, IMPACT_DONATION } from "../_resources/types";
@@ -14,6 +14,7 @@ export const {
   wait,
   completedTodayStreakCopyVisible,
   multipleIDVisible,
+  multipleTextVisible,
   textNotVisible,
   idVisibleAtIndex,
 } = navigation.common;
