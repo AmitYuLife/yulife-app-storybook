@@ -72,7 +72,7 @@ export default function* finishInAppMediaChallengeSaga({
       })
     );
 
-    if (eventType === "mindfullness") {
+    if (eventType === "mindfulness") {
       if (tempGameGetInAppMeditationFromServer) {
         yield put(getUserDataStart({ types: [AppDataType.todayActivity] }));
       } else {
