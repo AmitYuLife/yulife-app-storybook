@@ -3,6 +3,7 @@ import { TextTemplate } from "@atoms";
 import { Style, StyleSheet } from "@styles";
 import { View, ViewStyle } from "react-native";
 import Svg, { Mask, Path, G, Ellipse } from "react-native-svg";
+import { STREAK_TICKS } from "@ids";
 
 interface IProps {
   checked: boolean;
@@ -10,7 +11,7 @@ interface IProps {
 }
 
 export const StreakTicks = ({ checked, label }: IProps) => (
-  <View style={styles.wrapper}>
+  <View style={styles.wrapper} testID={STREAK_TICKS(label, checked)}>
     <Svg width={Style.adjust(41)} height={Style.adjust(41)} viewBox="0 0 41 41" fill="none">
       {checked ? <Checked /> : <UnChecked />}
     </Svg>

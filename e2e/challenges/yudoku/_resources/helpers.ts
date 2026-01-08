@@ -110,16 +110,30 @@ export const END_YUDOKU_FAKE_TIME = async () => {
   jest.setSystemTime(currentTime);
 
   When("I complete the Yudoku", when.completeYudoku(false, false), async () => {
-    Then("I should see my reward of 300 coins", then.textVisible("Collect 300 YuCoin", 4000));
+    Then(
+      "I should see my reward of 60 coins",
+      then.idVisible(ids.SUDOKU_STAT("Reward", "60"), 4000)
+    );
   });
-  When("I tap collect 300 yucoin", when.tapText("Collect 300 YuCoin"), async () => {
-    When("I tap collect", when.tapCollect, async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-    });
-  });
-  When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-    Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1000)));
-  });
+  When(
+    "I tap to collect my 60 YuCoin reward",
+    when.tapID(ids.SODOKU_COMPLETED_REWARD_COLLECT, 3000),
+    async () => {
+      Then(
+        "I should see my completed streak modal",
+        then.idVisible(ids.STREAK_TICKS("5", true), 5000)
+      );
+    }
+  );
+  When(
+    "I tap to collect my streak reward",
+    when.tapID(ids.STREAKS_SCREEN_BUTTON, 3000),
+    async () => {
+      When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+        Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1000)));
+      });
+    }
+  );
 
   jest.useRealTimers();
 };
