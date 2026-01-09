@@ -6,6 +6,7 @@ export * from "./postgres/business_employee_info";
 export * from "./mongo/app_store_review_prompts";
 export * from "./mongo/auths";
 export * from "./mongo/core_settings";
+export * from "./mongo/user_activity_history";
 export * from "./mongo/users";
 export * from "./mongo/user_profile";
 export * from "./mongo/usertoggles";
