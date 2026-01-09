@@ -1,10 +1,12 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
 import { ContentItemLoaderFragment as GqlLoader } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import { Style, StyleSheet } from "@styles";
 import AnimalLoader from "@organisms/animal-loader/animal-loader";
+import { useFocusEffect } from "@hooks";
+import { ROUTES } from "@navigation/constants";
 
 export const ContentItemLoader = memo((props: GqlLoader) => {
   const { onLoad, styles } = props;
@@ -12,9 +14,7 @@ export const ContentItemLoader = memo((props: GqlLoader) => {
   const mappedServerStyle = mapServerStyles(styles) || {};
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onLoad);
 
-  useEffect(() => {
-    handleSduiAction();
-  }, [handleSduiAction]);
+  useFocusEffect(handleSduiAction, { componentId: ROUTES.journey });
 
   return (
     <View style={[defaultStyles.container, mappedServerStyle]}>

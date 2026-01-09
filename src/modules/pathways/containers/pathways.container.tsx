@@ -1,14 +1,14 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { Navigation } from "@navigation/main";
-import { gql, YuScreenSection } from "@graphql/__generated";
-import moment from "moment";
+import { YuScreenSection } from "@graphql/__generated";
 import { getMoodSubmission } from "../utils/get-mood-submission";
 import { useDispatch } from "react-redux";
 import { ROUTES } from "@navigation/constants";
-import { useQueryOnScreenSeen, useUserFeatures } from "@hooks";
+import { useUserFeatures } from "@hooks";
 import PathwaysOldScreen from "../screens/pathways-old.screen";
 import PathwaysScreen from "../screens/pathways.screen";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
+import { usePathways } from "../hooks/usePathways";
 
 interface Props {
   componentId: string;
@@ -22,20 +22,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
 
   const { tempGameEnablePathwaysStreaks } = useUserFeatures();
 
-  const [, { data, loading }] = useQueryOnScreenSeen(
-    gql("GetUserPathwaysDocument"),
-    componentId,
-    {
-      fetchPolicy: "cache-and-network",
-      variables: {
-        startDate: moment().startOf("week").format("YYYY-MM-DD"),
-        endDate: moment().endOf("week").format("YYYY-MM-DD"),
-      },
-    },
-    {
-      fetchImmediately: true,
-    }
-  );
+  const { data, loading } = usePathways(componentId);
 
   const { pathwayChallenge } = usePathwayChallenge({ componentId });
 

@@ -1,17 +1,32 @@
 import { memo, useCallback } from "react";
 import PathwaysReflectedScreen from "../screens/pathways-reflected/pathways-reflected.screen";
 import { Navigation } from "@navigation/main";
+import { ROUTES } from "@navigation/constants";
+import { usePathways } from "../hooks/usePathways";
 
 interface IPathwaysReflectedContainerProps {
   componentId: string;
 }
 
 const PathwaysReflectedContainer = ({ componentId }: IPathwaysReflectedContainerProps) => {
-  const onClose = useCallback(() => {
-    Navigation.pop(componentId);
-  }, [componentId]);
+  const { loading, reflectionProgress, isStreakComplete } = usePathways(componentId, { fetchPolicy: "network-only" });
 
-  return <PathwaysReflectedScreen onClose={onClose} />;
+  const onClose = useCallback(() => {
+    if (isStreakComplete) {
+      Navigation.push(componentId, {
+        component: {
+          id: ROUTES.pathwaysClaim,
+          name: ROUTES.pathwaysClaim,
+        },
+      });
+
+      return;
+    }
+
+    Navigation.popTo(ROUTES.pathways);
+  }, [componentId, isStreakComplete]);
+
+  return <PathwaysReflectedScreen onClose={onClose} isLoading={loading} reflectionProgress={reflectionProgress} />;
 };
 
 export default memo(PathwaysReflectedContainer);
