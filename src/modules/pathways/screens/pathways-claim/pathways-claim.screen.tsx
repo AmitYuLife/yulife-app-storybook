@@ -16,8 +16,8 @@ import { ControlledYuCoinCounter } from "@organisms/generic-heading";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { getUserAvatar } from "@redux/user/user.selectors";
-import PathwayNoAvatar from "@components/molecules/challenge-tile/pathway-no-avatar";
 import { addCommasToNumber } from "@utils";
+import PathwayNoAvatar from "@components/molecules/challenge-tile/pathway-no-avatar";
 
 interface Props {
   onClose: () => void;
@@ -103,8 +103,8 @@ const PathwaysClaimScreen = ({ onClose, healthChallenge, yucoinReward }: Props) 
                   borderGradient={[Colours.pathways.brightYellow, colours.neutral.white, Colours.pathways.darkOrange]}
                   showSparkles={true}
                 >
-                  <Box gap={2} alignContent="center" justifyContent="center" h="100%">
-                    <TextTemplate type="b2b" textAlign="center" color={Colours.darkPink}>
+                  <Box gap={2} alignContent="center" justifyContent="center" h={45}>
+                    <TextTemplate type="b2b" textAlign="center" color={Colours.darkPink} numberOfLines={2}>
                       {t("screens.pathways.claim.health_challenge")}
                     </TextTemplate>
                   </Box>
@@ -115,11 +115,13 @@ const PathwaysClaimScreen = ({ onClose, healthChallenge, yucoinReward }: Props) 
         </Box>
       </ScrollView>
       <Box position="absolute" bottom={0} width="100%" pb={bottom} px={20} gap={20} alignItems="center">
-        <Hint
-          label={t("screens.pathways.claim.reward_title")}
-          description={t("screens.pathways.claim.reward_subtitle")}
-          image={{ Element: <Image source={require("../../assets/pathways-chest.png")} w={80} h={80} /> }}
-        />
+        {healthChallenge ? (
+          <Hint
+            label={t("screens.pathways.claim.reward_title")}
+            description={t("screens.pathways.claim.reward_subtitle")}
+            image={{ Element: <Image source={require("../../assets/pathways-chest.png")} w={80} h={80} /> }}
+          />
+        ) : null}
         <Button testID="claim_button" onPress={onClose} translatedLabel="Claim" />
       </Box>
     </Box>

@@ -1,17 +1,27 @@
-import React, { memo, useCallback } from "react";
+import { memo, useCallback } from "react";
 import { Navigation } from "@navigation/main";
 import PathwaysClaimScreen from "../screens/pathways-claim/pathways-claim.screen";
+import { ROUTES } from "@navigation/constants";
+import { usePathways } from "../hooks/usePathways";
 
-interface Props {
+interface IPathwaysClaimContainerProps {
   componentId: string;
 }
 
-const PathwaysClaimContainer = ({ componentId }: Props) => {
+const PathwaysClaimContainer = ({ componentId }: IPathwaysClaimContainerProps) => {
   const onClose = useCallback(() => {
-    Navigation.pop(componentId);
-  }, [componentId]);
+    Navigation.popTo(ROUTES.pathways);
+  }, []);
 
-  return <PathwaysClaimScreen onClose={onClose} yucoinReward={1337} healthChallenge={true} />;
+  const { reflectionProgress, isStreakComplete } = usePathways(componentId, { fetchPolicy: "network-only" });
+
+  return (
+    <PathwaysClaimScreen
+      onClose={onClose}
+      yucoinReward={reflectionProgress?.coinAwards[reflectionProgress?.currentProgress - 1]}
+      healthChallenge={isStreakComplete}
+    />
+  );
 };
 
 export default memo(PathwaysClaimContainer);

@@ -7,14 +7,13 @@ import { useSelector } from "react-redux";
 type ScreenSeenHookOptions = {
   refetch?: boolean;
   disabled?: boolean;
+  // if set to true, the query will be fetched immediately when the hook fires (potentially before the screen is active)
   fetchImmediately?: boolean;
 };
 
 const DEFAULT_SCREEN_SEEN_HOOK_OPTIONS = {
   refetch: true,
   disabled: false,
-
-  // if set to true, the query will be fetched immediately when the hook fires (potentially before the screen is active)
   fetchImmediately: false,
 };
 
