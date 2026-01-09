@@ -33,6 +33,10 @@ export enum EncryptedStorageKey {
  * Note: `LegacyEncryptedStorage` will be purged in a future release
  */
 export class Storage {
+  private static readonly secureOptions = {
+    keychainAccessible: EncryptedStorage.AFTER_FIRST_UNLOCK,
+  };
+
   public static async getItem(key: StorageKey): Promise<string | null> {
     return AsyncStorage.getItem(key);
   }
@@ -46,7 +50,7 @@ export class Storage {
   }
 
   public static async getEncryptedItem(key: EncryptedStorageKey): Promise<string | null> {
-    const value = await EncryptedStorage.getItemAsync(this.formatExpoStorageKey(key));
+    const value = await EncryptedStorage.getItemAsync(this.formatExpoStorageKey(key), this.secureOptions);
 
     // If the value is not found in the new storage library
     // but is found in the legacy storage library, migrate it
@@ -58,7 +62,7 @@ export class Storage {
   }
 
   public static async setEncryptedItem(key: EncryptedStorageKey, value: string): Promise<void> {
-    return EncryptedStorage.setItemAsync(this.formatExpoStorageKey(key), value);
+    return EncryptedStorage.setItemAsync(this.formatExpoStorageKey(key), value, this.secureOptions);
   }
 
   public static async removeEncryptedItem(key: EncryptedStorageKey): Promise<void> {
