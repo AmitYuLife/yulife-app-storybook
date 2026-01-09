@@ -2,6 +2,7 @@ import React, { memo, useMemo } from "react";
 import { Box } from "@atoms";
 import PathwayStreakItem from "./pathway-streak-item";
 import { PATHWAYS_STREAKS } from "@ids";
+import { isPathwaysDayCompleted } from "../../utils/pathways.util";
 
 interface IDayItem {
   day: number;
@@ -69,24 +70,8 @@ const buildDays = ({
 }): IDayItem[] => {
   return Array.from({ length: maxProgress }, (_, index) => ({
     day: index + 1,
-    completed: getCompleted({ reflectedToday, currentStreak, index }),
+    completed: isPathwaysDayCompleted({ reflectedToday, currentStreak, index }),
     isToday: currentStreak === index + (reflectedToday ? 1 : 0),
     isChest: maxProgress === index + 1,
   }));
-};
-
-const getCompleted = ({
-  reflectedToday,
-  currentStreak,
-  index,
-}: {
-  reflectedToday: boolean;
-  currentStreak: number;
-  index: number;
-}) => {
-  if (reflectedToday && currentStreak === 0) {
-    return true;
-  }
-
-  return index < currentStreak;
 };

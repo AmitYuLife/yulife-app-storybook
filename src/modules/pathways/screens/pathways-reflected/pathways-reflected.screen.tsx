@@ -7,22 +7,41 @@ import { ScrollView } from "react-native";
 import { Colours, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import PathwayStreaks from "../../components/pathway-streaks/pathway-streaks";
-import { Button } from "@components/molecules";
+import { AnimatedPlusPoints, Button } from "@components/molecules";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ItemDetailsReward } from "@organisms";
 import { t } from "@locale";
 import { FadeIn } from "react-native-reanimated";
 import { GetUserPathwaysQuery } from "@graphql/__generated";
+import { ItemDetailsReward } from "@organisms";
 
 interface IPathwaysReflectedScreenProps {
   onClose: () => void;
   isLoading: boolean;
+  todayReward: number;
+  currentProgress: number;
+  isStreakComplete: boolean;
   reflectionProgress?: GetUserPathwaysQuery["getUserPathways"]["reflectionProgress"];
 }
 
-const PathwaysReflectedScreen = ({ onClose, isLoading, reflectionProgress }: IPathwaysReflectedScreenProps) => {
-  const { currentProgress = 0, maxProgress = 5, reflectedToday = false } = reflectionProgress ?? {};
+const MYSTERY_BOX_ICON = require("./assets/pathways-mystery-box.webp");
+const YUCOIN_SHADOW_ICON = require("./assets/yucoin-shadow.webp");
+const REWARD_SIZE_MYSTERY_BOX = 120;
+const REWARD_IMAGE_SIZE_MYSTERY_BOX = 100;
+const REWARD_SIZE_YUCOIN = 190;
+const REWARD_IMAGE_SIZE_YUCOIN = 120;
+
+const PathwaysReflectedScreen = ({
+  onClose,
+  isLoading,
+  todayReward,
+  currentProgress,
+  isStreakComplete,
+  reflectionProgress,
+}: IPathwaysReflectedScreenProps) => {
+  const { maxProgress = 5, reflectedToday = false } = reflectionProgress ?? {};
   const { bottom } = useSafeAreaInsets();
+
+  const rewardSize = isStreakComplete ? REWARD_SIZE_MYSTERY_BOX : REWARD_SIZE_YUCOIN;
 
   return (
     <PathwaysReflectedScreenWrapper isLoading={isLoading}>
@@ -30,7 +49,18 @@ const PathwaysReflectedScreen = ({ onClose, isLoading, reflectionProgress }: IPa
         <ScrollView>
           <Box mt={90} justifyContent="center" alignItems="center">
             <Box justifyContent="center" alignItems="center" gap={50}>
-              <ItemDetailsReward size={120} source={require("./assets/pathways-mystery-box.webp")} />
+              <Box>
+                <ItemDetailsReward
+                  size={rewardSize}
+                  imageSize={isStreakComplete ? REWARD_IMAGE_SIZE_MYSTERY_BOX : REWARD_IMAGE_SIZE_YUCOIN}
+                  source={isStreakComplete ? MYSTERY_BOX_ICON : YUCOIN_SHADOW_ICON}
+                />
+                {todayReward > 0 ? (
+                  <Box alignItems="center" position="absolute" justifyContent="center" w={rewardSize} top={-30}>
+                    <AnimatedPlusPoints type="challenge-success" coins={todayReward} textType="h3" />
+                  </Box>
+                ) : null}
+              </Box>
               <Box gap={50} px={20}>
                 <Box>
                   <TextTemplate type="big64" textAlign="center" color={colours.neutral.white}>

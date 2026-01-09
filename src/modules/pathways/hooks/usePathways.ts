@@ -2,6 +2,7 @@ import moment from "moment";
 import { useQueryOnScreenSeen } from "@hooks";
 import { gql } from "@graphql/__generated";
 import { WatchQueryFetchPolicy } from "@apollo/client";
+import { isPathwaysDayCompleted } from "../utils/pathways.util";
 
 interface UsePathwaysOptions {
   fetchPolicy?: WatchQueryFetchPolicy;
@@ -24,7 +25,14 @@ export const usePathways = (componentId: string, { fetchPolicy = "cache-and-netw
   );
 
   const reflectionProgress = data?.getUserPathways?.reflectionProgress;
-  const isStreakComplete = reflectionProgress?.currentProgress >= reflectionProgress?.maxProgress;
+  const isStreakComplete = isPathwaysDayCompleted({
+    reflectedToday: reflectionProgress?.reflectedToday ?? false,
+    currentStreak: reflectionProgress?.currentProgress ?? 0,
+    index: reflectionProgress?.maxProgress - 1,
+  });
 
-  return { data, loading, reflectionProgress, isStreakComplete };
+  const currentProgress = isStreakComplete ? reflectionProgress?.maxProgress : reflectionProgress?.currentProgress;
+  const todayReward = reflectionProgress?.coinAwards[currentProgress - 1] ?? 0;
+
+  return { data, loading, reflectionProgress, isStreakComplete, todayReward, currentProgress };
 };

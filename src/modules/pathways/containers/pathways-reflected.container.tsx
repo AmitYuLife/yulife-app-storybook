@@ -9,7 +9,9 @@ interface IPathwaysReflectedContainerProps {
 }
 
 const PathwaysReflectedContainer = ({ componentId }: IPathwaysReflectedContainerProps) => {
-  const { loading, reflectionProgress, isStreakComplete } = usePathways(componentId, { fetchPolicy: "network-only" });
+  const { loading, reflectionProgress, currentProgress, isStreakComplete, todayReward } = usePathways(componentId, {
+    fetchPolicy: "network-only",
+  });
 
   const onClose = useCallback(() => {
     if (isStreakComplete) {
@@ -26,7 +28,16 @@ const PathwaysReflectedContainer = ({ componentId }: IPathwaysReflectedContainer
     Navigation.popTo(ROUTES.pathways);
   }, [componentId, isStreakComplete]);
 
-  return <PathwaysReflectedScreen onClose={onClose} isLoading={loading} reflectionProgress={reflectionProgress} />;
+  return (
+    <PathwaysReflectedScreen
+      onClose={onClose}
+      isLoading={loading}
+      currentProgress={currentProgress}
+      isStreakComplete={isStreakComplete}
+      reflectionProgress={reflectionProgress}
+      todayReward={todayReward}
+    />
+  );
 };
 
 export default memo(PathwaysReflectedContainer);
