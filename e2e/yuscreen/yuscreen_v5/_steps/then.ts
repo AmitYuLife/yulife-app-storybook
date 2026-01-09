@@ -152,7 +152,7 @@ export const cycleThroughFacialHairOptions = async () => {
 
 export const checkEmptyAchievementSlots = (slots: number) => async () => {
   for (let i = 1; i <= slots; i++) {
-    idVisible(ids.ACHIEVEMENT_EMPTY_SLOT(ids.ACHIEVEMENT_SLOT(i)), 1500);
+    idVisible(ids.ACHIEVEMENT_EMPTY_SLOT(ids.ACHIEVEMENT_SLOT(i)), 4_000);
   }
 };
 

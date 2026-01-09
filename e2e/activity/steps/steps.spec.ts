@@ -124,17 +124,19 @@ Feature("As a user my activity is monitored correctly", async () => {
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
           Then("I should see my steps today are at 0", then.idVisible(ids.STEPS_COUNT(0)));
         });
-        When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
-          Then("I should see the menu items", then.menuItemsVisible("basic"));
-        });
-        When("I tap on activity history", when.tapMenuItem("Activity History"), async () => {
-          When("I tap to refresh activity history", when.tapID(ids.LEFT_HEADING_BUTTON("ACTIVITY_HISTORY"), 3000), async () => {
-            Then("I should be on the activity history page", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 4000));
-            Then("I should be able to see the steps from the last 5 days are being successfully displayed", then.canSeeHistoricalSteps(5, 4000));
-            Then("I should be able to see the completed challenge from the sixth day, which is seeded data", then.scrollUntilTextVisible(ids.ACTIVITY_HISTORY_SCREEN, "Short Stroll 125 Steps", "down"));
-          });
-        });
       });
+    });
+    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 3000), async () => {
+      Then("I should see the menu items", then.menuItemsVisible("basic"));
+    });
+    When("I tap on activity history", when.tapMenuItem("Activity History"), async () => {
+      When("I tap to refresh activity history", when.tapID(ids.LEFT_HEADING_BUTTON("ACTIVITY_HISTORY"), 3000), async () => {
+        Then("I should be on the activity history page", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 4000));
+        Then("I should be able to see the steps from the last 5 days are being successfully displayed", then.canSeeHistoricalSteps(5, 4000));
+      });
+    });
+    When("I scroll futher down", when.scrollFromID(ids.ACTIVITY_HISTORY_SCREEN, "up", "fast", 0.9, 3_000), async () => {
+      Then("I should be able to see the completed challenge from the sixth day, which is seeded data", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("2,300 Steps"), 2_000));
     });
   });
 });

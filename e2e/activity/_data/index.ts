@@ -38,6 +38,7 @@ export * from "./mongo/social_group_leaderboards";
 export * from "./mongo/user_social_leaderboard_enrolments";
 export * from "./mongo/user_social_leaderboard_scores";
 export * from "./mongo/social_group_leaderboard_scores";
+export * from "./mongo/user_activity_history";
 export * from "./mongo/user_gift";
 export * from "./mongo/user_statistics";
 export * from "./mongo/user_habit_tracking_state";
