@@ -4,7 +4,7 @@ import moment from "moment";
 import { GetUserMoodSubmissionsQuery, gql } from "@graphql/__generated";
 import { Box } from "@atoms";
 import { ActivityIndicator } from "react-native";
-import { generateMissingData } from "@app/modules/pathways/utils/calendar-helper";
+import { generateMissingData } from "@app/modules/pathways/utils/calendar-helper.util";
 import { DATE_FORMAT } from "@utils";
 import PathwaysMoodCalendarScreen from "@app/modules/pathways/screens/pathways-mood-calendar.screen";
 import { ROUTES } from "@navigation/constants";

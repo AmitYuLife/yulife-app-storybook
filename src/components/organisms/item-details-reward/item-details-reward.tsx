@@ -11,6 +11,7 @@ interface IItemDetailsRewardProps {
   delay?: number;
   source?: ImageSource;
   children?: ReactNode;
+  imageSize?: number;
   starsEnabled?: boolean;
   bubblesEnabled?: boolean;
   starMultiplier?: number;
@@ -25,6 +26,7 @@ const ItemDetailsReward = ({
   starsEnabled = true,
   bubblesEnabled = true,
   starMultiplier = 3,
+  imageSize = size,
 }: IItemDetailsRewardProps) => {
   const starLottie1Ref = useRef<LottieViewRef>(null);
   const starLottie2Ref = useRef<LottieViewRef>(null);
@@ -83,8 +85,8 @@ const ItemDetailsReward = ({
         <Image
           suppressLoadingUi={true}
           style={styles.rewardOverlayIcon}
-          width={Style.adjust(size)}
-          height={Style.adjust(size)}
+          width={Style.adjust(imageSize)}
+          height={Style.adjust(imageSize)}
           source={source}
         />
       )}

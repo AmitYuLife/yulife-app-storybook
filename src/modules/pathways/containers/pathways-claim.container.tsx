@@ -13,15 +13,11 @@ const PathwaysClaimContainer = ({ componentId }: IPathwaysClaimContainerProps) =
     Navigation.popTo(ROUTES.pathways);
   }, []);
 
-  const { reflectionProgress, isStreakComplete } = usePathways(componentId, { fetchPolicy: "network-only" });
+  const { todayReward, isStreakComplete } = usePathways(componentId, {
+    fetchPolicy: "network-only",
+  });
 
-  return (
-    <PathwaysClaimScreen
-      onClose={onClose}
-      yucoinReward={reflectionProgress?.coinAwards[reflectionProgress?.currentProgress - 1]}
-      healthChallenge={isStreakComplete}
-    />
-  );
+  return <PathwaysClaimScreen onClose={onClose} yucoinReward={todayReward} healthChallenge={isStreakComplete} />;
 };
 
 export default memo(PathwaysClaimContainer);
