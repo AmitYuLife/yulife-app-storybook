@@ -7,7 +7,7 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import Logger from "@services/logging/logger";
 import { memo, useCallback, useMemo, useState } from "react";
 import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
-import DeviceInfo from "react-native-device-info";
+import { getUniqueDeviceId } from "@utils";
 import { Navigation } from "@navigation/main";
 import { applyLoginSession } from "./login.helpers";
 import { useDispatch } from "react-redux";
@@ -50,7 +50,7 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
     try {
       // TODO - consider adding captcha?
 
-      const uniqueDeviceId = await DeviceInfo.getUniqueId();
+      const uniqueDeviceId = await getUniqueDeviceId();
 
       const results = await loginUser({
         variables: {
