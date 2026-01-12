@@ -85,6 +85,7 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
           name: ROUTES.pathwayChallengeSuccess,
           passProps: {
             reward: yuCoinAwarded,
+            componentId,
           },
         },
       });
@@ -93,13 +94,15 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
   );
 
   const pathwayChallenge = useMemo(() => {
-    if (!pathwayChallengeData?.getPathwayChallenge) {
+    const challenge = pathwayChallengeData?.getPathwayChallenge;
+
+    if (!challenge) {
       return undefined;
     }
 
     return {
-      ...pathwayChallengeData.getPathwayChallenge,
-      onPress: handlePathwayTilePress,
+      ...challenge,
+      onPress: challenge.isCompleted ? undefined : handlePathwayTilePress,
     };
   }, [pathwayChallengeData?.getPathwayChallenge, handlePathwayTilePress]);
 
