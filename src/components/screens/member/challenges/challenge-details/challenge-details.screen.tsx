@@ -174,7 +174,7 @@ function ChallengeDetailsScreen({
                 <Box gap={10} flexDirection={"column"}>
                   <TextTemplate type="b2">{t("screens.challenges.details.extra_yucoin")}</TextTemplate>
                   <TouchableOpacityWithDelay onPress={onPressBonusInfoButton}>
-                    <View ref={bonusInfoButtonRef}>
+                    <View ref={bonusInfoButtonRef} collapsable={false}>
                       <Image
                         suppressLoadingUi={true}
                         width={Style.adjust(16)}
