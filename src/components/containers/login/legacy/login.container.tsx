@@ -10,7 +10,7 @@ import { REGION, t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { validateEmail } from "@utils/email";
 import { useMutatationAllRegions } from "@hooks";
-import DeviceInfo from "react-native-device-info";
+import { getUniqueDeviceId } from "@utils";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
 
 const trimGraphQLError = (message: string = "") => message.replace(/^GraphQL error: /, "");
@@ -68,7 +68,7 @@ const LoginContainer: React.FC<Props> = ({
   );
 
   const onLogIn = useCallback(async () => {
-    const uniqueDeviceId = await DeviceInfo.getUniqueId();
+    const uniqueDeviceId = await getUniqueDeviceId();
 
     if (isFormValid || isUsingOtp) {
       try {

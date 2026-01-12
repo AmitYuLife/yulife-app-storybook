@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import DeviceInfo from "react-native-device-info";
+import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { call, spawn } from "redux-saga/effects";
 import { addDeviceToken } from "../device.actions";
@@ -15,7 +15,7 @@ function* registerDeviceOnYuServer(deviceToken: string) {
         variables: {
           deviceToken,
           os: Platform.OS,
-          deviceId: DeviceInfo.getDeviceId(),
+          deviceId: Device.modelId ?? "",
           subscribed: true,
         },
       })

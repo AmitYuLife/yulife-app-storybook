@@ -1,6 +1,6 @@
-import { isAndroid, isWeb, isiOS } from "@utils";
+import { isAndroid, isWeb, isiOS, hasDynamicIsland, hasNotch } from "@utils";
 import { Dimensions, PixelRatio, Platform, StatusBar } from "react-native";
-import DeviceInfo from "react-native-device-info";
+import * as Device from "expo-device";
 import { isAndroidWithTransparentStatusBar } from "./status-bar.styles";
 
 const pixelRatio = PixelRatio.get();
@@ -12,9 +12,9 @@ const screenHeight = isWeb() ? 800 : Dimensions.get("screen").height;
 
 const isIPad = () => {
   if (isiOS()) {
-    return (
-      DeviceInfo.getDeviceId().toLowerCase().includes("ipad") || DeviceInfo.getModel().toLowerCase().includes("ipad")
-    );
+    const modelId = (Device.modelId ?? "").toLowerCase();
+    const modelName = (Device.modelName ?? "").toLowerCase();
+    return modelId.includes("ipad") || modelName.includes("ipad");
   }
 
   return false;
@@ -34,7 +34,7 @@ const isIphoneXPlus = () =>
 
 const isAnyIphoneX = () => isIphoneX() || isIphoneXPlus();
 
-const isAndroid13AndHigher = () => isAndroid() && Number(DeviceInfo.getSystemVersion()) >= 13;
+const isAndroid13AndHigher = () => isAndroid() && Number(Device.osVersion ?? "0") >= 13;
 
 const isShortAndroid = () => {
   return isAndroid() && pixelRatio < 3 && y < 700;
@@ -148,7 +148,7 @@ const getSafeAreaStart = () => {
     return StatusBar.currentHeight;
   }
 
-  if (DeviceInfo.hasDynamicIsland()) {
+  if (hasDynamicIsland()) {
     return 48;
   }
 
@@ -210,8 +210,8 @@ const Style = {
   platformSelect,
   defaultShrinkThreshold,
   isWideScreen,
-  hasNotch: DeviceInfo.hasNotch(),
-  hasDynamicIsland: DeviceInfo.hasDynamicIsland(),
+  hasNotch: hasNotch(),
+  hasDynamicIsland: hasDynamicIsland(),
   isLargeScreen,
   isHuaweiMate10,
   isShorterThan,
