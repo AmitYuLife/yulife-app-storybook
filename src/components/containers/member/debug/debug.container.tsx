@@ -21,6 +21,7 @@ import { clearSeenQuestMapNewUserOnboardingAnimation } from "@redux/quest-map/qu
 import moment from "moment";
 import { queryHealthSmokingState } from "@redux/health-smoking/health-smoking.actions";
 import { getCurrentUserId } from "@redux/user/user.selectors";
+import Clipboard from "@react-native-clipboard/clipboard";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -62,6 +63,7 @@ enum DebugCodes {
   pathways = "pathways",
   pathwaysReflected = "pathways-reflected",
   pathwaysClaim = "pathways-claim",
+  viewUserId = "view-user-id",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -389,6 +391,21 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 name: ROUTES.pathwaysClaim,
               },
             });
+          }
+
+          case DebugCodes.viewUserId: {
+            const userId = currentUserId ?? "No user ID found";
+            return Alert.alert("User ID", userId, [
+              { text: "OK", style: "cancel" },
+              {
+                text: "Copy",
+                onPress: () => {
+                  if (currentUserId) {
+                    Clipboard.setString(currentUserId);
+                  }
+                },
+              },
+            ]);
           }
         }
 
