@@ -118,6 +118,7 @@ const PathwaysHeader = ({
               yucoinAmount={coinAwards[coinAwards.length - 1]}
               status={finalItemStatus}
               timeToNextQuestionnaire={timeRemaining}
+              isChallengeCompleted={pathwayChallenge?.isCompleted}
             />
           </Box>
         </Box>

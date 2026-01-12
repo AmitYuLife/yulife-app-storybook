@@ -1,21 +1,17 @@
-import React, { memo, useCallback } from "react";
+import { memo, useCallback } from "react";
 import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
-import { useSelector } from "react-redux";
-import { getChallengesStatus } from "@redux/levels/levels.selectors";
 import PathwayChallengeSuccessScreen from "../screens/pathways-challenge-success.screen";
 import { useBackHandler } from "@hooks";
 
 interface Props {
   reward: number;
+  componentId: string;
 }
 
-const PathwayChallengeSuccessContainer = ({ reward }: Props) => {
-  const { isAvailable } = useSelector(getChallengesStatus);
-
+const PathwayChallengeSuccessContainer = ({ reward, componentId }: Props) => {
   const onPressCta = useCallback(() => {
-    Navigation.popTo(isAvailable ? ROUTES.questsChallengesList : ROUTES.quests);
-  }, [isAvailable]);
+    Navigation.popToRoot(componentId);
+  }, [componentId]);
 
   useBackHandler(() => {
     onPressCta();

@@ -20,11 +20,18 @@ interface IPathwayReflectChestProps {
   onPress: () => void;
   yucoinAmount?: number;
   status: PathwaysReflectionStatus;
+  isChallengeCompleted?: boolean;
 }
 
 const CHEST_IMAGE_SIZE = 90;
 
-const PathwayReflectChest = ({ timeToNextQuestionnaire, onPress, yucoinAmount, status }: IPathwayReflectChestProps) => {
+const PathwayReflectChest = ({
+  timeToNextQuestionnaire,
+  onPress,
+  yucoinAmount,
+  status,
+  isChallengeCompleted,
+}: IPathwayReflectChestProps) => {
   const extraChallengeText = useMemo(() => {
     if (status === "completed") {
       return t("screens.pathways.reflection_chest_health_challenge_completed_markdown", {
@@ -55,8 +62,10 @@ const PathwayReflectChest = ({ timeToNextQuestionnaire, onPress, yucoinAmount, s
     });
   }, [status, yucoinAmount]);
 
+  const isDisabled = isChallengeCompleted || !["active", "completed"].includes(status);
+
   return (
-    <PathwaysReflectionCard onPress={onPress} isDisabled={!["active", "completed"].includes(status)}>
+    <PathwaysReflectionCard onPress={onPress} isDisabled={isDisabled}>
       <Box position="absolute" top={8} right={8}>
         <PathwayReflectionStatusIndicator status={status} timeToNextQuestionnaire={timeToNextQuestionnaire} />
       </Box>
