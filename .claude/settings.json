@@ -4,7 +4,13 @@
       "Edit(*)",
       "Write(*)",
       "Bash(yarn update)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(yarn start:e2e:*)",
+      "Bash(yarn detox:run:*)",
+      "Bash(applesimutils:*)",
+      "Bash(xcrun simctl:*)",
+      "Bash(yarn detox:build)",
+      "Bash(CI=true yarn detox:run:*)"
     ],
     "deny": [],
     "ask": []

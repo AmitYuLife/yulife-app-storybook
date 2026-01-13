@@ -63,6 +63,9 @@ Translation management:
 
 ## E2E Testing (Detox)
 
+@.cursor/rules/e2e-testing.mdc
+@.cursor/rules/e2e-seed-data.mdc
+
 Test structure: `e2e/feature/sub-feature/*.spec.ts`
 
 **Running E2E Tests**:

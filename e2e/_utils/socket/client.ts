@@ -16,6 +16,7 @@ export default class SocketClient {
 
   public connect(url: string) {
     this.socket = io(url);
+    console.log(`connecting to socket at ${url}`);
     this.socket.on("connect_error", (err) => {
       console.log(`connect_error due to ${err.message}`);
     });

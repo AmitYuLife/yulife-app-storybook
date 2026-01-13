@@ -1,0 +1,11 @@
+---
+description: E2E Seed Data Best Practices
+globs: e2e/**/*.ts
+alwaysApply: false
+---
+# E2E Seed Data
+
+- Prefer helpers such as `createCustomerRecords()` and `createBusinessRecords()` over seeding individual models
+- If no helper exists for a model, seeding it directly is acceptable
+- **Separate users for each Scenario** - do not share customer/user data between Scenario blocks
+- Businesses can be reused across scenarios when appropriate
