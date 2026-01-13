@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -4516,11 +4517,22 @@ export type GroupPremiumEmployeeInput = {
   leaveDate?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export enum HealthChallengeAction {
+  Award = "award",
+  Clear = "clear",
+  None = "none",
+}
+
 export enum HealthProvider {
   GoogleFit = "googleFit",
   HealthConnect = "healthConnect",
   HealthKit = "healthKit",
   SamsungHealth = "samsungHealth",
+}
+
+export enum HealthQuestionnaireStateAction {
+  Complete = "complete",
+  Reset = "reset",
 }
 
 export type HealthSmokingCelebration = {
@@ -6560,6 +6572,7 @@ export type Mutation = {
   setPlayerBirthday?: Maybe<LifeEvents>;
   /** Updates the shares of a beneficiary */
   setShareOfBenefitForProduct: CustomerProductBeneficiaries;
+  setUserPathwayProgress?: Maybe<Scalars["Boolean"]["output"]>;
   setUserQuestProgress?: Maybe<Scalars["Boolean"]["output"]>;
   startMembersBulkUpload: BulkMemberImportStart;
   startPathwayChallenge: StartPathwayChallengeResponse;
@@ -7275,6 +7288,13 @@ export type MutationSetShareOfBenefitForProductArgs = {
   shares: Array<BeneficiaryShareOfBenefit>;
 };
 
+export type MutationSetUserPathwayProgressArgs = {
+  currentStreak?: InputMaybe<Scalars["Int"]["input"]>;
+  healthChallenge?: InputMaybe<HealthChallengeAction>;
+  healthQuestionnaireState?: InputMaybe<HealthQuestionnaireStateAction>;
+  lastReflectionDate?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 export type MutationSetUserQuestProgressArgs = {
   currentLevel: Scalars["Int"]["input"];
   yuniversalLevel?: InputMaybe<Scalars["Int"]["input"]>;
@@ -7876,6 +7896,7 @@ export type PaymentIntent = StripePaymentIntent;
 
 export type PerformedSteps = {
   __typename?: "PerformedSteps";
+  employeeExperienceModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   homeModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   hrConnectionsModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   leaderboardModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
@@ -10063,10 +10084,16 @@ export type Session = {
 export type SftpConnectionConfig = {
   __typename?: "SftpConnectionConfig";
   allowedIps: Array<Scalars["String"]["output"]>;
+  hasPassword: Scalars["Boolean"]["output"];
   host: Scalars["String"]["output"];
   port: Scalars["Int"]["output"];
   rootFolder: Scalars["String"]["output"];
   username: Scalars["String"]["output"];
+};
+
+export type SftpConnectionSettingsInput = {
+  allowedIps?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  password?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type ShippingAddress = {
@@ -10969,6 +10996,7 @@ export type TeamGiftingAssets = {
 };
 
 export enum TeamOnboardingStep {
+  EmployeeExperienceModalDismissed = "employeeExperienceModalDismissed",
   HomeModalDismissed = "homeModalDismissed",
   HrConnectionsModalDismissed = "hrConnectionsModalDismissed",
   LeaderboardModalDismissed = "leaderboardModalDismissed",
@@ -11630,6 +11658,7 @@ export type UpsertMemberDataConnectionInput = {
   hrisSettings?: InputMaybe<HrisConnectionSettingsInput>;
   name?: InputMaybe<Scalars["String"]["input"]>;
   ownerIds?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  sftpSettings?: InputMaybe<SftpConnectionSettingsInput>;
   shouldAutoInvite?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
@@ -24263,6 +24292,15 @@ export type SetFeatureMutationVariables = Exact<{
 }>;
 
 export type SetFeatureMutation = { __typename?: "Mutation"; setFeature?: boolean | null };
+
+export type SetUserPathwayProgressMutationVariables = Exact<{
+  currentStreak?: InputMaybe<Scalars["Int"]["input"]>;
+  lastReflectionDate?: InputMaybe<Scalars["String"]["input"]>;
+  healthQuestionnaireState?: InputMaybe<HealthQuestionnaireStateAction>;
+  healthChallenge?: InputMaybe<HealthChallengeAction>;
+}>;
+
+export type SetUserPathwayProgressMutation = { __typename?: "Mutation"; setUserPathwayProgress?: boolean | null };
 
 export type SetUserQuestProgressMutationVariables = Exact<{
   currentLevel: Scalars["Int"]["input"];
@@ -76129,6 +76167,69 @@ export const SetFeatureDocument = {
     },
   ],
 } as unknown as DocumentNode<SetFeatureMutation, SetFeatureMutationVariables>;
+export const SetUserPathwayProgressDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SetUserPathwayProgress" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "currentStreak" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "lastReflectionDate" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "healthQuestionnaireState" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "HealthQuestionnaireStateAction" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "healthChallenge" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "HealthChallengeAction" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "setUserPathwayProgress" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "currentStreak" },
+                value: { kind: "Variable", name: { kind: "Name", value: "currentStreak" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "lastReflectionDate" },
+                value: { kind: "Variable", name: { kind: "Name", value: "lastReflectionDate" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "healthQuestionnaireState" },
+                value: { kind: "Variable", name: { kind: "Name", value: "healthQuestionnaireState" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "healthChallenge" },
+                value: { kind: "Variable", name: { kind: "Name", value: "healthChallenge" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SetUserPathwayProgressMutation, SetUserPathwayProgressMutationVariables>;
 export const SetUserQuestProgressDocument = {
   kind: "Document",
   definitions: [

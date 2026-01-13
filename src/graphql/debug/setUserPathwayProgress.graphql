@@ -1,0 +1,13 @@
+mutation SetUserPathwayProgress(
+  $currentStreak: Int
+  $lastReflectionDate: String
+  $healthQuestionnaireState: HealthQuestionnaireStateAction
+  $healthChallenge: HealthChallengeAction
+) {
+  setUserPathwayProgress(
+    currentStreak: $currentStreak
+    lastReflectionDate: $lastReflectionDate
+    healthQuestionnaireState: $healthQuestionnaireState
+    healthChallenge: $healthChallenge
+  )
+}
