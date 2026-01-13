@@ -8841,10 +8841,10 @@
   resolved "https://gitlab.com/api/v4/projects/55451146/packages/npm/@yu-life/react-native-yu-watch/-/@yu-life/react-native-yu-watch-1.0.2.tgz#310eb2318f7b1cc7619e5e78220054e0a13ed7cb"
   integrity sha1-MQ6yMY97HMdhnl54IgBU4KE+18s=
 
-"@yu-life/yulife-bdd-framework@^0.2.6":
-  version "0.2.6"
-  resolved "https://gitlab.com/api/v4/projects/23052792/packages/npm/@yu-life/yulife-bdd-framework/-/@yu-life/yulife-bdd-framework-0.2.6.tgz#c9de02a6990f0d35377f9286e29e31c409cbbe8d"
-  integrity sha1-yd4CppkPDTU3f5KG4p4xxAnLvo0=
+"@yu-life/yulife-bdd-framework@^0.3.0":
+  version "0.3.0"
+  resolved "https://gitlab.com/api/v4/projects/23052792/packages/npm/@yu-life/yulife-bdd-framework/-/@yu-life/yulife-bdd-framework-0.3.0.tgz#2ff49148367eb5da94c89418fa6c59901bce0c76"
+  integrity sha1-L/SRSDZ+tdqUyJQY+mxZkBvODHY=
   dependencies:
     "@faker-js/faker" "8.4.1"
     axios "^0.21.0"
@@ -19162,11 +19162,6 @@ react-native-config@^1.5.1:
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.5.1.tgz#73c94f511493e9b7ff9350cdf351d203a1b05acc"
   integrity sha512-g1xNgt1tV95FCX+iWz6YJonxXkQX0GdD3fB8xQtR1GUBEqweB9zMROW77gi2TygmYmUkBI7LU4pES+zcTyK4HA==
 
-react-native-device-info@^14.1.1:
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-14.1.1.tgz#f50c03902f87e4a99b1c51ed85163b795f02b3ea"
-  integrity sha512-lXFpe6DJmzbQXNLWxlMHP2xuTU5gwrKAvI8dCAZuERhW9eOXSubOQIesk9lIBnsi9pI19GMrcpJEvs4ARPRYmw==
-
 react-native-devsettings@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-native-devsettings/-/react-native-devsettings-1.0.5.tgz#3ee079fea99338a2b00de293340c8d11629f16dd"
@@ -19260,7 +19255,6 @@ react-native-reanimated@^3.16.7:
     "@babel/preset-typescript" "^7.16.7"
     convert-source-map "^2.0.0"
     invariant "^2.2.4"
-    react-native-is-edge-to-edge "1.1.7"
 
 react-native-safe-area-context@5.4.0:
   version "5.4.0"
