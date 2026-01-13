@@ -312,6 +312,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/debug/level-selector/level-selector.container").default,
   },
   {
+    name: ROUTES.pathwaysProgress,
+    component: require("../components/containers/member/debug/pathways-progress/pathways-progress.container").default,
+  },
+  {
     name: ROUTES.workoutDebug,
     component: require("../components/containers/member/debug/workout-debug/workout-debug.container").default,
   },

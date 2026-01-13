@@ -63,6 +63,7 @@ enum DebugCodes {
   pathways = "pathways",
   pathwaysReflected = "pathways-reflected",
   pathwaysClaim = "pathways-claim",
+  pathwaysProgress = "pathways-progress",
   viewUserId = "view-user-id",
 }
 
@@ -389,6 +390,15 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
               component: {
                 id: ROUTES.pathwaysClaim,
                 name: ROUTES.pathwaysClaim,
+              },
+            });
+          }
+
+          case DebugCodes.pathwaysProgress: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.pathwaysProgress,
+                name: ROUTES.pathwaysProgress,
               },
             });
           }
