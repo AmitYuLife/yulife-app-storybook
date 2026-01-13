@@ -16,19 +16,6 @@ export const USER_GAME_STATE_1 = {
   },
 } as IDatabaseItem;
 
-export const USER_GAME_STATE_2 = {
-  type: "mongo",
-  modelName: "user_game_state",
-  data: {
-    _id: generateRandomMongoId(),
-    customerId: customers.CUSTOMER_2.data.customerId,
-    userId: customers.CUSTOMER_2.data.customerId,
-    currentBalance: 15000,
-    currentStreak: 0,
-    currentLevel: 10,
-  },
-} as IDatabaseItem;
-
 export const USER_GAME_STATE_3 = {
   type: "mongo",
   modelName: "user_game_state",

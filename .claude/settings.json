@@ -10,7 +10,8 @@
       "Bash(applesimutils:*)",
       "Bash(xcrun simctl:*)",
       "Bash(yarn detox:build)",
-      "Bash(CI=true yarn detox:run:*)"
+      "Bash(CI=true yarn detox:run:*)",
+      "Bash(yarn e2e:build:*)"
     ],
     "deny": [],
     "ask": []

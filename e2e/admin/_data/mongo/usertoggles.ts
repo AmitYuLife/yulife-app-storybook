@@ -50,7 +50,7 @@ export const CUSTOMER_2_TOGGLES = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: customers.CUSTOMER_2.data.customerId,
+    userId: customers.CUSTOMER_2.customer.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       tempGameEnableReleaseYuHealthV4: true,

@@ -27,7 +27,7 @@ export const USER_PROFILE_2 = {
   ...MODEL_DEFAULTS,
   data: {
     _id: generateRandomMongoId(),
-    userId: customers.CUSTOMER_2.data.customerId,
+    userId: customers.CUSTOMER_2.customer.data.customerId,
     ...RECORD_DEFAULTS,
   },
 } as IDatabaseItem;

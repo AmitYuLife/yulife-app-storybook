@@ -83,12 +83,12 @@ Feature("I receive the correct emails", async () => {
 
   Scenario("User sees their gifted YuCoin reward via the email flow", scenario.start, async () => {
     Given("I log into the app", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async () => {
-      When("I trigger the gifting event", when.triggerGiftReceivedEmail(data.CUSTOMER_2, data.USER_2_GIFT_A), async () => {
+      When("I trigger the gifting event", when.triggerGiftReceivedEmail(data.CUSTOMER_2.customer, data.USER_2_GIFT_A), async () => {
         Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
       });
     });
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
-      Then("I should have received the gifted YuCoin email", then.hasReceivedGiftedEmail(data.CUSTOMER_1.data.email, data.CUSTOMER_2));
+      Then("I should have received the gifted YuCoin email", then.hasReceivedGiftedEmail(data.CUSTOMER_1.data.email, data.CUSTOMER_2.customer));
     });
     When("I fully terminate the app", when.terminateApp, async () => {
       When("I open the gifted YuCoin email and click the CTA link", when.followEmailLink(data.CUSTOMER_1.data.email), async () => {
