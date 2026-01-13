@@ -11,7 +11,7 @@ export const USER_2_GIFT_A = {
   ...MODEL_DEFAULTS,
   data: {
     _id: generateRandomMongoId(),
-    fromUserId: customer.CUSTOMER_2.data.customerId,
+    fromUserId: customer.CUSTOMER_2.customer.data.customerId,
     toUserId: customer.CUSTOMER_1.data.customerId,
     assetType: "yucoin",
     amount: 250,
@@ -26,7 +26,7 @@ export const USER_2_GIFT_B = {
   ...MODEL_DEFAULTS,
   data: {
     _id: generateRandomMongoId(),
-    fromUserId: customer.CUSTOMER_2.data.customerId,
+    fromUserId: customer.CUSTOMER_2.customer.data.customerId,
     toUserId: customer.CUSTOMER_1.data.customerId,
     assetType: "yucoin",
     amount: 250,

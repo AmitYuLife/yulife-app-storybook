@@ -14,13 +14,12 @@ alwaysApply: false
 
 On `yulife-api-server` (make sure the user has done this at least once in each session before running the RN client commands)
 
-- `detox:start`
+- `pnpm detox:start`
 
 On `yulife-rn-client`, open 2 terminals
 
-- `start:e2e`
-- `detox:run` (if you want to run a specific suite, use `detox:run e2e/path/to/suite.spec.ts`)
-- For non-interactive mode (exits after run): `CI=true yarn detox:run e2e/path/to/suite.spec.ts`
+- `yarn start:e2e`
+- `CI=true yarn detox:run e2e/path/to/suite.spec.ts`
 
 ## Troubleshooting
 

@@ -9,6 +9,7 @@ import {
 } from "@ids";
 import { authoriseFitkit, sendReduxEvent } from "@socket";
 import { AUTH_7, CUSTOMER_7, CUSTOMER_2 } from "../../_data";
+import { GENERIC_AUTH_PASSWORD } from "../../../_utils/users/auth";
 import { getLocalisedString as t } from "@i18n";
 import { expect } from "detox";
 import { selectRegionIfVisible, wait } from "../../_common/given";
@@ -84,7 +85,7 @@ export const enterPasswordIncorrectly =
 
     await selectRegionIfVisible(region)();
     await loginField.tap();
-    await loginField.replaceText(CUSTOMER_2.data.email);
+    await loginField.replaceText(CUSTOMER_2.customer.data.email);
     await passwordField.tap();
     await passwordField.tap();
     await passwordField.replaceText("wrongpasswordlol");

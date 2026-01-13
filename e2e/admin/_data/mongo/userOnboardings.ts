@@ -26,21 +26,6 @@ export const USER_ONBOARDING_1 = {
   },
 } as IDatabaseItem;
 
-export const USER_ONBOARDING_2 = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: users.USER_2.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
-    businessName: "Justice League",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-    },
-  },
-} as IDatabaseItem;
-
 export const USER_ONBOARDING_3 = {
   type,
   modelName,

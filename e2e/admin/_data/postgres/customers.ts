@@ -36,17 +36,34 @@ export const CUSTOMER_1 = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_2 = {
-  type,
-  modelName,
-  data: {
-    customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
-    firstName: "Jesse",
-    lastName: "Pinkman",
-    status: "onboarded",
+// Modernised using createCustomerRecords helper
+// This generates: customer, auth, onboarding, users, gameState, business_employee, business_employee_info
+// Remove any conflicting records from other _data files (AUTH_2, USER_2, USER_GAME_STATE_2, BUSINESS_EMPLOYEE_2)
+export const CUSTOMER_2 = createCustomerRecords({
+  customerId: generateRandomPostgresId(),
+  archived: false,
+  firstName: "Jesse",
+  lastName: "Pinkman",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      employmentStartDate: moment().subtract(4, "months").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  // Custom data from old USER_2 record
+  userInfo: {
+    earnRate: 20,
   },
-} as IDatabaseItem;
+  // Custom data from old USER_GAME_STATE_2 record
+  userGameState: {
+    currentBalance: 15000,
+    currentStreak: 0,
+    currentLevel: 10,
+  },
+});
 
 export const CUSTOMER_3 = {
   type,
