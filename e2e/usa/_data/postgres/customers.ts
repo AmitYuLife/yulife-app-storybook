@@ -44,15 +44,6 @@ export const CUSTOMER_USA_3 = createCustomerRecords({
   email: generateRandomInbox(),
   customerId: generateRandomPostgresId(),
   userInfo: {
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 1,
-      },
-    ],
     isAvatarCreated: false,
     earnRate: 1,
   },
@@ -83,15 +74,6 @@ export const CUSTOMER_USA_4 = createCustomerRecords({
   email: generateRandomInbox(),
   customerId: generateRandomPostgresId(),
   userInfo: {
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 1,
-      },
-    ],
     isAvatarCreated: false,
     earnRate: 1,
   },
@@ -122,15 +104,6 @@ export const CUSTOMER_USA_5 = createCustomerRecords({
   email: generateRandomInbox(),
   customerId: generateRandomPostgresId(),
   userInfo: {
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 1,
-      },
-    ],
     isAvatarCreated: false,
     earnRate: 1,
   },

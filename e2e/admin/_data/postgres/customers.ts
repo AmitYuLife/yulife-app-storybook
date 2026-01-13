@@ -224,15 +224,6 @@ export const CUSTOMER_15 = createCustomerRecords({
   ],
   userInfo: {
     earnRate: 20,
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 20,
-      },
-    ],
   },
 });
 
@@ -267,15 +258,6 @@ export const CUSTOMER_16 = createCustomerRecords({
   userInfo: {
     isAvatarCreated: false,
     earnRate: 20,
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 20,
-      },
-    ],
     referral: {
       referredBy: CUSTOMER_15.customer.data.customerId,
       businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
