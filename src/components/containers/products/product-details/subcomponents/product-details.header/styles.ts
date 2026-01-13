@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   wrapper: {
     overflow: "hidden",
     flex: 1,
-    paddingBottom: Style.adjust(16),
+    paddingBottom: Style.adjust(24),
     paddingTop: TOP_BAR.PADDING_TOP,
   },
   backgroundImage: {
