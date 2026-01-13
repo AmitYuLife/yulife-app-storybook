@@ -1499,7 +1499,7 @@
       "reflection_chest_reward_to_earn_markdown": "اكسب: %{amount} ![](%{yucoinUrl})",
       "reflection_countdown": "%{الساعات}:%{الدقائق}:%{الثواني}",
       "reflection_inactive_label": "انعكاس",
-      "reflection_unlocks_in": "يفتح في",
+      "reflection_unlocks_in": "يفتح بعد",
       "reflection_yucoin_amount": "%{amount} ![](%{yucoinUrl})",
       "secondary_button_label": "اذهب إلى مركز الرفاهية",
       "today": "اليوم",
@@ -1873,7 +1873,7 @@
       "one_moment_please": "لحظة واحدة من فضلك",
       "session_complete": "الجلسة مكتملة.",
       "video_type": {
-        "mindfulness": "تأمل",
+        "mindfulness": "تأمٌل",
         "workout": "التمارين"
       }
     },
@@ -1944,7 +1944,7 @@
         "collected": "لقد جمعت...",
         "steps": "خطوات",
         "subtitle": "لقد أبدعت!",
-        "title": "هذا العام مشيتَ...",
+        "title": "هذا العام قد مشيت...",
         "yucoin_amount": "%{amount} يوكوين"
       },
       "stage_4": {
