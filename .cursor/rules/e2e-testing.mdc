@@ -1,0 +1,34 @@
+---
+description: E2E Testing with Detox and BDD
+globs: e2e/**/*.ts
+alwaysApply: false
+---
+# E2E Testing
+
+- Uses **Detox** for E2E testing on iOS/Android
+- Uses `@yu-life/yulife-bdd-framework` for BDD-style tests and data seeding
+- Test structure: `Feature()` > `Scenario()` > `Given()` / `When()` / `Then()`
+- Step definitions in `_steps/given.ts`, `_steps/when.ts`, `_steps/then.ts`
+
+## Running tests
+
+On `yulife-api-server` (make sure the user has done this at least once in each session before running the RN client commands)
+
+- `detox:start`
+
+On `yulife-rn-client`, open 2 terminals
+
+- `start:e2e`
+- `detox:run` (if you want to run a specific suite, use `detox:run e2e/path/to/suite.spec.ts`)
+- For non-interactive mode (exits after run): `CI=true yarn detox:run e2e/path/to/suite.spec.ts`
+
+## Troubleshooting
+
+**"Failed to find the app binary"** - The app hasn't been built yet:
+
+- Run `yarn detox:build` to build the iOS app for testing
+
+**"Failed to find a device by type"** - The simulator in `.detoxrc.json` doesn't exist:
+
+1. Check available simulators: `xcrun simctl list devices available | grep -i iphone`
+2. Create the missing simulator: `xcrun simctl create "iPhone 16 Pro" "iPhone 16 Pro"`

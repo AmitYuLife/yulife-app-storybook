@@ -5,7 +5,7 @@ export class SocketServer {
   private USED_TRANSLATION_KEYS = new Set<string>();
   public io: Server;
 
-  public startServer = (port = 3001) => {
+  public startServer = (port = 3091) => {
     this.io = new Server(port);
     this.io.on("connect", (socket) => {
       socket.emit("WELCOME");
