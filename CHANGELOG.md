@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.97.0] - 2026-01-14
+
+### Features
+
+- Feature GS-2171: Additional content item customizability
+
+### Bugfixes
+
+- Bugfix GS-2209: Handle onClose when pathways screen is not in stack
+- Bugfix GS-2209: Handle onClose when pathways screen is not in stack
+- Bugfix GS-2200: Refetch pathwayChallenge when claiming
+- (grafted) Bugfix: Boost info modal on Android
+- (grafted) Merge branch 'bugfix/gs-1970-logout-first-challenge-watch-app-2' into 'develop'
+- Bugfix GS-2137: Make activity history pills clickable
+- Bugfix GS-2171: Alias as textStyle for mapped server styles
+
+### Tasks
+
+- Task GS-2191: More pathways reflected fixes
+- Revert "Merge branch 'task/cte-575-replace-device-info' into 'develop'"
+- Task DEVOPS-4679: Automate assigning ios UAT builds to Bug Bounty group
+- Task GS-2192: Pathways debug screen
+- Task CTE-576: seed data conversion
+- Task CTE-576: LLM e2e info
+- Task GS-2199: Pathways claim fixes
+- Task CTE-575: update podfile.lock
+- Task CTE-576: update bdd
+- Task CTE-576: fix create createCustomerRecords input types
+- Task: Add opencode config
+- Task GS-2198: Add debug menu item to get user id
+- Task GS-2191: Pathways claimed screen top bar issues
+- Task CTE-575: replace device-info with expo
+- Task GS-2190: Disable card after challenge is completed
+- Task GS-2185: Pathways reflect & claim screen data
+- Task GS-2140: Add mm from pathway challenge
+
+### Chores
+
+- Chore ISA-4008: Padding tweak in PDP header
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox GS-2043: Impact Pass Reward Hint
+- Detox GS-2114: Streak Modal Flow for Yudoku
+
 ## [4.96.0] - 2026-01-07
 
 ### Features
