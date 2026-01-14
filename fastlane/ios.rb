@@ -155,10 +155,26 @@ platform :ios do
           ]
         }
       )
+      next
     end
     
-    # Upload to TestFlight for UAT and production (both use identical configuration)
-    if environment == "uat" || environment == "production"
+    # Upload to TestFlight for UAT
+    if environment == "uat"
+      upload_to_testflight(
+        app_identifier: ENV["FL_APP_IDENTIFIER"],
+        app_platform: "ios",
+        ipa: ENV["IPA_OUTPUT_PATH"],
+        pkg: ENV["PKG_OUTPUT_PATH"],
+        notify_external_testers: false,
+        distribute_external: true,
+        groups: ["Bug Bounty"],
+        skip_waiting_for_build_processing: true,
+        app_version: full_version,
+        build_number: build_number,
+      )
+    end
+    # Upload to TestFlight for production
+    if environment == "production"
       upload_to_testflight(
         app_identifier: ENV["FL_APP_IDENTIFIER"],
         app_platform: "ios",
@@ -169,30 +185,30 @@ platform :ios do
         app_version: full_version,
         build_number: build_number,
       )
-      slack(
-        message: "✅ YuLife iOS #{environment} build completed successfully",
-        channel: "#alerts-engineering",
-        slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
-        username: "Gitlab CI MacOS Runner",
-        icon_emoji: ":apple-icon:",
-        default_payloads: ["git_branch", "git_author"],
-        payload: {
-          "Build Version" => version,
-          "Build Number" => build_number,
-          "Environment" => environment
-        },
-        attachment_properties: {
-          color: "good",
-          fields: [
-            {
-              title: "View Build",
-              value: "<#{ENV['CI_JOB_URL']}|:gitlab: Open GitLab Job>",
-              short: true
-            }
-          ]
-        }
-      )
     end
+    slack(
+      message: "✅ YuLife iOS #{environment} build completed successfully",
+      channel: "#alerts-engineering",
+      slack_url: ENV['ALERTS_ENGINEERING_SLACK_WEBHOOK_URL'],
+      username: "Gitlab CI MacOS Runner",
+      icon_emoji: ":apple-icon:",
+      default_payloads: ["git_branch", "git_author"],
+      payload: {
+        "Build Version" => version,
+        "Build Number" => build_number,
+        "Environment" => environment
+      },
+      attachment_properties: {
+        color: "good",
+        fields: [
+          {
+            title: "View Build",
+            value: "<#{ENV['CI_JOB_URL']}|:gitlab: Open GitLab Job>",
+            short: true
+          }
+        ]
+      }
+    )
   end
 
   desc "iOS Develop build"
