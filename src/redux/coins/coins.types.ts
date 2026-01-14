@@ -26,7 +26,6 @@ export type IGetTodayActivitiesPayload = ICoinsTodayEarned & ICyclingChallenge &
 
 type ITodayActivitiesInAppMeditation = {
   inAppMeditation: IAppMeditationPayload;
-  tempGameGetInAppMeditationFromServer: boolean;
 };
 
 type ICyclingChallenge = {

@@ -21,7 +21,6 @@ interface IProps {
   mindfulnessAccessibilityLabel: string;
   pensionAccessibilityLabel: string;
   textColor?: string;
-  showUnsynced?: boolean;
 }
 
 const ActivityList = memo(
@@ -36,7 +35,6 @@ const ActivityList = memo(
     mindfulnessAccessibilityLabel,
     pensionAccessibilityLabel,
     textColor = Colours.neutral.n900,
-    showUnsynced,
   }: IProps) => {
     return (
       <View style={styles.wrapper}>
@@ -44,26 +42,22 @@ const ActivityList = memo(
           <StepsIcon width={16} height={16} colour={textColor} />
           <View style={styles.textWrapper}>
             <TextTemplate type="b2" color={textColor} testID={STEPS_COUNT(steps)}>
-              {showUnsynced ? (
-                "-"
-              ) : (
-                <Counter
-                  duration={1200}
-                  value={steps}
-                  type="b2"
-                  color={textColor}
-                  textAfterValue={steps === 1 ? t("activity_types.steps.singular") : t("activity_types.steps.plural")}
-                />
-              )}
+              <Counter
+                duration={1200}
+                value={steps}
+                type="b2"
+                color={textColor}
+                textAfterValue={steps === 1 ? t("activity_types.steps.singular") : t("activity_types.steps.plural")}
+              />
             </TextTemplate>
           </View>
         </View>
-        {cycling || showUnsynced ? (
+        {cycling ? (
           <View style={styles.container} accessibilityLabel={cyclingAccessibilityLabel}>
             <CyclingIcon width={16} height={16} colour={textColor} />
             <View style={styles.textWrapper}>
               <TextTemplate type="b2" color={textColor} testID={CYCLING_COUNT(cycling)}>
-                {showUnsynced ? "-" : cycling}
+                {cycling}
               </TextTemplate>
             </View>
           </View>
@@ -78,12 +72,12 @@ const ActivityList = memo(
             </View>
           </View>
         )}
-        {mindfulness || showUnsynced ? (
+        {mindfulness ? (
           <View style={styles.container} accessibilityLabel={mindfulnessAccessibilityLabel}>
             <MindfulnessIcon color={textColor} />
             <View style={styles.textWrapper}>
               <TextTemplate type="b2" color={textColor} testID={MINDFUL_COUNT(mindfulness)}>
-                {showUnsynced ? "-" : mindfulness}
+                {mindfulness}
               </TextTemplate>
             </View>
           </View>
