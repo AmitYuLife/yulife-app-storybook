@@ -47,7 +47,11 @@ const PathwaysClaimScreen = ({ onClose, healthChallenge, yucoinReward }: Props) 
         backgroundColor="transparent"
         textStyle={{ color: colours.neutral.white }}
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+      >
         <Box mt={TOP_BAR_WITH_PAD} pb={bottom + 100} disableAutoAdjust={true}>
           {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground />}
 
@@ -133,6 +137,12 @@ const PathwaysClaimScreen = ({ onClose, healthChallenge, yucoinReward }: Props) 
 };
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    height: "100%",
+  },
   imageBackground: {
     position: "absolute",
     width: "100%",
