@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { hasNotch } from "@utils";
+import deviceInfoModule from "react-native-device-info";
 import Style from "./style";
 
 const BORDER_RADIUS = Style.adjust(8);
@@ -9,7 +9,7 @@ const HEIGHT = Style.adjust(58);
 const getPositionBottom = (options = { additionalBottom: 0 }) => {
   const { additionalBottom } = options;
 
-  if (Platform.OS === "ios" && hasNotch()) {
+  if (Platform.OS === "ios" && deviceInfoModule.hasNotch()) {
     return 30 + additionalBottom;
   }
 

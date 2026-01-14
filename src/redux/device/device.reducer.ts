@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { getUniqueDeviceId } from "@utils";
+import DeviceInfo from "react-native-device-info";
 import { findBestAvailableLanguage } from "@locale";
 import {
   AddDeviceTokenPayload,
@@ -25,7 +25,7 @@ let deviceId = "";
 
 (async () => {
   try {
-    deviceId = await getUniqueDeviceId();
+    deviceId = await DeviceInfo.getUniqueId();
   } catch (e) {
     //
   }
