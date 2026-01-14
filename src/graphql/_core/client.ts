@@ -6,8 +6,7 @@ import { ApolloClient, NormalizedCacheObject, from, createHttpLink } from "@apol
 import moment from "moment";
 import { Platform, PixelRatio } from "react-native";
 import Config from "react-native-config";
-import * as Device from "expo-device";
-import * as Application from "expo-application";
+import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
 import getClient from "@services/bugsnag";
 import { updateOfflineState } from "@redux/app/app.actions";
@@ -32,7 +31,7 @@ const httpLink = (r?: REGION) =>
 gqlCachePersistor().restore();
 
 const getAppVersion = () => {
-  const version = Application.nativeApplicationVersion ?? "1.0";
+  const version = DeviceInfo.getVersion();
 
   if (DETOX_ENABLED || version === "1.0" || __DEV__) {
     return appJson.version;
@@ -49,7 +48,7 @@ if (__DEV__) {
 
 const defaultHeaders = {
   app_version: getAppVersion(),
-  device_id: Device.modelId ?? "",
+  device_id: DeviceInfo.getDeviceId(),
   apollo_client_name: `react_native_${Platform.OS}`,
   yu_device_pixel_ratio: PixelRatio.get(),
 };

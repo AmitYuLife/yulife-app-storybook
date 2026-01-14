@@ -5,7 +5,7 @@ import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
 import { ActionSheetIOS, Alert, Platform } from "react-native";
-import { getUniqueDeviceId, isiOS } from "@utils";
+import DeviceInfo from "react-native-device-info";
 import { TOKEN_EXPIRATION } from "@services/constants";
 import { applyLoginSession } from "./login.helpers";
 import { useDispatch } from "react-redux";
@@ -15,6 +15,7 @@ import { useCaptcha } from "@organisms/captcha-input";
 import { useSendMagicLink } from "./send-magic-link.hook";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
+import { isiOS } from "@utils/device";
 
 interface Props {
   componentId: string;
@@ -100,7 +101,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
         // set the region before logging in for the GQL client
         region.setRegion(payload.region);
 
-        const uniqueDeviceId = await getUniqueDeviceId();
+        const uniqueDeviceId = await DeviceInfo.getUniqueId();
 
         result = await loginUser({
           variables: {

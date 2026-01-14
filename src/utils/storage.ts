@@ -24,7 +24,6 @@ export enum StorageKey {
  */
 export enum EncryptedStorageKey {
   token = "@Store:token",
-  deviceUniqueId = "@Store:deviceUniqueId",
 }
 
 /**
