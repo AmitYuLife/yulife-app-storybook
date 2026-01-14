@@ -13,7 +13,7 @@ const PathwaysReflectedContainer = ({ componentId }: IPathwaysReflectedContainer
     fetchPolicy: "network-only",
   });
 
-  const onClose = useCallback(() => {
+  const onClose = useCallback(async () => {
     if (isStreakComplete) {
       Navigation.push(componentId, {
         component: {
@@ -25,7 +25,15 @@ const PathwaysReflectedContainer = ({ componentId }: IPathwaysReflectedContainer
       return;
     }
 
-    Navigation.popTo(ROUTES.pathways);
+    //  Because we are able to get to this screen from the hero card from the daily-steps screen
+    //  Pathways route is not always on the stack and the `popTo` will throw an error
+    //  This solution allows us to keep going to the pathways screen when possible, and otherwise just go to the root
+    //  Which in this case will be daily-steps screen
+    try {
+      await Navigation.popTo(ROUTES.pathways);
+    } catch (error) {
+      await Navigation.popToRoot(componentId);
+    }
   }, [componentId, isStreakComplete]);
 
   return (
