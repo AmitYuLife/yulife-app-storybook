@@ -6,11 +6,7 @@ import dd from "@services/datadog";
 import { UPDATE_APP_STATE, updateAppState } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
-import {
-  UPDATE_IN_APP_MEDITATION,
-  updateDailyMeditation,
-  updateInAppMeditation,
-} from "@redux/daily-meditation/daily-meditation.actions";
+import { updateDailyMeditation, updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { PermissionsAndroid, Platform } from "react-native";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
@@ -39,14 +35,7 @@ export default function* getDailyPassiveActivity(
     const { payload, type } = dataPayload || {};
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
-    if (
-      features.tempGameGetInAppMeditationFromServer &&
-      (type === UPDATE_APP_STATE || type === UPDATE_IN_APP_MEDITATION)
-    ) {
-      return;
-    }
-
-    if (!features.tempGameGetInAppMeditationFromServer && type === GET_USER_TODAY_ACTIVITY_SUCCESS) {
+    if (type === GET_USER_TODAY_ACTIVITY_SUCCESS) {
       return;
     }
 
@@ -186,11 +175,7 @@ const getMeditation = async ({
           metaData: { file: "getDailyPassiveActivity.saga.getMeditation" },
         });
 
-    const fitkitAndInAppMeditation = parseMeditation(
-      inAppMeditation,
-      meditationResponse,
-      features.tempGameGetInAppMeditationFromServer
-    );
+    const fitkitAndInAppMeditation = parseMeditation(inAppMeditation, meditationResponse);
     if (!fitkitAndInAppMeditation.results?.length) {
       return [];
     }
@@ -211,11 +196,7 @@ const getMeditation = async ({
         },
       });
 
-  const yuHealthAndInAppMeditation = parseYuHealthMeditation(
-    inAppMeditation,
-    yuHealthMeditation,
-    features.tempGameGetInAppMeditationFromServer
-  );
+  const yuHealthAndInAppMeditation = parseYuHealthMeditation(inAppMeditation, yuHealthMeditation);
 
   if (!yuHealthAndInAppMeditation.length) {
     return [];
@@ -271,14 +252,9 @@ const getCycling = async ({
 
 const parseYuHealthMeditation = (
   inAppMeditation: IAppDailyMeditationProps,
-  yuHealthMeditation: IAggregateQueryResponse[],
-  tempGameGetInAppMeditationFromServer: boolean
+  yuHealthMeditation: IAggregateQueryResponse[]
 ): IAggregateQueryResponse[] => {
   const getStartTime = () => {
-    if (tempGameGetInAppMeditationFromServer) {
-      return inAppMeditation.date ? moment(inAppMeditation.date).toDate() : moment().toDate();
-    }
-
     return inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).toDate() : moment().toDate();
   };
 
@@ -305,14 +281,9 @@ const parseYuHealthMeditation = (
 
 const parseMeditation = (
   inAppMeditation: IAppDailyMeditationProps,
-  fitkitMeditation: QueryFitKitByTypesResponse,
-  tempGameGetInAppMeditationFromServer: boolean
+  fitkitMeditation: QueryFitKitByTypesResponse
 ): QueryFitKitByTypesResponse => {
   const getStartTime = () => {
-    if (tempGameGetInAppMeditationFromServer) {
-      return inAppMeditation.date ? moment(inAppMeditation.date).format() : moment().format();
-    }
-
     return inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).format() : moment().format();
   };
 

@@ -1,5 +1,5 @@
 import moment from "moment";
-import { getUserTodayActivitySuccess, logOutSuccess } from "../user/user.actions";
+import { logOutSuccess } from "../user/user.actions";
 import {
   updateDailyMeditation,
   updateDailyMeditationEmptyResult,
@@ -8,7 +8,7 @@ import {
 import { Challenge } from "@redux/_core/types";
 import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
 import { updateCurrentDate } from "@redux/device/device.actions";
-import { IAppMeditationPayload, IAppMeditationPayloadLocal, IDailyMeditationStore } from "./daily-meditation.types";
+import { IAppMeditationPayloadLocal, IDailyMeditationStore } from "./daily-meditation.types";
 import { createReducer } from "@reduxjs/toolkit";
 import { rehydrateAction } from "@redux/persist/persist.actions";
 
@@ -31,14 +31,6 @@ const dailyMeditationReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(updateDailyMeditationEmptyResult, (state) => ({ ...state, dailyMeditation: 0 }));
   builder.addCase(updateInAppMeditation, (state, action) => updateInAppMeditationPayloadLocal(state, action.payload));
   builder.addCase(logOutSuccess, () => getInitialState());
-  builder.addCase(getUserTodayActivitySuccess, (state, action) =>
-    updateInAppMeditationPayload(
-      state,
-      action.payload.inAppMeditation,
-      action.payload.tempGameGetInAppMeditationFromServer
-    )
-  );
-
   builder.addDefaultCase((state) => state);
 });
 
@@ -88,28 +80,6 @@ const resetDailyMeditationState = (state: IDailyMeditationStore) => ({
   },
   lastUpdated: moment().format(),
 });
-
-const updateInAppMeditationPayload = (
-  state: IDailyMeditationStore,
-  payload: IAppMeditationPayload,
-  tempGameGetInAppMeditationFromServer: boolean
-): IDailyMeditationStore => {
-  const { duration, date } = payload;
-  const lastUpdated = moment().format();
-
-  if (!tempGameGetInAppMeditationFromServer) {
-    return { ...state };
-  }
-
-  return {
-    ...state,
-    inAppMeditation: {
-      duration,
-      lastUpdated,
-      date,
-    },
-  };
-};
 
 const updateInAppMeditationPayloadLocal = (
   state: IDailyMeditationStore,

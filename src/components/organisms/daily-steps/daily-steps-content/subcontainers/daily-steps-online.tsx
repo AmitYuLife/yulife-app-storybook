@@ -164,7 +164,6 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
 
         <View style={styles.activityListWrapper}>
           <ActivityList
-            showUnsynced={(isUnavailable || isUnauthorised) && features.tempShowUnsyncedDailyStepsPassiveActivities}
             textColor={dailyStepsScreen.textStyle.color}
             steps={dailySteps}
             cycling={dailyCycling}

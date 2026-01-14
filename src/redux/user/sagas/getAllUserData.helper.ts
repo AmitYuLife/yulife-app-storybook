@@ -29,11 +29,9 @@ export const toUserDataReduxType = ({
   type,
   data,
   requestTimestamp,
-  tempGameGetInAppMeditationFromServer,
 }: {
   type: AppDataType;
   data: GetAllUserDataResponse[AppDataType];
-  tempGameGetInAppMeditationFromServer: boolean;
   requestTimestamp: string;
 }) => {
   switch (type) {
@@ -44,7 +42,7 @@ export const toUserDataReduxType = ({
     case AppDataType.coinLedger:
       return toCoinLedger(data as UserCoinLedgerFragment);
     case AppDataType.todayActivity:
-      return toTodayActivity(data as UserTodayActivitiesFragment, tempGameGetInAppMeditationFromServer);
+      return toTodayActivity(data as UserTodayActivitiesFragment);
     case AppDataType.passiveChallengesEarnRate:
       return toPassiveChallengesEarnRate(data as UserPassiveChallengesEarnRate);
     case AppDataType.dailyPension:
@@ -121,10 +119,7 @@ const toCoinLedger = (coinLedger: UserCoinLedgerFragment): IGetCoinLedgerSuccess
   nextLevelAvailableAt: coinLedger?.nextLevelAvailableAt,
 });
 
-const toTodayActivity = (
-  todayActivities: UserTodayActivitiesFragment,
-  tempGameGetInAppMeditationFromServer: boolean
-): IGetTodayActivitiesPayload => ({
+const toTodayActivity = (todayActivities: UserTodayActivitiesFragment): IGetTodayActivitiesPayload => ({
   todayActivity: todayActivities.activities,
   dailyCyclingEarned: todayActivities.passiveChallenges?.cycling?.yuCoinAwarded,
   cycling: {
@@ -136,7 +131,6 @@ const toTodayActivity = (
     duration: todayActivities.inAppMeditation?.duration,
     date: todayActivities.inAppMeditation?.date,
   },
-  tempGameGetInAppMeditationFromServer,
 });
 
 const toPassiveChallengesEarnRate = (
