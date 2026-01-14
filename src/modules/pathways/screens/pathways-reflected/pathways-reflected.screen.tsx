@@ -13,6 +13,7 @@ import { ItemDetailsReward } from "@organisms";
 import ChestAnimatedRaysBackground from "@components/modals/open-random-chest/subcomponents/chest-animated-rays-background";
 import { DETOX_ENABLED } from "@services/socket";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { PATHWAYS_REFLECTED_CONTINUE } from "@ids";
 
 interface IPathwaysReflectedScreenProps {
   onClose: () => void;
@@ -105,7 +106,7 @@ const PathwaysReflectedScreen = ({
           </Box>
         </ScrollView>
         <Box position="absolute" bottom={0} width="100%" pb={bottom}>
-          <Button testID="continue_button" onPress={onClose} translatedLabel="Continue" />
+          <Button testID={PATHWAYS_REFLECTED_CONTINUE} onPress={onClose} translatedLabel="Continue" />
         </Box>
       </Box>
     </PathwaysReflectedScreenWrapper>
