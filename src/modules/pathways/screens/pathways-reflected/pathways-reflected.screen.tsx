@@ -29,6 +29,7 @@ const REWARD_SIZE_MYSTERY_BOX = 120;
 const REWARD_IMAGE_SIZE_MYSTERY_BOX = 100;
 const REWARD_SIZE_YUCOIN = 190;
 const REWARD_IMAGE_SIZE_YUCOIN = 120;
+const COIN_TOP_PADDING = 25;
 
 const PathwaysReflectedScreen = ({
   onClose,
@@ -49,8 +50,8 @@ const PathwaysReflectedScreen = ({
       <Box flex={1} w="100%" entering={FadeIn.duration(300)}>
         <ScrollView showsVerticalScrollIndicator={false}>
           {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground top={top - width * 0.2} />}
-          <Box mt={20 + top} disableAutoAdjust={true}>
-            <Box justifyContent="center" alignItems="center" pb={90}>
+          <Box mt={20 + top} disableAutoAdjust={false}>
+            <Box justifyContent="center" alignItems="center" pb={90} mt={COIN_TOP_PADDING}>
               <Box justifyContent="center" alignItems="center" gap={50}>
                 <Box>
                   <ItemDetailsReward
@@ -59,7 +60,13 @@ const PathwaysReflectedScreen = ({
                     source={isStreakComplete ? MYSTERY_BOX_ICON : YUCOIN_SHADOW_ICON}
                   />
                   {todayReward > 0 ? (
-                    <Box alignItems="center" position="absolute" justifyContent="center" w={rewardSize} top={-30}>
+                    <Box
+                      alignItems="center"
+                      position="absolute"
+                      justifyContent="center"
+                      w={rewardSize}
+                      top={-COIN_TOP_PADDING}
+                    >
                       <AnimatedPlusPoints type="challenge-success" coins={todayReward} textType="h3" />
                     </Box>
                   ) : null}
