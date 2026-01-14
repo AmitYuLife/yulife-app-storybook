@@ -89,6 +89,7 @@ const PathwayReflectChest = ({
       {status === "completed" && onPress ? (
         <Box mx={16} mb={12}>
           <Button
+            animate={true}
             size={BUTTON_SIZES.NARROW}
             translationKey="screens.pathways.reflection_chest_button_label"
             onPress={onPress}
