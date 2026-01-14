@@ -1133,3 +1133,7 @@ export const MOOD_TODAY_COMPLETED = (completed: boolean) =>
 export const MOOD_VIEW_CALENDAR = "MOOD_VIEW_CALENDAR";
 export const MOOD_VIEW_CALENDAR_TODAY_COMPLETED = (completed: boolean) =>
   `MOOD_VIEW_CALENDAR_TODAY_${completed ? "" : "not_"}completed`;
+export const PATHWAYS_REFLECTION_UNLOCKS_IN = "PATHWAYS_REFLECTION_UNLOCKS_IN";
+export const SEE_TERMS_AND_CONDITIONS_BUTTON =
+  "BUTTON_BASE_See terms and conditions_false-text-view";
+export const PATHWAYS_REFLECTED_CONTINUE = "PATHWAYS_REFLECTED_CONTINUE";

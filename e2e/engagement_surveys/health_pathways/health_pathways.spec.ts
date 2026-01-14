@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import { healthPathUnlockedCopy } from "engagement_surveys/_resources/fixtures";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 import * as scenario from "../_common/scenario";
@@ -21,10 +21,10 @@ Feature("Health Pathways", async () => {
       Then("I should see the Pathways streaks", then.idVisible(ids.PATHWAYS_STREAKS, 3_000));
       Then("I should see all streak days marked as 'not completed'", then.assertStreakDayState(0));
       Then("I should see the reflection items with the correct status", async () => {
-        then.idVisible(ids.PATHWAYS_REFLECTION_ITEMS(4));
-        then.idVisible(ids.PATHWAYS_REFLECT_CHEST("locked"));
-        then.idVisible(ids.PATHWAYS_REFLECTION_ITEM(0, "active"));
-        then.assertReflectionItemsStatus(1, 4, "locked");
+        await then.idVisible(ids.PATHWAYS_REFLECTION_ITEMS(4))();
+        await then.idVisible(ids.PATHWAYS_REFLECT_CHEST("locked"))();
+        await then.idVisible(ids.PATHWAYS_REFLECTION_ITEM(0, "active"))();
+        await then.assertReflectionItemsStatus(1, 4, "locked")();
       });
     });
     When("I scroll down to the 'Your Mood' section", when.scrollFromID(ids.PATHWAYS_SCREEN, "up", "fast", 0.5, 2_000), async () => {
@@ -36,6 +36,76 @@ Feature("Health Pathways", async () => {
     });
     When("I tap to go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Mood Calendar"), 2_000), async () => {
       Then("I should land back on the Pathways screen", then.idVisible(ids.PATHWAYS_SCREEN, 3_000));
+    });
+  });
+
+  Scenario("Completing a reflection marks day 1 as completed", scenario.start, async () => {
+    Given("I am logged in", given.loginAsUser(data.CUSTOMER_9.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I navigate to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 5_000), async () => {
+        Then("I should see the 'Today's Reflection' hero card", then.idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 5_000));
+      });
+    });
+    When("I tap the 'Today's Reflection' hero card", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 2_000), async () => {
+      Then("I should land on the Pathways screen", then.idVisible(ids.PATHWAYS_SCREEN, 3_000));
+      Then("I should see all streak days marked as 'not completed'", then.assertStreakDayState(0));
+    });
+    When("I tap to the first reflection item", when.tapID(ids.PATHWAYS_REFLECTION_ITEM(0, "active"), 2_000), async () => {
+      Then("I should see the daily reflections header", then.idVisible(ids.TEXT_TEMPLATE("Daily Reflections", "h3"), 3_000));
+    });
+    When("I tap 'See terms and conditions'", when.tapID(ids.SEE_TERMS_AND_CONDITIONS_BUTTON, 2_000), async () => {
+      Then("I should see the privacy and consent screen", then.idVisible(ids.TEXT_TEMPLATE("Your privacy and consent", "h3"), 3_000));
+    });
+    When("I tap 'Consent and continue'", when.tapID(ids.BUTTON_BASE("Consent and continue", false), 2_000), async () => {
+      Then("I see 'How rested do you feel today?' and Next is disabled", then.assertQuestionAndNextDisabled("How rested do you feel today?", "b2b"));
+    });
+    When("I select 'Extremely tired' and tap Next", when.answerAndNextCheckbox("Extremely tired"), async () => {
+      Then("I see 'How has your day been so far?' and Next is disabled", then.assertQuestionAndNextDisabled("How has your day been so far?", "b2b"));
+    });
+    When("I select 'Average' and tap Next", when.answerAndNextCheckbox("Average"), async () => {
+      Then("I see 'How are you feeling today?' and Next is disabled", then.assertQuestionAndNextDisabled("How are you feeling today?", "b2b"));
+    });
+    When("I select 'tired' and tap Next", when.answerAndNextImageChoice("reflection.how_you_feel_today.tired"), async () => {
+      Then("I see 'How many hours of sleep did you get last night?' and Next is disabled", then.assertQuestionAndNextDisabled("How many hours of sleep did you get last night?", "b2b"));
+    });
+    When("I select 'Less than 5 hours' and tap Next", when.answerAndNextCheckbox("Less than 5 hours"), async () => {
+      Then("I see 'Are you a morning or night person?' and Next is disabled", then.assertQuestionAndNextDisabled("Are you a morning or night person?", "b2b"));
+    });
+    When("I select 'Morning person' and tap Next", when.answerAndNextCheckbox("Morning person"), async () => {
+      Then("I see 'In the past 6 months, how often have you felt stressed?' and Next is disabled", then.assertQuestionAndNextDisabled("In the past 6 months, how often have you felt stressed?", "b2b"));
+    });
+    When("I select 'Always' and tap Next", when.answerAndNextCheckbox("Always"), async () => {
+      Then(
+        "I see 'In the past week, how often did you manage to stay focused on important tasks without getting sidetracked?' and Next is disabled",
+        then.assertQuestionAndNextDisabled("In the past week, how often did you manage to stay focused on important tasks without getting sidetracked?", "b2b")
+      );
+    });
+    When("I select 'Often' and tap Next", when.answerAndNextCheckbox("Often"), async () => {
+      Then("I see 'How often do you socialise with friends, family, or community groups?' and Next is disabled", then.assertQuestionAndNextDisabled("How often do you socialise with friends, family, or community groups?", "b2b"));
+    });
+    When("I select 'Always (everyday)' and tap Next", when.answerAndNextCheckbox("Always (everyday)"), async () => {
+      Then("I see 'Have you found yourself using tobacco products more than once in the past 6 months?' and Next is disabled", then.assertQuestionAndNextDisabled("Have you found yourself using tobacco products more than once in the past 6 months?", "b2b"));
+    });
+    When("I select 'I have used tobacco products more than once in the last 6 months.' and tap Next", when.answerAndNextCheckbox("I have used tobacco products more than once in the last 6 months."), async () => {
+      Then("I see 'Have you found yourself drinking more than once in the past 6 months?' and Next is disabled", then.assertQuestionAndNextDisabled("Have you found yourself drinking more than once in the past 6 months?", "b2b"));
+    });
+    When("I select 'Yes' and tap Next", when.answerAndNextCheckbox("Yes"), async () => {
+      Then("I see 'Are you happy with your current diet?' and Next is disabled", then.assertQuestionAndNextDisabled("Are you happy with your current diet?", "b2b"));
+    });
+    When("I select 'Yes' and tap Next for diet", when.answerAndNextCheckbox("Yes"), async () => {
+      Then("I see 'What is your height?'", then.assertPickerQuestion("What is your height?", "Enter your height"));
+    });
+    When("I select my height and tap Next", when.selectPickerValueAndNext("Enter your height"), async () => {
+      Then("I see 'What is your current weight?'", then.assertPickerQuestion("What is your current weight?", "Enter your weight"));
+    });
+    When("I select my weight and tap Next", when.selectPickerValueAndNext("Enter your weight"), async () => {
+      Then("I should see day 1 marked as completed", then.idVisible(ids.PATHWAY_STREAK_DAY(1, true), 5_000));
+    });
+    When("I tap Continue after reflection completion", when.tapID(ids.PATHWAYS_REFLECTED_CONTINUE, 2_000), async () => {
+      Then("I should still see day 1 marked as completed", then.idVisible(ids.PATHWAY_STREAK_DAY(1, true), 5_000));
+      Then("I should see the next day reflection in a locked state", then.idVisible(ids.PATHWAYS_REFLECTION_UNLOCKS_IN, 2_000));
+    });
+    When("I scroll down to the 'Your Mood' section", when.scrollFromID(ids.PATHWAYS_SCREEN, "up", "fast", 0.5, 2_000), async () => {
+      Then("I should see todays mood monitor state completed", then.idVisible(ids.MOOD_TODAY_COMPLETED(true), 3_000));
     });
   });
 });

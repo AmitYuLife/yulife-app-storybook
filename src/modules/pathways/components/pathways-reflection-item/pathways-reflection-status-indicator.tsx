@@ -6,6 +6,7 @@ import { ArrowIcon } from "@atoms/icon/arrow";
 import { CheckIcon } from "@atoms/icon/check";
 import { t } from "@locale";
 import { padNum } from "@utils";
+import { PATHWAYS_REFLECTION_UNLOCKS_IN } from "@ids";
 
 interface IPathwayReflectionStatusIndicatorProps {
   status: "completed" | "active" | "locked" | "next";
@@ -28,7 +29,7 @@ const PathwayReflectionStatusIndicator = ({
     return (
       <Box flexDirection="row" gap={4} p={2} bg={Colours.neutral.white} br={20} flex={1}>
         <Box bg={Colours.primary.p600} br={20} px={4} py={2} justifyContent="center" alignItems="center">
-          <TextTemplate type="l3b" color={Colours.neutral.white}>
+          <TextTemplate type="l3b" color={Colours.neutral.white} testID={PATHWAYS_REFLECTION_UNLOCKS_IN}>
             {t("screens.pathways.reflection_unlocks_in")}
           </TextTemplate>
         </Box>
