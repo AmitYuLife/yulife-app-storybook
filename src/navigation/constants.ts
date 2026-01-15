@@ -138,6 +138,7 @@ export const ROUTES = {
   watchDebug: "yulife.debug.watchDebug",
   debugComponentBenchmark: "yulife.debug.debugComponentBenchmark",
   pathwaysProgress: "yulife.debug.pathwaysProgress",
+  debugUserInfo: "yulife.debug.userInfo",
 
   // smoking
   smoking: "yulife.member.smoking",

@@ -2681,6 +2681,7 @@ export type ContentItemSelectedPackageCard = {
   backgroundUrl: RemoteImage;
   coverType: CoverType;
   coverTypeStyles?: Maybe<Array<SduiStyle>>;
+  descriptionMarkdown?: Maybe<Scalars["String"]["output"]>;
   hideCoverType?: Maybe<Scalars["Boolean"]["output"]>;
   icon?: Maybe<RemoteImage>;
   id: Scalars["ID"]["output"];
@@ -38634,6 +38635,18 @@ export type GetMobileHintsQuery = {
     screenWhitelist?: Array<string> | null;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }> | null;
+};
+
+export type GetLinkedBusinessesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetLinkedBusinessesQuery = {
+  __typename?: "Query";
+  getLinkedBusinesses: Array<{
+    __typename?: "UserBusinessLink";
+    id: string;
+    businessAccountId: string;
+    businessAccountName: string;
+  }>;
 };
 
 export type GetMagicLinkQueryVariables = Exact<{
@@ -97232,6 +97245,33 @@ export const GetMobileHintsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileHintsQuery, GetMobileHintsQueryVariables>;
+export const GetLinkedBusinessesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetLinkedBusinesses" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getLinkedBusinesses" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
+                { kind: "Field", name: { kind: "Name", value: "businessAccountName" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetLinkedBusinessesQuery, GetLinkedBusinessesQueryVariables>;
 export const GetMagicLinkDocument = {
   kind: "Document",
   definitions: [
