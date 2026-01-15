@@ -6,6 +6,16 @@ YuLife is a React Native mobile application for iOS and Android that provides a 
 
 @.cursor/rules/react-native-best-practices.mdc
 
+### Rules
+
+- Always use `import { Box } from "@atoms";` component instead of View. Use the style props in `src/components/atoms/box/box.types.ts` instead of passing a `style` to Box.
+- When creating components, always define them with `const` and export with `export default memo(Component)` at the bottom of the file
+- Always destructure React imports. For example use `property: ReactNode` instead of `property: React.ReactNode`
+- If working within a module `src/modules` keep all files related to it in the module folder/subfolders.
+- All screens must be rendered via a `container` rather than adding the screen file directly to navigation. This is usually via a `screen-name.container.tsx` file.
+- Prop interfaces should be named following the pattern IComponentNameProps
+- Do not create new barrel files. Only add to existing barrel files if needed.
+
 ### State Management (Redux)
 
 Redux store configuration: `src/redux/_core/store.ts` - do not add new data to the redux store without specific user instruction
@@ -24,12 +34,6 @@ Client setup: `src/graphql/_core/client.ts`
 - Auto-generated TypeScript types in `src/graphql/__generated/`
 - Run `yarn generate:gql:types:local` after modifying `.graphql` files
 
-**Apollo Configuration**:
-
-- Auth middleware injects JWT tokens and device headers
-- Retry logic with exponential backoff
-- Multi-region client support
-
 ### Navigation (React Native Navigation)
 
 Navigation wrapper: `src/navigation/main.ts`
@@ -46,10 +50,6 @@ Navigation wrapper: `src/navigation/main.ts`
 - RTL support with animation inversion
 - Bottom tabs for main screens
 - Modal and overlay support
-
-**Navigation rules**:
-
-- All screens must be rendered via a `container` rather than adding the screen file directly to navigation. This is usually via a `screen-name.container.tsx` file.
 
 ### Localization (Tolgee)
 
