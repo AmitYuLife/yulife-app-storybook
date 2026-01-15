@@ -9,14 +9,11 @@ interface Props {
 }
 
 const PathwayChallengeSuccessContainer = ({ reward, componentId }: Props) => {
+  useBackHandler(() => true);
+
   const onPressCta = useCallback(() => {
     Navigation.popToRoot(componentId);
   }, [componentId]);
-
-  useBackHandler(() => {
-    onPressCta();
-    return true;
-  });
 
   return <PathwayChallengeSuccessScreen reward={reward} onPressCta={onPressCta} />;
 };
