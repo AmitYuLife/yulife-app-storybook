@@ -1,3 +1,9 @@
+include:
+  - component: $CI_SERVER_FQDN/yu-life/infrastructure/yulife-devops-shared-config/mr-title-check@mr-title-check-1
+  - component: $CI_SERVER_FQDN/yu-life/infrastructure/yulife-devops-shared-config/mr-description-check@mr-description-check-1
+    inputs:
+      minimum_length: 20
+
 lint-bitrise:
   tags:
     # Bitrise CLI doesn't build binary for arm64
