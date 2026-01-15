@@ -1,10 +1,10 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { IBoxProps } from "@atoms/box/box.types";
 import { Style, StyleSheet } from "@styles";
-import { memo, ReactNode } from "react";
+import { memo, ReactNode, useEffect, useRef } from "react";
 import LinearGradient from "react-native-linear-gradient";
 import LottieView from "lottie-react-native";
-import shineAnimation from "@components/molecules/challenge-tile/pathway-challenge-shine.json";
+import shineAnimation from "./sparkles.json";
 
 interface IClaimedRewardBaseProps extends IBoxProps {
   image: string | ReactNode;
@@ -12,7 +12,10 @@ interface IClaimedRewardBaseProps extends IBoxProps {
   backgroundColor?: string;
   backgroundGradient?: string[];
   borderGradient?: string[];
-  showSparkles?: boolean;
+  sparkles?: {
+    enabled: boolean;
+    delay?: number;
+  };
 }
 
 interface IClaimedRewardNoChildrenProps extends IClaimedRewardBaseProps {
@@ -44,13 +47,32 @@ const ClaimedReward = ({
   value,
   children,
   borderColor,
-  showSparkles,
+  sparkles,
   borderGradient,
   backgroundColor,
   backgroundGradient,
   valueColor = "#956AFF",
   ...props
 }: IClaimedRewardProps) => {
+  const lottieRef = useRef<LottieView>(null);
+
+  useEffect(() => {
+    if (!sparkles?.enabled || !lottieRef.current) {
+      return;
+    }
+
+    if (!sparkles.delay) {
+      lottieRef.current?.play();
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      lottieRef.current?.play();
+    }, sparkles.delay);
+
+    return () => clearTimeout(timeout);
+  }, [sparkles?.enabled, sparkles?.delay]);
+
   const maxWidth = Style.SCREEN_WIDTH / 3 - 10;
 
   const innerContent = (
@@ -111,9 +133,16 @@ const ClaimedReward = ({
           )}
         </Box>
       </Box>
-      {showSparkles ? (
+      {sparkles?.enabled ? (
         <Box position="absolute" w="100%" h="100%" overflow="hidden" pointerEvents="none">
-          <LottieView source={shineAnimation} autoPlay={true} loop={true} resizeMode="cover" style={styles.sparkles} />
+          <LottieView
+            ref={lottieRef}
+            source={shineAnimation}
+            autoPlay={false}
+            loop={true}
+            resizeMode="cover"
+            style={styles.sparkles}
+          />
         </Box>
       ) : null}
     </Box>

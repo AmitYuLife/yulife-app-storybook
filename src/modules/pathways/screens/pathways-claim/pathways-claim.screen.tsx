@@ -69,6 +69,7 @@ const PathwaysClaimScreen = ({ onClose, healthChallenge, yucoinReward }: Props) 
                     image={<Image source={require("@assets/icons/yucoin.png")} w={60} h={60} />}
                     backgroundColor={Colours.yellow.y100}
                     borderColor={Colours.pathways.brown}
+                    sparkles={{ enabled: true }}
                   >
                     <Box gap={2} alignContent="center" justifyContent="center" h="100%">
                       <TextTemplate type="b2b" textAlign="center" color={colours.inkStrong}>
@@ -108,7 +109,7 @@ const PathwaysClaimScreen = ({ onClose, healthChallenge, yucoinReward }: Props) 
                     }
                     backgroundGradient={[Colours.pathways.brightYellow, Colours.pathways.orange]}
                     borderGradient={[Colours.pathways.brightYellow, colours.neutral.white, Colours.pathways.darkOrange]}
-                    showSparkles={true}
+                    sparkles={{ enabled: true, delay: 1000 }}
                   >
                     <Box gap={2} alignContent="center" justifyContent="center" h={45}>
                       <TextTemplate type="b2b" textAlign="center" color={Colours.darkPink} numberOfLines={2}>
@@ -127,7 +128,9 @@ const PathwaysClaimScreen = ({ onClose, healthChallenge, yucoinReward }: Props) 
           <Hint
             label={t("screens.pathways.claim.reward_title")}
             description={t("screens.pathways.claim.reward_subtitle")}
-            image={{ Element: <Image source={require("../../assets/pathways-chest.png")} w={80} h={80} /> }}
+            image={{
+              Element: <Image source={require("../../assets/pathways-chest-golden-stars.png")} w={80} h={80} />,
+            }}
           />
         ) : null}
         <Button testID="claim_button" onPress={onClose} translatedLabel="Claim" />

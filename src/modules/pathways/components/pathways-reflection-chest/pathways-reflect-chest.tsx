@@ -1,7 +1,7 @@
 import { memo, useMemo } from "react";
 import { TextTemplate } from "@components/atoms/text/text-template";
 import { Box, RawImage } from "@atoms";
-import { Colours } from "@styles";
+import { Colours, StyleSheet } from "@styles";
 import PathwaysReflectionCard from "../pathways-reflection-card/pathways-reflection-card";
 import PathwayReflectionStatusIndicator from "../pathways-reflection-item/pathways-reflection-status-indicator";
 import { PathwaysReflectionStatus } from "../../pathways.types";
@@ -9,6 +9,8 @@ import { t } from "@locale";
 import { Button } from "@components/molecules";
 import { BUTTON_SIZES } from "@components/molecules/button/button.types";
 import { PathwaysReflectionMarkdown } from "../pathways-reflection-item/pathways-reflection-markdown";
+import LottieView from "lottie-react-native";
+import rewardShine from "./pathways-reward-shine.json";
 
 interface IPathwayReflectChestProps {
   timeToNextQuestionnaire: {
@@ -32,6 +34,8 @@ const PathwayReflectChest = ({
   status,
   isChallengeCompleted,
 }: IPathwayReflectChestProps) => {
+  const isHealthChallengeReady = status === "completed" && !!onPress;
+
   const extraChallengeText = useMemo(() => {
     if (status === "completed") {
       return t("screens.pathways.reflection_chest_health_challenge_completed_markdown", {
@@ -66,6 +70,9 @@ const PathwayReflectChest = ({
 
   return (
     <PathwaysReflectionCard onPress={onPress} isDisabled={isDisabled}>
+      {isHealthChallengeReady ? (
+        <LottieView source={rewardShine} loop={true} autoPlay={true} style={styles.lottie} resizeMode="cover" />
+      ) : null}
       <Box position="absolute" top={8} right={8}>
         <PathwayReflectionStatusIndicator status={status} timeToNextQuestionnaire={timeToNextQuestionnaire} />
       </Box>
@@ -99,5 +106,15 @@ const PathwayReflectChest = ({
     </PathwaysReflectionCard>
   );
 };
+
+const styles = StyleSheet.create({
+  lottie: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+  },
+});
 
 export default memo(PathwayReflectChest);
