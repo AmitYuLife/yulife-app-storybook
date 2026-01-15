@@ -1,6 +1,13 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { GOALS_2, GOALS_3, GOALS_4, GOALS_TOURNAMENT } from "./goals_for_global";
-import { GOAL_TEAM_1, GOAL_TEAM_6, GOAL_TEAM_3, GOAL_TEAM_4, GOAL_TEAM_7 } from "./goal_team";
+import { GOALS_2, GOALS_3, GOALS_4, GOALS_5, GOALS_TOURNAMENT } from "./goals_for_global";
+import {
+  GOAL_TEAM_1,
+  GOAL_TEAM_6,
+  GOAL_TEAM_3,
+  GOAL_TEAM_4,
+  GOAL_TEAM_7,
+  GOAL_TEAM_5,
+} from "./goal_team";
 import * as customer from "../postgres/customers";
 import moment from "moment";
 
@@ -99,5 +106,24 @@ export const GOAL_PARTICIPATION_6 = {
     autoClaimRewards: false,
     customerProductIds: [],
     rewardEligibility: [],
+  },
+} as IDatabaseItem;
+
+export const GOAL_PARTICIPATION_8 = {
+  type: "mongo",
+  modelName: "goal_participation",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_81.data.customerId,
+    parentType: "goals",
+    goal: GOALS_5.data._id,
+    team: GOAL_TEAM_5.data._id,
+    joinGoalTime: moment().subtract(5, "day").format("YYYY-MM-DDTHH:mm:ss"),
+    startDateTime: moment().subtract(5, "days").format("YYYY-MM-DDTHH:mm:ss"),
+
+    endDateTime: moment().add(5, "days").format("YYYY-MM-DDTHH:mm:ss"),
+    endDate: moment().add(5, "days").format("YYYY-MM-DDTHH:mm:ss"),
+    status: "active",
+    typesToTrack: ["passive_challenge_steps"],
   },
 } as IDatabaseItem;

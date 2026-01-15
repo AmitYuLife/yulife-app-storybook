@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureSkip, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as commonWhen from "../_common/when";
 import * as commonThen from "../_common/then";
@@ -227,7 +227,7 @@ Feature("Prevention pass", async () => {
             When(`I go to the reward pass screen (index: ${position}; level ${level})`, when.tapText("Prevention Pass", 4000), async () => {
               Then(`I can see the next reward progress bar (index: ${position}; level ${level})`, then.textVisible(`0 / ${nextLevelIncValue} levels`, 500));
 
-              When(`I press Claim for ${rewardDetailsTextAssertions[0]} (index: ${position}; level ${level})`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", position)), async () => {
+              When(`I press Claim for ${rewardDetailsTextAssertions[0]} (index: ${position}; level ${level})`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Got it", position)), async () => {
                 When(`I scroll to the left of the milestone list (index: ${position}; level ${level})`, when.scrollWithLimitedAttemptsUntilIdVisible(ids.BATTLE_PASS_LIST, ids.CLAIMED_BATTLE_PASS_LIST_ITEM(position), "right"), async () => {
                   Then(`I can see the milestone is claimed (index: ${position}; level ${level})`, then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(position)));
                   When(`I press on the claimed milestone (index: ${position}; level ${level})`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
@@ -249,7 +249,7 @@ Feature("Prevention pass", async () => {
 
         When(`I reach game level 500`, commonWhen.levelUpForBattlePasses(data.CUSTOMER_PREVENTION_PASS_02.customer.data.customerId, levelIncValue), async () => {
           When(`I go to the reward pass screen (index: ${position}; level 500)`, when.tapText("Prevention Pass"), async () => {
-            When(`I press Claim for New Balance 880 (index: ${position}; level 500)`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", position)), async () => {
+            When(`I press Claim for New Balance 880 (index: ${position}; level 500)`, when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Got it", position)), async () => {
               Then(`I can see the milestone is claimed (index: ${position}; level 500)`, then.idVisible(ids.CLAIMED_BATTLE_PASS_LIST_ITEM(position)));
               When(`I press on the claimed milestone (index: ${position}; level 500)`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
                 Then("I can see the reward details", commonThen.assertMultipleTextsVisible(rewardDetailsTextAssertions));
