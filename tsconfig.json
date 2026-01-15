@@ -107,6 +107,9 @@
       ],
       "@theme/*": [
         "./src/theme/*"
+      ],
+      "@modules/*": [
+        "./src/modules/*"
       ]
     }
   },
