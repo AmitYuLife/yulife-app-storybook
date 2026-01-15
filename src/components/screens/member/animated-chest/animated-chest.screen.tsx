@@ -1,11 +1,10 @@
 import { memo, useCallback, useMemo, useState } from "react";
-import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
+import { Button, CentredScreen } from "@molecules";
 import { useSelector } from "react-redux";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getTheme } from "@app/theme";
-import { LottieView } from "@molecules";
 import { Box, TextTemplate } from "@atoms";
-import { ControlledYuCoinCounter } from "@organisms";
+import { ChestLottieView, ControlledYuCoinCounter, GenericHeadingPad } from "@organisms";
 import { Style, StyleSheet } from "@styles";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { t } from "@locale";
@@ -15,8 +14,6 @@ interface IProps {
   reward: number;
   onPressCta: () => void;
 }
-
-const LOTTIE_SIZE = 250;
 
 const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
   const [isLocked, setIsLocked] = useState(true);
@@ -51,47 +48,42 @@ const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
           textStyle={challengeSuccessScreen?.textStyle}
         />
 
-        {isLocked || !reward ? null : (
-          <Box top={90}>
-            <AnimatedPlusPoints type="collect-reward" coins={reward} textType="h3" />
-          </Box>
-        )}
-        <Box mt={90} mb={-LOTTIE_SIZE * 0.1}>
-          {isLocked ? (
-            <LottieView
-              source={require("./assets/chest-closed.json")}
-              autoPlay={true}
-              loop={true}
-              style={styles.lottie}
-            />
-          ) : (
-            <Box ml={23} dir="ltr">
-              <LottieView
-                source={require("./assets/chest-opened.json")}
-                autoPlay={true}
-                loop={false}
-                style={styles.lottie}
-              />
-            </Box>
-          )}
+        <GenericHeadingPad />
+        <Box alignItems="center" justifyContent="center" width={Style.DEVICE_WIDTH} disableAutoAdjust={true}>
+          <ChestLottieView
+            showPlusPoints={!isLocked && !!reward}
+            reward={reward}
+            source={isLocked ? require("@assets/lottie/chest/day-4.json") : require("@assets/lottie/chest/day-5.json")}
+            autoPlay={true}
+          />
         </Box>
-        <Box flex={1} alignItems="center" justifyContent="flex-start" disableAutoAdjust={true}>
-          <TextTemplate type={Style.isShortToMedium() ? "h3" : "h2"} textAlign="center">
+
+        <Box alignItems="center" ph={16} mt={Style.isShortToMedium() ? 220 : 250}>
+          <TextTemplate
+            type={Style.isShortToMedium() ? "h3" : "h2"}
+            textAlign="center"
+            color={challengeSuccessScreen?.textStyle?.color}
+          >
             {heading}
           </TextTemplate>
           {!subheading ? null : (
-            <TextTemplate type={Style.isShortToMedium() ? "b2" : "b1"} textAlign="center">
-              {subheading}
-            </TextTemplate>
+            <Box mt={16}>
+              <TextTemplate
+                type={Style.isShortToMedium() ? "b2" : "b1"}
+                textAlign="center"
+                color={challengeSuccessScreen?.textStyle?.color}
+              >
+                {subheading}
+              </TextTemplate>
+            </Box>
           )}
         </Box>
-
-        <Box ph={32} alignSelf="stretch">
+        <Box flex={1} justifyContent="flex-end" width={Style.DEVICE_WIDTH} disableAutoAdjust={true} ph={24}>
           <Button
             testID={ANIMATED_CHEST_BUTTON}
-            size="Fill"
             translatedLabel={ctaLabel}
             onPress={onButtonPress}
+            size="Fill"
             wrapperStyle={styles.cta}
           />
         </Box>
@@ -103,10 +95,6 @@ const AnimatedChestScreen = ({ onPressCta, reward }: IProps) => {
 export default memo(AnimatedChestScreen);
 
 const styles = StyleSheet.create({
-  lottie: {
-    width: Style.adjust(LOTTIE_SIZE),
-    height: Style.adjust(LOTTIE_SIZE),
-  },
   cta: {
     marginBottom: Style.adjust(32),
   },

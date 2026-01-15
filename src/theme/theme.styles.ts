@@ -1425,7 +1425,7 @@ export const planetStyles: ITheme = {
           height: Style.adjust(288),
           backgroundColor: Colours.gradients.cyanSoft,
         },
-        textStyle: { color: Colours.neutral.n800 },
+        textStyle: { color: LINE_COLOR },
         lineColour: LINE_COLOR,
       },
       challengeFailedScreen: {

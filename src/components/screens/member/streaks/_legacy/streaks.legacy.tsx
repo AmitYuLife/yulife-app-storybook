@@ -2,8 +2,8 @@ import { View } from "react-native";
 import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
 import StreakStart from "../subcomponents/streak-start";
 import { Style, StyleSheet } from "@styles";
-import { Box, TextTemplate } from "@atoms";
-import { AnimatedPlusPoints, LottieView } from "@molecules";
+import { TextTemplate } from "@atoms";
+import { ChestLottieView } from "@organisms";
 
 interface Props {
   streakInfo: {
@@ -40,14 +40,12 @@ export const StreaksLegacy = ({
 }: Props) => {
   return (
     <View style={styles.wrapper}>
-      <View style={styles.lottieWrapper}>
-        <Box top={130}>
-          {(!!streakAwardId || isStreakCompleted) && reward ? (
-            <AnimatedPlusPoints type="collect-reward" coins={reward} textType="h3" />
-          ) : null}
-        </Box>
-        <LottieView style={styles.lottie} source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
-      </View>
+      <ChestLottieView
+        showPlusPoints={!!streakAwardId || isStreakCompleted}
+        reward={reward}
+        source={streakInfo?.image}
+        autoPlay={autoPlayLottie}
+      />
 
       <View accessible={true} accessibilityLabel={accessibilityLabel} style={styles.progressWrapper}>
         <TextTemplate type={Style.isShortToMedium() ? "h3" : "h2"} textAlign="center" color={textColor}>
@@ -75,24 +73,11 @@ export const StreaksLegacy = ({
   );
 };
 
-const lottieSize = Style.DEVICE_WIDTH * 2;
-
 const styles = StyleSheet.create({
   wrapper: {
     justifyContent: "center",
     alignItems: "center",
     width: Style.DEVICE_WIDTH,
-  },
-  lottieWrapper: {
-    position: "absolute",
-    top: -lottieSize * 0.1,
-    left: (Style.DEVICE_WIDTH - lottieSize) / 2,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  lottie: {
-    width: lottieSize,
-    height: lottieSize,
   },
   activeBuffsButton: {
     position: "absolute",

@@ -152,12 +152,12 @@ const StreaksScreen = ({
 
 const getStreakInfo = (streakMax: number, heading: string, subHeading: string, streakCompleted: number) => {
   const images = [
-    require("./assets/day-0.json"),
-    require("./assets/day-1.json"),
-    require("./assets/day-2.json"),
-    require("./assets/day-3.json"),
-    require("./assets/day-4.json"),
-    require("./assets/day-5.json"),
+    require("@assets/lottie/chest/day-0.json"),
+    require("@assets/lottie/chest/day-1.json"),
+    require("@assets/lottie/chest/day-2.json"),
+    require("@assets/lottie/chest/day-3.json"),
+    require("@assets/lottie/chest/day-4.json"),
+    require("@assets/lottie/chest/day-5.json"),
   ];
 
   const info = images.map((image) => ({
