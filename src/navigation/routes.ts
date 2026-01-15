@@ -249,6 +249,10 @@ const routesForRegistration = [
     name: ROUTES.userFeatures,
     component: require("../components/containers/member/debug/user-features/user-features.container").default,
   },
+  {
+    name: ROUTES.debugUserInfo,
+    component: require("../components/containers/member/debug/user-info/user-info.container").default,
+  },
 
   // meditation
 
