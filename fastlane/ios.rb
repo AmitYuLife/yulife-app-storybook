@@ -171,6 +171,7 @@ platform :ios do
         skip_waiting_for_build_processing: true,
         app_version: full_version,
         build_number: build_number,
+        changelog: "Bug fixes." # Changelog is required when distributing to external testers
       )
     end
     # Upload to TestFlight for production
