@@ -1,14 +1,12 @@
 import { memo } from "react";
 import { ScrollView } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { GenericHeadingAbsolute, GenericHeadingPad, DebugSelector, DebugSelectorOption } from "@organisms";
 import { Button } from "@molecules";
 import { Box, TextTemplate } from "@atoms";
 import { HealthQuestionnaireStateAction, HealthChallengeAction } from "@graphql/__generated";
-import OptionGroup from "./subcomponents/option-group";
-import { SelectableOption } from "./subcomponents/option-chip";
 
-const STREAK_OPTIONS: SelectableOption<number>[] = [
+const STREAK_OPTIONS: DebugSelectorOption<number>[] = [
   { label: "0", value: 0 },
   { label: "1st", value: 1 },
   { label: "2nd", value: 2 },
@@ -16,18 +14,18 @@ const STREAK_OPTIONS: SelectableOption<number>[] = [
   { label: "4th", value: 4 },
 ];
 
-const LAST_REFLECTION_OPTIONS: SelectableOption<string>[] = [
+const LAST_REFLECTION_OPTIONS: DebugSelectorOption<string>[] = [
   { label: "Today", value: "today" },
   { label: "Yesterday", value: "yesterday" },
   { label: "Last week", value: "last_week" },
 ];
 
-const HEALTH_QUESTIONNAIRE_OPTIONS: SelectableOption<HealthQuestionnaireStateAction>[] = [
+const HEALTH_QUESTIONNAIRE_OPTIONS: DebugSelectorOption<HealthQuestionnaireStateAction>[] = [
   { label: "Reset", value: HealthQuestionnaireStateAction.Reset },
   { label: "Complete", value: HealthQuestionnaireStateAction.Complete },
 ];
 
-const HEALTH_CHALLENGE_OPTIONS: SelectableOption<HealthChallengeAction>[] = [
+const HEALTH_CHALLENGE_OPTIONS: DebugSelectorOption<HealthChallengeAction>[] = [
   { label: "None", value: HealthChallengeAction.None },
   { label: "Award", value: HealthChallengeAction.Award },
   { label: "Clear", value: HealthChallengeAction.Clear },
@@ -65,7 +63,7 @@ export const PRESET_OPTIONS: PresetOption[] = [
   },
 ];
 
-const PRESET_SELECTABLE_OPTIONS: SelectableOption<string>[] = PRESET_OPTIONS.map((preset) => ({
+const PRESET_SELECTABLE_OPTIONS: DebugSelectorOption<string>[] = PRESET_OPTIONS.map((preset) => ({
   label: preset.label,
   value: preset.label,
 }));
@@ -108,32 +106,36 @@ const PathwaysProgressScreen = ({
         <Box p={20}>
           <Box gap={10}>
             <TextTemplate type="h3">Pathways</TextTemplate>
-            <OptionGroup options={PRESET_SELECTABLE_OPTIONS} selectedValue={selectedPreset} onSelect={onPresetSelect} />
+            <DebugSelector
+              options={PRESET_SELECTABLE_OPTIONS}
+              selectedValue={selectedPreset}
+              onSelect={onPresetSelect}
+            />
           </Box>
 
           <Box bg="rgba(0,0,0,.04)" p={16} br={8} gap={30} mt={30}>
-            <OptionGroup
+            <DebugSelector
               label="Current Streak Day"
               options={STREAK_OPTIONS}
               selectedValue={currentStreak}
               onSelect={onStreakChange}
             />
 
-            <OptionGroup
+            <DebugSelector
               label="Last Reflection Date"
               options={LAST_REFLECTION_OPTIONS}
               selectedValue={lastReflection}
               onSelect={onLastReflectionChange}
             />
 
-            <OptionGroup
+            <DebugSelector
               label="Health Questionnaire State"
               options={HEALTH_QUESTIONNAIRE_OPTIONS}
               selectedValue={healthQuestionnaire}
               onSelect={onHealthQuestionnaireChange}
             />
 
-            <OptionGroup
+            <DebugSelector
               label="Health Challenge"
               options={HEALTH_CHALLENGE_OPTIONS}
               selectedValue={healthChallenge}

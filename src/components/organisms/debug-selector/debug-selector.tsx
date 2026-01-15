@@ -1,15 +1,20 @@
 import { memo } from "react";
 import { Box, TextTemplate } from "@atoms";
-import OptionChip, { SelectableOption } from "./option-chip";
+import OptionChip from "./subcomponents/option-chip";
 
-interface IOptionGroupProps<T> {
+export interface DebugSelectorOption<T> {
+  label: string;
+  value: T;
+}
+
+interface IDebugSelectorProps<T> {
   label?: string;
-  options: SelectableOption<T>[];
+  options: DebugSelectorOption<T>[];
   selectedValue: T;
   onSelect: (value: T) => void;
 }
 
-const OptionGroup = <T,>({ label, options, selectedValue, onSelect }: IOptionGroupProps<T>) => {
+const DebugSelector = <T,>({ label, options, selectedValue, onSelect }: IDebugSelectorProps<T>) => {
   return (
     <Box gap={10}>
       {label ? <TextTemplate type="b2b">{label}</TextTemplate> : null}
@@ -27,4 +32,4 @@ const OptionGroup = <T,>({ label, options, selectedValue, onSelect }: IOptionGro
   );
 };
 
-export default memo(OptionGroup);
+export default memo(DebugSelector);

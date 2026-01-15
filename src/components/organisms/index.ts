@@ -86,3 +86,4 @@ export { default as Spotlight, SpotlightProps } from "./spotlight/spotlight";
 export { default as AchievementExtraInfo } from "./achievement-extra-info/achievement-extra-info";
 export { default as MoodCalendar } from "./mood-calendar/mood-calendar";
 export { default as ChestLottieView } from "./chest-lottie-view/chest-lottie-view";
+export { default as DebugSelector, DebugSelectorOption } from "./debug-selector/debug-selector";
