@@ -2,14 +2,10 @@ import { memo, useCallback } from "react";
 import { Pressable } from "react-native";
 import { Colours } from "@styles";
 import { Box, TextTemplate } from "@atoms";
-
-export interface SelectableOption<T> {
-  label: string;
-  value: T;
-}
+import { DebugSelectorOption } from "../debug-selector";
 
 interface IOptionChipProps<T> {
-  option: SelectableOption<T>;
+  option: DebugSelectorOption<T>;
   isSelected: boolean;
   onPress: (value: T) => void;
 }
@@ -30,4 +26,4 @@ const OptionChip = <T,>({ option, isSelected, onPress }: IOptionChipProps<T>) =>
   );
 };
 
-export default memo(OptionChip);
+export default memo(OptionChip) as typeof OptionChip;
