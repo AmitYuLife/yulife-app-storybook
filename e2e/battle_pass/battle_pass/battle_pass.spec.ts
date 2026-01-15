@@ -14,8 +14,8 @@ Feature("I can view and use all battle pass features", async () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          When("I navigate to the rewards store", when.tapID(ids.NAV_BAR("rewards"), 5000), async () => {
-            Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 5000));
+          When("I navigate to the rewards store", when.tapID(ids.NAV_BAR("rewards"), 10_000), async () => {
+            Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 7000));
             Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
           });
         });

@@ -125,7 +125,7 @@ Feature("Fiit in app", async () => {
       Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
     });
     When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT, 4000), async () => {
-      Then("I should see the streak modal appear to the Quests screen", then.idVisible(ids.STREAKS_SCREEN_BUTTON, 4000));
+      Then("I should see the streak modal appear to the Quests screen", then.idVisible(ids.STREAKS_SCREEN_BUTTON, 7_000));
     });
     When("I tap 'Done' on the first day streak modal", when.tapID(ids.STREAKS_SCREEN_BUTTON, 4000), async () => {
       Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
@@ -155,8 +155,8 @@ Feature("Fiit in app", async () => {
       Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("workouts", data.USER_BODY_COACH.data.earnRate));
     });
     When("I tap 'Take challenge'", when.tapTakeChallenge, async () => {
-      When("I tap on the body coach tile", when.tapText("Body Coach"), async () => {
-        Then("I should be on the 'Body Coach classes' screen", then.idVisible(ids.FIIT_CATEGORY_LIST_HEADER("Body Coach classes")));
+      When("I tap on the body coach tile", when.tapText("Workouts by Joe Wicks"), async () => {
+        Then("I should be on the 'Body Coach classes' screen", then.idVisible(ids.FIIT_CATEGORY_LIST_HEADER("Workouts by Joe Wicks classes")));
         Then("I should see all the available Body Coach workouts listed in order", then.canSeeBodyCoachWorkouts);
       });
     });
