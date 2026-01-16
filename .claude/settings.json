@@ -13,7 +13,7 @@
       "Bash(CI=true yarn detox:run:*)",
       "Bash(yarn e2e:build:*)"
     ],
-    "deny": [],
+    "deny": ["Bash(pod install:*)"],
     "ask": []
   },
   "enabledPlugins": {

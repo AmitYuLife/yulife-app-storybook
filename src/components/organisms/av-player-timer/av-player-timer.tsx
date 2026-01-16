@@ -31,6 +31,7 @@ const AvPlayerTimer = ({ time, colour, textType, opacity }: IProps) => {
 
   return (
     <View style={wrapperStyle}>
+      {/* TODO - make this actually centered! */}
       <View style={styles.minutes} testID={MEDITOPIA_TIMER_MINUTES(timeFormatted.minutes)}>
         <TextTemplate type={textType} color={colour}>
           {timeFormatted.minutes}
