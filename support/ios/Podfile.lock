@@ -215,6 +215,8 @@ PODS:
     - React-RCTSettings (= 0.74.5)
     - React-RCTText (= 0.74.5)
     - React-RCTVibration (= 0.74.5)
+  - react-airplay (1.2.0):
+    - React-Core
   - React-callinvoker (0.74.5)
   - React-Codegen (0.74.5):
     - DoubleConversion
@@ -1748,6 +1750,7 @@ DEPENDENCIES:
   - RCTRequired (from `../node_modules/react-native/Libraries/Required`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
+  - react-airplay (from `../node_modules/react-airplay`)
   - React-callinvoker (from `../node_modules/react-native/ReactCommon/callinvoker`)
   - React-Codegen (from `build/generated/ios`)
   - React-Core (from `../node_modules/react-native/`)
@@ -1927,6 +1930,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/TypeSafety"
   React:
     :path: "../node_modules/react-native/"
+  react-airplay:
+    :path: "../node_modules/react-airplay"
   React-callinvoker:
     :path: "../node_modules/react-native/ReactCommon/callinvoker"
   React-Codegen:
@@ -2120,6 +2125,7 @@ SPEC CHECKSUMS:
   RCTRequired: ec1239bc9d8bf63e10fb92bd8b26171a9258e0c1
   RCTTypeSafety: f5ecbc86c5c5fa163c05acb7a1c5012e15b5f994
   React: fc9fa7258eff606f44d58c5b233a82dc9cf09018
+  react-airplay: 8197767f12cae11a7623b1507d29a89482a720ad
   React-callinvoker: e3fab14d69607fb7e8e3a57e5a415aed863d3599
   React-Codegen: 6fa87b7c6b8efcd0cef4bfeaec8c8bc8a6abe75a
   React-Core: 3a5fd9e781cecf87803e5b091496a606a3df774a

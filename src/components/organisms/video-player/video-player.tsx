@@ -10,6 +10,7 @@ import Video, {
 } from "react-native-video";
 import moment from "moment";
 import { Animated, View, AppStateStatus } from "react-native";
+import { useAirPlay, AirplayButton, showRoutePicker } from "@services/casting";
 import Lottie from "lottie-react-native";
 import Config from "react-native-config";
 import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
@@ -127,6 +128,14 @@ const VideoPlayer = ({
   const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(lottie?.uri);
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
+  const { isAirPlayAvailable, isAirPlayEnabled, isExternalPlaybackActive, handleExternalPlaybackChange } = useAirPlay({
+    videoSourceType,
+  });
+  const showAirPlayButton = isAirPlayEnabled && isAirPlayAvailable;
+
+  // force portrait mode when playing on external display, otherwise use prop
+  const effectiveOrientation = isExternalPlaybackActive ? "portrait" : orientation;
+
   const activeLevel = useSelector(getActiveLevel);
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
 
@@ -196,7 +205,7 @@ const VideoPlayer = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       if (
-        orientation === "landscape" &&
+        effectiveOrientation === "landscape" &&
         !state.isPaused &&
         state.isMusicControlMounted &&
         !state.showFocusScreen &&
@@ -211,6 +220,9 @@ const VideoPlayer = ({
 
   const handleOnProgress = useCallback(
     async ({ currentTime }: OnProgressData): Promise<void> => {
+      // TODO: add cheat / seeking detection here -
+      // if the playback jumps over 5s, we can assume the user is seeking
+
       const currentProgressInSeconds = Math.floor(currentTime);
 
       if (onProgress && currentProgressInSeconds > 0) {
@@ -361,16 +373,16 @@ const VideoPlayer = ({
   );
 
   const showYuLogo: { logo: GenericHeadingLogo } | null = useMemo(
-    () => (orientation === "portrait" ? { logo: "yulife", logoType } : null),
-    [orientation]
+    () => (effectiveOrientation === "portrait" ? { logo: "yulife", logoType } : null),
+    [effectiveOrientation, logoType]
   );
 
   const progressTimeLandscape = useMemo(
     () =>
-      orientation === "landscape"
+      effectiveOrientation === "landscape"
         ? { ...styles.currentProgressTime, transform: [{ rotate: "90deg" }], opacity }
         : [styles.buttonWrapper, { opacity }],
-    [orientation, opacity]
+    [effectiveOrientation, opacity]
   );
 
   const hasErrorOnReduxSubmission = useMemo(() => {
@@ -390,29 +402,34 @@ const VideoPlayer = ({
           poster={poster}
           posterResizeMode={PosterResizeModeType.COVER}
           progressUpdateInterval={1000}
-          resizeMode={orientation === "landscape" ? ResizeMode.NONE : ResizeMode.COVER}
+          resizeMode={effectiveOrientation === "landscape" ? ResizeMode.NONE : ResizeMode.COVER}
           onError={handleOnError}
           onLoad={onLoad}
           onEnd={handleOnEnd}
           onProgress={handleOnProgress}
           paused={state.isPaused}
-          playInBackground={true}
+          playInBackground={!isExternalPlaybackActive}
           ignoreSilentSwitch={IgnoreSilentSwitchType.IGNORE}
-          showNotificationControls={true}
+          showNotificationControls={!isExternalPlaybackActive}
           viewType={ViewType.TEXTURE}
           useTextureView={true}
           maxBitRate={qualities.bitRate}
+          allowsExternalPlayback={isAirPlayEnabled}
+          onExternalPlaybackChange={handleExternalPlaybackChange}
           style={
             !state.isMusicControlMounted
               ? styles.backgroundVideo
-              : orientation === "landscape"
+              : effectiveOrientation === "landscape"
               ? styles.backgroundVideoLandscape
               : styles.backgroundVideo
           }
         />
         <GenericHeadingPad />
 
-        {!lottieUri && state.isMusicControlMounted && !state.isLoadingEndOfSession ? null : (
+        {!lottieUri &&
+        state.isMusicControlMounted &&
+        !state.isLoadingEndOfSession &&
+        !isExternalPlaybackActive ? null : (
           <Image source={{ uri: poster }} width={Style.DEVICE_WIDTH} style={{ ...StyleSheet.absoluteFillObject }} />
         )}
         {!lottieUri ? null : <LottieView ref={lottieRef} resizeMode="cover" style={styles.lottie} source={lottieUri} />}
@@ -431,7 +448,7 @@ const VideoPlayer = ({
           </View>
         )}
 
-        {!state.isMusicControlMounted || !videoLogo ? null : (
+        {!state.isMusicControlMounted || !videoLogo || isExternalPlaybackActive ? null : (
           <Animated.View style={[styles.videoLogo, { opacity }]}>
             <Image
               suppressLoadingUi={true}
@@ -446,9 +463,14 @@ const VideoPlayer = ({
 
         {!state.isMusicControlMounted ? null : (
           <>
-            {!showTimer || state.isLoadingEndOfSession || orientation === "landscape" ? null : (
+            {!showTimer || state.isLoadingEndOfSession || effectiveOrientation === "landscape" ? null : (
               <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
                 <AvPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
+                {isExternalPlaybackActive ? (
+                  <TextTemplate type="b2" color={Colours.neutral.white} textAlign="center">
+                    {t("screens.video_player.playing_on_airplay")}
+                  </TextTemplate>
+                ) : null}
               </View>
             )}
             {!state.isLoadingEndOfSession ? null : (
@@ -476,7 +498,7 @@ const VideoPlayer = ({
               </View>
             )}
 
-            {orientation === "landscape" ? null : (
+            {effectiveOrientation === "landscape" ? null : (
               <Animated.View style={[styles.progressBarContainer, { opacity }]} testID={VIDEO_PROGRESS_BAR}>
                 <View style={styles.currentProgress}>
                   <AvPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
@@ -493,7 +515,7 @@ const VideoPlayer = ({
               </Animated.View>
             )}
             <Animated.View style={progressTimeLandscape}>
-              {orientation !== "landscape" ? null : (
+              {effectiveOrientation !== "landscape" ? null : (
                 <View style={styles.logoLandscape}>
                   <Logo type="inverted" width={24} height={24} />
                 </View>
@@ -510,7 +532,6 @@ const VideoPlayer = ({
           </>
         )}
       </Pressable>
-
       {!state.startErrorMessage ? null : (
         <View style={styles.error}>
           <TextTemplate type="b2" textAlign="center" color={themeColour}>
@@ -518,7 +539,6 @@ const VideoPlayer = ({
           </TextTemplate>
         </View>
       )}
-
       {state.isMusicControlMounted ? null : (
         <View style={styles.starSessionButton}>
           <Button
@@ -531,7 +551,6 @@ const VideoPlayer = ({
         </View>
       )}
       {!state.loading && !lottieUriLoading && !qualitiesLoading ? null : <AvPlayerLoading />}
-
       {!state.durationInSeconds ? null : (
         <Animated.View style={styles.topbarWrapper}>
           <GenericHeadingAbsolute
@@ -540,7 +559,7 @@ const VideoPlayer = ({
             color={themeColour}
             {...showYuLogo}
             onRightIconPress={
-              state.showFocusScreen || (orientation === "landscape" && state.isMusicControlMounted)
+              state.showFocusScreen || (effectiveOrientation === "landscape" && state.isMusicControlMounted)
                 ? null
                 : handleOnRightIconPress
             }
@@ -548,14 +567,38 @@ const VideoPlayer = ({
           />
         </Animated.View>
       )}
-
-      {!state.isMusicControlMounted || orientation === "portrait" ? null : (
+      {!state.isMusicControlMounted || effectiveOrientation === "portrait" ? null : (
         <Animated.View style={[styles.closeButton, { opacity }]}>
           <Pressable delay={1000} testID={MEDIA_PORTRAIT_CLOSE} onPress={handleOnRightIconPress}>
             <CloseSvg size={Style.adjust(24)} stroke={"white"} />
           </Pressable>
         </Animated.View>
       )}
+
+      {/*
+        TODO - add google cast here too
+        Cast buttons - visible before video starts
+      */}
+      {!state.isMusicControlMounted && showAirPlayButton ? (
+        <Pressable
+          position="absolute"
+          top={51}
+          right={65}
+          flexDirection="row"
+          gap={12}
+          zIndex={9999}
+          elevation={9999}
+          size={44}
+          justifyContent="center"
+          alignItems="center"
+          enableAnimation={true}
+          onPress={() => {
+            showRoutePicker({ prioritizesVideoDevices: true });
+          }}
+        >
+          <AirplayButton tintColor={themeColour} prioritizesVideoDevices={true} />
+        </Pressable>
+      ) : null}
     </View>
   );
 };

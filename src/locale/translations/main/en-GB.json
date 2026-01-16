@@ -1250,6 +1250,7 @@
       "session_complete": "Session complete.",
       "error_message": "Something went wrong. \n Please try again",
       "one_moment_please": "One moment, please...",
+      "playing_on_airplay": "Playing on AirPlay device",
       "video_type": {
         "mindfulness": "Meditation",
         "workout": "Workout"

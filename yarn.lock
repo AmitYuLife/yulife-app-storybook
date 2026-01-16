@@ -19050,6 +19050,11 @@ rc@^1.0.1, rc@^1.1.6, rc@~1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-airplay@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-airplay/-/react-airplay-1.2.0.tgz#be277858656fa815d2f4f51020bc46babcdfcd71"
+  integrity sha512-Rt/c5PgqtGVQNhsamt7ldvykqXjaS3U0C3Q294I5D5ej8j9Mj1j7p6pyMYs2g2OR7ovX2A8PPcjadp9Q9UGSmQ==
+
 react-colorful@^5.1.2:
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.6.1.tgz#7dc2aed2d7c72fac89694e834d179e32f3da563b"
