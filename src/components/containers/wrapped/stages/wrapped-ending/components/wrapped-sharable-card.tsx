@@ -83,7 +83,7 @@ const SharableCard = ({ viewShotRef, stats }: ISharableCardProps) => {
                 <Yumoji uri={yumojiRemoteUrl} width={Style.DEVICE_WIDTH - 80} height={300} />
               </Box>
             </Box>
-            <Box p={10} py={10} w="100%" br={10} bg="#fafafe" mt={-20}>
+            <Box px={5} pt={10} pb={5} w="100%" br={10} bg="#fafafe" mt={-20}>
               <Box w="100%" flexDirection="row" justifyContent="center" alignItems="center">
                 <Box mt={10} justifyContent="center" alignItems="center" mb={2}>
                   <TextTemplate type="b2b" textAlign="center">

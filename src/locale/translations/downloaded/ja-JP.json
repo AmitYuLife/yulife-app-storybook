@@ -104,6 +104,7 @@
     "date_time_readable_short": "MMM Do HH:mm",
     "duration": "m[分] s[秒]",
     "duration_long": "h[時] m[分] s[秒]",
+    "duration_longer": "d[日] h[時] m[分] s[秒]",
     "month_full": "M月",
     "time_short": "HH:mm"
   },
@@ -1914,18 +1915,17 @@
       },
       "error": "エラーが発生しました",
       "sharable_card": {
-        "best_yudoku_time": "ナンプレの最速記録",
-        "challenges_completed": "チャレンジの合計",
+        "best_yudoku_time": "ナンプレ最速記録",
+        "challenges_completed": "チャレンジ合計",
         "title": "%{firstName}さんの年間レビュー",
         "total_steps": "総歩数",
         "yucoin_earned": "獲得したYuCoin"
       },
       "stage_1": {
-        "in_date": "達成しました!",
-        "subtitle": "チャレンジの合計",
-        "subtitle_single": "チャレンジ",
-        "title": "お疲れ様でした!",
-        "you_completed": "2024年に"
+        "title": "お疲れ様でした！",
+        "you_completed": "チャレンジを合計",
+        "subtitle": "回達成しました",
+        "subtitle_single": "回達成しました"
       },
       "stage_2": {
         "challenges": {
@@ -1944,7 +1944,7 @@
         "collected": "獲得したYuCoin:",
         "steps": "歩",
         "subtitle": "よく頑張りました!",
-        "title": "今年はあなたが歩いた...",
+        "title": "今年歩いた歩数:",
         "yucoin_amount": "%{amount} YuCoin"
       },
       "stage_4": {

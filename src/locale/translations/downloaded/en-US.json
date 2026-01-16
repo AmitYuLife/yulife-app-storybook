@@ -104,6 +104,7 @@
     "date_time_readable_short": "MMMM D, h:mm A",
     "duration": "m[m] s[s]",
     "duration_long": "h[h] m[m] s[s]",
+    "duration_longer": "d[d] h[h] m[m] s[s]",
     "month_full": "MMMM",
     "time_short": "h:mm A"
   },
