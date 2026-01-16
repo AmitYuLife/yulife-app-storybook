@@ -136,7 +136,7 @@ const PathwaysProgressScreen = ({
             />
 
             <DebugSelector
-              label="Health Challenge"
+              label="Health Quest"
               options={HEALTH_CHALLENGE_OPTIONS}
               selectedValue={healthChallenge}
               onSelect={onHealthChallengeChange}
