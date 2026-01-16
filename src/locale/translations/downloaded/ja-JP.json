@@ -1488,7 +1488,7 @@
       "reflect": "振り返りに進む",
       "reflected": {
         "subtitle": "リワードを獲得しました!",
-        "title": "日間の振り返り"
+        "title": "振り返り の 日々！"
       },
       "reflect_in": "あと%{hours}時間%{minutes}分",
       "reflection_active_label": "振り返る",
