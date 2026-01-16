@@ -101,7 +101,7 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
             </Box>
           </Box>
           <Box px={16} mt={40} alignItems="center" justifyContent="center">
-            <Box w={Style.DEVICE_WIDTH * 0.5}>
+            <Box w={Style.DEVICE_WIDTH * 0.6}>
               {challengeStats.map(({ icon, label, count }, index) => (
                 <WrappedChallengeCountCard
                   key={label}

@@ -8,6 +8,7 @@
     "time_short": "HH:mm",
     "duration": "m[m] s[s]",
     "duration_long": "h[h] m[m] s[s]",
+    "duration_longer": "d[d] h[h] m[m] s[s]",
     "date_picker_display": "DD / MM / YYYY",
     "month_full": "MMMM"
   },
@@ -1337,7 +1338,6 @@
       "stage_1": {
         "title": "Look at that!",
         "you_completed": "You completed",
-        "in_date": "in 2024!",
         "subtitle": "challenges",
         "subtitle_single": "challenge"
       },

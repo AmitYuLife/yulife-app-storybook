@@ -100,8 +100,7 @@ const WrappedStage1Screen = ({ nextStage, stats }: IWrappedStageProps) => {
                   <TextTemplate type="h3" textAlign="center">
                     {stats?.totalChallenges === 1
                       ? t("screens.wrapped.stage_1.subtitle_single")
-                      : t("screens.wrapped.stage_1.subtitle")}{" "}
-                    {t("screens.wrapped.stage_1.in_date")}
+                      : t("screens.wrapped.stage_1.subtitle")}
                   </TextTemplate>
                 </Box>
 

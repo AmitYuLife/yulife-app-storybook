@@ -104,6 +104,7 @@
     "date_time_readable_short": "الساعة: الدقيقة الشهر ",
     "duration": "د[د] ث[ث]",
     "duration_long": "س[س] د[د] ث[ث]",
+    "duration_longer": "ي[ي] س[س] د[د] ث[ث]",
     "month_full": "شهر",
     "time_short": "س س: دد"
   },
