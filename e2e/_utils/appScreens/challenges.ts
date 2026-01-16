@@ -346,8 +346,7 @@ export const pauseMeditopiaChallenge =
 export const pauseChallengeTimeVisible = async () => {
   await textNotVisible("00:00")();
   await idVisible(ids.VIDEO_PLAY_PAUSE_BUTTON(true))();
-  await idNotVisible(ids.MEDITOPIA_TIMER_SECS(":00"))();
-  await idVisibleAtIndex(ids.MEDITOPIA_TIMER_MINUTES("00"), 0)();
+  await idNotVisible(ids.AV_PLAYER_TIMER("00:00"))();
 };
 
 export const playAndFinishMeditopiaChallenge = async () => {
