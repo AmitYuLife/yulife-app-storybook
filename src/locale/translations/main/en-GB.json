@@ -200,11 +200,11 @@
       "reflection_inactive_label": "Reflection",
       "reflection_active_label": "Reflect",
       "reflection_yucoin_amount": "**%{amount}** ![](%{yucoinUrl})",
-      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) Bonus Health Challenge",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) Bonus Health Quest",
       "reflection_chest_reward_to_earn_markdown": "Earn: **%{amount}** ![](%{yucoinUrl})",
-      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) Bonus Health Challenge",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) Bonus Health Quest",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
-      "reflection_chest_button_label": "Health Challenge",
+      "reflection_chest_button_label": "Health Quest",
       "reflection_unlocks_in": "Unlocks in",
       "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
       "today": "Today",
@@ -218,10 +218,11 @@
       "challenge_intro": {
         "heading": "Health Quest",
         "title": "Designed for Yu",
-        "description": "The health challenge gives you targeted and personalised content based on your daily reflection answers.",
+        "description": "The health quest gives you targeted and personalised content based on your daily reflection answers.",
         "bullet_point_1": "Personalised based on your health questionnaire answers",
         "bullet_point_2": "Adapt to you and your needs over time",
-        "bullet_point_3": "Aims to prevent health issues before they are a problem"
+        "bullet_point_3": "Aims to prevent health issues before they are a problem",
+        "info_panel_markdown": "This quest does not count towards your streak!"
       },
       "reflected": {
         "title": "days of reflection!",
@@ -230,7 +231,7 @@
       "claim": {
         "title": "Here's everything you got today!",
         "yucoin": "YuCoin",
-        "health_challenge": "Health Challenge",
+        "health_challenge": "Health Quest",
         "reward_title": "Reward collected!",
         "reward_subtitle": "You can find it in the challenges list."
       }
