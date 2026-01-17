@@ -1465,12 +1465,13 @@
         "bullet_point_1": "مخصص بناءً على إجابات استبيان صحتك",
         "bullet_point_2": "التكيف معك واحتياجاتك بمرور الوقت",
         "bullet_point_3": "يهدف إلى منع المشكلات الصحية قبل أن تصبح مشكلة",
-        "description": "تقدم لك التحدي الصحي محتوى مستهدف وشخصي بناءً على إجابات تأملاتك اليومية.",
+        "description": "تمنحك مهمة الصحة محتوى موجهاً وشخصياً بناءً على إجابات التأمل اليومي الخاصة بك.",
         "heading": "مهمة الصحة",
+        "info_panel_markdown": "هذه المهمة لا تُحتسب ضمن سجل إنجازاتك!",
         "title": "مصمم لـ يو"
       },
       "claim": {
-        "health_challenge": "تحدي الصحة",
+        "health_challenge": "مهمة الصحة",
         "reward_subtitle": "يمكنك العثور عليه في قائمة التحديات.",
         "reward_title": "تم جمع المكافأة!",
         "title": "إليك كل ما حصلت عليه اليوم!",
@@ -1493,8 +1494,8 @@
       },
       "reflect_in": "سيتم التنفيذ خلال %{hours} ساعة و %{minutes} دقيقة",
       "reflection_active_label": "يعكس",
-      "reflection_chest_button_label": "تحدي الصحة",
-      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) تحدي الصحة الإضافي",
+      "reflection_chest_button_label": "مهمة الصحة",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) مهمة صحية إضافية",
       "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) تحدي الصحة الإضافي",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
       "reflection_chest_reward_to_earn_markdown": "اكسب: %{amount} ![](%{yucoinUrl})",
@@ -1872,6 +1873,7 @@
     "video_player": {
       "error_message": "حدث خطأ ما.\nيرجى المحاولة مرة أخرى",
       "one_moment_please": "لحظة واحدة من فضلك",
+      "playing_on_airplay": "التشغيل على جهاز AirPlay",
       "session_complete": "الجلسة مكتملة.",
       "video_type": {
         "mindfulness": "تأمٌل",
@@ -1922,7 +1924,6 @@
         "yucoin_earned": "%{coins} يوكوين تم ربحها"
       },
       "stage_1": {
-        "in_date": "في عام 2024!",
         "subtitle": "التحديات",
         "subtitle_single": "التحدي",
         "title": "انظر إلى ذلك!",

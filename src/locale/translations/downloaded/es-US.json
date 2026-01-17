@@ -1465,12 +1465,13 @@
         "bullet_point_1": "Personalizado en función de las respuestas a su cuestionario de salud",
         "bullet_point_2": "Adaptarse a usted y a sus necesidades a lo largo del tiempo",
         "bullet_point_3": "Prevenir los problemas de salud antes de que se conviertan en un problema",
-        "description": "El reto de salud le ofrece contenidos específicos y personalizados basados en las respuestas de su reflexión diaria.",
+        "description": "La búsqueda de la salud te ofrece contenidos específicos y personalizados basados en las respuestas de tu reflexión diaria.",
         "heading": "Búsqueda de la Salud",
+        "info_panel_markdown": "Esta misión no cuenta para tu racha.",
         "title": "Diseñado para Yu"
       },
       "claim": {
-        "health_challenge": "Reto sanitario",
+        "health_challenge": "Búsqueda de la Salud",
         "reward_subtitle": "Puede encontrarlo en la lista de retos.",
         "reward_title": "¡Recompensa recolectada!",
         "title": "¡Aquí está todo lo que tienes hoy!",
@@ -1493,9 +1494,9 @@
       },
       "reflect_in": "Reflejar en %{hours}h %{minutes}m",
       "reflection_active_label": "Reflect",
-      "reflection_chest_button_label": "Reto sanitario",
-      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) Reto de salud extra",
-      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) Reto de salud extra",
+      "reflection_chest_button_label": "Búsqueda de la Salud",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) Bono de Salud Quest",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) Bono de Salud Quest",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
       "reflection_chest_reward_to_earn_markdown": "Gana: **%{amount}** ![](%{yucoinUrl})",
       "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
@@ -1872,6 +1873,7 @@
     "video_player": {
       "error_message": "Algo ha ido mal.\nVuelve a intentarlo",
       "one_moment_please": "Un momento, por favor...",
+      "playing_on_airplay": "Reproducción en un dispositivo AirPlay",
       "session_complete": "Sesión completa.",
       "video_type": {
         "mindfulness": "Meditación",
@@ -1922,7 +1924,6 @@
         "yucoin_earned": "YuCoin ganado"
       },
       "stage_1": {
-        "in_date": "¡en 2024!",
         "subtitle": "retos",
         "subtitle_single": "reto",
         "title": "¡Mira eso!",

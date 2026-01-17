@@ -1465,12 +1465,13 @@
         "bullet_point_1": "健康チェックの回答に基づいてカスタマイズ",
         "bullet_point_2": "あなたのニーズに合わせたエクササイズ",
         "bullet_point_3": "不調を未然に防ぐ、プロアクティブなセルフケア",
-        "description": "健康チャレンジでは、毎日の振り返りの回答をもとに、あなたに合ったコンテンツをお届けします。",
+        "description": "健康 クエスト は、 毎日 の 反省 の 答え に 基づいて 、 ターゲットを 絞った 、 パーソナライズされた コンテンツ を 提供 します 。",
         "heading": "健康クエスト",
+        "info_panel_markdown": "この クエスト は streak に 含まれません ！",
         "title": "健康チャレンジについて"
       },
       "claim": {
-        "health_challenge": "健康チャレンジ",
+        "health_challenge": "健康クエスト",
         "reward_subtitle": "リワードは、チャレンジのリストでご確認いただけます。",
         "reward_title": "リワード獲得!",
         "title": "おめでとうございます!",
@@ -1493,9 +1494,9 @@
       },
       "reflect_in": "あと%{hours}時間%{minutes}分",
       "reflection_active_label": "振り返る",
-      "reflection_chest_button_label": "健康チャレンジ",
-      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) ボーナス健康チャレンジ",
-      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) ボーナス健康チャレンジ",
+      "reflection_chest_button_label": "健康クエスト",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) ボーナス健康クエスト",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) ボーナス健康クエスト",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
       "reflection_chest_reward_to_earn_markdown": "リワード: %{amount} ![](%{yucoinUrl})",
       "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
@@ -1872,6 +1873,7 @@
     "video_player": {
       "error_message": "エラーが発生しました。\nもう一度お試しください",
       "one_moment_please": "少々お待ちください",
+      "playing_on_airplay": "AirPlay デバイス で 再生中",
       "session_complete": "セッションが終了しました。",
       "video_type": {
         "mindfulness": "マインドフルネス",
@@ -1922,10 +1924,10 @@
         "yucoin_earned": "獲得したYuCoin"
       },
       "stage_1": {
-        "title": "お疲れ様でした！",
-        "you_completed": "チャレンジを合計",
-        "subtitle": "回達成しました",
-        "subtitle_single": "回達成しました"
+        "subtitle": "回のチャレンジ",
+        "subtitle_single": "回のチャレンジ",
+        "title": "お疲れ様でした!",
+        "you_completed": "あなたは2024年に"
       },
       "stage_2": {
         "challenges": {
