@@ -21,6 +21,7 @@ import { clearSeenQuestMapNewUserOnboardingAnimation } from "@redux/quest-map/qu
 import moment from "moment";
 import { queryHealthSmokingState } from "@redux/health-smoking/health-smoking.actions";
 import { getCurrentUserId } from "@redux/user/user.selectors";
+import { DEBUG_MENU_ITEM } from "@ids";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -443,6 +444,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
             });
           },
           onPress: () => onPress(code),
+          testID: DEBUG_MENU_ITEM(code),
         })),
     [debugCodes, debugFavourites, formatTitle, onPress]
   );

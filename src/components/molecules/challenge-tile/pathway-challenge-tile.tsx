@@ -14,6 +14,7 @@ import LottieView from "lottie-react-native";
 import shineAnimation from "./pathway-challenge-shine.json";
 import moment from "moment";
 import Pressable from "../pressable/pressable";
+import { PATHWAYS_CHALLENGE_COMPLETED, PATHWAYS_CHALLENGE_TILE } from "@ids";
 
 export interface IPathwayChallengeTileProps {
   heading?: string;
@@ -138,6 +139,7 @@ const PathwayChallengeTile: React.FC<IPathwayChallengeTileProps> = ({
             borderBottomRadius={BORDER_RADIUS - Style.adjust(2)}
             overflow="hidden"
             disableAutoAdjust={true}
+            testID={PATHWAYS_CHALLENGE_TILE(heading)}
           >
             <Box flex={1} px={15} pt={Platform.select({ ios: 16, android: 13 })}>
               <Box>
@@ -157,7 +159,15 @@ const PathwayChallengeTile: React.FC<IPathwayChallengeTileProps> = ({
                   />
                 </Box>
                 {isCompleted ? (
-                  <Box flexDirection="row" alignItems="center" bg={colours.status.su100} br={48} px={8} h={26}>
+                  <Box
+                    flexDirection="row"
+                    alignItems="center"
+                    bg={colours.status.su100}
+                    br={48}
+                    px={8}
+                    h={26}
+                    testID={PATHWAYS_CHALLENGE_COMPLETED}
+                  >
                     <TextTemplate type="l2b" color={colours.secondary.s200S1}>
                       {t("screens.challenge_list.level_completed")}
                     </TextTemplate>

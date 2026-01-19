@@ -17,6 +17,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { CHALLENGE_INTRO_TITLE } from "@ids";
 
 const AVATAR_HEIGHT_RATIO = 1.3;
 const MISSING_AVATAR_HEIGHT_RATIO = 0.6;
@@ -109,7 +110,7 @@ const PathwaysChallengeIntroScreen = ({ onPressCta, componentId }: IProps) => {
         <Box flex={1} justifyContent="space-between" gap={MIN_BUTTON_SPACING}>
           <Box px={24} pt={24}>
             <Box gap={8} mb={24}>
-              <TextTemplate type="h3" color={Colours.neutral.n800}>
+              <TextTemplate type="h3" color={Colours.neutral.n800} testID={CHALLENGE_INTRO_TITLE}>
                 {t("screens.pathways.challenge_intro.title")}
               </TextTemplate>
               <TextTemplate type="b2" color={Colours.neutral.n800}>

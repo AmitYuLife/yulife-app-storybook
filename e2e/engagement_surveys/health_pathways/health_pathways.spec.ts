@@ -7,6 +7,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
+import moment from "moment";
 
 Feature("Health Pathways", async () => {
   Scenario("Pathways initial state loads correctly with no reflections completed", scenario.start, async () => {
@@ -106,6 +107,50 @@ Feature("Health Pathways", async () => {
     });
     When("I scroll down to the 'Your Mood' section", when.scrollFromID(ids.PATHWAYS_SCREEN, "up", "fast", 0.5, 2_000), async () => {
       Then("I should see todays mood monitor state completed", then.idVisible(ids.MOOD_TODAY_COMPLETED(true), 3_000));
+    });
+  });
+
+  Scenario("Health Pathway challenge completes successfully", scenario.start, async () => {
+    Given("I am logged in", given.loginAsUser(data.CUSTOMER_9.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I open the debug menu item 'pathways-progress'", when.openDebugMenuItem("pathways-progress", "pathways progress"), async () => {
+        When("I set 'Last day complete' and save", when.setPathwaysProgress("Last day complete"), async () => {
+          When("I exit debug", when.closeDebug, async () => {
+            When("I navigate to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 5_000), async () => {
+              Then("I should see the 'Today's Reflection' hero card", then.idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 5_000));
+            });
+          });
+        });
+      });
+    });
+    When("I tap the 'Today's Reflection' hero card", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 2_000), async () => {
+      Then("I should land on the Pathways screen", then.idVisible(ids.PATHWAYS_SCREEN, 3_000));
+      Then("I should see the Health challenge unlocked", then.idVisible(ids.PATHWAYS_REFLECT_CHEST("completed"), 3_000));
+    });
+    When("I tap the Health challenge button", when.tapID(ids.HEALTH_CHALLENGE_BUTTON, 2_000), async () => {
+      Then("I should see the challenge intro title", then.idVisible(ids.CHALLENGE_INTRO_TITLE, 3_000));
+    });
+    When("I tap Continue", when.tapID(ids.LABELS_CTA_CONTINUE, 2_000), async () => {
+      When("I tap to start the box breathing", when.tapID(ids.BUTTON_BASE("Start", false), 2_000), async () => {
+        Then("I should see the duration picker", then.idVisible(ids.BREATHING_EXERCISE_DURATION_PICKER, 3_000));
+      });
+    });
+    When("I tap on the duration picker", when.tapID(ids.BREATHING_EXERCISE_DURATION_PICKER, 2_000), async () => {
+      When("I tap to change the duration to 1 min", when.tapID(ids.GENERIC_SELECTOR_ITEM("1 min"), 2_000), async () => {
+        When("I tap start", when.tapID(ids.GENERIC_SELECTOR_CONFIRM, 2_000), async () => {
+          Then("The breathing exercise is active", then.idVisible(ids.CTA_PAUSE, 2_000));
+        });
+      });
+    });
+    When("I wait for the breathing exercise to complete", when.wait(60_000), async () => {
+      Then("I can see my 90 reward coins", then.idVisible(ids.CHALLENGE_REWARD(90), 2_000));
+    });
+    When("I collect my reward", when.tapID(ids.CTA_COLLECT, 2_000), async () => {
+      When("I navigate to the Quests", when.tapID(ids.NAV_BAR("quests"), 2_000), async () => {
+        When("I tap 855 level challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(855), 2000), async () => {
+          Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Health Challenge")));
+          Then("I should see the health challenge completed", then.idVisible(ids.PATHWAYS_CHALLENGE_COMPLETED));
+        });
+      });
     });
   });
 });

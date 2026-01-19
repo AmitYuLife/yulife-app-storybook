@@ -21,6 +21,8 @@ import { MODALS } from "@navigation/constants";
 import { useAppState } from "@hooks";
 import { AppStateStatus } from "react-native";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
+import { BREATHING_EXERCISE_DURATION_PICKER } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 
 const FOREST_COLOUR = "#018547";
 const PROGRESS_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
@@ -192,6 +194,10 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   }, [selectedDurationMs]);
 
   useEffect(() => {
+    if (DETOX_ENABLED) {
+      return;
+    }
+
     // auto play after a tiny delay (only on mount)
     const timeout = setTimeout(() => {
       startPlaying();
@@ -208,12 +214,14 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
 
   return (
     <Box style={styles.background}>
-      <BreathingAnimation
-        phase={PART_ANIMATION_PHASE_MAPPING[currentPart.type]}
-        phaseDurationMs={currentPart.duration}
-        isPlaying={isPlaying}
-        style={styles.breathingAnimation}
-      />
+      {DETOX_ENABLED ? null : (
+        <BreathingAnimation
+          phase={PART_ANIMATION_PHASE_MAPPING[currentPart.type]}
+          phaseDurationMs={currentPart.duration}
+          isPlaying={isPlaying}
+          style={styles.breathingAnimation}
+        />
+      )}
 
       <Box flex={1}>
         <Box pt={120} justifyContent="center" alignItems="center">
@@ -229,7 +237,11 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
           {currentPart.type !== BreathingExerciseOptionPartType.End ? (
             <Box justifyContent="center" alignItems="center" px={24} pb={48} mt={16} pt={12}>
               <Box flexDirection="row" justifyContent="center" alignItems="center">
-                <BoxOption onPress={showDurationPicker} innerHeight={Style.adjust(48)}>
+                <BoxOption
+                  onPress={showDurationPicker}
+                  innerHeight={Style.adjust(48)}
+                  testID={BREATHING_EXERCISE_DURATION_PICKER}
+                >
                   <Box justifyContent="center" flexDirection="row" alignItems="center" p={12} pl={18}>
                     <TextTemplate type="b2b">
                       {t("activity_types.meditation.short", { min: selectedDurationMinutes })}
@@ -244,30 +256,32 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
       </Box>
 
       <Box position="absolute" bottom={24} left={0} right={0}>
-        <Box justifyContent="center" alignItems="center" flex={1} mb={40}>
-          <Box
-            br={3}
-            height={Style.adjust(6)}
-            width={PROGRESS_WIDTH}
-            mh={Style.adjust(24)}
-            disableAutoAdjust={true}
-            bg={Colours.neutral.white}
-          >
+        {DETOX_ENABLED ? null : (
+          <Box justifyContent="center" alignItems="center" flex={1} mb={40}>
             <Box
-              opacity={0.8}
               br={3}
               height={Style.adjust(6)}
+              width={PROGRESS_WIDTH}
+              mh={Style.adjust(24)}
               disableAutoAdjust={true}
-              bg={Colours.primary.p600}
-              style={progressStyle}
-              forceAnimated={true}
-            />
+              bg={Colours.neutral.white}
+            >
+              <Box
+                opacity={0.8}
+                br={3}
+                height={Style.adjust(6)}
+                disableAutoAdjust={true}
+                bg={Colours.primary.p600}
+                style={progressStyle}
+                forceAnimated={true}
+              />
+            </Box>
           </Box>
-        </Box>
+        )}
         <Box justifyContent="center" alignItems="center" flex={1} mb={16}>
           <Button
             translationKey={isPlaying ? "labels.cta.pause" : "labels.cta.resume"}
-            delay={300}
+            delay={DETOX_ENABLED ? 0 : 300}
             onPress={togglePlaying}
             isLoading={currentPart.type === BreathingExerciseOptionPartType.End}
           />
@@ -328,7 +342,7 @@ const CountDown = ({
     () => {
       setCount((prev) => prev - 1000);
     },
-    isPlaying ? 1000 : null
+    isPlaying && !DETOX_ENABLED ? 1000 : null
   );
 
   return (
