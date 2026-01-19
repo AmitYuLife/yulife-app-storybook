@@ -99,9 +99,17 @@ const FiitMediaListContainer = ({
     });
   }, []);
 
+  const screenTitle = useMemo(() => {
+    if (contentMediaTags.includes("body_coach_workout")) {
+      return title;
+    }
+
+    return t("screens.fiit_media_list.title", { title });
+  }, [title]);
+
   return (
     <FiitMediaListScreen
-      title={t("screens.fiit_media_list.title", { title })}
+      title={screenTitle}
       description={t("screens.fiit_media_list.description")}
       items={formattedVideos}
       // TODO: Purge when fiit is swapped for workouts
