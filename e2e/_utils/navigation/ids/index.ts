@@ -1054,6 +1054,7 @@ export const CTA_INVITE_COLLEAGUE = "labels.cta.invite";
 export const CTA_LETS_GO = "labels.cta.lets_go";
 export const CTA_GET_STARTED = "labels.cta.get_started";
 export const CTA_SELECT = "labels.cta.select";
+export const CTA_PAUSE = "labels.cta.pause";
 
 // Yunity Swipe (2048)
 export const YUNITY_SWIPE_SETTINGS = "YUNITY_SWIPE_SETTINGS";
@@ -1137,3 +1138,14 @@ export const PATHWAYS_REFLECTION_UNLOCKS_IN = "PATHWAYS_REFLECTION_UNLOCKS_IN";
 export const SEE_TERMS_AND_CONDITIONS_BUTTON =
   "BUTTON_BASE_See terms and conditions_false-text-view";
 export const PATHWAYS_REFLECTED_CONTINUE = "PATHWAYS_REFLECTED_CONTINUE";
+export const PATHWAYS_DEBUG_SAVE = "save-text-view";
+export const HEALTH_CHALLENGE_BUTTON = "screens.pathways.reflection_chest_button_label-text-view";
+export const CHALLENGE_INTRO_TITLE = "Designed for Yu";
+export const BREATHING_EXERCISE_DURATION_PICKER = "BREATHING_EXERCISE_DURATION_PICKER";
+export const PATHWAYS_CHALLENGE_TILE = (text: string) => `PATHWAYS_CHALLENGE_TILE_${text}`;
+export const PATHWAYS_CHALLENGE_COMPLETED = "PATHWAYS_CHALLENGE_COMPLETED";
+
+// Debug Menu
+export const DEBUG_MENU = "DEBUG_MENU";
+export const DEBUG_SEARCH_INPUT = "DEBUG_SEARCH_INPUT";
+export const DEBUG_MENU_ITEM = (item: string) => `DEBUG_MENU_ITEM_${item}`;

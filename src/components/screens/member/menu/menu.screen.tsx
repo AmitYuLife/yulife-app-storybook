@@ -1,6 +1,6 @@
 import React from "react";
 import { Image as RNImage, ImageRequireSource, ScrollView, View } from "react-native";
-import { MENU_ITEM, MENU_SCREEN } from "@ids";
+import { DEBUG_MENU, MENU_ITEM, MENU_SCREEN } from "@ids";
 import { CloseSvg, Pad } from "@atoms";
 import Logo from "@atoms/logo";
 import { TextTemplate } from "@atoms/text/text-template";
@@ -98,7 +98,7 @@ const DebugAndVersion = ({ onDebugPress, version }: Pick<IProps, "onDebugPress" 
         onDebugPress ? " | " : ""
       }`}</TextTemplate>
       {!onDebugPress ? null : (
-        <TextTemplate color={Colours.neutral.n400} type="l3" decoration="underline">
+        <TextTemplate color={Colours.neutral.n400} type="l3" decoration="underline" testID={DEBUG_MENU}>
           Debug menu
         </TextTemplate>
       )}

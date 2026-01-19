@@ -14,6 +14,7 @@ export const {
   restartWithoutDelete,
   terminateApp,
   relaunchAppWithoutSync,
+  typeViaID,
 } = navigation.common;
 
 export const { scrollFromID, scrollUntilIdVisible } = navigation.scrolling;
@@ -62,4 +63,30 @@ export const selectPickerValueAndNext = (prompt: string) => async () => {
   await openPickerByPrompt(prompt)();
   await confirmScrollPicker();
   await tapNext();
+};
+
+export const openDebugMenuItem =
+  (itemCode: string, searchText: string = itemCode) =>
+  async () => {
+    await tapID(ids.MENU_ICON, 1_500)();
+    await tapID(ids.DEBUG_MENU, 2_000)();
+
+    await typeViaID(ids.DEBUG_SEARCH_INPUT, searchText)();
+
+    // Dismiss keyboard by tapping the target item
+    await tapID(ids.DEBUG_MENU_ITEM(itemCode), 2_000)();
+
+    // Now actually open it
+    await tapID(ids.DEBUG_MENU_ITEM(itemCode), 2_000)();
+  };
+
+export const closeDebug = async () => {
+  await tapID(ids.LEFT_HEADING_BUTTON(), 2_000)();
+  await tapID(ids.SCREEN_CLOSE, 2_000)();
+};
+
+export const setPathwaysProgress = (progress: string) => async () => {
+  await tapText(progress, 2_000)();
+  await tapID(ids.PATHWAYS_DEBUG_SAVE, 2_000)();
+  await tapText("OK", 2_000)();
 };

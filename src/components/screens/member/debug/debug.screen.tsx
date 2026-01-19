@@ -7,6 +7,7 @@ import styles from "./debug.styles";
 import { TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules/index";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { DEBUG_SEARCH_INPUT } from "@ids";
 
 export interface IDebugItem {
   id: string;
@@ -14,6 +15,7 @@ export interface IDebugItem {
   isFavourite?: boolean;
   onPress: () => void;
   onFavouriteToggle?: () => void;
+  testID?: string;
 }
 
 interface IDebugScreenProps {
@@ -31,7 +33,7 @@ const DebugScreen = memo(({ data, onPressClose }: IDebugScreenProps) => {
   const renderItem = useCallback(({ item }: ListRenderItemInfo<IDebugItem>) => {
     return (
       <TouchableOpacityWithDelay style={styles.itemWrapper} onPress={item.onPress}>
-        <View style={styles.row}>
+        <View style={styles.row} testID={item.testID}>
           <View style={styles.starWrapper}>
             <Svg
               onPress={item?.onFavouriteToggle}
@@ -77,6 +79,7 @@ const DebugScreen = memo(({ data, onPressClose }: IDebugScreenProps) => {
               style={styles.itemWrapper}
               placeholder="Search items..."
               onChangeText={setSearchQuery}
+              testID={DEBUG_SEARCH_INPUT}
             />
           }
           estimatedItemSize={ESTIMATED_ITEM_SIZE}

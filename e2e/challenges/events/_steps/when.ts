@@ -3,6 +3,7 @@ import { navigation } from "@utils";
 export { authoriseFitkit, sendSteps, addStepsHistoricalData } from "@socket";
 import { sendSteps, sendMindfulnessData, sendReduxEvent } from "@socket";
 import * as ids from "@ids";
+import { dataManager } from "@yu-life/yulife-bdd-framework";
 
 export const { tapText, tapID, reloadAppToTab, navigateViaText, wait, navigateViaID } =
   navigation.common;
