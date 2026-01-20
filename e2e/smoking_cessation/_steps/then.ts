@@ -8,7 +8,8 @@ import {
 } from "../_resources/smoking_fixtures";
 import { swipeFromIDAtIndex } from "_utils/navigation/scrolling";
 
-export const { scrollUntilTextVisible, scrollUntilIdVisible, scrollFromID } = navigation.scrolling;
+export const { scrollUntilTextVisible, scrollUntilIdVisible, scrollFromID, scrollFromText } =
+  navigation.scrolling;
 
 export const {
   idVisible,
@@ -30,7 +31,7 @@ export { smokingCelebrationPopupVisible } from "../_helpers/smoking-celebration-
 
 export const { onChallengeComplete } = screens.challenges;
 
-export const { yuScreenV5HeaderVisible } = screens.yuscreen;
+export const { yuScreenV5HeaderVisible, yuScreenLoaded } = screens.yuscreen;
 
 export const smokingTileVisible =
   (titleCopy: string, waitTime = 0) =>

@@ -60,3 +60,17 @@ export const BUSINESS_4_PATHWAYS_STREAKS_SETTINGS = {
     },
   },
 } as IDatabaseItem;
+
+export const BUSINESS_4_REFERRALS_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "account.referrals",
+    entityType: "business",
+    entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    settings: {
+      rewardForSenderOnAccountSignup: 2000,
+      isEnabled: true,
+    },
+  },
+} as IDatabaseItem;
