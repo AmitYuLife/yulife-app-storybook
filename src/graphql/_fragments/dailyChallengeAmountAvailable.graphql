@@ -1,5 +1,4 @@
 fragment UserDailyChallengeAmountAvailable on UserDailyChallengeAmountAvailable {
   dailyChallengeAmountAvailable
   dailyChallengeAmountAvailableWithUnactivatedPowerUps
-  pathwaysChallengeAmountAvailable
 }

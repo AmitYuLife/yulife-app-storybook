@@ -6,7 +6,6 @@ export interface ILevelsStore {
   challengesDoneToday: number;
   dailyChallengeAmountAvailable: number;
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
-  pathwaysChallengeAmountAvailable: number;
   level: number;
   yuniversalMap: number;
   yuniversalLevel: number;
@@ -243,7 +242,6 @@ export type ILevelsStoreGetCoinLedger = Pick<
 export type GetDailyChallengeAmountAvailablePayload = {
   dailyChallengeAmountAvailable: number;
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
-  pathwaysChallengeAmountAvailable: number;
 };
 
 export type GetChallengesDoneTodayPayload = {
