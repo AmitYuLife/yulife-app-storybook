@@ -567,3 +567,11 @@ export const yuScreenV5HeaderVisible =
       await idNotVisible(ids.YUMOJI_YUSCREEN_V5, 4000)();
     }
   };
+
+export const yuScreenLoaded =
+  (timeout = 10_000) =>
+  async () => {
+    await waitFor(element(by.id(ids.YUSCREEN_SCROLL_VIEW)))
+      .toBeVisible()
+      .withTimeout(timeout);
+  };

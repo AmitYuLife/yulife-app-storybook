@@ -158,7 +158,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     When("I tap the back button", when.tapID(ids.BACK_BUTTON, 2000), async () => {
       Then("I should be back on the rewards tab", then.idVisible(ids.REWARDS_SCREEN));
     });
-    When("I scroll down the rewards list", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.2), async () => {
+    When("I scroll down the rewards list", when.scrollFromText("Store", "up", "slow", 0.4, 2_000), async () => {
       Then("I should see a John Lewis reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
       Then("I should see a locked reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id)));
     });
@@ -289,10 +289,11 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
   Scenario("I can successfully deep link when app is minimised", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true), async () => {
-      When("I minimise the app pressing the home button", when.minimiseApp, async () => {
-        When("I follow the deep link", when.goToQuestsScreen, async () => {
-          Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 5000));
-        });
+      Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 7000));
+    });
+    When("I minimise the app pressing the home button", when.minimiseApp, async () => {
+      When("I follow the deep link", when.goToQuestsScreen, async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 5000));
       });
     });
   });

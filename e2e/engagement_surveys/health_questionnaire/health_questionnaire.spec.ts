@@ -95,7 +95,7 @@ Feature("Health questionnaires", async () => {
     });
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
       When("I swipe to the bottom", when.scrollWithLimitedAttemptsUntilIdVisible(ids.TODAYS_EARNINGS, ids.ACTIVITY_FEED_ID("health-questionnaire-slot"), "up"), async () => {
-        Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
+        Then("I can see the Daily Reflection title", then.textVisible("Daily Reflection"));
         Then("I should see the Let's go! button", then.textVisible("Let's go!"));
       });
     });
@@ -240,7 +240,7 @@ Feature("Health questionnaires", async () => {
       Then("I see the 0 yucoin earned today so far", then.textVisible("0 YuCoin"));
     });
     When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
-      Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
+      Then("I can see the Daily Reflection title", then.textVisible("Daily Reflection"));
       Then("I should see the Let's go! button", then.textVisible("Let's go!"));
     });
     When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
@@ -306,7 +306,7 @@ Feature("Health questionnaires", async () => {
       Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_15, 1));
     });
     When("I tap the close button", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-      Then("I should be back on the today's earning screen, and can see the HQ title", then.textVisible("Getting to know Yu!"));
+      Then("I should be back on the today's earning screen, and can see the Daily Reflection title", then.textVisible("Daily Reflection"));
       Then("I should be back on the today's earning screen, and I should see the Let's go! button", then.textVisible("Let's go!"));
     });
     When("I tap Let's go!", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
@@ -359,7 +359,7 @@ Feature("Health questionnaires", async () => {
       Then("As a user who is on a earnRate: 1, for completing the HQ that has a yuCoinRewardAsEarnRateMultiple: 6, I should receive 6 YuCoin for completing it", then.textVisible(/^\+6\s.*/));
     });
     When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
-      Then("I should not see the HQ title", then.textNotVisible("Getting to know Yu!"));
+      Then("I should not see the Daily Reflection title", then.textNotVisible("Daily Reflection"));
       Then("I should not see the HQ Let's go! button", then.textNotVisible("Let's go!"));
     });
     When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
@@ -385,7 +385,7 @@ Feature("Health questionnaires", async () => {
       Then("I should see Today you've earned '200 YuCoin' (from the download bonus)", then.textVisible("200 YuCoin"));
     });
     When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
-      Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
+      Then("I can see the Daily Reflection title", then.textVisible("Daily Reflection"));
       Then("I should see the Let's go! button", then.textVisible("Let's go!"));
     });
     When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
