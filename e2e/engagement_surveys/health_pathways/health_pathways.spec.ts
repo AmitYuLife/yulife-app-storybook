@@ -146,11 +146,23 @@ Feature("Health Pathways", async () => {
     });
     When("I collect my reward", when.tapID(ids.CTA_COLLECT, 2_000), async () => {
       When("I navigate to the Quests", when.tapID(ids.NAV_BAR("quests"), 2_000), async () => {
-        When("I tap 855 level challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(855), 2000), async () => {
-          Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Health Challenge")));
+        When("I tap 855 level challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(855), 2_000), async () => {
+          Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Health Quest")));
           Then("I should see the health challenge completed", then.idVisible(ids.PATHWAYS_CHALLENGE_COMPLETED));
         });
       });
+    });
+    When("I go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR, 2_000), async () => {
+      When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 2_000), async () => {
+        Then("I should be on the YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2_000));
+        Then("I should see 1 min mindful done today", then.idVisible(ids.MINDFUL_COUNT("1 min"), 2_000));
+      });
+    });
+    When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
+      Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS));
+    });
+    When("I scroll further down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast"), async () => {
+      Then("I can see the Health Quest completed today", then.idVisible(ids.ACTIVITY_LISTING("Health Quest", 90)));
     });
   });
 });
