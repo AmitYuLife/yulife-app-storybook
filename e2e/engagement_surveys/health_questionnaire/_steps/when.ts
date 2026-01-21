@@ -46,25 +46,6 @@ export const {
 export const { startChallenge } = screens.challenges;
 export { sendSteps } from "@socket";
 
-export const cycleThroughEngagementSurveyAgreeCheckBoxes = async () => {
-  await tapID(ids.CHECK_BOX_STATE("Agree", false))();
-  await tapID(ids.CHECK_BOX_STATE("Neutral", false))();
-  await tapID(ids.CHECK_BOX_STATE("Disagree", false))();
-  await tapID(ids.CHECK_BOX_STATE("Strongly disagree", false))();
-  await tapID(ids.CHECK_BOX_STATE("Strongly agree", false))();
-};
-
-export const fillOutEngagementSurvey = async () => {
-  await scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5)();
-  await tapID(ids.BUTTON_BASE("Let’s go!"))();
-  await tapID(ids.WORK_LIFE_BALANCE_IMPORTANT)();
-  await tapID(ids.BUTTON_BASE("Next"))();
-  await tapID(ids.ACCEPTABLE_WORKLOAD)();
-  await tapID(ids.BUTTON_BASE("Next"))();
-  await tapID(ids.SUPPORTED_IN_TAKING_LEAVE)();
-  await tapID(ids.BUTTON_BASE("Next"))();
-};
-
 export const tapAllCheckboxes =
   (stepId: string, questionId: string, numberOfBoxes: number) => async () => {
     for (let i = 1; i <= numberOfBoxes; i++) {
