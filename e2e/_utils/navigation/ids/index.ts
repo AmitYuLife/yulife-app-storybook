@@ -285,7 +285,7 @@ export const MARKDOWN_TEXT = (copy: string) => `MARKDOWN_TEXT_${copy}`;
 export const APPREVIEW_TEXT = (text: string) => `APPREVIEW_TEXT_${text}`;
 export const STEPS_COUNT = (steps: number) => `STEPS_COUNT_${steps}`;
 export const CYCLING_COUNT = (cycling: string) => `CYCLING_COUNT_${cycling}`;
-export const MINDFUL_COUNT = (mindfulness: string) => ` MINDFUL_COUNT_${mindfulness}`;
+export const MINDFUL_COUNT = (mindfulness: string) => `MINDFUL_COUNT_${mindfulness}`;
 export const COVER_TYPE = (copy: string) => `COVER_TYPE_${copy}`;
 export const LOGIN_SCREEN_HEADER = "LOGIN_SCREEN_HEADER";
 
