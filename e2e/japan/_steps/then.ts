@@ -2,11 +2,7 @@ import * as ids from "@ids";
 import { expect } from "detox";
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
-import { getTranslation } from "_utils/translations/getTranslations";
-export {
-  canSeeEngagementSurvey1To10CheckBoxes,
-  canSeeEngagementSurveySupportedByCheckBoxes,
-} from "engagement_surveys/legacy_engagement_surveys/_steps/then";
+
 export {
   smokingTileVisible,
   smokingCardVisible,
@@ -65,12 +61,4 @@ export const cycleThroughGiftMessages = async () => {
     0.2
   )();
   await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.happy_birthday"))();
-};
-
-export const canSeeEngagementSurveyAgreeCheckBoxesJp = async () => {
-  await idVisible(ids.CHECK_BOX_STATE("とてもそう思う", false))();
-  await idVisible(ids.CHECK_BOX_STATE("ややそう思う", false))();
-  await idVisible(ids.CHECK_BOX_STATE("どちらともいえない", false))();
-  await idVisible(ids.CHECK_BOX_STATE("あまりそう思わない", false))();
-  await idVisible(ids.CHECK_BOX_STATE("まったくそう思わない", false))();
 };

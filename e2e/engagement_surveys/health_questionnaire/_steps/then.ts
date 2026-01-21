@@ -64,16 +64,6 @@ export const onFinancialWellnessQuizDescriptionPage =
     }
   };
 
-export const questionEventPanelVisible = (eventPanel: any) => async () => {
-  await textVisible(eventPanel.title["en-GB"])();
-  await textVisible(eventPanel.description["en-GB"])();
-};
-
-export const eventPanelForRewardTest = (eventPanel: any) => async () => {
-  await textVisible(eventPanel.title["en-GB"])();
-  await textVisible(eventPanel.description["en-GB"])();
-};
-
 export const onHQInformationScreen = (copy: { title: string }) => async () => {
   await textVisible(copy.title)();
 };
@@ -124,34 +114,6 @@ export const progressBarVisible =
     await idVisible(ids.WEEKLY_PROGRESS_BAR(currentPosition, maxLength, colour), 2500)();
   };
 
-export const canSeeEngagementSurveyAgreeCheckBoxes = async () => {
-  await idVisible(ids.CHECK_BOX_STATE("Strongly agree", false))();
-  await idVisible(ids.CHECK_BOX_STATE("Agree", false))();
-  await idVisible(ids.CHECK_BOX_STATE("Neutral", false))();
-  await idVisible(ids.CHECK_BOX_STATE("Disagree", false))();
-  await idVisible(ids.CHECK_BOX_STATE("Strongly disagree", false))();
-};
-
-export const canSeeEngagementSurvey1To10CheckBoxes = async () => {
-  for (let i = 10; i >= 1; i--) {
-    if (i === 5) {
-      await scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5)();
-    }
-    await idVisible(ids.WORKPLACE_CHOICE(i))();
-  }
-};
-
-export const canSeeEngagementSurveySupportedByCheckBoxes = async () => {
-  await idVisible("growth_development_supported_choice_my_manager")();
-  await idVisible("growth_development_supported_choice_a_manager_in_another_team")();
-  await idVisible("growth_development_supported_choice_a_peer_from_my_team")();
-  await idVisible("growth_development_supported_choice_a_peer_from_another_team")();
-  await idVisible("growth_development_supported_choice_someone_in_senior_leadership")();
-  await idVisible("growth_development_supported_choice_no_one_yet")();
-  await scrollFromID("growth_development_supported_choice_my_manager", "up", "fast", 0.5)();
-  await idVisible("growth_development_supported_choice_other")();
-};
-
 export const verifyImageChoicesVisible = async () => {
   const images = [
     "journeys/health-questionnaire/image-choice/sleep_chrono_morning.svg",
@@ -189,41 +151,6 @@ export const canSeeHQConsentScreen = (locale: "en-GB" | "ja-JP") => async () => 
   const { heading, headingType, button } = locales[locale];
   await idVisible(ids.TEXT_TEMPLATE(heading, headingType))();
   await idVisible(ids.BUTTON_BASE(button, false))();
-};
-
-export const pulseSurveyIntroVisible = async () => {
-  await idVisible(ids.TEXT_TEMPLATE("Share your feedback!", "h3"))();
-  await idVisible(
-    ids.MARKDOWN(
-      "Help improve your workplace experience! Take a few minutes to fill in this anonymous survey."
-    )
-  )();
-  await idVisible(ids.CONTENT_ITEM_INFO_CARD("**Task**\n\nComplete the survey."))();
-  await idVisible(ids.CONTENT_ITEM_INFO_CARD("**Rewards**\n\nEarn 30 YuCoin!"))();
-  await idVisible(
-    ids.CONTENT_ITEM_INFO_CARD(
-      "**Why are we gathering feedback?**\n\nTo gather insights to enhance employee engagement and overall satisfaction. It is not intended to evaluate individual performance."
-    )
-  )();
-  await scrollFromID(
-    ids.CONTENT_ITEM_INFO_CARD("**Task**\n\nComplete the survey."),
-    "up",
-    "fast"
-  )();
-  await idVisible(
-    ids.WARNING_BANNER(
-      "Our lips are sealed! Your response is completely anonymous. Your employer won’t be able to see your individual answers."
-    )
-  )();
-  await idVisible(ids.BUTTON_BASE("Let’s go!", false))();
-};
-
-export const engagementSurveyHeroCardVisible = async () => {
-  await idVisible(ids.EVENT_CARD("Share your feedback pulse"))();
-  await idVisible(ids.EVENT_HEADING("Share your feedback pulse", "#5A5A5C"))();
-  await idVisible(
-    ids.EVENT_DESCRIPTION("Earn YuCoin and help improve your workplace anonymously!", "#5A5A5C")
-  )();
 };
 
 export const canSeeWeightConversion = async () => {

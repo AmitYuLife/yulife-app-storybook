@@ -76,22 +76,6 @@ export const CUSTOMER_5 = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_6 = createCustomerRecords({
-  archived: false,
-  status: "onboarded",
-  email: generateRandomInbox(),
-  preferredContentLocation: "GB",
-  employments: [
-    {
-      businessAccountId: BUSINESS_ACCOUNT_5.business.data.businessAccountId,
-      businessEmployeeId: generateRandomPostgresId(),
-      archived: false,
-      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
-      products: [],
-    },
-  ],
-});
-
 export const CUSTOMER_7 = createCustomerRecords({
   archived: false,
   status: "onboarded",

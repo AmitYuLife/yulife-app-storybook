@@ -41,17 +41,6 @@ export const goToWellbeingHub = async () => {
 
 export const { triggerSearchTokens } = screens.leaderboard;
 
-export const fillOutEngagementSurvey = async () => {
-  await scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5)();
-  await tapID(ids.BUTTON_BASE("始める"))();
-  await tapID(ids.WORK_LIFE_BALANCE_IMPORTANT)();
-  await tapID(ids.BUTTON_BASE("次のページ"))();
-  await tapID(ids.ACCEPTABLE_WORKLOAD)();
-  await tapID(ids.BUTTON_BASE("次のページ"))();
-  await tapID(ids.SUPPORTED_IN_TAKING_LEAVE)();
-  await tapID(ids.BUTTON_BASE("次のページ"))();
-};
-
 export const sendGiftUserFlow = (giftRecipient: IDatabaseItem) => async () => {
   await tapID(ids.HERO_CARD_SECTION)();
   await tapID(ids.CTA_GET_STARTED)();
@@ -109,11 +98,3 @@ export const triggerThanksForGiftNotification =
       giftReceiverUserId: gift.data.toUserId,
     });
   };
-
-export const cycleThroughEngagementSurveyAgreeCheckBoxesJp = async () => {
-  await tapID(ids.CHECK_BOX_STATE("ややそう思う", false))();
-  await tapID(ids.CHECK_BOX_STATE("どちらともいえない", false))();
-  await tapID(ids.CHECK_BOX_STATE("あまりそう思わない", false))();
-  await tapID(ids.CHECK_BOX_STATE("まったくそう思わない", false))();
-  await tapID(ids.CHECK_BOX_STATE("とてもそう思う", false))();
-};

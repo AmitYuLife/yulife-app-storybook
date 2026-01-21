@@ -58,32 +58,3 @@ export const onFinancialWellnessQuizDescriptionPage =
       await textVisible(details.button)();
     }
   };
-
-export const checkEachHeroCard = async () => {
-  const heroCardData = [
-    {
-      id: ids.WARNING_BANNER(
-        "Looks like your health data isn’t syncing. Are you up to date on your permissions?"
-      ),
-    },
-    { id: ids.EVENT_CARD("Share your feedback") },
-    { id: ids.EVENT_CARD("Share your feedback pulse") },
-    { id: ids.EVENT_CARD("Log your progress") },
-    { id: ids.EVENT_CARD("Automated QA Test Journey 500 YuCoin Flat Amount") },
-    { id: ids.EVENT_CARD("Getting to know yu!") },
-    // @UPDATE - HQ not showing for this user - will investigate
-    // { id: ids.EVENT_CARD("Daily health questions") },
-    { id: ids.EVENT_CARD("FTUE - test") },
-  ];
-
-  for (let i = 0; i < heroCardData.length; i++) {
-    const { id } = heroCardData[i];
-
-    if (i !== 0) {
-      const fromId = heroCardData[i - 1].id;
-      await scrollFromID(fromId, "left", "slow", 0.5)();
-    }
-
-    await idVisible(id)();
-  }
-};
