@@ -26,4 +26,7 @@ fragment FeatureCardSection on FeatureCardSection {
   content {
     ...FeatureCardSectionContent
   }
+  onScrollIntoView {
+    ...SduiAction
+  }
 }

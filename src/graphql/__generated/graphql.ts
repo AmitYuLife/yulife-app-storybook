@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -1195,11 +1194,14 @@ export type BusinessSurveyPreset = {
   description: Scalars["String"]["output"];
   estimatedDuration?: Maybe<Scalars["String"]["output"]>;
   hasNpsQuestion?: Maybe<Scalars["Boolean"]["output"]>;
+  isBeta?: Maybe<Scalars["Boolean"]["output"]>;
   presetId: BusinessSurveyPresetId;
+  shouldOpenPromptDialog?: Maybe<Scalars["Boolean"]["output"]>;
   title: Scalars["String"]["output"];
 };
 
 export enum BusinessSurveyPresetId {
+  CreateFromPrompt = "CreateFromPrompt",
   EngagementSurvey = "EngagementSurvey",
   None = "None",
   QuickEngagementSurvey = "QuickEngagementSurvey",
@@ -3268,6 +3270,8 @@ export type DefaultOnboardingDetails = {
   fullName?: Maybe<Scalars["String"]["output"]>;
   /** Whether the user is required to provide a date of birth */
   isDateOfBirthRequired?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether the referral input should be shown during onboarding */
+  isReferralInputEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   /** The user's last name, either from the users customer record or their employee record */
   lastName?: Maybe<Scalars["String"]["output"]>;
 };
@@ -3874,6 +3878,7 @@ export type FeatureCardSection = {
   content?: Maybe<FeatureCardSectionContent>;
   id: Scalars["String"]["output"];
   loadingGroup?: Maybe<Scalars["Int"]["output"]>;
+  onScrollIntoView?: Maybe<SduiAction>;
   ready: Scalars["Boolean"]["output"];
   sectionInstanceId: Scalars["String"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
@@ -4103,6 +4108,39 @@ export type GameSettingsRewards = {
   hasDonationBattlepass: Scalars["Boolean"]["output"];
   hasUnlockableBattlepassVouchers: Scalars["Boolean"]["output"];
   hasVoucherStore: Scalars["Boolean"]["output"];
+};
+
+export type GenerateSurveyFromPromptInput = {
+  prompt: Scalars["String"]["input"];
+};
+
+export type GeneratedCategory = {
+  __typename?: "GeneratedCategory";
+  categoryTitle: Scalars["String"]["output"];
+  questions: Array<GeneratedQuestion>;
+};
+
+export type GeneratedQuestion = {
+  __typename?: "GeneratedQuestion";
+  description?: Maybe<Scalars["String"]["output"]>;
+  heading: Scalars["String"]["output"];
+  isRequired: Scalars["Boolean"]["output"];
+  multiSelect?: Maybe<Scalars["Boolean"]["output"]>;
+  multipleChoiceOptions?: Maybe<Array<Scalars["String"]["output"]>>;
+  scaleType?: Maybe<SurveyTemplateScaleType>;
+  type: GeneratedQuestionType;
+};
+
+export enum GeneratedQuestionType {
+  MultipleChoice = "MultipleChoice",
+  Nps = "Nps",
+  OpenAnswer = "OpenAnswer",
+  Scale = "Scale",
+}
+
+export type GeneratedSurveyOutput = {
+  __typename?: "GeneratedSurveyOutput";
+  categories: Array<GeneratedCategory>;
 };
 
 export type GetAuthorisationUrlsResult = {
@@ -6492,6 +6530,7 @@ export type Mutation = {
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
   /** Generates a signed URL for the member's product document and returns an action to open it */
   generateMemberProductDocumentUrl: SduiAction;
+  generateSurveyFromPrompt: GeneratedSurveyOutput;
   getNewConnectionLink?: Maybe<Scalars["String"]["output"]>;
   getNewPensionConnectionLink?: Maybe<Scalars["String"]["output"]>;
   initiateCompanyJoin: InitiateCompanyJoinResult;
@@ -6987,6 +7026,12 @@ export type MutationExportYuCoinRedemptionReportArgs = {
 
 export type MutationGenerateMemberProductDocumentUrlArgs = {
   customerProductId: Scalars["String"]["input"];
+};
+
+export type MutationGenerateSurveyFromPromptArgs = {
+  campaignId: Scalars["ID"]["input"];
+  input: GenerateSurveyFromPromptInput;
+  saveToDatabase: Scalars["Boolean"]["input"];
 };
 
 export type MutationGetNewConnectionLinkArgs = {
@@ -11922,6 +11967,7 @@ export type UserDailyChallengeAmountAvailable = {
   __typename?: "UserDailyChallengeAmountAvailable";
   dailyChallengeAmountAvailable: Scalars["Int"]["output"];
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: Scalars["Int"]["output"];
+  /** @deprecated No longer part of the daily challenge amount */
   pathwaysChallengeAmountAvailable: Scalars["Int"]["output"];
 };
 
@@ -11990,6 +12036,7 @@ export type UserPathwayAdviceItem = {
   image: RemoteImage;
   label: Scalars["String"]["output"];
   onPress: SduiAction;
+  onScrollIntoView?: Maybe<SduiAction>;
   shadowColor: Scalars["String"]["output"];
 };
 
@@ -12283,6 +12330,7 @@ export type WellbeingHubSection = {
   content?: Maybe<WellbeingHubSectionContent>;
   id: Scalars["String"]["output"];
   loadingGroup?: Maybe<Scalars["Int"]["output"]>;
+  onScrollIntoView?: Maybe<SduiAction>;
   ready: Scalars["Boolean"]["output"];
   sectionInstanceId: Scalars["String"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
@@ -19899,7 +19947,6 @@ export type UserDailyChallengeAmountAvailableFragment = {
   __typename?: "UserDailyChallengeAmountAvailable";
   dailyChallengeAmountAvailable: number;
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
-  pathwaysChallengeAmountAvailable: number;
 };
 
 export type DailyPensionContributionFragment = {
@@ -20253,6 +20300,7 @@ export type UserPathwayAdviceItemFragment = {
   label: string;
   onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 export type UserPathwaysFragment = {
@@ -29304,6 +29352,7 @@ export type GetUserPathwaysQuery = {
       label: string;
       onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
   };
   getInterventionItems: {
@@ -29332,6 +29381,7 @@ export type GetUserPathwaysQuery = {
             } | null;
             backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
           } | null;
+          onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         }
       | {
           __typename: "HeroCardSection";
@@ -31324,6 +31374,7 @@ export type GetUserPathwaysQuery = {
               image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
             }>;
           } | null;
+          onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         }
     >;
   };
@@ -36949,6 +37000,7 @@ export type FeatureCardSectionFragment = {
     } | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   } | null;
+  onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 export type HeroCardSectionContentFragment = {
@@ -37285,6 +37337,7 @@ export type WellbeingHubSectionFragment = {
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
   } | null;
+  onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 export type GetHealthSmokingStateQueryVariables = Exact<{ [key: string]: never }>;
@@ -38763,7 +38816,6 @@ export type GetUserDailyChallengeAmountAvailableQuery = {
     __typename?: "UserDailyChallengeAmountAvailable";
     dailyChallengeAmountAvailable: number;
     dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
-    pathwaysChallengeAmountAvailable: number;
   };
 };
 
@@ -39848,6 +39900,7 @@ export type GetYuScreenV5Query = {
             } | null;
             backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
           } | null;
+          onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         }
       | {
           __typename: "HeroCardSection";
@@ -41840,6 +41893,7 @@ export type GetYuScreenV5Query = {
               image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
             }>;
           } | null;
+          onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         }
     >;
     yumojiPrompt?: {
@@ -41884,6 +41938,7 @@ export type GetYuScreenV5SectionsQuery = {
           } | null;
           backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
         } | null;
+        onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
       }
     | {
         __typename: "HeroCardSection";
@@ -43860,6 +43915,7 @@ export type GetYuScreenV5SectionsQuery = {
             image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
           }>;
         } | null;
+        onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
       }
   >;
 };
@@ -43886,6 +43942,7 @@ type YuScreenSection_FeatureCardSection_Fragment = {
     } | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   } | null;
+  onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 type YuScreenSection_HeroCardSection_Fragment = {
@@ -45857,6 +45914,7 @@ type YuScreenSection_WellbeingHubSection_Fragment = {
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
   } | null;
+  onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 export type YuScreenSectionFragment =
@@ -59135,7 +59193,6 @@ export const UserDailyChallengeAmountAvailableFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailableWithUnactivatedPowerUps" } },
-          { kind: "Field", name: { kind: "Name", value: "pathwaysChallengeAmountAvailable" } },
         ],
       },
     },
@@ -60531,6 +60588,14 @@ export const UserPathwayAdviceItemFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -67007,6 +67072,14 @@ export const WellbeingHubSectionFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "WellbeingHubSectionContent" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -67051,6 +67124,18 @@ export const WellbeingHubSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -67328,6 +67413,14 @@ export const FeatureCardSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSectionContent" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
         ],
@@ -70393,6 +70486,14 @@ export const YuScreenSectionFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "WellbeingHubSectionContent" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -70439,6 +70540,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSectionContent" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
         ],
@@ -86667,6 +86776,14 @@ export const GetUserPathwaysDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "WellbeingHubSectionContent" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -86789,6 +86906,14 @@ export const GetUserPathwaysDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSectionContent" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -86858,6 +86983,14 @@ export const GetUserPathwaysDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -97680,7 +97813,6 @@ export const GetUserDailyChallengeAmountAvailableDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailableWithUnactivatedPowerUps" } },
-          { kind: "Field", name: { kind: "Name", value: "pathwaysChallengeAmountAvailable" } },
         ],
       },
     },
@@ -104178,6 +104310,14 @@ export const GetYuScreenV5Document = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "WellbeingHubSectionContent" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -104298,6 +104438,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSectionContent" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
         ],
@@ -107238,6 +107386,14 @@ export const GetYuScreenV5SectionsDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "WellbeingHubSectionContent" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -107358,6 +107514,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "FeatureCardSectionContent" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onScrollIntoView" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
         ],

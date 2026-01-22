@@ -10,7 +10,7 @@ import {
   PathwayAdviceSectionProps,
   PathwaysAdviceSection,
 } from "../components/pathways-advice-section/pathways-advice-section";
-import { YuScreenSection } from "@graphql/__generated";
+import { FeatureCardSection, WellbeingHubSection } from "@graphql/__generated";
 import { useWindowDimensions } from "react-native";
 import { PathwaysInterventionSection } from "../components/pathways-intervention-section/pathways-intervention-section";
 import { PATHWAYS_SCREEN } from "@ids";
@@ -26,7 +26,7 @@ interface IPathwaysScreenProps {
   reflectedToday: boolean;
   nextQuestionnaireLocalDate: string;
   adviceSection: PathwayAdviceSectionProps;
-  interventionSections: YuScreenSection[];
+  interventionSections: Array<FeatureCardSection | WellbeingHubSection>;
   isLoading: boolean;
   maxProgress: number;
   pathwayChallenge: PathwayChallenge;
@@ -64,7 +64,7 @@ const PathwaysScreen = ({
         style={styles.flex}
         contentInsetAdjustmentBehavior="never"
         onScroll={scrollHandler}
-        scrollEventThrottle={16}
+        scrollEventThrottle={100}
         overScrollMode="never"
         showsVerticalScrollIndicator={false}
       >
@@ -112,7 +112,9 @@ const PathwaysScreen = ({
 
         <Box minHeight={500} width={"100%"} gap={20} ph={16} pt={30}>
           <Box gap={16}>
-            {interventionSections?.length ? <PathwaysInterventionSection sections={interventionSections} /> : null}
+            {interventionSections?.length ? (
+              <PathwaysInterventionSection sections={interventionSections} scrollY={scrollY} />
+            ) : null}
             <Box ph={8}>
               <TextTemplate type="b1b" color={Colours.neutral.white}>
                 {t("screens.pathways.health_insights")}
@@ -126,12 +128,9 @@ const PathwaysScreen = ({
             />
           </Box>
           <Box pb={0}>
-            <PathwaysAdviceSection items={adviceSection?.items} />
+            <PathwaysAdviceSection items={adviceSection?.items} scrollY={scrollY} />
           </Box>
         </Box>
-        {/* <Box mv={24}>
-          <SecondaryButton translationKey="screens.pathways.secondary_button_label" size="Large" onPress={onClose} />
-        </Box> */}
         <Box pb={bottomBackgroundHeight * 0.3} />
       </Animated.ScrollView>
       <GenericHeadingAbsolute

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { Navigation } from "@navigation/main";
-import { YuScreenSection } from "@graphql/__generated";
+import { FeatureCardSection, WellbeingHubSection } from "@graphql/__generated";
 import { getMoodSubmission } from "../utils/get-mood-submission.util";
 import { useDispatch } from "react-redux";
 import { ROUTES } from "@navigation/constants";
@@ -67,7 +67,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
       maxProgress: reflectionProgress.maxProgress,
       nextQuestionnaireLocalDate: data?.getUserPathways?.nextQuestionnaireLocalDate ?? "",
       adviceSection: data?.getUserPathwayAdviceSection,
-      interventionSections: data?.getInterventionItems?.sections as YuScreenSection[],
+      interventionSections: data?.getInterventionItems?.sections as Array<FeatureCardSection | WellbeingHubSection>,
       pathwayChallenge: pathwayChallenge,
     }),
     [data, loading, onClose, onReflect, onOpenMoodCalendar, moodSubmissions, reflectionProgress, pathwayChallenge]

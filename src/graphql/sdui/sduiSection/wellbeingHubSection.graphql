@@ -21,4 +21,7 @@ fragment WellbeingHubSection on WellbeingHubSection {
   content {
     ...WellbeingHubSectionContent
   }
+  onScrollIntoView {
+    ...SduiAction
+  }
 }
