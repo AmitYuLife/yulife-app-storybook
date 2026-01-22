@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.98.0] - 2026-01-22
+
+### Bugfixes
+
+- Bugfix GS-2233: contentItemImage not taking full device width
+- Bugfix GS-2173: Remove classes suffix on body coach
+
+### Tasks
+
+- Task GS-2253: fish
+- Task GS-2222: Singular/plural day/days
+- Task GS-2223: Not counting pathwayChallenge as challenge
+- Task DEVOPS-4851: Fix Detox Allure report history
+- Task GS-2224: Wrapped Japan fixes
+- Task GS-2188: fix AV timer centering
+- Task GS-2188: airplay initial setup
+- Task GS-2218: Pathways tweaks
+- Task GS-2216: Extract debug selector component
+- Task GS-2210: Pathways fixes/adjustments
+- Task GS-2215: Modules path alias & CLAUDE.md updates
+- (grafted) Merge branch 'task/GS-1571-add-baid-debug-view' into 'develop'
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- (grafted) chore DEVOPS-4787: Add MR Title and Description quality checks
+
+### Extra
+
+- Bug GS-2211: Conditionally render the pathway subtitle for insights
+- Story GS-2212: Emit Mixpanel event when a pathway item comes into view
+- Detox GS-2218: Health Quest Activity
+- Detox GS-2167: Purge Legacy Engagement Surveys
+- Detox GS-2230: Smoking Opt out Daily Limit
+- Detox GS-2067: Pathways Health Challenge
+- Detox GS-2202: Event Passive Step Progress
+- Hotfix DEVOPS-4679: Add changelog entry for iOS UAT builds
+
 ## [4.97.0] - 2026-01-14
 
 ### Features
