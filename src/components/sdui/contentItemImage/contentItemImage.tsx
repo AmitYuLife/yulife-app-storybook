@@ -40,6 +40,7 @@ export const ContentItemImage = memo((props: IContentItemImage) => {
         style={imageStyle}
         source={source}
         testID={CONTENT_MIDDLE_ITEM_IMAGE(source.uri)}
+        contentFit={props.contentItemImageSize}
       />
     </Wrapper>
   );
