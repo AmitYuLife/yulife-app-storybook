@@ -9,7 +9,7 @@ YuLife is a React Native mobile application for iOS and Android that provides a 
 ### Rules
 
 - Always use `import { Box } from "@atoms";` component instead of View. Use the style props in `src/components/atoms/box/box.types.ts` instead of passing a `style` to Box.
-- When creating components, always define them with `const` and export with `export default memo(Component)` at the bottom of the file
+- When creating components, always define them with `const` and export with `export default memo(Component)` at the bottom of the file. Do not define with `const MyComponent = memo(...`
 - Always destructure React imports. For example use `property: ReactNode` instead of `property: React.ReactNode`
 - If working within a module `src/modules` keep all files related to it in the module folder/subfolders.
 - All screens must be rendered via a `container` rather than adding the screen file directly to navigation. This is usually via a `screen-name.container.tsx` file.
