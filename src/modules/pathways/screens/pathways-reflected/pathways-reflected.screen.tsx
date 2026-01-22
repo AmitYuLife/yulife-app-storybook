@@ -79,7 +79,7 @@ const PathwaysReflectedScreen = ({
                     </TextTemplate>
                     <Box gap={5}>
                       <TextTemplate type="h3" textAlign="center" color={colours.neutral.white}>
-                        {t("screens.pathways.reflected.title")}
+                        {t("screens.pathways.reflected.title", { smart_count: currentProgress })}
                       </TextTemplate>
                       <TextTemplate type="b1" textAlign="center" color={colours.neutral.white}>
                         {t("screens.pathways.reflected.subtitle")}
