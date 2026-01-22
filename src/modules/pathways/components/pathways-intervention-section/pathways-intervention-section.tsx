@@ -1,10 +1,19 @@
+import { SharedValue } from "react-native-reanimated";
 import { Box, TextTemplate } from "@atoms";
-import { YuScreenSection } from "@graphql/__generated";
+import { FeatureCardSection, WellbeingHubSection } from "@graphql/__generated";
 import { Colours } from "@styles";
 import { t } from "@locale";
 import { renderSduiSection } from "@components/sdui-sections";
+import PathwaysVisibilityWrapper from "../pathways-visibility-wrapper/pathways-visibility-wrapper";
 
-export const PathwaysInterventionSection = ({ sections }: { sections: YuScreenSection[] }) => {
+type InterventionSection = FeatureCardSection | WellbeingHubSection;
+
+interface IPathwaysInterventionSectionProps {
+  sections: InterventionSection[];
+  scrollY?: SharedValue<number>;
+}
+
+export const PathwaysInterventionSection = ({ sections, scrollY }: IPathwaysInterventionSectionProps) => {
   return (
     <Box gap={16}>
       <Box ph={8}>
@@ -12,11 +21,17 @@ export const PathwaysInterventionSection = ({ sections }: { sections: YuScreenSe
           {t("screens.pathways.recommended_for_you")}
         </TextTemplate>
       </Box>
-      {sections.map((section) =>
-        renderSduiSection(section, {
-          buttonColor: Colours.neutral.white,
-        })
-      )}
+      {sections.map((section) => (
+        <PathwaysVisibilityWrapper
+          key={section.id}
+          scrollY={scrollY}
+          onScrollIntoView={section.onScrollIntoView ?? undefined}
+        >
+          {renderSduiSection(section, {
+            buttonColor: Colours.neutral.white,
+          })}
+        </PathwaysVisibilityWrapper>
+      ))}
     </Box>
   );
 };

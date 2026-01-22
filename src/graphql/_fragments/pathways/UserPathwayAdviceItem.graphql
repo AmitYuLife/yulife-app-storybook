@@ -10,4 +10,7 @@ fragment UserPathwayAdviceItem on UserPathwayAdviceItem {
   }
   heading
   label
+  onScrollIntoView {
+    ...SduiAction
+  }
 }
