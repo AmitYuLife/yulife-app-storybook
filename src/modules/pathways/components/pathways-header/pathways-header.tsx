@@ -9,6 +9,7 @@ import { PATHWAYS_REFLECTION_ITEMS, PATHWAYS_REFLECTION_ITEM, PATHWAYS_REFLECT_C
 import moment from "moment";
 import { PathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 import { PathwaysReflectionStatus } from "../../pathways.types";
+import { SwimmingFish } from "@molecules";
 
 interface IPathwaysHeaderProps {
   onReflect: () => void;
@@ -75,6 +76,9 @@ const PathwaysHeader = ({
 
   return (
     <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} mt={7}>
+      <Box position="absolute" top={190} width={"100%"} h={40}>
+        <SwimmingFish duration={12000} delay={2000} endY={100} />
+      </Box>
       <PathwayStreaks
         currentStreak={reflectionProgress}
         reflectedToday={reflectedToday}

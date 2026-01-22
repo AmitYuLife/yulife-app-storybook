@@ -1,11 +1,10 @@
 import { Box, TextTemplate } from "@atoms";
-import { Button } from "@components/molecules";
+import { Button, SwimmingFish } from "@components/molecules";
 import { memo, useCallback, useMemo, useState } from "react";
 import { Image, ScrollView } from "react-native";
 import { FadeIn, FadeInDown, FadeInUp, SlideInDown } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { IWrappedStageProps } from "../../wrapped.types";
-import WrappedFish from "./components/wrapped-fish";
 import WrappedChallengeCountCard from "./components/wrapped-challenge-count-card";
 import { Style, StyleSheet } from "@styles";
 import { useWrappedStage2Animations } from "./use-wrapped-stage-2-animations.hook";
@@ -125,8 +124,10 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
         <Box forceAnimated={true} style={waterStyle} pointerEvents="none">
           <Image style={styles.background} resizeMode="cover" source={WATER_BOTTOM_BACK_ASSET} />
         </Box>
-        <Box h="100%" w="100%" pb={180} position="absolute" pointerEvents="none" justifyContent="flex-end">
-          <WrappedFish duration={12000} delay={2000} />
+        <Box h="100%" w="100%" position="absolute" pointerEvents="box-none" justifyContent="flex-end">
+          <Box position="absolute" bottom={0} pb={180} width={"100%"} pointerEvents="box-none">
+            <SwimmingFish duration={12000} delay={2000} interactive={true} />
+          </Box>
         </Box>
 
         <Box

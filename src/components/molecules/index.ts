@@ -114,3 +114,4 @@ export {
   default as HorizontalNumberDisplay,
   AnimationHandle,
 } from "./horizontal-number-display/horizontal-number-display";
+export { default as SwimmingFish } from "./swimming-fish/swimming-fish";

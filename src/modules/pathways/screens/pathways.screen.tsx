@@ -15,6 +15,7 @@ import { useWindowDimensions } from "react-native";
 import { PathwaysInterventionSection } from "../components/pathways-intervention-section/pathways-intervention-section";
 import { PATHWAYS_SCREEN } from "@ids";
 import { PathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
+import { SwimmingFish } from "@molecules";
 
 interface IPathwaysScreenProps {
   onClose: () => void;
@@ -130,6 +131,9 @@ const PathwaysScreen = ({
           <Box pb={0}>
             <PathwaysAdviceSection items={adviceSection?.items} scrollY={scrollY} />
           </Box>
+        </Box>
+        <Box bottom={0} width={"100%"} h={100} mt={50}>
+          <SwimmingFish duration={12000} delay={2000} />
         </Box>
         <Box pb={bottomBackgroundHeight * 0.3} />
       </Animated.ScrollView>
