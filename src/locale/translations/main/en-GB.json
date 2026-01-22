@@ -227,7 +227,8 @@
       },
       "reflected": {
         "title": "day of reflection! |||| days of reflection!",
-        "subtitle": "Your personalised insights are unlocked!"
+        "subtitle": "Your personalised insights are unlocked!",
+        "subtitle_locked": "Reflect every day to unlock personalised insights."
       },
       "claim": {
         "title": "Here's everything you got today!",

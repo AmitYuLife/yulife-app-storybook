@@ -82,7 +82,11 @@ const PathwaysReflectedScreen = ({
                         {t("screens.pathways.reflected.title", { smart_count: currentProgress })}
                       </TextTemplate>
                       <TextTemplate type="b1" textAlign="center" color={colours.neutral.white}>
-                        {t("screens.pathways.reflected.subtitle")}
+                        {t(
+                          isStreakComplete || currentProgress > 1
+                            ? "screens.pathways.reflected.subtitle"
+                            : "screens.pathways.reflected.subtitle_locked"
+                        )}
                       </TextTemplate>
                     </Box>
                   </Box>
