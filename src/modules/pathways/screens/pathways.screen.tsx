@@ -16,6 +16,7 @@ import { PathwaysInterventionSection } from "../components/pathways-intervention
 import { PATHWAYS_SCREEN } from "@ids";
 import { PathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 import { SwimmingFish } from "@molecules";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IPathwaysScreenProps {
   onClose: () => void;
@@ -132,9 +133,11 @@ const PathwaysScreen = ({
             <PathwaysAdviceSection items={adviceSection?.items} scrollY={scrollY} />
           </Box>
         </Box>
-        <Box bottom={0} width={"100%"} h={100} mt={50}>
-          <SwimmingFish duration={12000} delay={2000} />
-        </Box>
+        {DETOX_ENABLED ? null : (
+          <Box bottom={0} width={"100%"} h={100} mt={50}>
+            <SwimmingFish duration={12000} delay={2000} />
+          </Box>
+        )}
         <Box pb={bottomBackgroundHeight * 0.3} />
       </Animated.ScrollView>
       <GenericHeadingAbsolute

@@ -10,6 +10,7 @@ import moment from "moment";
 import { PathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 import { PathwaysReflectionStatus } from "../../pathways.types";
 import { SwimmingFish } from "@molecules";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IPathwaysHeaderProps {
   onReflect: () => void;
@@ -76,9 +77,11 @@ const PathwaysHeader = ({
 
   return (
     <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} mt={7}>
-      <Box position="absolute" top={190} width={"100%"} h={40}>
-        <SwimmingFish duration={12000} delay={2000} endY={100} />
-      </Box>
+      {DETOX_ENABLED ? null : (
+        <Box position="absolute" top={190} width={"100%"} h={40}>
+          <SwimmingFish duration={12000} delay={2000} endY={100} />
+        </Box>
+      )}
       <PathwayStreaks
         currentStreak={reflectionProgress}
         reflectedToday={reflectedToday}
