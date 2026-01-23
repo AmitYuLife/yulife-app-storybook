@@ -234,7 +234,13 @@ export default () => ({
     "./plugins/react-native-navigation/with-react-native-navigation.plugin.js",
     ["@bugsnag/plugin-expo-eas-sourcemaps"],
     "react-native-email-link",
-    "react-native-google-cast",
+    [
+      "react-native-google-cast",
+      {
+        // TODO: remove after RN .77
+        androidPlayServicesCastFrameworkVersion: "22.0.0",
+      },
+    ],
     // This must be last, or build will fail with issues finding YuWatch target
     [
       "@bacons/apple-targets",
