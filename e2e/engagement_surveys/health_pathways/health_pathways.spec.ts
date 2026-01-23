@@ -165,4 +165,22 @@ Feature("Health Pathways", async () => {
       Then("I can see the Health Quest completed today", then.idVisible(ids.ACTIVITY_LISTING("Health Quest", 90)));
     });
   });
+
+  Scenario("Health challenge remains accessible after completing all daily challenges", scenario.start, async () => {
+    Given("I am logged in", given.loginAsUser(data.CUSTOMER_10.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I open the debug menu and select Pathways Progress", when.openDebugMenuItem("pathways-progress", "pathways progress"), async () => {
+        When("I mark 'Last day complete' and save", when.setPathwaysProgress("Last day complete"), async () => {
+          When("I exit the debug menu", when.closeDebug, async () => {
+            When("I navigate to the Quests screen", when.tapID(ids.NAV_BAR("quests"), 2_000), async () => {
+              Then("I should still see the first level unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1), 3_000));
+            });
+          });
+        });
+      });
+    });
+    When("I tap on the first level", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1), 2_000), async () => {
+      Then("I should see the Health Quest challenge", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Health Quest"), 2_000));
+      Then("The Health challenge should still be open and available", then.idNotVisible(ids.PATHWAYS_CHALLENGE_COMPLETED, 2_000));
+    });
+  });
 });
