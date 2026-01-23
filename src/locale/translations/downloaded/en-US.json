@@ -1490,7 +1490,8 @@
       "reflect": "Reflect",
       "reflected": {
         "subtitle": "Your personalized insights are unlocked!",
-        "title": "days of reflection!"
+        "subtitle_locked": "Reflect every day to unlock personalized insights.",
+        "title": "reflection day! |||| reflection days!"
       },
       "reflect_in": "Reflect in %{hours}h %{minutes}m",
       "reflection_active_label": "Reflect",

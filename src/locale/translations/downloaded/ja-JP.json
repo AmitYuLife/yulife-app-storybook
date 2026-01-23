@@ -1490,7 +1490,8 @@
       "reflect": "振り返りに進む",
       "reflected": {
         "subtitle": "リワードを獲得しました!",
-        "title": "振り返り の 日々！"
+        "subtitle_locked": "毎日 振り返ることで パーソナライズされた インサイト を アンロック。",
+        "title": "振り返りの日！ |||| 振り返りの日々！"
       },
       "reflect_in": "あと%{hours}時間%{minutes}分",
       "reflection_active_label": "振り返る",

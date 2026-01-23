@@ -1490,7 +1490,8 @@
       "reflect": "Reflect",
       "reflected": {
         "subtitle": "Desbloquea tus conocimientos personalizados.",
-        "title": "días de reflexión"
+        "subtitle_locked": "Reflexione cada día para obtener información personalizada.",
+        "title": "¡jornada de reflexión! ¡|||| jornadas de reflexión!"
       },
       "reflect_in": "Reflejar en %{hours}h %{minutes}m",
       "reflection_active_label": "Reflect",

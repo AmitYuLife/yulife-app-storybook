@@ -1490,7 +1490,8 @@
       "reflect": "يعكس",
       "reflected": {
         "subtitle": "لقد تم فتح رؤى التخصيص الخاصة بك!",
-        "title": "أيام التأمل"
+        "subtitle_locked": "عكس كل يوم لفتح رؤى مخصصة.",
+        "title": "يوم التأمل! |||| أيام التأمل!"
       },
       "reflect_in": "سيتم التنفيذ خلال %{hours} ساعة و %{minutes} دقيقة",
       "reflection_active_label": "يعكس",
