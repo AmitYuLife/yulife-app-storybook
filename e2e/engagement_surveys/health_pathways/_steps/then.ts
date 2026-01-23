@@ -5,6 +5,7 @@ import { navigation } from "@utils";
 
 export const {
   idVisible,
+  idNotVisible,
   textVisible,
   idExist,
   wait,
