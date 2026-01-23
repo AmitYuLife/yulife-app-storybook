@@ -10,7 +10,7 @@ import Video, {
 } from "react-native-video";
 import moment from "moment";
 import { Animated, View, AppStateStatus } from "react-native";
-import { useAirPlay, AirplayButton, showRoutePicker } from "@services/casting";
+import { useCasting, AirplayButton, CastButton, showRoutePicker } from "@services/casting";
 import Lottie from "lottie-react-native";
 import Config from "react-native-config";
 import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
@@ -50,6 +50,7 @@ import { ChallengeSubmissionStatus } from "@redux/levels/levels.types";
 import { useNetInfoInstance } from "@react-native-community/netinfo";
 import { getUserDataSaverModeEnabled } from "@redux/user/user.selectors";
 import { IYuLifeLogoProps } from "@atoms/logo";
+import Box from "@atoms/box/box";
 export interface IVideoPlayerProps {
   source: string;
   poster?: string;
@@ -128,10 +129,16 @@ const VideoPlayer = ({
   const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(lottie?.uri);
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
-  const { isAirPlayAvailable, isAirPlayEnabled, isExternalPlaybackActive, handleExternalPlaybackChange } = useAirPlay({
-    videoSourceType,
-  });
-  const showAirPlayButton = isAirPlayEnabled && isAirPlayAvailable;
+  const {
+    remotePlayback,
+    activeCastProtocol,
+    isExternalPlaybackActive,
+    showAirPlayButton,
+    showGoogleCastButton,
+    castingLabel,
+    allowsExternalPlayback,
+    handleLocalPlaybackExternalDisplayChange,
+  } = useCasting({ videoSourceType });
 
   // force portrait mode when playing on external display, otherwise use prop
   const effectiveOrientation = isExternalPlaybackActive ? "portrait" : orientation;
@@ -193,7 +200,7 @@ const VideoPlayer = ({
   }, [appCurrentState]);
 
   /**
-   * Set's up the initial player state
+   * Set's up the initial player state and cleanup
    */
   useEffect(() => {
     return () => {
@@ -201,6 +208,31 @@ const VideoPlayer = ({
       fadeOut.stop();
     };
   }, []);
+
+  /**
+   * It's important to stop the remote playback when the component unmounts,
+   * otherwise the video will continue to play on the cast device if using remote playback (e.g. google cast)
+   */
+  useEffect(() => {
+    return () => {
+      remotePlayback?.stop();
+    };
+  }, [remotePlayback]);
+
+  useEffect(() => {
+    if (remotePlayback && remotePlayback.positionInSeconds !== null) {
+      const currentProgressInSeconds = Math.floor(remotePlayback.positionInSeconds);
+
+      if (onProgress && currentProgressInSeconds > 0) {
+        onProgress(currentProgressInSeconds);
+      }
+
+      dispatch({
+        type: ActionTypes.SET_CURRENT_PROGRESS,
+        payload: moment.duration(currentProgressInSeconds, "seconds").asMilliseconds(),
+      });
+    }
+  }, [remotePlayback, remotePlayback?.positionInSeconds, onProgress]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -258,14 +290,40 @@ const VideoPlayer = ({
       return;
     }
 
+    if (remotePlayback) {
+      if (remotePlayback.isPaused) {
+        remotePlayback.play();
+      } else {
+        remotePlayback.pause();
+      }
+
+      reduxDispatch(
+        logMixpanelEventActionCreator(remotePlayback.isPaused ? "video_player_is_paused" : "video_player_is_playing", {
+          activeCastProtocol,
+        })
+      );
+      return;
+    }
+
     dispatch({ type: state.isPaused ? ActionTypes.PLAY_PLAYER : ActionTypes.PAUSE_PLAYER });
 
     if (lottieUri) {
       lottieRef?.current[state.isPaused ? "resume" : "pause"]();
     }
 
-    reduxDispatch(logMixpanelEventActionCreator(state.isPaused ? "video_player_is_paused" : "video_player_is_playing"));
-  }, [state.isPaused, state.durationInSeconds, state.showFocusScreen, state.currentProgressInSeconds]);
+    reduxDispatch(
+      logMixpanelEventActionCreator(state.isPaused ? "video_player_is_paused" : "video_player_is_playing", {
+        activeCastProtocol,
+      })
+    );
+  }, [
+    state.isPaused,
+    state.durationInSeconds,
+    state.showFocusScreen,
+    state.currentProgressInSeconds,
+    remotePlayback,
+    activeCastProtocol,
+  ]);
 
   const handleStartButton = useCallback(async (): Promise<void> => {
     try {
@@ -273,6 +331,15 @@ const VideoPlayer = ({
       await onStart();
 
       dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
+
+      if (remotePlayback) {
+        await remotePlayback.startPlayback(source, {
+          title,
+          subtitle,
+          description,
+          imageUri: thumbnail,
+        });
+      }
 
       if (lottieUri) {
         lottieRef?.current?.play();
@@ -285,7 +352,9 @@ const VideoPlayer = ({
         });
       }
 
-      reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed", { type: eventType }));
+      reduxDispatch(
+        logMixpanelEventActionCreator("video_player_button_start_pressed", { type: eventType, activeCastProtocol })
+      );
     } catch (err) {
       reduxDispatch(getUserDataStart({ types: [AppDataType.activeChallenge] }));
       Logger.error(err, {
@@ -298,9 +367,23 @@ const VideoPlayer = ({
     } finally {
       dispatch({ type: ActionTypes.SET_STARTING, payload: false });
     }
-  }, [onStart, state.durationInSeconds]);
+  }, [
+    onStart,
+    state.durationInSeconds,
+    remotePlayback,
+    source,
+    title,
+    subtitle,
+    description,
+    thumbnail,
+    activeCastProtocol,
+    eventType,
+    activeCastProtocol,
+  ]);
 
   const handleOnEnd = useCallback(async (): Promise<void> => {
+    remotePlayback?.stop();
+
     if (appCurrentState !== "active") {
       dispatch({ type: ActionTypes.SET_IS_DONE_ON_BACKGROUND });
       return;
@@ -314,23 +397,26 @@ const VideoPlayer = ({
       onError();
       Logger.error(err, { location: "video-player-handleOnEnd" });
     }
-  }, [onEnd, appCurrentState, onError]);
+  }, [onEnd, appCurrentState, onError, remotePlayback]);
 
   const handleFocusScreen = useCallback((): void => {
     if (!state.isPaused && !state.showFocusScreen) {
       dispatch({ type: ActionTypes.SET_SHOW_FOCUS_SCREEN, payload: true });
       fadeOut.start();
-      reduxDispatch(logMixpanelEventActionCreator("video_player_focused", { isFocused: true }));
+      reduxDispatch(logMixpanelEventActionCreator("video_player_focused", { isFocused: true, activeCastProtocol }));
     } else {
       dispatch({ type: ActionTypes.SET_SHOW_FOCUS_SCREEN, payload: false });
       fadeIn.start();
-      reduxDispatch(logMixpanelEventActionCreator("video_player_focused", { isFocused: false }));
+      reduxDispatch(logMixpanelEventActionCreator("video_player_focused", { isFocused: false, activeCastProtocol }));
     }
-  }, [state.isPaused, state.showFocusScreen]);
+  }, [state.isPaused, state.showFocusScreen, activeCastProtocol]);
 
   const handleOnError = useCallback(
     async (err: any): Promise<void> => {
-      Logger.error(new Error(JSON.stringify(err?.error || {})), { location: "video-player-onError" });
+      Logger.error(new Error(JSON.stringify(err?.error || {})), {
+        location: "video-player-onError",
+        activeCastProtocol,
+      });
 
       if (state.retries > 0 && state.isMusicControlMounted) {
         playerRef.current.seek(state.currentProgressInSeconds);
@@ -340,7 +426,7 @@ const VideoPlayer = ({
 
       onError();
     },
-    [state.currentProgressInSeconds, state.isMusicControlMounted, state.retries]
+    [state.currentProgressInSeconds, state.isMusicControlMounted, state.retries, activeCastProtocol]
   );
 
   const handleOnRightIconPress = useCallback((): void => {
@@ -381,7 +467,7 @@ const VideoPlayer = ({
     () =>
       effectiveOrientation === "landscape"
         ? { ...styles.currentProgressTime, transform: [{ rotate: "90deg" }], opacity }
-        : [styles.buttonWrapper, { opacity }],
+        : { ...styles.buttonWrapper, left: 0, right: 0, opacity },
     [effectiveOrientation, opacity]
   );
 
@@ -407,15 +493,15 @@ const VideoPlayer = ({
           onLoad={onLoad}
           onEnd={handleOnEnd}
           onProgress={handleOnProgress}
-          paused={state.isPaused}
+          paused={state.isPaused || remotePlayback !== null}
           playInBackground={!isExternalPlaybackActive}
           ignoreSilentSwitch={IgnoreSilentSwitchType.IGNORE}
           showNotificationControls={!isExternalPlaybackActive}
           viewType={ViewType.TEXTURE}
           useTextureView={true}
           maxBitRate={qualities.bitRate}
-          allowsExternalPlayback={isAirPlayEnabled}
-          onExternalPlaybackChange={handleExternalPlaybackChange}
+          allowsExternalPlayback={allowsExternalPlayback}
+          onExternalPlaybackChange={handleLocalPlaybackExternalDisplayChange}
           style={
             !state.isMusicControlMounted
               ? styles.backgroundVideo
@@ -466,9 +552,9 @@ const VideoPlayer = ({
             {!showTimer || state.isLoadingEndOfSession || effectiveOrientation === "landscape" ? null : (
               <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
                 <AvPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
-                {isExternalPlaybackActive ? (
+                {castingLabel ? (
                   <TextTemplate type="b2" color={Colours.neutral.white} textAlign="center">
-                    {t("screens.video_player.playing_on_airplay")}
+                    {castingLabel}
                   </TextTemplate>
                 ) : null}
               </View>
@@ -523,9 +609,9 @@ const VideoPlayer = ({
               {shouldShowTryAgainError ? null : (
                 <VidePlayerButton
                   onPress={onButtonAction}
-                  isPaused={state.isPaused}
+                  isPaused={remotePlayback ? remotePlayback.isPaused : state.isPaused}
                   disabled={state.isLoadingEndOfSession}
-                  testID={VIDEO_PLAY_PAUSE_BUTTON(state.isPaused)}
+                  testID={VIDEO_PLAY_PAUSE_BUTTON(remotePlayback ? remotePlayback.isPaused : state.isPaused)}
                 />
               )}
             </Animated.View>
@@ -575,29 +661,28 @@ const VideoPlayer = ({
         </Animated.View>
       )}
 
-      {/*
-        TODO - add google cast here too
-        Cast buttons - visible before video starts
-      */}
-      {!state.isMusicControlMounted && showAirPlayButton ? (
-        <Pressable
-          position="absolute"
-          top={51}
-          right={65}
-          flexDirection="row"
-          gap={12}
-          zIndex={9999}
-          elevation={9999}
-          size={44}
-          justifyContent="center"
-          alignItems="center"
-          enableAnimation={true}
-          onPress={() => {
-            showRoutePicker({ prioritizesVideoDevices: true });
-          }}
-        >
-          <AirplayButton tintColor={themeColour} prioritizesVideoDevices={true} />
-        </Pressable>
+      {/* Cast buttons - visible before video starts */}
+      {!state.isMusicControlMounted && (showAirPlayButton || showGoogleCastButton) ? (
+        <Box position="absolute" top={51} right={65} flexDirection="row" gap={12} zIndex={9999} elevation={9999}>
+          {showAirPlayButton ? (
+            <Pressable
+              size={44}
+              justifyContent="center"
+              alignItems="center"
+              enableAnimation={true}
+              onPress={() => {
+                showRoutePicker({ prioritizesVideoDevices: true });
+              }}
+            >
+              <AirplayButton tintColor={themeColour} prioritizesVideoDevices={true} />
+            </Pressable>
+          ) : null}
+          {showGoogleCastButton ? (
+            <Pressable size={44} justifyContent="center" alignItems="center" enableAnimation={true}>
+              <CastButton style={{ width: 24, height: 24, tintColor: themeColour }} />
+            </Pressable>
+          ) : null}
+        </Box>
       ) : null}
     </View>
   );

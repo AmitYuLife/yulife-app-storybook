@@ -234,6 +234,7 @@ export default () => ({
     "./plugins/react-native-navigation/with-react-native-navigation.plugin.js",
     ["@bugsnag/plugin-expo-eas-sourcemaps"],
     "react-native-email-link",
+    "react-native-google-cast",
     // This must be last, or build will fail with issues finding YuWatch target
     [
       "@bacons/apple-targets",
