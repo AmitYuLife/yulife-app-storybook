@@ -35,6 +35,8 @@ const CUSTOM_CONFIG = {
       "react-native-share": path.join(__dirname, "/aliases/react-native-share"),
       "@hcaptcha/react-native-hcaptcha": path.join(__dirname, "/aliases/react-native-hcaptcha"),
       "@datadog/mobile-react-native": path.join(__dirname, "/aliases/datadog-mobile-react-native"),
+      "react-airplay": path.join(__dirname, "/aliases/react-airplay"),
+      "react-native-google-cast": path.join(__dirname, "/aliases/react-native-google-cast"),
     },
     extensions: [".web.js", ".js", ".ts", ".tsx"],
   },
