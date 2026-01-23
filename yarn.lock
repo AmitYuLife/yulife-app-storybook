@@ -19204,6 +19204,11 @@ react-native-get-random-values@^1.9.0:
   dependencies:
     fast-base64-decode "^1.0.0"
 
+react-native-google-cast@^4.8.1:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/react-native-google-cast/-/react-native-google-cast-4.9.1.tgz#f1c453c11460a1f787accff80072492a4cd3e86c"
+  integrity sha512-/HvIKAaWHtG6aTNCxrNrqA2ftWGkfH0M/2iN+28pdGUXpKmueb33mgL1m8D4zzwEODQMcmpfoCsym1IwDvugBQ==
+
 react-native-in-app-review@^4.3.3:
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/react-native-in-app-review/-/react-native-in-app-review-4.3.3.tgz#61f09f110de18f0a470a9bb55b9f49600390085f"
