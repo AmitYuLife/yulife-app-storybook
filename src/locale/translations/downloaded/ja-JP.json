@@ -1875,6 +1875,7 @@
       "error_message": "エラーが発生しました。\nもう一度お試しください",
       "one_moment_please": "少々お待ちください",
       "playing_on_airplay": "AirPlay デバイス で 再生中",
+      "playing_on_chromecast": "Chromecast で再生中",
       "session_complete": "セッションが終了しました。",
       "video_type": {
         "mindfulness": "マインドフルネス",

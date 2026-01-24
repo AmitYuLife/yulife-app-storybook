@@ -1875,6 +1875,7 @@
       "error_message": "Something went wrong. \n Please try again",
       "one_moment_please": "One moment, please...",
       "playing_on_airplay": "Playing on AirPlay device",
+      "playing_on_chromecast": "Playing on Chromecast",
       "session_complete": "Session complete.",
       "video_type": {
         "mindfulness": "Meditation",

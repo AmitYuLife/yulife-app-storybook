@@ -1875,6 +1875,7 @@
       "error_message": "Algo ha ido mal.\nVuelve a intentarlo",
       "one_moment_please": "Un momento, por favor...",
       "playing_on_airplay": "Reproducción en un dispositivo AirPlay",
+      "playing_on_chromecast": "Reproducir en Chromecast",
       "session_complete": "Sesión completa.",
       "video_type": {
         "mindfulness": "Meditación",
