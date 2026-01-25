@@ -10,7 +10,7 @@ import Video, {
 } from "react-native-video";
 import moment from "moment";
 import { Animated, View, AppStateStatus } from "react-native";
-import { useCasting, AirplayButton, CastButton, showRoutePicker } from "@services/casting";
+import { useCasting, useCastingAntiCheat, AirplayButton, CastButton, showRoutePicker } from "@services/casting";
 import Lottie from "lottie-react-native";
 import Config from "react-native-config";
 import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
@@ -139,6 +139,23 @@ const VideoPlayer = ({
     allowsExternalPlayback,
     handleLocalPlaybackExternalDisplayChange,
   } = useCasting({ videoSourceType });
+
+  // Anti-cheat: prevent seeking during casting
+  const handleSeekToPosition = useCallback(
+    (seconds: number) => {
+      playerRef.current?.seek(seconds);
+      remotePlayback?.seek(seconds);
+    },
+    [remotePlayback]
+  );
+
+  const { canSafelyMarkVideoAsCompleted } = useCastingAntiCheat({
+    isCastingActive: isExternalPlaybackActive,
+    currentProgressInSeconds: state.currentProgressInSeconds,
+    isPaused: state.isPaused,
+    activeCastProtocol,
+    onCheatingDetected: handleSeekToPosition,
+  });
 
   // force portrait mode when playing on external display, otherwise use prop
   const effectiveOrientation = isExternalPlaybackActive ? "portrait" : orientation;
@@ -359,6 +376,7 @@ const VideoPlayer = ({
       reduxDispatch(getUserDataStart({ types: [AppDataType.activeChallenge] }));
       Logger.error(err, {
         location: "video-player-handleStartButton",
+        activeCastProtocol,
       });
       dispatch({
         type: ActionTypes.SET_START_ERROR_MESSAGE,
@@ -382,6 +400,10 @@ const VideoPlayer = ({
   ]);
 
   const handleOnEnd = useCallback(async (): Promise<void> => {
+    if (!canSafelyMarkVideoAsCompleted(state.durationInSeconds)) {
+      return;
+    }
+
     remotePlayback?.stop();
 
     if (appCurrentState !== "active") {
@@ -395,9 +417,17 @@ const VideoPlayer = ({
     } catch (err) {
       dispatch({ type: ActionTypes.SET_ON_END_ERROR });
       onError();
-      Logger.error(err, { location: "video-player-handleOnEnd" });
+      Logger.error(err, { location: "video-player-handleOnEnd", activeCastProtocol });
     }
-  }, [onEnd, appCurrentState, onError, remotePlayback]);
+  }, [
+    onEnd,
+    appCurrentState,
+    onError,
+    remotePlayback,
+    canSafelyMarkVideoAsCompleted,
+    state.durationInSeconds,
+    activeCastProtocol,
+  ]);
 
   const handleFocusScreen = useCallback((): void => {
     if (!state.isPaused && !state.showFocusScreen) {

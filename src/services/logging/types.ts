@@ -61,6 +61,7 @@ export type MixpanelEvent =
   | "video_player_is_paused"
   | "video_player_focused"
   | "video_player_is_buffering"
+  | "casting_seek_attempt_detected"
   | "video_started"
   | "video_cancelled"
   | "video_completed"
