@@ -2,7 +2,7 @@ import { DdSdkReactNative, DatadogProviderConfiguration, DdLogs } from "expo-dat
 import { LogArguments } from "@datadog/mobile-react-native/lib/typescript/logs/types";
 import Config from "react-native-config";
 import { region } from "@locale";
-import DeviceInfo from "react-native-device-info";
+import * as Device from "expo-device";
 
 class DD {
   private initialised = false;
@@ -14,7 +14,7 @@ class DD {
   public config: DatadogProviderConfiguration;
 
   constructor() {
-    this.appContext.deviceId = DeviceInfo.getDeviceId();
+    this.appContext.deviceId = Device.modelId ?? "";
   }
 
   public init = async () => {
