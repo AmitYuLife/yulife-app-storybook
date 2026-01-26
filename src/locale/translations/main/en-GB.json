@@ -201,11 +201,11 @@
       "reflection_inactive_label": "Reflection",
       "reflection_active_label": "Reflect",
       "reflection_yucoin_amount": "**%{amount}** ![](%{yucoinUrl})",
-      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) Bonus Health Quest",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) Bonus Yunity Quest",
       "reflection_chest_reward_to_earn_markdown": "Earn: **%{amount}** ![](%{yucoinUrl})",
-      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) Bonus Health Quest",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) Bonus Yunity Quest",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
-      "reflection_chest_button_label": "Health Quest",
+      "reflection_chest_button_label": "Yunity Quest",
       "reflection_unlocks_in": "Unlocks in",
       "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
       "today": "Today",
@@ -217,9 +217,9 @@
         "title": "You're getting closer to your insights!"
       },
       "challenge_intro": {
-        "heading": "Health Quest",
+        "heading": "Yunity Quest",
         "title": "Designed for Yu",
-        "description": "The health quest gives you targeted and personalised content based on your daily reflection answers.",
+        "description": "The Yunity Quest gives you targeted and personalised content based on your daily reflection answers.",
         "bullet_point_1": "Personalised based on your health questionnaire answers",
         "bullet_point_2": "Adapt to you and your needs over time",
         "bullet_point_3": "Aims to prevent health issues before they are a problem",
@@ -233,7 +233,7 @@
       "claim": {
         "title": "Here's everything you got today!",
         "yucoin": "YuCoin",
-        "health_challenge": "Health Quest",
+        "health_challenge": "Yunity Quest",
         "reward_title": "Reward collected!",
         "reward_subtitle": "You can find it in the challenges list."
       }
