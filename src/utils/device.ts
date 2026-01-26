@@ -1,7 +1,10 @@
 import { Platform } from "react-native";
-import DeviceInfo from "react-native-device-info";
 import { DETOX_ENABLED } from "@services/socket";
 import * as semver from "semver";
+import * as Device from "expo-device";
+import * as Application from "expo-application";
+import * as uuid from "uuid";
+import { EncryptedStorageKey, Storage } from "./storage";
 const appJson = require("../../package.json");
 
 export const isiOS = () => Platform.OS === "ios";
@@ -10,14 +13,14 @@ export const isWeb = () => Platform.OS === "web";
 
 export const isSamsung = () => {
   if (isAndroid()) {
-    return DeviceInfo.getBrand().toLowerCase().includes("samsung");
+    return (Device.brand ?? "").toLowerCase().includes("samsung");
   }
 
   return false;
 };
 
 export const getAppVersion = () => {
-  const version = DeviceInfo.getVersion();
+  const version = Application.nativeApplicationVersion ?? "1.0";
 
   // means is local
   if (DETOX_ENABLED || version === "1.0") {
@@ -40,4 +43,32 @@ export const appVersionSatisfies = (range: string) => {
   }
 
   return semver.satisfies(appVersion, range);
+};
+
+const getPlatformDeviceId = async (): Promise<string | null> => {
+  try {
+    if (Platform.OS === "ios") {
+      return await Application.getIosIdForVendorAsync();
+    }
+
+    return Application.getAndroidId();
+  } catch {
+    return null;
+  }
+};
+
+export const getUniqueDeviceId = async (): Promise<string> => {
+  // Try to get persisted UUID first
+  const persistedId = await Storage.getEncryptedItem(EncryptedStorageKey.deviceUniqueId);
+  if (persistedId) {
+    return persistedId;
+  }
+
+  // Get platform-specific ID or generate a new UUID
+  const deviceId = (await getPlatformDeviceId()) ?? (uuid.v4().toString() as string);
+
+  // Persist for future use
+  await Storage.setEncryptedItem(EncryptedStorageKey.deviceUniqueId, deviceId);
+
+  return deviceId;
 };

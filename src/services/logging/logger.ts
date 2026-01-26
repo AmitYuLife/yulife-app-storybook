@@ -1,5 +1,5 @@
 import Config from "react-native-config";
-import DeviceInfo from "react-native-device-info";
+import * as Application from "expo-application";
 import Intercom from "@intercom/intercom-react-native";
 import { Mixpanel } from "mixpanel-react-native";
 import getBugsnagClient, { BugsnagClient } from "../bugsnag";
@@ -28,8 +28,10 @@ class LoggerInstance {
 
   constructor() {
     this.bugsnag = getBugsnagClient();
-    this.appVersion = DeviceInfo.getVersion();
-    this.appVersionMajorMinor = DeviceInfo.getVersion().replace(this.appVersionRegex, "$1");
+
+    const version = Application.nativeApplicationVersion ?? "1.0";
+    this.appVersion = version;
+    this.appVersionMajorMinor = version.replace(this.appVersionRegex, "$1");
   }
 
   public init = async () => {
