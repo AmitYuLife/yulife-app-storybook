@@ -1,5 +1,6 @@
 import { t } from "@locale";
 import { MilestoneTarget } from "@redux/_core/types";
+import { LEVELS_PER_GALAXY, LEVELS_PER_PLANET } from "@components/screens/member/eotw-chest/eotw.constants";
 
 export function getCurrentWorld(currentLevel: number) {
   return Math.floor((currentLevel - 1) / 50) % 4;
@@ -27,12 +28,16 @@ export function getCurrentWorldName(currentLevel: number): WorldName {
 }
 
 export function getCurrentYuniverse(currentLevel: number) {
-  return Math.floor((currentLevel - 1) / 200);
+  return Math.floor((currentLevel - 1) / LEVELS_PER_PLANET);
 }
 
-export function getCurrentPlanet(currentLevel: number) {
-  return Math.ceil(currentLevel / 200);
-}
+export const getCurrentPlanet = (currentLevel: number) => {
+  return Math.ceil(currentLevel / LEVELS_PER_PLANET);
+};
+
+export const getCurrentGalaxy = (currentLevel: number) => {
+  return Math.ceil(currentLevel / LEVELS_PER_GALAXY);
+};
 
 export function getNormalizedLevel(level: number) {
   return (Math.floor(level - 1) % 200) + 1;
@@ -157,32 +162,17 @@ export function toOrdinalWord(n: number): string {
   return arr[n - 1];
 }
 
+const PLANET_CYCLE = [
+  Planets.EARTH,
+  Planets.RED,
+  Planets.BRIGHT,
+  Planets.ORANGE,
+  Planets.PURPLE,
+  Planets.RING,
+  Planets.LUNAR,
+];
+
 export const getCurrentPlanetByLevel = (currentLevel: number) => {
-  if (currentLevel < 201) {
-    return Planets.EARTH;
-  }
-
-  if (currentLevel < 401) {
-    return Planets.RED;
-  }
-
-  if (currentLevel < 601) {
-    return Planets.BRIGHT;
-  }
-
-  if (currentLevel < 801) {
-    return Planets.ORANGE;
-  }
-
-  if (currentLevel < 1001) {
-    return Planets.PURPLE;
-  }
-
-  if (currentLevel < 1201) {
-    return Planets.RING;
-  }
-
-  if (currentLevel > 1200) {
-    return Planets.LUNAR;
-  }
+  const planetIndex = Math.floor((currentLevel - 1) / LEVELS_PER_PLANET) % PLANET_CYCLE.length;
+  return PLANET_CYCLE[planetIndex];
 };

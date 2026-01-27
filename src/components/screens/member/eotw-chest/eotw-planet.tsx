@@ -53,7 +53,10 @@ export const PLANET_ASSETS = {
   UnrevealedPlanet_1: require("./assets/planets/unrevealed_planet_1.png"),
   UnrevealedPlanet_2: require("./assets/planets/unrevealed_planet_2.png"),
   UnrevealedPlanet_3: require("./assets/planets/unrevealed_planet_3.png"),
-  paths: require("./assets/planets/paths.png"),
+  paths: {
+    firstGalaxy: require("./assets/planets/paths-1.png"),
+    secondGalaxy: require("./assets/planets/paths-2.png"),
+  },
 };
 
 const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);

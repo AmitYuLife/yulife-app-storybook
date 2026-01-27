@@ -34,6 +34,7 @@ interface IPlanetTravelAnimation {
   [key: string]: string;
 }
 export const PLANET_TRAVEL_ANIMATION: IPlanetTravelAnimation = {
+  [Planets.EARTH]: require("./assets/travel-animations/earth-planet-travel-animation.lottie"),
   [Planets.RED]: require("./assets/travel-animations/red-planet-travel-animation.lottie"),
   [Planets.BRIGHT]: require("./assets/travel-animations/bright-planet-travel-animation.lottie"),
   [Planets.ORANGE]: require("./assets/travel-animations/orange-planet-travel-animation.lottie"),
