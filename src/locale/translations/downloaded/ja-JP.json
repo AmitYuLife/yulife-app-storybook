@@ -388,7 +388,7 @@
         "cta_label": "再試行する",
         "cta_label_secondary": "チャレンジ メニュー",
         "heading": "エラーが発生しました。",
-        "subheading": "メディア を読み込めませんでした。 接続を確認して再度お試しください。 メッセージが続く場合は、 チャット を通じて私たちに連絡してください。"
+        "subheading": "メディアの読み込みに失敗しました。 接続を確認して再度お試しください。 問題が解決しない場合は、 チャットでお問い合わせください。"
       },
       "yumoji_builder": {
         "cta_label": "変更を保存する",
@@ -1465,9 +1465,9 @@
         "bullet_point_1": "健康チェックの回答に基づいてカスタマイズ",
         "bullet_point_2": "あなたのニーズに合わせたエクササイズ",
         "bullet_point_3": "不調を未然に防ぐ、プロアクティブなセルフケア",
-        "description": "健康 クエスト は、 毎日 の 反省 の 答え に 基づいて 、 ターゲットを 絞った 、 パーソナライズされた コンテンツ を 提供 します 。",
+        "description": "ザ・Yunityクエスト は あなたの毎日 の 振り 返り回答 に 基づいて ターゲット化され 個別化 されたコンテンツ を 提供します。",
         "heading": "健康クエスト",
-        "info_panel_markdown": "この クエスト は streak に 含まれません ！",
+        "info_panel_markdown": "このチャレンジは連続記録に含まれません!",
         "title": "健康チャレンジについて"
       },
       "claim": {
@@ -1491,13 +1491,13 @@
       "reflected": {
         "subtitle": "リワードを獲得しました!",
         "subtitle_locked": "毎日 振り返ることで パーソナライズされた インサイト を アンロック。",
-        "title": "振り返りの日！ |||| 振り返りの日々！"
+        "title": "日間の振り返り |||| 日間の振り返り"
       },
       "reflect_in": "あと%{hours}時間%{minutes}分",
       "reflection_active_label": "振り返る",
       "reflection_chest_button_label": "健康クエスト",
-      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) ボーナス健康クエスト",
-      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) ボーナス健康クエスト",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) ボーナス Yunity クエスト",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) ボーナス Yunity クエスト",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
       "reflection_chest_reward_to_earn_markdown": "リワード: %{amount} ![](%{yucoinUrl})",
       "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
