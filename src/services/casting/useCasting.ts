@@ -1,13 +1,9 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import useAirPlay from "./useAirPlay";
 import useGoogleCast, { IVideoMetadata } from "./useGoogleCast";
 import { t } from "@locale";
 
 export interface IRemotePlayback {
-  /** Whether the cast media is currently paused */
-  isPaused: boolean;
-  /** Current position in seconds from the cast device */
-  positionInSeconds: number | null;
   /** Play the current media on the cast device */
   play: () => void;
   /** Pause the current media on the cast device */
@@ -18,15 +14,22 @@ export interface IRemotePlayback {
   startPlayback: (videoUrl: string, metadata?: IVideoMetadata) => Promise<void>;
   /** Stop playback on the cast device (used when exiting the video player) */
   stop: () => void;
+  /** Whether the cast media is currently paused */
+  isPaused: boolean;
+  /** Current position in seconds from the cast device */
+  positionInSeconds: number | null;
 }
 
 export interface IUseCastingProps {
   videoSourceType?: string;
+  onRemotePlaybackEnded?: () => void;
 }
 
 export interface IUseCastingResult {
-  /** Remote playback controls (Google Cast) - null if not connected */
+  /** Remote playback controls and state (Google Cast) - null if not connected */
   remotePlayback: IRemotePlayback | null;
+  /** Whether remote playback is loading (cast device is loading media) */
+  isRemotePlaybackLoading: boolean;
   /** The active cast protocol (airplay or google_cast) */
   activeCastProtocol: "airplay" | "google_cast" | null;
   /** Whether any external playback is active (AirPlay mirroring or Google Cast) */
@@ -63,9 +66,22 @@ export interface IUseCastingResult {
  * @param videoSourceType - The video source type (e.g., "mp4", "m3u8")
  * @returns Casting state and controls
  */
-const useCasting = ({ videoSourceType }: IUseCastingProps): IUseCastingResult => {
+const useCasting = ({ videoSourceType, onRemotePlaybackEnded }: IUseCastingProps): IUseCastingResult => {
   const airPlay = useAirPlay({ videoSourceType });
-  const googleCast = useGoogleCast({ videoSourceType });
+  const googleCast = useGoogleCast({ videoSourceType, onRemotePlaybackEnd: onRemotePlaybackEnded });
+
+  const stopRef = useRef(googleCast.stop);
+  stopRef.current = googleCast.stop;
+
+  /**
+   * It's important to stop the remote playback when the component unmounts,
+   * otherwise the video will continue to play on the cast device if using remote playback (e.g. google cast)
+   */
+  useEffect(() => {
+    return () => {
+      stopRef.current();
+    };
+  }, []);
 
   const remotePlayback = useMemo<IRemotePlayback | null>(() => {
     if (!googleCast.isGoogleCastConnected) {
@@ -73,23 +89,23 @@ const useCasting = ({ videoSourceType }: IUseCastingProps): IUseCastingResult =>
     }
 
     return {
-      isPaused: googleCast.isCastPaused,
-      positionInSeconds: googleCast.streamPosition,
       play: googleCast.play,
       pause: googleCast.pause,
       seek: googleCast.seek,
       startPlayback: googleCast.startCasting,
       stop: googleCast.stop,
+      isPaused: googleCast.isCastPaused,
+      positionInSeconds: googleCast.streamPosition,
     };
   }, [
     googleCast.isGoogleCastConnected,
-    googleCast.isCastPaused,
-    googleCast.streamPosition,
     googleCast.play,
     googleCast.pause,
     googleCast.seek,
     googleCast.startCasting,
     googleCast.stop,
+    googleCast.isCastPaused,
+    googleCast.streamPosition,
   ]);
 
   const isExternalPlaybackActive = airPlay.isExternalPlaybackActive || googleCast.isExternalPlaybackActive;
@@ -130,6 +146,7 @@ const useCasting = ({ videoSourceType }: IUseCastingProps): IUseCastingResult =>
 
   return {
     remotePlayback,
+    isRemotePlaybackLoading: googleCast.isRemotePlaybackLoading,
     activeCastProtocol,
     isExternalPlaybackActive,
     showAirPlayButton,

@@ -1,5 +1,5 @@
-import { useCallback } from "react";
-import {
+import { useCallback, useEffect, useRef, useState } from "react";
+import GoogleCast, {
   useCastDevice,
   useCastSession,
   useRemoteMediaClient,
@@ -13,6 +13,7 @@ import Logger from "@services/logging/logger";
 
 export interface IUseGoogleCastProps {
   videoSourceType?: string;
+  onRemotePlaybackEnd?: () => void;
 }
 
 export interface IVideoMetadata {
@@ -31,6 +32,10 @@ export interface IUseGoogleCastResult {
   isGoogleCastEnabled: boolean;
   /** Whether video is actively playing on external display */
   isExternalPlaybackActive: boolean;
+  /** Whether the cast device is currently loading media (between startCasting and playback starting) */
+  isRemotePlaybackLoading: boolean;
+  /** Whether the cast media has finished playing (idleReason === "finished") */
+  hasFinishedPlaying: boolean;
   /** Whether the cast media is currently paused */
   isCastPaused: boolean;
   /** Current stream position in seconds from the cast device */
@@ -55,8 +60,12 @@ const SUPPORTED_VIDEO_TYPES = ["mp4", "m3u8"];
  * @param videoSourceType - The video source type (e.g., "mp4", "m3u8")
  * @returns Google Cast state and controls
  */
-const useGoogleCast = ({ videoSourceType }: IUseGoogleCastProps): IUseGoogleCastResult => {
+const useGoogleCast = ({ videoSourceType, onRemotePlaybackEnd }: IUseGoogleCastProps): IUseGoogleCastResult => {
   const { tempVideoPlaybackEnableGoogleCast } = useSelector(getUserFeatures);
+  const [isLoadingMedia, setIsLoadingMedia] = useState(false);
+  const hasCalledOnEndRef = useRef(false);
+  const onRemotePlaybackEndRef = useRef(onRemotePlaybackEnd);
+  onRemotePlaybackEndRef.current = onRemotePlaybackEnd;
 
   const castDevice = useCastDevice();
   const castSession = useCastSession();
@@ -78,6 +87,20 @@ const useGoogleCast = ({ videoSourceType }: IUseGoogleCastProps): IUseGoogleCast
       mediaStatus.playerState === MediaPlayerState.PAUSED);
 
   const isCastPaused = mediaStatus?.playerState === MediaPlayerState.PAUSED;
+  const hasFinishedPlaying = mediaStatus?.idleReason === "finished";
+
+  // Call onRemotePlaybackEnd when cast playback finishes
+  useEffect(() => {
+    if (hasFinishedPlaying && !hasCalledOnEndRef.current) {
+      hasCalledOnEndRef.current = true;
+      onRemotePlaybackEndRef.current?.();
+    }
+
+    // Reset the flag when playback starts again
+    if (!hasFinishedPlaying && hasCalledOnEndRef.current) {
+      hasCalledOnEndRef.current = false;
+    }
+  }, [hasFinishedPlaying]);
 
   const play = useCallback(() => {
     remoteMediaClient?.play();
@@ -97,8 +120,11 @@ const useGoogleCast = ({ videoSourceType }: IUseGoogleCastProps): IUseGoogleCast
   const startCasting = useCallback(
     async (videoUrl: string, metadata?: IVideoMetadata) => {
       if (!remoteMediaClient) {
+        console.log("[GoogleCast] No remoteMediaClient available, aborting");
         return;
       }
+
+      setIsLoadingMedia(true);
 
       try {
         const contentType = videoSourceType === "m3u8" ? "application/x-mpegURL" : "video/mp4";
@@ -120,20 +146,37 @@ const useGoogleCast = ({ videoSourceType }: IUseGoogleCastProps): IUseGoogleCast
         });
       } catch (error) {
         Logger.error(error as Error, { location: "useGoogleCast-startCasting" });
+      } finally {
+        setIsLoadingMedia(false);
       }
     },
     [remoteMediaClient, videoSourceType]
   );
 
-  const stop = useCallback(() => {
-    remoteMediaClient?.stop();
+  const stop = useCallback(async () => {
+    try {
+      await remoteMediaClient?.stop();
+    } catch (error) {
+      console.log("[GoogleCast] stop error (expected if already stopped)", error);
+    }
+
+    // also disconnect the cast session
+    try {
+      await GoogleCast.getSessionManager().endCurrentSession();
+    } catch (error) {
+      console.log("[GoogleCast] endCurrentSession error (expected if already disconnected)", error);
+    }
   }, [remoteMediaClient]);
+
+  const isRemotePlaybackLoading = isLoadingMedia || mediaStatus?.playerState === MediaPlayerState.LOADING;
 
   return {
     isGoogleCastAvailable,
     isGoogleCastConnected,
     isGoogleCastEnabled,
     isExternalPlaybackActive,
+    isRemotePlaybackLoading,
+    hasFinishedPlaying,
     isCastPaused,
     streamPosition: streamPosition ?? null,
     play,
