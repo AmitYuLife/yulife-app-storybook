@@ -122,6 +122,10 @@ const VideoPlayer = ({
   const reduxDispatch = useDispatch();
   const lottieRef = useRef<Lottie>(null);
   const opacity = useRef(new Animated.Value(1)).current;
+  const handleOnEndRef = useRef<() => void>(() => {
+    // attached after definition after useCasting is called
+  });
+
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
   const dataSaverModeEnabled = useSelector(getUserDataSaverModeEnabled);
 
@@ -129,8 +133,11 @@ const VideoPlayer = ({
   const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(lottie?.uri);
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
+  const handleRemotePlaybackEnded = useCallback(() => handleOnEndRef.current(), []);
+
   const {
     remotePlayback,
+    isRemotePlaybackLoading,
     activeCastProtocol,
     isExternalPlaybackActive,
     showAirPlayButton,
@@ -138,7 +145,10 @@ const VideoPlayer = ({
     castingLabel,
     allowsExternalPlayback,
     handleLocalPlaybackExternalDisplayChange,
-  } = useCasting({ videoSourceType });
+  } = useCasting({
+    videoSourceType,
+    onRemotePlaybackEnded: handleRemotePlaybackEnded,
+  });
 
   // Anti-cheat: prevent seeking during casting
   const handleSeekToPosition = useCallback(
@@ -226,16 +236,6 @@ const VideoPlayer = ({
     };
   }, []);
 
-  /**
-   * It's important to stop the remote playback when the component unmounts,
-   * otherwise the video will continue to play on the cast device if using remote playback (e.g. google cast)
-   */
-  useEffect(() => {
-    return () => {
-      remotePlayback?.stop();
-    };
-  }, [remotePlayback]);
-
   useEffect(() => {
     if (remotePlayback && remotePlayback.positionInSeconds !== null) {
       const currentProgressInSeconds = Math.floor(remotePlayback.positionInSeconds);
@@ -249,7 +249,7 @@ const VideoPlayer = ({
         payload: moment.duration(currentProgressInSeconds, "seconds").asMilliseconds(),
       });
     }
-  }, [remotePlayback, remotePlayback?.positionInSeconds, onProgress]);
+  }, [remotePlayback, onProgress]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -269,8 +269,10 @@ const VideoPlayer = ({
 
   const handleOnProgress = useCallback(
     async ({ currentTime }: OnProgressData): Promise<void> => {
-      // TODO: add cheat / seeking detection here -
-      // if the playback jumps over 5s, we can assume the user is seeking
+      if (remotePlayback && remotePlayback.positionInSeconds !== null) {
+        // avoid seeking based on (incorrect) local playback state, if remote playback is active
+        return;
+      }
 
       const currentProgressInSeconds = Math.floor(currentTime);
 
@@ -428,6 +430,7 @@ const VideoPlayer = ({
     state.durationInSeconds,
     activeCastProtocol,
   ]);
+  handleOnEndRef.current = handleOnEnd;
 
   const handleFocusScreen = useCallback((): void => {
     if (!state.isPaused && !state.showFocusScreen) {
@@ -523,7 +526,7 @@ const VideoPlayer = ({
           onLoad={onLoad}
           onEnd={handleOnEnd}
           onProgress={handleOnProgress}
-          paused={state.isPaused || remotePlayback !== null}
+          paused={state.isPaused || remotePlayback !== null || isRemotePlaybackLoading}
           playInBackground={!isExternalPlaybackActive}
           ignoreSilentSwitch={IgnoreSilentSwitchType.IGNORE}
           showNotificationControls={!isExternalPlaybackActive}
@@ -666,7 +669,9 @@ const VideoPlayer = ({
           />
         </View>
       )}
-      {!state.loading && !lottieUriLoading && !qualitiesLoading ? null : <AvPlayerLoading />}
+      {!state.loading && !lottieUriLoading && !qualitiesLoading && !isRemotePlaybackLoading ? null : (
+        <AvPlayerLoading />
+      )}
       {!state.durationInSeconds ? null : (
         <Animated.View style={styles.topbarWrapper}>
           <GenericHeadingAbsolute
