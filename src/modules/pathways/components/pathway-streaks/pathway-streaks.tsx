@@ -3,6 +3,8 @@ import { Box } from "@atoms";
 import PathwayStreakItem from "./pathway-streak-item";
 import { PATHWAYS_STREAKS } from "@ids";
 import { isPathwaysDayCompleted } from "../../utils/pathways.util";
+import { LayoutChangeEvent } from "react-native";
+import { IBoxProps } from "@atoms/box/box.types";
 
 interface IDayItem {
   day: number;
@@ -11,7 +13,8 @@ interface IDayItem {
   isChest: boolean;
 }
 
-interface Props {
+interface Props extends IBoxProps {
+  onLayout?: (event: LayoutChangeEvent) => void;
   reflectedToday: boolean;
   currentStreak: number;
   maxProgress: number;
@@ -33,6 +36,7 @@ const PathwayStreaks = ({
   notCompletedColor,
   notCompletedChestForegroundColor,
   notCompletedChestBackgroundColor,
+  ...boxProps
 }: Props) => {
   const days = useMemo(
     () => buildDays({ currentStreak, reflectedToday, maxProgress }),
@@ -40,7 +44,17 @@ const PathwayStreaks = ({
   );
 
   return (
-    <Box w="100%" gap={24} flexDirection="row" justifyContent="center" alignItems="center" testID={PATHWAYS_STREAKS}>
+    <Box
+      w="100%"
+      gap={24}
+      pb={12}
+      mt={-8}
+      flexDirection="row"
+      justifyContent="center"
+      alignItems="center"
+      testID={PATHWAYS_STREAKS}
+      {...boxProps}
+    >
       {days.map((item, index) => (
         <PathwayStreakItem
           key={`day-${item.day || "today"}-${index}`}

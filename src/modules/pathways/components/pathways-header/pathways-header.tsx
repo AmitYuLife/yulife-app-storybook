@@ -1,7 +1,6 @@
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Box } from "@atoms";
-import { Colours, TOP_BAR } from "@styles";
-import PathwayStreaks from "../pathway-streaks/pathway-streaks";
+import { IBoxProps } from "@atoms/box/box.types";
 import PathwaysJourneyHeader from "../pathways-journey-header/pathways-journey-header";
 import PathwaysReflectionItem from "../pathways-reflection-item/pathways-reflection-item";
 import PathwaysReflectChest from "../pathways-reflection-chest/pathways-reflect-chest";
@@ -12,7 +11,7 @@ import { PathwaysReflectionStatus } from "../../pathways.types";
 import { SwimmingFish } from "@molecules";
 import { DETOX_ENABLED } from "@services/socket";
 
-interface IPathwaysHeaderProps {
+interface IPathwaysHeaderProps extends IBoxProps {
   onReflect: () => void;
   nextQuestionnaireLocalDate: string;
   reflectionProgress: number;
@@ -37,6 +36,7 @@ const PathwaysHeader = ({
   coinAwards,
   reflectionProgress,
   pathwayChallenge,
+  ...boxProps
 }: IPathwaysHeaderProps) => {
   const finalItemStatus = useMemo(() => {
     return getReflectionItemStatus(maxProgress - 1, reflectionProgress, reflectedToday, maxProgress);
@@ -76,23 +76,12 @@ const PathwaysHeader = ({
   }, [updateTimeRemaining]);
 
   return (
-    <Box flex={1} width="100%" disableAutoAdjust={true} pt={TOP_BAR.TOP_BAR_WITH_PAD} mt={7}>
+    <Box flex={1} width="100%" disableAutoAdjust={true} mt={7} {...boxProps}>
       {DETOX_ENABLED ? null : (
         <Box position="absolute" top={190} width={"100%"} h={40}>
           <SwimmingFish duration={12000} delay={2000} endY={100} />
         </Box>
       )}
-      <PathwayStreaks
-        currentStreak={reflectionProgress}
-        reflectedToday={reflectedToday}
-        maxProgress={maxProgress}
-        textColor={Colours.neutral.white}
-        completedBorderColor={Colours.pathways.streakBorder}
-        notCompletedBorderColor={Colours.pathways.streakBorder}
-        notCompletedColor={Colours.pathways.background}
-        notCompletedChestForegroundColor={Colours.pathways.streakBorder}
-        notCompletedChestBackgroundColor={Colours.pathways.background}
-      />
       <Box mt={20} gap={20} alignItems="center">
         <PathwaysJourneyHeader maxProgress={maxProgress} timeToNextQuestionnaire={timeRemaining} />
         <Box

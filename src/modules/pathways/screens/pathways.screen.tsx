@@ -5,16 +5,19 @@ import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native
 import MoodWeekView, { MoodData } from "@organisms/mood-week-view/mood-week-view";
 import PathwaysHeader from "../components/pathways-header/pathways-header";
 import { t } from "@locale";
-import { Colours, StyleSheet } from "@styles";
+import { Colours, StyleSheet, TOP_BAR } from "@styles";
 import {
   PathwayAdviceSectionProps,
   PathwaysAdviceSection,
 } from "../components/pathways-advice-section/pathways-advice-section";
 import { FeatureCardSection, WellbeingHubSection } from "@graphql/__generated";
 import { useWindowDimensions } from "react-native";
+import { useMeasure } from "@hooks";
 import { PathwaysInterventionSection } from "../components/pathways-intervention-section/pathways-intervention-section";
 import { PATHWAYS_SCREEN } from "@ids";
 import { PathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
+import PathwayStreaks from "../components/pathway-streaks/pathway-streaks";
+import PathwaysTitle from "../components/pathways-title/pathways-title";
 
 interface IPathwaysScreenProps {
   onClose: () => void;
@@ -57,6 +60,10 @@ const PathwaysScreen = ({
     },
   });
 
+  const { height: streakContainerHeight, onLayout: onStreakContainerLayout } = useMeasure({
+    initialHeight: 0,
+  });
+
   return (
     <Box flex={1} testID={PATHWAYS_SCREEN}>
       <Box position="absolute" top={0} width={"100%"} bg={Colours.pathways.header} h={height / 2} />
@@ -64,7 +71,6 @@ const PathwaysScreen = ({
         style={styles.flex}
         contentInsetAdjustmentBehavior="never"
         onScroll={scrollHandler}
-        scrollEventThrottle={100}
         overScrollMode="never"
         showsVerticalScrollIndicator={false}
       >
@@ -108,6 +114,7 @@ const PathwaysScreen = ({
           coinAwards={coinAwards}
           maxProgress={maxProgress}
           pathwayChallenge={pathwayChallenge}
+          pt={TOP_BAR.TOP_BAR_WITH_PAD + streakContainerHeight}
         />
 
         <Box minHeight={500} width={"100%"} gap={20} ph={16} pt={30}>
@@ -134,11 +141,26 @@ const PathwaysScreen = ({
         <Box pb={bottomBackgroundHeight * 0.3} />
       </Animated.ScrollView>
       <GenericHeadingAbsolute
-        backgroundColor={"transparent"}
+        backgroundColor={Colours.pathways.header}
         onLeftIconPress={onClose}
         color="white"
         scrollValue={scrollY}
-      />
+        hasShadow={true}
+        heading={<PathwaysTitle />}
+      >
+        <PathwayStreaks
+          currentStreak={reflectionProgress}
+          reflectedToday={reflectedToday}
+          maxProgress={maxProgress}
+          textColor={Colours.neutral.white}
+          completedBorderColor={Colours.pathways.streakBorder}
+          notCompletedBorderColor={Colours.pathways.streakBorder}
+          notCompletedColor={Colours.pathways.background}
+          notCompletedChestForegroundColor={Colours.pathways.streakBorder}
+          notCompletedChestBackgroundColor={Colours.pathways.background}
+          onLayout={onStreakContainerLayout}
+        />
+      </GenericHeadingAbsolute>
     </Box>
   );
 };

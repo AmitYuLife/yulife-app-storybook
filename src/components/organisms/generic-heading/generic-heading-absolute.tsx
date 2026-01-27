@@ -11,18 +11,22 @@ interface OwnProps {
   backgroundColor?: string;
   hasShadow?: boolean;
   scrollValue?: SharedValue<number>;
+  children?: React.ReactNode;
 }
 
 type Props = ComponentProps<typeof GenericHeading> & OwnProps;
 
 const GenericHeadingAbsolute = (props: Props) => {
-  const { backgroundColor = Colours.neutral.white, hideBorder = true, hasShadow, scrollValue } = props;
+  const { backgroundColor = Colours.neutral.white, hideBorder = true, hasShadow, scrollValue, children } = props;
 
   const shadowOpacityStyle = useGenericHeadingShadowOpacity(hasShadow, scrollValue);
 
   return (
     <View pointerEvents="box-none" style={[styles.wrapper, { backgroundColor }]} testID={CONNECTION_SETUP_TITLE}>
       <GenericHeading {...props} />
+
+      {children}
+
       {hideBorder ? null : <View style={styles.bottomBorder} testID={BUTTON_CLOSE} />}
 
       {hasShadow ? (
@@ -52,7 +56,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     start: 0,
     end: 0,
-    height: TOP_BAR.TOP_BAR_WITH_PAD,
+    minHeight: TOP_BAR.TOP_BAR_WITH_PAD,
     paddingTop: TOP_BAR.PADDING_TOP,
     justifyContent: "center",
     alignItems: "center",
