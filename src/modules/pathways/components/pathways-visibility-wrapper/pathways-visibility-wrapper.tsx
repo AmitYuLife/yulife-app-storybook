@@ -10,10 +10,13 @@ interface IPathwaysVisibilityWrapperProps {
   children: ReactNode;
 }
 
+const THROTTLE_MS = 100;
+
 const PathwaysVisibilityWrapper: React.FC<IPathwaysVisibilityWrapperProps> = memo(
   ({ scrollY, onScrollIntoView, children }) => {
     const viewRef = useRef<View>(null);
     const hasTrackedRef = useRef(false);
+    const lastCheckRef = useRef(0);
     const { height: windowHeight } = useWindowDimensions();
     const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onScrollIntoView);
 
@@ -21,6 +24,13 @@ const PathwaysVisibilityWrapper: React.FC<IPathwaysVisibilityWrapperProps> = mem
       if (hasTrackedRef.current || !viewRef.current || !onScrollIntoView) {
         return;
       }
+
+      const now = Date.now();
+      if (now - lastCheckRef.current < THROTTLE_MS) {
+        return;
+      }
+
+      lastCheckRef.current = now;
 
       viewRef.current.measureInWindow((_x, y, _width, height) => {
         if (hasTrackedRef.current) {
