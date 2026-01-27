@@ -147,7 +147,7 @@ Feature("Health Pathways", async () => {
     When("I collect my reward", when.tapID(ids.CTA_COLLECT, 2_000), async () => {
       When("I navigate to the Quests", when.tapID(ids.NAV_BAR("quests"), 2_000), async () => {
         When("I tap 855 level challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(855), 2_000), async () => {
-          Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Health Quest")));
+          Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Yunity Quest")));
           Then("I should see the health challenge completed", then.idVisible(ids.PATHWAYS_CHALLENGE_COMPLETED));
         });
       });
@@ -162,7 +162,7 @@ Feature("Health Pathways", async () => {
       Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS));
     });
     When("I scroll further down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast"), async () => {
-      Then("I can see the Health Quest completed today", then.idVisible(ids.ACTIVITY_LISTING("Health Quest", 90)));
+      Then("I can see the Yunity Quest completed today", then.idVisible(ids.ACTIVITY_LISTING("Yunity Quest", 90)));
     });
   });
 
@@ -179,7 +179,7 @@ Feature("Health Pathways", async () => {
       });
     });
     When("I tap on the first level", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1), 2_000), async () => {
-      Then("I should see the Health Quest challenge", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Health Quest"), 2_000));
+      Then("I should see the Yunity Quest challenge", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Yunity Quest"), 2_000));
       Then("The Health challenge should still be open and available", then.idNotVisible(ids.PATHWAYS_CHALLENGE_COMPLETED, 2_000));
     });
   });
