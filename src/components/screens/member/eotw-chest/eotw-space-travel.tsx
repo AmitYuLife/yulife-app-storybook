@@ -1,156 +1,225 @@
-import { Image } from "@atoms";
+import { Image, Box } from "@atoms";
 import { Style } from "@styles";
-import React, { FC, memo, useCallback, useMemo } from "react";
+import React, { FC, memo, useCallback, useEffect, useMemo } from "react";
 import { ImageSourcePropType, View, ViewStyle } from "react-native";
-import EOTWPlanet, { IPlanetProps, PLANET_ASSETS, PLANET_STATE } from "./eotw-planet";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  cancelAnimation,
+  runOnJS,
+  Easing,
+} from "react-native-reanimated";
+import EOTWPlanet, { PLANET_ASSETS, PLANET_STATE } from "./eotw-planet";
 import { PLANET_RADIUS } from "./eotw-planet-animation-config";
-import { SPACE_TRAVEL_SCREEN, PLANET } from "@ids";
+import { SPACE_TRAVEL_SCREEN } from "@ids";
+import { getGalaxyPlanets } from "./eotw-planets.config";
+import { PLANETS_PER_GALAXY } from "./eotw.constants";
+
+const GALAXY_SCROLL_DURATION = 1000;
 
 interface IProps {
   currentPlanet: number;
+  currentGalaxy: number;
   avatar: ImageSourcePropType;
   width: number;
   height: number;
   travel: boolean;
+  isGalaxyTransition?: boolean;
+  galaxyScroll?: boolean;
+  onGalaxyScrollComplete?: () => void;
 }
 
 const BOTTOM_PADDING = 150;
 const TOP_PADDING = 80;
+const FIRST_GALAXY_ASPECT = 226 / 452;
+const NEXT_GALAXY_ASPECT = 203 / 573;
 
-const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar, travel }) => {
-  const contentHeight = useMemo(() => height - BOTTOM_PADDING - TOP_PADDING, [height]);
-  const containerStyle = useMemo(
-    () =>
-      ({
-        justifyContent: "flex-end",
-        width,
-        height,
-        marginBottom: BOTTOM_PADDING,
-        alignItems: "center",
-      } as ViewStyle),
-    [height, width]
-  );
+const EOTWSpaceTravel: FC<IProps> = memo(
+  ({
+    currentPlanet,
+    currentGalaxy,
+    width,
+    height,
+    avatar,
+    travel,
+    isGalaxyTransition = false,
+    galaxyScroll = false,
+    onGalaxyScrollComplete,
+  }) => {
+    const contentHeight = useMemo(() => height - BOTTOM_PADDING - TOP_PADDING, [height]);
+    const scrollAnim = useSharedValue(0);
 
-  const getPlanetState = useCallback(
-    (planetIndex: number) => {
-      const diff = planetIndex - currentPlanet;
-      if (diff > 1) {
-        return PLANET_STATE.PENDING;
+    const containerStyle = useMemo(
+      () =>
+        ({
+          justifyContent: isGalaxyTransition ? "flex-start" : "flex-end",
+          width,
+          height,
+          marginBottom: BOTTOM_PADDING,
+          alignItems: "center",
+        } as ViewStyle),
+      [height, width, isGalaxyTransition]
+    );
+
+    const animatedWrapperStyle = useAnimatedStyle(() => ({
+      flexDirection: "column" as const,
+      width,
+      height: isGalaxyTransition ? height * 2 : height,
+      transform: [{ translateY: scrollAnim.value }],
+    }));
+
+    const galaxyContainerStyle = useMemo(
+      () =>
+        ({
+          width,
+          height,
+          justifyContent: "flex-end",
+          alignItems: "center",
+        } as ViewStyle),
+      [height, width]
+    );
+
+    // Set initial position when entering galaxy transition (show current galaxy)
+    useEffect(() => {
+      if (isGalaxyTransition) {
+        scrollAnim.value = -height;
+      }
+    }, [isGalaxyTransition, height, scrollAnim]);
+
+    useEffect(() => {
+      if (!galaxyScroll || !isGalaxyTransition) {
+        return;
       }
 
-      if (diff === 1) {
-        return PLANET_STATE.NEXT;
+      scrollAnim.value = withTiming(
+        0,
+        { duration: GALAXY_SCROLL_DURATION, easing: Easing.inOut(Easing.ease) },
+        (finished) => {
+          if (finished && onGalaxyScrollComplete) {
+            runOnJS(onGalaxyScrollComplete)();
+          }
+        }
+      );
+
+      return () => {
+        cancelAnimation(scrollAnim);
+      };
+    }, [galaxyScroll, isGalaxyTransition, scrollAnim, height, onGalaxyScrollComplete]);
+
+    const getPlanetState = useCallback(
+      (planetIndex: number, galaxyOffset: number = 0) => {
+        const galaxyPlanetOffset = (currentGalaxy - 1 + galaxyOffset) * PLANETS_PER_GALAXY;
+        const diff = planetIndex - currentPlanet + galaxyPlanetOffset;
+        if (diff > 1) {
+          return PLANET_STATE.PENDING;
+        }
+
+        if (diff === 1) {
+          return PLANET_STATE.NEXT;
+        }
+
+        if (diff === 0) {
+          return PLANET_STATE.CURRENT;
+        }
+
+        if (diff === -1) {
+          return PLANET_STATE.PREVIOUS;
+        }
+
+        return PLANET_STATE.PASSED;
+      },
+      [currentPlanet, currentGalaxy]
+    );
+
+    const getPlanetPath = useCallback((galaxyIndex: number) => {
+      if (galaxyIndex === 1) {
+        return PLANET_ASSETS.paths.firstGalaxy;
       }
 
-      if (diff === 0) {
-        return PLANET_STATE.CURRENT;
+      return PLANET_ASSETS.paths.secondGalaxy;
+    }, []);
+
+    const nextGalaxyWidth = NEXT_GALAXY_ASPECT * contentHeight;
+    const currentGalaxyWidth = FIRST_GALAXY_ASPECT * contentHeight;
+
+    const currentGalaxyPlanets = useMemo(() => {
+      if (currentGalaxy === 1) {
+        return getGalaxyPlanets(1, currentGalaxyWidth, contentHeight, getPlanetState, 0, avatar);
       }
 
-      if (diff === -1) {
-        return PLANET_STATE.PREVIOUS;
+      return getGalaxyPlanets(2, nextGalaxyWidth + PLANET_RADIUS, contentHeight, getPlanetState, 0, avatar);
+    }, [currentGalaxy, currentGalaxyWidth, contentHeight, getPlanetState, nextGalaxyWidth, avatar]);
+
+    const nextGalaxyPlanets = useMemo(() => {
+      const nextGalaxy = currentGalaxy + 1;
+      if (nextGalaxy % 2 === 0) {
+        return getGalaxyPlanets(2, nextGalaxyWidth, contentHeight, getPlanetState, 1, avatar);
       }
 
-      return PLANET_STATE.PASSED;
-    },
-    [currentPlanet]
-  );
+      return getGalaxyPlanets(1, currentGalaxyWidth, contentHeight, getPlanetState, 1, avatar);
+    }, [contentHeight, currentGalaxy, currentGalaxyWidth, getPlanetState, nextGalaxyWidth, avatar]);
 
-  const planets: Array<IPlanetProps & { key: string }> = useMemo(
-    () => [
-      {
-        key: "earth",
-        position: {
-          left: PLANET_RADIUS / 2,
-          bottom: 0,
-        },
-        icon: PLANET_ASSETS.Earth,
-        state: getPlanetState(1),
-        avatar,
-        testID: PLANET("EARTH"),
-      },
-      {
-        key: "red",
-        position: {
-          left: width - PLANET_RADIUS / 2,
-          bottom: 0,
-        },
-        icon: PLANET_ASSETS.Red,
-        state: getPlanetState(2),
-        avatar,
-        testID: PLANET("RED"),
-      },
-      {
-        key: "bright",
-        position: {
-          left: width / 2,
-          bottom: contentHeight / 4,
-        },
-        icon: PLANET_ASSETS.Bright,
-        state: getPlanetState(3),
-        avatar,
-        testID: PLANET("BRIGHT"),
-      },
-      {
-        key: "orange",
-        position: {
-          left: PLANET_RADIUS / 2,
-          bottom: (2 * contentHeight) / 4,
-        },
-        icon: PLANET_ASSETS.Orange,
-        state: getPlanetState(4),
-        avatar,
-        testID: PLANET("ORANGE"),
-      },
-      {
-        key: "purple",
-        position: {
-          left: width - PLANET_RADIUS / 2,
-          bottom: (2 * contentHeight) / 4,
-        },
-        icon: PLANET_ASSETS.Purple,
-        state: getPlanetState(5),
-        avatar,
-        testID: PLANET("PURPLE"),
-      },
-      {
-        key: "ring",
-        position: {
-          left: width / 2,
-          bottom: (3 * contentHeight) / 4,
-        },
-        icon: PLANET_ASSETS.Ring,
-        state: getPlanetState(6),
-        avatar,
-        testID: PLANET("RING"),
-      },
-      {
-        key: "lunar",
-        position: {
-          left: width / 2,
-          bottom: contentHeight,
-        },
-        icon: PLANET_ASSETS.Lunar,
-        state: getPlanetState(7),
-        avatar,
-        testID: PLANET("LUNAR"),
-      },
-    ],
-    [avatar, contentHeight, getPlanetState, width]
-  );
+    const getNextGalaxyPath = useCallback(() => {
+      const nextGalaxy = currentGalaxy + 1;
+      if (nextGalaxy % 2 === 0) {
+        return PLANET_ASSETS.paths.secondGalaxy;
+      }
 
-  return (
-    <View style={containerStyle} testID={SPACE_TRAVEL_SCREEN}>
-      <Image
-        source={PLANET_ASSETS.paths}
-        resizeMode="stretch"
-        width={Style.DEVICE_WIDTH - PLANET_RADIUS - 50}
-        height={contentHeight}
-      />
-      {planets.map(({ key, ...props }) => (
-        <EOTWPlanet travel={travel} key={key} {...props} />
-      ))}
-    </View>
-  );
-});
+      return PLANET_ASSETS.paths.firstGalaxy;
+    }, [currentGalaxy]);
+
+    if (isGalaxyTransition) {
+      return (
+        <View style={containerStyle} testID={SPACE_TRAVEL_SCREEN}>
+          <Animated.View style={animatedWrapperStyle}>
+            <View style={galaxyContainerStyle}>
+              <Image
+                source={getNextGalaxyPath()}
+                resizeMode="stretch"
+                width={nextGalaxyWidth}
+                disableAutoAdjust={true}
+                height={contentHeight}
+              />
+              <Box top={0} height={"100%"} position="absolute" width={nextGalaxyWidth} disableAutoAdjust={true}>
+                {nextGalaxyPlanets.map(({ key, ...props }) => (
+                  <EOTWPlanet travel={travel} key={`next-${key}`} {...props} />
+                ))}
+              </Box>
+            </View>
+            <View style={galaxyContainerStyle}>
+              <Image
+                source={getPlanetPath(currentGalaxy)}
+                resizeMode="contain"
+                width={currentGalaxyWidth}
+                disableAutoAdjust={true}
+                height={contentHeight}
+              />
+              <Box top={0} height={"100%"} position="absolute" disableAutoAdjust={true} width={currentGalaxyWidth}>
+                {currentGalaxyPlanets.map(({ key, ...props }) => (
+                  <EOTWPlanet travel={false} key={key} {...props} />
+                ))}
+              </Box>
+            </View>
+          </Animated.View>
+        </View>
+      );
+    }
+
+    return (
+      <View style={containerStyle} testID={SPACE_TRAVEL_SCREEN}>
+        <Image
+          source={getPlanetPath(currentGalaxy)}
+          resizeMode="stretch"
+          width={Style.DEVICE_WIDTH - PLANET_RADIUS - 50}
+          height={contentHeight}
+        />
+        {currentGalaxyPlanets.map(({ key, ...props }) => (
+          <EOTWPlanet travel={travel} key={key} {...props} />
+        ))}
+      </View>
+    );
+  }
+);
 
 export default EOTWSpaceTravel;

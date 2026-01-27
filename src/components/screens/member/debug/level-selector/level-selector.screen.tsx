@@ -4,6 +4,12 @@ import { Colours, Style, StyleSheet } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Button, TextInput } from "@molecules";
 import { TextTemplate } from "@atoms";
+import {
+  LEVELS_PER_GALAXY,
+  LEVELS_PER_PLANET,
+  MAX_YUNIVERSAL_LEVEL,
+  PLANETS_PER_GALAXY,
+} from "../../eotw-chest/eotw.constants";
 
 interface IProps {
   currentLevel: number;
@@ -13,28 +19,27 @@ interface IProps {
   onSubmit: (currentLevel: number, yuniversalMap?: number, yuniversalLevel?: number) => void;
 }
 
-const MAX_LEVEL = 1400;
-const MAX_YUNIVERSAL_LEVEL = 6;
-const MAX_YUNIVERSAL_MAP = 6;
+const MAX_LEVEL = LEVELS_PER_GALAXY * 2;
+const MAX_YUNIVERSAL_MAP = PLANETS_PER_GALAXY * 2;
 const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onLeftIconPress, onSubmit }: IProps) => {
   const [levelInput, setLevelInput] = useState(String(currentLevel));
   const [yuniversalMapInput, setYuniversalMapInput] = useState(yuniversalMap ? String(yuniversalMap) : "");
   const [yuniversalLevelInput, setYuniversalLevelInput] = useState(yuniversalLevel ? String(yuniversalLevel) : "");
 
   const onChangeLevel = useCallback((value: string) => {
-    if (onlyContainsNumbers(value) && isLessThan(value, MAX_LEVEL)) {
+    if (onlyContainsNumbers(value) && isLessThanOrEqual(value, MAX_LEVEL)) {
       setLevelInput(value);
     }
   }, []);
 
   const onChangeYuniversalMap = useCallback((value: string) => {
-    if (onlyContainsNumbers(value) && isLessThan(value, MAX_YUNIVERSAL_LEVEL + 1)) {
+    if (onlyContainsNumbers(value) && isLessThanOrEqual(value, MAX_YUNIVERSAL_MAP)) {
       setYuniversalMapInput(value);
     }
   }, []);
 
   const onChangeYuniversalLevel = useCallback((value: string) => {
-    if (onlyContainsNumbers(value) && isLessThan(value, 8)) {
+    if (onlyContainsNumbers(value) && isLessThanOrEqual(value, MAX_YUNIVERSAL_LEVEL)) {
       setYuniversalLevelInput(value);
     }
   }, []);
@@ -50,14 +55,14 @@ const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onL
     }
 
     const newYuniversalMap = Number(yuniversalMapInput);
-    const newCurrentLevel = newYuniversalMap * 200 + 1;
+    const newCurrentLevel = newYuniversalMap * LEVELS_PER_PLANET + 1;
     onSubmit(newCurrentLevel, newYuniversalMap, Number(yuniversalLevelInput));
-  }, [currentLevel, yuniversalMapInput, yuniversalLevelInput]);
+  }, [yuniversalMapInput, onSubmit, yuniversalLevelInput, currentLevel]);
 
   const setCurrentLevelDisabled = useMemo(() => {
     const value = Number(levelInput);
     return Number.isNaN(value) || value <= 0 || value > MAX_LEVEL;
-  }, [levelInput, onSubmit]);
+  }, [levelInput]);
 
   const setYuniversalLevelDisabled = useMemo(() => {
     if (!yuniversalMapInput && !yuniversalLevelInput) {
@@ -74,7 +79,7 @@ const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onL
       yuniversalMapValue < 0 ||
       yuniversalMapValue > MAX_YUNIVERSAL_MAP ||
       yuniversalLevelValue < 0 ||
-      yuniversalLevelValue > MAX_YUNIVERSAL_LEVEL + 1
+      yuniversalLevelValue > MAX_YUNIVERSAL_LEVEL
     );
   }, [yuniversalMapInput, yuniversalLevelInput]);
 
@@ -147,4 +152,4 @@ const styles = StyleSheet.create({
 });
 
 const onlyContainsNumbers = (value: string) => /^\d*$/.test(value);
-const isLessThan = (value: string, max: number) => !value || (Number(value) && Number(value) < max);
+const isLessThanOrEqual = (value: string, max: number) => !value || Number(value) <= max;

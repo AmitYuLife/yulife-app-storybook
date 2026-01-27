@@ -58,6 +58,7 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
   const [repeatedUnity, setRepeatedUnity] = useState(false);
 
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
+
   const isScreenReaderEnabled = useScreenReaderChange();
 
   const QUEST_MAP_CONFIG = useMemo(getQuestMapConfig, []);

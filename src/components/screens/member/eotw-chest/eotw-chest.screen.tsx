@@ -11,8 +11,9 @@ import { Style } from "@styles";
 import { t } from "@locale";
 import { PLANET_TRAVEL_ANIMATION, SPACE_TRAVEL_ANIMATION_DURATION } from "./eotw-planet-animation-config";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { getCurrentPlanet, getCurrentPlanetByLevel } from "@utils";
+import { getCurrentGalaxy, getCurrentPlanet, getCurrentPlanetByLevel } from "@utils";
 import { CELESTIAL_CHEST_SCREEN, TEXT_TEMPLATE } from "@ids";
+import { LEVELS_PER_GALAXY } from "./eotw.constants";
 
 interface IProps {
   chestType: ChestType;
@@ -39,8 +40,12 @@ const EOTWChestScreen: FC<IProps> = memo(
     const [beginningButton, setBeginningButton] = useState(false);
     const dispatch = useDispatch();
     const currentPlanet = getCurrentPlanet(level);
+    const currentGalaxy = getCurrentGalaxy(level);
     const currentPlanetName = getCurrentPlanetByLevel(level);
+    const isNewGalaxyTransition = (level % LEVELS_PER_GALAXY) - 1 === 0;
     const [travel, setTravel] = useState(false);
+    const [galaxyScroll, setGalaxyScroll] = useState(false);
+    const [galaxyScrollComplete, setGalaxyScrollComplete] = useState(false);
 
     const chestButtonTranslationKey = useMemo(
       () =>
@@ -67,6 +72,14 @@ const EOTWChestScreen: FC<IProps> = memo(
 
     const onSpaceTravelButtonPress = useCallback(() => {
       setTravel(true);
+    }, []);
+
+    const onContinueJourneyPress = useCallback(() => {
+      setGalaxyScroll(true);
+    }, []);
+
+    const onGalaxyScrollComplete = useCallback(() => {
+      setGalaxyScrollComplete(true);
     }, []);
 
     useEffect(() => {
@@ -133,13 +146,24 @@ const EOTWChestScreen: FC<IProps> = memo(
           <View style={styles.spaceTravelPage}>
             <EOTWSpaceTravel
               currentPlanet={currentPlanet}
+              currentGalaxy={isNewGalaxyTransition ? currentGalaxy - 1 : currentGalaxy}
               width={Style.DEVICE_WIDTH - 50}
               height={Style.DEVICE_HEIGHT - 50}
               avatar={avatar}
               travel={travel}
+              isGalaxyTransition={isNewGalaxyTransition}
+              galaxyScroll={galaxyScroll}
+              onGalaxyScrollComplete={onGalaxyScrollComplete}
             />
             <View style={styles.buttonWrapper}>
-              {travel ? null : (
+              {isNewGalaxyTransition && !galaxyScrollComplete ? (
+                <Button
+                  size="Large"
+                  onPress={onContinueJourneyPress}
+                  translationKey="screens.eotw_chest.continue_journey_button"
+                  disabled={galaxyScroll}
+                />
+              ) : travel ? null : (
                 <Button
                   size="Large"
                   onPress={onSpaceTravelButtonPress}
