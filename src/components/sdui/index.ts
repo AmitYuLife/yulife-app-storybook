@@ -45,3 +45,4 @@ export * from "./contentItemScrollPicker/contentItemScrollPicker";
 export * from "./contentItemStackedShadowWrapper/contentItemStackedShadowWrapper";
 export * from "./contentItemBlurredRaysWrapper/contentItemBlurredRaysWrapper";
 export * from "./contentItemLoader/contentItemLoader";
+export { default as ContentItemScale } from "./contentItemScale/contentItemScale";

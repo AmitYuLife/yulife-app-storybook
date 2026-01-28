@@ -15,12 +15,12 @@ const CONFIG = {
   LABELS_HEIGHT: 80,
 };
 
+type Option = { label: string; value: string };
+
 type Props = {
   children: ReactNode;
   handleWidth: number;
   handleHeight: number;
-  labelMin?: string;
-  labelMax?: string;
   value: number;
   onChange: (
     /**
@@ -28,21 +28,11 @@ type Props = {
      */
     scalePoint: number
   ) => void;
-  labelTippedColor?: string;
-  labelUntippedColor?: string;
+  options: Option[];
+  labelColor?: string;
 };
 
-const LikertScale = ({
-  children,
-  handleWidth,
-  handleHeight,
-  labelMax,
-  labelMin,
-  value,
-  onChange,
-  labelTippedColor: initialLabelTippedColor,
-  labelUntippedColor: initialLabelUntippedColor,
-}: Props) => {
+const LikertScale = ({ children, handleWidth, handleHeight, value, onChange, options, labelColor }: Props) => {
   const left = useSharedValue(0);
   const { width: windowWidth } = useWindowDimensions();
 
@@ -58,14 +48,6 @@ const LikertScale = ({
     height: Style.adjust(CONFIG.SCALE_HEIGHT),
     offsetX: Style.adjust(CONFIG.WRAPPER_PADDING_HORIZONTAL),
   });
-
-  const labelTippedColor = useMemo(() => {
-    return initialLabelTippedColor || Colours.neutral.n900;
-  }, [initialLabelTippedColor]);
-
-  const labelUntippedColor = useMemo(() => {
-    return initialLabelUntippedColor || Colours.neutral.n250;
-  }, [initialLabelUntippedColor]);
 
   const handleLayout = useCallback(
     ({ nativeEvent }: LayoutChangeEvent) => {
@@ -126,7 +108,7 @@ const LikertScale = ({
         p={2}
         justifyContent="space-between"
         flexDirection="row"
-        bg={Colours.neutral.n20}
+        bg={Colours.neutral.n100}
       >
         {Array.from({ length: CONFIG.POINTS }).map((_, pointIndex) => (
           <Box key={pointIndex} bg={Colours.primary.p600} h={4} w={4} br={4} />
@@ -146,12 +128,7 @@ const LikertScale = ({
           {children}
         </Draggable>
       </Box>
-      <LikertScaleLabels
-        minColor={typeof value === "number" && value < CONFIG.MID_POINT ? labelTippedColor : labelUntippedColor}
-        maxColor={typeof value === "number" && value > CONFIG.MID_POINT ? labelTippedColor : labelUntippedColor}
-        min={labelMin}
-        max={labelMax}
-      />
+      <LikertScaleLabels options={options} selectedIndex={value - 1} labelColor={labelColor} />
     </View>
   );
 };

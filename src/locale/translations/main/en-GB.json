@@ -239,6 +239,18 @@
         "reward_subtitle": "You can find it in the challenges list."
       }
     },
+    "pathway_challenge_feedback": {
+      "heading": "How do you feel?",
+      "description": "How do you feel now compared to when you started this challenge?",
+      "scale": {
+        "bad": "Bad",
+        "worse": "Worse",
+        "no_change": "No change",
+        "better": "Better",
+        "great": "Great"
+      },
+      "skip": "Skip"
+    },
     "products": {
       "beneficiary": {
         "add": {

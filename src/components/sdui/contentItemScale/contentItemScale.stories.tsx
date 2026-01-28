@@ -16,13 +16,14 @@ const meta: Meta<typeof ContentItemScale> = {
   args: {
     answerKey: "ANSWER_KEY",
     styles: [],
-    labelMin: "Not at all",
-    labelMax: "Very much",
-    handleWidth: 24,
-    handleHeight: 24,
+    contentItemScaleOptions: [
+      { label: "Not at all", value: "1" },
+      { label: "Somewhat", value: "2" },
+      { label: "Neutral", value: "3" },
+      { label: "Somewhat", value: "4" },
+      { label: "Very much", value: "5" },
+    ],
     handle: "",
-    labelTippedColor: "blue",
-    labelUntippedColor: "red",
   },
 };
 

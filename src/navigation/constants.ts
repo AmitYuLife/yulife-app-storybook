@@ -163,6 +163,7 @@ export const ROUTES = {
   pathwaysReflected: "yulife.member.pathwaysReflected",
   pathwaysClaim: "yulife.member.pathwaysClaim",
   pathwayChallengeSuccess: "yulife.member.pathways.challengeSuccess",
+  pathwayChallengeFeedback: "yulife.member.pathways.challengeFeedback",
   pathwayChallengeIntro: "yulife.member.pathways.challengeIntro",
   pathwaysMediaPlayer: "yulife.member.pathways.mediaPlayer",
 
