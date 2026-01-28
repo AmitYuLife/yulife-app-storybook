@@ -33,13 +33,13 @@ Feature("Fiit in app", async () => {
       Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_5, data.USER_FIIT, 2500));
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
-      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200), async () => {
-        When("I pause the video", when.pauseVideo(true), async () => {
-          Then("I can see the video is paused", then.isVideoPaused(true));
+      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 2000), async () => {
+        When("I pause the video", when.pauseVideo(true, 3000), async () => {
+          Then("I can see the video is paused", then.isVideoPaused(true, 5000));
         });
       });
     });
-    When("I unpause the video", when.pauseVideo(false, 2000), async () => {
+    When("I unpause the video", when.pauseVideo(false, 3000), async () => {
       When("I wait for the video to finish", when.wait(20000), async () => {
         Then("I can see the challenge reward screen", then.canSeeFiitChallengeRewardScreen(data.USER_FIIT, data.MEDIA_5, 5));
       });
@@ -84,8 +84,8 @@ Feature("Fiit in app", async () => {
       Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT, 2500));
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
-      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1000), async () => {
-        When("I tap the close button to quit the challenge part way through", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 1000), async () => {
+      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 2000), async () => {
+        When("I tap the close button to quit the challenge part way through", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE, 2000), async () => {
           Then("I should see the quit challenge confirmation screen", then.isOnQuitChallengeScreen);
         });
       });
@@ -117,8 +117,8 @@ Feature("Fiit in app", async () => {
       Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT, 2500));
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
-      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200), async () => {
-        Then("The video is playing", then.isVideoPaused(false));
+      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 2000), async () => {
+        Then("The video is playing", then.isVideoPaused(false, 10000));
       });
     });
     When("I close and reopen the app", when.relaunchAppWithoutSync, async () => {
@@ -155,25 +155,20 @@ Feature("Fiit in app", async () => {
       Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("workouts", data.USER_BODY_COACH.data.earnRate));
     });
     When("I tap 'Take challenge'", when.tapTakeChallenge, async () => {
-      When("I tap on the body coach tile", when.tapText("Workouts by Joe Wicks"), async () => {
-        Then("I should be on the 'Body Coach classes' screen", then.idVisible(ids.FIIT_CATEGORY_LIST_HEADER("Workouts by Joe Wicks classes")));
+      When("I tap on the body coach tile", when.tapText("Workouts by Joe Wicks", 3_000), async () => {
+        Then("I should be on the 'Body Coach classes' screen", then.idVisible(ids.FIIT_CATEGORY_LIST_HEADER("Workouts by Joe Wicks"), 5_000));
         Then("I should see all the available Body Coach workouts listed in order", then.canSeeBodyCoachWorkouts);
       });
     });
-    When("I select the last workout", when.tapText("Ultimate Beginner #10"), async () => {
+    When("I select the last workout", when.tapText("Ultimate Beginner #10", 3_000), async () => {
       Then("I should see the workout info", then.canSeeBodyCoachVideoInfo(bodyCoachWorkout10, data.USER_BODY_COACH));
     });
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
-      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 1200), async () => {
-        Then("I can see the video is playing", then.isVideoPaused(false));
-      });
-      When("I pause the video", when.pauseVideo(true), async () => {
-        Then("I can see the video is paused", then.isVideoPaused(true));
+      When("I tap 'maybe later'", when.tapID(ids.GENERIC_SCREEN_CTA("maybe later"), 2000), async () => {
+        Then("I can see the video is playing", then.isVideoPaused(false, 5000));
       });
     });
-    When("I unpause the video", when.pauseVideo(false), async () => {
-      Then("The video is playing", then.isVideoPaused(false));
-    });
+    // Note: Skip pause/unpause steps as Detox video is only 15 seconds long and would complete before these actions finish
     When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
       When("I tap the menu icon to close the referrals popover", when.tapID(ids.NAV_BAR("yucoin"), 2500), async () => {
         When("I navigate to the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {

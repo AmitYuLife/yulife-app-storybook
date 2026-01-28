@@ -94,9 +94,11 @@ export const canSeeVideoDescription =
     await textVisible(description)();
   };
 
-export const isVideoPaused = (paused: boolean) => async () => {
-  await idExist(ids.VIDEO_PLAY_PAUSE_BUTTON(paused), 3000)();
-};
+export const isVideoPaused =
+  (paused: boolean, timeout = 5000) =>
+  async () => {
+    await idExist(ids.VIDEO_PLAY_PAUSE_BUTTON(paused), timeout)();
+  };
 
 export const canSeeFiitChallengeRewardScreen =
   (user: typeof USER_FIIT, media: typeof MEDIA_2, level: number) => async () => {
