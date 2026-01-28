@@ -47,8 +47,6 @@ const PathwayStreaks = ({
     <Box
       w="100%"
       gap={24}
-      pb={12}
-      mt={-8}
       flexDirection="row"
       justifyContent="center"
       alignItems="center"
