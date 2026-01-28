@@ -1087,6 +1087,7 @@
     "eotw_chest": {
       "beginning_button": "بداية جديدة",
       "claim_button": "استرداد المكافآت",
+      "continue_journey_button": "المجرة التالية",
       "open_chest_button": "افتح الصندوق",
       "space_travel_text": "أنت بالضبط حيث كنت، تطفو فوق عالمك، لكنه لم يعد وحيدًا.",
       "title": "لقد كسبت",
@@ -1486,6 +1487,7 @@
       "personal_health_path": {
         "heading": "مسار الصحة الشخصية"
       },
+      "powered_by_unity": "مدعوم من ![](%{yunityUrl})",
       "recommended_for_you": "موصى به لك",
       "reflect": "يعكس",
       "reflected": {

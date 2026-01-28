@@ -1087,6 +1087,7 @@
     "eotw_chest": {
       "beginning_button": "A new beginning",
       "claim_button": "Claim rewards",
+      "continue_journey_button": "Next galaxy",
       "open_chest_button": "Open the chest",
       "space_travel_text": "You’re exactly where you’ve been, floating above your world, but it’s not longer alone.",
       "title": "You have earned",
@@ -1486,6 +1487,7 @@
       "personal_health_path": {
         "heading": "Personal Health Path"
       },
+      "powered_by_unity": "Powered by ![](%{yunityUrl})",
       "recommended_for_you": "Recommended for you",
       "reflect": "Reflect",
       "reflected": {

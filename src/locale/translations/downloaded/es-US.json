@@ -1087,6 +1087,7 @@
     "eotw_chest": {
       "beginning_button": "Un nuevo comienzo",
       "claim_button": "Recolectar recompensas",
+      "continue_journey_button": "Próxima galaxia",
       "open_chest_button": "Abrir el cofre",
       "space_travel_text": "Estás exactamente donde has estado, flotando sobre tu mundo, pero ya no estás solo.",
       "title": "Te has ganado",
@@ -1486,6 +1487,7 @@
       "personal_health_path": {
         "heading": "Trayectoria personal de salud"
       },
+      "powered_by_unity": "Desarrollado por ![](%{yunityUrl})",
       "recommended_for_you": "Recomendado para usted",
       "reflect": "Reflect",
       "reflected": {

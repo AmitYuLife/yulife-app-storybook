@@ -1087,6 +1087,7 @@
     "eotw_chest": {
       "beginning_button": "新たな始まり",
       "claim_button": "アイテムを受け取る",
+      "continue_journey_button": "次の ギャラクシー",
       "open_chest_button": "コインボックスを開く",
       "space_travel_text": "全レベル達成おめでとうございます! 新たな世界での旅が、ここから始まります。",
       "title": "以下を獲得しました:",
@@ -1486,11 +1487,12 @@
       "personal_health_path": {
         "heading": "健康管理"
       },
+      "powered_by_unity": "Unity 提供 ![](%{yunityUrl})",
       "recommended_for_you": "あなたへのおすすめ",
       "reflect": "振り返りに進む",
       "reflected": {
         "subtitle": "リワードを獲得しました!",
-        "subtitle_locked": "毎日 振り返ることで パーソナライズされた インサイト を アンロック。",
+        "subtitle_locked": "毎日振り返りを行なって、あなたにぴったりのアドバイスを受け取りましょう。",
         "title": "日間の振り返り |||| 日間の振り返り"
       },
       "reflect_in": "あと%{hours}時間%{minutes}分",
