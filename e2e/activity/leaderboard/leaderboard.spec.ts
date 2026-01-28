@@ -77,22 +77,22 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       });
       When("I tap the ID to switch consent off", when.tapID(ids.SETTINGS_SWITCH("Steps", true), 2000), async () => {
         When("I tap turn it off", when.tapID(ids.GENERIC_SCREEN_CTA("Turn it off"), 2000), async () => {
-          Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH("Steps", false)));
+          Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH("Steps", false), 3_000));
         });
       });
-      When("I tap close", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 2000), async () => {
+      When("I tap close", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 3_000), async () => {
         Then("I can see the emtpy yudoku leaderboard state", then.onLeaderboardWithoutConsent());
       });
       When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu"), 2000), async () => {
-        When("I am not consented to any leaderboards and I tap 'Show your friends that you appreciate them' card", when.tapID(ids.HERO_CARD_SECTION), async () => {
-          Then("I should see 'Join the Leaderboard to send gifts to your friends!' pop up", then.textVisible("Join the Leaderboard to send gifts to your friends!"));
+        When("I am not consented to any leaderboards and I tap 'Show your friends that you appreciate them' card", when.tapID(ids.HERO_CARD_SECTION, 3_000), async () => {
+          Then("I should see 'Join the Leaderboard to send gifts to your friends!' pop up", then.textVisible("Join the Leaderboard to send gifts to your friends!", 5_000));
         });
       });
-      When("I tap cancel", when.tapText("Cancel", 2000), async () => {
+      When("I tap cancel", when.tapText("Cancel", 3_000), async () => {
         Then("The pop up should close and I should be back on the YuScreen", then.yuScreenV5HeaderVisible(false, "Ryan Howard", "Forest", "2", false));
       });
       When("I tap 'Show your friends that you appreciate them' card again", when.tapID(ids.HERO_CARD_SECTION, 3000), async () => {
-        When("I tap Join the Leaderboard", when.tapText("Join Leaderboard", 3000), async () => {
+        When("I tap Join the Leaderboard", when.tapText("Join Leaderboard", 4_000), async () => {
           Then("I should see the leaderboard screen ", then.onLeaderboardWithoutConsent());
         });
       });

@@ -41,6 +41,7 @@ export const {
   navigateTo,
   minimiseAndReopenApp,
   start,
+  switchLanguage,
 } = navigation.common;
 
 export const { startChallenge } = screens.challenges;

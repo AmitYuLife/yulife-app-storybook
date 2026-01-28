@@ -21,7 +21,7 @@ export const REWARD_LEDGER_1 = {
       locations: ["GB"],
     },
     reward: CORE_REWARDS_NIKE.data._id,
-    createdAt: moment().subtract(2, "minutes").toISOString(),
-    claimedAt: moment().toISOString(),
+    createdAt: moment().startOf("day").add(12, "hours").toISOString(),
+    claimedAt: moment().startOf("day").add(12, "hours").toISOString(),
   },
 } as IDatabaseItem;

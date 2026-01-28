@@ -282,7 +282,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
       Then("I should be on the language selector screen", then.languageSelectorVisible);
       Then("I should see all the available languages listed", then.allLanguagesVsible);
     });
-    When("I tap to select Spanish option", when.tapID(ids.TEXT_TEMPLATE("🇪🇸 Español (Estados Unidos)", undefined), 3000), async () => {
+    When("I tap to select Spanish option", when.switchLanguage("🇪🇸 Español (Estados Unidos)", 3000), async () => {
       Then("I should see that the client language has successfully changed in Spanish", then.textVisible("200 YuCoin hoy", 10_000));
     });
   });

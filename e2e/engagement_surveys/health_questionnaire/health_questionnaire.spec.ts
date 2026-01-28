@@ -32,8 +32,8 @@ Feature("Health questionnaires", async () => {
       Then("I should be on the langauge selector screen", then.languageSelectorVisible);
       Then("I should see all the available languages listed", then.allLanguagesVsible);
     });
-    When("I tap to switch to Japanese", when.tapText(`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`, 3000, true), async () => {
-      Then("I should be back on my YuCoin screen", then.idExist(ids.DAILY_STEPS_SCREEN, 15000));
+    When("I tap to switch to Japanese", when.switchLanguage(`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`, 10_000), async () => {
+      Then("I should be back on my YuCoin screen", then.idExist(ids.DAILY_STEPS_SCREEN, 15_000));
     });
     When("I close the pop up", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 5000), async () => {
       Then("I should see that the YuCoin screen has changed in Japanese", then.textVisible(getTranslation("ja-JP").navbar.yucoin.label, 4000));

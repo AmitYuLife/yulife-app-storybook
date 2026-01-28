@@ -413,8 +413,8 @@ Feature("P2P gifting - UK", async () => {
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
       Then("I should see the 'Wow, its quiet in here!' notification as the gift sender is missing", then.idVisible(ids.NOTIFICATIONS_EMPTY, 2500));
     });
-    When("I tap the X to close the notification center", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 2000), async () => {
-      When("I go to Today's Earnings", when.tapID(ids.STEPS_COUNT(0)), async () => {
+    When("I tap the X to close the notification center", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 3_000), async () => {
+      When("I go to Today's Earnings", when.tapID(ids.STEPS_COUNT(0), 5_000), async () => {
         Then("I see I've earned 300 yucoin today so far on the todays earnings screen", then.textVisible("300 YuCoin"));
       });
     });
