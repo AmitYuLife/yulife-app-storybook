@@ -1,8 +1,6 @@
 fragment ContentItemScale on ContentItemScale {
   id
   answerKey
-  labelMin
-  labelMax
   handle
   contentItemScaleOptions: options {
     label
@@ -11,6 +9,5 @@ fragment ContentItemScale on ContentItemScale {
   styles {
     ...SduiStyle
   }
-  labelTippedColor
   labelUntippedColor
 }

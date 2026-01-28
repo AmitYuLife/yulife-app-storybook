@@ -255,6 +255,7 @@ const documents = {
   GetMobileWhatsNewModalDocument: types.GetMobileWhatsNewModalDocument,
   PerformMobileOnboardingStepDocument: types.PerformMobileOnboardingStepDocument,
   GetUserPathwaysDocument: types.GetUserPathwaysDocument,
+  SubmitPathwayChallengeFeedbackDocument: types.SubmitPathwayChallengeFeedbackDocument,
   ConfirmPaymentCardDocument: types.ConfirmPaymentCardDocument,
   GetMobilePaymentCardSetupDocument: types.GetMobilePaymentCardSetupDocument,
   GetPerkSubscriptionInfoDocument: types.GetPerkSubscriptionInfoDocument,
@@ -1495,6 +1496,12 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetUserPathwaysDocument"): typeof documents["GetUserPathwaysDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "SubmitPathwayChallengeFeedbackDocument"
+): typeof documents["SubmitPathwayChallengeFeedbackDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

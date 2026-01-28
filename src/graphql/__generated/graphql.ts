@@ -1245,6 +1245,11 @@ export type BusinessTagInput = {
   leaderboardName?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type CancelPathwayChallengeResponse = {
+  __typename?: "CancelPathwayChallengeResponse";
+  success: Scalars["Boolean"]["output"];
+};
+
 export type CaptchaResponse = {
   debugInfo?: InputMaybe<Scalars["String"]["input"]>;
   provider: Scalars["String"]["input"];
@@ -6455,6 +6460,7 @@ export type Mutation = {
   assignTeamPerk: Scalars["Boolean"]["output"];
   /** Supported RN version >= 4.10.0 */
   cancelMobileQuestLevelChallenge?: Maybe<MobileQuestChallenge>;
+  cancelPathwayChallenge: CancelPathwayChallengeResponse;
   /** contentId is deprecated starting with 3.108 client version */
   cancelQuestMapLevelChallenge?: Maybe<Challenge>;
   changeBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6623,6 +6629,7 @@ export type Mutation = {
   submitMobileGameBattlePassDonations: MobileGameBattlePassUpdateInfo;
   submitMobileQuestLevelSudokuSolution?: Maybe<MobileQuestChallenge>;
   submitPathwayAdviceResponse: Scalars["Boolean"]["output"];
+  submitPathwayChallengeFeedback: SubmitPathwayChallengeFeedbackResponse;
   submitSduiJourney?: Maybe<Scalars["Boolean"]["output"]>;
   submitSudokuSolution?: Maybe<Challenge>;
   submitUnity?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6749,6 +6756,10 @@ export type MutationAssignTeamPerkArgs = {
 };
 
 export type MutationCancelMobileQuestLevelChallengeArgs = {
+  challengeId: Scalars["ID"]["input"];
+};
+
+export type MutationCancelPathwayChallengeArgs = {
   challengeId: Scalars["ID"]["input"];
 };
 
@@ -7384,6 +7395,11 @@ export type MutationSubmitPathwayAdviceResponseArgs = {
   input: SubmitPathwayAdviceResponseInput;
 };
 
+export type MutationSubmitPathwayChallengeFeedbackArgs = {
+  challengeId: Scalars["ID"]["input"];
+  feedbackRating: Scalars["Int"]["input"];
+};
+
 export type MutationSubmitSduiJourneyArgs = {
   action: SubmitSduiJourneyAction;
   data: Scalars["String"]["input"];
@@ -7930,6 +7946,7 @@ export type PathwayChallengeSlot = {
   id: Scalars["ID"]["output"];
   isCompleted: Scalars["Boolean"]["output"];
   isLocked: Scalars["Boolean"]["output"];
+  isStarted: Scalars["Boolean"]["output"];
   reward: Scalars["String"]["output"];
 };
 
@@ -10423,6 +10440,11 @@ export type SubmitPathwayAdviceResponseInput = {
   pathwayItemId: Scalars["ID"]["input"];
 };
 
+export type SubmitPathwayChallengeFeedbackResponse = {
+  __typename?: "SubmitPathwayChallengeFeedbackResponse";
+  success: Scalars["Boolean"]["output"];
+};
+
 export enum SubmitSduiJourneyAction {
   Pop = "POP",
   Push = "PUSH",
@@ -10913,6 +10935,8 @@ export type TeamEmployeeRecognitionCampaign = {
 
 export type TeamEmployeeRecognitionCampaignBillingAddress = {
   __typename?: "TeamEmployeeRecognitionCampaignBillingAddress";
+  /** Indicates if this billing centre has an active Direct Debit payment method */
+  hasActiveDirectDebit: Scalars["Boolean"]["output"];
   id: Scalars["String"]["output"];
   label: Scalars["String"]["output"];
 };
@@ -10925,9 +10949,12 @@ export type TeamEmployeeRecognitionCampaignPackage = {
 
 export type TeamEmployeeRecognitionCampaignPackageResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignPackageResponse";
+  /** Fee configuration per payment method with progressive fee bands */
+  fees: Array<YuCoinTopupPaymentMethodFee>;
   hasPaymentPendingTopups?: Maybe<Scalars["Boolean"]["output"]>;
   minTopupAmount: Scalars["Int"]["output"];
   packages: Array<TeamEmployeeRecognitionCampaignPackage>;
+  /** Base exchange rate WITHOUT fee applied. Frontend must calculate fee using the fees array. */
   rate: Scalars["Float"]["output"];
   topupThreshold: Scalars["Int"]["output"];
 };
@@ -12441,6 +12468,31 @@ export type YuCoinPowerExplainedScreenYuCoinInfo = {
   title: Scalars["String"]["output"];
 };
 
+/**
+ * Fee band for progressive fee calculation.
+ * Each percentage is applied only to the portion of the transaction value within that band.
+ */
+export type YuCoinTopupFeeBand = {
+  __typename?: "YuCoinTopupFeeBand";
+  /** Maximum amount in lowest denomination (pence/cents) - inclusive. null means no upper limit */
+  maxAmount?: Maybe<Scalars["Int"]["output"]>;
+  /** Minimum amount in lowest denomination (pence/cents) - inclusive */
+  minAmount: Scalars["Int"]["output"];
+  /** Fee percentage as decimal (e.g., 0.10 for 10%) */
+  percentage: Scalars["Float"]["output"];
+};
+
+/** Fee configuration for a specific payment method. */
+export type YuCoinTopupPaymentMethodFee = {
+  __typename?: "YuCoinTopupPaymentMethodFee";
+  /** Progressive fee bands - each percentage applies only to the portion within that band */
+  feeBands: Array<YuCoinTopupFeeBand>;
+  /** Minimum charge in lowest denomination (pence/cents) for this payment method */
+  minimumCharge: Scalars["Int"]["output"];
+  /** Payment method identifier (bacs, direct_debit) */
+  paymentMethod: Scalars["String"]["output"];
+};
+
 export enum YuHealthCapability {
   Activities = "ACTIVITIES",
   Calories = "CALORIES",
@@ -12943,6 +12995,14 @@ export enum YuWorld {
   Forest = "forest",
   Mountain = "mountain",
   Ocean = "ocean",
+}
+
+/** Payment method for YuCoin top-up requests. */
+export enum YucoinTopupPaymentMethod {
+  /** Bank transfer (BACS) - higher minimum charge */
+  Bacs = "bacs",
+  /** Direct Debit - lower minimum charge */
+  DirectDebit = "direct_debit",
 }
 
 export enum YucoinTransferStatus {
@@ -14929,10 +14989,7 @@ export type AbsoluteContentItemFragment = {
         __typename: "ContentItemScale";
         id: string;
         answerKey: string;
-        labelMin?: string | null;
-        labelMax?: string | null;
         handle: string;
-        labelTippedColor?: string | null;
         labelUntippedColor?: string | null;
         contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
         styles?: Array<{
@@ -16783,10 +16840,7 @@ type ContentItem_ContentItemScale_Fragment = {
   __typename: "ContentItemScale";
   id: string;
   answerKey: string;
-  labelMin?: string | null;
-  labelMax?: string | null;
   handle: string;
-  labelTippedColor?: string | null;
   labelUntippedColor?: string | null;
   contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
   styles?: Array<{
@@ -19303,10 +19357,7 @@ export type ContentItemScaleFragment = {
   __typename?: "ContentItemScale";
   id: string;
   answerKey: string;
-  labelMin?: string | null;
-  labelMax?: string | null;
   handle: string;
-  labelTippedColor?: string | null;
   labelUntippedColor?: string | null;
   contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
   styles?: Array<{
@@ -21745,10 +21796,7 @@ export type SduiSectionFragment = {
           __typename: "ContentItemScale";
           id: string;
           answerKey: string;
-          labelMin?: string | null;
-          labelMax?: string | null;
           handle: string;
-          labelTippedColor?: string | null;
           labelUntippedColor?: string | null;
           contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
           styles?: Array<{
@@ -26655,10 +26703,7 @@ export type GetSduiJourneyQuery = {
           __typename: "ContentItemScale";
           id: string;
           answerKey: string;
-          labelMin?: string | null;
-          labelMax?: string | null;
           handle: string;
-          labelTippedColor?: string | null;
           labelUntippedColor?: string | null;
           contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
           styles?: Array<{
@@ -28442,10 +28487,7 @@ export type GetSduiJourneyQuery = {
             __typename: "ContentItemScale";
             id: string;
             answerKey: string;
-            labelMin?: string | null;
-            labelMax?: string | null;
             handle: string;
-            labelTippedColor?: string | null;
             labelUntippedColor?: string | null;
             contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
             styles?: Array<{
@@ -30882,10 +30924,7 @@ export type GetUserPathwaysQuery = {
                   __typename: "ContentItemScale";
                   id: string;
                   answerKey: string;
-                  labelMin?: string | null;
-                  labelMax?: string | null;
                   handle: string;
-                  labelTippedColor?: string | null;
                   labelUntippedColor?: string | null;
                   contentItemScaleOptions: Array<{
                     __typename?: "ContentItemScaleOption";
@@ -31378,6 +31417,16 @@ export type GetUserPathwaysQuery = {
         }
     >;
   };
+};
+
+export type SubmitPathwayChallengeFeedbackMutationVariables = Exact<{
+  challengeId: Scalars["ID"]["input"];
+  feedbackRating: Scalars["Int"]["input"];
+}>;
+
+export type SubmitPathwayChallengeFeedbackMutation = {
+  __typename?: "Mutation";
+  submitPathwayChallengeFeedback: { __typename?: "SubmitPathwayChallengeFeedbackResponse"; success: boolean };
 };
 
 export type ConfirmPaymentCardMutationVariables = Exact<{
@@ -34681,10 +34730,7 @@ export type GetSduiStaticStepQuery = {
           __typename: "ContentItemScale";
           id: string;
           answerKey: string;
-          labelMin?: string | null;
-          labelMax?: string | null;
           handle: string;
-          labelTippedColor?: string | null;
           labelUntippedColor?: string | null;
           contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
           styles?: Array<{
@@ -36468,10 +36514,7 @@ export type GetSduiStaticStepQuery = {
             __typename: "ContentItemScale";
             id: string;
             answerKey: string;
-            labelMin?: string | null;
-            labelMax?: string | null;
             handle: string;
-            labelTippedColor?: string | null;
             labelUntippedColor?: string | null;
             contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
             styles?: Array<{
@@ -41401,10 +41444,7 @@ export type GetYuScreenV5Query = {
                   __typename: "ContentItemScale";
                   id: string;
                   answerKey: string;
-                  labelMin?: string | null;
-                  labelMax?: string | null;
                   handle: string;
-                  labelTippedColor?: string | null;
                   labelUntippedColor?: string | null;
                   contentItemScaleOptions: Array<{
                     __typename?: "ContentItemScaleOption";
@@ -43427,10 +43467,7 @@ export type GetYuScreenV5SectionsQuery = {
                 __typename: "ContentItemScale";
                 id: string;
                 answerKey: string;
-                labelMin?: string | null;
-                labelMax?: string | null;
                 handle: string;
-                labelTippedColor?: string | null;
                 labelUntippedColor?: string | null;
                 contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
                 styles?: Array<{
@@ -45424,10 +45461,7 @@ type YuScreenSection_SduiSection_Fragment = {
           __typename: "ContentItemScale";
           id: string;
           answerKey: string;
-          labelMin?: string | null;
-          labelMax?: string | null;
           handle: string;
-          labelTippedColor?: string | null;
           labelUntippedColor?: string | null;
           contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
           styles?: Array<{
@@ -51930,8 +51964,6 @@ export const ContentItemScaleFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -51953,7 +51985,6 @@ export const ContentItemScaleFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },
@@ -54592,8 +54623,6 @@ export const ContentItemFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -54615,7 +54644,6 @@ export const ContentItemFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },
@@ -56740,8 +56768,6 @@ export const AbsoluteContentItemFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -56763,7 +56789,6 @@ export const AbsoluteContentItemFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },
@@ -65381,8 +65406,6 @@ export const SduiSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -65404,7 +65427,6 @@ export const SduiSectionFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },
@@ -69554,8 +69576,6 @@ export const YuScreenSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -69577,7 +69597,6 @@ export const YuScreenSectionFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },
@@ -81961,8 +81980,6 @@ export const GetSduiJourneyDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -81984,7 +82001,6 @@ export const GetSduiJourneyDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },
@@ -85918,8 +85934,6 @@ export const GetUserPathwaysDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -85941,7 +85955,6 @@ export const GetUserPathwaysDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },
@@ -87063,6 +87076,53 @@ export const GetUserPathwaysDocument = {
     },
   ],
 } as unknown as DocumentNode<GetUserPathwaysQuery, GetUserPathwaysQueryVariables>;
+export const SubmitPathwayChallengeFeedbackDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitPathwayChallengeFeedback" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "challengeId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "feedbackRating" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitPathwayChallengeFeedback" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "challengeId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "challengeId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "feedbackRating" },
+                value: { kind: "Variable", name: { kind: "Name", value: "feedbackRating" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "success" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitPathwayChallengeFeedbackMutation, SubmitPathwayChallengeFeedbackMutationVariables>;
 export const ConfirmPaymentCardDocument = {
   kind: "Document",
   definitions: [
@@ -93126,8 +93186,6 @@ export const GetSduiStaticStepDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -93149,7 +93207,6 @@ export const GetSduiStaticStepDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },
@@ -103452,8 +103509,6 @@ export const GetYuScreenV5Document = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -103475,7 +103530,6 @@ export const GetYuScreenV5Document = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },
@@ -106528,8 +106582,6 @@ export const GetYuScreenV5SectionsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
-          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
@@ -106551,7 +106603,6 @@ export const GetYuScreenV5SectionsDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "labelTippedColor" } },
           { kind: "Field", name: { kind: "Name", value: "labelUntippedColor" } },
         ],
       },

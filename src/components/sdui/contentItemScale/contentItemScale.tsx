@@ -12,13 +12,8 @@ import { CONTENT_ITEM_SCALE } from "@ids";
 type Props = {
   answerKey: string;
   styles: SduiStyle[];
-  labelMin: string;
-  labelMax: string;
-  handleWidth: number;
-  handleHeight: number;
   handle: string;
   contentItemScaleOptions: Array<{ label: string; value: string }>;
-  labelTippedColor?: string;
   labelUntippedColor?: string;
 };
 
@@ -84,10 +79,8 @@ const ContentItemScale = (props: Props) => {
         value={calculatedValue}
         handleHeight={imageHeight}
         handleWidth={width}
-        labelMax={props.labelMax}
-        labelMin={props.labelMin}
-        labelTippedColor={props.labelTippedColor}
-        labelUntippedColor={props.labelUntippedColor}
+        options={options}
+        labelColor={props.labelUntippedColor}
       >
         <Box h={totalHeight} w={width} borderWidth={1} borderColor="transparent">
           <ContentItemWrapper {...data} />

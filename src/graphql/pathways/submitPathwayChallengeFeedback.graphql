@@ -1,0 +1,5 @@
+mutation SubmitPathwayChallengeFeedback($challengeId: ID!, $feedbackRating: Int!) {
+  submitPathwayChallengeFeedback(challengeId: $challengeId, feedbackRating: $feedbackRating) {
+    success
+  }
+}

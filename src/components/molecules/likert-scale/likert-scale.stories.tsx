@@ -15,10 +15,15 @@ const meta: Meta<typeof LikertScale> = {
     children: [],
     handleWidth: 24,
     handleHeight: 24,
-    labelMin: "Not at all",
-    labelMax: "Very much",
-    value: 0,
+    value: 3,
     onChange: () => null,
+    options: [
+      { label: "Not at all", value: "1" },
+      { label: "Somewhat", value: "2" },
+      { label: "Neutral", value: "3" },
+      { label: "Somewhat", value: "4" },
+      { label: "Very much", value: "5" },
+    ],
   },
 };
 

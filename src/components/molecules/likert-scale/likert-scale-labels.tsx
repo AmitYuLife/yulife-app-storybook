@@ -1,29 +1,27 @@
 import { Box, TextTemplate } from "@atoms";
+import { Colours } from "@styles";
 import { memo } from "react";
 
+type Option = { label: string; value: string };
+
 type Props = {
-  min?: string;
-  minColor?: string;
-  max?: string;
-  maxColor?: string;
+  options: Option[];
+  selectedIndex?: number;
+  labelColor?: string;
 };
-const LikertScaleLabels = ({ min, minColor, max, maxColor }: Props) => (
-  <Box pointerEvents="none" flexDirection="row" justifyContent="space-between" mt={24}>
-    <Box w={96}>
-      {min ? (
-        <TextTemplate color={minColor} type="b2b">
-          {min}
+
+const LikertScaleLabels = ({ options, selectedIndex, labelColor = Colours.neutral.n900 }: Props) => {
+  const selectedLabel = options[selectedIndex]?.label;
+
+  return (
+    <Box pointerEvents="none" alignItems="center" mt={24}>
+      {selectedLabel ? (
+        <TextTemplate color={labelColor} textAlign="center" type="b2b">
+          {selectedLabel}
         </TextTemplate>
       ) : null}
     </Box>
-    <Box w={96}>
-      {max ? (
-        <TextTemplate color={maxColor} textAlign="right" type="b2b">
-          {max}
-        </TextTemplate>
-      ) : null}
-    </Box>
-  </Box>
-);
+  );
+};
 
 export default memo(LikertScaleLabels);

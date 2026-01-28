@@ -36,6 +36,7 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
   const [completePathwayChallenge] = useMutation(gql("CompletePathwayChallengeDocument"), {
     refetchQueries: [{ query: gql("GetPathwayChallengeDocument") }],
   });
+  const [submitPathwayChallengeFeedback] = useMutation(gql("SubmitPathwayChallengeFeedbackDocument"));
 
   const handlePathwayTilePress = useCallback(() => {
     const action = pathwayChallengeData?.getPathwayChallenge?.action;
@@ -86,11 +87,28 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
           passProps: {
             reward: yuCoinAwarded,
             componentId,
+            challengeId,
           },
         },
       });
     },
     [challengeId, completePathwayChallenge, componentId, dispatch]
+  );
+
+  const submitChallengeFeedback = useCallback(
+    async (feedbackRating: number) => {
+      if (!challengeId) {
+        return;
+      }
+
+      await submitPathwayChallengeFeedback({
+        variables: {
+          challengeId,
+          feedbackRating,
+        },
+      });
+    },
+    [challengeId, submitPathwayChallengeFeedback]
   );
 
   const pathwayChallenge = useMemo(() => {
@@ -111,5 +129,6 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
     pathwayChallengeLoading,
     startChallenge,
     completeChallenge,
+    submitChallengeFeedback,
   };
 };
