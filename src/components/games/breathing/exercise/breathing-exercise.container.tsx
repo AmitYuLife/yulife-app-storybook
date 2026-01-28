@@ -5,8 +5,7 @@ import { useNavigation } from "@navigation/navigation.context";
 import { GenericHeadingAbsolute } from "@organisms";
 import { Colours, Style, StyleSheet } from "@styles";
 import useInterval from "@use-it/interval";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { useAnimatedStyle } from "react-native-reanimated";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { displaySecondsAsMinutes } from "@utils";
 import { t } from "@locale";
 import { useKeepAwake } from "expo-keep-awake";
@@ -23,9 +22,10 @@ import { AppStateStatus } from "react-native";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 import { BREATHING_EXERCISE_DURATION_PICKER } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
+import AvPlayerTimer from "@components/organisms/av-player-timer/av-player-timer";
+import AvPlayerProgressBar from "@components/organisms/av-player-progress-bar/av-player-progress-bar";
 
 const FOREST_COLOUR = "#018547";
-const PROGRESS_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 
 const DEFAULT_DURATION_MS = 180 * 1000; // 3 minutes
 
@@ -67,52 +67,62 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
 
   const { completeChallenge } = usePathwayChallenge({ componentId, challengeId, skipQuery: true });
 
-  const {
-    startPlaying,
-    togglePlaying,
-    updateSelectedDurationMs,
-    selectedDurationMs,
-    isPlaying,
-    currentPart,
-    progress,
-  } = useBreathingExercise({
-    parts: data.parts.map((part) => ({ ...part })),
-    defaultDuration: data.defaultDuration || DEFAULT_DURATION_MS,
-    onCompleted: async () => {
-      dispatch(
-        logMixpanelEventActionCreator("breathing_exercise_completed", {
-          duration: selectedDurationMs,
-          id: data.id,
-        })
-      );
+  const selectedDurationMsRef = useRef(data.defaultDuration || DEFAULT_DURATION_MS);
 
-      await completeChallenge({ durationInSeconds: selectedDurationMs / 1000, challengeType: "mindfulness" });
-    },
-    onStarted: () => {
-      dispatch(
-        logMixpanelEventActionCreator("breathing_exercise_started", {
-          duration: selectedDurationMs,
-          id: data.id,
-        })
-      );
-    },
-    onPaused: () => {
-      dispatch(
-        logMixpanelEventActionCreator("breathing_exercise_paused", {
-          duration: selectedDurationMs,
-          id: data.id,
-        })
-      );
-    },
-    onResumed: () => {
-      dispatch(
-        logMixpanelEventActionCreator("breathing_exercise_resumed", {
-          duration: selectedDurationMs,
-          id: data.id,
-        })
-      );
-    },
-  });
+  const handleCompleted = useCallback(async () => {
+    dispatch(
+      logMixpanelEventActionCreator("breathing_exercise_completed", {
+        duration: selectedDurationMsRef.current,
+        id: data.id,
+      })
+    );
+
+    await completeChallenge({
+      durationInSeconds: selectedDurationMsRef.current / 1000,
+      challengeType: "mindfulness",
+    });
+  }, [dispatch, data.id, completeChallenge]);
+
+  const handleStarted = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("breathing_exercise_started", {
+        duration: selectedDurationMsRef.current,
+        id: data.id,
+      })
+    );
+  }, [dispatch, data.id]);
+
+  const handlePaused = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("breathing_exercise_paused", {
+        duration: selectedDurationMsRef.current,
+        id: data.id,
+      })
+    );
+  }, [dispatch, data.id]);
+
+  const handleResumed = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("breathing_exercise_resumed", {
+        duration: selectedDurationMsRef.current,
+        id: data.id,
+      })
+    );
+  }, [dispatch, data.id]);
+
+  const { startPlaying, togglePlaying, updateSelectedDurationMs, selectedDurationMs, isPlaying, currentPart } =
+    useBreathingExercise({
+      parts: data.parts.map((part) => ({ ...part })),
+      defaultDuration: data.defaultDuration || DEFAULT_DURATION_MS,
+      onCompleted: handleCompleted,
+      onStarted: handleStarted,
+      onPaused: handlePaused,
+      onResumed: handleResumed,
+    });
+
+  useEffect(() => {
+    selectedDurationMsRef.current = selectedDurationMs;
+  }, [selectedDurationMs]);
 
   const handleClose = useCallback(() => {
     dispatch(
@@ -136,9 +146,44 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   );
   useAppState(handleAppStateChange);
 
-  const progressStyle = useAnimatedStyle(() => ({
-    width: progress.value * PROGRESS_WIDTH,
-  }));
+  const [elapsedMs, setElapsedMs] = useState(0);
+  const exerciseStartTime = useRef<number | null>(null);
+  const pausedElapsedMs = useRef(0);
+
+  useEffect(() => {
+    if (isPlaying && currentPart.type !== BreathingExerciseOptionPartType.Intro) {
+      if (exerciseStartTime.current === null) {
+        exerciseStartTime.current = Date.now();
+      }
+    }
+  }, [isPlaying, currentPart.type]);
+
+  useEffect(() => {
+    if (!isPlaying && elapsedMs > 0) {
+      pausedElapsedMs.current = elapsedMs;
+      exerciseStartTime.current = null;
+    }
+  }, [isPlaying, elapsedMs]);
+
+  useInterval(
+    () => {
+      if (exerciseStartTime.current !== null) {
+        const currentElapsed = pausedElapsedMs.current + (Date.now() - exerciseStartTime.current);
+        setElapsedMs(Math.min(currentElapsed, selectedDurationMs));
+      }
+    },
+    isPlaying && currentPart.type !== BreathingExerciseOptionPartType.Intro ? 100 : null
+  );
+
+  useEffect(() => {
+    if (currentPart.type === BreathingExerciseOptionPartType.Intro) {
+      setElapsedMs(0);
+      pausedElapsedMs.current = 0;
+      exerciseStartTime.current = null;
+    }
+  }, [currentPart.type]);
+
+  const hasMultipleDurations = data.availableDurations.length > 1;
 
   const showDurationPicker = useCallback(async () => {
     const wasPlaying = isPlaying;
@@ -234,7 +279,7 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
             <Content {...currentPart} isPlaying={isPlaying} />
           </Box>
 
-          {currentPart.type !== BreathingExerciseOptionPartType.End ? (
+          {currentPart.type !== BreathingExerciseOptionPartType.End && hasMultipleDurations ? (
             <Box justifyContent="center" alignItems="center" px={24} pb={48} mt={16} pt={12}>
               <Box flexDirection="row" justifyContent="center" alignItems="center">
                 <BoxOption
@@ -257,24 +302,15 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
 
       <Box position="absolute" bottom={24} left={0} right={0}>
         {DETOX_ENABLED ? null : (
-          <Box justifyContent="center" alignItems="center" flex={1} mb={40}>
-            <Box
-              br={3}
-              height={Style.adjust(6)}
-              width={PROGRESS_WIDTH}
-              mh={Style.adjust(24)}
-              disableAutoAdjust={true}
-              bg={Colours.neutral.white}
-            >
-              <Box
-                opacity={0.8}
-                br={3}
-                height={Style.adjust(6)}
-                disableAutoAdjust={true}
-                bg={Colours.primary.p600}
-                style={progressStyle}
-                forceAnimated={true}
-              />
+          <Box flexDirection="row" mh={24} alignItems="center" justifyContent="center" mb={40}>
+            <Box position="absolute" left={0} width="13%">
+              <AvPlayerTimer textType="l2b" time={elapsedMs} colour={Colours.neutral.white} />
+            </Box>
+            <Box height={6} br={3} width="74%" bg={Colours.neutral.white}>
+              <AvPlayerProgressBar currentProgress={elapsedMs / 1000} duration={selectedDurationMs / 1000} />
+            </Box>
+            <Box position="absolute" alignItems="flex-end" right={0} width="13%">
+              <AvPlayerTimer textType="l2b" time={selectedDurationMs} colour={Colours.neutral.white} />
             </Box>
           </Box>
         )}
