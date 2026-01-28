@@ -1299,6 +1299,18 @@
       "empty_message": "Looks like you haven't completed any activities yet. Begin your wellbeing journey today with some challenges."
     },
     "battle_pass": {
+      "ftux": {
+        "title": "Donate your first YuCoin!",
+        "intro": {
+          "title": "How does it work?",
+          "steps": {
+            "step_1": "Earn **YuCoin** by completing daily quests!",
+            "step_2": "Level up by donating **YuCoin!**",
+            "step_3": "Win exclusive **rewards!**"
+          },
+          "button": "Cool!"
+        }
+      },
       "accessibility": {
         "view_details": "View %{title} reward details",
         "reward_level": "Level %{level} reward",

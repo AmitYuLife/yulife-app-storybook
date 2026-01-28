@@ -12,4 +12,5 @@ fragment MobileGameBattlePass on MobileGameBattlePass {
   rewards {
     ...MobileGameBattlePassReward
   }
+  season
 }

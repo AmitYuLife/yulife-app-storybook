@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
 import { useModal, useNavigationComponentDidAppear, useQueryOnScreenSeenOnce, useTrack } from "@hooks";
@@ -28,6 +28,8 @@ import { BattlePassEndOfSeasonModal } from "@components/modals";
 import { t } from "@locale";
 import { prizesAwarded } from "@redux/prizes/prizes.actions";
 import { getModalState } from "@redux/app/app.selectors";
+import BattlePassIntroScreen from "@components/screens/battle-pass/battle-pass-intro/battle-pass-intro.screen";
+import { useShowFtux } from "./useShowFtux.hook";
 
 interface BattlePassContainerProps {
   showNavigation?: boolean;
@@ -95,6 +97,8 @@ const BattlePassContainer = ({
       fetchPolicy: "cache-and-network",
       nextFetchPolicy: "cache-only",
     });
+
+  const { showFtux, showFirstLevelBattlePassVariant, handleCloseFtux } = useShowFtux(battlePass);
 
   const [getBattlePassTemplates] = useLazyQuery(gql("GetMobileBattlePassDonationTemplatesDocument"), {
     fetchPolicy: "network-only",
@@ -370,6 +374,12 @@ const BattlePassContainer = ({
     return <BattlePassLoading showNavigation={showNavigation} onBackPress={onBack} />;
   }
 
+  if (showFtux) {
+    return (
+      <BattlePassIntroScreen backgroundImage={{ uri: battlePass?.backgroundImage?.uri }} onClose={handleCloseFtux} />
+    );
+  }
+
   return (
     <>
       <BattlePassAnimationManager step={battlePass?.progressStatus?.step} showCoinAnimation={showCoinAnimation}>
@@ -388,6 +398,8 @@ const BattlePassContainer = ({
           rewards={rewards || []}
           onComplete={onComplete}
           showCoinAnimation={showCoinAnimation}
+          showFirstLevelScreenState={showFirstLevelBattlePassVariant}
+          componentId={componentId}
         />
         <FirstTimeContentLocationSelection
           isActive={contentLocation?.hasUserSelectedContentLocation === false}
