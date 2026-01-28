@@ -20,6 +20,7 @@ export interface IDonationListItem {
   onSubmit: (donationId: string, amount: number) => void;
   onLeaderboardPress: (leaderboardId: string, templateId: string) => void;
   avatars?: string[];
+  rewardId?: string;
   image: ImageSource;
   leaderboard?: {
     id: string;

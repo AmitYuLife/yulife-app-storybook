@@ -5670,6 +5670,7 @@ export type MobileBattlePassDonationTemplate = {
   image: RemoteImage;
   leaderboard: MobileGameBattlePassDonationLeaderboard;
   leaderboards: Array<MobileBattlePassDonationTemplateLeaderboard>;
+  rewardId?: Maybe<Scalars["String"]["output"]>;
   sortOrder: Scalars["Int"]["output"];
   title: Scalars["String"]["output"];
   yuCoin: Scalars["Int"]["output"];
@@ -5706,6 +5707,7 @@ export type MobileGameBattlePass = {
   id: Scalars["ID"]["output"];
   progressStatus: MobileGameBattlePassProgressInfo;
   rewards: Array<MobileGameBattlePassReward>;
+  season?: Maybe<Scalars["Int"]["output"]>;
   title: Scalars["String"]["output"];
 };
 
@@ -13324,6 +13326,7 @@ export type MobileGameBattlePassFragment = {
   title: string;
   description: string;
   disclaimer?: string | null;
+  season?: number | null;
   backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   progressStatus: {
     __typename?: "MobileGameBattlePassProgressInfo";
@@ -13371,6 +13374,7 @@ export type MobileBattlePassDonationTemplateFragment = {
   yuCoin: number;
   sortOrder: number;
   availableDates: Array<string>;
+  rewardId?: string | null;
   leaderboards: Array<{
     __typename?: "MobileBattlePassDonationTemplateLeaderboard";
     socialGroupId: string;
@@ -23175,6 +23179,7 @@ export type GetMobileBattlePassDonationTemplatesQuery = {
     yuCoin: number;
     sortOrder: number;
     availableDates: Array<string>;
+    rewardId?: string | null;
     leaderboards: Array<{
       __typename?: "MobileBattlePassDonationTemplateLeaderboard";
       socialGroupId: string;
@@ -23220,6 +23225,7 @@ export type GetMobileGameBattlePassQuery = {
     title: string;
     description: string;
     disclaimer?: string | null;
+    season?: number | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     progressStatus: {
       __typename?: "MobileGameBattlePassProgressInfo";
@@ -23333,6 +23339,7 @@ export type GetMobileGameBattlePassFullQuery = {
     title: string;
     description: string;
     disclaimer?: string | null;
+    season?: number | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     progressStatus: {
       __typename?: "MobileGameBattlePassProgressInfo";
@@ -23379,6 +23386,7 @@ export type GetMobileGameBattlePassFullQuery = {
     yuCoin: number;
     sortOrder: number;
     availableDates: Array<string>;
+    rewardId?: string | null;
     leaderboards: Array<{
       __typename?: "MobileBattlePassDonationTemplateLeaderboard";
       socialGroupId: string;
@@ -46535,6 +46543,7 @@ export const MobileGameBattlePassFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassReward" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "season" } },
         ],
       },
     },
@@ -46740,6 +46749,7 @@ export const MobileBattlePassDonationTemplateFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "yuCoin" } },
           { kind: "Field", name: { kind: "Name", value: "sortOrder" } },
           { kind: "Field", name: { kind: "Name", value: "availableDates" } },
+          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "leaderboards" },
@@ -72295,6 +72305,7 @@ export const GetMobileBattlePassDonationTemplatesDocument = {
           { kind: "Field", name: { kind: "Name", value: "yuCoin" } },
           { kind: "Field", name: { kind: "Name", value: "sortOrder" } },
           { kind: "Field", name: { kind: "Name", value: "availableDates" } },
+          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "leaderboards" },
@@ -72552,6 +72563,7 @@ export const GetMobileGameBattlePassDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassReward" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "season" } },
         ],
       },
     },
@@ -72988,6 +73000,7 @@ export const GetMobileGameBattlePassFullDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassReward" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "season" } },
         ],
       },
     },
@@ -73004,6 +73017,7 @@ export const GetMobileGameBattlePassFullDocument = {
           { kind: "Field", name: { kind: "Name", value: "yuCoin" } },
           { kind: "Field", name: { kind: "Name", value: "sortOrder" } },
           { kind: "Field", name: { kind: "Name", value: "availableDates" } },
+          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "leaderboards" },

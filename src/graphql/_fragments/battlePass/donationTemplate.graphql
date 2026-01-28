@@ -5,6 +5,7 @@ fragment MobileBattlePassDonationTemplate on MobileBattlePassDonationTemplate {
   yuCoin
   sortOrder
   availableDates
+  rewardId
   leaderboards {
     socialGroupId
     leaderboardId

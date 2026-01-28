@@ -10,6 +10,9 @@ import { FlatList } from "react-native";
 import { BATTLE_PASS_SCREEN } from "@ids";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import { Box } from "@atoms";
+import BattlePassFirstLevelVariant from "./battle-pass-first-level-variant/battle-pass-first-level-variant";
+import { first } from "lodash";
+import { Colours } from "@styles";
 
 interface IProps {
   title: string;
@@ -26,6 +29,8 @@ interface IProps {
   onPressWallet?: () => void;
   onComplete: () => void; //leave this for now, it will be purged on container changes
   showCoinAnimation: boolean;
+  componentId: string;
+  showFirstLevelScreenState: boolean;
 }
 
 const BattlePassScreen = ({
@@ -41,6 +46,8 @@ const BattlePassScreen = ({
   rewards,
   showCoinAnimation,
   onPressWallet,
+  componentId,
+  showFirstLevelScreenState,
 }: IProps) => {
   const isSeasonComplete = progressStatus.step === progressStatus.steps;
   const headerListRef = useRef<FlatList<IBattlePassListItem>>(null);
@@ -65,6 +72,24 @@ const BattlePassScreen = ({
       return () => clearTimeout(timeout);
     }
   }, [rewards]);
+
+  if (showFirstLevelScreenState) {
+    return (
+      <Box flex={1} bg={Colours.neutral.white} pb={isInnerScreen ? 80 : 0} testID={BATTLE_PASS_SCREEN}>
+        <BattlePassFirstLevelVariant
+          backgroundImage={backgroundImage}
+          donationTemplates={donationTemplates}
+          progressStatus={progressStatus}
+          reward={first(rewards)}
+          showCoinAnimation={showCoinAnimation}
+          onBackPress={onBackPress}
+          showNavigation={showNavigation}
+          componentId={componentId}
+          headingPt={showNavigation || isInnerScreen ? TOP_BAR_WITH_PAD : 0}
+        />
+      </Box>
+    );
+  }
 
   return (
     <>
