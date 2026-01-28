@@ -5,6 +5,7 @@ export * from "./journey";
 export * from "./leaderboard";
 export * from "./logout";
 export * from "./memberPortal";
+export * from "./dailyReflections";
 export * from "./perkProvision";
 export * from "./personalProductPaymentHistory";
 export * from "./personalProductProductDetails";
