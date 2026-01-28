@@ -13,6 +13,7 @@ export const {
   typeViaID,
   typeViaIDAtIndex,
   tapIDWithOffset,
+  switchLanguage,
 } = navigation.common;
 
 export const { tapMenuItem } = screens.menu;

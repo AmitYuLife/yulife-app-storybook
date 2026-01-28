@@ -263,6 +263,8 @@ Feature("Rewards should act correctly", async () => {
   Scenario("I can login and see the Tillo rewards store item for Hobbycraft", scenario.start, async () => {
     Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_131.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5200)));
+    });
+    When("I scroll down the rewards list", when.scrollFromText("Store", "up", "slow", 0.3, 2_000), async () => {
       Then("I should see the 'Hobbycraft' reward from Tillo", then.rewardVisible(data.CORE_REWARDS_HOBBYCRAFT));
     });
     When("I click on the 'Hobbycraft' card", when.tapRewardInList(data.CORE_REWARDS_HOBBYCRAFT), async () => {

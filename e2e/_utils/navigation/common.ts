@@ -628,3 +628,18 @@ export const tapLocalisedText =
 export const inputHasValue = (id: string, value: string) => async () => {
   await expect(element(by.id(id))).toHaveText(value);
 };
+
+export const switchLanguage =
+  (languageText: string, waitTime = 5_000) =>
+  async () => {
+    const target = element(by.text(languageText));
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
+
+    // Disable sync before language switch to prevent "multiple interactions" error
+    await device.disableSynchronization();
+    await target.longPress();
+
+    // Wait for app to reload after language change
+    await new Promise((res) => setTimeout(res, 5_000));
+    await device.enableSynchronization();
+  };
