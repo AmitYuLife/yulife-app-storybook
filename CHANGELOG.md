@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.99.0] - 2026-01-28
+
+### Tasks
+
+- Task GS-2278: Update breathing exercise progress bar with time display
+- Task GS-2280: Add pathways deeplink
+- Task GS-2229: Remove legacy 'Switch health provider' prompt
+- Task GS-2279: Fix GenericHeadingAbsolute issues
+- Task GS-2179: Pathways challenge feedback screen
+- Task GS-2268: fix streak vertical pad in reflection
+- Task GS-2268: Pathway screen header fixes (logo and sticky)
+- Task GS-1571: End of Planets UI
+- Task GS-2187: google cast fixes
+- Task GS-2270: Add useMeasure hook
+- Task GS-2267: rename health quest to yunity quest
+- Task GS-2264: Purge fish in pathways footer
+- Task GS-2259: Purge react-native-device-info non-style imports
+- Task GS-2188: anti cheat airplay
+- Task GS-2262: Fix storybook
+- Task GS-2261: Set castFrameworkVersion to fix android build
+- Task GS-2187: google cast initial setup
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- CTE-594: Tool to quickly generate QA test scenarios from Jira tickets
+- Detox GS-2267: Rename health quest to yunity quest
+- Detox GS-2141: Health Challenge Remains Accessible
+- Detox GS-2260: Disable SwimmingFish
+
 ## [4.98.0] - 2026-01-22
 
 ### Bugfixes
