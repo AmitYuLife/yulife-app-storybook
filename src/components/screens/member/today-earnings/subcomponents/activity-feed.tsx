@@ -8,10 +8,8 @@ import { Pressable, Button, Toast } from "@molecules";
 import { ActivityProgress } from "@organisms";
 import ActivityFeedPopMenu from "./activity-feed-pop-menu";
 import { ROUTES } from "@navigation/constants";
-import { openGoogleFit } from "@services/app-link";
-import { getFitKitConnectCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
+import { FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
 import {
   ACTIVITY_FEED,
   ACTIVITY_FEED_ID,
@@ -21,7 +19,6 @@ import {
 } from "@ids";
 import { useDispatch, useSelector } from "react-redux";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
-import { isSamsung } from "@utils/device";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitTypes } from "@services/fitkit/fitkit.service";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
@@ -64,21 +61,17 @@ const ActivityFeed = ({
   emptyMessage,
   isGoogleFitAuthorised,
 }: IProps) => {
-  const [googleFitIsAuthorised, setGoogleFitIsAuthorised] = useState(isGoogleFitAuthorised);
   const [locationPermissionsGranted, setLocationPermissions] = useState(null);
   const [googleFitCyclingPermissionGranted, setGoogleFitCyclingPermission] = useState(null);
   const dispatch = useDispatch();
   const questionMarkRef = useRef<View>(null);
-  const { authorise, authoriseFitKitTypes } = useFitKit();
+  const { authoriseFitKitTypes } = useFitKit();
   const t = useTranslation([
     "screens.today_earning.alert.never_ask_again.title",
     "screens.today_earning.alert.never_ask_again.message",
     "screens.today_earning.alert.never_ask_again.cta_label",
     "screens.today_earning.activity_feed.daily_core_activities.accessibility.accessibility_label",
     "screens.daily.challenge_button.back_to_challenge",
-    "screens.today_earning.toast.use_google_fit.message",
-    "screens.today_earning.toast.use_google_fit.message",
-    "screens.today_earning.toast.use_google_fit.cta_label",
     "screens.today_earning.toast.system_location_permission.accessibility.accessibility_label",
     "screens.today_earning.toast.system_location_permission.message",
     "screens.today_earning.toast.system_location_permission.cta_label",
@@ -100,33 +93,6 @@ const ActivityFeed = ({
     setLocationPermissions(isGranted);
     setGoogleFitCyclingPermission(cyclingAuthorised);
   }, []);
-
-  const onGoogleFitConnect = useCallback(async () => {
-    const { androidAlertCopy } = getFitKitConnectCopy();
-    const { title: alertTitle, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
-    const buttons = [
-      {
-        text: dismissLabel,
-      },
-      {
-        text: downloadLabel,
-        onPress: openGoogleFit,
-      },
-      {
-        text: confirmLabel,
-        onPress: async () => {
-          const isAuthorise = await authorise({
-            ...buildFitKitPermissions(),
-            platform: "GoogleFit",
-          });
-          await checkCyclingPermissions();
-          setGoogleFitIsAuthorised(isAuthorise);
-        },
-      },
-    ];
-
-    return Alert.alert(alertTitle, alertMessage, buttons, { cancelable: true });
-  }, [authorise]);
 
   const onGrantPermission = useCallback(async () => {
     const result = await requestAndroidSystemPermission(FitKitAndroidSystemPermission.location);
@@ -166,17 +132,8 @@ const ActivityFeed = ({
     });
   }, [questionMarkRef, questionMarkModal]);
 
-  const showGoogleFitToast = useMemo(
-    () =>
-      Platform.select({
-        ios: false,
-        android: id === "core-activities" && !googleFitIsAuthorised && isSamsung(),
-      }),
-
-    [id, googleFitIsAuthorised]
-  );
   const showSystemLocationPermissionToast = useMemo(() => {
-    if (Platform.OS === "ios" || !googleFitIsAuthorised || id !== "core-activities") {
+    if (Platform.OS === "ios" || !isGoogleFitAuthorised || id !== "core-activities") {
       return false;
     }
 
@@ -185,15 +142,15 @@ const ActivityFeed = ({
     }
 
     return locationPermissionsGranted === false;
-  }, [googleFitIsAuthorised, id, locationPermissionsGranted, googleFitCyclingPermissionGranted]);
+  }, [isGoogleFitAuthorised, id, locationPermissionsGranted, googleFitCyclingPermissionGranted]);
 
   const showGoogleFitPermissionToast = useMemo(() => {
-    if (Platform.OS === "ios" || !googleFitIsAuthorised || id !== "core-activities") {
+    if (Platform.OS === "ios" || !isGoogleFitAuthorised || id !== "core-activities") {
       return false;
     }
 
     return googleFitCyclingPermissionGranted === false;
-  }, [googleFitIsAuthorised, id, locationPermissionsGranted, googleFitCyclingPermissionGranted]);
+  }, [isGoogleFitAuthorised, id, googleFitCyclingPermissionGranted]);
 
   const onTakeChallengePress = useCallback(async () => {
     const { onPress, event } = button;
@@ -237,12 +194,12 @@ const ActivityFeed = ({
         case "meditation":
           return false;
         case "cycling":
-          return !locationPermissionsGranted || !googleFitIsAuthorised;
+          return !locationPermissionsGranted || !isGoogleFitAuthorised;
         default:
-          return !googleFitIsAuthorised;
+          return !isGoogleFitAuthorised;
       }
     },
-    [googleFitIsAuthorised, id, locationPermissionsGranted]
+    [isGoogleFitAuthorised, id, locationPermissionsGranted]
   );
 
   const parseActivityProgress = useMemo(() => {
@@ -322,31 +279,6 @@ const ActivityFeed = ({
         </View>
       )}
 
-      {!showGoogleFitToast ? null : (
-        <View style={styles.progressWrapper}>
-          <Toast
-            iconWidth={57}
-            iconHeight={112}
-            iconUrl={toast?.iconUrl?.uri}
-            backgroundColor={toast?.backgroundColor}
-            borderColor={toast?.borderColor}
-          >
-            <View
-              style={styles.toastDescription}
-              accessibilityLabel={t["screens.today_earning.toast.use_google_fit.message"]}
-            >
-              <TextTemplate type="l3b" accessible={true}>
-                {t["screens.today_earning.toast.use_google_fit.message"]}
-              </TextTemplate>
-            </View>
-            <Button
-              onPress={onGoogleFitConnect}
-              size="Fill"
-              translationKey="screens.today_earning.toast.use_google_fit.cta_label"
-            />
-          </Toast>
-        </View>
-      )}
       {!showSystemLocationPermissionToast ? null : (
         <View style={styles.progressWrapper}>
           <Toast
