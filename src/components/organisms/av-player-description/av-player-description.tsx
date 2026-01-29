@@ -6,6 +6,7 @@ import { Colours, Style, StyleSheet } from "@styles";
 import { StarIcon } from "@atoms/icon/star-icon";
 import { MEDIA_SMALL_LOGO, MEDIA_STAR_REWARD, MEDIA_YUCOIN_REWARD, VIDEO_PLAYER_DESCRIPTION_SCREEN } from "@ids";
 import { t } from "@locale";
+
 interface IProps {
   title: string;
   subtitle: string;
@@ -37,16 +38,16 @@ const AvPlayerDescription = ({ title, subtitle, tag, description, duration, star
       <TextTemplate textAlign="center" type="h3">
         {title}
       </TextTemplate>
-      {!(duration && logo) ? null : (
-        <View style={styles.info}>
-          <Image testID={MEDIA_SMALL_LOGO(logo)} source={{ uri: logo }} width={16} height={16} />
+      <View style={styles.info}>
+        {logo ? <Image testID={MEDIA_SMALL_LOGO(logo)} source={{ uri: logo }} width={16} height={16} /> : null}
+        {duration ? (
           <View style={styles.subTitle}>
             <TextTemplate type="l2b">
               {subtitle} • {durationWithTime}
             </TextTemplate>
           </View>
-        </View>
-      )}
+        ) : null}
+      </View>
 
       <TextTemplate type="b2" textAlign="center">
         {description}
