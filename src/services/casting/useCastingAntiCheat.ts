@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import Logger from "@services/logging/logger";
 
-const SEEK_THRESHOLD_SECONDS = 5;
+const SEEK_THRESHOLD_SECONDS = 10;
 
 export interface IUseCastingAntiCheatProps {
   /** Whether casting to external device is active */
@@ -62,9 +62,12 @@ const useCastingAntiCheat = ({
   );
 
   useEffect(() => {
-    // Reset state when casting becomes inactive
+    // When casting becomes inactive, reset the initialized flag but keep the progress ref.
+    // This allows canSafelyMarkVideoAsCompleted to use the last known progress value
+    // even if there's a race condition between the external playback change callback
+    // and onEnd (some AirPlay receivers like Philips TVs report playback stopped
+    // before the video end callback fires).
     if (!isCastingActive) {
-      lastKnownProgressRef.current = null;
       isInitializedRef.current = false;
       return;
     }
