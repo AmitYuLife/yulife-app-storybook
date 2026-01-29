@@ -46,6 +46,7 @@
     "start:storybook:web": "storybook dev ",
     "build:storybook:web": "yarn translations:download && storybook build",
     "pod:install": "cd ios && ENABLE_YUWATCH=1 bundle exec pod install --repo-update",
+    "postpod:install": "cp ios/Podfile.lock support/ios/Podfile.lock",
     "start": "run-p start:bundler tsc:watch",
     "test": "run-p lint tsc test:unit",
     "test:unit": "jest",
