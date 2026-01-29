@@ -18,6 +18,8 @@ export * from "./mongo/goal_invitation_for_global";
 export * from "./mongo/goal_events_for_global";
 export * from "./mongo/core_journey_instances";
 export * from "./mongo/core_journey_steps";
+export * from "./mongo/user_pathways_items";
+export * from "./mongo/pathways_advice_cards";
 export * from "./mongo/user_habit_tracking_state";
 export * from "./mongo/user_habit_tracking_actions";
 export * from "./mongo/user_journey_state";

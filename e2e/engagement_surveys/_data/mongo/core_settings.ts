@@ -74,3 +74,17 @@ export const BUSINESS_4_REFERRALS_SETTINGS = {
     },
   },
 } as IDatabaseItem;
+
+export const BUSINESS_4_SMOKING_SETTINGS = {
+  type: "mongo",
+  modelName: "core_settings",
+  data: {
+    _id: generateRandomMongoId(),
+    entityType: "business",
+    domain: "game.smoking",
+    entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    settings: {
+      isEnabled: true,
+    },
+  },
+} as IDatabaseItem;

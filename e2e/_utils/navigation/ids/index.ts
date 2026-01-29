@@ -1141,8 +1141,11 @@ export const PATHWAYS_DEBUG_SAVE = "save-text-view";
 export const HEALTH_CHALLENGE_BUTTON = "screens.pathways.reflection_chest_button_label-text-view";
 export const CHALLENGE_INTRO_TITLE = "Designed for Yu";
 export const BREATHING_EXERCISE_DURATION_PICKER = "BREATHING_EXERCISE_DURATION_PICKER";
-export const PATHWAYS_CHALLENGE_TILE = (text: string) => `PATHWAYS_CHALLENGE_TILE_${text}`;
+export const PATHWAYS_CHALLENGE_TITLE = (text: string) => `PATHWAYS_CHALLENGE_TITLE_${text}`;
 export const PATHWAYS_CHALLENGE_COMPLETED = "PATHWAYS_CHALLENGE_COMPLETED";
+export const PATHWAYS_ADVICE_CARD = "PATHWAYS_ADVICE_CARD";
+export const PATHWAYS_ADVICE_TITLE = (title: string) => `PATHWAYS_ADVICE_TILE_${title}`;
+export const PATHWAYS_ADVICE_LABEL = (label: string) => `PATHWAYS_ADVICE_LABEL_${label}`;
 
 // Debug Menu
 export const DEBUG_MENU = "DEBUG_MENU";
