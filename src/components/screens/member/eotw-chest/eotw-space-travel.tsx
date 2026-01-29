@@ -1,5 +1,4 @@
 import { Image, Box } from "@atoms";
-import { Style } from "@styles";
 import React, { FC, memo, useCallback, useEffect, useMemo } from "react";
 import { ImageSourcePropType, View, ViewStyle } from "react-native";
 import Animated, {
@@ -211,12 +210,15 @@ const EOTWSpaceTravel: FC<IProps> = memo(
         <Image
           source={getPlanetPath(currentGalaxy)}
           resizeMode="stretch"
-          width={Style.DEVICE_WIDTH - PLANET_RADIUS - 50}
+          width={currentGalaxyWidth}
+          disableAutoAdjust={true}
           height={contentHeight}
         />
-        {currentGalaxyPlanets.map(({ key, ...props }) => (
-          <EOTWPlanet travel={travel} key={key} {...props} />
-        ))}
+        <Box top={0} height={"100%"} position="absolute" disableAutoAdjust={true} width={currentGalaxyWidth}>
+          {currentGalaxyPlanets.map(({ key, ...props }) => (
+            <EOTWPlanet travel={travel} key={key} {...props} />
+          ))}
+        </Box>
       </View>
     );
   }

@@ -41,6 +41,7 @@
     "start:e2e:ci": "RN_SRC_EXT=e2e.ts,e2e.tsx ENVFILE=.env.e2e.e2e yarn start:bundler",
     "start:ios:local": "yarn env:config:local && ENVFILE=.env.local yarn ios",
     "start:ios:production": "ENVFILE=.env.production yarn ios",
+    "start:ios:develop": "ENVFILE=.env.develop yarn ios",
     "start:ios:uat": "ENVFILE=.env.uat yarn ios",
     "start:ios": "yarn ios",
     "start:storybook:web": "storybook dev ",
