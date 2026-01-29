@@ -822,6 +822,18 @@
           "select_reward": "Select this prize"
         }
       },
+      "ftux": {
+        "intro": {
+          "button": "Cool!",
+          "steps": {
+            "step_1": "Earn **YuCoin** by completing daily quests!",
+            "step_2": "Level up by donating **YuCoin!**",
+            "step_3": "Win exclusive **rewards!**"
+          },
+          "title": "How does it work?"
+        },
+        "title": "Donate your first YuCoin!"
+      },
       "leaderboard": {
         "month_switcher": {
           "title": "Months"
@@ -1457,6 +1469,18 @@
     "offline": {
       "heading": "You're offline",
       "subheading": "Check your internet connection."
+    },
+    "pathway_challenge_feedback": {
+      "description": "How do you feel now compared to when you started this challenge?",
+      "heading": "How do you feel?",
+      "scale": {
+        "bad": "Poor",
+        "better": "Better",
+        "great": "Great",
+        "no_change": "No change",
+        "worse": "Worse"
+      },
+      "skip": "Skip"
     },
     "pathways": {
       "advice_empty_section": {

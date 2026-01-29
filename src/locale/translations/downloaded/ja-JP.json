@@ -822,6 +822,18 @@
           "select_reward": "このリワードを選択"
         }
       },
+      "ftux": {
+        "intro": {
+          "button": "OK",
+          "steps": {
+            "step_1": "毎日 の クエスト を 完了 して **YuCoin** を 獲得 しよう！",
+            "step_2": "**YuCoin** を 寄付して レベル アップ！",
+            "step_3": "限定 の報酬 を手に入れよう！"
+          },
+          "title": "それは どのように 機能しますか ?"
+        },
+        "title": "最初の YuCoin を寄付！"
+      },
       "leaderboard": {
         "month_switcher": {
           "title": "月"
@@ -1458,6 +1470,18 @@
       "heading": "デバイスは\nオフラインです",
       "subheading": "インターネット接続をご確認ください。"
     },
+    "pathway_challenge_feedback": {
+      "description": "このチャレンジを始めた時と比べて、今どのように感じていますか？",
+      "heading": "どう感じていますか？",
+      "scale": {
+        "bad": "悪い",
+        "better": "より良い",
+        "great": "素晴らしい",
+        "no_change": "変化なし",
+        "worse": "悪化"
+      },
+      "skip": "スキップ"
+    },
     "pathways": {
       "advice_empty_section": {
         "title": "この調子で記録を続けましょう!"
@@ -1466,13 +1490,13 @@
         "bullet_point_1": "健康チェックの回答に基づいてカスタマイズ",
         "bullet_point_2": "あなたのニーズに合わせたエクササイズ",
         "bullet_point_3": "不調を未然に防ぐ、プロアクティブなセルフケア",
-        "description": "ザ・Yunityクエスト は あなたの毎日 の 振り 返り回答 に 基づいて ターゲット化され 個別化 されたコンテンツ を 提供します。",
-        "heading": "健康クエスト",
+        "description": "Yunityクエストでは、毎日の振り返りの回答をもとに、あなたに合ったコンテンツをお届けします。",
+        "heading": "Yunityクエスト",
         "info_panel_markdown": "このチャレンジは連続記録に含まれません!",
         "title": "健康チャレンジについて"
       },
       "claim": {
-        "health_challenge": "健康クエスト",
+        "health_challenge": "Yunityクエスト",
         "reward_subtitle": "リワードは、チャレンジのリストでご確認いただけます。",
         "reward_title": "リワード獲得!",
         "title": "おめでとうございます!",
@@ -1497,9 +1521,9 @@
       },
       "reflect_in": "あと%{hours}時間%{minutes}分",
       "reflection_active_label": "振り返る",
-      "reflection_chest_button_label": "健康クエスト",
-      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) ボーナス Yunity クエスト",
-      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) ボーナス Yunity クエスト",
+      "reflection_chest_button_label": "Yunityクエスト",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) ボーナスYunityクエスト",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) ボーナスYunityクエスト",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
       "reflection_chest_reward_to_earn_markdown": "リワード: %{amount} ![](%{yucoinUrl})",
       "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",

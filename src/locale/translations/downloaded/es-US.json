@@ -822,6 +822,18 @@
           "select_reward": "Seleccionar esta recompensa"
         }
       },
+      "ftux": {
+        "intro": {
+          "button": "¡Genial!",
+          "steps": {
+            "step_1": "¡Gana **YuCoin** completando misiones diarias!",
+            "step_2": "Sube de nivel donando **YuCoin!**",
+            "step_3": "Gana **premios exclusivos!**"
+          },
+          "title": "¿Cómo funciona?"
+        },
+        "title": "¡Dona tu primer YuCoin!"
+      },
       "leaderboard": {
         "month_switcher": {
           "title": "Meses"
@@ -1457,6 +1469,18 @@
     "offline": {
       "heading": "Estás desconectado",
       "subheading": "Comprueba tu conexión a Internet."
+    },
+    "pathway_challenge_feedback": {
+      "description": "¿Cómo se siente ahora en comparación con cuando empezó este reto?",
+      "heading": "¿Cómo te sientes?",
+      "scale": {
+        "bad": "Mal",
+        "better": "Mejor",
+        "great": "Genial",
+        "no_change": "Sin cambios",
+        "worse": "Peor"
+      },
+      "skip": "Saltar"
     },
     "pathways": {
       "advice_empty_section": {

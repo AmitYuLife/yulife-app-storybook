@@ -822,6 +822,18 @@
           "select_reward": "اختر هذه المكافأة"
         }
       },
+      "ftux": {
+        "intro": {
+          "button": "رائع!",
+          "steps": {
+            "step_1": "اكسب **يوكوين** عن طريق إكمال المهام اليومية!",
+            "step_2": "ارفع المستوى بالتبرع بعملة **YuCoin!**",
+            "step_3": "اكتسب **مكافآت** حصرية!"
+          },
+          "title": "كيف يتم ذلك؟"
+        },
+        "title": "تبرع بعملة يوكوين لأول مرة!"
+      },
       "leaderboard": {
         "month_switcher": {
           "title": "الأشهر"
@@ -1457,6 +1469,18 @@
     "offline": {
       "heading": "أنت غير متصل",
       "subheading": "تحقق من اتصالك بالإنترنت."
+    },
+    "pathway_challenge_feedback": {
+      "description": "كيف تشعر الآن مقارنةً بما كنت عليه عندما بدأت هذا التحدي؟",
+      "heading": "كيف تشعر؟",
+      "scale": {
+        "bad": "سيء",
+        "better": "أفضل",
+        "great": "عظيم",
+        "no_change": "لا تغيير",
+        "worse": "أسوأ"
+      },
+      "skip": "تخطي"
     },
     "pathways": {
       "advice_empty_section": {
