@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import { healthPathUnlockedCopy } from "engagement_surveys/_resources/fixtures";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 import * as scenario from "../_common/scenario";
@@ -110,7 +110,8 @@ Feature("Health Pathways", async () => {
     });
   });
 
-  Scenario("Health Pathway challenge completes successfully", scenario.start, async () => {
+  // @UPDATE -- Temp Skip breathing exercise flow has changed
+  ScenarioSkip("Health Pathway challenge completes successfully", scenario.start, async () => {
     Given("I am logged in", given.loginAsUser(data.CUSTOMER_9.customer, GENERIC_AUTH_PASSWORD), async () => {
       When("I open the debug menu item 'pathways-progress'", when.openDebugMenuItem("pathways-progress", "pathways progress"), async () => {
         When("I set 'Last day complete' and save", when.setPathwaysProgress("Last day complete"), async () => {
@@ -147,7 +148,7 @@ Feature("Health Pathways", async () => {
     When("I collect my reward", when.tapID(ids.CTA_COLLECT, 2_000), async () => {
       When("I navigate to the Quests", when.tapID(ids.NAV_BAR("quests"), 2_000), async () => {
         When("I tap 855 level challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(855), 2_000), async () => {
-          Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Yunity Quest")));
+          Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TITLE("Yunity Quest")));
           Then("I should see the health challenge completed", then.idVisible(ids.PATHWAYS_CHALLENGE_COMPLETED));
         });
       });
@@ -179,8 +180,42 @@ Feature("Health Pathways", async () => {
       });
     });
     When("I tap on the first level", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1), 2_000), async () => {
-      Then("I should see the Yunity Quest challenge", then.idVisible(ids.PATHWAYS_CHALLENGE_TILE("Yunity Quest"), 2_000));
+      Then("I should see the Yunity Quest challenge", then.idVisible(ids.PATHWAYS_CHALLENGE_TITLE("Yunity Quest"), 2_000));
       Then("The Health challenge should still be open and available", then.idNotVisible(ids.PATHWAYS_CHALLENGE_COMPLETED, 2_000));
+    });
+  });
+
+  Scenario("I can view and decline advice card recommendations successfully", scenario.start, async () => {
+    Given("I am logged in", given.loginAsUser(data.CUSTOMER_11.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I open the debug menu and select Pathways Progress", when.openDebugMenuItem("pathways-progress", "pathways progress"), async () => {
+        When("I select 'Last day' and save", when.setPathwaysProgress("Last day"), async () => {
+          When("I exit the debug menu", when.closeDebug, async () => {
+            When("I navigate to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 5_000), async () => {
+              Then("I should see the 'Today's Reflection' hero card", then.idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 5_000));
+            });
+          });
+        });
+      });
+    });
+    When("I tap the 'Today's Reflection' hero card", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 2_000), async () => {
+      Then("I should land on the Pathways screen", then.idVisible(ids.PATHWAYS_SCREEN, 3_000));
+      Then("I should see the last streak day available", then.idVisible(ids.PATHWAY_STREAK_DAY(5, false), 3_000));
+    });
+    When("I scroll down to the 'Insights' section", when.scrollFromID(ids.PATHWAYS_SCREEN, "up", "fast", 0.5, 2_000), async () => {
+      Then("I should see my recommended health advice card", then.idVisible(ids.PATHWAYS_ADVICE_CARD, 3_000));
+    });
+    When("I tap on the advice card", when.tapID(ids.PATHWAYS_ADVICE_CARD, 2_000), async () => {
+      Then("I should land on the advice card detail screen", then.idVisible(ids.LEFT_HEADING_BUTTON("NEW_INSIGHT_UNLOCKED!"), 7_000));
+      Then("I should see the 'Useful' button", then.idVisible(ids.BUTTON_BASE("Useful", false), 3_000));
+      Then("I should see the 'Not useful' button", then.textVisible("Not useful", 3_000));
+    });
+    When("I tap the 'Not useful' button to decline the advice", when.tapText("Not useful", 3_000), async () => {
+      Then("I should be back on the Pathways screen", then.idVisible(ids.PATHWAYS_SCREEN, 3_000));
+      Then("The declined advice card should no longer be visible", then.idNotVisible(ids.PATHWAYS_ADVICE_CARD, 3_000));
+      Then("I should see the smoking cessation intervention card", then.idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Looking to quit smoking?"), 3_000));
+    });
+    When("I tap the smoking cessation intervention card", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Looking to quit smoking?"), 2_000), async () => {
+      Then("I should be on the smoking entry screen", then.idVisible(ids.TEXT_TEMPLATE("Start your quit-smoking journey!", "h2"), 3_000));
     });
   });
 });

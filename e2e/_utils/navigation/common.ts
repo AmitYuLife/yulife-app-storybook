@@ -274,12 +274,14 @@ export const textVisibleAtIndex =
     await expect(target).toBeVisible();
   };
 
-export const typeViaID = (id: string, text: string) => async () => {
-  const target = element(by.id(id));
-  await expect(target).toBeVisible();
-  await target.tap();
-  await target.typeText(text);
-};
+export const typeViaID =
+  (id: string, text: string, waitTime = 3_000) =>
+  async () => {
+    const target = element(by.id(id));
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
+    await target.tap();
+    await target.typeText(text);
+  };
 
 export const typeViaIDAtIndex = (id: string, index: number, text: string) => async () => {
   const target = element(by.id(id)).atIndex(index);

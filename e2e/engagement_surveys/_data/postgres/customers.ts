@@ -198,3 +198,41 @@ export const CUSTOMER_10 = createCustomerRecords({
     },
   ],
 });
+
+export const CUSTOMER_11 = createCustomerRecords({
+  archived: false,
+  firstName: "Paul",
+  lastName: "Rodgers",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+      legalFirstName: "Paul Bernard",
+      legalLastName: "Rodgers",
+      employmentEmail: generateRandomInbox(),
+      archived: false,
+      employmentStartDate: moment().subtract(6, "m").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  userInfo: {
+    isAvatarCreated: true,
+    earnRate: 10,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+  userGameState: {
+    currentBalance: 260,
+    currentStreak: 1,
+    currentLevel: 1,
+  },
+  customerCoreSettings: [
+    {
+      domain: "game.pathways",
+      settings: {
+        isEnabled: true,
+      },
+    },
+  ],
+});

@@ -4,6 +4,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { Style } from "@styles";
 import { useSduiActionHandler } from "@components/containers/member/yu/hooks/useSduiActionHandler";
 import { SduiAction } from "@graphql/__generated";
+import { PATHWAYS_ADVICE_CARD, PATHWAYS_ADVICE_LABEL, PATHWAYS_ADVICE_TITLE } from "@ids";
 
 interface PathwayAdviceCardProps {
   heading: string;
@@ -45,13 +46,13 @@ const PathwaysAdviceCard = ({
         borderWidth={1}
       >
         <Box flex={1} p={CARD_PADDING}>
-          <Box justifyContent="center" gap={8} mr={imageWidth + 20}>
+          <Box justifyContent="center" gap={8} mr={imageWidth + 20} testID={PATHWAYS_ADVICE_CARD}>
             <Box opacity={0.6}>
-              <TextTemplate type="l2b" color="white">
+              <TextTemplate type="l2b" color="white" testID={PATHWAYS_ADVICE_TITLE(heading)}>
                 {heading}
               </TextTemplate>
             </Box>
-            <TextTemplate type="l1b" color="white">
+            <TextTemplate type="l1b" color="white" testID={PATHWAYS_ADVICE_LABEL(label)}>
               {label}
             </TextTemplate>
           </Box>
