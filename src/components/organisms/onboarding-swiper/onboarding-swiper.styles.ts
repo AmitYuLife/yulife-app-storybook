@@ -1,17 +1,9 @@
 import { TextStyle, ViewStyle, Platform } from "react-native";
 import { Style, Colours, StyleSheet } from "@styles";
-import media from "@styles/media";
+import { initialWindowMetrics } from "react-native-safe-area-context";
 
 const NAVIGATION_VIEW_HEIGHT = Style.adjust(40);
-const NAVIGATION_POSITION_BOTTOM = media.select(
-  [
-    {
-      condition: Platform.OS === "ios" && !Style.hasNotch,
-      value: Style.adjust(20),
-    },
-  ],
-  Style.adjust(54)
-);
+const NAVIGATION_POSITION_BOTTOM = Style.adjust(54) + initialWindowMetrics.insets.bottom;
 
 export default StyleSheet.create({
   actionButtonText: {

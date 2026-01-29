@@ -1,13 +1,13 @@
 import React, { ComponentProps } from "react";
-import { View, ViewStyle, ScrollView, Platform } from "react-native";
+import { View, ViewStyle, ScrollView } from "react-native";
 import { Style, StyleSheet } from "@styles";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { GroupProductDisclaimer } from "@molecules";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler } from "@hooks";
-import media from "@styles/media";
 import { Certificate } from "@organisms";
+import { initialWindowMetrics } from "react-native-safe-area-context";
 
 interface ProductDetailsModalProps extends ComponentProps<typeof Certificate> {
   disclaimer?: string;
@@ -29,15 +29,7 @@ const ProductDetailsModal = (props: ProductDetailsModalProps) => {
   );
 };
 
-const BOTTOM_PADDING = media.select(
-  [
-    {
-      condition: Platform.OS === "ios" && Style.hasNotch,
-      value: Style.adjust(140),
-    },
-  ],
-  Style.adjust(100)
-);
+const BOTTOM_PADDING = Style.adjust(100) + initialWindowMetrics.insets.bottom;
 
 const styles = StyleSheet.create({
   wrapper: {

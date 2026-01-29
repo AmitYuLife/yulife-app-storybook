@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from "react";
-import { Animated, Platform, View, ViewStyle } from "react-native";
+import { Animated, View, ViewStyle } from "react-native";
 import { ProductDetailsHeader } from "../subcomponents/product-details.header";
 import { UiContext } from "../product-details.context";
 import {
@@ -19,11 +19,11 @@ import {
   mapServerStyles,
 } from "@components/sdui";
 import { ProductDetailsButton } from "../subcomponents/product-details.button";
-import media from "@styles/media";
 import { Colours, Style, StyleSheet } from "@styles";
 import { ProductDetailsHoldingHeader } from "../subcomponents/product-details.holding-header/product-details.holding-header";
 import { PRODUCT_DETAILS_SCROLL_VIEW } from "@ids";
 import { GetYuScreenProductDetailsQuery, SduiStyle } from "@graphql/__generated";
+import { initialWindowMetrics } from "react-native-safe-area-context";
 
 type IGetYuScreenProductDetails = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"];
 
@@ -34,19 +34,7 @@ interface Props {
   contentInsetAdjustmentBehavior: IGetYuScreenProductDetails["contentInsetAdjustmentBehavior"];
 }
 
-const DEFAULT_EXTRA_TOP_PADDING = media.select(
-  [
-    {
-      condition: Platform.OS === "ios" && Style.hasNotch,
-      value: -24,
-    },
-    {
-      condition: Platform.OS === "ios",
-      value: 0,
-    },
-  ],
-  Style.adjust(24)
-);
+const DEFAULT_EXTRA_TOP_PADDING = Style.adjust(24) + initialWindowMetrics.insets.top;
 
 export const Body = (props: Props) => {
   const { body, headerHeight, containerStyles, contentInsetAdjustmentBehavior } = props;
