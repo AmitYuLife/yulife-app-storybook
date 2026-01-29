@@ -1,5 +1,6 @@
 import { ImageStyle, ViewStyle } from "react-native";
 import { Style, NAV_BAR, StyleSheet } from "@styles";
+import { initialWindowMetrics } from "react-native-safe-area-context";
 
 export default StyleSheet.create({
   backgroundImage: {
@@ -17,7 +18,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   navBarWrapper: {
     alignItems: "center",
-    bottom: Style.adjust(Style.hasNotch ? 37 : 27),
+    bottom: Style.adjust(27) + initialWindowMetrics.insets.bottom,
     position: "absolute",
     width: Style.DEVICE_WIDTH,
   } as ViewStyle,

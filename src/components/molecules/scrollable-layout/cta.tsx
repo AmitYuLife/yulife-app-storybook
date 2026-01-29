@@ -4,6 +4,7 @@ import { Button, LinkButton } from "@molecules";
 import { Colours, Style, StyleSheet } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 import { GP_CONTINUE } from "@ids";
+import { initialWindowMetrics } from "react-native-safe-area-context";
 
 interface Props {
   hideFirstButton: boolean;
@@ -18,7 +19,7 @@ interface Props {
   testID?: string;
 }
 
-const CTA_HEIGHT = Style.hasNotch ? 144 : 128;
+const CTA_HEIGHT = 128 + initialWindowMetrics.insets.bottom;
 
 const _CTA = ({
   hideFirstButton,

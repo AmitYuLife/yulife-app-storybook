@@ -1,11 +1,12 @@
 import React from "react";
-import { View, ViewStyle, Platform } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Box } from "@atoms";
 import { Picker } from "./subcomponents/picker";
 import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style, StyleSheet } from "@styles";
 import { ChipList, TouchableOpacityWithDelay } from "@components/molecules";
 import { Item } from "./flatlist-utils/types";
+import { initialWindowMetrics } from "react-native-safe-area-context";
 
 interface IPicker {
   id: string;
@@ -84,10 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     borderRadius: 16,
     paddingHorizontal: Style.adjust(20),
-    paddingBottom: Platform.select({
-      ios: Style.hasNotch ? Style.adjust(20) : Style.adjust(8),
-      android: Style.adjust(28),
-    }),
+    paddingBottom: Style.adjust(18) + initialWindowMetrics.insets.bottom,
     width: Style.DEVICE_WIDTH,
     justifyContent: "center",
     alignItems: "center",
