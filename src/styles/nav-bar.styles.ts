@@ -8,7 +8,7 @@ const HEIGHT = Style.adjust(58);
 const getPositionBottom = (options = { additionalBottom: 0 }) => {
   const { additionalBottom } = options;
 
-  return initialWindowMetrics.insets.bottom + additionalBottom;
+  return (initialWindowMetrics.insets.bottom || Style.adjust(20)) + additionalBottom;
 };
 
 export default {
