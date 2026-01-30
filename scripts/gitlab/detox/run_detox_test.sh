@@ -25,6 +25,8 @@ echo "Node version: $(node --version)"
 
 ##############################
 # Set detox test device
+echo "Available devices: $(xcrun simctl list devices)"
+echo "Setting detox test device to $IPHONE_DEVICE"
 node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 ##############################
 

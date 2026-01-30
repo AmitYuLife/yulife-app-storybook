@@ -41,8 +41,11 @@ platform :ios do
     unless ['develop', 'uat', 'production'].include?(environment)
       UI.user_error!("Unknown environment: #{environment}. Supported: develop, uat, production")
     end
-    
+    # Select the Xcode version
+    xcode_select(ENV["DEVELOPER_DIR"])
+    # Download certificates and provisioning profiles
     ci_certificates
+    # Get the profile mapping
     profile_mapping = Actions.lane_context[SharedValues::MATCH_PROVISIONING_PROFILE_MAPPING]
     ios_project_path = "ios/YuLife.xcodeproj"
     ios_workspace_path = "ios/YuLife.xcworkspace"

@@ -5,7 +5,7 @@
       files:
         - package.json
     paths:
-        - $COREPACK_HOME
+      - $COREPACK_HOME
 
 .cache-pull:
   extends: .cache-base
