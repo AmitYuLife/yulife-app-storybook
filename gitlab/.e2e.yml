@@ -74,7 +74,7 @@ ios-detox-build-app:
   variables:
     FORCE_COLOR: 1
     GITLAB_TOKEN: $CI_JOB_TOKEN
-    CI_DETOX_CACHE_PREFIX: ios-detox-build
+    CI_DETOX_CACHE_PREFIX: "${MACOS_VM_IMAGE_VERSION}-ios-detox-build"
     # Configure tart
     TART_EXECUTOR_SHELL: bash -l
     # Set cocoapods cache path to local folder to allow gitlab cache it
@@ -103,7 +103,7 @@ ios-detox-build-app:
       interruptible: false
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       variables:
-        CI_DETOX_CACHE_PREFIX: ios-detox-build-modified-files
+        CI_DETOX_CACHE_PREFIX: "${MACOS_VM_IMAGE_VERSION}-ios-detox-build-modified-files"
         DETOX_BUILD_CONFIG: ios.sim.debug
         FORCE_DETOX_BUILD: "false"
       changes:
@@ -123,7 +123,7 @@ ios-detox-build-app:
   variables:
     FORCE_COLOR: 1
     GITLAB_TOKEN: $CI_JOB_TOKEN
-    CI_DETOX_CACHE_PREFIX: ios-detox-build
+    CI_DETOX_CACHE_PREFIX: "${MACOS_VM_IMAGE_VERSION}-ios-detox-build"
     # Configure tart
     TART_EXECUTOR_SHELL: bash -l
     # Build env vars
@@ -174,7 +174,7 @@ ios-detox-run-modified-files:
   allow_failure: true
   variables:
     GIT_DEPTH: 0
-    CI_DETOX_CACHE_PREFIX: ios-detox-build-modified-files
+    CI_DETOX_CACHE_PREFIX: "${MACOS_VM_IMAGE_VERSION}-ios-detox-build-modified-files"
     CI_DETOX_CHANGES: "true"
     DETOX_BUILD_CONFIG: ios.sim.debug
     DETOX_TEST_TYPE: modified-files
