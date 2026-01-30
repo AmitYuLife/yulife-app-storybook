@@ -17,10 +17,8 @@ Feature("As a user I can use the streaks functionality", async () => {
         Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
       });
       When("I tap the level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-        When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
-          Then("I should be on the level one quest screen", then.idVisible(ids.CHALLENGE_SET));
-          Then("I should see an unlocked short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
-        });
+        Then("I should be on the level one quest screen", then.idVisible(ids.CHALLENGE_SET));
+        Then("I should see an unlocked short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
       });
       When("I tap the unlocked short stroll challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
         Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_5.data.earnRate));

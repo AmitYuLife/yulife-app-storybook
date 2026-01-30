@@ -387,7 +387,7 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
         });
       });
     });
-    When("I scroll further down the screen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.3, 3_000), async () => {
+    When("I scroll further down the screen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.2, 3_000), async () => {
       Then("I should be back on the yuscreen and see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?", 3_000));
     });
     When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
