@@ -27,6 +27,7 @@ module.exports = api => {
           '@e2e': './e2e',
           '@ids': './e2e/_utils/navigation/ids',
           '@theme': './src/theme',
+          '@modules': './src/modules',
         },
       },
     ],

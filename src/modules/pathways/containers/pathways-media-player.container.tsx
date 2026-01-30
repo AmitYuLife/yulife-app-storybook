@@ -3,6 +3,7 @@ import { IMediaPlayerSduiContainerProps } from "@components/containers/member/me
 import { MediaPlayerScreen } from "@components/screens";
 import { Navigation } from "@navigation/main";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
+import { useCancelPathwayChallenge } from "../hooks/useCancelPathwayChallenge";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
 import { Modal } from "react-native";
@@ -33,6 +34,7 @@ const PathwaysMediaPlayerContainer = ({
 
   const dispatch = useDispatch();
   const { startChallenge, completeChallenge } = usePathwayChallenge({ componentId, challengeId, skipQuery: true });
+  const { markAsCompleted } = useCancelPathwayChallenge({ challengeId });
 
   const onIconPress = useCallback(() => {
     Navigation.pop(componentId);
@@ -58,8 +60,9 @@ const PathwaysMediaPlayerContainer = ({
   }, []);
 
   const handleEnd = useCallback(() => {
+    markAsCompleted();
     completeChallenge({ durationInSeconds: video.duration, challengeType: eventType });
-  }, [completeChallenge, video.duration, eventType]);
+  }, [markAsCompleted, completeChallenge, video.duration, eventType]);
 
   return (
     <>

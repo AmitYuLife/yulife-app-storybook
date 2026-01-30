@@ -175,6 +175,7 @@ const documents = {
   GetSudokuStatsDocument: types.GetSudokuStatsDocument,
   SubmitMobileQuestLevelSudokuSolutionDocument: types.SubmitMobileQuestLevelSudokuSolutionDocument,
   CancelMobileQuestLevelChallengeDocument: types.CancelMobileQuestLevelChallengeDocument,
+  CancelPathwayChallengeDocument: types.CancelPathwayChallengeDocument,
   CompletePathwayChallengeDocument: types.CompletePathwayChallengeDocument,
   CreateMobileQuestLevelChallengeDocument: types.CreateMobileQuestLevelChallengeDocument,
   GetMobileQuestLevelChallengeContentDocument: types.GetMobileQuestLevelChallengeContentDocument,
@@ -1146,6 +1147,10 @@ export function gql(
 export function gql(
   source: "CancelMobileQuestLevelChallengeDocument"
 ): typeof documents["CancelMobileQuestLevelChallengeDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "CancelPathwayChallengeDocument"): typeof documents["CancelPathwayChallengeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

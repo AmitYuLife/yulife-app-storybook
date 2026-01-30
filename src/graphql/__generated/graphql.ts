@@ -23705,6 +23705,15 @@ export type CancelMobileQuestLevelChallengeMutation = {
   cancelMobileQuestLevelChallenge?: { __typename?: "MobileQuestChallenge"; id: string; status: string } | null;
 };
 
+export type CancelPathwayChallengeMutationVariables = Exact<{
+  challengeId: Scalars["ID"]["input"];
+}>;
+
+export type CancelPathwayChallengeMutation = {
+  __typename?: "Mutation";
+  cancelPathwayChallenge: { __typename?: "CancelPathwayChallengeResponse"; success: boolean };
+};
+
 export type CompletePathwayChallengeMutationVariables = Exact<{
   challengeId: Scalars["ID"]["input"];
 }>;
@@ -73964,6 +73973,43 @@ export const CancelMobileQuestLevelChallengeDocument = {
     },
   ],
 } as unknown as DocumentNode<CancelMobileQuestLevelChallengeMutation, CancelMobileQuestLevelChallengeMutationVariables>;
+export const CancelPathwayChallengeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CancelPathwayChallenge" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "challengeId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cancelPathwayChallenge" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "challengeId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "challengeId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "success" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CancelPathwayChallengeMutation, CancelPathwayChallengeMutationVariables>;
 export const CompletePathwayChallengeDocument = {
   kind: "Document",
   definitions: [
