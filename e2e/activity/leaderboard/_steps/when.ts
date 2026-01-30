@@ -6,6 +6,7 @@ export {
   addMindfulnessHistoricalData,
   sendSteps,
 } from "@socket";
+export { donate, dismissRewardPopUp } from "../../../battle_pass/battle_pass/_steps/when";
 import { getLocalisedString as t } from "@i18n";
 import { CUSTOMER_1 } from "../../_data";
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types";

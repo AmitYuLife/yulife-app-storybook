@@ -7,7 +7,12 @@ import { ImageSource } from "expo-image";
 import * as Haptics from "expo-haptics";
 import { InfoIcon } from "@atoms/icon/info-icon";
 import { BattlePassDonationButton } from "@organisms";
-import { DONATION_BUTTON } from "@ids";
+import {
+  DONATION_BUTTON,
+  BATTLE_PASS_FIRST_LEVEL_DONATION_CARD,
+  BATTLE_PASS_FIRST_LEVEL_DONATION_CARD_INFO_BUTTON,
+  BATTLE_PASS_FIRST_LEVEL_DONATION_CARD_TITLE,
+} from "@ids";
 import { t } from "@locale";
 
 interface Props {
@@ -59,9 +64,15 @@ const BattlePassFirstLevelDonationCard: FC<Props> = ({
       borderColor={Colours.neutral.n20}
       borderWidth={1}
       disableAutoAdjust={true}
+      testID={BATTLE_PASS_FIRST_LEVEL_DONATION_CARD(id)}
     >
       <Box position="absolute" top={8} right={8} alignItems="center" justifyContent="center">
-        <Pressable onPress={handleInfoPress} delay={500} hitSlop={10}>
+        <Pressable
+          onPress={handleInfoPress}
+          delay={500}
+          hitSlop={10}
+          testID={BATTLE_PASS_FIRST_LEVEL_DONATION_CARD_INFO_BUTTON(id)}
+        >
           <InfoIcon colour={Colours.primary.p600} width={Style.adjust(16)} height={Style.adjust(16)} />
         </Pressable>
       </Box>
@@ -86,7 +97,12 @@ const BattlePassFirstLevelDonationCard: FC<Props> = ({
         </Box>
       </Box>
       <Box mt={8}>
-        <TextTemplate type="b2b" color={Colours.neutral.n900} textAlign="center">
+        <TextTemplate
+          type="b2b"
+          color={Colours.neutral.n900}
+          textAlign="center"
+          testID={BATTLE_PASS_FIRST_LEVEL_DONATION_CARD_TITLE(title)}
+        >
           {title}
         </TextTemplate>
       </Box>

@@ -12,6 +12,7 @@ import {
   SocialGroupLeaderboard,
   UserLeaderboardListItem,
 } from "../_resources/types";
+export { assertWalletPopUp } from "../../../battle_pass/battle_pass/_steps/then";
 
 export const {
   textVisible,

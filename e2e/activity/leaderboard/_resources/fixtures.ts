@@ -56,8 +56,8 @@ export const User18LeaderboardItem: UserLeaderboardListItem = {
 // Michael impact pass leaderboard
 export const User18ImpactPassLeaderboardItem: ImpactPassLeaderboard = {
   name: `${CUSTOMER_18.data.firstName} ${CUSTOMER_18.data.lastName}`,
-  score: "10",
-  rank: 2,
+  score: "40",
+  rank: 1,
   type: "leaderboard",
 };
 
@@ -122,6 +122,6 @@ export const User73LeaderboardLB1Item: UserLeaderboardListItem = {
 export const User143ImpactPassLeaderboardItem: ImpactPassLeaderboard = {
   name: `${CUSTOMER_143.data.firstName} ${CUSTOMER_143.data.lastName}`,
   score: "20",
-  rank: 1,
+  rank: 2,
   type: "leaderboard",
 };

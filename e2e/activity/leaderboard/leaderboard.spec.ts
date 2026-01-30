@@ -488,12 +488,29 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       });
     });
     When("I tap on the 'Reward Pass' teaser", when.tapID(ids.REWARD_PASS("Impact Pass"), 3000), async () => {
+      Then("I should see the battle pass intro screen", then.idVisible(ids.BATTLE_PASS_INTRO_SCREEN, 2000));
+    });
+    When("I tap the intro CTA button to continue", when.tapID(ids.BATTLE_PASS_INTRO_SCREEN_CTA_BUTTON, 2000), async () => {
+      Then("I should see the first level variant screen", then.idVisible(ids.BATTLE_PASS_FIRST_LEVEL_SCREEN, 2000));
+    });
+    When("I donate to complete the first level", when.donate("tree", 3), async () => {
+      Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
+    });
+    When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
+      When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
+        Then("I should see 6 items available to claim", then.idVisible(ids.CLAIMED_REWARD_ITEMS(6), 2000));
+      });
+    });
+    When("I tap to continue", when.tapID(ids.CONTINUE_CHEST_PRIZE_BUTTON, 2000), async () => {
+      Then("The wallet reward pop-up should be visible", then.assertWalletPopUp);
+    });
+    When("I dismiss the reward pop-up", when.dismissRewardPopUp, async () => {
       Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
-      Then("I should 2 avatar on the 'Plant trees' donations list", then.idVisibleAtIndex(ids.DONATION_LIST_AVATARS(2), 0, 2000));
+      Then("I should see 2 avatars on the 'Plant trees' donations list", then.idVisibleAtIndex(ids.DONATION_LIST_AVATARS(2), 0, 2000));
     });
     When("I tap the 'Plant trees' donation list item", when.tapID(ids.IMPACT_DONATION_TITLE("Plant trees"), 1500), async () => {
-      Then("I should see Monkey D Luffy in 1st position for the 'trees' leaderboard", then.impactPassLeaderboardVisible([User143ImpactPassLeaderboardItem], 2000));
-      Then("I should see myself Michael Scott in 2nd position for the 'trees' leaderboard", then.impactPassLeaderboardVisible([User18ImpactPassLeaderboardItem], 2000));
+      Then("I should see Monkey D Luffy in 2nd position for the 'trees' leaderboard", then.impactPassLeaderboardVisible([User143ImpactPassLeaderboardItem], 2000));
+      Then("I should see myself Michael Scott in 1st position for the 'trees' leaderboard", then.impactPassLeaderboardVisible([User18ImpactPassLeaderboardItem], 2000));
     });
     When("I tap to go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR, 2000), async () => {
       When("I to go back again", when.tapID(ids.BACK_BUTTON, 3000), async () => {

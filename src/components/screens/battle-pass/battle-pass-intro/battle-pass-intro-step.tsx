@@ -3,6 +3,7 @@ import { Markdown } from "@molecules";
 import { Colours, Style, StyleSheet } from "@styles";
 import { FC, memo } from "react";
 import { ViewStyle } from "react-native";
+import { BATTLE_PASS_INTRO_STEP } from "@ids";
 
 interface Props {
   stepNumber: number;
@@ -28,7 +29,14 @@ const markdownStyles = {
 
 const BattlePassIntroStep: FC<Props> = ({ stepNumber, text, image }) => {
   return (
-    <Box flex={1} flexDirection="row" alignItems="center" justifyContent="space-between" mx={32}>
+    <Box
+      flex={1}
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="space-between"
+      mx={32}
+      testID={BATTLE_PASS_INTRO_STEP(stepNumber)}
+    >
       <Box flexDirection="row" gap={16}>
         <Box w={22} h={22} br={11} mt={4} alignItems="center" justifyContent="center" bg={Colours.secondary.s100S3}>
           <TextTemplate type="b2b" color={Colours.neutral.white}>

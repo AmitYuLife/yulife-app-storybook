@@ -8,6 +8,7 @@ import { Colours, Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 import { ImageBackground } from "expo-image";
 import BattlePassIntroStep from "./battle-pass-intro-step";
+import { BATTLE_PASS_INTRO_SCREEN, BATTLE_PASS_INTRO_SCREEN_TITLE, BATTLE_PASS_INTRO_SCREEN_CTA_BUTTON } from "@ids";
 
 interface Props {
   onClose: () => void;
@@ -33,11 +34,16 @@ const BattlePassIntroScreen: FC<Props> = ({ backgroundImage, onClose }) => {
   }, [insets.top]);
 
   return (
-    <Box flex={1} bg="transparent">
+    <Box flex={1} bg="transparent" testID={BATTLE_PASS_INTRO_SCREEN}>
       <Box flex={1} bg="#290263" width="100%" height={Style.DEVICE_HEIGHT} position="absolute" top={0} left={0} />
       <ImageBackground source={backgroundImage} contentFit="cover" style={imageBackgroundStyle} />
       <Box top={insets.top} position="absolute" width="100%">
-        <TextTemplate type="b1b" color={Colours.neutral.white} textAlign="center">
+        <TextTemplate
+          type="b1b"
+          color={Colours.neutral.white}
+          textAlign="center"
+          testID={BATTLE_PASS_INTRO_SCREEN_TITLE(title)}
+        >
           {title}
         </TextTemplate>
       </Box>
@@ -49,7 +55,12 @@ const BattlePassIntroScreen: FC<Props> = ({ backgroundImage, onClose }) => {
       </ScrollView>
 
       <Box px={24} pb={insets.bottom} mt={16}>
-        <Button translationKey="screens.battle_pass.ftux.intro.button" onPress={onClose} size="Fill" />
+        <Button
+          translationKey="screens.battle_pass.ftux.intro.button"
+          onPress={onClose}
+          size="Fill"
+          testID={BATTLE_PASS_INTRO_SCREEN_CTA_BUTTON}
+        />
       </Box>
     </Box>
   );
