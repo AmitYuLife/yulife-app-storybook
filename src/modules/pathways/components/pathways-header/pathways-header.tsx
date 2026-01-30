@@ -82,7 +82,7 @@ const PathwaysHeader = ({
           <SwimmingFish duration={12000} delay={2000} endY={100} />
         </Box>
       )}
-      <Box mt={20} gap={20} alignItems="center">
+      <Box mt={0} gap={20} alignItems="center">
         <PathwaysJourneyHeader maxProgress={maxProgress} timeToNextQuestionnaire={timeRemaining} />
         <Box
           flexWrap="wrap"

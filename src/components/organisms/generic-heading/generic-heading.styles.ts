@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   wrapper: {
     alignItems: "center",
     flexDirection: "row",
-    height: TOP_BAR_HEIGHT,
+    height: TOP_BAR.HEIGHT,
     paddingHorizontal: Style.adjust(16),
     position: "relative",
     width: "100%",
