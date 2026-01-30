@@ -12,6 +12,7 @@ import BattlePassListItem from "@organisms/battle-pass-list-item/battle-pass-lis
 import BattlePassFirstLevelDonationCard from "./battle-pass-first-level-donation-card";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
+import { BATTLE_PASS_FIRST_LEVEL_SCREEN, BATTLE_PASS_FIRST_LEVEL_TITLE } from "@ids";
 
 interface Props {
   backgroundImage: ImageSourcePropType;
@@ -52,14 +53,21 @@ const BattlePassFirstLevelVariant: FC<Props> = ({
     [componentId]
   );
 
+  const title = t("screens.battle_pass.ftux.title");
+
   return (
-    <>
+    <Box flex={1} testID={BATTLE_PASS_FIRST_LEVEL_SCREEN}>
       <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
         {showNavigation ? <BattlePassTopBar onBackPress={onBackPress} /> : null}
         <Box alignItems="center" pt={headingPt} pointerEvents="box-none" gap={26}>
           <Box>
-            <TextTemplate type="b1b" color={Colours.neutral.white} textAlign="center">
-              {t("screens.battle_pass.ftux.title")}
+            <TextTemplate
+              type="b1b"
+              color={Colours.neutral.white}
+              textAlign="center"
+              testID={BATTLE_PASS_FIRST_LEVEL_TITLE(title)}
+            >
+              {title}
             </TextTemplate>
           </Box>
           <BattlePassListItem {...reward} battlePassType="esg" />
@@ -91,7 +99,7 @@ const BattlePassFirstLevelVariant: FC<Props> = ({
           </Box>
         </ScrollView>
       </Box>
-    </>
+    </Box>
   );
 };
 
