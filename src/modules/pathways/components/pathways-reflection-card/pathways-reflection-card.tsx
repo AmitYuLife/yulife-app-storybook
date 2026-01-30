@@ -23,14 +23,17 @@ const PathwaysReflectionCard = ({ children, onPress, isDisabled, ...boxProps }: 
       flexDirection="row"
     >
       <StackedShadowWrapper stackColors={BORDER_COLORS} style={styles.shadowWrapper}>
-        <Box
-          w="100%"
-          flexDirection="row"
-          bg={isDisabled ? Colours.pathways.darkBackground : Colours.pathways.header}
-          {...boxProps}
-        >
-          <Box opacity={isDisabled ? 0.5 : 1} w="100%" h="100%">
-            {children}
+        <Box br={14} alignItems="center" justifyContent="center" flex={1} p={2} pb={0} top={-2} left={-1}>
+          <Box
+            flex={1}
+            flexDirection="row"
+            bg={isDisabled ? Colours.pathways.darkBackground : Colours.pathways.header}
+            br={14}
+            {...boxProps}
+          >
+            <Box opacity={isDisabled ? 0.5 : 1} w="100%" h="100%">
+              {children}
+            </Box>
           </Box>
         </Box>
       </StackedShadowWrapper>
@@ -42,6 +45,8 @@ const styles = StyleSheet.create({
   shadowWrapper: {
     width: "100%",
     borderRadius: Style.adjust(14),
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
