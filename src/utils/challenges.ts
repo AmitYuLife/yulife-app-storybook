@@ -175,13 +175,12 @@ export const handleInternalContentChallenge = ({
           name: ROUTES.meditopiaMediaList,
           passProps: {
             createChallenge,
-            levelSlot,
-            fitKitTypes: levelSlot.fitKitTypes,
-            tutorialUrl: levelSlot.details.tutorialUrl,
-            yuHealth: levelSlot.yuHealth,
-            ...internalContent[0],
             level,
             levelSlotTemplateId: levelSlot.levelSlotTemplateId,
+            fitKitTypes: levelSlot.fitKitTypes,
+            contentMediaTags: internalContent[0].contentMediaTags,
+            yuHealth: levelSlot.yuHealth,
+            tutorialUrl: levelSlot.details.tutorialUrl,
           },
         },
       });

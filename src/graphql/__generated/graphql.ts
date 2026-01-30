@@ -6121,6 +6121,18 @@ export type MobileQuestChallenge = {
   yuniversalMap?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type MobileQuestLevelMediaInternalContent = {
+  __typename?: "MobileQuestLevelMediaInternalContent";
+  buttons: Array<QuestMapLevelChallengeDetailsContentButtons>;
+  description: Scalars["String"]["output"];
+  logo?: Maybe<RemoteImage>;
+  media: Array<QuestMapLevelChallengeContent>;
+  mediaListHeader: Scalars["String"]["output"];
+  promotionReward?: Maybe<QuestMapLevelChallengeDetailsContentPromotionReward>;
+  providerLogo?: Maybe<QuestMapLevelChallengeDetailsContentProviderLogo>;
+  title: Scalars["String"]["output"];
+};
+
 export type MobileQuestSudokuSubmission = {
   adjustedTime: Scalars["Int"]["input"];
   baseTime: Scalars["Int"]["input"];
@@ -8365,10 +8377,15 @@ export type Query = {
   getMobileInventoryInfo: MobileInventoryInfo;
   getMobilePaymentCardSetup: MobilePaymentCardSetup;
   getMobilePurchasesList: MobilePurchasesList;
-  /** Supported RN version >= 4.9.0 */
+  /**
+   * Supported RN version >= 4.9.0
+   * Deprecated on RN version >= 4.100.0 for getMobileQuestLevelMediaInternalContent
+   */
   getMobileQuestLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   /** Supported RN version >= 4.9.0 */
   getMobileQuestLevelChallengeDetails: QuestMapLevelChallengeDetails;
+  /** Supported RN version >= 4.100.0 */
+  getMobileQuestLevelMediaInternalContent?: Maybe<MobileQuestLevelMediaInternalContent>;
   getMobileRecentlyUsedRewardsList: MobileRecentlyUsedRewardsList;
   getMobileRewardStoreLocations: Array<MobileRewardStoreLocation>;
   getMobileRewardsGoalProductMilestones: MobileRewardsGoalProductMilestones;
@@ -8999,6 +9016,14 @@ export type QueryGetMobileQuestLevelChallengeContentArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileQuestLevelChallengeDetailsArgs = {
+  level: Scalars["Int"]["input"];
+  levelSlotTemplateId: Scalars["String"]["input"];
+  yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileQuestLevelMediaInternalContentArgs = {
+  contentTags: Array<Scalars["String"]["input"]>;
   level: Scalars["Int"]["input"];
   levelSlotTemplateId: Scalars["String"]["input"];
   yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
@@ -23794,71 +23819,6 @@ export type CreateMobileQuestLevelChallengeMutation = {
   } | null;
 };
 
-export type GetMobileQuestLevelChallengeContentQueryVariables = Exact<{
-  level: Scalars["Int"]["input"];
-  yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
-  levelSlotTemplateId: Scalars["String"]["input"];
-  contentTags: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
-}>;
-
-export type GetMobileQuestLevelChallengeContentQuery = {
-  __typename?: "Query";
-  getMobileQuestLevelChallengeContent?: Array<{
-    __typename?: "QuestMapLevelChallengeContent";
-    reward: number;
-    stars: number;
-    formattedDuration: string;
-    media: {
-      __typename?: "Media";
-      id: string;
-      title: string;
-      description: string;
-      shortDescription: string;
-      duration?: number | null;
-      tag?: string | null;
-      theme: string;
-      sourceType?: string | null;
-      media: { __typename?: "RemoteMedia"; id: string; uri?: string | null };
-      cover: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      thumbnail: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      videoLogo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      lottie?: {
-        __typename?: "ContentItemLottie";
-        id: string;
-        uri: string;
-        autoPlay: boolean;
-        loop: boolean;
-        animationEndCallbackDelay?: number | null;
-        aspectRatio?: number | null;
-        keyShouldPlay?: string | null;
-        progressKey?: string | null;
-        styles?: Array<{
-          __typename?: "SduiStyle";
-          property: string;
-          value: string;
-          conditionalValue?: Array<{
-            __typename?: "ConditionalValue";
-            value: string;
-            conditions: Array<{
-              __typename?: "ConditionalValueCondition";
-              logicalOperator?: ConditionalValueLogicalOperator | null;
-              expressions: Array<{
-                __typename?: "ConditionalValueConditionExpression";
-                operand: ConditionalValueOperand;
-                comparisonOperator: ConditionalValueComparisonOperator;
-                value: string;
-              }>;
-            }>;
-          }> | null;
-        }> | null;
-        onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-        onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-      } | null;
-    };
-  } | null> | null;
-};
-
 export type GetMobileQuestLevelChallengeDetailsQueryVariables = Exact<{
   level: Scalars["Int"]["input"];
   yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
@@ -23898,6 +23858,113 @@ export type GetMobileQuestLevelChallengeDetailsQuery = {
       secondaryColour: string;
     };
   };
+};
+
+export type GetMobileQuestLevelMediaInternalContentQueryVariables = Exact<{
+  level: Scalars["Int"]["input"];
+  yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
+  levelSlotTemplateId: Scalars["String"]["input"];
+  contentTags: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
+}>;
+
+export type GetMobileQuestLevelMediaInternalContentQuery = {
+  __typename?: "Query";
+  getMobileQuestLevelMediaInternalContent?: {
+    __typename?: "MobileQuestLevelMediaInternalContent";
+    title: string;
+    mediaListHeader: string;
+    description: string;
+    logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    providerLogo?: {
+      __typename?: "QuestMapLevelChallengeDetailsContentProviderLogo";
+      width: number;
+      height: number;
+      logo: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    buttons: Array<{
+      __typename?: "QuestMapLevelChallengeDetailsContentButtons";
+      title: string;
+      color: string;
+      width: number;
+      height: number;
+      logo: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      options?: {
+        __typename?: "QuestMapLevelChallengeDetailsContentApp";
+        iosUrl: string;
+        androidUrl: string;
+        appName: string;
+        appStoreId: string;
+        appStoreLocale: string;
+        playStoreId: string;
+        faqUrl: string;
+      } | null;
+    }>;
+    promotionReward?: {
+      __typename?: "QuestMapLevelChallengeDetailsContentPromotionReward";
+      title: string;
+      description: string;
+      discount: string;
+      buttonLabel: string;
+      rewardId: string;
+      logo: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      sduiAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    } | null;
+    media: Array<{
+      __typename?: "QuestMapLevelChallengeContent";
+      reward: number;
+      stars: number;
+      formattedDuration: string;
+      media: {
+        __typename?: "Media";
+        id: string;
+        title: string;
+        description: string;
+        shortDescription: string;
+        duration?: number | null;
+        tag?: string | null;
+        theme: string;
+        sourceType?: string | null;
+        media: { __typename?: "RemoteMedia"; id: string; uri?: string | null };
+        cover: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        thumbnail: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        videoLogo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        lottie?: {
+          __typename?: "ContentItemLottie";
+          id: string;
+          uri: string;
+          autoPlay: boolean;
+          loop: boolean;
+          animationEndCallbackDelay?: number | null;
+          aspectRatio?: number | null;
+          keyShouldPlay?: string | null;
+          progressKey?: string | null;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        } | null;
+      };
+    }>;
+  } | null;
 };
 
 export type GetPassiveChallengesLastUpdateQueryVariables = Exact<{ [key: string]: never }>;
@@ -74244,282 +74311,6 @@ export const CreateMobileQuestLevelChallengeDocument = {
     },
   ],
 } as unknown as DocumentNode<CreateMobileQuestLevelChallengeMutation, CreateMobileQuestLevelChallengeMutationVariables>;
-export const GetMobileQuestLevelChallengeContentDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetMobileQuestLevelChallengeContent" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "level" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "yuniversalMap" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "levelSlotTemplateId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "contentTags" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getMobileQuestLevelChallengeContent" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "level" },
-                value: { kind: "Variable", name: { kind: "Name", value: "level" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "yuniversalMap" },
-                value: { kind: "Variable", name: { kind: "Name", value: "yuniversalMap" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "levelSlotTemplateId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "levelSlotTemplateId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "contentTags" },
-                value: { kind: "Variable", name: { kind: "Name", value: "contentTags" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "media" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "Media" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "reward" } },
-                { kind: "Field", name: { kind: "Name", value: "stars" } },
-                { kind: "Field", name: { kind: "Name", value: "formattedDuration" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ConditionalValue" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ConditionalValue" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "conditions" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "logicalOperator" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "expressions" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "operand" } },
-                      { kind: "Field", name: { kind: "Name", value: "comparisonOperator" } },
-                      { kind: "Field", name: { kind: "Name", value: "value" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiStyle" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "property" } },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "conditionalValue" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ContentItemLottie" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLottie" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-          { kind: "Field", name: { kind: "Name", value: "autoPlay" } },
-          { kind: "Field", name: { kind: "Name", value: "loop" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "styles" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "onAnimationEnd" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "onAnimationEndLocal" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
-          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
-          { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
-          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "Media" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Media" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "description" } },
-          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
-          { kind: "Field", name: { kind: "Name", value: "duration" } },
-          { kind: "Field", name: { kind: "Name", value: "tag" } },
-          { kind: "Field", name: { kind: "Name", value: "theme" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "media" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "uri" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "cover" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "uri" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "thumbnail" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "uri" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "logo" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "uri" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "videoLogo" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "uri" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "lottie" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLottie" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "sourceType" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetMobileQuestLevelChallengeContentQuery,
-  GetMobileQuestLevelChallengeContentQueryVariables
->;
 export const GetMobileQuestLevelChallengeDetailsDocument = {
   kind: "Document",
   definitions: [
@@ -74666,6 +74457,420 @@ export const GetMobileQuestLevelChallengeDetailsDocument = {
 } as unknown as DocumentNode<
   GetMobileQuestLevelChallengeDetailsQuery,
   GetMobileQuestLevelChallengeDetailsQueryVariables
+>;
+export const GetMobileQuestLevelMediaInternalContentDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileQuestLevelMediaInternalContent" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "level" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "yuniversalMap" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "levelSlotTemplateId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "contentTags" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileQuestLevelMediaInternalContent" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "level" },
+                value: { kind: "Variable", name: { kind: "Name", value: "level" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "yuniversalMap" },
+                value: { kind: "Variable", name: { kind: "Name", value: "yuniversalMap" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "levelSlotTemplateId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "levelSlotTemplateId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "contentTags" },
+                value: { kind: "Variable", name: { kind: "Name", value: "contentTags" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "mediaListHeader" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "providerLogo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "height" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "logo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "buttons" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "color" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "logo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "height" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "options" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "iosUrl" } },
+                            { kind: "Field", name: { kind: "Name", value: "androidUrl" } },
+                            { kind: "Field", name: { kind: "Name", value: "appName" } },
+                            { kind: "Field", name: { kind: "Name", value: "appStoreId" } },
+                            { kind: "Field", name: { kind: "Name", value: "appStoreLocale" } },
+                            { kind: "Field", name: { kind: "Name", value: "playStoreId" } },
+                            { kind: "Field", name: { kind: "Name", value: "faqUrl" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "promotionReward" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "logo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "backgroundImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "discount" } },
+                      { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+                      { kind: "Field", name: { kind: "Name", value: "rewardId" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "sduiAction" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "type" } },
+                            { kind: "Field", name: { kind: "Name", value: "payload" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "media" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "media" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "Media" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "reward" } },
+                      { kind: "Field", name: { kind: "Name", value: "stars" } },
+                      { kind: "Field", name: { kind: "Name", value: "formattedDuration" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConditionalValue" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ConditionalValue" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "logicalOperator" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "expressions" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "operand" } },
+                      { kind: "Field", name: { kind: "Name", value: "comparisonOperator" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditionalValue" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLottie" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLottie" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+          { kind: "Field", name: { kind: "Name", value: "autoPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "loop" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onAnimationEnd" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onAnimationEndLocal" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
+          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+          { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Media" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Media" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "duration" } },
+          { kind: "Field", name: { kind: "Name", value: "tag" } },
+          { kind: "Field", name: { kind: "Name", value: "theme" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cover" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnail" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "videoLogo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "lottie" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLottie" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sourceType" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMobileQuestLevelMediaInternalContentQuery,
+  GetMobileQuestLevelMediaInternalContentQueryVariables
 >;
 export const GetPassiveChallengesLastUpdateDocument = {
   kind: "Document",

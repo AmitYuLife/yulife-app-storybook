@@ -13,15 +13,16 @@ import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { YuHealthOptions, FitKitType, gql, GetQuestMapLevelQuery } from "@graphql/__generated";
+import { YuHealthOptions, FitKitType, gql, QuestMapLevelChallengeDetailsContentButtons } from "@graphql/__generated";
 import { gqlCapabilityToCapability } from "@utils";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
+import LoadingScreen from "@components/screens/member/loading/loading.screen";
 
-type IInternalContent = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]["details"]["internalContent"][0];
-type IButton = IInternalContent["buttons"][0];
+type IButton = QuestMapLevelChallengeDetailsContentButtons;
 
-interface IProps extends IInternalContent {
+interface IProps {
   componentId: string;
+  contentMediaTags: string[];
   createChallenge: (hideExternalLinks?: boolean) => void;
   yuHealth: YuHealthOptions;
   fitKitTypes: FitKitType[];
@@ -32,18 +33,13 @@ interface IProps extends IInternalContent {
 
 const MeditopiaMediaListContainer = ({
   createChallenge,
-  fitKitTypes,
-  componentId,
-  yuHealth,
-  contentMediaTags,
-  title,
-  description,
-  logo,
-  buttons,
-  tutorialUrl,
-  promotionReward,
   level,
   levelSlotTemplateId,
+  fitKitTypes,
+  componentId,
+  contentMediaTags,
+  yuHealth,
+  tutorialUrl,
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const dispatch = useDispatch();
@@ -53,7 +49,7 @@ const MeditopiaMediaListContainer = ({
   const { yuniversalMap } = useSelector(getYuniversalProgress);
 
   const { data: contentData, loading: isLoadingContent } = useQuery(
-    gql("GetMobileQuestLevelChallengeContentDocument"),
+    gql("GetMobileQuestLevelMediaInternalContentDocument"),
     {
       fetchPolicy: "network-only",
       variables: {
@@ -64,6 +60,8 @@ const MeditopiaMediaListContainer = ({
       },
     }
   );
+
+  const internalContent = contentData?.getMobileQuestLevelMediaInternalContent;
 
   usePopToQuestsRootOnNewDate(level);
 
@@ -148,6 +146,8 @@ const MeditopiaMediaListContainer = ({
     ]
   );
 
+  const promotionReward = internalContent?.promotionReward;
+
   const moreInformationPress = useCallback(() => {
     dispatch(
       logMixpanelEventActionCreator("button_pressed", {
@@ -159,27 +159,31 @@ const MeditopiaMediaListContainer = ({
     if (promotionReward?.sduiAction) {
       dispatch(promotionReward.sduiAction);
     }
-  }, []);
+  }, [dispatch, promotionReward]);
 
   const formattedVideos = useMemo(() => {
-    const videos = contentData?.getMobileQuestLevelChallengeContent || [];
+    const videos = internalContent?.media || [];
     return videos.map(({ media, reward, stars, formattedDuration }) => ({
       ...media,
       reward,
       stars,
       formattedDuration,
     }));
-  }, [contentData?.getMobileQuestLevelChallengeContent]);
+  }, [internalContent?.media]);
 
   const isLoading = isLoadingContent || formattedVideos.length === 0;
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <MeditopiaMediaListScreen
       videos={formattedVideos}
-      title={title}
-      logo={logo}
-      buttons={buttons}
-      description={description}
+      title={internalContent?.title}
+      logo={internalContent?.logo}
+      buttons={internalContent?.buttons ?? []}
+      description={internalContent?.description}
       loading={isLoading}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}

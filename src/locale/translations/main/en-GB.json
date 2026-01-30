@@ -1281,7 +1281,6 @@
       }
     },
     "fiit_media_list": {
-      "title": "%{title} classes",
       "startChallengeButtonLabel": "Start class",
       "description": "Free classes powered by"
     },

@@ -14,12 +14,16 @@ import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { gqlCapabilityToCapability } from "@utils";
-import { YuHealthOptions, FitKitType, GetQuestMapLevelQuery } from "@graphql/__generated";
+import {
+  YuHealthOptions,
+  FitKitType,
+  QuestMapLevelChallengeDetailsContent,
+  QuestMapLevelChallengeDetailsContentButtons,
+} from "@graphql/__generated";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 
-type IInternalContent =
-  GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][number]["details"]["internalContent"][number];
-type IButton = IInternalContent["buttons"][number];
+type IInternalContent = QuestMapLevelChallengeDetailsContent;
+type IButton = QuestMapLevelChallengeDetailsContentButtons;
 
 interface IProps {
   componentId: string;
