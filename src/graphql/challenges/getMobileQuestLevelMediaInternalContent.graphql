@@ -1,0 +1,73 @@
+query GetMobileQuestLevelMediaInternalContent(
+  $level: Int!
+  $yuniversalMap: Int
+  $levelSlotTemplateId: String!
+  $contentTags: [String!]!
+) {
+  getMobileQuestLevelMediaInternalContent(
+    level: $level
+    yuniversalMap: $yuniversalMap
+    levelSlotTemplateId: $levelSlotTemplateId
+    contentTags: $contentTags
+  ) {
+    title
+    mediaListHeader
+    description
+    logo {
+        ...RemoteImage
+    }
+    providerLogo {
+        width
+        height 
+        logo {
+            ...RemoteImage
+        }
+    }
+    buttons {
+      title
+      color
+      logo {
+        id
+        uri
+      }
+      width
+      height
+      options {
+        iosUrl
+        androidUrl
+        appName
+        appStoreId
+        appStoreLocale
+        playStoreId
+        faqUrl
+      }
+    }
+    promotionReward {
+      title
+      description
+      logo {
+        id
+        uri
+      }
+      backgroundImage {
+        id
+        uri
+      }
+      discount
+      buttonLabel
+      rewardId
+      sduiAction {
+        type
+        payload
+      }
+    }
+    media {
+        media {
+        ...Media
+        }
+        reward
+        stars
+        formattedDuration
+    }
+  }
+}
