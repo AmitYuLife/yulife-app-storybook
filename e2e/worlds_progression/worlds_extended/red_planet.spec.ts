@@ -74,10 +74,12 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", { noOfChallenges: "4" }), 2000), async () => {
       Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
     });
-    When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
-      When("I tap done", when.tapText("Done", 1500), async () => {
-        Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
-        Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17780)));
+    When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_TILE("Long Walk"), "down", "fast", 0.3, 1_000), async () => {
+      When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
+        When("I tap done", when.tapText("Done", 1500), async () => {
+          Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
+          Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17780)));
+        });
       });
     });
     When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 1500), async () => {

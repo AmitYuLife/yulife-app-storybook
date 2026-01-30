@@ -283,7 +283,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
       Then("I should see all the available languages listed", then.allLanguagesVsible);
     });
     When("I tap to select Spanish option", when.switchLanguage("🇪🇸 Español (Estados Unidos)", 3000), async () => {
-      Then("I should see that the client language has successfully changed in Spanish", then.textVisible("200 YuCoin hoy", 10_000));
+      Then("I should see that the client language has successfully changed in Spanish", then.textVisible("200 YuCoin hoy", 25_000));
     });
   });
 

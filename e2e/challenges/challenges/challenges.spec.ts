@@ -46,9 +46,7 @@ Feature("As a user I can take a challenge", async () => {
     });
     When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
       When("I tap the first level button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-        When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
-          Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
-        });
+        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
       });
     });
     When("I start the 'Short Stroll' challenge", when.startChallenge("Short Stroll"), async () => {
@@ -70,9 +68,7 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-      When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
-        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
-      });
+      Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
     });
     When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
       Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_1.data.earnRate));
@@ -501,13 +497,11 @@ Feature("As a user I can take a challenge", async () => {
     });
     When("I tap got it", when.tapText("Got it"), async () => {
       When("I tap level 5", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
-        When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
-          Then("I should see Short Stroll", then.textVisible("Short Stroll"));
-          Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
-          Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
-          Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
-          Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
-        });
+        Then("I should see Short Stroll", then.textVisible("Short Stroll"));
+        Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
+        Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
+        Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
+        Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
       });
     });
     When("I start the short stroll", when.startChallenge("Short Stroll"), async () => {

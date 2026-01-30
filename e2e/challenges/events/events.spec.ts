@@ -30,8 +30,10 @@ Feature("As a user I can opt in and take an event", async () => {
       });
     });
     // 1st challenge
-    When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
-      Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 40, 400));
+    When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_TILE("Long Walk"), "down", "fast", 0.3, 1_000), async () => {
+      When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
+        Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 40, 400));
+      });
     });
     When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
       Then("I should see my yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(740)));

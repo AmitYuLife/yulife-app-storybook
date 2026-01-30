@@ -172,9 +172,9 @@ Feature("As a user from USA, I can view and use the smoking cessation feature", 
     });
     When("I go back from the Today's Earnings screen", when.tapID(ids.LEFT_HEADING_BUTTON("TODAY’S_EARNINGS"), 2000), async () => {
       Then("I can see the smoking card is there on day 1 ", then.smokingCardVisible(1, locale));
-      Then("I can see the Hero Card heading", then.idVisible(ids.EVENT_HEADING("Track your progress", "#464647"), 3000));
+      Then("I can see the Hero Card heading", then.idVisible(ids.EVENT_HEADING("Log your progress", "#464647"), 3000));
     });
-    When("I tap the smoking card", when.tapID(ids.EVENT_CARD("Track your progress"), 2000), async () => {
+    When("I tap the smoking card", when.tapID(ids.EVENT_CARD("Log your progress"), 2000), async () => {
       Then("I can see the Milestone for Day 1", then.idVisible(ids.SMOKING_MILESTONE_TAPPABLE("1"), 3000));
     });
     When("I tap on the milestone for day 1", when.tapID(ids.SMOKING_MILESTONE_TAPPABLE("1"), 2000), async () => {
