@@ -65,6 +65,8 @@ import { IPrizesStore } from "@redux/prizes/prizes.types";
 import debugReducer, { getInitialState as getInitialDebugState } from "@redux/debug/debug.reducer";
 import { IDebugStore } from "@redux/debug/debug.types";
 import { IModalStore } from "@redux/modal/modal.types";
+import pathwaysReducer, { getInitialState as getInitialPathwaysState } from "@modules/pathways/redux/pathways.reducer";
+import { IPathwaysStore } from "@modules/pathways/redux/pathways.types";
 
 export interface IReduxState {
   app: IAppStore;
@@ -94,6 +96,7 @@ export interface IReduxState {
   prizes: IPrizesStore;
   debugReducer: IDebugStore;
   modal: IModalStore;
+  pathways: IPathwaysStore;
 }
 
 export const initialState: IReduxState = {
@@ -124,6 +127,7 @@ export const initialState: IReduxState = {
   prizes: getInitialPrizesState(),
   debugReducer: getInitialDebugState(),
   modal: getInitialModalState(),
+  pathways: getInitialPathwaysState(),
 };
 
 // this alias is created for testing purposes
@@ -157,6 +161,7 @@ const combinedReducers = combineReducers({
   prizes: prizesReducer,
   debugReducer: debugReducer,
   modal: modalReducer,
+  pathways: pathwaysReducer,
 });
 
 export default combinedReducers;

@@ -29,6 +29,7 @@ import battlePassSagas from "../battle-pass/sagas";
 import prizeSagas from "../prizes/sagas";
 import game2048Sagas from "../game-2048/sagas";
 import modalSagas from "../modal/sagas";
+import pathwaysChallengeSagas from "@modules/pathways/redux/sagas";
 
 export default function* allSagas() {
   yield all([
@@ -62,5 +63,6 @@ export default function* allSagas() {
     ...prizeSagas,
     ...game2048Sagas,
     ...modalSagas,
+    ...pathwaysChallengeSagas,
   ]);
 }

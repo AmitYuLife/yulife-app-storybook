@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { AppDataType } from "@redux/user/user.types";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
+import { pathwayChallengeStarted, pathwayChallengeEnded } from "@modules/pathways/redux/pathways.actions";
 
 interface UsePathwayChallengeArgs {
   componentId: string;
@@ -51,15 +52,16 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
         },
       },
     });
-  }, [componentId, pathwayChallengeData?.getPathwayChallenge?.action]);
+  }, [componentId, pathwayChallengeData]);
 
   const startChallenge = useCallback(async () => {
     if (!challengeId) {
       return;
     }
 
+    dispatch(pathwayChallengeStarted({ pathwayChallengeId: challengeId }));
     await startPathwayChallenge({ variables: { challengeId } });
-  }, [challengeId, startPathwayChallenge]);
+  }, [challengeId, startPathwayChallenge, dispatch]);
 
   const completeChallenge = useCallback(
     async ({ durationInSeconds, challengeType }: CompleteChallengeArgs) => {
@@ -67,6 +69,7 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
         return;
       }
 
+      dispatch(pathwayChallengeEnded());
       const result = await completePathwayChallenge({ variables: { challengeId } });
 
       if (challengeType === "mindfulness") {

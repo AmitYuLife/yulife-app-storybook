@@ -20,6 +20,7 @@ import { MODALS } from "@navigation/constants";
 import { useAppState } from "@hooks";
 import { AppStateStatus } from "react-native";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
+import { useCancelPathwayChallenge } from "@modules/pathways/hooks/useCancelPathwayChallenge";
 import { BREATHING_EXERCISE_DURATION_PICKER } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 import AvPlayerTimer from "@components/organisms/av-player-timer/av-player-timer";
@@ -65,7 +66,8 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   const { componentId } = useNavigation();
   const dispatch = useDispatch();
 
-  const { completeChallenge } = usePathwayChallenge({ componentId, challengeId, skipQuery: true });
+  const { startChallenge, completeChallenge } = usePathwayChallenge({ componentId, challengeId, skipQuery: true });
+  const { markAsCompleted } = useCancelPathwayChallenge({ challengeId });
 
   const selectedDurationMsRef = useRef(data.defaultDuration || DEFAULT_DURATION_MS);
 
@@ -77,20 +79,22 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
       })
     );
 
+    markAsCompleted();
     await completeChallenge({
       durationInSeconds: selectedDurationMsRef.current / 1000,
       challengeType: "mindfulness",
     });
-  }, [dispatch, data.id, completeChallenge]);
+  }, [dispatch, data.id, completeChallenge, markAsCompleted]);
 
   const handleStarted = useCallback(() => {
+    startChallenge();
     dispatch(
       logMixpanelEventActionCreator("breathing_exercise_started", {
         duration: selectedDurationMsRef.current,
         id: data.id,
       })
     );
-  }, [dispatch, data.id]);
+  }, [dispatch, data.id, startChallenge]);
 
   const handlePaused = useCallback(() => {
     dispatch(
