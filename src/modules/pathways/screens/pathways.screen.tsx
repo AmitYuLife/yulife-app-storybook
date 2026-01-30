@@ -159,7 +159,6 @@ const PathwaysScreen = ({
           notCompletedChestForegroundColor={Colours.pathways.streakBorder}
           notCompletedChestBackgroundColor={Colours.pathways.background}
           onLayout={onStreakContainerLayout}
-          mt={-8}
           pb={12}
         />
       </GenericHeadingAbsolute>

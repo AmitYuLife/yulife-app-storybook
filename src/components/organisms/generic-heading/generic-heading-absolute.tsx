@@ -1,12 +1,11 @@
 import { ComponentProps, ReactNode } from "react";
 import GenericHeading from "./generic-heading";
-import { Platform } from "react-native";
 import { SharedValue } from "react-native-reanimated";
 import { TOP_BAR, Colours, StyleSheet } from "@styles";
 import { BUTTON_CLOSE, CONNECTION_SETUP_TITLE } from "@ids";
 import { useGenericHeadingShadowOpacity } from "./generic-heading.shadow";
 import { Box } from "@atoms";
-import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import { Platform } from "react-native";
 
 interface OwnProps {
   backgroundColor?: string;
@@ -33,12 +32,11 @@ const GenericHeadingAbsolute = (props: Props) => {
         justifyContent="center"
         pointerEvents="box-none"
         disableAutoAdjust={true}
-        pt={TOP_BAR.PADDING_TOP}
         testID={CONNECTION_SETUP_TITLE}
-        height={!children ? TOP_BAR_WITH_PAD : undefined}
-        minHeight={children ? TOP_BAR_WITH_PAD : undefined}
       >
-        <GenericHeading {...props} />
+        <Box w="100%" mt={TOP_BAR.PADDING_TOP} h={TOP_BAR.HEIGHT} mb={TOP_BAR.PADDING_BOTTOM} disableAutoAdjust={true}>
+          <GenericHeading {...props} />
+        </Box>
 
         {children}
 
