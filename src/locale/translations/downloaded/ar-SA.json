@@ -1145,8 +1145,7 @@
     },
     "fiit_media_list": {
       "description": "دروس مجانية مقدمة من",
-      "startChallengeButtonLabel": "ابدأ الفصل",
-      "title": "%{title} الفصول"
+      "startChallengeButtonLabel": "ابدأ الفصل"
     },
     "fitkit_connect": {
       "android_alert": {

@@ -1145,8 +1145,7 @@
     },
     "fiit_media_list": {
       "description": "提供元:",
-      "startChallengeButtonLabel": "クラス開始",
-      "title": "%{title}"
+      "startChallengeButtonLabel": "クラス開始"
     },
     "fitkit_connect": {
       "android_alert": {

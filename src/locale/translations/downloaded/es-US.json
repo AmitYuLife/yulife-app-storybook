@@ -1145,8 +1145,7 @@
     },
     "fiit_media_list": {
       "description": "Clases gratuitas desde ",
-      "startChallengeButtonLabel": "Iniciar clase",
-      "title": "%{title} clases"
+      "startChallengeButtonLabel": "Iniciar clase"
     },
     "fitkit_connect": {
       "android_alert": {
