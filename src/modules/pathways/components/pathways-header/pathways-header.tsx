@@ -83,7 +83,7 @@ const PathwaysHeader = ({
         </Box>
       )}
       <Box mt={0} gap={20} alignItems="center">
-        <PathwaysJourneyHeader maxProgress={maxProgress} timeToNextQuestionnaire={timeRemaining} />
+        <PathwaysJourneyHeader maxProgress={maxProgress} />
         <Box
           flexWrap="wrap"
           flexDirection="row"
