@@ -1,4 +1,3 @@
-import { Style } from "@styles";
 import { memo, useEffect } from "react";
 import {
   useSharedValue,
@@ -9,7 +8,6 @@ import {
   withDelay,
 } from "react-native-reanimated";
 import { Box } from "@atoms";
-import { MAX_YU_HEIGHT } from "../constants";
 import { INITIAL_DELAY, PEAK_DELAY, RAMP_TIMING } from "./animation-constants";
 
 export const BorderOpacityAnimation = memo(() => {
@@ -65,17 +63,7 @@ export const BorderOpacityAnimation = memo(() => {
   });
 
   return (
-    <Box
-      disableAutoAdjust={true}
-      position="absolute"
-      top={Style.adjust(20)}
-      left={Style.adjust(20)}
-      mr={Style.adjust(20)}
-      height={MAX_YU_HEIGHT + Style.adjust(8)}
-      width={Style.DEVICE_WIDTH - Style.adjust(40)}
-      bottom={0}
-      pointerEvents="none"
-    >
+    <Box position="absolute" top={-4} left={-4} right={-4} bottom={-4} pointerEvents="none">
       <Box
         forceAnimated={true}
         width={"100%"}
