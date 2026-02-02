@@ -197,8 +197,7 @@
         "heading": "Personal Health Path"
       },
       "journey_header": "Current journey",
-      "journey_header_starts": "Reflect for %{maxProgress} days to unlock bonus challenge",
-      "journey_header_starts_in": "New reflection unlocks in **%{hours}:%{minutes}:%{seconds}**",
+      "journey_header_starts": "Reflect for %{maxProgress} consecutive days to earn a bonus quest",
       "reflection_inactive_label": "Reflection",
       "reflection_active_label": "Reflect",
       "reflection_yucoin_amount": "**%{amount}** ![](%{yucoinUrl})",
