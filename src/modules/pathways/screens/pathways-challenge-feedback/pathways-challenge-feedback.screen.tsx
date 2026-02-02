@@ -1,9 +1,8 @@
 import { Box, TextTemplate } from "@atoms";
-import { Button, LikertScale, LinkButton } from "@molecules";
+import { Button, LikertScale, LinkButton, CentredScreen } from "@molecules";
 import { StyleSheet, Colours, Style } from "@styles";
 import { memo, useMemo, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { ImageBackground } from "react-native";
 import { getTheme } from "@theme";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { useSelector } from "react-redux";
@@ -62,11 +61,7 @@ const PathwaysChallengeFeedbackScreen = ({ onPressCta, onPressSkip }: IPathwaysC
 
   return (
     <GestureHandlerRootView style={styles.root}>
-      <ImageBackground
-        source={challengeSuccessScreen.backgroundImage}
-        style={styles.backgroundImage}
-        resizeMode="cover"
-      >
+      <CentredScreen {...challengeSuccessScreen}>
         <Box flex={1} justifyContent="space-between" mt={insets.top + Style.adjust(50)} disableAutoAdjust={true}>
           <Box>
             <Box alignItems="center" px={16} pt={32}>
@@ -118,16 +113,13 @@ const PathwaysChallengeFeedbackScreen = ({ onPressCta, onPressSkip }: IPathwaysC
             <LinkButton translationKey="screens.pathway_challenge_feedback.skip" onPress={onPressSkip} />
           </Box>
         </Box>
-      </ImageBackground>
+      </CentredScreen>
     </GestureHandlerRootView>
   );
 };
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
-  },
-  backgroundImage: {
     flex: 1,
   },
 });
