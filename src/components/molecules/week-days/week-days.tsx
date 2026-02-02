@@ -19,7 +19,7 @@ export const WeekDays = () => {
   }, []);
 
   return (
-    <Box dir="ltr" flexDirection="row" mb={24} px={16}>
+    <Box dir="ltr" flexDirection="row" mb={4} px={16}>
       {weekDays.map((day) => {
         return (
           <Box key={day.label} flex={1} center={true}>
