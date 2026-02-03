@@ -10,3 +10,5 @@ export * from "./mongo/usertoggles";
 export * from "./mongo/user_game_state";
 export * from "./mongo/userOnboardings";
 export * from "./mongo/media";
+export * from "./mongo/game_consumables";
+export * from "./mongo/core_challenge_bonuses";
