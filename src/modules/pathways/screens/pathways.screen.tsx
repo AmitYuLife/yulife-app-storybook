@@ -33,6 +33,7 @@ interface IPathwaysScreenProps {
   isLoading: boolean;
   maxProgress: number;
   pathwayChallenge: PathwayChallenge;
+  isStreakComplete: boolean;
 }
 
 const PathwaysScreen = ({
@@ -48,6 +49,7 @@ const PathwaysScreen = ({
   interventionSections,
   maxProgress,
   pathwayChallenge,
+  isStreakComplete,
 }: IPathwaysScreenProps) => {
   const scrollY = useSharedValue(0);
   const { width, height } = useWindowDimensions();
@@ -114,6 +116,7 @@ const PathwaysScreen = ({
           coinAwards={coinAwards}
           maxProgress={maxProgress}
           pathwayChallenge={pathwayChallenge}
+          isStreakComplete={isStreakComplete}
           pt={TOP_BAR.TOP_BAR_WITH_PAD + streakContainerHeight}
         />
 
