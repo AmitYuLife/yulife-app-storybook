@@ -6,6 +6,7 @@ import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
 import { longWalkMaxReward } from "./_resources/constants";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("Level boosts", async () => {
   Scenario("I can see boosted challenges and receive boosted rewards", scenario.start, () => {
@@ -51,6 +52,53 @@ Feature("Level boosts", async () => {
       When("I tap on the 'chest' category", when.tapID(ids.CATEGORY_TYPE("chest"), 3000), async () => {
         Then("I should see the yumoji item I just unlocked", then.idVisible(ids.YUMOJI_PART_ID_STATUS("available", "yumoji_male_chest_base_ocean"), 3000));
       });
+    });
+  });
+
+  Scenario("User with active Yuniversal boost can not activate boost consumables", scenario.start, () => {
+    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_YUNIVERSAL_BOOST.customer, GENERIC_AUTH_PASSWORD, true, "UK"), async () => {
+      Then("I should see the level 51", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51), 4_000));
+    });
+    When("I tap level 51", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51), 3_000), async () => {
+      When("I open the Inventory modal", when.openInventoryModal(), async () => {
+        Then("I should see the boost consumable item in the list", then.inventoryItemVisible("Boost a Long Walk"));
+        Then("The Activate button should be disabled", then.activateButtonDisabled);
+      });
+    });
+    When("I tap on the disabled boost consumable item", when.tapInventoryItem("Boost a Long Walk"), async () => {
+      Then("The item should not be selectable", then.itemNotSelectable);
+      Then("The Activate button should remain disabled", then.activateButtonDisabled);
+    });
+  });
+
+  Scenario("User with active consumable boost can not activate another boost consumable", scenario.start, () => {
+    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_CONSUMABLE_BOOST.customer, GENERIC_AUTH_PASSWORD, true, "UK"), async () => {
+      Then("I should see the level 10", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(10), 4_000));
+    });
+    When("I tap level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10), 3_000), async () => {
+      When("I open the Inventory modal", when.openInventoryModal(), async () => {
+        Then("I should see the active boost consumable with Activated badge", then.inventoryItemActivated);
+        Then("The Activate button should be disabled", then.activateButtonDisabled);
+      });
+    });
+    When("I tap on a disabled boost consumable", when.tapInventoryItem("Boost a Brisk Walk"), async () => {
+      Then("The item should not be selectable", then.itemNotSelectable);
+      Then("The Activate button should remain disabled", then.activateButtonDisabled);
+    });
+  });
+
+  Scenario("Non boost consumables remain usable when a boost is active", scenario.start, () => {
+    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_MIXED_CONSUMABLES.customer, GENERIC_AUTH_PASSWORD, true, "UK"), async () => {
+      Then("I should see the level 10", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(10), 4_000));
+    });
+    When("I tap level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10), 3_000), async () => {
+      When("I open the Inventory modal", when.openInventoryModal(), async () => {
+        Then("Boost consumables should be greyed out", then.inventoryItemVisible("Boost a Long Walk"));
+        Then("Non-boost consumables (e.g., extra challenge) should be visible", then.inventoryItemVisible("Extra Brisk Walk challenge"));
+      });
+    });
+    When("I tap on an enabled non-boost consumable", when.tapInventoryItem("Extra Brisk Walk challenge"), async () => {
+      Then("The Activate button should be enabled", then.activateButtonEnabled);
     });
   });
 });

@@ -2,8 +2,11 @@ import {
   generateRandomMongoId,
   IDatabaseItem,
   generateRandomInbox,
+  createCustomerRecords,
+  generateRandomPostgresId,
 } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
+import { BUSINESS_ACCOUNT_1 } from "./business";
 
 const type = "postgres";
 const modelName = "customer";
@@ -68,3 +71,81 @@ export const CUSTOMER_122 = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_YUNIVERSAL_BOOST = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  preferredContentLocation: "GB",
+  email: generateRandomInbox(),
+  userInfo: {
+    isAvatarCreated: true,
+    earnRate: 10,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+  userGameState: {
+    currentBalance: 500,
+    currentStreak: 1,
+    currentLevel: 51,
+  },
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+});
+
+export const CUSTOMER_CONSUMABLE_BOOST = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  preferredContentLocation: "GB",
+  email: generateRandomInbox(),
+  userInfo: {
+    isAvatarCreated: true,
+    earnRate: 10,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+  userGameState: {
+    currentBalance: 500,
+    currentStreak: 1,
+    currentLevel: 10,
+  },
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+});
+
+export const CUSTOMER_MIXED_CONSUMABLES = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  preferredContentLocation: "GB",
+  email: generateRandomInbox(),
+  userInfo: {
+    isAvatarCreated: true,
+    earnRate: 10,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+  userGameState: {
+    currentBalance: 500,
+    currentStreak: 1,
+    currentLevel: 10,
+  },
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+});

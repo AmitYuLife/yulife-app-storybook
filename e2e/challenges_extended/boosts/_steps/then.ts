@@ -1,13 +1,10 @@
-import { navigation} from "@utils";
+import { navigation } from "@utils";
 import { screens } from "@appScreens";
+import { waitFor } from "detox";
+import * as ids from "@ids";
 
-export const {
-  idVisible,
-  textVisible,
-  idExist,
-  wait,
-  completedTodayStreakCopyVisible
-} = navigation.common;
+export const { idVisible, textVisible, idExist, wait, completedTodayStreakCopyVisible } =
+  navigation.common;
 
 export const {
   onChallengeComplete,
@@ -15,28 +12,64 @@ export const {
   isOnQuitChallengeScreen,
   canSeeNewChallengePage,
   canSeeChallengeTiles,
-  yunityRewardsVisible
+  yunityRewardsVisible,
 } = screens.challenges;
 
-export const {
-  scrollUntilTextVisibleAtIndex,
-  scrollUntilIdVisible
-} = navigation.scrolling;
+export const { scrollUntilTextVisibleAtIndex, scrollUntilIdVisible } = navigation.scrolling;
 
-export const {
-  unlockedYumojiItemsVisible
-} = screens.yuscreen
+export const { unlockedYumojiItemsVisible } = screens.yuscreen;
 
 export const canSeeForestYunity = async () => {
-  await textVisible("You've achieved Yunity\nwith the Forest")()
-}
+  await textVisible("You've achieved Yunity\nwith the Forest")();
+};
 
 export const canSeeForestYunityChestIntro = async () => {
-  await textVisible("You've earned the\nYunity Forest Chest!")()
-}
+  await textVisible("You've earned the\nYunity Forest Chest!")();
+};
 
-export const stepsChallengeDataCorrect = (stage: number, yucoinEarned: number, steps: number) =>  async () => {
-  await textVisible(`Level ${stage}`)()
-  await textVisible(`${yucoinEarned}`)()
-  await textVisible(`${steps} steps`)()
-}
+export const stepsChallengeDataCorrect =
+  (stage: number, yucoinEarned: number, steps: number) => async () => {
+    await textVisible(`Level ${stage}`)();
+    await textVisible(`${yucoinEarned}`)();
+    await textVisible(`${steps} steps`)();
+  };
+
+export const inventoryItemVisible =
+  (itemName: string, timeout = 3_000) =>
+  async () => {
+    await waitFor(element(by.id(ids.INVENTORY_ITEM(itemName))))
+      .toBeVisible()
+      .withTimeout(timeout);
+  };
+
+export const inventoryItemNotVisible =
+  (itemName: string, timeout = 3_000) =>
+  async () => {
+    await waitFor(element(by.id(ids.INVENTORY_ITEM(itemName))))
+      .not.toBeVisible()
+      .withTimeout(timeout);
+  };
+
+export const activateButtonDisabled = async (timeout = 3_000) => {
+  await waitFor(element(by.id(ids.ACTIVATE_POWER_UP_BUTTON(false))))
+    .toBeVisible()
+    .withTimeout(timeout);
+};
+
+export const activateButtonEnabled = async (timeout = 3_000) => {
+  await waitFor(element(by.id(ids.ACTIVATE_POWER_UP_BUTTON(true))))
+    .toBeVisible()
+    .withTimeout(timeout);
+};
+
+export const inventoryItemActivated = async (timeout = 3_000) => {
+  await waitFor(element(by.id(ids.ACTIVATED_INVENTORY_ITEM)))
+    .toBeVisible()
+    .withTimeout(timeout);
+};
+
+export const itemNotSelectable = async (timeout = 3_000) => {
+  await waitFor(element(by.id(ids.ACTIVATE_POWER_UP_BUTTON(false))))
+    .toBeVisible()
+    .withTimeout(timeout);
+};
