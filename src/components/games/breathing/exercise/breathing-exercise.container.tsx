@@ -29,6 +29,7 @@ import AvPlayerProgressBar from "@components/organisms/av-player-progress-bar/av
 const FOREST_COLOUR = "#018547";
 
 const DEFAULT_DURATION_MS = 180 * 1000; // 3 minutes
+const DETOX_DURATION_MS = 60 * 1000; // 60 seconds for detox
 
 const TRANSLATION_MAPPING: Partial<Record<BreathingExerciseOptionPartType, string>> = {
   [BreathingExerciseOptionPartType.End]: "screens.breathing_exercise.end",
@@ -69,7 +70,8 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   const { startChallenge, completeChallenge } = usePathwayChallenge({ componentId, challengeId, skipQuery: true });
   const { markAsCompleted } = useCancelPathwayChallenge({ challengeId });
 
-  const selectedDurationMsRef = useRef(data.defaultDuration || DEFAULT_DURATION_MS);
+  const initialDuration = DETOX_ENABLED ? DETOX_DURATION_MS : data.defaultDuration || DEFAULT_DURATION_MS;
+  const selectedDurationMsRef = useRef(initialDuration);
 
   const handleCompleted = useCallback(async () => {
     dispatch(
@@ -117,7 +119,7 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   const { startPlaying, togglePlaying, updateSelectedDurationMs, selectedDurationMs, isPlaying, currentPart } =
     useBreathingExercise({
       parts: data.parts.map((part) => ({ ...part })),
-      defaultDuration: data.defaultDuration || DEFAULT_DURATION_MS,
+      defaultDuration: initialDuration,
       onCompleted: handleCompleted,
       onStarted: handleStarted,
       onPaused: handlePaused,
@@ -243,14 +245,13 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   }, [selectedDurationMs]);
 
   useEffect(() => {
-    if (DETOX_ENABLED) {
-      return;
-    }
-
     // auto play after a tiny delay (only on mount)
-    const timeout = setTimeout(() => {
-      startPlaying();
-    }, 500);
+    const timeout = setTimeout(
+      () => {
+        startPlaying();
+      },
+      DETOX_ENABLED ? 100 : 500
+    );
 
     return () => {
       clearTimeout(timeout);
