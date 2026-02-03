@@ -1505,8 +1505,7 @@
       "header": "تأمل اليوم",
       "health_insights": "التحليلات الصحية",
       "journey_header": "الرحلة الحالية",
-      "journey_header_starts": "انعكس ل%{maxProgress} يومًا لفتح التحدي الإضافي",
-      "journey_header_starts_in": "فتح تأمل جديد في **%{hours}:%{minutes}:%{seconds}**",
+      "journey_header_starts": "انعكس لمدة %{maxProgress} أيام متتالية لاكتساب مهمة مكافئة إضافية",
       "personal_health_path": {
         "heading": "مسار الصحة الشخصية"
       },

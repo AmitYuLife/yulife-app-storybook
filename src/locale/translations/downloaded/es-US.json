@@ -1505,8 +1505,7 @@
       "header": "Reflexión de hoy",
       "health_insights": "Información sanitaria",
       "journey_header": "Viaje actual",
-      "journey_header_starts": "Reflexiona durante %{maxProgress} días para desbloquear el desafío extra",
-      "journey_header_starts_in": "El nuevo reflejo se desbloquea en **%{hours}:%{minutes}:%{seconds}**",
+      "journey_header_starts": "Reflexiona durante %{maxProgress} días consecutivos para ganar una misión extra.",
       "personal_health_path": {
         "heading": "Trayectoria personal de salud"
       },
