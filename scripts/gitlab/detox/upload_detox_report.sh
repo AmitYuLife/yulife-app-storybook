@@ -17,6 +17,23 @@ set -eo pipefail
 # shellcheck disable=SC1090
 source ~/.zprofile
 
+# Use project node version
+nvm use
+PATH="$(dirname "$(nvm which --silent)"):$PATH"
+export PATH
+echo "Node version: $(node --version)"
+
+##############################
+# Sync Jest and Allure Reports
+##############################
+REPORT_PATH="$CI_PROJECT_DIR/e2e-report"
+aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/$CI_PIPELINE_IID" --no-progress --quiet
+
+# If current branch is develop sync the current folder to "develop"
+if [ "$CI_COMMIT_BRANCH" = "develop" ]; then
+  aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/develop" --no-progress --delete --quiet
+fi
+
 ##############################
 # Constants
 ##############################
@@ -136,17 +153,6 @@ echo "Deleting gallery..."
 rm -rf "gallery"
 echo "Deleting screenshots..."
 rm -rf "screenshots"
-
-##############################
-# Sync Jest and Allure Reports
-##############################
-REPORT_PATH="$CI_PROJECT_DIR/e2e-report"
-aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/$CI_PIPELINE_IID" --no-progress --quiet
-
-# If current branch is develop sync the current folder to "develop"
-if [ "$CI_COMMIT_BRANCH" = "develop" ]; then
-  aws s3 sync "$REPORT_PATH" "s3://$REPORT_S3_BUCKET_NAME/detox/reports/$DETOX_TEST_TYPE/develop" --no-progress --delete --quiet
-fi
 
 ##############################
 # Set Output Variables

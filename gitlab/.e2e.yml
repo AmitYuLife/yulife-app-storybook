@@ -166,6 +166,7 @@ ios-detox-build-app:
     paths:
       - e2e-report/**/*.log
       - e2e-report/results.json
+      - e2e-report/allure-results
     expire_in: 7 days
     untracked: false
 
