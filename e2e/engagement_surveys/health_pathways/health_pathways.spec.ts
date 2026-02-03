@@ -110,8 +110,7 @@ Feature("Health Pathways", async () => {
     });
   });
 
-  // @UPDATE -- Temp Skip breathing exercise flow has changed
-  ScenarioSkip("Health Pathway challenge completes successfully", scenario.start, async () => {
+  Scenario("Health Pathway challenge completes successfully", scenario.start, async () => {
     Given("I am logged in", given.loginAsUser(data.CUSTOMER_9.customer, GENERIC_AUTH_PASSWORD), async () => {
       When("I open the debug menu item 'pathways-progress'", when.openDebugMenuItem("pathways-progress", "pathways progress"), async () => {
         When("I set 'Last day complete' and save", when.setPathwaysProgress("Last day complete"), async () => {
@@ -131,26 +130,27 @@ Feature("Health Pathways", async () => {
       Then("I should see the challenge intro title", then.idVisible(ids.CHALLENGE_INTRO_TITLE, 3_000));
     });
     When("I tap Continue", when.tapID(ids.LABELS_CTA_CONTINUE, 2_000), async () => {
-      When("I tap to start the box breathing", when.tapID(ids.BUTTON_BASE("Start", false), 2_000), async () => {
-        Then("I should see the duration picker", then.idVisible(ids.BREATHING_EXERCISE_DURATION_PICKER, 3_000));
-      });
-    });
-    When("I tap on the duration picker", when.tapID(ids.BREATHING_EXERCISE_DURATION_PICKER, 2_000), async () => {
-      When("I tap to change the duration to 1 min", when.tapID(ids.GENERIC_SELECTOR_ITEM("1 min"), 2_000), async () => {
-        When("I tap start", when.tapID(ids.GENERIC_SELECTOR_CONFIRM, 2_000), async () => {
-          Then("The breathing exercise is active", then.idVisible(ids.CTA_PAUSE, 2_000));
+      When("I tap to start the box breathing", when.tapID(ids.BUTTON_BASE("Start", false), 4_000), async () => {
+        When("I wait for the breathing exercise to complete", when.wait(65_000), async () => {
+          Then("I can see my 90 reward coins", then.idVisible(ids.CHALLENGE_REWARD(90), 3_000));
         });
       });
-    });
-    When("I wait for the breathing exercise to complete", when.wait(60_000), async () => {
-      Then("I can see my 90 reward coins", then.idVisible(ids.CHALLENGE_REWARD(90), 2_000));
     });
     When("I collect my reward", when.tapID(ids.CTA_COLLECT, 2_000), async () => {
-      When("I navigate to the Quests", when.tapID(ids.NAV_BAR("quests"), 2_000), async () => {
-        When("I tap 855 level challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(855), 2_000), async () => {
-          Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TITLE("Yunity Quest")));
-          Then("I should see the health challenge completed", then.idVisible(ids.PATHWAYS_CHALLENGE_COMPLETED));
-        });
+      Then("I should see the feedback screen", then.textVisible("How do you feel?", 3_000));
+      Then("I should see the feedback description", then.textVisible("How do you feel now compared to when you started this challenge?", 2_000));
+      Then("I should see the feedback slider on the default state", then.idVisible(ids.SLIDABLE_POSITION(2), 3_000));
+    });
+    When("I select 'Better' on the feedback scale", when.tapID(ids.SLIDABLE_POSITION(3), 3_000), async () => {
+      Then("I should see the feedback slider updated", then.idVisible(ids.SLIDABLE_POSITION(2), 3_000));
+    });
+    When("I tap Continue on the feedback screen", when.tapID(ids.LABELS_CTA_CONTINUE, 2_000), async () => {
+      Then("I should land back on the Yuscreen", then.idVisible(ids.YUSCREEN_V5_USERNAME("Ronnie James Dio"), 3_000));
+    });
+    When("I navigate to the Quests", when.tapID(ids.NAV_BAR("quests"), 2_000), async () => {
+      When("I tap 855 level challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(855), 2_000), async () => {
+        Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TITLE("Yunity Quest")));
+        Then("I should see the health challenge completed", then.idVisible(ids.PATHWAYS_CHALLENGE_COMPLETED));
       });
     });
     When("I go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR, 2_000), async () => {
