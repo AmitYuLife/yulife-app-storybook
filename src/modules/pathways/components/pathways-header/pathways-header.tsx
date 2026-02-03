@@ -19,6 +19,7 @@ interface IPathwaysHeaderProps extends IBoxProps {
   coinAwards: number[];
   maxProgress: number;
   pathwayChallenge: PathwayChallenge;
+  isStreakComplete: boolean;
 }
 
 const BOX_SIZE = 134;
@@ -36,6 +37,7 @@ const PathwaysHeader = ({
   coinAwards,
   reflectionProgress,
   pathwayChallenge,
+  isStreakComplete,
   ...boxProps
 }: IPathwaysHeaderProps) => {
   const finalItemStatus = useMemo(() => {
@@ -115,6 +117,7 @@ const PathwaysHeader = ({
               status={finalItemStatus}
               timeToNextQuestionnaire={timeRemaining}
               isChallengeCompleted={pathwayChallenge?.isCompleted}
+              isStreakComplete={isStreakComplete}
             />
           </Box>
         </Box>

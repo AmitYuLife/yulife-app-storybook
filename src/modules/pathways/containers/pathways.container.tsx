@@ -22,7 +22,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
 
   const { tempGameEnablePathwaysStreaks } = useUserFeatures();
 
-  const { data, loading } = usePathways(componentId);
+  const { data, loading, isStreakComplete } = usePathways(componentId);
 
   const { pathwayChallenge } = usePathwayChallenge({ componentId });
 
@@ -69,8 +69,19 @@ const PathwaysContainer = ({ componentId }: Props) => {
       adviceSection: data?.getUserPathwayAdviceSection,
       interventionSections: data?.getInterventionItems?.sections as Array<FeatureCardSection | WellbeingHubSection>,
       pathwayChallenge: pathwayChallenge,
+      isStreakComplete: isStreakComplete,
     }),
-    [data, loading, onClose, onReflect, onOpenMoodCalendar, moodSubmissions, reflectionProgress, pathwayChallenge]
+    [
+      data,
+      loading,
+      onClose,
+      onReflect,
+      onOpenMoodCalendar,
+      moodSubmissions,
+      reflectionProgress,
+      pathwayChallenge,
+      isStreakComplete,
+    ]
   );
 
   if (!tempGameEnablePathwaysStreaks) {

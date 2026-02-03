@@ -23,6 +23,7 @@ interface IPathwayReflectChestProps {
   yucoinAmount?: number;
   status: PathwaysReflectionStatus;
   isChallengeCompleted?: boolean;
+  isStreakComplete?: boolean;
 }
 
 const CHEST_IMAGE_SIZE = 90;
@@ -33,6 +34,7 @@ const PathwayReflectChest = ({
   yucoinAmount,
   status,
   isChallengeCompleted,
+  isStreakComplete,
 }: IPathwayReflectChestProps) => {
   const isHealthChallengeReady = status === "completed" && !!onPress;
 
@@ -66,7 +68,7 @@ const PathwayReflectChest = ({
     });
   }, [status, yucoinAmount]);
 
-  const isDisabled = isChallengeCompleted || !["active", "completed"].includes(status);
+  const isDisabled = (isStreakComplete && isChallengeCompleted) || !["active", "completed"].includes(status);
 
   return (
     <PathwaysReflectionCard onPress={onPress} isDisabled={isDisabled}>
