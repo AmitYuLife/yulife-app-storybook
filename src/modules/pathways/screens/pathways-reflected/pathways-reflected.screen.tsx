@@ -40,6 +40,7 @@ const PathwaysReflectedScreen = ({
   isStreakComplete,
   reflectionProgress,
 }: IPathwaysReflectedScreenProps) => {
+  const currentStreak = currentProgress || 0;
   const { maxProgress = 5, reflectedToday = false } = reflectionProgress ?? {};
   const { bottom, top } = useSafeAreaInsets();
   const { width } = useWindowDimensions();
@@ -75,15 +76,15 @@ const PathwaysReflectedScreen = ({
                 <Box gap={50} px={20}>
                   <Box>
                     <TextTemplate type="big64" textAlign="center" color={colours.neutral.white}>
-                      {currentProgress}
+                      {currentStreak}
                     </TextTemplate>
                     <Box gap={5}>
                       <TextTemplate type="h3" textAlign="center" color={colours.neutral.white}>
-                        {t("screens.pathways.reflected.title", { smart_count: currentProgress })}
+                        {t("screens.pathways.reflected.title", { smart_count: currentStreak })}
                       </TextTemplate>
                       <TextTemplate type="b1" textAlign="center" color={colours.neutral.white}>
                         {t(
-                          isStreakComplete || currentProgress > 1
+                          isStreakComplete || currentStreak > 1
                             ? "screens.pathways.reflected.subtitle"
                             : "screens.pathways.reflected.subtitle_locked"
                         )}
@@ -93,7 +94,7 @@ const PathwaysReflectedScreen = ({
 
                   <Box bg={Colours.neutral.white} br={10} px={20} py={20}>
                     <PathwayStreaks
-                      currentStreak={currentProgress}
+                      currentStreak={currentStreak}
                       reflectedToday={reflectedToday}
                       maxProgress={maxProgress}
                       textColor={colours.neutral.n900}
