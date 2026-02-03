@@ -376,7 +376,11 @@ const BattlePassContainer = ({
 
   if (showFtux) {
     return (
-      <BattlePassIntroScreen backgroundImage={{ uri: battlePass?.backgroundImage?.uri }} onClose={handleCloseFtux} />
+      <BattlePassIntroScreen
+        backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
+        onClose={handleCloseFtux}
+        isInnerScreen={isInnerScreen}
+      />
     );
   }
 
