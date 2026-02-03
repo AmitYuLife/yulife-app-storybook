@@ -34,7 +34,7 @@ const BattlePassIntroStep: FC<Props> = ({ stepNumber, text, image }) => {
       flexDirection="row"
       alignItems="center"
       justifyContent="space-between"
-      mx={32}
+      mx={28}
       testID={BATTLE_PASS_INTRO_STEP(stepNumber)}
     >
       <Box flexDirection="row" gap={16}>
@@ -47,8 +47,8 @@ const BattlePassIntroStep: FC<Props> = ({ stepNumber, text, image }) => {
           <Markdown text={text} markdownStyles={markdownStyles} containerStyle={styles.markdownContainer} />
         </Box>
       </Box>
-      <Box>
-        <Image position="absolute" top={0} left={0} source={image} width={200} height={200} contentFit="contain" />
+      <Box flex={1} right={-20} alignItems="flex-end">
+        <Image source={image} width={200} position="absolute" contentFit="contain" />
       </Box>
     </Box>
   );

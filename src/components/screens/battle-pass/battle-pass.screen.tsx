@@ -73,6 +73,8 @@ const BattlePassScreen = ({
     }
   }, [rewards]);
 
+  const headerPt = showNavigation || isInnerScreen ? TOP_BAR_WITH_PAD : 0;
+
   if (showFirstLevelScreenState) {
     return (
       <Box flex={1} bg={Colours.neutral.white} pb={isInnerScreen ? 80 : 0} testID={BATTLE_PASS_SCREEN}>
@@ -85,7 +87,7 @@ const BattlePassScreen = ({
           onBackPress={onBackPress}
           showNavigation={showNavigation}
           componentId={componentId}
-          headingPt={showNavigation || isInnerScreen ? TOP_BAR_WITH_PAD : 0}
+          headingPt={headerPt}
         />
       </Box>
     );
@@ -103,7 +105,7 @@ const BattlePassScreen = ({
           onScrollStart={onScrollStart}
           onPressWallet={onPressWallet}
           progressStatus={progressStatus}
-          pt={showNavigation || isInnerScreen ? TOP_BAR_WITH_PAD : 0}
+          pt={headerPt}
         />
         <Box px={16} pb={showNavigation || isInnerScreen ? 0 : 80} mt={30} flex={1}>
           <ScrollView scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
