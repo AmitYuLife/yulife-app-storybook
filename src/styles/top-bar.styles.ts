@@ -52,7 +52,7 @@ export const PADDING_TOP = initialWindowMetrics.insets.top + (hasNotch ? Style.a
 export const PADDING_BOTTOM = Style.adjust(5);
 export const LEFT_PADDING_TOP = Style.adjust(3);
 export const LOGO_PADDING_TOP = Style.adjust(12);
-export const TOP_BAR_WITH_PAD = HEIGHT + PADDING_TOP + PADDING_BOTTOM + Style.adjust(10);
+export const TOP_BAR_WITH_PAD = HEIGHT + PADDING_TOP + PADDING_BOTTOM;
 export default {
   HEIGHT,
   PADDING_TOP,
