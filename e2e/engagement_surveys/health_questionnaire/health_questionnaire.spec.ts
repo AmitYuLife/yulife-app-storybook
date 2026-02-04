@@ -89,17 +89,17 @@ Feature("Health questionnaires", async () => {
 
   Scenario("I should see the Health Questionnaire and be able to complete, if I have not done so before", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_3, data.AUTH_3), async () => {
-      Then("I should see my YuCoin balance of 200, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      Then("I should see my YuCoin balance of 200, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200), 4_000));
       Then("I should see '200 YuCoin Today' before the HQ", then.textVisible("200 YuCoin today"));
       Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("Daily health questions")));
     });
-    When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+    When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0), 5_000), async () => {
       When("I swipe to the bottom", when.scrollWithLimitedAttemptsUntilIdVisible(ids.TODAYS_EARNINGS, ids.ACTIVITY_FEED_ID("health-questionnaire-slot"), "up"), async () => {
         Then("I can see the Daily Reflection title", then.textVisible("Daily Reflection"));
         Then("I should see the Let's go! button", then.textVisible("Let's go!"));
       });
     });
-    When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
+    When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0, 5_000), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
     When("I close the HQ", when.tapID(ids.SCREEN_CLOSE, 3000), async () => {

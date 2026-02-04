@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioSkip, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as ids from "@ids";
 import * as scenario from "./_steps/scenario";
 import * as when from "./_steps/when";
@@ -633,16 +633,16 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
       });
     });
     When("I tap I'm commited", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-      Then("I should be on the pledge screen", then.textVisible(smoking_questions[locale].commitment_2.description_1));
-      Then("I should see the fingerprint button", then.idVisible(ids.GESTURE_WRAPPER));
+      Then("I should be on the pledge screen", then.textVisible(smoking_questions[locale].commitment_2.description_1, 4_000));
+      Then("I should see the fingerprint button", then.idVisible(ids.GESTURE_WRAPPER, 4_000));
     });
     When("I tap the finger print", when.tapID(ids.GESTURE_WRAPPER), async () => {
-      Then("I should see the take your first steps button", then.textVisible("Take your first steps"));
+      Then("I should see the take your first steps button", then.textVisible("Take your first steps", 3_000));
     });
-    When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-      When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
-        When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
-          Then("I can see my YuCoin Balance is 1,270", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1270)));
+    When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3_000), async () => {
+      When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW, 3_000), async () => {
+        When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA, 3_000), async () => {
+          Then("I can see my YuCoin Balance is 1,270", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1270), 3_000));
         });
       });
     });

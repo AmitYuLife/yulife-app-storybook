@@ -169,8 +169,19 @@ export const fullRestartAndLogin =
     region: "UK" | "US" | "JP" | "SA" = "UK"
   ) =>
   async () => {
+    await wait(4_000)();
+
     await device.terminateApp();
+
+    await wait(2000)();
+
     await device.clearKeychain();
-    await launchApp({ delete: true });
+
+    await wait(2_000)();
+
+    await launchApp({ delete: true, newInstance: true });
+
+    await wait(2_000)();
+
     await loginAsUser(customer, auth, fitkitAuth, region)();
   };

@@ -101,26 +101,28 @@ Feature("Referrals work as intended", async () => {
   Scenario("As a user with concurrent employments, I should be able to refer someone through any of my employments", scenario.start, async () => {
     Given("I trigger the referral worker", given.triggerawardReferralYucoin(data.CUSTOMER_16.customer.data.customerId), async () => {
       When("I login", given.loginAsUser(data.CUSTOMER_15.customer, GENERIC_AUTH_PASSWORD), async () => {
-        When("I go to the menu page", when.tapID(ids.MENU_ICON), async () => {
+        When("I go to the menu page", when.tapID(ids.MENU_ICON, 2000), async () => {
           Then("I should be on the menu screen", then.menuItemsVisible("enhanced"));
           Then("I should see the Invite a colleague menu item", then.idVisible(ids.MENU_ITEM("Invite a Colleague")));
         });
       });
     });
-    When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("Invite a Colleague")), async () => {
-      Then("I should see that my currently selected referral company is 'YU LIFE LTD'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_1.data.business_account_name)));
-      Then("I should see the correct voucher code for this business", then.idVisible(ids.REFERRALS_CODE("T2ST-CU14")));
+    When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("Invite a Colleague"), 2000), async () => {
+      When("I wait for the referrals page to load", when.waitForReferralsPageReady(3000), async () => {
+        Then("I should see that my currently selected referral company is 'YU LIFE LTD'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_1.data.business_account_name), 2000));
+        Then("I should see the correct voucher code for this business", then.idVisible(ids.REFERRALS_CODE("T2ST-CU14")));
+      });
     });
-    When("I scroll to the bottom", when.scrollFromID(ids.REFERRALS_SHARE_CODE_BUTTON, "up", "fast", undefined, 3000), async () => {
-      Then("I should see the empty referral history", then.textVisible(noReferralsMessage));
+    When("I scroll to the bottom", when.scrollFromID(ids.REFERRALS_SHARE_CODE_BUTTON, "up", "fast", 0.5, 3000), async () => {
+      Then("I should see the empty referral history", then.textVisible(noReferralsMessage, 2000));
     });
-    When("I scroll back to the top", when.scrollFromID(ids.REFERRALS_SHARE_CODE_BUTTON, "down", "fast", undefined, 3000), async () => {
+    When("I scroll back to the top", when.scrollFromID(ids.REFERRALS_SHARE_CODE_BUTTON, "down", "fast", 0.5, 3000), async () => {
       When("I change the selected business to 'Justice League' using the dropdown", when.changeReferralSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name, 3000), async () => {
-        Then("I should see that my currently selected referral company has changed to 'Justice League'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name)));
+        Then("I should see that my currently selected referral company has changed to 'Justice League'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name), 2000));
         Then("I should see the correct voucher code for this business", then.idVisible(ids.REFERRALS_CODE("T3ST-CU14")));
       });
     });
-    When("I scroll to the bottom", when.scrollFromID(ids.REFERRALS_SHARE_CODE_BUTTON, "up", "fast", undefined, 3000), async () => {
+    When("I scroll to the bottom", when.scrollFromID(ids.REFERRALS_SHARE_CODE_BUTTON, "up", "fast", 0.5, 3000), async () => {
       Then("I should see the referral for Reverald B", then.referralVisible(data.CUSTOMER_16.customer, moment().format("DD/MM/YYYY"), "2000"));
       Then("I should see the users name written firstName lastName", then.idVisible(ids.REFERRALS_SCREEN_NAME("Reverald Bownus")));
     });
@@ -139,7 +141,9 @@ Feature("Referrals work as intended", async () => {
     When("I select JA for language", when.tapID(ids.TEXT_TEMPLATE("🇯🇵 日本語 (JA)", "undefined"), 3000), async () => {
       When("I press the hamburger menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR, 3000), async () => {
         When("I press the menu item for invite", when.tapID(ids.MENU_ITEM("同僚を招待する"), 3000), async () => {
-          Then("I should see that my currently selected referral company is 'YU LIFE LTD'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_1.data.business_account_name)));
+          When("I wait for the referrals page to load", when.waitForReferralsPageReady(3000), async () => {
+            Then("I should see that my currently selected referral company is 'YU LIFE LTD'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_1.data.business_account_name), 2000));
+          });
         });
       });
     });
@@ -148,8 +152,10 @@ Feature("Referrals work as intended", async () => {
     });
     When("I go to the menu page", when.tapID(ids.MENU_ICON, 5000), async () => {
       When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("同僚を招待する"), 3000), async () => {
-        When("I change the selected business to 'Justice League' using the dropdown", when.changeReferralSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name, 3000), async () => {
-          Then("I should see that my currently selected referral company has changed to 'Justice League'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name), 3000));
+        When("I wait for the referrals page to load", when.waitForReferralsPageReady(3000), async () => {
+          When("I change the selected business to 'Justice League' using the dropdown", when.changeReferralSelectedBusiness(data.BUSINESS_ACCOUNT_4.data.business_account_name, 3000), async () => {
+            Then("I should see that my currently selected referral company has changed to 'Justice League'", then.idVisible(ids.REFERRALS_BUSINESS_ACCOUNT_NAME(data.BUSINESS_ACCOUNT_4.data.business_account_name), 3000));
+          });
         });
       });
     });
