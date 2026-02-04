@@ -22,56 +22,52 @@ const GenericHeadingAbsolute = (props: Props) => {
   const shadowOpacityStyle = useGenericHeadingShadowOpacity(hasShadow, scrollValue);
 
   return (
-    <>
-      <Box
-        left={0}
-        right={0}
-        position="absolute"
-        alignItems="center"
-        bg={backgroundColor}
-        justifyContent="center"
-        pointerEvents="box-none"
-        disableAutoAdjust={true}
-        testID={CONNECTION_SETUP_TITLE}
-      >
-        <Box w="100%" mt={TOP_BAR.PADDING_TOP} h={TOP_BAR.HEIGHT} mb={TOP_BAR.PADDING_BOTTOM} disableAutoAdjust={true}>
-          <GenericHeading {...props} />
-        </Box>
-
-        {children}
-
-        {hideBorder ? null : (
-          <Box
-            position="absolute"
-            bottom={0}
-            left={0}
-            right={0}
-            width="100%"
-            height={Platform.select({ ios: StyleSheet.hairlineWidth, android: 1 })}
-            bg={Colours.overlay.black20}
-            testID={BUTTON_CLOSE}
-          />
-        )}
-
-        {hasShadow ? (
-          <Box
-            position="absolute"
-            bottom={-4}
-            left={0}
-            right={0}
-            width="100%"
-            height={4}
-            bg="black"
-            pointerEvents="none"
-            forceAnimated={true}
-            style={shadowOpacityStyle}
-          />
-        ) : null}
-      </Box>
-    </>
+    <Box
+      pointerEvents="box-none"
+      position="absolute"
+      left={0}
+      right={0}
+      minHeight={TOP_BAR.TOP_BAR_WITH_PAD}
+      pt={TOP_BAR.PADDING_TOP}
+      justifyContent="center"
+      alignItems="center"
+      disableAutoAdjust={true}
+      bg={backgroundColor}
+      testID={CONNECTION_SETUP_TITLE}
+    >
+      <GenericHeading {...props} />
+      {children}
+      {hideBorder ? null : (
+        <Box
+          position="absolute"
+          bottom={0}
+          left={0}
+          right={0}
+          w="100%"
+          h={Platform.select({ ios: StyleSheet.hairlineWidth, android: 1 })}
+          bg={Colours.overlay.black20}
+          testID={BUTTON_CLOSE}
+          disableAutoAdjust={true}
+        />
+      )}
+      {hasShadow ? (
+        <Box
+          position="absolute"
+          bottom={-4}
+          left={0}
+          right={0}
+          width="100%"
+          height={4}
+          bg="black"
+          pointerEvents="none"
+          forceAnimated={true}
+          style={shadowOpacityStyle}
+        />
+      ) : null}
+    </Box>
   );
 };
 
-export const GenericHeadingPad = () => <Box h={TOP_BAR.TOP_BAR_WITH_PAD} disableAutoAdjust={true} />;
+export const GenericHeadingPad = () => <Box height={TOP_BAR.TOP_BAR_WITH_PAD} disableAutoAdjust={true} />;
 
 export default GenericHeadingAbsolute;

@@ -72,3 +72,12 @@ export const getUniqueDeviceId = async (): Promise<string> => {
 
   return deviceId;
 };
+
+export const getDeviceName = () => {
+  if (Device.modelName === "Simulator iOS") {
+    // expo-device deviceName is the name that can be set by the user of the device e.g. "Leomar's iPhone"
+    return Device.deviceName;
+  }
+
+  return Device.modelName;
+};
