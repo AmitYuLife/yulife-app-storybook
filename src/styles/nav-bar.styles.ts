@@ -1,5 +1,6 @@
 import { initialWindowMetrics } from "react-native-safe-area-context";
 import Style from "./style";
+import { isAndroid } from "@utils";
 
 const BORDER_RADIUS = Style.adjust(8);
 const OUTER_PADDING = Style.adjust(16);
@@ -7,6 +8,10 @@ const HEIGHT = Style.adjust(58);
 
 const getPositionBottom = (options = { additionalBottom: 0 }) => {
   const { additionalBottom } = options;
+
+  if (isAndroid()) {
+    return Style.adjust(20) + additionalBottom;
+  }
 
   return (initialWindowMetrics.insets.bottom || Style.adjust(20)) + additionalBottom;
 };
