@@ -7,6 +7,86 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.100.0] - 2026-02-04
+
+### Features
+
+- Feature GS-2225: Use new get challenge media & internal content query
+- Feature GS-2228: FTUX donation flow
+
+### Bugfixes
+
+- Bugfix GS-2307: Generic heading absolute issue & getDeviceName() func
+- Bugfix GS-2297: Android navbar too high
+- Bugfix GS-2307: Topbar pad issue
+- Bugfix DEVOPS-4951: Use project Node version for building detox report
+- Bugfix GS-2304: Fix worse emoji
+- Bugfix GS-2228: FTUX fixes on inner screen/with navigation
+- Bugfix GS-2303: Fix null/undefined currentProgress value
+- Bugfix GS-2295: Correct copy about streaks
+- Bugfix GS-2293: Keep animal in their place
+- Bugfix GS-2292: Revert theme style change to lunar forest success screen
+- Bugfix GS-2286: Add duration for yunity quest
+- (grafted) Bugfix GS-2233: contentItemImage not taking full device width
+
+### Tasks
+
+- Task DEVOPS-4919: Reduce combine overnight report AWS verbosity logs
+- Task GS-2297: Fix top bar heights
+- Task GS-2263: Add cancel pathway challenge functionality
+- Task GS-2284: Pathways: Add tile outline
+- Task DEVOPS-4875: Update MacOS base image
+- Task GS-2259: Removal of react-native-device-info fixes
+- Task GS-2187: cast on TV anti cheat fix
+- Task: GS-2259 Purge react-native-device-info
+- Task: GS-2282 Copy Podfile.lock after pod install
+- Task GS-2188: anti cheat airplay
+- Task GS-2262: Fix storybook
+- Task GS-2261: Set castFrameworkVersion to fix android build
+- Task GS-2187: google cast initial setup
+- Task GS-2253: fish
+- (grafted) Merge branch 'task/plural-day-days' into 'develop'
+- Task GS-2223: Not counting pathwayChallenge as challenge
+- (grafted) Task DEVOPS-4851: Fix Detox Allure report history
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore DEVOPS-4416: Send gitlab MR reporter message in case of failure
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox GS-2310: Stabilise Flaky Tests
+- CTE-594: jira to detox split up into skillz
+- Detox GS-2168: Update Detox Readme
+- Fix GS-2289: updated logic for pathways chest disable logic
+- Detox GS-2041: Disable Boost Consumables
+- Detox GS-2179: Health Challenge Feedback Slider
+- Hotfix GS-2300: Use CenteredScreen for feedback screen
+- Fix GS-2287: max yu animation on hitting it
+- Fix GS-2285: Mood Monitor: Add shadow on top header when scrolling
+- Detox GS-2296: Challenge List Navigation
+- Detox GS-2228: FTUX Donation Flow
+- Detox GS-2031: Pathways Intervention and Advice Cards
+- FIx GS-1571: Current galaxy visual tweaks
+- Detox GS-2283: Language Switch Sync
+- Detox GS-2281: Stabilise Workout Tests for CI
+- Detox GS-2141: Health Challenge Remains Accessible
+- Detox GS-2260: Disable SwimmingFish
+- Bug GS-2211: Conditionally render the pathway subtitle for insights
+- Story GS-2212: Emit Mixpanel event when a pathway item comes into view
+- Detox GS-2218: Health Quest Activity
+- Detox GS-2167: Purge Legacy Engagement Surveys
+- Detox GS-2230: Smoking Opt out Daily Limit
+- (grafted) Merge branch 'detox/gs-2067-health-challenge' into 'develop'
+
 ## [4.99.0] - 2026-01-28
 
 ### Tasks
