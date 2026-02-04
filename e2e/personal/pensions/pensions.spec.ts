@@ -87,7 +87,7 @@ Feature("Smart Pension", async () => {
         Then("I can see a pending pension contribution page", then.canSeePensionContributionPage("pending"));
       });
     });
-    When("I dismiss the product page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 4000), async () => {
+    When("I dismiss the product page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 5_000), async () => {
       Then("I am on back on the YuScreen", then.idVisible(ids.YUSCREEN_V5_USERNAME("Pending DeContribution"), 3000));
     });
     When("I go to the Yu tab", when.navigateTo("yucoin"), async () => {

@@ -8,7 +8,7 @@ export const {
   tapYuCoinIcon,
   navigateViaID,
   dismissNotificationScreenIfVisible,
-  tapIDAtIndex
+  tapIDAtIndex,
 } = navigation.common;
 
 export const {
@@ -16,4 +16,5 @@ export const {
   scrollUntilIdVisible,
   swipeFromText,
   scrollFromID,
-} = navigation.scrolling
+  scrollFromText,
+} = navigation.scrolling;

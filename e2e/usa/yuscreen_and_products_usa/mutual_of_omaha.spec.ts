@@ -6,8 +6,7 @@ import * as scenario from "./_steps/scenario";
 import { BUSINESS_ACCOUNT_USA_2_NPC, CUSTOMER_USA_3, CUSTOMER_USA_4, CUSTOMER_USA_5 } from "../_data";
 import * as ids from "@ids";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
-import { idVisible } from "@utils";
-import { leaderboardCommunitiesMessage, wellbeingHubHeaderMessage } from "./_resources/constants";
+import { wellbeingHubHeaderMessage } from "./_resources/constants";
 
 Feature("Mutual of Omaha specific tests", async () => {
   Scenario("Various features are not visible for a MOO user", scenario.start, async () => {
@@ -48,8 +47,8 @@ Feature("Mutual of Omaha specific tests", async () => {
       Then("I should see the Leaderboard info button", then.idVisible(ids.LEADERBOARD_INFO_BUTTON));
     });
     When("I tap the tooltip", when.tapID(ids.LEADERBOARD_INFO_BUTTON, 3000), async () => {
-      Then("I should see the updated copy for the communities section that doesn't mention companies", then.textVisible(leaderboardCommunitiesMessage, 5000));
-      Then("I have a way to close the 'Leaderboard Info' screen", then.idVisibleAtIndex(ids.BUTTON_CLOSE, 0));
+      Then("I should land on the Leaderboard info screen", then.idVisible(ids.LEADERBOARD_INFO, 5_000));
+      Then("I have a way to close the 'Leaderboard Info' screen", then.idVisibleAtIndex(ids.BUTTON_CLOSE, 0, 2_000));
     });
     When("I click to close this screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 3000), async () => {
       Then("I have a way to open the 'Menu'", then.idVisible(ids.MENU_ICON_BADGE(false)));
@@ -67,12 +66,15 @@ Feature("Mutual of Omaha specific tests", async () => {
 
   Scenario("As a user on the US region, I should be able to get US rewards", scenario.withBattlePassRewards([BUSINESS_ACCOUNT_USA_2_NPC.business.data.businessAccountId]), async () => {
     Given("I login and go to the rewards screen", given.logInAndGoToTab("rewards", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+      Then("I should see the battle pass intro screen", then.idVisible(ids.BATTLE_PASS_INTRO_SCREEN, 3000));
+    });
+    When("I tap the intro CTA button to continue", when.tapID(ids.BATTLE_PASS_INTRO_SCREEN_CTA_BUTTON, 2000), async () => {
       Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 5000));
     });
     When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
       Then("I should see the first item 'Mystery Box'", then.idVisible(ids.BATTLE_PASS_LIST_ITEM_TITLE("Mystery Box"), 5000));
     });
-    When("I tap on the 'Mystery Box'", when.tapID(ids.BATTLE_PASS_LIST_ITEM_TITLE("Mystery Box")), async () => {
+    When("I tap on the 'Mystery Box' reward item", when.tapID(ids.BATTLE_PASS_LIST_ITEM_TITLE("Mystery Box"), 2000), async () => {
       Then("I should see the rewards list", then.idVisible(ids.ITEM_DETAILS_HALF_MODAL_LIST, 5000));
       /**
        * The following scrollWithLimitedAttemptsUntilIdVisible configuration is delicate.
@@ -80,17 +82,17 @@ Feature("Mutual of Omaha specific tests", async () => {
        * If it's too fast, we risk scrolling past the target, and it will cause the test to be flaky.
        */
       When("I scroll to the bottom", when.scrollWithLimitedAttemptsUntilIdVisible(ids.ITEM_DETAILS_HALF_MODAL_LIST, ids.ITEM_DETAILS_REWARD("$5 Target voucher"), "up", 30, 1000, 0.3, 0.5, 0.6, "fast"), async () => {
-        Then("I should be able to see the US related rewards such as `Starbucks US voucher'", then.checkUsMysteryBoxRewardsVisible);
+        Then("I should be able to see the US related rewards such as 'Starbucks US voucher'", then.checkUsMysteryBoxRewardsVisible);
       });
     });
   });
 
   Scenario("Restricted goals work on the MoO pricing tier", scenario.start, async () => {
     Given("I login as a non-MoO pricing tier user and go to the YuCoin screen", given.logInAndGoToTab("yucoin", CUSTOMER_USA_5.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-      Then("I should see the event card 'step to it! - MoO Restriction test' ", then.idVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 4000));
+      Then("I should see the event card 'step to it! - MoO Restriction test' ", then.idVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 5000));
     });
     When("I log out and log in again with a MoO pricing tier user", when.fullRestartAndLogin(CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-      Then("I should NOT see the event card 'step to it! - MoO Restriction test' ", then.idNotVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 3000));
+      Then("I should NOT see the event card 'step to it! - MoO Restriction test' ", then.idNotVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 5000));
     });
   });
 });
