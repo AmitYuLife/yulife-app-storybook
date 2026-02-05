@@ -1,9 +1,11 @@
 query GetPathwayChallenge {
   getPathwayChallenge {
     id
+    challengeId
     heading
     isLocked
     isCompleted
+    isStarted
     reward
     expiresAt
     action {
@@ -11,4 +13,3 @@ query GetPathwayChallenge {
     }
   }
 }
-

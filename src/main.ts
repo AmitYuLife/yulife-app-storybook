@@ -1,4 +1,4 @@
-import { LogBox } from "react-native";
+import { DevSettings, LogBox } from "react-native";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import registerScreens from "./navigation/index";
@@ -27,6 +27,26 @@ Navigation.events().registerAppLaunchedListener(async () => {
   // register all the screens
   registerScreens();
   Navigation.setDefaultOptions();
+
+  if (__DEV__) {
+    DevSettings.addMenuItem("Debug Menu", () => {
+      Navigation.showModal({
+        stack: {
+          children: [
+            {
+              component: {
+                name: ROUTES.debug,
+                id: ROUTES.debug,
+                passProps: {
+                  isModal: true,
+                },
+              },
+            },
+          ],
+        },
+      });
+    });
+  }
 });
 
 if (__DEV__) {

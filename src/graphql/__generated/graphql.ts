@@ -3599,6 +3599,13 @@ export type EmployeeInput = {
   workplacePostcode?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export enum EmployeeInsightsSurveyEmptyState {
+  DataExpired = "DATA_EXPIRED",
+  FirstSurveyInProgress = "FIRST_SURVEY_IN_PROGRESS",
+  InsufficientResponses = "INSUFFICIENT_RESPONSES",
+  NoSurveysCompletedYet = "NO_SURVEYS_COMPLETED_YET",
+}
+
 export type EmployeeListContext = {
   __typename?: "EmployeeListContext";
   maxEmployeesAllowedPerDeactivation?: Maybe<Scalars["Int"]["output"]>;
@@ -4228,6 +4235,18 @@ export type GetEmployeeExperienceFilesResult = {
   statistics?: Maybe<GetEmployeeExperienceFilesFileResult>;
 };
 
+export type GetEmployeeInsightsConfigurationAgeRange = {
+  __typename?: "GetEmployeeInsightsConfigurationAgeRange";
+  maxAge: Scalars["Int"]["output"];
+  minAge: Scalars["Int"]["output"];
+};
+
+export type GetEmployeeInsightsConfigurationResults = {
+  __typename?: "GetEmployeeInsightsConfigurationResults";
+  ageRange?: Maybe<GetEmployeeInsightsConfigurationAgeRange>;
+  surveyEmptyState?: Maybe<EmployeeInsightsSurveyEmptyState>;
+};
+
 export type GetEmployeesByEmployeeIdsResult = {
   __typename?: "GetEmployeesByEmployeeIdsResult";
   employees: Array<GetEmployeesByEmployeeIdsResultEmployee>;
@@ -4839,6 +4858,10 @@ export type HeatmapCell = {
   __typename?: "HeatmapCell";
   /** The formatted text to display for this cell. */
   displayText: Scalars["String"]["output"];
+  /** The tooltip body for this cell. */
+  tooltipBody?: Maybe<Scalars["String"]["output"]>;
+  /** The tooltip header for this cell. */
+  tooltipHeader?: Maybe<Scalars["String"]["output"]>;
   /** The sentiment type of this cell (positive, negative, neutral, etc.). */
   type: HeatmapCellType;
   /** The numeric value of this cell. 0 if the value is not available, anonymized or not applicable. */
@@ -7955,6 +7978,7 @@ export type PathwayAdviceSection = {
 export type PathwayChallengeSlot = {
   __typename?: "PathwayChallengeSlot";
   action: SduiAction;
+  challengeId: Scalars["ID"]["output"];
   expiresAt: Scalars["String"]["output"];
   heading: Scalars["String"]["output"];
   id: Scalars["ID"]["output"];
@@ -8307,6 +8331,7 @@ export type Query = {
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
   getEmployeeExperienceAverageSalary?: Maybe<Scalars["Float"]["output"]>;
   getEmployeeExperienceFiles?: Maybe<GetEmployeeExperienceFilesResult>;
+  getEmployeeInsightsConfiguration?: Maybe<GetEmployeeInsightsConfigurationResults>;
   getEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaignResponse;
   getEmployeeRecognitionCampaignBillingAddresses?: Maybe<Array<TeamEmployeeRecognitionCampaignBillingAddress>>;
   getEmployeeRecognitionCampaignRecipients: TeamEmployeeRecognitionCampaignRecipientsResponse;
@@ -8379,7 +8404,8 @@ export type Query = {
   getMobilePurchasesList: MobilePurchasesList;
   /**
    * Supported RN version >= 4.9.0
-   * Deprecated on RN version >= 4.100.0 for getMobileQuestLevelMediaInternalContent
+   * Deprecated on RN version >= 4.100.0
+   * @deprecated Use getMobileQuestLevelMediaInternalContent instead
    */
   getMobileQuestLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   /** Supported RN version >= 4.9.0 */
@@ -10853,6 +10879,7 @@ export type TeamEmployeeExternalIntegration = {
   archived?: Maybe<Scalars["Boolean"]["output"]>;
   businessMemberDataConnectionEmployeeId?: Maybe<Scalars["String"]["output"]>;
   businessMemberDataConnectionId: Scalars["String"]["output"];
+  carrierName?: Maybe<Scalars["String"]["output"]>;
   connectionName: Scalars["String"]["output"];
   connectionStatus: Scalars["String"]["output"];
   connectionType: Scalars["String"]["output"];
@@ -23995,9 +24022,11 @@ export type GetPathwayChallengeQuery = {
   getPathwayChallenge?: {
     __typename?: "PathwayChallengeSlot";
     id: string;
+    challengeId: string;
     heading: string;
     isLocked: boolean;
     isCompleted: boolean;
+    isStarted: boolean;
     reward: string;
     expiresAt: string;
     action: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
@@ -74962,9 +74991,11 @@ export const GetPathwayChallengeDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "challengeId" } },
                 { kind: "Field", name: { kind: "Name", value: "heading" } },
                 { kind: "Field", name: { kind: "Name", value: "isLocked" } },
                 { kind: "Field", name: { kind: "Name", value: "isCompleted" } },
+                { kind: "Field", name: { kind: "Name", value: "isStarted" } },
                 { kind: "Field", name: { kind: "Name", value: "reward" } },
                 { kind: "Field", name: { kind: "Name", value: "expiresAt" } },
                 {

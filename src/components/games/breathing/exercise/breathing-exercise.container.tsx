@@ -67,13 +67,31 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   const { componentId } = useNavigation();
   const dispatch = useDispatch();
 
-  const { startChallenge, completeChallenge } = usePathwayChallenge({ componentId, challengeId, skipQuery: true });
   const { markAsCompleted } = useCancelPathwayChallenge({ challengeId });
 
+  const completedRef = useRef(false);
+
+  const handleExternalCompletion = useCallback(() => {
+    completedRef.current = true;
+    markAsCompleted();
+  }, [markAsCompleted]);
+
+  const { startChallenge, completeChallenge } = usePathwayChallenge({
+    componentId,
+    challengeId,
+    onExternalCompletion: handleExternalCompletion,
+  });
+
   const initialDuration = DETOX_ENABLED ? DETOX_DURATION_MS : data.defaultDuration || DEFAULT_DURATION_MS;
-  const selectedDurationMsRef = useRef(initialDuration);
+  const selectedDurationMsRef = useRef(data.defaultDuration || DEFAULT_DURATION_MS);
 
   const handleCompleted = useCallback(async () => {
+    if (completedRef.current) {
+      return;
+    }
+
+    completedRef.current = true;
+
     dispatch(
       logMixpanelEventActionCreator("breathing_exercise_completed", {
         duration: selectedDurationMsRef.current,
