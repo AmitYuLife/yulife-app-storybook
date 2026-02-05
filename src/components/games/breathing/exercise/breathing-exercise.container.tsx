@@ -67,9 +67,25 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   const { componentId } = useNavigation();
   const dispatch = useDispatch();
 
-  const { markAsCompleted } = useCancelPathwayChallenge({ challengeId });
-
   const completedRef = useRef(false);
+
+  const initialDuration = DETOX_ENABLED ? DETOX_DURATION_MS : data.defaultDuration || DEFAULT_DURATION_MS;
+  const selectedDurationMsRef = useRef(data.defaultDuration || DEFAULT_DURATION_MS);
+
+  const handleCancel = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("breathing_exercise_closed", {
+        duration: selectedDurationMsRef.current,
+        id: data.id,
+      })
+    );
+    Navigation.pop(componentId);
+  }, [dispatch, data.id, componentId]);
+
+  const { markAsCompleted, showCancelModal, hideCancelModal, cancelChallengeModal } = useCancelPathwayChallenge({
+    challengeId,
+    onCancel: handleCancel,
+  });
 
   const handleExternalCompletion = useCallback(() => {
     completedRef.current = true;
@@ -81,9 +97,6 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
     challengeId,
     onExternalCompletion: handleExternalCompletion,
   });
-
-  const initialDuration = DETOX_ENABLED ? DETOX_DURATION_MS : data.defaultDuration || DEFAULT_DURATION_MS;
-  const selectedDurationMsRef = useRef(data.defaultDuration || DEFAULT_DURATION_MS);
 
   const handleCompleted = useCallback(async () => {
     if (completedRef.current) {
@@ -99,12 +112,14 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
       })
     );
 
+    hideCancelModal();
+
     markAsCompleted();
     await completeChallenge({
       durationInSeconds: selectedDurationMsRef.current / 1000,
       challengeType: "mindfulness",
     });
-  }, [dispatch, data.id, completeChallenge, markAsCompleted]);
+  }, [dispatch, data.id, hideCancelModal, markAsCompleted, completeChallenge]);
 
   const handleStarted = useCallback(() => {
     startChallenge();
@@ -147,17 +162,6 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
   useEffect(() => {
     selectedDurationMsRef.current = selectedDurationMs;
   }, [selectedDurationMs]);
-
-  const handleClose = useCallback(() => {
-    dispatch(
-      logMixpanelEventActionCreator("breathing_exercise_closed", {
-        duration: selectedDurationMs,
-        id: data.id,
-      })
-    );
-
-    Navigation.pop(componentId);
-  }, [dispatch, selectedDurationMs, data.id, componentId]);
 
   // Pause exercise when app goes to background
   const handleAppStateChange = useCallback(
@@ -350,10 +354,12 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
         logo="yulife"
         logoType="inverted"
         rightIcon="CLOSE"
-        onRightIconPress={handleClose}
+        onRightIconPress={showCancelModal}
         color={Colours.neutral.white}
         backgroundColor="transparent"
       />
+
+      {cancelChallengeModal}
     </Box>
   );
 };
