@@ -1567,6 +1567,9 @@
         "subheading": "We couldn’t load the media. Please check your connection and try again. If you continue to see this message, reach out to us via chat.",
         "cta_label": "Retry",
         "cta_label_secondary": "Challenges menu"
+      },
+      "on_pathways_challenge_cancel": {
+        "cta_label": "Try later"
       }
     },
     "generic_connection_error": {

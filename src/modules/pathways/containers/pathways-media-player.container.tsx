@@ -3,7 +3,7 @@ import { IMediaPlayerSduiContainerProps } from "@components/containers/member/me
 import { MediaPlayerScreen } from "@components/screens";
 import { Navigation } from "@navigation/main";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
-import { useCancelPathwayChallenge } from "../hooks/useCancelPathwayChallenge";
+import { useCancelPathwayChallenge } from "@modules/pathways/hooks/useCancelPathwayChallenge";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
 import { Modal } from "react-native";
@@ -31,47 +31,70 @@ const PathwaysMediaPlayerContainer = ({
   logoType,
 }: IPathwaysMediaPlayerContainerProps) => {
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
 
   const dispatch = useDispatch();
   const { startChallenge, completeChallenge } = usePathwayChallenge({ componentId, challengeId, skipQuery: true });
-  const { markAsCompleted } = useCancelPathwayChallenge({ challengeId });
 
-  const onIconPress = useCallback(() => {
+  const handleCancel = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
+
+  const { markAsCompleted, showCancelModal, hideCancelModal, cancelChallengeModal } = useCancelPathwayChallenge({
+    challengeId,
+    onCancel: handleCancel,
+  });
+
+  const hideErrorModal = useCallback(() => {
+    setShowErrorModal(false);
+  }, []);
+
+  const onErrorRetry = useCallback(() => {
+    setShowErrorModal(false);
+    Navigation.pop(componentId);
+  }, [componentId]);
+
+  const onErrorGoToChallenges = useCallback(() => {
+    setShowErrorModal(false);
+    Navigation.popTo(ROUTES.questsChallengesList);
+  }, []);
+
+  const onLeftIconPress = useCallback(() => {
+    Navigation.pop(componentId);
+  }, [componentId]);
+
+  const onRightIconPress = useCallback(() => {
+    if (isStarted) {
+      showCancelModal();
+    } else {
+      Navigation.pop(componentId);
+    }
+  }, [componentId, isStarted, showCancelModal]);
 
   const onError = useCallback(() => {
     dispatch(logMixpanelEventActionCreator("media_not_loaded", { contentId: video.id }));
     setShowErrorModal(true);
   }, [dispatch, video.id]);
 
-  const hideErrorModal = useCallback(() => {
-    setShowErrorModal(false);
-  }, []);
+  const onStart = useCallback(() => {
+    setIsStarted(true);
+    startChallenge();
+  }, [startChallenge]);
 
-  const onPress = useCallback(async () => {
-    setShowErrorModal(false);
-    Navigation.pop(ROUTES.pathwaysMediaPlayer);
-  }, []);
-
-  const onPressSecondary = useCallback(() => {
-    setShowErrorModal(false);
-    Navigation.popTo(ROUTES.questsChallengesList);
-  }, []);
-
-  const handleEnd = useCallback(() => {
+  const onEnd = useCallback(() => {
+    hideCancelModal();
     markAsCompleted();
     completeChallenge({ durationInSeconds: video.duration, challengeType: eventType });
-  }, [markAsCompleted, completeChallenge, video.duration, eventType]);
+  }, [hideCancelModal, markAsCompleted, completeChallenge, video.duration, eventType]);
 
   return (
     <>
       <MediaPlayerScreen
         startTimeInSeconds={startTimeInSeconds}
-        onStart={startChallenge}
-        onEnd={handleEnd}
-        onLeftIconPress={onIconPress}
-        onRightIconPress={onIconPress}
+        onStart={onStart}
+        onEnd={onEnd}
+        onLeftIconPress={onLeftIconPress}
+        onRightIconPress={onRightIconPress}
         onError={onError}
         video={video}
         eventType={eventType}
@@ -83,15 +106,17 @@ const PathwaysMediaPlayerContainer = ({
 
       <Modal statusBarTranslucent={true} animationType="slide" visible={showErrorModal} onRequestClose={hideErrorModal}>
         <GenericModal
-          onPress={onPress}
+          onPress={onErrorRetry}
           isPrimaryOnePressOnly={true}
-          onPressSecondary={onPressSecondary}
+          onPressSecondary={onErrorGoToChallenges}
           heading={t("modals.generic_modal.on_pathways_media_error.heading")}
           subheading={t("modals.generic_modal.on_pathways_media_error.subheading")}
           ctaLabel={t("modals.generic_modal.on_pathways_media_error.cta_label")}
           ctaLabelSecondary={t("modals.generic_modal.on_pathways_media_error.cta_label_secondary")}
         />
       </Modal>
+
+      {cancelChallengeModal}
     </>
   );
 };
