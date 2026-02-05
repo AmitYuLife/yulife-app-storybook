@@ -1,25 +1,21 @@
-import { BlurView, BlurViewProps } from "@react-native-community/blur";
+import { BlurView, BlurViewProps } from "expo-blur";
 import { memo, ReactElement, useMemo } from "react";
 
 import { StyleSheet } from "@styles";
-interface IProps extends Pick<BlurViewProps, "blurAmount" | "blurType"> {
+
+interface IProps extends Pick<BlurViewProps, "intensity" | "tint"> {
   children: ReactElement;
-  blurAmount?: number;
+  intensity?: number;
   backgroundColor?: string;
 }
 
-const BlurredWrapper = ({
-  children,
-  blurType = "light",
-  blurAmount = 5,
-  backgroundColor = "rgba(0,0,0,.5)",
-}: IProps) => {
+const BlurredWrapper = ({ children, tint = "light", intensity = 5, backgroundColor = "rgba(0,0,0,.5)" }: IProps) => {
   const wrapperStyle = useMemo(
     () => ({ backgroundColor, ...StyleSheet.absoluteFillObject, borderColor: "transparent" }),
     [backgroundColor]
   );
   return (
-    <BlurView style={wrapperStyle} blurAmount={blurAmount} blurType={blurType}>
+    <BlurView style={wrapperStyle} intensity={intensity} tint={tint} experimentalBlurMethod="dimezisBlurView">
       {children}
     </BlurView>
   );

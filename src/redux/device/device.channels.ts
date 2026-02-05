@@ -14,6 +14,8 @@ export async function createPushNotificationsChannel() {
           shouldShowAlert: true,
           shouldPlaySound: true,
           shouldSetBadge: true,
+          shouldShowBanner: true,
+          shouldShowList: true,
           priority: ExpoNotification.AndroidNotificationPriority.DEFAULT,
         };
       },

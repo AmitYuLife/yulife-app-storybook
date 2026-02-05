@@ -42,7 +42,7 @@ const buildGradlePlugin = (config) => {
     const splitContents = app.modResults.contents.split(`\n`);
     const extLine = splitContents.findIndex((line) => line.includes(`ext {`));
     const endOfExtLine = splitContents.findIndex((line, index) => index > extLine && line.includes(`}`));
-    splitContents.splice(endOfExtLine - 1, 0, `kotlin_version = kotlinVersion`);
+    splitContents.splice(endOfExtLine - 1, 0, `kotlin_version = "2.0.21"`);
 
     app.modResults.contents = splitContents.join(`\n`);
     return app;

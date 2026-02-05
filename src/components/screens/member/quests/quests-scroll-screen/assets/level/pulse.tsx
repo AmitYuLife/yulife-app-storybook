@@ -19,7 +19,6 @@ function _Pulse(props: IProps) {
         styles.wrapper,
         {
           height: pulseMaxSize,
-          marginStart: -pulseMaxSize / 2,
           width: pulseMaxSize,
         },
       ]}
@@ -32,7 +31,7 @@ function _Pulse(props: IProps) {
           opacity,
           width: size,
           transformOrigin: "50% 50%",
-          transform: [{ scale }, { translateX: -0.5 }],
+          transform: [{ scale }],
         }}
       />
     </View>

@@ -45,9 +45,23 @@ class Translator {
       return this.fallbackLocale;
     }
 
-    const deviceLocale = isiOS()
-      ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0]
-      : NativeModules.I18nManager.localeIdentifier;
+    // Guard against native modules not being available yet (can happen with new RN architecture)
+    let deviceLocale: string | undefined;
+    try {
+      if (isiOS()) {
+        const settings = NativeModules.SettingsManager?.settings;
+        deviceLocale = settings?.AppleLocale || settings?.AppleLanguages?.[0];
+      } else {
+        deviceLocale = NativeModules.I18nManager?.localeIdentifier;
+      }
+    } catch (e) {
+      // Native modules not ready yet
+    }
+
+    if (!deviceLocale) {
+      return this.fallbackLocale;
+    }
+
     const [language, region] = deviceLocale.split(/[_-]+/);
     const availableLocales = this.getAvailableLocales(DETOX_ENABLED);
 

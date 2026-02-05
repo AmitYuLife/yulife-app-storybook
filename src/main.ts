@@ -3,9 +3,11 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import registerScreens from "./navigation/index";
 import { DETOX_ENABLED } from "@services/socket";
+import AppLoadingContainer from "./components/containers/app-loading/app-loading.container";
 
 if (DETOX_ENABLED) {
   LogBox.ignoreLogs([
+    "Open debugger to view warnings.",
     "Deprecation warning",
     "Can't perform",
     "currentlyFocusedField is deprecated",
@@ -17,10 +19,7 @@ if (DETOX_ENABLED) {
   ]);
 }
 
-Navigation.registerComponent(
-  ROUTES.appLoading,
-  () => require("./components/containers/app-loading/app-loading.container").default
-);
+Navigation.registerComponent(ROUTES.appLoading, () => AppLoadingContainer);
 
 Navigation.events().registerAppLaunchedListener(async () => {
   await Navigation.setAppLoading();
@@ -30,8 +29,6 @@ Navigation.events().registerAppLaunchedListener(async () => {
   Navigation.setDefaultOptions();
 });
 
-// TODO: purge when upgrading to RN >=76
 if (__DEV__) {
-  require("react-native-devsettings");
   LogBox.ignoreLogs(["[Datadog SDK]"]);
 }

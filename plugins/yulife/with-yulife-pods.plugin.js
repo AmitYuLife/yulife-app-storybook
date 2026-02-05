@@ -8,10 +8,7 @@ const CUSTOM_PODS = `
 plugin 'cocoapods-bugsnag'
 
 pod 'RNFitKit', :path => '../node_modules/@yu-life/react-native-fitkit/ios'
-pod 'SDWebImage', '5.11.1'
-pod 'SDWebImageWebPCoder', '0.8.4'
-pod 'SDWebImageAVIFCoder', '0.10.1'
-pod 'SDWebImageSVGCoder', '1.7.0'
+# SDWebImage version pinning removed - expo-image manages this dependency
 
 dynamic_frameworks = ['Leanplum-iOS-SDK', 'CleverTap-iOS-SDK', 'SDWebImage']
 pre_install do |installer|
@@ -26,6 +23,17 @@ pre_install do |installer|
     end
 end
 # END_${ANCHOR}
+`;
+
+const DEPLOYMENT_TARGET_FIX = `
+    # Force minimum iOS deployment target for all pods
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 16.0
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
+        end
+      end
+    end
 `;
 
 module.exports = (data) => {
@@ -51,6 +59,12 @@ module.exports = (data) => {
           })
           .join("\n")
       );
+
+      // Insert deployment target fix after post_install do |installer|
+      const postInstallIndex = splitContents.findIndex((line) => line.includes("post_install do |installer|"));
+      if (postInstallIndex !== -1) {
+        splitContents.splice(postInstallIndex + 1, 0, DEPLOYMENT_TARGET_FIX);
+      }
 
       const newContents = splitContents.join("\n");
       fs.writeFileSync(podFilePath, newContents);

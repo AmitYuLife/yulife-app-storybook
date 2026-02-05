@@ -1,8 +1,8 @@
 import { Source } from "@atoms";
 import MaskedView from "@react-native-masked-view/masked-view";
-import { Image } from "expo-image";
+import { Image, ImageContentFit } from "expo-image";
 import { memo, useEffect, useMemo, useState } from "react";
-import { DimensionValue, ImageResizeMode, View, ViewStyle } from "react-native";
+import { DimensionValue, View, ViewStyle } from "react-native";
 import Animated from "react-native-reanimated";
 import BattlePassListItemTeaserAnimation from "./battle-pass-list-item-teaser-animation";
 
@@ -10,7 +10,7 @@ interface BattlePassItemAnimatedIconProps {
   images: Source[];
   radius?: DimensionValue;
   style?: ViewStyle;
-  resizeMode?: ImageResizeMode;
+  resizeMode?: ImageContentFit;
 }
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
@@ -45,7 +45,6 @@ const BattlePassItemAnimatedIcon = ({
       width: radius,
       height: radius,
       background: "transparent",
-      resizeMode: "contain" as ImageResizeMode,
     };
   }, [radius]);
 

@@ -2,49 +2,22 @@ const plugins = require("@expo/config-plugins");
 const fs = require("fs");
 const path = require("path");
 
+// Updated for Expo SDK 53 with Swift AppDelegate
+// Leanplum notification handling is managed by the @leanplum/react-native-sdk config plugin
 module.exports = function withLeanplumIosPlugin(data) {
   return plugins.withDangerousMod(data, [
     "ios",
     async (config) => {
-      const mainDelegate = path.join(config.modRequest.platformProjectRoot, "YuLife/AppDelegate.mm");
-      let mainContents = fs.readFileSync(mainDelegate, "utf-8");
+      const appDelegatePath = path.join(config.modRequest.platformProjectRoot, "YuLife/AppDelegate.swift");
 
-      const splitContents = mainContents.split(`\n`);
+      if (!fs.existsSync(appDelegatePath)) {
+        console.warn("AppDelegate.swift not found, skipping Leanplum iOS plugin");
+        return config;
+      }
 
-      splitContents.splice(
-        splitContents.length - 2,
-        0,
-        `// IOS 10+ Required for localNotification event
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-didReceiveNotificationResponse:(UNNotificationResponse *)response
-         withCompletionHandler:(void (^)(void))completionHandler
-{
-  completionHandler();
-}`
-      );
-
-      const didFailToRegisterForRemoteNotificationsWithErrorIndex = splitContents.findIndex((line) =>
-        line.includes("didFailToRegisterForRemoteNotificationsWithError")
-      );
-      splitContents.splice(
-        didFailToRegisterForRemoteNotificationsWithErrorIndex + 2,
-        1,
-        `  [Leanplum didFailToRegisterForRemoteNotificationsWithError:error];`
-      );
-
-      const didReceiveRemoteNotificationIndex = splitContents.findIndex((line) =>
-        line.includes(`application didReceiveRemoteNotification`)
-      );
-      splitContents.splice(
-        didReceiveRemoteNotificationIndex + 2,
-        1,
-        `  completionHandler(UIBackgroundFetchResultNoData);`
-      );
-
-      splitContents.splice(1, 0, `#import <Leanplum/Leanplum.h>`);
-      const newContents = splitContents.join("\n");
-
-      fs.writeFileSync(mainDelegate, newContents);
+      // Leanplum integration in Expo SDK 53 is handled by the native config plugin
+      // No additional modifications needed for Swift AppDelegate
+      console.log("Leanplum iOS plugin: Using native Expo config plugin integration");
 
       return config;
     },

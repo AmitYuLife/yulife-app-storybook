@@ -124,7 +124,7 @@ const MarkdownListItem = ({
   extras,
   index,
 }: {
-  node: React.ReactElement<{ children: React.ReactElement<unknown>[] }>;
+  node: React.ReactElement<any>;
   nodeKey: string;
   index: number;
   extras: IExtras;
@@ -148,7 +148,7 @@ const MarkdownText = ({
   extras,
   testID,
 }: {
-  node: React.ReactElement<{ children: React.ReactElement<unknown>[] }>;
+  node: React.ReactElement<any>;
   nodeKey: string;
   extras: IExtras;
   testID?: string;
@@ -176,7 +176,7 @@ const MarkdownInlineLink = ({
   nodeKey: key,
   extras,
 }: {
-  node: React.ReactElement<{ href?: string; children: React.ReactElement<unknown>[] }>;
+  node: React.ReactElement<any>;
   nodeKey: string;
   extras: IExtras;
 }) => {
@@ -217,7 +217,7 @@ const MarkdownBlock = ({
   nodeKey: key,
   extras,
 }: {
-  node: React.ReactElement<{ children: React.ReactElement<unknown>[] }>;
+  node: React.ReactElement<any>;
   nodeKey: string;
   extras: IExtras;
 }) => {
@@ -237,7 +237,7 @@ const MarkdownNode = ({
   extras,
   testID,
 }: {
-  node: React.ReactElement<{ className: string; children: React.ReactElement<unknown>[] }>;
+  node: React.ReactElement;
   nodeKey: string;
   index: number;
   extras: IExtras;
@@ -265,7 +265,7 @@ const MarkdownNode = ({
       return <MarkdownLine nodeKey={nodeKey} />;
     case "div":
       // Handle paragraphs
-      if (node.props.className === "paragraph") {
+      if ((node.props as any).className === "paragraph") {
         return (
           <MarkdownText
             testID={testID}

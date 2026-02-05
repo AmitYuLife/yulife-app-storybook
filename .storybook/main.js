@@ -4,7 +4,30 @@ const webpack = require("webpack");
 const CUSTOM_CONFIG = {
   resolve: {
     alias: {
+      // Project path aliases
       "@app": path.resolve(__dirname, "../src"),
+      "@assets": path.resolve(__dirname, "../assets"),
+      "@components": path.resolve(__dirname, "../src/components"),
+      "@atoms": path.resolve(__dirname, "../src/components/atoms"),
+      "@organisms": path.resolve(__dirname, "../src/components/organisms"),
+      "@containers": path.resolve(__dirname, "../src/components/containers"),
+      "@modals": path.resolve(__dirname, "../src/components/modals"),
+      "@molecules": path.resolve(__dirname, "../src/components/molecules"),
+      "@screens": path.resolve(__dirname, "../src/components/screens"),
+      "@graphql": path.resolve(__dirname, "../src/graphql"),
+      "@navigation": path.resolve(__dirname, "../src/navigation"),
+      "@redux": path.resolve(__dirname, "../src/redux"),
+      "@services": path.resolve(__dirname, "../src/services"),
+      "@utils": path.resolve(__dirname, "../src/utils"),
+      "@styles": path.resolve(__dirname, "../src/styles"),
+      "@locale": path.resolve(__dirname, "../src/locale"),
+      "@hooks": path.resolve(__dirname, "../src/hooks"),
+      "@theme": path.resolve(__dirname, "../src/theme"),
+      "@modules": path.resolve(__dirname, "../src/modules"),
+      "@ids": path.resolve(__dirname, "../e2e/_utils/navigation/ids"),
+      "@e2e": path.resolve(__dirname, "../e2e"),
+      "@mockclient": path.resolve(__dirname, "../e2e/_utils/socket/client"),
+      // React Native Web aliases
       "react-native$": "react-native-web",
       "@storybook/react-native": "@storybook/react",
       "@leanplum/react-native-sdk": path.join(__dirname, "/aliases/leanplum"),
@@ -37,6 +60,7 @@ const CUSTOM_CONFIG = {
       "@datadog/mobile-react-native": path.join(__dirname, "/aliases/datadog-mobile-react-native"),
       "react-airplay": path.join(__dirname, "/aliases/react-airplay"),
       "react-native-google-cast": path.join(__dirname, "/aliases/react-native-google-cast"),
+      "@lottiefiles/dotlottie-react": path.join(__dirname, "/aliases/dotlottie-react"),
     },
     extensions: [".web.js", ".js", ".ts", ".tsx"],
   },
@@ -44,18 +68,26 @@ const CUSTOM_CONFIG = {
     rules: [
       {
         test: /\.(ts|js)x?$/,
-        exclude: /node_modules\/(?!(react-native-reanimated|@react-native\/assets-registry)\/).*/,
+        exclude:
+          /node_modules\/(?!(react-native-reanimated|@react-native\/assets-registry|expo-blur|expo-haptics|expo-modules-core|expo|@expo)\/).*/,
         use: {
           loader: "babel-loader",
           options: {
+            babelrc: false,
+            configFile: false,
             presets: [
               ["@babel/preset-env", { targets: { browsers: ["last 2 versions"] } }],
               ["@babel/preset-react", { runtime: "automatic" }],
               "@babel/preset-typescript",
-              "@babel/preset-flow",
             ],
             plugins: ["@babel/plugin-transform-runtime"],
           },
+        },
+      },
+      {
+        test: /\.m?js$/,
+        resolve: {
+          fullySpecified: false,
         },
       },
       {
