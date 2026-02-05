@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { Navigation } from "@navigation/main";
 import { FeatureCardSection, WellbeingHubSection } from "@graphql/__generated";
 import { getMoodSubmission } from "../utils/get-mood-submission.util";
@@ -22,11 +22,12 @@ const PathwaysContainer = ({ componentId }: Props) => {
 
   const { tempGameEnablePathwaysStreaks } = useUserFeatures();
 
-  const { data, loading, isStreakComplete } = usePathways(componentId);
+  const { data, loading, error, isStreakComplete } = usePathways(componentId);
 
   const { pathwayChallenge } = usePathwayChallenge({ componentId });
 
   const moodSubmissions = useMemo(() => getMoodSubmission(data), [data]);
+  const hasLoadedOnce = useRef(false);
 
   const onReflect = useCallback(() => {
     dispatch(data?.getUserPathways?.reflectionProgress.reflectAction);
@@ -54,9 +55,15 @@ const PathwaysContainer = ({ componentId }: Props) => {
     [data]
   );
 
+  useEffect(() => {
+    if (!loading && (data || error)) {
+      hasLoadedOnce.current = true;
+    }
+  }, [loading, data, error]);
+
   const props = useMemo(
     () => ({
-      isLoading: loading,
+      isLoading: !hasLoadedOnce.current && (loading || !!error),
       onClose: onClose,
       onReflect: onReflect,
       onOpenMoodCalendar: onOpenMoodCalendar,
@@ -72,13 +79,19 @@ const PathwaysContainer = ({ componentId }: Props) => {
       isStreakComplete: isStreakComplete,
     }),
     [
-      data,
       loading,
+      error,
       onClose,
       onReflect,
       onOpenMoodCalendar,
       moodSubmissions,
-      reflectionProgress,
+      reflectionProgress.currentProgress,
+      reflectionProgress.coinAwards,
+      reflectionProgress.reflectedToday,
+      reflectionProgress.maxProgress,
+      data?.getUserPathways?.nextQuestionnaireLocalDate,
+      data?.getUserPathwayAdviceSection,
+      data?.getInterventionItems?.sections,
       pathwayChallenge,
       isStreakComplete,
     ]
