@@ -16,6 +16,7 @@ export const {
   swipeFromText,
   scrollUntilTextVisibleAtIndex,
   scrollUntilIdVisibleAtIndex,
+  scrollYuScreenDown,
 } = navigation.scrolling;
 
 export const {

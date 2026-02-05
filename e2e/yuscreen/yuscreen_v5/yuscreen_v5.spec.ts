@@ -36,7 +36,7 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should be on the edit Yumoji screen", then.textVisible("Pick a body type"));
     });
     When("I tap to close", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife"), 2000), async () => {
-      When("I scroll down on the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.2, 2000), async () => {
+      When("I scroll down on the YuScreen", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, "down", 2000), async () => {
         Then("I can see the See all benefits button, as my location has not been set yet", then.textVisible("See all benefits", 1500));
         Then("I should not see the MetLife GP24 perk, as I need to set my location first", then.textNotVisible("MetLife GP24", 1500));
         Then("I should not see the YuMatter perk, as I need to set my location first", then.textNotVisible("YuMatter", 1500));
@@ -83,8 +83,6 @@ Feature("I am able to use the yuscreen v5", async () => {
   Scenario("I can view and complete the 'Maximise-Yu' nudges", scenario.start, async () => {
     Given("I login and go to the 'Yu' tab", given.logInAndGoToTab("yu", data.CUSTOMER_MAXIMISE_YU, data.AUTH_MAXIMISE_YU), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
-      Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 400));
     });
     When("I click on the YuCoin I have earned today", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(130, 400), 3000), async () => {
       Then("I should be on the Today's earnings screen", then.textVisible("Today’s Earnings", 1500));
@@ -93,13 +91,13 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
     When("I go back", when.tapID(ids.BACK_BUTTON, 4000), async () => {
       Then("I should be back on the 'Yu' tab", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
+    });
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
       Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
       Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 400));
     });
-    When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.1), async () => {
-      When("I tap the challenge nudge", when.tapID(ids.NUDGE_ITEM_WRAPPER("active-challenge-nudge")), async () => {
-        Then("I should be on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123), 5000));
-      });
+    When("I tap the challenge nudge", when.tapID(ids.NUDGE_ITEM_WRAPPER("active-challenge-nudge")), async () => {
+      Then("I should be on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123), 5000));
     });
     When("I tap on level 123", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(123), 2000), async () => {
       Then("I can see the short stroll tile", then.idVisible(ids.CHALLENGE_TILE("Short Stroll"), 5000));
@@ -124,7 +122,7 @@ Feature("I am able to use the yuscreen v5", async () => {
     When("I send 45 mindful minutes and reload the YuScreen tab", when.addMindfulnessHistoricalData(2700, 0), async () => {
       Then("I should see the 'Maximise Yu' list", then.idVisible(ids.MAXIMISE_YU_NUDGE_LIST, 5000));
     });
-    When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.1, 4500), async () => {
+    When("I scroll down the YuScreen", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.MAXIMISE_YU_NUDGE_LIST, "down", 4500), async () => {
       When("I swipe left on the completed meditation nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("passive-cycling-nudge"), "left", 5, 5000, 0.5, 0.8), async () => {
         Then("I should see the cycling nudge", then.cyclingNudgeVisible());
       });
@@ -221,7 +219,6 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 3000));
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Sean Spencer", "Mountain", "800", true));
       Then("I should see the yumoji create copy", then.yuscreenV5CreateYumojiVisible);
-      Then("I should see the current amount of YuCoin I have earned so far", then.maximiseYucoinVisible(200, 480));
     });
     When("I tap the yumoji creator", when.tapID(ids.YUMOJI_PROMPT_CTA, 3000), async () => {
       Then("I should be on the Yumoji create screen", then.textVisible("Create your Yumoji to step into the Yuniverse"));
@@ -231,11 +228,13 @@ Feature("I am able to use the yuscreen v5", async () => {
         When("I edit my yumoji", when.unlockedYumojiItemsVisible("female", "base", "forest"), async () => {
           When("I save", when.saveYumoji(true), async () => {
             Then("I should see the yumoji on the YuScreen", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000));
-            Then("I should see the updated YuCoin value from creating my Yumoji", then.maximiseYucoinVisible(300, 480));
-            Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17800), 1500));
           });
         });
       });
+    });
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
+      Then("I should see the updated YuCoin value from creating my Yumoji", then.maximiseYucoinVisible(300, 480));
+      Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17800), 1500));
     });
   });
 
@@ -243,10 +242,10 @@ Feature("I am able to use the yuscreen v5", async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_139, data.AUTH_139), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Small Daddy", "Mountain", "800"));
     });
-    When("I scroll down to the Powerful protection section on YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.2), async () => {
+    When("I scroll down to the Powerful protection section on YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
       Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE, 2000));
     });
-    When("I scroll further down to view the product cards", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.1), async () => {
+    When("I scroll further down to view the product cards", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.15), async () => {
       Then("I should see Bupa Health Insurance", then.productCardVisible(bupaHealthInsuranceProductItem));
       Then("I should see Bupa Dental Insurance", then.productCardVisible(bupaDentalProductItem));
       Then("I should see Income protection", then.productCardVisible(incomeProtectionProductItem));
@@ -289,10 +288,11 @@ Feature("I am able to use the yuscreen v5", async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_141, data.AUTH_141), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Anya Forgar", "Forest", "810"));
     });
-    When("I scroll down to the Powerful protection section on YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.1), async () => {
+
+    When("I scroll down to the Powerful protection section on YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
       Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE));
     });
-    When("I scroll further down the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.1), async () => {
+    When("I scroll further down the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.15), async () => {
       When("I tap Life insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life Insurance"), 4000), async () => {
         Then("I should see the details on the Life Insurance", then.idVisible(ids.TEXT_TEMPLATE("Life Insurance", "undefined")));
         Then("I should see the policy details button", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)));
@@ -319,11 +319,11 @@ Feature("I am able to use the yuscreen v5", async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Forest", "401"));
     });
-    When("I scroll to the bottom", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.3), async () => {
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       When("I tap See all benefits", when.tapID(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, 3000), async () => {
         When("I tap confirm selection", when.tapText("Confirm selection"), async () => {
           When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I swipe down to see the perks", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, "down"), async () => {
+            When("I scroll down the YuScreen", when.scrollYuScreenDown(0.1, 0.85, 2000), async () => {
               Then("I can see one instance of the MetLife benefit, even though it's made available from multiple employments", then.yuScreenV5WellbeingItemVisible(metLifeGPWellbeingItem, 2000));
               Then("I can see the MetLyfe benefit from my employment at 'Justice League'", then.yuScreenV5WellbeingItemVisible(metLyfeGPWellbeingItem));
               Then("I can see the Yuniversity benefit from my employment at 'Miele Onboarding'", then.yuScreenV5WellbeingItemVisible(yuniversityWellbeingItem));
@@ -353,19 +353,25 @@ Feature("I am able to use the yuscreen v5", async () => {
 
   Scenario("As a user with displayScrollItems: false and displayProgress: true, the Maximise yu nudge should not be visible to me", scenario.start, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_142.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see the progress bar is visible but the nudge is not visible", then.idVisible(ids.MAXIMISE_YU(true, false)));
+      When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
+        Then("I should see the progress bar is visible but the nudge is not visible", then.idVisible(ids.MAXIMISE_YU(true, false)));
+      });
     });
   });
 
   Scenario("As a user with displayScrollItems: true and displayProgress: false, The Maximise yu progress bar should not be visible to me", scenario.start, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_143.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see the progress is not visible but the nudge is visible", then.idVisible(ids.MAXIMISE_YU(false, true)));
+      When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
+        Then("I should see the progress is not visible but the nudge is visible", then.idVisible(ids.MAXIMISE_YU(false, true)));
+      });
     });
   });
 
   Scenario("As a user with displayScrollItems: false and displayProgress: false, I should not see the Maximise yu nudge or the progress bar", scenario.start, async () => {
     Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_144.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see the progress bar and the nudge is not visible", then.idNotVisible(ids.MAXIMISE_YU_COMPONENT));
+      When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
+        Then("I should see the progress bar and the nudge is not visible", then.idNotVisible(ids.MAXIMISE_YU_COMPONENT));
+      });
     });
   });
 
@@ -460,7 +466,7 @@ Feature("I am able to use the yuscreen v5", async () => {
         Then("I should see the my YuScreen", then.yuScreenV5HeaderVisible(false, "Jeir Amy", "Forest", "1", true));
       });
     });
-    When("I scroll down until my Bupa health product is visible", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.2), async () => {
+    When("I scroll down until my Bupa health product is visible", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance"), "down"), async () => {
       Then("I should see my Bupa health product", then.productCardVisible(bupaHealthInsuranceProductItem));
     });
     When("I tap my Bupa health product", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {

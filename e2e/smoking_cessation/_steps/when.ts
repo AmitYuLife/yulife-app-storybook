@@ -10,6 +10,7 @@ export const {
   scrollToAndTapText,
   swipeFromText,
   scrollWithLimitedAttemptsUntilIdVisible,
+  scrollYuScreenDown,
 } = navigation.scrolling;
 
 export const {

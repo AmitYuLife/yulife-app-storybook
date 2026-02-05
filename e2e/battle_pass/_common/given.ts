@@ -9,7 +9,7 @@ export const triggerGenerateBattlePassSeason = (businessIds: string[]) => async 
     seasonNumber: 1,
     execute: 1,
     purgeExisting: false,
-    targetMultiplier: 1,
+    targetMultiplier: 0.375,
     limitMilestones: 3,
     seasonName: "Season of Harmony",
   });
