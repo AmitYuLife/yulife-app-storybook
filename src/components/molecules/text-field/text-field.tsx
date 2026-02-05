@@ -242,7 +242,15 @@ const styles = StyleSheet.create({
 });
 
 function getKeyboardTypeFromType(type: Props["type"]) {
-  return type === "Number" || type === "PhoneNumber" ? "number-pad" : "default";
+  if (type === "PhoneNumber") {
+    return "phone-pad";
+  }
+
+  if (type === "Number") {
+    return "number-pad";
+  }
+
+  return "default";
 }
 
 function hasDecimalValue(text: string) {
