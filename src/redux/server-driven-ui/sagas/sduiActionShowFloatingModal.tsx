@@ -18,11 +18,13 @@ export function* sduiActionShowFloatingModal({ payload }: SduiActionWithServerPa
     const Modal = routesForRegistration.find((route) => route.name === modalId);
 
     try {
+      // Get the actual component from the lazy getter
+      const ModalComponent = Modal.component();
       yield call(() =>
         showFloatingModal({
           modalId,
           children: (
-            <Modal.component
+            <ModalComponent
               {...props}
               closeOverlay={() => Navigation.dismissAllOverlays()}
               onConfirm={props.onConfirm ? () => dispatch(props.onConfirm) : undefined}

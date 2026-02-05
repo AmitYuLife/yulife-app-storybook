@@ -57,7 +57,7 @@ const SwimmingFish = ({
 
   const foodQueueRef = useRef<IFoodParticleData[]>([]);
   const isEatingRef = useRef(false);
-  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const resumeTimeoutRef = useRef(null);
 
   const midPoint = width / 2;
 

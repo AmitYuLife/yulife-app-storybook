@@ -1,4 +1,4 @@
-import React, { ComponentClass, useCallback } from "react";
+import React, { ComponentType, useCallback } from "react";
 import { setDeviceLocale } from "@redux/device/device.actions";
 import { updateIsSwitchingLocale } from "@redux/detox/detox.actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ import { DETOX_ENABLED } from "@services/socket";
 import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
 
 // TODO: should be in @components with the other hocs
-export const withLocaleSwitch = (WrappedComponent: ComponentClass) => (props: any) => {
+export const withLocaleSwitch = (WrappedComponent: ComponentType<any>) => (props: any) => {
   const dispatch = useDispatch();
   const isSwitching = useSelector(getIsSwitchingDeviceLocale);
   const deviceLocale = useSelector(getDeviceLocale);

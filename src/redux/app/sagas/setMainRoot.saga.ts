@@ -28,6 +28,7 @@ export interface ITokenAndMobileUpgradeStatus {
 type TokenStatus = "refreshing" | "valid" | "invalid" | null;
 
 export default function* setMainRootSaga() {
+  console.log("@SET_MAIN_ROOT_SAGA called successfully!");
   const token: Unpacked<typeof getToken> = yield call(getToken);
 
   if (token) {

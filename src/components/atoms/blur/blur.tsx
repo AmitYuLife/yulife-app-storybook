@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Animated } from "react-native";
-import { BlurView } from "@react-native-community/blur";
+import { BlurView } from "expo-blur";
 
 import { StyleSheet } from "@styles";
 interface IProps {
@@ -24,7 +24,12 @@ export default function Blur({ wrapperOpacity, wrapperPosition }: IProps) {
         ],
       }}
     >
-      <BlurView blurAmount={15} blurType="light" style={StyleSheet.absoluteFillObject} />
+      <BlurView
+        intensity={15}
+        tint="light"
+        experimentalBlurMethod="dimezisBlurView"
+        style={StyleSheet.absoluteFillObject}
+      />
     </Animated.View>
   );
 }

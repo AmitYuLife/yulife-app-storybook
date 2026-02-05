@@ -57,6 +57,7 @@ export default () => ({
   scheme: environmentConfig.url_scheme,
   orientation: "portrait",
   version: appVersioning.full,
+  newArchEnabled: true,
   android: {
     package: environmentConfig.app_package,
     googleServicesFile: googleServicesFile,
@@ -159,14 +160,11 @@ export default () => ({
       "expo-build-properties",
       {
         ios: {
-          // flipper: "0.233.0",
-          deploymentTarget: "15.1",
+          deploymentTarget: "16.0",
         },
         android: {
           extraProguardRules: proguardRules,
           useLegacyPackaging: true,
-          targetSdkVersion: 35, // TODO: remove after updating expo to 52
-          compileSdkVersion: 35, // TODO: remove after updating expo to 52
         },
       },
     ],
@@ -210,6 +208,13 @@ export default () => ({
           "./assets/fonts/OpenSans-Light.ttf",
           "./assets/fonts/OpenSans-Regular.ttf",
         ],
+      },
+    ],
+    [
+      "expo-splash-screen",
+      {
+        backgroundColor: "#FFFFFF",
+        image: "./assets/splash/white_pixel_1x1.jpg",
       },
     ],
     [

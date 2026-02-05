@@ -174,6 +174,7 @@ export default function* startChallenge({
 
   let inProgress = true;
 
+  yield delay(50);
   yield put(challengeIsActive());
 
   while (inProgress) {

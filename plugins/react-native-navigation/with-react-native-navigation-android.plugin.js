@@ -18,6 +18,13 @@ const mainApplicationPlugin = (config) => {
 
     mod.modResults.contents = splitContents.join(`\n`);
 
+    // Remove the new architecture entry point loading since NavigationApplication already handles it
+    // This prevents "Feature flags cannot be overridden more than once" error
+    mod.modResults.contents = mod.modResults.contents.replace(
+      /SoLoader\.init\(this, OpenSourceMergedSoMapping\)\s*\n\s*if \(BuildConfig\.IS_NEW_ARCHITECTURE_ENABLED\) \{\s*\n\s*\/\/ If you opted-in for the New Architecture.*\n\s*load\(\)\s*\n\s*\}/,
+      `// SoLoader and New Architecture loading handled by NavigationApplication`
+    );
+
     return mod;
   });
 };
@@ -32,8 +39,14 @@ const removeFunctionByName = (content, functionName) => {
   let end = start;
 
   for (let i = start; i < content.length; i++) {
-    if (content[i] === "{") braceCount++;
-    if (content[i] === "}") braceCount--;
+    if (content[i] === "{") {
+      braceCount++;
+    }
+
+    if (content[i] === "}") {
+      braceCount--;
+    }
+
     if (braceCount === 0 && content[i] === "}") {
       end = i + 1;
       break;

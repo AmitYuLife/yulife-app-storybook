@@ -15,8 +15,8 @@ export const showSmokingStreakCelebrationModal = (
     modalId: MODALS.smokingStreakCelebration,
     closeOnBlur: false,
     passProps: {
-      blurType: "light",
-      blurAmount: 8,
+      tint: "light",
+      intensity: 8,
       backgroundColor: Colours.overlay.black80,
     },
   });

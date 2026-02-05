@@ -1,185 +1,213 @@
 import { MODALS, ROUTES } from "./constants";
 
-const routesForRegistration = [
+// Lazy component loader for RN 0.79+ bridgeless mode compatibility
+// Dynamic require() calls must be deferred until after runtime initialization
+const lazy = (getModule: () => { default: React.ComponentType<unknown> }) => {
+  let cached: React.ComponentType<unknown> | null = null;
+  return () => {
+    if (!cached) {
+      cached = getModule().default;
+    }
+
+    return cached;
+  };
+};
+
+// Type for route definition with lazy component
+type RouteDefinition = {
+  name: string;
+  component: () => React.ComponentType<unknown>;
+  renderAfterMs?: number;
+  hasMenu?: boolean;
+};
+
+const routesForRegistration: RouteDefinition[] = [
   {
     name: ROUTES.sduiStatic,
-    component: require("../components/containers/sdui-static/sdui-static.container").default,
+    component: lazy(() => require("../components/containers/sdui-static/sdui-static.container")),
   },
   {
     name: ROUTES.journey,
-    component: require("../components/containers/journey/journey.container").default,
+    component: lazy(() => require("../components/containers/journey/journey.container")),
   },
   {
     name: ROUTES.noAccess,
-    component: require("../components/containers/no-access/no-access.container").default,
+    component: lazy(() => require("../components/containers/no-access/no-access.container")),
   },
   {
     name: ROUTES.loginLegacy,
-    component: require("../components/containers/login/legacy/login.container").default,
+    component: lazy(() => require("../components/containers/login/legacy/login.container")),
   },
   {
     name: ROUTES.loginHero,
-    component: require("../components/containers/login/login-hero.container").default,
+    component: lazy(() => require("../components/containers/login/login-hero.container")),
   },
   {
     name: ROUTES.loginEmail,
-    component: require("../components/containers/login/login-email.container").default,
+    component: lazy(() => require("../components/containers/login/login-email.container")),
   },
   {
     name: ROUTES.loginConfirm,
-    component: require("../components/containers/login/login-confirm.container").default,
+    component: lazy(() => require("../components/containers/login/login-confirm.container")),
   },
   {
     name: ROUTES.loginPassword,
-    component: require("../components/containers/login/login-password.container").default,
+    component: lazy(() => require("../components/containers/login/login-password.container")),
   },
   {
     name: ROUTES.resetPassword,
-    component: require("../components/containers/reset-password/reset-password.container").default,
+    component: lazy(() => require("../components/containers/reset-password/reset-password.container")),
   },
   {
     name: ROUTES.offline,
-    component: require("../components/containers/offline/offline.container").default,
+    component: lazy(() => require("../components/containers/offline/offline.container")),
   },
   {
     name: ROUTES.update,
-    component: require("../components/containers/update/update.container").default,
+    component: lazy(() => require("../components/containers/update/update.container")),
   },
 
   // onboarding screens
   {
     name: ROUTES.onboardingSignUpReward,
-    component: require("../components/containers/onboarding/signup-reward/signup-reward.container").default,
+    component: lazy(() => require("../components/containers/onboarding/signup-reward/signup-reward.container")),
   },
   {
     name: ROUTES.onboardingFitKitConnect,
-    component: require("../components/containers/onboarding/fitkit-connect/fitkit-connect.container").default,
+    component: lazy(() => require("../components/containers/onboarding/fitkit-connect/fitkit-connect.container")),
   },
 
   // member screens
   {
     renderAfterMs: 600,
     name: ROUTES.menu,
-    component: require("../components/containers/member/menu/menu.container").default,
+    component: lazy(() => require("../components/containers/member/menu/menu.container")),
   },
   {
     hasMenu: true,
     name: ROUTES.yuScreen,
-    component: require("../components/containers/member/yu/yu-screen.container").default,
+    component: lazy(() => require("../components/containers/member/yu/yu-screen.container")),
   },
   {
     name: ROUTES.yumojiBuilder,
-    component: require("../components/containers/member/yumoji-builder/yumoji-builder.container").default,
+    component: lazy(() => require("../components/containers/member/yumoji-builder/yumoji-builder.container")),
   },
   {
     name: ROUTES.settings,
-    component: require("../components/containers/member/settings/_settings.container").default,
+    component: lazy(() => require("../components/containers/member/settings/_settings.container")),
   },
   {
     hasMenu: true,
     name: ROUTES.dailySteps,
-    component: require("../components/containers/member/daily-steps/daily-steps-wrapper.container").default,
+    component: lazy(() => require("../components/containers/member/daily-steps/daily-steps-wrapper.container")),
   },
   {
     name: ROUTES.sudokuStaging,
-    component: require("../components/screens/games/sudoku/sudoku-staging/sudoku-staging.container").default,
+    component: lazy(() => require("../components/screens/games/sudoku/sudoku-staging/sudoku-staging.container")),
   },
   {
     name: ROUTES.sudokuPractice,
-    component: require("../components/screens/games/sudoku/sudoku-practice/sudoku-practice.container").default,
+    component: lazy(() => require("../components/screens/games/sudoku/sudoku-practice/sudoku-practice.container")),
   },
   {
     name: ROUTES.sudokuGame,
-    component: require("../components/screens/games/sudoku/sudoku-game/sudoku.container").default,
+    component: lazy(() => require("../components/screens/games/sudoku/sudoku-game/sudoku.container")),
   },
   {
     name: ROUTES.sudokuCompleted,
-    component: require("../components/screens/games/sudoku/sudoku-completed/sudoku-completed.container").default,
+    component: lazy(() => require("../components/screens/games/sudoku/sudoku-completed/sudoku-completed.container")),
   },
   {
     name: ROUTES.sudokuLeaderboard,
-    component: require("../components/screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard.container").default,
+    component: lazy(() =>
+      require("../components/screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard.container")
+    ),
   },
   {
     hasMenu: true,
     renderAfterMs: 150,
     name: ROUTES.quests,
-    component: require("../components/containers/member/quests/quests.container").default,
+    component: lazy(() => require("../components/containers/member/quests/quests.container")),
   },
   {
     hasMenu: true,
     renderAfterMs: 600,
     name: ROUTES.rewards,
-    component: require("../components/containers/member/rewards/rewards.manager").default,
+    component: lazy(() => require("../components/containers/member/rewards/rewards.manager")),
   },
   {
     name: ROUTES.rewardDetailsSdui,
-    component: require("../components/containers/sdui-static/sdui-static.container").default,
+    component: lazy(() => require("../components/containers/sdui-static/sdui-static.container")),
   },
   {
     name: ROUTES.purchases,
-    component: require("../components/containers/member/rewards/rewards.purchases.container").default,
+    component: lazy(() => require("../components/containers/member/rewards/rewards.purchases.container")),
   },
   {
     name: ROUTES.wallet,
-    component: require("../components/containers/member/rewards/rewards.wallet.container").default,
+    component: lazy(() => require("../components/containers/member/rewards/rewards.wallet.container")),
   },
   {
     name: ROUTES.walletItems,
-    component: require("../components/containers/member/rewards/rewards.wallet.items.container").default,
+    component: lazy(() => require("../components/containers/member/rewards/rewards.wallet.items.container")),
   },
   {
     name: ROUTES.rewardPurchase,
-    component: require("../components/containers/sdui-static/sdui-static.container").default,
+    component: lazy(() => require("../components/containers/sdui-static/sdui-static.container")),
   },
   {
     name: ROUTES.activityHistory,
-    component: require("../components/containers/member/activity-history/index").default,
+    component: lazy(() => require("../components/containers/member/activity-history/index")),
   },
   {
     name: ROUTES.challengesHistoryNew,
-    component: require("../components/containers/member/quests/challenges-history-new/challenges-history-new.container")
-      .default,
+    component: lazy(() =>
+      require("../components/containers/member/quests/challenges-history-new/challenges-history-new.container")
+    ),
   },
   {
     name: ROUTES.duelsHub,
-    component: require("../components/containers/member/duels-hub/duels-hub.container").default,
+    component: lazy(() => require("../components/containers/member/duels-hub/duels-hub.container")),
   },
   {
     name: ROUTES.duelsSearch,
-    component: require("../components/containers/member/duels-search/duels-search.container").default,
+    component: lazy(() => require("../components/containers/member/duels-search/duels-search.container")),
   },
   {
     name: ROUTES.inspect,
-    component: require("../components/containers/member/inspect/inspect.container").default,
+    component: lazy(() => require("../components/containers/member/inspect/inspect.container")),
   },
   {
     name: ROUTES.gifting,
-    component: require("../components/containers/member/gifting/gifting-manager.container").default,
+    component: lazy(() => require("../components/containers/member/gifting/gifting-manager.container")),
   },
   {
     name: ROUTES.giftView,
-    component: require("../components/containers/member/gift-view/gift-view.container").default,
+    component: lazy(() => require("../components/containers/member/gift-view/gift-view.container")),
   },
   {
     name: ROUTES.smoking,
-    component: require("../components/containers/member/smoking/smoking-hub/smoking.container").default,
+    component: lazy(() => require("../components/containers/member/smoking/smoking-hub/smoking.container")),
   },
   {
     name: ROUTES.smokingStreakLapsed,
-    component: require("../components/containers/member/smoking/smoking-streak-lapsed/smoking-streak-lapsed.container")
-      .default,
+    component: lazy(() =>
+      require("../components/containers/member/smoking/smoking-streak-lapsed/smoking-streak-lapsed.container")
+    ),
   },
   {
     name: ROUTES.smokingCommitment,
-    component: require("../components/containers/member/smoking/smoking-commitment/smoking-commitment.container")
-      .default,
+    component: lazy(() =>
+      require("../components/containers/member/smoking/smoking-commitment/smoking-commitment.container")
+    ),
   },
 
   // Content Location
   {
     name: ROUTES.selectContentLocation,
-    component: require("../components/containers/member/content-location/select-content-location.container").default,
+    component: lazy(() =>
+      require("../components/containers/member/content-location/select-content-location.container")
+    ),
   },
 
   // Leaderboard
@@ -187,67 +215,67 @@ const routesForRegistration = [
     hasMenu: true,
     renderAfterMs: 450,
     name: ROUTES.leaderboard,
-    component: require("../components/containers/member/leaderboard/leaderboard.container").default,
+    component: lazy(() => require("../components/containers/member/leaderboard/leaderboard.container")),
   },
   {
     name: ROUTES.leaderboardInfo,
-    component: require("../components/containers/member/leaderboard/leaderboard-info/leaderboard-info").default,
+    component: lazy(() => require("../components/containers/member/leaderboard/leaderboard-info/leaderboard-info")),
   },
   {
     name: ROUTES.leaderboardSearch,
-    component: require("../components/containers/member/leaderboard/leaderboard-search.container").default,
+    component: lazy(() => require("../components/containers/member/leaderboard/leaderboard-search.container")),
   },
 
   {
     name: ROUTES.notifications,
-    component: require("../components/containers/member/notifications/notifications.container").default,
+    component: lazy(() => require("../components/containers/member/notifications/notifications.container")),
   },
 
   // tools
   {
     name: ROUTES.tools,
-    component: require("../components/containers/member/tools/tools.container").default,
+    component: lazy(() => require("../components/containers/member/tools/tools.container")),
   },
 
   // events
   {
     name: ROUTES.eventDialog,
-    component: require("../components/containers/member/events/event-dialog/event-dialog.container").default,
+    component: lazy(() => require("../components/containers/member/events/event-dialog/event-dialog.container")),
   },
 
   // debug
   {
     name: ROUTES.debug,
-    component: require("../components/containers/member/debug/debug.container").default,
+    component: lazy(() => require("../components/containers/member/debug/debug.container")),
   },
   {
     name: ROUTES.debugPlayground,
-    component: require("../components/containers/member/debug/play-ground").default,
+    component: lazy(() => require("../components/containers/member/debug/play-ground")),
   },
   {
     name: ROUTES.debugComponentBenchmark,
-    component: require("../components/containers/member/debug/component-benchmark").default,
+    component: lazy(() => require("../components/containers/member/debug/component-benchmark")),
   },
   {
     name: ROUTES.game2048Selector,
-    component: require("../components/containers/game/2048/selector").default,
+    component: lazy(() => require("../components/containers/game/2048/selector")),
   },
   {
     name: ROUTES.game2048,
-    component: require("../components/containers/game/2048").default,
+    component: lazy(() => require("../components/containers/game/2048")),
   },
   {
     name: ROUTES.yuHealthDebug,
-    component: require("../components/containers/member/debug/yu-health-debug").default,
+    component: lazy(() => require("../components/containers/member/debug/yu-health-debug")),
   },
   {
     name: ROUTES.watchDebug,
-    component: require("../components/containers/member/debug/watch-debug").default,
+    component: lazy(() => require("../components/containers/member/debug/watch-debug")),
   },
 
   {
     name: ROUTES.userFeatures,
-    component: require("../components/containers/member/debug/user-features/user-features.container").default,
+    component: lazy(() => require("../components/containers/member/debug/user-features/user-features.container")),
   },
   {
     name: ROUTES.debugUserInfo,
@@ -258,62 +286,63 @@ const routesForRegistration = [
 
   {
     name: ROUTES.meditopiaMediaList,
-    component: require("../components/containers/member/media/meditopia-media-list/meditopia-media-list.container")
-      .default,
+    component: lazy(() =>
+      require("../components/containers/member/media/meditopia-media-list/meditopia-media-list.container")
+    ),
   },
   {
     name: ROUTES.breathingExercise,
-    component: require("../components/games/breathing/exercise/breathing-exercise.container").default,
+    component: lazy(() => require("../components/games/breathing/exercise/breathing-exercise.container")),
   },
   // fiit media category list
   {
     name: ROUTES.fiitMediaCategoryList,
-    component:
+    component: lazy(() =>
       require("../components/containers/member/media/fiit-media-category-list/fiit-media-category-list.container")
-        .default,
+    ),
   },
   // fiit media list
   {
     name: ROUTES.fiitMediaList,
-    component: require("../components/containers/member/media/fiit-media-list/fiit-media-list.container").default,
+    component: lazy(() => require("../components/containers/member/media/fiit-media-list/fiit-media-list.container")),
   },
   {
     name: ROUTES.mediaPlayer,
-    component: require("../components/containers/member/media/media-player/media-player.container").default,
+    component: lazy(() => require("../components/containers/member/media/media-player/media-player.container")),
   },
   {
     name: ROUTES.mediaPlayerSdui,
-    component: require("../components/containers/member/media/media-player/media-player-sdui.container").default,
+    component: lazy(() => require("../components/containers/member/media/media-player/media-player-sdui.container")),
   },
 
   // settings
   {
     name: ROUTES.cyclingMeasurement,
-    component: require("../components/containers/member/settings/cycling-measurement.container").default,
+    component: lazy(() => require("../components/containers/member/settings/cycling-measurement.container")),
   },
   {
     name: ROUTES.languageSelector,
-    component: require("../components/containers/member/settings/language-selector.container").default,
+    component: lazy(() => require("../components/containers/member/settings/language-selector.container")),
   },
   {
     name: ROUTES.testJourney,
-    component: require("../components/containers/member/debug/test-journey/test-journey.container").default,
+    component: lazy(() => require("../components/containers/member/debug/test-journey/test-journey.container")),
   },
   {
     name: ROUTES.smokingJourneyPlants,
-    component: require("../components/containers/member/debug/smoking-journey/plants/plants").default,
+    component: lazy(() => require("../components/containers/member/debug/smoking-journey/plants/plants")),
   },
   {
     name: ROUTES.smokingJourneyStories,
-    component: require("../components/containers/member/debug/smoking-journey/stories/stories").default,
+    component: lazy(() => require("../components/containers/member/debug/smoking-journey/stories/stories")),
   },
   {
     name: ROUTES.smokingJourneyTree,
-    component: require("../components/containers/member/debug/smoking-journey/tree/tree").default,
+    component: lazy(() => require("../components/containers/member/debug/smoking-journey/tree/tree")),
   },
   {
     name: ROUTES.levelSelector,
-    component: require("../components/containers/member/debug/level-selector/level-selector.container").default,
+    component: lazy(() => require("../components/containers/member/debug/level-selector/level-selector.container")),
   },
   {
     name: ROUTES.pathwaysProgress,
@@ -321,133 +350,140 @@ const routesForRegistration = [
   },
   {
     name: ROUTES.workoutDebug,
-    component: require("../components/containers/member/debug/workout-debug/workout-debug.container").default,
+    component: lazy(() => require("../components/containers/member/debug/workout-debug/workout-debug.container")),
   },
   {
     name: ROUTES.permissions,
-    component: require("../components/containers/member/permissions/permissions-wrapper.container").default,
+    component: lazy(() => require("../components/containers/member/permissions/permissions-wrapper.container")),
   },
   {
     name: ROUTES.leaderboardSettings,
-    component: require("../components/containers/member/leaderboard-settings/leaderboard-settings.container").default,
+    component: lazy(() =>
+      require("../components/containers/member/leaderboard-settings/leaderboard-settings.container")
+    ),
   },
 
   // quests screens
   {
     name: ROUTES.questsChallengesList,
-    component: require("../components/containers/member/quests/challenges-list/challenges-list-wrapper.container")
-      .default,
+    component: lazy(() =>
+      require("../components/containers/member/quests/challenges-list/challenges-list-wrapper.container")
+    ),
   },
   // products
   {
     name: ROUTES.productDetails,
-    component: require("../components/containers/products/product-details/product-details.container").default,
+    component: lazy(() => require("../components/containers/products/product-details/product-details.container")),
   },
   {
     name: ROUTES.beneficiary,
-    component: require("../components/containers/products/beneficiary/beneficiary.container").default,
+    component: lazy(() => require("../components/containers/products/beneficiary/beneficiary.container")),
   },
   {
     name: ROUTES.productPaymentHistory,
-    component: require("../components/containers/products/product-payment-history/product-payment-history.container")
-      .default,
+    component: lazy(() =>
+      require("../components/containers/products/product-payment-history/product-payment-history.container")
+    ),
   },
   {
     name: ROUTES.wellbeingHubItems,
-    component: require("../components/containers/wellbeing-hub/wellbeing-hub-items.container").default,
+    component: lazy(() => require("../components/containers/wellbeing-hub/wellbeing-hub-items.container")),
   },
   {
     name: ROUTES.sduiWellbeingHubItemDetails,
-    component: require("../components/containers/sdui-static/sdui-static.container").default,
+    component: lazy(() => require("../components/containers/sdui-static/sdui-static.container")),
   },
   // webview
   {
     name: ROUTES.webView,
-    component: require("../components/containers/web-view/web-view.container").default,
+    component: lazy(() => require("../components/containers/web-view/web-view.container")),
   },
 
   // referrals
 
   {
     name: ROUTES.referralInformation,
-    component: require("../components/containers/referrals/referrals.container").default,
+    component: lazy(() => require("../components/containers/referrals/referrals.container")),
   },
 
   // today-earnings
 
   {
     name: ROUTES.todayEarnings,
-    component: require("../components/containers/today-earnings/today-earnings.container").default,
+    component: lazy(() => require("../components/containers/today-earnings/today-earnings.container")),
   },
 
   // perk
   {
     name: ROUTES.perkSubscriptionInfo,
-    component: require("../components/containers/perk/perk-subscription-info.container").default,
+    component: lazy(() => require("../components/containers/perk/perk-subscription-info.container")),
   },
 
   // yu health
   {
     name: ROUTES.yuHealthConnect,
-    component: require("../components/containers/member/yu-health-connect/yu-health-connect.container").default,
+    component: lazy(() => require("../components/containers/member/yu-health-connect/yu-health-connect.container")),
   },
   {
     name: ROUTES.yuHealthConnectSelect,
-    component: require("../components/containers/member/yu-health-connect/yu-health-connect-select.container").default,
+    component: lazy(() =>
+      require("../components/containers/member/yu-health-connect/yu-health-connect-select.container")
+    ),
   },
 
   // battle pass
 
   {
     name: ROUTES.battlePass,
-    component: require("../components/containers/battle-pass/battle-pass.container").default,
+    component: lazy(() => require("../components/containers/battle-pass/battle-pass.container")),
     hasMenu: true,
   },
   {
     name: ROUTES.battlePassLeaderboard,
-    component: require("../components/containers/battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.container")
-      .default,
+    component: lazy(() =>
+      require("../components/containers/battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.container")
+    ),
   },
   {
     name: ROUTES.rewardsUnlock,
-    component: require("../components/containers/rewards-unlock/rewards-unlock.container").default,
+    component: lazy(() => require("../components/containers/rewards-unlock/rewards-unlock.container")),
   },
 
   // wrapped
   {
     name: ROUTES.wrapped,
-    component: require("../components/containers/wrapped/wrapped.container").default,
+    component: lazy(() => require("../components/containers/wrapped/wrapped.container")),
   },
 
   // generic heading testing
 
   {
     name: ROUTES.genericHeading,
-    component: require("../components/containers/member/debug/generic-heading/generic-heading.container").default,
+    component: lazy(() => require("../components/containers/member/debug/generic-heading/generic-heading.container")),
   },
 
   // achievements
   {
     name: ROUTES.achievements,
-    component: require("../components/containers/achievements/achievements.container").default,
+    component: lazy(() => require("../components/containers/achievements/achievements.container")),
   },
 
   // pathways
   {
     name: ROUTES.pathways,
-    component: require("../modules/pathways/containers/pathways.container").default,
+    component: lazy(() => require("../modules/pathways/containers/pathways.container")),
   },
   {
     name: ROUTES.pathwaysReflected,
-    component: require("../modules/pathways/containers/pathways-reflected.container").default,
+    component: lazy(() => require("../modules/pathways/containers/pathways-reflected.container")),
   },
   {
     name: ROUTES.pathwaysClaim,
-    component: require("../modules/pathways/containers/pathways-claim.container").default,
+    component: lazy(() => require("../modules/pathways/containers/pathways-claim.container")),
   },
   {
     name: ROUTES.pathwayChallengeSuccess,
-    component: require("../modules/pathways/containers/pathways-challenge-success.container").default,
+    component: lazy(() => require("../modules/pathways/containers/pathways-challenge-success.container")),
   },
   {
     name: ROUTES.pathwayChallengeFeedback,
@@ -455,189 +491,190 @@ const routesForRegistration = [
   },
   {
     name: ROUTES.pathwayChallengeIntro,
-    component: require("../modules/pathways/containers/pathways-challenge-intro.container").default,
+    component: lazy(() => require("../modules/pathways/containers/pathways-challenge-intro.container")),
   },
   {
     name: ROUTES.pathwaysMediaPlayer,
-    component: require("../modules/pathways/containers/pathways-media-player.container").default,
+    component: lazy(() => require("../modules/pathways/containers/pathways-media-player.container")),
   },
 
   // mood calendar
   {
     name: ROUTES.moodCalendar,
-    component: require("../modules/pathways/containers/pathways-mood-calendar.container").default,
+    component: lazy(() => require("../modules/pathways/containers/pathways-mood-calendar.container")),
   },
 
   // modals
   {
     name: MODALS.yuCoinPowerExplained,
-    component: require("../components/containers/member/yu/yu-coin-power-explained/index").default,
+    component: lazy(() => require("../components/containers/member/yu/yu-coin-power-explained/index")),
   },
   {
     name: MODALS.policyCertificate,
-    component: require("../components/containers/products/product-details/product-details.modal").default,
+    component: lazy(() => require("../components/containers/products/product-details/product-details.modal")),
   },
   {
     name: MODALS.challengeUnavailable,
-    component: require("../components/modals/challenge-unavailable/challenge-unavailable.modal").default,
+    component: lazy(() => require("../components/modals/challenge-unavailable/challenge-unavailable.modal")),
   },
   {
     name: MODALS.chest,
-    component: require("../components/modals/animated-chest/animated-chest").default,
+    component: lazy(() => require("../components/modals/animated-chest/animated-chest")),
   },
   {
     name: MODALS.EOTWChest,
-    component: require("../components/modals/eotw-chest/eotw-chest").default,
+    component: lazy(() => require("../components/modals/eotw-chest/eotw-chest")),
   },
   {
     name: MODALS.collectReward,
-    component: require("../components/modals/collect-reward/collect-reward.modal").default,
+    component: lazy(() => require("../components/modals/collect-reward/collect-reward.modal")),
   },
   {
     name: MODALS.feedback,
-    component: require("../components/modals/feedback/feedback.modal").default,
+    component: lazy(() => require("../components/modals/feedback/feedback.modal")),
   },
   {
     name: MODALS.appReview,
-    component: require("../components/modals/app-review/app-review.modal").default,
+    component: lazy(() => require("../components/modals/app-review/app-review.modal")),
   },
   {
     name: MODALS.generic,
-    component: require("../components/modals/generic-modal/generic-modal").default,
+    component: lazy(() => require("../components/modals/generic-modal/generic-modal")),
   },
   {
     name: MODALS.mobileUpdate,
-    component: require("../components/modals/mobile-update/mobile-update-modal").default,
+    component: lazy(() => require("../components/modals/mobile-update/mobile-update-modal")),
   },
   {
     name: MODALS.addBeneficiary,
-    component: require("../components/modals/yuscreen/beneficiary/add-beneficiary-modal").default,
+    component: lazy(() => require("../components/modals/yuscreen/beneficiary/add-beneficiary-modal")),
   },
   {
     name: MODALS.defaultBeneficiaries,
-    component: require("../components/modals/yuscreen/beneficiary/default-beneficiaries-modal").default,
+    component: lazy(() => require("../components/modals/yuscreen/beneficiary/default-beneficiaries-modal")),
   },
   {
     name: MODALS.levelUnavailable,
-    component: require("../components/modals/level-unavailable/level-unavailable.modal").default,
+    component: lazy(() => require("../components/modals/level-unavailable/level-unavailable.modal")),
   },
   {
     name: MODALS.pushNotifications,
-    component: require("../components/modals/push-notifications/push-notifications.modal").default,
+    component: lazy(() => require("../components/modals/push-notifications/push-notifications.modal")),
   },
   {
     name: MODALS.streaks,
-    component: require("../components/modals/streaks/streaks.modal").default,
+    component: lazy(() => require("../components/modals/streaks/streaks.modal")),
   },
   {
     name: MODALS.streakSaved,
-    component: require("../components/modals/streak-saved/streak-saved.modal").default,
+    component: lazy(() => require("../components/modals/streak-saved/streak-saved.modal")),
   },
   {
     name: MODALS.rewards,
-    component: require("../components/modals/generic-modal/generic-modal").default,
+    component: lazy(() => require("../components/modals/generic-modal/generic-modal")),
   },
   {
     name: MODALS.genericConnectionError,
-    component: require("../components/modals/generic-modal/generic-connection-error-modal").default,
+    component: lazy(() => require("../components/modals/generic-modal/generic-connection-error-modal")),
   },
   {
     name: MODALS.info,
-    component: require("../components/modals/info/info.modal").default,
+    component: lazy(() => require("../components/modals/info/info.modal")),
   },
   {
     name: MODALS.duelInvite,
-    component: require("../components/modals/duels/duel-invite.modal").default,
+    component: lazy(() => require("../components/modals/duels/duel-invite.modal")),
   },
   {
     name: MODALS.duelRespond,
-    component: require("../components/modals/duels/duel-respond.modal").default,
+    component: lazy(() => require("../components/modals/duels/duel-respond.modal")),
   },
   {
     name: MODALS.blurredOverlay,
-    component: require("../components/modals/blurred-overlay/blurred-overlay").default,
+    component: lazy(() => require("../components/modals/blurred-overlay/blurred-overlay")),
   },
   {
     name: MODALS.consumableModal,
-    component: require("../components/modals/consumables/consumables.modal").default,
+    component: lazy(() => require("../components/modals/consumables/consumables.modal")),
   },
   {
     name: MODALS.itemDetailsHalfModal,
-    component: require("../components/modals/item-details-half-modal/item-details-half-modal.modal").default,
+    component: lazy(() => require("../components/modals/item-details-half-modal/item-details-half-modal.modal")),
   },
   {
     name: MODALS.sduiStepFeedbackHalfModal,
-    component: require("../components/modals/sdui-step-feedback-half-modal/sdui-step-feedback-half-modal.modal")
-      .default,
+    component: lazy(() =>
+      require("../components/modals/sdui-step-feedback-half-modal/sdui-step-feedback-half-modal.modal")
+    ),
   },
   {
     name: MODALS.switchToGoogleFit,
-    component: require("../components/modals/switch-to-googlefit-modal/switch-to-googlefit-modal").default,
+    component: lazy(() => require("../components/modals/switch-to-googlefit-modal/switch-to-googlefit-modal")),
   },
   {
     name: MODALS.whatsNew,
-    component: require("../components/modals/whats-new/whats-new").default,
+    component: lazy(() => require("../components/modals/whats-new/whats-new")),
   },
   {
     name: MODALS.collectEventReward,
-    component: require("../components/modals/collect-event-reward/collect-event-reward.modal").default,
+    component: lazy(() => require("../components/modals/collect-event-reward/collect-event-reward.modal")),
   },
   {
     name: MODALS.sudokuHelp,
-    component: require("../components/modals/sudoku-help/sudoku-help-modal").default,
+    component: lazy(() => require("../components/modals/sudoku-help/sudoku-help-modal")),
   },
   {
     name: MODALS.sudokuPause,
-    component: require("../components/modals/sudoku-pause/sudoku-pause-modal").default,
+    component: lazy(() => require("../components/modals/sudoku-pause/sudoku-pause-modal")),
   },
   {
     name: MODALS.sudokuLeaderboardConsent,
-    component: require("../components/modals/sudoku-leaderboard-consent/sudoku-leaderboard-consent-modal").default,
+    component: lazy(() => require("../components/modals/sudoku-leaderboard-consent/sudoku-leaderboard-consent-modal")),
   },
   {
     name: MODALS.leaderboardCommunityOverlay,
-    component: require("../components/modals/leaderboard-community-overlay/leaderboard-community-overlay").default,
+    component: lazy(() => require("../components/modals/leaderboard-community-overlay/leaderboard-community-overlay")),
   },
   {
     name: MODALS.challengeNoData,
-    component: require("../components/modals/challenge-no-data/challenge-no-data.modal").default,
+    component: lazy(() => require("../components/modals/challenge-no-data/challenge-no-data.modal")),
   },
   {
     name: MODALS.joinLeaderboardOverlay,
-    component: require("../components/modals/join-leaderboard-overlay/join-leaderboard-overlay").default,
+    component: lazy(() => require("../components/modals/join-leaderboard-overlay/join-leaderboard-overlay")),
   },
   {
     name: MODALS.leaderboardRank,
-    component: require("../components/modals/leaderboard-rank-modal/leaderboard-rank-modal").default,
+    component: lazy(() => require("../components/modals/leaderboard-rank-modal/leaderboard-rank-modal")),
   },
 
   {
     name: MODALS.genericWithHeroImage,
-    component: require("../components/modals/hero-image-modal/hero-image-modal").default,
+    component: lazy(() => require("../components/modals/hero-image-modal/hero-image-modal")),
   },
   {
     name: MODALS.healthPermission,
-    component: require("../components/modals/health-permission/health-permission.modal").default,
+    component: lazy(() => require("../components/modals/health-permission/health-permission.modal")),
   },
   {
     name: MODALS.smokingStreakCelebration,
-    component: require("../components/modals/smoking-streak-celebration/smoking-streak-celebration.modal").default,
+    component: lazy(() => require("../components/modals/smoking-streak-celebration/smoking-streak-celebration.modal")),
   },
   {
     name: MODALS.smokingEditStateModal,
-    component: require("../components/modals/smoking-edit-state/smoking-edit-state.modal").default,
+    component: lazy(() => require("../components/modals/smoking-edit-state/smoking-edit-state.modal")),
   },
   {
     name: MODALS.openRandomChest,
-    component: require("../components/modals/open-random-chest/open-random-chest-modal").default,
+    component: lazy(() => require("../components/modals/open-random-chest/open-random-chest-modal")),
   },
   {
     name: MODALS.viewAchievementModal,
-    component: require("../components/modals/view-achievement-modal/view-achievement-modal").default,
+    component: lazy(() => require("../components/modals/view-achievement-modal/view-achievement-modal")),
   },
   {
     name: MODALS.unlockedAchievementsModal,
-    component: require("../components/modals/unlocked-achievements-modal/unlocked-achievements-modal").default,
+    component: lazy(() => require("../components/modals/unlocked-achievements-modal/unlocked-achievements-modal")),
   },
 ];
 
