@@ -15,10 +15,17 @@ interface IPathwaysReflectedContainerProps {
 const PathwaysReflectedContainer = ({ componentId }: IPathwaysReflectedContainerProps) => {
   useBackHandler(() => true);
 
-  const { loading, reflectionProgress, currentProgress, isStreakComplete, todayReward, onReflectionComplete } =
-    usePathways(componentId, {
-      fetchPolicy: "network-only",
-    });
+  const {
+    loading,
+    reflectionProgress,
+    currentProgress,
+    isStreakComplete,
+    todayReward,
+    onReflectionComplete,
+    hasPathwayAdviceItems,
+  } = usePathways(componentId, {
+    fetchPolicy: "network-only",
+  });
 
   const dispatch = useDispatch();
 
@@ -51,6 +58,7 @@ const PathwaysReflectedContainer = ({ componentId }: IPathwaysReflectedContainer
       isStreakComplete={isStreakComplete}
       reflectionProgress={reflectionProgress}
       todayReward={todayReward}
+      hasPathwayAdviceItems={hasPathwayAdviceItems}
     />
   );
 };
