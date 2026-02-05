@@ -37,6 +37,8 @@ export const usePathways = (componentId: string, { fetchPolicy = "cache-and-netw
   const currentProgress = isStreakComplete ? reflectionProgress?.maxProgress : reflectionProgress?.currentProgress;
   const todayReward = reflectionProgress?.coinAwards[currentProgress - 1] ?? 0;
 
+  const hasPathwayAdviceItems = data?.getUserPathwayAdviceSection?.items?.length > 0;
+
   const onReflectionComplete = useCallback(async () => {
     //  Because we are able to complete a reflection from the hero card from the daily-steps screen
     //  Pathways route is not always on the stack and the `popTo` will throw an error
@@ -49,5 +51,14 @@ export const usePathways = (componentId: string, { fetchPolicy = "cache-and-netw
     }
   }, [componentId]);
 
-  return { data, loading, reflectionProgress, isStreakComplete, todayReward, currentProgress, onReflectionComplete };
+  return {
+    data,
+    loading,
+    reflectionProgress,
+    isStreakComplete,
+    todayReward,
+    currentProgress,
+    onReflectionComplete,
+    hasPathwayAdviceItems,
+  };
 };
