@@ -3,7 +3,7 @@ import { Alert, Keyboard } from "react-native";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { DATE_FORMAT } from "@utils";
-import { useMutation } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { gql, HealthQuestionnaireStateAction, HealthChallengeAction } from "@graphql/__generated";
 import moment from "moment";
 import PathwaysProgressScreen, {
@@ -25,6 +25,12 @@ const getLastReflectionDate = (option: string): string => {
 
 const PathwaysProgressContainer = () => {
   const [setUserPathwayProgress, { loading }] = useMutation(gql("SetUserPathwayProgressDocument"));
+  const { data: pathwayChallengeData } = useQuery(gql("GetPathwayChallengeDocument"), {
+    fetchPolicy: "network-only",
+  });
+  const [completePathwayChallenge, { loading: completePathwayChallengeLoading }] = useMutation(
+    gql("CompletePathwayChallengeDocument")
+  );
 
   const [currentStreak, setCurrentStreak] = useState(0);
   const [lastReflection, setLastReflection] = useState("today");
@@ -88,6 +94,30 @@ const PathwaysProgressContainer = () => {
     }
   }, [currentStreak, lastReflection, healthQuestionnaire, healthChallenge, setUserPathwayProgress]);
 
+  const isChallengeStarted = pathwayChallengeData?.getPathwayChallenge?.isStarted ?? false;
+
+  const onCompletePathwayChallenge = useCallback(async () => {
+    Keyboard.dismiss();
+    try {
+      const { challengeId, isStarted } = pathwayChallengeData?.getPathwayChallenge ?? {};
+
+      if (!challengeId || !isStarted) {
+        Alert.alert("Error", "No active pathway challenge found");
+        return;
+      }
+
+      await completePathwayChallenge({
+        variables: { challengeId },
+        refetchQueries: [{ query: gql("GetPathwayChallengeDocument") }],
+      });
+      Alert.alert("Success", "Pathway challenge completed", [
+        { text: "OK", onPress: () => Navigation.pop(ROUTES.debug) },
+      ]);
+    } catch (error) {
+      Alert.alert("Error", "Failed to complete pathway challenge. Have you started the pathway challenge?");
+    }
+  }, [pathwayChallengeData, completePathwayChallenge]);
+
   return (
     <PathwaysProgressScreen
       onSubmit={onSubmit}
@@ -103,6 +133,9 @@ const PathwaysProgressContainer = () => {
       onLastReflectionChange={handleLastReflectionChange}
       onHealthChallengeChange={handleHealthChallengeChange}
       onHealthQuestionnaireChange={handleHealthQuestionnaireChange}
+      onCompletePathwayChallenge={onCompletePathwayChallenge}
+      isCompleteLoading={completePathwayChallengeLoading}
+      isChallengeStarted={isChallengeStarted}
     />
   );
 };

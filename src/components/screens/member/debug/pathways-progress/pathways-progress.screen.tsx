@@ -82,6 +82,9 @@ export interface IPathwaysProgressScreenProps {
   onSubmit: () => void;
   onLeftIconPress: () => void;
   isLoading: boolean;
+  onCompletePathwayChallenge: () => void;
+  isCompleteLoading: boolean;
+  isChallengeStarted: boolean;
 }
 
 const PathwaysProgressScreen = ({
@@ -98,6 +101,9 @@ const PathwaysProgressScreen = ({
   onSubmit,
   onLeftIconPress,
   isLoading,
+  onCompletePathwayChallenge,
+  isCompleteLoading,
+  isChallengeStarted,
 }: IPathwaysProgressScreenProps) => {
   return (
     <Box flex={1} bg={Colours.neutral.n50}>
@@ -143,8 +149,15 @@ const PathwaysProgressScreen = ({
             />
           </Box>
 
-          <Box mt={20} w="100%">
+          <Box mt={20} w="100%" gap={10}>
             <Button testID="save" size="Large" onPress={onSubmit} translatedLabel="Save" disabled={isLoading} />
+            <Button
+              testID="complete-pathway-challenge"
+              size="Large"
+              onPress={onCompletePathwayChallenge}
+              translatedLabel="Complete Pathway Challenge"
+              disabled={isCompleteLoading || !isChallengeStarted}
+            />
           </Box>
         </Box>
       </ScrollView>

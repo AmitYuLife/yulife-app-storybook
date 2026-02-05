@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { Navigation } from "@navigation/main";
@@ -13,6 +13,7 @@ interface UsePathwayChallengeArgs {
   componentId: string;
   challengeId?: string;
   skipQuery?: boolean;
+  onExternalCompletion?: () => void;
 }
 
 interface CompleteChallengeArgs {
@@ -22,7 +23,12 @@ interface CompleteChallengeArgs {
 
 export type PathwayChallenge = ReturnType<typeof usePathwayChallenge>["pathwayChallenge"];
 
-export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = false }: UsePathwayChallengeArgs) => {
+export const usePathwayChallenge = ({
+  componentId,
+  challengeId,
+  skipQuery = false,
+  onExternalCompletion,
+}: UsePathwayChallengeArgs) => {
   const dispatch = useDispatch();
 
   const { data: pathwayChallengeData, loading: pathwayChallengeLoading } = useQuery(
@@ -113,6 +119,28 @@ export const usePathwayChallenge = ({ componentId, challengeId, skipQuery = fals
     },
     [challengeId, submitPathwayChallengeFeedback]
   );
+
+  const externalCompletionHandledRef = useRef(false);
+
+  useEffect(() => {
+    const challenge = pathwayChallengeData?.getPathwayChallenge;
+
+    if (challenge?.isCompleted && onExternalCompletion && !externalCompletionHandledRef.current) {
+      externalCompletionHandledRef.current = true;
+      onExternalCompletion();
+
+      Navigation.push(componentId, {
+        component: {
+          name: ROUTES.pathwayChallengeSuccess,
+          passProps: {
+            reward: challenge.reward ?? 0,
+            componentId,
+            challengeId,
+          },
+        },
+      });
+    }
+  }, [pathwayChallengeData?.getPathwayChallenge, componentId, challengeId, onExternalCompletion]);
 
   const pathwayChallenge = useMemo(() => {
     const challenge = pathwayChallengeData?.getPathwayChallenge;

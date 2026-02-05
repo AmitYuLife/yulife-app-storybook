@@ -25,6 +25,7 @@ import { DEBUG_MENU_ITEM } from "@ids";
 
 interface IDebugContainerProps {
   componentId: string;
+  isModal?: boolean;
 }
 
 enum DebugCodes {
@@ -80,7 +81,7 @@ const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
   return bIsFavorite ? 1 : -1;
 };
 
-const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
+const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => {
   const dispatch = useDispatch();
   const [resetData] = useMutation(gql("ResetDataDocument"));
   const { data } = useQuery(gql("GetDebugCodesDocument"), { fetchPolicy: "no-cache" });
@@ -88,8 +89,12 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
   const currentUserId = useSelector(getCurrentUserId);
 
   const handleClose = useCallback((): void => {
-    Navigation.popToRoot(componentId);
-  }, [componentId]);
+    if (isModal) {
+      Navigation.dismissModal(componentId);
+    } else {
+      Navigation.popToRoot(componentId);
+    }
+  }, [componentId, isModal]);
 
   const formatTitle = useCallback((code: string): string => {
     const formattedTitle = upperFirst(code.replace(/-/g, " "));
