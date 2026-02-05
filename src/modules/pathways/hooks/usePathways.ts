@@ -12,7 +12,7 @@ interface UsePathwaysOptions {
 }
 
 export const usePathways = (componentId: string, { fetchPolicy = "cache-and-network" }: UsePathwaysOptions = {}) => {
-  const [, { data, loading }] = useQueryOnScreenSeen(
+  const [, { data, loading, error }] = useQueryOnScreenSeen(
     gql("GetUserPathwaysDocument"),
     componentId,
     {
@@ -46,7 +46,7 @@ export const usePathways = (componentId: string, { fetchPolicy = "cache-and-netw
     //  Which in this case will be daily-steps screen
     try {
       await Navigation.popTo(ROUTES.pathways);
-    } catch (error) {
+    } catch {
       await Navigation.popToRoot(componentId);
     }
   }, [componentId]);
@@ -54,6 +54,7 @@ export const usePathways = (componentId: string, { fetchPolicy = "cache-and-netw
   return {
     data,
     loading,
+    error,
     reflectionProgress,
     isStreakComplete,
     todayReward,

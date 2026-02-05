@@ -18,6 +18,7 @@ import { PATHWAYS_SCREEN } from "@ids";
 import { PathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 import PathwayStreaks from "../components/pathway-streaks/pathway-streaks";
 import PathwaysTitle from "../components/pathways-title/pathways-title";
+import { PathwaysContentSkeleton, PathwaysHeaderSkeleton, PathwaysStreaksSkeleton } from "./pathways.skeletons";
 
 interface IPathwaysScreenProps {
   onClose: () => void;
@@ -47,6 +48,7 @@ const PathwaysScreen = ({
   onOpenMoodCalendar,
   adviceSection,
   interventionSections,
+  isLoading,
   maxProgress,
   pathwayChallenge,
   isStreakComplete,
@@ -66,6 +68,8 @@ const PathwaysScreen = ({
     initialHeight: 0,
   });
 
+  const headerPaddingTop = TOP_BAR.TOP_BAR_WITH_PAD + streakContainerHeight;
+
   return (
     <Box flex={1} testID={PATHWAYS_SCREEN}>
       <Box position="absolute" top={0} width={"100%"} bg={Colours.pathways.header} h={height / 2} />
@@ -75,6 +79,7 @@ const PathwaysScreen = ({
         onScroll={scrollHandler}
         overScrollMode="never"
         showsVerticalScrollIndicator={false}
+        scrollEnabled={!isLoading}
       >
         <Box position="absolute" bg={Colours.pathways.background} h="100%" top={0} w="100%" />
         <Box position="absolute" top={0} width={"100%"}>
@@ -108,39 +113,47 @@ const PathwaysScreen = ({
           />
         </Box>
 
-        <PathwaysHeader
-          onReflect={onReflect}
-          reflectionProgress={reflectionProgress}
-          reflectedToday={reflectedToday}
-          nextQuestionnaireLocalDate={nextQuestionnaireLocalDate}
-          coinAwards={coinAwards}
-          maxProgress={maxProgress}
-          pathwayChallenge={pathwayChallenge}
-          isStreakComplete={isStreakComplete}
-          pt={TOP_BAR.TOP_BAR_WITH_PAD + streakContainerHeight}
-        />
+        {isLoading ? (
+          <PathwaysHeaderSkeleton pt={headerPaddingTop} />
+        ) : (
+          <PathwaysHeader
+            onReflect={onReflect}
+            reflectionProgress={reflectionProgress}
+            reflectedToday={reflectedToday}
+            nextQuestionnaireLocalDate={nextQuestionnaireLocalDate}
+            coinAwards={coinAwards}
+            maxProgress={maxProgress}
+            pathwayChallenge={pathwayChallenge}
+            isStreakComplete={isStreakComplete}
+            pt={headerPaddingTop}
+          />
+        )}
 
-        <Box minHeight={500} width={"100%"} gap={20} ph={16} pt={30}>
-          <Box gap={16}>
-            {interventionSections?.length ? (
-              <PathwaysInterventionSection sections={interventionSections} scrollY={scrollY} />
-            ) : null}
-            <Box ph={8}>
-              <TextTemplate type="b1b" color={Colours.neutral.white}>
-                {t("screens.pathways.health_insights")}
-              </TextTemplate>
+        {isLoading ? (
+          <PathwaysContentSkeleton />
+        ) : (
+          <Box minHeight={500} width={"100%"} gap={20} ph={16} pt={30}>
+            <Box gap={16}>
+              {interventionSections?.length ? (
+                <PathwaysInterventionSection sections={interventionSections} scrollY={scrollY} />
+              ) : null}
+              <Box ph={8}>
+                <TextTemplate type="b1b" color={Colours.neutral.white}>
+                  {t("screens.pathways.health_insights")}
+                </TextTemplate>
+              </Box>
+              <MoodWeekView
+                data={moodSubmissions}
+                openCalendar={() => {
+                  onOpenMoodCalendar();
+                }}
+              />
             </Box>
-            <MoodWeekView
-              data={moodSubmissions}
-              openCalendar={() => {
-                onOpenMoodCalendar();
-              }}
-            />
+            <Box pb={0}>
+              <PathwaysAdviceSection items={adviceSection?.items} scrollY={scrollY} />
+            </Box>
           </Box>
-          <Box pb={0}>
-            <PathwaysAdviceSection items={adviceSection?.items} scrollY={scrollY} />
-          </Box>
-        </Box>
+        )}
         <Box pb={bottomBackgroundHeight * 0.3} />
       </Animated.ScrollView>
       <GenericHeadingAbsolute
@@ -151,19 +164,23 @@ const PathwaysScreen = ({
         hasShadow={true}
         heading={<PathwaysTitle />}
       >
-        <PathwayStreaks
-          currentStreak={reflectionProgress}
-          reflectedToday={reflectedToday}
-          maxProgress={maxProgress}
-          textColor={Colours.neutral.white}
-          completedBorderColor={Colours.pathways.streakBorder}
-          notCompletedBorderColor={Colours.pathways.streakBorder}
-          notCompletedColor={Colours.pathways.background}
-          notCompletedChestForegroundColor={Colours.pathways.streakBorder}
-          notCompletedChestBackgroundColor={Colours.pathways.background}
-          onLayout={onStreakContainerLayout}
-          pb={12}
-        />
+        {isLoading ? (
+          <PathwaysStreaksSkeleton count={maxProgress} onLayout={onStreakContainerLayout} />
+        ) : (
+          <PathwayStreaks
+            currentStreak={reflectionProgress}
+            reflectedToday={reflectedToday}
+            maxProgress={maxProgress}
+            textColor={Colours.neutral.white}
+            completedBorderColor={Colours.pathways.streakBorder}
+            notCompletedBorderColor={Colours.pathways.streakBorder}
+            notCompletedColor={Colours.pathways.background}
+            notCompletedChestForegroundColor={Colours.pathways.streakBorder}
+            notCompletedChestBackgroundColor={Colours.pathways.background}
+            onLayout={onStreakContainerLayout}
+            pb={12}
+          />
+        )}
       </GenericHeadingAbsolute>
     </Box>
   );
