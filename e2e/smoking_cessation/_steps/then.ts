@@ -37,7 +37,6 @@ export const smokingTileVisible =
   (titleCopy: string, waitTime = 0) =>
   async () => {
     await wait(waitTime)();
-    await idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION)();
     await idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE(titleCopy))();
   };
 

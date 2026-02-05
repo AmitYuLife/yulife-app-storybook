@@ -1,8 +1,4 @@
-import {
-  ACTIVITY_HISTORY_CHALLENGE_VALUE,
-  ACTIVITY_HISTORY_MONTH,
-  ACTIVITY_HISTORY_SCREEN,
-} from "@ids";
+import * as ids from "@ids";
 import { booleanIdVisible, booleanTextVisible, navigateViaID, wait } from "./common";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { expect } from "detox";
@@ -208,12 +204,12 @@ export const activityHistoryScrollStepDataCorrect =
 
     for (let i = startSteps; i <= endSteps; i++) {
       await scrollUntilTextVisible(
-        ACTIVITY_HISTORY_SCREEN,
+        ids.ACTIVITY_HISTORY_SCREEN,
         `${addCommasToNumber(i)} Steps`,
         "down"
       )();
       await expect(
-        element(by.id(ACTIVITY_HISTORY_CHALLENGE_VALUE(`${addCommasToNumber(i)} Steps`)))
+        element(by.id(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE(`${addCommasToNumber(i)} Steps`)))
       ).toBeVisible();
     }
   };
@@ -229,8 +225,8 @@ export const activityHistoryScrollCyclingDataCorrect =
 
     for (let i = startSteps; i <= endSteps; i += 100) {
       await scrollUntilIdVisible(
-        ACTIVITY_HISTORY_SCREEN,
-        ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`),
+        ids.ACTIVITY_HISTORY_SCREEN,
+        ids.ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`),
         "down",
         undefined,
         undefined,
@@ -240,7 +236,9 @@ export const activityHistoryScrollCyclingDataCorrect =
       await expect(
         element(
           by.id(
-            ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`)
+            ids.ACTIVITY_HISTORY_CHALLENGE_VALUE(
+              `${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`
+            )
           )
         )
       ).toBeVisible();
@@ -254,8 +252,8 @@ export const activityHistoryScrollMinsDataCorrect =
 
     for (let i = 1; i <= totalDays; i++) {
       await scrollUntilIdVisible(
-        ACTIVITY_HISTORY_SCREEN,
-        ACTIVITY_HISTORY_CHALLENGE_VALUE(`${minutes + i} Mindful mins`),
+        ids.ACTIVITY_HISTORY_SCREEN,
+        ids.ACTIVITY_HISTORY_CHALLENGE_VALUE(`${minutes + i} Mindful mins`),
         "down"
       )();
     }
@@ -265,7 +263,7 @@ export const selectActivityMonth =
   (monthsAgo: 0 | 1 | 2 = 0) =>
   async () => {
     const targetMonth = moment().subtract(monthsAgo, "months").format("MMMM");
-    await navigateViaID(ACTIVITY_HISTORY_MONTH(targetMonth))();
+    await navigateViaID(ids.ACTIVITY_HISTORY_MONTH(targetMonth))();
   };
 
 export const scrollUntilTextVisibleAtIndex =
@@ -305,4 +303,12 @@ export const scrollUntilIdVisibleAtIndex =
       .toBeVisible()
       .whileElement(by.id(scrollViewId))
       .scroll(offset, direction, xscroll, yscroll);
+  };
+
+export const scrollYuScreenDown =
+  (percentage = 0.4, startY = 0.8, waitTime = 2000) =>
+  async () => {
+    const scrollView = element(by.id(ids.YUSCREEN_SCROLL_VIEW));
+    await scrollView.swipe("up", "slow", percentage, 0.5, startY);
+    await wait(waitTime)();
   };

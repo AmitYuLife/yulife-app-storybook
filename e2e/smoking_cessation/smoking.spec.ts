@@ -17,11 +17,10 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
         Then("I can see the YuScreen scroll view", then.idVisible(ids.YUSCREEN_SCROLL_VIEW, 3000));
       });
     });
-    When("I swipe up to scroll down", when.scrollWithLimitedAttemptsUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "up"), async () => {
-      Then("I should see the smoking tile", then.idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION, 3000));
-    });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION, 2000), async () => {
-      Then("I should be on the smoking cessation intro screen", then.idVisible(ids.SMOKING_INTRO_TITLE, 2000));
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
+      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Looking to quit smoking?"), 3000), async () => {
+        Then("I should be on the smoking cessation intro screen", then.idVisible(ids.SMOKING_INTRO_TITLE, 2000));
+      });
     });
     When("I tap start my journey", when.tapID(ids.BUTTON_BASE("Start my journey"), 3000), async () => {
       Then("I should be on the tobacco product question", then.objCopyVisible(smoking_questions[locale].type_of_smoking));
@@ -181,11 +180,10 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_LEELA, data.AUTH_LEELA), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Turanga Leela", "Forest", "212", true));
     });
-    When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
-      Then("I should see the smoking tile", then.idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION));
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       Then("I should see the initial smoking tile", then.smokingTileVisible("17 days smoke-free"));
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
+    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("17 days smoke-free"), 3000), async () => {
       Then("I should see the smoking checkin overlay", then.idVisible(ids.SMOKING_CHECKIN_OVERLAY));
     });
     When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
@@ -232,10 +230,10 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_BENDER, data.AUTH_BENDER), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bender Rodriguez", "Forest", "212", true));
     });
-    When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.SMOKING_TILE_BUTTON, "down"), async () => {
-      Then("I should see the smoking tile", then.idVisible(ids.SMOKING_TILE_BUTTON));
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.5, 0.85, 3000), async () => {
+      Then("I should see the smoking tile", then.idVisible(ids.SMOKING_TILE_BUTTON, 3000));
     });
-    When("I tap the craving button", when.tapID(ids.SMOKING_TILE_BUTTON), async () => {
+    When("I tap the craving button", when.tapID(ids.SMOKING_TILE_BUTTON, 3000), async () => {
       When("I wait", when.wait(5000), async () => {
         Then("I should be on the Yunity Swipe settings screen", then.onYunitySwipe);
         Then("I should see my high score of 1284", then.idVisible(ids.SMOKING_GAME_HIGH_SCORE(1284)));
@@ -244,7 +242,7 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
     When("I go back", when.tapID(ids.LEFT_HEADING_BUTTON()), async () => {
       Then("I should be back on the yuscreen and see the smoking tile", then.idVisible(ids.SMOKING_TILE_BUTTON));
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
+    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("6 days smoke-free"), 3000), async () => {
       Then("I should see the smoking checkin overlay", then.idVisible(ids.SMOKING_CHECKIN_OVERLAY));
     });
     When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
@@ -286,7 +284,7 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
         Then("I should be back on the yuscreen and see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?", 5000));
       });
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
+    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Looking to quit smoking?"), 3000), async () => {
       Then("I should be on the smoking cessation intro screen", then.idVisible(ids.SMOKING_INTRO_TITLE));
       Then("I should not see the craving button", then.idNotVisible(ids.SMOKING_TILE_BUTTON));
     });
@@ -363,8 +361,8 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_BENDER, data.AUTH_BENDER), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bender Rodriguez", "Forest", "212", true));
     });
-    When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
-      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
+      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("6 days smoke-free"), 3000), async () => {
         When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
           When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
             When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
@@ -387,68 +385,68 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
         });
       });
     });
-    When("I scroll further down the screen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.2, 3_000), async () => {
+    When("I scroll further down the screen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.1, 3_000), async () => {
       Then("I should be back on the yuscreen and see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?", 3_000));
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
-      When("I tap start my journey", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-        When("I tap cigarettes", when.tapID(ids.SMOKING_ANSWER_CIG), async () => {
-          When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-            When("I enter an amount", when.typeViaID(ids.SMOKING_ANSWER_TEXT_FIELD, "8"), async () => {
-              When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-                Then("I should be on the spend question", then.textVisible(smoking_questions[locale].weekly_expense.heading));
+    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Looking to quit smoking?"), 3000), async () => {
+      When("I tap start my journey", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+        When("I tap cigarettes", when.tapID(ids.SMOKING_ANSWER_CIG, 3000), async () => {
+          When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+            When("I enter an amount", when.typeViaID(ids.SMOKING_ANSWER_TEXT_FIELD, "8", 3000), async () => {
+              When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+                Then("I should be on the spend question", then.textVisible(smoking_questions[locale].weekly_expense.heading, 3000));
               });
             });
           });
         });
       });
     });
-    When("I enter an amount", when.typeViaID(ids.SMOKING_SPEND_INPUT, "40"), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-        When("I tap for family", when.tapID(ids.SMOKING_ANSWER_IMPROVE_FOR_FAMILY), async () => {
-          When("I tap to save money", when.tapID(ids.SMOKING_ANSWER_IMPROVE_SAVE_MONEY), async () => {
-            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I enter an amount", when.typeViaID(ids.SMOKING_SPEND_INPUT, "40", 3000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+        When("I tap for family", when.tapID(ids.SMOKING_ANSWER_IMPROVE_FOR_FAMILY, 3000), async () => {
+          When("I tap to save money", when.tapID(ids.SMOKING_ANSWER_IMPROVE_SAVE_MONEY, 3000), async () => {
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
               Then("I should be on the worried question", then.objCopyVisible(smoking_questions[locale].worried));
             });
           });
         });
       });
     });
-    When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-        When("I tap an hour or two", when.tapID(ids.SMOKING_ANSWER_AN_HOUR), async () => {
-          When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE, 3000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+        When("I tap an hour or two", when.tapID(ids.SMOKING_ANSWER_AN_HOUR, 3000), async () => {
+          When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
             Then("I should be on the triggers question", then.objCopyVisible(smoking_questions[locale].triggers));
           });
         });
       });
     });
-    When("I tap drinking", when.tapID(ids.SMOKING_ANSWER_DRINKING), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-        When("I tap very", when.tapID(ids.SMOKING_ANSWER_VERY_CONFIDENT), async () => {
-          When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap drinking", when.tapID(ids.SMOKING_ANSWER_DRINKING, 3000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+        When("I tap very", when.tapID(ids.SMOKING_ANSWER_VERY_CONFIDENT, 3000), async () => {
+          When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
             Then("I should be on the confidence question", then.objCopyVisible(smoking_questions[locale].replacement));
           });
         });
       });
     });
-    When("I Tap no", when.tapID(ids.SMOKING_ANSWER_NO), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-        When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-          When("I tap I'm commited", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-            When("I tap the finger print", when.tapID(ids.GESTURE_WRAPPER), async () => {
+    When("I Tap no", when.tapID(ids.SMOKING_ANSWER_NO, 3000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+        When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+          When("I tap I'm commited", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+            When("I tap the finger print", when.tapID(ids.GESTURE_WRAPPER, 3000), async () => {
               Then("I should see the take your first steps button", then.textVisible("Take your first steps"));
             });
           });
         });
       });
     });
-    When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-      When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
+    When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3000), async () => {
+      When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW, 3000), async () => {
         Then("I should see the celebration screen", then.smokingCelebrationPopupVisible(1, 10));
       });
     });
-    When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
+    When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA, 3000), async () => {
       Then("I should be on the smoking cessation screen but can no longer see the opt out option", then.onSmokingHub(locale, 1, true, "0", "0", FRY_MOMENTS_AND_REASONS, 1, false));
     });
   });
@@ -457,8 +455,8 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_ZAPP, data.AUTH_ZAPP), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Zapp Brannigan", "Forest", "212", true));
     });
-    When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
-      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.5, 0.85, 3000), async () => {
+      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("27 days smoke-free"), 3000), async () => {
         When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
           Then("I should see the You're doing great popup and my yucoin earned is linked to my earn rate", then.smokingCelebrationPopupVisible(28, 5));
         });
@@ -479,13 +477,13 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_AMY, data.AUTH_AMY), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Amy Wong", "Forest", "212", true));
     });
-    When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       Then("I should see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?"));
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
-      When("I tap start my journey", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-        Then("2 I should be on the tobacco product question", then.objCopyVisible(smoking_questions[locale].type_of_smoking));
-        Then("I should see smoking_cessation_question_type_choice_cigarettes", then.idVisible(ids.SMOKING_ANSWER_CIG));
+    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Looking to quit smoking?"), 3000), async () => {
+      When("I tap start my journey", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 3_000), async () => {
+        Then("I should be on the tobacco product question", then.objCopyVisible(smoking_questions[locale].type_of_smoking));
+        Then("I should see smoking_cessation_question_type_choice_cigarettes", then.idVisible(ids.SMOKING_ANSWER_CIG, 3_000));
         Then("I should see smoking_cessation_question_type_choice_roll_ups", then.idVisible(ids.SMOKING_ANSWER_ROLL));
         Then("I should see smoking_cessation_question_type_choice_both", then.idVisible(ids.SMOKING_ANSWER_BOTH));
       });
@@ -580,9 +578,9 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
         Then("I should be back on the yuscreen and see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?", 5000));
       });
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
+    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Looking to quit smoking?"), 3000), async () => {
       When("I tap start my journey", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-        Then("2 I should be on the tobacco product question", then.objCopyVisible(smoking_questions[locale].type_of_smoking));
+        Then("I should be on the tobacco product question", then.objCopyVisible(smoking_questions[locale].type_of_smoking));
         Then("I should see smoking_cessation_question_type_choice_cigarettes", then.idVisible(ids.SMOKING_ANSWER_CIG));
         Then("I should see smoking_cessation_question_type_choice_roll_ups", then.idVisible(ids.SMOKING_ANSWER_ROLL));
         Then("I should see smoking_cessation_question_type_choice_both", then.idVisible(ids.SMOKING_ANSWER_BOTH));
@@ -651,36 +649,38 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   Scenario("After I opt-out 5 times as a user who has 0 streak days claimed, I will have a delay in getting any YuCoin rewards for the next 7 days in the streak for the daily rewards as well as the questionnaire.", scenario.start, async () => {
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_HERMES, data.AUTH_HERMES), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Hermes Conrad", "Forest", "212", true));
-    });
-    When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
       Then("I can see my YuCoin Balance is 1200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1200)));
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
-      When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
-        Then("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA));
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
+      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("1 day smoke-free"), 3000), async () => {
+        When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA, 2_000), async () => {
+          When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA, 3_000), async () => {
+            When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_CTA, 3_000), async () => {
+              Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(7), 5_000));
+              Then("I can see after the have you smoked since we last saw you popup I have not received any YuCoin for saying no", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1210)));
+            });
+          });
+        });
       });
-    });
-    When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
-      Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(7)));
-      Then("I can see after the have you smoked since we last saw you popup I have not received any YuCoin for saying no", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1210)));
     });
   });
 
   Scenario("After I opt-out 10 times as a user who has 0 streak days claimed, I will have a delay in getting any YuCoin rewards for the next 14 days in the streak for the daily rewards as well as the questionnaire.", scenario.start, async () => {
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_KIF, data.AUTH_KIF), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Kif Kroker", "Forest", "212", true));
-      Then("I can see my YuCoin Balance is 1200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1200)));
+      Then("I can see my YuCoin Balance is 1200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1200), 3_000));
     });
-    When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
-      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
-        When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
-          Then("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA));
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
+      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("1 day smoke-free"), 3000), async () => {
+        When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA, 4_000), async () => {
+          When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA, 3_000), async () => {
+            When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_CTA, 3_000), async () => {
+              Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(14), 5_000));
+              Then("I can see after the have you smoked since we last saw you popup I have not received any YuCoin for saying no", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1210)));
+            });
+          });
         });
       });
-    });
-    When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
-      Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(14)));
-      Then("I can see after the have you smoked since we last saw you popup I have not received any YuCoin for saying no", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1210)));
     });
   });
 
@@ -706,8 +706,8 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
     Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_CALCULON, data.AUTH_CALCULON), async () => {
       Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Calculon Robot", "Forest", "212", true));
     });
-    When("I scroll down", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
-      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
+      When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("28 days smoke-free"), 3000), async () => {
         When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
           Then("I should see the You're doing great popup with the expected changes as I'm passed day 28", then.smokingCelebrationPopupVisible(29));
         });

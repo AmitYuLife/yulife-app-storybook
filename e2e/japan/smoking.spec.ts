@@ -19,129 +19,128 @@ Feature("As a user from Japan, I can view and use the smoking cessation feature"
       Then("I should see the image for the Compass icon card", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(PRODUCT_CARD_ILLUSTRATIONS.COMPASS)));
       Then("I should see the image for the Candle icon card", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(PRODUCT_CARD_ILLUSTRATIONS.CANDLE)));
     });
-    When("I scroll down until I see the smoking tile", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
-      Then("I should see the image for the Lantern icon card", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(PRODUCT_CARD_ILLUSTRATIONS.LANTERN)));
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       Then("I should see the initial smoking tile", then.smokingTileVisible("禁煙をお考えですか?"));
     });
-    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION), async () => {
-      Then("I should be on the smoking cessation intro screen", then.idVisible(ids.SMOKING_INTRO_TITLE));
+    When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("禁煙をお考えですか?"), 3000), async () => {
+      Then("I should be on the smoking cessation intro screen", then.idVisible(ids.SMOKING_INTRO_TITLE, 2000));
     });
-    When("I tap start my journey", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap start my journey", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
       Then("I should be on the tobacco product question", then.objCopyVisible(smoking_questions[locale].type_of_smoking));
       Then("I should see smoking_cessation_question_type_choice_cigarettes", then.idVisible(ids.SMOKING_ANSWER_CIG));
       Then("I should see smoking_cessation_question_type_choice_roll_ups", then.idVisible(ids.SMOKING_ANSWER_ROLL));
       Then("I should see smoking_cessation_question_type_choice_both", then.idVisible(ids.SMOKING_ANSWER_BOTH));
     });
-    When("I tap cigarettes", when.tapID(ids.SMOKING_ANSWER_CIG), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-        Then("I should be on the amount question", then.idVisible(ids.SMOKING_ANSWER_TEXT_FIELD));
+    When("I tap cigarettes", when.tapID(ids.SMOKING_ANSWER_CIG, 2000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
+        Then("I should be on the amount question", then.idVisible(ids.SMOKING_ANSWER_TEXT_FIELD, 2000));
         Then("I should be on the quantity question", then.objCopyVisible(smoking_questions[locale].amount_used_per_day));
       });
     });
-    When("I enter an amount with three digits", when.typeViaID(ids.SMOKING_ANSWER_TEXT_FIELD, "100"), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I enter an amount with three digits", when.typeViaID(ids.SMOKING_ANSWER_TEXT_FIELD, "100", 2000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I should still be on the quantity question as my answer was invalid", then.objCopyVisible(smoking_questions[locale].amount_used_per_day));
       });
     });
     When("I enter an amount that's acceptable", when.replaceTextViaID(ids.SMOKING_ANSWER_TEXT_FIELD, "8"), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I should be on the spend question", then.textVisible(smoking_questions[locale].weekly_expense.description));
         Then("I should be on the spend question", then.textVisible(smoking_questions[locale].weekly_expense.heading));
       });
     });
-    When("I enter an amount that's too long", when.typeViaID(ids.SMOKING_SPEND_INPUT, "40000000"), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I enter an amount that's too long", when.typeViaID(ids.SMOKING_SPEND_INPUT, "40000000", 2000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I should still be on the spend question as my answer was invalid", then.textVisible(smoking_questions[locale].weekly_expense.heading));
       });
     });
     When("I enter an amount has a decimal place", when.replaceTextViaID(ids.SMOKING_SPEND_INPUT, "40.5"), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I should still be on the spend question as my answer was invalid", then.textVisible(smoking_questions[locale].weekly_expense.heading));
       });
     });
     When("I enter an amount that's acceptable", when.replaceTextViaID(ids.SMOKING_SPEND_INPUT, "40"), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I should be on the motivate question", then.objCopyVisible(smoking_questions[locale].motivations));
       });
     });
-    When("I tap for family", when.tapID(ids.SMOKING_ANSWER_IMPROVE_FOR_FAMILY), async () => {
-      When("I tap to save money", when.tapID(ids.SMOKING_ANSWER_IMPROVE_SAVE_MONEY), async () => {
-        When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I tap for family", when.tapID(ids.SMOKING_ANSWER_IMPROVE_FOR_FAMILY, 2000), async () => {
+      When("I tap to save money", when.tapID(ids.SMOKING_ANSWER_IMPROVE_SAVE_MONEY, 2000), async () => {
+        When("I tap the back button", when.tapID(ids.BACK_BUTTON, 2000), async () => {
           Then("I should be on the spend question", then.textVisible(smoking_questions[locale].weekly_expense.heading));
         });
       });
     });
-    When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
       Then("I should be on the motivate question", then.objCopyVisible(smoking_questions[locale].motivations));
     });
-    When("I tap for family", when.tapID(ids.SMOKING_ANSWER_IMPROVE_FOR_FAMILY), async () => {
-      When("I tap to save money", when.tapID(ids.SMOKING_ANSWER_IMPROVE_SAVE_MONEY), async () => {
-        When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap for family", when.tapID(ids.SMOKING_ANSWER_IMPROVE_FOR_FAMILY, 2000), async () => {
+      When("I tap to save money", when.tapID(ids.SMOKING_ANSWER_IMPROVE_SAVE_MONEY, 2000), async () => {
+        When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
           Then("I should be on the worried question", then.objCopyVisible(smoking_questions[locale].worried));
         });
       });
     });
-    When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE, 2000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I Should be on the when is your first smoke question", then.objCopyVisible(smoking_questions[locale].when_first));
       });
     });
-    When("I tap an hour or two", when.tapID(ids.SMOKING_ANSWER_AN_HOUR), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap an hour or two", when.tapID(ids.SMOKING_ANSWER_AN_HOUR, 2000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I should be on the triggers question", then.objCopyVisible(smoking_questions[locale].triggers));
       });
     });
-    When("I tap drinking", when.tapID(ids.SMOKING_ANSWER_DRINKING), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap drinking", when.tapID(ids.SMOKING_ANSWER_DRINKING, 2000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I should be on the confidence question", then.objCopyVisible(smoking_questions[locale].confident));
       });
     });
-    When("I tap very", when.tapID(ids.SMOKING_ANSWER_VERY_CONFIDENT), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap very", when.tapID(ids.SMOKING_ANSWER_VERY_CONFIDENT, 2000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I should be on the replacement question", then.objCopyVisible(smoking_questions[locale].replacement));
       });
     });
-    When("I Tap no", when.tapID(ids.SMOKING_ANSWER_NO), async () => {
-      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I Tap no", when.tapID(ids.SMOKING_ANSWER_NO, 2000), async () => {
+      When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
         Then("I should be on the replacement consideration screen", then.objCopyVisible(smoking_questions[locale].replacement_consider));
       });
     });
-    When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
       Then("I should be on the commitment screen", then.objCopyVisible(smoking_questions[locale].commitment_1));
     });
-    When("I tap I'm commited", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+    When("I tap I'm commited", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
       Then("I should be on the pledge screen", then.textVisible(smoking_questions[locale].commitment_2.description_1));
       Then("I should see the fingerprint button", then.idVisible(ids.GESTURE_WRAPPER));
     });
-    When("I tap the finger print", when.tapID(ids.GESTURE_WRAPPER), async () => {
+    When("I tap the finger print", when.tapID(ids.GESTURE_WRAPPER, 2000), async () => {
       Then("I should see the take your first steps button", then.textVisible(smoking_questions[locale].commitment_2.cta));
     });
-    When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-      When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
-        When("I tap to collect the reward", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
+    When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 2000), async () => {
+      When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW, 2000), async () => {
+        When("I tap to collect the reward", when.tapID(ids.SMOKING_CELEBRATION_CTA, 2000), async () => {
           Then("I should be on the smoking cessation screen", then.onSmokingHub(locale, 0, true, "0", "0", CUSTOMER_2_MOMENTS_AND_REASONS));
         });
       });
     });
-    When("I exit the smoking hub", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I exit the smoking hub", when.tapID(ids.BACK_BUTTON, 2000), async () => {
       When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-        When("I go to Today's Earnings", when.tapID(ids.STEPS_COUNT(0)), async () => {
+        When("I go to Today's Earnings", when.tapID(ids.STEPS_COUNT(0), 2000), async () => {
           Then("I see I've earned 251 yucoin today so far on the todays earnings screen", then.textVisible("251 YuCoin"));
         });
       });
     });
-    When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+    When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5, 2000), async () => {
       Then("I can see the reward for signing up", then.idVisible(ids.ACTIVITY_LISTING("禁煙に関するアンケート", 50)));
     });
     When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
       When("I wait", when.wait(15000), async () => {
-        When("I go back to the yucoin screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+        When("I go back to the yucoin screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0, 2000), async () => {
           Then("I can see the smoking card is there on day 1 ", then.smokingCardVisible(1, locale));
         });
       });
     });
-    When("I tap the smoking card", when.tapID(ids.FLAT_LIST_EVENTS), async () => {
-      When("I tap on the milestone for day 1", when.tapID(ids.SMOKING_MILESTONE_TAPPABLE("1")), async () => {
+    When("I tap the smoking card", when.tapID(ids.FLAT_LIST_EVENTS, 2000), async () => {
+      When("I tap on the milestone for day 1", when.tapID(ids.SMOKING_MILESTONE_TAPPABLE("1"), 2000), async () => {
         Then("I see I have hit the milestone the correct amount of times", then.textVisible(milestone_message[locale].first_time.message));
       });
     });
