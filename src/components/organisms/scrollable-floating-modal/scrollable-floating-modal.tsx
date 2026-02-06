@@ -1,4 +1,4 @@
-import { BottomShadow, TextTemplate } from "@atoms";
+import { BottomShadow, Box, TextTemplate } from "@atoms";
 import { FloatingModal } from "@components/modals";
 import { Pressable } from "@components/molecules";
 import { t } from "@locale";
@@ -59,7 +59,7 @@ const ScrollableFloatingModal = ({
             closeIconColor={closeIconColor}
             paddingTop={Style.adjust(title ? 42 : 0)}
           >
-            <>
+            <Box>
               <View style={contentStyle}>
                 {title ? (
                   <>
@@ -82,7 +82,7 @@ const ScrollableFloatingModal = ({
                 {children}
               </View>
               {footer ? (
-                <>
+                <Box>
                   <LinearGradient
                     angle={0}
                     useAngle={true}
@@ -90,12 +90,11 @@ const ScrollableFloatingModal = ({
                     colors={GRADIENT_COLORS}
                     style={styles.bottomGradient}
                     locations={GRADIENT_LOCATIONS}
-                  >
-                    {footer}
-                  </LinearGradient>
-                </>
+                  />
+                  {footer}
+                </Box>
               ) : null}
-            </>
+            </Box>
           </FloatingModal>
         </Animated.View>
       </Animated.View>
