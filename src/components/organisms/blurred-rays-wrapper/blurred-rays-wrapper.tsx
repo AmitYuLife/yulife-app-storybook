@@ -54,7 +54,7 @@ const BlurredRaysWrapper = ({
   );
 
   return (
-    <BlurredWrapper intensity={3} tint="dark" backgroundColor={backgroundColor}>
+    <BlurredWrapper intensity={50} tint="dark" backgroundColor={backgroundColor}>
       <Animated.View entering={FadeIn.duration(200)} style={styles.wrapper}>
         <Box w="100%" h="100%" position="absolute" opacity={0.4}>
           <Animated.View style={styles.rays} entering={FadeIn.delay(300).duration(800)}>

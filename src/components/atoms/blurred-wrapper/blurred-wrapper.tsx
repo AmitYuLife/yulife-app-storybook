@@ -9,7 +9,7 @@ interface IProps extends Pick<BlurViewProps, "intensity" | "tint"> {
   backgroundColor?: string;
 }
 
-const BlurredWrapper = ({ children, tint = "light", intensity = 5, backgroundColor = "rgba(0,0,0,.5)" }: IProps) => {
+const BlurredWrapper = ({ children, tint = "light", intensity = 50, backgroundColor = "rgba(0,0,0,.5)" }: IProps) => {
   const wrapperStyle = useMemo(
     () => ({ backgroundColor, ...StyleSheet.absoluteFillObject, borderColor: "transparent" }),
     [backgroundColor]
