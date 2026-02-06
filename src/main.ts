@@ -50,5 +50,5 @@ Navigation.events().registerAppLaunchedListener(async () => {
 });
 
 if (__DEV__) {
-  LogBox.ignoreLogs(["[Datadog SDK]"]);
+  LogBox.ignoreLogs(["Open debugger to view warnings.", "[Datadog SDK]"]);
 }
