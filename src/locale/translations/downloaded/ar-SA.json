@@ -384,6 +384,9 @@
         "heading": "عذرًا، هناك خطأ ما.",
         "subheading": "لم نتمكن من تحميل الوسائط. يرجى التحقق من الاتصال والمحاولة مرة أخرى. إذا استمر ظهور هذه الرسالة، تواصل معنا عبر الدردشة."
       },
+      "on_pathways_challenge_cancel": {
+        "cta_label": "جرب لاحقًا"
+      },
       "on_pathways_media_error": {
         "cta_label": "أعد المحاولة",
         "cta_label_secondary": "قائمة التحديات",

@@ -384,6 +384,9 @@
         "heading": "エラーが発生しました。",
         "subheading": "メディア を読み込めませんでした。 接続を確認して再度お試しください。 メッセージが続く場合は、 チャット を通じて私たちに連絡してください。"
       },
+      "on_pathways_challenge_cancel": {
+        "cta_label": "後で試す"
+      },
       "on_pathways_media_error": {
         "cta_label": "再試行する",
         "cta_label_secondary": "チャレンジ メニュー",
