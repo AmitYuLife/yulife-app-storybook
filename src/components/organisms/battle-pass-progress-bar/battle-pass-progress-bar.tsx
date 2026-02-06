@@ -157,6 +157,7 @@ const BattlePassProgressBar = ({
             </View>
           </View>
         </MaskedView>
+
         {!icon ? null : (
           <View style={styles.icon}>
             <Image source={{ uri: icon }} width={Style.adjust(24)} height={Style.adjust(24)} />
@@ -190,11 +191,10 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   maskedTextContainer: {
-    flexDirection: "row",
     width: "100%",
-    height: "100%",
-    justifyContent: "space-between",
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   centered: {
     justifyContent: "center",
