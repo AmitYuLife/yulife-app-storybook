@@ -10,8 +10,6 @@ export default StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
-    marginEnd: Style.SCALE_UP_AND_DOWN(24),
-    paddingEnd: Style.SCALE_UP_AND_DOWN(8),
     position: "absolute",
     top: 0,
     zIndex: 2,
