@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
-import LinearGradient from "react-native-linear-gradient";
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { Animated, NativeScrollEvent, View } from "react-native";
 
@@ -14,13 +13,15 @@ import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { ChallengeDetailsMilestone } from "./challenge-details-milestone";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { SMOOTH_GRADIENT_COLORS } from "../../events/event-dialog/event-dialog.styles";
 import { ChallengeDetailsBadge, ChallengeDetailsBadgeIntent } from "./challenge-details-badge";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { Button, SecondaryButton, TouchableOpacityWithDelay, YucoinPowerButton } from "@molecules";
 import { SET_UP_BUTTON, CHALLENGE_TYPE, CHALLENGE_DETAILS_SCREEN_NEW, CHALLENGE_PAGE_BOOST_SLOT } from "@ids";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { GetQuestMapLevelQuery } from "@graphql/__generated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { SMOOTH_GRADIENT_COLORS } from "../../events/event-dialog/event-dialog.styles";
+import LinearGradient from "react-native-linear-gradient";
 
 export interface IChallengeDetailsScreenProps {
   error?: string;
@@ -45,6 +46,7 @@ function ChallengeDetailsScreen({
   onPressSetUp = null,
 }: IChallengeDetailsScreenProps) {
   const dispatch = useDispatch();
+  const { bottom } = useSafeAreaInsets();
   const bonusInfoButtonRef = useRef<View>(null);
   const scrollY = useRef(new Animated.Value(0));
   const { yuniversalMap } = useSelector(getYuniversalProgress);
@@ -203,8 +205,9 @@ function ChallengeDetailsScreen({
           <YucoinPowerButton onPress={onPressYucoinPowerButton} />
         </Box>
       </Animated.ScrollView>
-      <LinearGradient style={styles.footerWrapper} colors={SMOOTH_GRADIENT_COLORS}>
-        <Box gap={10}>
+      <Box w="100%" position="absolute" bottom={0}>
+        <LinearGradient style={styles.footerWrapper} colors={SMOOTH_GRADIENT_COLORS} />
+        <Box gap={10} pb={bottom} bottom={0} w="100%">
           <Button
             onPress={onPressCta}
             disabled={isLoading || slot.isCompleted}
@@ -232,7 +235,7 @@ function ChallengeDetailsScreen({
             </View>
           )}
         </Box>
-      </LinearGradient>
+      </Box>
       {!isHeaderVisible ? null : (
         <GenericHeadingAbsolute
           logo="yulife"
@@ -282,9 +285,8 @@ const styles = StyleSheet.create({
   footerWrapper: {
     position: "absolute",
     bottom: 0,
-    width: Style.DEVICE_WIDTH,
-    paddingTop: Style.adjust(50),
-    paddingBottom: Style.adjust(20),
+    width: "100%",
+    height: "100%",
   },
   rewardWrapper: {
     marginStart: "auto",
