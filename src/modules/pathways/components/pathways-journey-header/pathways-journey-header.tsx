@@ -10,8 +10,8 @@ interface IPathwaysJourneyHeaderProps {
 
 const PathwaysJourneyHeader = ({ maxProgress }: IPathwaysJourneyHeaderProps) => {
   return (
-    <Box gap={5} alignItems="center">
-      <TextTemplate type="b1b" color={Colours.neutral.white}>
+    <Box gap={5} alignItems="center" px={20}>
+      <TextTemplate type="b1b" color={Colours.neutral.white} textAlign="center">
         {t("screens.pathways.journey_header")}
       </TextTemplate>
       <Markdown markdownStyles={markdownStyles} text={t("screens.pathways.journey_header_starts", { maxProgress })} />
@@ -25,6 +25,7 @@ const markdownStyles = StyleSheet.create({
   },
   text: {
     ...templateTextMarkdownStyles.l1,
+    textAlign: "center",
     color: Colours.neutral.white,
     fontVariant: ["tabular-nums"],
   },
