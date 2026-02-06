@@ -1,0 +1,29 @@
+diff --git a/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp b/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
+index 405392f..4082426 100644
+--- a/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
++++ b/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
+@@ -318,13 +318,21 @@ void SurfaceHandler::applyDisplayMode(DisplayMode displayMode) const {
+ void SurfaceHandler::setUIManager(const UIManager* uiManager) const noexcept {
+   std::unique_lock lock(linkMutex_);
+ 
+-  react_native_assert(
+-      link_.status != Status::Running && "Surface must not be running.");
+-
+   if (link_.uiManager == uiManager) {
+     return;
+   }
+ 
++  // If the surface is still Running, force-transition to Registered
++  // so the unregister below can proceed. We intentionally skip
++  // uiManager->stopSurface() because the JS runtime may already be
++  // torn down during reload, which would throw
++  // "AppRegistryBinding::stopSurface failed. Global was not installed."
++  // The surface is being destroyed anyway, so JS cleanup is unnecessary.
++  if (link_.status == Status::Running) {
++    link_.status = Status::Registered;
++    link_.shadowTree = nullptr;
++  }
++
+   link_.uiManager = uiManager;
+   link_.status =
+       uiManager != nullptr ? Status::Registered : Status::Unregistered;

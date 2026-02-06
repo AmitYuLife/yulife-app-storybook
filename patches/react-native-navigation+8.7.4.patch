@@ -1,0 +1,113 @@
+diff --git a/node_modules/react-native-navigation/ios/RNNReactButtonView.mm b/node_modules/react-native-navigation/ios/RNNReactButtonView.mm
+index 607d912..22a9030 100644
+--- a/node_modules/react-native-navigation/ios/RNNReactButtonView.mm
++++ b/node_modules/react-native-navigation/ios/RNNReactButtonView.mm
+@@ -9,7 +9,6 @@ - (instancetype)initWithHost:(RCTHost *)host
+              sizeMeasureMode:(RCTSurfaceSizeMeasureMode)sizeMeasureMode
+          reactViewReadyBlock:(RNNReactViewReadyCompletionBlock)reactViewReadyBlock {
+     self = [super initWithHost:host moduleName:moduleName initialProperties:initialProperties eventEmitter:eventEmitter sizeMeasureMode:convertToSurfaceSizeMeasureMode(RCTRootViewSizeFlexibilityWidthAndHeight) reactViewReadyBlock:reactViewReadyBlock];
+-    [host.surfacePresenter addObserver:self];
+     self.backgroundColor = UIColor.clearColor;
+ 
+     return self;
+diff --git a/node_modules/react-native-navigation/ios/RNNReactView.h b/node_modules/react-native-navigation/ios/RNNReactView.h
+index 3a3540b..2261045 100644
+--- a/node_modules/react-native-navigation/ios/RNNReactView.h
++++ b/node_modules/react-native-navigation/ios/RNNReactView.h
+@@ -105,6 +105,7 @@ typedef void (^RNNReactViewReadyCompletionBlock)(void);
+ @property (nonatomic, assign) RCTRootViewSizeFlexibility sizeFlexibility;
+ @property (atomic, readwrite, weak, nullable) id<RCTSurfaceDelegate> delegate;
+ @property (nonatomic, assign) BOOL passThroughTouches;
++@property (nonatomic, weak, nullable) id<RCTSurfacePresenterStub> surfacePresenter;
+ 
+ #endif
+ 
+diff --git a/node_modules/react-native-navigation/ios/RNNReactView.mm b/node_modules/react-native-navigation/ios/RNNReactView.mm
+index 099cb72..0594da8 100644
+--- a/node_modules/react-native-navigation/ios/RNNReactView.mm
++++ b/node_modules/react-native-navigation/ios/RNNReactView.mm
+@@ -61,16 +61,29 @@ - (instancetype)initWithHost:(RCTHost *)host
+              sizeMeasureMode:(RCTSurfaceSizeMeasureMode)sizeMeasureMode
+          reactViewReadyBlock:(RNNReactViewReadyCompletionBlock)reactViewReadyBlock {
+     
+-    RCTFabricSurface *surface = [host createSurfaceWithModuleName:moduleName
+-                                                initialProperties:initialProperties];
+-    [host.surfacePresenter addObserver:self];
++    id<RCTSurfacePresenterStub> presenter = host.surfacePresenter;
++    // Create surface directly instead of [host createSurfaceWithModuleName:]
++    // to avoid adding to RCTHost._attachedSurfaces. This prevents RCTHost
++    // from restarting RNN-managed surfaces on reload.
++    RCTFabricSurface *surface = [[RCTFabricSurface alloc]
++        initWithSurfacePresenter:(RCTSurfacePresenter *)presenter
++                      moduleName:moduleName
++               initialProperties:initialProperties];
++    [presenter addObserver:self];
+     self = [super initWithSurface:surface sizeMeasureMode:sizeMeasureMode];
+ 
++    _surfacePresenter = presenter;
+     _reactViewReadyBlock = reactViewReadyBlock;
+     _eventEmitter = eventEmitter;
+ 
++    [surface start];
++
+     return self;
+ }
++
++- (void)dealloc {
++    [_surfacePresenter removeObserver:self];
++}
+ #endif
+ 
+ #ifdef RCT_NEW_ARCH_ENABLED
+diff --git a/node_modules/react-native-navigation/ios/ScreenAnimationController.mm b/node_modules/react-native-navigation/ios/ScreenAnimationController.mm
+index 0d4cdd0..9673c09 100644
+--- a/node_modules/react-native-navigation/ios/ScreenAnimationController.mm
++++ b/node_modules/react-native-navigation/ios/ScreenAnimationController.mm
+@@ -187,6 +187,15 @@ - (void)uiManagerDidPerformMounting:(RCTUIManager *)manager {
+ }
+ 
+ - (void)animationEnded:(BOOL)transitionCompleted {
++#ifdef RCT_NEW_ARCH_ENABLED
++	if (_host != nil) {
++		[_host.surfacePresenter removeObserver:self];
++	} else {
++		[_bridge.uiManager.observerCoordinator removeObserver:self];
++	}
++#else
++	[_bridge.uiManager.observerCoordinator removeObserver:self];
++#endif
+ 	UIView *toView = [_transitionContext viewForKey:UITransitionContextToViewKey];
+ 	UIView *fromView = [_transitionContext viewForKey:UITransitionContextFromViewKey];
+ 	[_sharedElementAnimator animationEnded];
+diff --git a/node_modules/react-native-navigation/ios/TurboModules/RNNTurboManager.mm b/node_modules/react-native-navigation/ios/TurboModules/RNNTurboManager.mm
+index 1d74ac0..4ff2fa0 100644
+--- a/node_modules/react-native-navigation/ios/TurboModules/RNNTurboManager.mm
++++ b/node_modules/react-native-navigation/ios/TurboModules/RNNTurboManager.mm
+@@ -94,18 +94,20 @@ - (UIViewController *)findComponentForId:(NSString *)componentId {
+ }
+ 
+ - (void)onJavaScriptWillLoad {
+-	[_componentRegistry clear];
++    // Note: In bridgeless mode RCTJavaScriptWillStartLoadingNotification
++    // is never posted, so this only fires in bridge mode.
++    [_commandsHandler setReadyToReceiveCommands:false];
++    [_componentRegistry clear];
+ }
+ 
+ - (void)onJavaScriptLoaded {
++    [_commandsHandler setReadyToReceiveCommands:false];
+     RCTExecuteOnMainQueue(^{
+-        UIApplication.sharedApplication.delegate.window.rootViewController = [RNNSplashScreenViewController getSplashScreenVC];
+-        
++        [self->_overlayManager dismissAllOverlays];
++        [self->_componentRegistry clear];
++        UIApplication.sharedApplication.delegate.window.rootViewController =
++            [RNNSplashScreenViewController getSplashScreenVC];
+         [self->_commandsHandler setReadyToReceiveCommands:true];
+-        // TODO: Refactor
+-        //    [_modalHostViewHandler
+-        //        connectModalHostViewManager:[[_host moduleRegistry] moduleForName:"RCTModalHostViewManager"]];
+-        
+         [self->_eventEmitter sendOnAppLaunched];
+     });
+ }
