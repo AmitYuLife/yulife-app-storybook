@@ -2,7 +2,7 @@ import React, { memo, useCallback } from "react";
 import { Hyperlink, Pressable, Toast } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { Style, StyleSheet } from "@styles";
-import { Block, CloseSvg, Image, TextTemplate } from "@atoms";
+import { Block, Box, CloseSvg, Image, TextTemplate } from "@atoms";
 import { View } from "react-native";
 import { ROUTES } from "@navigation/constants";
 import { useTranslation } from "@hooks";
@@ -69,7 +69,9 @@ const ActivityFeedPopMenu = ({ header, body, toast, accessibility }: IProps) => 
                 style={styles.image}
                 source={{ uri: iconUrl?.uri }}
               />
-              <TextTemplate type="l2">{title}</TextTemplate>
+              <Box flexShrink={1}>
+                <TextTemplate type="l2">{title}</TextTemplate>
+              </Box>
             </View>
           ))}
         </View>
