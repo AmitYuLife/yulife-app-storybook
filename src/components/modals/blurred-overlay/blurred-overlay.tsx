@@ -32,7 +32,7 @@ const BlurredOverlay = ({
   wrapperStyle,
   closeOnBlur = true,
   tint = "light",
-  intensity = 5,
+  intensity = 50,
   backgroundColor = "rgba(0,0,0,.5)",
   onClose,
   withModal = false,

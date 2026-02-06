@@ -25,7 +25,7 @@ export default function Blur({ wrapperOpacity, wrapperPosition }: IProps) {
       }}
     >
       <BlurView
-        intensity={15}
+        intensity={100}
         tint="light"
         experimentalBlurMethod="dimezisBlurView"
         style={StyleSheet.absoluteFillObject}
