@@ -41,6 +41,11 @@ type RegionConfig = {
     prodKey: string;
     devKey?: string;
   };
+  customerio?: {
+    apiKey: string;
+    siteId: string;
+    region: string;
+  };
   sduiStaticDeeplinks: {
     name: string;
     stepId: string;

@@ -17,6 +17,7 @@ export type Scalars = {
 
 export type ApiConfig = {
   __typename?: "APIConfig";
+  customerio?: Maybe<ApiConfigCustomerio>;
   datadog: ApiConfigDatadog;
   enabledCaptchaProviders?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
   hcaptchaSiteKey?: Maybe<Scalars["String"]["output"]>;
@@ -32,6 +33,13 @@ export type ApiConfig = {
   stripeKey: Scalars["String"]["output"];
   urls: ApiConfigUrls;
   validation: ApiConfigValidation;
+};
+
+export type ApiConfigCustomerio = {
+  __typename?: "APIConfigCustomerio";
+  apiKey: Scalars["String"]["output"];
+  region: Scalars["String"]["output"];
+  siteId: Scalars["String"]["output"];
 };
 
 export type ApiConfigDatadog = {
@@ -24394,6 +24402,7 @@ export type GetPublicYuApiConfigQuery = {
     };
     intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
     leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
+    customerio?: { __typename?: "APIConfigCustomerio"; apiKey: string; siteId: string; region: string } | null;
     datadog: {
       __typename?: "APIConfigDatadog";
       appId?: string | null;
@@ -76242,6 +76251,18 @@ export const GetPublicYuApiConfigDocument = {
                       { kind: "Field", name: { kind: "Name", value: "appId" } },
                       { kind: "Field", name: { kind: "Name", value: "prodKey" } },
                       { kind: "Field", name: { kind: "Name", value: "devKey" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "customerio" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "apiKey" } },
+                      { kind: "Field", name: { kind: "Name", value: "siteId" } },
+                      { kind: "Field", name: { kind: "Name", value: "region" } },
                     ],
                   },
                 },

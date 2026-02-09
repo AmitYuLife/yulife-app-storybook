@@ -180,6 +180,7 @@ export default () => ({
     ],
     "expo-privacy-manifest-polyfill-plugin",
     "@leanplum/react-native-sdk",
+    ["customerio-expo-plugin", {}],
     [
       "expo-notifications",
       {

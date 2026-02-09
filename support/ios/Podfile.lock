@@ -1,4 +1,7 @@
 PODS:
+  - "AnalyticsSwiftCIO (1.5.14+cio.1)":
+    - JSONSafeEncoding (= 2.0.0)
+    - Sovran (= 1.1.1)
   - Apollo (1.25.2):
     - Apollo/Core (= 1.25.2)
   - Apollo/Core (1.25.2)
@@ -32,6 +35,33 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - customerio-reactnative (4.2.2):
+    - customerio-reactnative/nopush (= 4.2.2)
+    - CustomerIO/DataPipelines (= 3.7.2)
+    - CustomerIO/MessagingInApp (= 3.7.2)
+    - React-Core
+  - customerio-reactnative/nopush (4.2.2):
+    - CustomerIO/DataPipelines (= 3.7.2)
+    - CustomerIO/MessagingInApp (= 3.7.2)
+    - CustomerIO/MessagingPush (= 3.7.2)
+    - React-Core
+  - CustomerIO/DataPipelines (3.7.2):
+    - CustomerIODataPipelines (= 3.7.2)
+  - CustomerIO/MessagingInApp (3.7.2):
+    - CustomerIOMessagingInApp (= 3.7.2)
+  - CustomerIO/MessagingPush (3.7.2):
+    - CustomerIOMessagingPush (= 3.7.2)
+  - CustomerIOCommon (3.7.2)
+  - CustomerIODataPipelines (3.7.2):
+    - "AnalyticsSwiftCIO (= 1.5.14+cio.1)"
+    - CustomerIOCommon (= 3.7.2)
+    - CustomerIOTrackingMigration (= 3.7.2)
+  - CustomerIOMessagingInApp (3.7.2):
+    - CustomerIOCommon (= 3.7.2)
+  - CustomerIOMessagingPush (3.7.2):
+    - CustomerIOCommon (= 3.7.2)
+  - CustomerIOTrackingMigration (3.7.2):
+    - CustomerIOCommon (= 3.7.2)
   - DatadogCore (2.30.2):
     - DatadogInternal (= 2.30.2)
   - DatadogCrashReporting (2.30.2):
@@ -179,6 +209,7 @@ PODS:
   - intercom-react-native (8.6.0):
     - Intercom (~> 18.7.3)
     - React-Core
+  - JSONSafeEncoding (2.0.0)
   - Leanplum-iOS-SDK (6.6.1):
     - CleverTap-iOS-SDK (~> 7.1)
   - libavif/core (0.11.1)
@@ -2549,6 +2580,7 @@ PODS:
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
   - SocketRocket (0.7.1)
+  - Sovran (1.1.1)
   - Stripe (24.7.0):
     - StripeApplePay (= 24.7.0)
     - StripeCore (= 24.7.0)
@@ -2592,6 +2624,7 @@ DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - clevertap-react-native (from `../node_modules/clevertap-react-native`)
+  - customerio-reactnative (from `../node_modules/customerio-reactnative`)
   - "DatadogSDKReactNative (from `../node_modules/@datadog/mobile-react-native`)"
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXApplication (from `../node_modules/expo-application/ios`)
@@ -2714,8 +2747,15 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AnalyticsSwiftCIO
     - Apollo
     - CleverTap-iOS-SDK
+    - CustomerIO
+    - CustomerIOCommon
+    - CustomerIODataPipelines
+    - CustomerIOMessagingInApp
+    - CustomerIOMessagingPush
+    - CustomerIOTrackingMigration
     - DatadogCore
     - DatadogCrashReporting
     - DatadogInternal
@@ -2726,6 +2766,7 @@ SPEC REPOS:
     - google-cast-sdk
     - HMSegmentedControl
     - Intercom
+    - JSONSafeEncoding
     - Leanplum-iOS-SDK
     - libavif
     - libdav1d
@@ -2741,6 +2782,7 @@ SPEC REPOS:
     - SDWebImageSVGCoder
     - SDWebImageWebPCoder
     - SocketRocket
+    - Sovran
     - Stripe
     - StripeApplePay
     - StripeCore
@@ -2757,6 +2799,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-linear-gradient"
   clevertap-react-native:
     :path: "../node_modules/clevertap-react-native"
+  customerio-reactnative:
+    :path: "../node_modules/customerio-reactnative"
   DatadogSDKReactNative:
     :path: "../node_modules/@datadog/mobile-react-native"
   DoubleConversion:
@@ -2992,11 +3036,19 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AnalyticsSwiftCIO: d03712b33e85baecc86f0d38a6d53c97f7bc5bd1
   Apollo: dc2e92c10077c8ac5e4b807426c0f557fe4cee1c
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
   CleverTap-iOS-SDK: 8ee6dc5c6f3952f39c837e64ba24f0053f0d6196
   clevertap-react-native: 566876a3a8cf16fa6dd587e9a153cf65db75e8fd
+  CustomerIO: f5a28a9b9ee82d785ad0debf63ea7bcf68f373c1
+  customerio-reactnative: be17c4d36dfa036110e0ac266b73c37d50c5410a
+  CustomerIOCommon: 35be8270b80617a401653387ad6197bc468392ff
+  CustomerIODataPipelines: 3c66df9f1d1cdf6fc10ef7a6fc8bfdc561e30dcf
+  CustomerIOMessagingInApp: d31b5b0d2324ee1191d6f59e915e5d5218787b0c
+  CustomerIOMessagingPush: 0d08c4ac2bc2ff3c30fe4dd44a4c487fac4b1d3d
+  CustomerIOTrackingMigration: ca96f95516b53d2e24ad1ff4160cae9c8a85ec9e
   DatadogCore: 8e50ad6cb68343f701707f7eeca16e0acb52ed8c
   DatadogCrashReporting: 34763d4276d4fce286c7e8729cfcd2ac04dca43b
   DatadogInternal: bd8672d506a7e67936ed5f7ca612169e49029b44
@@ -3032,6 +3084,7 @@ SPEC CHECKSUMS:
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   Intercom: 93c6f5d9815b34bf2a7e5f03bcf7b6e08c1a4788
   intercom-react-native: 83677379d2bbdc9b73682b693402a3b2a3934430
+  JSONSafeEncoding: 54722ebc4fe1482e3e60a8450e1287481e32dd8b
   Leanplum-iOS-SDK: b086671d0b96064bb9832835e6df71731986ec1e
   libavif: 84bbb62fb232c3018d6f1bab79beea87e35de7b7
   libdav1d: 23581a4d8ec811ff171ed5e2e05cd27bad64c39f
@@ -3136,6 +3189,7 @@ SPEC CHECKSUMS:
   SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
+  Sovran: f8212bb3855042a24689a73ea0219ca5295235da
   Stripe: 8a03a78bfa16b197f9fac51e42670ac563b34388
   stripe-react-native: 103ae16ea3d68a1825840fbcafcd7fab1a278c9c
   StripeApplePay: 3c1b43d9b5130f6b714863bf8c9482c24168ab27

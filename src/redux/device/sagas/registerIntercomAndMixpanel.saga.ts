@@ -6,6 +6,7 @@ import { addDeviceToken } from "../device.actions";
 import Logger from "@services/logging/logger";
 import client from "@graphql/_core/client";
 import { gql } from "@graphql/__generated";
+import customerio from "@services/customerio";
 
 function* registerDeviceOnYuServer(deviceToken: string) {
   try {
@@ -33,7 +34,16 @@ function* checkForPermissionsAndSendToIntercom(deviceToken: string) {
   }
 }
 
+function* registerTokenWithCustomerIO(deviceToken: string) {
+  const permission: Notifications.NotificationPermissionsStatus = yield call(Notifications.getPermissionsAsync);
+
+  if (permission?.status === "granted") {
+    yield spawn(() => customerio.registerPushToken(deviceToken));
+  }
+}
+
 export default function* registerIntercomAndMixpanelSaga({ payload }: ReturnType<typeof addDeviceToken>) {
   yield spawn(checkForPermissionsAndSendToIntercom, payload.deviceToken);
   yield spawn(registerDeviceOnYuServer, payload.deviceToken);
+  yield spawn(registerTokenWithCustomerIO, payload.deviceToken);
 }

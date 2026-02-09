@@ -10618,6 +10618,19 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
   integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
+customerio-expo-plugin@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/customerio-expo-plugin/-/customerio-expo-plugin-2.0.0.tgz#71ba8d1be746937d728da21065f9b7b5d95822e9"
+  integrity sha512-OpLcCHATA3pfiAWzBzBTlUUenCdWqttVMzkR50EXJRrbh0qQo+eV9IQaByK4HCdyo6NwWKvAB1jxyYzdHMqevA==
+  dependencies:
+    find-package-json "^1.2.0"
+    fs-extra "^11.2.0"
+
+customerio-reactnative@4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/customerio-reactnative/-/customerio-reactnative-4.2.2.tgz#856612c48ace492cb3068e312dedc80ae0e1d77c"
+  integrity sha512-+b/qg+M2NmGPGjX5b0dEnYDG9E/svB+B1X2GliORhYYmJocvOF5K/8pM3w0cH/9rjAOyBPapPGhhrQbUkVpWbQ==
+
 cycle@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/cycle/-/cycle-1.0.3.tgz#21e80b2be8580f98b468f379430662b046c34ad2"
@@ -12529,6 +12542,11 @@ find-nearest-file@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/find-nearest-file/-/find-nearest-file-1.1.0.tgz#e29441740329a2015f7655faecd7b85e02cad686"
   integrity sha512-NMsS0ITOwpBPrHOyO7YUtDhaVEGUKS0kBJDVaWZPuCzO7JMW+uzFQQVts/gPyIV9ioyNWDb5LjhHWXVf1OnBDA==
+
+find-package-json@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/find-package-json/-/find-package-json-1.2.0.tgz#4057d1b943f82d8445fe52dc9cf456f6b8b58083"
+  integrity sha512-+SOGcLGYDJHtyqHd87ysBhmaeQ95oWspDKnMXBrnQ9Eq4OkLNqejgoaD8xVWu6GPa0B6roa6KinCMEMcVeqONw==
 
 find-replace@^3.0.0:
   version "3.0.0"

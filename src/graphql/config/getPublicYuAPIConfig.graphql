@@ -24,6 +24,11 @@ query GetPublicYuAPIConfig {
       prodKey
       devKey
     }
+    customerio {
+      apiKey
+      siteId
+      region
+    }
     datadog {
       appId
       appKey
