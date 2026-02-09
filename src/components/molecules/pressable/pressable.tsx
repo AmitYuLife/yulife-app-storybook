@@ -20,6 +20,7 @@ const Pressable = ({
   style: propStyle,
   pressedTranslation,
   enableAnimation = false,
+  testID,
   ...otherProps
 }: IPressableProps) => {
   const boxProps = useBoxProps(otherProps);
@@ -39,7 +40,9 @@ const Pressable = ({
 
   return (
     <AnimatedPressable
+      collapsable={testID ? false : undefined}
       {...boxProps}
+      testID={testID}
       entering={entering}
       exiting={exiting}
       style={style}

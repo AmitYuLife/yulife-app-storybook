@@ -1,6 +1,9 @@
 module.exports = api => {
   const babelEnv = api.env();
+  const isE2E = process.env.E2E_MODE === 'true';
+
   const plugins = [
+    ...(isE2E ? ['./babel-plugin-testid-collapsable.js'] : []),
     [
       'module-resolver',
       {
