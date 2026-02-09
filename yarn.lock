@@ -10626,10 +10626,10 @@ customerio-expo-plugin@2.0.0:
     find-package-json "^1.2.0"
     fs-extra "^11.2.0"
 
-customerio-reactnative@4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/customerio-reactnative/-/customerio-reactnative-4.2.2.tgz#856612c48ace492cb3068e312dedc80ae0e1d77c"
-  integrity sha512-+b/qg+M2NmGPGjX5b0dEnYDG9E/svB+B1X2GliORhYYmJocvOF5K/8pM3w0cH/9rjAOyBPapPGhhrQbUkVpWbQ==
+customerio-reactnative@4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/customerio-reactnative/-/customerio-reactnative-4.2.3.tgz#0c9e61ed91c083cf44efba6dbed04d3058ecc140"
+  integrity sha512-EPa8Vk9ND3pmKcsyvBIKj2SpqvyBGlF747wIMWpjSF4+3XxevKdHUvH0FK7rlxyKwmSfrlPSEi2Qvz720mS6Xg==
 
 cycle@^1.0.3:
   version "1.0.3"

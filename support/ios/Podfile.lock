@@ -1,7 +1,7 @@
 PODS:
-  - "AnalyticsSwiftCIO (1.5.14+cio.1)":
+  - "AnalyticsSwiftCIO (1.7.3+cio.1)":
     - JSONSafeEncoding (= 2.0.0)
-    - Sovran (= 1.1.1)
+    - Sovran (= 1.1.2)
   - Apollo (1.25.2):
     - Apollo/Core (= 1.25.2)
   - Apollo/Core (1.25.2)
@@ -35,33 +35,33 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - customerio-reactnative (4.2.2):
-    - customerio-reactnative/nopush (= 4.2.2)
-    - CustomerIO/DataPipelines (= 3.7.2)
-    - CustomerIO/MessagingInApp (= 3.7.2)
+  - customerio-reactnative (4.2.3):
+    - customerio-reactnative/nopush (= 4.2.3)
+    - CustomerIO/DataPipelines (= 3.8.1)
+    - CustomerIO/MessagingInApp (= 3.8.1)
     - React-Core
-  - customerio-reactnative/nopush (4.2.2):
-    - CustomerIO/DataPipelines (= 3.7.2)
-    - CustomerIO/MessagingInApp (= 3.7.2)
-    - CustomerIO/MessagingPush (= 3.7.2)
+  - customerio-reactnative/nopush (4.2.3):
+    - CustomerIO/DataPipelines (= 3.8.1)
+    - CustomerIO/MessagingInApp (= 3.8.1)
+    - CustomerIO/MessagingPush (= 3.8.1)
     - React-Core
-  - CustomerIO/DataPipelines (3.7.2):
-    - CustomerIODataPipelines (= 3.7.2)
-  - CustomerIO/MessagingInApp (3.7.2):
-    - CustomerIOMessagingInApp (= 3.7.2)
-  - CustomerIO/MessagingPush (3.7.2):
-    - CustomerIOMessagingPush (= 3.7.2)
-  - CustomerIOCommon (3.7.2)
-  - CustomerIODataPipelines (3.7.2):
-    - "AnalyticsSwiftCIO (= 1.5.14+cio.1)"
-    - CustomerIOCommon (= 3.7.2)
-    - CustomerIOTrackingMigration (= 3.7.2)
-  - CustomerIOMessagingInApp (3.7.2):
-    - CustomerIOCommon (= 3.7.2)
-  - CustomerIOMessagingPush (3.7.2):
-    - CustomerIOCommon (= 3.7.2)
-  - CustomerIOTrackingMigration (3.7.2):
-    - CustomerIOCommon (= 3.7.2)
+  - CustomerIO/DataPipelines (3.8.1):
+    - CustomerIODataPipelines (= 3.8.1)
+  - CustomerIO/MessagingInApp (3.8.1):
+    - CustomerIOMessagingInApp (= 3.8.1)
+  - CustomerIO/MessagingPush (3.8.1):
+    - CustomerIOMessagingPush (= 3.8.1)
+  - CustomerIOCommon (3.8.1)
+  - CustomerIODataPipelines (3.8.1):
+    - "AnalyticsSwiftCIO (= 1.7.3+cio.1)"
+    - CustomerIOCommon (= 3.8.1)
+    - CustomerIOTrackingMigration (= 3.8.1)
+  - CustomerIOMessagingInApp (3.8.1):
+    - CustomerIOCommon (= 3.8.1)
+  - CustomerIOMessagingPush (3.8.1):
+    - CustomerIOCommon (= 3.8.1)
+  - CustomerIOTrackingMigration (3.8.1):
+    - CustomerIOCommon (= 3.8.1)
   - DatadogCore (2.30.2):
     - DatadogInternal (= 2.30.2)
   - DatadogCrashReporting (2.30.2):
@@ -2580,7 +2580,7 @@ PODS:
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
   - SocketRocket (0.7.1)
-  - Sovran (1.1.1)
+  - Sovran (1.1.2)
   - Stripe (24.7.0):
     - StripeApplePay (= 24.7.0)
     - StripeCore (= 24.7.0)
@@ -3036,19 +3036,19 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AnalyticsSwiftCIO: d03712b33e85baecc86f0d38a6d53c97f7bc5bd1
+  AnalyticsSwiftCIO: cbded90bbfe53072cb1fa1bc091d249e99ef7c56
   Apollo: dc2e92c10077c8ac5e4b807426c0f557fe4cee1c
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
   CleverTap-iOS-SDK: 8ee6dc5c6f3952f39c837e64ba24f0053f0d6196
   clevertap-react-native: 566876a3a8cf16fa6dd587e9a153cf65db75e8fd
-  CustomerIO: f5a28a9b9ee82d785ad0debf63ea7bcf68f373c1
-  customerio-reactnative: be17c4d36dfa036110e0ac266b73c37d50c5410a
-  CustomerIOCommon: 35be8270b80617a401653387ad6197bc468392ff
-  CustomerIODataPipelines: 3c66df9f1d1cdf6fc10ef7a6fc8bfdc561e30dcf
-  CustomerIOMessagingInApp: d31b5b0d2324ee1191d6f59e915e5d5218787b0c
-  CustomerIOMessagingPush: 0d08c4ac2bc2ff3c30fe4dd44a4c487fac4b1d3d
-  CustomerIOTrackingMigration: ca96f95516b53d2e24ad1ff4160cae9c8a85ec9e
+  CustomerIO: 442b51c7969fcfde8c8c5de9c81fa1a6cfbf251e
+  customerio-reactnative: 0b62f9b8bd1b0189826479c1698e79aa83f273ed
+  CustomerIOCommon: 53d7b9d363e82555d445d9ecf7938e5ed792ec6f
+  CustomerIODataPipelines: ea81fb2a6e17c1f34620226e27ef2556cb070459
+  CustomerIOMessagingInApp: 73190d2207c717b4574383c024451a817519dc72
+  CustomerIOMessagingPush: bee7193f95aab1aff415b2d123f50bd338c48d0d
+  CustomerIOTrackingMigration: b7518761f23b3ba416df8b3ee207869edc8dea43
   DatadogCore: 8e50ad6cb68343f701707f7eeca16e0acb52ed8c
   DatadogCrashReporting: 34763d4276d4fce286c7e8729cfcd2ac04dca43b
   DatadogInternal: bd8672d506a7e67936ed5f7ca612169e49029b44
@@ -3189,7 +3189,7 @@ SPEC CHECKSUMS:
   SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Sovran: f8212bb3855042a24689a73ea0219ca5295235da
+  Sovran: 117d186f9e9cd47a231ee48dace5cd064a4b8ec8
   Stripe: 8a03a78bfa16b197f9fac51e42670ac563b34388
   stripe-react-native: 103ae16ea3d68a1825840fbcafcd7fab1a278c9c
   StripeApplePay: 3c1b43d9b5130f6b714863bf8c9482c24168ab27
