@@ -4,6 +4,7 @@ import { call, put } from "redux-saga/effects";
 import { persistor as reduxPersistor } from "../../_core/store";
 import { logOutSuccess } from "../user.actions";
 import dd from "@services/datadog";
+import customerio from "@services/customerio";
 
 export default function* logOutSaga() {
   yield call(Logger.logEvent, "log_out");
@@ -17,5 +18,6 @@ export default function* logOutSaga() {
   });
   yield call(Logger.logOut);
   yield call(dd.unsetUserId);
+  yield call(customerio.clearIdentity);
   yield put(logOutSuccess());
 }
