@@ -87,7 +87,7 @@
     "@stripe/stripe-react-native": "0.43.0",
     "@use-it/interval": "^1.0.0",
     "@yu-life/react-native-fitkit": "1.0.41",
-    "@yu-life/react-native-yu-health": "^1.4.4",
+    "@yu-life/react-native-yu-health": "^1.4.2",
     "@yu-life/react-native-yu-watch": "1.1.1",
     "@yu-life/yulife-bdd-framework": "^0.3.0",
     "ajv": "^8.12.0",
