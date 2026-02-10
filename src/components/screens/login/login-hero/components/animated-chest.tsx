@@ -16,7 +16,7 @@ const AnimatedChest = ({ rewards }: AnimatedChestProps) => {
   const [isLottieFinished, setIsLottieFinished] = useState(false);
   const [useFallback, setUseFallback] = useState(false);
 
-  useTimeout(() => setIsLottieFinished(true), 3500);
+  useTimeout(() => setIsLottieFinished(true), 3500, !DETOX_ENABLED);
 
   const handleAnimationFailure = useCallback(() => {
     setUseFallback(true);
@@ -24,6 +24,14 @@ const AnimatedChest = ({ rewards }: AnimatedChestProps) => {
 
   const { titleSectionHeight, ctaContainerHeight } = useLoginHeroContext();
   const { height, width } = getChestSize(titleSectionHeight, ctaContainerHeight);
+
+  if (DETOX_ENABLED) {
+    return (
+      <Box justifyContent="center" alignItems="center">
+        <LoginChestFallback width={width} height={height} />
+      </Box>
+    );
+  }
 
   return (
     <Box justifyContent="center" alignItems="center">

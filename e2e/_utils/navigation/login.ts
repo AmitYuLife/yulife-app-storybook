@@ -38,25 +38,22 @@ export const loginAsUser =
     region: "UK" | "US" | "SA" | "JP" = "UK"
   ) =>
   async () => {
-    // // wait for the app to load
-    await waitFor(element(by.id(LOGIN_HERO_LOGIN_BUTTON)))
-      .toBeVisible()
-      .withTimeout(15_000);
+    // wait for the app to load
+    const loginButton = element(by.id(LOGIN_HERO_LOGIN_BUTTON));
+    await waitFor(loginButton).toExist().withTimeout(15_000);
+    await waitFor(loginButton).toBeVisible().withTimeout(15_000);
 
     await loginWithCredentials(customer.data.email, auth.data.password, region)();
 
-    // wait for daily steps screen to load
-    await waitFor(element(by.id(DAILY_STEPS_SCREEN)))
-      .toBeVisible()
-      .withTimeout(15_000);
-
     if (fitkitAuth) {
-      // wait for the daily steps container to initialise
-      await wait(5_000)();
-
-      // auth fitkit
+      await wait(7_000)();
       await authoriseFitkit(fitkitAuth)();
     }
+
+    // wait for daily steps screen to load
+    const dailyStepsScreen = element(by.id(DAILY_STEPS_SCREEN));
+    await waitFor(dailyStepsScreen).toExist().withTimeout(15_000);
+    await waitFor(dailyStepsScreen).toBeVisible().withTimeout(15_000);
   };
 
 export const logInAndGoToTab =

@@ -8,6 +8,7 @@ import { memo, useCallback, useMemo, useRef } from "react";
 import { LayoutChangeEvent, NativeScrollEvent, NativeSyntheticEvent, SafeAreaView } from "react-native";
 import useInterval from "@use-it/interval";
 import { useLoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
+import { DETOX_ENABLED } from "@services/socket";
 
 const SCROLL_DELAY_MS = 250;
 
@@ -92,18 +93,21 @@ const LoopingCarousel = ({
     hasUserScrolled.current = true;
   }, []);
 
-  useInterval(() => {
-    if (!hasUserScrolled?.current && data.length > 1) {
-      const newIndex = currentIndexRef.current + 1;
+  useInterval(
+    () => {
+      if (!hasUserScrolled?.current && data.length > 1) {
+        const newIndex = currentIndexRef.current + 1;
 
-      listRef.current?.scrollToIndex({
-        index: newIndex,
-        animated: true,
-      });
+        listRef.current?.scrollToIndex({
+          index: newIndex,
+          animated: true,
+        });
 
-      resetIndexToMiddleGroup(newIndex);
-    }
-  }, 5000);
+        resetIndexToMiddleGroup(newIndex);
+      }
+    },
+    DETOX_ENABLED ? null : 5000
+  );
 
   const handleLayout = useCallback(
     (e: LayoutChangeEvent) => {
