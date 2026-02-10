@@ -45,6 +45,9 @@ export const usePathwayChallenge = ({
   });
   const [submitPathwayChallengeFeedback] = useMutation(gql("SubmitPathwayChallengeFeedbackDocument"));
 
+  const externalCompletionHandledRef = useRef(false);
+  const localCompletionTriggeredRef = useRef(false);
+
   const handlePathwayTilePress = useCallback(() => {
     const action = pathwayChallengeData?.getPathwayChallenge?.action;
 
@@ -75,6 +78,7 @@ export const usePathwayChallenge = ({
         return;
       }
 
+      localCompletionTriggeredRef.current = true;
       dispatch(pathwayChallengeEnded());
       const result = await completePathwayChallenge({ variables: { challengeId } });
 
@@ -120,12 +124,15 @@ export const usePathwayChallenge = ({
     [challengeId, submitPathwayChallengeFeedback]
   );
 
-  const externalCompletionHandledRef = useRef(false);
-
   useEffect(() => {
     const challenge = pathwayChallengeData?.getPathwayChallenge;
 
-    if (challenge?.isCompleted && onExternalCompletion && !externalCompletionHandledRef.current) {
+    if (
+      challenge?.isCompleted &&
+      onExternalCompletion &&
+      !externalCompletionHandledRef.current &&
+      !localCompletionTriggeredRef.current
+    ) {
       externalCompletionHandledRef.current = true;
       onExternalCompletion();
 
