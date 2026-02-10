@@ -15,10 +15,6 @@ fragment ContentItemProductDetailsHeader on ContentItemProductDetailsHeader {
   itemSlot {
     ...YuScreenItemSlot
   }
-  productIdentifier {
-    label
-    value
-  }
   benefit {
     title
     markdown
