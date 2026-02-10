@@ -1508,7 +1508,7 @@
       "header": "今日の振り返り",
       "health_insights": "健康に関するアドバイス",
       "journey_header": "これまでの進捗",
-      "journey_header_starts": "ボーナスクエストを獲得するために %{maxProgress} 日 連続してリフレクトしてください",
+      "journey_header_starts": "%{maxProgress}日間連続の振り返りでボーナスチャレンジをプレゼント",
       "personal_health_path": {
         "heading": "健康管理"
       },
@@ -1517,8 +1517,8 @@
       "reflect": "振り返りに進む",
       "reflected": {
         "subtitle": "リワードを獲得しました!",
-        "subtitle_locked": "毎日振り返りを行なって、あなたにぴったりのアドバイスを受け取りましょう。",
-        "title": "日間の振り返り |||| 日間の振り返り"
+        "subtitle_locked": "毎日振り返りを行い、あなたにぴったりのアドバイスを受け取りましょう。",
+        "title": "日間の振り返り完了 |||| 日間の振り返り完了"
       },
       "reflect_in": "あと%{hours}時間%{minutes}分",
       "reflection_active_label": "振り返る",
