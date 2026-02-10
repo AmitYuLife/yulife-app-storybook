@@ -5,7 +5,6 @@ import { ContentItemProductDetailsHeaderFragment } from "@graphql/__generated";
 import { Pressable, YuCoinPower, YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { Title } from "./title";
-import { ProductIdentifier } from "./product-identifier";
 import { SlotIcon } from "./slot-icon";
 import styles from "./styles";
 import { ProviderLogo } from "./provider-logo";
@@ -24,7 +23,6 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
     backgroundImage,
     productName,
     itemSlot,
-    productIdentifier,
     productDetailsHeaderYuCoinPower: yuCoinPower,
     benefit,
     funding,
@@ -68,7 +66,6 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
               {funding ? <Funding {...funding} /> : null}
               <ProviderLogo image={providerLogo?.image} width={providerLogo?.width} height={providerLogo?.height} />
               <Title titleType="h2" title={productName} />
-              <ProductIdentifier productIdentifier={productIdentifier} />
             </View>
             <View style={[styles.rightSide, { height: SLOT_ICON_SIZE }]}>
               <SlotIcon
@@ -85,7 +82,6 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
             {funding ? <Funding {...funding} /> : null}
             <ProviderLogo image={providerLogo?.image} width={providerLogo?.width} height={providerLogo?.height} />
             <Title titleType="h1" title={productName} />
-            <ProductIdentifier productIdentifier={productIdentifier} />
           </View>
         )}
       </View>

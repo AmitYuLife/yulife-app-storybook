@@ -7140,11 +7140,6 @@ type YuScreenEarnRateTableMarkdown {
   markdown: String!
 }
 
-type ContentItemProductDetailsHeaderProductIdentifier {
-  label: String!
-  value: String!
-}
-
 type ContentItemProductDetailsHeaderBenefit {
   title: String
   markdown: String!
@@ -7174,7 +7169,6 @@ type ContentItemProductDetailsHeader {
   yuCoinPower: Int!
   itemSlot: YuScreenItemSlot!
   providerLogo: VariableRemoteImage
-  productIdentifier: ContentItemProductDetailsHeaderProductIdentifier
   benefit: ContentItemProductDetailsHeaderBenefit
   funding: ContentItemProductDetailsHeaderFunding
   showSlotLabel: Boolean!

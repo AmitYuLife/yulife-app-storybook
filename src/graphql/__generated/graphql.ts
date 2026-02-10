@@ -2384,7 +2384,6 @@ export type ContentItemProductDetailsHeader = {
   funding?: Maybe<ContentItemProductDetailsHeaderFunding>;
   id: Scalars["ID"]["output"];
   itemSlot: YuScreenItemSlot;
-  productIdentifier?: Maybe<ContentItemProductDetailsHeaderProductIdentifier>;
   productName: Scalars["String"]["output"];
   providerLogo?: Maybe<VariableRemoteImage>;
   showItemSlot?: Maybe<Scalars["Boolean"]["output"]>;
@@ -2410,12 +2409,6 @@ export type ContentItemProductDetailsHeaderFundingTheme = {
   backgroundColor: Scalars["String"]["output"];
   borderColor: Scalars["String"]["output"];
   textColor: Scalars["String"]["output"];
-};
-
-export type ContentItemProductDetailsHeaderProductIdentifier = {
-  __typename?: "ContentItemProductDetailsHeaderProductIdentifier";
-  label: Scalars["String"]["output"];
-  value: Scalars["String"]["output"];
 };
 
 export type ContentItemProductDetailsHoldingHeader = {
@@ -4253,6 +4246,7 @@ export type GetEmployeeInsightsConfigurationResults = {
   __typename?: "GetEmployeeInsightsConfigurationResults";
   ageRange?: Maybe<GetEmployeeInsightsConfigurationAgeRange>;
   surveyEmptyState?: Maybe<EmployeeInsightsSurveyEmptyState>;
+  surveyLastCompletedAt?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type GetEmployeesByEmployeeIdsResult = {
@@ -6545,8 +6539,6 @@ export type Mutation = {
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
   createEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
-  /** @deprecated Use createEmployerToolingLead instead */
-  createEmployeeRecognitionLead: Scalars["Boolean"]["output"];
   createEmployerToolingLead: Scalars["Boolean"]["output"];
   /**
    * Introduced to clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.10.0
@@ -10887,10 +10879,11 @@ export type TeamEmployeeExternalIntegration = {
   archived?: Maybe<Scalars["Boolean"]["output"]>;
   businessMemberDataConnectionEmployeeId?: Maybe<Scalars["String"]["output"]>;
   businessMemberDataConnectionId: Scalars["String"]["output"];
-  carrierName?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated No longer used by frontend */
   connectionName: Scalars["String"]["output"];
   connectionStatus: Scalars["String"]["output"];
   connectionType: Scalars["String"]["output"];
+  controlledFieldTooltip: Scalars["String"]["output"];
   isBusinessEmployeeSkipped: Scalars["Boolean"]["output"];
   lastObservedImportCreatedAt?: Maybe<Scalars["String"]["output"]>;
   lastObservedImportId?: Maybe<Scalars["String"]["output"]>;
@@ -19045,11 +19038,6 @@ export type ContentItemProductDetailsHeaderFragment = {
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   } | null;
   itemSlot: { __typename?: "YuScreenItemSlot"; iconUrl: string; backgroundUrl: string };
-  productIdentifier?: {
-    __typename?: "ContentItemProductDetailsHeaderProductIdentifier";
-    label: string;
-    value: string;
-  } | null;
   benefit?: { __typename?: "ContentItemProductDetailsHeaderBenefit"; title?: string | null; markdown: string } | null;
   funding?: {
     __typename?: "ContentItemProductDetailsHeaderFunding";
@@ -32518,11 +32506,6 @@ export type GetYuScreenProductDetailsQuery = {
             image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
           } | null;
           itemSlot: { __typename?: "YuScreenItemSlot"; iconUrl: string; backgroundUrl: string };
-          productIdentifier?: {
-            __typename?: "ContentItemProductDetailsHeaderProductIdentifier";
-            label: string;
-            value: string;
-          } | null;
           benefit?: {
             __typename?: "ContentItemProductDetailsHeaderBenefit";
             title?: string | null;
@@ -58403,17 +58386,6 @@ export const ContentItemProductDetailsHeaderFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenItemSlot" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "productIdentifier" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
             },
           },
           {
@@ -88968,17 +88940,6 @@ export const GetYuScreenProductDetailsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenItemSlot" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "productIdentifier" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
             },
           },
           {
