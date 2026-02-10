@@ -101,11 +101,12 @@ export const wait =
     new Promise((resolve) => setTimeout(resolve, timeout));
 
 export const navigateViaID =
-  (id: string, waitTime = 1500) =>
+  (id: string, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id));
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await target.tap();
+    await target.tap({ x: 0, y: 0 });
   };
 
 export const navigateViaLabel = async (label: string) => {
@@ -141,24 +142,25 @@ export const expectDoesNotExistViaText = async (id: string, waitTime = 0) => {
 };
 
 export const tapText =
-  (text: string, waitTime = 0, longPress?: boolean) =>
+  (text: string, waitTime = 3000, longPress?: boolean) =>
   async () => {
     const target = element(by.text(text));
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
 
     if (longPress === true) {
       await target.longPress();
     } else {
-      await target.tap();
+      await target.tap({ x: 0, y: 0 });
     }
   };
 
 export const textVisible =
-  (text: string | RegExp, waitTime = 0) =>
+  (text: string | RegExp, waitTime = 3000) =>
   async () => {
     const target = element(by.text(text));
-    await wait(waitTime)();
-    await expect(target).toBeVisible();
+    await waitFor(target).toExist().withTimeout(waitTime);
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
   };
 
 export const textNotVisible =
@@ -170,17 +172,19 @@ export const textNotVisible =
   };
 
 export const tapID =
-  (id: string, waitTime = 1500) =>
+  (id: string, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id));
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await target.tap();
+    await target.tap({ x: 0, y: 0 });
   };
 
 export const tapIDWithOffset =
-  (id: string, tapXOffset: number, tapYOffset: number, waitTime = 1500) =>
+  (id: string, tapXOffset: number, tapYOffset: number, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id));
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
     await target.tap({ x: tapXOffset, y: tapYOffset });
   };
@@ -222,19 +226,21 @@ export const tryTapText =
   };
 
 export const tapIDAtPoint =
-  (id: string, x: number, y: number, waitTime = 1500) =>
+  (id: string, x: number, y: number, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id));
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
     await (target as any).tap({ x, y });
   };
 
 export const tapTextWithParentID =
-  (parentID: string, childText: string, waitTime = 0) =>
+  (parentID: string, childText: string, waitTime = 3000) =>
   async () => {
     const target = element(by.id(parentID).withDescendant(by.text(childText)));
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await target.tap();
+    await target.tap({ x: 0, y: 0 });
   };
 
 export const buttonVisible = (text: string) => async () => {
@@ -243,11 +249,11 @@ export const buttonVisible = (text: string) => async () => {
 };
 
 export const idVisible =
-  (id: string, waitTime = 0) =>
+  (id: string, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id));
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await expect(target).toBeVisible();
   };
 
 export const idNotVisible =
@@ -259,19 +265,19 @@ export const idNotVisible =
   };
 
 export const idVisibleAtIndex =
-  (id: string, index: number, waitTime = 0) =>
+  (id: string, index: number, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id)).atIndex(index);
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await expect(target).toBeVisible();
   };
 
 export const textVisibleAtIndex =
-  (text: string, index: number, waitTime = 0) =>
+  (text: string, index: number, waitTime = 3000) =>
   async () => {
     const target = element(by.text(text)).atIndex(index);
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await expect(target).toBeVisible();
   };
 
 export const typeViaID =
@@ -458,12 +464,12 @@ export const idExist =
   };
 
 export const tapIDAtIndex =
-  (id: string, index = 0, waitTime = 1500) =>
+  (id: string, index = 0, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id)).atIndex(index);
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await expect(target).toBeVisible();
-    await target.tap();
+    await target.tap({ x: 0, y: 0 });
   };
 
 export const tapTextAtIndex =

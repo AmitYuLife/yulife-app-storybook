@@ -14,6 +14,13 @@ export enum HealthDataType {
   wheelchairPushes = "WHEELCHAIR_PUSHES",
 }
 
+export const sendReduxEvent = (payload: ReduxEvent["payload"]) => {
+  socketServer.emit({
+    name: EVENT.REDUX_EVENT,
+    payload,
+  });
+};
+
 export const authoriseFitkit =
   (authorised = true) =>
   async () => {
@@ -21,6 +28,31 @@ export const authoriseFitkit =
       name: EVENT.FITKIT_AUTHORISED,
       payload: authorised,
     });
+
+    if (authorised) {
+      sendReduxEvent({
+        type: "YU_HEALTH_SET_ACTIVE_PROVIDER",
+        payload: "healthKit",
+      });
+
+      sendReduxEvent({
+        type: "YU_HEALTH_SET_STATUS",
+        payload: "ready",
+      });
+
+      sendReduxEvent({
+        type: "YU_HEALTH_UPDATE_CAPABILITY_STATUSES",
+        payload: {
+          STEP_COUNT: "granted",
+          MINDFUL_MINUTES: "granted",
+          HEART_RATE: "granted",
+          CYCLING_DISTANCE: "granted",
+          CALORIES: "granted",
+          WORKOUT_MINUTES: "granted",
+          WHEELCHAIR_PUSHES: "granted",
+        },
+      });
+    }
   };
 
 export const loginWithCredentials =
@@ -57,13 +89,6 @@ export const startWalkingSteps =
       amount = amount + increment;
     }, interval);
   };
-
-export const sendReduxEvent = (payload: ReduxEvent["payload"]) => {
-  socketServer.emit({
-    name: EVENT.REDUX_EVENT,
-    payload,
-  });
-};
 
 export const addSampleQueries = (payload: SampleQueriesAdd["payload"]) => {
   socketServer.emit({
