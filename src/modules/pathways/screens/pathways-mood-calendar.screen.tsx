@@ -17,7 +17,7 @@ const PathwaysMoodCalendarScreen = ({ onClose, data, loading }: IMoodCalendarScr
 
   return (
     <Box flex={1}>
-      <GenericHeadingPad />
+      <GenericHeadingPad hasShadow={true} />
       <MoodCalendar data={data} loading={loading} scrollValue={scrollValue} />
       <GenericHeadingAbsolute
         heading={t("screens.mood-calendar.title")}

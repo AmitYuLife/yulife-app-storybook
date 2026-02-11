@@ -15,7 +15,7 @@ const GenericOverlay = (props: IGenericOverlay) => {
 
   return (
     <View style={styles.wrapper}>
-      <GenericHeadingPad />
+      <GenericHeadingPad {...headingProps} />
       <View style={styles.innerWrapper}>{children}</View>
       <GenericHeadingAbsolute heading={heading} onRightIconPress={onClose} {...headingProps} />
     </View>

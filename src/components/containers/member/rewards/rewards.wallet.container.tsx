@@ -81,7 +81,7 @@ function RewardsWalletContainer({ componentId }: IRewardsWalletContainerProps) {
 
   return (
     <Box flexDirection="column" flex={1}>
-      <GenericHeadingPad />
+      <GenericHeadingPad hideBorder={false} />
 
       {EmptyComponent ? (
         EmptyComponent

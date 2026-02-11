@@ -1,7 +1,7 @@
 import { ComponentProps, ReactNode } from "react";
 import GenericHeading from "./generic-heading";
 import { SharedValue } from "react-native-reanimated";
-import { TOP_BAR, Colours, StyleSheet } from "@styles";
+import { TOP_BAR, Colours, StyleSheet, Style } from "@styles";
 import { BUTTON_CLOSE, CONNECTION_SETUP_TITLE } from "@ids";
 import { useGenericHeadingShadowOpacity } from "./generic-heading.shadow";
 import { Box } from "@atoms";
@@ -68,6 +68,11 @@ const GenericHeadingAbsolute = (props: Props) => {
   );
 };
 
-export const GenericHeadingPad = () => <Box height={TOP_BAR.TOP_BAR_WITH_PAD} disableAutoAdjust={true} />;
+export const GenericHeadingPad = ({ hasShadow, hideBorder }: Props) => {
+  const shadowHeight = hasShadow ? Style.adjust(8) : 0;
+  const borderHeight = hideBorder ? 0 : Style.adjust(1);
+  const height = TOP_BAR.TOP_BAR_WITH_PAD + shadowHeight + borderHeight;
+  return <Box height={height} disableAutoAdjust={true} />;
+};
 
 export default GenericHeadingAbsolute;

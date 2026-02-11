@@ -3,7 +3,7 @@ import { FlashList, FlashListProps } from "@shopify/flash-list";
 import Animated, { SharedValue, useAnimatedScrollHandler } from "react-native-reanimated";
 import { Box } from "@atoms";
 import { MoodMonth, IMonth } from "./mood-month";
-import { Style } from "@styles";
+import { Style, StyleSheet } from "@styles";
 
 const AnimatedFlashList = Animated.createAnimatedComponent<FlashListProps<IMonth>>(FlashList);
 
@@ -34,6 +34,7 @@ export const MoodCalendar = ({ data, loading, scrollValue }: IMoodCalendarProps)
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
         onScroll={scrollHandler}
+        contentContainerStyle={styles.contentContainer}
       />
     </Box>
   );
@@ -42,5 +43,11 @@ export const MoodCalendar = ({ data, loading, scrollValue }: IMoodCalendarProps)
 const keyExtractor = (item: IMonth) => item.monthDate;
 
 const render = ({ item }: { item: IMonth }) => <MoodMonth monthSection={item} />;
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    paddingBottom: Style.adjust(24),
+  },
+});
 
 export default memo(MoodCalendar);

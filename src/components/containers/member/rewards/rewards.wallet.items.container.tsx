@@ -219,7 +219,7 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
   }, [loadingMore]);
   return (
     <Box flexDirection="column" flex={1} p={16}>
-      <GenericHeadingPad />
+      <GenericHeadingPad hideBorder={false} />
       <Box flex={1}>
         {loading ? (
           <ItemsLoadingList />

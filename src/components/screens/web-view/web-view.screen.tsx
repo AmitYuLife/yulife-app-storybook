@@ -29,7 +29,7 @@ export function WebViewScreen(props: Props) {
 
   return (
     <View>
-      <GenericHeadingPad />
+      <GenericHeadingPad hideBorder={false} />
       <View style={styles.webViewWrapper}>
         <KeyboardAvoidingView
           behavior="padding"

@@ -52,7 +52,7 @@ export function ScrollableLayout(props: Props) {
   return (
     <KeyboardAvoidingView style={styles.keyboardWrapper} behavior={Platform.OS === "ios" ? "padding" : null}>
       <View style={styles.wrapper}>
-        <GenericHeadingPad />
+        <GenericHeadingPad hideBorder={hideTopBarBorder} />
         <ScrollView
           testID={SCROLLABLE_LAYOUT}
           ref={scrollViewForwardRef}
