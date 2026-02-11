@@ -2,19 +2,6 @@ import { Platform, TextStyle, ViewStyle } from "react-native";
 import { Style, TOP_BAR, StyleSheet } from "@styles";
 
 export default StyleSheet.create({
-  buttonWrapper: {
-    flex: 1,
-    justifyContent: "flex-end",
-    position: "absolute",
-    start: Style.adjust(24),
-    end: Style.adjust(24),
-    bottom: 0,
-    alignItems: "center",
-    paddingBottom: Platform.select({
-      ios: 0,
-      android: Style.adjust(24),
-    }),
-  } as ViewStyle,
   bottomPad: {
     height: TOP_BAR.TOP_BAR_WITH_PAD,
     width: Style.DEVICE_WIDTH,
