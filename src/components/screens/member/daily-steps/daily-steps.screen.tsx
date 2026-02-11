@@ -27,6 +27,7 @@ import { handleTakeAChallengeCTA } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import Animated, { FadeIn } from "react-native-reanimated";
 import media from "@styles/media";
+import { DETOX_ENABLED } from "@services/socket";
 
 const FADE_IN_ANIMATION_DURATION = 750;
 
@@ -139,9 +140,11 @@ const DailyStepsScreen = ({
     [currentLevel, hasDoneChallengeToday, isChallengeActive, yuniversalLevel, yuniversalMap]
   );
 
+  const enteringAnimation = DETOX_ENABLED ? undefined : FadeIn.duration(FADE_IN_ANIMATION_DURATION);
+
   return (
     <Animated.View
-      entering={FadeIn.duration(FADE_IN_ANIMATION_DURATION)}
+      entering={enteringAnimation}
       style={styles.flex}
       importantForAccessibility={androidImportantForAccessibility}
       accessibilityElementsHidden={accessibilityElementsHidden}
