@@ -1795,6 +1795,7 @@
       "won_reward": "You've won %{reward}!",
       "reward_collected": "%{reward} collected!",
       "rewards_collected": "Here's everything you've got!",
+      "default_redeemed_stage_title": "You already redeemed your prize!",
       "info_card": {
         "yumoji_inventory": {
           "title": "Reward collected!",

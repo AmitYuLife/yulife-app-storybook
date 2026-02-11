@@ -1,22 +1,17 @@
 import { memo, ReactNode } from "react";
-import { View } from "react-native";
 
-import { StyleSheet } from "@styles";
+import { Box } from "@atoms";
 interface IStageContainerProps {
   children: ReactNode;
+  pt?: number;
 }
 
-const StageContainer = ({ children }: IStageContainerProps) => {
-  return <View style={styles.container}>{children}</View>;
+const StageContainer = ({ children, pt }: IStageContainerProps) => {
+  return (
+    <Box pt={pt} w="100%" h="100%" justifyContent="space-between" alignItems="center">
+      {children}
+    </Box>
+  );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-});
 
 export default memo(StageContainer);

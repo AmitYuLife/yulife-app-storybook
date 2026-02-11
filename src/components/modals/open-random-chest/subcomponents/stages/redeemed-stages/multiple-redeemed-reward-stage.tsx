@@ -23,7 +23,7 @@ const MultipleRedeemedRewardStage = ({ redeemedItems, onClose, awardedPrizeTypes
   const { top } = useSafeAreaInsets();
 
   return (
-    <StageContainer>
+    <StageContainer pt={top}>
       {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground />}
       <Box mt={top} w="100%" testID={CLAIMED_REWARD_ITEMS(redeemedItems?.length)}>
         <ShowcaseStack>

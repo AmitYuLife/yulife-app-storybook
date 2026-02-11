@@ -1,6 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { View } from "react-native";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
 import { Colours, Style, StyleSheet } from "@styles";
 import { Pressable } from "..";
@@ -24,14 +23,16 @@ const RadioBattlePassRewardItem = ({ reward, checked, onPress }: IRadioBattlePas
     <>
       <Pressable style={styles.wrapper} onPress={handleOnPress} delay={1000} testID={RADIO_BATTLE_PASS_REWARD_ITEM}>
         <LinearGradient colors={gradient} style={styles.gradient} useAngle={true} angle={270}>
-          <View style={styles.innerContainer}>
-            <TextTemplate type="b2b" color={Colours.neutral.white}>
-              {reward.title}
-            </TextTemplate>
-            <View style={styles.icon}>
-              <SuccessIcon size={24} checked={checked} colour="#E30D76" fill="#4F377B" stroke="#5C4488" />
-            </View>
-          </View>
+          <Box p={2} br={Style.adjust(16)} alignItems="center" justifyContent="center">
+            <Box bg="#290163" br={16} justifyContent="center" w="100%" pv={16} ph={24}>
+              <TextTemplate type="b2b" color={Colours.neutral.white}>
+                {reward.title}
+              </TextTemplate>
+              <Box position="absolute" right={24}>
+                <SuccessIcon size={24} checked={checked} colour="#E30D76" fill="#4F377B" stroke="#5C4488" />
+              </Box>
+            </Box>
+          </Box>
         </LinearGradient>
       </Pressable>
     </>
@@ -42,20 +43,12 @@ const styles = StyleSheet.create({
   wrapper: {
     borderRadius: Style.adjust(16),
     overflow: "hidden",
-  },
-  innerContainer: {
-    backgroundColor: "#290163",
-    borderRadius: Style.adjust(14),
     justifyContent: "center",
-    paddingVertical: Style.adjust(16),
-    paddingHorizontal: Style.adjust(24),
+    alignItems: "center",
+    width: "100%",
   },
   gradient: {
-    padding: Style.adjust(2),
-  },
-  icon: {
-    position: "absolute",
-    right: Style.adjust(24),
+    width: "100%",
   },
 });
 
