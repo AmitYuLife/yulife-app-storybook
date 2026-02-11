@@ -2,7 +2,7 @@ import { memo } from "react";
 import { Box, TextTemplate } from "@atoms";
 import { ImageBackground } from "expo-image";
 import { ScrollView, useWindowDimensions } from "react-native";
-import { Colours, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import PathwayStreaks from "../../components/pathway-streaks/pathway-streaks";
 import { AnimatedPlusPoints, Button } from "@components/molecules";
@@ -112,7 +112,15 @@ const PathwaysReflectedScreen = ({
             </Box>
           </Box>
         </ScrollView>
-        <Box position="absolute" bottom={0} width="100%" pb={bottom}>
+        <Box
+          position="absolute"
+          left={0}
+          right={0}
+          bottom={0}
+          disableAutoAdjust={true}
+          pb={bottom + Style.adjust(24)}
+          ph={Style.adjust(24)}
+        >
           <Button testID={PATHWAYS_REFLECTED_CONTINUE} onPress={onClose} translatedLabel="Continue" />
         </Box>
       </Box>

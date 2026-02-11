@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Button, LinkButton } from "@molecules";
+import { Box } from "@atoms";
 
 import styles from "./streaks.styles";
 import { DETOX_ENABLED } from "@services/socket";
@@ -116,7 +117,7 @@ const StreaksScreen = ({
           {children}
           <View style={hideLinkButton ? styles.bottomPad : styles.bottomPadLarge} />
         </ScrollView>
-        <SafeAreaView pointerEvents="box-none" style={styles.buttonWrapper}>
+        <Box pointerEvents="box-none" position="absolute" left={0} right={0} bottom={0} ph={24} pb={24}>
           <Button
             isLoading={isLoading}
             wrapperStyle={styles.buttonPrimaryWrapper}
@@ -132,7 +133,7 @@ const StreaksScreen = ({
               translationKey="labels.cta.later"
             />
           )}
-        </SafeAreaView>
+        </Box>
 
         <GenericHeadingAbsolute
           backgroundColor="transparent"
