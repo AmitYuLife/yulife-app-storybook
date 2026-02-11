@@ -50,6 +50,7 @@ export default function* scheduleChallengeNotificationSaga({ payload }: Action) 
             identifier: id,
             trigger: {
               ...expoDefaultNotificationTrigger,
+              type: ExpoNotification.SchedulableTriggerInputTypes.DATE,
               date: moment(addSecondsToChallengeEndDateTime(endDateTime)).toDate(),
             },
             content: {
