@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     borderRadius: Style.adjust(20),
     borderWidth: Style.adjust(0.5),
-    marginBottom: Style.adjust(16),
+    marginTop: Style.adjust(16),
     paddingHorizontal: Style.adjust(12),
     paddingVertical: Style.adjust(2),
   },

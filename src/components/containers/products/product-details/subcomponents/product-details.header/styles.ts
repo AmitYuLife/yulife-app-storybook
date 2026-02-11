@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   wrapper: {
     overflow: "hidden",
     flex: 1,
-    paddingBottom: Style.adjust(24),
+    paddingBottom: Style.adjust(32),
     paddingTop: TOP_BAR.PADDING_TOP,
   },
   backgroundImage: {
@@ -58,6 +58,16 @@ const styles = StyleSheet.create({
     bottom: 0,
     start: 0,
     end: 0,
+  } as ViewStyle,
+  heroWrapper: {
+    height: Style.adjust(290),
+  } as ViewStyle,
+  heroContent: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "flex-start",
+    paddingTop: Style.adjust(8),
+    paddingHorizontal: Style.adjust(32),
   } as ViewStyle,
 });
 

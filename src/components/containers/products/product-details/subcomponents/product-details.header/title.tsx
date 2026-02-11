@@ -7,10 +7,11 @@ import { Colours, Style, StyleSheet } from "@styles";
 interface Props {
   title: string;
   titleType: ComponentProps<typeof TextTemplate>["type"];
+  marginTop?: number;
 }
 
-export const Title = memo(({ title, titleType }: Props) => (
-  <View style={styles.wrapper}>
+export const Title = memo(({ title, titleType, marginTop = 16 }: Props) => (
+  <View style={[styles.wrapper, { marginTop: Style.adjust(marginTop) }]}>
     <TextTemplate
       testID={TEXT_TEMPLATE(title)}
       color={Colours.neutral.white}
@@ -26,6 +27,5 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: Style.adjust(16),
   } as ViewStyle,
 });

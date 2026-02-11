@@ -47,7 +47,13 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
   return (
     <View>
       <View
-        style={[styles.wrapper, { backgroundColor: mapCoverTypeToColorTheme(coverType).primary }, mappedServerStyle]}
+        style={[
+          styles.wrapper,
+          { backgroundColor: mapCoverTypeToColorTheme(coverType).primary },
+          // TODO: Remove this once we have migrated all hero cards to have images
+          showItemSlot === false && styles.heroWrapper,
+          mappedServerStyle,
+        ]}
         onLayout={handleHeaderLayout}
       >
         {!backgroundImage ? null : (
@@ -60,7 +66,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
             resizeMode={"cover"}
           />
         )}
-        {showItemSlot !== false ? (
+        {showItemSlot !== false ? ( // TODO: remove this once we have migrated all hero cards to have images
           <View style={styles.inner}>
             <View style={styles.leftSide}>
               {funding ? <Funding {...funding} /> : null}
@@ -78,10 +84,15 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
             </View>
           </View>
         ) : (
-          <View style={styles.title}>
+          <View style={styles.heroContent}>
+            <ProviderLogo
+              image={providerLogo?.image}
+              width={providerLogo?.width}
+              height={providerLogo?.height}
+              alignLeft={true}
+            />
+            <Title titleType="h2" title={productName} marginTop={8} />
             {funding ? <Funding {...funding} /> : null}
-            <ProviderLogo image={providerLogo?.image} width={providerLogo?.width} height={providerLogo?.height} />
-            <Title titleType="h1" title={productName} />
           </View>
         )}
       </View>
