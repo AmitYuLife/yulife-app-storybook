@@ -64,11 +64,10 @@ export default StyleSheet.create({
   bannerWrapper: { marginBottom: Style.adjust(24) },
   banner: { paddingVertical: 0 },
   hintContainer: { marginBottom: Style.adjust(20) },
-  ctaWrapper: {
+  gradient: {
     position: "absolute",
     bottom: 0,
-    width: Style.DEVICE_WIDTH,
-    padding: Style.adjust(32),
-    paddingTop: Style.adjust(50),
+    width: "100%",
+    height: "100%",
   },
 });
