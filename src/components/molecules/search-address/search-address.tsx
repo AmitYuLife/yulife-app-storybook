@@ -53,7 +53,7 @@ export default memo((props: ISearchAddress) => {
   return (
     <SafeAreaView style={StyleSheet.absoluteFill}>
       <View style={styles.wrapper}>
-        <GenericHeadingPad />
+        <GenericHeadingPad hideBorder={false} />
         <SearchInput styleProps={searchInputStyles} title={searchTitle} onChangeText={onChangeText} />
         <SearchList
           data={addressList}
