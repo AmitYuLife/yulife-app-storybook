@@ -67,10 +67,13 @@ export const useBattlePassItemDetailsModalItems = ({
       return;
     }
 
-    const explanationImages = rewardInfo.rewardInfo.explanations?.reduce((acc, curr) => [...acc, curr.icon.uri], []);
+    const explanationImages =
+      rewardInfo.rewardInfo.explanations?.map((exp) => exp.icon?.uri).filter((uri) => !!uri) ?? [];
 
     try {
-      await prefetchImages(explanationImages);
+      if (explanationImages.length > 0) {
+        await prefetchImages(explanationImages);
+      }
     } catch {}
 
     setIsLoading(false);
