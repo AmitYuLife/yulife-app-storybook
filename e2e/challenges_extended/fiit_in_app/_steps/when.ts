@@ -52,5 +52,7 @@ export const pauseVideo =
 export const minimiseAndReopenApp = async () => {
   await wait(10000)();
   await device.sendToHome();
+  await wait(2000)();
   await launchApp({ newInstance: true });
+  await wait(3000)();
 };

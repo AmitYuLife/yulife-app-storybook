@@ -32,8 +32,11 @@ export const restartToDuelsRequest =
   async () => {
     await wait(waitTime)();
     await device.terminateApp();
+    await wait(2000)();
     await device.clearKeychain();
+    await wait(500)();
     await launchApp({ delete: true });
+    await wait(3000)();
     await wait(waitTime)();
     await loginAsUser(customer, auth, fitkitAuth)();
   };

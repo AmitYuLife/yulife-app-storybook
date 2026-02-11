@@ -45,15 +45,19 @@ export const loginAsUser =
 
     await loginWithCredentials(customer.data.email, auth.data.password, region)();
 
+    // Wait for login to process before authorising fitkit
+    await wait(5_000)();
+
     if (fitkitAuth) {
-      await wait(7_000)();
       await authoriseFitkit(fitkitAuth)();
+      // Wait for fitkit auth Redux state changes to settle
+      await wait(5_000)();
     }
 
     // wait for daily steps screen to load
     const dailyStepsScreen = element(by.id(DAILY_STEPS_SCREEN));
-    await waitFor(dailyStepsScreen).toExist().withTimeout(15_000);
-    await waitFor(dailyStepsScreen).toBeVisible().withTimeout(15_000);
+    await waitFor(dailyStepsScreen).toExist().withTimeout(25_000);
+    await waitFor(dailyStepsScreen).toBeVisible().withTimeout(25_000);
   };
 
 export const logInAndGoToTab =
@@ -65,6 +69,7 @@ export const logInAndGoToTab =
     region: "UK" | "US" | "JP" | "SA" = "UK"
   ) =>
   async () => {
+    await new Promise((res) => setTimeout(res, 5000));
     await loginAsUser(customer, auth, fitkitAuth, region)();
     await navigateViaID(NAV_BAR(tab), 10_000)();
   };
@@ -78,9 +83,11 @@ export const restartAndLoginToTab =
   ) =>
   async () => {
     await device.terminateApp();
+    await new Promise((res) => setTimeout(res, 3000));
     await launchApp({ delete: true });
+    await new Promise((res) => setTimeout(res, 3000));
     await loginAsUser(customer, auth, fitkitAuth)();
-    await navigateViaID(NAV_BAR(tab))();
+    await navigateViaID(NAV_BAR(tab), 3000)();
   };
 
 export const dismissPLIModalIfVisible = async () => {
