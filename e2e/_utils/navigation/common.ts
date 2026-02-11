@@ -36,6 +36,7 @@ export const restartWithoutWBHub = async (dm = dataManager) => {
 
 export const terminateApp = async () => {
   await device.terminateApp();
+  await new Promise((res) => setTimeout(res, 2000));
 };
 
 export const minimiseApp = async () => {
@@ -53,14 +54,18 @@ export const minimiseApp = async () => {
 
 export const restartWithoutDelete = async () => {
   await device.terminateApp();
+  await new Promise((res) => setTimeout(res, 2000));
   await launchApp({ delete: false });
+  await new Promise((res) => setTimeout(res, 3000));
 };
 
 /** TOOD: rename this to restartDevice */
 export const start = async (locale = DEFAULT_LOCALE) => {
   console.log(`Restarting app...`);
   await device.terminateApp();
+  await new Promise((res) => setTimeout(res, 2000));
   await device.clearKeychain();
+  await new Promise((res) => setTimeout(res, 1000));
   await launchApp({
     languageAndLocale: {
       language: locale,
@@ -68,6 +73,7 @@ export const start = async (locale = DEFAULT_LOCALE) => {
     },
     delete: true,
   });
+  await new Promise((res) => setTimeout(res, 3000));
 };
 
 export const launchApp = async (config?: DeviceLaunchAppConfig) => {
@@ -87,12 +93,15 @@ export const startWithoutLaunch =
 export const reloadAppToTab =
   (tab: "yucoin" | "quests" | "leaderboard" | "rewards") => async () => {
     await device.reloadReactNative();
+    // Allow React Native to fully reload
+    await new Promise((res) => setTimeout(res, 3000));
     await dismissNewLooksModalIfVisible();
     await navigateViaID(NAV_BAR(tab), 5000)();
   };
 
 export const reloadOnly = async () => {
   await device.reloadReactNative();
+  await new Promise((res) => setTimeout(res, 4000));
 };
 
 export const wait =
@@ -106,7 +115,7 @@ export const navigateViaID =
     const target = element(by.id(id));
     await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await target.tap({ x: 0, y: 0 });
+    await target.tap();
   };
 
 export const navigateViaLabel = async (label: string) => {
@@ -120,21 +129,21 @@ export const navigateViaText = async (text: string, timeout = 0) => {
   await element(by.text(text)).tap();
 };
 
-export const expectIsVisibleViaID = async (id: string, waitTime = 0) => {
+export const expectIsVisibleViaID = async (id: string, waitTime = 3_000) => {
   const target = element(by.id(id));
-  await wait(waitTime)();
-  await expect(target).toBeVisible();
+  await waitFor(target).toExist().withTimeout(waitTime);
+  await waitFor(target).toBeVisible().withTimeout(waitTime);
   return target;
 };
 
-export const expectIsVisibleViaText = async (label: string, waitTime = 0) => {
+export const expectIsVisibleViaText = async (label: string, waitTime = 3000) => {
   const target = element(by.text(label));
   await waitFor(target).toExist().withTimeout(waitTime);
   await expect(target).toBeVisible();
   return target;
 };
 
-export const expectDoesNotExistViaText = async (id: string, waitTime = 0) => {
+export const expectDoesNotExistViaText = async (id: string, waitTime = 3000) => {
   const target = element(by.text(id));
   await (waitFor as any)(target).not.toExist().withTimeout(waitTime);
   await (expect as any)(target).not.toExist();
@@ -151,7 +160,7 @@ export const tapText =
     if (longPress === true) {
       await target.longPress();
     } else {
-      await target.tap({ x: 0, y: 0 });
+      await target.tap();
     }
   };
 
@@ -164,7 +173,7 @@ export const textVisible =
   };
 
 export const textNotVisible =
-  (text: string, waitTime = 0) =>
+  (text: string, waitTime = 3000) =>
   async () => {
     const target = element(by.text(text));
     await waitFor(target).not.toBeVisible().withTimeout(waitTime);
@@ -177,7 +186,7 @@ export const tapID =
     const target = element(by.id(id));
     await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await target.tap({ x: 0, y: 0 });
+    await target.tap();
   };
 
 export const tapIDWithOffset =
@@ -198,7 +207,7 @@ export const tapIDNotBeingVisible =
 
 // to be used for debugging only, EG when a double tap bug appears
 export const tryTapID =
-  (id: string, waitTime = 0) =>
+  (id: string, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id));
     await waitFor(target).toBeVisible().withTimeout(waitTime);
@@ -212,7 +221,7 @@ export const tryTapID =
   };
 
 export const tryTapText =
-  (text: string, waitTime = 0) =>
+  (text: string, waitTime = 3000) =>
   async () => {
     const target = element(by.text(text));
     await waitFor(target).toBeVisible().withTimeout(waitTime);
@@ -240,13 +249,16 @@ export const tapTextWithParentID =
     const target = element(by.id(parentID).withDescendant(by.text(childText)));
     await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await target.tap({ x: 0, y: 0 });
+    await target.tap();
   };
 
-export const buttonVisible = (text: string) => async () => {
-  const buttonText = element(by.text(text));
-  await expect(buttonText).toBeVisible();
-};
+export const buttonVisible =
+  (text: string, waitTime = 3_000) =>
+  async () => {
+    const buttonText = element(by.text(text));
+    await waitFor(buttonText).toExist().withTimeout(waitTime);
+    await waitFor(buttonText).toBeVisible().withTimeout(waitTime);
+  };
 
 export const idVisible =
   (id: string, waitTime = 3000) =>
@@ -257,7 +269,7 @@ export const idVisible =
   };
 
 export const idNotVisible =
-  (id: string, waitTime = 0) =>
+  (id: string, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id));
     await waitFor(target).not.toBeVisible().withTimeout(waitTime);
@@ -284,41 +296,52 @@ export const typeViaID =
   (id: string, text: string, waitTime = 3_000) =>
   async () => {
     const target = element(by.id(id));
+    await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
     await target.tap();
     await target.typeText(text);
   };
 
-export const typeViaIDAtIndex = (id: string, index: number, text: string) => async () => {
-  const target = element(by.id(id)).atIndex(index);
-  await expect(target).toBeVisible();
-  await target.tap();
-  await target.typeText(text);
-};
+export const typeViaIDAtIndex =
+  (id: string, index: number, text: string, waitTime = 3_000) =>
+  async () => {
+    const target = element(by.id(id)).atIndex(index);
+    await waitFor(target).toExist().withTimeout(waitTime);
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
+    await target.tap();
+    await target.typeText(text);
+  };
 
-export const typeViaPlaceholder = (placeholder: string, text: string) => async () => {
-  const target = element(by.text(placeholder));
-  await expect(target).toBeVisible();
-  await target.replaceText(text);
-};
+export const typeViaPlaceholder =
+  (placeholder: string, text: string, waitTime = 3_000) =>
+  async () => {
+    const target = element(by.text(placeholder));
+    await waitFor(target).toExist().withTimeout(waitTime);
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
+    await target.replaceText(text);
+  };
 
-export const replaceTextViaID = (id: string, text: string) => async () => {
-  const target = element(by.id(id));
-  await expect(target).toBeVisible();
-  await target.replaceText(text);
-};
+export const replaceTextViaID =
+  (id: string, text: string, waitTime = 3_000) =>
+  async () => {
+    const target = element(by.id(id));
+    await waitFor(target).toExist().withTimeout(waitTime);
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
+    await target.replaceText(text);
+  };
 
 export const multipleTextVisible =
-  (textArr: string[], waitTime = 2000) =>
+  (textArr: string[], waitTime = 3_000) =>
   async () => {
-    await wait(waitTime)();
     for (const i of textArr) {
-      await expect(element(by.text(i))).toBeVisible();
+      const target = element(by.text(i));
+      await waitFor(target).toExist().withTimeout(waitTime);
+      await waitFor(target).toBeVisible().withTimeout(waitTime);
     }
   };
 
 export const multipleTextNotVisible =
-  (textArr: string[], waitTime = 0) =>
+  (textArr: string[], waitTime = 3000) =>
   async () => {
     await wait(waitTime)();
     for (const i of textArr) {
@@ -326,11 +349,15 @@ export const multipleTextNotVisible =
     }
   };
 
-export const multipleIDVisible = (idArr: string[]) => async () => {
-  for (const i of idArr) {
-    await expect(element(by.id(i))).toBeVisible();
-  }
-};
+export const multipleIDVisible =
+  (idArr: string[], waitTime = 3_000) =>
+  async () => {
+    for (const i of idArr) {
+      const target = element(by.id(i));
+      await waitFor(target).toExist().withTimeout(waitTime);
+      await waitFor(target).toBeVisible().withTimeout(waitTime);
+    }
+  };
 
 export const booleanTextVisible = async (text) => {
   try {
@@ -350,14 +377,18 @@ export const booleanIdVisible = async (id) => {
   }
 };
 
-export const replaceTextByID = (id: string, text: string) => async () => {
-  const textField = element(by.id(id));
-  await textField.tap();
-  await textField.replaceText(text);
-};
+export const replaceTextByID =
+  (id: string, text: string, waitTime = 3_000) =>
+  async () => {
+    const textField = element(by.id(id));
+    await waitFor(textField).toExist().withTimeout(waitTime);
+    await waitFor(textField).toBeVisible().withTimeout(waitTime);
+    await textField.tap();
+    await textField.replaceText(text);
+  };
 
 export const tryCatchTextVisible =
-  (textArr, waitTime = 0) =>
+  (textArr, waitTime = 3000) =>
   async () => {
     await wait(waitTime)();
 
@@ -424,11 +455,15 @@ export const headingStartStreakCopyVisible = (dayNum: number) => async () => {
   }
 };
 
-export const clearFieldByID = (id: string) => async () => {
-  const textField = element(by.id(id));
-  await textField.tap();
-  await textField.clearText();
-};
+export const clearFieldByID =
+  (id: string, waitTime = 3_000) =>
+  async () => {
+    const textField = element(by.id(id));
+    await waitFor(textField).toExist().withTimeout(waitTime);
+    await waitFor(textField).toBeVisible().withTimeout(waitTime);
+    await textField.tap();
+    await textField.clearText();
+  };
 
 export const slowType =
   (element: any, string: string, waitTime = 1000) =>
@@ -447,16 +482,18 @@ export const capitalizeFirstLetter = (string: string) => {
 
 export const restartWithoutDeleteTwoTimes = async () => {
   await device.terminateApp();
+  await new Promise((res) => setTimeout(res, 2000));
   await launchApp({ delete: false });
-  await wait(4000)();
+  await wait(3000)();
   await device.terminateApp();
+  await new Promise((res) => setTimeout(res, 2000));
   await launchApp({ delete: false });
-  await dismissNewLooksModalIfVisible();
   await wait(4000)();
+  await dismissNewLooksModalIfVisible();
 };
 
 export const idExist =
-  (id: string, waitTime = 0) =>
+  (id: string, waitTime = 3000) =>
   async () => {
     const target = element(by.id(id));
     await waitFor(target).toExist().withTimeout(waitTime);
@@ -469,20 +506,22 @@ export const tapIDAtIndex =
     const target = element(by.id(id)).atIndex(index);
     await waitFor(target).toExist().withTimeout(waitTime);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await target.tap({ x: 0, y: 0 });
+    await target.tap();
   };
 
 export const tapTextAtIndex =
-  (text: string, index = 0, waitTime = 0) =>
+  (text: string, index = 0, waitTime = 3000) =>
   async () => {
     const target = element(by.text(text)).atIndex(index);
     await waitFor(target).toBeVisible().withTimeout(waitTime);
-    await target.tap({ x: 0, y: 0 });
+    await target.tap();
   };
 
 export const minimiseAndReopenApp = async () => {
   await device.sendToHome();
+  await new Promise((res) => setTimeout(res, 3000));
   await launchApp({ newInstance: false });
+  await new Promise((res) => setTimeout(res, 3000));
 };
 
 /**
@@ -492,7 +531,9 @@ export const minimiseAndReopenApp = async () => {
 export const relaunchAppWithoutSync = async () => {
   await device.disableSynchronization();
   await device.sendToHome();
+  await new Promise((res) => setTimeout(res, 2000));
   await launchApp({ newInstance: false });
+  await new Promise((res) => setTimeout(res, 2000));
   await device.enableSynchronization();
 };
 
@@ -605,7 +646,7 @@ export const objCopyVisible = (obj: Object, scrollView?: string) => async () => 
 };
 
 export const localisedTextVisible =
-  (dictionary: object, locale: string = process.env.TARGET_LOCALE, waitTime = 0) =>
+  (dictionary: object, locale: string = process.env.TARGET_LOCALE, waitTime = 3000) =>
   async () => {
     await wait(waitTime)();
     if (!dictionary[locale]) {
@@ -619,7 +660,7 @@ export const localisedTextVisible =
   };
 
 export const tapLocalisedText =
-  (dictionary: object, locale: string = process.env.TARGET_LOCALE, waitTime = 0) =>
+  (dictionary: object, locale: string = process.env.TARGET_LOCALE, waitTime = 3000) =>
   async () => {
     await wait(waitTime)();
 
@@ -633,9 +674,13 @@ export const tapLocalisedText =
     await target.tap();
   };
 
-export const inputHasValue = (id: string, value: string) => async () => {
-  await expect(element(by.id(id))).toHaveText(value);
-};
+export const inputHasValue =
+  (id: string, value: string, waitTime = 3_000) =>
+  async () => {
+    const target = element(by.id(id));
+    await waitFor(target).toExist().withTimeout(waitTime);
+    await expect(target).toHaveText(value);
+  };
 
 export const switchLanguage =
   (languageText: string, waitTime = 5_000) =>

@@ -376,10 +376,14 @@ export const getDuration = (seconds: number) => {
 
 export const closeAndReopenApp = async () => {
   await device.sendToHome();
+  await wait(2000)();
   await launchApp({ newInstance: false });
+  await wait(2000)();
 };
 
 export const quitAndReopenApp = async () => {
   await device.terminateApp();
+  await wait(1000)();
   await launchApp({ newInstance: false });
+  await wait(2000)();
 };
