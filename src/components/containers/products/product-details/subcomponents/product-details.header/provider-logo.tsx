@@ -3,7 +3,11 @@ import { Image } from "@atoms";
 import { VariableRemoteImage } from "@graphql/__generated";
 import { YULIFE_AND_PROVIDER_LOGO } from "@ids";
 
-export const ProviderLogo = memo(({ image, width, height }: VariableRemoteImage) => {
+interface IProviderLogoProps extends VariableRemoteImage {
+  alignLeft?: boolean;
+}
+
+export const ProviderLogo = memo(({ image, width, height, alignLeft = false }: IProviderLogoProps) => {
   if (!image || !width) {
     return null;
   }
@@ -16,6 +20,8 @@ export const ProviderLogo = memo(({ image, width, height }: VariableRemoteImage)
       loadingHeight={height}
       suppressLoadingUi={true}
       testID={YULIFE_AND_PROVIDER_LOGO}
+      // TODO: These properties will always be present once we have migrated all hero cards to have images
+      {...(alignLeft && { contentFit: "contain" as const, contentPosition: "left" as const })}
     />
   );
 });
