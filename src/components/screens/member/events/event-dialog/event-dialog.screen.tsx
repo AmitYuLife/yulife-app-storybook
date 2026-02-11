@@ -25,6 +25,7 @@ import style, {
 import HintContainer from "@components/molecules/hint/hint.container";
 import { GetGoalDetailsQuery, GetUserProfileQuery, RemoteImage, UserProfileEventStatus } from "@graphql/__generated";
 import { SuccessIcon } from "@atoms/icon/success-icon";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -113,6 +114,8 @@ const EventDialogScreen = ({
   const questionMarkRef = useRef<View>(null);
   const scrollY = useRef(new Animated.Value(0)).current;
   const [showHeading, setHeadingVisibilty] = useState<boolean>(true);
+
+  const { bottom } = useSafeAreaInsets();
 
   const onScroll = useCallback(
     Animated.event<NativeScrollEvent>([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
@@ -362,16 +365,19 @@ const EventDialogScreen = ({
         </Animated.View>
       )}
       {!button ? null : (
-        <LinearGradient style={style.ctaWrapper} colors={SMOOTH_GRADIENT_COLORS}>
-          <Button
-            testID={EVENT_DIALOG_BUTTON}
-            size="Fill"
-            translatedLabel={button.label}
-            onPress={onButtonPress}
-            shadowColor={button.shadowColor || undefined}
-            backgroundColor={button.backgroundColor || undefined}
-          />
-        </LinearGradient>
+        <Box position="absolute" bottom={0} w="100%">
+          <LinearGradient style={style.gradient} colors={SMOOTH_GRADIENT_COLORS} />
+          <Box p={32} pt={50} pb={Math.max(bottom, 32)} bottom={0}>
+            <Button
+              testID={EVENT_DIALOG_BUTTON}
+              size="Fill"
+              translatedLabel={button.label}
+              onPress={onButtonPress}
+              shadowColor={button.shadowColor || undefined}
+              backgroundColor={button.backgroundColor || undefined}
+            />
+          </Box>
+        </Box>
       )}
     </Box>
   );
