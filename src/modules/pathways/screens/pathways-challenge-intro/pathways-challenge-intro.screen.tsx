@@ -143,7 +143,7 @@ const PathwaysChallengeIntroScreen = ({ onPressCta, componentId }: IProps) => {
           </Box>
         </Box>
       </Animated.ScrollView>
-      <Box px={32} pb={32} style={{ paddingBottom: Math.max(bottom, 32) }}>
+      <Box px={32} pb={Math.max(bottom, 32)}>
         <Button translationKey="labels.cta.continue" onPress={onPressCta} size="Fill" />
       </Box>
 
