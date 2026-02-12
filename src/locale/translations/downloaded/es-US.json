@@ -422,6 +422,7 @@
       "claim_all_subtitle": "¡Checa lo que has desbloqueado!",
       "claim_all_title": "¡Lotería!",
       "claim_reward": "Recoger recompensa",
+      "default_redeemed_stage_title": "Ya has canjeado tu premio.",
       "info_card": {
         "power_up_inventory": {
           "description": "Puedes encontrar tu potenciador en tu inventario de potenciadores.",

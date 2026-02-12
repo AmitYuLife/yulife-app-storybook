@@ -422,6 +422,7 @@
       "claim_all_subtitle": "Check out what you've unlocked!",
       "claim_all_title": "Jackpot!",
       "claim_reward": "Claim rewards",
+      "default_redeemed_stage_title": "You've already redeemed your prize!",
       "info_card": {
         "power_up_inventory": {
           "description": "You'll find your power up in your Power Ups inventory.",
