@@ -913,7 +913,8 @@
     },
     "challenge_success": {
       "footer": "Well done!",
-      "stage": "Stage %{level}"
+      "stage": "Stage %{level}",
+      "great_work": "Great work!"
     },
     "challenge_failed": {
       "heading": "You were so close!",
@@ -1965,7 +1966,8 @@
     "short_seconds": "s",
     "second": "second",
     "short_second": "s",
-    "less_than_minute": "less than 1 minute"
+    "less_than_minute": "less than 1 minute",
+    "smart_minutes": "%{smart_count} minute |||| %{smart_count} minutes"
   },
   "save_image": {
     "save_button": "Save as image",

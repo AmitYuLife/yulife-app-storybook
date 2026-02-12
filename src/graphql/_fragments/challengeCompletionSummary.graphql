@@ -1,0 +1,13 @@
+fragment ChallengeCompletionSummary on ChallengeCompletionSummary {
+  type
+  entries {
+    type
+    result
+    label
+    icon {
+      id
+      uri
+      hash
+    }
+  }
+}

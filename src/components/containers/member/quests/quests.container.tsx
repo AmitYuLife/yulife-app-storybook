@@ -19,6 +19,7 @@ import {
   ChallengeFailedScreen,
   ChallengeProgressScreen,
   ChallengeSuccessScreen,
+  ChallengeSuccessOldScreen,
   ChallengeWatchProgress,
   MediaPlayerProgressScreen,
   QuestsScreenOffline,
@@ -185,8 +186,20 @@ const QuestsContainer = () => {
   }
 
   if (challengeFinishedResult && challengeFinishedResult.status === ActiveLevelStatus.success) {
+    if (features.tempGameEnableNewSuccessScreen) {
+      return (
+        <ChallengeSuccessScreen
+          level={challengeFinishedResult.level}
+          reward={challengeFinishedResult.coins}
+          rating={challengeFinishedResult.rating}
+          onPressCta={handleResetChallenge}
+          completionSummary={challengeFinishedResult.completionSummary}
+        />
+      );
+    }
+
     return (
-      <ChallengeSuccessScreen
+      <ChallengeSuccessOldScreen
         loading={false}
         unit={challengeFinishedResult.unit}
         level={challengeFinishedResult.level}

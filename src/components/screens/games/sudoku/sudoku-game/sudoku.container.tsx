@@ -186,17 +186,22 @@ export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
               level: resultData.level,
               rating: resultData.rating,
               incomingData: resultData.incomingData,
+              completionSummary: resultData.completionSummary,
             })
           );
 
-          navigateToCompleted(
-            { ...params, leaderboardId: undefined } as unknown as GetSudokuBoardQuery["getSudokuBoard"],
-            resultData
-          );
+          if (features.tempGameEnableNewSuccessScreen) {
+            Navigation.popToRoot(ROUTES.quests);
+          } else {
+            navigateToCompleted(
+              { ...params, leaderboardId: undefined } as unknown as GetSudokuBoardQuery["getSudokuBoard"],
+              resultData
+            );
+          }
         }
       })();
     },
-    [submitSolution, dispatch, navigateToCompleted]
+    [submitSolution, dispatch, features.tempGameEnableNewSuccessScreen, navigateToCompleted]
   );
 
   const onBack = useCallback(() => {

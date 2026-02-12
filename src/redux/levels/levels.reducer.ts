@@ -337,6 +337,7 @@ const challengeEndSuccess = (state: ILevelsStore, data: ChallengeEndSuccessPaylo
       (data?.milestonesLog || state.active?.milestonesLog || []).length > 0
         ? ActiveLevelStatus.success
         : ActiveLevelStatus.failed,
+    completionSummary: data?.completionSummary || null,
   },
 });
 
