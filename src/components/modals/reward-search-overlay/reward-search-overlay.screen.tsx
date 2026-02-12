@@ -95,6 +95,7 @@ const RewardSearchOverlay = ({
             exiting={FadeOut.duration(transitionDuration)}
           >
             <FlashList
+              keyboardShouldPersistTaps="handled"
               renderItem={renderItem}
               contentContainerStyle={styles.listContent}
               extraData={[isLoading]}
