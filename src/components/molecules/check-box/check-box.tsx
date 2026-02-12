@@ -5,6 +5,7 @@ import { CHECK_BOX_STATE } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { TextTemplate } from "@atoms";
 import { CheckBoxType } from "./check-box-type";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface ICheckBox {
   checked: boolean;
@@ -67,6 +68,7 @@ function CheckBox(props: ICheckBox) {
         }}
         style={shouldAlignTop ? styles.adjustForLineHeight : null}
         testID={CHECK_BOX_STATE(label, checked)}
+        collapsable={DETOX_ENABLED ? false : undefined}
         activeOpacity={1}
         delay={100}
       >
