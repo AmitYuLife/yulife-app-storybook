@@ -107,6 +107,7 @@ const EXCLUDE_AUTO_ADJUST_PROPERTIES: (keyof typeof PROPERTY_MAP)[] = [
   "flexShrink",
   "alignItems",
   "borderColor",
+  "aspectRatio",
   "shadowColor",
   "alignContent",
   "shadowOffset",
@@ -163,6 +164,9 @@ interface IBoxSpecialProps {
    * Quick prop to set borderWidth={1} borderColor={withBorder}
    */
   withBorder?: string;
+
+  /** Log final styles for debugging */
+  logStyles?: boolean;
 }
 
 export type IBoxProps = Partial<{
