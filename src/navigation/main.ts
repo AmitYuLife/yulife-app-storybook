@@ -1,6 +1,6 @@
 import Logger from "@services/logging/logger";
 import { ReactElement } from "react";
-import { ComponentProvider, ViewStyle, Dimensions, Platform } from "react-native";
+import { ComponentProvider, ViewStyle, Dimensions, Platform, Keyboard } from "react-native";
 import {
   Layout,
   LayoutRoot,
@@ -148,6 +148,7 @@ export class Navigation {
   };
 
   public static dismissModal = async (componentId: string, mergeOptions?: Options) => {
+    Keyboard.dismiss();
     return NativeNavigation.dismissModal(componentId, mergeOptions);
   };
 
