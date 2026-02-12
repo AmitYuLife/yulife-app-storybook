@@ -132,7 +132,7 @@ const BattlePassProgressBar = ({
           <View style={styles.wrapper}>
             <View style={[styles.progress, styles.transparentBackground]}>
               <MaskedView
-                style={styles.fullDimensions}
+                style={styles.innerMaskedView}
                 maskElement={
                   <View style={styles.maskedTextContainer}>
                     <View style={styles.maskedBubble} />
@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
   maskedTextContainer: {
     width: "100%",
     flexDirection: "row",
+    height: BUBBLE_CONTAINER_SIZE,
     alignItems: "center",
     justifyContent: "space-between",
   },
@@ -281,6 +282,10 @@ const styles = StyleSheet.create({
   icon: {
     position: "absolute",
     end: Style.adjust(19),
+  },
+  innerMaskedView: {
+    width: "100%",
+    height: BUBBLE_CONTAINER_SIZE,
   },
 });
 export default memo(BattlePassProgressBar);
