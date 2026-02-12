@@ -4,6 +4,9 @@ import { ROUTES } from "@navigation/constants";
 import registerScreens from "./navigation/index";
 import { DETOX_ENABLED } from "@services/socket";
 import AppLoadingContainer from "./components/containers/app-loading/app-loading.container";
+import * as SplashScreen from "expo-splash-screen";
+
+SplashScreen.setOptions({ duration: 50, fade: false });
 
 if (DETOX_ENABLED) {
   LogBox.ignoreLogs([

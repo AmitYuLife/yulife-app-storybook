@@ -32,4 +32,4 @@ config.serializer = {
   },
 };
 
-module.exports = withDatadogMetroConfig(config);
+module.exports = withDatadogMetroConfig({ ...config, useDebugId: false });

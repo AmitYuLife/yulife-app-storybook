@@ -18,8 +18,7 @@ export function* sduiActionShowFloatingModal({ payload }: SduiActionWithServerPa
     const Modal = routesForRegistration.find((route) => route.name === modalId);
 
     try {
-      // Get the actual component from the lazy getter
-      const ModalComponent = Modal.component();
+      const ModalComponent = Modal.component;
       yield call(() =>
         showFloatingModal({
           modalId,

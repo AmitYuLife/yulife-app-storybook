@@ -8,7 +8,7 @@ import { Navigation } from "./main";
 
 interface RequiredParams {
   name: string;
-  component: ComponentType<unknown> | (() => ComponentType<unknown>);
+  component: ComponentType<unknown>;
 }
 
 interface OptionalParams {
@@ -17,16 +17,8 @@ interface OptionalParams {
 }
 
 export const registerComponentWithOptions = (requiredParams: RequiredParams, optionalParams: OptionalParams = {}) => {
-  const { name, component: componentOrGetter } = requiredParams;
+  const { name, component } = requiredParams;
   const { renderAfterMs, hasMenu } = optionalParams;
-
-  // Support both direct components and lazy getters for RN 0.79+ bridgeless mode compatibility
-  const component =
-    typeof componentOrGetter === "function" &&
-    componentOrGetter.length === 0 &&
-    !componentOrGetter.prototype?.isReactComponent
-      ? (componentOrGetter as () => ComponentType<unknown>)()
-      : (componentOrGetter as ComponentType<unknown>);
 
   const apolloClient = client();
 

@@ -1,22 +1,201 @@
 import { MODALS, ROUTES } from "./constants";
 
-// Lazy component loader for RN 0.79+ bridgeless mode compatibility
-// Dynamic require() calls must be deferred until after runtime initialization
-const lazy = (getModule: () => { default: React.ComponentType<unknown> }) => {
-  let cached: React.ComponentType<unknown> | null = null;
-  return () => {
-    if (!cached) {
-      cached = getModule().default;
-    }
+// --- Route screen imports ---
 
-    return cached;
-  };
-};
+// shared
+import SduiStaticContainer from "../components/containers/sdui-static/sdui-static.container";
 
-// Type for route definition with lazy component
+// pre-auth screens
+import JourneyContainer from "../components/containers/journey/journey.container";
+import NoAccessContainer from "../components/containers/no-access/no-access.container";
+import LoginLegacyContainer from "../components/containers/login/legacy/login.container";
+import LoginHeroContainer from "../components/containers/login/login-hero.container";
+import LoginEmailContainer from "../components/containers/login/login-email.container";
+import LoginConfirmContainer from "../components/containers/login/login-confirm.container";
+import LoginPasswordContainer from "../components/containers/login/login-password.container";
+import ResetPasswordContainer from "../components/containers/reset-password/reset-password.container";
+import OfflineContainer from "../components/containers/offline/offline.container";
+import UpdateContainer from "../components/containers/update/update.container";
+
+// onboarding screens
+import SignupRewardContainer from "../components/containers/onboarding/signup-reward/signup-reward.container";
+import FitkitConnectContainer from "../components/containers/onboarding/fitkit-connect/fitkit-connect.container";
+
+// member screens
+import MenuContainer from "../components/containers/member/menu/menu.container";
+import YuScreenContainer from "../components/containers/member/yu/yu-screen.container";
+import YumojiBuilderContainer from "../components/containers/member/yumoji-builder/yumoji-builder.container";
+import SettingsContainer from "../components/containers/member/settings/_settings.container";
+import DailyStepsContainer from "../components/containers/member/daily-steps/daily-steps-wrapper.container";
+import SudokuStagingContainer from "../components/screens/games/sudoku/sudoku-staging/sudoku-staging.container";
+import SudokuPracticeContainer from "../components/screens/games/sudoku/sudoku-practice/sudoku-practice.container";
+import SudokuGameContainer from "../components/screens/games/sudoku/sudoku-game/sudoku.container";
+import SudokuCompletedContainer from "../components/screens/games/sudoku/sudoku-completed/sudoku-completed.container";
+import SudokuLeaderboardContainer from "../components/screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard.container";
+import QuestsContainer from "../components/containers/member/quests/quests.container";
+import RewardsManager from "../components/containers/member/rewards/rewards.manager";
+import PurchasesContainer from "../components/containers/member/rewards/rewards.purchases.container";
+import WalletContainer from "../components/containers/member/rewards/rewards.wallet.container";
+import WalletItemsContainer from "../components/containers/member/rewards/rewards.wallet.items.container";
+import ActivityHistoryContainer from "../components/containers/member/activity-history/index";
+import ChallengesHistoryNewContainer from "../components/containers/member/quests/challenges-history-new/challenges-history-new.container";
+import DuelsHubContainer from "../components/containers/member/duels-hub/duels-hub.container";
+import DuelsSearchContainer from "../components/containers/member/duels-search/duels-search.container";
+import InspectContainer from "../components/containers/member/inspect/inspect.container";
+import GiftingManagerContainer from "../components/containers/member/gifting/gifting-manager.container";
+import GiftViewContainer from "../components/containers/member/gift-view/gift-view.container";
+import SmokingContainer from "../components/containers/member/smoking/smoking-hub/smoking.container";
+import SmokingStreakLapsedContainer from "../components/containers/member/smoking/smoking-streak-lapsed/smoking-streak-lapsed.container";
+import SmokingCommitmentContainer from "../components/containers/member/smoking/smoking-commitment/smoking-commitment.container";
+
+// Content Location
+import SelectContentLocationContainer from "../components/containers/member/content-location/select-content-location.container";
+
+// Leaderboard
+import LeaderboardContainer from "../components/containers/member/leaderboard/leaderboard.container";
+import LeaderboardInfoContainer from "../components/containers/member/leaderboard/leaderboard-info/leaderboard-info";
+import LeaderboardSearchContainer from "../components/containers/member/leaderboard/leaderboard-search.container";
+
+import NotificationsContainer from "../components/containers/member/notifications/notifications.container";
+
+// tools
+import ToolsContainer from "../components/containers/member/tools/tools.container";
+
+// events
+import EventDialogContainer from "../components/containers/member/events/event-dialog/event-dialog.container";
+
+// debug
+import DebugContainer from "../components/containers/member/debug/debug.container";
+import DebugPlayground from "../components/containers/member/debug/play-ground";
+import ComponentBenchmark from "../components/containers/member/debug/component-benchmark";
+import Game2048Selector from "../components/containers/game/2048/selector";
+import Game2048Container from "../components/containers/game/2048";
+import YuHealthDebug from "../components/containers/member/debug/yu-health-debug";
+import WatchDebug from "../components/containers/member/debug/watch-debug";
+import UserFeaturesContainer from "../components/containers/member/debug/user-features/user-features.container";
+import UserInfoContainer from "../components/containers/member/debug/user-info/user-info.container";
+import TestJourneyContainer from "../components/containers/member/debug/test-journey/test-journey.container";
+import SmokingJourneyPlants from "../components/containers/member/debug/smoking-journey/plants/plants";
+import SmokingJourneyStories from "../components/containers/member/debug/smoking-journey/stories/stories";
+import SmokingJourneyTree from "../components/containers/member/debug/smoking-journey/tree/tree";
+import LevelSelectorContainer from "../components/containers/member/debug/level-selector/level-selector.container";
+import PathwaysProgressContainer from "../components/containers/member/debug/pathways-progress/pathways-progress.container";
+import WorkoutDebugContainer from "../components/containers/member/debug/workout-debug/workout-debug.container";
+import GenericHeadingContainer from "../components/containers/member/debug/generic-heading/generic-heading.container";
+
+// meditation
+import MeditopiaMediaListContainer from "../components/containers/member/media/meditopia-media-list/meditopia-media-list.container";
+import BreathingExerciseContainer from "../components/games/breathing/exercise/breathing-exercise.container";
+
+// fiit media
+import FiitMediaCategoryListContainer from "../components/containers/member/media/fiit-media-category-list/fiit-media-category-list.container";
+import FiitMediaListContainer from "../components/containers/member/media/fiit-media-list/fiit-media-list.container";
+import MediaPlayerContainer from "../components/containers/member/media/media-player/media-player.container";
+import MediaPlayerSduiContainer from "../components/containers/member/media/media-player/media-player-sdui.container";
+
+// settings
+import CyclingMeasurementContainer from "../components/containers/member/settings/cycling-measurement.container";
+import LanguageSelectorContainer from "../components/containers/member/settings/language-selector.container";
+
+import PermissionsContainer from "../components/containers/member/permissions/permissions-wrapper.container";
+import LeaderboardSettingsContainer from "../components/containers/member/leaderboard-settings/leaderboard-settings.container";
+
+// quests screens
+import ChallengesListWrapperContainer from "../components/containers/member/quests/challenges-list/challenges-list-wrapper.container";
+
+// products
+import ProductDetailsContainer from "../components/containers/products/product-details/product-details.container";
+import BeneficiaryContainer from "../components/containers/products/beneficiary/beneficiary.container";
+import ProductPaymentHistoryContainer from "../components/containers/products/product-payment-history/product-payment-history.container";
+
+import WellbeingHubItemsContainer from "../components/containers/wellbeing-hub/wellbeing-hub-items.container";
+
+// webview
+import WebViewContainer from "../components/containers/web-view/web-view.container";
+
+// referrals
+import ReferralsContainer from "../components/containers/referrals/referrals.container";
+
+// today-earnings
+import TodayEarningsContainer from "../components/containers/today-earnings/today-earnings.container";
+
+// perk
+import PerkSubscriptionInfoContainer from "../components/containers/perk/perk-subscription-info.container";
+
+// yu health
+import YuHealthConnectContainer from "../components/containers/member/yu-health-connect/yu-health-connect.container";
+import YuHealthConnectSelectContainer from "../components/containers/member/yu-health-connect/yu-health-connect-select.container";
+
+// battle pass
+import BattlePassContainer from "../components/containers/battle-pass/battle-pass.container";
+import BattlePassLeaderboardContainer from "../components/containers/battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.container";
+import RewardsUnlockContainer from "../components/containers/rewards-unlock/rewards-unlock.container";
+
+// wrapped
+import WrappedContainer from "../components/containers/wrapped/wrapped.container";
+
+// achievements
+import AchievementsContainer from "../components/containers/achievements/achievements.container";
+
+// pathways
+import PathwaysContainer from "../modules/pathways/containers/pathways.container";
+import PathwaysReflectedContainer from "../modules/pathways/containers/pathways-reflected.container";
+import PathwaysClaimContainer from "../modules/pathways/containers/pathways-claim.container";
+import PathwaysChallengeSuccessContainer from "../modules/pathways/containers/pathways-challenge-success.container";
+import PathwaysChallengeFeedbackContainer from "../modules/pathways/containers/pathways-challenge-feedback.container";
+import PathwaysChallengeIntroContainer from "../modules/pathways/containers/pathways-challenge-intro.container";
+import PathwaysMediaPlayerContainer from "../modules/pathways/containers/pathways-media-player.container";
+
+// mood calendar
+import PathwaysMoodCalendarContainer from "../modules/pathways/containers/pathways-mood-calendar.container";
+
+// --- Modal imports ---
+import YuCoinPowerExplained from "../components/containers/member/yu/yu-coin-power-explained/index";
+import PolicyCertificateModal from "../components/containers/products/product-details/product-details.modal";
+import ChallengeUnavailableModal from "../components/modals/challenge-unavailable/challenge-unavailable.modal";
+import AnimatedChest from "../components/modals/animated-chest/animated-chest";
+import EOTWChest from "../components/modals/eotw-chest/eotw-chest";
+import CollectRewardModal from "../components/modals/collect-reward/collect-reward.modal";
+import FeedbackModal from "../components/modals/feedback/feedback.modal";
+import AppReviewModal from "../components/modals/app-review/app-review.modal";
+import GenericModal from "../components/modals/generic-modal/generic-modal";
+import MobileUpdateModal from "../components/modals/mobile-update/mobile-update-modal";
+import AddBeneficiaryModal from "../components/modals/yuscreen/beneficiary/add-beneficiary-modal";
+import DefaultBeneficiariesModal from "../components/modals/yuscreen/beneficiary/default-beneficiaries-modal";
+import LevelUnavailableModal from "../components/modals/level-unavailable/level-unavailable.modal";
+import PushNotificationsModal from "../components/modals/push-notifications/push-notifications.modal";
+import StreaksModal from "../components/modals/streaks/streaks.modal";
+import StreakSavedModal from "../components/modals/streak-saved/streak-saved.modal";
+import GenericConnectionErrorModal from "../components/modals/generic-modal/generic-connection-error-modal";
+import InfoModal from "../components/modals/info/info.modal";
+import DuelInviteModal from "../components/modals/duels/duel-invite.modal";
+import DuelRespondModal from "../components/modals/duels/duel-respond.modal";
+import BlurredOverlay from "../components/modals/blurred-overlay/blurred-overlay";
+import ConsumablesModal from "../components/modals/consumables/consumables.modal";
+import ItemDetailsHalfModal from "../components/modals/item-details-half-modal/item-details-half-modal.modal";
+import SduiStepFeedbackHalfModal from "../components/modals/sdui-step-feedback-half-modal/sdui-step-feedback-half-modal.modal";
+import SwitchToGoogleFitModal from "../components/modals/switch-to-googlefit-modal/switch-to-googlefit-modal";
+import WhatsNew from "../components/modals/whats-new/whats-new";
+import CollectEventRewardModal from "../components/modals/collect-event-reward/collect-event-reward.modal";
+import SudokuHelpModal from "../components/modals/sudoku-help/sudoku-help-modal";
+import SudokuPauseModal from "../components/modals/sudoku-pause/sudoku-pause-modal";
+import SudokuLeaderboardConsentModal from "../components/modals/sudoku-leaderboard-consent/sudoku-leaderboard-consent-modal";
+import LeaderboardCommunityOverlay from "../components/modals/leaderboard-community-overlay/leaderboard-community-overlay";
+import ChallengeNoDataModal from "../components/modals/challenge-no-data/challenge-no-data.modal";
+import JoinLeaderboardOverlay from "../components/modals/join-leaderboard-overlay/join-leaderboard-overlay";
+import LeaderboardRankModal from "../components/modals/leaderboard-rank-modal/leaderboard-rank-modal";
+import HeroImageModal from "../components/modals/hero-image-modal/hero-image-modal";
+import HealthPermissionModal from "../components/modals/health-permission/health-permission.modal";
+import SmokingStreakCelebrationModal from "../components/modals/smoking-streak-celebration/smoking-streak-celebration.modal";
+import SmokingEditStateModal from "../components/modals/smoking-edit-state/smoking-edit-state.modal";
+import OpenRandomChestModal from "../components/modals/open-random-chest/open-random-chest-modal";
+import ViewAchievementModal from "../components/modals/view-achievement-modal/view-achievement-modal";
+import UnlockedAchievementsModal from "../components/modals/unlocked-achievements-modal/unlocked-achievements-modal";
+
+// Type for route definition
 type RouteDefinition = {
   name: string;
-  component: () => React.ComponentType<unknown>;
+  component: React.ComponentType<unknown>;
   renderAfterMs?: number;
   hasMenu?: boolean;
 };
@@ -24,190 +203,180 @@ type RouteDefinition = {
 const routesForRegistration: RouteDefinition[] = [
   {
     name: ROUTES.sduiStatic,
-    component: lazy(() => require("../components/containers/sdui-static/sdui-static.container")),
+    component: SduiStaticContainer,
   },
   {
     name: ROUTES.journey,
-    component: lazy(() => require("../components/containers/journey/journey.container")),
+    component: JourneyContainer,
   },
   {
     name: ROUTES.noAccess,
-    component: lazy(() => require("../components/containers/no-access/no-access.container")),
+    component: NoAccessContainer,
   },
   {
     name: ROUTES.loginLegacy,
-    component: lazy(() => require("../components/containers/login/legacy/login.container")),
+    component: LoginLegacyContainer,
   },
   {
     name: ROUTES.loginHero,
-    component: lazy(() => require("../components/containers/login/login-hero.container")),
+    component: LoginHeroContainer,
   },
   {
     name: ROUTES.loginEmail,
-    component: lazy(() => require("../components/containers/login/login-email.container")),
+    component: LoginEmailContainer,
   },
   {
     name: ROUTES.loginConfirm,
-    component: lazy(() => require("../components/containers/login/login-confirm.container")),
+    component: LoginConfirmContainer,
   },
   {
     name: ROUTES.loginPassword,
-    component: lazy(() => require("../components/containers/login/login-password.container")),
+    component: LoginPasswordContainer,
   },
   {
     name: ROUTES.resetPassword,
-    component: lazy(() => require("../components/containers/reset-password/reset-password.container")),
+    component: ResetPasswordContainer,
   },
   {
     name: ROUTES.offline,
-    component: lazy(() => require("../components/containers/offline/offline.container")),
+    component: OfflineContainer,
   },
   {
     name: ROUTES.update,
-    component: lazy(() => require("../components/containers/update/update.container")),
+    component: UpdateContainer,
   },
 
   // onboarding screens
   {
     name: ROUTES.onboardingSignUpReward,
-    component: lazy(() => require("../components/containers/onboarding/signup-reward/signup-reward.container")),
+    component: SignupRewardContainer,
   },
   {
     name: ROUTES.onboardingFitKitConnect,
-    component: lazy(() => require("../components/containers/onboarding/fitkit-connect/fitkit-connect.container")),
+    component: FitkitConnectContainer,
   },
 
   // member screens
   {
     renderAfterMs: 600,
     name: ROUTES.menu,
-    component: lazy(() => require("../components/containers/member/menu/menu.container")),
+    component: MenuContainer,
   },
   {
     hasMenu: true,
     name: ROUTES.yuScreen,
-    component: lazy(() => require("../components/containers/member/yu/yu-screen.container")),
+    component: YuScreenContainer,
   },
   {
     name: ROUTES.yumojiBuilder,
-    component: lazy(() => require("../components/containers/member/yumoji-builder/yumoji-builder.container")),
+    component: YumojiBuilderContainer,
   },
   {
     name: ROUTES.settings,
-    component: lazy(() => require("../components/containers/member/settings/_settings.container")),
+    component: SettingsContainer,
   },
   {
     hasMenu: true,
     name: ROUTES.dailySteps,
-    component: lazy(() => require("../components/containers/member/daily-steps/daily-steps-wrapper.container")),
+    component: DailyStepsContainer,
   },
   {
     name: ROUTES.sudokuStaging,
-    component: lazy(() => require("../components/screens/games/sudoku/sudoku-staging/sudoku-staging.container")),
+    component: SudokuStagingContainer,
   },
   {
     name: ROUTES.sudokuPractice,
-    component: lazy(() => require("../components/screens/games/sudoku/sudoku-practice/sudoku-practice.container")),
+    component: SudokuPracticeContainer,
   },
   {
     name: ROUTES.sudokuGame,
-    component: lazy(() => require("../components/screens/games/sudoku/sudoku-game/sudoku.container")),
+    component: SudokuGameContainer,
   },
   {
     name: ROUTES.sudokuCompleted,
-    component: lazy(() => require("../components/screens/games/sudoku/sudoku-completed/sudoku-completed.container")),
+    component: SudokuCompletedContainer,
   },
   {
     name: ROUTES.sudokuLeaderboard,
-    component: lazy(() =>
-      require("../components/screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard.container")
-    ),
+    component: SudokuLeaderboardContainer,
   },
   {
     hasMenu: true,
     renderAfterMs: 150,
     name: ROUTES.quests,
-    component: lazy(() => require("../components/containers/member/quests/quests.container")),
+    component: QuestsContainer,
   },
   {
     hasMenu: true,
     renderAfterMs: 600,
     name: ROUTES.rewards,
-    component: lazy(() => require("../components/containers/member/rewards/rewards.manager")),
+    component: RewardsManager,
   },
   {
     name: ROUTES.rewardDetailsSdui,
-    component: lazy(() => require("../components/containers/sdui-static/sdui-static.container")),
+    component: SduiStaticContainer,
   },
   {
     name: ROUTES.purchases,
-    component: lazy(() => require("../components/containers/member/rewards/rewards.purchases.container")),
+    component: PurchasesContainer,
   },
   {
     name: ROUTES.wallet,
-    component: lazy(() => require("../components/containers/member/rewards/rewards.wallet.container")),
+    component: WalletContainer,
   },
   {
     name: ROUTES.walletItems,
-    component: lazy(() => require("../components/containers/member/rewards/rewards.wallet.items.container")),
+    component: WalletItemsContainer,
   },
   {
     name: ROUTES.rewardPurchase,
-    component: lazy(() => require("../components/containers/sdui-static/sdui-static.container")),
+    component: SduiStaticContainer,
   },
   {
     name: ROUTES.activityHistory,
-    component: lazy(() => require("../components/containers/member/activity-history/index")),
+    component: ActivityHistoryContainer,
   },
   {
     name: ROUTES.challengesHistoryNew,
-    component: lazy(() =>
-      require("../components/containers/member/quests/challenges-history-new/challenges-history-new.container")
-    ),
+    component: ChallengesHistoryNewContainer,
   },
   {
     name: ROUTES.duelsHub,
-    component: lazy(() => require("../components/containers/member/duels-hub/duels-hub.container")),
+    component: DuelsHubContainer,
   },
   {
     name: ROUTES.duelsSearch,
-    component: lazy(() => require("../components/containers/member/duels-search/duels-search.container")),
+    component: DuelsSearchContainer,
   },
   {
     name: ROUTES.inspect,
-    component: lazy(() => require("../components/containers/member/inspect/inspect.container")),
+    component: InspectContainer,
   },
   {
     name: ROUTES.gifting,
-    component: lazy(() => require("../components/containers/member/gifting/gifting-manager.container")),
+    component: GiftingManagerContainer,
   },
   {
     name: ROUTES.giftView,
-    component: lazy(() => require("../components/containers/member/gift-view/gift-view.container")),
+    component: GiftViewContainer,
   },
   {
     name: ROUTES.smoking,
-    component: lazy(() => require("../components/containers/member/smoking/smoking-hub/smoking.container")),
+    component: SmokingContainer,
   },
   {
     name: ROUTES.smokingStreakLapsed,
-    component: lazy(() =>
-      require("../components/containers/member/smoking/smoking-streak-lapsed/smoking-streak-lapsed.container")
-    ),
+    component: SmokingStreakLapsedContainer,
   },
   {
     name: ROUTES.smokingCommitment,
-    component: lazy(() =>
-      require("../components/containers/member/smoking/smoking-commitment/smoking-commitment.container")
-    ),
+    component: SmokingCommitmentContainer,
   },
 
   // Content Location
   {
     name: ROUTES.selectContentLocation,
-    component: lazy(() =>
-      require("../components/containers/member/content-location/select-content-location.container")
-    ),
+    component: SelectContentLocationContainer,
   },
 
   // Leaderboard
@@ -215,466 +384,450 @@ const routesForRegistration: RouteDefinition[] = [
     hasMenu: true,
     renderAfterMs: 450,
     name: ROUTES.leaderboard,
-    component: lazy(() => require("../components/containers/member/leaderboard/leaderboard.container")),
+    component: LeaderboardContainer,
   },
   {
     name: ROUTES.leaderboardInfo,
-    component: lazy(() => require("../components/containers/member/leaderboard/leaderboard-info/leaderboard-info")),
+    component: LeaderboardInfoContainer,
   },
   {
     name: ROUTES.leaderboardSearch,
-    component: lazy(() => require("../components/containers/member/leaderboard/leaderboard-search.container")),
+    component: LeaderboardSearchContainer,
   },
 
   {
     name: ROUTES.notifications,
-    component: lazy(() => require("../components/containers/member/notifications/notifications.container")),
+    component: NotificationsContainer,
   },
 
   // tools
   {
     name: ROUTES.tools,
-    component: lazy(() => require("../components/containers/member/tools/tools.container")),
+    component: ToolsContainer,
   },
 
   // events
   {
     name: ROUTES.eventDialog,
-    component: lazy(() => require("../components/containers/member/events/event-dialog/event-dialog.container")),
+    component: EventDialogContainer,
   },
 
   // debug
   {
     name: ROUTES.debug,
-    component: lazy(() => require("../components/containers/member/debug/debug.container")),
+    component: DebugContainer,
   },
   {
     name: ROUTES.debugPlayground,
-    component: lazy(() => require("../components/containers/member/debug/play-ground")),
+    component: DebugPlayground,
   },
   {
     name: ROUTES.debugComponentBenchmark,
-    component: lazy(() => require("../components/containers/member/debug/component-benchmark")),
+    component: ComponentBenchmark,
   },
   {
     name: ROUTES.game2048Selector,
-    component: lazy(() => require("../components/containers/game/2048/selector")),
+    component: Game2048Selector,
   },
   {
     name: ROUTES.game2048,
-    component: lazy(() => require("../components/containers/game/2048")),
+    component: Game2048Container,
   },
   {
     name: ROUTES.yuHealthDebug,
-    component: lazy(() => require("../components/containers/member/debug/yu-health-debug")),
+    component: YuHealthDebug,
   },
   {
     name: ROUTES.watchDebug,
-    component: lazy(() => require("../components/containers/member/debug/watch-debug")),
+    component: WatchDebug,
   },
 
   {
     name: ROUTES.userFeatures,
-    component: lazy(() => require("../components/containers/member/debug/user-features/user-features.container")),
+    component: UserFeaturesContainer,
   },
   {
     name: ROUTES.debugUserInfo,
-    component: require("../components/containers/member/debug/user-info/user-info.container").default,
+    component: UserInfoContainer,
   },
 
   // meditation
 
   {
     name: ROUTES.meditopiaMediaList,
-    component: lazy(() =>
-      require("../components/containers/member/media/meditopia-media-list/meditopia-media-list.container")
-    ),
+    component: MeditopiaMediaListContainer,
   },
   {
     name: ROUTES.breathingExercise,
-    component: lazy(() => require("../components/games/breathing/exercise/breathing-exercise.container")),
+    component: BreathingExerciseContainer,
   },
   // fiit media category list
   {
     name: ROUTES.fiitMediaCategoryList,
-    component: lazy(() =>
-      require("../components/containers/member/media/fiit-media-category-list/fiit-media-category-list.container")
-    ),
+    component: FiitMediaCategoryListContainer,
   },
   // fiit media list
   {
     name: ROUTES.fiitMediaList,
-    component: lazy(() => require("../components/containers/member/media/fiit-media-list/fiit-media-list.container")),
+    component: FiitMediaListContainer,
   },
   {
     name: ROUTES.mediaPlayer,
-    component: lazy(() => require("../components/containers/member/media/media-player/media-player.container")),
+    component: MediaPlayerContainer,
   },
   {
     name: ROUTES.mediaPlayerSdui,
-    component: lazy(() => require("../components/containers/member/media/media-player/media-player-sdui.container")),
+    component: MediaPlayerSduiContainer,
   },
 
   // settings
   {
     name: ROUTES.cyclingMeasurement,
-    component: lazy(() => require("../components/containers/member/settings/cycling-measurement.container")),
+    component: CyclingMeasurementContainer,
   },
   {
     name: ROUTES.languageSelector,
-    component: lazy(() => require("../components/containers/member/settings/language-selector.container")),
+    component: LanguageSelectorContainer,
   },
   {
     name: ROUTES.testJourney,
-    component: lazy(() => require("../components/containers/member/debug/test-journey/test-journey.container")),
+    component: TestJourneyContainer,
   },
   {
     name: ROUTES.smokingJourneyPlants,
-    component: lazy(() => require("../components/containers/member/debug/smoking-journey/plants/plants")),
+    component: SmokingJourneyPlants,
   },
   {
     name: ROUTES.smokingJourneyStories,
-    component: lazy(() => require("../components/containers/member/debug/smoking-journey/stories/stories")),
+    component: SmokingJourneyStories,
   },
   {
     name: ROUTES.smokingJourneyTree,
-    component: lazy(() => require("../components/containers/member/debug/smoking-journey/tree/tree")),
+    component: SmokingJourneyTree,
   },
   {
     name: ROUTES.levelSelector,
-    component: lazy(() => require("../components/containers/member/debug/level-selector/level-selector.container")),
+    component: LevelSelectorContainer,
   },
   {
     name: ROUTES.pathwaysProgress,
-    component: require("../components/containers/member/debug/pathways-progress/pathways-progress.container").default,
+    component: PathwaysProgressContainer,
   },
   {
     name: ROUTES.workoutDebug,
-    component: lazy(() => require("../components/containers/member/debug/workout-debug/workout-debug.container")),
+    component: WorkoutDebugContainer,
   },
   {
     name: ROUTES.permissions,
-    component: lazy(() => require("../components/containers/member/permissions/permissions-wrapper.container")),
+    component: PermissionsContainer,
   },
   {
     name: ROUTES.leaderboardSettings,
-    component: lazy(() =>
-      require("../components/containers/member/leaderboard-settings/leaderboard-settings.container")
-    ),
+    component: LeaderboardSettingsContainer,
   },
 
   // quests screens
   {
     name: ROUTES.questsChallengesList,
-    component: lazy(() =>
-      require("../components/containers/member/quests/challenges-list/challenges-list-wrapper.container")
-    ),
+    component: ChallengesListWrapperContainer,
   },
   // products
   {
     name: ROUTES.productDetails,
-    component: lazy(() => require("../components/containers/products/product-details/product-details.container")),
+    component: ProductDetailsContainer,
   },
   {
     name: ROUTES.beneficiary,
-    component: lazy(() => require("../components/containers/products/beneficiary/beneficiary.container")),
+    component: BeneficiaryContainer,
   },
   {
     name: ROUTES.productPaymentHistory,
-    component: lazy(() =>
-      require("../components/containers/products/product-payment-history/product-payment-history.container")
-    ),
+    component: ProductPaymentHistoryContainer,
   },
   {
     name: ROUTES.wellbeingHubItems,
-    component: lazy(() => require("../components/containers/wellbeing-hub/wellbeing-hub-items.container")),
+    component: WellbeingHubItemsContainer,
   },
   {
     name: ROUTES.sduiWellbeingHubItemDetails,
-    component: lazy(() => require("../components/containers/sdui-static/sdui-static.container")),
+    component: SduiStaticContainer,
   },
   // webview
   {
     name: ROUTES.webView,
-    component: lazy(() => require("../components/containers/web-view/web-view.container")),
+    component: WebViewContainer,
   },
 
   // referrals
 
   {
     name: ROUTES.referralInformation,
-    component: lazy(() => require("../components/containers/referrals/referrals.container")),
+    component: ReferralsContainer,
   },
 
   // today-earnings
 
   {
     name: ROUTES.todayEarnings,
-    component: lazy(() => require("../components/containers/today-earnings/today-earnings.container")),
+    component: TodayEarningsContainer,
   },
 
   // perk
   {
     name: ROUTES.perkSubscriptionInfo,
-    component: lazy(() => require("../components/containers/perk/perk-subscription-info.container")),
+    component: PerkSubscriptionInfoContainer,
   },
 
   // yu health
   {
     name: ROUTES.yuHealthConnect,
-    component: lazy(() => require("../components/containers/member/yu-health-connect/yu-health-connect.container")),
+    component: YuHealthConnectContainer,
   },
   {
     name: ROUTES.yuHealthConnectSelect,
-    component: lazy(() =>
-      require("../components/containers/member/yu-health-connect/yu-health-connect-select.container")
-    ),
+    component: YuHealthConnectSelectContainer,
   },
 
   // battle pass
 
   {
     name: ROUTES.battlePass,
-    component: lazy(() => require("../components/containers/battle-pass/battle-pass.container")),
+    component: BattlePassContainer,
     hasMenu: true,
   },
   {
     name: ROUTES.battlePassLeaderboard,
-    component: lazy(() =>
-      require("../components/containers/battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.container")
-    ),
+    component: BattlePassLeaderboardContainer,
   },
   {
     name: ROUTES.rewardsUnlock,
-    component: lazy(() => require("../components/containers/rewards-unlock/rewards-unlock.container")),
+    component: RewardsUnlockContainer,
   },
 
   // wrapped
   {
     name: ROUTES.wrapped,
-    component: lazy(() => require("../components/containers/wrapped/wrapped.container")),
+    component: WrappedContainer,
   },
 
   // generic heading testing
 
   {
     name: ROUTES.genericHeading,
-    component: lazy(() => require("../components/containers/member/debug/generic-heading/generic-heading.container")),
+    component: GenericHeadingContainer,
   },
 
   // achievements
   {
     name: ROUTES.achievements,
-    component: lazy(() => require("../components/containers/achievements/achievements.container")),
+    component: AchievementsContainer,
   },
 
   // pathways
   {
     name: ROUTES.pathways,
-    component: lazy(() => require("../modules/pathways/containers/pathways.container")),
+    component: PathwaysContainer,
   },
   {
     name: ROUTES.pathwaysReflected,
-    component: lazy(() => require("../modules/pathways/containers/pathways-reflected.container")),
+    component: PathwaysReflectedContainer,
   },
   {
     name: ROUTES.pathwaysClaim,
-    component: lazy(() => require("../modules/pathways/containers/pathways-claim.container")),
+    component: PathwaysClaimContainer,
   },
   {
     name: ROUTES.pathwayChallengeSuccess,
-    component: lazy(() => require("../modules/pathways/containers/pathways-challenge-success.container")),
+    component: PathwaysChallengeSuccessContainer,
   },
   {
     name: ROUTES.pathwayChallengeFeedback,
-    component: require("../modules/pathways/containers/pathways-challenge-feedback.container").default,
+    component: PathwaysChallengeFeedbackContainer,
   },
   {
     name: ROUTES.pathwayChallengeIntro,
-    component: lazy(() => require("../modules/pathways/containers/pathways-challenge-intro.container")),
+    component: PathwaysChallengeIntroContainer,
   },
   {
     name: ROUTES.pathwaysMediaPlayer,
-    component: lazy(() => require("../modules/pathways/containers/pathways-media-player.container")),
+    component: PathwaysMediaPlayerContainer,
   },
 
   // mood calendar
   {
     name: ROUTES.moodCalendar,
-    component: lazy(() => require("../modules/pathways/containers/pathways-mood-calendar.container")),
+    component: PathwaysMoodCalendarContainer,
   },
 
   // modals
   {
     name: MODALS.yuCoinPowerExplained,
-    component: lazy(() => require("../components/containers/member/yu/yu-coin-power-explained/index")),
+    component: YuCoinPowerExplained,
   },
   {
     name: MODALS.policyCertificate,
-    component: lazy(() => require("../components/containers/products/product-details/product-details.modal")),
+    component: PolicyCertificateModal,
   },
   {
     name: MODALS.challengeUnavailable,
-    component: lazy(() => require("../components/modals/challenge-unavailable/challenge-unavailable.modal")),
+    component: ChallengeUnavailableModal,
   },
   {
     name: MODALS.chest,
-    component: lazy(() => require("../components/modals/animated-chest/animated-chest")),
+    component: AnimatedChest,
   },
   {
     name: MODALS.EOTWChest,
-    component: lazy(() => require("../components/modals/eotw-chest/eotw-chest")),
+    component: EOTWChest,
   },
   {
     name: MODALS.collectReward,
-    component: lazy(() => require("../components/modals/collect-reward/collect-reward.modal")),
+    component: CollectRewardModal,
   },
   {
     name: MODALS.feedback,
-    component: lazy(() => require("../components/modals/feedback/feedback.modal")),
+    component: FeedbackModal,
   },
   {
     name: MODALS.appReview,
-    component: lazy(() => require("../components/modals/app-review/app-review.modal")),
+    component: AppReviewModal,
   },
   {
     name: MODALS.generic,
-    component: lazy(() => require("../components/modals/generic-modal/generic-modal")),
+    component: GenericModal,
   },
   {
     name: MODALS.mobileUpdate,
-    component: lazy(() => require("../components/modals/mobile-update/mobile-update-modal")),
+    component: MobileUpdateModal,
   },
   {
     name: MODALS.addBeneficiary,
-    component: lazy(() => require("../components/modals/yuscreen/beneficiary/add-beneficiary-modal")),
+    component: AddBeneficiaryModal,
   },
   {
     name: MODALS.defaultBeneficiaries,
-    component: lazy(() => require("../components/modals/yuscreen/beneficiary/default-beneficiaries-modal")),
+    component: DefaultBeneficiariesModal,
   },
   {
     name: MODALS.levelUnavailable,
-    component: lazy(() => require("../components/modals/level-unavailable/level-unavailable.modal")),
+    component: LevelUnavailableModal,
   },
   {
     name: MODALS.pushNotifications,
-    component: lazy(() => require("../components/modals/push-notifications/push-notifications.modal")),
+    component: PushNotificationsModal,
   },
   {
     name: MODALS.streaks,
-    component: lazy(() => require("../components/modals/streaks/streaks.modal")),
+    component: StreaksModal,
   },
   {
     name: MODALS.streakSaved,
-    component: lazy(() => require("../components/modals/streak-saved/streak-saved.modal")),
+    component: StreakSavedModal,
   },
   {
     name: MODALS.rewards,
-    component: lazy(() => require("../components/modals/generic-modal/generic-modal")),
+    component: GenericModal,
   },
   {
     name: MODALS.genericConnectionError,
-    component: lazy(() => require("../components/modals/generic-modal/generic-connection-error-modal")),
+    component: GenericConnectionErrorModal,
   },
   {
     name: MODALS.info,
-    component: lazy(() => require("../components/modals/info/info.modal")),
+    component: InfoModal,
   },
   {
     name: MODALS.duelInvite,
-    component: lazy(() => require("../components/modals/duels/duel-invite.modal")),
+    component: DuelInviteModal,
   },
   {
     name: MODALS.duelRespond,
-    component: lazy(() => require("../components/modals/duels/duel-respond.modal")),
+    component: DuelRespondModal,
   },
   {
     name: MODALS.blurredOverlay,
-    component: lazy(() => require("../components/modals/blurred-overlay/blurred-overlay")),
+    component: BlurredOverlay,
   },
   {
     name: MODALS.consumableModal,
-    component: lazy(() => require("../components/modals/consumables/consumables.modal")),
+    component: ConsumablesModal,
   },
   {
     name: MODALS.itemDetailsHalfModal,
-    component: lazy(() => require("../components/modals/item-details-half-modal/item-details-half-modal.modal")),
+    component: ItemDetailsHalfModal,
   },
   {
     name: MODALS.sduiStepFeedbackHalfModal,
-    component: lazy(() =>
-      require("../components/modals/sdui-step-feedback-half-modal/sdui-step-feedback-half-modal.modal")
-    ),
+    component: SduiStepFeedbackHalfModal,
   },
   {
     name: MODALS.switchToGoogleFit,
-    component: lazy(() => require("../components/modals/switch-to-googlefit-modal/switch-to-googlefit-modal")),
+    component: SwitchToGoogleFitModal,
   },
   {
     name: MODALS.whatsNew,
-    component: lazy(() => require("../components/modals/whats-new/whats-new")),
+    component: WhatsNew,
   },
   {
     name: MODALS.collectEventReward,
-    component: lazy(() => require("../components/modals/collect-event-reward/collect-event-reward.modal")),
+    component: CollectEventRewardModal,
   },
   {
     name: MODALS.sudokuHelp,
-    component: lazy(() => require("../components/modals/sudoku-help/sudoku-help-modal")),
+    component: SudokuHelpModal,
   },
   {
     name: MODALS.sudokuPause,
-    component: lazy(() => require("../components/modals/sudoku-pause/sudoku-pause-modal")),
+    component: SudokuPauseModal,
   },
   {
     name: MODALS.sudokuLeaderboardConsent,
-    component: lazy(() => require("../components/modals/sudoku-leaderboard-consent/sudoku-leaderboard-consent-modal")),
+    component: SudokuLeaderboardConsentModal,
   },
   {
     name: MODALS.leaderboardCommunityOverlay,
-    component: lazy(() => require("../components/modals/leaderboard-community-overlay/leaderboard-community-overlay")),
+    component: LeaderboardCommunityOverlay,
   },
   {
     name: MODALS.challengeNoData,
-    component: lazy(() => require("../components/modals/challenge-no-data/challenge-no-data.modal")),
+    component: ChallengeNoDataModal,
   },
   {
     name: MODALS.joinLeaderboardOverlay,
-    component: lazy(() => require("../components/modals/join-leaderboard-overlay/join-leaderboard-overlay")),
+    component: JoinLeaderboardOverlay,
   },
   {
     name: MODALS.leaderboardRank,
-    component: lazy(() => require("../components/modals/leaderboard-rank-modal/leaderboard-rank-modal")),
+    component: LeaderboardRankModal,
   },
 
   {
     name: MODALS.genericWithHeroImage,
-    component: lazy(() => require("../components/modals/hero-image-modal/hero-image-modal")),
+    component: HeroImageModal,
   },
   {
     name: MODALS.healthPermission,
-    component: lazy(() => require("../components/modals/health-permission/health-permission.modal")),
+    component: HealthPermissionModal,
   },
   {
     name: MODALS.smokingStreakCelebration,
-    component: lazy(() => require("../components/modals/smoking-streak-celebration/smoking-streak-celebration.modal")),
+    component: SmokingStreakCelebrationModal,
   },
   {
     name: MODALS.smokingEditStateModal,
-    component: lazy(() => require("../components/modals/smoking-edit-state/smoking-edit-state.modal")),
+    component: SmokingEditStateModal,
   },
   {
     name: MODALS.openRandomChest,
-    component: lazy(() => require("../components/modals/open-random-chest/open-random-chest-modal")),
+    component: OpenRandomChestModal,
   },
   {
     name: MODALS.viewAchievementModal,
-    component: lazy(() => require("../components/modals/view-achievement-modal/view-achievement-modal")),
+    component: ViewAchievementModal,
   },
   {
     name: MODALS.unlockedAchievementsModal,
-    component: lazy(() => require("../components/modals/unlocked-achievements-modal/unlocked-achievements-modal")),
+    component: UnlockedAchievementsModal,
   },
 ];
 
