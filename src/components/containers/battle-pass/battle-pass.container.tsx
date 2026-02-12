@@ -1,7 +1,8 @@
 import { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
-import { useModal, useNavigationComponentDidAppear, useQueryOnScreenSeenOnce, useTrack } from "@hooks";
+import { useNavigationComponentDidAppear, useQueryOnScreenSeenOnce, useTrack } from "@hooks";
+import { useModal } from "@modules/modals/useModal";
 import {
   GetMobileGameBattlePassFullQuery,
   MobileGameBattlePassProgressInfoFragmentDoc,
@@ -87,7 +88,7 @@ const BattlePassContainer = ({
   const client = useApolloClient();
   const allTemplateIds = useRef<string[]>([]);
   const dispatch = useDispatch();
-  const { modal: levelUpModal, showModal } = useModal();
+  const { showModal } = useModal();
   const userCoins = useSelector(getTotalCoins);
   const socialGroupId = useSelector(getActiveSocialGroupId);
 
@@ -385,36 +386,33 @@ const BattlePassContainer = ({
   }
 
   return (
-    <>
-      <BattlePassAnimationManager step={battlePass?.progressStatus?.step} showCoinAnimation={showCoinAnimation}>
-        <BattlePassScreen
-          title={battlePass?.title || ""}
-          description={battlePass?.description || ""}
-          disclaimer={battlePass?.disclaimer}
-          donationTemplates={donationTemplates}
-          onPressWallet={onPressWallet}
-          onBackPress={onBack}
-          showNavigation={showNavigation}
-          isInnerScreen={isInnerScreen}
-          backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
-          progressStatus={battlePass?.progressStatus}
-          isCompleteLoading={isCompleteLoading}
-          rewards={rewards || []}
-          onComplete={onComplete}
-          showCoinAnimation={showCoinAnimation}
-          showFirstLevelScreenState={showFirstLevelBattlePassVariant}
-          componentId={componentId}
-        />
-        <FirstTimeContentLocationSelection
-          isActive={contentLocation?.hasUserSelectedContentLocation === false}
-          contentLocation={contentLocation?.location}
-          contentLocationLabel={contentLocation?.locationLabel}
-          onChangeContentLocationPress={handleStoreLocationPress}
-          placement="donate"
-        />
-      </BattlePassAnimationManager>
-      {levelUpModal}
-    </>
+    <BattlePassAnimationManager step={battlePass?.progressStatus?.step} showCoinAnimation={showCoinAnimation}>
+      <BattlePassScreen
+        title={battlePass?.title || ""}
+        description={battlePass?.description || ""}
+        disclaimer={battlePass?.disclaimer}
+        donationTemplates={donationTemplates}
+        onPressWallet={onPressWallet}
+        onBackPress={onBack}
+        showNavigation={showNavigation}
+        isInnerScreen={isInnerScreen}
+        backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
+        progressStatus={battlePass?.progressStatus}
+        isCompleteLoading={isCompleteLoading}
+        rewards={rewards || []}
+        onComplete={onComplete}
+        showCoinAnimation={showCoinAnimation}
+        showFirstLevelScreenState={showFirstLevelBattlePassVariant}
+        componentId={componentId}
+      />
+      <FirstTimeContentLocationSelection
+        isActive={contentLocation?.hasUserSelectedContentLocation === false}
+        contentLocation={contentLocation?.location}
+        contentLocationLabel={contentLocation?.locationLabel}
+        onChangeContentLocationPress={handleStoreLocationPress}
+        placement="donate"
+      />
+    </BattlePassAnimationManager>
   );
 };
 

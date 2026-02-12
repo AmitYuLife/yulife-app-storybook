@@ -39,7 +39,6 @@ const BlurredRaysWrapper = ({
   acceessibilityLabelTitle,
   isLoading,
   showRays = true,
-  backgroundColor = Colours.overlay.black10,
   children,
   testID,
 }: BlurredRaysWrapperProps) => {
@@ -54,7 +53,7 @@ const BlurredRaysWrapper = ({
   );
 
   return (
-    <BlurredWrapper intensity={50} tint="dark" backgroundColor={backgroundColor}>
+    <BlurredWrapper tint="dark">
       <Animated.View entering={FadeIn.duration(200)} style={styles.wrapper}>
         <Box w="100%" h="100%" position="absolute" opacity={0.4}>
           <Animated.View style={styles.rays} entering={FadeIn.delay(300).duration(800)}>

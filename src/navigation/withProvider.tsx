@@ -12,6 +12,7 @@ import React from "react";
 import { generateOnLeftMenuPress } from "./root";
 import { NavigationContext } from "./navigation.context";
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context";
+import ModalProvider from "@modules/modals/modal-provider";
 
 const withProvider =
   (WrappedComponent: ComponentClass, client: ApolloClient<Record<string, unknown>>, hasMenu = false) =>
@@ -26,7 +27,9 @@ const withProvider =
                 onLeftMenuPress: hasMenu ? generateOnLeftMenuPress(props.componentId) : null,
               }}
             >
-              <WrappedComponent {...props} />
+              <ModalProvider componentId={props.componentId}>
+                <WrappedComponent {...props} />
+              </ModalProvider>
             </NavigationContext.Provider>
           </SafeAreaProvider>
         </ApolloProvider>
