@@ -14,6 +14,7 @@ export const useBoxProps = ({
   disableAutoAdjust,
   borderRightRadius,
   borderBottomRadius,
+  logStyles,
   withBorder,
   ...props
 }: IBoxProps) => {
@@ -64,7 +65,13 @@ export const useBoxProps = ({
         : null),
     };
 
-    return [specialStyles, mappedStyles as ViewStyle, propStyle as ViewStyle].filter(Boolean);
+    const result = [specialStyles, mappedStyles as ViewStyle, propStyle as ViewStyle].filter(Boolean);
+
+    if (logStyles) {
+      console.log("result", result);
+    }
+
+    return result;
   }, [
     props,
     center,
@@ -74,9 +81,10 @@ export const useBoxProps = ({
     borderBottomRadius,
     borderLeftRadius,
     borderRightRadius,
-    propStyle,
-    disableAutoAdjust,
     withBorder,
+    propStyle,
+    logStyles,
+    disableAutoAdjust,
   ]);
 
   const passProps = useMemo(() => {
