@@ -191,6 +191,7 @@ export type ActiveChallengeResponse = {
   challenge?: Maybe<MobileQuestChallenge>;
   challengeDataQueryRetryLimit?: Maybe<Scalars["Int"]["output"]>;
   chest?: Maybe<Chest>;
+  completionSummary?: Maybe<ChallengeCompletionSummary>;
   hideExternalLinks?: Maybe<Scalars["Boolean"]["output"]>;
   levelSlot?: Maybe<LevelSlot>;
   nextLevelAvailableAt?: Maybe<Scalars["String"]["output"]>;
@@ -1328,6 +1329,32 @@ export type Challenge = {
   yuniversalMap?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export enum ChallengeCategory {
+  Meditation = "MEDITATION",
+  Steps = "STEPS",
+  Sudoku = "SUDOKU",
+  Workout = "WORKOUT",
+}
+
+export type ChallengeCompletionSummary = {
+  __typename?: "ChallengeCompletionSummary";
+  entries: Array<ChallengeCompletionSummaryEntry>;
+  type: ChallengeCategory;
+};
+
+export type ChallengeCompletionSummaryEntry = {
+  __typename?: "ChallengeCompletionSummaryEntry";
+  icon: RemoteImage;
+  label: Scalars["String"]["output"];
+  result: Scalars["Int"]["output"];
+  type: ChallengeCompletionSummaryEntryType;
+};
+
+export enum ChallengeCompletionSummaryEntryType {
+  Challenge = "CHALLENGE",
+  Total = "TOTAL",
+}
+
 export type ChallengeDebugData = {
   healthProviderEntries: Array<InputMaybe<Scalars["Int"]["input"]>>;
   pedometerEntries: Array<InputMaybe<Scalars["Int"]["input"]>>;
@@ -1456,6 +1483,7 @@ export type CompleteGame2048Input = {
 
 export type CompletePathwayChallengeResponse = {
   __typename?: "CompletePathwayChallengeResponse";
+  completionSummary?: Maybe<ChallengeCompletionSummary>;
   success: Scalars["Boolean"]["output"];
   yuCoinAwarded: Scalars["Int"]["output"];
 };
@@ -2384,6 +2412,7 @@ export type ContentItemProductDetailsHeader = {
   funding?: Maybe<ContentItemProductDetailsHeaderFunding>;
   id: Scalars["ID"]["output"];
   itemSlot: YuScreenItemSlot;
+  productIdentifier?: Maybe<ContentItemProductDetailsHeaderProductIdentifier>;
   productName: Scalars["String"]["output"];
   providerLogo?: Maybe<VariableRemoteImage>;
   showItemSlot?: Maybe<Scalars["Boolean"]["output"]>;
@@ -2409,6 +2438,12 @@ export type ContentItemProductDetailsHeaderFundingTheme = {
   backgroundColor: Scalars["String"]["output"];
   borderColor: Scalars["String"]["output"];
   textColor: Scalars["String"]["output"];
+};
+
+export type ContentItemProductDetailsHeaderProductIdentifier = {
+  __typename?: "ContentItemProductDetailsHeaderProductIdentifier";
+  label: Scalars["String"]["output"];
+  value: Scalars["String"]["output"];
 };
 
 export type ContentItemProductDetailsHoldingHeader = {
@@ -6123,6 +6158,7 @@ export type MobilePurchasesListItem = {
 export type MobileQuestChallenge = {
   __typename?: "MobileQuestChallenge";
   XPAwarded?: Maybe<Scalars["Int"]["output"]>;
+  completionSummary?: Maybe<ChallengeCompletionSummary>;
   createdAt?: Maybe<Scalars["Int"]["output"]>;
   createdBySource?: Maybe<ActiveChallengeSourceType>;
   endDateTime: Scalars["String"]["output"];
@@ -13635,6 +13671,18 @@ export type ChallengeFragment = {
     completionData?: Array<number | null> | null;
     description?: string | null;
   } | null> | null;
+};
+
+export type ChallengeCompletionSummaryFragment = {
+  __typename?: "ChallengeCompletionSummary";
+  type: ChallengeCategory;
+  entries: Array<{
+    __typename?: "ChallengeCompletionSummaryEntry";
+    type: ChallengeCompletionSummaryEntryType;
+    result: number;
+    label: string;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null; hash?: string | null };
+  }>;
 };
 
 export type MilestoneFragment = {
@@ -23741,6 +23789,17 @@ export type SubmitMobileQuestLevelSudokuSolutionMutation = {
         calories?: number | null;
       } | null;
     } | null> | null;
+    completionSummary?: {
+      __typename?: "ChallengeCompletionSummary";
+      type: ChallengeCategory;
+      entries: Array<{
+        __typename?: "ChallengeCompletionSummaryEntry";
+        type: ChallengeCompletionSummaryEntryType;
+        result: number;
+        label: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null; hash?: string | null };
+      }>;
+    } | null;
   } | null;
 };
 
@@ -23772,6 +23831,17 @@ export type CompletePathwayChallengeMutation = {
     __typename?: "CompletePathwayChallengeResponse";
     success: boolean;
     yuCoinAwarded: number;
+    completionSummary?: {
+      __typename?: "ChallengeCompletionSummary";
+      type: ChallengeCategory;
+      entries: Array<{
+        __typename?: "ChallengeCompletionSummaryEntry";
+        type: ChallengeCompletionSummaryEntryType;
+        result: number;
+        label: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null; hash?: string | null };
+      }>;
+    } | null;
   };
 };
 
@@ -24293,6 +24363,17 @@ export type UpdateMobileQuestLevelChallengeMutation = {
           calories?: number | null;
         } | null;
       } | null> | null;
+    } | null;
+    completionSummary?: {
+      __typename?: "ChallengeCompletionSummary";
+      type: ChallengeCategory;
+      entries: Array<{
+        __typename?: "ChallengeCompletionSummaryEntry";
+        type: ChallengeCompletionSummaryEntryType;
+        result: number;
+        label: string;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null; hash?: string | null };
+      }>;
     } | null;
     levelSlot?: {
       __typename?: "LevelSlot";
@@ -47303,6 +47384,46 @@ export const ChallengeFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ChallengeFragment, unknown>;
+export const ChallengeCompletionSummaryFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ChallengeCompletionSummary" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ChallengeCompletionSummary" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "entries" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "result" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                      { kind: "Field", name: { kind: "Name", value: "hash" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ChallengeCompletionSummaryFragment, unknown>;
 export const MilestoneFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -73999,6 +74120,51 @@ export const SubmitMobileQuestLevelSudokuSolutionDocument = {
                 },
                 { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
                 { kind: "Field", name: { kind: "Name", value: "rating" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "completionSummary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "ChallengeCompletionSummary" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ChallengeCompletionSummary" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ChallengeCompletionSummary" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "entries" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "result" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                      { kind: "Field", name: { kind: "Name", value: "hash" } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -74119,6 +74285,51 @@ export const CompletePathwayChallengeDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "success" } },
                 { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "completionSummary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "ChallengeCompletionSummary" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ChallengeCompletionSummary" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ChallengeCompletionSummary" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "entries" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "result" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                      { kind: "Field", name: { kind: "Name", value: "hash" } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -75938,6 +76149,16 @@ export const UpdateMobileQuestLevelChallengeDocument = {
                 },
                 {
                   kind: "Field",
+                  name: { kind: "Name", value: "completionSummary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "ChallengeCompletionSummary" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
                   name: { kind: "Name", value: "levelSlot" },
                   selectionSet: {
                     kind: "SelectionSet",
@@ -75984,6 +76205,41 @@ export const UpdateMobileQuestLevelChallengeDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "nextLevelAvailableAt" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ChallengeCompletionSummary" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ChallengeCompletionSummary" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "entries" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "result" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                      { kind: "Field", name: { kind: "Name", value: "hash" } },
+                    ],
+                  },
+                },
               ],
             },
           },

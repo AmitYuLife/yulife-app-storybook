@@ -1,182 +1,115 @@
-import { Colours } from "@styles";
-import * as React from "react";
-import { View } from "react-native";
-import { LevelLine, Box, Stars, TextTemplate, RawImage } from "@atoms";
-import { t } from "@locale";
-import { AnimatedPlusPoints, Button, CentredScreen, YucoinPowerButtonMini } from "@molecules";
-import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
-import { getTheme } from "@theme";
+import { Box, LevelLine, Stars, TextTemplate } from "@atoms";
+import ChestAnimatedRaysBackground from "@components/modals/open-random-chest/subcomponents/chest-animated-rays-background";
 import { CHALLENGE_SUCCESS_SCREEN } from "@ids";
-import { IActiveLevel } from "@redux/levels/levels.types";
-import { Style, StyleSheet } from "@styles";
-import { commonStyles } from "../challenge-failed/challenge-failed.screen.styles";
-import { useDispatch } from "react-redux";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
-import { useCallback } from "react";
-import Hint from "@components/molecules/hint/hint";
-import { getCurrentLevel } from "@redux/levels/levels.selectors";
-import { useSelector } from "react-redux";
-import { MAX_EXTRA_CHALLENGES_HINT_LEVEL } from "@services/constants";
+import { t } from "@locale";
+import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
+import { ItemDetailsReward } from "@organisms";
+import { ControlledYuCoinCounter } from "@organisms/generic-heading";
+import { getTotalCoins } from "@redux/coins/coins.selectors";
+import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { ChallengeCompletionSummary } from "@redux/levels/levels.types";
+import { DETOX_ENABLED } from "@services/socket";
+import { getTheme } from "@theme";
+
+import { useWindowDimensions } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useDispatch, useSelector } from "react-redux";
+import ChallengeStats from "./challenge-stats";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
+import { useEffect, useMemo } from "react";
 
 interface IProps {
   onPressCta: () => void;
   level?: number;
-  yuniversalMap?: number;
-  rating: number;
-  loading: boolean;
+  rating?: number;
   reward: number;
-  score: number;
-  unit: IActiveLevel["unit"];
+  completionSummary?: ChallengeCompletionSummary | null;
 }
 
-export default function ChallengeSuccessScreen({
-  unit,
-  level,
-  score,
-  rating,
-  reward,
-  loading,
-  onPressCta,
-  yuniversalMap,
-}: IProps) {
-  const dispatch = useDispatch();
-  const { challengeSuccessScreen } = getTheme(level, yuniversalMap);
-  const currentLevel = useSelector(getCurrentLevel);
-  const showChallengesHint = currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
+const YUCOIN_SHADOW_ICON = require("@assets/icons/yucoin-shadow.webp");
+const REWARD_IMAGE_SIZE_YUCOIN = 120;
 
-  const onPressYucoinPowerButton = useCallback(() => {
+const REWARD_SIZE = 190;
+
+export default function ChallengeSuccessScreen({ level, rating, reward, onPressCta, completionSummary }: IProps) {
+  const currentLevel = useSelector(getCurrentLevel);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const totalCoins = useSelector(getTotalCoins);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
     dispatch(
-      logMixpanelEventActionCreator("button_pressed", {
-        location: "challenge_success",
-        button_id: "yucoin_power_button",
+      getUserDataStart({
+        types: [AppDataType.coinLedger],
       })
     );
-
-    showYuCoinPowerExplainedOverlay();
   }, [dispatch]);
+
+  const { challengeSuccessScreen } = getTheme(currentLevel, yuniversalMap);
+
+  const { bottom, top } = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+
+  // yuniversal looks good as is, other screens need a bit more bright rays
+  const gradientStops = useMemo(() => {
+    return !yuniversalMap
+      ? [
+          { color: "#FFFFFF", offset: 0, opacity: 0 },
+          { color: "#FFFFFF", offset: 0.4 },
+        ]
+      : undefined;
+  }, [yuniversalMap]);
 
   return (
     <CentredScreen testID={CHALLENGE_SUCCESS_SCREEN} {...challengeSuccessScreen}>
-      <View style={styles.wrapper}>
-        <View style={styles.topWrapper}>
-          <View style={styles.ratingWrapper}>
-            <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
-            <View style={styles.levelWrapper}>
-              <View style={styles.levelLineWrapper}>
-                <LevelLine colour={challengeSuccessScreen.lineColour} />
-              </View>
-              <View style={styles.level}>
-                <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
-                  {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
-                </TextTemplate>
-              </View>
-            </View>
-          </View>
-          <View style={styles.heading}>
-            <TextTemplate type="h1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
-              {t("screens.challenge_success.footer")}
-            </TextTemplate>
-          </View>
-          <View>
-            <View style={styles.plusPointsWrapper}>
-              <AnimatedPlusPoints type="challenge-success" coins={reward} />
-            </View>
-            <RawImage
-              style={styles.successImage}
-              source={require("@assets/challenge-success/challenge-success.webp")}
-            />
-            <View style={styles.score}>
-              <TextTemplate type="h2" color={styles.score.color} textAlign="center">
-                {renderScore(score, unit)}
+      <ControlledYuCoinCounter
+        coins={totalCoins}
+        backgroundColor="transparent"
+        textStyle={challengeSuccessScreen.textStyle}
+      />
+      {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground top={top + 20} gradientStops={gradientStops} />}
+      {level !== undefined && rating !== undefined ? (
+        <Box position="absolute" top={top + 20} width="100%" alignItems="center">
+          <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
+          <Box>
+            <Box>
+              <LevelLine colour={challengeSuccessScreen.lineColour} />
+            </Box>
+            <Box mt={-10}>
+              <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
+                {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
               </TextTemplate>
-            </View>
-          </View>
-        </View>
-        {showChallengesHint ? (
-          <View style={styles.hintWrapper}>
-            <Hint
-              label={t("hints.unlock_more_challenges.title")}
-              description={t("hints.unlock_more_challenges.description")}
-              variant="challenges"
-            />
-          </View>
-        ) : null}
-        <Box gap={22} style={styles.ctaWrapper}>
-          <YucoinPowerButtonMini onPress={onPressYucoinPowerButton} />
-          <Button
-            translationKey="labels.cta.collect"
-            isLoading={loading}
-            onPress={onPressCta}
-            size="Fill"
-            wrapperStyle={styles.cta}
-          />
+            </Box>
+          </Box>
         </Box>
-      </View>
+      ) : null}
+      <Box mt={top + 80} disableAutoAdjust={false}>
+        <Box justifyContent="center" alignItems="center" pb={90}>
+          <Box justifyContent="center" alignItems="center" gap={50}>
+            <Box>
+              <ItemDetailsReward size={REWARD_SIZE} imageSize={REWARD_IMAGE_SIZE_YUCOIN} source={YUCOIN_SHADOW_ICON} />
+              {reward > 0 ? (
+                <Box alignItems="center" position="absolute" justifyContent="center" w={REWARD_SIZE}>
+                  <AnimatedPlusPoints type="challenge-success" coins={reward} textType="h3" />
+                </Box>
+              ) : null}
+            </Box>
+          </Box>
+          <Box mt={16}>
+            <TextTemplate type="h2" color={challengeSuccessScreen.textStyle.color} textAlign="center">
+              {t("screens.challenge_success.great_work")}
+            </TextTemplate>
+          </Box>
+
+          <ChallengeStats width={width - 70} completionSummary={completionSummary} />
+        </Box>
+      </Box>
+
+      <Box position="absolute" bottom={0} width="100%" pb={bottom}>
+        <Button testID={"CHALLENGE_SUCCESS_CTA"} onPress={onPressCta} translationKey="labels.cta.continue" />
+      </Box>
     </CentredScreen>
   );
 }
-
-function renderScore(score: number, unit: IProps["unit"]) {
-  const unitTextPlural = unit === "minutes" ? t("time_units.minutes") : t("activity_types.steps.plural");
-  const unitTextSingular = unit === "minutes" ? t("time_units.minute") : t("activity_types.steps.singular");
-
-  const mins = Math.floor(score / 60);
-
-  switch (unit) {
-    case "minutes":
-      return `${mins} ${mins === 1 ? unitTextSingular : unitTextPlural}`;
-    case "meters":
-      return formatCyclingMetersToKmWithOneDecimal(score);
-    case "steps":
-      return `${score} ${unitTextPlural}`;
-    default:
-      return `${score}`;
-  }
-}
-
-const styles = StyleSheet.create({
-  ...commonStyles,
-  wrapper: {
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  topWrapper: {
-    flex: 1,
-  },
-  cta: {
-    marginBottom: Style.adjust(32),
-  },
-  ctaWrapper: {
-    alignSelf: "stretch",
-    paddingHorizontal: Style.adjust(32),
-  },
-  level: {
-    textAlign: "center",
-    color: Colours.text.goldBrown,
-    fontSize: Style.adjust(14),
-    marginTop: Style.adjust(-10),
-  },
-  plusPointsWrapper: {
-    alignItems: "center",
-    marginBottom: Style.adjust(48),
-  },
-  score: {
-    start: 0,
-    end: 0,
-    textAlign: "center",
-    position: "absolute",
-    bottom: Style.adjust(24),
-    fontSize: Style.adjust(25),
-    color: Colours.text.goldBrown,
-  },
-  hintWrapper: {
-    paddingHorizontal: Style.adjust(24),
-    paddingVertical: Style.adjust(48),
-  },
-  successImage: {
-    width: 375,
-    height: 182,
-  },
-});

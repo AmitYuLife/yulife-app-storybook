@@ -26,7 +26,7 @@ interface IPathwaysReflectedScreenProps {
 }
 
 const MYSTERY_BOX_ICON = require("./assets/pathways-mystery-box.webp");
-const YUCOIN_SHADOW_ICON = require("./assets/yucoin-shadow.webp");
+const YUCOIN_SHADOW_ICON = require("@assets/icons/yucoin-shadow.webp");
 const REWARD_SIZE_MYSTERY_BOX = 120;
 const REWARD_IMAGE_SIZE_MYSTERY_BOX = 100;
 const REWARD_SIZE_YUCOIN = 190;

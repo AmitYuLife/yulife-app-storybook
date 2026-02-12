@@ -50,7 +50,8 @@ export default function* finishInAppMediaChallengeSaga({
       payloadToSend
     );
 
-    const challenge = data?.updateMobileQuestLevelChallenge?.challenge;
+    const challengeResult = data?.updateMobileQuestLevelChallenge;
+    const challenge = challengeResult?.challenge;
 
     if (!challenge) {
       yield put(setChallengeSubmissionStatus(ChallengeSubmissionStatus.Error));
@@ -65,6 +66,7 @@ export default function* finishInAppMediaChallengeSaga({
         level: challenge?.level,
         rating: challenge?.rating,
         incomingData: challenge?.incomingData,
+        completionSummary: challengeResult?.completionSummary,
       })
     );
 

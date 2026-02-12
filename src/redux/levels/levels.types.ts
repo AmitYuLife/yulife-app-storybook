@@ -1,5 +1,33 @@
 import { FitKitType, Milestone, YuHealthOptions } from "@redux/_core/types";
 
+export enum ChallengeCategory {
+  Steps = "STEPS",
+  Meditation = "MEDITATION",
+  Sudoku = "SUDOKU",
+  Workout = "WORKOUT",
+}
+
+export enum ChallengeCompletionSummaryEntryType {
+  Challenge = "CHALLENGE",
+  Total = "TOTAL",
+}
+
+export interface ChallengeCompletionSummaryEntry {
+  type: ChallengeCompletionSummaryEntryType;
+  result: number;
+  label: string;
+  icon: {
+    id: string;
+    uri?: string | null;
+    hash?: string | null;
+  };
+}
+
+export interface ChallengeCompletionSummary {
+  type: ChallengeCategory;
+  entries: ChallengeCompletionSummaryEntry[];
+}
+
 export interface ILevelsStore {
   active: IActiveLevel;
   challengeFinishedResult: ChallengeFinishedResult;
@@ -24,6 +52,7 @@ interface ChallengeFinishedResult {
   coins: IActiveLevel["coins"];
   rating: IActiveLevel["rating"];
   status: IActiveLevel["status"];
+  completionSummary?: ChallengeCompletionSummary | null;
 }
 
 type ChallengeUnit = "steps" | "minutes" | "meters" | string; // this should not have `string` as a type but it's needed to supress type errors for now
@@ -172,10 +201,10 @@ export type ChallengeUpdateSuccessPayload = { incomingData: ChallengeIncomingDat
   "coins" | "isCompleted" | "milestonesLog" | "rating"
 >;
 
-export type ChallengeEndSuccessPayload = { incomingData: ChallengeIncomingData } & Pick<
-  IActiveLevel,
-  "coins" | "level" | "milestonesLog" | "rating"
->;
+export type ChallengeEndSuccessPayload = {
+  incomingData: ChallengeIncomingData;
+  completionSummary?: ChallengeCompletionSummary | null;
+} & Pick<IActiveLevel, "coins" | "level" | "milestonesLog" | "rating">;
 
 export type UpdateChallengeAppButtonPayload = Pick<IActiveLevel, "appButton">;
 

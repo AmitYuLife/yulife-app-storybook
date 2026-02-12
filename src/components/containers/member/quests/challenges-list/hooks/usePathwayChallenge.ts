@@ -3,11 +3,12 @@ import { useQuery, useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDataType } from "@redux/user/user.types";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { pathwayChallengeStarted, pathwayChallengeEnded } from "@modules/pathways/redux/pathways.actions";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 interface UsePathwayChallengeArgs {
   componentId: string;
@@ -30,6 +31,8 @@ export const usePathwayChallenge = ({
   onExternalCompletion,
 }: UsePathwayChallengeArgs) => {
   const dispatch = useDispatch();
+
+  const features = useSelector(getUserFeatures);
 
   const { data: pathwayChallengeData, loading: pathwayChallengeLoading } = useQuery(
     gql("GetPathwayChallengeDocument"),
@@ -86,13 +89,21 @@ export const usePathwayChallenge = ({
         dispatch(updateInAppMeditation({ duration: durationInSeconds, createdAt: Date.now() / 1000 }));
       }
 
+      const typesToRefetch = [AppDataType.dailyChallengeAmountAvailable, AppDataType.todayActivity];
+
+      // if it's enabled, coinLedger is fetched on the actual screen
+      if (!features.tempGameEnableNewSuccessScreen) {
+        typesToRefetch.push(AppDataType.coinLedger);
+      }
+
       dispatch(
         getUserDataStart({
-          types: [AppDataType.coinLedger, AppDataType.dailyChallengeAmountAvailable, AppDataType.todayActivity],
+          types: typesToRefetch,
         })
       );
 
-      const yuCoinAwarded = result.data?.completePathwayChallenge?.yuCoinAwarded || 0;
+      const completeResult = result.data?.completePathwayChallenge;
+      const yuCoinAwarded = completeResult?.yuCoinAwarded || 0;
 
       Navigation.push(componentId, {
         component: {
@@ -101,6 +112,7 @@ export const usePathwayChallenge = ({
             reward: yuCoinAwarded,
             componentId,
             challengeId,
+            completionSummary: completeResult?.completionSummary,
           },
         },
       });

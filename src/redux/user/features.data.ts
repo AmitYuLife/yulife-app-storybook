@@ -64,4 +64,5 @@ export const features = [
   "tempVideoPlaybackEnableAppleTv",
   "tempVideoPlaybackEnableGoogleCast",
   "tempGameEnableEndOfPlanets",
+  "tempGameEnableNewSuccessScreen",
 ] as const;

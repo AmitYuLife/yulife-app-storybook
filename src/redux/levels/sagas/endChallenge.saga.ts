@@ -101,6 +101,7 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
               level: challengeData.challenge?.level,
               rating: challengeData.challenge?.rating,
               incomingData: challengeData.challenge?.incomingData,
+              completionSummary: challengeData.completionSummary,
             })
           );
         } else {

@@ -25,6 +25,9 @@ mutation UpdateMobileQuestLevelChallenge($challengeId: ID!, $contentId: String, 
       yuCoinAwarded
       rating
     }
+    completionSummary {
+      ...ChallengeCompletionSummary
+    }
     levelSlot {
       subtype
       unit

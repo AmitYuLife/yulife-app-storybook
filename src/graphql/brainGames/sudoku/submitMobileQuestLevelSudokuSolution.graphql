@@ -22,5 +22,8 @@ mutation SubmitMobileQuestLevelSudokuSolution($results: MobileQuestSudokuSubmiss
     }
     yuCoinAwarded
     rating
+    completionSummary {
+      ...ChallengeCompletionSummary
+    }
   }
 }
