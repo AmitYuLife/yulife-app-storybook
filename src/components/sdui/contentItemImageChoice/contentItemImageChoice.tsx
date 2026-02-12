@@ -10,6 +10,7 @@ import { Image } from "@atoms";
 import { ImageChoiceActiveIndicator } from "./activeIndicator";
 import { isEmpty, omitBy } from "lodash";
 import { IMAGE_CHOICE, IMAGE_CHOICE_CHECKBOX } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 
 export type ImageChoiceAnswerValue = Record<string, boolean> | undefined;
 
@@ -98,8 +99,16 @@ const ContentItemImageChoiceBase = memo(
                     style={mappedWrapperStyles as ViewStyle}
                   />
 
-                  <View style={styles.viewWrapper} testID={IMAGE_CHOICE_CHECKBOX(optionKey, isChecked)}>
-                    <View style={[styles.imageWrapper, imageStyles]} testID={IMAGE_CHOICE(image.id)}>
+                  <View
+                    style={styles.viewWrapper}
+                    testID={IMAGE_CHOICE_CHECKBOX(optionKey, isChecked)}
+                    collapsable={DETOX_ENABLED ? false : undefined}
+                  >
+                    <View
+                      style={[styles.imageWrapper, imageStyles]}
+                      testID={IMAGE_CHOICE(image.id)}
+                      collapsable={DETOX_ENABLED ? false : undefined}
+                    >
                       <Image
                         width={Style.adjust((imageStyles?.width as number) || 96)}
                         height={Style.adjust((imageStyles?.height as number) || 56)}

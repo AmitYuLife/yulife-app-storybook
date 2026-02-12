@@ -13,6 +13,7 @@ import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 import { CONTENT_ITEM_CHOICE } from "@ids";
 import colours from "@styles/colours";
 import { templateTextStylesLineHeight } from "@styles/textStyles";
+import { DETOX_ENABLED } from "@services/socket";
 
 export type ChoiceAnswerValue = Record<string, boolean | string> | undefined;
 
@@ -128,6 +129,7 @@ export const ContentItemChoiceBase = (props: Props) => {
     <View
       key={id}
       testID={CONTENT_ITEM_CHOICE(id)}
+      collapsable={DETOX_ENABLED ? false : undefined}
       style={[baseStyles.choiceWrapper, designStyles.choiceWrapper || {}, mapServerStyles(serverStyles)]}
     >
       {renderOptions.map(({ value: optionKey, label }) => {

@@ -94,7 +94,6 @@ timeout --preserve-status --foreground 90m yarn detox:run "$TEST_TYPE_ARG" -c "$
   --take-screenshots all \
   --artifacts-location ./e2e-report \
   --loglevel "${DETOX_LOG_LEVEL:=warn}" \
-  --debug-synchronization 20000 \
   --record-logs all \
   --record-videos failing \
   --headless

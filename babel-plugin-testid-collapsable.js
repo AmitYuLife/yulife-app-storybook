@@ -9,7 +9,22 @@ If a View has a testID, we force collapsable={false} so Detox can still find it
 - Only runs when E2E_MODE=true (see babel.config.js)
 - Box / Pressable already handle this
  */
-const VIEW_COMPONENTS = ["View", "Animated.View", "SafeAreaView", "ScrollView", "KeyboardAvoidingView"];
+const VIEW_COMPONENTS = [
+  // Views
+  "View",
+  "Animated.View",
+  "SafeAreaView",
+  "ScrollView",
+  "KeyboardAvoidingView",
+  // Touchables
+  "TouchableOpacity",
+  "TouchableHighlight",
+  "TouchableWithoutFeedback",
+  "TouchableNativeFeedback",
+  "TouchableOpacityWithDelay",
+  // SVG
+  "Svg",
+];
 
 module.exports = function () {
   return {
