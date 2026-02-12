@@ -21,10 +21,10 @@ interface IScrollableModalProps {
   renderHeaderShadow?: boolean;
   closeIconColor?: string;
   showCloseIcon?: boolean;
+  gradientHeight?: number;
 }
-
 const BOTTOM_BACKGROUND = Colours.overlay.whiteSolid;
-const GRADIENT_LOCATIONS = [0, 0.7, 1];
+const GRADIENT_LOCATIONS = [0, 0.9, 1];
 const GRADIENT_COLORS = [BOTTOM_BACKGROUND, BOTTOM_BACKGROUND, Colours.overlay.whiteTransparent];
 
 const ScrollableFloatingModal = ({
@@ -39,12 +39,20 @@ const ScrollableFloatingModal = ({
   showCloseIcon,
   desiredHeight = 660,
   renderHeaderShadow = true,
+  gradientHeight,
 }: IScrollableModalProps) => {
   const contentStyle = useMemo(() => {
     return {
       height: Math.min(Style.DEVICE_HEIGHT * 0.8, Style.adjust(desiredHeight)),
     };
   }, [desiredHeight]);
+
+  const gradientHeightStyle = useMemo(() => {
+    return {
+      ...styles.bottomGradient,
+      height: gradientHeight ? Style.adjust(gradientHeight) : Style.adjust(40),
+    };
+  }, [gradientHeight]);
 
   return (
     <Modal transparent={true}>
@@ -59,7 +67,7 @@ const ScrollableFloatingModal = ({
             closeIconColor={closeIconColor}
             paddingTop={Style.adjust(title ? 42 : 0)}
           >
-            <Box>
+            <ContentFragment>
               <View style={contentStyle}>
                 {title ? (
                   <>
@@ -82,24 +90,31 @@ const ScrollableFloatingModal = ({
                 {children}
               </View>
               {footer ? (
-                <Box>
+                <>
                   <LinearGradient
                     angle={0}
                     useAngle={true}
                     pointerEvents="box-none"
                     colors={GRADIENT_COLORS}
-                    style={styles.bottomGradient}
+                    style={gradientHeightStyle}
                     locations={GRADIENT_LOCATIONS}
                   />
-                  {footer}
-                </Box>
+                  <Box bottom={0} w="100%" position="absolute">
+                    {footer}
+                  </Box>
+                </>
               ) : null}
-            </Box>
+            </ContentFragment>
           </FloatingModal>
         </Animated.View>
       </Animated.View>
     </Modal>
   );
+};
+
+// Fixing a warning where we cloneElement the children in FloatingModal with a closeOverlay argument
+const ContentFragment = ({ children }: { children: ReactNode; closeActiveOverlay?: () => void }) => {
+  return <>{children}</>;
 };
 
 const styles = StyleSheet.create({
@@ -126,9 +141,8 @@ const styles = StyleSheet.create({
   },
   bottomGradient: {
     bottom: 0,
-    width: "100%",
-    paddingTop: Style.adjust(40),
     position: "absolute",
+    width: "100%",
   },
 });
 
