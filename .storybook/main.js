@@ -43,6 +43,7 @@ const CUSTOM_CONFIG = {
         __dirname,
         "/aliases/bugsnag-plugin-react-native-navigation"
       ),
+      "@danielsaraldi/react-native-blur-view": path.join(__dirname, "/aliases/react-native-blur"),
       "react-native-navigation": path.join(__dirname, "/aliases/react-native-navigation"),
       "react-native-animatable": path.join(__dirname, "/aliases/react-native-animatable"),
       "react-native-webview": path.join(__dirname, "/aliases/react-native-webview"),

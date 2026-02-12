@@ -36,7 +36,6 @@ export * from "./useTrack";
 export * from "./useReferral";
 export * from "./useGiftOptions";
 export * from "./useSocialGroupUserSearch";
-export * from "./useModal";
 export * from "./usePrizeHintPopup";
 export * from "./useBoxProps";
 export * from "./animation/useBobbingAnimation";

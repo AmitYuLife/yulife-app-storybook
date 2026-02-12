@@ -2,7 +2,7 @@ import { BattlePassGenericModal, showFloatingModal } from "@components/modals";
 import BattlePassLevelUpModal from "@components/modals/battle-pass-level-up/battle-pass-level-up.modal";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { GetMobileGameBattlePassQuery, MobileGameBattlePassProgressInfoFragment } from "@graphql/__generated";
-import { ShowModal } from "@hooks";
+import { ShowModal } from "@modules/modals/useModal";
 import { t } from "@locale";
 import { MixpanelEvent } from "@services/logging/types";
 import { Unpacked } from "@utils";
