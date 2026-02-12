@@ -199,6 +199,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
       subtitle={t["modals.consumables.subtitle"]}
       header={header}
       footer={footer}
+      gradientHeight={footerHeight}
     >
       <FlashList
         showsVerticalScrollIndicator={false}
