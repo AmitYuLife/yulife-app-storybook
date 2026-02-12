@@ -185,7 +185,7 @@
       "title": "Mood Calendar"
     },
     "pathways": {
-      "powered_by_unity": "Powered by ![](%{yunityUrl})",
+      "powered_by_yunity": "Powered by ",
       "header": "Today's reflection",
       "health_insights": "Health insights",
       "recommended_for_you": "Recommended for you",
