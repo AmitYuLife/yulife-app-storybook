@@ -11,6 +11,7 @@ interface Props {
   hasShadow?: boolean;
   leftIcon?: LeftIcon;
   rightIcon?: RightIconTypes;
+  backgroundColor?: string;
   hasWhiteBackground?: boolean;
   type?: ComponentProps<typeof TopBar>["type"];
   leftRef?: RefObject<View>;
@@ -23,6 +24,7 @@ interface Props {
 export const TopBarAbsolute = (props: Props) => {
   const {
     onPressLeftIcon,
+    backgroundColor,
     hasWhiteBackground,
     leftIcon,
     hasShadow,
@@ -37,7 +39,11 @@ export const TopBarAbsolute = (props: Props) => {
   return (
     <View
       pointerEvents="box-none"
-      style={StyleSheet.flatten([styles.topBarWrapper, hasWhiteBackground && styles.whiteBackground])}
+      style={StyleSheet.flatten([
+        styles.topBarWrapper,
+        hasWhiteBackground && styles.whiteBackground,
+        backgroundColor && { backgroundColor },
+      ])}
     >
       <TopBar
         menuLabel={menuLabel}

@@ -1,7 +1,7 @@
 import { memo, useCallback, useMemo } from "react";
-import { ActivityIndicator, ScrollView } from "react-native";
+import { ActivityIndicator, ScrollView, useWindowDimensions } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
-import { Style, TOP_BAR, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 import { gql, MobileGameBattlePassReward } from "@graphql/__generated";
 import { ContentItemWrapper } from "@components/sdui";
@@ -10,14 +10,13 @@ import { FutureGame } from "./_subcomponents/future-game";
 import { useQueryOnScreenSeen } from "@hooks";
 import { useNavigation } from "@navigation/navigation.context";
 import RewardsUnlockEmpty from "@organisms/rewards-unlock-empty/rewards-unlock-empty";
-import { TopBarAbsolute } from "@organisms";
+import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Navigation } from "@navigation/main";
 import NoStoreWalletButton from "@components/screens/member/rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
-import { isAndroid } from "@utils";
 import { useMutation } from "@apollo/client";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { REWARDS_UNLOCK_SCROLL } from "@ids";
+import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 interface RewardsUnlockContainerProps {
   showNavigation?: boolean;
@@ -25,33 +24,22 @@ interface RewardsUnlockContainerProps {
   isInnerScreen?: boolean;
 }
 
+// TODO: Move UI to a screen..
 const RewardsUnlockContainer = ({
   showNavigation = false,
   isInnerScreen,
   onPressWallet,
 }: RewardsUnlockContainerProps) => {
   const { componentId } = useNavigation();
+  const { height } = useWindowDimensions();
   const [refetchUnlockables, { data: queryResult }] = useQueryOnScreenSeen(
     gql("GetMobileUnlockableBattlePassVouchersDocument"),
     componentId
   );
 
-  const insets = useSafeAreaInsets();
-
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
     onCompleted: () => refetchUnlockables().catch(),
   });
-
-  const calculated = useMemo(() => {
-    return {
-      styles: {
-        scrollView: {
-          height: Style.DEVICE_HEIGHT,
-          backgroundColor: queryResult?.getMobileUnlockableBattlePassVouchers?.header?.background?.color,
-        },
-      },
-    };
-  }, [queryResult?.getMobileUnlockableBattlePassVouchers?.header?.background?.color]);
 
   const getClaimRewardCallback = useCallback(
     (reward: MobileGameBattlePassReward, participationId: string) => {
@@ -88,18 +76,6 @@ const RewardsUnlockContainer = ({
     }
   }, [componentId, showNavigation]);
 
-  const topPadding = useMemo(() => {
-    if (isInnerScreen || showNavigation) {
-      if (Style.isIphone13ProMax()) {
-        return insets.top;
-      }
-
-      return isAndroid() ? TOP_BAR.TOP_BAR_WITH_PAD : TOP_BAR.PADDING_TOP;
-    }
-
-    return Style.adjust(8);
-  }, [isInnerScreen, showNavigation, insets.top]);
-
   if (!queryResult?.getMobileUnlockableBattlePassVouchers) {
     return (
       <Box flex={1} justifyContent="center" alignItems="center">
@@ -120,17 +96,25 @@ const RewardsUnlockContainer = ({
     <>
       <Box>
         <ScrollView
-          style={calculated.styles.scrollView}
+          style={styles.scrollView}
           contentContainerStyle={styles.contentContainerStyle}
           automaticallyAdjustContentInsets={true}
           overScrollMode="never"
-          bounces={false}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
           testID={REWARDS_UNLOCK_SCROLL}
         >
+          <GenericHeadingPad hideBorder={true} />
+          <Box
+            position="absolute"
+            top={-height / 2 + TOP_BAR_WITH_PAD}
+            width={"100%"}
+            bg={data.header.background.color}
+            h={height / 2}
+          />
+
           <Box>
-            <Box bg={data.header.background.color} pt={topPadding} disableAutoAdjust={true}>
+            <Box bg={data.header.background.color} pt={10}>
               <Box right={0} left={0} pl={20} pr={20} pb={84}>
                 <Box position="absolute" right={0}>
                   <Image width={Style.adjust(240)} source={data.header.background.image} />
@@ -172,17 +156,12 @@ const RewardsUnlockContainer = ({
         )}
       </Box>
       {showNavigation ? (
-        <Box
-          position="absolute"
-          top={0}
-          w="100%"
-          pt={TOP_BAR.PADDING_TOP}
-          disableAutoAdjust={true}
-          h={TOP_BAR.TOP_BAR_WITH_PAD}
-          bg={data.header.background.color}
-        >
-          <TopBarAbsolute type="white" leftIcon={LeftIcon.BACK} onPressLeftIcon={onBack} />
-        </Box>
+        <TopBarAbsolute
+          type="white"
+          leftIcon={LeftIcon.BACK}
+          onPressLeftIcon={onBack}
+          backgroundColor={data.header.background.color}
+        />
       ) : null}
     </>
   );
@@ -195,6 +174,7 @@ const linearGradient = {
 };
 
 const styles = StyleSheet.create({
+  scrollView: { height: Style.DEVICE_HEIGHT },
   contentContainerStyle: { backgroundColor: "white", flexGrow: 1 },
 });
 
