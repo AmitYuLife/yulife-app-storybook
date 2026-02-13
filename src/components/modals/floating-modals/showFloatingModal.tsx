@@ -3,9 +3,9 @@ import React, { ComponentProps } from "react";
 import FloatingModal from "./floating-modal";
 import { ViewStyle } from "react-native";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
-import { BlurViewProps } from "expo-blur";
+import { IBlurProps } from "@atoms/blur/blur";
 
-type BlurTypes = Pick<BlurViewProps, "intensity" | "tint"> & {
+type BlurTypes = Pick<Partial<IBlurProps>, "type"> & {
   withBlurBackground?: boolean;
   blurBackgroundColor?: string;
 };
@@ -23,8 +23,7 @@ export function showFloatingModal({
   closeOnBlur,
   onClose,
   withBlurBackground,
-  tint,
-  intensity,
+  type,
   blurBackgroundColor,
   ...modalArgs
 }: Args) {
@@ -37,8 +36,7 @@ export function showFloatingModal({
     closeOnBlur,
     onClose,
     passProps: {
-      tint,
-      intensity,
+      type,
       backgroundColor: blurBackgroundColor,
     },
   });
