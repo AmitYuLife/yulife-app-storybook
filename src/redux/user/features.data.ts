@@ -60,7 +60,6 @@ export const features = [
   "tempGameShowAchievements",
   "tempGameShowCouponPrizeTemplates",
   "tempEnableYuHealthForegroundService",
-  "tempGameEnablePathwaysStreaks",
   "tempVideoPlaybackEnableAppleTv",
   "tempVideoPlaybackEnableGoogleCast",
   "tempGameEnableEndOfPlanets",
