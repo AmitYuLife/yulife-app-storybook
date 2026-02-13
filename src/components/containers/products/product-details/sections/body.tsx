@@ -34,7 +34,7 @@ interface Props {
   contentInsetAdjustmentBehavior: IGetYuScreenProductDetails["contentInsetAdjustmentBehavior"];
 }
 
-const DEFAULT_EXTRA_TOP_PADDING = Style.adjust(24) + initialWindowMetrics.insets.top;
+const DEFAULT_EXTRA_TOP_PADDING = Style.adjust(24) + (initialWindowMetrics?.insets?.top ?? 0);
 
 export const Body = (props: Props) => {
   const { body, headerHeight, containerStyles, contentInsetAdjustmentBehavior } = props;

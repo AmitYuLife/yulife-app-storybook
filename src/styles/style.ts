@@ -135,7 +135,7 @@ const adjust = (val: number, options: IAdjustOptions = {}) => {
 };
 
 const getSafeAreaStart = () => {
-  return initialWindowMetrics.insets.top;
+  return initialWindowMetrics?.insets?.top ?? 0;
 };
 
 const getLetterSpacing = (spacing: number) => {

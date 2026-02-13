@@ -29,7 +29,7 @@ const ProductDetailsModal = (props: ProductDetailsModalProps) => {
   );
 };
 
-const BOTTOM_PADDING = Style.adjust(100) + initialWindowMetrics.insets.bottom;
+const BOTTOM_PADDING = Style.adjust(100) + (initialWindowMetrics?.insets?.bottom ?? 0);
 
 const styles = StyleSheet.create({
   wrapper: {

@@ -13,7 +13,7 @@ const getPositionBottom = (options = { additionalBottom: 0 }) => {
     return Style.adjust(20) + additionalBottom;
   }
 
-  return (initialWindowMetrics.insets.bottom || Style.adjust(20)) + additionalBottom;
+  return ((initialWindowMetrics?.insets?.bottom ?? 0) || Style.adjust(20)) + additionalBottom;
 };
 
 export default {
