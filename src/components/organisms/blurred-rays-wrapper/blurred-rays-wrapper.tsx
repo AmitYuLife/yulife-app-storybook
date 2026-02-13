@@ -42,14 +42,14 @@ const BlurredRaysWrapper = ({
   children,
   testID,
 }: BlurredRaysWrapperProps) => {
-  const safeAreaInsets = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
 
   const wrapperStyle = useMemo(
     (): ViewStyle => ({
       width: "100%",
-      minHeight: Style.DEVICE_HEIGHT - safeAreaInsets.top - Style.adjust(40),
+      minHeight: Style.DEVICE_HEIGHT - top - Style.adjust(40),
     }),
-    [safeAreaInsets.top]
+    [top]
   );
 
   return (
@@ -78,7 +78,7 @@ const BlurredRaysWrapper = ({
           </Box>
           {children}
           {!buttonIsEnabled ? null : (
-            <Box flex={1} justifyContent="flex-end" gap={5}>
+            <Box flex={1} justifyContent="flex-end" gap={5} mb={bottom + Style.adjust(10)} disableAutoAdjust={true}>
               <Button
                 testID={buttonTestID}
                 translatedLabel={buttonLabel}

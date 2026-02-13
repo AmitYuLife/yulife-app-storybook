@@ -48,7 +48,7 @@ const HIT_SLOP = {
   top: HIT_SLOP_SIZE,
 };
 
-export const PADDING_TOP = initialWindowMetrics.insets.top + (hasNotch ? Style.adjust(-10) : 0);
+export const PADDING_TOP = (initialWindowMetrics?.insets.top ?? 0) + (hasNotch ? Style.adjust(-10) : 0);
 export const PADDING_BOTTOM = Style.adjust(5);
 export const LEFT_PADDING_TOP = Style.adjust(3);
 export const LOGO_PADDING_TOP = Style.adjust(12);

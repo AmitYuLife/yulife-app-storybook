@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     borderRadius: 16,
     paddingHorizontal: Style.adjust(20),
-    paddingBottom: Style.adjust(18) + initialWindowMetrics.insets.bottom,
+    paddingBottom: Style.adjust(18) + (initialWindowMetrics?.insets?.bottom ?? 0),
     width: Style.DEVICE_WIDTH,
     justifyContent: "center",
     alignItems: "center",

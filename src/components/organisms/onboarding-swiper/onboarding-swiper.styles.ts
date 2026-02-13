@@ -3,7 +3,7 @@ import { Style, Colours, StyleSheet } from "@styles";
 import { initialWindowMetrics } from "react-native-safe-area-context";
 
 const NAVIGATION_VIEW_HEIGHT = Style.adjust(40);
-const NAVIGATION_POSITION_BOTTOM = Style.adjust(54) + initialWindowMetrics.insets.bottom;
+const NAVIGATION_POSITION_BOTTOM = Style.adjust(54) + (initialWindowMetrics?.insets?.bottom ?? 0);
 
 export default StyleSheet.create({
   actionButtonText: {

@@ -19,7 +19,7 @@ interface Props {
   testID?: string;
 }
 
-const CTA_HEIGHT = 128 + initialWindowMetrics.insets.bottom;
+const CTA_HEIGHT = 128 + (initialWindowMetrics?.insets?.bottom ?? 0);
 
 const _CTA = ({
   hideFirstButton,
