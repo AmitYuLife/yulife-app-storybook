@@ -14,6 +14,7 @@ import Animated from "react-native-reanimated";
 import { Pressable } from "react-native";
 import { VoidFunction } from "@utils";
 import { GiftViewLoading } from "@organisms";
+import { TRIANGLE_HEIGHT } from "@organisms/gift-view-loading/svg-background";
 import { useGiftPreviewLoadingAnimation } from "../hooks/use-gift-preview-loading-animation";
 
 type Props = {
@@ -85,7 +86,11 @@ export const GiftingMessagePreviewScreen = ({
       />
       <Animated.View style={giftLoadingStyle}>
         <Pressable onPress={onLoadingPress}>
-          <GiftViewLoading showAnimation={showAnimation} setFinishedAnimation={setFinishedAnimation} />
+          <GiftViewLoading
+            showAnimation={showAnimation}
+            setFinishedAnimation={setFinishedAnimation}
+            lottieTopOffset={TRIANGLE_HEIGHT}
+          />
         </Pressable>
       </Animated.View>
     </Box>
