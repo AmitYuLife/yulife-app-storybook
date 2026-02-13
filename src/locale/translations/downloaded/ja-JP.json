@@ -989,6 +989,7 @@
     },
     "challenge_success": {
       "footer": "お疲れ様でした!",
+      "great_work": "素晴らしい!",
       "stage": "ステージ %{level}"
     },
     "challenge_unavailable": {
@@ -1513,7 +1514,7 @@
       "personal_health_path": {
         "heading": "健康管理"
       },
-      "powered_by_unity": "Powered by ![](%{yunityUrl})",
+      "powered_by_yunity": "Yumoji によって 提供",
       "recommended_for_you": "あなたへのおすすめ",
       "reflect": "振り返りに進む",
       "reflected": {
@@ -2183,7 +2184,8 @@
     "short_minute": "分",
     "short_minutes": "分",
     "short_second": "秒",
-    "short_seconds": "秒"
+    "short_seconds": "秒",
+    "smart_minutes": "%{smart_count} 分"
   },
   "top_bar": {
     "menu": {

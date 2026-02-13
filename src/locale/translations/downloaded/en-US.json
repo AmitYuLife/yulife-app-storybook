@@ -989,6 +989,7 @@
     },
     "challenge_success": {
       "footer": "Well done!",
+      "great_work": "Great work!",
       "stage": "Stage %{level}"
     },
     "challenge_unavailable": {
@@ -1513,7 +1514,7 @@
       "personal_health_path": {
         "heading": "Personal Health Path"
       },
-      "powered_by_unity": "Powered by ![](%{yunityUrl})",
+      "powered_by_yunity": "Powered by",
       "recommended_for_you": "Recommended for you",
       "reflect": "Reflect",
       "reflected": {
@@ -2183,7 +2184,8 @@
     "short_minute": "m",
     "short_minutes": "m",
     "short_second": "s",
-    "short_seconds": "s"
+    "short_seconds": "s",
+    "smart_minutes": "%{smart_count} minute |||| %{smart_count} minutes"
   },
   "top_bar": {
     "menu": {
