@@ -3,8 +3,7 @@ import { memo, ReactElement, useMemo } from "react";
 
 import { StyleSheet } from "@styles";
 import { useNavigation } from "@navigation/navigation.context";
-import Box from "../box/box";
-import { useWindowDimensions } from "react-native";
+import { useWindowDimensions, View, ViewStyle } from "react-native";
 import Blur from "../blur/blur";
 
 interface IProps extends Pick<BlurViewProps, "type"> {
@@ -33,18 +32,26 @@ const BlurredWrapper = ({
     [backgroundColor]
   );
 
+  const containerStyle = useMemo((): ViewStyle => {
+    return {
+      height,
+      width: "100%",
+      position: "absolute",
+    };
+  }, [height]);
+
   if (!isVisible) {
     return null;
   }
 
   return (
-    <Box style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
+    <View style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
       <Blur style={wrapperStyle} targetId={componentId} type={tint}>
-        <Box w="100%" h={height} position="absolute" disableAutoAdjust={true} testID={testID}>
+        <View style={containerStyle} testID={testID}>
           {children}
-        </Box>
+        </View>
       </Blur>
-    </Box>
+    </View>
   );
 };
 
