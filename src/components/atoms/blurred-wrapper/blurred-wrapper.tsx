@@ -1,22 +1,29 @@
-import { BlurView, BlurViewProps } from "@danielsaraldi/react-native-blur-view";
+import { BlurViewProps } from "@danielsaraldi/react-native-blur-view";
 import { memo, ReactElement, useMemo } from "react";
 
 import { StyleSheet } from "@styles";
 import { useNavigation } from "@navigation/navigation.context";
-import Box from "@atoms/box/box";
+import Box from "../box/box";
 import { useWindowDimensions } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Blur from "../blur/blur";
 
 interface IProps extends Pick<BlurViewProps, "type"> {
   children: ReactElement;
   backgroundColor?: string;
   tint?: "light" | "dark";
+  testID?: string;
+  isVisible?: boolean;
 }
 
-const BlurredWrapper = ({ children, tint = "light", backgroundColor = "rgba(0,0,0,.5)" }: IProps) => {
+const BlurredWrapper = ({
+  children,
+  tint = "light",
+  backgroundColor = "rgba(0,0,0,.5)",
+  testID,
+  isVisible = true,
+}: IProps) => {
   const { componentId } = useNavigation();
   const { height } = useWindowDimensions();
-  const { bottom } = useSafeAreaInsets();
 
   const wrapperStyle = useMemo(
     () => ({
@@ -25,12 +32,19 @@ const BlurredWrapper = ({ children, tint = "light", backgroundColor = "rgba(0,0,
     }),
     [backgroundColor]
   );
+
+  if (!isVisible) {
+    return null;
+  }
+
   return (
-    <BlurView style={wrapperStyle} targetId={componentId} type={tint}>
-      <Box w="100%" h={height} pb={bottom + 10} position="absolute" disableAutoAdjust={true}>
-        {children}
-      </Box>
-    </BlurView>
+    <Box style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
+      <Blur style={wrapperStyle} targetId={componentId} type={tint}>
+        <Box w="100%" h={height} position="absolute" disableAutoAdjust={true} testID={testID}>
+          {children}
+        </Box>
+      </Blur>
+    </Box>
   );
 };
 

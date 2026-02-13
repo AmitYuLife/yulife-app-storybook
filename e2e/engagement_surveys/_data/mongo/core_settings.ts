@@ -48,19 +48,6 @@ export const BUSINESS_3_INTERCOM_SETTINGS = {
   },
 } as IDatabaseItem;
 
-export const BUSINESS_4_PATHWAYS_STREAKS_SETTINGS = {
-  ...MODEL_DEFAULTS,
-  data: {
-    _id: generateRandomMongoId(),
-    domain: "temp",
-    entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
-    entityType: "everyone",
-    settings: {
-      gameEnablePathwaysStreaks: true,
-    },
-  },
-} as IDatabaseItem;
-
 export const BUSINESS_4_REFERRALS_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {

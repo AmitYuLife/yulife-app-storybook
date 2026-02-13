@@ -1,20 +1,20 @@
 import React, { cloneElement, ReactElement, useCallback, useEffect, useMemo, useRef } from "react";
 import { Animated, Modal, View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
-import { BlurView, BlurViewProps } from "expo-blur";
 import { useBackHandler, usePressedInWithDelay } from "@hooks";
 import { MODALS } from "@navigation/constants";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 
 import { StyleSheet } from "@styles";
+import { IBlurProps } from "@atoms/blur/blur";
+import BlurredWrapper from "@atoms/blurred-wrapper/blurred-wrapper";
 
-interface IProps extends Pick<BlurViewProps, "intensity" | "tint"> {
+interface IProps extends Pick<Partial<IBlurProps>, "type"> {
   children: ReactElement;
   withBlurBackground: boolean;
   wrapperStyle?: ViewStyle;
   closeOnBlur?: boolean;
-  intensity?: number;
   backgroundColor?: string;
   onClose?: VoidFunctionOrSduiActionPayload;
   // set withModal to true when you need to show the overlay on top of another modal (android specific)
@@ -26,17 +26,8 @@ const commonProps = {
   useNativeDriver: true,
 };
 
-const BlurredOverlay = ({
-  children,
-  withBlurBackground,
-  wrapperStyle,
-  closeOnBlur = true,
-  tint = "light",
-  intensity = 50,
-  backgroundColor = "rgba(0,0,0,.5)",
-  onClose,
-  withModal = false,
-}: IProps) => {
+// TODO: This sucks too many props, unncessary animation, purge it
+const BlurredOverlay = ({ children, closeOnBlur = true, type = "light", onClose, withModal = false }: IProps) => {
   const { handleSduiAction: handleOnClose } = useSduiCallbackFunctionOrReduxAction(onClose, () =>
     Navigation.dismissOverlay(MODALS.blurredOverlay)
   );
@@ -75,21 +66,16 @@ const BlurredOverlay = ({
 
   const { handlePress } = usePressedInWithDelay({ onPress: handleClose });
 
-  const wrapperStyles = useMemo((): ViewStyle[] => {
-    return [styles.wrapper, { opacity, ...wrapperStyle }, { backgroundColor }];
-  }, [backgroundColor, opacity, wrapperStyle]);
-
   const Wrapper = useMemo(
     () => (
-      <Animated.View testID="blur-provider.overlay-container" style={wrapperStyles} accessibilityViewIsModal={true}>
-        {!withBlurBackground ? null : (
-          <BlurView intensity={intensity} tint={tint} experimentalBlurMethod="dimezisBlurView" style={styles.blur} />
-        )}
-        <View style={styles.blur} onTouchStart={closeOnBlur ? handlePress : null} />
-        {cloneElement(children as React.ReactElement<{ closeOverlay: () => void }>, { closeOverlay: handlePress })}
-      </Animated.View>
+      <BlurredWrapper testID="blur-provider.overlay-container" type={type}>
+        <>
+          <View style={styles.blur} onTouchStart={closeOnBlur ? handlePress : null} />
+          {cloneElement(children as React.ReactElement<{ closeOverlay: () => void }>, { closeOverlay: handlePress })}
+        </>
+      </BlurredWrapper>
     ),
-    [wrapperStyles, withBlurBackground, intensity, tint, closeOnBlur, children, handlePress]
+    [type, closeOnBlur, handlePress, children]
   );
 
   return withModal ? <Modal transparent={true}>{Wrapper}</Modal> : Wrapper;

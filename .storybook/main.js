@@ -70,7 +70,7 @@ const CUSTOM_CONFIG = {
       {
         test: /\.(ts|js)x?$/,
         exclude:
-          /node_modules\/(?!(react-native-reanimated|@react-native\/assets-registry|expo-blur|expo-haptics|expo-modules-core|expo|@expo)\/).*/,
+          /node_modules\/(?!(react-native-reanimated|@react-native\/assets-registry|expo-haptics|expo-modules-core|expo|@expo)\/).*/,
         use: {
           loader: "babel-loader",
           options: {

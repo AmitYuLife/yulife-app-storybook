@@ -1,10 +1,9 @@
 import * as React from "react";
-import { useState, useRef, useCallback } from "react";
-import { Animated, View, findNodeHandle, Platform, ViewStyle } from "react-native";
-import Blur from "./blur";
+import { useState, useCallback } from "react";
+import { Animated, View, Platform, ViewStyle } from "react-native";
 import styles from "./blur-provider.styles";
 
-import { StyleSheet } from "@styles";
+import BlurredWrapper from "../blurred-wrapper/blurred-wrapper";
 type BackgroundColours = "default" | "dark";
 
 export interface IToggleBlur {
@@ -20,14 +19,12 @@ interface IProps {
   style?: ViewStyle;
 }
 
+// TODO: Purge this there's no need for it, use BlurredWrapper and useModal
 function BlurProvider({ render, renderOverlay, backgroundColor: propsBackgroundColor = "default", style }: IProps) {
   const [isVisible, setVisibilityState] = useState(false);
 
   const [animatedWrapperOpacity] = useState(new Animated.Value(0));
   const [animatedWrapperPosition] = useState(new Animated.Value(-1000));
-
-  const [viewNodeHandle, setViewNodeHandle] = useState<number | null>(null);
-  const viewRef = useRef<View | null>(null);
 
   const animate = useCallback(
     (shouldDisplay: boolean) => {
@@ -69,11 +66,6 @@ function BlurProvider({ render, renderOverlay, backgroundColor: propsBackgroundC
     animate(newState);
   }, [isVisible, animate]);
 
-  const updateViewNodeHandle = useCallback(() => {
-    const newViewNodeHandler = findNodeHandle(viewRef.current);
-    setViewNodeHandle(newViewNodeHandler);
-  }, []);
-
   const renderProps = {
     hideOverlay,
     showOverlay,
@@ -87,31 +79,15 @@ function BlurProvider({ render, renderOverlay, backgroundColor: propsBackgroundC
 
   return (
     <View style={[styles.wrapper, style]}>
-      <View ref={viewRef} onLayout={updateViewNodeHandle} style={styles.flex}>
-        {render(renderProps)}
-      </View>
-      {!viewNodeHandle ? null : (
-        <Blur
-          blurRef={viewNodeHandle}
-          wrapperOpacity={animatedWrapperOpacity}
-          wrapperPosition={animatedWrapperPosition}
-        />
-      )}
-      <Animated.View
+      <View style={styles.flex}>{render(renderProps)}</View>
+      <BlurredWrapper
+        tint="light"
+        isVisible={isVisible}
+        backgroundColor={backgroundColor}
         testID="blur-provider.overlay-container"
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor,
-          opacity: animatedWrapperOpacity,
-          transform: [
-            {
-              translateX: animatedWrapperPosition,
-            },
-          ],
-        }}
       >
-        {!isVisible ? null : renderOverlay(renderProps)}
-      </Animated.View>
+        <>{!isVisible ? null : renderOverlay(renderProps)}</>
+      </BlurredWrapper>
     </View>
   );
 }

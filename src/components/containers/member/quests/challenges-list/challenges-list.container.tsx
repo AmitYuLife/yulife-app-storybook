@@ -2,7 +2,7 @@ import React, { FC, useState, useCallback, memo, useMemo, useEffect, useRef } fr
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { challengeStartAction, clearChallengeStartErrorAction } from "@redux/levels/levels.actions";
-import { BlurProvider, IToggleBlur } from "@atoms";
+import { Box, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
@@ -24,6 +24,7 @@ import { ActiveLevelState } from "@redux/levels/levels.types";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
 import { getMobileQuestLevelDetails } from "@graphql/challenges/getChallengeDetails.gql";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
+import { FadeIn } from "react-native-reanimated";
 
 type Slot = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
 
@@ -222,58 +223,6 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     [dispatch]
   );
 
-  const renderContent = useCallback(
-    ({ showOverlay }: IToggleBlur) => {
-      const onLayout = () => {
-        showOverlayRef.current = showOverlay;
-      };
-
-      return (
-        <ChallengesListScreen
-          pathwayChallenge={pathwayChallenge}
-          challenges={slots}
-          onLayout={onLayout}
-          currentLevel={level}
-          yuniversalMap={yuniversalMap}
-          name={currentLevelName}
-          onPressLeftIcon={handleNavPress}
-          loading={loading || pathwayChallengeLoading}
-          openConsumables={hasDonationBattlepass ? openConsumables : undefined}
-        />
-      );
-    },
-    [
-      slots,
-      level,
-      yuniversalMap,
-      currentLevelName,
-      handleNavPress,
-      loading,
-      pathwayChallengeLoading,
-      openConsumables,
-      hasDonationBattlepass,
-      pathwayChallenge,
-    ]
-  );
-
-  const renderOverlay = useCallback(
-    ({ hideOverlay }: IToggleBlur) => {
-      return (
-        <ChallengeDetailsScreen
-          slot={slot}
-          error={error}
-          isLoading={submitting}
-          onPressBack={resetErrorAndHideOverlay(hideOverlay)}
-          currentWorld={currentWorld}
-          onPressCta={handleSubmitChallenge}
-          onPressClose={navigateToQuestScreen}
-          onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
-        />
-      );
-    },
-    [currentWorld, error, handleSubmitChallenge, navigateToQuestScreen, resetErrorAndHideOverlay, slot, submitting]
-  );
-
   if (isScreenReaderEnabled && slot) {
     return (
       <ChallengeDetailsScreen
@@ -289,7 +238,35 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     );
   }
 
-  return <BlurProvider render={renderContent} renderOverlay={renderOverlay} />;
+  return (
+    <>
+      <ChallengesListScreen
+        pathwayChallenge={pathwayChallenge}
+        challenges={slots}
+        currentLevel={level}
+        yuniversalMap={yuniversalMap}
+        name={currentLevelName}
+        onPressLeftIcon={handleNavPress}
+        loading={loading || pathwayChallengeLoading}
+        openConsumables={hasDonationBattlepass ? openConsumables : undefined}
+      />
+
+      {slot ? (
+        <Box position="absolute" w="100%" h="100%" entering={FadeIn.duration(200)}>
+          <ChallengeDetailsScreen
+            slot={slot}
+            error={error}
+            isLoading={submitting}
+            onPressBack={resetErrorAndHideOverlay(() => setSlot(null))}
+            currentWorld={currentWorld}
+            onPressCta={handleSubmitChallenge}
+            onPressClose={navigateToQuestScreen}
+            onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
+          />
+        </Box>
+      ) : null}
+    </>
+  );
 };
 
 export default memo(ChallengesListContainer);
