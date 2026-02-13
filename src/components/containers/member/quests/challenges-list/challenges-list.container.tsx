@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, memo, useMemo, useEffect, useRef } from "react";
+import React, { FC, useState, useCallback, memo, useMemo, useEffect } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { challengeStartAction, clearChallengeStartErrorAction } from "@redux/levels/levels.actions";
@@ -53,6 +53,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const createChallengeError = useSelector(getCreateChallengeError);
   const [slot, setSlot] = useState<Slot | null>(null);
   const isScreenReaderEnabled = useScreenReaderChange();
+  const [shouldShowOverlay, setShouldShowOverlay] = useState(false);
 
   const currentWorld = getCurrentWorld(level);
 
@@ -127,6 +128,10 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     }
   }, [activeChallengeState, submitting, setError, handleNavPress]);
 
+  const showChallengeDetails = useCallback(() => {
+    setShouldShowOverlay(true);
+  }, []);
+
   const challengeListState = useMemo(
     () => ({
       level,
@@ -135,9 +140,9 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
       authoriseFitKitTypes,
       setActiveSlot: setSlot,
       verifyAndAuthorizeCapability,
-      showOverlay: showOverlayRef?.current,
+      showOverlay: showChallengeDetails,
     }),
-    [authoriseFitKitTypes, componentId, createChallenge, level, verifyAndAuthorizeCapability]
+    [authoriseFitKitTypes, componentId, createChallenge, level, verifyAndAuthorizeCapability, showChallengeDetails]
   );
 
   const handleSubmitChallenge = useCallback(async () => {
@@ -162,8 +167,6 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const navigateToQuestScreen = useCallback(() => {
     Navigation.popToRoot(componentId);
   }, [componentId]);
-
-  const showOverlayRef = useRef<() => void>(null);
 
   const slots = useMemo(() => {
     return data?.getQuestMapLevel?.slots.map((levelSlot) => {
@@ -197,7 +200,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
             setActiveSlot: setSlot,
             tempGameEnableReleaseYuHealthV4,
             verifyAndAuthorizeCapability,
-            showOverlay: showOverlayRef?.current,
+            showOverlay: showChallengeDetails,
           });
         },
       };
@@ -212,6 +215,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     data?.getQuestMapLevel?.slots,
     createChallenge,
     setSlot,
+    showChallengeDetails,
   ]);
 
   const resetErrorAndHideOverlay = useCallback(
@@ -219,6 +223,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
       setErrorState("");
       dispatch(clearChallengeStartErrorAction());
       hideOverlay?.();
+      setShouldShowOverlay(false);
     },
     [dispatch]
   );
@@ -251,7 +256,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
         openConsumables={hasDonationBattlepass ? openConsumables : undefined}
       />
 
-      {slot ? (
+      {slot && shouldShowOverlay ? (
         <Box position="absolute" w="100%" h="100%" entering={FadeIn.duration(200)}>
           <ChallengeDetailsScreen
             slot={slot}
