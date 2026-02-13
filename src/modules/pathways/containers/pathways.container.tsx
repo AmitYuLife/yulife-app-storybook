@@ -4,8 +4,6 @@ import { FeatureCardSection, WellbeingHubSection } from "@graphql/__generated";
 import { getMoodSubmission } from "../utils/get-mood-submission.util";
 import { useDispatch } from "react-redux";
 import { ROUTES } from "@navigation/constants";
-import { useUserFeatures } from "@hooks";
-import PathwaysOldScreen from "../screens/pathways-old.screen";
 import PathwaysScreen from "../screens/pathways.screen";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 import { usePathways } from "../hooks/usePathways";
@@ -19,8 +17,6 @@ const PathwaysContainer = ({ componentId }: Props) => {
   const onClose = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
-
-  const { tempGameEnablePathwaysStreaks } = useUserFeatures();
 
   const { data, loading, error, isStreakComplete } = usePathways(componentId);
 
@@ -96,10 +92,6 @@ const PathwaysContainer = ({ componentId }: Props) => {
       isStreakComplete,
     ]
   );
-
-  if (!tempGameEnablePathwaysStreaks) {
-    return <PathwaysOldScreen {...props} />;
-  }
 
   return <PathwaysScreen {...props} />;
 };
