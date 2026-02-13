@@ -96,7 +96,7 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
                       width={Style.adjust(55)}
                       height={Style.adjust(55)}
                       suppressLoadingUi={true}
-                      source={require("@assets/icons/yucoin-shadow.png")}
+                      source={require("@assets/icons/yucoin-shadow.webp")}
                       style={styles.yucoin}
                     />
                     <TextTemplate type="l1b" textAlign="center">
