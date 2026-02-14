@@ -1475,14 +1475,14 @@
       "subheading": "インターネット接続をご確認ください。"
     },
     "pathway_challenge_feedback": {
-      "description": "このチャレンジを始めた時と比べて、今どのように感じていますか？",
-      "heading": "どう感じていますか？",
+      "description": "このチャレンジを始めた時と比べて、今どのように感じますか?",
+      "heading": "気分はどうですか?",
       "scale": {
         "bad": "悪い",
-        "better": "より良い",
-        "great": "素晴らしい",
+        "better": "良い",
+        "great": "とても良い",
         "no_change": "変化なし",
-        "worse": "悪化"
+        "worse": "とても悪い"
       },
       "skip": "スキップ"
     },
@@ -1514,7 +1514,7 @@
       "personal_health_path": {
         "heading": "健康管理"
       },
-      "powered_by_yunity": "Yumoji によって 提供",
+      "powered_by_yunity": "Powered by ",
       "recommended_for_you": "あなたへのおすすめ",
       "reflect": "振り返りに進む",
       "reflected": {
