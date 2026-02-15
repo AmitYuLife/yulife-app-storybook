@@ -989,7 +989,7 @@
     },
     "challenge_success": {
       "footer": "أحسنت",
-      "great_work": "عمل رائع!",
+      "great_work": "رائع!",
       "stage": "المرحلة %{level}"
     },
     "challenge_unavailable": {
@@ -1526,7 +1526,7 @@
       "reflection_active_label": "يعكس",
       "reflection_chest_button_label": "مهمة الصحة",
       "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) مُهمَّة مكافأة يونتي",
-      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) مكافأة وحدة يونيتى",
+      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) مهمة يونتي الإضافية",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
       "reflection_chest_reward_to_earn_markdown": "اكسب: %{amount} ![](%{yucoinUrl})",
       "reflection_countdown": "%{الساعات}:%{الدقائق}:%{الثواني}",
@@ -1904,7 +1904,7 @@
       "error_message": "حدث خطأ ما.\nيرجى المحاولة مرة أخرى",
       "one_moment_please": "لحظة واحدة من فضلك",
       "playing_on_airplay": "التشغيل على جهاز AirPlay",
-      "playing_on_chromecast": "تشغيل على كروم كاست",
+      "playing_on_chromecast": "التشغيل على جهاز Chromecast",
       "session_complete": "الجلسة مكتملة.",
       "video_type": {
         "mindfulness": "تأمٌل",
