@@ -12,6 +12,7 @@ interface IProps extends Pick<BlurViewProps, "type"> {
   tint?: "light" | "dark";
   testID?: string;
   isVisible?: boolean;
+  contentStyle?: ViewStyle;
 }
 
 const BlurredWrapper = ({
@@ -20,6 +21,7 @@ const BlurredWrapper = ({
   backgroundColor = "rgba(0,0,0,.5)",
   testID,
   isVisible = true,
+  contentStyle,
 }: IProps) => {
   const { componentId } = useNavigation();
   const { height } = useWindowDimensions();
@@ -37,8 +39,9 @@ const BlurredWrapper = ({
       height,
       width: "100%",
       position: "absolute",
+      ...contentStyle,
     };
-  }, [height]);
+  }, [height, contentStyle]);
 
   if (!isVisible) {
     return null;
