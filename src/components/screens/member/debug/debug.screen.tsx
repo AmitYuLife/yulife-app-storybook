@@ -23,6 +23,8 @@ interface IDebugScreenProps {
   onPressClose: () => void;
 }
 
+const ESTIMATED_ITEM_SIZE = 58;
+
 const DebugScreen = memo(({ data, onPressClose }: IDebugScreenProps) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -80,6 +82,7 @@ const DebugScreen = memo(({ data, onPressClose }: IDebugScreenProps) => {
               testID={DEBUG_SEARCH_INPUT}
             />
           }
+          estimatedItemSize={ESTIMATED_ITEM_SIZE}
         />
       </View>
       <GenericHeadingAbsolute heading="debug" onRightIconPress={onPressClose} />

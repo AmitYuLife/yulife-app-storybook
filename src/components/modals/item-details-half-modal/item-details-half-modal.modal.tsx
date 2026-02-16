@@ -196,6 +196,7 @@ const ItemDetailsHalfModal = ({
           <AnimatedFlashList
             data={items}
             numColumns={2}
+            estimatedItemSize={186}
             renderItem={renderItem}
             onScroll={scrollHandler}
             showsVerticalScrollIndicator={false}

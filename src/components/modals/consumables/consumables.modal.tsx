@@ -6,7 +6,7 @@ import { useBackHandler, useTranslation } from "@hooks";
 import { useMutation, useQuery } from "@apollo/client";
 import { GetGameConsumablesQuery, gql } from "@graphql/__generated";
 import { first, isEmpty } from "lodash";
-import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { ContentStyle, FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import ConsumablesEmpty from "./subcomponents/consumables-empty";
 import moment from "moment";
 import { Navigation } from "@navigation/main";
@@ -186,7 +186,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
     [consumablesLoading, isActivateLoading, selectedConsumable]
   );
 
-  const contentContainerStyle = useMemo(
+  const contentContainerStyle: ContentStyle = useMemo(
     () => ({ ...styles.contentContainer, paddingBottom: (footerHeight ?? 0) + Style.adjust(20) }),
     [footerHeight]
   );
@@ -203,6 +203,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
     >
       <FlashList
         showsVerticalScrollIndicator={false}
+        estimatedItemSize={Style.adjust(100)}
         contentContainerStyle={contentContainerStyle}
         bounces={!showEmptyMessage && !consumablesLoading}
         pointerEvents={consumablesLoading ? "none" : undefined}

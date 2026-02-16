@@ -84,6 +84,7 @@ const LeaderboardSettings = ({
       <GenericHeadingPad />
       <FlashList
         showsVerticalScrollIndicator={false}
+        estimatedItemSize={80}
         data={flatLeaderboardListWithHeaders}
         renderItem={renderItem}
         contentContainerStyle={styles.content}

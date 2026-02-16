@@ -2,7 +2,7 @@ import React, { RefObject, memo, useCallback, useEffect, useMemo, useRef } from 
 import { Animated, Platform, RefreshControl, View } from "react-native";
 import { GenericHeadingPad, LeaderboardFloatingRank, NavBar, TopBar, UserReferral } from "@organisms";
 import { Colours, NAV_BAR, Style, TOP_BAR, StyleSheet } from "@styles";
-import { FlashList as _FlashList, FlashListRef, ListRenderItemInfo } from "@shopify/flash-list";
+import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { LEADERBOARD_SCROLL_LIST, NOTIF_CENTRE, LEADERBOARD_USER_REFERRAL } from "@ids";
 import LeaderboardListFooterComponent from "./leaderboard-list-footer-componet";
@@ -95,7 +95,7 @@ export const LeaderboardScreen = ({
   currentUserIsOutOfBounds,
 }: IProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
-  const flashList: RefObject<FlashListRef<ISocialGroupLeaderboardListItem>> = useRef(null);
+  const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef(null);
   const { tempGameEnableAnimatedLeaderboardRays } = useUserFeatures();
   const showYudokuEmptyMessage = useMemo(
     () => !items.length && activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku,
@@ -306,6 +306,7 @@ export const LeaderboardScreen = ({
           testID={LEADERBOARD_SCROLL_LIST}
           ref={flashList}
           showsVerticalScrollIndicator={false}
+          estimatedItemSize={56}
           scrollEventThrottle={16}
           contentContainerStyle={styles.listContainer}
           data={data}

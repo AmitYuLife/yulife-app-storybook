@@ -25,15 +25,16 @@ export const MoodCalendar = ({ data, loading, scrollValue }: IMoodCalendarProps)
   return (
     <Box flex={1}>
       <AnimatedFlashList
+        inverted={true}
         data={data}
         refreshing={loading}
         renderItem={render}
         keyExtractor={keyExtractor}
+        estimatedItemSize={Style.adjust(500)}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
         onScroll={scrollHandler}
         contentContainerStyle={styles.contentContainer}
-        maintainVisibleContentPosition={{ startRenderingFromBottom: true }}
       />
     </Box>
   );
