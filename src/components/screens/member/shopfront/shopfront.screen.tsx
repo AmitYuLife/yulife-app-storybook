@@ -186,7 +186,6 @@ const ShopfrontScreen = ({
         testID={SHOPFRONT_REWARDS_LIST}
         renderItem={renderItem}
         onEndReachedThreshold={0.3}
-        estimatedItemSize={128}
         onEndReached={handleEndReached}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}

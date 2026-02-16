@@ -99,7 +99,6 @@ export const NotificationsScreen = ({
         ListEmptyComponent={!isInitialized ? <NotificationLoading /> : <NotificationsEmpty />}
         onRefresh={onRefresh}
         refreshing={false}
-        estimatedItemSize={Style.adjust(100)}
         ListFooterComponent={
           !isInitialized || !notifications.length ? null : (
             <NotificationFooter maximumAgeOfMessageInDays={maximumAgeOfMessageInDays} />

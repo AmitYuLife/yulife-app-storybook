@@ -81,7 +81,6 @@ const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
         }))}
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
-        estimatedItemSize={itemSize}
         renderItem={renderItem}
       />
       <View style={styles.buttonWrapper}>
@@ -100,8 +99,6 @@ const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
 };
 
 export default memo(SelectContentLocationContainer);
-
-const itemSize = Style.adjust(48);
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
