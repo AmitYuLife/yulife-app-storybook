@@ -30,7 +30,6 @@ const _RewardsPurchasedList = (props: IProps) => {
         data={data}
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
-        estimatedItemSize={ITEM_SIZE}
         renderItem={renderItem}
         refreshing={loading}
         onRefresh={onRefresh}
@@ -41,8 +40,6 @@ const _RewardsPurchasedList = (props: IProps) => {
     </View>
   );
 };
-
-const ITEM_SIZE = Style.adjust(74);
 
 const keyExtractor = (item: RewardsPurchasedItemData) => item.id;
 const renderItem = ({ item }: ListRenderItemInfo<RewardsPurchasedItemData>) => <RewardsPurchasedItem {...item} />;

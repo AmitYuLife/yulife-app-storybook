@@ -7,7 +7,6 @@ import { GetReferralHistoryQuery, GetReferralInformationQuery } from "@graphql/_
 import { REFERRALS_SCREEN, REFERRALS_SCREEN_NAME } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { UserAvatarCoinCard } from "@molecules";
-import { Style } from "@styles";
 import { styles } from "./referrals.styles";
 import { getDateFormat } from "@locale";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
@@ -78,7 +77,6 @@ const ReferralsScreen = ({
           onRefresh={onRefresh}
           onScroll={handleScroll}
           scrollEventThrottle={16}
-          estimatedItemSize={Style.adjust(70)}
           keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={
