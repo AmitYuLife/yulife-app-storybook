@@ -1,3 +1,16 @@
+diff --git a/node_modules/react-native/Libraries/Text/Text.js b/node_modules/react-native/Libraries/Text/Text.js
+index 52bf37f..a8be316 100644
+--- a/node_modules/react-native/Libraries/Text/Text.js
++++ b/node_modules/react-native/Libraries/Text/Text.js
+@@ -44,7 +44,7 @@ const Text: component(
+       accessible,
+       accessibilityLabel,
+       accessibilityState,
+-      allowFontScaling,
++      allowFontScaling = false,
+       'aria-busy': ariaBusy,
+       'aria-checked': ariaChecked,
+       'aria-disabled': ariaDisabled,
 diff --git a/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp b/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
 index 405392f..4082426 100644
 --- a/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
