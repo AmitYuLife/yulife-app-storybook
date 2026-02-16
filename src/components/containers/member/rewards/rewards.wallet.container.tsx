@@ -91,6 +91,7 @@ function RewardsWalletContainer({ componentId }: IRewardsWalletContainerProps) {
             data={calculatedData}
             renderItem={renderItem}
             contentContainerStyle={styles.contentContainer}
+            estimatedItemSize={175}
             onRefresh={refetch}
             refreshing={loading}
             showsVerticalScrollIndicator={false}

@@ -15,6 +15,8 @@ interface CarouselPathwaysProps {
   pathways: PathwayItem[];
 }
 
+const ESTIMATED_ITEM_SIZE = 148;
+
 const CarouselPathways = ({ pathways }: CarouselPathwaysProps) => {
   return (
     <Box>
@@ -28,6 +30,7 @@ const CarouselPathways = ({ pathways }: CarouselPathwaysProps) => {
         keyExtractor={keyExtractor}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
+        estimatedItemSize={ESTIMATED_ITEM_SIZE}
         contentContainerStyle={styles.contentContainer}
       />
     </Box>

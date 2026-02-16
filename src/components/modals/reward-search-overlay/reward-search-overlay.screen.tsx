@@ -100,6 +100,7 @@ const RewardSearchOverlay = ({
               contentContainerStyle={styles.listContent}
               extraData={[isLoading]}
               data={isEmpty(searchTerm) || isLoading || !showResults ? [] : items}
+              estimatedItemSize={100}
               showsVerticalScrollIndicator={false}
               ListEmptyComponent={
                 <>

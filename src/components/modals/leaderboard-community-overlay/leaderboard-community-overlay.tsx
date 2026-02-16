@@ -29,6 +29,7 @@ const LeaderboardCommunityOverlay = ({ socialGroups = [], onSelect }: IProps) =>
     <View style={styles.wrapper}>
       <FlashList
         showsVerticalScrollIndicator={false}
+        estimatedItemSize={40}
         data={socialGroups.map((socialGroup) => ({
           socialGroup,
           onPress: () => {

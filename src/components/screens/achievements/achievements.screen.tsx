@@ -93,6 +93,7 @@ const AchievementsScreen = ({
         <Box flex={1} width={"100%"}>
           <FlashList
             renderItem={renderItem}
+            estimatedItemSize={Style.adjust(164)}
             keyExtractor={keyExtractor}
             showsVerticalScrollIndicator={false}
             data={isLoading ? [] : achievements}

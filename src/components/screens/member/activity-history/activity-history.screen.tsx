@@ -11,7 +11,7 @@ import {
 } from "@organisms";
 import { IActivityHistoryDay } from "@organisms/activity-history-day/activity-history-day";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { FlashList, FlashListRef, ListRenderItemInfo } from "@shopify/flash-list";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { Style, StyleSheet } from "@styles";
 import ActivityHistoryEmpty from "./activity-history-empty";
 
@@ -37,7 +37,7 @@ const ActivityHistoryScreen = ({
   loading,
   onRefresh,
 }: IProps) => {
-  const listRef = useRef<FlashListRef<IActivityHistoryDay>>(null);
+  const listRef = useRef<FlashList<IActivityHistoryDay>>(null);
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IActivityHistoryDay>) => <ActivityHistoryDay {...item} />,
     []
@@ -66,6 +66,7 @@ const ActivityHistoryScreen = ({
           renderItem={renderItem}
           onRefresh={onRefresh}
           refreshing={false}
+          estimatedItemSize={Style.adjust(425)}
           ListEmptyComponent={loading ? <ActivityHistoryDaySkeleton /> : <ActivityHistoryEmpty />}
           testID={ACTIVITY_HISTORY_SCREEN}
         />

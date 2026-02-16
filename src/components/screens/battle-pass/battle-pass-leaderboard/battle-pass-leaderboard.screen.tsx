@@ -5,7 +5,7 @@ import { GenericHeadingPad, LeaderboardFloatingRank, ListItem, TopBarAbsolute } 
 import { Image, TextTemplate } from "@atoms";
 import { Colours, NAV_BAR, Style, StyleSheet } from "@styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
-import { FlashList as _FlashList, FlashListRef, ListRenderItemInfo } from "@shopify/flash-list";
+import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { ISocialGroupLeaderboardListItem } from "@components/screens/member/leaderboard/leaderboard-list-item";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
@@ -71,7 +71,7 @@ const BattlePassLeaderboardScreen = ({
   activeSocialGroup,
   onPressSocialGroup,
 }: IProps) => {
-  const flashList: RefObject<FlashListRef<ISocialGroupLeaderboardListItem>> = useRef(null);
+  const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef(null);
   const scrollValue = useRef(new Animated.Value(0)).current;
 
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(details?.rewardInfo?.onPress);
@@ -165,6 +165,7 @@ const BattlePassLeaderboardScreen = ({
         <FlashList
           ref={flashList}
           showsVerticalScrollIndicator={false}
+          estimatedItemSize={45}
           scrollEventThrottle={16}
           data={leaderboard}
           ListHeaderComponent={

@@ -49,6 +49,7 @@ const LeaderboardRankModal = ({ leaderboardId, targetId, onListItemPress }: IPro
         ) : (
           <FlashList
             showsVerticalScrollIndicator={false}
+            estimatedItemSize={45}
             scrollEventThrottle={16}
             contentContainerStyle={styles.listContainer}
             data={data?.getMobileSocialGroupLeaderboardItems}

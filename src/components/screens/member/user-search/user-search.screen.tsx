@@ -92,6 +92,7 @@ const UserSearchScreen = ({
           data={data}
           keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
+          estimatedItemSize={Style.adjust(45)}
           renderItem={renderItem}
           keyboardShouldPersistTaps="handled"
           testID={flashListTestId}

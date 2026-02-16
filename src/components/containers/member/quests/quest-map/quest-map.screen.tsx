@@ -7,7 +7,7 @@ import { QUESTS_SCREEN } from "@ids";
 import { NavBar, TopBar } from "@organisms";
 import AnimalLoader from "@organisms/animal-loader/animal-loader";
 import { IIcon } from "@organisms/top-bar/subcomponents/left";
-import { FlashList, FlashListRef, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
+import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
 import { Style, TOP_BAR, StyleSheet } from "@styles";
 import { getCurrentWorld } from "@utils";
 import { first, isEmpty } from "lodash";
@@ -69,7 +69,7 @@ const QuestMapScreen = ({
   leftIcons,
 }: IQuestMapScreenProps) => {
   const features = useUserFeatures();
-  const flashlistRef = useRef<FlashListRef<IQuestMapItem>>(null);
+  const flashlistRef = useRef<FlashList<IQuestMapItem>>(null);
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
   const nextLevelIndex = useMemo(() => items.findIndex((item) => item.levels.find((level) => level.isNext)), [items]);
   const lastScrolledLevelRef = useRef<number | null>(null);
@@ -121,8 +121,22 @@ const QuestMapScreen = ({
     return () => clearTimeout(timeoutId);
   }, [currentLevel, scrollToLevel]);
 
+  const overrideItemLayout = useCallback((layout: { span?: number; size?: number }, item: IQuestMapItem): void => {
+    if (!item) {
+      return null;
+    }
+
+    const seperator = item.seperator;
+    const seperatorHeight = seperator ? Style.DEVICE_WIDTH * (seperator?.height / seperator?.width) : 0;
+
+    const height =
+      Style.DEVICE_WIDTH * (item.episodeConfig?.episodeHeight / item.episodeConfig?.episodeWidth) + seperatorHeight;
+
+    layout.size = height;
+  }, []);
+
   const onViewableItemsChanged = useCallback(
-    ({ viewableItems }: { viewableItems: ViewToken<IQuestMapItem>[] }) => {
+    ({ viewableItems }: { viewableItems: ViewToken[] }) => {
       if (isEmpty(viewableItems)) {
         return;
       }
@@ -146,19 +160,21 @@ const QuestMapScreen = ({
         {!isEmpty(items) && !isScreenReaderEnabled ? (
           <FlashList
             data={items}
+            inverted={true}
             bounces={false}
             ref={flashlistRef}
             onLoad={scrollToLevel}
+            estimatedItemSize={755}
             drawDistance={Style.DEVICE_HEIGHT * 2}
             renderItem={renderItem}
             keyExtractor={keyExtractor}
             snapToOffsets={snapOffsets}
             onViewableItemsChanged={onViewableItemsChanged}
             disableIntervalMomentum={true}
+            overrideItemLayout={overrideItemLayout}
             showsVerticalScrollIndicator={false}
             decelerationRate={DECELERATION_RATE}
             viewabilityConfig={VIEWABILITY_CONFIG}
-            maintainVisibleContentPosition={{ startRenderingFromBottom: true }}
           />
         ) : null}
       </View>
