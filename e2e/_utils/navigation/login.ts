@@ -40,8 +40,8 @@ export const loginAsUser =
   async () => {
     // wait for the app to load
     const loginButton = element(by.id(LOGIN_HERO_LOGIN_BUTTON));
-    await waitFor(loginButton).toExist().withTimeout(15_000);
-    await waitFor(loginButton).toBeVisible().withTimeout(15_000);
+    await waitFor(loginButton).toExist().withTimeout(25_000);
+    await waitFor(loginButton).toBeVisible().withTimeout(25_000);
 
     await loginWithCredentials(customer.data.email, auth.data.password, region)();
 

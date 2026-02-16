@@ -3,6 +3,15 @@ import { screens } from "@appScreens";
 import * as ids from "@ids";
 import { swipeFromText } from "./when";
 import { FinancialWellnessQuizDescriptionPage } from "engagement_surveys/_resources/types";
+
+export const onPathwaysScreen = async () => {
+  await idVisible(ids.PATHWAYS_SCREEN, 3_000)();
+};
+
+export const pathwaysStreakDayCompleted = (day: number) => async () => {
+  await idVisible(ids.PATHWAY_STREAK_DAY(day, true), 5_000)();
+};
+
 export {
   languageSettingVisible,
   languageSelectorVisible,
