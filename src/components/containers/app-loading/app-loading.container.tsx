@@ -2,8 +2,8 @@ import { persistor, store } from "@redux/_core/store";
 import { setMainRoot } from "@redux/app/app.actions";
 import SplashScreen from "@screens/splash/splash.screen";
 import * as React from "react";
-// eslint-disable-next-line no-restricted-imports
-import { LayoutChangeEvent, SafeAreaView, Text, View } from "react-native";
+
+import { LayoutChangeEvent, SafeAreaView, View } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
 import { useSafeAreaViewOffset } from "@hooks";
 import { TextTemplate } from "@atoms";
@@ -14,8 +14,6 @@ interface IProps {
   componentId: string;
   loadingText?: string;
 }
-
-(Text as any).defaultProps = { ...((Text as any).defaultProps || {}), allowFontScaling: false };
 
 export const AppLoadingContainer: React.FC<IProps> = ({ loadingText }) => {
   const [renderPersistor, setRenderPersistor] = React.useState(false);

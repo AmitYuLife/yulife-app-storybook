@@ -76,7 +76,6 @@ const WrappedStage1Screen = ({ nextStage, stats }: IWrappedStageProps) => {
         </Box>
 
         <Box
-          px={40}
           h="100%"
           w="100%"
           pt={TOP_BAR_WITH_PAD - HEIGHT}
@@ -86,7 +85,7 @@ const WrappedStage1Screen = ({ nextStage, stats }: IWrappedStageProps) => {
         >
           {!isExiting ? (
             <Box flex={1}>
-              <Box w="100%" flex={1} alignItems="center" exiting={FadeOutDown.duration(1000)}>
+              <Box w="100%" flex={1} alignItems="center" exiting={FadeOutDown.duration(1000)} px={40}>
                 <Box gap={3} entering={FadeInUp.delay(CONTENT_DELAY * 1.5).duration(1000)} mt={60}>
                   <TextTemplate type="h3" textAlign="center">
                     {t("screens.wrapped.stage_1.title")}
