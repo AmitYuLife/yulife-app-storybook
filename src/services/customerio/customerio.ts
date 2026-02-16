@@ -5,6 +5,7 @@ import { region } from "@locale";
 class CustomerIOService {
   private initialized = false;
   private userId: string | null = null;
+  private pendingDeviceTokens: string[] = [];
 
   public init = async (): Promise<void> => {
     if (this.initialized) {
@@ -44,13 +45,22 @@ class CustomerIOService {
     try {
       this.userId = userId;
       await CustomerIO.identify({ userId, traits });
+      await this.flushPendingDeviceTokens();
     } catch (error) {
       Logger.error(error as Error, { location: "customerio.identify" });
     }
   };
 
+  private flushPendingDeviceTokens = async (): Promise<void> => {
+    for (const deviceToken of [...this.pendingDeviceTokens]) {
+      await this.registerPushToken(deviceToken);
+      this.pendingDeviceTokens.shift();
+    }
+  };
+
   public registerPushToken = async (deviceToken: string): Promise<void> => {
     if (!this.initialized || !this.userId) {
+      this.pendingDeviceTokens.push(deviceToken);
       return;
     }
 
