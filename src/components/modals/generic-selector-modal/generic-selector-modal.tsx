@@ -52,7 +52,6 @@ const GenericSelectorModal = <T,>({
       <FlashList
         data={data}
         refreshing={false}
-        estimatedItemSize={40}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}

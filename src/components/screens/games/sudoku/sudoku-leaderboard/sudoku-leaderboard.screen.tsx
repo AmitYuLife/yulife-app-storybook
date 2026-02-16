@@ -63,7 +63,6 @@ const SudokuLeaderboardScreen = ({ onBack, date, leaderboard, onListItemPress }:
       <View style={styles.list}>
         <FlashList
           showsVerticalScrollIndicator={false}
-          estimatedItemSize={95}
           data={leaderboard}
           renderItem={renderItem}
           scrollEventThrottle={16}

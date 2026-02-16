@@ -7,17 +7,16 @@ import { QUESTS_SCREEN } from "@ids";
 import { NavBar, TopBar } from "@organisms";
 import AnimalLoader from "@organisms/animal-loader/animal-loader";
 import { IIcon } from "@organisms/top-bar/subcomponents/left";
-import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
+import { FlashList, FlashListRef, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
 import { Style, TOP_BAR, StyleSheet } from "@styles";
 import { getCurrentWorld } from "@utils";
 import { first, isEmpty } from "lodash";
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { Platform, SafeAreaView, View, ViewStyle } from "react-native";
 import QuestMapEpisode from "./quest-map-episode";
 import QuestMapEpisodeAccessibility from "./quest-map-episode-accessibility";
 import { getTopBarType } from "./quest-map-helpers";
 import { IQuestMapItem } from "./quest-map.interface";
-import { DETOX_ENABLED } from "@services/socket";
 
 interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
@@ -45,19 +44,6 @@ const keyExtractor = (_item: IQuestMapItem): string => {
   return `${_item.episodeConfig.episodeKey}`;
 };
 
-/**
- * Stabilize slow simulator environments
- * by adding a delay before scrolling to the current level
- * so that it doesn't get invoked around the same time
- * that memory is being spent rendering all the other tabs
- */
-const SCROLL_TO_LEVEL_DELAY = DETOX_ENABLED ? 5000 : 0;
-
-enum ScrollToLevelReason {
-  Load = "Load",
-  Delay = "Delay",
-}
-
 const QuestMapScreen = ({
   items,
   weeklies,
@@ -69,10 +55,9 @@ const QuestMapScreen = ({
   leftIcons,
 }: IQuestMapScreenProps) => {
   const features = useUserFeatures();
-  const flashlistRef = useRef<FlashList<IQuestMapItem>>(null);
+  const flashlistRef = useRef<FlashListRef<IQuestMapItem>>(null);
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
   const nextLevelIndex = useMemo(() => items.findIndex((item) => item.levels.find((level) => level.isNext)), [items]);
-  const lastScrolledLevelRef = useRef<number | null>(null);
 
   const itemsForScreenReader = useMemo(
     () => first(items.slice(nextLevelIndex, nextLevelIndex + 7)),
@@ -96,47 +81,12 @@ const QuestMapScreen = ({
     return activeEpisode ?? 0;
   }, [items]);
 
-  const scrollToLevel = useCallback(
-    (_time?: { elapsedTimeInMs: number }, reason = ScrollToLevelReason.Load) => {
-      if (lastScrolledLevelRef.current === currentLevel && reason === ScrollToLevelReason.Delay) {
-        return;
-      }
-
-      flashlistRef.current?.scrollToOffset({
-        offset: snapOffsets[currentLevelEpisode],
-      });
-
-      if (reason === ScrollToLevelReason.Delay) {
-        lastScrolledLevelRef.current = currentLevel;
-      }
-    },
-    [currentLevelEpisode, snapOffsets]
-  );
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      scrollToLevel(undefined, ScrollToLevelReason.Delay);
-    }, SCROLL_TO_LEVEL_DELAY);
-
-    return () => clearTimeout(timeoutId);
-  }, [currentLevel, scrollToLevel]);
-
-  const overrideItemLayout = useCallback((layout: { span?: number; size?: number }, item: IQuestMapItem): void => {
-    if (!item) {
-      return null;
-    }
-
-    const seperator = item.seperator;
-    const seperatorHeight = seperator ? Style.DEVICE_WIDTH * (seperator?.height / seperator?.width) : 0;
-
-    const height =
-      Style.DEVICE_WIDTH * (item.episodeConfig?.episodeHeight / item.episodeConfig?.episodeWidth) + seperatorHeight;
-
-    layout.size = height;
-  }, []);
+  const currentSnapOffsetIndex = useMemo(() => {
+    return snapOffsets.findIndex((offset) => offset === snapOffsets[currentLevelEpisode]);
+  }, [snapOffsets, currentLevelEpisode]);
 
   const onViewableItemsChanged = useCallback(
-    ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+    ({ viewableItems }: { viewableItems: ViewToken<IQuestMapItem>[] }) => {
       if (isEmpty(viewableItems)) {
         return;
       }
@@ -160,21 +110,19 @@ const QuestMapScreen = ({
         {!isEmpty(items) && !isScreenReaderEnabled ? (
           <FlashList
             data={items}
-            inverted={true}
             bounces={false}
             ref={flashlistRef}
-            onLoad={scrollToLevel}
-            estimatedItemSize={755}
             drawDistance={Style.DEVICE_HEIGHT * 2}
             renderItem={renderItem}
             keyExtractor={keyExtractor}
             snapToOffsets={snapOffsets}
+            initialScrollIndex={currentSnapOffsetIndex}
             onViewableItemsChanged={onViewableItemsChanged}
             disableIntervalMomentum={true}
-            overrideItemLayout={overrideItemLayout}
             showsVerticalScrollIndicator={false}
             decelerationRate={DECELERATION_RATE}
             viewabilityConfig={VIEWABILITY_CONFIG}
+            maintainVisibleContentPosition={{ startRenderingFromBottom: true }}
           />
         ) : null}
       </View>

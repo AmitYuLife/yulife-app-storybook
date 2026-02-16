@@ -175,7 +175,8 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
           seperator,
         };
       })
-      .filter(Boolean);
+      .filter(Boolean)
+      .reverse();
   }, [currentLevel, data?.levels, formattedLevels, yuniversalMap]);
 
   const itemOffsets = useMemo(() => {

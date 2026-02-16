@@ -228,7 +228,6 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
             extraData={loadingMore}
             data={calculatedData}
             renderItem={renderItem}
-            estimatedItemSize={142}
             refreshing={loading}
             contentContainerStyle={styles.listContent}
             keyExtractor={keyExtractor}

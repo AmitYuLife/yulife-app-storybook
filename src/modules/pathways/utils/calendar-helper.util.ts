@@ -47,7 +47,7 @@ export const generateMissingData = (
 
   const fullData = getMissingDays(newMoodData);
 
-  return fullData;
+  return fullData.reverse();
 };
 
 const getMissingDays = (data: MonthMoodData[]): IMonth[] => {
