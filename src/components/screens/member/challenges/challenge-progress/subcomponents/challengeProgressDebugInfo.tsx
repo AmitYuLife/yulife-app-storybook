@@ -2,7 +2,7 @@ import { Box, TextTemplate } from "@atoms";
 import { memo, useCallback, useRef } from "react";
 import { Button } from "@molecules";
 import { Colours } from "@styles";
-import { FlashList } from "@shopify/flash-list";
+import { FlashList, FlashListRef } from "@shopify/flash-list";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { t } from "@locale";
@@ -34,7 +34,7 @@ const ChallengeProgressDebugInfo = ({
   historySteps,
   startDateTime,
 }: Props) => {
-  const flashListRef = useRef<FlashList<IPedometerHistoryEntry>>(null);
+  const flashListRef = useRef<FlashListRef<IPedometerHistoryEntry>>(null);
   const dispatch = useDispatch();
 
   const [submitChallengeDebugData, { loading }] = useMutation(gql("SubmitChallengeDebugDataDocument"));
@@ -95,13 +95,7 @@ const ChallengeProgressDebugInfo = ({
       </TextTemplate>
       <TextTemplate type="l1b">{t("screens.challenge_progress.debug_info.history_steps")}</TextTemplate>
       <Box width={230} height={94} mb={8} bg="#FAFAFE" px={8} py={2} br={8} borderColor={"#E3E3E1"} borderWidth={1}>
-        <FlashList
-          ref={flashListRef}
-          data={historySteps}
-          keyExtractor={keyExtractor}
-          estimatedItemSize={18}
-          renderItem={renderItem}
-        />
+        <FlashList ref={flashListRef} data={historySteps} keyExtractor={keyExtractor} renderItem={renderItem} />
       </Box>
       <Button
         translationKey="screens.challenge_progress.debug_info.cta"

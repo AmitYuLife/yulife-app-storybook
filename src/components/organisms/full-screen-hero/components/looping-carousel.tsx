@@ -1,6 +1,6 @@
 import { Colours, Style, TOP_BAR } from "@styles";
 import { delay } from "@utils/misc";
-import { FlashList } from "@shopify/flash-list";
+import { FlashList, FlashListRef } from "@shopify/flash-list";
 import { FullScreenHeroSlide } from "../types";
 import { getTopOffset } from "../helpers";
 import { Box, Logo, TextTemplate } from "@atoms";
@@ -36,9 +36,7 @@ const LoopingCarousel = ({
    */
   const startIndex = useMemo(() => data.length, [data.length]);
 
-  const estimatedFirstItemOffset = useMemo(() => Style.DEVICE_WIDTH * startIndex, [startIndex]);
-
-  const listRef = useRef<FlashList<FullScreenHeroSlide> | null>(null);
+  const listRef = useRef<FlashListRef<FullScreenHeroSlide> | null>(null);
   const currentIndexRef = useRef(startIndex);
   const hasUserScrolled = useRef(false);
 
@@ -145,11 +143,8 @@ const LoopingCarousel = ({
       ref={listRef}
       data={tripledData}
       decelerationRate="fast"
-      estimatedItemSize={Style.DEVICE_WIDTH}
-      overrideItemLayout={overrideItemLayout}
       horizontal={true}
       initialScrollIndex={startIndex}
-      estimatedFirstItemOffset={estimatedFirstItemOffset}
       keyExtractor={keyExtractor}
       onScrollBeginDrag={onScrollBeginDrag}
       onMomentumScrollEnd={onMomentumScrollEnd}
@@ -167,10 +162,6 @@ const LoopingCarousel = ({
 
 function keyExtractor(item: FullScreenHeroSlide, index: number) {
   return `${item.title}-${index}`;
-}
-
-function overrideItemLayout(layout: { size: number }) {
-  layout.size = Style.DEVICE_WIDTH;
 }
 
 export default memo(LoopingCarousel);
