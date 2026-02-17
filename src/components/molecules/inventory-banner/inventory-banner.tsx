@@ -10,6 +10,7 @@ import { usePressEffect } from "../../../hooks/usePressEffect";
 import { INVENTORY_BANNER, INVENTORY_BANNER_ITEM_COUNT } from "@ids";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { isRTL } from "@locale";
+import { DETOX_ENABLED } from "@services/socket";
 
 const BANNER_IMAGE = require("./inventory-banner-icon.webp");
 const BANNER_BACKGROUND = require("./inventory-banner-background.webp");
@@ -42,8 +43,8 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
               suppressLoadingUi={true}
               style={styles.sparkleLottie}
               source={SPARKLE_LOTTIE}
-              loop={true}
-              autoPlay={true}
+              loop={!DETOX_ENABLED}
+              autoPlay={!DETOX_ENABLED}
             />
             {amount ? (
               <View style={styles.indicator} testID={INVENTORY_BANNER_ITEM_COUNT(amount)}>
