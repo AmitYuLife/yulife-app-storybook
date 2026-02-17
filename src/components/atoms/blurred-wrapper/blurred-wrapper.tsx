@@ -4,7 +4,7 @@ import { memo, ReactElement, useMemo } from "react";
 import { StyleSheet } from "@styles";
 import { useNavigation } from "@navigation/navigation.context";
 import { useWindowDimensions, View, ViewStyle } from "react-native";
-import Blur from "../blur/blur";
+import Blur, { IBlurProps } from "../blur/blur";
 
 interface IProps extends Pick<BlurViewProps, "type"> {
   children: ReactElement;
@@ -22,8 +22,8 @@ const BlurredWrapper = ({
   backgroundColor = "rgba(0,0,0,.5)",
   testID,
   isVisible = true,
-  isBlurred = true,
   contentStyle,
+  isBlurred = true,
 }: IProps) => {
   const { componentId } = useNavigation();
   const { height } = useWindowDimensions();
@@ -49,31 +49,31 @@ const BlurredWrapper = ({
     return null;
   }
 
-  if (!isBlurred) {
-    return (
-      <View style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
+  return (
+    <View style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
+      <BlurContainer style={wrapperStyle} isBlurred={isBlurred} targetId={componentId} type={tint}>
         <View style={containerStyle} testID={testID}>
           {children}
         </View>
-      </View>
+      </BlurContainer>
+    </View>
+  );
+};
+
+interface IBlurContainerProps extends IBlurProps {
+  isBlurred: boolean;
+}
+
+const BlurContainer = ({ children, style, isBlurred, ...blurProps }: IBlurContainerProps) => {
+  if (isBlurred) {
+    return (
+      <Blur style={style} {...blurProps}>
+        {children}
+      </Blur>
     );
   }
 
-  const blurContainer = isBlurred ? (
-    <Blur style={wrapperStyle} targetId={componentId} type={tint}>
-      {children}
-    </Blur>
-  ) : (
-    <View style={wrapperStyle} testID={testID}>
-      {children}
-    </View>
-  );
-
-  return (
-    <View style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
-      {blurContainer}
-    </View>
-  );
+  return <View style={style}>{children}</View>;
 };
 
 export default memo(BlurredWrapper);
