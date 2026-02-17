@@ -29,6 +29,7 @@ const commonProps = {
 // TODO: This sucks too many props, unncessary animation, purge it
 const BlurredOverlay = ({
   children,
+  withBlurBackground,
   closeOnBlur = true,
   type = "light",
   onClose,
@@ -38,6 +39,7 @@ const BlurredOverlay = ({
   const { handleSduiAction: handleOnClose } = useSduiCallbackFunctionOrReduxAction(onClose, () =>
     Navigation.dismissOverlay(MODALS.blurredOverlay)
   );
+
   const opacity = useRef(new Animated.Value(0)).current;
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -75,14 +77,19 @@ const BlurredOverlay = ({
 
   const Wrapper = useMemo(
     () => (
-      <BlurredWrapper testID="blur-provider.overlay-container" type={type} contentStyle={wrapperStyle}>
+      <BlurredWrapper
+        testID="blur-provider.overlay-container"
+        type={type}
+        isBlurred={withBlurBackground}
+        contentStyle={wrapperStyle}
+      >
         <>
           <View style={styles.blur} onTouchStart={closeOnBlur ? handlePress : null} />
           {cloneElement(children as React.ReactElement<{ closeOverlay: () => void }>, { closeOverlay: handlePress })}
         </>
       </BlurredWrapper>
     ),
-    [type, closeOnBlur, handlePress, children, wrapperStyle]
+    [type, closeOnBlur, handlePress, children, withBlurBackground, wrapperStyle]
   );
 
   return withModal ? <Modal transparent={true}>{Wrapper}</Modal> : Wrapper;

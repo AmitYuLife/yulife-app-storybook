@@ -12,6 +12,7 @@ interface IProps extends Pick<BlurViewProps, "type"> {
   tint?: "light" | "dark";
   testID?: string;
   isVisible?: boolean;
+  isBlurred?: boolean;
   contentStyle?: ViewStyle;
 }
 
@@ -21,6 +22,7 @@ const BlurredWrapper = ({
   backgroundColor = "rgba(0,0,0,.5)",
   testID,
   isVisible = true,
+  isBlurred = true,
   contentStyle,
 }: IProps) => {
   const { componentId } = useNavigation();
@@ -47,13 +49,29 @@ const BlurredWrapper = ({
     return null;
   }
 
-  return (
-    <View style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
-      <Blur style={wrapperStyle} targetId={componentId} type={tint}>
+  if (!isBlurred) {
+    return (
+      <View style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
         <View style={containerStyle} testID={testID}>
           {children}
         </View>
-      </Blur>
+      </View>
+    );
+  }
+
+  const blurContainer = isBlurred ? (
+    <Blur style={wrapperStyle} targetId={componentId} type={tint}>
+      {children}
+    </Blur>
+  ) : (
+    <View style={wrapperStyle} testID={testID}>
+      {children}
+    </View>
+  );
+
+  return (
+    <View style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
+      {blurContainer}
     </View>
   );
 };
