@@ -9,7 +9,7 @@ import { gql } from "@graphql/__generated";
 import { Navigation } from "@navigation/main";
 import { SUPPORTED_FEEDBACK_FORM_TYPES } from "@graphql/constants";
 
-const BLACKLISTED_MODALS = [MODALS.feedback, MODALS.appReview];
+const BLACKLISTED_MODALS: string[] = [MODALS.feedback, MODALS.appReview];
 const BLACKLISTED_ROUTES = [ROUTES.journey, ROUTES.sudokuGame];
 
 const getPendingFeedback = () =>
