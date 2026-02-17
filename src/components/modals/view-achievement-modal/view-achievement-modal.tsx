@@ -87,6 +87,8 @@ const ViewAchievementModal = ({
 
   const containerStyle = useMemo(() => (showInfoPanel ? { ph: 38 } : { p: 38 }), [showInfoPanel]);
 
+  const bottomPadding = useMemo(() => insets.bottom + Style.adjust(20), [insets.bottom]);
+
   return (
     <Box flex={1}>
       <GenericHeadingPad />
@@ -95,9 +97,7 @@ const ViewAchievementModal = ({
         <Box mt={Style.isIphone8() ? 30 : 60} mb={16}>
           <TextTemplate type="h2">{name}</TextTemplate>
         </Box>
-        <TextTemplate type="b2" textAlign="center">
-          {description}
-        </TextTemplate>
+        <TextTemplate type="b2">{description}</TextTemplate>
 
         <Box mt={status === AchievementStatus.locked ? 28 : 56}>
           {status !== AchievementStatus.locked || !progress ? null : (
@@ -114,15 +114,11 @@ const ViewAchievementModal = ({
               />
             </Box>
           )}
-          {!shortDescription ? null : (
-            <TextTemplate type="b2b" textAlign="center">
-              {shortDescription}
-            </TextTemplate>
-          )}
+          {!shortDescription ? null : <TextTemplate type="b2b">{shortDescription}</TextTemplate>}
         </Box>
       </Box>
       {showInfoPanel ? (
-        <Box position="absolute" bottom={insets.bottom} width="100%" ph={38}>
+        <Box disableAutoAdjust={true} position="absolute" bottom={bottomPadding} width="100%" ph={Style.adjust(38)}>
           <InfoPanel markdown={t("modals.locked_achievement.title")} showIcon={true} />
         </Box>
       ) : null}
@@ -134,7 +130,7 @@ const ViewAchievementModal = ({
       ) : null}
 
       {hideButton ? null : (
-        <Box position="absolute" bottom={insets.bottom} left={0} right={0} alignItems="center">
+        <Box disableAutoAdjust={true} position="absolute" bottom={bottomPadding} left={0} right={0} alignItems="center">
           <Button
             translationKey={status === "equipped" ? "unequip" : "equip"}
             onPress={onButtonPress}
