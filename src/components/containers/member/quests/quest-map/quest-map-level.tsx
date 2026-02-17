@@ -4,6 +4,7 @@ import React, { memo, useMemo, useState } from "react";
 import { Animated, View } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
 import useInterval from "@use-it/interval";
+import { DETOX_ENABLED } from "@services/socket";
 import { getCurrentWorld, getNormalizedLevel } from "@utils";
 import { QuestsMapLevel } from "@components/screens";
 import getLevelButton from "@components/screens/member/quests/quests-scroll-screen/assets/level/level.content";
@@ -48,7 +49,7 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
       const diff = moment().diff(moment(level.nextAvailableAt), "seconds");
       setNextAvailableTimer(diff);
     },
-    level.nextAvailableAt ? 1000 : null
+    level.nextAvailableAt && !DETOX_ENABLED ? 1000 : null
   );
 
   const pulseAnimation = usePulseAnimation({
@@ -78,7 +79,7 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
   return (
     <ReAnimated.View style={animatedStyle}>
       <View style={styles.container}>
-        {!level.isActive ? null : (
+        {!level.isActive || DETOX_ENABLED ? null : (
           <View style={styles.levelPulse}>
             <Pulse
               size={CIRCLE_SIZE}

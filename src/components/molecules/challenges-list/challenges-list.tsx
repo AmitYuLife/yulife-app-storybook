@@ -8,6 +8,7 @@ import { Style, StyleSheet } from "@styles";
 import { useSelector } from "react-redux";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 import { IPathwayChallengeTileProps, PathwayChallengeTile } from "..";
+import { DETOX_ENABLED } from "@services/socket";
 
 export interface IChallengesListProps {
   challenges: IChallengeTileProps[];
@@ -43,7 +44,10 @@ function ChallengeSet({
       scrollEnabled={!loading}
     >
       <View testID={CHALLENGE_SET} style={styles.wrapper}>
-        <Animated.View style={styles.leftColumnWrapper} entering={FadeInDown.delay(200).duration(500)}>
+        <Animated.View
+          style={styles.leftColumnWrapper}
+          entering={DETOX_ENABLED ? undefined : FadeInDown.delay(200).duration(500)}
+        >
           {pathwayChallenge ? <PathwayChallengeTile {...pathwayChallenge} /> : null}
           {!loading
             ? challenges
@@ -60,7 +64,10 @@ function ChallengeSet({
                 ))
             : Array.from({ length: 3 }).map((_, i) => <ChallengeTileLoading tileColour={tileColour} key={i} />)}
         </Animated.View>
-        <Animated.View style={styles.rightColumnWrapper} entering={FadeInDown.delay(300).duration(500)}>
+        <Animated.View
+          style={styles.rightColumnWrapper}
+          entering={DETOX_ENABLED ? undefined : FadeInDown.delay(300).duration(500)}
+        >
           {!loading
             ? challenges
                 ?.filter((_, i) => i % 2)

@@ -3,6 +3,7 @@ import QuestMapEpisodeAccessibility from "@components/containers/member/quests/q
 import { GetMobileGameWeekliesQuery, GetQuestMapQuery } from "@graphql/__generated";
 import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
 import { LottieView } from "@molecules";
+import { DETOX_ENABLED } from "@services/socket";
 import { NavBar, TopBar } from "@organisms";
 import { IIcon } from "@organisms/top-bar/subcomponents/left";
 import { submitUnityAction } from "@redux/levels/levels.actions";
@@ -85,8 +86,8 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
         resizeMode="cover"
         style={styles.backgroundLottie}
         source={BACKGROUND_ANIMATION}
-        autoPlay={true}
-        loop={true}
+        autoPlay={!DETOX_ENABLED}
+        loop={!DETOX_ENABLED}
       />
       {!levelMap?.length ? null : (
         <View style={styles.levelsWrapper}>

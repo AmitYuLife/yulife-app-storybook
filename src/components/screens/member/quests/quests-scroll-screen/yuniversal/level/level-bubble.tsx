@@ -67,7 +67,7 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
       const timer = getTimeUntil(diff);
       setNextAvailableTimer(timer);
     },
-    nextLevelAvailableAt ? 1000 : null
+    nextLevelAvailableAt && !DETOX_ENABLED ? 1000 : null
   );
 
   const maskId = `notification-mask_${x}_${y}`;
@@ -121,7 +121,9 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
           <LevelBubbleBackground radius={radius} colour={backgroundColour} colour2={backgroundColour2} />
         </G>
       </G>
-      {!isActive ? null : <Pulse radius={60} innerRadius={radius} duration={pulseDuration} opacity={pulseOpacity} />}
+      {!isActive || DETOX_ENABLED ? null : (
+        <Pulse radius={60} innerRadius={radius} duration={pulseDuration} opacity={pulseOpacity} />
+      )}
       {!showTimer ? null : (
         <>
           <Text y={-3} fill={textColour} font={FONT_TIMER} textAnchor="middle">
