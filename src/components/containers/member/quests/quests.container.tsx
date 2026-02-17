@@ -24,8 +24,8 @@ import {
   MediaPlayerProgressScreen,
   QuestsScreenOffline,
 } from "@screens";
-import { BlurProvider } from "@atoms/index";
 import { useAsyncEffect, useTapBackTwiceToExit, useUserFeatures } from "@hooks";
+import { useModal } from "@modules/modals/useModal";
 import SudokuProgressScreen from "@components/screens/games/sudoku/sudoku-progress/sudoku-progress.screen";
 import { Storage, StorageKey } from "@utils/storage";
 import QuestMapContainer from "./quest-map/quest-map-container";
@@ -50,6 +50,7 @@ const QuestsContainer = () => {
   const activeModal: ReturnType<typeof getModalState> = useSelector(getModalState);
   const [hasVideoProgressStorage, setHasVideoProgressStorage] = useState<boolean>(false);
   const [hasShownDeferModal, setHasShownDeferModal] = useState<boolean>(false);
+  const { showModal } = useModal();
 
   const leftIcons = useMemo(
     () => [
@@ -128,58 +129,77 @@ const QuestsContainer = () => {
     dispatch(challengeCancelAction());
   }, [dispatch]);
 
-  const renderProgressScreen = useCallback(
-    ({ showOverlay }: { showOverlay: () => void }) => {
-      if (activeLevel.createdBySource === ChallengeSourceType.Watch) {
-        return <ChallengeWatchProgress onLeftMenuPress={onLeftMenuPress} onCancel={showOverlay} />;
-      }
+  const showCancelModal = useCallback(() => {
+    showModal(({ onClose }) => (
+      <ChallengeExitScreen
+        onClose={onClose}
+        onPressExit={() => {
+          onClose();
+          cancelChallenge();
+        }}
+        challengeType={activeLevel.subtype}
+        isCancelling={activeLevel.isLoading}
+      />
+    ));
+  }, [showModal, cancelChallenge, activeLevel.subtype, activeLevel.isLoading]);
 
-      if (activeLevel.subtype === "sudoku") {
-        return (
-          <SudokuProgressScreen
-            onDismissPress={showOverlay}
-            onLeftMenuPress={onLeftMenuPress}
-            challengeId={activeLevel.id}
-          />
-        );
-      }
+  const renderProgressScreen = useCallback(() => {
+    if (activeLevel.createdBySource === ChallengeSourceType.Watch) {
+      return <ChallengeWatchProgress onLeftMenuPress={onLeftMenuPress} onCancel={showCancelModal} />;
+    }
 
-      // Both internal and external meditations both use the same `meditation`
-      // subtype, however only internal meditations set `videoPlayerIsActive` to true
-      // therefore we can use this to assume it is an internal meditation, and external
-      // ones can use the default `ChallengeProgressScreen` screen instead.
-      const isInternalMeditation =
-        (videoPlayerIsActive || hasVideoProgressStorage) && currentRoute !== ROUTES.mediaPlayer;
-
-      if (activeLevel.subtype === "meditation" && isInternalMeditation) {
-        return (
-          <MediaPlayerProgressScreen
-            activeLevel={activeLevel}
-            onDismissPress={showOverlay}
-            onLeftIconPress={onLeftMenuPress}
-          />
-        );
-      }
-
+    if (activeLevel.subtype === "sudoku") {
       return (
-        <ChallengeProgressScreen
-          unit={activeLevel.unit}
-          onDismissPress={showOverlay}
-          userProgress={activeLevel.score}
+        <SudokuProgressScreen
+          onDismissPress={showCancelModal}
           onLeftMenuPress={onLeftMenuPress}
-          challengeType={activeLevel.subtype}
-          startDateTime={activeLevel.startDateTime}
-          endDateTime={activeLevel.endDateTime}
-          hideExternalLinks={hideExternalLinks}
-          progressTargets={activeLevel.milestones.map((item) => item.target[getUnitTarget(activeLevel.subtype)])}
-          level={activeLevel.level}
-          yuniversalMap={activeLevel.yuniversalMap}
-          levelSlotTemplateId={activeLevel.levelSlotTemplateId}
+          challengeId={activeLevel.id}
         />
       );
-    },
-    [activeLevel, videoPlayerIsActive, hasVideoProgressStorage, currentRoute, onLeftMenuPress, hideExternalLinks]
-  );
+    }
+
+    // Both internal and external meditations both use the same `meditation`
+    // subtype, however only internal meditations set `videoPlayerIsActive` to true
+    // therefore we can use this to assume it is an internal meditation, and external
+    // ones can use the default `ChallengeProgressScreen` screen instead.
+    const isInternalMeditation =
+      (videoPlayerIsActive || hasVideoProgressStorage) && currentRoute !== ROUTES.mediaPlayer;
+
+    if (activeLevel.subtype === "meditation" && isInternalMeditation) {
+      return (
+        <MediaPlayerProgressScreen
+          activeLevel={activeLevel}
+          onDismissPress={showCancelModal}
+          onLeftIconPress={onLeftMenuPress}
+        />
+      );
+    }
+
+    return (
+      <ChallengeProgressScreen
+        unit={activeLevel.unit}
+        onDismissPress={showCancelModal}
+        userProgress={activeLevel.score}
+        onLeftMenuPress={onLeftMenuPress}
+        challengeType={activeLevel.subtype}
+        startDateTime={activeLevel.startDateTime}
+        endDateTime={activeLevel.endDateTime}
+        hideExternalLinks={hideExternalLinks}
+        progressTargets={activeLevel.milestones.map((item) => item.target[getUnitTarget(activeLevel.subtype)])}
+        level={activeLevel.level}
+        yuniversalMap={activeLevel.yuniversalMap}
+        levelSlotTemplateId={activeLevel.levelSlotTemplateId}
+      />
+    );
+  }, [
+    activeLevel,
+    videoPlayerIsActive,
+    hasVideoProgressStorage,
+    currentRoute,
+    onLeftMenuPress,
+    hideExternalLinks,
+    showCancelModal,
+  ]);
 
   if (Style.isIPad()) {
     return <QuestsScreenOffline leftIcons={leftIcons} fitkitAvailable={false} />;
@@ -225,19 +245,7 @@ const QuestsContainer = () => {
 
   // Renders a challenge in progress
   if (activeLevel.subtype) {
-    return (
-      <BlurProvider
-        render={renderProgressScreen}
-        renderOverlay={({ hideOverlay }) => (
-          <ChallengeExitScreen
-            onClose={hideOverlay}
-            onPressExit={cancelChallenge}
-            challengeType={activeLevel.subtype}
-            isCancelling={activeLevel.isLoading}
-          />
-        )}
-      />
-    );
+    return renderProgressScreen();
   }
 
   return <QuestMapContainer leftIcons={leftIcons} componentId={componentId} onLeftMenuPress={onLeftMenuPress} />;

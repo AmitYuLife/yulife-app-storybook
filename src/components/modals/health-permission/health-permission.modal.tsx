@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TextTemplate } from "@atoms";
+import { BlurredWrapper, Box, TextTemplate } from "@atoms";
 import { View } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useMemo } from "react";
@@ -34,47 +34,43 @@ const HealthPermissionModal = ({ onRequestPermissions, onCancel, capabilities }:
   }, [capabilities]);
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.mainContentWrapper}>
-        <View style={styles.contentWrapper}>
-          <View style={styles.titleContainer}>
-            <TextTemplate type="h2" textAlign="center">
-              {t["yu_health.capabilitiesRequest.header"]}
+    <BlurredWrapper>
+      <Box flex={1} minHeight={220} justifyContent="flex-end">
+        <Box
+          mt={32}
+          pb={38}
+          pt={30}
+          px={30}
+          justifyContent="center"
+          borderTopLeftRadius={20}
+          borderTopRightRadius={20}
+          bg={Colours.neutral.white}
+        >
+          <View style={styles.contentWrapper}>
+            <View style={styles.titleContainer}>
+              <TextTemplate type="h2" textAlign="center">
+                {t["yu_health.capabilitiesRequest.header"]}
+              </TextTemplate>
+            </View>
+            <TextTemplate type="b2" textAlign="center">
+              {t["yu_health.capabilitiesRequest.body"]} {copy}
             </TextTemplate>
           </View>
-          <TextTemplate type="b2" textAlign="center">
-            {t["yu_health.capabilitiesRequest.body"]} {copy}
-          </TextTemplate>
-        </View>
-        <View>
-          <View style={styles.retryButton}>
-            <Button translationKey="yu_health.capabilitiesRequest.continue" onPress={onRequestPermissions} />
+          <View>
+            <View style={styles.retryButton}>
+              <Button translationKey="yu_health.capabilitiesRequest.continue" onPress={onRequestPermissions} />
+            </View>
+            <SecondaryButton translationKey="yu_health.capabilitiesRequest.cancel" onPress={onCancel} />
           </View>
-          <SecondaryButton translationKey="yu_health.capabilitiesRequest.cancel" onPress={onCancel} />
-        </View>
-      </View>
-    </View>
+        </Box>
+      </Box>
+    </BlurredWrapper>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    minHeight: Style.adjust(220),
-    justifyContent: "flex-end",
-  },
   actionButtons: {
     marginBottom: Style.adjust(24),
-  },
-  mainContentWrapper: {
-    justifyContent: "center",
-    marginTop: Style.adjust(32),
-    paddingBottom: Style.adjust(38),
-    paddingTop: Style.adjust(30),
-    borderTopLeftRadius: Style.adjust(20),
-    borderTopRightRadius: Style.adjust(20),
-    paddingHorizontal: Style.adjust(30),
-    backgroundColor: Colours.neutral.white,
   },
   retryButton: {
     marginBottom: Style.adjust(5),
