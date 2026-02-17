@@ -26,9 +26,6 @@ import { QuestMapLevel } from "./quest-map.interface";
 import QuestMapScreen from "./quest-map.screen";
 import { IIcon } from "@organisms/top-bar/subcomponents/left";
 
-const EPISODES_PER_PLANET = 32;
-const LEVELS_PER_WORLD = 200;
-
 interface IQuestMapContainerProps {
   componentId: string;
   onLeftMenuPress: () => void;
@@ -179,40 +176,6 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
       .reverse();
   }, [currentLevel, data?.levels, formattedLevels, yuniversalMap]);
 
-  const itemOffsets = useMemo(() => {
-    const offsets: number[] = [];
-
-    for (const itemIndex in items) {
-      if (yuniversalMap) {
-        return [];
-      }
-
-      const item = items[itemIndex];
-      if (!item) {
-        continue;
-      }
-
-      const minLevel = getMinLevel(item?.levels);
-      const episode = getEpisode(minLevel);
-      const minLevelForPlanet = Math.floor((minLevel - 1) / LEVELS_PER_WORLD);
-      const minEpisodeForPlanet = minLevelForPlanet * EPISODES_PER_PLANET;
-      const episodeConfig = QUEST_MAP_CONFIG.episodes[episode];
-
-      if (!episodeConfig) {
-        continue;
-      }
-
-      const lowerEpisodes = Object.entries(QUEST_MAP_CONFIG.episodes)
-        .filter(([itemConfig]) => +itemConfig > minEpisodeForPlanet && +itemConfig < episode)
-        .map(([, itemConfig]) => ({ height: itemConfig?.episodeHeight, width: itemConfig?.episodeWidth }))
-        .reduce((prev, cur) => prev + Style.DEVICE_WIDTH * (1 / (cur.width / cur.height)), 0);
-
-      offsets.push(Math.floor(lowerEpisodes));
-    }
-
-    return offsets;
-  }, [items, yuniversalMap]);
-
   const itemHeights: number[] = useMemo(
     () =>
       items.filter(Boolean).map((episode) => {
@@ -234,6 +197,22 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
     [items]
   );
 
+  const itemOffsets = useMemo(() => {
+    if (yuniversalMap) {
+      return [];
+    }
+
+    const offsets: number[] = [];
+    let cumulative = 0;
+
+    for (const height of itemHeights) {
+      offsets.push(Math.floor(cumulative));
+      cumulative += height;
+    }
+
+    return offsets;
+  }, [itemHeights, yuniversalMap]);
+
   const snapOffsets = useMemo(() => {
     const offsets: number[] = [];
 
@@ -247,18 +226,17 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
       const minLevel = getMinLevel(item?.levels);
       const episode = getEpisode(minLevel);
       const lottie = QUEST_MAP_CONFIG.episodes[episode];
-      const lottieAdjustment = 1 / (lottie.episodeWidth / lottie.episodeHeight);
-      const leftOverepisodeHeight = Style.DEVICE_HEIGHT - Style.DEVICE_WIDTH * lottieAdjustment;
+      const aspectRatio = lottie.lottieAspectRatio || lottie.episodeWidth / lottie.episodeHeight;
+      const renderedEpisodeHeight = Style.DEVICE_WIDTH * (1 / aspectRatio);
+      const leftOverepisodeHeight = Style.DEVICE_HEIGHT - renderedEpisodeHeight;
 
       if (lottie.snapPosition === "center") {
         currentSnapPosition -= leftOverepisodeHeight / 2;
-      } else if (lottie.snapPosition === "top") {
-        currentSnapPosition -= leftOverepisodeHeight;
       }
 
       if (lottie?.snapOffsetY) {
-        const adjustedSnapOffset = lottie?.snapOffsetY * lottieAdjustment;
-        currentSnapPosition += adjustedSnapOffset;
+        const adjustedSnapOffset = lottie?.snapOffsetY * (1 / aspectRatio);
+        currentSnapPosition -= adjustedSnapOffset;
       }
 
       if (item?.seperator) {

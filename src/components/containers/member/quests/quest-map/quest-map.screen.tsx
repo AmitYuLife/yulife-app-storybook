@@ -71,6 +71,13 @@ const QuestMapScreen = ({
     [itemHeights]
   );
 
+  const overrideItemLayout = useCallback(
+    (layout: { span?: number; size?: number }, _item: IQuestMapItem, index: number): void => {
+      layout.size = itemHeights[index];
+    },
+    [itemHeights]
+  );
+
   const currentLevelEpisode = useMemo(() => {
     const activeEpisode = items.findIndex((item) =>
       item.levels.some((level) => {
@@ -122,6 +129,7 @@ const QuestMapScreen = ({
             showsVerticalScrollIndicator={false}
             decelerationRate={DECELERATION_RATE}
             viewabilityConfig={VIEWABILITY_CONFIG}
+            overrideItemLayout={overrideItemLayout}
             maintainVisibleContentPosition={{ startRenderingFromBottom: true }}
           />
         ) : null}

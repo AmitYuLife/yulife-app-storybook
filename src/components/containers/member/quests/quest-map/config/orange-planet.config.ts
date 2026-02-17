@@ -421,7 +421,6 @@ export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 1009,
     episodeWidth: 375,
-    snapPosition: "top",
     episodeKey: 90,
     snapOffsetY: MOUNTAIN_SNAP_OFFSET,
     bubbleOffsetY: 0,

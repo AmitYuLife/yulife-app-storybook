@@ -260,14 +260,14 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
         },
         {
           condition: Style.isShortAndroid(),
-          value: 20,
+          value: -20,
         },
         {
           condition: Style.isTallAndroid() && Style.PIXEL_RATIO < 3,
-          value: 20,
+          value: -20,
         },
       ],
-      -20
+      20
     ),
     episodeWidth: 375,
     episodeKey: 80,
@@ -456,7 +456,6 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 1009,
     episodeWidth: 375,
-    snapPosition: "top",
     episodeKey: 90,
     snapOffsetY: MOUNTAIN_SNAP_OFFSET,
     bubbleOffsetY: 0,
@@ -563,7 +562,6 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 96,
     episodeWidth: 375,
     snapOffsetY: -30,
-    snapPosition: "top",
     bubbleOffsetY: -30,
     seperator: {
       width: 1080,
