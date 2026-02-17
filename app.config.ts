@@ -178,6 +178,7 @@ export default () => ({
         },
       },
     ],
+    "expo-localization",
     "expo-privacy-manifest-polyfill-plugin",
     "@leanplum/react-native-sdk",
     ["customerio-expo-plugin", {}],

@@ -1,8 +1,8 @@
 import Polyglot from "node-polyglot";
-import { NativeModules } from "react-native";
+import { getLocales } from "expo-localization";
 import { DETOX_ENABLED } from "@services/socket";
 import { translations, Language, Translation } from "./translations";
-import { IS_DEVELOP, isWeb, isiOS } from "@utils";
+import { IS_DEVELOP, isWeb } from "@utils";
 
 class Translator {
   private dict: Polyglot;
@@ -45,24 +45,21 @@ class Translator {
       return this.fallbackLocale;
     }
 
-    // Guard against native modules not being available yet (can happen with new RN architecture)
-    let deviceLocale: string | undefined;
+    let language: string | undefined;
+    let region: string | undefined;
     try {
-      if (isiOS()) {
-        const settings = NativeModules.SettingsManager?.settings;
-        deviceLocale = settings?.AppleLocale || settings?.AppleLanguages?.[0];
-      } else {
-        deviceLocale = NativeModules.I18nManager?.localeIdentifier;
-      }
+      const locales = getLocales();
+      const locale = locales[0];
+      language = locale?.languageCode;
+      region = locale?.regionCode;
     } catch (e) {
-      // Native modules not ready yet
+      console.error(e);
     }
 
-    if (!deviceLocale) {
+    if (!language) {
       return this.fallbackLocale;
     }
 
-    const [language, region] = deviceLocale.split(/[_-]+/);
     const availableLocales = this.getAvailableLocales(DETOX_ENABLED);
 
     const foundLocaleViaLocale = availableLocales.find((locale) => locale.includes(`${language}-${region}`));
