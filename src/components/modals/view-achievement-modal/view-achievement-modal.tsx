@@ -114,7 +114,11 @@ const ViewAchievementModal = ({
               />
             </Box>
           )}
-          {!shortDescription ? null : <TextTemplate type="b2b">{shortDescription}</TextTemplate>}
+          {!shortDescription ? null : (
+            <TextTemplate textAlign="center" type="b2b">
+              {shortDescription}
+            </TextTemplate>
+          )}
         </Box>
       </Box>
       {showInfoPanel ? (
