@@ -3,6 +3,7 @@ import { ModalContext, IModalContextValue } from "./modal.context";
 import { BlurTarget } from "@danielsaraldi/react-native-blur-view";
 import { StyleSheet } from "@styles";
 import { Box } from "@atoms";
+import { MODAL_PREFIX } from "@navigation/constants";
 
 interface IModalProviderProps {
   children: ReactNode;
@@ -24,7 +25,7 @@ const ModalProvider = ({ children, componentId }: IModalProviderProps) => {
   const value = useMemo<IModalContextValue>(() => ({ showModal }), [showModal]);
 
   // only the main screens should be wrapped in the BlurTarget otherwise it will cause an infinite recursion
-  if (componentId.includes("yulife.modals")) {
+  if (componentId.includes(MODAL_PREFIX)) {
     return <>{children}</>;
   }
 
