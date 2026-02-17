@@ -14,7 +14,7 @@ import { Style, Colours, StyleSheet } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { useTranslation } from "@hooks";
-import { CloseSvg, Image, Source, TextTemplate } from "@atoms";
+import { Box, CloseSvg, Image, Source, TextTemplate } from "@atoms";
 import Logger from "@services/logging/logger";
 import { FLOATING_CONTINUE_BUTTON } from "@ids";
 
@@ -98,38 +98,40 @@ const FloatingModal = ({
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
-      <View style={wrapperStyles} testID={testID}>
-        {!title ? null : (
-          <View style={styles.title}>
-            <TextTemplate type="h3">{title}</TextTemplate>
-          </View>
-        )}
-        {!lottie ? null : (
-          <View style={styles.iconWrapper}>
-            <ContentItemLottie {...lottie} />
-          </View>
-        )}
-        {!iconAsset ? null : (
-          <View style={styles.iconWrapper}>
-            <Image width={Style.adjust(140)} height={Style.adjust(140)} source={iconAsset} />
-          </View>
-        )}
-        {content}
-        {!showButton ? null : (
-          <CloseButton
-            testID={FLOATING_CONTINUE_BUTTON}
-            onPress={onButtonPress}
-            translatedLabel={buttonLabel || translation["labels.cta.close"]}
-            wrapperStyle={styles.buttonWrapperStyle}
-            isLoading={isLoading}
-          />
-        )}
-        {!showCloseIcon ? null : (
-          <Pressable onPress={closeOverlay} style={styles.closeWrapper} delay={1000}>
-            <CloseSvg stroke={closeIconColor} size={Style.adjust(24)} />
-          </Pressable>
-        )}
-      </View>
+      <Box w="100%" h="100%" justifyContent="flex-end">
+        <View style={wrapperStyles} testID={testID}>
+          {!title ? null : (
+            <View style={styles.title}>
+              <TextTemplate type="h3">{title}</TextTemplate>
+            </View>
+          )}
+          {!lottie ? null : (
+            <View style={styles.iconWrapper}>
+              <ContentItemLottie {...lottie} />
+            </View>
+          )}
+          {!iconAsset ? null : (
+            <View style={styles.iconWrapper}>
+              <Image width={Style.adjust(140)} height={Style.adjust(140)} source={iconAsset} />
+            </View>
+          )}
+          {content}
+          {!showButton ? null : (
+            <CloseButton
+              testID={FLOATING_CONTINUE_BUTTON}
+              onPress={onButtonPress}
+              translatedLabel={buttonLabel || translation["labels.cta.close"]}
+              wrapperStyle={styles.buttonWrapperStyle}
+              isLoading={isLoading}
+            />
+          )}
+          {!showCloseIcon ? null : (
+            <Pressable onPress={closeOverlay} style={styles.closeWrapper} delay={1000}>
+              <CloseSvg stroke={closeIconColor} size={Style.adjust(24)} />
+            </Pressable>
+          )}
+        </View>
+      </Box>
     </KeyboardAvoidingView>
   );
 };
