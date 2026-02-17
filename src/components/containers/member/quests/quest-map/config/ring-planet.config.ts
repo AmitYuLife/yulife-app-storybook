@@ -430,7 +430,6 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 1009,
     episodeWidth: 375,
-    snapPosition: "top",
     episodeKey: 90,
     snapOffsetY: MOUNTAIN_SNAP_OFFSET,
     bubbleOffsetY: 0,
@@ -536,7 +535,6 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 96,
     episodeWidth: 375,
     snapOffsetY: 30,
-    snapPosition: "top",
     bubbleOffsetY: -30,
     seperator: {
       width: 1080,
