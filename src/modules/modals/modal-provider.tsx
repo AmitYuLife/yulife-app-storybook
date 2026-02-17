@@ -23,6 +23,11 @@ const ModalProvider = ({ children, componentId }: IModalProviderProps) => {
 
   const value = useMemo<IModalContextValue>(() => ({ showModal }), [showModal]);
 
+  // only the main screens should be wrapped in the BlurTarget otherwise it will cause an infinite recursion
+  if (componentId.includes("yulife.modals")) {
+    return <>{children}</>;
+  }
+
   return (
     <ModalContext.Provider value={value}>
       <BlurTarget id={componentId} style={styles.children}>

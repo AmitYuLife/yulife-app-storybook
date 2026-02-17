@@ -59,11 +59,7 @@ const BlurredWrapper = ({
     >
       <BlurContainer style={wrapperStyle} isBlurred={isBlurred} targetId={componentId} type={tint}>
         <View style={containerStyle} testID={testID}>
-          <Animated.View
-            style={styles.container}
-            entering={FadeInDown.duration(300)}
-            exiting={FadeOutDown.duration(300)}
-          >
+          <Animated.View entering={FadeInDown.duration(300)} exiting={FadeOutDown.duration(300)}>
             {children}
           </Animated.View>
         </View>
@@ -87,12 +83,5 @@ const BlurContainer = ({ children, style, isBlurred, ...blurProps }: IBlurContai
 
   return <View style={style}>{children}</View>;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "100%",
-  },
-});
 
 export default memo(BlurredWrapper);
