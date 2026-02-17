@@ -94,6 +94,7 @@ export const PROPERTY_MAP = {
 const EXCLUDE_AUTO_ADJUST_PROPERTIES: (keyof typeof PROPERTY_MAP)[] = [
   "bg",
   "flex",
+  "zIndex",
   "display",
   "opacity",
   "flexGrow",
