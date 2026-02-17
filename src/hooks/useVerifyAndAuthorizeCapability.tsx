@@ -24,6 +24,7 @@ import { useCallback, useMemo } from "react";
 import { Alert, Linking } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "./useTranslation";
+import { useModal } from "@app/modules/modals/useModal";
 
 interface IVerifyAndAuthorizeCapabilityProps {
   componentId: string;
@@ -33,6 +34,8 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
   const dispatch = useDispatch();
   const providerAvailabilities = useSelector(getProviderAvailabilities);
   const activeProvider = useSelector(getActiveProvider);
+  const { showModal } = useModal();
+
   const t = useTranslation([
     "yu_health.connect.system_permission_needed.title",
     "yu_health.connect.system_permission_needed.body",
@@ -159,25 +162,23 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
   const handlePermissionRequestModal = useCallback(
     async (capabilities: HealthProviderCapability[]) => {
       return new Promise<boolean>((res) => {
-        const modal = (
+        showModal(({ onClose }) => (
           <HealthPermissionModal
             capabilities={capabilities}
             onCancel={() => {
-              Navigation.dismissOverlayWithChild();
+              onClose();
               return res(false);
             }}
             onRequestPermissions={async () => {
               const result = await requestCapabilityPermissions(capabilities);
-              Navigation.dismissOverlayWithChild();
+              onClose();
               return res(result);
             }}
           />
-        );
-
-        Navigation.showOverlayWithChild({ children: modal, withBlurBackground: false });
+        ));
       });
     },
-    [requestCapabilityPermissions]
+    [requestCapabilityPermissions, showModal]
   );
 
   /**

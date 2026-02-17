@@ -52,10 +52,10 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const activeChallengeState = useSelector(getActiveChallengeState);
   const createChallengeError = useSelector(getCreateChallengeError);
   const [slot, setSlot] = useState<Slot | null>(null);
-  const isScreenReaderEnabled = useScreenReaderChange();
   const [shouldShowOverlay, setShouldShowOverlay] = useState(false);
 
   const currentWorld = getCurrentWorld(level);
+  const isScreenReaderEnabled = useScreenReaderChange();
 
   const { loading, data, refetch } = useQuery(gql("GetQuestMapLevelDocument"), {
     variables: { level, yuniversalMap },

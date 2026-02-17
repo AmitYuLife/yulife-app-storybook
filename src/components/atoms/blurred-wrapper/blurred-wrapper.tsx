@@ -3,8 +3,9 @@ import { memo, ReactElement, useMemo } from "react";
 
 import { StyleSheet } from "@styles";
 import { useNavigation } from "@navigation/navigation.context";
-import { useWindowDimensions, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import Blur, { IBlurProps } from "../blur/blur";
+import Animated, { FadeIn, FadeInDown, FadeOut, FadeOutDown } from "react-native-reanimated";
 
 interface IProps extends Pick<BlurViewProps, "type"> {
   children: ReactElement;
@@ -26,7 +27,6 @@ const BlurredWrapper = ({
   isBlurred = true,
 }: IProps) => {
   const { componentId } = useNavigation();
-  const { height } = useWindowDimensions();
 
   const wrapperStyle = useMemo(
     () => ({
@@ -38,25 +38,37 @@ const BlurredWrapper = ({
 
   const containerStyle = useMemo((): ViewStyle => {
     return {
-      height,
+      height: "100%",
       width: "100%",
-      position: "absolute",
+      backgroundColor: "rgba(0,0,0,0.7)",
+      position: "static",
       ...contentStyle,
     };
-  }, [height, contentStyle]);
+  }, [contentStyle]);
 
   if (!isVisible) {
     return null;
   }
 
   return (
-    <View style={wrapperStyle} pointerEvents={isVisible ? undefined : "none"}>
+    <Animated.View
+      style={wrapperStyle}
+      pointerEvents={isVisible ? undefined : "none"}
+      entering={FadeIn.duration(200)}
+      exiting={FadeOut.duration(200)}
+    >
       <BlurContainer style={wrapperStyle} isBlurred={isBlurred} targetId={componentId} type={tint}>
         <View style={containerStyle} testID={testID}>
-          {children}
+          <Animated.View
+            style={styles.container}
+            entering={FadeInDown.duration(300)}
+            exiting={FadeOutDown.duration(300)}
+          >
+            {children}
+          </Animated.View>
         </View>
       </BlurContainer>
-    </View>
+    </Animated.View>
   );
 };
 
@@ -75,5 +87,12 @@ const BlurContainer = ({ children, style, isBlurred, ...blurProps }: IBlurContai
 
   return <View style={style}>{children}</View>;
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: "100%",
+  },
+});
 
 export default memo(BlurredWrapper);
