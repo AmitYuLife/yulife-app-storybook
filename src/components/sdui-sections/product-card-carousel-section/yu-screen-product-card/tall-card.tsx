@@ -128,15 +128,16 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   bannerContent: {
+    paddingTop: Style.adjust(16),
     paddingHorizontal: Style.adjust(16),
   },
   productName: {
-    paddingTop: Style.adjust(4),
+    paddingTop: Style.adjust(8),
   },
   cardBody: {
     flex: 1,
     flexGrow: 1,
-    paddingTop: Style.adjust(16),
+    paddingTop: Style.adjust(8),
     paddingHorizontal: Style.adjust(16),
     gap: Style.adjust(10),
   },
