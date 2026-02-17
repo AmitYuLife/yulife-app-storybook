@@ -145,6 +145,8 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     paddingStart: Style.adjust(16),
+    paddingRight: Style.adjust(5),
+    marginRight: Style.adjust(-5),
   } as ViewStyle,
   menuLabel: {
     fontSize: Style.adjust(20),
