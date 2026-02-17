@@ -1,12 +1,11 @@
 import { memo, useContext } from "react";
-import { default as Reanimated, SharedValue, useAnimatedProps } from "react-native-reanimated";
+import Reanimated, { SharedValue, useAnimatedProps } from "react-native-reanimated";
 import LottieView from "lottie-react-native";
 import { useGetLottieJson } from "@hooks";
 import { SduiStateContext } from "../_context/SduiProvider";
 import { Props } from "./types";
 import { useFadeIn } from "./useFadeIn";
 import { get, isNil } from "lodash";
-import { Animated } from "react-native";
 import { styles } from "./styles";
 import { Style } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
@@ -27,14 +26,20 @@ export const ProgressControlledLottie = memo((props: Props) => {
   const animationAspectRatio = props.aspectRatio ?? (lottieUri?.w / lottieUri?.h || 1);
 
   return (
-    <Animated.View
+    <Reanimated.View
       style={[
         styles.wrapper,
         { opacity, height: Style.DEVICE_WIDTH / animationAspectRatio },
         mapServerStyles(props.styles),
       ]}
     >
-      <AnimatedLottieView style={styles.wrapper} source={lottieUri} animatedProps={animatedProps} />
-    </Animated.View>
+      <AnimatedLottieView
+        style={styles.wrapper}
+        source={lottieUri}
+        animatedProps={animatedProps}
+        speed={0}
+        autoPlay={false}
+      />
+    </Reanimated.View>
   );
 });
