@@ -1,5 +1,5 @@
-import { memo, useCallback, useEffect, useState } from "react";
-import { NativeScrollEvent, NativeSyntheticEvent, RefreshControl, View } from "react-native";
+import React, { memo, useCallback, useEffect, useState } from "react";
+import { NativeScrollEvent, NativeSyntheticEvent, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
 import moment from "moment";
@@ -48,17 +48,10 @@ const ReferralsScreen = ({
   // the white background of the parent view itself. If we don’t hide the box on scroll,
   // eventually the box will be visible at the top in a long enough referral list.
   const [isAtTop, setIsAtTop] = useState(true);
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     dispatch(setOnboardingReferralsBadge({ showReferralsBadge: false }));
   }, []);
-
-  const handleLayout = useCallback(() => {
-    if (!isMounted) {
-      setIsMounted(true);
-    }
-  }, [isMounted]);
 
   const handleScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const scrollY = event.nativeEvent.contentOffset.y;
@@ -70,7 +63,7 @@ const ReferralsScreen = ({
   }
 
   return (
-    <View testID={REFERRALS_SCREEN} style={styles.wrapper} onLayout={handleLayout}>
+    <View testID={REFERRALS_SCREEN} style={styles.wrapper}>
       <GenericHeadingPad />
 
       {isAtTop ? <Box bg="#D9F7FF" position="absolute" height={450} left={0} right={0} top={0} /> : null}
@@ -79,8 +72,9 @@ const ReferralsScreen = ({
         <FlashList
           renderItem={renderItem}
           data={data}
+          refreshing={loading}
           onEndReached={onFetchMoreData}
-          refreshControl={isMounted ? <RefreshControl refreshing={loading} onRefresh={onRefresh} /> : undefined}
+          onRefresh={onRefresh}
           onScroll={handleScroll}
           scrollEventThrottle={16}
           keyExtractor={keyExtractor}
