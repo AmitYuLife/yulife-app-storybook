@@ -146,6 +146,7 @@ const PermissionsScreen = ({
 const styles = StyleSheet.create({
   wrapper: {
     height: Style.DEVICE_HEIGHT,
+    paddingBottom: Style.adjust(24),
   },
   buttons: {
     marginTop: Style.adjust(12),
