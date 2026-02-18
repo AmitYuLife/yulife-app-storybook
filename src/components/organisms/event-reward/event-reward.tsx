@@ -1,6 +1,6 @@
 import { t } from "@locale";
 import { useDispatch } from "react-redux";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import Svg, { Circle } from "react-native-svg";
 import { Vibration, View, ViewStyle } from "react-native";
 import React, { memo, useRef, useMemo, useEffect, useCallback, useState } from "react";

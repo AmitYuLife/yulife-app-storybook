@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Dimensions } from "react-native";
-import RNLottieView from "lottie-react-native";
+import type RNLottieView from "lottie-react-native";
 import { DONATION_LEVEL_UP_MODAL } from "@ids";
 import { t } from "@locale";
 import { ItemDetailsReward } from "@organisms";

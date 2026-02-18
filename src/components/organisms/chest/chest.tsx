@@ -1,6 +1,6 @@
 import React, { FC, memo, useEffect, useRef, useMemo, useCallback } from "react";
 import { View, Animated, Easing, ViewStyle } from "react-native";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 import { ChestCard } from "@organisms";

@@ -1,7 +1,7 @@
 import { LottieView } from "@components/molecules";
 import { SduiIdContext } from "@components/sdui/_context/SduiProvider";
 import { Style, StyleSheet } from "@styles";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import { RefObject, memo, useContext, useEffect, useRef } from "react";
 import { View } from "react-native";
 

@@ -11,7 +11,7 @@ import Video, {
 import moment from "moment";
 import { Animated, View, AppStateStatus } from "react-native";
 import { useCasting, useCastingAntiCheat, AirplayButton, CastButton, showRoutePicker } from "@services/casting";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import Config from "react-native-config";
 import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
 import { Colours, Style, StyleSheet } from "@styles";

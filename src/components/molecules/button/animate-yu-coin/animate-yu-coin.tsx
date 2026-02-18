@@ -1,7 +1,7 @@
 import { DETOX_ENABLED } from "@services/socket";
 import { Style, StyleSheet } from "@styles";
-import LottieView from "lottie-react-native";
 import { memo } from "react";
+import LottieView from "../../lottie-view/lottie-view";
 import { View } from "react-native";
 
 export const AnimateYuCoin = memo(() => (

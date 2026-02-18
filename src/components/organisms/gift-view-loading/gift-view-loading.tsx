@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useRef } from "react";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import { Box } from "@atoms";
 import { LottieView } from "@molecules";
 import { Style } from "@styles";

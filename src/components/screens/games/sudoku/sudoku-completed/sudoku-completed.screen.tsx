@@ -5,7 +5,7 @@ import { useTranslation } from "@hooks";
 import SudokuStatsList from "@components/games/sudoku/sudoku-stats-list";
 import { Button } from "@components/molecules";
 import { Style, StyleSheet } from "@styles";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import colours from "@styles/colours";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { DETOX_ENABLED } from "@services/socket";

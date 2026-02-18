@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 import { highlightNavbarTabReset } from "@redux/app/app.actions";
 import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
 import { LottieView } from "@components/molecules";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 import { IHighlightedTabOptions } from "@redux/app/app.types";
 import { usePrizeHintPopup } from "@hooks";

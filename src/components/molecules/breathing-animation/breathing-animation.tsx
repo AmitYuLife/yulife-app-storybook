@@ -1,5 +1,6 @@
-import LottieView from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import { useCallback, useEffect, useRef, useMemo, useState } from "react";
+import LottieView from "../lottie-view/lottie-view";
 import { ViewStyle } from "react-native";
 
 const PLAYABLE_PHASES = ["intro", "inhale", "exhale"];
@@ -14,7 +15,7 @@ interface IBreathingAnimationProps {
 const LOTTIE_FPS = 24;
 
 export const BreathingAnimation = ({ phase, phaseDurationMs, isPlaying, style }: IBreathingAnimationProps) => {
-  const lottieRef = useRef<LottieView>(null);
+  const lottieRef = useRef<Lottie>(null);
   const previousPhaseRef = useRef<string>("");
   const previousIsPlayingRef = useRef<boolean>(false);
   const pauseTimeRef = useRef<number | null>(null);

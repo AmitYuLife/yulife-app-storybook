@@ -1,4 +1,4 @@
-import LottieView from "lottie-react-native";
+import type LottieView from "lottie-react-native";
 import { MutableRefObject, useRef, useEffect } from "react";
 
 export const usePlayControl = (lottieRef: MutableRefObject<LottieView>, shouldPlay: boolean) => {

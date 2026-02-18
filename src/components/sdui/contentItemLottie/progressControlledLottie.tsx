@@ -1,6 +1,5 @@
 import { memo, useContext } from "react";
 import Reanimated, { SharedValue, useAnimatedProps } from "react-native-reanimated";
-import LottieView from "lottie-react-native";
 import { useGetLottieJson } from "@hooks";
 import { SduiStateContext } from "../_context/SduiProvider";
 import { Props } from "./types";
@@ -9,6 +8,8 @@ import { get, isNil } from "lodash";
 import { styles } from "./styles";
 import { Style } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
+import LottieView from "lottie-react-native";
+import { Animated } from "react-native";
 
 const AnimatedLottieView = Reanimated.createAnimatedComponent(LottieView);
 
@@ -26,7 +27,7 @@ export const ProgressControlledLottie = memo((props: Props) => {
   const animationAspectRatio = props.aspectRatio ?? (lottieUri?.w / lottieUri?.h || 1);
 
   return (
-    <Reanimated.View
+    <Animated.View
       style={[
         styles.wrapper,
         { opacity, height: Style.DEVICE_WIDTH / animationAspectRatio },
@@ -37,9 +38,9 @@ export const ProgressControlledLottie = memo((props: Props) => {
         style={styles.wrapper}
         source={lottieUri}
         animatedProps={animatedProps}
-        speed={0}
         autoPlay={false}
+        speed={0}
       />
-    </Reanimated.View>
+    </Animated.View>
   );
 });
