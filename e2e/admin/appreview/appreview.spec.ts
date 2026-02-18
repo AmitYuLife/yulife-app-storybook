@@ -9,7 +9,7 @@ import { getLocalisedString as t } from "@i18n";
 
 Feature("App store review should behave correctly", async () => {
   Scenario("App store review pop up and i should tap Yeah!", scenario.start, async () => {
-    Given("I am in the app should pop up app review", given.loginAsUser(data.CUSTOMER_6, data.AUTH_6), async () => {
+    Given("I am in the app should pop up app review", given.loginForAppReview(data.CUSTOMER_6, data.AUTH_6), async () => {
       Then("I should see text Enjoying YuLife?", then.idVisible(ids.APPREVIEW_TEXT(t("Enjoying YuLife?")), 5000));
       Then("I should see text (We’d love to know either way!)", then.textVisible(t("(We’d love to know either way!)")));
       When("I tap the button", when.tapText("Yeah!", 1, true), async () => {
@@ -22,7 +22,7 @@ Feature("App store review should behave correctly", async () => {
   });
 
   Scenario("App store review pop up and i should tap on Not really and after that Give feedback", scenario.start, async () => {
-    Given("I am in the app should pop up app review", given.loginAsUser(data.CUSTOMER_6, data.AUTH_6), async () => {
+    Given("I am in the app should pop up app review", given.loginForAppReview(data.CUSTOMER_6, data.AUTH_6), async () => {
       Then("I should see text Enjoying YuLife?", then.idVisible(ids.APPREVIEW_TEXT("Enjoying YuLife?"), 5000));
     });
     When("I tap the button Not really", when.tapText("Not really", 2000, true), async () => {
@@ -38,7 +38,7 @@ Feature("App store review should behave correctly", async () => {
   });
 
   Scenario("App store review pop up and i should tap on Not really and after that No thanks", scenario.start, async () => {
-    Given("I am in the app should pop up app review", given.loginAsUser(data.CUSTOMER_6, data.AUTH_6), async () => {
+    Given("I am in the app should pop up app review", given.loginForAppReview(data.CUSTOMER_6, data.AUTH_6), async () => {
       Then("I should see text Enjoying YuLife?", then.idVisible(ids.APPREVIEW_TEXT(t("Enjoying YuLife?")), 5000));
       When("I tap the button Not really", when.tapText(t("Not really"), 2000, true), async () => {
         Then("I should see text We’d love a chance to do better. Would you mind leaving us a few tips?", then.textVisible("We’d love a chance to do better. Would you mind leaving us a few tips?"));
