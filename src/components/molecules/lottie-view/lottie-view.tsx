@@ -17,7 +17,7 @@ const LottieWrapper = ({ ref, ...props }: ILottieProps) => {
   const lottieRef = ref || internalRef;
   const { uri, loading } = useGetLottieJson(typeof props.source === "string" ? props.source : null);
 
-  const autoPlay = DETOX_ENABLED ? false : props.autoPlay;
+  const autoPlay = DETOX_ENABLED && props.loop ? false : props.autoPlay;
   const loop = DETOX_ENABLED ? false : props.loop;
 
   // fixes a bug on IOS when props.autoPlay=false is ignored
