@@ -673,20 +673,18 @@ const VideoPlayer = ({
         <AvPlayerLoading />
       )}
       {!state.durationInSeconds ? null : (
-        <Animated.View style={styles.topbarWrapper}>
-          <GenericHeadingAbsolute
-            backgroundColor="transparent"
-            onLeftIconPress={!state.isMusicControlMounted ? onLeftIconPress : null}
-            color={themeColour}
-            {...showYuLogo}
-            onRightIconPress={
-              state.showFocusScreen || (effectiveOrientation === "landscape" && state.isMusicControlMounted)
-                ? null
-                : handleOnRightIconPress
-            }
-            rightIcon="CLOSE"
-          />
-        </Animated.View>
+        <GenericHeadingAbsolute
+          backgroundColor="transparent"
+          onLeftIconPress={!state.isMusicControlMounted ? onLeftIconPress : null}
+          color={themeColour}
+          {...showYuLogo}
+          onRightIconPress={
+            state.showFocusScreen || (effectiveOrientation === "landscape" && state.isMusicControlMounted)
+              ? null
+              : handleOnRightIconPress
+          }
+          rightIcon="CLOSE"
+        />
       )}
       {!state.isMusicControlMounted || effectiveOrientation === "portrait" ? null : (
         <Animated.View style={[styles.closeButton, { opacity }]}>
@@ -792,12 +790,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     start: 0,
     end: 0,
-  },
-  topbarWrapper: {
-    position: "absolute",
-    start: 0,
-    end: 0,
-    top: 0,
   },
   starSessionButton: {
     position: "absolute",
