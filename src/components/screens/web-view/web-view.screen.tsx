@@ -1,13 +1,14 @@
 import React from "react";
 import WebView from "react-native-webview";
-import { View, KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView } from "react-native";
 import Config from "react-native-config";
-import { Style, TOP_BAR, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { IS_DEVELOP } from "@utils";
 
 import { WEBVIEW } from "@ids";
 import { AppHandBackPayload, useWebView } from "@app/hooks/useWebView";
+import { Box } from "@atoms";
 
 export interface Props {
   uri: string;
@@ -28,9 +29,9 @@ export function WebViewScreen(props: Props) {
   }
 
   return (
-    <View>
+    <Box flex={1}>
       <GenericHeadingPad hideBorder={false} />
-      <View style={styles.webViewWrapper}>
+      <Box flex={1} w="100%">
         <KeyboardAvoidingView
           behavior="padding"
           keyboardVerticalOffset={80}
@@ -48,17 +49,13 @@ export function WebViewScreen(props: Props) {
             testID={WEBVIEW}
           />
         </KeyboardAvoidingView>
-      </View>
+      </Box>
       <GenericHeadingAbsolute hideBorder={false} onRightIconPress={handleCloseWebView} heading={title} />
-    </View>
+    </Box>
   );
 }
 
 const styles = StyleSheet.create({
-  webViewWrapper: {
-    height: Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD,
-    width: "100%",
-  },
   flex: {
     flex: 1,
   },
