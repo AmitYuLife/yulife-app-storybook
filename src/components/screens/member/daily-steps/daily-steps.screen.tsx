@@ -3,8 +3,8 @@ import { View, Platform, AccessibilityPropsAndroid } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { DAILY_STEPS_SCREEN, NOTIF_CENTRE } from "@ids";
 import { IConnectedScreenProps } from "@app/typings";
-import { Pad, YuCoinBadge } from "@atoms";
-import { TouchableOpacityWithDelay, CentredScreen } from "@molecules";
+import { Box, YuCoinBadge } from "@atoms";
+import { CentredScreen, TouchableOpacityWithDelay } from "@molecules";
 import { Surge, Streak, TopBar, NavBar, DailyStepsContentOld } from "@organisms";
 import { Style } from "@styles";
 import styles from "./daily-steps.screen.styles";
@@ -25,7 +25,7 @@ import DailyStepsContent, {
 import { useUserFeatures } from "@hooks";
 import { handleTakeAChallengeCTA } from "@navigation/utils";
 import Logger from "@services/logging/logger";
-import Animated, { FadeIn } from "react-native-reanimated";
+import { FadeIn } from "react-native-reanimated";
 import media from "@styles/media";
 import { DETOX_ENABLED } from "@services/socket";
 
@@ -143,14 +143,14 @@ const DailyStepsScreen = ({
   const enteringAnimation = DETOX_ENABLED ? undefined : FadeIn.duration(FADE_IN_ANIMATION_DURATION);
 
   return (
-    <Animated.View
+    <Box
+      flex={1}
       entering={enteringAnimation}
-      style={styles.flex}
       importantForAccessibility={androidImportantForAccessibility}
       accessibilityElementsHidden={accessibilityElementsHidden}
     >
       <CentredScreen {...theme.dailyStepsScreen.online} testID={DAILY_STEPS_SCREEN}>
-        <Pad height={getPadHeight(hasEvents, currentLevel)} />
+        <Box h={getPadHeight(hasEvents, currentLevel)} />
         <TouchableOpacityWithDelay
           onPress={onCoinPress}
           activeOpacity={1}
@@ -190,7 +190,7 @@ const DailyStepsScreen = ({
         <TopBar type={theme.dailyStepsScreen.topBarType} leftIcons={leftIcons} />
       </View>
       <ReferralsPopover onLeftMenuPress={onLeftMenuPress} />
-    </Animated.View>
+    </Box>
   );
 };
 
