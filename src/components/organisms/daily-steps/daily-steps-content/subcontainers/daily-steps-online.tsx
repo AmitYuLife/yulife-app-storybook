@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { Platform, View, ViewStyle } from "react-native";
+import { Platform } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { TextTemplate } from "@atoms";
 import { ActivityList, Button, Counter, HeroCards, Panel, Pressable } from "@molecules";
@@ -77,11 +77,6 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
   const locale = getCurrentLocale();
   const yuCoinTodayText = useMemo(() => `${t("yu_coin.camel_case")} ${t("period.today")}`, [locale]);
 
-  const eventStyleBottom = useMemo(
-    () => NAV_BAR.getPositionBottom({ additionalBottom: hideButtons ? Style.adjust(75) : Style.adjust(145) }),
-    [hideButtons]
-  );
-
   const navigateToTodayEarnings = useCallback(() => {
     if (!features.tempGameEnableReleaseYuHealthV4) {
       if (!fitkit.authorised) {
@@ -149,7 +144,7 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
   return (
     <>
       <Pressable onPress={navigateToTodayEarnings} delay={1000}>
-        <View style={styles.center}>
+        <Box alignItems="center">
           <TextTemplate
             type="h1"
             color={dailyStepsScreen.textStyle.color}
@@ -160,79 +155,69 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
             <Counter duration={1200} value={dailyEarnedCoins} type="h1" color={dailyStepsScreen.textStyle.color} />{" "}
             {yuCoinTodayText}
           </TextTemplate>
-        </View>
+        </Box>
 
-        <View style={styles.activityListWrapper}>
-          <ActivityList
-            textColor={dailyStepsScreen.textStyle.color}
-            steps={dailySteps}
-            cycling={dailyCycling}
-            mindfulness={dailyMeditation ? t("activity_types.meditation.short", { min: mindfulTotal.minutes }) : null}
-            isPensionActive={dailyPension.active}
-            pension={dailyPension.contribution}
-            stepsAccessibilityLabel={t("screens.daily.daily_passive.steps.accessibility_label", {
-              steps: dailySteps,
-            })}
-            mindfulnessAccessibilityLabel={t("screens.daily.daily_passive.mindfulness.accessibility_label", {
-              mindfulness: mindfulTotal.minutes,
-            })}
-            cyclingAccessibilityLabel={t("screens.daily.daily_passive.cycling.accessibility_label", {
-              cycling: dailyCycling,
-            })}
-            pensionAccessibilityLabel={t("screens.daily.daily_passive.pension.accessibility_label", {
-              contribution: dailyPension.contribution,
-            })}
-          />
-        </View>
+        <ActivityList
+          textColor={dailyStepsScreen.textStyle.color}
+          steps={dailySteps}
+          cycling={dailyCycling}
+          mindfulness={dailyMeditation ? t("activity_types.meditation.short", { min: mindfulTotal.minutes }) : null}
+          isPensionActive={dailyPension.active}
+          pension={dailyPension.contribution}
+          stepsAccessibilityLabel={t("screens.daily.daily_passive.steps.accessibility_label", {
+            steps: dailySteps,
+          })}
+          mindfulnessAccessibilityLabel={t("screens.daily.daily_passive.mindfulness.accessibility_label", {
+            mindfulness: mindfulTotal.minutes,
+          })}
+          cyclingAccessibilityLabel={t("screens.daily.daily_passive.cycling.accessibility_label", {
+            cycling: dailyCycling,
+          })}
+          pensionAccessibilityLabel={t("screens.daily.daily_passive.pension.accessibility_label", {
+            contribution: dailyPension.contribution,
+          })}
+        />
       </Pressable>
-      <Box position="absolute" bottom={eventStyleBottom}>
-        {showHeroCards ? (
-          <HeroCards heroCards={heroCards} healthPermissions={healthPermissions} />
-        ) : showPanel ? (
-          <Panel
-            title={t("screens.daily.panel.title")}
-            description={t("screens.daily.panel.description")}
-            onClose={closePanel}
-          />
-        ) : null}
-      </Box>
-      {showChallengeButton && !hideButtons ? (
-        <View style={styles.buttonWrapper}>
+      <Box
+        flex={1}
+        w="100%"
+        justifyContent="flex-end"
+        disableAutoAdjust={true}
+        gap={Style.adjust(10)}
+        pb={NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(75) })}
+      >
+        <Box>
+          {showHeroCards ? (
+            <HeroCards heroCards={heroCards} healthPermissions={healthPermissions} />
+          ) : showPanel ? (
+            <Panel
+              title={t("screens.daily.panel.title")}
+              description={t("screens.daily.panel.description")}
+              onClose={closePanel}
+            />
+          ) : null}
+        </Box>
+        {showChallengeButton && !hideButtons ? (
           <Button
             testID="DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON"
             onPress={handleTakeAChallengeButtonPress}
             size="Large"
             translatedLabel={challengeButtonLabel}
           />
-        </View>
-      ) : null}
-      {!showChallengeButton && !hideButtons && todayScreen?.button?.onPress ? (
-        <View style={styles.buttonWrapper} testID="DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON">
-          <Button
-            size="Large"
-            translatedLabel={todayScreen.button.label}
-            onPress={handleButtonPress}
-            testID={todayScreen.button.id}
-          />
-        </View>
-      ) : null}
+        ) : null}
+        {!showChallengeButton && !hideButtons && todayScreen?.button?.onPress ? (
+          <Box w="100%" testID="DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON">
+            <Button
+              size="Large"
+              translatedLabel={todayScreen.button.label}
+              onPress={handleButtonPress}
+              testID={todayScreen.button.id}
+            />
+          </Box>
+        ) : null}
+      </Box>
     </>
   );
 });
 
 const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShorterThan(750) });
-
-const styles = {
-  center: {
-    alignItems: "center",
-  } as ViewStyle,
-  activityListWrapper: {
-    marginTop: isShort ? 0 : Style.adjust(8),
-  } as ViewStyle,
-  buttonWrapper: {
-    start: 0,
-    end: 0,
-    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(75) }),
-    position: "absolute",
-  } as ViewStyle,
-};
