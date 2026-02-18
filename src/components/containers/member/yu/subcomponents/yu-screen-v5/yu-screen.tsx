@@ -119,7 +119,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, sh
       yumojiPromptWrapper: { ...styles.yumojiPromptWrapper, opacity: yumojiOpacity },
       gradientWrapper: { ...styles.gradientWrapper, opacity: gradientOpacity },
       headerScaffold: { ...styles.headerScaffold, marginTop: yumojiRemoteUrl ? 0 : Style.adjust(8) },
-      bouncingHeaderWrapper: { transform: [{ translateY: headerY }] },
+      bouncingHeaderWrapper: { transform: [{ translateY: headerY }], flex: 1 },
       bottomPad: { ...styles.bottomPad, height: Math.max(MIN_SECTIONS_HEIGHT - sectionsHeight, 0) },
     }),
     [colours, yumojiRemoteUrl, sectionsHeight, achievement]
