@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useMemo, useState, FC, useRef } from "react";
 import { Animated, View, Image } from "react-native";
-import LottieView from "lottie-react-native";
+import type Lottie from "lottie-react-native";
+import { LottieView } from "@molecules";
 import { labels } from "@navigation/root";
 import { useQuery } from "@apollo/client";
 import { DETOX_ENABLED } from "@services/socket";
@@ -80,9 +81,9 @@ const Unity: FC<IProps> = ({ level, yuniversalLevel, yuniversalMap, repeatedUnit
     []
   );
 
-  const foregroundAnim = useRef<LottieView>(null);
-  const backgroundAnim = useRef<LottieView>(null);
-  const travelRef = useRef<LottieView>(null);
+  const foregroundAnim = useRef<Lottie>(null);
+  const backgroundAnim = useRef<Lottie>(null);
+  const travelRef = useRef<Lottie>(null);
 
   const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -261,7 +262,7 @@ const Unity: FC<IProps> = ({ level, yuniversalLevel, yuniversalMap, repeatedUnit
 
     // at set time, start looping the chosen segment
     timeout.current = global.setTimeout(
-      (anim: LottieView) => {
+      (anim: Lottie) => {
         anim.play(loopStartFrame, loopEndFrame);
       },
       startLoopTime,

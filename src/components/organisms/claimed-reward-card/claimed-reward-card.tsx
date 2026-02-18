@@ -3,7 +3,8 @@ import { IBoxProps } from "@atoms/box/box.types";
 import { Style, StyleSheet } from "@styles";
 import { memo, ReactNode, useEffect, useRef } from "react";
 import LinearGradient from "react-native-linear-gradient";
-import LottieView from "lottie-react-native";
+import type Lottie from "lottie-react-native";
+import { LottieView } from "@molecules";
 import shineAnimation from "./sparkles.json";
 
 interface IClaimedRewardBaseProps extends IBoxProps {
@@ -54,7 +55,7 @@ const ClaimedReward = ({
   valueColor = "#956AFF",
   ...props
 }: IClaimedRewardProps) => {
-  const lottieRef = useRef<LottieView>(null);
+  const lottieRef = useRef<Lottie>(null);
 
   useEffect(() => {
     if (!sparkles?.enabled || !lottieRef.current) {

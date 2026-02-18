@@ -1,6 +1,6 @@
 import { ReactNode, memo, useEffect, useRef } from "react";
 import { View } from "react-native";
-import LottieViewRef from "lottie-react-native";
+import type LottieViewRef from "lottie-react-native";
 import { ImageSource } from "expo-image";
 import { Image } from "@atoms";
 import { LottieView } from "@components/molecules";

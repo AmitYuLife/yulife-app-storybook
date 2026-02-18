@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from "react";
+import { memo, useEffect, useRef } from "react";
 import LottieView, { LottieViewProps } from "lottie-react-native";
 import { useGetLottieJson } from "@hooks";
 import { Loading, Source } from "@atoms";
@@ -8,14 +8,24 @@ import { DETOX_ENABLED } from "@services/socket";
 
 export interface ILottieProps extends Omit<LottieViewProps, "source"> {
   suppressLoadingUi?: boolean;
-  source: Source | string;
+  source: LottieViewProps["source"] | Source;
+  ref?: React.RefObject<LottieView>;
 }
 
-const LottieWrapper = forwardRef<LottieView, ILottieProps>((props, ref) => {
+const LottieWrapper = ({ ref, ...props }: ILottieProps) => {
+  const internalRef = useRef<LottieView>(null);
+  const lottieRef = ref || internalRef;
   const { uri, loading } = useGetLottieJson(typeof props.source === "string" ? props.source : null);
 
   const autoPlay = DETOX_ENABLED ? false : props.autoPlay;
   const loop = DETOX_ENABLED ? false : props.loop;
+
+  // fixes a bug on IOS when props.autoPlay=false is ignored
+  useEffect(() => {
+    if (lottieRef.current && autoPlay === false) {
+      lottieRef.current.reset();
+    }
+  }, [lottieRef, autoPlay]);
 
   return (
     <>
@@ -25,7 +35,7 @@ const LottieWrapper = forwardRef<LottieView, ILottieProps>((props, ref) => {
         </View>
       ) : (
         <LottieView
-          ref={ref}
+          ref={lottieRef}
           {...props}
           autoPlay={autoPlay}
           loop={loop}
@@ -35,6 +45,6 @@ const LottieWrapper = forwardRef<LottieView, ILottieProps>((props, ref) => {
       )}
     </>
   );
-});
+};
 
 export default memo(LottieWrapper);

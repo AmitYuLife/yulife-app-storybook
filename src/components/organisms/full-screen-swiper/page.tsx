@@ -1,6 +1,6 @@
 import React, { memo, MutableRefObject, useEffect, useRef } from "react";
 import { Animated, View } from "react-native";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style, StyleSheet } from "@styles";
 import { useGetLottieJson } from "@hooks";

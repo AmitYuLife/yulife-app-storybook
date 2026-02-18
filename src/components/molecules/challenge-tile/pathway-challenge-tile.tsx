@@ -10,7 +10,7 @@ import LinearGradient from "react-native-linear-gradient";
 import { useSelector } from "react-redux";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import PathwayNoAvatar from "./pathway-no-avatar";
-import LottieView from "lottie-react-native";
+import LottieView from "../lottie-view/lottie-view";
 import shineAnimation from "./pathway-challenge-shine.json";
 import moment from "moment";
 import Pressable from "../pressable/pressable";

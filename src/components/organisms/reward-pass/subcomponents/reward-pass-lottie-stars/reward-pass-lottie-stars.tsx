@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef } from "react";
-import Lottie from "lottie-react-native";
-import LottieView from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import { Box } from "@atoms";
+import { LottieView } from "@molecules";
 
 import { StyleSheet } from "@styles";
 const RewardPassLottieStars = ({ delay }: { delay: number }) => {

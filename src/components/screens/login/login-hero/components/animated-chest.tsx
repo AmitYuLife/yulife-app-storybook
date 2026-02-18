@@ -1,7 +1,7 @@
 import { memo, useCallback, useRef, useState } from "react";
 import { Box } from "@atoms";
 import LoginChestFallback from "./svgs/login-chest-fallback";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import { LottieView } from "@components/molecules";
 import RewardLogos from "./reward-logos";
 import { useTimeout } from "@hooks";

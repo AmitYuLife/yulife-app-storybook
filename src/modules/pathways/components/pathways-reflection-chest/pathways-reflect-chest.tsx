@@ -6,10 +6,9 @@ import PathwaysReflectionCard from "../pathways-reflection-card/pathways-reflect
 import PathwayReflectionStatusIndicator from "../pathways-reflection-item/pathways-reflection-status-indicator";
 import { PathwaysReflectionStatus } from "../../pathways.types";
 import { t } from "@locale";
-import { Button } from "@components/molecules";
+import { Button, LottieView } from "@components/molecules";
 import { BUTTON_SIZES } from "@components/molecules/button/button.types";
 import { PathwaysReflectionMarkdown } from "../pathways-reflection-item/pathways-reflection-markdown";
-import LottieView from "lottie-react-native";
 import rewardShine from "./pathways-reward-shine.json";
 
 interface IPathwayReflectChestProps {

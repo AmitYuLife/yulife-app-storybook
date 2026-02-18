@@ -5,12 +5,12 @@ import {
   withTiming,
   useAnimatedStyle,
 } from "react-native-reanimated";
-import LottieView from "lottie-react-native";
 import { memo, useEffect, useMemo, useRef } from "react";
 import { useGetLottieJson } from "@hooks";
 import { DETOX_ENABLED } from "@services/socket";
 import { AnimatedPlantProps } from "./types";
 import { ITEM_WIDTH, PROGRESS_INCREMENT, MULTIPLIER_MINIMUM, ANIMATION_PHASE_DURATION_BASE } from "./configuration";
+import LottieView from "lottie-react-native";
 
 const AnimatedLottieView = Reanimated.createAnimatedComponent(LottieView);
 

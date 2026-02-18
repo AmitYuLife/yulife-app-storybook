@@ -1,5 +1,6 @@
 import { Box } from "@atoms";
-import LottieView from "lottie-react-native";
+import type Lottie from "lottie-react-native";
+import LottieView from "../lottie-view/lottie-view";
 import { memo, useCallback, useEffect, useRef } from "react";
 
 import { StyleSheet } from "@styles";
@@ -14,7 +15,7 @@ const STAGGER_DELAY = 500;
 const DELAY_SPEED = 20000;
 
 const WalletShine = ({ index }: IWalletShineProps) => {
-  const lottieRef = useRef<LottieView>(null);
+  const lottieRef = useRef<Lottie>(null);
 
   useEffect(() => {
     setTimeout(() => {

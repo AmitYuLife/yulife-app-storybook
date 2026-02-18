@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect, useRef, useCallback, useContext, useMemo } from "react";
-import Lottie from "lottie-react-native";
+import type Lottie from "lottie-react-native";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useDispatch } from "react-redux";
 import { Animated } from "react-native";
