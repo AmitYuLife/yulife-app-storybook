@@ -2,13 +2,12 @@ import React, { useCallback } from "react";
 import { Modal, View } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
 import Logger from "@services/logging/logger";
-import { Image, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import { Button, BUTTON_ICON, TertiaryButton } from "@molecules";
 import { GlobeIcon } from "@atoms/icon/globe-icon";
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
-import Animated, { FadeIn } from "react-native-reanimated";
 import { getContentLocationQueryToRefetch, ContentLocationPlacement } from "@utils/contentLocation";
 import { REWARD_LOCATION_MODAL } from "@ids";
 import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
@@ -50,39 +49,41 @@ const _FirstTimeContentLocationSelection = (props: Props) => {
     <Modal transparent={true}>
       <View style={styles.background} />
       <View style={styles.wrapper} testID={REWARD_LOCATION_MODAL}>
-        <Animated.View entering={FadeIn.duration(500)} style={styles.container}>
-          <Image
-            style={styles.image}
-            height={Style.adjust(64)}
-            width={Style.adjust(87)}
-            source={require("@assets/rewards-list/rewards_chest.png")}
-          />
-          <View style={styles.textPadding}>
-            <TextTemplate type="h3" color={Colours.neutral.n800}>
-              {t["screens.content_location.first_time.heading"]}
-            </TextTemplate>
-          </View>
-          <View style={styles.textPadding}>
-            <TextTemplate type="b2" color={Colours.neutral.n800} textAlign="center">
-              {t["screens.content_location.first_time.description"]}
-            </TextTemplate>
-          </View>
-          <TertiaryButton
-            size="Fill"
-            label={t["screens.content_location.first_time.current_location"]}
-            tertiarySubLabel={contentLocationLabel}
-            onPress={onChangeContentLocationPress}
-            height={Style.adjust(80)}
-            LeftIcon={<GlobeIcon />}
-            rightIcon={BUTTON_ICON.ARROW_RIGHT}
-            wrapperStyle={styles.storePadding}
-          />
-          <Button
-            translationKey="screens.content_location.first_time.confirm"
-            size="Fill"
-            onPress={handleConfirmPress}
-          />
-        </Animated.View>
+        <Box w={Style.DEVICE_WIDTH - Style.adjust(36)}>
+          <Box w="100%" p={16} br={8} justifyContent="center" alignItems="center" bg={Colours.neutral.white}>
+            <Image
+              style={styles.image}
+              height={Style.adjust(64)}
+              width={Style.adjust(87)}
+              source={require("@assets/rewards-list/rewards_chest.png")}
+            />
+            <View style={styles.textPadding}>
+              <TextTemplate type="h3" color={Colours.neutral.n800}>
+                {t["screens.content_location.first_time.heading"]}
+              </TextTemplate>
+            </View>
+            <View style={styles.textPadding}>
+              <TextTemplate type="b2" color={Colours.neutral.n800} textAlign="center">
+                {t["screens.content_location.first_time.description"]}
+              </TextTemplate>
+            </View>
+            <TertiaryButton
+              size="Fill"
+              label={t["screens.content_location.first_time.current_location"]}
+              tertiarySubLabel={contentLocationLabel}
+              onPress={onChangeContentLocationPress}
+              height={Style.adjust(80)}
+              LeftIcon={<GlobeIcon />}
+              rightIcon={BUTTON_ICON.ARROW_RIGHT}
+              wrapperStyle={styles.storePadding}
+            />
+            <Button
+              translationKey="screens.content_location.first_time.confirm"
+              size="Fill"
+              onPress={handleConfirmPress}
+            />
+          </Box>
+        </Box>
       </View>
     </Modal>
   );
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: "center",
     alignItems: "center",
+    height: "100%",
   },
   container: {
     backgroundColor: Colours.neutral.white,
