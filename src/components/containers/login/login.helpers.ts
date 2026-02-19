@@ -1,4 +1,4 @@
-import { gql, LoginUserMutation } from "@graphql/__generated";
+import { GetMobileGameThemeDocument, gql, LoginUserMutation, MobileGameTheme } from "@graphql/__generated";
 import { t } from "@locale";
 import { IFeature, ILoginUserPayload } from "@redux/user/user.types";
 import { VoidFunction } from "@utils";
@@ -16,23 +16,37 @@ import { FetchResult } from "@apollo/client";
 import { loginUserSuccess } from "@redux/user/user.actions";
 import { reduceUserFeatures } from "@redux/user/user.helpers";
 
-export const applyLoginSession = async (
-  loginResponse: FetchResult<LoginUserMutation>,
-  region: REGION,
-  componentId: string,
-  dispatch: Dispatch<unknown>
-) => {
+export const applyLoginSession = async ({
+  loginResponse,
+  region,
+  componentId,
+  dispatch,
+}: {
+  loginResponse: FetchResult<LoginUserMutation>;
+  region: REGION;
+  componentId: string;
+  dispatch: Dispatch<unknown>;
+}) => {
+  const tempGameEnableAppTheme = !!loginResponse?.data?.loginUser?.user?.userFeatures?.find(
+    (r) => r.name === "tempGameEnableAppTheme"
+  )?.value;
   // let's persist the region and config
   regionService.setRegion(region);
 
-  // fetch the config
   const response = await client().query({
-    query: gql("GetPublicYuApiConfigDocument"),
+    query: tempGameEnableAppTheme ? gql("GetPublicYuApiConfigWithThemeDocument") : gql("GetPublicYuApiConfigDocument"),
     fetchPolicy: "no-cache",
   });
 
   if (response?.data?.config?.__typename) {
     await regionService.setConfig(response.data.config);
+  }
+
+  if (response?.data && "theme" in response.data) {
+    client().writeQuery({
+      query: GetMobileGameThemeDocument,
+      data: { getMobileGameTheme: response.data?.theme as MobileGameTheme },
+    });
   }
 
   dispatch(setRegionConfig({ shouldFetchConfig: false }));

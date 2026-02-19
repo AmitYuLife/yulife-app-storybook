@@ -13,6 +13,7 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  ApiConfigFragmentDoc: types.ApiConfigFragmentDoc,
   MobileGameUserAchievementFragmentDoc: types.MobileGameUserAchievementFragmentDoc,
   MobileGameUserAchievementsFragmentDoc: types.MobileGameUserAchievementsFragmentDoc,
   YumojiRemoteFilesFragmentDoc: types.YumojiRemoteFilesFragmentDoc,
@@ -114,6 +115,7 @@ const documents = {
   MobileInventoryInfoFragmentDoc: types.MobileInventoryInfoFragmentDoc,
   MediaFragmentDoc: types.MediaFragmentDoc,
   MobileGameRewardPassFragmentDoc: types.MobileGameRewardPassFragmentDoc,
+  MobileGameThemeFragmentDoc: types.MobileGameThemeFragmentDoc,
   MobileWeeklyActivityProgressFragmentDoc: types.MobileWeeklyActivityProgressFragmentDoc,
   UserMoodSubmissionFragmentDoc: types.UserMoodSubmissionFragmentDoc,
   UserMoodSubmissionsResponseFragmentDoc: types.UserMoodSubmissionsResponseFragmentDoc,
@@ -195,6 +197,7 @@ const documents = {
   UpsertDailyPassivesDocument: types.UpsertDailyPassivesDocument,
   UpsertOnboardingChallengeDocument: types.UpsertOnboardingChallengeDocument,
   GetPublicYuApiConfigDocument: types.GetPublicYuApiConfigDocument,
+  GetPublicYuApiConfigWithThemeDocument: types.GetPublicYuApiConfigWithThemeDocument,
   DeleteConnectionDocument: types.DeleteConnectionDocument,
   GetConnectionsDocument: types.GetConnectionsDocument,
   GetNewConnectionLinkDocument: types.GetNewConnectionLinkDocument,
@@ -296,6 +299,7 @@ const documents = {
   GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
   UpdateMobileSocialLeaderboardConsentsDocument: types.UpdateMobileSocialLeaderboardConsentsDocument,
   GetUserSurgeDocument: types.GetUserSurgeDocument,
+  GetMobileGameThemeDocument: types.GetMobileGameThemeDocument,
   GetTodayEarningsDocument: types.GetTodayEarningsDocument,
   ClearUserProfileBadgeCountDocument: types.ClearUserProfileBadgeCountDocument,
   GetUserProfileBadgeCountDocument: types.GetUserProfileBadgeCountDocument,
@@ -366,6 +370,10 @@ const documents = {
  */
 export function gql(source: string): unknown;
 
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ApiConfigFragmentDoc"): typeof documents["ApiConfigFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -855,6 +863,10 @@ export function gql(source: "MobileGameRewardPassFragmentDoc"): typeof documents
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "MobileGameThemeFragmentDoc"): typeof documents["MobileGameThemeFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(
   source: "MobileWeeklyActivityProgressFragmentDoc"
 ): typeof documents["MobileWeeklyActivityProgressFragmentDoc"];
@@ -1244,6 +1256,12 @@ export function gql(source: "UpsertOnboardingChallengeDocument"): typeof documen
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetPublicYuApiConfigDocument"): typeof documents["GetPublicYuApiConfigDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetPublicYuApiConfigWithThemeDocument"
+): typeof documents["GetPublicYuApiConfigWithThemeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1694,6 +1712,10 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetUserSurgeDocument"): typeof documents["GetUserSurgeDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetMobileGameThemeDocument"): typeof documents["GetMobileGameThemeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

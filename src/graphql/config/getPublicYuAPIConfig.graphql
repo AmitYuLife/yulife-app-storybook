@@ -1,50 +1,5 @@
 query GetPublicYuAPIConfig {
   config: getPublicYuAPIConfig {
-    language
-    stripeKey
-    mixpanelKey
-    mixpanelBaseUrl
-    enabledCaptchaProviders
-    hcaptchaSiteKey
-    urls {
-      members
-      forgotPassword
-      website
-      privacyPolicy
-      rewardsPolicy
-      eula
-    }
-    intercom {
-      appId
-      ios
-      android
-    }
-    leanplum {
-      appId
-      prodKey
-      devKey
-    }
-    customerio {
-      apiKey
-      siteId
-      region
-    }
-    datadog {
-      appId
-      appKey
-      site
-      trackUserInteractions
-      trackXHRs
-      trackErrors
-    }
-    sduiStaticDeeplinks {
-      name
-      stepId
-      dynamicRouteId
-    }
-    sduiJourney {
-      supportRequest
-    }
-    sessionTimeout
+    ...APIConfig
   }
 }

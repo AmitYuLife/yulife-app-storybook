@@ -12,6 +12,7 @@ import { validateEmail } from "@utils/email";
 import { useMutatationAllRegions } from "@hooks";
 import { getUniqueDeviceId } from "@utils";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
+import { first } from "lodash";
 
 const trimGraphQLError = (message: string = "") => message.replace(/^GraphQL error: /, "");
 
@@ -85,7 +86,13 @@ const LoginContainer: React.FC<Props> = ({
 
         // only 1 hit, login for this region
         if (results.length === 1) {
-          await applyLoginSession(results[0], results[0].region, componentId, dispatch);
+          const result = first(results);
+          await applyLoginSession({
+            loginResponse: result,
+            region: result?.region,
+            componentId,
+            dispatch,
+          });
           return;
         }
       } catch (e) {
@@ -141,13 +148,14 @@ const LoginContainer: React.FC<Props> = ({
       logins.length > 1
         ? {
             restrictTo: logins.map((d) => d.region),
-            onSelect: (r: REGION) =>
-              applyLoginSession(
-                logins.find((d) => d.region === r),
-                r,
+            onSelect: (r: REGION) => {
+              return applyLoginSession({
+                loginResponse: logins.find((d) => d.region === r),
+                region: r,
                 componentId,
-                dispatch
-              ).catch((err) => handleError(err.message)),
+                dispatch,
+              }).catch((err) => handleError(err.message));
+            },
           }
         : undefined,
     // Logins is mutated (it's a ref)! Don't change the dependency array
