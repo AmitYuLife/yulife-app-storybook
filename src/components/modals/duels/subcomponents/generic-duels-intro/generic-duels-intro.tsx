@@ -6,7 +6,6 @@ import { DuelAvatar } from "../avatar/duel-avatar";
 import styles from "./generic-duels-intro.styles";
 import { DuelStepProps } from "../../duels.types";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { Navigation } from "@navigation/main";
 import colours from "@styles/colours";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { formatOpponentName } from "@utils/duels";
@@ -32,7 +31,7 @@ function GenericDuelsIntro({
   onDeclinePress,
   isLoading,
   loadingLabel,
-  componentId,
+  dismiss,
 }: IGenericDuelsIntro) {
   const [opacity] = React.useState(new Animated.Value(0));
 
@@ -46,8 +45,6 @@ function GenericDuelsIntro({
     }
   }, [loading, opacity]);
 
-  const onPressLeftIcon = () => Navigation.dismissModal(componentId);
-
   if (loading) {
     return null;
   }
@@ -57,7 +54,7 @@ function GenericDuelsIntro({
 
   return (
     <View style={styles.introWrapper}>
-      <TopBarAbsolute leftIcon={LeftIcon.CLOSE} onPressLeftIcon={onPressLeftIcon} rightIcon={null} />
+      <TopBarAbsolute leftIcon={LeftIcon.CLOSE} onPressLeftIcon={dismiss} rightIcon={null} />
       <Animated.View style={[styles.container, { opacity }]}>
         <View style={styles.titleSection} testID={DUEL_NOTIFICATION_HEADING(heading)}>
           <TextTemplate type={type === "invite" ? "h1" : "b1b"} textAlign="center" color={colours.darkestGray}>

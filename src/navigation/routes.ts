@@ -168,7 +168,7 @@ import StreaksModal from "../components/modals/streaks/streaks.modal";
 import StreakSavedModal from "../components/modals/streak-saved/streak-saved.modal";
 import GenericConnectionErrorModal from "../components/modals/generic-modal/generic-connection-error-modal";
 import InfoModal from "../components/modals/info/info.modal";
-import DuelInviteModal from "../components/modals/duels/duel-invite.modal";
+import DuelInviteContainer from "../components/modals/duels/duel-invite.container";
 import DuelRespondModal from "../components/modals/duels/duel-respond.modal";
 import BlurredOverlay from "../components/modals/blurred-overlay/blurred-overlay";
 import ConsumablesModal from "../components/modals/consumables/consumables.modal";
@@ -347,6 +347,10 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: ROUTES.duelsSearch,
     component: DuelsSearchContainer,
+  },
+  {
+    name: ROUTES.duelInvite,
+    component: DuelInviteContainer,
   },
   {
     name: ROUTES.inspect,
@@ -735,10 +739,6 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: MODALS.info,
     component: InfoModal,
-  },
-  {
-    name: MODALS.duelInvite,
-    component: DuelInviteModal,
   },
   {
     name: MODALS.duelRespond,

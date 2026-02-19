@@ -33,6 +33,7 @@ export const ROUTES = {
   challengesHistoryNew: "yulife.member.ActivityHistoryNew",
   duelsHub: "yulife.member.DuelsHub",
   duelsSearch: "yulife.member.DuelsSearch",
+  duelInvite: "yulife.member.DuelInvite",
   yuHealthConnect: "yulife.member.yuHealthConnect",
   yuHealthConnectSelect: "yulife.member.yuHealthConnectSelect",
 
@@ -189,7 +190,6 @@ export const MODALS: Record<string, `${typeof MODAL_PREFIX}.${string}`> = {
   streaks: `${MODAL_PREFIX}.Streaks`,
   todayYucoin: `${MODAL_PREFIX}.todayYucoin`,
   info: `${MODAL_PREFIX}.info`,
-  duelInvite: `${MODAL_PREFIX}.duelInvite`,
   duelRespond: `${MODAL_PREFIX}.duelRespond`,
   yuCoinPowerExplained: `${MODAL_PREFIX}.yuCoinPowerExplained`,
   enterSalary: `${MODAL_PREFIX}.enterSalary`,

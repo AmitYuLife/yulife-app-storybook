@@ -1,6 +1,6 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, FC, memo } from "react";
 import { Platform, View } from "react-native";
-import { Loading, BlurredWrapper } from "@atoms";
+import { BlurredWrapper, Loading } from "@atoms";
 import { Button, Markdown } from "@molecules";
 import styles from "./duel-options.styles";
 import { DuelStepProps } from "../../duels.types";
@@ -9,11 +9,11 @@ import WagerDropdown from "./subcomponents/wager-dropdown/wager-dropdown";
 import { BRAGGING_RIGHT_OPTION, DUEL_OPTIONS_SCREEN, WAGER_OPTION } from "@ids";
 import { ListPicker } from "@components/molecules";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { gql } from "@graphql/__generated";
 import { templateTextMarkdownStyles, StyleSheet } from "@styles";
+import { useModal } from "@modules/modals/useModal";
 
 interface IOptions {
   id: string;
@@ -21,17 +21,9 @@ interface IOptions {
   value: number;
 }
 
-export default function DuelOptions({
-  componentId,
-  opponent,
-  setYucoin,
-  yucoin,
-  userCoins,
-  submitDuel,
-  isLoading,
-}: DuelStepProps) {
+const DuelOptions: FC<DuelStepProps> = ({ dismiss, opponent, setYucoin, yucoin, userCoins, submitDuel, isLoading }) => {
   const [pickerAmountLabel, setPickerAmountLabel] = useState(null);
-  const [isPickerVisible, setIsPickerVisible] = useState(false);
+  const { showModal } = useModal();
   const { data, loading } = useQuery(gql("GetDuelTemplatesDocument"), {
     fetchPolicy: "network-only",
   });
@@ -59,19 +51,33 @@ export default function DuelOptions({
     [wagers, userCoins]
   );
 
-  const onPressLeftIcon = () => Navigation.dismissModal(componentId);
-
-  const showPicker = useCallback(() => setIsPickerVisible(true), []);
-  const hidePicker = useCallback(() => setIsPickerVisible(false), []);
+  const onPressLeftIcon = dismiss;
 
   const pickerItems = wagerOptions.map((option) => ({
     ...option,
     onPress() {
       setPickerAmountLabel(option.label);
       setYucoin(option.value);
-      hidePicker();
     },
   }));
+
+  const showPicker = useCallback(() => {
+    showModal(({ onClose }) => (
+      <BlurredWrapper tint="light" isVisible={true} backgroundColor={backgroundColor}>
+        <ListPicker
+          onPressCancel={onClose}
+          instruction={t("modals.duels.duel_options.instruction")}
+          items={pickerItems.map((item) => ({
+            ...item,
+            onPress() {
+              item.onPress();
+              onClose();
+            },
+          }))}
+        />
+      </BlurredWrapper>
+    ));
+  }, [pickerItems, showModal]);
 
   return (
     <>
@@ -114,16 +120,9 @@ export default function DuelOptions({
           </View>
         ) : null}
       </View>
-      <BlurredWrapper tint="light" isVisible={isPickerVisible} backgroundColor={backgroundColor}>
-        <ListPicker
-          onPressCancel={hidePicker}
-          instruction={t("modals.duels.duel_options.instruction")}
-          items={pickerItems}
-        />
-      </BlurredWrapper>
     </>
   );
-}
+};
 
 const backgroundColor = Platform.select({ ios: "rgba(0,0,0,0.5)", android: "rgba(0,0,0,0.3)" });
 
@@ -133,3 +132,5 @@ export const markdownStyles = StyleSheet.create({
     paddingVertical: 0,
   },
 });
+
+export default memo(DuelOptions);

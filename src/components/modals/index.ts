@@ -6,7 +6,7 @@ export { default as GenericModal } from "./generic-modal/generic-modal";
 export { default as GenericConnectionErrorModal } from "./generic-modal/generic-connection-error-modal";
 export { default as PushNotificationsModal } from "./push-notifications/push-notifications.modal";
 export { default as StreaksModal } from "./streaks/streaks.modal";
-export { default as DuelInviteModal } from "./duels/duel-invite.modal";
+export { default as DuelInviteContainer } from "./duels/duel-invite.container";
 export { default as DuelRespondModal } from "./duels/duel-respond.modal";
 export { default as ScrollPickerModal } from "./scroll-picker-modal/scroll-picker-modal";
 export { default as BlurredOverlay } from "./blurred-overlay/blurred-overlay";
