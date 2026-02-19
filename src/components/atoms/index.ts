@@ -1,6 +1,5 @@
 export { default as Close } from "./close/close";
 export { default as Blurb } from "./blurb/blurb";
-export { default as BlurProvider, IToggleBlur } from "./blur/blur-provider";
 export { default as CloseSvg } from "./close/close-svg";
 export { default as SwipeArrowRight } from "./swipe-arrows-vg/swipe-arrow-right-svg";
 export { default as SwipeArrowLeft } from "./swipe-arrows-vg/swipe-arrow-left-svg";
