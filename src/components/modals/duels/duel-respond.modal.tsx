@@ -26,7 +26,7 @@ interface IProps {
   duelId: string;
   componentId: string;
   invitation?: GetDuelsQuery["getDuels"][0];
-  requestLocation: "leaderboards" | "search_list" | "recents";
+  requestLocation: "leaderboards" | "search_list" | "recents" | "inspect";
   leaderboardPlacement: number;
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDataStart } from "@redux/user/user.actions";
@@ -31,11 +31,11 @@ const STEPS = {
   },
 };
 
-const showInviterNotEnoughYucoinAlert = (componentId: string) => {
+const showInviterNotEnoughYucoinAlert = (dismiss: () => void) => {
   Alert.alert(
     t("modals.duels.duel_invite.not_enought_yucoin.heading"),
     t("modals.duels.duel_invite.not_enought_yucoin.subheading"),
-    [{ text: t("labels.cta.got_it"), onPress: () => Navigation.dismissModal(componentId) }]
+    [{ text: t("labels.cta.got_it"), onPress: dismiss }]
   );
 };
 
@@ -43,11 +43,11 @@ interface IProps {
   componentId: string;
   opponentId: string;
   isDuelsHubInNavigationStack: boolean;
-  requestLocation: "leaderboards" | "search_list" | "recents";
-  leaderboardPlacement: number;
+  requestLocation: "leaderboards" | "search_list" | "recents" | "inspect";
+  leaderboardPlacement?: number;
 }
 
-const DuelInviteModal: React.FC<IProps> = ({
+const DuelInviteContainer: React.FC<IProps> = ({
   componentId,
   opponentId,
   isDuelsHubInNavigationStack = false,
@@ -59,8 +59,9 @@ const DuelInviteModal: React.FC<IProps> = ({
   const [step, setStep] = useState<Step>("INTRO");
   const [yucoin, setYucoin] = useState(DEFAULT_DUEL_AMOUNT);
   const [isLoading, setIsLoading] = useState(false);
+  const dismiss = () => Navigation.pop(componentId);
   useBackHandler(() => {
-    Navigation.dismissModal(componentId);
+    dismiss();
     return true;
   });
 
@@ -93,7 +94,7 @@ const DuelInviteModal: React.FC<IProps> = ({
           leaderboardPlacement,
         },
       });
-      await Navigation.dismissModal(componentId);
+      dismiss();
 
       if (isDuelsHubInNavigationStack) {
         await Navigation.popTo(ROUTES.duelsHub);
@@ -109,13 +110,13 @@ const DuelInviteModal: React.FC<IProps> = ({
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
     } catch (e) {
       setIsLoading(false);
-      Navigation.dismissModal(componentId);
+      dismiss();
     }
   };
 
   const submitDuel = async () => {
     if (userCoins < yucoin) {
-      showInviterNotEnoughYucoinAlert(componentId);
+      showInviterNotEnoughYucoinAlert(dismiss);
       return;
     }
 
@@ -146,15 +147,16 @@ const DuelInviteModal: React.FC<IProps> = ({
         ? Alert.alert(nextStepAlert.title, nextStepAlert.subtitle, [
             {
               text: t("labels.cta.got_it"),
-              onPress: () => Navigation.dismissModal(componentId),
+              onPress: dismiss,
             },
           ])
         : setStep(NEXT),
-    onDeclinePress: () => Navigation.dismissModal(componentId),
+    onDeclinePress: dismiss,
     isLoading,
     submitDuel,
     userCoins,
     componentId,
+    dismiss,
   };
 
   return (
@@ -165,4 +167,4 @@ const DuelInviteModal: React.FC<IProps> = ({
   );
 };
 
-export default DuelInviteModal;
+export default memo(DuelInviteContainer);

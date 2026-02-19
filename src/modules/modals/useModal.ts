@@ -11,4 +11,4 @@ export const useModal = () => {
   return context;
 };
 
-export type ShowModal = ReturnType<typeof useModal>["showModal"];
+export type ShowModalProp = ReturnType<typeof useModal>["showModal"];

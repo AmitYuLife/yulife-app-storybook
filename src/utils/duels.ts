@@ -4,6 +4,7 @@ import { Alert } from "react-native";
 import Logger from "@services/logging/logger";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
+import { Navigation } from "@navigation/main";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { GetDuelsQuery } from "@graphql/__generated";
 
@@ -73,36 +74,26 @@ export const validDuels = (duels: GetDuelsQuery["getDuels"], currentUserId: stri
   }, []);
 };
 
-const navigateToDuelInvite = async (
-  opponentId: string,
-  leaderboardPlacement: number,
-  requestLocation: DuelRequestLocation
-) => {
-  await showYuModal({
-    component: {
-      id: MODALS.duelInvite,
-      name: MODALS.duelInvite,
-      passProps: {
-        opponentId,
-        requestLocation,
-        leaderboardPlacement,
-      },
-    },
-  });
-};
-
-export const onDuelPress = async (
-  duels: GetDuelsQuery["getDuels"],
-  currentUserId: string,
-  opponentId: string,
-  leaderboardPlacement: number,
-  requestLocation: DuelRequestLocation
-) => {
+export const onDuelPress = ({
+  duels,
+  currentUserId,
+  opponentId,
+  leaderboardPlacement,
+  requestLocation,
+  componentId,
+}: {
+  duels: GetDuelsQuery["getDuels"];
+  currentUserId: string;
+  opponentId: string;
+  leaderboardPlacement: number;
+  requestLocation: DuelRequestLocation;
+  componentId: string;
+}) => {
   const existingDuel = validDuels(duels, currentUserId).find(({ userId: duelistId }) => duelistId === opponentId);
   if (existingDuel) {
     const shouldShowDuelRespond = existingDuel.isOpponentInviter && existingDuel.status === "pending";
     if (shouldShowDuelRespond) {
-      await showYuModal({
+      showYuModal({
         component: {
           id: MODALS.duelRespond,
           name: MODALS.duelRespond,
@@ -120,7 +111,17 @@ export const onDuelPress = async (
     return;
   }
 
-  await navigateToDuelInvite(opponentId, leaderboardPlacement, requestLocation);
+  Navigation.push(componentId, {
+    component: {
+      id: ROUTES.duelInvite,
+      name: ROUTES.duelInvite,
+      passProps: {
+        opponentId,
+        requestLocation,
+        leaderboardPlacement,
+      },
+    },
+  });
 };
 
 export const showExistingDuelAlert = (existingDuel: ValidDuel, requestLocation: DuelRequestLocation) => {

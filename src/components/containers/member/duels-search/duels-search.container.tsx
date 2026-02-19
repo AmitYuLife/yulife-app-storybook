@@ -12,12 +12,12 @@ import { useSelector } from "react-redux";
 import { useBackHandler, useSocialGroupUserSearch, useUserFeatures } from "@hooks";
 import { FindAFriend, SearchInput } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
-import { showYuModal } from "@navigation/root";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { t } from "@locale";
 import { showExistingDuelAlert, validDuels } from "@utils/duels";
 import { SearchLeaderboardUserQuery, SocialGroupLeaderboardSearchType, gql } from "@graphql/__generated";
 import SearchList from "./subcomponents/search-list";
+import { showYuModal } from "@navigation/root";
 
 export type SearchedOpponent = SearchLeaderboardUserQuery["searchLeaderboardUser"][number] & {
   onPress: () => Promise<void>;
@@ -42,11 +42,17 @@ const goToReferralInformation = async () => {
   });
 };
 
-const inviteToDuel = async (opponentId: string, requestLocation: "search_list" | "recents") => {
-  await showYuModal({
+const inviteToDuel = ({
+  opponentId,
+  requestLocation,
+}: {
+  opponentId: string;
+  requestLocation: "search_list" | "recents";
+}) => {
+  Navigation.push(ROUTES.duelsSearch, {
     component: {
-      id: MODALS.duelInvite,
-      name: MODALS.duelInvite,
+      id: ROUTES.duelInvite,
+      name: ROUTES.duelInvite,
       passProps: {
         opponentId,
         isDuelsHubInNavigationStack: true,
@@ -56,13 +62,19 @@ const inviteToDuel = async (opponentId: string, requestLocation: "search_list" |
   });
 };
 
-const showDuelRespond = async (duelId: string, requestLocation: "search_list" | "recents") => {
-  await showYuModal({
+const showDuelRespondModal = ({
+  duelId,
+  requestLocation,
+}: {
+  duelId: string;
+  requestLocation: "search_list" | "recents";
+}) => {
+  showYuModal({
     component: {
       id: MODALS.duelRespond,
       name: MODALS.duelRespond,
       passProps: {
-        duelId: duelId,
+        duelId,
         requestLocation,
       },
     },
@@ -98,7 +110,7 @@ function _DuelsSearchContainer() {
         const shouldShowDuelRespond = existingDuel.isOpponentInviter && existingDuel.status === "pending";
 
         if (shouldShowDuelRespond) {
-          showDuelRespond(existingDuel.id, requestLocation);
+          showDuelRespondModal({ duelId: existingDuel.id, requestLocation });
         } else {
           showExistingDuelAlert(existingDuel, requestLocation);
         }
@@ -106,7 +118,7 @@ function _DuelsSearchContainer() {
         return;
       }
 
-      await inviteToDuel(opponentId, requestLocation);
+      inviteToDuel({ opponentId, requestLocation });
     },
     [validDuels, duels, userId]
   );

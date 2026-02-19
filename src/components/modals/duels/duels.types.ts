@@ -18,5 +18,6 @@ export interface DuelStepProps {
   submitDuel: () => void;
   userCoins: number;
   loadingLabel?: "primary" | "secondary";
-  componentId: string;
+  componentId?: string;
+  dismiss?: () => void;
 }

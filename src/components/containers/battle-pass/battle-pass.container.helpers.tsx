@@ -1,8 +1,8 @@
+import { ShowModalProp } from "@app/modules/modals/useModal";
 import { BattlePassGenericModal, showFloatingModal } from "@components/modals";
 import BattlePassLevelUpModal from "@components/modals/battle-pass-level-up/battle-pass-level-up.modal";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { GetMobileGameBattlePassQuery, MobileGameBattlePassProgressInfoFragment } from "@graphql/__generated";
-import { ShowModal } from "@modules/modals/useModal";
 import { t } from "@locale";
 import { MixpanelEvent } from "@services/logging/types";
 import { Unpacked } from "@utils";
@@ -12,7 +12,7 @@ interface IBattlePassProgress {
   progress: MobileGameBattlePassProgressInfoFragment;
   amount: number;
   openModals?: boolean;
-  showModal: ShowModal;
+  showModal: ShowModalProp;
   nextReward?: IBattlePassReward;
   logMixpanelEvent?: (eventName: MixpanelEvent, properties?: Record<string, unknown>) => void;
   onRewardClaim?: (reward: IBattlePassReward) => VoidFunctionOrSduiActionPayload;
@@ -115,7 +115,7 @@ const showLevelUpModal = ({
   showModal,
   onRewardClaim,
 }: {
-  showModal: ShowModal;
+  showModal: ShowModalProp;
   reward: IBattlePassReward;
   onRewardClaim: (reward: IBattlePassReward) => VoidFunctionOrSduiActionPayload;
 }) => {
