@@ -2,7 +2,7 @@ import React, { FC, useState, useCallback, memo, useMemo, useEffect } from "reac
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { challengeStartAction, clearChallengeStartErrorAction } from "@redux/levels/levels.actions";
-import { Box, IToggleBlur } from "@atoms";
+import { Box } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
@@ -218,15 +218,12 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     showChallengeDetails,
   ]);
 
-  const resetErrorAndHideOverlay = useCallback(
-    (hideOverlay: IToggleBlur["hideOverlay"]) => () => {
-      setErrorState("");
-      dispatch(clearChallengeStartErrorAction());
-      hideOverlay?.();
-      setShouldShowOverlay(false);
-    },
-    [dispatch]
-  );
+  const resetErrorAndHideOverlay = useCallback(() => {
+    setErrorState("");
+    dispatch(clearChallengeStartErrorAction());
+    setSlot(null);
+    setShouldShowOverlay(false);
+  }, [dispatch]);
 
   if (isScreenReaderEnabled && slot) {
     return (
@@ -262,7 +259,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
             slot={slot}
             error={error}
             isLoading={submitting}
-            onPressBack={resetErrorAndHideOverlay(() => setSlot(null))}
+            onPressBack={resetErrorAndHideOverlay}
             currentWorld={currentWorld}
             onPressCta={handleSubmitChallenge}
             onPressClose={navigateToQuestScreen}
