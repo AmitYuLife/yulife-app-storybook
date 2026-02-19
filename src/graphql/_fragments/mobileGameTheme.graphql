@@ -1,0 +1,25 @@
+fragment MobileGameTheme on MobileGameTheme {
+  id
+  name
+  colors {
+    primary {
+      p20
+      p40
+      p50
+      p60
+      p80
+      p100
+      p200
+      p300
+      p400
+      p500
+      p600
+      p600Shadow
+    }
+  }
+  assets {
+    logo {
+      ...RemoteImage
+    }
+  }
+}

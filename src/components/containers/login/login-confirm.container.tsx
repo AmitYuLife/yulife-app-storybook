@@ -134,7 +134,12 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
         }
 
         if (result.data?.loginUser?.token) {
-          await applyLoginSession(result, props.region, componentId, dispatch);
+          await applyLoginSession({
+            loginResponse: result,
+            region: props.region,
+            componentId,
+            dispatch,
+          });
           hasNavigatedAwayRef.current = true;
         }
       } catch (error) {

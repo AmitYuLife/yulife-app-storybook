@@ -157,6 +157,13 @@ export type Accessibility = {
   accessibilityRole?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type AccountClosureEligibility = {
+  __typename?: "AccountClosureEligibility";
+  canRequestClosure: Scalars["Boolean"]["output"];
+  hasActivePersonalProducts: Scalars["Boolean"]["output"];
+  hasPendingDeletionRequest: Scalars["Boolean"]["output"];
+};
+
 export enum AccountUserType {
   Adviser = "adviser",
   Employer = "employer",
@@ -957,6 +964,39 @@ export type BusinessEarlyAccessSelfRegistrationPreset = {
   maxUses?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type BusinessInvoice = {
+  __typename?: "BusinessInvoice";
+  businessInvoiceId: Scalars["String"]["output"];
+  dateIssued?: Maybe<Scalars["String"]["output"]>;
+  documentId?: Maybe<Scalars["String"]["output"]>;
+  invoiceNumber?: Maybe<Scalars["String"]["output"]>;
+  invoiceType?: Maybe<BusinessInvoiceType>;
+  status: BusinessInvoiceStatus;
+  totalAmount?: Maybe<Scalars["Float"]["output"]>;
+};
+
+export enum BusinessInvoiceStatus {
+  Paid = "paid",
+  PartialOverdue = "partial_overdue",
+  PartialUpToDate = "partial_up_to_date",
+  Unknown = "unknown",
+  Unpaid = "unpaid",
+  Voided = "voided",
+}
+
+export enum BusinessInvoiceStatusFilter {
+  Paid = "paid",
+  PartialOverdue = "partial_overdue",
+  PartialUpToDate = "partial_up_to_date",
+  Unpaid = "unpaid",
+}
+
+export enum BusinessInvoiceType {
+  Deposit = "deposit",
+  Initial = "initial",
+  YucoinTopup = "yucoin_topup",
+}
+
 export type BusinessMagicLinkResponse = {
   __typename?: "BusinessMagicLinkResponse";
   message?: Maybe<Scalars["String"]["output"]>;
@@ -1058,19 +1098,23 @@ export type BusinessSessionBusiness = {
   businessTags?: Maybe<Array<BusinessTag>>;
   /** @deprecated Will no longer be used once the portal onboarding experience is complete */
   hasEmployees?: Maybe<Scalars["Boolean"]["output"]>;
+  hasOnlyCashPlanProducts?: Maybe<Scalars["Boolean"]["output"]>;
   hasReachedLaunchThreshold?: Maybe<Scalars["Boolean"]["output"]>;
   hasWildCardRuleAssigned?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
   isEligibleForAutomatedAdmin?: Maybe<Scalars["Boolean"]["output"]>;
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
+  launchThresholdReachedAt?: Maybe<Scalars["String"]["output"]>;
   name: Scalars["String"]["output"];
   products: Array<Scalars["String"]["output"]>;
+  scheduledInviteDate?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type BusinessSessionSettings = {
   __typename?: "BusinessSessionSettings";
   customEventsEnabled: Scalars["Boolean"]["output"];
   customValuesFiltering: CustomValuesFiltering;
+  digitalPortalPurchasesEnabled: Scalars["Boolean"]["output"];
   earlyAccessEnabled: Scalars["Boolean"]["output"];
   employeeExperienceEnabled: Scalars["Boolean"]["output"];
   employeeRecognitionEnabled: Scalars["Boolean"]["output"];
@@ -1095,11 +1139,13 @@ export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
   completedSurveys: Scalars["Int"]["output"];
   createdAt: Scalars["String"]["output"];
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
+  generationPrompt?: Maybe<Scalars["String"]["output"]>;
   hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   hasPresetLoaded: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
   isNameConfirmed: Scalars["Boolean"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
+  journeySourceTemplateId?: Maybe<BusinessSurveyPresetId>;
   launchEmailBody?: Maybe<Scalars["String"]["output"]>;
   launchEmailSubjectLine?: Maybe<Scalars["String"]["output"]>;
   minRecipients: Scalars["Int"]["output"];
@@ -2412,6 +2458,7 @@ export type ContentItemProductDetailsHeader = {
   funding?: Maybe<ContentItemProductDetailsHeaderFunding>;
   id: Scalars["ID"]["output"];
   itemSlot: YuScreenItemSlot;
+  /** @deprecated No longer used in version 5.0.0 */
   productIdentifier?: Maybe<ContentItemProductDetailsHeaderProductIdentifier>;
   productName: Scalars["String"]["output"];
   providerLogo?: Maybe<VariableRemoteImage>;
@@ -4158,6 +4205,11 @@ export type GameSettingsRewards = {
   hasVoucherStore: Scalars["Boolean"]["output"];
 };
 
+export type GenerateSignedDownloadUrlResponse = {
+  __typename?: "GenerateSignedDownloadUrlResponse";
+  downloadUrl: Scalars["String"]["output"];
+};
+
 export type GenerateSurveyFromPromptInput = {
   prompt: Scalars["String"]["input"];
 };
@@ -4191,6 +4243,11 @@ export type GeneratedSurveyOutput = {
   categories: Array<GeneratedCategory>;
 };
 
+export type GenericResponse = {
+  __typename?: "GenericResponse";
+  success: Scalars["Boolean"]["output"];
+};
+
 export type GetAuthorisationUrlsResult = {
   __typename?: "GetAuthorisationUrlsResult";
   authUrls?: Maybe<Array<Maybe<MessagingConnectionAuthUrl>>>;
@@ -4221,6 +4278,13 @@ export type GetBusinessEmailDomainResult = {
   __typename?: "GetBusinessEmailDomainResult";
   count: Scalars["Int"]["output"];
   domain: Scalars["String"]["output"];
+};
+
+export type GetBusinessInvoicesResponse = {
+  __typename?: "GetBusinessInvoicesResponse";
+  count: Scalars["Int"]["output"];
+  hasInvoices: Scalars["Boolean"]["output"];
+  invoices: Array<BusinessInvoice>;
 };
 
 export type GetBusinessPerksResponse = {
@@ -5943,6 +6007,24 @@ export type MobileGameRewardPassSlot = {
   y: Scalars["String"]["output"];
 };
 
+export type MobileGameTheme = {
+  __typename?: "MobileGameTheme";
+  assets: MobileGameThemeAssets;
+  colors: MobileGameThemeColors;
+  id: Scalars["ID"]["output"];
+  name: Scalars["String"]["output"];
+};
+
+export type MobileGameThemeAssets = {
+  __typename?: "MobileGameThemeAssets";
+  logo?: Maybe<RemoteImage>;
+};
+
+export type MobileGameThemeColors = {
+  __typename?: "MobileGameThemeColors";
+  primary: PrimaryThemeColor;
+};
+
 export type MobileGameUserAchievement = {
   __typename?: "MobileGameUserAchievement";
   backgroundColor: Scalars["String"]["output"];
@@ -6566,6 +6648,8 @@ export type Mutation = {
   completeSignup: Scalars["Boolean"]["output"];
   configureHrisConnection: Scalars["Boolean"]["output"];
   configureMessagingConnection: Scalars["Boolean"]["output"];
+  /** Confirm account closure using the OTP from the magic link email */
+  confirmAccountClosure: GenericResponse;
   confirmDuelsScore: ConfirmDuelsScoreResponse;
   confirmPaymentCard: ConfirmedPaymentCard;
   createBusinessAccessUser: BusinessAccessUser;
@@ -6609,6 +6693,7 @@ export type Mutation = {
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
   /** Generates a signed URL for the member's product document and returns an action to open it */
   generateMemberProductDocumentUrl: SduiAction;
+  generateSignedDownloadUrl: GenerateSignedDownloadUrlResponse;
   generateSurveyFromPrompt: GeneratedSurveyOutput;
   getNewConnectionLink?: Maybe<Scalars["String"]["output"]>;
   getNewPensionConnectionLink?: Maybe<Scalars["String"]["output"]>;
@@ -6650,6 +6735,8 @@ export type Mutation = {
   /** Removes beneficiary from product */
   removeBeneficiaryFromProduct: CustomerProductBeneficiaries;
   removeEmployeeRecognitionCampaignRecipients: Scalars["Boolean"]["output"];
+  /** Request account closure - sends a magic link email for confirmation */
+  requestAccountClosure: GenericResponse;
   requestYuStoreQuote: Scalars["Boolean"]["output"];
   resetBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
   resetData?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6741,8 +6828,6 @@ export type Mutation = {
   updateEmployeeExperienceAverageSalary?: Maybe<Scalars["Boolean"]["output"]>;
   updateEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
   updateMemberDetails: Scalars["Boolean"]["output"];
-  /** @deprecated(reason: "Use updateMemberDetails instead") */
-  updateMemberName: Scalars["Boolean"]["output"];
   updateMobileGameUserAchievement?: Maybe<MobileGameUserAchievements>;
   /**
    * Used by clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.16.0
@@ -6963,6 +7048,10 @@ export type MutationConfigureMessagingConnectionArgs = {
   connectionId: Scalars["String"]["input"];
 };
 
+export type MutationConfirmAccountClosureArgs = {
+  otp: Scalars["String"]["input"];
+};
+
 export type MutationConfirmDuelsScoreArgs = {
   date: Scalars["String"]["input"];
 };
@@ -7110,6 +7199,12 @@ export type MutationExportYuCoinRedemptionReportArgs = {
 
 export type MutationGenerateMemberProductDocumentUrlArgs = {
   customerProductId: Scalars["String"]["input"];
+};
+
+export type MutationGenerateSignedDownloadUrlArgs = {
+  contentDisposition?: InputMaybe<Scalars["String"]["input"]>;
+  entityId: Scalars["String"]["input"];
+  entityType: Scalars["String"]["input"];
 };
 
 export type MutationGenerateSurveyFromPromptArgs = {
@@ -7652,12 +7747,6 @@ export type MutationUpdateMemberDetailsArgs = {
   referralCode?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-export type MutationUpdateMemberNameArgs = {
-  firstName: Scalars["String"]["input"];
-  lastName: Scalars["String"]["input"];
-  nameVariants?: InputMaybe<Array<NameVariantInput>>;
-};
-
 export type MutationUpdateMobileGameUserAchievementArgs = {
   id: Scalars["String"]["input"];
   slot?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8133,6 +8222,22 @@ export type PricingConfiguration = {
   value: Scalars["String"]["output"];
 };
 
+export type PrimaryThemeColor = {
+  __typename?: "PrimaryThemeColor";
+  p20: Scalars["String"]["output"];
+  p40: Scalars["String"]["output"];
+  p50: Scalars["String"]["output"];
+  p60: Scalars["String"]["output"];
+  p80: Scalars["String"]["output"];
+  p100: Scalars["String"]["output"];
+  p200: Scalars["String"]["output"];
+  p300: Scalars["String"]["output"];
+  p400: Scalars["String"]["output"];
+  p500: Scalars["String"]["output"];
+  p600: Scalars["String"]["output"];
+  p600Shadow: Scalars["String"]["output"];
+};
+
 export type ProductAction = {
   __typename?: "ProductAction";
   nextModalId?: Maybe<Scalars["String"]["output"]>;
@@ -8278,6 +8383,8 @@ export type Query = {
   findUserAddress?: Maybe<Array<Maybe<ShippingAddress>>>;
   get2FASecret?: Maybe<TwoFaSecretResponse>;
   getAPIVersion?: Maybe<ApiDetails>;
+  /** Check if the current user can request account closure */
+  getAccountClosureEligibility: AccountClosureEligibility;
   getActiveAndInactiveCount: ActiveAndInactiveCount;
   /** Get the user's active employments */
   getActiveEmployments: Array<UserBusinessLink>;
@@ -8310,6 +8417,7 @@ export type Query = {
   getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessSelfRegistrationResult>;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
   getBusinessFeaturedRewards: Array<FeaturedReward>;
+  getBusinessInvoices: GetBusinessInvoicesResponse;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
   getBusinessPerk: BusinessPerkItem;
   getBusinessPerks: GetBusinessPerksResponse;
@@ -8429,6 +8537,7 @@ export type Query = {
   getMobileGameBattlePassChestDetails: MobileGameBattlePassChestDetails;
   getMobileGameBattlePassRewardInfo: MobileGameBattlePassRewardInfo;
   getMobileGameRewardPassList: MobileGameRewardPassList;
+  getMobileGameTheme?: Maybe<MobileGameTheme>;
   getMobileGameUserAchievements: MobileGameUserAchievements;
   getMobileGameUserWalletRewardItems: MobileGameUserWalletSections;
   getMobileGameUserWalletRewards: MobileGameUserWalletRewards;
@@ -8747,6 +8856,15 @@ export type QueryGetBusinessAccessAdminsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetBusinessAccessUserArgs = {
   accountAccessId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBusinessInvoicesArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  q?: InputMaybe<Scalars["String"]["input"]>;
+  status?: InputMaybe<Array<InputMaybe<BusinessInvoiceStatusFilter>>>;
 };
 
 /** Default types to be extended / root query */
@@ -10915,11 +11033,9 @@ export type TeamEmployeeExternalIntegration = {
   archived?: Maybe<Scalars["Boolean"]["output"]>;
   businessMemberDataConnectionEmployeeId?: Maybe<Scalars["String"]["output"]>;
   businessMemberDataConnectionId: Scalars["String"]["output"];
-  /** @deprecated No longer used by frontend */
   connectionName: Scalars["String"]["output"];
   connectionStatus: Scalars["String"]["output"];
   connectionType: Scalars["String"]["output"];
-  controlledFieldTooltip: Scalars["String"]["output"];
   isBusinessEmployeeSkipped: Scalars["Boolean"]["output"];
   lastObservedImportCreatedAt?: Maybe<Scalars["String"]["output"]>;
   lastObservedImportId?: Maybe<Scalars["String"]["output"]>;
@@ -10939,6 +11055,7 @@ export type TeamEmployeeField = {
   allowSearch?: Maybe<Scalars["Boolean"]["output"]>;
   assistiveText?: Maybe<Scalars["String"]["output"]>;
   controlledByExternalIntegration?: Maybe<Scalars["Boolean"]["output"]>;
+  controlledByExternalIntegrationTooltip?: Maybe<Scalars["String"]["output"]>;
   fieldType?: Maybe<TeamPortalFieldType>;
   isSensitive?: Maybe<Scalars["Boolean"]["output"]>;
   label: Scalars["String"]["output"];
@@ -13287,6 +13404,45 @@ export type UpdateUserAvatarResponse = {
   rewardAmount?: Maybe<Scalars["Int"]["output"]>;
   rewarded?: Maybe<Scalars["Boolean"]["output"]>;
   updated?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type ApiConfigFragment = {
+  __typename?: "APIConfig";
+  language: string;
+  stripeKey: string;
+  mixpanelKey: string;
+  mixpanelBaseUrl: string;
+  enabledCaptchaProviders?: Array<string | null> | null;
+  hcaptchaSiteKey?: string | null;
+  sessionTimeout: number;
+  urls: {
+    __typename?: "APIConfigUrls";
+    members: string;
+    forgotPassword: string;
+    website: string;
+    privacyPolicy: string;
+    rewardsPolicy: string;
+    eula: string;
+  };
+  intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
+  leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
+  customerio?: { __typename?: "APIConfigCustomerio"; apiKey: string; siteId: string; region: string } | null;
+  datadog: {
+    __typename?: "APIConfigDatadog";
+    appId?: string | null;
+    appKey?: string | null;
+    site: string;
+    trackUserInteractions: boolean;
+    trackXHRs: boolean;
+    trackErrors: boolean;
+  };
+  sduiStaticDeeplinks: Array<{
+    __typename?: "APIConfigSDUIStaticDeepLink";
+    name: string;
+    stepId: string;
+    dynamicRouteId?: string | null;
+  }>;
+  sduiJourney: { __typename?: "APIConfigSDUIJourney"; supportRequest: string };
 };
 
 export type MobileGameUserAchievementFragment = {
@@ -20391,6 +20547,34 @@ export type MobileGameRewardPassFragment = {
   }> | null;
 };
 
+export type MobileGameThemeFragment = {
+  __typename?: "MobileGameTheme";
+  id: string;
+  name: string;
+  colors: {
+    __typename?: "MobileGameThemeColors";
+    primary: {
+      __typename?: "PrimaryThemeColor";
+      p20: string;
+      p40: string;
+      p50: string;
+      p60: string;
+      p80: string;
+      p100: string;
+      p200: string;
+      p300: string;
+      p400: string;
+      p500: string;
+      p600: string;
+      p600Shadow: string;
+    };
+  };
+  assets: {
+    __typename?: "MobileGameThemeAssets";
+    logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  };
+};
+
 export type MobileWeeklyActivityProgressFragment = {
   __typename?: "MobileWeeklyActivityProgress";
   id: string;
@@ -24489,6 +24673,77 @@ export type GetPublicYuApiConfigQuery = {
     }>;
     sduiJourney: { __typename?: "APIConfigSDUIJourney"; supportRequest: string };
   };
+};
+
+export type GetPublicYuApiConfigWithThemeQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetPublicYuApiConfigWithThemeQuery = {
+  __typename?: "Query";
+  config: {
+    __typename?: "APIConfig";
+    language: string;
+    stripeKey: string;
+    mixpanelKey: string;
+    mixpanelBaseUrl: string;
+    enabledCaptchaProviders?: Array<string | null> | null;
+    hcaptchaSiteKey?: string | null;
+    sessionTimeout: number;
+    urls: {
+      __typename?: "APIConfigUrls";
+      members: string;
+      forgotPassword: string;
+      website: string;
+      privacyPolicy: string;
+      rewardsPolicy: string;
+      eula: string;
+    };
+    intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
+    leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
+    customerio?: { __typename?: "APIConfigCustomerio"; apiKey: string; siteId: string; region: string } | null;
+    datadog: {
+      __typename?: "APIConfigDatadog";
+      appId?: string | null;
+      appKey?: string | null;
+      site: string;
+      trackUserInteractions: boolean;
+      trackXHRs: boolean;
+      trackErrors: boolean;
+    };
+    sduiStaticDeeplinks: Array<{
+      __typename?: "APIConfigSDUIStaticDeepLink";
+      name: string;
+      stepId: string;
+      dynamicRouteId?: string | null;
+    }>;
+    sduiJourney: { __typename?: "APIConfigSDUIJourney"; supportRequest: string };
+  };
+  theme?: {
+    __typename?: "MobileGameTheme";
+    id: string;
+    name: string;
+    colors: {
+      __typename?: "MobileGameThemeColors";
+      primary: {
+        __typename?: "PrimaryThemeColor";
+        p20: string;
+        p40: string;
+        p50: string;
+        p60: string;
+        p80: string;
+        p100: string;
+        p200: string;
+        p300: string;
+        p400: string;
+        p500: string;
+        p600: string;
+        p600Shadow: string;
+      };
+    };
+    assets: {
+      __typename?: "MobileGameThemeAssets";
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+  } | null;
 };
 
 export type DeleteConnectionMutationVariables = Exact<{
@@ -38702,6 +38957,39 @@ export type GetUserSurgeQuery = {
   } | null;
 };
 
+export type GetMobileGameThemeQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobileGameThemeQuery = {
+  __typename?: "Query";
+  getMobileGameTheme?: {
+    __typename?: "MobileGameTheme";
+    id: string;
+    name: string;
+    colors: {
+      __typename?: "MobileGameThemeColors";
+      primary: {
+        __typename?: "PrimaryThemeColor";
+        p20: string;
+        p40: string;
+        p50: string;
+        p60: string;
+        p80: string;
+        p100: string;
+        p200: string;
+        p300: string;
+        p400: string;
+        p500: string;
+        p600: string;
+        p600Shadow: string;
+      };
+    };
+    assets: {
+      __typename?: "MobileGameThemeAssets";
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+  } | null;
+};
+
 export type GetTodayEarningsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetTodayEarningsQuery = {
@@ -46154,6 +46442,114 @@ export type YumojiRemotePartFragment = {
   remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
+export const ApiConfigFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "APIConfig" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "APIConfig" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "language" } },
+          { kind: "Field", name: { kind: "Name", value: "stripeKey" } },
+          { kind: "Field", name: { kind: "Name", value: "mixpanelKey" } },
+          { kind: "Field", name: { kind: "Name", value: "mixpanelBaseUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "enabledCaptchaProviders" } },
+          { kind: "Field", name: { kind: "Name", value: "hcaptchaSiteKey" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "urls" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "members" } },
+                { kind: "Field", name: { kind: "Name", value: "forgotPassword" } },
+                { kind: "Field", name: { kind: "Name", value: "website" } },
+                { kind: "Field", name: { kind: "Name", value: "privacyPolicy" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardsPolicy" } },
+                { kind: "Field", name: { kind: "Name", value: "eula" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "intercom" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "ios" } },
+                { kind: "Field", name: { kind: "Name", value: "android" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leanplum" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "prodKey" } },
+                { kind: "Field", name: { kind: "Name", value: "devKey" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customerio" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "apiKey" } },
+                { kind: "Field", name: { kind: "Name", value: "siteId" } },
+                { kind: "Field", name: { kind: "Name", value: "region" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "datadog" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "appKey" } },
+                { kind: "Field", name: { kind: "Name", value: "site" } },
+                { kind: "Field", name: { kind: "Name", value: "trackUserInteractions" } },
+                { kind: "Field", name: { kind: "Name", value: "trackXHRs" } },
+                { kind: "Field", name: { kind: "Name", value: "trackErrors" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiStaticDeeplinks" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "stepId" } },
+                { kind: "Field", name: { kind: "Name", value: "dynamicRouteId" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiJourney" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "supportRequest" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sessionTimeout" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ApiConfigFragment, unknown>;
 export const RemoteImageFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -60630,6 +61026,82 @@ export const MobileGameRewardPassFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MobileGameRewardPassFragment, unknown>;
+export const MobileGameThemeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameTheme" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameTheme" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "primary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "p20" } },
+                      { kind: "Field", name: { kind: "Name", value: "p40" } },
+                      { kind: "Field", name: { kind: "Name", value: "p50" } },
+                      { kind: "Field", name: { kind: "Name", value: "p60" } },
+                      { kind: "Field", name: { kind: "Name", value: "p80" } },
+                      { kind: "Field", name: { kind: "Name", value: "p100" } },
+                      { kind: "Field", name: { kind: "Name", value: "p200" } },
+                      { kind: "Field", name: { kind: "Name", value: "p300" } },
+                      { kind: "Field", name: { kind: "Name", value: "p400" } },
+                      { kind: "Field", name: { kind: "Name", value: "p500" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600Shadow" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "assets" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MobileGameThemeFragment, unknown>;
 export const MobileWeeklyActivityProgressFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -76436,100 +76908,316 @@ export const GetPublicYuApiConfigDocument = {
             name: { kind: "Name", value: "getPublicYuAPIConfig" },
             selectionSet: {
               kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "APIConfig" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "APIConfig" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "APIConfig" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "language" } },
+          { kind: "Field", name: { kind: "Name", value: "stripeKey" } },
+          { kind: "Field", name: { kind: "Name", value: "mixpanelKey" } },
+          { kind: "Field", name: { kind: "Name", value: "mixpanelBaseUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "enabledCaptchaProviders" } },
+          { kind: "Field", name: { kind: "Name", value: "hcaptchaSiteKey" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "urls" },
+            selectionSet: {
+              kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "language" } },
-                { kind: "Field", name: { kind: "Name", value: "stripeKey" } },
-                { kind: "Field", name: { kind: "Name", value: "mixpanelKey" } },
-                { kind: "Field", name: { kind: "Name", value: "mixpanelBaseUrl" } },
-                { kind: "Field", name: { kind: "Name", value: "enabledCaptchaProviders" } },
-                { kind: "Field", name: { kind: "Name", value: "hcaptchaSiteKey" } },
+                { kind: "Field", name: { kind: "Name", value: "members" } },
+                { kind: "Field", name: { kind: "Name", value: "forgotPassword" } },
+                { kind: "Field", name: { kind: "Name", value: "website" } },
+                { kind: "Field", name: { kind: "Name", value: "privacyPolicy" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardsPolicy" } },
+                { kind: "Field", name: { kind: "Name", value: "eula" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "intercom" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "ios" } },
+                { kind: "Field", name: { kind: "Name", value: "android" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leanplum" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "prodKey" } },
+                { kind: "Field", name: { kind: "Name", value: "devKey" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customerio" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "apiKey" } },
+                { kind: "Field", name: { kind: "Name", value: "siteId" } },
+                { kind: "Field", name: { kind: "Name", value: "region" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "datadog" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "appKey" } },
+                { kind: "Field", name: { kind: "Name", value: "site" } },
+                { kind: "Field", name: { kind: "Name", value: "trackUserInteractions" } },
+                { kind: "Field", name: { kind: "Name", value: "trackXHRs" } },
+                { kind: "Field", name: { kind: "Name", value: "trackErrors" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiStaticDeeplinks" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "stepId" } },
+                { kind: "Field", name: { kind: "Name", value: "dynamicRouteId" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiJourney" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "supportRequest" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sessionTimeout" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetPublicYuApiConfigQuery, GetPublicYuApiConfigQueryVariables>;
+export const GetPublicYuApiConfigWithThemeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPublicYuAPIConfigWithTheme" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "config" },
+            name: { kind: "Name", value: "getPublicYuAPIConfig" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "APIConfig" } }],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "theme" },
+            name: { kind: "Name", value: "getMobileGameTheme" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameTheme" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "APIConfig" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "APIConfig" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "language" } },
+          { kind: "Field", name: { kind: "Name", value: "stripeKey" } },
+          { kind: "Field", name: { kind: "Name", value: "mixpanelKey" } },
+          { kind: "Field", name: { kind: "Name", value: "mixpanelBaseUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "enabledCaptchaProviders" } },
+          { kind: "Field", name: { kind: "Name", value: "hcaptchaSiteKey" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "urls" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "members" } },
+                { kind: "Field", name: { kind: "Name", value: "forgotPassword" } },
+                { kind: "Field", name: { kind: "Name", value: "website" } },
+                { kind: "Field", name: { kind: "Name", value: "privacyPolicy" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardsPolicy" } },
+                { kind: "Field", name: { kind: "Name", value: "eula" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "intercom" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "ios" } },
+                { kind: "Field", name: { kind: "Name", value: "android" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leanplum" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "prodKey" } },
+                { kind: "Field", name: { kind: "Name", value: "devKey" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customerio" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "apiKey" } },
+                { kind: "Field", name: { kind: "Name", value: "siteId" } },
+                { kind: "Field", name: { kind: "Name", value: "region" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "datadog" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "appKey" } },
+                { kind: "Field", name: { kind: "Name", value: "site" } },
+                { kind: "Field", name: { kind: "Name", value: "trackUserInteractions" } },
+                { kind: "Field", name: { kind: "Name", value: "trackXHRs" } },
+                { kind: "Field", name: { kind: "Name", value: "trackErrors" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiStaticDeeplinks" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "stepId" } },
+                { kind: "Field", name: { kind: "Name", value: "dynamicRouteId" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiJourney" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "supportRequest" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sessionTimeout" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameTheme" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameTheme" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "urls" },
+                  name: { kind: "Name", value: "primary" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "members" } },
-                      { kind: "Field", name: { kind: "Name", value: "forgotPassword" } },
-                      { kind: "Field", name: { kind: "Name", value: "website" } },
-                      { kind: "Field", name: { kind: "Name", value: "privacyPolicy" } },
-                      { kind: "Field", name: { kind: "Name", value: "rewardsPolicy" } },
-                      { kind: "Field", name: { kind: "Name", value: "eula" } },
+                      { kind: "Field", name: { kind: "Name", value: "p20" } },
+                      { kind: "Field", name: { kind: "Name", value: "p40" } },
+                      { kind: "Field", name: { kind: "Name", value: "p50" } },
+                      { kind: "Field", name: { kind: "Name", value: "p60" } },
+                      { kind: "Field", name: { kind: "Name", value: "p80" } },
+                      { kind: "Field", name: { kind: "Name", value: "p100" } },
+                      { kind: "Field", name: { kind: "Name", value: "p200" } },
+                      { kind: "Field", name: { kind: "Name", value: "p300" } },
+                      { kind: "Field", name: { kind: "Name", value: "p400" } },
+                      { kind: "Field", name: { kind: "Name", value: "p500" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600Shadow" } },
                     ],
                   },
                 },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "assets" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "intercom" },
+                  name: { kind: "Name", value: "logo" },
                   selectionSet: {
                     kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "appId" } },
-                      { kind: "Field", name: { kind: "Name", value: "ios" } },
-                      { kind: "Field", name: { kind: "Name", value: "android" } },
-                    ],
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "leanplum" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "appId" } },
-                      { kind: "Field", name: { kind: "Name", value: "prodKey" } },
-                      { kind: "Field", name: { kind: "Name", value: "devKey" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "customerio" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "apiKey" } },
-                      { kind: "Field", name: { kind: "Name", value: "siteId" } },
-                      { kind: "Field", name: { kind: "Name", value: "region" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "datadog" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "appId" } },
-                      { kind: "Field", name: { kind: "Name", value: "appKey" } },
-                      { kind: "Field", name: { kind: "Name", value: "site" } },
-                      { kind: "Field", name: { kind: "Name", value: "trackUserInteractions" } },
-                      { kind: "Field", name: { kind: "Name", value: "trackXHRs" } },
-                      { kind: "Field", name: { kind: "Name", value: "trackErrors" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "sduiStaticDeeplinks" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "stepId" } },
-                      { kind: "Field", name: { kind: "Name", value: "dynamicRouteId" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "sduiJourney" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "Field", name: { kind: "Name", value: "supportRequest" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "sessionTimeout" } },
               ],
             },
           },
@@ -76537,7 +77225,7 @@ export const GetPublicYuApiConfigDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<GetPublicYuApiConfigQuery, GetPublicYuApiConfigQueryVariables>;
+} as unknown as DocumentNode<GetPublicYuApiConfigWithThemeQuery, GetPublicYuApiConfigWithThemeQueryVariables>;
 export const DeleteConnectionDocument = {
   kind: "Document",
   definitions: [
@@ -97055,6 +97743,100 @@ export const GetUserSurgeDocument = {
     },
   ],
 } as unknown as DocumentNode<GetUserSurgeQuery, GetUserSurgeQueryVariables>;
+export const GetMobileGameThemeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileGameTheme" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileGameTheme" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameTheme" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameTheme" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameTheme" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "primary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "p20" } },
+                      { kind: "Field", name: { kind: "Name", value: "p40" } },
+                      { kind: "Field", name: { kind: "Name", value: "p50" } },
+                      { kind: "Field", name: { kind: "Name", value: "p60" } },
+                      { kind: "Field", name: { kind: "Name", value: "p80" } },
+                      { kind: "Field", name: { kind: "Name", value: "p100" } },
+                      { kind: "Field", name: { kind: "Name", value: "p200" } },
+                      { kind: "Field", name: { kind: "Name", value: "p300" } },
+                      { kind: "Field", name: { kind: "Name", value: "p400" } },
+                      { kind: "Field", name: { kind: "Name", value: "p500" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600Shadow" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "assets" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileGameThemeQuery, GetMobileGameThemeQueryVariables>;
 export const GetTodayEarningsDocument = {
   kind: "Document",
   definitions: [

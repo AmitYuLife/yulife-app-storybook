@@ -11,6 +11,7 @@ import { getUniqueDeviceId } from "@utils";
 import { Navigation } from "@navigation/main";
 import { applyLoginSession } from "./login.helpers";
 import { useDispatch } from "react-redux";
+import { first } from "lodash";
 
 interface Props {
   componentId: string;
@@ -64,8 +65,13 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
       });
 
       if (results.length === 1) {
-        // only 1 hit, login for this region
-        await applyLoginSession(results[0], results[0].region, componentId, dispatch);
+        const result = first(results);
+        await applyLoginSession({
+          loginResponse: result,
+          region: result?.region,
+          componentId,
+          dispatch,
+        });
         Keyboard.dismiss();
         return;
       }
@@ -84,13 +90,14 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
       loginResponses.length > 1
         ? {
             restrictTo: loginResponses.map((d) => d.region),
-            onSelect: (r: REGION) =>
-              applyLoginSession(
-                loginResponses.find((d) => d.region === r),
-                r,
+            onSelect: (r: REGION) => {
+              return applyLoginSession({
+                loginResponse: loginResponses.find((d) => d.region === r),
+                region: r,
                 componentId,
-                dispatch
-              ).catch((err) => handleError(err.message)),
+                dispatch,
+              }).catch((err) => handleError(err.message));
+            },
           }
         : undefined,
     // loginResponses is mutated (it's a ref)! Don't change the dependency array

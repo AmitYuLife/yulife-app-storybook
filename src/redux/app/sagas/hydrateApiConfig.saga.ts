@@ -1,14 +1,20 @@
-import { call } from "redux-saga/effects";
+import { call, select } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { region } from "@locale";
 import { initStripe } from "@services/stripe";
 import { SyncAction } from "@redux/_core/types";
 import deepLink from "@navigation/deepLink";
 import client, { regionalClients } from "@graphql/_core/client";
-import { gql, GetPublicYuApiConfigQuery } from "@graphql/__generated";
-import { ApolloQueryResult } from "@apollo/client";
+import {
+  gql,
+  GetMobileGameThemeDocument,
+  GetPublicYuApiConfigWithThemeQuery,
+  GetPublicYuApiConfigQuery,
+} from "@graphql/__generated";
 import { DETOX_ENABLED } from "@services/socket";
 import dd from "@services/datadog";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { ApolloQueryResult } from "@apollo/client";
 
 const initialPayloadTypes = ["INIT", "SET_MAIN_ROOT"];
 
@@ -16,6 +22,8 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
   try {
     const isFromInit = initialPayloadTypes.includes(type);
     let shouldFetchConfig: boolean = typeof payload === "object" ? (payload || {})?.shouldFetchConfig : true;
+
+    const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
     if (isFromInit) {
       const hasValidRegionConfig: boolean = yield call(region.hydratePreferredRegion);
@@ -27,14 +35,22 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
 
     if (shouldFetchConfig) {
       if (DETOX_ENABLED) {
-        yield call(hydrateForDetox);
+        yield call(hydrateForDetox, features.tempGameEnableAppTheme);
       } else {
-        const response: ApolloQueryResult<GetPublicYuApiConfigQuery> = yield call(() =>
-          client().query({
-            query: gql("GetPublicYuApiConfigDocument"),
-            fetchPolicy: "no-cache",
-          })
+        const response: Awaited<ReturnType<typeof queryConfig>> = yield call(() =>
+          queryConfig({ apolloClient: client(), tempGameEnableAppTheme: features.tempGameEnableAppTheme })
         );
+
+        if (response?.data?.config?.__typename) {
+          yield call(region.setConfig, response.data.config);
+        }
+
+        if (response?.data && "theme" in response.data) {
+          client().writeQuery({
+            query: GetMobileGameThemeDocument,
+            data: { getMobileGameTheme: response.data.theme },
+          });
+        }
 
         if (response?.data?.config?.__typename) {
           yield call(region.setConfig, response.data.config);
@@ -54,18 +70,41 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
   }
 }
 
-const hydrateForDetox = async () => {
+async function queryConfig({
+  apolloClient,
+  tempGameEnableAppTheme,
+}: {
+  apolloClient: ReturnType<typeof client>;
+  tempGameEnableAppTheme: boolean;
+}): Promise<ApolloQueryResult<GetPublicYuApiConfigQuery | GetPublicYuApiConfigWithThemeQuery>> {
+  if (tempGameEnableAppTheme) {
+    return await apolloClient.query({
+      query: gql("GetPublicYuApiConfigWithThemeDocument"),
+      fetchPolicy: "no-cache",
+    });
+  }
+
+  return await apolloClient.query({
+    query: gql("GetPublicYuApiConfigDocument"),
+    fetchPolicy: "no-cache",
+  });
+}
+
+const hydrateForDetox = async (tempGameEnableAppTheme: boolean) => {
   for (const regionalClient of regionalClients) {
     try {
-      const response = await regionalClient.query({
-        query: gql("GetPublicYuApiConfigDocument"),
-        fetchPolicy: "no-cache",
-        errorPolicy: "ignore",
-      });
+      const response = await queryConfig({ apolloClient: regionalClient, tempGameEnableAppTheme });
 
       if (response?.data?.config?.__typename) {
         await region.setConfig(response.data.config);
         return;
+      }
+
+      if (response?.data && "theme" in response.data) {
+        client().writeQuery({
+          query: GetMobileGameThemeDocument,
+          data: { getMobileGameTheme: response.data.theme },
+        });
       }
     } catch {
       //

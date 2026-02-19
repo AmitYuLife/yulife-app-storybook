@@ -1,0 +1,8 @@
+query GetPublicYuAPIConfigWithTheme {
+  config: getPublicYuAPIConfig {
+    ...APIConfig
+  }
+  theme: getMobileGameTheme {
+    ...MobileGameTheme
+  }
+}
