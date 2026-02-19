@@ -71,6 +71,8 @@ export const openDebugMenuItem =
     await tapID(ids.MENU_ICON, 1_500)();
     await tapID(ids.DEBUG_MENU, 2_000)();
 
+    await scrollFromID(ids.DEBUG_SCREEN, "down", "fast", 0.5, 2_000)();
+
     await typeViaID(ids.DEBUG_SEARCH_INPUT, searchText)();
 
     // Dismiss keyboard by tapping the target item
