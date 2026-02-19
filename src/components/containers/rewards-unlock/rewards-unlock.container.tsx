@@ -94,7 +94,7 @@ const RewardsUnlockContainer = ({
 
   return (
     <>
-      <Box>
+      <Box flex={1}>
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.contentContainerStyle}
@@ -174,7 +174,7 @@ const linearGradient = {
 };
 
 const styles = StyleSheet.create({
-  scrollView: { height: Style.DEVICE_HEIGHT },
+  scrollView: { flex: 1 },
   contentContainerStyle: { backgroundColor: "white", flexGrow: 1 },
 });
 
