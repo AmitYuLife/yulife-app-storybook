@@ -7,7 +7,6 @@ import * as data from "../_data";
 import * as constants from "./_resources/constants";
 import * as ids from "@ids";
 import {
-  beamWellbeingItem,
   metLifeGPWellbeingItem,
   yuMatterWellbeingItem,
   bupaDentalProductItem,
@@ -17,7 +16,6 @@ import {
   criticalIllnessProductItem,
   pensionUnlinkedProductItem,
   certificateDetailsGLAUMAnya,
-  certificateDetailsGIPUMAnya,
   metLyfeGPWellbeingItem,
   yuniversityWellbeingItem,
   fiitWellbeingItem,

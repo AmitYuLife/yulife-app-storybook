@@ -7,7 +7,7 @@ import styles from "./debug.styles";
 import { TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules/index";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { DEBUG_SEARCH_INPUT } from "@ids";
+import { DEBUG_SCREEN, DEBUG_SEARCH_INPUT } from "@ids";
 
 export interface IDebugItem {
   id: string;
@@ -63,7 +63,7 @@ const DebugScreen = memo(({ data, onPressClose }: IDebugScreenProps) => {
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
-      <View style={styles.wrapper}>
+      <View style={styles.wrapper} testID={DEBUG_SCREEN}>
         <FlashList
           data={filteredData}
           renderItem={renderItem}

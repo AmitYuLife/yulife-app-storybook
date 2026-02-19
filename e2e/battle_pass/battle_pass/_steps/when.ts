@@ -68,7 +68,7 @@ export const completeStripePayment = (card: StripeCardDetails, amount: string) =
     await input.typeText(value);
   }
 
-  await element(by.label("Or pay with a card")).atIndex(0).tap();
+  await element(by.label("Or pay using")).atIndex(0).tap();
 
   const payButton = element(by.label(`Pay £${amount}`)).atIndex(0);
   await waitFor(payButton).toBeVisible().withTimeout(5000);

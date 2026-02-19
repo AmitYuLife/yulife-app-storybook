@@ -1165,4 +1165,5 @@ export const PATHWAYS_ADVICE_LABEL = (label: string) => `PATHWAYS_ADVICE_LABEL_$
 // Debug Menu
 export const DEBUG_MENU = "DEBUG_MENU";
 export const DEBUG_SEARCH_INPUT = "DEBUG_SEARCH_INPUT";
+export const DEBUG_SCREEN = "DEBUG_SCREEN";
 export const DEBUG_MENU_ITEM = (item: string) => `DEBUG_MENU_ITEM_${item}`;
