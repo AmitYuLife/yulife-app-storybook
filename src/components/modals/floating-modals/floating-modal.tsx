@@ -35,6 +35,8 @@ interface IProps {
   isCloseButtonSecondary?: boolean;
   title?: string;
   wrapperStyle?: ViewStyle;
+  /** can override the overlay position. defaults to bottom, can be set to center for certain overlays */
+  overlayStyle?: ViewStyle;
   testID?: string;
 }
 
@@ -59,6 +61,7 @@ const FloatingModal = ({
   title,
   wrapperStyle,
   testID,
+  overlayStyle,
 }: IProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [iconAsset, setIconAsset] = useState<Source>(icon);
@@ -98,7 +101,7 @@ const FloatingModal = ({
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
-      <Box w="100%" h="100%" justifyContent="flex-end">
+      <Box w="100%" h="100%" justifyContent="flex-end" {...overlayStyle}>
         <View style={wrapperStyles} testID={testID}>
           {!title ? null : (
             <View style={styles.title}>
