@@ -226,6 +226,7 @@ export default () => ({
         enableGooglePay: false,
       },
     ],
+    "./plugins/stripe/with-stripe-launch-activity.plugin",
     "./plugins/yulife/with-yulife.plugin",
     "./plugins/detox/with-detox.js",
     "./plugins/yulife/with-yulife-split-apks",
