@@ -8172,10 +8172,10 @@
   resolved "https://gitlab.com/api/v4/projects/55451146/packages/npm/@yu-life/react-native-yu-watch/-/@yu-life/react-native-yu-watch-1.1.1.tgz#5ab80bdfdf90d5f0167019a3c87d01fa8a4fa878"
   integrity sha1-WrgL39+Q1fAWcBmjyH0B+opPqHg=
 
-"@yu-life/yulife-bdd-framework@^0.3.0":
-  version "0.3.0"
-  resolved "https://gitlab.com/api/v4/projects/23052792/packages/npm/@yu-life/yulife-bdd-framework/-/@yu-life/yulife-bdd-framework-0.3.0.tgz#2ff49148367eb5da94c89418fa6c59901bce0c76"
-  integrity sha1-L/SRSDZ+tdqUyJQY+mxZkBvODHY=
+"@yu-life/yulife-bdd-framework@0.3.3":
+  version "0.3.3"
+  resolved "https://gitlab.com/api/v4/projects/23052792/packages/npm/@yu-life/yulife-bdd-framework/-/@yu-life/yulife-bdd-framework-0.3.3.tgz#f2b129aa5e3f5e4df17443118fc4a84ade370259"
+  integrity sha1-8rEpql4/Xk3xdEMRj8SoSt43Alk=
   dependencies:
     "@faker-js/faker" "8.4.1"
     axios "^0.21.0"
