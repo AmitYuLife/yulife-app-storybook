@@ -120,6 +120,10 @@ const ActivityFeed = ({
     await checkCyclingPermissions();
   }, []);
 
+  const QuestionMarkModal = useMemo(() => {
+    return <ActivityFeedPopMenu {...questionMarkModal} />;
+  }, [questionMarkModal]);
+
   const openPopUp = useCallback(() => {
     if (questionMarkModal?.event) {
       dispatch(questionMarkModal.event);
@@ -128,9 +132,9 @@ const ActivityFeed = ({
     showTooltipPopupRelativeToView({
       viewRef: questionMarkRef,
       beakPosition: "autoHorizontal",
-      children: <ActivityFeedPopMenu {...questionMarkModal} />,
+      children: QuestionMarkModal,
     });
-  }, [questionMarkRef, questionMarkModal]);
+  }, [questionMarkModal?.event, QuestionMarkModal, dispatch]);
 
   const showSystemLocationPermissionToast = useMemo(() => {
     if (Platform.OS === "ios" || !isGoogleFitAuthorised || id !== "core-activities") {
