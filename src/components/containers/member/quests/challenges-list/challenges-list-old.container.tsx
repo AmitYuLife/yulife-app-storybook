@@ -2,7 +2,7 @@ import React, { FC, useState, useCallback, memo, useMemo, useEffect } from "reac
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { challengeStartAction, clearChallengeStartErrorAction } from "@redux/levels/levels.actions";
-import { BlurProvider, IToggleBlur } from "@atoms";
+import { Box } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
@@ -20,6 +20,7 @@ import { onPressChallengeTile } from "@utils/challenges";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
 import { getMobileQuestLevelDetails } from "@graphql/challenges/getChallengeDetails.gql";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
+import { FadeIn, FadeOut } from "react-native-reanimated";
 
 interface IProps {
   componentId: string;
@@ -39,6 +40,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
   const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState(null as GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]);
   const [submitting, setSubmittingState] = useState(false);
+  const [shouldShowOverlay, setShouldShowOverlay] = useState(false);
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
   const isScreenReaderEnabled = useScreenReaderChange();
@@ -188,20 +190,21 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
     [componentId, createChallenge, level, slot]
   );
 
+  const showChallengeDetails = useCallback(() => {
+    setShouldShowOverlay(true);
+  }, []);
+
   const navigateToQuestScreen = useCallback(() => {
     Navigation.popToRoot(componentId);
   }, [componentId]);
 
   const slots = data?.getQuestMapLevel?.slots || [];
 
-  const resetErrorAndHideOverlay = useCallback(
-    (hideOverlay: IToggleBlur["hideOverlay"]) => () => {
-      setErrorState("");
-      dispatch(clearChallengeStartErrorAction());
-      hideOverlay?.();
-    },
-    [dispatch]
-  );
+  const resetErrorAndHideOverlay = useCallback(() => {
+    setErrorState("");
+    dispatch(clearChallengeStartErrorAction());
+    setShouldShowOverlay(false);
+  }, [dispatch]);
 
   if (isScreenReaderEnabled && slot) {
     return (
@@ -219,64 +222,63 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
   }
 
   return (
-    <BlurProvider
-      render={({ showOverlay }: IToggleBlur) => (
-        <>
-          <ChallengesListScreen
-            pathwayChallenge={pathwayChallenge}
-            openConsumables={hasDonationBattlepass ? openConsumables : undefined}
-            challenges={slots.map((levelSlot) => {
-              const formattedSlot = {
-                heading: levelSlot.heading,
-                duration: levelSlot.duration,
-                id: levelSlot.id,
-                reward: levelSlot.reward,
-                imageUri: levelSlot.image.uri,
-                availableAtLevel: levelSlot.availableAtLevel || 1,
-                isLocked: levelSlot.isLocked,
-                isCompleted: levelSlot.isCompleted,
-                hasSurge: levelSlot.hasSurge,
-                hasBonus: levelSlot.hasBonus,
-                extraChallenges: levelSlot.extraChallenges,
-              };
+    <>
+      <ChallengesListScreen
+        pathwayChallenge={pathwayChallenge}
+        openConsumables={hasDonationBattlepass ? openConsumables : undefined}
+        challenges={slots.map((levelSlot) => {
+          const formattedSlot = {
+            heading: levelSlot.heading,
+            duration: levelSlot.duration,
+            id: levelSlot.id,
+            reward: levelSlot.reward,
+            imageUri: levelSlot.image.uri,
+            availableAtLevel: levelSlot.availableAtLevel || 1,
+            isLocked: levelSlot.isLocked,
+            isCompleted: levelSlot.isCompleted,
+            hasSurge: levelSlot.hasSurge,
+            hasBonus: levelSlot.hasBonus,
+            extraChallenges: levelSlot.extraChallenges,
+          };
 
-              return {
-                ...formattedSlot,
-                currentWorld,
-                onPress: async () => {
-                  await onPressChallengeTile({
-                    levelSlot,
-                    setActiveSlot: setSlot,
-                    componentId,
-                    createChallenge,
-                    level,
-                    authoriseFitKitTypes,
-                    showOverlay,
-                  });
-                },
-              };
-            })}
-            currentLevel={level}
-            loading={loading || pathwayChallengeLoading}
-            yuniversalMap={yuniversalMap}
-            name={name}
-            onPressLeftIcon={handleNavPress}
+          return {
+            ...formattedSlot,
+            currentWorld,
+            onPress: async () => {
+              await onPressChallengeTile({
+                levelSlot,
+                setActiveSlot: setSlot,
+                componentId,
+                createChallenge,
+                level,
+                authoriseFitKitTypes,
+                showOverlay: showChallengeDetails,
+              });
+            },
+          };
+        })}
+        currentLevel={level}
+        loading={loading || pathwayChallengeLoading}
+        yuniversalMap={yuniversalMap}
+        name={name}
+        onPressLeftIcon={handleNavPress}
+      />
+
+      {slot && shouldShowOverlay ? (
+        <Box position="absolute" w="100%" h="100%" entering={FadeIn.duration(200)} exiting={FadeOut.duration(200)}>
+          <ChallengeDetailsScreen
+            slot={slot}
+            error={error}
+            isLoading={submitting}
+            onPressBack={resetErrorAndHideOverlay}
+            currentWorld={currentWorld}
+            onPressCta={handleSubmitChallenge}
+            onPressClose={navigateToQuestScreen}
+            onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
           />
-        </>
-      )}
-      renderOverlay={({ hideOverlay }: IToggleBlur) => (
-        <ChallengeDetailsScreen
-          slot={slot}
-          error={error}
-          isLoading={submitting}
-          onPressBack={resetErrorAndHideOverlay(hideOverlay)}
-          currentWorld={currentWorld}
-          onPressCta={handleSubmitChallenge}
-          onPressClose={navigateToQuestScreen}
-          onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
-        />
-      )}
-    />
+        </Box>
+      ) : null}
+    </>
   );
 };
 
