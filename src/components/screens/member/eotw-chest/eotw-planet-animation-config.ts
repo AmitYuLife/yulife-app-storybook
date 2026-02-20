@@ -34,11 +34,11 @@ interface IPlanetTravelAnimation {
   [key: string]: string;
 }
 export const PLANET_TRAVEL_ANIMATION: IPlanetTravelAnimation = {
-  [Planets.EARTH]: require("./assets/travel-animations/earth-planet-travel-animation.lottie"),
-  [Planets.RED]: require("./assets/travel-animations/red-planet-travel-animation.lottie"),
-  [Planets.BRIGHT]: require("./assets/travel-animations/bright-planet-travel-animation.lottie"),
-  [Planets.ORANGE]: require("./assets/travel-animations/orange-planet-travel-animation.lottie"),
-  [Planets.PURPLE]: require("./assets/travel-animations/purple-planet-travel-animation.lottie"),
-  [Planets.RING]: require("./assets/travel-animations/ring-planet-travel-animation.lottie"),
-  [Planets.LUNAR]: require("./assets/travel-animations/lunar-planet-travel-animation.lottie"),
+  [Planets.EARTH]: require("./assets/travel-animations/earth-planet-travel-animation.json"),
+  [Planets.RED]: require("./assets/travel-animations/red-planet-travel-animation.json"),
+  [Planets.BRIGHT]: require("./assets/travel-animations/bright-planet-travel-animation.json"),
+  [Planets.ORANGE]: require("./assets/travel-animations/orange-planet-travel-animation.json"),
+  [Planets.PURPLE]: require("./assets/travel-animations/purple-planet-travel-animation.json"),
+  [Planets.RING]: require("./assets/travel-animations/ring-planet-travel-animation.json"),
+  [Planets.LUNAR]: require("./assets/travel-animations/lunar-planet-travel-animation.json"),
 };
