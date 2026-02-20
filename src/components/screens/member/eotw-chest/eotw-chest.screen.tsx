@@ -106,6 +106,15 @@ const EOTWChestScreen: FC<IProps> = memo(
 
     const { color, backgroundChest } = assets;
 
+    const onAnimationFinish = useCallback(
+      (isCancelled: boolean) => {
+        if (!isCancelled) {
+          onPressCta();
+        }
+      },
+      [onPressCta]
+    );
+
     return (
       <View style={styles.wrapper} testID={CELESTIAL_CHEST_SCREEN}>
         <RawImage source={backgroundChest} style={styles.fullScreenLottie} onLayout={onInitialized} />
@@ -187,8 +196,8 @@ const EOTWChestScreen: FC<IProps> = memo(
             style={styles.lottie}
             source={PLANET_TRAVEL_ANIMATION[currentPlanetName]}
             autoPlay={true}
-            onAnimationFinish={onPressCta}
             loop={false}
+            onAnimationFinish={onAnimationFinish}
           />
         )}
       </View>
