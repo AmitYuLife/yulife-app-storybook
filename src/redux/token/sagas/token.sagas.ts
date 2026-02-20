@@ -24,7 +24,11 @@ export function* updateTokenIfExpired() {
     if (result.errors && result.errors.length) {
       yield call(() => {
         for (const error of result.errors) {
-          Logger.error(error, { event: "refreshSession" });
+          Logger.error(new Error(error.message), {
+            event: "refreshSession",
+            path: error.path?.join(","),
+            locations: error.locations?.join(","),
+          });
         }
       });
       return;
