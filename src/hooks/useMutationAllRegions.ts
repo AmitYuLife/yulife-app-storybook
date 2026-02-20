@@ -44,7 +44,7 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
               });
 
               if (data?.errors?.length) {
-                errors.current.push(data.errors[0].originalError?.message);
+                errors.current.push(data.errors[0].message);
               } else {
                 results.current.push({ region: client.__REGION, ...data });
               }

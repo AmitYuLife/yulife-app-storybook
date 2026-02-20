@@ -99,7 +99,11 @@ async function getTokenAndMobileUpgradeStatus(): Promise<ITokenAndMobileUpgradeS
 
     if (errors && errors.length) {
       for (const error of errors) {
-        Logger.error(error, { message: "error trying to get user session" });
+        Logger.error(new Error(error.message), {
+          message: "error trying to get user session",
+          path: error.path?.join(","),
+          locations: error.locations?.join(","),
+        });
       }
     }
 

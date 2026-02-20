@@ -65,7 +65,7 @@
     "yuhealth:pull": "rm -rf node_modules/@yu-life/react-native-yu-health/android/src/main/java/ && cp -r ../react-native-yu-health/android/src/main/java/ node_modules/@yu-life/react-native-yu-health/android/src/main/java/"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.7",
+    "@apollo/client": "3.13.9",
     "@betomorrow/expo-app-name": "^0.0.2",
     "@bugsnag/expo": "^50.0.0",
     "@bugsnag/plugin-expo-eas-sourcemaps": "^52.0.0",
