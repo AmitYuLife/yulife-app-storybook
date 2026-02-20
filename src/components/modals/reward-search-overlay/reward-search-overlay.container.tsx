@@ -63,7 +63,6 @@ const RewardSearchOverlayContainer = ({ onClose, onItemPress, onPressWallet }: I
 
   return (
     <RewardSearchOverlayScreen
-      transitionDuration={TRANSITION_DURATION}
       searchTerm={searchTerm}
       setSearchTerm={onSearch}
       isLoading={isLoading}
