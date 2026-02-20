@@ -60,6 +60,7 @@ export const ContentItemBlurredRaysWrapper = memo(
           showRays={showRays}
           testID={testID}
           acceessibilityLabelTitle={accessibilityLabelTitle}
+          isBlurred={false}
         >
           <>
             {data.filter(Boolean).map((dataItem) => (
