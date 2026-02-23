@@ -64,22 +64,20 @@ const DebugScreen = memo(({ data, onPressClose }: IDebugScreenProps) => {
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <View style={styles.wrapper} testID={DEBUG_SCREEN}>
+        <TextInput
+          autoCorrect={false}
+          value={searchQuery}
+          autoCapitalize="none"
+          style={styles.searchInput}
+          placeholder="Search items..."
+          onChangeText={setSearchQuery}
+          testID={DEBUG_SEARCH_INPUT}
+        />
         <FlashList
           data={filteredData}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
-          ListHeaderComponent={
-            <TextInput
-              autoCorrect={false}
-              value={searchQuery}
-              autoCapitalize="none"
-              style={styles.itemWrapper}
-              placeholder="Search items..."
-              onChangeText={setSearchQuery}
-              testID={DEBUG_SEARCH_INPUT}
-            />
-          }
         />
       </View>
       <GenericHeadingAbsolute heading="debug" onRightIconPress={onPressClose} />

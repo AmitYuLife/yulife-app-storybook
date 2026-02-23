@@ -16,6 +16,12 @@ export default StyleSheet.create({
     marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
     paddingVertical: Style.SCALE_UP_AND_DOWN(15),
   } as ViewStyle,
+  searchInput: {
+    borderBottomColor: Colours.debug.bottomBorder,
+    borderBottomWidth: 1,
+    marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
+    paddingVertical: Style.SCALE_UP_AND_DOWN(15),
+  } as ViewStyle,
   row: {
     display: "flex",
     flexDirection: "row",
