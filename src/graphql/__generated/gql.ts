@@ -334,7 +334,6 @@ const documents = {
   SendWellbeingHubItemDocumentsDocument: types.SendWellbeingHubItemDocumentsDocument,
   GetMobileUserWrappedDocument: types.GetMobileUserWrappedDocument,
   MarkMobileUserWrappedAsViewedDocument: types.MarkMobileUserWrappedAsViewedDocument,
-  AddressDocument: types.AddressDocument,
   GetProductPaymentHistoryDocument: types.GetProductPaymentHistoryDocument,
   GetProductYumojiPartDocument: types.GetProductYumojiPartDocument,
   GetYuCoinPowerInfoDocument: types.GetYuCoinPowerInfoDocument,
@@ -1866,10 +1865,6 @@ export function gql(source: "GetMobileUserWrappedDocument"): typeof documents["G
 export function gql(
   source: "MarkMobileUserWrappedAsViewedDocument"
 ): typeof documents["MarkMobileUserWrappedAsViewedDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "AddressDocument"): typeof documents["AddressDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
