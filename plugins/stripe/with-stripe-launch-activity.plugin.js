@@ -16,16 +16,13 @@ import android.os.Bundle
 class LaunchActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val application = application as MainApplication
-        if (!application.isActivityInBackStack(MainActivity::class.java)) {
-            val originalIntent = intent
-            val newIntent = Intent(this, MainActivity::class.java).apply {
-                action = originalIntent?.action
-                data = originalIntent?.data
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            }
-            startActivity(newIntent)
+        val originalIntent = intent
+        val newIntent = Intent(this, MainActivity::class.java).apply {
+            action = originalIntent?.action
+            data = originalIntent?.data
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
+        startActivity(newIntent)
         finish()
     }
 }
