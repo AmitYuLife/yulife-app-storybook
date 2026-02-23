@@ -22,7 +22,6 @@ interface IPathwaysReflectedScreenProps {
   currentProgress: number;
   isStreakComplete: boolean;
   reflectionProgress?: GetUserPathwaysQuery["getUserPathways"]["reflectionProgress"];
-  hasPathwayAdviceItems: boolean;
 }
 
 const MYSTERY_BOX_ICON = require("./assets/pathways-mystery-box.webp");
@@ -40,7 +39,6 @@ const PathwaysReflectedScreen = ({
   currentProgress,
   isStreakComplete,
   reflectionProgress,
-  hasPathwayAdviceItems,
 }: IPathwaysReflectedScreenProps) => {
   const currentStreak = currentProgress || 0;
   const { maxProgress = 5, reflectedToday = false } = reflectionProgress ?? {};
@@ -85,11 +83,7 @@ const PathwaysReflectedScreen = ({
                         {t("screens.pathways.reflected.title", { smart_count: currentStreak })}
                       </TextTemplate>
                       <TextTemplate type="b1" textAlign="center" color={colours.neutral.white}>
-                        {t(
-                          (isStreakComplete || currentStreak > 1) && hasPathwayAdviceItems
-                            ? "screens.pathways.reflected.subtitle"
-                            : "screens.pathways.reflected.subtitle_locked"
-                        )}
+                        {t(`screens.pathways.reflected.subtitle.day${((currentStreak - 1) % 5) + 1}`)}
                       </TextTemplate>
                     </Box>
                   </Box>

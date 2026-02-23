@@ -227,8 +227,13 @@
       },
       "reflected": {
         "title": "day of reflection! |||| days of reflection!",
-        "subtitle": "Your personalised insights are unlocked!",
-        "subtitle_locked": "Reflect every day to unlock personalised insights."
+        "subtitle": {
+          "day1": "First reflection logged. Keep going!",
+          "day2": "Keep showing up.",
+          "day3": "Three in a row. Nice!",
+          "day4": "Almost there!",
+          "day5": "Yunity Quest unlocked"
+        }
       },
       "claim": {
         "title": "Here's everything you got today!",
