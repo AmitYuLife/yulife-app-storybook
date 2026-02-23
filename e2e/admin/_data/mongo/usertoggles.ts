@@ -41,6 +41,7 @@ export const CUSTOMER_1_TOGGLES = {
       showDailySurvey: true,
       showNotificationCentre: true,
       showAllLanguages: true,
+      canUpdateActivityHistory: true,
     },
   },
 } as IDatabaseItem;

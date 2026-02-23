@@ -290,6 +290,7 @@ export const DEFAULT_TOGGLES = {
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
       showYumojiHeadwear: true,
+      canUpdateActivityHistory: true,
     },
   },
 } as IDatabaseItem;

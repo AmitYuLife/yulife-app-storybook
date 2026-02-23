@@ -319,6 +319,7 @@ export const CUSTOMER_40_TOGGLES = {
       showDuels: true,
       showCommunityGoals: true,
       useNewLeaderboardServices: true,
+      canUpdateActivityHistory: true,
     },
   },
 } as IDatabaseItem;
