@@ -1,3 +1,4 @@
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { ROUTES } from "@navigation/constants";
 import { Colours } from "@styles";
 
@@ -34,13 +35,14 @@ export interface NavBarProps {
   badgeCounts: Record<string, number>;
 }
 
-export function getIconColour(isActive: boolean, isSuspended?: boolean) {
+export function useIconColour(isActive: boolean, isSuspended?: boolean) {
+  const { theme } = useTheme();
   if (isSuspended) {
     return Colours.neutral.n200;
   }
 
   if (isActive) {
-    return Colours.darkHotPink;
+    return theme.colors.primary.p600;
   }
 
   return Colours.neutral.n700;

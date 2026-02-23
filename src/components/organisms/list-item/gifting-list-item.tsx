@@ -23,14 +23,7 @@ export const GiftingListItem = ({ disabled, disabledReason, name, uri, onPress, 
       type="search"
       onPress={onPress}
       delay={16}
-      rightIcon={
-        <CheckBoxType
-          type={"cubic"}
-          checked={checked}
-          strokeColor={Colours.neutral.n400}
-          activeCheckboxFillColor={Colours.primary.p600}
-        />
-      }
+      rightIcon={<CheckBoxType type={"cubic"} checked={checked} strokeColor={Colours.neutral.n400} />}
     />
   </Box>
 );

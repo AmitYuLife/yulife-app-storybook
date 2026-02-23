@@ -17,6 +17,7 @@ import { TextInputWarningIcon } from "@molecules";
 import { useMaterialInputAnimation } from "./useMaterialInputAnimation";
 import { Box, TextTemplate } from "@atoms";
 import { getCurrentLocale } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type Type = "Text" | "Number" | "PhoneNumber" | "PostCode" | "PostCodeFinder";
 
@@ -103,6 +104,8 @@ export default function TextField(props: Props) {
   const [placeholderOpacity] = useState(new Animated.Value(0.5));
   const [textInputValue, setTextInputValue] = useState(value || "");
   const [activeMaterial, setActiveMaterial] = useState(false);
+
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (textInputValue !== value) {
@@ -191,9 +194,10 @@ export default function TextField(props: Props) {
           isFocused={isFocused}
           hasInput={Boolean(textInputValue)}
           paddingLeft={placeholderIndentSize}
+          focusedColor={theme.colors.primary.p600}
         />
         <BaseUnderline color={showError ? "#FC0000" : baseUnderlineColor} />
-        <ColouredUnderline scaleX={materialUnderlineScaleX} />
+        <ColouredUnderline scaleX={materialUnderlineScaleX} color={theme.colors.primary.p600} />
         {showErrorCondition && !hideErrorIcon ? (
           <View style={styles.rightIcon}>
             <TextInputWarningIcon />

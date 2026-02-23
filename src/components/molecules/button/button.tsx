@@ -10,6 +10,7 @@ import { AnimateYuCoin } from "./animate-yu-coin/animate-yu-coin";
 import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "./button.use-title";
 import { BUTTON_BASE } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 
 type DefaultProps = {
   isLoading?: boolean;
@@ -51,9 +52,9 @@ function Button(props: IButtonProps) {
     delay,
     disableAnimation,
     show = true,
-    backgroundColor = Colours.primary.p600,
+    backgroundColor,
     borderColor,
-    shadowColor = Colours.primary.p600Shadow,
+    shadowColor,
     textColor = Colours.neutral.white,
     showBadge = false,
     height,
@@ -66,6 +67,11 @@ function Button(props: IButtonProps) {
     contentWrapperStyle,
     contentTextStyle,
   } = props;
+
+  const { theme } = useTheme();
+
+  const resolvedBackgroundColor = backgroundColor ?? theme.colors.primary.p600;
+  const resolvedShadowColor = shadowColor ?? theme.colors.primary.p600Shadow;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
   const { title, testID } = useButtonTitle(props);
@@ -81,8 +87,8 @@ function Button(props: IButtonProps) {
       {!animateYuCoin ? null : <AnimateYuCoin />}
       <ButtonBase
         borderColor={borderColor}
-        backgroundColor={backgroundColor || Colours.primary.p600}
-        shadowColor={shadowColor || Colours.primary.p600Shadow}
+        backgroundColor={resolvedBackgroundColor}
+        shadowColor={resolvedShadowColor}
         color={textColor || Colours.neutral.white}
         testID={testID || BUTTON_BASE(title, disabled)}
         height={height || buttonDimensions.height}

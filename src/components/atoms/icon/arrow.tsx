@@ -1,10 +1,11 @@
 import { memo, useMemo } from "react";
 import type { JSX } from "react";
 import Svg, { Path } from "react-native-svg";
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 import { TransformsStyle } from "react-native";
 import { ARROW_BUTTON } from "@ids";
 import { getLocaleDirection } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type ArrowDirection = "right" | "down" | "left" | "top";
 type ArrowIntent = "primary" | "secondary" | "transparent";
@@ -19,12 +20,9 @@ export interface IArrowIconProps {
 
 /** aka ChevronIcon */
 export const ArrowIcon = memo(
-  ({
-    size = Style.adjust(24),
-    color = Colours.primary.p600,
-    intent = "transparent",
-    direction = "right",
-  }: IArrowIconProps) => {
+  ({ size = Style.adjust(24), color, intent = "transparent", direction = "right" }: IArrowIconProps) => {
+    const { theme } = useTheme();
+    const resolvedColor = color ?? theme.colors.primary.p600;
     // flip direction for RTL locales
     const effectiveDirection = useMemo(() => {
       const localeDirection = getLocaleDirection();
@@ -47,7 +45,7 @@ export const ArrowIcon = memo(
         case "primary":
           return (
             <Path
-              fill={color}
+              fill={resolvedColor}
               fillRule="evenodd"
               clipRule="evenodd"
               d="M9.846 6.246a.5.5 0 0 1 .707 0l4.8 4.8a.5.5 0 0 1 0 .707l-4.8 4.8a.5.5 0 1 1-.707-.707l4.447-4.446-4.447-4.447a.5.5 0 0 1 0-.707Z"
@@ -57,7 +55,7 @@ export const ArrowIcon = memo(
         case "secondary":
           return (
             <Path
-              fill="#E30D76"
+              fill={resolvedColor}
               fillRule="evenodd"
               clipRule="evenodd"
               d="M9.846 6.246a.5.5 0 0 1 .707 0l4.8 4.8a.5.5 0 0 1 0 .707l-4.8 4.8a.5.5 0 1 1-.707-.707l4.447-4.446-4.447-4.447a.5.5 0 0 1 0-.707Z"
@@ -68,7 +66,7 @@ export const ArrowIcon = memo(
           return (
             <Path
               d="M8 20l8-8-8-8"
-              stroke={color}
+              stroke={resolvedColor}
               fill={"none"}
               strokeMiterlimit={10}
               strokeLinecap="round"

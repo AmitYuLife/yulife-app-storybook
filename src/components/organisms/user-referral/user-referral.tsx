@@ -7,6 +7,7 @@ import { t } from "@locale";
 import { Style, StyleSheet } from "@styles";
 import { VoidFunction, addCommasToNumber } from "@utils";
 import { Box } from "@atoms";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProps {
   referralAmount: number;
@@ -14,6 +15,7 @@ interface IProps {
 }
 
 const UserReferral = ({ onReferralsButtonPress, referralAmount }: IProps) => {
+  const { theme } = useTheme();
   return (
     <View>
       <Image source={require("@assets/refer-a-colleague/refer-a-colleague.png")} style={styles.referColleagueImage} />
@@ -41,7 +43,7 @@ const UserReferral = ({ onReferralsButtonPress, referralAmount }: IProps) => {
       <SecondaryButton
         translationKey="labels.cta.invite"
         size="Large"
-        leftIcon={<InviteIcon size={16} />}
+        leftIcon={<InviteIcon size={16} colour={theme.colors.primary.p600} />}
         onPress={onReferralsButtonPress}
       />
     </View>

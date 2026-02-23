@@ -6,6 +6,7 @@ import { WEEKLY_PROGRESS_BAR } from "@ids";
 import { GoldenAnimation } from "./golden-animation";
 import { DETOX_ENABLED } from "@services/socket";
 import { addCommasToNumber } from "@utils";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProgressBarProps {
   currentPosition: number;
@@ -43,6 +44,8 @@ export default function ProgressBar(props: IProgressBarProps) {
     onAnimationEnd,
     showCurrentAndTargetProgress = false,
   } = props;
+  const { theme } = useTheme();
+
   const { currentPosition, maxLength } = useMemo(() => {
     if (_maxLength < 100) {
       return { currentPosition: _currentPosition * 10, maxLength: _maxLength * 10 || 1 };
@@ -137,7 +140,7 @@ export default function ProgressBar(props: IProgressBarProps) {
     return <View style={{ height }} />;
   }
 
-  const fillColour = isCompleted ? Colours.status.su400 : Colours.primary.p600;
+  const fillColour = isCompleted ? Colours.status.su400 : theme.colors.primary.p600;
 
   return (
     <View

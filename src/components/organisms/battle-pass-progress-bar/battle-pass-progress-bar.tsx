@@ -17,6 +17,7 @@ import { Style, StyleSheet } from "@styles";
 import { BUBBLE_CONTAINER_SIZE } from "./battle-pass-progress-bar.constants";
 import { DONATIONS_PROGRESS_BAR } from "@ids";
 import { t } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export interface IBattlePassProgressBar {
   level: number;
@@ -33,9 +34,13 @@ const BattlePassProgressBar = ({
   step,
   steps,
   backgroundColor = "#EFF0FA",
-  fillColor = "#E30D76",
+  fillColor,
   icon,
 }: IBattlePassProgressBar) => {
+  const { theme } = useTheme();
+
+  const resolvedFillColor = useMemo(() => fillColor ?? theme.colors.primary.p600, [fillColor, theme]);
+
   const progressWidth = useSharedValue(0);
   const isSuccessPlaying = useSharedValue(false);
 
@@ -91,11 +96,11 @@ const BattlePassProgressBar = ({
     return [
       progressStyle,
       {
-        backgroundColor: fillColor,
+        backgroundColor: resolvedFillColor,
       },
       activeProgressAnimatedStyle,
     ];
-  }, [progressStyle, fillColor, activeProgressAnimatedStyle]);
+  }, [progressStyle, resolvedFillColor, activeProgressAnimatedStyle]);
 
   const whiteProgressStyle = useMemo(() => {
     return [

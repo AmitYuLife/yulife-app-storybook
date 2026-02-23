@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { SMOKING_TILE_BUTTON, YUSCREEN_FEATURE_CARD_SECTION, YUSCREEN_FEATURE_CARD_SECTION_TITLE } from "@ids";
 import { FeatureCardSection as IFeatureCardSection } from "@redux/yu-screen/yu-screen.types";
 import { SduiAction } from "@graphql/__generated";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import Box from "@atoms/box/box";
 
 const CARD_BORDER_HEIGHT = Style.adjust(5);
 
@@ -22,8 +24,8 @@ export const FeatureCardSection = (props: IFeatureCardSection) => {
   const [cardHeight, setCardHeight] = useState(0);
 
   const showButton = buttonText && onButtonPress;
-  const buttonDynamicStyle = { backgroundColor: showButton ? "transparent" : Colours.primary.p600 };
-  const carretColor = showButton ? Colours.primary.p600 : Colours.neutral.white;
+  const { theme } = useTheme();
+  const carretColor = showButton ? theme.colors.primary.p600 : Colours.neutral.white;
 
   const handleButtonPress = useCallback(() => dispatch(onButtonPress), [onButtonPress]);
 
@@ -75,9 +77,21 @@ export const FeatureCardSection = (props: IFeatureCardSection) => {
             autoFlipForRTL={true}
           />
         ) : null}
-        <View style={[styles.caretWrapper, buttonDynamicStyle]}>
+        <Box
+          position="absolute"
+          top={16}
+          right={16}
+          height={24}
+          width={24}
+          justifyContent="center"
+          alignItems="center"
+          br={50}
+          borderWidth={1}
+          borderColor={theme.colors.primary.p600}
+          bg={showButton ? "transparent" : theme.colors.primary.p600}
+        >
           <ArrowIcon size={Style.adjust(16)} color={carretColor} />
-        </View>
+        </Box>
         <View style={styles.cardContent}>
           <View style={styles.headingWrapper}>
             <TextTemplate type="b1b" textAlign="left" testID={YUSCREEN_FEATURE_CARD_SECTION_TITLE(title)}>

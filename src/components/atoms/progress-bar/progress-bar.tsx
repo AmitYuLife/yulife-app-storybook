@@ -6,6 +6,7 @@ import { Colours, StyleSheet } from "@styles";
 import { EVENT_PROGRESS_BAR } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 import { Pulse } from "@atoms";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -88,6 +89,7 @@ const ProgressBar = ({
   style,
   showPulse,
 }: IProgressBarProps) => {
+  const { theme } = useTheme();
   const progressBarValues = useMemo(
     () => (type === "full" ? FULL_PROGRESS_BAR_VALUES : COMPACT_PROGRESS_BAR_VALUES),
     [type]
@@ -104,7 +106,7 @@ const ProgressBar = ({
     circleHorizontalOffset,
   } = progressBarValues;
 
-  const color = isDisabled ? Colours.neutral.n200 : Colours.primary.p400;
+  const color = isDisabled ? Colours.neutral.n200 : theme.colors.primary.p400;
   const fullWidth = useMemo(() => width || defaultWidth, [width, defaultWidth]);
 
   // these extra pixels are so that rounded edges and pulse animations are not cut off outside the viewBox
@@ -242,8 +244,10 @@ const RewardMilestone = memo(
 
     const activeStarColor = milestoneMet ? Colours.forest.fp103 : Colours.neutral.n900;
 
+    const { theme } = useTheme();
+
     const checkColor = isDisabled ? Colours.neutral.n700 : Colours.neutral.white;
-    const barColor = isDisabled ? Colours.neutral.n200 : Colours.primary.p400;
+    const barColor = isDisabled ? Colours.neutral.n200 : theme.colors.primary.p400;
     const starColor = isDisabled ? Colours.neutral.n700 : activeStarColor;
 
     const anim = useRef(new Animated.Value(0));

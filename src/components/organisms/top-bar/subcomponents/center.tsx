@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import moment from "moment";
 import { View, ViewStyle, TextStyle, Platform } from "react-native";
 import { Clock } from "../assets";
-import { Text } from "@atoms/index";
+import { Box, Image, Text } from "@atoms/index";
 import Logo from "@atoms/logo";
 import useInterval from "@use-it/interval";
-import { Style } from "@styles/index";
+import { Colours, Style } from "@styles/index";
 import { formatSeconds } from "../top-bar.helpers";
-
 import { StyleSheet } from "@styles";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 interface Props {
   colour: string;
   logoColour: string;
@@ -20,6 +20,7 @@ interface Props {
 export default function Center(props: Props) {
   const { logoColour = "#E20177", textStyle = { color: "#333333" }, name = "", timer = "" } = props;
   const [finished, setFinished] = useState(null);
+  const { theme } = useTheme();
 
   if (timer && !finished) {
     return <Timer {...props} setFinished={() => setFinished(true)} />;
@@ -34,9 +35,23 @@ export default function Center(props: Props) {
   }
 
   return (
-    <View style={styles.centerWrapper}>
+    <Box
+      alignItems="center"
+      alignSelf="center"
+      flex={1}
+      flexDirection="row"
+      height="100%"
+      justifyContent="center"
+      gap={8}
+    >
+      {theme.assets.logo ? (
+        <>
+          <Image source={{ uri: theme.assets.logo.uri }} width={26} height={26} resizeMode="contain" />
+          <Box w={1} h={26} bg={Colours.neutral.n300} />
+        </>
+      ) : null}
       <Logo colour={logoColour} />
-    </View>
+    </Box>
   );
 }
 
@@ -102,5 +117,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: "100%",
     justifyContent: "center",
+    gap: Style.adjust(8),
   } as ViewStyle,
 });

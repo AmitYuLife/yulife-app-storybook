@@ -2,8 +2,8 @@ import React from "react";
 import { Animated, ViewStyle } from "react-native";
 import { Colours, StyleSheet } from "@styles";
 
-export const ColouredUnderline = ({ scaleX }: { scaleX: Animated.Value }) => {
-  return <Animated.View style={[styles.colouredUnderline, { transform: [{ scaleX }] }]} />;
+export const ColouredUnderline = ({ scaleX, color }: { scaleX: Animated.Value; color: string }) => {
+  return <Animated.View style={[styles.colouredUnderline, { transform: [{ scaleX }], backgroundColor: color }]} />;
 };
 
 export const BaseUnderline = ({ color }: { color: string }) => (
@@ -15,7 +15,6 @@ export const BaseUnderline = ({ color }: { color: string }) => (
 const styles = StyleSheet.create({
   colouredUnderline: {
     position: "absolute",
-    backgroundColor: Colours.darkHotPink,
     bottom: 0,
     width: "1%",
     height: 2,

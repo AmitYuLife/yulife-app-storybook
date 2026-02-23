@@ -1,10 +1,11 @@
 import React, { memo } from "react";
 import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Colours, Style, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { TEXT_TEMPLATE } from "@ids";
 import { ArrowButton } from "@components/molecules/arrow-button";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProps {
   title: string;
@@ -13,26 +14,30 @@ interface IProps {
   onPress: () => void;
 }
 
-const GameSettingsItem = ({ title, description, value, onPress }: IProps) => (
-  <TouchableOpacityWithDelay onPress={onPress} style={styles.wrapper}>
-    <View style={styles.container}>
-      <TextTemplate type="b2b" testID={TEXT_TEMPLATE(title)}>
-        {title}
-      </TextTemplate>
-      <TextTemplate type="l2" testID={TEXT_TEMPLATE(description)}>
-        {description}
-      </TextTemplate>
-    </View>
-    <View style={styles.measurement}>
-      <View style={{ marginEnd: Style.adjust(10) }}>
-        <TextTemplate type="b2" color={Colours.primary.p600} testID={TEXT_TEMPLATE(value)}>
-          {value}
+const GameSettingsItem = ({ title, description, value, onPress }: IProps) => {
+  const { theme } = useTheme();
+
+  return (
+    <TouchableOpacityWithDelay onPress={onPress} style={styles.wrapper}>
+      <View style={styles.container}>
+        <TextTemplate type="b2b" testID={TEXT_TEMPLATE(title)}>
+          {title}
+        </TextTemplate>
+        <TextTemplate type="l2" testID={TEXT_TEMPLATE(description)}>
+          {description}
         </TextTemplate>
       </View>
-      <ArrowButton color={Colours.primary.p600} />
-    </View>
-  </TouchableOpacityWithDelay>
-);
+      <View style={styles.measurement}>
+        <View style={{ marginEnd: Style.adjust(10) }}>
+          <TextTemplate type="b2" color={theme.colors.primary.p600} testID={TEXT_TEMPLATE(value)}>
+            {value}
+          </TextTemplate>
+        </View>
+        <ArrowButton color={theme.colors.primary.p600} />
+      </View>
+    </TouchableOpacityWithDelay>
+  );
+};
 
 export default memo(GameSettingsItem);
 

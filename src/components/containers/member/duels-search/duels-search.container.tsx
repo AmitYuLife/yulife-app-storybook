@@ -18,9 +18,11 @@ import { showExistingDuelAlert, validDuels } from "@utils/duels";
 import { SearchLeaderboardUserQuery, SocialGroupLeaderboardSearchType, gql } from "@graphql/__generated";
 import SearchList from "./subcomponents/search-list";
 import { showYuModal } from "@navigation/root";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export type SearchedOpponent = SearchLeaderboardUserQuery["searchLeaderboardUser"][number] & {
   onPress: () => Promise<void>;
+  duelTextColor: string;
 };
 
 function navigateBack() {
@@ -135,9 +137,12 @@ function _DuelsSearchContainer() {
     handleChangeText(queryText.current);
   }, [handleChangeText]);
 
+  const { theme } = useTheme();
+
   const opponents = (data?.searchLeaderboardUser || []).map((opponent) => ({
     ...opponent,
     onPress: () => onPress(opponent.id, "search_list"),
+    duelTextColor: theme.colors.primary.p600,
   }));
 
   return (

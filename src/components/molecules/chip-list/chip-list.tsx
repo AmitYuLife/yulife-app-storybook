@@ -7,6 +7,7 @@ import { CHIP_LIST_ITEM } from "@ids";
 import { FadeIn } from "react-native-reanimated";
 import { isNil } from "lodash";
 import { useScrollToIndex } from "@app/hooks/useScrollToIndex";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export type ChipProps = {
   value: string;
@@ -82,13 +83,21 @@ const keyExtractor = (item: ChipProps) => item.value;
 
 const Chip = memo(
   ({ isSelected, value, onPress }: ChipProps) => {
+    const { theme } = useTheme();
+    const selectedStyle = useMemo(
+      () => ({
+        borderColor: theme.colors.primary.p600,
+        backgroundColor: theme.colors.primary.p40,
+      }),
+      [theme]
+    );
     const handlePress = React.useCallback(() => onPress(value), [value]);
 
     return (
       <View style={styles.chipWrapper}>
         <Pressable
           delay={1000}
-          style={[styles.chip, isSelected ? styles.selected : styles.default]}
+          style={[styles.chip, isSelected ? selectedStyle : styles.default]}
           onPress={handlePress}
           key={value}
           hitSlop={HIT_SLOP}
@@ -125,6 +134,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(32),
     borderRadius: Style.adjust(99),
     paddingHorizontal: Style.adjust(12),
+    borderWidth: 1,
   },
   selected: {
     borderWidth: 1,
@@ -132,7 +142,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FCE7F1",
   },
   default: {
-    borderWidth: 1,
     borderColor: "#E7E7EB",
     backgroundColor: Colours.neutral.white,
   },

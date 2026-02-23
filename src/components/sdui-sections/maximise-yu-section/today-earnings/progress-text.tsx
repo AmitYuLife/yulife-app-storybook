@@ -1,8 +1,8 @@
 import { Box, TextTemplate } from "@atoms";
 import { Counter } from "@components/molecules";
 import { isRTL } from "@locale";
-import { Colours } from "@styles";
 import { memo, useEffect, useMemo, useState } from "react";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type Props = {
   progress: {
@@ -17,6 +17,8 @@ export const ProgressText = memo(({ progress, animate }: Props) => {
   const [animateCounter, setAnimateCounter] = useState(false);
 
   const maxProps = useMemo(() => buildMaxProps(), []);
+
+  const { theme } = useTheme();
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -45,9 +47,9 @@ export const ProgressText = memo(({ progress, animate }: Props) => {
       <Box flexDirection="row" dir="ltr">
         <Box justifyContent="flex-end">
           {animateCounter ? (
-            <Counter duration={1200} value={currentValue} type="h3" color={Colours.primary.p600} />
+            <Counter duration={1200} value={currentValue} type="h3" color={theme.colors.primary.p600} />
           ) : (
-            <TextTemplate type="h3" color={Colours.primary.p600}>
+            <TextTemplate type="h3" color={theme.colors.primary.p600}>
               {progress.current}
             </TextTemplate>
           )}

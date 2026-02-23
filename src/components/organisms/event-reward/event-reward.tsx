@@ -17,6 +17,7 @@ import { AppDataType } from "@redux/user/user.types";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { GoalRewardStatus, RemoteImage } from "@graphql/__generated";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const shineAnimationSource = require("@assets/lottie/shine.json");
 const explosionAnimationSource = require("@assets/lottie/explosion.json");
@@ -196,17 +197,19 @@ const EventReward = ({
     };
   }, [animatedStyle]);
 
+  const { theme } = useTheme();
+
   const statusColor = useMemo((): string => {
     switch (delayedStatus) {
       case GoalRewardStatus.Claimed:
         return Colours.event.claimedColor;
       case GoalRewardStatus.Completed:
-        return Colours.primary.p400;
+        return theme.colors.primary.p400;
       case GoalRewardStatus.Pending:
       default:
         return Colours.neutral.n100;
     }
-  }, [delayedStatus]);
+  }, [delayedStatus, theme]);
 
   return (
     <Pressable delay={1000} onPress={claimReward}>

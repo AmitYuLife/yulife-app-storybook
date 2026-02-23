@@ -4,15 +4,25 @@ import { ActivityIndicator, ActivityIndicatorProps, ViewStyle } from "react-nati
 import { LOADING_BAR } from "@ids";
 
 import { StyleSheet } from "@styles";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 interface Props {
   size?: ActivityIndicatorProps["size"];
   style?: ViewStyle;
   color?: string;
 }
 
-export const Loading = ({ size = "large", style, color = Colours.darkHotPink }: Props) => (
-  <ActivityIndicator animating={true} color={color} style={[styles.wrapper, style]} size={size} testID={LOADING_BAR} />
-);
+export const Loading = ({ size = "large", style, color = Colours.darkHotPink }: Props) => {
+  const { theme } = useTheme();
+  return (
+    <ActivityIndicator
+      animating={true}
+      color={color ?? theme.colors.primary.p600}
+      style={[styles.wrapper, style]}
+      size={size}
+      testID={LOADING_BAR}
+    />
+  );
+};
 
 export default memo(Loading);
 

@@ -65,18 +65,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: BORDER_RADIUS,
     overflow: "hidden",
   },
-  hasBonusContainer: {
-    position: "absolute",
-    end: 0,
-    bottom: 0,
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: Colours.primary.p40,
-    borderRadius: Style.adjust(48),
-    paddingStart: Style.adjust(8),
-    paddingEnd: Style.adjust(26),
-    height: Style.adjust(26),
-  },
   completedContainer: {
     flexDirection: "row",
     alignItems: "center",

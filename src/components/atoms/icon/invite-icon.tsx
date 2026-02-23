@@ -1,13 +1,13 @@
 import React, { memo } from "react";
 import Svg, { Path } from "react-native-svg";
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 
 interface IProps {
   colour?: string;
   size?: number;
 }
 
-export const InviteIcon = memo(({ colour = Colours.primary.p600, size = 24 }: IProps) => (
+export const InviteIcon = memo(({ colour, size = 24 }: IProps) => (
   <Svg width={Style.adjust(size)} height={Style.adjust(size)} viewBox="0 0 24 24" fill="none">
     <Path
       fill={colour}

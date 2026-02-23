@@ -59,12 +59,7 @@ const ProductSelect = ({
         </View>
 
         <View style={styles.checkBox}>
-          <CheckBoxType
-            type={"cubic"}
-            checked={isSelected}
-            strokeColor={Colours.neutral.n400}
-            activeCheckboxFillColor={Colours.primary.p600}
-          />
+          <CheckBoxType type={"cubic"} checked={isSelected} strokeColor={Colours.neutral.n400} />
         </View>
       </View>
     </BoxOption>

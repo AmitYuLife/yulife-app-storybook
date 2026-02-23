@@ -1,7 +1,7 @@
 import { t } from "@locale";
 import React from "react";
 import Svg, { Path } from "react-native-svg";
-import { getIconColour, IIconProps } from "../nav-bar.helpers";
+import { useIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
 import { View } from "react-native";
 import styles, { NAV_BAR_ICON_SIZE } from "./assets.styles";
@@ -9,7 +9,7 @@ import { Pressable } from "@molecules";
 import { TextTemplate } from "@atoms";
 
 export default function Treasure({ isActive, hasNotification, onPressIn, isSuspended }: IIconProps) {
-  const fill = getIconColour(isActive, isSuspended);
+  const fill = useIconColour(isActive, isSuspended);
 
   return (
     <Pressable delay={1000} style={styles.wrapper} onPress={onPressIn}>
