@@ -133,11 +133,21 @@ platform :android do
     unless signed_apks.any?
       UI.user_error!("No signed APKs found in #{apk_output_path}")
     end
+
+    build_number = get_build_number || "0"
+    version = get_package_version
+
+    # Rename APKs to include CI job ID for unique filenames
+    signed_apks = signed_apks.map do |apk_path|
+      new_path = apk_path.sub(/\.apk$/, "-#{build_number}.apk")
+      File.rename(apk_path, new_path)
+      UI.message("Renamed #{File.basename(apk_path)} → #{File.basename(new_path)}")
+      new_path
+    end
+
     # Publish Bugsnag release (metadata + sourcemaps)
     bugsnag_publish(release_environment: environment)
     
-    build_number = get_build_number || "0"
-    version = get_package_version
     # For production, upload to Google Play Store (TODO: To be tested on production builds)
     if environment != 'production'
        # If not production build, upload all APKs to S3
