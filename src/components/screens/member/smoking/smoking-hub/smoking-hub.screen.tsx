@@ -122,8 +122,8 @@ const SmokingHubScreen = ({
   });
 
   return (
-    <Box forceAnimated={true} flex={1} style={topBackgroundColorStyles}>
-      <Box flex={1} alignItems="center" style={StyleSheet.absoluteFillObject}>
+    <Box forceAnimated={true} flex={1} style={topBackgroundColorStyles} disableAutoAdjust={true}>
+      <Box flex={1} alignItems="center" style={StyleSheet.absoluteFillObject} disableAutoAdjust={true}>
         <Animated.ScrollView
           testID={SMOKING_CONTAINER_SCROLL}
           style={styles.scrollView}
@@ -132,7 +132,6 @@ const SmokingHubScreen = ({
           onScroll={scrollHandler}
         >
           <GenericHeadingPad />
-
           <SmokingHubStatus
             ref={smokingHubStatusRef}
             initialSmokingStreak={initialSmokingState?.currentStreak}
@@ -140,7 +139,7 @@ const SmokingHubScreen = ({
             backgroundImageOpacity={bgImageOpacity}
           />
 
-          <Box bg={Colours.neutral.white} pt={16} gap={40}>
+          <Box bg={Colours.neutral.white} gap={40}>
             {!smokingState.tips?.length ? null : <SmokingTips tips={smokingState.tips} />}
 
             {smokingState.milestoneCarousel.length ? (
@@ -200,11 +199,12 @@ const SmokingHubScreen = ({
             )}
 
             <Box
-              testID="bottom_scroll_padding"
+              disableAutoAdjust={true}
               width={Style.DEVICE_WIDTH}
-              height={SMOKING_BUTTON_CONTAINER_HEIGHT + FOOTER_HIDE_BACKGROUND_HEIGHT}
-              mb={-FOOTER_HIDE_BACKGROUND_HEIGHT}
               bg={Colours.neutral.white}
+              testID="bottom_scroll_padding"
+              mb={-FOOTER_HIDE_BACKGROUND_HEIGHT}
+              height={SMOKING_BUTTON_CONTAINER_HEIGHT + FOOTER_HIDE_BACKGROUND_HEIGHT}
             />
           </Box>
         </Animated.ScrollView>
@@ -215,13 +215,14 @@ const SmokingHubScreen = ({
         left={0}
         right={0}
         bottom={0}
+        disableAutoAdjust={true}
         pt={SMOKING_BUTTON_PADDING_TOP}
         h={FOOTER_HEIGHT}
         alignItems="center"
       >
         <Button testID={SMOKING_HUB_CTA} onPress={onButtonPress} translatedLabel={smokingState.headerButtonText} />
       </Box>
-      <Box forceAnimated={true} h={TOP_BAR.TOP_BAR_WITH_PAD} style={topBackgroundColorStyles}>
+      <Box forceAnimated={true} h={TOP_BAR.TOP_BAR_WITH_PAD} style={topBackgroundColorStyles} disableAutoAdjust={true}>
         <GenericHeadingAbsolute
           onLeftIconPress={onClose}
           backgroundColor="transparent"
