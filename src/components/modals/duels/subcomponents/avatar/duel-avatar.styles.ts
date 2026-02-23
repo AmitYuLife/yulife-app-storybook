@@ -3,7 +3,7 @@ import { Platform, ViewStyle } from "react-native";
 import { ImageStyle } from "@atoms";
 
 const scaleAvatarBasedOnDeviceHeight = (width: number) => {
-  const MAGIC_NUMBER = 875;
+  const MAGIC_NUMBER = 975;
   const scaleFactor = Style.DEVICE_HEIGHT / MAGIC_NUMBER;
   return Style.adjust(width) * scaleFactor;
 };

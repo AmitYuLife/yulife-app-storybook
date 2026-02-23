@@ -77,7 +77,7 @@ function GenericDuelsIntro({
             </TextTemplate>
           </View>
           <View>
-            <TextTemplate type="h3" color={colours.darkGray}>
+            <TextTemplate type="h3" color={colours.darkGray} textAlign="center">
               {formatOpponentName(opponent?.fullName)}
             </TextTemplate>
           </View>
