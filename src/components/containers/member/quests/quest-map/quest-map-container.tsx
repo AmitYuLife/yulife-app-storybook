@@ -20,7 +20,7 @@ import { Style } from "@styles";
 import { first } from "lodash";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-map-helpers";
+import { getEpisode, getLevelStatus, getSeperator } from "./quest-map-helpers";
 import { getQuestMapConfig } from "./quest-map.config";
 import { QuestMapLevel } from "./quest-map.interface";
 import QuestMapScreen from "./quest-map.screen";
@@ -216,26 +216,29 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
   const snapOffsets = useMemo(() => {
     const offsets: number[] = [];
 
-    for (const itemIndex in items) {
+    if (yuniversalMap) {
+      return offsets;
+    }
+
+    for (let itemIndex = 0; itemIndex <= items.length; itemIndex += 1) {
       let currentSnapPosition = itemOffsets[itemIndex];
       const item = items[itemIndex];
+
       if (!item) {
         continue;
       }
 
-      const minLevel = getMinLevel(item?.levels);
-      const episode = getEpisode(minLevel);
-      const lottie = QUEST_MAP_CONFIG.episodes[episode];
-      const aspectRatio = lottie.lottieAspectRatio || lottie.episodeWidth / lottie.episodeHeight;
+      const config = item.episodeConfig;
+      const aspectRatio = config.lottieAspectRatio || config.episodeWidth / config.episodeHeight;
       const renderedEpisodeHeight = Style.DEVICE_WIDTH * (1 / aspectRatio);
-      const leftOverepisodeHeight = Style.DEVICE_HEIGHT - renderedEpisodeHeight;
+      const leftOverEpisodeHeight = Style.DEVICE_HEIGHT - renderedEpisodeHeight;
 
-      if (lottie.snapPosition === "center") {
-        currentSnapPosition -= leftOverepisodeHeight / 2;
+      if (config.snapPosition === "center") {
+        currentSnapPosition -= leftOverEpisodeHeight / 2;
       }
 
-      if (lottie?.snapOffsetY) {
-        const adjustedSnapOffset = lottie?.snapOffsetY * (1 / aspectRatio);
+      if (config?.snapOffsetY) {
+        const adjustedSnapOffset = config?.snapOffsetY * (1 / aspectRatio);
         currentSnapPosition -= adjustedSnapOffset;
       }
 

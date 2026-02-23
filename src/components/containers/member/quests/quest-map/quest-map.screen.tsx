@@ -11,7 +11,7 @@ import { FlashList, FlashListRef, ListRenderItemInfo, ViewToken } from "@shopify
 import { Style, TOP_BAR, StyleSheet } from "@styles";
 import { getCurrentWorld } from "@utils";
 import { first, isEmpty } from "lodash";
-import React, { memo, useCallback, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, SafeAreaView, View, ViewStyle } from "react-native";
 import QuestMapEpisode from "./quest-map-episode";
 import QuestMapEpisodeAccessibility from "./quest-map-episode-accessibility";
@@ -55,9 +55,18 @@ const QuestMapScreen = ({
   leftIcons,
 }: IQuestMapScreenProps) => {
   const features = useUserFeatures();
+  const timeoutRef = useRef<number | null>(null);
   const flashlistRef = useRef<FlashListRef<IQuestMapItem>>(null);
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
   const nextLevelIndex = useMemo(() => items.findIndex((item) => item.levels.find((level) => level.isNext)), [items]);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef?.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const itemsForScreenReader = useMemo(
     () => first(items.slice(nextLevelIndex, nextLevelIndex + 7)),
@@ -88,10 +97,6 @@ const QuestMapScreen = ({
     return activeEpisode ?? 0;
   }, [items]);
 
-  const currentSnapOffsetIndex = useMemo(() => {
-    return snapOffsets.findIndex((offset) => offset === snapOffsets[currentLevelEpisode]);
-  }, [snapOffsets, currentLevelEpisode]);
-
   const onViewableItemsChanged = useCallback(
     ({ viewableItems }: { viewableItems: ViewToken<IQuestMapItem>[] }) => {
       if (isEmpty(viewableItems)) {
@@ -109,6 +114,12 @@ const QuestMapScreen = ({
     [items]
   );
 
+  const handleOnLoad = (info: { elapsedTimeInMs: number }) => {
+    timeoutRef.current = setTimeout(() => {
+      flashlistRef.current?.scrollToOffset({ offset: snapOffsets[currentLevelEpisode], animated: false });
+    }, info.elapsedTimeInMs);
+  };
+
   return (
     <SafeAreaView style={styles.container} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}>
       <View style={styles.questContainer}>
@@ -123,14 +134,13 @@ const QuestMapScreen = ({
             renderItem={renderItem}
             keyExtractor={keyExtractor}
             snapToOffsets={snapOffsets}
-            initialScrollIndex={currentSnapOffsetIndex}
+            onLoad={handleOnLoad}
             onViewableItemsChanged={onViewableItemsChanged}
             disableIntervalMomentum={true}
             showsVerticalScrollIndicator={false}
             decelerationRate={DECELERATION_RATE}
             viewabilityConfig={VIEWABILITY_CONFIG}
             overrideItemLayout={overrideItemLayout}
-            maintainVisibleContentPosition={{ startRenderingFromBottom: true }}
           />
         ) : null}
       </View>
