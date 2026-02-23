@@ -11,9 +11,8 @@ import { runOnJS, SharedValue, useAnimatedStyle, useSharedValue, withDelay, with
 import { createDeferredPromise } from "@utils/promise";
 import { templateTextStylesLineHeight } from "@styles/textStyles";
 
-export const HEADER_HEIGHT = 340;
+export const HEADER_HEIGHT = 370;
 const HEADER_BUMP_HEIGHT = 40;
-const HEADER_BUMP_INSET = 18;
 const HEADER_IMAGE_BOTTOM_OFFSET = -30;
 const IMAGE_SCALE = 1.2;
 const IMAGE_WIDTH = Style.DEVICE_WIDTH * IMAGE_SCALE;
@@ -167,7 +166,8 @@ const SmokingHubStatus = forwardRef<AnimationHandle, SmokingHubStatusProps>(
     return (
       <Box
         w={Style.DEVICE_WIDTH}
-        h={HEADER_HEIGHT}
+        disableAutoAdjust={true}
+        h={Style.adjust(HEADER_HEIGHT)}
         overflow="hidden"
         testID={SMOKING_HEADER_DAYS(smokingState.currentStreak)}
       >
@@ -189,7 +189,6 @@ const SmokingHubStatus = forwardRef<AnimationHandle, SmokingHubStatusProps>(
           position="absolute"
           left={-LEFT_DISPLAY_CALC_MARGIN_LEFT}
           gap={24}
-          bottom={HEADER_BUMP_INSET}
           alignItems="center"
           justifyContent="center"
         >
@@ -249,7 +248,7 @@ const SmokingHubStatus = forwardRef<AnimationHandle, SmokingHubStatusProps>(
           />
         </Box>
 
-        <Box zIndex={1} position="absolute" right={24} bottom={HEADER_BUMP_INSET}>
+        <Box zIndex={1} position="absolute" right={24}>
           <Yumoji
             emptyHeight={AVATAR_HEIGHT * EMPTY_MULTIPLIER}
             emptyWidth={AVATAR_WIDTH * EMPTY_MULTIPLIER}
