@@ -5,9 +5,9 @@ import { isiOS, parseJSON } from "@utils";
 import { Renderer } from "../_renderer/renderer";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import Box from "@atoms/box/box";
+import { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
 import { Style } from "@styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
 
 type Body = GetSduiJourneyQuery["getSduiJourney"]["body"];
 
@@ -31,7 +31,7 @@ export const ContentItemBlurredRaysWrapper = memo(
     const { data, isValid } = parseJSON<Body>(children);
     const { data: centrePieceData, isValid: isCentrePieceValid } = parseJSON<Body[number]>(centrePiece || "");
     const { handleSduiAction: handleButtonPress } = useSduiCallbackFunctionOrReduxAction(onButtonPress);
-    const { bottom } = useSafeAreaInsets();
+    const { top } = useSafeAreaInsets();
 
     if (!isValid || !data?.length) {
       return null;
@@ -45,10 +45,10 @@ export const ContentItemBlurredRaysWrapper = memo(
           }
         : undefined;
 
-    const wrapperMarginBottom = isiOS() ? -bottom : 0;
+    const wrapperMarginTop = isiOS() ? top : 0;
 
     return (
-      <Box mb={wrapperMarginBottom} height={Style.DEVICE_HEIGHT} disableAutoAdjust={true}>
+      <Box height={Style.DEVICE_HEIGHT} mt={wrapperMarginTop} disableAutoAdjust={true}>
         <BlurredRaysWrapper
           title={title}
           rollingTextProps={rollingTextProps}
