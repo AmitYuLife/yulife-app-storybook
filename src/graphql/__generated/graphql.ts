@@ -958,6 +958,15 @@ export type BusinessAccessUserWithPermission = {
   lastName?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type BusinessCard = {
+  __typename?: "BusinessCard";
+  accountNumberEnding?: Maybe<Scalars["String"]["output"]>;
+  businessPaymentMethodId: Scalars["String"]["output"];
+  cardType?: Maybe<Scalars["String"]["output"]>;
+  expiry?: Maybe<Scalars["String"]["output"]>;
+  isPrimary?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
 export type BusinessEarlyAccessSelfRegistrationPreset = {
   __typename?: "BusinessEarlyAccessSelfRegistrationPreset";
   expiresAt?: Maybe<Scalars["String"]["output"]>;
@@ -1098,16 +1107,16 @@ export type BusinessSessionBusiness = {
   businessTags?: Maybe<Array<BusinessTag>>;
   /** @deprecated Will no longer be used once the portal onboarding experience is complete */
   hasEmployees?: Maybe<Scalars["Boolean"]["output"]>;
-  hasOnlyCashPlanProducts?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated Banner logic now server-side */
   hasReachedLaunchThreshold?: Maybe<Scalars["Boolean"]["output"]>;
   hasWildCardRuleAssigned?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
+  /** @deprecated Banner logic now server-side */
   isEligibleForAutomatedAdmin?: Maybe<Scalars["Boolean"]["output"]>;
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
-  launchThresholdReachedAt?: Maybe<Scalars["String"]["output"]>;
   name: Scalars["String"]["output"];
+  /** @deprecated Banner logic now server-side */
   products: Array<Scalars["String"]["output"]>;
-  scheduledInviteDate?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type BusinessSessionSettings = {
@@ -1126,6 +1135,7 @@ export type BusinessSessionSettings = {
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
   newAddEmployeeEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
+  /** @deprecated Banner logic now server-side */
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
   showYuStoreDeprecationBanner: Scalars["Boolean"]["output"];
   yuStoreEnabled: Scalars["Boolean"]["output"];
@@ -4274,6 +4284,12 @@ export type GetBusinessActiveSelfRegistration = {
   selfRegistration?: Maybe<BusinessSelfRegistration>;
 };
 
+export type GetBusinessCardsResponse = {
+  __typename?: "GetBusinessCardsResponse";
+  cards: Array<BusinessCard>;
+  totalCount: Scalars["Int"]["output"];
+};
+
 export type GetBusinessEmailDomainResult = {
   __typename?: "GetBusinessEmailDomainResult";
   count: Scalars["Int"]["output"];
@@ -5129,6 +5145,29 @@ export type Hint = {
   screenWhitelist?: Maybe<Array<Scalars["String"]["output"]>>;
   title: Scalars["String"]["output"];
 };
+
+export type HomePromoBanner = {
+  __typename?: "HomePromoBanner";
+  perk?: Maybe<HomePromoBannerPerk>;
+  scheduledInviteDate?: Maybe<Scalars["String"]["output"]>;
+  type: HomePromoBannerType;
+};
+
+export type HomePromoBannerPerk = {
+  __typename?: "HomePromoBannerPerk";
+  name: Scalars["String"]["output"];
+  perkEligibilityIds: Array<Scalars["String"]["output"]>;
+  perkId: Scalars["String"]["output"];
+};
+
+export enum HomePromoBannerType {
+  CashPlanPostLaunch = "CASH_PLAN_POST_LAUNCH",
+  CashPlanPreLaunch = "CASH_PLAN_PRE_LAUNCH",
+  Hris = "HRIS",
+  PostLaunch = "POST_LAUNCH",
+  PreLaunch = "PRE_LAUNCH",
+  WellbeingTool = "WELLBEING_TOOL",
+}
 
 export type HrisConnectionConfig = {
   __typename?: "HrisConnectionConfig";
@@ -8380,7 +8419,6 @@ export type Query = {
   __typename?: "Query";
   aNumber?: Maybe<Scalars["Int"]["output"]>;
   downloadUserDocument: Scalars["String"]["output"];
-  findUserAddress?: Maybe<Array<Maybe<ShippingAddress>>>;
   get2FASecret?: Maybe<TwoFaSecretResponse>;
   getAPIVersion?: Maybe<ApiDetails>;
   /** Check if the current user can request account closure */
@@ -8414,6 +8452,7 @@ export type Query = {
   getBusinessActiveSelfInvitation?: Maybe<GetBusinessActiveSelfInvitation>;
   getBusinessActiveSelfRegistration?: Maybe<GetBusinessActiveSelfRegistration>;
   getBusinessCSM: BusinessAccessUser;
+  getBusinessCards: GetBusinessCardsResponse;
   getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessSelfRegistrationResult>;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
   getBusinessFeaturedRewards: Array<FeaturedReward>;
@@ -8499,6 +8538,7 @@ export type Query = {
   getGoalDetails?: Maybe<GoalDetails>;
   getGoalMilestoneDetails: GoalMilestoneDetails;
   getHealthSmokingState?: Maybe<HealthSmokingState>;
+  getHomePromoBanner: HomePromoBanner;
   getHomeWidgetsData: DataWidgets;
   getHrisImportEvents: HrisImportEventsResult;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
@@ -8768,11 +8808,6 @@ export type QueryDownloadUserDocumentArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryFindUserAddressArgs = {
-  postcode: Scalars["String"]["input"];
-};
-
-/** Default types to be extended / root query */
 export type QueryGetActivityHistoryWithLevelsArgs = {
   isFullActivity?: InputMaybe<Scalars["Boolean"]["input"]>;
   monthsAgo?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8856,6 +8891,12 @@ export type QueryGetBusinessAccessAdminsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetBusinessAccessUserArgs = {
   accountAccessId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBusinessCardsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -10364,17 +10405,6 @@ export type SftpConnectionConfig = {
 export type SftpConnectionSettingsInput = {
   allowedIps?: InputMaybe<Array<Scalars["String"]["input"]>>;
   password?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type ShippingAddress = {
-  __typename?: "ShippingAddress";
-  addressCity?: Maybe<Scalars["String"]["output"]>;
-  addressCountry?: Maybe<Scalars["String"]["output"]>;
-  addressCounty?: Maybe<Scalars["String"]["output"]>;
-  addressFirstLine?: Maybe<Scalars["String"]["output"]>;
-  addressPostCode?: Maybe<Scalars["String"]["output"]>;
-  addressSecondLine?: Maybe<Scalars["String"]["output"]>;
-  addressThirdLine?: Maybe<Scalars["String"]["output"]>;
 };
 
 export enum ShowConnectionsOverrideState {
@@ -39843,24 +39873,6 @@ export type MarkMobileUserWrappedAsViewedMutationVariables = Exact<{
 export type MarkMobileUserWrappedAsViewedMutation = {
   __typename?: "Mutation";
   markMobileUserWrappedAsViewed: { __typename?: "MarkMobileUserWrappedResponse"; count: number };
-};
-
-export type AddressQueryVariables = Exact<{
-  postcode: Scalars["String"]["input"];
-}>;
-
-export type AddressQuery = {
-  __typename?: "Query";
-  findUserAddress?: Array<{
-    __typename?: "ShippingAddress";
-    addressCity?: string | null;
-    addressCountry?: string | null;
-    addressFirstLine?: string | null;
-    addressSecondLine?: string | null;
-    addressThirdLine?: string | null;
-    addressPostCode?: string | null;
-    addressCounty?: string | null;
-  } | null> | null;
 };
 
 export type GetProductPaymentHistoryQueryVariables = Exact<{
@@ -101170,51 +101182,6 @@ export const MarkMobileUserWrappedAsViewedDocument = {
     },
   ],
 } as unknown as DocumentNode<MarkMobileUserWrappedAsViewedMutation, MarkMobileUserWrappedAsViewedMutationVariables>;
-export const AddressDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "Address" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "postcode" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "findUserAddress" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "postcode" },
-                value: { kind: "Variable", name: { kind: "Name", value: "postcode" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "addressCity" } },
-                { kind: "Field", name: { kind: "Name", value: "addressCountry" } },
-                { kind: "Field", name: { kind: "Name", value: "addressFirstLine" } },
-                { kind: "Field", name: { kind: "Name", value: "addressSecondLine" } },
-                { kind: "Field", name: { kind: "Name", value: "addressThirdLine" } },
-                { kind: "Field", name: { kind: "Name", value: "addressPostCode" } },
-                { kind: "Field", name: { kind: "Name", value: "addressCounty" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<AddressQuery, AddressQueryVariables>;
 export const GetProductPaymentHistoryDocument = {
   kind: "Document",
   definitions: [
