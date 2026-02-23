@@ -3,9 +3,10 @@ import { View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { Sizes } from "../button.types";
-import { Colours, TemplateTextType, StyleSheet } from "@styles";
+import { TemplateTextType, StyleSheet } from "@styles";
 import ButtonBase from "../button.base";
 import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "../button.use-title";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type DefaultProps = {
   wrapperStyle?: ViewStyle;
@@ -49,6 +50,8 @@ export const SecondaryButton = (props: Props) => {
     contentTextStyle,
   } = props;
 
+  const { theme } = useTheme();
+
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
   const buttonDimensions = getButtonDimensions(size);
   const { title, testID } = useButtonTitle(props);
@@ -56,6 +59,9 @@ export const SecondaryButton = (props: Props) => {
   if (!show) {
     return null;
   }
+
+  const resolvedBorderColor = borderColor || theme.colors.primary.p600;
+  const resolvedTextColor = textColor || theme.colors.primary.p600;
 
   return (
     <View style={StyleSheet.flatten([buttonStyles.wrapper, buttonDimensions, wrapperStyle])}>
@@ -68,8 +74,8 @@ export const SecondaryButton = (props: Props) => {
         leftIcon={leftIcon}
         iconUri={iconUri}
         onPress={handlePress}
-        borderColor={borderColor || Colours.primary.p600}
-        color={textColor || Colours.primary.p600}
+        borderColor={resolvedBorderColor}
+        color={resolvedTextColor}
         backgroundColor={backgroundColor || "transparent"}
         borderRadius={50}
         delay={delay}

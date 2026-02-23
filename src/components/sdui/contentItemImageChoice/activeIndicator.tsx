@@ -14,13 +14,7 @@ export const ImageChoiceActiveIndicator = memo(({ isChecked, checkboxVisible, st
     <View style={StyleSheet.flatten([styles.wrapper, isChecked ? styles.activeWrapper : null, style])}>
       {checkboxVisible ? (
         <View style={styles.absoluteUpperRight}>
-          <CheckBoxType
-            type={"cubic"}
-            checked={isChecked}
-            strokeColor={Colours.neutral.n400}
-            activeCheckboxFillColor={Colours.primary.p600}
-            size={Style.adjust(16)}
-          />
+          <CheckBoxType type={"cubic"} checked={isChecked} strokeColor={Colours.neutral.n400} size={Style.adjust(16)} />
         </View>
       ) : null}
     </View>

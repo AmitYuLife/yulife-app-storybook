@@ -19,7 +19,6 @@ export default StyleSheet.create({
     height: 40,
     borderWidth: 0,
     borderBottomWidth: 2,
-    borderBottomColor: Colours.primary.p600,
     color: Colours.darkGray,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize: Style.adjust(16),

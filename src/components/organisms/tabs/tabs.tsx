@@ -1,9 +1,10 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { Image, Source, SkeletonLoading, TextTemplate } from "@atoms";
-import { Colours, Style, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Pressable } from "@molecules";
 import { LEADBOARD_TAB } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IIcon {
   width?: number;
@@ -36,6 +37,7 @@ interface IProps {
 
 const Tabs = ({ list, defaultTab, isLoading, scrollEnabled }: IProps) => {
   const [selected, setSelected] = useState("");
+  const { theme } = useTheme();
 
   useEffect(() => {
     setSelected(list[defaultTab <= list?.length - 1 ? defaultTab : 0]?.name);
@@ -56,8 +58,8 @@ const Tabs = ({ list, defaultTab, isLoading, scrollEnabled }: IProps) => {
     >
       {list?.map(({ name, Icon, icons, onPress, testID }) => {
         const isSelected = name === selected;
-        const colour = isSelected ? Colours.primary.p600 : "#5C5757";
-        const border = isSelected ? styles.listBorder : {};
+        const colour = isSelected ? theme.colors.primary.p600 : "#5C5757";
+        const border = isSelected ? { borderBottomColor: theme.colors.primary.p600, borderBottomWidth: 2 } : {};
 
         return (
           <Pressable
@@ -128,10 +130,6 @@ const styles = StyleSheet.create({
   },
   list: {
     flexDirection: "row",
-  },
-  listBorder: {
-    borderBottomColor: Colours.primary.p600,
-    borderBottomWidth: 2,
   },
   listName: {
     marginStart: Style.adjust(8),

@@ -203,7 +203,6 @@ const EventDialogScreen = ({
   return (
     <Box flexGrow={1} bg={bgColor} testID={EVENT_DIALOG_SCREEN}>
       <Box h={STATUS_BAR_COVER_HEIGHT} w={Style.DEVICE_WIDTH} disableAutoAdjust={true} bg={bgColor} />
-
       <Animated.View style={headerImageContainerStyle}>
         <Image
           suppressLoadingUi={true}

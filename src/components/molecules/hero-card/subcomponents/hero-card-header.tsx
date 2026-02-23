@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { Colours, Style, StyleSheet } from "@styles";
 import { Box, Image, TextTemplate } from "@atoms";
 import { HeroCardHeader as HeroCardHeaderProps, HeroCardHeaderButtonState } from "@utils/heroCards";
@@ -7,6 +7,7 @@ import { HERO_CARD_PADDING } from "../constants";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { EVENT_DESCRIPTION, EVENT_HEADING, PINK_ARROW_ICON } from "@ids";
 import Markdown from "@components/molecules/markdown/markdown";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const Subheading = ({
   text,
@@ -45,6 +46,7 @@ const HeroCardBannerHeader = ({
   textWidth,
 }: HeroCardHeaderProps & { fontColor: string; boldTextColor?: string; textWidth: number }) => {
   const subheadingMarginTop = subheadingMargin ?? 8;
+  const { theme } = useTheme();
 
   return (
     <>
@@ -59,7 +61,7 @@ const HeroCardBannerHeader = ({
           right={12}
           top={16}
           flexShrink={0}
-          bg={Colours.primary.p600}
+          bg={theme.colors.primary.p600}
           br={13}
           width={26}
           height={26}
@@ -111,15 +113,41 @@ const HeroCardHeader = (
     headingNumberOfLines?: number;
   }
 ) => {
-  if (props.image) {
-    return <HeroCardBannerHeader {...props} />;
-  }
+  const { theme } = useTheme();
 
   const { heading, subheadingMargin, subheading, button, fontColor, boldTextColor, textWidth, headingNumberOfLines } =
     props;
 
   const showCaret = !button?.text && !button?.icon;
   const subheadingMarginTop = subheadingMargin ?? 4;
+
+  const buttonColors = useMemo(() => {
+    switch (button?.state) {
+      case HeroCardHeaderButtonState.Disabled:
+        return {
+          backgroundColor: "transparent",
+          borderColor: theme.colors.primary.p80,
+          color: theme.colors.primary.p80,
+        };
+      case HeroCardHeaderButtonState.DisabledMonochrome:
+        return {
+          backgroundColor: "transparent",
+          borderColor: Colours.neutral.n200,
+          color: Colours.neutral.n200,
+        };
+      case HeroCardHeaderButtonState.Default:
+      default:
+        return {
+          backgroundColor: theme.colors.primary.p600,
+          borderColor: theme.colors.primary.p600,
+          color: Colours.neutral.white,
+        };
+    }
+  }, [button?.state, theme]);
+
+  if (props.image) {
+    return <HeroCardBannerHeader {...props} />;
+  }
 
   return (
     <>
@@ -136,13 +164,10 @@ const HeroCardHeader = (
         </Box>
         <Box
           flexShrink={0}
-          bg={Colours.primary.p600}
+          bg={buttonColors.backgroundColor}
           br={48}
           borderWidth={1}
-          style={{
-            backgroundColor: getButtonBackgroundColor(button?.state),
-            borderColor: getButtonBorderColor(button?.state),
-          }}
+          borderColor={buttonColors.borderColor}
           maxHeight={26}
         >
           {showCaret ? (
@@ -153,7 +178,7 @@ const HeroCardHeader = (
             <Box flexDirection="row" alignItems="center" justifyContent="center" gap={8} pv={4} ph={16} maxWidth={80}>
               {button?.icon ? <Image source={{ uri: button.icon }} /> : null}
               {button?.text ? (
-                <TextTemplate numberOfLines={1} type="l2b" color={getButtonColor(button?.state)}>
+                <TextTemplate numberOfLines={1} type="l2b" color={buttonColors.color}>
                   {button.text}
                 </TextTemplate>
               ) : null}
@@ -185,42 +210,6 @@ const HeroCardHeader = (
 };
 
 export default memo(HeroCardHeader);
-
-function getButtonColor(state: HeroCardHeaderButtonState = HeroCardHeaderButtonState.Default): string {
-  switch (state) {
-    case HeroCardHeaderButtonState.Disabled:
-      return Colours.primary.p80;
-    case HeroCardHeaderButtonState.DisabledMonochrome:
-      return Colours.neutral.n200;
-    case HeroCardHeaderButtonState.Default:
-    default:
-      return Colours.neutral.white;
-  }
-}
-
-function getButtonBorderColor(state: HeroCardHeaderButtonState = HeroCardHeaderButtonState.Default): string {
-  switch (state) {
-    case HeroCardHeaderButtonState.Disabled:
-      return Colours.primary.p80;
-    case HeroCardHeaderButtonState.DisabledMonochrome:
-      return Colours.neutral.n200;
-    case HeroCardHeaderButtonState.Default:
-    default:
-      return Colours.primary.p600;
-  }
-}
-
-function getButtonBackgroundColor(state: HeroCardHeaderButtonState = HeroCardHeaderButtonState.Default): string {
-  switch (state) {
-    case HeroCardHeaderButtonState.Disabled:
-      return "transparent";
-    case HeroCardHeaderButtonState.DisabledMonochrome:
-      return "transparent";
-    case HeroCardHeaderButtonState.Default:
-    default:
-      return Colours.primary.p600;
-  }
-}
 
 const getMarkdownStyles = (fontColor: string, boldTextColor?: string, fontWeight?: number) => ({
   paragraph: {

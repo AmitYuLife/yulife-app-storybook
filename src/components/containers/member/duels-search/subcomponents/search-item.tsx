@@ -7,6 +7,7 @@ import styles from "./search-item.styles";
 import { t } from "@locale";
 import { DUEL_SEARCH_LIST_ITEM } from "@ids";
 import { SearchedOpponent } from "../duels-search.container";
+import { TextTemplate } from "@atoms";
 
 function DuelsSearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) {
   return (
@@ -18,7 +19,9 @@ function DuelsSearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) 
           </View>
           {!item?.name ? null : <Text style={styles.nameText}>{item.name}</Text>}
         </View>
-        <Text style={styles.duelText}>{t("modals.duels.search.item_duel")}</Text>
+        <TextTemplate type="l2" color={item.duelTextColor}>
+          {t("modals.duels.search.item_duel")}
+        </TextTemplate>
       </View>
     </TouchableOpacityWithDelay>
   );

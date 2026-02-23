@@ -2,14 +2,14 @@ import React, { memo } from "react";
 import { View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { t } from "@locale";
-import { getIconColour, IIconProps } from "../nav-bar.helpers";
+import { useIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
 import styles, { NAV_BAR_ICON_SIZE } from "./assets.styles";
 import { Pressable } from "@molecules";
 import { TextTemplate } from "@atoms";
 
 const Trophy = ({ isActive, hasNotification, onPressIn, isSuspended }: IIconProps) => {
-  const fill = getIconColour(isActive, isSuspended);
+  const fill = useIconColour(isActive, isSuspended);
 
   return (
     <Pressable delay={1000} style={styles.wrapper} onPress={onPressIn}>

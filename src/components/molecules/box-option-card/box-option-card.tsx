@@ -2,7 +2,7 @@ import { View, ViewStyle } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { default as BoxOption } from "../box-option/box-option";
 import { ContentItemButtonFragment, RemoteImage, SduiAction, VariableRemoteImage } from "@graphql/__generated";
-import { Style, Colours, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { ComponentProps, useCallback, useRef, useState } from "react";
 import { Title } from "./box-option-card.title";
 import { BOX_OPTION_DESCRIPTION, BOX_OPTION_TITLE, RIGHT_SIDE_IMAGE_BOX_OPTION } from "@ids";
@@ -11,6 +11,7 @@ import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface Props {
   title?: string;
@@ -84,6 +85,7 @@ export const BoxOptionCard = ({
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress, eventCallback);
 
   const imageUri = variableImage?.image.uri || image?.uri;
+  const { theme } = useTheme();
 
   return (
     <BoxOption
@@ -133,7 +135,7 @@ export const BoxOptionCard = ({
         </View>
         {!onPress ? null : (
           <View style={styles.arrowWrapper}>
-            <ArrowButton color={Colours.primary.p600} />
+            <ArrowButton color={theme.colors.primary.p600} />
           </View>
         )}
       </View>

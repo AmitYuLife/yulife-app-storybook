@@ -8,6 +8,7 @@ import { useTrack } from "@hooks";
 import { ACHIEVEMENT_SLOT, ACHIEVEMENTS_SHOWCASE } from "@ids";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { t } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export interface IAchievement {
   id: string;
@@ -46,6 +47,7 @@ interface IProps {
 
 const AchievementsShowcase = ({ achievement, componentId, isInspectingUser, currentViewedUserId }: IProps) => {
   const track = useTrack();
+  const { theme } = useTheme();
 
   const onPress = useCallback(async () => {
     track("achievement_click", {
@@ -125,7 +127,7 @@ const AchievementsShowcase = ({ achievement, componentId, isInspectingUser, curr
           mt={16}
         >
           <TextTemplate type="l1">{t("all_achievements")}</TextTemplate>
-          <ArrowIcon size={14} />
+          <ArrowIcon size={14} color={theme.colors.primary.p600} />
         </Box>
       </Pressable>
     </Box>

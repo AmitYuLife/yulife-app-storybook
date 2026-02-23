@@ -26,6 +26,7 @@ import { usePulseAnimation } from "./animation/use-pulse-animation";
 import { DropShadow } from "./drop-shadow";
 import { usePressEffect } from "@hooks";
 import ReAnimated from "react-native-reanimated";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 
 interface IQuestMapLevelProps {
   currentLevel: number;
@@ -42,6 +43,7 @@ const BUTTON_HITSLOP = {
 };
 
 const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
+  const { theme } = useTheme();
   const [nextAvailableTimer, setNextAvailableTimer] = useState(null);
 
   useInterval(
@@ -61,8 +63,8 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
 
   const currentWorld = getCurrentWorld(level.level);
   const normalizedLevel = getNormalizedLevel(level.level);
-  const { backgroundColour } = getButtonColours(nextAvailableTimer, level, currentWorld);
-  const bubblePulseColor = getPulseColor(normalizedLevel);
+  const { backgroundColour } = getButtonColours(nextAvailableTimer, level, currentWorld, theme.colors.primary.p600);
+  const bubblePulseColor = getPulseColor(normalizedLevel, theme.colors.primary.p600);
   const bubbleBorderWidth = isHistoricalLevel(level) ? 2 : 0;
   const notificationBorderWidth = isActiveLevelWithNotification(level) ? 2 : 0;
 

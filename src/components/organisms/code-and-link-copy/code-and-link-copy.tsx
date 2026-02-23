@@ -102,7 +102,6 @@ const CodeAndLinkCopy = ({ code, onShare, title, disclaimer, analyticsEvent, but
             translatedLabel={buttonText}
             testID={REFERRALS_SHARE_CODE_BUTTON}
             size="Fill"
-            backgroundColor={Colours.primary.p600}
             textColor={Colours.neutral.white}
             height={Style.adjust(40)}
           />

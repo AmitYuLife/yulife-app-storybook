@@ -31,7 +31,8 @@ function getGemColor(level: QuestsMapLevel) {
 export function getButtonColours(
   nextAvailable: number,
   level: QuestsMapLevel,
-  normalizedWorld: number
+  normalizedWorld: number,
+  primaryColor: string
 ): IButtonColours {
   const worldColor = getWorldColor(getNormalizedLevel(level.level))?.color;
 
@@ -45,6 +46,7 @@ export function getButtonColours(
     // current level colour is always the same
     const backgroundColour = getActiveLevelBackgroundColor({
       isPending: nextAvailable < 0,
+      primaryColor,
     });
     return {
       backgroundColour,
@@ -65,7 +67,7 @@ export function getButtonColours(
   };
 }
 
-export function getPulseColor(level: number) {
+export function getPulseColor(level: number, primaryColor: string) {
   switch (level) {
     case 50:
       return "#00ED9D";
@@ -76,13 +78,13 @@ export function getPulseColor(level: number) {
     case 200:
       return "#FFD2DB";
     default:
-      return "rgb(145,0,76)";
+      return primaryColor ?? "rgb(145,0,76)";
   }
 }
 
 export const isHistoricalLevel = (level: QuestsMapLevel) => level.isDone && !level.isActive;
 export const isActiveLevelWithNotification = (level: QuestsMapLevel) => level.isActive && !!level.notificationIcon;
 
-function getActiveLevelBackgroundColor({ isPending }: { isPending: boolean }) {
-  return isPending ? Colours.neutral.n20 : "rgb(226, 1, 119)";
+function getActiveLevelBackgroundColor({ isPending, primaryColor }: { isPending: boolean; primaryColor: string }) {
+  return isPending ? Colours.neutral.n20 : primaryColor;
 }

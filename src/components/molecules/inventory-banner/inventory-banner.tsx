@@ -11,6 +11,7 @@ import { INVENTORY_BANNER, INVENTORY_BANNER_ITEM_COUNT } from "@ids";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { isRTL } from "@locale";
 import { DETOX_ENABLED } from "@services/socket";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const BANNER_IMAGE = require("./inventory-banner-icon.webp");
 const BANNER_BACKGROUND = require("./inventory-banner-background.webp");
@@ -32,6 +33,7 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
   const isRTLLayout = isRTL();
 
   const t = useTranslation(["molecules.inventory_banner.title", "molecules.inventory_banner.subtitle"]);
+  const { theme } = useTheme();
 
   return (
     <View style={styles.wrapper} testID={INVENTORY_BANNER}>
@@ -47,11 +49,22 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
               autoPlay={!DETOX_ENABLED}
             />
             {amount ? (
-              <View style={styles.indicator} testID={INVENTORY_BANNER_ITEM_COUNT(amount)}>
+              <Box
+                bg={theme.colors.primary.p600}
+                w={20}
+                h={20}
+                justifyContent="center"
+                alignItems="center"
+                br={100}
+                position="absolute"
+                top={1}
+                left={1}
+                testID={INVENTORY_BANNER_ITEM_COUNT(amount)}
+              >
                 <TextTemplate type="l3b" color={Colours.neutral.white} lineHeight={Style.adjust(20)}>
                   {amount}
                 </TextTemplate>
-              </View>
+              </Box>
             ) : null}
           </View>
           <View style={styles.inventoryBannerContainer}>

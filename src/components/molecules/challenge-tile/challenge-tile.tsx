@@ -10,6 +10,7 @@ import Animated from "react-native-reanimated";
 import { usePressEffect } from "@hooks";
 import ChallengeTileExtraIndicator from "./challenge-tile-extra-indicator";
 import { ArrowIcon } from "@atoms/icon/arrow";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 
 export interface IChallengeTileProps {
   heading?: string;
@@ -51,6 +52,7 @@ const ChallengeTile = ({
   hasBonus,
   extraChallenges,
 }: Props) => {
+  const { theme } = useTheme();
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect();
 
   const wrapperStyle = useMemo(() => [styles.wrapper, animatedStyle], [animatedStyle]);
@@ -143,13 +145,24 @@ const ChallengeTile = ({
                 {!isCompleted && !isLocked ? (
                   <>
                     {!hasBonus ? null : (
-                      <View style={styles.hasBonusContainer}>
-                        <TextTemplate type="l2b" color={colours.primary.p600}>
+                      <Box
+                        position="absolute"
+                        right={0}
+                        bottom={0}
+                        flexDirection="row"
+                        alignItems="center"
+                        br={48}
+                        pl={8}
+                        pr={26}
+                        height={26}
+                        bg={theme.colors.primary.p40}
+                      >
+                        <TextTemplate type="l2b" color={theme.colors.primary.p600}>
                           {t("screens.challenge_list.level_boosted")}
                         </TextTemplate>
-                      </View>
+                      </Box>
                     )}
-                    <Box bg={Colours.primary.p600} br={99} size={24} justifyContent="center" alignItems="center">
+                    <Box bg={theme.colors.primary.p600} br={99} size={24} justifyContent="center" alignItems="center">
                       <ArrowIcon intent="primary" color="white" />
                     </Box>
                   </>

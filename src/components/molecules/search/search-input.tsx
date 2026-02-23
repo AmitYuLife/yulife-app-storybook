@@ -1,9 +1,9 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { TextTemplate } from "@atoms";
 import { SEARCH_INPUT } from "@ids";
 import { TextInput, View, ViewStyle } from "react-native";
 import styles from "./search-input.styles";
-
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import { StyleSheet } from "@styles";
 interface Props {
   title: string;
@@ -19,13 +19,22 @@ function SearchInput({ title, onChangeText, styleProps }: Props) {
     [onChangeText]
   );
 
+  const { theme } = useTheme();
+  const textInputStyles = useMemo(
+    () => ({
+      ...styles.textInput,
+      borderBottomColor: theme.colors.primary.p600,
+    }),
+    [theme]
+  );
+
   return (
     <View style={styles.searchWrapper}>
       <View style={StyleSheet.flatten([styles.padding, styleProps])}>
         <View style={styles.text}>
           <TextTemplate type="h3">{title}</TextTemplate>
         </View>
-        <TextInput style={styles.textInput} onChangeText={onChange} autoFocus={false} testID={SEARCH_INPUT} />
+        <TextInput style={textInputStyles} onChangeText={onChange} autoFocus={false} testID={SEARCH_INPUT} />
       </View>
     </View>
   );

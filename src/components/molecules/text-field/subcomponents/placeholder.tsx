@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useMemo } from "react";
 import { Animated, TextStyle, LayoutChangeEvent, ViewStyle } from "react-native";
 import { Style, Colours, StyleSheet } from "@styles";
 
@@ -10,9 +10,19 @@ interface Props {
   isFocused: boolean;
   hasInput: boolean;
   paddingLeft?: number;
+  focusedColor: string;
 }
 
-export const Placeholder = ({ scale, translateY, opacity, title, isFocused, hasInput, paddingLeft = 0 }: Props) => {
+export const Placeholder = ({
+  scale,
+  translateY,
+  opacity,
+  title,
+  isFocused,
+  hasInput,
+  paddingLeft = 0,
+  focusedColor,
+}: Props) => {
   const placeholderTranslateX = useRef(new Animated.Value(0)).current;
   const [textWidth, setTextWidth] = useState(0);
 
@@ -42,6 +52,18 @@ export const Placeholder = ({ scale, translateY, opacity, title, isFocused, hasI
 
   const dynamicTextStyles: TextStyle = { transform: [{ scale }, { translateX: placeholderTranslateX }] };
 
+  const resolvedPlaceholderColor = useMemo(() => {
+    if (isFocused) {
+      return focusedColor;
+    }
+
+    if (hasInput) {
+      return Colours.neutral.n400;
+    }
+
+    return "black";
+  }, [isFocused, hasInput, focusedColor]);
+
   return (
     <Animated.View pointerEvents="none" style={[styles.placeholderWrapper, dynamicStyles]}>
       <Animated.Text
@@ -49,7 +71,7 @@ export const Placeholder = ({ scale, translateY, opacity, title, isFocused, hasI
         style={[
           styles.placeholder,
           {
-            color: getPlaceholderColor(),
+            color: resolvedPlaceholderColor,
             opacity,
           },
           dynamicTextStyles,
@@ -59,17 +81,6 @@ export const Placeholder = ({ scale, translateY, opacity, title, isFocused, hasI
       </Animated.Text>
     </Animated.View>
   );
-  function getPlaceholderColor() {
-    if (isFocused) {
-      return Colours.darkHotPink;
-    }
-
-    if (hasInput) {
-      return Colours.neutral.n400;
-    }
-
-    return "black";
-  }
 };
 
 const styles = StyleSheet.create({

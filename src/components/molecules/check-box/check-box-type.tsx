@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import Svg, { Circle, Path, Rect } from "react-native-svg";
 import { Style } from "@styles";
 import { Animated, Easing } from "react-native";
 import AnimatedValue = Animated.AnimatedValue;
 import TimingAnimationConfig = Animated.TimingAnimationConfig;
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -16,11 +17,16 @@ type Props = SvgProps & {
 export const CheckBoxType = (props: Props) => {
   const { type, animated } = props;
 
+  const { theme } = useTheme();
+  const resolvedActiveCheckboxFillColor = useMemo(
+    () => props.activeCheckboxFillColor ?? theme.colors.primary.p600,
+    [props.activeCheckboxFillColor, theme]
+  );
   const useAnimatedCheckboxMap = animated && !!animatedCheckboxHashMap[type];
 
   const Checkbox = (useAnimatedCheckboxMap ? animatedCheckboxHashMap : checkboxHashMap)[type] || Circular;
 
-  return <Checkbox {...props} />;
+  return <Checkbox {...props} activeCheckboxFillColor={resolvedActiveCheckboxFillColor} />;
 };
 
 const checkboxHashMap = {
@@ -34,7 +40,7 @@ const animatedCheckboxHashMap = {
 
 interface SvgProps {
   checked: boolean;
-  activeCheckboxFillColor: string;
+  activeCheckboxFillColor?: string;
   strokeColor: string;
   testID?: string;
   size?: number;

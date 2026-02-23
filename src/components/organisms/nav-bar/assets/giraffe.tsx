@@ -3,13 +3,13 @@ import { View } from "react-native";
 import { t } from "@locale";
 import { NAV_BAR } from "@ids";
 import Svg, { Path } from "react-native-svg";
-import { getIconColour, IIconProps } from "../nav-bar.helpers";
+import { IIconProps, useIconColour } from "../nav-bar.helpers";
 import styles, { NAV_BAR_ICON_SIZE } from "./assets.styles";
 import { Pressable } from "@molecules";
 import { TextTemplate } from "@atoms";
 
 const Girrafe = ({ isActive, onPressIn, isSuspended }: IIconProps) => {
-  const fill = getIconColour(isActive, isSuspended);
+  const fill = useIconColour(isActive, isSuspended);
   return (
     <Pressable delay={1000} style={styles.wrapper} onPress={onPressIn}>
       <Svg viewBox="0 0 24 24" width={NAV_BAR_ICON_SIZE} height={NAV_BAR_ICON_SIZE} testID={NAV_BAR("yucoin")}>

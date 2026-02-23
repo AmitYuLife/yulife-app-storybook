@@ -45,13 +45,7 @@ export const NudgeItem = memo(({ id, image, markdown, onPress, done, markdownSty
         />
       </View>
       <View style={styles.iconWrapper} testID={DONE_NUDGE_ICON(markdown.replace(/\n/g, " "))}>
-        {done ? (
-          <DoneNudgeIcon />
-        ) : onPress ? (
-          <ArrowIcon color={Colours.primary.p600} />
-        ) : (
-          <View style={styles.rightSpacer} />
-        )}
+        {done ? <DoneNudgeIcon /> : onPress ? <ArrowIcon /> : <View style={styles.rightSpacer} />}
       </View>
     </Wrapper>
   );

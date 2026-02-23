@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useMemo } from "react";
 import { View, ViewStyle } from "react-native";
-import { Colours, Style, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Image, ImageStyle, TextTemplate } from "@atoms";
 import { Navigation } from "@navigation/main";
@@ -9,6 +9,7 @@ import { WellbeingHubItem } from "@graphql/__generated";
 import { TEXT_TEMPLATE } from "@ids";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import { pushToScreen } from "@navigation/root";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 interface IProps {
@@ -17,6 +18,7 @@ interface IProps {
 }
 
 const WellBeingServiceCard: FC<IProps> = ({ card }) => {
+  const { theme } = useTheme();
   const onPress = useCallback(async () => {
     const { id, route, sduiStepId } = card;
 
@@ -77,7 +79,7 @@ const WellBeingServiceCard: FC<IProps> = ({ card }) => {
           </View>
         </View>
         <View style={styles.arrowRight}>
-          <ArrowButton color={Colours.primary.p600} />
+          <ArrowButton color={theme.colors.primary.p600} />
         </View>
       </View>
     </TouchableOpacityWithDelay>

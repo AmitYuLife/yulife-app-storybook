@@ -13,6 +13,7 @@ import { Platform, Pressable, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { usePressEffect } from "../../../hooks/usePressEffect";
 import InventoryItemPopover from "./inventory-item-popover";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -50,14 +51,22 @@ const InventoryItem = ({
     isActive,
   });
 
+  const { theme } = useTheme();
+
+  const activatedStyle = useMemo(() => {
+    return {
+      borderColor: theme.colors.primary.p60,
+    };
+  }, [theme]);
+
   const containerStyles = useMemo(() => {
     return [
       styles.container,
       isActive ? styles.containerSelected : {},
-      activeUntil ? styles.containerActivated : {},
+      activeUntil ? activatedStyle : {},
       disabledUntil || isDisabled ? styles.containerDisabled : {},
     ];
-  }, [activeUntil, disabledUntil, isActive, isDisabled]);
+  }, [activeUntil, disabledUntil, isActive, isDisabled, activatedStyle]);
 
   const iconSource = useMemo(() => {
     return iconUri ? { uri: iconUri } : PLACEHOLDER_IMAGE;
@@ -129,14 +138,34 @@ const InventoryItem = ({
         <Box flexDirection="row" center={true} gap={6} style={styles.rightContainer}>
           {activeUntil ? (
             <View style={styles.activeContainer}>
-              <View style={styles.activeTextContainer}>
-                <TextTemplate type="l2b" color={Colours.primary.p600} testID={ACTIVATED_INVENTORY_ITEM}>
+              <Box
+                ph={10}
+                pr={22}
+                justifyContent="center"
+                alignItems="center"
+                br={8}
+                height={22}
+                bg={theme.colors.primary.p40}
+              >
+                <TextTemplate type="l2b" color={theme.colors.primary.p600} testID={ACTIVATED_INVENTORY_ITEM}>
                   {t("molecules.inventory_item.activated")}
                 </TextTemplate>
-              </View>
-              <View style={styles.activeClockContainer} ref={containerRef}>
+              </Box>
+              <Box
+                height={28}
+                width={28}
+                aspectRatio={1}
+                justifyContent="center"
+                alignItems="center"
+                br={100}
+                borderColor="white"
+                bg={theme.colors.primary.p600}
+                ml={-16}
+                borderWidth={2}
+                viewRef={containerRef}
+              >
                 <AlarmClockIcon />
-              </View>
+              </Box>
             </View>
           ) : null}
           {quantity > 0 ? (
@@ -192,15 +221,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  activeTextContainer: {
-    paddingHorizontal: Style.adjust(10),
-    paddingEnd: Style.adjust(22),
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FCE7F1",
-    borderRadius: Style.adjust(8),
-    height: Style.adjust(22),
-  },
+  activeTextContainer: {},
   activeClockContainer: {
     height: Style.adjust(28),
     width: Style.adjust(28),
