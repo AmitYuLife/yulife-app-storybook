@@ -9,9 +9,9 @@ import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ChallengeCompletionSummary } from "@redux/levels/levels.types";
 import { DETOX_ENABLED } from "@services/socket";
+import { Style, StyleSheet } from "@styles";
 import { getTheme } from "@theme";
 
-import { useWindowDimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import ChallengeStats from "./challenge-stats";
@@ -31,6 +31,7 @@ const YUCOIN_SHADOW_ICON = require("@assets/icons/yucoin-shadow.webp");
 const REWARD_IMAGE_SIZE_YUCOIN = 120;
 
 const REWARD_SIZE = 190;
+const STATS_WIDTH = Style.DEVICE_WIDTH * 0.85;
 
 export default function ChallengeSuccessScreen({ level, rating, reward, onPressCta, completionSummary }: IProps) {
   const currentLevel = useSelector(getCurrentLevel);
@@ -50,7 +51,6 @@ export default function ChallengeSuccessScreen({ level, rating, reward, onPressC
   const { challengeSuccessScreen } = getTheme(currentLevel, yuniversalMap);
 
   const { bottom, top } = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
 
   // yuniversal looks good as is, other screens need a bit more bright rays
   const gradientStops = useMemo(() => {
@@ -71,7 +71,14 @@ export default function ChallengeSuccessScreen({ level, rating, reward, onPressC
       />
       {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground top={top + 20} gradientStops={gradientStops} />}
       {level !== undefined && rating !== undefined ? (
-        <Box position="absolute" top={top + 20} width="100%" alignItems="center">
+        <Box
+          position="absolute"
+          top={top + Style.adjust(20)}
+          width="100%"
+          alignItems="center"
+          disableAutoAdjust={true}
+          collapsable={false}
+        >
           <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
           <Box>
             <Box>
@@ -85,14 +92,23 @@ export default function ChallengeSuccessScreen({ level, rating, reward, onPressC
           </Box>
         </Box>
       ) : null}
-      <Box mt={top + 80} disableAutoAdjust={false}>
-        <Box justifyContent="center" alignItems="center" pb={90}>
+      <Box mt={top + Style.adjust(80)} disableAutoAdjust={true} collapsable={false}>
+        <Box justifyContent="center" alignItems="center" pb={90} collapsable={false}>
           <Box justifyContent="center" alignItems="center" gap={50}>
             <Box>
               <ItemDetailsReward size={REWARD_SIZE} imageSize={REWARD_IMAGE_SIZE_YUCOIN} source={YUCOIN_SHADOW_ICON} />
               {reward > 0 ? (
-                <Box alignItems="center" position="absolute" justifyContent="center" w={REWARD_SIZE}>
-                  <AnimatedPlusPoints type="challenge-success" coins={reward} textType="h3" />
+                <Box
+                  alignItems="center"
+                  justifyContent="center"
+                  position="absolute"
+                  top={-10}
+                  w={REWARD_SIZE}
+                  h={80}
+                  collapsable={false}
+                  zIndex={2}
+                >
+                  <AnimatedPlusPoints type="challenge-success" coins={reward} textType="h3" style={styles.plusPoints} />
                 </Box>
               ) : null}
             </Box>
@@ -103,13 +119,19 @@ export default function ChallengeSuccessScreen({ level, rating, reward, onPressC
             </TextTemplate>
           </Box>
 
-          <ChallengeStats width={width - 70} completionSummary={completionSummary} />
+          <ChallengeStats width={STATS_WIDTH} completionSummary={completionSummary} />
         </Box>
       </Box>
 
-      <Box position="absolute" bottom={0} width="100%" pb={bottom}>
+      <Box position="absolute" bottom={0} width="100%" pb={bottom} disableAutoAdjust={true}>
         <Button testID={"CHALLENGE_SUCCESS_CTA"} onPress={onPressCta} translationKey="labels.cta.continue" />
       </Box>
     </CentredScreen>
   );
 }
+
+const styles = StyleSheet.create({
+  plusPoints: {
+    position: "relative",
+  },
+});

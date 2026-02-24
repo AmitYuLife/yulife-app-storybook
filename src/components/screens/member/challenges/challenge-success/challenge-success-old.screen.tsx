@@ -1,6 +1,6 @@
 import { Colours } from "@styles";
 import * as React from "react";
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 import { LevelLine, Box, Stars, TextTemplate, RawImage } from "@atoms";
 import { t } from "@locale";
 import { AnimatedPlusPoints, Button, CentredScreen, YucoinPowerButtonMini } from "@molecules";
@@ -9,7 +9,6 @@ import { getTheme } from "@theme";
 import { CHALLENGE_SUCCESS_SCREEN } from "@ids";
 import { IActiveLevel } from "@redux/levels/levels.types";
 import { Style, StyleSheet } from "@styles";
-import { commonStyles } from "../challenge-failed/challenge-failed.screen.styles";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
@@ -58,51 +57,55 @@ const ChallengeSuccessOldScreen = ({
 
   return (
     <CentredScreen testID={CHALLENGE_SUCCESS_SCREEN} {...challengeSuccessScreen}>
-      <View style={styles.wrapper}>
-        <View style={styles.topWrapper}>
-          <View style={styles.ratingWrapper}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <Box alignItems="center">
+          <Box alignItems="center" mt={40}>
             <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
-            <View style={styles.levelWrapper}>
-              <View style={styles.levelLineWrapper}>
+            <Box alignItems="center" mt={5} mb={24} w={137} overflow="visible">
+              <Box position="absolute" left={0} right={0} bottom={3} overflow="visible">
                 <LevelLine colour={challengeSuccessScreen.lineColour} />
-              </View>
-              <View style={styles.level}>
+              </Box>
+              <Box mt={-10} collapsable={false}>
                 <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
                   {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
                 </TextTemplate>
-              </View>
-            </View>
-          </View>
-          <View style={styles.heading}>
-            <TextTemplate type="h1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
+              </Box>
+            </Box>
+          </Box>
+          <Box alignItems="center" mb={16} mt={6}>
+            <TextTemplate type="h1" color={challengeSuccessScreen.textStyle.color}>
               {t("screens.challenge_success.footer")}
             </TextTemplate>
-          </View>
-          <View>
-            <View style={styles.plusPointsWrapper}>
-              <AnimatedPlusPoints type="challenge-success" coins={reward} />
-            </View>
+          </Box>
+          <Box alignItems="center">
+            <Box alignItems="center" justifyContent="center" alignSelf="stretch" mb={8} h={60} collapsable={false}>
+              <AnimatedPlusPoints type="challenge-success" coins={reward} style={styles.plusPoints} />
+            </Box>
             <RawImage
               style={styles.successImage}
               source={require("@assets/challenge-success/challenge-success.webp")}
             />
-            <View style={styles.score}>
-              <TextTemplate type="h2" color={styles.score.color} textAlign="center">
+            <Box position="absolute" left={0} right={0} bottom={24}>
+              <TextTemplate type="h2" color={Colours.text.goldBrown} textAlign="center">
                 {renderScore(score, unit)}
               </TextTemplate>
-            </View>
-          </View>
-        </View>
-        {showChallengesHint ? (
-          <View style={styles.hintWrapper}>
-            <Hint
-              label={t("hints.unlock_more_challenges.title")}
-              description={t("hints.unlock_more_challenges.description")}
-              variant="challenges"
-            />
-          </View>
-        ) : null}
-        <Box gap={22} style={styles.ctaWrapper}>
+            </Box>
+          </Box>
+          {showChallengesHint ? (
+            <Box ph={24} pt={48}>
+              <Hint
+                label={t("hints.unlock_more_challenges.title")}
+                description={t("hints.unlock_more_challenges.description")}
+                variant="challenges"
+              />
+            </Box>
+          ) : null}
+        </Box>
+        <Box gap={22} alignSelf="stretch" ph={32} mt={24}>
           <YucoinPowerButtonMini onPress={onPressYucoinPowerButton} />
           <Button
             translationKey="labels.cta.collect"
@@ -112,7 +115,7 @@ const ChallengeSuccessOldScreen = ({
             wrapperStyle={styles.cta}
           />
         </Box>
-      </View>
+      </ScrollView>
     </CentredScreen>
   );
 };
@@ -136,44 +139,19 @@ function renderScore(score: number, unit: IChallengeSuccessOldScreenProps["unit"
 }
 
 const styles = StyleSheet.create({
-  ...commonStyles,
-  wrapper: {
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  topWrapper: {
+  scrollView: {
     flex: 1,
+    alignSelf: "stretch",
+  },
+  scrollContent: {
+    flexGrow: 1,
+    justifyContent: "space-between",
   },
   cta: {
     marginBottom: Style.adjust(32),
   },
-  ctaWrapper: {
-    alignSelf: "stretch",
-    paddingHorizontal: Style.adjust(32),
-  },
-  level: {
-    textAlign: "center",
-    color: Colours.text.goldBrown,
-    fontSize: Style.adjust(14),
-    marginTop: Style.adjust(-10),
-  },
-  plusPointsWrapper: {
-    alignItems: "center",
-    marginBottom: Style.adjust(48),
-  },
-  score: {
-    start: 0,
-    end: 0,
-    textAlign: "center",
-    position: "absolute",
-    bottom: Style.adjust(24),
-    fontSize: Style.adjust(25),
-    color: Colours.text.goldBrown,
-  },
-  hintWrapper: {
-    paddingHorizontal: Style.adjust(24),
-    paddingVertical: Style.adjust(48),
+  plusPoints: {
+    position: "relative",
   },
   successImage: {
     width: 375,
