@@ -7,7 +7,7 @@ import {
   ChallengeCompletionSummaryEntry,
   ChallengeCompletionSummaryEntryType,
 } from "@redux/levels/levels.types";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { memo } from "react";
 import { useSelector } from "react-redux";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
@@ -23,6 +23,8 @@ const getEntry = (
   entries: ChallengeCompletionSummaryEntry[],
   type: ChallengeCompletionSummaryEntryType
 ): ChallengeCompletionSummaryEntry | undefined => entries.find((e) => e.type === type);
+
+const BOX_PADDING = Style.adjust(16);
 
 const useTotalResult = (completionSummary?: ChallengeCompletionSummary | null): number => {
   const dailySteps = useSelector(getDailySteps);
@@ -87,11 +89,11 @@ const ChallengeStats = ({ width, completionSummary }: IChallengeStatsProps) => {
       br={8}
       borderWidth={1}
       borderColor={Colours.neutral.n400}
-      pt={16}
-      px={16}
-      pb={16}
+      px={BOX_PADDING}
+      pv={BOX_PADDING}
+      mt={BOX_PADDING}
       width={width}
-      mt={16}
+      disableAutoAdjust={true}
     >
       {completionSummary.entries.map((entry, index) => {
         const result = entry.type === ChallengeCompletionSummaryEntryType.Total ? totalResult : entry.result;
