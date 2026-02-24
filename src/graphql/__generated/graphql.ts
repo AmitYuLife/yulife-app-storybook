@@ -19240,7 +19240,6 @@ export type ContentItemProcessingTimerFragment = {
 export type ContentItemProductDetailsHeaderFragment = {
   __typename?: "ContentItemProductDetailsHeader";
   id: string;
-  coverType: CoverType;
   productName: string;
   showItemSlot?: boolean | null;
   showSlotLabel: boolean;
@@ -32840,7 +32839,6 @@ export type GetYuScreenProductDetailsQuery = {
       | {
           __typename: "ContentItemProductDetailsHeader";
           id: string;
-          coverType: CoverType;
           productName: string;
           showItemSlot?: boolean | null;
           showSlotLabel: boolean;
@@ -58878,7 +58876,6 @@ export const ContentItemProductDetailsHeaderFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "coverType" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
@@ -89859,7 +89856,6 @@ export const GetYuScreenProductDetailsDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "coverType" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },

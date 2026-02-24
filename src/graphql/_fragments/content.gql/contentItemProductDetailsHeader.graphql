@@ -1,6 +1,5 @@
 fragment ContentItemProductDetailsHeader on ContentItemProductDetailsHeader {
   id
-  coverType
   backgroundImage {
     ...RemoteImage
   }

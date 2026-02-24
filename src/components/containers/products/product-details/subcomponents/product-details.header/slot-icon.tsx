@@ -3,12 +3,11 @@ import { View, ViewStyle } from "react-native";
 import { Image } from "@atoms";
 import { PackageType } from "@molecules";
 import { Style, StyleSheet } from "@styles";
-import { CoverType } from "@graphql/__generated";
 import { TOP_RIGHT_ITEM_IMAGE } from "@ids";
+import { CoverType } from "@graphql/__generated";
 
 interface Props {
   size?: number;
-  coverType: CoverType;
   backgroundUrl: string;
   itemUrl: string;
   showLabel?: boolean;
@@ -54,7 +53,7 @@ export const SlotIcon = memo((props: Props) => {
       {showLabel ? (
         <View style={styles.coverTypeWrapper}>
           <View>
-            <PackageType minWidth={Style.adjust(55)} type={props.coverType} />
+            <PackageType minWidth={Style.adjust(55)} type={CoverType.Epic} />
           </View>
         </View>
       ) : null}
