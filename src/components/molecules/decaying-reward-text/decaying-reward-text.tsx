@@ -1,4 +1,4 @@
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { Colours, StyleSheet } from "@styles";
 import { random } from "lodash";
 import { memo, useEffect, useMemo } from "react";
@@ -20,10 +20,12 @@ interface IDecayingCoinProps {
   onFinish: (id: string) => void;
 }
 
+const BASE_WIDTH = 100;
+
 const DecayingRewardText = ({ id, onFinish, amount, minX, maxX }: IDecayingCoinProps) => {
   const velocityX = useSharedValue(random(-100, 100));
   const velocityY = useSharedValue(random(400, 300));
-  const positionX = useSharedValue(random(minX, maxX));
+  const positionX = useSharedValue(random(minX - BASE_WIDTH / 2, maxX - BASE_WIDTH / 2));
   const positionY = useSharedValue(0);
 
   useFrameCallback(() => {
@@ -81,9 +83,11 @@ const DecayingRewardText = ({ id, onFinish, amount, minX, maxX }: IDecayingCoinP
   return (
     <Animated.View style={containerStyle} pointerEvents="box-none">
       <Animated.View style={scaleStyle}>
-        <TextTemplate type="l2b" color={Colours.primary.p400}>
-          +{amount}
-        </TextTemplate>
+        <Box w={BASE_WIDTH} alignItems="center">
+          <TextTemplate type="l2b" color={Colours.primary.p400}>
+            +{amount}
+          </TextTemplate>
+        </Box>
       </Animated.View>
     </Animated.View>
   );
