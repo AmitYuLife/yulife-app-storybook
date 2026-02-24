@@ -1518,8 +1518,13 @@
       "recommended_for_you": "Recomendado para usted",
       "reflect": "Reflect",
       "reflected": {
-        "subtitle": "Desbloquea tus conocimientos personalizados.",
-        "subtitle_locked": "Reflexione cada día para obtener información personalizada.",
+        "subtitle": {
+          "day1": "Primera reflexión registrada. Continúa.",
+          "day2": "Sigue apareciendo.",
+          "day3": "Tres seguidas. ¡Qué bien!",
+          "day4": "¡Ya casi está!",
+          "day5": "Yunity Quest desbloqueado"
+        },
         "title": "¡jornada de reflexión! ¡|||| jornadas de reflexión!"
       },
       "reflect_in": "Reflejar en %{hours}h %{minutes}m",

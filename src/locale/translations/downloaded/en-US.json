@@ -1518,8 +1518,13 @@
       "recommended_for_you": "Recommended for you",
       "reflect": "Reflect",
       "reflected": {
-        "subtitle": "Your personalized insights are unlocked!",
-        "subtitle_locked": "Reflect every day to unlock personalized insights.",
+        "subtitle": {
+          "day1": "First reflection logged. Keep going!",
+          "day2": "Keep showing up",
+          "day3": "Three in a row. Great!",
+          "day4": "Almost there!",
+          "day5": "Health Quest unlocked"
+        },
         "title": "reflection day! |||| reflection days!"
       },
       "reflect_in": "Reflect in %{hours}h %{minutes}m",
