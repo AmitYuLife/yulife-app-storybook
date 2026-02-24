@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
 import { LayoutChangeEvent, View } from "react-native";
-import { Style, mapCoverTypeToColorTheme } from "@styles";
+import { Style } from "@styles";
 import { ContentItemProductDetailsHeaderFragment } from "@graphql/__generated";
 import { Pressable, YuCoinPower, YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
@@ -15,11 +15,11 @@ import { Image } from "@atoms";
 
 const SLOT_ICON_SIZE = Style.adjust(102);
 const YU_COIN_POWER_HEIGHT = Style.DEVICE_WIDTH * YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER;
+const BACKGROUND_COLOR = "#956AFF";
 
 export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeaderFragment) => {
   const {
     providerLogo,
-    coverType,
     backgroundImage,
     productName,
     itemSlot,
@@ -49,7 +49,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
       <View
         style={[
           styles.wrapper,
-          { backgroundColor: mapCoverTypeToColorTheme(coverType).primary },
+          { backgroundColor: BACKGROUND_COLOR },
           // TODO: Remove this once we have migrated all hero cards to have images
           showItemSlot === false && styles.heroWrapper,
           mappedServerStyle,
@@ -75,7 +75,6 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
             </View>
             <View style={[styles.rightSide, { height: SLOT_ICON_SIZE }]}>
               <SlotIcon
-                coverType={coverType}
                 backgroundUrl={itemSlot?.backgroundUrl}
                 itemUrl={itemSlot?.iconUrl}
                 size={SLOT_ICON_SIZE}
@@ -106,7 +105,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
           <View
             style={[
               styles.yuCoinTopHalfBackground,
-              { height: YU_COIN_POWER_HEIGHT / 2, backgroundColor: mapCoverTypeToColorTheme(coverType).primary },
+              { height: YU_COIN_POWER_HEIGHT / 2, backgroundColor: BACKGROUND_COLOR },
             ]}
           />
           <Pressable onPress={showYuCoinPowerExplainedOverlay} delay={1000}>
