@@ -13,6 +13,7 @@ import { MODALS, ROUTES } from "./constants";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { getCurrentLocaleOptions } from "@locale";
+import { DETOX_ENABLED } from "@services/socket";
 
 const BLURRED_OVERLAY_COMPONENT_ID = MODALS.blurredOverlay;
 
@@ -69,12 +70,13 @@ export class Navigation {
     const duration = 300;
 
     // Base animations configuration
+    // waitForRender can deadlock with DetoxSync's
     const animations = {
       setRoot: {
-        waitForRender: true,
+        waitForRender: !DETOX_ENABLED,
       },
       push: {
-        waitForRender: true,
+        waitForRender: !DETOX_ENABLED,
         ...(invertAnimation && {
           content: {
             translationX: {

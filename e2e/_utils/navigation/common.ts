@@ -81,7 +81,15 @@ export const launchApp = async (config?: DeviceLaunchAppConfig) => {
     language: DEFAULT_LOCALE,
     locale: DEFAULT_LOCALE,
   };
-  await device.launchApp({ languageAndLocale, ...config });
+  await device.launchApp({
+    languageAndLocale,
+    ...config,
+    launchArgs: { detoxEnableSynchronization: 0, ...(config?.launchArgs || {}) },
+  });
+  // Workaround for DetoxSync deadlock with new architecture + RNN (Detox #4506).
+  // Re-enable sync after the app has had time to render past the problematic phase.
+  await new Promise((res) => setTimeout(res, 10000));
+  await device.enableSynchronization();
 };
 
 export const startWithoutLaunch =

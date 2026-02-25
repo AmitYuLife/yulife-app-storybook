@@ -1,7 +1,7 @@
 {
   "extends": "detox-allure2-adapter/preset-detox",
   "session": {
-    "debugSynchronization": 25000
+    "debugSynchronization": 35000
   },
   "testRunner": {
     "args": {
