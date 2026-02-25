@@ -66,7 +66,8 @@ const PathwaysReflectedScreen = ({
                       alignItems="center"
                       position="absolute"
                       justifyContent="center"
-                      w={rewardSize}
+                      left={0}
+                      right={0}
                       top={-COIN_TOP_PADDING}
                     >
                       <AnimatedPlusPoints type="challenge-success" coins={todayReward} textType="h3" />
