@@ -11,6 +11,7 @@ import { Box, Image } from "@atoms";
 import { VoidFunction } from "@utils";
 import AchievementsShowcase, { IAchievement } from "@organisms/achievements-showcase/achievements-showcase";
 import { PLATFORM_SIZE } from "@components/containers/member/yu/subcomponents/yu-screen-v5/yu-screen.styles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AVATAR_WIDTH = Style.adjust(160) * 0.95;
 const AVATAR_HEIGHT = Style.adjust(328) * 0.95;
@@ -67,6 +68,8 @@ const InspectScreen = ({
     () => (inspectOtherUser ? t("screens.inspect.duel.challenge_duel") : t("screens.inspect.duel.challenge_somebody")),
     [inspectOtherUser]
   );
+
+  const { bottom } = useSafeAreaInsets();
 
   const imagesStyles = useMemo(() => {
     return {
@@ -164,7 +167,7 @@ const InspectScreen = ({
           </>
         )}
 
-        <Box ph={24}>
+        <Box ph={Style.adjust(24)} pb={bottom + Style.adjust(24)} disableAutoAdjust={true}>
           {onGiftPress ? (
             <Box mt={16}>
               <GiftSendPrompt name={shortName} onPress={onGiftPress} />
