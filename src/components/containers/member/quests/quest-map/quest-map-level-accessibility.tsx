@@ -15,7 +15,11 @@ interface IProps extends IQuestMapEpisodeAccessibilityItem {
 }
 
 const QuestMapLevelAccessibility = memo((props: IProps) => {
-  const [nextAvailableTimer, setNextAvailableTimer] = useState(0);
+  const [nextAvailableTimer, setNextAvailableTimer] = useState(() => {
+    if (!props.nextAvailableAt) return 0;
+    const diff = moment().diff(moment(props.nextAvailableAt), "seconds");
+    return moment().isBefore(moment(props.nextAvailableAt)) ? diff : 0;
+  });
   const buttonProps = getButtonProps({ ...props, nextAvailableTimer });
 
   useInterval(
@@ -30,7 +34,7 @@ const QuestMapLevelAccessibility = memo((props: IProps) => {
 
   return (
     <View style={styles.wrapper}>
-      {props.isNext ? (
+      {props.isActive ? (
         <Button
           {...buttonProps}
           accessible={true}
@@ -64,7 +68,7 @@ const getButtonProps = ({ isDone, isChestLevel, level, isNext, isActive, nextAva
     };
   }
 
-  if (isActive) {
+  if (isActive || isNext) {
     return {
       translationKey: "screens.quests.accessibility.buttons_label.isNext",
       translationArgs: { level },
