@@ -50,7 +50,7 @@ const TooltipPopupWrapper = ({ relativePosition, children, style, pointPosition,
   const { x, y } = pointPosition || {};
   const [messageViewHeight, setMessageViewHeight] = useState(1);
   const [messageViewWidth, setMessageViewWidth] = useState(1);
-  const [opacity, setOpacity] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   const { left, top, beakTop, beakLeft, beakTransform } = relativePosition
     ? getMessageViewPosition(
@@ -65,12 +65,24 @@ const TooltipPopupWrapper = ({ relativePosition, children, style, pointPosition,
     : getStaticPosition(beakPosition, x, y, messageViewWidth, messageViewHeight);
 
   const messageViewStyle = useMemo(
-    () => [styles.messageViewWrapper, { start: left, top, opacity }, style ?? {}],
-    [left, top, opacity, style]
+    () => [
+      styles.messageViewWrapper,
+      { start: left, top, visibility: isVisible ? "visible" : "hidden" } as const,
+      style ?? {},
+    ],
+    [left, top, isVisible, style]
   );
   const beakWrapper = useMemo(
-    () => [styles.popoverBreak, { top: beakTop, start: beakLeft, transform: beakTransform, opacity }],
-    [beakLeft, beakTop, beakTransform, opacity]
+    () => [
+      styles.popoverBreak,
+      {
+        top: beakTop,
+        start: beakLeft,
+        transform: beakTransform,
+        visibility: isVisible ? "visible" : "hidden",
+      } as const,
+    ],
+    [beakLeft, beakTop, beakTransform, isVisible]
   );
 
   const onLayout = useCallback(
@@ -78,9 +90,9 @@ const TooltipPopupWrapper = ({ relativePosition, children, style, pointPosition,
       const { height, width } = event.nativeEvent.layout;
       setMessageViewHeight(height);
       setMessageViewWidth(width);
-      setOpacity(1);
+      setIsVisible(true);
     },
-    [setMessageViewHeight, setMessageViewWidth, setOpacity]
+    [setMessageViewHeight, setMessageViewWidth, setIsVisible]
   );
 
   const content = useMemo(() => {
@@ -104,7 +116,7 @@ const TooltipPopupWrapper = ({ relativePosition, children, style, pointPosition,
 
   return (
     <>
-      <View style={messageViewStyle} onLayout={onLayout}>
+      <View style={messageViewStyle} onLayout={isVisible ? undefined : onLayout}>
         {content}
       </View>
       <View style={beakWrapper}>
