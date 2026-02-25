@@ -58,7 +58,15 @@ const QuestMapScreen = ({
   const timeoutRef = useRef<number | null>(null);
   const flashlistRef = useRef<FlashListRef<IQuestMapItem>>(null);
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
-  const nextLevelIndex = useMemo(() => items.findIndex((item) => item.levels.find((level) => level.isNext)), [items]);
+  const nextLevelIndex = useMemo(() => {
+    // Prefer the episode with a level the user can actually play right now
+    const activeIndex = items.findIndex((item) => item.levels.find((level) => level.isNext && level.isActive));
+    if (activeIndex !== -1) {
+      return activeIndex;
+    }
+
+    return items.findIndex((item) => item.levels.find((level) => level.isNext));
+  }, [items]);
 
   useEffect(() => {
     return () => {
