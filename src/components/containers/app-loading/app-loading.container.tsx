@@ -16,7 +16,7 @@ interface IProps {
 }
 
 export const AppLoadingContainer: React.FC<IProps> = ({ loadingText }) => {
-  const [renderPersistor, setRenderPersistor] = React.useState(DETOX_ENABLED);
+  const [renderPersistor, setRenderPersistor] = React.useState(false);
   const [animationEnded, setAnimationEnded] = React.useState(DETOX_ENABLED);
   const [persistorBoostrapped, setPersistorBoostrapped] = React.useState(false);
 
@@ -41,9 +41,7 @@ export const AppLoadingContainer: React.FC<IProps> = ({ loadingText }) => {
     <SafeAreaView style={styles.flex}>
       <View onLayout={handleWrapperLayout} style={styles.flex}>
         <View style={styles.wrapper}>
-          {!DETOX_ENABLED ? (
-            <SplashScreen onAnimationStart={handleAnimationStart} onAnimationEnd={handleAnimationEnd} />
-          ) : null}
+          <SplashScreen onAnimationStart={handleAnimationStart} onAnimationEnd={handleAnimationEnd} />
           {!renderPersistor ? null : (
             <PersistGate persistor={persistor}>
               {(bootstrapped: boolean) => {

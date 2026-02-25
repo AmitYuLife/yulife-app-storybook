@@ -9,6 +9,7 @@ import LoopingCarousel from "./components/looping-carousel";
 import { FadeIn, SlideInDown } from "react-native-reanimated";
 import { LOGIN_HERO_CLAIM_ACCOUNT_BUTTON, LOGIN_HERO_LOGIN_BUTTON } from "@ids";
 import { useLoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
+import { DETOX_ENABLED } from "@services/socket";
 
 const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }: FullScreenHeroProps) => {
   const { setCtaContainerHeight } = useLoginHeroContext();
@@ -22,7 +23,12 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
   );
 
   return (
-    <Box h="100%" alignContent="space-between" justifyContent="space-between" entering={FadeIn.duration(1000)}>
+    <Box
+      h="100%"
+      alignContent="space-between"
+      justifyContent="space-between"
+      entering={DETOX_ENABLED ? undefined : FadeIn.duration(1000)}
+    >
       <LoopingCarousel data={slides} setCurrentSlide={(index: number) => setCurrentSlide(index)} />
       <Box position="absolute" top={0} left={0} right={0}>
         <SafeAreaView>
@@ -30,9 +36,11 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
         </SafeAreaView>
       </Box>
       <Box position="absolute" bottom={0} left={0} right={0} h="100%" justifyContent="flex-end">
-        <Box pb={0} entering={FadeIn.duration(1000)} justifyContent="flex-end" h="100%">
-          <Box entering={FadeIn.duration(1000)}>{slides[currentSlide].foregroundComponent}</Box>
-          <Box entering={SlideInDown.duration(1000)}>
+        <Box pb={0} entering={DETOX_ENABLED ? undefined : FadeIn.duration(1000)} justifyContent="flex-end" h="100%">
+          <Box entering={DETOX_ENABLED ? undefined : FadeIn.duration(1000)}>
+            {slides[currentSlide].foregroundComponent}
+          </Box>
+          <Box entering={DETOX_ENABLED ? undefined : SlideInDown.duration(1000)}>
             <Box
               pv={40}
               ph={32}
