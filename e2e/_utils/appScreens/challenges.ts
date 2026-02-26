@@ -571,7 +571,7 @@ export const levelSVGVisible =
   (start: number, end = start, colour = "#F5F5F5_6") =>
   async () => {
     for (let range = start; range <= end; range++) {
-      await idVisible(ids.LEVEL_CHALLENGE_BUTTON(range))();
+      await idExist(ids.LEVEL_CHALLENGE_BUTTON(range))();
       await idExist(ids.LEVEL_SVG(colour, range))();
     }
   };

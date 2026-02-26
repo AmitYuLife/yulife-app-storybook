@@ -180,6 +180,14 @@ export const textVisible =
     await waitFor(target).toBeVisible().withTimeout(waitTime);
   };
 
+export const textExists =
+  (text: string, waitTime = 3000) =>
+  async () => {
+    const target = element(by.text(text));
+    await waitFor(target).toExist().withTimeout(waitTime);
+    await expect(target).toExist();
+  };
+
 export const textNotVisible =
   (text: string, waitTime = 3000) =>
   async () => {

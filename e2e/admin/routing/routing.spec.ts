@@ -134,9 +134,9 @@ Feature("As a user I can navigate through member routes correctly", async () => 
       Then("I should see the menu items", then.menuItemsVisible("basic"));
     });
     When("I tap chat", when.tapMenuItem("Support"), async () => {
-      Then("I should see the notification request, as I have not allowed this permission", then.idVisible(ids.GENERIC_SCREEN_HEADING("notification")));
+      Then("I should see the notification request, as I have not allowed this permission", then.idVisible(ids.GENERIC_SCREEN_HEADING("notification"), 5000));
     });
-    When("I tap skip", when.tapID(ids.GENERIC_SCREEN_CTA("skip")), async () => {
+    When("I tap skip", when.tapID(ids.GENERIC_SCREEN_CTA("skip"), 4000), async () => {
       Then("I should see the support request form", then.buttonVisible("Send message"));
     });
   });

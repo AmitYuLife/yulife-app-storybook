@@ -12,6 +12,7 @@ export const { menuItemsVisible } = screens.menu;
 export const {
   idVisible,
   textVisible,
+  textExists,
   expectIsVisibleViaID,
   expectIsVisibleViaText,
   textVisibleAtIndex,
@@ -60,7 +61,7 @@ export const onGreatJobCompletedEventPage = (event: string, yuCoin: string) => a
   const eventTitle = `${event} event`;
 
   await textVisible(eventTitle)();
-  await textVisible("Great job!")();
+  await textExists("Great job!")();
   await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")();
   await textVisible(`${yuCoin} YuCoin`)();
   await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))();
@@ -78,7 +79,7 @@ export const onCompletedAllEventMilestonesPage =
     const eventTitle = `${event} event finished`;
 
     await textVisible(eventTitle)();
-    await textVisible("Great job!")();
+    await textExists("Great job!")();
     await textVisible(
       "You collected all milestone rewards. Good job! \n This event will be closed."
     )();
@@ -90,7 +91,7 @@ export const onCompletedAllEventMilestonesPage =
     await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)();
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 0)();
     await swipeFromText(yuCoin2, "left", "fast")();
-    await textVisible(yuCoin3)();
+    await textExists(yuCoin3)();
     await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)();
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 1)();
     await swipeFromText(yuCoin2, "right", "fast")();

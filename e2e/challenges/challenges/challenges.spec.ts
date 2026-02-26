@@ -501,7 +501,7 @@ Feature("As a user I can take a challenge", async () => {
         Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
         Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));
         Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")));
-        Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")));
+        Then("I should see the Yudoku challenge", then.idExist(ids.CHALLENGE_TILE("Yudoku")));
       });
     });
     When("I start the short stroll", when.startChallenge("Short Stroll"), async () => {

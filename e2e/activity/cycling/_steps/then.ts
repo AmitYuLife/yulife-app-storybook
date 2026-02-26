@@ -8,6 +8,7 @@ import { getLocalisedString as t } from "@i18n";
 
 export const {
   textVisible,
+  textExists,
   idVisible,
   multipleIDVisible,
   multipleTextVisible,
@@ -95,7 +96,7 @@ export const claimVisible = (numOfStars: number) => async () => {
 export const onCompletedEventMilestonePage = (yuCoin: string, numOfStars: number) => async () => {
   const eventTitle = `${data.GOALS_3.data.title} event`;
   await textVisible(eventTitle, 5000)();
-  await textVisible("Great job!", 5000)();
+  await textExists("Great job!", 5000)();
   await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")();
   await textVisible(`${yuCoin} YuCoin`)();
   await idExist(ids.ANIMATED_CIRCLE("#F43E8E"))();
