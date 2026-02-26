@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { GetSduiJourneyQuery, ContentItemBlurredRaysWrapperFragment as Props } from "@graphql/__generated";
 import { BlurredRaysWrapper } from "@organisms";
 import { isiOS, parseJSON } from "@utils";
@@ -6,8 +6,8 @@ import { Renderer } from "../_renderer/renderer";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import Box from "@atoms/box/box";
 import { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
-import { Style } from "@styles";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
+import { PADDING_TOP, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 type Body = GetSduiJourneyQuery["getSduiJourney"]["body"];
 
@@ -32,6 +32,7 @@ export const ContentItemBlurredRaysWrapper = memo(
     const { data: centrePieceData, isValid: isCentrePieceValid } = parseJSON<Body[number]>(centrePiece || "");
     const { handleSduiAction: handleButtonPress } = useSduiCallbackFunctionOrReduxAction(onButtonPress);
     const { top } = useSafeAreaInsets();
+    const { height } = useSafeAreaFrame();
 
     if (!isValid || !data?.length) {
       return null;
@@ -46,10 +47,12 @@ export const ContentItemBlurredRaysWrapper = memo(
         : undefined;
 
     const wrapperMarginTop = isiOS() ? top : 0;
+    const titlePaddingTop = isiOS() ? PADDING_TOP : TOP_BAR_WITH_PAD;
 
     return (
-      <Box height={Style.DEVICE_HEIGHT} mt={wrapperMarginTop} disableAutoAdjust={true}>
+      <Box height={height} mt={wrapperMarginTop} flex={1} disableAutoAdjust={true}>
         <BlurredRaysWrapper
+          titlePaddingTop={titlePaddingTop}
           title={title}
           rollingTextProps={rollingTextProps}
           buttonIsEnabled={buttonIsEnabled}
