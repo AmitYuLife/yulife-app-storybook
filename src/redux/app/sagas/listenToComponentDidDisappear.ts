@@ -3,6 +3,7 @@ import { call, put, take, select } from "redux-saga/effects";
 import { updateCurrentModal } from "../app.actions";
 import { appComponentDidDisappearChannel } from "../app.channels";
 import { getRouteState } from "../app.selectors";
+import getClient from "@services/bugsnag";
 
 // turn this one when in main.ts we'll have:
 // modalPresentationStyle: OptionsModalPresentationStyle.formSheet
@@ -25,5 +26,7 @@ export default function* listenToComponentDidDisappear() {
 
       yield put(updateCurrentModal({ modal: null }));
     }
+
+    yield call(getClient().leaveBreadcrumb, "RNN componentDidDisappear", { componentId }, "navigation");
   }
 }

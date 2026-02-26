@@ -23,12 +23,6 @@ const sagaMiddleware = createSagaMiddleware({
 
 const middlewares = [sagaMiddleware];
 
-// TODO: Re-enable once flipper is re-added
-// if (Config.ENV === "dev") {
-//   const createDebugger = require("redux-flipper").default;
-//   middlewares.push(createDebugger());
-// }
-
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
 let configuredStore: ReturnType<typeof toolkitConfigureStore>;
