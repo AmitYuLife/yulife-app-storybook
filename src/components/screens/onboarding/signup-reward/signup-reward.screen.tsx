@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Blurb, Heading, Pad } from "@atoms";
+import { Blurb, Box, Heading } from "@atoms";
 import { Button } from "@molecules";
 import styles from "./signup-reward.screen.styles";
 import { CoinConfetti, CentredScreen } from "@molecules";
@@ -21,23 +21,27 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoi
 
   return (
     <CentredScreen backgroundImage={require("@assets/centred-screen/forestBackground.png")} style={styles.wrapper}>
-      <Pad height={74} />
-      <CoinConfetti coins={yuCoin} />
-      <Heading style={styles.heading} bold={true} label={translations["screens.signup_reward.title"]} />
-      <Pad height={16} />
-      <Blurb
-        textStyle={styles.message}
-        wrapperStyle={styles.messageWrapper}
-        label={translations["screens.signup_reward.description"]}
-      />
-      <Pad height={40} />
-      <Button
-        testID={BUTTON_BASE("SIGN_UP_REWARD_SCREEN", isLoading)}
-        translationKey="labels.cta.lets_go"
-        onPress={onCollectPress}
-        isLoading={isLoading}
-        disabled={isLoading}
-      />
+      <Box w="100%">
+        <Box pb={78} />
+        <CoinConfetti coins={yuCoin} />
+        <Box w="100%">
+          <Heading style={styles.heading} bold={true} label={translations["screens.signup_reward.title"]} />
+        </Box>
+        <Box pt={16} pb={40} justifyContent="center">
+          <Blurb
+            textStyle={styles.message}
+            wrapperStyle={styles.messageWrapper}
+            label={translations["screens.signup_reward.description"]}
+          />
+        </Box>
+        <Button
+          testID={BUTTON_BASE("SIGN_UP_REWARD_SCREEN", isLoading)}
+          translationKey="labels.cta.lets_go"
+          onPress={onCollectPress}
+          isLoading={isLoading}
+          disabled={isLoading}
+        />
+      </Box>
     </CentredScreen>
   );
 };
