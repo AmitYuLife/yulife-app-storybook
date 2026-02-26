@@ -123,7 +123,7 @@ async function getTokenAndMobileUpgradeStatus(): Promise<ITokenAndMobileUpgradeS
     const tokenStatus =
       data.getSession.tokenRefreshRequired || moment().add(30, "days").isAfter(expiresAt) ? "refreshing" : "valid";
     return { tokenStatus, mobileUpgrade: data.mobileUpgradeRequired };
-  } catch (e) {
+  } catch {
     return { tokenStatus: null, mobileUpgrade: null };
   }
 }

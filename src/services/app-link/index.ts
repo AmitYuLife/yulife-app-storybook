@@ -92,7 +92,7 @@ export async function openAppleHealthSummary() {
 export const handleLinkPress = (link: string) => async () => {
   try {
     await Linking.openURL(link);
-  } catch (e) {
+  } catch {
     // safe fail
   }
 };

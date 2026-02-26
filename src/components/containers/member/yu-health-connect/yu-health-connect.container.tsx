@@ -159,7 +159,7 @@ const YuHealthConnectContainer = ({
       if (supportsDisconnection) {
         try {
           await disconnect(selectedProvider);
-        } catch (e) {
+        } catch {
           // We don't care if it fails
         }
       }

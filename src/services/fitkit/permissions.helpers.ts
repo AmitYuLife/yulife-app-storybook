@@ -287,7 +287,7 @@ const checkIosMotionAndFitnessPermission = async (): Promise<PermissionStatus> =
   try {
     await RNFitKit.queryPedometerFromDate(dayStart, dayEnd);
     return "authorised";
-  } catch (error) {
+  } catch {
     return "denied";
   }
 };

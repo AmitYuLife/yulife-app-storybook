@@ -102,7 +102,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
           },
         })
       );
-    } catch (e) {
+    } catch {
       setError();
       setSubmittingState(false);
     }

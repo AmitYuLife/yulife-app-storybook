@@ -103,7 +103,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
           },
         })
       );
-    } catch (e) {
+    } catch {
       setError();
       setSubmittingState(false);
     }

@@ -108,7 +108,7 @@ const DuelInviteContainer: React.FC<IProps> = ({
       }
 
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
-    } catch (e) {
+    } catch {
       setIsLoading(false);
       dismiss();
     }

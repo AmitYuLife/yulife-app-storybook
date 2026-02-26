@@ -132,7 +132,7 @@ export const mapDynamicProps = (sduiId: string, sduiReducerState: SduiReducerSta
         let keys = [];
         try {
           keys = Object.keys(resolvedDynamicDataKey);
-        } catch (e) {
+        } catch {
           return accToReturn;
         }
 

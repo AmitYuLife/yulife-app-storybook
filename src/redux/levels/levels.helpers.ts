@@ -305,7 +305,7 @@ export async function getEndResultFitkit(
       return {
         value: 0,
       };
-    } catch (e) {
+    } catch {
       return {
         value: 0,
       };

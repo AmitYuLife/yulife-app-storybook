@@ -26,7 +26,7 @@ let deviceId = "";
 (async () => {
   try {
     deviceId = await getUniqueDeviceId();
-  } catch (e) {
+  } catch {
     //
   }
 })();

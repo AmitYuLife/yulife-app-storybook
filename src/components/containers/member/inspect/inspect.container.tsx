@@ -46,16 +46,18 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
   const duels = duelsData?.getDuels || [];
 
   const onPressChallengeDuel = useCallback(() => {
-    isOtherUser
-      ? onDuelPress({
-          duels,
-          currentUserId,
-          opponentId: userId,
-          leaderboardPlacement,
-          requestLocation: "inspect",
-          componentId: _componentId,
-        })
-      : openDuelHub();
+    if (isOtherUser) {
+      onDuelPress({
+        duels,
+        currentUserId,
+        opponentId: userId,
+        leaderboardPlacement,
+        requestLocation: "inspect",
+        componentId: _componentId,
+      });
+    } else {
+      openDuelHub();
+    }
   }, [isOtherUser, onClose, onDuelPress, duelsData, _componentId]);
 
   const { loading, data } = useQuery(gql("GetStatisticsDocument"), {

@@ -89,7 +89,7 @@ const PathwaysProgressContainer = () => {
         refetchQueries: [{ query: gql("GetUserPathwaysDocument") }],
       });
       Alert.alert("Success", "Pathway progress updated");
-    } catch (error) {
+    } catch {
       Alert.alert("Error", "Failed to update pathway progress");
     }
   }, [currentStreak, lastReflection, healthQuestionnaire, healthChallenge, setUserPathwayProgress]);
@@ -113,7 +113,7 @@ const PathwaysProgressContainer = () => {
       Alert.alert("Success", "Pathway challenge completed", [
         { text: "OK", onPress: () => Navigation.pop(ROUTES.debug) },
       ]);
-    } catch (error) {
+    } catch {
       Alert.alert("Error", "Failed to complete pathway challenge. Have you started the pathway challenge?");
     }
   }, [pathwayChallengeData, completePathwayChallenge]);

@@ -137,14 +137,6 @@ platform :android do
     build_number = get_build_number || "0"
     version = get_package_version
 
-    # Rename APKs to include CI job ID for unique filenames
-    signed_apks = signed_apks.map do |apk_path|
-      new_path = apk_path.sub(/\.apk$/, "-#{build_number}.apk")
-      File.rename(apk_path, new_path)
-      UI.message("Renamed #{File.basename(apk_path)} → #{File.basename(new_path)}")
-      new_path
-    end
-
     # Publish Bugsnag release (metadata + sourcemaps)
     bugsnag_publish(release_environment: environment)
     

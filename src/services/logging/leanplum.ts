@@ -34,7 +34,7 @@ class LeanplumClient {
     try {
       const key = await Storage.getItem(StorageKey.leanplum);
       return key === "dev";
-    } catch (e) {
+    } catch {
       return false;
     }
   };
@@ -51,7 +51,7 @@ class LeanplumClient {
     try {
       const isDevMode = await this.checkIfDevMode();
       await Storage.setItem(StorageKey.leanplum, isDevMode ? "prod" : "dev");
-    } catch (e) {
+    } catch {
       // safe fail
     }
   };

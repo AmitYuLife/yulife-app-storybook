@@ -423,7 +423,7 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
         dispatch(getUserStart());
         dispatch(getUserDataStart());
         dispatch(sudokuReset());
-      } catch (e) {
+      } catch {
         Alert.alert("Fail");
       }
     },

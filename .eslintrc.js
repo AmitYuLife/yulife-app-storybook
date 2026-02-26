@@ -11,7 +11,7 @@ module.exports = {
     "@react-native",
     "plugin:storybook/recommended",
   ],
-  plugins: ["react", "@typescript-eslint", "prettier", "deprecation", "rulesdir", "unused-imports"],
+  plugins: ["react", "@typescript-eslint", "prettier", "rulesdir", "unused-imports"],
   env: {
     browser: true,
   },
@@ -31,17 +31,15 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/prefer-as-const": "off",
-    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-require-imports": "off",
     "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-deprecated": "warn",
     "react/jsx-boolean-value": ["error", "always"],
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "warn",
-    "deprecation/deprecation": "warn",
     "unused-imports/no-unused-imports": "error",
     "no-else-return": [
       "error",
@@ -120,6 +118,12 @@ module.exports = {
     },
   },
   overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      rules: {
+        "@typescript-eslint/func-call-spacing": "off",
+      },
+    },
     {
       files: ["*.stories.tsx"],
       rules: {

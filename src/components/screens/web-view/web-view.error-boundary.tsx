@@ -59,7 +59,7 @@ const WebViewFallback: React.FC<WebViewFallbackProps> = (props) => {
     async function openURL() {
       try {
         await Linking.openURL(props.url);
-      } catch (e) {
+      } catch {
         props.onBothLinksFail();
       }
     }

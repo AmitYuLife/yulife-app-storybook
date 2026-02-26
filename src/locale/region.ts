@@ -134,7 +134,7 @@ export class RegionService {
       }
 
       return false;
-    } catch (e) {
+    } catch {
       // safe fail
       // config will be fetched in a redux saga
       return false;

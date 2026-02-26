@@ -235,7 +235,7 @@ export function useFitKit() {
           }
 
           return isAuthorised;
-        } catch (e) {
+        } catch {
           dispatch(fitkitAuthoriseFailed({ healthApp: options.platform }));
           return false;
         }

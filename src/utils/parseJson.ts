@@ -15,7 +15,7 @@ export function parseJSON<T = Record<string, any>>(payload: string, expectedKeys
       isValid,
       data,
     };
-  } catch (e) {
+  } catch {
     return { data: {} as T, isValid: false };
   }
 }

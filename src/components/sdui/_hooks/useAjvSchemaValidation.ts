@@ -63,7 +63,7 @@ export function useAjvSchemaValidation({ schema, data, isValidationEnabled }: Pa
         schemaRegistry.set(schemaKey, {
           timestamp: Date.now(),
         });
-      } catch (e) {
+      } catch {
         setIsValid(true);
         return;
       }

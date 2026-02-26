@@ -108,7 +108,7 @@ function useValidatedSharedValue(stringifiedSharedValue: string) {
   if (stringifiedSharedValue) {
     try {
       parsed = JSON.parse(stringifiedSharedValue) || {};
-    } catch (e) {}
+    } catch {}
   }
 
   const sharedValue = useSharedValue(parsed.payload ?? {});

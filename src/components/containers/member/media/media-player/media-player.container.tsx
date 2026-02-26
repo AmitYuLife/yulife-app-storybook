@@ -70,7 +70,7 @@ const MediaPlayerContainer = ({
   const [showError, setShowError] = useState<boolean>(false);
   const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+
   const promiseRef = useRef<PromiseRef>({ resolve: () => {}, reject: () => {} });
 
   const navigateToMediaPlayer = useCallback(async () => {

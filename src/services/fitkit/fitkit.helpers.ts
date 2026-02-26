@@ -121,7 +121,7 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       error,
       errorUserInfo,
     } as GenericFitKitResponseType<T>;
-  } catch (e) {
+  } catch {
     return { results: [], error, errorUserInfo } as GenericFitKitResponseType<T>;
   }
 }
