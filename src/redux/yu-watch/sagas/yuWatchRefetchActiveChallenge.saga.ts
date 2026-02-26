@@ -4,7 +4,7 @@ import { YuWatchAction } from "../yu-watch.types";
 export default function* yuWatchRefetchActiveChallengeSaga() {
   try {
     yield sendMessage({ type: YuWatchAction.RefreshChallenges });
-  } catch (error) {
+  } catch {
     // Probably a session unreachable error, we don't care. Fire and forget
   }
 }

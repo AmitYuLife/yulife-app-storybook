@@ -40,7 +40,7 @@ export const ProductGameItemProgress = memo(({ current, max, title, info }: Prop
           w="98%"
           br={8}
           h={8}
-        ></Box>
+        />
         <Box
           bg={Colours.primary.p400}
           position="absolute"
@@ -51,7 +51,7 @@ export const ProductGameItemProgress = memo(({ current, max, title, info }: Prop
           h={8}
           br={8}
           w={`${Math.min(current / max, 0.95) * 100}%`}
-        ></Box>
+        />
         <Box position="absolute" right={16} top={0}>
           <ProgressEnd />
         </Box>

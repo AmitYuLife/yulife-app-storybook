@@ -48,7 +48,7 @@ export const ContentItemRowIconTextBanner = memo(
                       payload.props || defaultSduiActionProps
                     )
                   );
-                } catch (e) {}
+                } catch {}
               }
             }
           : null,
@@ -80,7 +80,7 @@ export const ContentItemRowIconTextBanner = memo(
                         payload.props || defaultSduiActionProps
                       )
                     );
-                  } catch (e) {}
+                  } catch {}
                 }
               },
             }

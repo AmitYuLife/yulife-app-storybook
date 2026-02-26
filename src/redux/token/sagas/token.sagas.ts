@@ -40,7 +40,7 @@ export function* updateTokenIfExpired() {
       // also trigger a user session refresh
       yield put(refreshUserProfile());
     }
-  } catch (e) {
+  } catch {
     // Added that to catch Unhandled Promise Rejection when Network request failed.
     // Sagas stop to work because a request fails when app is opened in offline mode
     // because of that we should wrap it into a try/catch block.

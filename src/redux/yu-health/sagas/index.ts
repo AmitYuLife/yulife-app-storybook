@@ -39,8 +39,7 @@ export default [
   takeLatest(PEDOMETER_UPDATES_SUCCESS, yuHealthFeatureGuard(refreshStepsPermissionsOnStepsUpdateSaga)),
 ];
 
-// Allows use of 'Function':
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 function yuHealthFeatureGuard<T extends Function>(saga: T) {
   return function* yuHealthFeatureGuardSaga(...args: T extends (...args: infer A) => unknown ? A : never) {
     let features: IFeature = yield select(getUserFeatures);

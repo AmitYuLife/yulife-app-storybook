@@ -36,7 +36,11 @@ const ToolsScreen = ({ onClose }: Props) => {
     (date: Date) => {
       setShowDateTimePicker(false);
       const momentDate = moment(date).format();
-      pickerDateState === "startDate" ? setStartDate(momentDate) : setEndDate(momentDate);
+      if (pickerDateState === "startDate") {
+        setStartDate(momentDate);
+      } else {
+        setEndDate(momentDate);
+      }
     },
     [setStartDate, setShowDateTimePicker, setEndDate, pickerDateState]
   );
@@ -124,7 +128,7 @@ const ToolsScreen = ({ onClose }: Props) => {
       } else {
         Alert.alert("Success");
       }
-    } catch (error) {
+    } catch {
       Alert.alert("Something went wrong!!!");
     }
 

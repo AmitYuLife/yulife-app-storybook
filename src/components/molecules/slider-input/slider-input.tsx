@@ -5,11 +5,9 @@ import { TextTemplate } from "@atoms";
 import { Pressable } from "@components/molecules";
 import { SLIDER_INPUT, SLIDER_LABEL } from "@ids";
 
-const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
-
 const CIRCLE_DIAMETER = 8;
 
-export type SliderInputMaxValue = typeof list[number];
+export type SliderInputMaxValue = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 export interface SliderInputProps {
   score?: number;

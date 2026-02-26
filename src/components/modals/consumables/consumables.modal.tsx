@@ -58,7 +58,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
       refetchConsumables();
 
       setSelectedConsumable(null);
-    } catch (e) {
+    } catch {
       refetchConsumables();
     }
   }, [activateGameConsumable, onRefetch, refetchConsumables, selectedConsumable]);

@@ -108,7 +108,7 @@ export function* startTracking(
       }
 
       yield delay(15000);
-    } catch (e) {
+    } catch {
       yield delay(30000);
     }
   }

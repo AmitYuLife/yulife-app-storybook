@@ -46,7 +46,7 @@ const SendDocumentsModal = ({ itemId }: IProps) => {
 
       Alert.alert(t("screens.wellbeing_hub.send_documents.success"));
       Navigation.dismissOverlay(sendDocumentsModalConfig.modalId);
-    } catch (e) {
+    } catch {
       Alert.alert(t("screens.wellbeing_hub.send_documents.error"));
     } finally {
       setLoading(false);

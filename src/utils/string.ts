@@ -9,7 +9,7 @@ export function toCapitalLetter(str: string) {
     }
 
     return splitedArray.join(" ");
-  } catch (e) {
+  } catch {
     return str;
   }
 }

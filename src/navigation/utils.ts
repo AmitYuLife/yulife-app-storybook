@@ -20,7 +20,7 @@ export function handleOpenWebView(props: WebViewContainerProps) {
         passProps: props,
       },
     });
-  } catch (error) {
+  } catch {
     Logger.logEvent("web_view_failed", { message: props ? `Link: ${props.uri}` : "Missing args" });
   }
 }

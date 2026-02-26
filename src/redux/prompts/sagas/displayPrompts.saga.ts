@@ -77,7 +77,7 @@ export default function* displayPromptsSaga() {
         });
       });
     }
-  } catch (e) {
+  } catch {
     // fail silently, bad network. Will try again next app load
   }
 }

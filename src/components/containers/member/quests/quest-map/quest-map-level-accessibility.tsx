@@ -16,7 +16,10 @@ interface IProps extends IQuestMapEpisodeAccessibilityItem {
 
 const QuestMapLevelAccessibility = memo((props: IProps) => {
   const [nextAvailableTimer, setNextAvailableTimer] = useState(() => {
-    if (!props.nextAvailableAt) return 0;
+    if (!props.nextAvailableAt) {
+      return 0;
+    }
+
     const diff = moment().diff(moment(props.nextAvailableAt), "seconds");
     return moment().isBefore(moment(props.nextAvailableAt)) ? diff : 0;
   });

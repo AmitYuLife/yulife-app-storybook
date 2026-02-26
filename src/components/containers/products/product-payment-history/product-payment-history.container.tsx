@@ -64,7 +64,7 @@ export const ProductPaymentHistoryContainer = ({ customerProductId }: IProps) =>
                 const payload = JSON.parse(containerActions.event.payload);
 
                 dispatch(logMixpanelEventActionCreator(payload.name || "button_pressed", payload.props));
-              } catch (e) {}
+              } catch {}
             }
           }
         : null,
@@ -89,7 +89,7 @@ export const ProductPaymentHistoryContainer = ({ customerProductId }: IProps) =>
                   const payload = JSON.parse(button.event.payload);
 
                   dispatch(logMixpanelEventActionCreator(payload.name || "button_pressed", payload.props));
-                } catch (e) {}
+                } catch {}
               }
             },
           }

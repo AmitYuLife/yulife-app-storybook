@@ -11,7 +11,7 @@ export const buildInitialSduiStepDynamicDataState = (stepData: string) => {
     }
 
     return {};
-  } catch (e) {
+  } catch {
     return {};
   }
 };
