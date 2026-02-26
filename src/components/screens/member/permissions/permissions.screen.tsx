@@ -3,7 +3,7 @@ import { Colours, Style, templateTextMarkdownStyles, StyleSheet } from "@styles"
 import React, { memo, useCallback, useMemo } from "react";
 import { Linking, Platform, ScrollView, View } from "react-native";
 import { t } from "@locale";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@components/molecules";
 import { IPermissionConfig } from "@services/yuHealth/permissions.helpers";
 import { permissionsStyles } from "@organisms/permissions/_styles";
@@ -17,6 +17,7 @@ import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip
 import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
 import { isiOS } from "@utils";
 import { openAppleHealthPrivacy } from "@services/app-link";
+import { useSafeAreaFrame } from "react-native-safe-area-context";
 
 interface IPermissionsScreenProps {
   activeProvider?: HealthProvider;
@@ -67,8 +68,10 @@ const PermissionsScreen = ({
     openAppleHealthPrivacy();
   }, []);
 
+  const { height } = useSafeAreaFrame();
+
   return (
-    <View style={styles.wrapper}>
+    <Box h={height} disableAutoAdjust={true}>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.messageWrapper}>
@@ -139,14 +142,13 @@ const PermissionsScreen = ({
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
       />
-    </View>
+    </Box>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
     height: Style.DEVICE_HEIGHT,
-    paddingBottom: Style.adjust(24),
   },
   buttons: {
     marginTop: Style.adjust(12),

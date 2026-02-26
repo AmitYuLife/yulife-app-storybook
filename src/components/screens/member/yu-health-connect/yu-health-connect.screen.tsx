@@ -13,7 +13,7 @@ import HealthProviderActivities from "@components/molecules/health-provider-acti
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { HEALTH_PROVIDER_OPTIONS, SupportedHealthTypes } from "@services/yuHealth/supported-health-types";
 import { YugiHealthConnectIcon } from "@atoms/icon/yugi-health-connect-icon";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
 import { isiOS } from "@utils";
 import { BUTTON_CLOSE_HEADER } from "@ids";
 
@@ -61,10 +61,7 @@ const YuHealthConnectScreen = ({
   }, [options]);
 
   const { bottom } = useSafeAreaInsets();
-
-  const wrapperStyles = useMemo(() => {
-    return [styles.wrapper, { paddingBottom: bottom }];
-  }, [bottom]);
+  const { height } = useSafeAreaFrame();
 
   useBackHandler(() => {
     onModalClose();
@@ -92,7 +89,12 @@ const YuHealthConnectScreen = ({
       <GenericHeadingPad />
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <View style={wrapperStyles}>
+        <Box
+          ph={Style.adjust(28)}
+          pb={bottom}
+          minHeight={height - TOP_BAR.TOP_BAR_WITH_PAD - Style.adjust(80)}
+          disableAutoAdjust={true}
+        >
           <Box gap={10} style={styles.content}>
             <View>
               <View style={styles.title}>
@@ -124,7 +126,7 @@ const YuHealthConnectScreen = ({
               onPress={onConnect}
             />
           </Box>
-        </View>
+        </Box>
       </ScrollView>
 
       <GenericHeadingAbsolute
@@ -139,7 +141,6 @@ const YuHealthConnectScreen = ({
 const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: Style.adjust(28),
-    minHeight: Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD - Style.adjust(80),
   },
   scrollView: {
     flex: 1,
