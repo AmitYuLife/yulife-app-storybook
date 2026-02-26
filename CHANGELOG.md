@@ -7,6 +7,85 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-02-26
+
+### Features
+
+- Feature GS-2419: Apply useTheme on specific components
+
+### Bugfixes
+
+- Bugfix GS-2370: weight/height selector issue
+- Bugfix GS-2442: Redeemed coupon success screen styles
+- Bugfix GS-2416: Gift animation fix
+- Bugfix GS-2422: Opacity 0 messes up image loading
+- Bugfix GS-2320: Center pulse points on pathways-reflected screen
+- Bugfix GS-2441: Challenge success screen tweaks
+- Bugfix GS-2393: Fix lunar quest map episode 223 snap position
+- Bugfix GS-2435: Remove findUserAddress graphql
+- Bugfix GS-2430: Fix IOS margin bottom
+- Bugfix CTE-614: snap position not synced on initial load
+- Bugfix GS-2429: Upgrade apollo/client
+- (grafted) Bugfix GS-2427: Remove the blur on ContentItemBlurredRaysWrapper
+- Bugfix GS-2415: Permission screen bottom pad
+- Bugfix GS-2410: Fix intercom button position
+- Bugfix GS-2408: Yuscreen header wrapper android
+- Bugfix GS-2356: Mystery box padding top
+- Bugfix GS-2346: Fix button position
+- Bugfix GS-2344: Filter out explanations without images for prefetch
+- Bugfix GS-2352: Provide concrete type for notification trigger
+- Bugfix GS-2343: Pathways calendar header covered
+- (grafted) Bugfix GS-2340: Fix transparent bg on android
+
+### Tasks
+
+- Task CTE-629: missing dependencies
+- Task GS-2465: Fix UAT release pipeline for major version bumps
+- Task CTE-628: package mismatches & eslint upgrade
+- Task GS-2459: YuScreen avatar broken when you don't have an avatar
+- Task GS-2437: Inspect padding bottom
+- Task GS-2443: Accessibility fixes
+- Task GS-2439: AV player loading text
+- Task ISA-4231: Remove coverType color changing from header
+- Task GS-2438: Fix decaying reward text
+- (grafted) Merge branch 'task/fix-android-intent-crsah' into 'develop'
+- Task DEVOPS-4672: add job number to android filenames
+- Task GS-2437: Duel fixes
+- Task GS-2436: Fix smoking
+- Task GS-2322: Add dynamic streak copy to Daily Reflection screens
+- Task GS-2417: Fix rewards black overlay
+- Task GS-2412: Fix meditation top bar on Android
+- Task GS-2405: Use LottieWrapper everywhere
+- (grafted) Task GS-2407: Daily steps improvements
+
+### Chores
+
+- Chore - Updated translations
+- Chore CTE-1: update patch package versions
+- Chore - Updated translations
+- Chore GS-2132: Removing some weird code
+
+### Improvements
+
+- Detox GS-2352: Improve Detox Stability after RN Upgrade
+
+### Extra
+
+- Fix GS-2393: white line between episodes
+- Fix GS-2313: Remove unneeded patch
+- [Security] Bump lodash from 4.17.21 to 4.17.23
+- [Security] Bump axios from 1.13.2 to 1.13.5
+- [Security] Bump qs from 6.14.1 to 6.14.2
+- Detox GS-2440: Fix White Screen Hangs on CI
+- Fix GS-2444: Fix 'add a sticker' screen from gifting
+- Detox GS-2432: Add canUpdateActivityHistory Toggle
+- Fix GS-243: fix hidden debug search
+- (grafted) Merge branch 'detox/gs-2426-skip-splash-screen-animations' into 'develop'
+- Detox GS-2411: Fix App Review Login Flow
+- (grafted) Merge branch 'detox/gs-2404-disable-quest-animations' into 'develop'
+- Detox GS-2358: Increase Sync Timeout in CI
+- (grafted) Merge branch 'fix/GS-2342-center-streak-modal' into 'develop'
+
 ## [4.100.0] - 2026-02-04
 
 ### Features
