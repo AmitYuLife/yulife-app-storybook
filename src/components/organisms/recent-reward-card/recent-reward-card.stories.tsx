@@ -1,5 +1,5 @@
 import { RecentRewardCard } from "@organisms";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { noop } from "lodash";
 
 const meta: Meta<typeof RecentRewardCard> = {

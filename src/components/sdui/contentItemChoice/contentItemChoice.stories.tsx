@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { ContentItemChoice } from "./contentItemChoice";
 import { withSduiProvider } from "@components/sdui/_context/SduiProvider";
 import { ContentItemChoiceDesign } from "@graphql/__generated";

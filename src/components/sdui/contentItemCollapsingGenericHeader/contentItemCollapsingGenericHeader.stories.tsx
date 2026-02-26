@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { ContentItemCollapsingGenericHeader } from "./contentItemCollapsingGenericHeader";
 import { SduiActionType } from "@graphql/__generated";
 import { Animated } from "react-native";

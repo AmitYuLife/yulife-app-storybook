@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { HorizontalNumberDisplay } from "@molecules";
 import { ComponentProps, useEffect, useState } from "react";
 

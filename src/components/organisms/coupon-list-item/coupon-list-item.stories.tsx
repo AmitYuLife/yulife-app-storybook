@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import CouponListItem from "./coupon-list-item";
 
 const meta: Meta<typeof CouponListItem> = {

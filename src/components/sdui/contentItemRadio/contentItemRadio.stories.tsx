@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { ContentItemRadio } from "./contentItemRadio";
 import { withSduiProvider } from "@components/sdui/_context/SduiProvider";
 

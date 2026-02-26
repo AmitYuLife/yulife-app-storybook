@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import Component from "./code-and-link-copy";
 
 const meta: Meta<typeof Component> = {

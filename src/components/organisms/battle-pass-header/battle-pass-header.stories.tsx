@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import BattlePassHeader from "./battle-pass-header";
 
 const meta: Meta<typeof BattlePassHeader> = {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import LoginPasswordScreen from "./login-password.screen";
 
 const meta: Meta<typeof LoginPasswordScreen> = {

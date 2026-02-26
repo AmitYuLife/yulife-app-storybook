@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import EndOfSeasonRewardsInfo from "./end-of-season-rewards-info";
 const meta: Meta<typeof EndOfSeasonRewardsInfo> = {
   component: EndOfSeasonRewardsInfo,

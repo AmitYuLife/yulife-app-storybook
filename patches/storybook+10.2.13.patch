@@ -1,0 +1,17 @@
+diff --git a/node_modules/storybook/package.json b/node_modules/storybook/package.json
+index d6acdb4..5c5ab2e 100644
+--- a/node_modules/storybook/package.json
++++ b/node_modules/storybook/package.json
+@@ -45,6 +45,12 @@
+       "default": "./template/stories/utils.ts"
+     }
+   },
++  "typesVersions": {
++    "*": {
++      "internal/types": ["dist/types/index.d.ts"],
++      "internal/csf": ["dist/csf/index.d.ts"]
++    }
++  },
+   "exports": {
+     "./actions": {
+       "types": "./dist/actions/index.d.ts",

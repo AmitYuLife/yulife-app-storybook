@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import AchievementExtraInfo from "./achievement-extra-info";
 
 const meta: Meta<typeof AchievementExtraInfo> = {

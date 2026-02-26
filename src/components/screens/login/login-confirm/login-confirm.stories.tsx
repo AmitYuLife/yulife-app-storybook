@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import LoginConfirmScreen from "./login-confirm.screen";
 
 const meta: Meta<typeof LoginConfirmScreen> = {
