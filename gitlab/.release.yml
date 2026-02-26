@@ -48,9 +48,16 @@ release-production-build:
     # Script runs on the develop branch, which is one version ahead of the release branch
     - git checkout develop
     # That's why the minor version is decremented by 1
+    # When minor is 0 (major version bump), find the latest release branch from previous major
     - BRANCH_VERSION_MAJOR=$(node -p -e "require('./package.json').version.split('.')[0]")
-    - BRANCH_VERSION_MINOR=$(node -p -e "Number(require('./package.json').version.split('.')[1]) - 1")
-    - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
+    - BRANCH_VERSION_MINOR=$(node -p -e "require('./package.json').version.split('.')[1]")
+    - |
+      if [ "$BRANCH_VERSION_MINOR" -eq 0 ]; then
+        PREV_MAJOR=$((BRANCH_VERSION_MAJOR - 1))
+        BRANCH_VERSION=$(git branch -r --list "origin/release/${PREV_MAJOR}.*" --sort=-version:refname | head -n 1 | sed 's|origin/||' | xargs)
+      else
+        BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.$((BRANCH_VERSION_MINOR - 1))
+      fi
     - git checkout release/${BRANCH_VERSION}
     - |
       LATEST_TAG=$(git tag -l "release/$BRANCH_VERSION*" | sort -V | tail -n 1)
