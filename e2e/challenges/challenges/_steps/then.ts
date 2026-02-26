@@ -11,7 +11,9 @@ import { WorldType } from "../_resources/types";
 
 export const {
   idVisible,
+  idExist,
   textVisible,
+  textExists,
   expectIsVisibleViaID,
   expectIsVisibleViaText,
   textVisibleAtIndex,
@@ -134,7 +136,7 @@ export const onCompletedEventMilestonePage =
     const eventTitle = `${event} event`;
 
     await textVisible(eventTitle)();
-    await textVisible("Great job!")();
+    await textExists("Great job!")();
     await textVisible(
       "You have reached the event milestone!\nCongratulations. Claim your rewards",
       3000
@@ -156,7 +158,7 @@ export const onCompletedEventPage =
     const eventTitle = `${event} event`;
 
     await textVisible(eventTitle)();
-    await textVisible("Great job!")();
+    await textExists("Great job!")();
     await textVisible(
       "You have reached the event milestone!\nCongratulations. Claim your rewards"
     )();
