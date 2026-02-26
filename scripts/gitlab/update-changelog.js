@@ -16,12 +16,31 @@ const CHANGELOG = "CHANGELOG.md";
 		let textToReplace = `## [Unreleased]\n\n\n## [${version}] - ${today}`;
 
 		const [first, second, third] = version.split(".");
+		const major = Number(first);
+		const minor = Number(second);
+
+		// Find the previous release branch. When minor is 0 (major version bump),
+		// find the latest release branch from the previous major version.
+		let previousReleaseBranch;
+		if (minor > 0) {
+			previousReleaseBranch = `origin/release/${major}.${minor - 1}`;
+		} else {
+			const branches = require("child_process")
+				.execSync(`git branch -r --list 'origin/release/${major - 1}.*' --sort=-version:refname`)
+				.toString()
+				.trim();
+			const latestBranch = branches.split("\n")[0]?.trim();
+			if (!latestBranch) {
+				console.warn(`No previous release branch found for major version ${major - 1}, using develop HEAD~100`);
+				previousReleaseBranch = "HEAD~100";
+			} else {
+				previousReleaseBranch = latestBranch;
+			}
+		}
 
 		const revision = require("child_process")
 			.execSync(
-				`git log --pretty=format:'%C(yellow)%d%Creset %s' --abbrev-commit --date=relative --no-merges origin/release/${
-					first + "." + (Number(second) - 1).toString()
-				}..origin/develop`,
+				`git log --pretty=format:'%C(yellow)%d%Creset %s' --abbrev-commit --date=relative --no-merges ${previousReleaseBranch}..origin/develop`,
 			)
 			.toString()
 			.trim();
