@@ -26,6 +26,7 @@ interface BlurredRaysWrapperProps {
   testID?: string;
   acceessibilityLabelTitle?: string;
   isBlurred?: boolean;
+  titlePaddingTop?: number;
 }
 
 export const BLURRED_RAYS_Y_OFFSET = Style.adjust(130);
@@ -43,6 +44,7 @@ const BlurredRaysWrapper = ({
   children,
   testID,
   isBlurred = true,
+  titlePaddingTop = 40,
 }: BlurredRaysWrapperProps) => {
   const { top, bottom } = useSafeAreaInsets();
 
@@ -63,7 +65,7 @@ const BlurredRaysWrapper = ({
           </Animated.View>
         </Box>
         <Box style={wrapperStyle} testID={testID}>
-          <Box pt={40}>
+          <Box pt={titlePaddingTop}>
             <Animated.View
               entering={FadeInDown.delay(200).duration(500)}
               style={styles.levelUpText}
