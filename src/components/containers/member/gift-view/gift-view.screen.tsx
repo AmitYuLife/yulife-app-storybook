@@ -56,7 +56,7 @@ const GiftViewScreen = ({
   onThankYouPress,
   onSendGift,
 }: Props) => {
-  const { showAnimation, showContent, giftLoadingStyle, setFinishedAnimation, onLoadingPress } =
+  const { showAnimation, showContent, giftLoadingStyle, onFirstLoopComplete, onLoadingPress } =
     useGiftViewLoadingAnimation({
       loading,
       hasError,
@@ -82,7 +82,7 @@ const GiftViewScreen = ({
       <GenericHeadingAbsolute onRightIconPress={onClose} backgroundColor="transparent" color={textColor} />
       <Animated.View style={giftLoadingStyle}>
         <Pressable onPress={onLoadingPress}>
-          <GiftViewLoading showAnimation={showAnimation} setFinishedAnimation={setFinishedAnimation} />
+          <GiftViewLoading showAnimation={showAnimation} onFirstLoopComplete={onFirstLoopComplete} />
         </Pressable>
       </Animated.View>
     </Box>

@@ -20,13 +20,12 @@ const CONFIG = {
 };
 
 export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, goToSuccess, errorMessage }: Props) => {
-  const [finishedAnimation, setFinishedAnimation] = useState(false);
-  const [minimumTimeReached, setMinimumTimeReached] = useState(false);
+  const [isReadyToDismiss, setIsReadyToDismiss] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
   const translateY = useSharedValue(CONFIG.STARTING_POINT);
 
   const onLoadingPress = useCallback(() => {
-    setFinishedAnimation(true);
+    setIsReadyToDismiss(true);
   }, []);
 
   const onCloseAlert = useCallback(() => {
@@ -39,19 +38,14 @@ export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, go
     if (sendingState === GiftSendingStates.SENDING) {
       setShowButton(false);
       setShowAnimation(true);
-      setFinishedAnimation(false);
-      setMinimumTimeReached(false);
+      setIsReadyToDismiss(false);
 
       translateY.value = withTiming(CONFIG.ENDING_POINT, { duration: 600, easing: Easing.inOut(Easing.ease) });
-
-      setTimeout(() => {
-        setMinimumTimeReached(true);
-      }, 1000);
     }
   }, [sendingState, translateY, setShowButton]);
 
   useEffect(() => {
-    if (errorMessage && minimumTimeReached) {
+    if (errorMessage && isReadyToDismiss) {
       setShowAnimation(false);
 
       Alert.alert(t("screens.gifting.gift_view_error.heading"), errorMessage, [
@@ -61,14 +55,14 @@ export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, go
         },
       ]);
     }
-  }, [minimumTimeReached, onCloseAlert, errorMessage]);
+  }, [isReadyToDismiss, onCloseAlert, errorMessage]);
 
   useEffect(() => {
-    if (sendingState === GiftSendingStates.SENT && finishedAnimation) {
+    if (sendingState === GiftSendingStates.SENT && isReadyToDismiss) {
       setShowButton(true);
       goToSuccess();
     }
-  }, [sendingState, finishedAnimation, setShowButton, goToSuccess]);
+  }, [sendingState, isReadyToDismiss, setShowButton, goToSuccess]);
 
   const giftLoadingStyle = useAnimatedStyle(() => {
     return {
@@ -77,10 +71,12 @@ export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, go
     };
   });
 
+  const onFirstLoopComplete = useCallback(() => setIsReadyToDismiss(true), []);
+
   return {
     showAnimation,
     giftLoadingStyle,
-    setFinishedAnimation,
+    onFirstLoopComplete,
     onLoadingPress,
   };
 };

@@ -46,7 +46,7 @@ export const GiftingMessagePreviewScreen = ({
   setShowButton,
   goToSuccess,
 }: Props) => {
-  const { showAnimation, giftLoadingStyle, setFinishedAnimation, onLoadingPress } = useGiftPreviewLoadingAnimation({
+  const { showAnimation, giftLoadingStyle, onFirstLoopComplete, onLoadingPress } = useGiftPreviewLoadingAnimation({
     sendingState,
     setShowButton,
     goToSuccess,
@@ -88,7 +88,7 @@ export const GiftingMessagePreviewScreen = ({
         <Pressable onPress={onLoadingPress}>
           <GiftViewLoading
             showAnimation={showAnimation}
-            setFinishedAnimation={setFinishedAnimation}
+            onFirstLoopComplete={onFirstLoopComplete}
             lottieTopOffset={TRIANGLE_HEIGHT}
           />
         </Pressable>
