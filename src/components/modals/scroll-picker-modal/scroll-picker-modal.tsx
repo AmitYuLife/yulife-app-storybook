@@ -1,4 +1,3 @@
-import React from "react";
 import { View, ViewStyle } from "react-native";
 import { Box } from "@atoms";
 import { Picker } from "./subcomponents/picker";
@@ -6,7 +5,7 @@ import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style, StyleSheet } from "@styles";
 import { ChipList, TouchableOpacityWithDelay } from "@components/molecules";
 import { Item } from "./flatlist-utils/types";
-import { initialWindowMetrics } from "react-native-safe-area-context";
+import { initialWindowMetrics, useSafeAreaFrame } from "react-native-safe-area-context";
 
 interface IPicker {
   id: string;
@@ -38,8 +37,10 @@ interface Props {
 const ScrollPickerModal = (props: Props) => {
   const { pickers, chips, chipsScrollToIndex, onConfirm, onCancel, cancelLabel, confirmLabel } = props;
 
+  const { height, width } = useSafeAreaFrame();
+
   return (
-    <View style={styles.wrapper}>
+    <Box disableAutoAdjust={true} h={height} w={width} position="absolute">
       <TouchableOpacityWithDelay activeOpacity={1} style={styles.pressableBackground} onPress={onCancel} />
       <View style={styles.innerWrapper}>
         {chips?.length ? (
@@ -54,7 +55,7 @@ const ScrollPickerModal = (props: Props) => {
         </View>
         <Buttons onConfirm={onConfirm} onCancel={onCancel} cancelLabel={cancelLabel} confirmLabel={confirmLabel} />
       </View>
-    </View>
+    </Box>
   );
 };
 
@@ -64,11 +65,6 @@ const styles = StyleSheet.create({
   chipListPadding: {
     paddingHorizontal: Style.adjust(24),
   },
-  wrapper: {
-    height: Style.DEVICE_HEIGHT,
-    width: Style.DEVICE_WIDTH,
-    position: "absolute",
-  } as ViewStyle,
   pressableBackground: {
     backgroundColor: "rgba(0,0,0,0.7)",
     ...StyleSheet.absoluteFillObject,
