@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import HeroCard from "./hero-card";
 import { HeroCardHeaderButtonState, HeroCardProgressMilestoneState } from "@utils/heroCards";
 import { SduiActionType } from "@graphql/__generated";

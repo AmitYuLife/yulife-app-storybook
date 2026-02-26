@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { ContentItemHeaderBar } from "./contentItemHeaderBar";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { SduiActionType } from "@graphql/__generated";

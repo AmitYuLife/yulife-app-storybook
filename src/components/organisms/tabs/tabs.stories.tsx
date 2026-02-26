@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import Tabs from "./tabs";
 import { CyclingIcon } from "@atoms/icon/cycling-icon";
 import { StepsIcon } from "@atoms/icon/steps-icon";

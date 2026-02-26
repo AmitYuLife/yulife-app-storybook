@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import Wrapper from "./wrapper";
 
 const meta: Meta<typeof Wrapper> = {

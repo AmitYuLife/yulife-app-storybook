@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { ContentItemList } from "./contentItemList";
 
 type Story = StoryObj<typeof ContentItemList>;

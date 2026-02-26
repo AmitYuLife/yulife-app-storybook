@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import HealthProviderActivities from "./health-provider-activities";
 import { SupportedHealthTypes } from "@services/yuHealth/supported-health-types";
 

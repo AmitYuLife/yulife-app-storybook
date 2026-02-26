@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import AvPlayerTimer from "./av-player-timer";
 
 const meta: Meta<typeof AvPlayerTimer> = {

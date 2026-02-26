@@ -1,7 +1,7 @@
 import React from "react";
 import IconComponent from "./index";
 import { Text, View, StyleSheet } from "react-native";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-webpack5";
 
 const IconographyComponent = () => {
   const icons = Object.values(IconComponent);

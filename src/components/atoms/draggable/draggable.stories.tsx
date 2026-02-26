@@ -1,6 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import Draggable from "./draggable";
 import { View } from "react-native";
+import { useSharedValue } from "react-native-reanimated";
+
+const DraggableWithSharedValue = (args: React.ComponentProps<typeof Draggable>) => {
+  const left = useSharedValue(args.defaultIndex * args.sectionWidth + args.minOffsetX);
+  return <Draggable {...args} left={left} />;
+};
 
 const meta: Meta<typeof Draggable> = {
   component: Draggable,
@@ -34,4 +40,6 @@ const meta: Meta<typeof Draggable> = {
 export default meta;
 type Story = StoryObj<typeof Draggable>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => <DraggableWithSharedValue {...args} />,
+};

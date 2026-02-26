@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import WrappedStage2Screen from "./wrapped-stage-2.screen";
 import { FAKE_STATS } from "../../wrapped.constants";

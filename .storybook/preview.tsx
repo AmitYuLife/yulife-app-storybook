@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { mockStore } from "../src/redux/_core/store";
-import { Preview } from "@storybook/react";
+import { Preview } from "@storybook/react-webpack5";
 import { View } from "react-native";
 import { ApolloProvider } from "@apollo/client";
 import createClient from "../src/graphql/_core/client";

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import YuCoinBadge from "./yucoin-badge";
 
 const meta: Meta<typeof YuCoinBadge> = {

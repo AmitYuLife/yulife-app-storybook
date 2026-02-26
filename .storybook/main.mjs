@@ -1,5 +1,9 @@
-const path = require("path");
-const webpack = require("webpack");
+import path from "node:path";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import webpack from "webpack";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const CUSTOM_CONFIG = {
   resolve: {
@@ -29,7 +33,6 @@ const CUSTOM_CONFIG = {
       "@mockclient": path.resolve(__dirname, "../e2e/_utils/socket/client"),
       // React Native Web aliases
       "react-native$": "react-native-web",
-      "@storybook/react-native": "@storybook/react",
       "@leanplum/react-native-sdk": path.join(__dirname, "/aliases/leanplum"),
       "@intercom/intercom-react-native": path.join(__dirname, "/aliases/intercom"),
       "@stripe/stripe-react-native": path.join(__dirname, "/aliases/stripe-react-native"),
@@ -81,7 +84,7 @@ const CUSTOM_CONFIG = {
               ["@babel/preset-react", { runtime: "automatic" }],
               "@babel/preset-typescript",
             ],
-            plugins: ["@babel/plugin-transform-runtime"],
+            plugins: ["@babel/plugin-transform-runtime", "react-native-reanimated/plugin"],
           },
         },
       },
@@ -107,17 +110,16 @@ const CUSTOM_CONFIG = {
     }),
   ],
 };
-module.exports = {
+
+export default {
   stories: [
     "../src/components/@(atoms|molecules|organisms|screens|sdui|modals)/**/*.stories.@(js|jsx|ts|tsx)",
     "../src/modules/**/components/**/*.stories.@(js|jsx|ts|tsx)",
   ],
 
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "storybook-addon-designs",
+    "@storybook/addon-designs",
+    "@storybook/addon-docs",
   ],
 
   staticDirs: [{ from: "../assets", to: "/assets" }],
@@ -147,7 +149,7 @@ module.exports = {
     options: {},
   },
 
-  docs: {
-    autodocs: true,
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
   },
 };

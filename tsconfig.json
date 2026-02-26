@@ -110,6 +110,12 @@
       ],
       "@modules/*": [
         "./src/modules/*"
+      ],
+      "@storybook/react-webpack5": [
+        "./node_modules/@storybook/react-webpack5/dist/index.d.ts"
+      ],
+      "@storybook/react": [
+        "./node_modules/@storybook/react/dist/index.d.ts"
       ]
     }
   },

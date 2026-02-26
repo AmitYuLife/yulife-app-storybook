@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import AvPlayerLoading from "./av-player-loading";
 import { View } from "react-native";
 

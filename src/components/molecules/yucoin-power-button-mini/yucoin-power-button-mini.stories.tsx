@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import YuCoinPowerButtonMini from "./yucoin-power-button-mini";
 
 type Story = StoryObj<typeof YuCoinPowerButtonMini>;

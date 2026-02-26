@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { ContentItemSearchPostcode } from "./contentItemSearchPostcode";
 
 type Story = StoryObj<typeof ContentItemSearchPostcode>;

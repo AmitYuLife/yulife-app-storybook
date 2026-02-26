@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import StackedShadowWrapper from "./stacked-shadow-wrapper";
 import { Text, View } from "react-native";
 

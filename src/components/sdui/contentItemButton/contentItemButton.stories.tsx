@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { ContentItemButton } from "./contentItemButton";
 import { ContentItemButtonSize, ContentItemButtonType, SduiActionType } from "@graphql/__generated";
 
