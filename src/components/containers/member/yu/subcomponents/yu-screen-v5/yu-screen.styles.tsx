@@ -9,6 +9,7 @@ export const PLATFORM_SIZE = {
 export const INITIAL_SCROLL = Style.adjust(20);
 export const COLLAPSED_HEADER_HEIGHT = Style.adjust(142) + TOP_BAR.PADDING_TOP;
 export const FULL_HEADER_HEIGHT = Style.adjust(220) + PLATFORM_SIZE.height * 0.9 + TOP_BAR.PADDING_TOP;
+export const SECTION_TOP_WRAPPER_HEIGHT = Style.adjust(400);
 export const MIN_SECTIONS_HEIGHT = Style.DEVICE_HEIGHT - COLLAPSED_HEADER_HEIGHT - FOOTER_HEIGHT + Style.adjust(10);
 
 export const styles = StyleSheet.create({
@@ -23,11 +24,11 @@ export const styles = StyleSheet.create({
   },
   gradientWrapper: {
     position: "absolute",
-    bottom: Style.adjust(-7),
+    top: COLLAPSED_HEADER_HEIGHT,
   },
   sectionTopWrapper: {
     ...StyleSheet.absoluteFillObject,
-    height: COLLAPSED_HEADER_HEIGHT,
+    height: SECTION_TOP_WRAPPER_HEIGHT,
   },
   contentWrapper: {
     flex: 1,
@@ -52,10 +53,8 @@ export const styles = StyleSheet.create({
     paddingStart: Style.adjust(24),
   },
   yumojiPromptWrapper: {
-    position: "absolute",
     top: 0,
-    start: Style.adjust(24),
-    end: Style.adjust(24),
+    paddingHorizontal: Style.adjust(24),
     paddingTop: TOP_BAR.PADDING_TOP + Style.adjust(128),
   },
   sections: {

@@ -122,7 +122,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, sh
       bouncingHeaderWrapper: { transform: [{ translateY: headerY }], flex: 1 },
       bottomPad: { ...styles.bottomPad, height: Math.max(MIN_SECTIONS_HEIGHT - sectionsHeight, 0) },
     }),
-    [colours, yumojiRemoteUrl, sectionsHeight, achievement]
+    [achievement, colours, yumojiOpacity, gradientOpacity, yumojiRemoteUrl, headerY, sectionsHeight]
   );
 
   const [dynamicTopBarType, nameAndLevelColour] = useMemo(
@@ -209,7 +209,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, sh
         </View>
       </View>
       <View pointerEvents="box-none" style={styles.sectionTopWrapper}>
-        <Animated.View style={memoizedStyles.bouncingHeaderWrapper}>
+        <Animated.View pointerEvents="box-none" style={memoizedStyles.bouncingHeaderWrapper}>
           <View style={styles.info}>
             <NameLevelMiniAvatar showYumoji={true} animateYumoji={collapseHeader} textColour={nameAndLevelColour} />
           </View>
