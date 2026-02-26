@@ -13,17 +13,16 @@ type Props = {
 };
 
 export const useGiftViewLoadingAnimation = ({ loading, hasError, onClose }: Props) => {
-  const [finishedAnimation, setFinishedAnimation] = useState(false);
   const [maxTimeoutId, setMaxTimeoutId] = useState<ReturnType<typeof setTimeout> | null>(null);
-  const [minimumTimeReached, setMinimumTimeReached] = useState(false);
+  const [isReadyToDismiss, setIsReadyToDismiss] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showAnimation, setShowAnimation] = useState(true);
   const [showContent, setShowContent] = useState(false);
   const translateY = useSharedValue(0);
 
-  useEffect(() => {
-    const minTimeoutId = setTimeout(() => setMinimumTimeReached(true), 1000);
+  const onFirstLoopComplete = useCallback(() => setIsReadyToDismiss(true), []);
 
+  useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowAlert(true);
       setShowAnimation(false);
@@ -32,7 +31,6 @@ export const useGiftViewLoadingAnimation = ({ loading, hasError, onClose }: Prop
     setMaxTimeoutId(timeoutId);
 
     return () => {
-      clearTimeout(minTimeoutId);
       clearTimeout(timeoutId);
     };
   }, []);
@@ -44,7 +42,7 @@ export const useGiftViewLoadingAnimation = ({ loading, hasError, onClose }: Prop
   }, [maxTimeoutId, loading, hasError]);
 
   useEffect(() => {
-    if (finishedAnimation && !loading && !hasError && !showAlert) {
+    if (isReadyToDismiss && !loading && !hasError && !showAlert) {
       setShowAnimation(false);
 
       translateY.value = withTiming(
@@ -53,14 +51,14 @@ export const useGiftViewLoadingAnimation = ({ loading, hasError, onClose }: Prop
         () => runOnJS(setShowContent)(true)
       );
     }
-  }, [finishedAnimation, loading, hasError, showAlert]);
+  }, [isReadyToDismiss, loading, hasError, showAlert]);
 
   useEffect(() => {
-    if (hasError && minimumTimeReached) {
+    if (hasError && isReadyToDismiss) {
       setShowAlert(true);
       setShowAnimation(false);
     }
-  }, [hasError, minimumTimeReached, showAlert]);
+  }, [hasError, isReadyToDismiss, showAlert]);
 
   useEffect(() => {
     if (showAlert) {
@@ -73,7 +71,7 @@ export const useGiftViewLoadingAnimation = ({ loading, hasError, onClose }: Prop
     }
   }, [showAlert, onClose]);
 
-  const onLoadingPress = useCallback(() => setFinishedAnimation(true), []);
+  const onLoadingPress = useCallback(() => setIsReadyToDismiss(true), []);
 
   const giftLoadingStyle = useAnimatedStyle(() => {
     return {
@@ -86,7 +84,7 @@ export const useGiftViewLoadingAnimation = ({ loading, hasError, onClose }: Prop
     showAnimation,
     showContent,
     giftLoadingStyle,
-    setFinishedAnimation,
+    onFirstLoopComplete,
     onLoadingPress,
   };
 };

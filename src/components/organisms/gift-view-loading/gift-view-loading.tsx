@@ -1,37 +1,41 @@
-import { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import { memo, useCallback, useMemo, useRef } from "react";
 import type Lottie from "lottie-react-native";
 import { Box } from "@atoms";
 import { LottieView } from "@molecules";
 import { Style } from "@styles";
 import { ViewStyle } from "react-native";
 import SvgBackground, { TRIANGLE_HEIGHT } from "./svg-background";
-import { DETOX_ENABLED } from "@services/socket";
+import { VoidFunction } from "@utils";
 
 const LOTTIE_ANIMATION = require("./gifts-loader.json");
 
 type Props = {
   showAnimation: boolean;
-  setFinishedAnimation: React.Dispatch<React.SetStateAction<boolean>>;
+  onFirstLoopComplete?: VoidFunction;
   lottieTopOffset?: number;
 };
 
 const DEVICE_HEIGHT_WITH_OVERSHOOT = Style.DEVICE_HEIGHT + TRIANGLE_HEIGHT;
 
-const GiftViewLoading = ({ showAnimation, setFinishedAnimation, lottieTopOffset = 0 }: Props) => {
+const GiftViewLoading = ({ showAnimation, onFirstLoopComplete, lottieTopOffset = 0 }: Props) => {
   const lottieRef = useRef<Lottie>(null);
+  const hasCompletedFirstLoop = useRef(false);
 
-  useEffect(() => {
-    if (showAnimation && !DETOX_ENABLED) {
+  const handleAnimationFinish = useCallback(
+    (isCancelled: boolean) => {
+      if (isCancelled) {
+        return;
+      }
+
+      if (!hasCompletedFirstLoop.current) {
+        hasCompletedFirstLoop.current = true;
+        onFirstLoopComplete?.();
+      }
+
       lottieRef.current?.play();
-    } else if (DETOX_ENABLED) {
-      setFinishedAnimation(true);
-    }
-  }, [showAnimation]);
-
-  const onAnimationFinish = useCallback(() => {
-    lottieRef.current?.play();
-    setFinishedAnimation(true);
-  }, []);
+    },
+    [onFirstLoopComplete]
+  );
 
   const lottieStyle = useMemo<ViewStyle>(
     () => ({
@@ -53,8 +57,8 @@ const GiftViewLoading = ({ showAnimation, setFinishedAnimation, lottieTopOffset 
           style={lottieStyle}
           source={LOTTIE_ANIMATION}
           loop={false}
-          autoPlay={false}
-          onAnimationFinish={onAnimationFinish}
+          autoPlay={true}
+          onAnimationFinish={handleAnimationFinish}
         />
       )}
     </Box>
