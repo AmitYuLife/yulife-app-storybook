@@ -26,6 +26,7 @@ import {
 import SudokuSecondAttemptDisclaimer from "@components/games/sudoku/SudokuSecondAttemptDisclaimer";
 import SudokuPracticeIcon from "@atoms/icon/sudoku-practice-icon";
 import { MedalIcon } from "@atoms/icon/medal-icon";
+import { useSafeAreaFrame } from "react-native-safe-area-context";
 
 interface IProps {
   reward: string;
@@ -82,11 +83,20 @@ const SudokuStagingScreen = ({
     [data?.getSudokuBoard?.date, t]
   );
 
+  const { height } = useSafeAreaFrame();
+
+  const scrollContentSyle = useMemo(() => {
+    return {
+      paddingBottom: Style.adjust(20),
+      minHeight: height - Style.adjust(40),
+    };
+  }, [height]);
+
   return (
     <ScrollView
       style={styles.scrollView}
       contentInsetAdjustmentBehavior="never"
-      contentContainerStyle={styles.scrollContent}
+      contentContainerStyle={scrollContentSyle}
       showsVerticalScrollIndicator={false}
       overScrollMode="never"
       bounces={false}
@@ -174,10 +184,6 @@ const SudokuStagingScreen = ({
 };
 
 const styles = StyleSheet.create({
-  scrollContent: {
-    paddingBottom: Style.adjust(20),
-    minHeight: Style.DEVICE_HEIGHT - Style.adjust(40),
-  },
   scrollView: {
     flex: 1,
     backgroundColor: Colours.neutral.n50,
