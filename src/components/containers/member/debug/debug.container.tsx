@@ -66,6 +66,7 @@ enum DebugCodes {
   pathwaysClaim = "pathways-claim",
   pathwaysProgress = "pathways-progress",
   viewUserInfo = "view-user-info",
+  getThemes = "get-themes",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -413,6 +414,15 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
               component: {
                 id: ROUTES.debugUserInfo,
                 name: ROUTES.debugUserInfo,
+              },
+            });
+          }
+
+          case DebugCodes.getThemes: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.themeSwitcher,
+                name: ROUTES.themeSwitcher,
               },
             });
           }

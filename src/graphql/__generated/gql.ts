@@ -299,7 +299,9 @@ const documents = {
   GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
   UpdateMobileSocialLeaderboardConsentsDocument: types.UpdateMobileSocialLeaderboardConsentsDocument,
   GetUserSurgeDocument: types.GetUserSurgeDocument,
+  GetAllMobileGameThemesDocument: types.GetAllMobileGameThemesDocument,
   GetMobileGameThemeDocument: types.GetMobileGameThemeDocument,
+  SetTestMobileGameThemeDocument: types.SetTestMobileGameThemeDocument,
   GetTodayEarningsDocument: types.GetTodayEarningsDocument,
   ClearUserProfileBadgeCountDocument: types.ClearUserProfileBadgeCountDocument,
   GetUserProfileBadgeCountDocument: types.GetUserProfileBadgeCountDocument,
@@ -1714,7 +1716,15 @@ export function gql(source: "GetUserSurgeDocument"): typeof documents["GetUserSu
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "GetAllMobileGameThemesDocument"): typeof documents["GetAllMobileGameThemesDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "GetMobileGameThemeDocument"): typeof documents["GetMobileGameThemeDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SetTestMobileGameThemeDocument"): typeof documents["SetTestMobileGameThemeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

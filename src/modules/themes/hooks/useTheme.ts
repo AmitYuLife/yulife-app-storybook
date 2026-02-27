@@ -3,7 +3,8 @@ import { gql, MobileGameTheme } from "@graphql/__generated";
 
 export const useTheme = () => {
   const query = useQuery(gql("GetMobileGameThemeDocument"), {
-    fetchPolicy: "cache-only",
+    fetchPolicy: "cache-first",
+    nextFetchPolicy: "cache-only",
   });
 
   return {

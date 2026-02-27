@@ -1,0 +1,3 @@
+mutation SetTestMobileGameTheme($themeId: String!) {
+  setTestMobileGameTheme(themeId: $themeId)
+}
