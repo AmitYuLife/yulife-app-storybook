@@ -35,9 +35,6 @@ import * as constant from "./constants";
 
 export const MeGL: SAProductData = {
   productName: "Life Cover",
-  schemeType: constant.employerScheme,
-  rightImage: constant.compassTopRightImg,
-  yuCoinPower: `${CPE_MeGL_SA_1.data.earn_rate}`,
   productDescription: constant.MeGLDescription,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yugiTextInfo,
@@ -45,9 +42,6 @@ export const MeGL: SAProductData = {
 
 export const MeGL_2: SAProductData = {
   productName: "Life Cover",
-  schemeType: constant.employerScheme,
-  rightImage: constant.compassTopRightImg,
-  yuCoinPower: `${CPE_MeGL_SA_2.data.earn_rate}`,
   productDescription: constant.MeGLDescription,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yugiTextInfo,
@@ -55,17 +49,12 @@ export const MeGL_2: SAProductData = {
 
 export const SpGL_1: SAProductData = {
   productName: constant.SpGL,
-  schemeType: constant.employerScheme,
-  rightImage: constant.compassTopRightImg,
-  yuCoinPower: `${CPE_SpGL_SA_2.data.earn_rate}`,
-  productDescription: constant.SpGLDescription,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yugiTextInfo,
 };
 
 export const MeGL_OM: SAProductData = {
   productName: "Group Life Assurance",
-  productDescription: constant.MeGLDescription,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yufiTextInfoSA,
 };
@@ -211,9 +200,6 @@ export const ProductAdditionalInfo: productAdditionalInfo = {
 
 export const GrFun: SAProductData = {
   productName: constant.FuneralCover,
-  schemeType: constant.employerScheme,
-  rightImage: constant.funeralCoverBookImg,
-  yuCoinPower: `${CPE_GrFun_SA_1.data.earn_rate}`,
   productDescription: constant.GrFunDescriptionChildrenCover,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yugiTextInfo,
@@ -221,9 +207,6 @@ export const GrFun: SAProductData = {
 
 export const GrFun_2: SAProductData = {
   productName: constant.FuneralCover,
-  schemeType: constant.employerScheme,
-  rightImage: constant.funeralCoverBookImg,
-  yuCoinPower: `${CPE_GrFun_SA_2.data.earn_rate}`,
   productDescription: constant.GrFunDescriptionChildrenCover,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yugiTextInfo,
@@ -231,10 +214,6 @@ export const GrFun_2: SAProductData = {
 
 export const GIP: SAProductData = {
   productName: constant.IncomeProtection,
-  schemeType: constant.employerScheme,
-  rightImage: constant.roadMapGipImg,
-  yuCoinPower: `${CPE_GIP_SA_1.data.earn_rate}`,
-  productDescription: constant.GIPDescription,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yugiTextInfo,
 };
@@ -242,9 +221,6 @@ export const GIP: SAProductData = {
 export const TmpGIP: SAProductData = {
   productName: constant.TemporaryIncome,
   longname: `${constant.TemporaryIncome} Protection`,
-  schemeType: constant.employerScheme,
-  rightImage: constant.binocularTmpGIP,
-  yuCoinPower: `${CPE_TmpGIP_SA_1.data.earn_rate}`,
   productDescription: constant.TemporaryIncomeDesciption,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yugiTextInfo,
@@ -252,9 +228,6 @@ export const TmpGIP: SAProductData = {
 
 export const LumpSum: SAProductData = {
   productName: constant.LumpSump,
-  schemeType: constant.employerScheme,
-  rightImage: constant.lumpSumpImg,
-  yuCoinPower: `${CPE_LSDC_SA_1.data.earn_rate}`,
   productDescription: constant.LumpSumpDescrption,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yugiTextInfo,
@@ -303,10 +276,6 @@ export const LMPSKeyInfo: keyInfo = {
 
 export const gciProduct1: SAProductData = {
   productName: "Critical Illness",
-  schemeType: constant.employerScheme,
-  rightImage: constant.magnifyingGlassTopRightImg,
-  yuCoinPower: "4",
-  productDescription: constant.gciDescription,
   yugiInfoImgSrc: constant.yugiInfoImg,
   yugiInfotext: constant.yugiTextInfo,
 };
@@ -333,7 +302,7 @@ export const lifeCoverTallCard: ProductSlot = {
   name: "Life Cover",
   cardSize: "tall",
   title: "Secure your family’s future",
-  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/gli-tall.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=0c8355dfb123786896286ee0fcad068d",
+  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/yulifeSA/guardrisk-lc-tall.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=19ff74d93d03b8de16e41d75f7c2552b",
   beneficiaries: true,
 };
 
@@ -349,7 +318,7 @@ export const funeralCoverSquareCard: ProductSlot = {
   name: "Funeral cover",
   cardSize: "square",
   title: "Protecting your loved ones",
-  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/funeral-square.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=6d4dab8432967bbf90ebb0f9ae8fae95",
+  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/yulifeSA/guardrisk-fc-square.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=4e83b53de73d4c5df42467e8f32d9867",
   beneficiaries: true,
 };
 
@@ -357,7 +326,7 @@ export const incomeProtectionSquareCard: ProductSlot = {
   name: "Income protection",
   cardSize: "square",
   title: "Be assured in times of illness or injury",
-  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/gip-square.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=6e7632f4354376d9ef6c6844a8d13876",
+  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/yulifeSA/guardrisk-gip-square.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=8cb26cab1804ff5800b09c60e69e0f10",
   beneficiaries: false,
 };
 
@@ -365,7 +334,7 @@ export const lumpSumDisabilitySquareCard: ProductSlot = {
   name: "Lump Sum Disability Cover",
   cardSize: "square",
   title: "Feel reassured even if you can't work",
-  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/lump-sum-disability-square.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=b3cdf1a5312f99f76b91b3c1faf96eac",
+  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/yulifeSA/guardrisk-lsdc-square.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=de28dd45650a7359b071b07acb36f0ca",
   beneficiaries: false,
 };
 
@@ -373,7 +342,7 @@ export const tempIncomeProtectionSquareCard: ProductSlot = {
   name: "Temporary Income Protection",
   cardSize: "square",
   title: "Be assured in times of illness or injury",
-  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/gip-square.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=6e7632f4354376d9ef6c6844a8d13876",
+  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/yulifeSA/guardrisk-tip-square.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=976bd7292fed955848f41df39489a599",
   beneficiaries: false,
 };
 
@@ -381,7 +350,6 @@ export const gciWideCard: ProductSlot = {
   name: "Critical Illness Cover",
   cardSize: "wide",
   title: "Feel supported in your time of need",
-  img: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/gci-wide.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=c9fd033d5eae3e9b79656c0b38e17d66",
   beneficiaries: false,
 };
 

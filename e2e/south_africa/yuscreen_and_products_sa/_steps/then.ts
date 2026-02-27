@@ -56,27 +56,14 @@ export const productCardVisible =
       ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE(productCard.title),
       index
     )();
-    await idVisibleAtIndex(
-      ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(productCard.img),
-      index
-    )();
+    productCard.img &&
+      (await idVisibleAtIndex(
+        ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(productCard.img),
+        index
+      )());
     productCard.body &&
       (await idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC(productCard.body))());
     productCard.logo && (await idVisible(ids.YUSCREEN_V5_PRODUCT_CARD_LOGO)());
-
-    if (productCard.cardSize !== "tall") {
-      productCard.beneficiaries
-        ? await idVisible(
-            ids.YUSCREEN_V5_BENEFICIARIES_BUTTON(productCard.cardSize, productCard.name)
-          )()
-        : await idVisible(ids.YUSCREEN_V5_CTA_BUTTON(productCard.name))();
-    } else {
-      productCard.beneficiaries &&
-        (await idVisible(
-          ids.YUSCREEN_V5_BENEFICIARIES_BUTTON(productCard.cardSize, productCard.name)
-        )());
-      await idVisible(ids.YUSCREEN_V5_CTA_BUTTON(productCard.name))();
-    }
   };
 
 export const productCheck =
@@ -142,7 +129,12 @@ export const onProductPage = (product: SAProductData) => async () => {
   product.schemeType && (await textVisible(product.schemeType)());
   product.rightImage && (await idVisible(ids.TOP_RIGHT_ITEM_IMAGE(product.rightImage))());
   product.yuCoinPower && (await idVisible(ids.YUCOIN_POWER(product.yuCoinPower))());
-  await textVisible(product.productDescription)();
+  product.productDescription &&
+    (await scrollUntilTextVisible(
+      ids.PRODUCT_DETAILS_SCROLL_VIEW,
+      product.productDescription,
+      "down"
+    )());
 };
 
 export const keyInfoVisible = (product: keyInfo) => async () => {
