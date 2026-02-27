@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: "100%",
     ...StyleSheet.absoluteFillObject,
+    elevation: 3,
   },
   fullScreenBackground: {
     width: Style.DEVICE_WIDTH,
