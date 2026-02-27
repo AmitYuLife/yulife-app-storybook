@@ -186,6 +186,7 @@ export const MODALS: Record<string, `${typeof MODAL_PREFIX}.${string}`> = {
   genericConnectionError: `${MODAL_PREFIX}.GenericConnectionError`,
   levelUnavailable: `${MODAL_PREFIX}.LevelUnavailable`,
   pushNotifications: `${MODAL_PREFIX}.PushNotifications`,
+  reflectionReminder: `${MODAL_PREFIX}.ReflectionReminder`,
   rewards: `${MODAL_PREFIX}.Rewards`,
   streaks: `${MODAL_PREFIX}.Streaks`,
   todayYucoin: `${MODAL_PREFIX}.todayYucoin`,

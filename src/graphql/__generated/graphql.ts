@@ -12262,6 +12262,7 @@ export enum UserNotificationsType {
   Duels = "duels",
   EmailMarketing = "emailMarketing",
   Marketing = "marketing",
+  ReflectionReminder = "reflectionReminder",
   StreakSaver = "streakSaver",
   Surges = "surges",
 }

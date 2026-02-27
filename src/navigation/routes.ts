@@ -191,6 +191,7 @@ import SmokingEditStateModal from "../components/modals/smoking-edit-state/smoki
 import OpenRandomChestModal from "../components/modals/open-random-chest/open-random-chest-modal";
 import ViewAchievementModal from "../components/modals/view-achievement-modal/view-achievement-modal";
 import UnlockedAchievementsModal from "../components/modals/unlocked-achievements-modal/unlocked-achievements-modal";
+import ReflectionReminderModal from "@components/modals/reflection-reminder/reflection-reminder.modal";
 
 // Type for route definition
 type RouteDefinition = {
@@ -719,6 +720,10 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: MODALS.pushNotifications,
     component: PushNotificationsModal,
+  },
+  {
+    name: MODALS.reflectionReminder,
+    component: ReflectionReminderModal,
   },
   {
     name: MODALS.streaks,

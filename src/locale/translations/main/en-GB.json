@@ -1726,6 +1726,11 @@
         "subheading": "Turn the notification on so we can notify you when there’s a response to your message."
       }
     },
+    "reflection_reminder": {
+      "heading": "Stay on track with your reflections",
+      "subheading": "Choose a daily reminder time so you don’t miss a day and can unlock the Yunity Quest.",
+      "cta_label": "Set reminder"
+    },
     "leaderboards": {
       "invite": {
         "heading_before_name": "join",
