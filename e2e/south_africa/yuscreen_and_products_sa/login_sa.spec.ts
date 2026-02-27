@@ -17,21 +17,21 @@ Feature("As a user I can get past the login screen and see all SA products", asy
       Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
       Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
     });
-    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_BENEFICIARIES_BUTTON("tall", "Life Cover"), "down"), async () => {
+    When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "down"), async () => {
       Then("I can see the life cover product", then.productCardVisible(fixture.lifeCoverTallCard));
       Then("I can see the funeral cover product", then.productCardVisible(fixture.funeralCoverSquareCard));
       Then("I can see the income protection product", then.productCardVisible(fixture.incomeProtectionSquareCard));
     });
     When("I swipe to see more cards", when.swipeFromText(fixture.funeralCoverSquareCard.title, "left", "fast"), async () => {
       Then("I can see the lump sum disability product", then.productCardVisible(fixture.lumpSumDisabilitySquareCard));
-      Then("I can see the temporary income protection product", then.productCardVisible(fixture.tempIncomeProtectionSquareCard, 1));
+      Then("I can see the temporary income protection product", then.productCardVisible(fixture.tempIncomeProtectionSquareCard));
     });
     When("I swipe to back to the first cards", when.swipeFromText(fixture.funeralCoverSquareCard.title, "right", "fast"), async () => {
       When("I tap life cover card", when.tapText(fixture.MeGL.productName), async () => {
         Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL, fixture.MeGLKeyInfo, true, fixture.MeGLCoverAmounts));
       });
     });
-    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+    When("I scroll to the top", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "down", "fast"), async () => {
       When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
         Then("I can see the life cover product card as I'm back on the YuScreen", then.productCardVisible(fixture.lifeCoverTallCard));
       });
@@ -39,7 +39,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
     When("I tap funeral cover card", when.tapText(fixture.funeralCoverSquareCard.name), async () => {
       Then("I'm on the product page for funeral cover", then.productCheck(fixture.GrFun, fixture.GrFunKeyInfo, true, fixture.GrFunCoverAmounts));
     });
-    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+    When("I scroll to the top", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "down", "fast"), async () => {
       When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
         Then("I can see the life cover product card as I'm back on the YuScreen", then.productCardVisible(fixture.lifeCoverTallCard));
       });
@@ -47,7 +47,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
     When("I tap GIP card", when.tapText(fixture.incomeProtectionSquareCard.name), async () => {
       Then("I'm on the product page for GIP", then.productCheck(fixture.GIP, fixture.GIPKeyInfo, false));
     });
-    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+    When("I scroll to the top", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "down", "fast"), async () => {
       When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
         Then("I can see the life cover product card as I'm back on the YuScreen", then.productCardVisible(fixture.lifeCoverTallCard));
       });
@@ -57,7 +57,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
         Then("I'm on the product page for lump sum disability", then.productCheck(fixture.LumpSum, fixture.LMPSKeyInfo, false));
       });
     });
-    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+    When("I scroll to the top", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "down", "fast"), async () => {
       When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
         Then("I can see the lump sum disability product card as I'm back on the YuScreen", then.productCardVisible(fixture.lumpSumDisabilitySquareCard));
       });
@@ -78,7 +78,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
         Then("I'm on the product page for life cover", then.productCheck(fixture.MeGL_2, fixture.MeGLKeyInfo, true, fixture.MeGLCoverAmounts, fixture.Beneficiaries_MeGL_2));
       });
     });
-    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+    When("I scroll to the top", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "down", "fast"), async () => {
       When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only"), 3000), async () => {
         When("I scroll down the YuScreen", when.scrollFromID(ids.HERO_CARD_SECTION, "up", "slow", 0.2, 3000), async () => {
           When("I tap the spousal cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 0, 3000), async () => {
@@ -87,7 +87,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
         });
       });
     });
-    When("I scroll to the top", when.swipeFromText(constant.usefulLinksText, "down", "fast"), async () => {
+    When("I scroll to the top", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "down", "fast"), async () => {
       When("I close the page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only"), 3000), async () => {
         When("I tap the funeral cover card", when.tapTextAtIndex(fixture.funeralCoverSquareCard.name, 0, 3000), async () => {
           Then("I'm on the product page for funeral cover", then.productCheck(fixture.GrFun_2, fixture.GrFunKeyInfo_2, true, fixture.GrFunCoverAmounts, fixture.Beneficiaries_GrFun_2));

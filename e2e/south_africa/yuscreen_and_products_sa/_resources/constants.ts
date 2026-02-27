@@ -17,9 +17,6 @@ export const LumpSump = "Lump Sum Disability";
 export const SpGL = "Spousal Life Cover";
 
 //SA Product details
-export const employerScheme = "Employer Scheme";
-export const Employerscheme = "Employer scheme";
-export const startsSoon = "Starts soon";
 export const yugiTextInfo =
   "This policy is provided by your employer. Should you change jobs, you’ll lose this policy.";
 export const yufiTextInfoSA =
@@ -94,29 +91,15 @@ export const claimRequested = "We’ll be in touch to guide you through the clai
 //SA Product descriptions
 export const MeGLDescription =
   "Pays a lump sum to your nominated beneficiaries in the event of your passing.";
-export const SpGLDescription = "Pays out a lump sum to you in the event of your spouse’s passing.";
-export const MeGLSpouseCoverDesciption =
-  "Pays a lump sum to your nominated beneficiaries in the event of your passing or your spouse's passing.";
 export const basisCover =
   "The Basis of Cover will impact the taxation of your benefit and how it will be paid out. Refer to your Member Certificate below for more details.";
 export const GrFunDescriptionChildrenCover =
   "Pays a lump sum to you or your nominated beneficiaries in the event of a death in the family.";
-export const GrFunDescriptionSpouseCover =
-  "Pays a lump sum to your nominated beneficiaries in the event of your passing or the passing of your spouse.";
-export const GIPDescription =
-  "Pays you monthly until retirement if you cannot work for a defined period of time due to ill health or disability.";
-export const GIPDisclaimer = `Your policy will continue to payout until you reach retirement/age.\n\nThis is the total cover for both the base and Retirement Funding Waiver benefit (if applicable). Note that the overall benefit is limited to your net after-tax salary.`;
 export const TemporaryIncomeDesciption =
   "Pays you monthly for a limited time if you cannot work during a defined period due to ill health or disability.";
 export const TemporaryIncomeDisclaimer_1 = `Your policy will honour a maximum of 12-6 payments.`;
 export const TemporaryIncomeDisclaimer_2 = `This is the total cover for both the base and Retirement Funding Waiver benefit (if applicable). Note that the overall benefit is limited to your net after-tax salary.`;
 export const LumpSumpDescrption = "Pays a lump sum if you become permanently disabled.";
-export const LumpSumpDisclaimer =
-  "The Basis of Cover will impact the taxation of your benefit and how it will be paid out. Refer to your Member Certificate below for more details.";
-export const gciDescription =
-  "Pays a lump sum if you suffer one of the defined medical conditions.";
-export const gciKeyInfoText =
-  "If you have a condition that existed within 12 months of the policy inception you will not be covered for a repeat of the condition for the next 24 months.";
 
 // CONTENT_SMALL_IMAGE_CARD_URL
 
@@ -148,8 +131,6 @@ export const Footer_Text_Part3 = "Refer to your enrollment site to make your ben
 //Images URL in product cards
 export const yugiInfoImg =
   "https://yulife-develop.imgix.net/yugi/info-banner/info-2022-07-18.svg?ixlib=js-3.2.1&w=144&height=144&s=71154cfde1b87ec9d46e4d6c432b4b46";
-export const compassTopRightImg =
-  "https://yulife-develop.imgix.net/yuscreen_products_assets/default/compass_active.svg?ixlib=js-3.2.1&w=180&h=180&s=92413536eff010fc80b8885f3efcaa6d";
 export const pencilPersonImg =
   "https://yulife-develop.imgix.net/personalProducts/pencil_bell.svg?ixlib=js-3.2.1&w=72&h=72&s=469468a94240463c9f5d31095cf780ad";
 export const addDocumentImg =
@@ -166,15 +147,5 @@ export const claimImg =
   "https://yulife-develop.imgix.net/content/icons/claim.svg?ixlib=js-3.2.1&w=540&h=540&s=070c3c3c99859ee08a5897252365336e";
 export const certificateImg =
   "https://yulife-develop.imgix.net/content/icons/doc_certificate.svg?ixlib=js-3.2.1&w=72&h=72&s=bcefc8d51f33e8dcd54346cabac94b70";
-export const funeralCoverBookImg =
-  "https://yulife-develop.imgix.net/yuscreen_products_assets/default/book_active.svg?ixlib=js-3.2.1&w=180&h=180&s=0a79d9421c2645937a55830121c4d62d";
-export const roadMapGipImg =
-  "https://yulife-develop.imgix.net/yuscreen_products_assets/default/map_active.svg?ixlib=js-3.2.1&w=180&h=180&s=3920546e7b21527daf8b2999648a0303";
-export const binocularTmpGIP =
-  "https://yulife-develop.imgix.net/yuscreen_products_assets/default/binoculars_active.svg?ixlib=js-3.2.1&w=180&h=180&s=d0df46d98601ec6591606f0ffe4cbac6";
-export const lumpSumpImg =
-  "https://yulife-develop.imgix.net/yuscreen_products_assets/default/lantern_active.svg?ixlib=js-3.2.1&w=180&h=180&s=034cd9c70886ebbac50210813cb97e8d";
-export const magnifyingGlassTopRightImg =
-  "https://yulife-develop.imgix.net/yuscreen_products_assets/default/magnifier_active.svg?ixlib=js-3.2.1&w=180&h=180&s=42c312245e546023876a8a475960196a";
 export const oldMutualMeGLImg =
   "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/old-mutual/group-life-assurance-wide.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=88669b6209c4c04e74a155c6b0471858";
