@@ -3,6 +3,7 @@ import { createAction } from "@reduxjs/toolkit";
 export const PATHWAY_CHALLENGE_STARTED = "PATHWAY_CHALLENGE_STARTED";
 export const PATHWAY_CHALLENGE_ENDED = "PATHWAY_CHALLENGE_ENDED";
 export const PATHWAY_CHALLENGE_CANCEL = "PATHWAY_CHALLENGE_CANCEL";
+export const PATHWAY_NOTIFICATION_DENIED = "PATHWAY_NOTIFICATION_DENIED";
 
 interface PathwayChallengeStartedPayload {
   pathwayChallengeId: string;
@@ -13,3 +14,7 @@ export const pathwayChallengeStarted = createAction<PathwayChallengeStartedPaylo
 );
 export const pathwayChallengeEnded = createAction<void, typeof PATHWAY_CHALLENGE_ENDED>(PATHWAY_CHALLENGE_ENDED);
 export const pathwayChallengeCancel = createAction<void, typeof PATHWAY_CHALLENGE_CANCEL>(PATHWAY_CHALLENGE_CANCEL);
+
+export const pathwayNotificationDenied = createAction<void, typeof PATHWAY_NOTIFICATION_DENIED>(
+  PATHWAY_NOTIFICATION_DENIED
+);

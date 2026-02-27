@@ -338,6 +338,16 @@ export const pushToScreen = <P>(componentId: string, props: Layout<P>) => {
   Navigation.push(componentId, props);
 };
 
+export const pushScreenFromActiveRoute = <P>(props: Layout<P>) => {
+  const state = store.getState() as IReduxState;
+
+  if (state?.app?.activeRoute === props?.component.id) {
+    return;
+  }
+
+  Navigation.push(state.app.activeRoute, props);
+};
+
 export async function showAppReviewModal(reviewModalProps: ReviewModalProps) {
   const { id, title, body, rejectedTitle, rejectedBody, image } = reviewModalProps;
   showYuModal({
