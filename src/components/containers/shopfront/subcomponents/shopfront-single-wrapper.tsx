@@ -13,7 +13,7 @@ const ShopfrontSingleWrapper = ({ leftIcons, children }: IShopfrontSingleWrapper
   return (
     <Box w="100%" h="100%">
       {children}
-      <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP}>
+      <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP} disableAutoAdjust={true}>
         <TopBar type="white" leftIcons={leftIcons} />
       </Box>
       <NavBar activeIndex={4} />
