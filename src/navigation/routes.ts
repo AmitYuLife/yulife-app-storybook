@@ -82,6 +82,7 @@ import LevelSelectorContainer from "../components/containers/member/debug/level-
 import PathwaysProgressContainer from "../components/containers/member/debug/pathways-progress/pathways-progress.container";
 import WorkoutDebugContainer from "../components/containers/member/debug/workout-debug/workout-debug.container";
 import GenericHeadingContainer from "../components/containers/member/debug/generic-heading/generic-heading.container";
+import ThemeSwitcherContainer from "../components/containers/member/debug/theme-switcher/theme-switcher.container";
 
 // meditation
 import MeditopiaMediaListContainer from "../components/containers/member/media/meditopia-media-list/meditopia-media-list.container";
@@ -521,6 +522,10 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: ROUTES.workoutDebug,
     component: WorkoutDebugContainer,
+  },
+  {
+    name: ROUTES.themeSwitcher,
+    component: ThemeSwitcherContainer,
   },
   {
     name: ROUTES.permissions,

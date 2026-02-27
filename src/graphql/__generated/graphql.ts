@@ -27,6 +27,7 @@ export type ApiConfig = {
   mixpanelBaseUrl: Scalars["String"]["output"];
   mixpanelKey: Scalars["String"]["output"];
   recaptchaSiteKey?: Maybe<Scalars["String"]["output"]>;
+  rewardsStripeKey: Scalars["String"]["output"];
   sduiJourney: ApiConfigSduiJourney;
   sduiStaticDeeplinks: Array<ApiConfigSduiStaticDeepLink>;
   sessionTimeout: Scalars["Int"]["output"];
@@ -2464,6 +2465,7 @@ export type ContentItemProductDetailsHeader = {
   __typename?: "ContentItemProductDetailsHeader";
   backgroundImage?: Maybe<RemoteImage>;
   benefit?: Maybe<ContentItemProductDetailsHeaderBenefit>;
+  /** @deprecated ISA-4231 - No longer used in new PDP design from V5.0.0 */
   coverType: CoverType;
   funding?: Maybe<ContentItemProductDetailsHeaderFunding>;
   id: Scalars["ID"]["output"];
@@ -4233,7 +4235,7 @@ export type GeneratedCategory = {
 export type GeneratedQuestion = {
   __typename?: "GeneratedQuestion";
   description?: Maybe<Scalars["String"]["output"]>;
-  heading: Scalars["String"]["output"];
+  heading?: Maybe<Scalars["String"]["output"]>;
   isRequired: Scalars["Boolean"]["output"];
   multiSelect?: Maybe<Scalars["Boolean"]["output"]>;
   multipleChoiceOptions?: Maybe<Array<Scalars["String"]["output"]>>;
@@ -4418,6 +4420,13 @@ export type GetOnboardingConfigurationResult = {
   employeeCount?: Maybe<Scalars["Int"]["output"]>;
   importCount?: Maybe<Scalars["Int"]["output"]>;
   wellbeingHubItemCount?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type GetPaymentCardSetupResponse = {
+  __typename?: "GetPaymentCardSetupResponse";
+  businessPaymentMethodId: Scalars["String"]["output"];
+  clientSecret: Scalars["String"]["output"];
+  providerCustomerId: Scalars["String"]["output"];
 };
 
 export type GetPaymentDetailsResponse = {
@@ -6714,6 +6723,7 @@ export type Mutation = {
   createWellbeingHubItem: TeamWellbeingHubResponse;
   createYuCoinTopupRequest: TeamYuCoinTopupRequest;
   deactivateEmployees?: Maybe<EmployeeBulkProcessResult>;
+  deleteBusinessCard: BusinessCard;
   deleteConnection?: Maybe<Scalars["Boolean"]["output"]>;
   deleteCustomValue: Scalars["Boolean"]["output"];
   deletePensionConnection?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6766,6 +6776,7 @@ export type Mutation = {
   reactivateTeamEmployee: Scalars["Boolean"]["output"];
   reassignProductToTeamMember: Scalars["Boolean"]["output"];
   redeemMobileSduiReward: SduiAction;
+  refreshBusinessCard: BusinessCard;
   refreshBusinessSession?: Maybe<BusinessPayload>;
   refreshEngagementDashboardActivities: Scalars["Boolean"]["output"];
   refreshSession?: Maybe<UserPayload>;
@@ -6796,6 +6807,7 @@ export type Mutation = {
   sendThanksForGift: Gift;
   sendWellbeingHubItemDocuments: Scalars["Boolean"]["output"];
   sendYuCoinTopupRequest: Scalars["Boolean"]["output"];
+  setDefaultBusinessCard: BusinessCard;
   setFeature?: Maybe<Scalars["Boolean"]["output"]>;
   /**
    * Sets the visibility of the player's birthday information.
@@ -6817,6 +6829,7 @@ export type Mutation = {
   setPlayerBirthday?: Maybe<LifeEvents>;
   /** Updates the shares of a beneficiary */
   setShareOfBenefitForProduct: CustomerProductBeneficiaries;
+  setTestMobileGameTheme?: Maybe<Scalars["Boolean"]["output"]>;
   setUserPathwayProgress?: Maybe<Scalars["Boolean"]["output"]>;
   setUserQuestProgress?: Maybe<Scalars["Boolean"]["output"]>;
   startMembersBulkUpload: BulkMemberImportStart;
@@ -7179,6 +7192,10 @@ export type MutationDeactivateEmployeesArgs = {
   employees: Array<InputMaybe<EmployeeInput>>;
 };
 
+export type MutationDeleteBusinessCardArgs = {
+  businessPaymentMethodId: Scalars["String"]["input"];
+};
+
 export type MutationDeleteConnectionArgs = {
   name: Scalars["String"]["input"];
 };
@@ -7407,6 +7424,11 @@ export type MutationRedeemMobileSduiRewardArgs = {
   paymentChargeId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type MutationRefreshBusinessCardArgs = {
+  businessPaymentMethodId: Scalars["String"]["input"];
+  isPrimary?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
 export type MutationRefreshBusinessSessionArgs = {
   intercomHashMethod?: InputMaybe<IntercomHashMethod>;
 };
@@ -7529,6 +7551,10 @@ export type MutationSendYuCoinTopupRequestArgs = {
   yucoin: Scalars["Int"]["input"];
 };
 
+export type MutationSetDefaultBusinessCardArgs = {
+  businessPaymentMethodId: Scalars["String"]["input"];
+};
+
 export type MutationSetFeatureArgs = {
   feature: Scalars["String"]["input"];
   value: Scalars["Boolean"]["input"];
@@ -7550,6 +7576,10 @@ export type MutationSetPlayerBirthdayArgs = {
 export type MutationSetShareOfBenefitForProductArgs = {
   productId: Scalars["ID"]["input"];
   shares: Array<BeneficiaryShareOfBenefit>;
+};
+
+export type MutationSetTestMobileGameThemeArgs = {
+  themeId: Scalars["String"]["input"];
 };
 
 export type MutationSetUserPathwayProgressArgs = {
@@ -8428,6 +8458,7 @@ export type Query = {
   getActiveEmployments: Array<UserBusinessLink>;
   getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
+  getAllThemes: Array<MobileGameTheme>;
   getAnalyticsConfiguration: AnalyticsConfiguration;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
@@ -8627,6 +8658,7 @@ export type Query = {
   getOptionsForGift: OptionsForGift;
   getPassiveChallengesLastUpdate: PassiveChallengesLastUpdate;
   getPathwayChallenge?: Maybe<PathwayChallengeSlot>;
+  getPaymentCardSetup: GetPaymentCardSetupResponse;
   /** Get user stripe payment details */
   getPaymentDetails?: Maybe<GetPaymentDetailsResponse>;
   getPendingInvitesCount: Scalars["Int"]["output"];
@@ -11187,6 +11219,8 @@ export type TeamEmployeeRecognitionCampaignPackage = {
 
 export type TeamEmployeeRecognitionCampaignPackageResponse = {
   __typename?: "TeamEmployeeRecognitionCampaignPackageResponse";
+  bacsApprovalLimit: Scalars["Int"]["output"];
+  directDebitApprovalLimit: Scalars["Int"]["output"];
   /** Fee configuration per payment method with progressive fee bands */
   fees: Array<YuCoinTopupPaymentMethodFee>;
   hasPaymentPendingTopups?: Maybe<Scalars["Boolean"]["output"]>;
@@ -11194,6 +11228,7 @@ export type TeamEmployeeRecognitionCampaignPackageResponse = {
   packages: Array<TeamEmployeeRecognitionCampaignPackage>;
   /** Base exchange rate WITHOUT fee applied. Frontend must calculate fee using the fees array. */
   rate: Scalars["Float"]["output"];
+  /** @deprecated Use directDebitApprovalLimit instead. Will be removed next release. */
   topupThreshold: Scalars["Int"]["output"];
 };
 
@@ -38986,6 +39021,39 @@ export type GetUserSurgeQuery = {
   } | null;
 };
 
+export type GetAllMobileGameThemesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetAllMobileGameThemesQuery = {
+  __typename?: "Query";
+  getAllThemes: Array<{
+    __typename?: "MobileGameTheme";
+    id: string;
+    name: string;
+    colors: {
+      __typename?: "MobileGameThemeColors";
+      primary: {
+        __typename?: "PrimaryThemeColor";
+        p20: string;
+        p40: string;
+        p50: string;
+        p60: string;
+        p80: string;
+        p100: string;
+        p200: string;
+        p300: string;
+        p400: string;
+        p500: string;
+        p600: string;
+        p600Shadow: string;
+      };
+    };
+    assets: {
+      __typename?: "MobileGameThemeAssets";
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+  }>;
+};
+
 export type GetMobileGameThemeQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetMobileGameThemeQuery = {
@@ -39018,6 +39086,12 @@ export type GetMobileGameThemeQuery = {
     };
   } | null;
 };
+
+export type SetTestMobileGameThemeMutationVariables = Exact<{
+  themeId: Scalars["String"]["input"];
+}>;
+
+export type SetTestMobileGameThemeMutation = { __typename?: "Mutation"; setTestMobileGameTheme?: boolean | null };
 
 export type GetTodayEarningsQueryVariables = Exact<{ [key: string]: never }>;
 
@@ -97752,6 +97826,100 @@ export const GetUserSurgeDocument = {
     },
   ],
 } as unknown as DocumentNode<GetUserSurgeQuery, GetUserSurgeQueryVariables>;
+export const GetAllMobileGameThemesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetAllMobileGameThemes" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getAllThemes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameTheme" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameTheme" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameTheme" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "primary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "p20" } },
+                      { kind: "Field", name: { kind: "Name", value: "p40" } },
+                      { kind: "Field", name: { kind: "Name", value: "p50" } },
+                      { kind: "Field", name: { kind: "Name", value: "p60" } },
+                      { kind: "Field", name: { kind: "Name", value: "p80" } },
+                      { kind: "Field", name: { kind: "Name", value: "p100" } },
+                      { kind: "Field", name: { kind: "Name", value: "p200" } },
+                      { kind: "Field", name: { kind: "Name", value: "p300" } },
+                      { kind: "Field", name: { kind: "Name", value: "p400" } },
+                      { kind: "Field", name: { kind: "Name", value: "p500" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600Shadow" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "assets" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetAllMobileGameThemesQuery, GetAllMobileGameThemesQueryVariables>;
 export const GetMobileGameThemeDocument = {
   kind: "Document",
   definitions: [
@@ -97846,6 +98014,39 @@ export const GetMobileGameThemeDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileGameThemeQuery, GetMobileGameThemeQueryVariables>;
+export const SetTestMobileGameThemeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SetTestMobileGameTheme" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "themeId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "setTestMobileGameTheme" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "themeId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "themeId" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SetTestMobileGameThemeMutation, SetTestMobileGameThemeMutationVariables>;
 export const GetTodayEarningsDocument = {
   kind: "Document",
   definitions: [
