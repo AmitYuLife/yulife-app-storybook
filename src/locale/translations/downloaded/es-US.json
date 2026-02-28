@@ -462,6 +462,11 @@
         "subheading": "Activa la notificación para poder avisarte cuando haya una respuesta a tu mensaje."
       }
     },
+    "reflection_reminder": {
+      "cta_label": "Establecer recordatorio",
+      "heading": "Mantén el rumbo de tus reflexiones",
+      "subheading": "Elige una hora diaria de recordatorio para que no se te pase ningún día y puedas desbloquear la Yunity Quest."
+    },
     "reward_info": {
       "got_it": "Entendido."
     },
