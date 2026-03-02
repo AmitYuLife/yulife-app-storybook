@@ -4,6 +4,7 @@ import { TextTemplate } from "../text/text-template";
 import { Colours } from "@styles";
 import Box from "../box/box";
 import { MOOD_VIEW_CALENDAR_TODAY_COMPLETED } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProps {
   day: number;
@@ -12,18 +13,19 @@ interface IProps {
 }
 
 const MoodDay = ({ day, moodImage, isToday = false }: IProps) => {
+  const { theme } = useTheme();
   const isTodayProps = useMemo(() => {
     if (!isToday) {
       return {};
     }
 
     return {
-      bg: Colours.primary.p600,
+      bg: theme.colors.primary.p600,
       br: 24,
       pl: 1,
       pt: 1,
     };
-  }, [isToday]);
+  }, [isToday, theme.colors.primary.p600]);
 
   return (
     <Box

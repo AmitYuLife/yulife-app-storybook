@@ -1,5 +1,4 @@
-import React, { memo } from "react";
-import { Colours } from "@styles/index";
+import { memo } from "react";
 import { ActivityIndicator, ActivityIndicatorProps, ViewStyle } from "react-native";
 import { LOADING_BAR } from "@ids";
 
@@ -11,7 +10,7 @@ interface Props {
   color?: string;
 }
 
-export const Loading = ({ size = "large", style, color = Colours.darkHotPink }: Props) => {
+export const Loading = ({ size = "large", style, color }: Props) => {
   const { theme } = useTheme();
   return (
     <ActivityIndicator

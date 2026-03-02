@@ -1,10 +1,10 @@
 import { TextTemplate } from "@atoms";
 import { BoxOption } from "@components/molecules";
 import { Style, StyleSheet } from "@styles";
-import colours from "@styles/colours";
-import React, { ReactNode, memo } from "react";
+import { ReactNode, memo } from "react";
 import { View } from "react-native";
 import { ArrowButton } from "../arrow-button";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProps {
   icon: ReactNode;
@@ -14,6 +14,7 @@ interface IProps {
 }
 
 const ActionButton = ({ onPress, icon, label, testID }: IProps) => {
+  const { theme } = useTheme();
   return (
     <BoxOption
       onPress={onPress}
@@ -29,7 +30,7 @@ const ActionButton = ({ onPress, icon, label, testID }: IProps) => {
           {icon ? <View style={styles.icon}>{icon}</View> : null}
           <TextTemplate type="b2b">{label}</TextTemplate>
         </View>
-        <ArrowButton color={colours.primary.p600} />
+        <ArrowButton color={theme.colors.primary.p600} />
       </>
     </BoxOption>
   );

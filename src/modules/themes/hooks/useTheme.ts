@@ -1,10 +1,14 @@
 import { useQuery } from "@apollo/client";
 import { gql, MobileGameTheme } from "@graphql/__generated";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { useSelector } from "react-redux";
 
 export const useTheme = () => {
+  const { tempGameEnableAppTheme } = useSelector(getUserFeatures);
   const query = useQuery(gql("GetMobileGameThemeDocument"), {
     fetchPolicy: "cache-first",
     nextFetchPolicy: "cache-only",
+    skip: !tempGameEnableAppTheme,
     errorPolicy: "ignore",
   });
 

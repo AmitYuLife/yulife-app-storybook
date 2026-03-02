@@ -4,6 +4,7 @@ import { Style, Colours, StyleSheet } from "@styles";
 import { noop } from "@utils";
 import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
 import { isRTL } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const CIRCLE_SIZE = Style.adjust(24);
 const SWITCH_WIDTH = Style.adjust(48);
@@ -37,10 +38,16 @@ function _Switch(props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
+  const { theme } = useTheme();
+  const onStyle = useMemo(
+    () => [styles.on, { backgroundColor: theme.colors.primary.p600 }],
+    [theme.colors.primary.p600]
+  );
+
   const wrapperStyle = useMemo(() => [styles.wrapper, wrapperStyles], [wrapperStyles]);
   const componentStyle = useMemo(
-    () => [styles.innerWrapper, disabled ? styles.disabled : value ? styles.on : styles.off, componentStyles],
-    [componentStyles, disabled, value]
+    () => [styles.innerWrapper, disabled ? styles.disabled : value ? onStyle : styles.off, componentStyles],
+    [componentStyles, disabled, value, onStyle]
   );
 
   return (

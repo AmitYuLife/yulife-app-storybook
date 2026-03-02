@@ -22,6 +22,7 @@ import { GetQuestMapLevelQuery } from "@graphql/__generated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SMOOTH_GRADIENT_COLORS } from "../../events/event-dialog/event-dialog.styles";
 import LinearGradient from "react-native-linear-gradient";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export interface IChallengeDetailsScreenProps {
   error?: string;
@@ -51,6 +52,7 @@ function ChallengeDetailsScreen({
   const scrollY = useRef(new Animated.Value(0));
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
+  const { theme } = useTheme();
 
   useBackHandler(() => {
     onPressBack();
@@ -192,7 +194,7 @@ function ChallengeDetailsScreen({
                     text={t("screens.challenges.details.boosted_badge")}
                   />
                   <View style={styles.rewardAmount}>
-                    <TextTemplate textAlign="right" color={Colours.primary.p600} type="b2b">
+                    <TextTemplate textAlign="right" color={theme.colors.primary.p600} type="b2b">
                       {slot.bonusAmount}
                     </TextTemplate>
                   </View>

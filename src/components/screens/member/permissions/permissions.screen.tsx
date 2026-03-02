@@ -18,6 +18,7 @@ import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-typ
 import { isiOS } from "@utils";
 import { openAppleHealthPrivacy } from "@services/app-link";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IPermissionsScreenProps {
   activeProvider?: HealthProvider;
@@ -43,6 +44,7 @@ const PermissionsScreen = ({
   onRightIconPress,
 }: IPermissionsScreenProps) => {
   const openSettings = useCallback(() => Linking.openSettings(), []);
+  const { theme } = useTheme();
 
   const showPopup = useCallback((viewRef: React.MutableRefObject<View>, markdown: string) => {
     const onDismiss = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
@@ -92,7 +94,7 @@ const PermissionsScreen = ({
             translationKey="screens.permissions.system_section.secondary_button"
             onPress={openSettings}
             wrapperStyle={permissionsStyles.paddingHorizontal24}
-            leftIcon={<ChainIcon />}
+            leftIcon={<ChainIcon color={theme.colors.primary.p600} />}
           />
         </View>
 
@@ -123,7 +125,7 @@ const PermissionsScreen = ({
                 translationKey="screens.permissions.open_apple_health"
                 wrapperStyle={permissionsStyles.paddingHorizontal24}
                 onPress={openAppleHealth}
-                leftIcon={<ChainIcon />}
+                leftIcon={<ChainIcon color={theme.colors.primary.p600} />}
               />
             ) : (
               <SecondaryButton
@@ -131,7 +133,7 @@ const PermissionsScreen = ({
                 translationKey="screens.permissions.switch_button"
                 wrapperStyle={permissionsStyles.paddingHorizontal24}
                 onPress={onOpenSwitch}
-                leftIcon={<ChainIcon />}
+                leftIcon={<ChainIcon color={theme.colors.primary.p600} />}
               />
             )}
           </View>
