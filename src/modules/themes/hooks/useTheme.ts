@@ -5,6 +5,7 @@ export const useTheme = () => {
   const query = useQuery(gql("GetMobileGameThemeDocument"), {
     fetchPolicy: "cache-first",
     nextFetchPolicy: "cache-only",
+    errorPolicy: "ignore",
   });
 
   return {
