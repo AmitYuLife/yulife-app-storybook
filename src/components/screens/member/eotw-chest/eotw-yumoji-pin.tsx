@@ -32,7 +32,6 @@ const EOTWYumojiIcon: FC<IProps> = memo(({ avatar, scale }) => {
       } as Animated.WithAnimatedObject<ViewStyle>,
       avatar: {
         position: "absolute",
-        paddingTop: AVATAR_RADIUS,
         width: AVATAR_RADIUS - 2,
         height: 2.3 * (AVATAR_RADIUS - 4),
         transform: scale ? [{ scale }] : undefined,
