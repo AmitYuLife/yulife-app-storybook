@@ -313,6 +313,7 @@ export type AnalyticsConfiguration = {
   __typename?: "AnalyticsConfiguration";
   exportEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   showRewards?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated YuScore has been removed */
   showYuScore?: Maybe<Scalars["Boolean"]["output"]>;
   welcomePosterLink?: Maybe<Scalars["String"]["output"]>;
 };
@@ -8741,7 +8742,6 @@ export type Query = {
   getTeamSocialGroup: TeamSocialGroup;
   getTeamSocialGroups: GetTeamSocialGroupsResponse;
   getTeamSocialGroupsCount: Scalars["Int"]["output"];
-  getTeamYuScoreData: YuScore;
   getTodayEarnings: TodayEarnings;
   /** Get total coins for user to refresh coin amount */
   getTotalCoins: Scalars["Int"]["output"];
@@ -10989,7 +10989,6 @@ export enum TeamAnalyticsLineChartKey {
   AverageActiveUserActivity = "averageActiveUserActivity",
   TotalMealsAndWaterDonatedByCompany = "totalMealsAndWaterDonatedByCompany",
   TotalPlasticAndTreesDonatedByCompany = "totalPlasticAndTreesDonatedByCompany",
-  YuScore = "yuScore",
 }
 
 export type TeamAnalyticsSummary = {
@@ -12267,7 +12266,6 @@ export type UserDailyChallengeAmountAvailable = {
   __typename?: "UserDailyChallengeAmountAvailable";
   dailyChallengeAmountAvailable: Scalars["Int"]["output"];
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: Scalars["Int"]["output"];
-  /** @deprecated No longer part of the daily challenge amount */
   pathwaysChallengeAmountAvailable: Scalars["Int"]["output"];
 };
 
@@ -12817,27 +12815,6 @@ export enum YuProductStatus {
   Terminated = "terminated",
   Unlockable = "unlockable",
 }
-
-export type YuScore = {
-  __typename?: "YuScore";
-  description?: Maybe<Scalars["String"]["output"]>;
-  extendedSummary?: Maybe<YuScoreExtendedSummary>;
-  heading?: Maybe<Scalars["String"]["output"]>;
-  stars?: Maybe<Scalars["Int"]["output"]>;
-  summary?: Maybe<YuScoreSummary>;
-};
-
-export type YuScoreExtendedSummary = {
-  __typename?: "YuScoreExtendedSummary";
-  description?: Maybe<Scalars["String"]["output"]>;
-  heading?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type YuScoreSummary = {
-  __typename?: "YuScoreSummary";
-  description?: Maybe<Scalars["String"]["output"]>;
-  heading?: Maybe<Scalars["String"]["output"]>;
-};
 
 export type YuScreen = {
   __typename?: "YuScreen";
@@ -20319,6 +20296,7 @@ export type UserDailyChallengeAmountAvailableFragment = {
   __typename?: "UserDailyChallengeAmountAvailable";
   dailyChallengeAmountAvailable: number;
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
+  pathwaysChallengeAmountAvailable: number;
 };
 
 export type DailyPensionContributionFragment = {
@@ -39436,6 +39414,7 @@ export type GetUserDailyChallengeAmountAvailableQuery = {
     __typename?: "UserDailyChallengeAmountAvailable";
     dailyChallengeAmountAvailable: number;
     dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
+    pathwaysChallengeAmountAvailable: number;
   };
 };
 
@@ -59915,6 +59894,7 @@ export const UserDailyChallengeAmountAvailableFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailableWithUnactivatedPowerUps" } },
+          { kind: "Field", name: { kind: "Name", value: "pathwaysChallengeAmountAvailable" } },
         ],
       },
     },
@@ -99396,6 +99376,7 @@ export const GetUserDailyChallengeAmountAvailableDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailableWithUnactivatedPowerUps" } },
+          { kind: "Field", name: { kind: "Name", value: "pathwaysChallengeAmountAvailable" } },
         ],
       },
     },
