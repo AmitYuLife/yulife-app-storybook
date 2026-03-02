@@ -77,6 +77,7 @@ variables:
   MACOS_VM_IMAGE_VERSION: v1.2.0
   MACOS_VM_IMAGE: $DEVOPS_AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-xcode:$MACOS_VM_IMAGE_VERSION
   IOS_XCODE_VERSION: 16.4
+  DEVELOPER_DIR: "/Applications/Xcode_${IOS_XCODE_VERSION}.app"
   DEVELOP_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-develop-react-native-builds
   PRODUCTION_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-production-react-native-builds
   BINARY_S3_BUCKET_NAME: yu-shared-react-native-binaries
