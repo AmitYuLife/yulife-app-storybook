@@ -19254,8 +19254,6 @@ export type ContentItemProductDetailsHeaderFragment = {
   __typename?: "ContentItemProductDetailsHeader";
   id: string;
   productName: string;
-  showItemSlot?: boolean | null;
-  showSlotLabel: boolean;
   productDetailsHeaderYuCoinPower: number;
   backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   styles?: Array<{
@@ -19283,7 +19281,6 @@ export type ContentItemProductDetailsHeaderFragment = {
     height?: number | null;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   } | null;
-  itemSlot: { __typename?: "YuScreenItemSlot"; iconUrl: string; backgroundUrl: string };
   benefit?: { __typename?: "ContentItemProductDetailsHeaderBenefit"; title?: string | null; markdown: string } | null;
   funding?: {
     __typename?: "ContentItemProductDetailsHeaderFunding";
@@ -20289,8 +20286,6 @@ export type ContentItemYuCoinPowerFragment = {
     }> | null;
   }> | null;
 };
-
-export type YuScreenItemSlotFragment = { __typename?: "YuScreenItemSlot"; iconUrl: string; backgroundUrl: string };
 
 export type UserDailyChallengeAmountAvailableFragment = {
   __typename?: "UserDailyChallengeAmountAvailable";
@@ -32854,8 +32849,6 @@ export type GetYuScreenProductDetailsQuery = {
           __typename: "ContentItemProductDetailsHeader";
           id: string;
           productName: string;
-          showItemSlot?: boolean | null;
-          showSlotLabel: boolean;
           productDetailsHeaderYuCoinPower: number;
           backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
           styles?: Array<{
@@ -32883,7 +32876,6 @@ export type GetYuScreenProductDetailsQuery = {
             height?: number | null;
             image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
           } | null;
-          itemSlot: { __typename?: "YuScreenItemSlot"; iconUrl: string; backgroundUrl: string };
           benefit?: {
             __typename?: "ContentItemProductDetailsHeaderBenefit";
             title?: string | null;
@@ -58836,23 +58828,6 @@ export const ContentItemProcessingTimerFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemProcessingTimerFragment, unknown>;
-export const YuScreenItemSlotFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenItemSlot" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenItemSlot" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "iconUrl" } },
-          { kind: "Field", name: { kind: "Name", value: "backgroundUrl" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<YuScreenItemSlotFragment, unknown>;
 export const ContentItemProductDetailsHeaderFundingThemeFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -58962,14 +58937,6 @@ export const ContentItemProductDetailsHeaderFragmentDoc = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "itemSlot" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenItemSlot" } }],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "benefit" },
             selectionSet: {
               kind: "SelectionSet",
@@ -58989,8 +58956,6 @@ export const ContentItemProductDetailsHeaderFragmentDoc = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "showItemSlot" } },
-          { kind: "Field", name: { kind: "Name", value: "showSlotLabel" } },
         ],
       },
     },
@@ -59092,18 +59057,6 @@ export const ContentItemProductDetailsHeaderFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "width" } },
           { kind: "Field", name: { kind: "Name", value: "height" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenItemSlot" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenItemSlot" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "iconUrl" } },
-          { kind: "Field", name: { kind: "Name", value: "backgroundUrl" } },
         ],
       },
     },
@@ -89705,18 +89658,6 @@ export const GetYuScreenProductDetailsDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenItemSlot" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenItemSlot" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "iconUrl" } },
-          { kind: "Field", name: { kind: "Name", value: "backgroundUrl" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemProductDetailsHeaderFundingTheme" },
       typeCondition: {
         kind: "NamedType",
@@ -89943,14 +89884,6 @@ export const GetYuScreenProductDetailsDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "itemSlot" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenItemSlot" } }],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "benefit" },
             selectionSet: {
               kind: "SelectionSet",
@@ -89970,8 +89903,6 @@ export const GetYuScreenProductDetailsDocument = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "showItemSlot" } },
-          { kind: "Field", name: { kind: "Name", value: "showSlotLabel" } },
         ],
       },
     },

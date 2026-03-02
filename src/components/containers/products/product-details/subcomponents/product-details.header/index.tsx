@@ -5,7 +5,6 @@ import { ContentItemProductDetailsHeaderFragment } from "@graphql/__generated";
 import { Pressable, YuCoinPower, YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { Title } from "./title";
-import { SlotIcon } from "./slot-icon";
 import styles from "./styles";
 import { ProviderLogo } from "./provider-logo";
 import { Benefit } from "./benefit";
@@ -13,7 +12,6 @@ import { Funding } from "./funding";
 import { mapServerStyles } from "@components/sdui";
 import { Image } from "@atoms";
 
-const SLOT_ICON_SIZE = Style.adjust(102);
 const YU_COIN_POWER_HEIGHT = Style.DEVICE_WIDTH * YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER;
 const BACKGROUND_COLOR = "#956AFF";
 
@@ -22,12 +20,9 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
     providerLogo,
     backgroundImage,
     productName,
-    itemSlot,
     productDetailsHeaderYuCoinPower: yuCoinPower,
     benefit,
     funding,
-    showItemSlot,
-    showSlotLabel,
     styles: sduiStyles,
   } = props;
 
@@ -47,13 +42,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
   return (
     <View>
       <View
-        style={[
-          styles.wrapper,
-          { backgroundColor: BACKGROUND_COLOR },
-          // TODO: Remove this once we have migrated all hero cards to have images
-          showItemSlot === false && styles.heroWrapper,
-          mappedServerStyle,
-        ]}
+        style={[styles.wrapper, { backgroundColor: BACKGROUND_COLOR }, mappedServerStyle]}
         onLayout={handleHeaderLayout}
       >
         {!backgroundImage ? null : (
@@ -66,34 +55,16 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
             resizeMode={"cover"}
           />
         )}
-        {showItemSlot !== false ? ( // TODO: remove this once we have migrated all hero cards to have images
-          <View style={styles.inner}>
-            <View style={styles.leftSide}>
-              {funding ? <Funding {...funding} /> : null}
-              <ProviderLogo image={providerLogo?.image} width={providerLogo?.width} height={providerLogo?.height} />
-              <Title titleType="h2" title={productName} />
-            </View>
-            <View style={[styles.rightSide, { height: SLOT_ICON_SIZE }]}>
-              <SlotIcon
-                backgroundUrl={itemSlot?.backgroundUrl}
-                itemUrl={itemSlot?.iconUrl}
-                size={SLOT_ICON_SIZE}
-                showLabel={showSlotLabel}
-              />
-            </View>
-          </View>
-        ) : (
-          <View style={styles.heroContent}>
-            <ProviderLogo
-              image={providerLogo?.image}
-              width={providerLogo?.width}
-              height={providerLogo?.height}
-              alignLeft={true}
-            />
-            <Title titleType="h2" title={productName} marginTop={8} />
-            {funding ? <Funding {...funding} /> : null}
-          </View>
-        )}
+        <View style={styles.heroContent}>
+          <ProviderLogo
+            image={providerLogo?.image}
+            width={providerLogo?.width}
+            height={providerLogo?.height}
+            alignLeft={true}
+          />
+          <Title titleType="h2" title={productName} marginTop={8} />
+          {funding ? <Funding {...funding} /> : null}
+        </View>
       </View>
       <Benefit
         style={{ paddingTop: (yuCoinPower ? YU_COIN_POWER_HEIGHT : 4) + Style.adjust(16) }}

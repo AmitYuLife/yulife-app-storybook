@@ -11,9 +11,6 @@ fragment ContentItemProductDetailsHeader on ContentItemProductDetailsHeader {
   providerLogo {
     ...VariableRemoteImage
   }
-  itemSlot {
-    ...YuScreenItemSlot
-  }
   benefit {
     title
     markdown
@@ -21,6 +18,4 @@ fragment ContentItemProductDetailsHeader on ContentItemProductDetailsHeader {
   funding {
     ...ContentItemProductDetailsHeaderFunding
   }
-  showItemSlot
-  showSlotLabel
 }
