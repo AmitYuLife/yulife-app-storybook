@@ -88,6 +88,7 @@ export const getInitialState = (): ILevelsStore => ({
   challengesDoneToday: 0,
   dailyChallengeAmountAvailable: 1,
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: 0,
+  pathwaysChallengeAmountAvailable: 0,
   level: 1,
   yuniversalMap: 0,
   yuniversalLevel: 0,
@@ -429,6 +430,7 @@ const getDailyChallengeAmountAvailable = (
   ...state,
   dailyChallengeAmountAvailable: payload.dailyChallengeAmountAvailable,
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: payload.dailyChallengeAmountAvailableWithUnactivatedPowerUps,
+  pathwaysChallengeAmountAvailable: payload.pathwaysChallengeAmountAvailable,
 });
 
 const setChallengeSubmissionStatus = (state: ILevelsStore, challengeSubmissionStatus: ChallengeSubmissionStatus) => {

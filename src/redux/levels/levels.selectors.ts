@@ -8,6 +8,7 @@ export interface ITodayChallengesStatus {
   hasDone: boolean;
   isAvailable: boolean;
   availableForToday: number;
+  hasPathwayChallenge: boolean;
 }
 
 type State = IReduxState["levels"];
@@ -67,12 +68,15 @@ const challengesStatusSelector = (state: State) => {
 
   const availableForToday = getAvailableChallengesForToday(state.level, done, available, state.nextLevelAvailableAt);
 
+  const pathwaysChallengesAvailable = state.pathwaysChallengeAmountAvailable ?? 0;
+
   return {
     available: available,
     done,
-    isAvailable: state.dailyChallengeAmountAvailableWithUnactivatedPowerUps - done > 0,
+    isAvailable: state.dailyChallengeAmountAvailableWithUnactivatedPowerUps + pathwaysChallengesAvailable - done > 0,
     hasDone: done > 0,
     availableForToday: availableForToday,
+    hasPathwayChallenge: pathwaysChallengesAvailable > 0,
   } as ITodayChallengesStatus;
 };
 

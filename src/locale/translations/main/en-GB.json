@@ -566,7 +566,8 @@
       },
       "challenge_button": {
         "take_challenge": "Take a challenge (%{challenges} left today)",
-        "back_to_challenge": "Back to challenge"
+        "back_to_challenge": "Back to challenge",
+        "pathway_challenge": "Yunity Quest available"
       },
       "join_event": {
         "title": "Ready to join?",

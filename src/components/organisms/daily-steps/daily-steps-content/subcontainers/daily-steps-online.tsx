@@ -44,7 +44,7 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
   const dailySteps = useSelector(getDailySteps);
   const dailyPension = useSelector(getDailyPensionContribution);
   const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
-  const { availableForToday, isAvailable, hasDone } = useSelector(getChallengesStatus);
+  const { availableForToday, isAvailable, hasDone, hasPathwayChallenge } = useSelector(getChallengesStatus);
   const showPanel = useSelector(getDailyPanelSelector);
   const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
   const hasNotification = useSelector(getHasNotification);
@@ -62,14 +62,17 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
   const heroCards = useSelector(getUserHeroCards);
 
   const hideButtons = isShort && heroCards.length > 0;
-  const showChallengeButton = isAvailable && availableForToday > 0;
+  const showChallengeButton = isAvailable && (availableForToday > 0 || hasPathwayChallenge);
+  const onlyPathwayAvailable = availableForToday === 0 && hasPathwayChallenge;
 
   const challengeButtonLabel = useMemo(
     () =>
       hasNotification
         ? t("screens.daily.challenge_button.back_to_challenge")
+        : onlyPathwayAvailable
+        ? t("screens.daily.challenge_button.pathway_challenge")
         : t("screens.daily.challenge_button.take_challenge", { challenges: availableForToday }),
-    [hasNotification, availableForToday]
+    [hasNotification, availableForToday, onlyPathwayAvailable]
   );
 
   const closePanel = useCallback(() => dispatch(changePanelVisibility(false)), []);
