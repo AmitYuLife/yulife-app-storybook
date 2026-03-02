@@ -33,7 +33,6 @@ const meta: Meta<typeof Draggable> = {
     breakpoints: [],
     defaultIndex: 2,
     handleWidth: 24,
-    fadeIn: false,
   },
 };
 

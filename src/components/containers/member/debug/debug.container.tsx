@@ -65,6 +65,7 @@ enum DebugCodes {
   pathwaysReflected = "pathways-reflected",
   pathwaysClaim = "pathways-claim",
   pathwaysProgress = "pathways-progress",
+  pathwaysFeedback = "pathways-feedback",
   viewUserInfo = "view-user-info",
   getThemes = "get-themes",
 }
@@ -405,6 +406,15 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
               component: {
                 id: ROUTES.pathwaysProgress,
                 name: ROUTES.pathwaysProgress,
+              },
+            });
+          }
+
+          case DebugCodes.pathwaysFeedback: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.pathwayChallengeFeedback,
+                name: ROUTES.pathwayChallengeFeedback,
               },
             });
           }

@@ -1,14 +1,7 @@
-import { memo, ReactNode, useEffect } from "react";
+import { memo, ReactNode } from "react";
 import { GestureDetector } from "react-native-gesture-handler";
-import Animated, {
-  SharedValue,
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withSpring,
-} from "react-native-reanimated";
+import Animated, { SharedValue, useAnimatedStyle } from "react-native-reanimated";
 import { usePan } from "./use-pan";
-import { Platform } from "react-native";
 
 type Props = {
   children: ReactNode;
@@ -18,12 +11,6 @@ type Props = {
   breakpoints: number[];
   defaultIndex?: number;
   handleWidth: number;
-
-  /**
-   * Used for Storybook testing
-   * Set to false to deterministically have opacity be set to 1
-   */
-  fadeIn?: boolean;
 
   onChange?: (breakpointIndex: number) => void;
 
@@ -38,11 +25,9 @@ const Draggable = ({
   breakpoints = [],
   defaultIndex = 0,
   handleWidth,
-  fadeIn = true,
   onChange,
   left,
 }: Props) => {
-  const opacity = useSharedValue(fadeIn ? 0 : 1);
   const { pan } = usePan({
     left,
     minOffsetX,
@@ -57,13 +42,10 @@ const Draggable = ({
     start: left.value - handleWidth / 2,
     bottom: 0,
     top: 0,
+    width: handleWidth,
+    alignItems: "center",
     position: "absolute",
-    opacity: opacity.value,
   }));
-
-  useEffect(() => {
-    opacity.value = withDelay(Platform.select({ ios: 0, android: 1000 }), withSpring(1));
-  }, []);
 
   return (
     <GestureDetector gesture={pan}>
