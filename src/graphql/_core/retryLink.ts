@@ -16,7 +16,12 @@ const BLACKLIST_RETRY_OPERATIONS = [
   "SubmitSduiJourney",
 ];
 if (DETOX_ENABLED) {
-  BLACKLIST_RETRY_OPERATIONS.push("GetPublicYuAPIConfig", "GetPotentialRewards", "ChangeUserLocale");
+  BLACKLIST_RETRY_OPERATIONS.push(
+    "GetPublicYuAPIConfig",
+    "GetPotentialRewards",
+    "ChangeUserLocale",
+    "GetMobileGameTheme"
+  );
 }
 
 const retryLink = (showOfflineScreen: () => void) => {
