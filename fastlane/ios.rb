@@ -170,7 +170,7 @@ platform :ios do
         pkg: ENV["PKG_OUTPUT_PATH"],
         notify_external_testers: false,
         distribute_external: true,
-        groups: ["Bug Bounty"],
+        groups: ["Bug Bounty", "Sales"],
         skip_waiting_for_build_processing: true,
         app_version: full_version,
         build_number: build_number,
