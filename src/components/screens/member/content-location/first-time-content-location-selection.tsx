@@ -49,7 +49,7 @@ const _FirstTimeContentLocationSelection = (props: Props) => {
     <Modal transparent={true}>
       <View style={styles.background} />
       <View style={styles.wrapper} testID={REWARD_LOCATION_MODAL}>
-        <Box w={Style.DEVICE_WIDTH - Style.adjust(36)}>
+        <Box w={Style.DEVICE_WIDTH - Style.adjust(36)} disableAutoAdjust={true}>
           <Box w="100%" p={16} br={8} justifyContent="center" alignItems="center" bg={Colours.neutral.white}>
             <Image
               style={styles.image}
