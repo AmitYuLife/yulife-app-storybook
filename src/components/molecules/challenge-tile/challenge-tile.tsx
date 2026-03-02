@@ -59,7 +59,7 @@ const ChallengeTile = ({
 
   const rewardTextColour = useMemo(() => {
     if (hasBonus) {
-      return Colours.primary.p600;
+      return theme.colors.primary.p600;
     }
 
     if (hasSurge) {
@@ -67,7 +67,7 @@ const ChallengeTile = ({
     }
 
     return Colours.neutral.n850;
-  }, [hasBonus, hasSurge]);
+  }, [hasBonus, hasSurge, theme.colors.primary.p600]);
 
   if (!heading) {
     return null;

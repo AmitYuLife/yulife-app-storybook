@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { View } from "react-native";
 import { BottomShadow, TextTemplate } from "@atoms";
 import { Pressable } from "@molecules";
@@ -7,6 +7,7 @@ import { last, upperFirst } from "lodash";
 import { DATE_FORMAT } from "@utils";
 import moment from "moment";
 import { ACTIVITY_HISTORY_MONTH } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type ISelectedMonth = {
   startDate: string;
@@ -18,6 +19,12 @@ interface IProps {
 
 const ActivityHistoryHeader = ({ onPress }: IProps) => {
   const [monthSelected, setMonthSelected] = useState(last(getMonths()).label);
+  const { theme } = useTheme();
+
+  const selectedButtonStyle = useMemo(
+    () => ({ backgroundColor: theme.colors.primary.p600, borderWidth: 0 }),
+    [theme.colors.primary.p600]
+  );
 
   return (
     <View>
@@ -26,7 +33,7 @@ const ActivityHistoryHeader = ({ onPress }: IProps) => {
           <Pressable
             delay={1000}
             key={month.label}
-            style={[styles.button, monthSelected === month.label ? styles.selectedButtonStyle : null]}
+            style={[styles.button, monthSelected === month.label ? selectedButtonStyle : null]}
             onPress={() => {
               setMonthSelected(month.label);
               onPress(month.value);
@@ -77,10 +84,6 @@ const styles = StyleSheet.create({
     flex: 0.5,
     alignItems: "center",
     marginHorizontal: Style.adjust(6),
-  },
-  selectedButtonStyle: {
-    backgroundColor: Colours.primary.p600,
-    borderWidth: 0,
   },
 });
 

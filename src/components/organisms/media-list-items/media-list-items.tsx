@@ -3,12 +3,13 @@ import { Image as RNImage, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { MEDIA_LIST_ITEM_DESCRIPTION, MEDIA_LIST_ITEM_TITLE, PARTNER_LOGO } from "@ids";
 import { BoxOption } from "@molecules";
-import { Colours, Style, templateTextMarkdownStyles } from "@styles";
+import { Style, templateTextMarkdownStyles } from "@styles";
 import { BOX_HEIGHT, IMAGE_HEIGHT, IMAGE_WIDTH, styles } from "./media-list-items.styles";
 import MediaListItemsLoading from "./media-list-items-loading";
 import { t } from "@locale";
 import Markdown from "@molecules/markdown/markdown";
 import { ArrowButton } from "@components/molecules/arrow-button";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export interface IITem {
   title: string;
@@ -38,6 +39,7 @@ interface IProps {
 }
 
 const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
+  const { theme } = useTheme();
   return (
     <>
       {isLoading ? (
@@ -101,14 +103,14 @@ const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
                         </View>
                         {item.tag ? (
                           <View style={styles.tagWrapper}>
-                            <TextTemplate type="l2b" color={Colours.primary.p600}>
+                            <TextTemplate type="l2b" color={theme.colors.primary.p600}>
                               {item.tag}
                             </TextTemplate>
                           </View>
                         ) : null}
                       </View>
                       <View style={styles.arrow}>
-                        <ArrowButton color={Colours.primary.p600} />
+                        <ArrowButton color={theme.colors.primary.p600} />
                       </View>
                     </View>
                   </View>
