@@ -43,7 +43,7 @@ const BattlePassLoading = ({ showNavigation, onBackPress }: IBattlePassLoadingPr
       </Box>
     </Box>
     {showNavigation ? (
-      <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP}>
+      <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP} disableAutoAdjust={true}>
         <TopBarAbsolute type="white" leftIcon={LeftIcon.BACK} onPressLeftIcon={onBackPress} />
       </Box>
     ) : null}

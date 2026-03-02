@@ -29,7 +29,7 @@ const ShopfrontLoading = ({ leftIcons }: IBattlePassLoadingProps) => (
       ))}
     </Box>
 
-    <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP}>
+    <Box position="absolute" top={0} w="100%" pt={TOP_BAR.PADDING_TOP} disableAutoAdjust={true}>
       <TopBar type="default" leftIcons={leftIcons} />
     </Box>
 
