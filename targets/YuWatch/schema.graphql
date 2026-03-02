@@ -6645,11 +6645,6 @@ type ContentItemProductDetailsHeaderBenefit {
   markdown: String!
 }
 
-type YuScreenItemSlot {
-  iconUrl: String!
-  backgroundUrl: String!
-}
-
 type ContentItemProductDetailsHeaderFundingTheme {
   backgroundColor: String!
   borderColor: String!
@@ -6667,12 +6662,9 @@ type ContentItemProductDetailsHeader {
   styles: [SduiStyle!]
   productName: String!
   yuCoinPower: Int!
-  itemSlot: YuScreenItemSlot!
   providerLogo: VariableRemoteImage
   benefit: ContentItemProductDetailsHeaderBenefit
   funding: ContentItemProductDetailsHeaderFunding
-  showItemSlot: Boolean
-  showSlotLabel: Boolean!
   backgroundImage: RemoteImage
 }
 

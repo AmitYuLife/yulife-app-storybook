@@ -101,7 +101,6 @@ const documents = {
   ContentItemTextInputFragmentDoc: types.ContentItemTextInputFragmentDoc,
   ContentItemWrapperFragmentDoc: types.ContentItemWrapperFragmentDoc,
   ContentItemYuCoinPowerFragmentDoc: types.ContentItemYuCoinPowerFragmentDoc,
-  YuScreenItemSlotFragmentDoc: types.YuScreenItemSlotFragmentDoc,
   UserDailyChallengeAmountAvailableFragmentDoc: types.UserDailyChallengeAmountAvailableFragmentDoc,
   DailyPensionContributionFragmentDoc: types.DailyPensionContributionFragmentDoc,
   DuelOpponentFragmentDoc: types.DuelOpponentFragmentDoc,
@@ -801,10 +800,6 @@ export function gql(source: "ContentItemWrapperFragmentDoc"): typeof documents["
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "ContentItemYuCoinPowerFragmentDoc"): typeof documents["ContentItemYuCoinPowerFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "YuScreenItemSlotFragmentDoc"): typeof documents["YuScreenItemSlotFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
