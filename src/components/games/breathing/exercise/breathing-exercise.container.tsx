@@ -327,17 +327,19 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
         </Box>
       </Box>
 
-      <Box position="absolute" bottom={24} left={0} right={0}>
+      <Box position="absolute" bottom={24} left={0} right={0} zIndex={1}>
         {DETOX_ENABLED ? null : (
-          <Box flexDirection="row" mh={24} alignItems="center" justifyContent="center" mb={40}>
-            <Box position="absolute" left={0} width="13%">
-              <AvPlayerTimer textType="l2b" time={elapsedMs} colour={Colours.neutral.white} />
-            </Box>
-            <Box height={6} br={3} width="74%" bg={Colours.neutral.white}>
-              <AvPlayerProgressBar currentProgress={elapsedMs / 1000} duration={selectedDurationMs / 1000} />
-            </Box>
-            <Box position="absolute" alignItems="flex-end" right={0} width="13%">
-              <AvPlayerTimer textType="l2b" time={selectedDurationMs} colour={Colours.neutral.white} />
+          <Box mh={24} mb={40}>
+            <Box flexDirection="row" alignItems="center" justifyContent="space-between">
+              <Box width="13%">
+                <AvPlayerTimer textType="l2b" time={elapsedMs} colour={Colours.neutral.white} />
+              </Box>
+              <Box flex={1} height={6} br={3} mh={8} bg={Colours.neutral.white}>
+                <AvPlayerProgressBar currentProgress={elapsedMs / 1000} duration={selectedDurationMs / 1000} />
+              </Box>
+              <Box width="13%" alignItems="flex-end">
+                <AvPlayerTimer textType="l2b" time={selectedDurationMs} colour={Colours.neutral.white} />
+              </Box>
             </Box>
           </Box>
         )}
