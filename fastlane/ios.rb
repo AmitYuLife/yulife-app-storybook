@@ -85,7 +85,14 @@ platform :ios do
       UI.message("App group replacement completed")
     end
 
-    build_app(
+    # Store xcodebuild log under CI_PROJECT_DIR so it can be collected as an artifact
+    build_log_dir = ENV["CI_PROJECT_DIR"] ? "#{ENV['CI_PROJECT_DIR']}/build-logs/gym" : nil
+    if build_log_dir
+      FileUtils.mkdir_p(build_log_dir)
+      UI.message("Build log will be written to #{build_log_dir}")
+    end
+
+    build_app_options = {
       clean: true,
       codesigning_identity: ios_signing_identity,
       configuration: "Release",
@@ -99,7 +106,10 @@ platform :ios do
       output_directory: "builds/ios",
       scheme: "YuLife",
       workspace: ios_workspace_path,
-    )
+    }
+    build_app_options[:buildlog_path] = build_log_dir if build_log_dir
+
+    build_app(build_app_options)
     
     version = get_package_version
     build_number = get_build_number

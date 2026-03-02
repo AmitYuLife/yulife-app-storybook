@@ -127,6 +127,7 @@ artifacts/
 
 # Fastlane builds
 builds/
+build-logs/
 
 # corepack
 .cache/node/corepack/
