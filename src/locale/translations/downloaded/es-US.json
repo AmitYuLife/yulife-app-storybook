@@ -1028,6 +1028,7 @@
     "daily": {
       "challenge_button": {
         "back_to_challenge": "Volver al reto",
+        "pathway_challenge": "Yunity Quest disponible",
         "take_challenge": "Empieza un reto (falta(n) %{challenges} hoy)"
       },
       "daily_passive": {

@@ -1028,6 +1028,7 @@
     "daily": {
       "challenge_button": {
         "back_to_challenge": "العودة إلى التحدي",
+        "pathway_challenge": "مهمة الصحة متوفرة",
         "take_challenge": "ادخل تحدي ( باقي %{challenges} اليوم)"
       },
       "daily_passive": {

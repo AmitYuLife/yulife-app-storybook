@@ -463,9 +463,9 @@
       }
     },
     "reflection_reminder": {
-      "cta_label": "リマインダー を 設定",
-      "heading": "振り返り を 続けて いきましょう",
-      "subheading": "1 日 の リマインダー 時間 を 設定 し、 Yumoji の クエスト を アンロック し、 毎日 忘れず に プレイ しましょう。"
+      "cta_label": "リマインダーを設定",
+      "heading": "振り返りを続けましょう",
+      "subheading": "リマインダーを設定して毎日のプレイを習慣化することで、Yunityクエストをアンロックしましょう!"
     },
     "reward_info": {
       "got_it": "OK"
@@ -1028,6 +1028,7 @@
     "daily": {
       "challenge_button": {
         "back_to_challenge": "チャレンジに戻る",
+        "pathway_challenge": "Yunityクエスト 利用可能",
         "take_challenge": "チャレンジする (本日残り%{challenges}回)"
       },
       "daily_passive": {
