@@ -17,7 +17,7 @@ export const {
   typeViaID,
 } = navigation.common;
 
-export const { scrollFromID, scrollUntilIdVisible } = navigation.scrolling;
+export const { scrollFromID, scrollUntilIdVisible, scrollWithLimitedAttemptsUntilIdVisible } = navigation.scrolling;
 
 export const tapNext = async () => {
   await tapID(ids.BUTTON_BASE("Next", false), 2_000)();

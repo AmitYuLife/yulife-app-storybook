@@ -102,7 +102,9 @@ Feature("Health Pathways", async () => {
       Then("I should see day 1 marked as completed", then.idVisible(ids.PATHWAY_STREAK_DAY(1, true), 5_000));
     });
     When("I tap Continue after reflection completion", when.tapID(ids.PATHWAYS_REFLECTED_CONTINUE, 2_000), async () => {
-      Then("I should still see day 1 marked as completed", then.idVisible(ids.PATHWAY_STREAK_DAY(1, true), 5_000));
+      Then("I should see the notifications reminder modal", then.idVisible(ids.GENERIC_SCREEN_HEADING("Stay on track with your reflections"), 5_000));
+    });
+    When("I tap to skip the reminder", when.tapID(ids.GENERIC_SCREEN_CTA("skip-text-view"), 4_000), async () => {
       Then("I should see the next day reflection in a locked state", then.idVisible(ids.PATHWAYS_REFLECTION_UNLOCKS_IN, 2_000));
     });
     When("I scroll down to the 'Your Mood' section", when.scrollFromID(ids.PATHWAYS_SCREEN, "up", "fast", 0.5, 2_000), async () => {
@@ -147,6 +149,11 @@ Feature("Health Pathways", async () => {
     When("I tap Continue on the feedback screen", when.tapID(ids.LABELS_CTA_CONTINUE, 2_000), async () => {
       Then("I should land back on the Yuscreen", then.idVisible(ids.YUSCREEN_V5_USERNAME("Ronnie James Dio"), 3_000));
     });
+    When("I scroll to the earn from activities carousel", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.MAXIMISE_YU_NUDGE_LIST, "down"), async () => {
+      When("I swipe to the health challenge nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("pathway-challenge-nudge"), "left", 5, 3_000, 0.5, 0.8), async () => {
+        Then("I should see the completed health challenge in the carousel", then.idVisible(ids.NUDGE_ITEM_WRAPPER("pathway-challenge-nudge"), 3_000));
+      });
+    });
     When("I navigate to the Quests", when.tapID(ids.NAV_BAR("quests"), 2_000), async () => {
       When("I tap 855 level challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(855), 2_000), async () => {
         Then("I should see the health challenge title", then.idVisible(ids.PATHWAYS_CHALLENGE_TITLE("Yunity Quest")));
@@ -173,13 +180,13 @@ Feature("Health Pathways", async () => {
         When("I mark 'Last day complete' and save", when.setPathwaysProgress("Last day complete"), async () => {
           When("I exit the debug menu", when.closeDebug, async () => {
             When("I navigate to the Quests screen", when.tapID(ids.NAV_BAR("quests"), 2_000), async () => {
-              Then("I should still see the first level unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1), 3_000));
+              Then("I should still see my current level unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(856), 3_000));
             });
           });
         });
       });
     });
-    When("I tap on the first level", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1), 2_000), async () => {
+    When("I tap on my current level", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(856), 2_000), async () => {
       Then("I should see the Yunity Quest challenge", then.idVisible(ids.PATHWAYS_CHALLENGE_TITLE("Yunity Quest"), 2_000));
       Then("The Health challenge should still be open and available", then.idNotVisible(ids.PATHWAYS_CHALLENGE_COMPLETED, 2_000));
     });

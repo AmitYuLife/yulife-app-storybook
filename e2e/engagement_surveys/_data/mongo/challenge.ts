@@ -25,9 +25,9 @@ export const CHALLENGE_USER_10 = {
     actions: [],
     target: [],
     userId: customer.CUSTOMER_10.customer.data.customerId,
-    level: 1,
-    levelId: "YU_LEVEL_0001",
-    levelSlotId: "YU_LEVEL_0001_1",
+    level: 856,
+    levelId: "YU_LEVEL_0856",
+    levelSlotId: "YU_LEVEL_0856_1",
     levelSlotTemplateId: "SHORT_STROLL_001",
     subtype: "short stroll",
     isNewType: true,
@@ -36,14 +36,14 @@ export const CHALLENGE_USER_10 = {
     incomingData: {
       steps: 125,
     },
-    ...generateChallengeDates(moment().subtract(1, "hour")),
+    ...generateChallengeDates(moment().subtract(1, "day")),
     yuCoinAwarded: 60,
     milestoneLog: [
       {
         completionData: [],
         _id: generateRandomMongoId(),
         id: "YU_MILESTONE_SS0001_0",
-        completed: moment().subtract(1, "hour").toDate(),
+        completed: moment().subtract(1, "day").toDate(),
         data: {
           steps: 108,
           meditation: 0,
