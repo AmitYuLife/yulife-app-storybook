@@ -99,15 +99,29 @@ const SECOND_GALAXY_POSITIONS: IPlanetPositionConfig[] = [
   },
 ];
 
-export const getGalaxyPlanets = (
-  galaxyType: 1 | 2,
-  containerWidth: number,
-  containerHeight: number,
-  getPlanetState: (index: number, offset: number) => PLANET_STATE,
-  galaxyOffset: number,
-  avatar: ImageSourcePropType
-): Array<IPlanetProps & { key: string }> => {
-  const positions = galaxyType === 1 ? FIRST_GALAXY_POSITIONS : SECOND_GALAXY_POSITIONS;
+export enum GalaxyType {
+  FIRST = 1,
+  SECOND = 2,
+}
+
+interface IGetGalaxyPlanetsArgs {
+  galaxyType: GalaxyType;
+  containerWidth: number;
+  containerHeight: number;
+  getPlanetState: (index: number, offset: number) => PLANET_STATE;
+  galaxyOffset: number;
+  avatar: ImageSourcePropType;
+}
+
+export const getGalaxyPlanets = ({
+  galaxyType,
+  containerWidth,
+  containerHeight,
+  getPlanetState,
+  galaxyOffset,
+  avatar,
+}: IGetGalaxyPlanetsArgs): Array<IPlanetProps & { key: string }> => {
+  const positions = galaxyType === GalaxyType.FIRST ? FIRST_GALAXY_POSITIONS : SECOND_GALAXY_POSITIONS;
   return positions.map((config, i) => ({
     key: config.key,
     icon: config.icon,

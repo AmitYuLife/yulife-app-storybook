@@ -10,9 +10,8 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import EOTWPlanet, { PLANET_ASSETS, PLANET_STATE } from "./eotw-planet";
-import { PLANET_RADIUS } from "./eotw-planet-animation-config";
 import { SPACE_TRAVEL_SCREEN } from "@ids";
-import { getGalaxyPlanets } from "./eotw-planets.config";
+import { GalaxyType, getGalaxyPlanets } from "./eotw-planets.config";
 import { PLANETS_PER_GALAXY } from "./eotw.constants";
 
 const GALAXY_SCROLL_DURATION = 1000;
@@ -140,23 +139,52 @@ const EOTWSpaceTravel: FC<IProps> = memo(
     }, []);
 
     const nextGalaxyWidth = NEXT_GALAXY_ASPECT * contentHeight;
-    const currentGalaxyWidth = FIRST_GALAXY_ASPECT * contentHeight;
+    const currentGalaxyWidth =
+      (currentGalaxy === GalaxyType.FIRST ? FIRST_GALAXY_ASPECT : NEXT_GALAXY_ASPECT) * contentHeight;
 
     const currentGalaxyPlanets = useMemo(() => {
-      if (currentGalaxy === 1) {
-        return getGalaxyPlanets(1, currentGalaxyWidth, contentHeight, getPlanetState, 0, avatar);
+      if (currentGalaxy === GalaxyType.FIRST) {
+        return getGalaxyPlanets({
+          galaxyType: GalaxyType.FIRST,
+          containerWidth: currentGalaxyWidth,
+          containerHeight: contentHeight,
+          getPlanetState,
+          galaxyOffset: 0,
+          avatar,
+        });
       }
 
-      return getGalaxyPlanets(2, nextGalaxyWidth + PLANET_RADIUS, contentHeight, getPlanetState, 0, avatar);
+      return getGalaxyPlanets({
+        galaxyType: GalaxyType.SECOND,
+        containerWidth: nextGalaxyWidth,
+        containerHeight: contentHeight,
+        getPlanetState,
+        galaxyOffset: 0,
+        avatar,
+      });
     }, [currentGalaxy, currentGalaxyWidth, contentHeight, getPlanetState, nextGalaxyWidth, avatar]);
 
     const nextGalaxyPlanets = useMemo(() => {
       const nextGalaxy = currentGalaxy + 1;
       if (nextGalaxy % 2 === 0) {
-        return getGalaxyPlanets(2, nextGalaxyWidth, contentHeight, getPlanetState, 1, avatar);
+        return getGalaxyPlanets({
+          galaxyType: GalaxyType.SECOND,
+          containerWidth: nextGalaxyWidth,
+          containerHeight: contentHeight,
+          getPlanetState,
+          galaxyOffset: 1,
+          avatar,
+        });
       }
 
-      return getGalaxyPlanets(1, currentGalaxyWidth, contentHeight, getPlanetState, 1, avatar);
+      return getGalaxyPlanets({
+        galaxyType: GalaxyType.FIRST,
+        containerWidth: currentGalaxyWidth,
+        containerHeight: contentHeight,
+        getPlanetState,
+        galaxyOffset: 1,
+        avatar,
+      });
     }, [contentHeight, currentGalaxy, currentGalaxyWidth, getPlanetState, nextGalaxyWidth, avatar]);
 
     const getNextGalaxyPath = useCallback(() => {
