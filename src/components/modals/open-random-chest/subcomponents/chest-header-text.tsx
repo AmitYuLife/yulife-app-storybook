@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     gap: Style.adjust(4),
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: Style.adjust(32),
+    paddingVertical: Style.adjust(26),
   },
   header: {
     marginBottom: Style.adjust(8),

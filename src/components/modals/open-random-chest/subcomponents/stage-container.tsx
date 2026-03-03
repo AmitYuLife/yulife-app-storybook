@@ -5,15 +5,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Style } from "@styles";
 interface IStageContainerProps {
   children: ReactNode;
-  pt?: number;
 }
 
-const StageContainer = ({ children, pt }: IStageContainerProps) => {
+const StageContainer = ({ children }: IStageContainerProps) => {
   const { bottom } = useSafeAreaInsets();
 
   return (
     <Box
-      pt={pt}
       w="100%"
       h="100%"
       justifyContent="space-between"

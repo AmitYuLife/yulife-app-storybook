@@ -11,8 +11,7 @@ import { ChestStage, IPickStageProps } from "./open-random-chest.types";
 import GlowPickReward from "./subcomponents/stages/pick-stages/glow-pick-reward-stage";
 import { ChestStagingStage } from "./subcomponents/stages/chest-staging-stage";
 import ChestImagePreloader from "./subcomponents/chest-image-preloader";
-import { useSafeAreaViewOffset } from "../../../hooks/useSafeAreaViewOffset";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
 import { t } from "@locale";
 import { BUTTON_CLOSE } from "@ids";
 import { AppDataType } from "@redux/user/user.types";
@@ -235,13 +234,14 @@ const OpenRandomChestModal = ({
   ]);
 
   const backgroundSource = useMemo(() => ({ uri: backgroundImage }), [backgroundImage]);
-  const { safeAreaViewOffset } = useSafeAreaViewOffset();
+  const { bottom } = useSafeAreaInsets();
   const safeAreaInsets = useSafeAreaInsets();
+  const { height } = useSafeAreaFrame();
   const scrollStyles = useMemo(
     () => ({
-      minHeight: Style.DEVICE_HEIGHT - safeAreaViewOffset.y - Style.adjust(100),
+      minHeight: height - bottom,
     }),
-    [safeAreaViewOffset.y]
+    [height, bottom]
   );
   const closeStyles = useMemo(
     () => [styles.closeButton, { top: safeAreaInsets.top + Style.adjust(10) }],
