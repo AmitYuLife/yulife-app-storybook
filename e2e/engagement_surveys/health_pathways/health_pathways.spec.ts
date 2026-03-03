@@ -218,4 +218,16 @@ Feature("Health Pathways", async () => {
       Then("I should be on the smoking entry screen", then.idVisible(ids.TEXT_TEMPLATE("Start your quit-smoking journey!", "h2"), 3_000));
     });
   });
+
+  Scenario("Yesterday's completed pathway challenge appears in activity history", scenario.start, async () => {
+    Given("I am logged in as a user who completed a pathway challenge yesterday", given.loginAsUser(data.CUSTOMER_12.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see the menu icon", then.idVisible(ids.MENU_ICON, 5_000));
+    });
+    When("I tap the menu icon", when.tapID(ids.MENU_ICON, 2_000), async () => {
+      When("I tap Activity History", when.tapMenuItem("Activity History"), async () => {
+        Then("I should be on the Activity History screen", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 4_000));
+        Then("I should see the Yunity Quest entry in the additional rewards section", then.multipleTextVisible(["Yunity Quest", "90"], 4_000));
+      });
+    });
+  });
 });

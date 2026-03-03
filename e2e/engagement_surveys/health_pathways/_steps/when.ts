@@ -1,6 +1,9 @@
 import * as ids from "@ids";
 import { navigation } from "@utils";
+import { screens } from "@appScreens";
 export { authoriseFitkit, sendSteps } from "@socket";
+
+export const { tapMenuItem } = screens.menu;
 
 export const {
   tapText,
