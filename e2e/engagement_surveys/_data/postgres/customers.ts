@@ -185,9 +185,9 @@ export const CUSTOMER_10 = createCustomerRecords({
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
   userGameState: {
-    currentBalance: 260,
+    currentBalance: 25000,
     currentStreak: 1,
-    currentLevel: 1,
+    currentLevel: 856,
   },
   customerCoreSettings: [
     {
