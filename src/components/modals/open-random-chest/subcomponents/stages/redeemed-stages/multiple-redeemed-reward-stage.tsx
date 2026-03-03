@@ -11,6 +11,7 @@ import ChestAnimatedRaysBackground from "../../chest-animated-rays-background";
 import RedeemedStageFooter from "../../redeemed-stage-footer";
 import { DETOX_ENABLED } from "@services/socket";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { TOP_BAR } from "@styles";
 
 interface IRedeemedStageProps {
   onClose?: () => void;
@@ -23,9 +24,9 @@ const MultipleRedeemedRewardStage = ({ redeemedItems, onClose, awardedPrizeTypes
   const { top } = useSafeAreaInsets();
 
   return (
-    <StageContainer pt={top}>
+    <StageContainer>
       {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground />}
-      <Box mt={top} w="100%" testID={CLAIMED_REWARD_ITEMS(redeemedItems?.length)}>
+      <Box mt={top + TOP_BAR.HEIGHT} w="100%" testID={CLAIMED_REWARD_ITEMS(redeemedItems?.length)}>
         <ShowcaseStack>
           {redeemedItems?.map((item) => (
             <ClaimedRewardCard

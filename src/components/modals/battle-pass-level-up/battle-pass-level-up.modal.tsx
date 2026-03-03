@@ -10,9 +10,11 @@ import Logger from "@services/logging/logger";
 import { Style, StyleSheet } from "@styles";
 import * as Haptics from "expo-haptics";
 import { memo, useCallback, useEffect, useMemo } from "react";
-import { Dimensions, View } from "react-native";
+import { View } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import BlurredRaysWrapper, { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
+import BlurredRaysWrapper from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
+import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import { isAndroid } from "@utils";
 
 interface IBattlePassLevelUpModalProps {
   onClose: () => void;
@@ -20,7 +22,6 @@ interface IBattlePassLevelUpModalProps {
   onClaim?: (reward: MobileGameBattlePassReward) => VoidFunctionOrSduiActionPayload;
 }
 
-const { height: screenHeight } = Dimensions.get("screen");
 const ANIMATION_START_DELAY = 700;
 
 const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBattlePassLevelUpModalProps) => {
@@ -60,10 +61,15 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
   }, [handleSduiAction, onClose, reward.id, reward.title, track]);
 
   const imageWrapperStyles = useMemo(() => {
+    // rays height is Style.DEVICE_WIDTH
+    // rays top is 100
+    // rays wrapper top in blurred rays wrapper is 130
+    const raysCenterY = Style.adjust(100) + Style.DEVICE_WIDTH / 2 - Style.adjust(130);
     return [
       styles.imageWrapper,
       {
-        top: screenHeight / 2.2 - BLURRED_RAYS_Y_OFFSET / 1.9 - REWARD_IMAGE_SIZE / 2,
+        // REWARD_IMAGE_SIZE is 180
+        top: raysCenterY + 180 / 2,
       },
     ];
   }, []);
@@ -89,6 +95,7 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
       acceessibilityLabelTitle={t("screens.battle_pass.level_up.accessibility_title", { level: reward.position })}
       isLoading={reward.status !== GoalRewardStatus.Completed}
       onButtonPress={onButtonPress}
+      titlePaddingTop={isAndroid() ? TOP_BAR_WITH_PAD : 40}
     >
       <View style={imageWrapperStyles}>
         <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
