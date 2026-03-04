@@ -89,7 +89,7 @@
     "@yu-life/react-native-yu-health": "^1.4.5",
     "@yu-life/react-native-yu-watch": "1.1.1",
     "@yu-life/yulife-bdd-framework": "0.3.3",
-    "ajv": "^8.12.0",
+    "ajv": "^8.18.0",
     "apollo-cache-persist": "^0.1.1",
     "clevertap-react-native": "3.4.0",
     "customerio-expo-plugin": "2.0.1",
