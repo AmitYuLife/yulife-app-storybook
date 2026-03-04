@@ -12,6 +12,8 @@ module.exports = (data) => {
       const xcodeProject = xcode.project(projPath);
       xcodeProject.parseSync();
       xcodeProject.addFramework("WatchConnectivity.framework");
+
+      xcodeProject.addToBuildSettings("ASSETCATALOG_COMPILER_APPICON_NAME", "AppIcon");
       fs.writeFileSync(projPath, xcodeProject.writeSync());
 
       return config;
