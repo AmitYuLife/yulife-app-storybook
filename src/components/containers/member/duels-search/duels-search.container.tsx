@@ -106,6 +106,7 @@ function _DuelsSearchContainer() {
 
   const onPress = useCallback(
     async (opponentId: string, requestLocation: "search_list" | "recents") => {
+      Keyboard.dismiss();
       const existingDuel = validDuels(duels, userId).find(({ userId: duelistId }) => duelistId === opponentId);
 
       if (existingDuel) {
