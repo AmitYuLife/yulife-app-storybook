@@ -8,16 +8,12 @@ const keys = allKeys.filter((key) => !ignoreKeys.includes(key));
 
 const outputDir = "./allure-reports-all";
 
-// TODO: While we're a migrating to the Gitlab CI, we need to support both the old and new S3 bucket names
-// The new bucket is a generic reporting bucket that uses folder structure to separate reports (cypress/detox)
-const S3_BUCKET_NAME =
-  process.env.REPORT_S3_BUCKET_NAME || "yu-eu-west-2-develop-detox-static-origin";
-const S3_PREFIX = process.env.REPORT_S3_BUCKET_NAME && process.env.GITLAB_CI ? "detox/" : "";
+const S3_BUCKET_PATH = `${process.env.REPORT_S3_BUCKET_NAME}/detox`;
 
 // 1. fetch the last develop reports
 for (const key of keys) {
   console.log(`Syncing ${key}...`);
-  const reportCmd = `aws s3 sync s3://${S3_BUCKET_NAME}/${S3_PREFIX}reports/${key}/develop/allure-results ${outputDir}/${key} --no-progress --quiet`;
+  const reportCmd = `aws s3 sync s3://${S3_BUCKET_PATH}/reports/${key}/develop/allure-results ${outputDir}/${key} --no-progress --quiet`;
   console.log(reportCmd);
   execSync(reportCmd, { stdio: "inherit" });
 }
@@ -25,7 +21,7 @@ for (const key of keys) {
 // 2. Download history from the previous combined report
 console.log("Downloading history from previous combined report...");
 const resultsHistoryPath = `${outputDir}/history`;
-const previousHistoryCmd = `aws s3 sync s3://${S3_BUCKET_NAME}/${S3_PREFIX}reports/develop-summary/history ${resultsHistoryPath} --no-progress --quiet`;
+const previousHistoryCmd = `aws s3 sync s3://${S3_BUCKET_PATH}/reports/develop-summary/history ${resultsHistoryPath} --no-progress --quiet`;
 console.log(previousHistoryCmd);
 execSync(previousHistoryCmd, { stdio: "inherit" });
 
@@ -37,8 +33,9 @@ execSync(cmd, { stdio: "inherit" });
 
 // 4. Send it back up to S3 (only if running in Gitlab CI)
 if (process.env.GITLAB_CI) {
+  const targetKey = `${process.env.CI_COMMIT_BRANCH || "develop"}-summary`;
   execSync(
-    `aws s3 sync ${outputDir}/_all s3://${S3_BUCKET_NAME}/${S3_PREFIX}reports/develop-summary --no-progress --quiet`,
+    `aws s3 sync ${outputDir}/_all s3://${S3_BUCKET_PATH}/reports/${targetKey} --no-progress --quiet`,
     { stdio: "inherit" }
   );
 } else {
