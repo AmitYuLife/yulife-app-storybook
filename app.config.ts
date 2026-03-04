@@ -90,6 +90,7 @@ export default () => ({
       usesNonExemptEncryption: false,
     },
     infoPlist: {
+      CFBundleIconFiles: ["AppIcon"],
       UIBackgroundModes: ["audio", "remote-notification"],
       LSApplicationQueriesSchemes: ["http", "https", "mailto", "message", "ms-outlook", "googlegmail", "ymail"],
       WKCompanionAppBundleIdentifier: `${environmentConfig.app_package}.yuwatch`,
