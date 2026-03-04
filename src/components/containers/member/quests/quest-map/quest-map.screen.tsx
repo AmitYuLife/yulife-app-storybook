@@ -17,6 +17,7 @@ import QuestMapEpisode from "./quest-map-episode";
 import QuestMapEpisodeAccessibility from "./quest-map-episode-accessibility";
 import { getTopBarType } from "./quest-map-helpers";
 import { IQuestMapItem } from "./quest-map.interface";
+import { DETOX_ENABLED } from "@services/socket/socketClient";
 
 interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
@@ -43,6 +44,8 @@ const DECELERATION_RATE = Platform.select({
 const keyExtractor = (_item: IQuestMapItem): string => {
   return `${_item.episodeConfig.episodeKey}`;
 };
+
+const SCROLL_TO_LEVEL_DELAY = DETOX_ENABLED ? 5000 : 0;
 
 const QuestMapScreen = ({
   items,
@@ -127,6 +130,14 @@ const QuestMapScreen = ({
       flashlistRef.current?.scrollToOffset({ offset: snapOffsets[currentLevelEpisode], animated: false });
     }, info.elapsedTimeInMs);
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      flashlistRef.current?.scrollToOffset({ offset: snapOffsets[currentLevelEpisode], animated: false });
+    }, SCROLL_TO_LEVEL_DELAY);
+
+    return () => clearTimeout(timeout);
+  }, [snapOffsets, currentLevelEpisode]);
 
   return (
     <SafeAreaView style={styles.container} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}>
