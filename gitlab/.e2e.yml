@@ -394,6 +394,8 @@ combine-overnight-detox-reports:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_JOB == "overnight-detox-run"
       when: always
+    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.detox_test_type ]]" == "overnight"'
+      when: always
 
 detox-test-mr-reporter:
   extends:

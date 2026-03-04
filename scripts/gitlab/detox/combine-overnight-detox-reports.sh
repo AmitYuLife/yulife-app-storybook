@@ -38,7 +38,7 @@ PAYLOAD=$(cat <<EOF
       "fields": [
         {
           "title": "Results",
-          "value": "https://${REPORT_DNS_NAME}/detox/reports/develop-summary/index.html",
+          "value": "https://${REPORT_DNS_NAME}/detox/reports/${CI_COMMIT_BRANCH}-summary/index.html",
           "short": true
         }
       ],
@@ -46,7 +46,7 @@ PAYLOAD=$(cat <<EOF
         {
           "type": "button",
           "text": "View Results",
-          "url": "https://${REPORT_DNS_NAME}/detox/reports/develop-summary/index.html"
+          "url": "https://${REPORT_DNS_NAME}/detox/reports/${CI_COMMIT_BRANCH}-summary/index.html"
         }
       ]
     }
