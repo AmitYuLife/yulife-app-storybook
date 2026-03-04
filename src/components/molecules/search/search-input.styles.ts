@@ -17,6 +17,7 @@ export default StyleSheet.create({
   } as TextStyle,
   textInput: {
     height: 40,
+    paddingVertical: 0,
     borderWidth: 0,
     borderBottomWidth: 2,
     color: Colours.darkGray,
