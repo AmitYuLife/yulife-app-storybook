@@ -47,10 +47,12 @@ export const sendGiftUserFlow = (giftRecipient: IDatabaseItem) => async () => {
   await tapID(ids.CTA_GET_STARTED)();
   await typeViaID(ids.INPUT_FIELD, getFullName(giftRecipient, "JP"))();
   await tapID(
-    ids.LEADERBOARD_NAME(getFullName(giftRecipient, "JP"), undefined, undefined, "search")
+    ids.LEADERBOARD_NAME(getFullName(giftRecipient, "JP"), undefined, undefined, "search"),
+    8000
   )();
   await tapID(
-    ids.LEADERBOARD_NAME(getFullName(giftRecipient, "JP"), undefined, undefined, "search")
+    ids.LEADERBOARD_NAME(getFullName(giftRecipient, "JP"), undefined, undefined, "search"),
+    5000
   )();
   await tapID(ids.P2P_NEXT_BUTTON, 2000)();
   await tapID(

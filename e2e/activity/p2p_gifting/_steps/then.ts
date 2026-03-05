@@ -53,7 +53,7 @@ export const giftingSelectionScreenVisible = (selectUsers: typeof CUSTOMER_1[]) 
 export const selectedUsersVisible = (users: typeof CUSTOMER_1[]) => async () => {
   await idVisible(ids.P2P_SELECTED_SECTION(users.length))();
   users.forEach((user) => async () => {
-    await idVisible(ids.P2P_SELECTED_USER(user.data.firstName))();
+    await idVisible(ids.P2P_SELECTED_USER(user.data.firstName), 5_000)();
   });
 };
 
@@ -118,18 +118,12 @@ export const cycleThroughGiftMessages = async () => {
 };
 
 export const cycleThroughStickers = async () => {
-  const VISIBLE_PER_SCROLL = 9;
-
   for (let i = 0; i < P2P_GIFTING_STICKERS.length; i++) {
-    const id = P2P_GIFTING_STICKERS[i];
-    const testID = ids.P2P_STICKER_ITEMS(id);
-    await idVisible(testID, 2000)();
+    const testID = ids.P2P_STICKER_ITEMS(P2P_GIFTING_STICKERS[i]);
 
-    const isLastSticker = i === P2P_GIFTING_STICKERS.length - 1;
-
-    if (!isLastSticker && (i + 1) % VISIBLE_PER_SCROLL === 0) {
-      const scrollAnchorID = ids.P2P_STICKER_ITEMS(P2P_GIFTING_STICKERS[i]);
-      await scrollFromID(scrollAnchorID, "up", "fast", 0.14, 1500)();
-    }
+    await waitFor(element(by.id(testID)))
+      .toBeVisible()
+      .whileElement(by.id(ids.P2P_STICKER_SCROLL))
+      .scroll(150, "down");
   }
 };

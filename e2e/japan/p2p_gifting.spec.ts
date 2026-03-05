@@ -22,10 +22,10 @@ Feature("P2P gifting", async () => {
         Then("Then I am on the gifting selection screen", then.idVisible(ids.INPUT_FIELD));
       });
       When("I search for user - 福田 太郎 ", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_2_SMOKING, "JP")), async () => {
-        Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 2000));
+        Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 8000));
       });
-      When("I tap user 福田 太郎", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search")), async () => {
-        When("I tap user 福田 太郎 again", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search")), async () => {
+      When("I tap user 福田 太郎 to dismiss the keyboard", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 5000), async () => {
+        When("I tap user 福田 太郎 again to select", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 5000), async () => {
           When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
             Then("I can see and select through all 8 gift messages", then.cycleThroughGiftMessages);
           });

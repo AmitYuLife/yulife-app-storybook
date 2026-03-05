@@ -6,7 +6,7 @@ import { Colours, Style, StyleSheet } from "@styles";
 import { Navigation } from "@navigation/main";
 import { chunk } from "lodash";
 import { GiftingAsset } from "../context/gifting-manager.types";
-import { P2P_STICKER_ITEMS, P2P_STICKER_MODAL } from "@ids";
+import { P2P_STICKER_ITEMS, P2P_STICKER_MODAL, P2P_STICKER_SCROLL } from "@ids";
 
 type Props = {
   stickers: GiftingAsset[];
@@ -48,6 +48,7 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
       </Box>
       <Box ph={16} mt={24} overflow="hidden">
         <ScrollView
+          testID={P2P_STICKER_SCROLL}
           scrollEnabled={stickerChunks.length > 2}
           showsVerticalScrollIndicator={false}
           style={styles.scrollView}
