@@ -33,7 +33,7 @@ release-develop-to-uat:
       when: never
     - if: $CI_COMMIT_BRANCH == "develop"
 
-# This creates a tag for the release branch which triggers the prod pipeline on bitrise
+# This creates a tag for the release branch which triggers the prod pipeline
 release-production-build:
   extends: .generic-node-arm64
   stage: release
