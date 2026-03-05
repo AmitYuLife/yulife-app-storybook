@@ -37,7 +37,6 @@ export const P2P_GIFTING_STICKERS = [
   "rocket",
   "cookie",
   "snail",
-  "shooting-star",
   "rainbow",
   "lantern",
   "thumbs-up",

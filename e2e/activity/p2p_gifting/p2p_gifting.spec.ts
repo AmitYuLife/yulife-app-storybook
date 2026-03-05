@@ -105,7 +105,7 @@ Feature("P2P gifting - UK", async () => {
     });
   });
 
-  Scenario("I should be restricted from sending a gift to the same user after reaching the gifting limit, and I can see 18 selectable messages and 33 selectable stickers", scenario.start, async () => {
+  Scenario("I should be restricted from sending a gift to the same user after reaching the gifting limit, and I can see 18 selectable messages and 32 selectable stickers", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu"), 4000), async () => {
@@ -125,8 +125,10 @@ Feature("P2P gifting - UK", async () => {
     When("I search for a different user - Lynton Stock", when.replaceTextViaID(ids.INPUT_FIELD, data.CUSTOMER_50.data.firstName), async () => {
       Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_50), undefined, undefined, "search")));
     });
-    When("I select Lynton", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_50), undefined, undefined, "search")), async () => {
-      Then("I should see Lynton selected", then.selectedUsersVisible([data.CUSTOMER_50]));
+    When("I tap the text at the top of the screen to dismiss the keyboard", when.tapText("Who would you like to send this to?", 3000), async () => {
+      When("I select Lynton", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_50), undefined, undefined, "search"), 2000), async () => {
+        Then("I should see Lynton selected", then.selectedUsersVisible([data.CUSTOMER_50]));
+      });
     });
     When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
       Then("I should not see the soft landing intro screen for the second time", then.idNotVisible(ids.GIFTING_INTRO));
