@@ -47,7 +47,8 @@ function ChallengeDetailsScreen({
   onPressSetUp = null,
 }: IChallengeDetailsScreenProps) {
   const dispatch = useDispatch();
-  const { bottom } = useSafeAreaInsets();
+  const { bottom: safeAreaBottom } = useSafeAreaInsets();
+  const bottom = Math.max(safeAreaBottom, 16);
   const bonusInfoButtonRef = useRef<View>(null);
   const scrollY = useRef(new Animated.Value(0));
   const { yuniversalMap } = useSelector(getYuniversalProgress);
