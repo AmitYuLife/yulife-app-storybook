@@ -6,7 +6,7 @@ import { Image } from "react-native";
 
 const PathwaysTitle = () => {
   return (
-    <Box flexDirection="row" alignItems="center">
+    <Box flexDirection="row" alignItems="center" gap={4}>
       <TextTemplate type="b2" color={Colours.neutral.white}>
         {t("screens.pathways.powered_by_yunity")}
       </TextTemplate>
