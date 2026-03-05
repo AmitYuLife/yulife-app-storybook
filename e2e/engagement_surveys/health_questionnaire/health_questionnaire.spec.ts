@@ -26,7 +26,7 @@ Feature("Health questionnaires", async () => {
       Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
     });
     When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
-      Then("I should see the pre-selected server language is en-GB", then.languageSettingVisible("en"));
+      Then("I should see the pre-selected server language is en-GB", then.languageSettingVisible("en-GB"));
     });
     When("I tap the language options", when.tapText("Language", 3000, true), async () => {
       Then("I should be on the langauge selector screen", then.languageSelectorVisible);
@@ -221,6 +221,9 @@ Feature("Health questionnaires", async () => {
       Then("I should see day 1 marked as completed", then.pathwaysStreakDayCompleted(1));
     });
     When("I tap Continue after reflection completion", when.tapID(ids.PATHWAYS_REFLECTED_CONTINUE, 2_000), async () => {
+      Then("I should see the notifications reminder modal", then.idVisible(ids.GENERIC_SCREEN_HEADING("Stay on track with your reflections"), 5_000));
+    });
+    When("I tap to skip the reminder", when.tapID(ids.GENERIC_SCREEN_CTA("skip-text-view"), 4_000), async () => {
       Then("I should be back on the Pathways screen", then.onPathwaysScreen);
     });
     When("I tap to go back", when.tapID(ids.BACK_BUTTON, 3_000), async () => {
