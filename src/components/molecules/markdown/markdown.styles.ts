@@ -1,4 +1,5 @@
 import { StyleProp } from "react-native";
+import { MobileGameTheme } from "@graphql/__generated";
 import { Colours, Style, templateTextStyles } from "@styles";
 
 export interface IMarkdownStyle {
@@ -14,7 +15,7 @@ export interface IMarkdownStyle {
   link?: Record<string, string | number>;
 }
 
-export const getMarkdownStyles = (props: IMarkdownStyle) =>
+export const getMarkdownStyles = (props: IMarkdownStyle, theme?: MobileGameTheme) =>
   ({
     block: {
       marginBottom: Style.adjust(10),
@@ -73,7 +74,7 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
     link: {
       textDecorationLine: "underline",
       alignSelf: "flex-start",
-      color: Colours.primary.p600,
+      color: theme?.colors?.primary?.p600 ?? Colours.primary.p600,
       ...props?.link,
     },
     list: {

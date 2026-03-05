@@ -6,6 +6,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { TextTemplate } from "@atoms";
 import { CheckBoxType } from "./check-box-type";
 import { DETOX_ENABLED } from "@services/socket";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface ICheckBox {
   checked: boolean;
@@ -36,7 +37,7 @@ function CheckBox(props: ICheckBox) {
     testID,
     colour = Colours.neutral.n800,
     strokeColor = Colours.neutral.n400,
-    activeCheckboxFillColor = Colours.primary.p600,
+    activeCheckboxFillColor: activeCheckboxFillColorProp,
     checkboxType = "circular",
     shouldAlignTop = false,
     touchCheckboxOnly,
@@ -45,6 +46,10 @@ function CheckBox(props: ICheckBox) {
     textStyles = {},
     animated = false,
   } = props;
+
+  const { theme } = useTheme();
+
+  const activeCheckboxFillColor = activeCheckboxFillColorProp ?? theme.colors.primary.p600;
 
   const OuterWrapper = touchCheckboxOnly ? View : TouchableOpacityWithDelay;
   const CheckboxWrapper = touchCheckboxOnly ? TouchableOpacityWithDelay : View;

@@ -1,7 +1,8 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
-import { Colours, StyleSheet } from "@styles";
+import { StyleSheet } from "@styles";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import LinkButtonBase from "./link-button.base";
 import { DEFAULT_HEIGHT, buttonStyles } from "../button.styles";
 import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "../button.use-title";
@@ -21,6 +22,7 @@ type Props = ButtonTranslationProps<DefaultProps> | ButtonLabelProps<DefaultProp
 export const LinkButton = (props: Props) => {
   const { wrapperStyle, onPress, delay, disabled, underline, show = true } = props;
 
+  const { theme } = useTheme();
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
   const { title, testID } = useButtonTitle(props);
 
@@ -36,7 +38,7 @@ export const LinkButton = (props: Props) => {
         testID={testID}
         title={title}
         onPress={handlePress}
-        color={Colours.primary.p600}
+        color={theme.colors.primary.p600}
         delay={delay}
         underline={underline}
       />

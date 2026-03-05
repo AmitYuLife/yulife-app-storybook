@@ -1,4 +1,5 @@
 import { Box, Draggable } from "@atoms";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { Colours, Style, StyleSheet } from "@styles";
 import { memo, ReactNode, useCallback, useMemo, useState } from "react";
 import { LayoutChangeEvent, useWindowDimensions, View, ViewStyle } from "react-native";
@@ -33,6 +34,7 @@ type Props = {
 };
 
 const LikertScale = ({ children, handleWidth, handleHeight, value, onChange, options, labelColor }: Props) => {
+  const { theme } = useTheme();
   const left = useSharedValue(0);
   const { width: windowWidth } = useWindowDimensions();
 
@@ -111,7 +113,7 @@ const LikertScale = ({ children, handleWidth, handleHeight, value, onChange, opt
         bg={Colours.neutral.n100}
       >
         {Array.from({ length: CONFIG.POINTS }).map((_, pointIndex) => (
-          <Box key={pointIndex} bg={Colours.primary.p600} h={4} w={4} br={4} />
+          <Box key={pointIndex} bg={theme.colors.primary.p600} h={4} w={4} br={4} />
         ))}
       </Box>
       <Box position="absolute" top={0} left={0} right={0} testID={DRAGGABLE_SLIDER_POSITION(value)}>

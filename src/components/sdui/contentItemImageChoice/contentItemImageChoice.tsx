@@ -2,6 +2,7 @@ import React, { memo, useCallback, useMemo } from "react";
 import { View, ViewStyle } from "react-native";
 import { ContentItemImageChoiceFragment as GqlImageChoice } from "@graphql/__generated";
 import { Colours, Style, StyleSheet } from "@styles";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -36,10 +37,18 @@ const ContentItemImageChoiceBase = memo(
     selectedStyles,
     unselectedStyles,
   }: Props) => {
+    const { theme } = useTheme();
     const value = useMemo(() => serverValue || {}, [serverValue]);
 
     const rowStyles = mapServerStyles(rowStylesServer);
     const imageStyles = mapServerStyles(imageStylesServer);
+
+    const themedActiveWrapper = useMemo(
+      () => ({
+        borderColor: theme.colors.primary.p100,
+      }),
+      [theme]
+    );
 
     const handleValueChange = useCallback(
       (optionKey: string, optionValue: boolean) => {
@@ -89,7 +98,7 @@ const ContentItemImageChoiceBase = memo(
                 <TouchableOpacityWithDelay
                   key={optionKey}
                   activeOpacity={1}
-                  style={StyleSheet.flatten([styles.item, isChecked ? styles.activeWrapper : null])}
+                  style={StyleSheet.flatten([styles.item, isChecked ? themedActiveWrapper : null])}
                   onPress={() => handleValueChange(optionKey, !isChecked)}
                   delay={50}
                 >
@@ -163,9 +172,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: Style.adjust(8),
     marginBottom: Style.adjust(8),
-  } as ViewStyle,
-  activeWrapper: {
-    borderColor: Colours.primary.p100,
   } as ViewStyle,
   viewWrapper: {
     alignContent: "center",

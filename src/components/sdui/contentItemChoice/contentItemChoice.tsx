@@ -6,6 +6,7 @@ import {
   ContentItemChoiceFragment as GqlChoice,
   ContentItemConfirmCheckboxType,
 } from "@graphql/__generated";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { Style, templateTextStyles, TemplateTextType, StyleSheet } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { CheckBox } from "@molecules";
@@ -38,6 +39,7 @@ export const ContentItemChoiceBase = (props: Props) => {
     alignTop = false,
     selectedStyles,
   } = props;
+  const { theme } = useTheme();
   const value = useMemo(() => serverValue || {}, [serverValue]);
   const design = serverDesign ?? ContentItemChoiceDesign.Default;
   const [_, refreshState] = useState<number>();
@@ -120,6 +122,14 @@ export const ContentItemChoiceBase = (props: Props) => {
 
   const renderOptions = useMemo(() => (otherOption ? [...options, otherOption] : options), [options, otherOption]);
 
+  const themedCheckedRowStyles = useMemo(
+    () => ({
+      backgroundColor: theme.colors.primary.p20,
+      borderColor: theme.colors.primary.p60,
+    }),
+    [theme]
+  );
+
   const designStyles: typeof defaultDesignStyles =
     design === ContentItemChoiceDesign.Default ? defaultDesignStyles : ({} as never);
 
@@ -158,7 +168,7 @@ export const ContentItemChoiceBase = (props: Props) => {
               rowStyles={{
                 ...(alignTopCheckbox ? { alignItems: "flex-start", marginTop: 0 } : { alignItems: "center" }),
                 ...(designStyles.rowStyles || {}),
-                ...(isChecked ? designStyles.checkedRowStyles || {} : {}),
+                ...(isChecked ? themedCheckedRowStyles : {}),
                 ...serverRowStyles,
                 ...(isChecked ? serverSelectedStyles : {}),
               }}
@@ -281,10 +291,6 @@ const defaultDesignStyles = StyleSheet.create({
     paddingHorizontal: Style.adjust(24),
     paddingVertical: Style.adjust(16),
     marginBottom: Style.adjust(16),
-  },
-  checkedRowStyles: {
-    backgroundColor: "#FFF5FA",
-    borderColor: colours.primary.p60,
   },
   checkboxText: {
     display: "flex",
