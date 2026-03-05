@@ -1,24 +1,38 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { View, ViewStyle } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { Colours, StyleSheet } from "@styles";
 import { ITEM_HEIGHT } from "../scroll-picker.styles";
 
-export const Overlays = memo(() => (
-  <View style={styles.wrapper} pointerEvents="box-none">
-    <View pointerEvents="none" style={styles.highlighter} />
-    <LinearGradient
-      pointerEvents="none"
-      colors={[Colours.overlay.whiteSolid, Colours.overlay.whiteTransparent]}
-      style={[styles.whiteFade, styles.top]}
-    />
-    <LinearGradient
-      pointerEvents="none"
-      colors={[Colours.overlay.whiteTransparent, Colours.overlay.whiteSolid]}
-      style={[styles.whiteFade, styles.bottom]}
-    />
-  </View>
-));
+export const Overlays = memo(() => {
+  const { theme } = useTheme();
+
+  const highlighterStyle = useMemo(
+    () => ({
+      ...styles.highlighter,
+      borderColor: theme.colors.primary.p600,
+      backgroundColor: `${theme.colors.primary.p600}22`,
+    }),
+    [theme]
+  );
+
+  return (
+    <View style={styles.wrapper} pointerEvents="box-none">
+      <View pointerEvents="none" style={highlighterStyle} />
+      <LinearGradient
+        pointerEvents="none"
+        colors={[Colours.overlay.whiteSolid, Colours.overlay.whiteTransparent]}
+        style={[styles.whiteFade, styles.top]}
+      />
+      <LinearGradient
+        pointerEvents="none"
+        colors={[Colours.overlay.whiteTransparent, Colours.overlay.whiteSolid]}
+        style={[styles.whiteFade, styles.bottom]}
+      />
+    </View>
+  );
+});
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -40,8 +54,6 @@ const styles = StyleSheet.create({
   highlighter: {
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: Colours.primary.p600,
-    backgroundColor: "#E30D7622",
     height: ITEM_HEIGHT,
     width: "100%",
     position: "absolute",

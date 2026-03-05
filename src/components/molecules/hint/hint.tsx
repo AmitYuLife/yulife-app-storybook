@@ -1,5 +1,6 @@
 import { Image, TextTemplate } from "@atoms";
 import { HintIcon } from "@atoms/icon/hint-icon";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { Style, StyleSheet } from "@styles";
 import colours from "@styles/colours";
 import { memo, useCallback, useState, ReactNode } from "react";
@@ -24,6 +25,7 @@ interface IHintProps {
 const CHALLENGE_BACKGROUND_IMAGE_SIZE = Style.adjust(224);
 
 const Hint = ({ label, description, markdownDescription, image, onPress, variant = "default" }: IHintProps) => {
+  const { theme } = useTheme();
   const [isLoading, setIsLoading] = useState(!!image?.uri);
 
   const onLoad = useCallback(() => {
@@ -52,7 +54,7 @@ const Hint = ({ label, description, markdownDescription, image, onPress, variant
           </View>
           <View>
             {!markdownDescription ? null : (
-              <Markdown text={markdownDescription} markdownStyles={getMarkdownStyles(markdownStyles)} />
+              <Markdown text={markdownDescription} markdownStyles={getMarkdownStyles(markdownStyles, theme)} />
             )}
             {!description ? null : <TextTemplate type="l2">{description}</TextTemplate>}
           </View>

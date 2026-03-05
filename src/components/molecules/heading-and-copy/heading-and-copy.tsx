@@ -2,6 +2,7 @@ import React, { memo, useMemo } from "react";
 import { View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { Style, TemplateTextType, StyleSheet } from "@styles";
 import { getMarkdownStyles } from "../markdown/markdown.styles";
 import { parseJSON } from "@utils";
@@ -19,14 +20,15 @@ interface IProps {
 
 const HeadingAndCopy = (props: IProps) => {
   const { markdown, markdownContainerStyle, title, titleType = "h3", wrapperStyle, testID } = props;
+  const { theme } = useTheme();
   const titleMarginTop = !title ? {} : { marginTop: Style.adjust(30) };
 
   const safeMarkdownStyles = useMemo(() => {
     const { data, isValid } = parseJSON(props.markdownStyles);
     const safeData = isValid ? data : {};
 
-    return getMarkdownStyles(safeData);
-  }, [props.markdownStyles]);
+    return getMarkdownStyles(safeData, theme);
+  }, [props.markdownStyles, theme]);
 
   return (
     <View style={[styles.wrapper, titleMarginTop, wrapperStyle]} testID={testID || MARKDOWN(markdown)}>

@@ -3,6 +3,7 @@ import React, { createContext, useContext, useMemo } from "react";
 import { View, Image, StyleProp, ViewStyle, Linking } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 import getMarkdownStyles from "./markdown.styles";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { TEXT } from "@ids";
 
 import { StyleSheet } from "@styles";
@@ -24,8 +25,9 @@ interface IExtras {
 }
 
 const Markdown: React.FC<IProps> = ({ text, markdownStyles, containerStyle = {}, linkActions, testID }) => {
+  const { theme } = useTheme();
   const syntaxTree = useMemo(() => SimpleMarkdown.markdownToReact(text) as React.ReactElement[], [text]);
-  const styles = useMemo(() => StyleSheet.create(getMarkdownStyles(markdownStyles)), [markdownStyles]);
+  const styles = useMemo(() => StyleSheet.create(getMarkdownStyles(markdownStyles, theme)), [markdownStyles, theme]);
   const context = useMemo(() => ({ styles, linkActions }), [styles, linkActions]);
 
   return (

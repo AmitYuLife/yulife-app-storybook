@@ -3,6 +3,7 @@ import { Animated, TextStyle, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
 import { ITEM_HEIGHT } from "../scroll-picker.styles";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { Colours, StyleSheet } from "@styles";
 import { getActiveTextOpacityValue, getInactiveTextOpacityValue } from "../scroll-picker.animation";
 
@@ -42,6 +43,7 @@ export const ListItem = memo(({ scrollY, index, label }: ListItemProps) => (
 ));
 
 const ItemText = ({ children, opacity = new Animated.Value(1), active, testID }: Props) => {
+  const { theme } = useTheme();
   const wrapperStyle = active ? styles.itemLabelActiveWrapper : styles.itemWrapper;
 
   return (
@@ -53,7 +55,7 @@ const ItemText = ({ children, opacity = new Animated.Value(1), active, testID }:
         },
       ]}
     >
-      <TextTemplate type="h3" color={active ? Colours.primary.p600 : Colours.neutral.n700} testID={testID}>
+      <TextTemplate type="h3" color={active ? theme.colors.primary.p600 : Colours.neutral.n700} testID={testID}>
         {children}
       </TextTemplate>
     </Animated.View>

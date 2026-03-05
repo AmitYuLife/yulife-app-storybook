@@ -2,7 +2,7 @@ import React, { ComponentProps, useRef } from "react";
 import { Animated, TouchableWithoutFeedback, View, ViewStyle, TextStyle, GestureResponderEvent } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { Text } from "@atoms";
-import { Style, Colours, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { Pressable } from "@molecules";
 
 interface IProps {
@@ -76,7 +76,15 @@ function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress,
       accessibilityRole={"button"}
     >
       <Animated.View style={[styles.main, { height, opacity: fadeAnim }]} testID={`${testID}-text-view`}>
-        <Text bold={true} style={[styles.title, { color }, underline && styles.underline, disabledStyles]}>
+        <Text
+          bold={true}
+          style={[
+            styles.title,
+            { color },
+            underline && [styles.underline, { textDecorationColor: color }],
+            disabledStyles,
+          ]}
+        >
           {title}
         </Text>
       </Animated.View>
@@ -95,7 +103,6 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   underline: {
     textDecorationLine: "underline",
-    textDecorationColor: Colours.primary.p600,
   } as TextStyle,
   disabled: {
     opacity: 0.3,
