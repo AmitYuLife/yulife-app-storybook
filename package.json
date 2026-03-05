@@ -11,7 +11,6 @@
     "detox:build": "ENVFILE=.env.e2e RN_SRC_EXT=e2e.ts,e2e.tsx detox build -c ios.sim.debug",
     "detox:build:translations": "node ./scripts/generate-detox-localisation-file.js",
     "detox:run": "TS_NODE_PROJECT=./e2e/tsconfig.json ts-node ./e2e/run.ts",
-    "develop:workflow": "bitrise :workflow-editor",
     "env:config:local": "echo '# Base\n' > .env.local && cat .env >> .env.local && [ -f .env.local.overrides ] && echo '\n\n# Overrides\n' >> .env.local && cat .env.local.overrides >> .env.local || true",
     "translations:push": "yulife-tolgee-cli upload-full",
     "translations:configs": "ts-node ./scripts/translate-configs.ts",

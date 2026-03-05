@@ -3,29 +3,3 @@ include:
   - component: $CI_SERVER_FQDN/yu-life/infrastructure/yulife-devops-shared-config/mr-description-check@mr-description-check-1
     inputs:
       minimum_length: 20
-
-lint-bitrise:
-  tags:
-    # Bitrise CLI doesn't build binary for arm64
-    - linux_amd64
-  stage: quality
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/golang:1.17
-  allow_failure: true
-  variables:
-        GIT_DEPTH: 0 # disable shallow clone for 'git diff'
-  script:
-    # Install dependencies
-    - apt-get update && apt-get install -y git jq rsync
-    - echo "Installing Bitrise CLI..."
-    - curl -sL https://github.com/bitrise-io/bitrise/releases/latest/download/bitrise-$(uname -s)-$(uname -m) -o /usr/local/bin/bitrise
-    - chmod +x /usr/local/bin/bitrise
-    - echo "Installing Offline Workflow Editor..."
-    - bitrise setup
-    # Format bitrise using workflow editor
-    - ./scripts/format-bitrise.sh
-    # Fail the job if there are changes
-    - git diff --exit-code bitrise.yml || (echo "Changes detected in bitrise.yml, failing the job." && false)
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      changes:
-        - bitrise.yml
