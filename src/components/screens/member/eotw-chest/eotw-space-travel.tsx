@@ -29,7 +29,8 @@ interface IProps {
 }
 
 const BOTTOM_PADDING = 150;
-const TOP_PADDING = 80;
+const FIRST_GALAXY_TOP_PADDING = 150;
+const SECOND_GALAXY_TOP_PADDING = 80;
 const FIRST_GALAXY_ASPECT = 226 / 452;
 const NEXT_GALAXY_ASPECT = 203 / 573;
 
@@ -45,7 +46,8 @@ const EOTWSpaceTravel: FC<IProps> = memo(
     galaxyScroll = false,
     onGalaxyScrollComplete,
   }) => {
-    const contentHeight = useMemo(() => height - BOTTOM_PADDING - TOP_PADDING, [height]);
+    const topPadding = currentGalaxy === GalaxyType.FIRST ? FIRST_GALAXY_TOP_PADDING : SECOND_GALAXY_TOP_PADDING;
+    const contentHeight = useMemo(() => height - BOTTOM_PADDING - topPadding, [height, topPadding]);
     const scrollAnim = useSharedValue(0);
 
     const containerStyle = useMemo(
