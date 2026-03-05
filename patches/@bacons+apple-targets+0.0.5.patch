@@ -1,0 +1,267 @@
+diff --git a/node_modules/@bacons/apple-targets/build/withWidget.js b/node_modules/@bacons/apple-targets/build/withWidget.js
+index 0f7cec9..b719fc5 100644
+--- a/node_modules/@bacons/apple-targets/build/withWidget.js
++++ b/node_modules/@bacons/apple-targets/build/withWidget.js
+@@ -97,7 +97,10 @@ const withWidget = (config, props) => {
+         },
+     ]);
+     const targetName = (_c = props.name) !== null && _c !== void 0 ? _c : widget;
+-    const bundleId = config.ios.bundleIdentifier + "." + widget;
++    const mainAppBundleId = config.ios.bundleIdentifier;
++    const bundleId = props.bundleIdentifier?.startsWith(".")
++    ? mainAppBundleId + props.bundleIdentifier
++    : props.bundleIdentifier ?? `${mainAppBundleId}.${targetName}`;
+     (0, withXcodeChanges_1.withXcodeChanges)(config, {
+         name: targetName,
+         cwd: "../" +
+diff --git a/node_modules/@bacons/apple-targets/build/withXcodeChanges.js b/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
+index ef64d1b..e80f302 100644
+--- a/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
++++ b/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
+@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.withXcodeChanges = void 0;
+ const xcode_1 = require("@bacons/xcode");
++const json_1 = require("@bacons/xcode/json");
+ const fs_1 = __importDefault(require("fs"));
+ const glob_1 = require("glob");
+ const path_1 = __importDefault(require("path"));
+@@ -667,13 +668,56 @@ async function applyXcodeChanges(config, project, props) {
+     }
+     function syncMarketingVersions() {
+         const mainVersion = getMainMarketingVersion(project);
+-        // console.log('main marketing version:', mainVersion)
+         project.rootObject.props.targets.forEach((target) => {
+             if (xcode_1.PBXNativeTarget.is(target)) {
+                 target.setBuildSetting("MARKETING_VERSION", mainVersion);
+             }
+         });
+     }
++    function buildFileGroupHierarchy(files) {
++        const root = [];
++        function getOrCreateGroup(name, segment, group) {
++            const fullPath = path_1.default.join(magicCwd, name);
++            let newGroup = group.find((child) => child.props.isa === json_1.ISA.PBXGroup && child.props.path === fullPath);
++            if (!newGroup) {
++                newGroup = xcode_1.PBXGroup.create(project, {
++                    name: segment,
++                    path: fullPath,
++                    children: [],
++                });
++                group.push(newGroup);
++            }
++            return newGroup;
++        }
++        files.forEach((filePath) => {
++            const pathSegments = filePath.split(path_1.default.sep);
++            let currentLevel = root;
++            pathSegments.forEach((part, index) => {
++                const isRoot = part === ".";
++                const currentPath = pathSegments.slice(0, index + 1).join(path_1.default.sep);
++                currentLevel = isRoot ? currentLevel : getOrCreateGroup(currentPath, part, currentLevel).props.children;
++                const isFinalPart = index === pathSegments.length - 1;
++                if (swiftBuildFiles[filePath] && isFinalPart) {
++                    const filex = swiftBuildFiles[filePath];
++                    currentLevel.push(...filex);
++                }
++            });
++        });
++        return root;
++    }
++    function generateProjectGroups(project, structure, magicCwd) {
++        return structure.map((item) => {
++            if (item.props.isa === json_1.ISA.PBXGroup) {
++                // @ts-ignore
++                const childGroups = generateProjectGroups(project, item.props.children, path_1.default.join(magicCwd, item.props.name));
++                item.props.children = childGroups;
++                return item;
++            }
++            else if (item.props.isa === json_1.ISA.PBXBuildFile) {
++                return item.props.fileRef;
++            }
++        });
++    }
+     function configureTargetWithPreview(target) {
+         const assets = (0, glob_1.sync)("preview/*.xcassets", {
+             absolute: true,
+@@ -696,15 +740,12 @@ async function applyXcodeChanges(config, project, props) {
+             config.removeFromProject();
+         });
+         // Remove existing build configuration list
+-        targetToUpdate.props.buildConfigurationList
+-            .getReferrers()
+-            .forEach((ref) => {
++        targetToUpdate.props.buildConfigurationList.getReferrers().forEach((ref) => {
+             ref.removeReference(targetToUpdate.props.buildConfigurationList.uuid);
+         });
+         targetToUpdate.props.buildConfigurationList.removeFromProject();
+         // Create new build phases
+-        targetToUpdate.props.buildConfigurationList =
+-            createConfigurationListForType(project, props);
++        targetToUpdate.props.buildConfigurationList = createConfigurationListForType(project, props);
+         configureTargetWithEntitlements(targetToUpdate);
+         configureTargetWithPreview(targetToUpdate);
+         configureTargetWithKnownSettings(targetToUpdate);
+@@ -712,19 +753,26 @@ async function applyXcodeChanges(config, project, props) {
+         syncMarketingVersions();
+         return project;
+     }
+-    // Build Files
+-    // NOTE: Single-level only
+-    const swiftFiles = (0, glob_1.sync)("*.swift", {
++    const swiftBuildFiles = {};
++    (0, glob_1.sync)("**/*.swift", {
+         absolute: true,
+         cwd: magicCwd,
+-    }).map((file) => {
+-        return xcode_1.PBXBuildFile.create(project, {
++    }).forEach((file) => {
++        const fileDir = path_1.default.dirname(path_1.default.relative(magicCwd, file));
++        const pbxFile = xcode_1.PBXBuildFile.create(project, {
+             fileRef: xcode_1.PBXFileReference.create(project, {
+-                path: path_1.default.basename(file),
++                path: file,
+                 sourceTree: "<group>",
+             }),
+         });
++        if (!swiftBuildFiles[fileDir]) {
++            swiftBuildFiles[fileDir] = [];
++        }
++        swiftBuildFiles[fileDir].push(pbxFile);
++        return undefined;
+     });
++    const swiftStructure = buildFileGroupHierarchy(Object.keys(swiftBuildFiles));
++    const swiftGroups = generateProjectGroups(project, swiftStructure, magicCwd);
+     // NOTE: Single-level only
+     const intentFiles = (0, glob_1.sync)("*.intentdefinition", {
+         absolute: true,
+@@ -746,6 +794,7 @@ async function applyXcodeChanges(config, project, props) {
+         // "assets/*",
+         // NOTE: Single-level only
+         "*.xcassets",
++        "*.xcstrings",
+     ]
+         .map((glob) => (0, glob_1.sync)(glob, {
+         absolute: true,
+@@ -777,7 +826,46 @@ async function applyXcodeChanges(config, project, props) {
+                 }));
+             }
+             else if (stat.isFile()) {
++                const ASSET_TYPES = {
++                    ".js": "sourcecode.javascript",
++                    ".json": "text.json",
++                    ".html": "text.html",
++                    ".css": "text.css",
++                    ".dae": "text.xml.dae",
++                    ".png": "image.png",
++                };
++
++                const explicitFileType = ASSET_TYPES[path_1.default.extname(file)] || "text";
++
+                 resAssets.push(xcode_1.PBXBuildFile.create(project, {
++                    fileRef: xcode_1.PBXFileReference.create(project, {
++                        path: file,
++                        explicitFileType: explicitFileType,
++                        sourceTree: "<group>",
++                    }),
++                }));
++            }
++        });
++    }
++    const resFonts = [];
++    // TODO: Maybe just limit this to Safari?
++    if (fs_1.default.existsSync(path_1.default.join(magicCwd, "fonts"))) {
++        // get top-level directories in `fonts/` and append them to assetFiles as folder types
++        fs_1.default.readdirSync(path_1.default.join(magicCwd, "fonts")).forEach((file) => {
++            if (file === ".DS_Store")
++                return;
++            const stat = fs_1.default.statSync(path_1.default.join(magicCwd, "fonts", file));
++            if (stat.isDirectory()) {
++                resFonts.push(xcode_1.PBXBuildFile.create(project, {
++                    fileRef: xcode_1.PBXFileReference.create(project, {
++                        path: file,
++                        sourceTree: "<group>",
++                        lastKnownFileType: "folder",
++                    }),
++                }));
++            }
++            else if (stat.isFile()) {
++                resFonts.push(xcode_1.PBXBuildFile.create(project, {
+                     fileRef: xcode_1.PBXFileReference.create(project, {
+                         path: file,
+                         explicitFileType: file.endsWith(".js")
+@@ -786,8 +874,8 @@ async function applyXcodeChanges(config, project, props) {
+                                 ? "text.json"
+                                 : file.endsWith(".html")
+                                     ? "text.html"
+-                                    : file.endsWith(".css")
+-                                        ? "text.css"
++                                    : file.endsWith(".ttf")
++                                        ? "text.ttf"
+                                         : "text",
+                         sourceTree: "<group>",
+                     }),
+@@ -820,10 +908,10 @@ async function applyXcodeChanges(config, project, props) {
+     configureTargetWithKnownSettings(widgetTarget);
+     const entitlementFiles = configureTargetWithEntitlements(widgetTarget);
+     configureTargetWithPreview(widgetTarget);
+-    // CD0706062A2EBE2E009C1192
++
+     widgetTarget.createBuildPhase(xcode_1.PBXSourcesBuildPhase, {
+         files: [
+-            ...swiftFiles,
++            ...Object.values(swiftBuildFiles).flat(),
+             ...intentBuildFiles[0],
+             // ...entitlementFiles
+         ],
+@@ -836,7 +924,7 @@ async function applyXcodeChanges(config, project, props) {
+         files: props.frameworks.map((framework) => getOrCreateBuildFile(getFramework(project, framework))),
+     });
+     widgetTarget.createBuildPhase(xcode_1.PBXResourcesBuildPhase, {
+-        files: [...assetFiles, ...resAssets],
++        files: [...assetFiles, ...resAssets, ...resFonts],
+     });
+     const containerItemProxy = xcode_1.PBXContainerItemProxy.create(project, {
+         containerPortal: project.rootObject,
+@@ -899,22 +987,15 @@ async function applyXcodeChanges(config, project, props) {
+         path: props.cwd,
+         sourceTree: "<group>",
+         children: [
+-            // @ts-expect-error
+-            ...swiftFiles
+-                .map((buildFile) => buildFile.props.fileRef)
+-                .sort((a, b) => a.getDisplayName().localeCompare(b.getDisplayName())),
+-            // @ts-expect-error
++            ...swiftGroups,
+             ...intentFiles.sort((a, b) => a.getDisplayName().localeCompare(b.getDisplayName())),
+-            // @ts-expect-error
+             ...assetFiles
+                 .map((buildFile) => buildFile.props.fileRef)
+                 .sort((a, b) => a.getDisplayName().localeCompare(b.getDisplayName())),
+-            // @ts-expect-error
+             ...entitlementFiles
+                 .map((buildFile) => buildFile.props.fileRef)
+                 .sort((a, b) => a.getDisplayName().localeCompare(b.getDisplayName())),
+             // CD0706192A2EBE2F009C1192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+-            // @ts-expect-error
+             xcode_1.PBXFileReference.create(project, {
+                 path: "Info.plist",
+                 sourceTree: "<group>",
+@@ -943,6 +1024,17 @@ async function applyXcodeChanges(config, project, props) {
+                 .sort((a, b) => a.getDisplayName().localeCompare(b.getDisplayName())),
+         });
+     }
++    if (resFonts.length > 0) {
++        protectedGroup.createGroup({
++            name: "fonts",
++            path: "fonts",
++            sourceTree: "<group>",
++            // @ts-expect-error
++            children: resFonts
++                .map((buildFile) => buildFile.props.fileRef)
++                .sort((a, b) => a.getDisplayName().localeCompare(b.getDisplayName())),
++        });
++    }
+     applyDevelopmentTeamIdToTargets();
+     syncMarketingVersions();
+     return project;
