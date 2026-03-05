@@ -7,6 +7,65 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.1.0] - 2026-03-05
+
+### Features
+
+- Feature GS-2435: show modal reflection reminder notifications
+
+### Bugfixes
+
+- Bugfix GS-2484: Add a min 32 bottom padding
+- Bugfix GS-2464: Trigger scrolling on episode change (for unity)
+- Bugfix GS-2483: Duels search input text cutoff + keyboard issue
+- Bugfix GS-2356: padding mystery box
+- Bugfix GS-2476: Fix handle position on android
+- Bugfix GS-2461: EOTW yumoji pin
+- Bugfix GS-2472: topbar jump on shopfront/battlepass loading fix
+- Bugfix GS-2475: Fix time on the breathing exercise
+- Bugfix GS-2419: More client components theming
+- Bugfix GS-2474: Store location modal overextended
+- Bugfix GS-2472: Topbar too low shopfront single wrapper
+- Bugfix GS-2377: Sudoku staging screen
+- Bugfix GS-2449: Add elevation to unity
+- Bugfix CTE-361: fix bundler build
+- (grafted) Bugfix GS-2415: Permissions & connection setup paddings
+
+### Tasks
+
+- Task GS-2503: Watch fixes
+- Task DEVOPS-5143: Combine overnight reports on non develop branches
+- Task GS-2485: Fix watch app icon
+- Task GS-2462: fix EOTW planet alignment and refactor getGalaxyPlanets
+- Task DEVOPS-5166: Save on artifacts iOS build error logs in CI builds
+- Task ISA-4233: Purge item slots from PDP
+- (grafted) Task GS-2478: useTheme error policy
+- (grafted) Merge branch 'task/allow-doing-yunity-quest-when-no-challenges' into 'develop'
+- Task CTE-631: fix peer dep warnings
+- Task CTE-630: upgrade storybook
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore GS-2468: Create theme switcher debug
+
+### Extra
+
+- Fix GS-2462: increased top padding to EOTW map
+- Detox GS-2502: Reflection Reminder Modal
+- Fix GS-2477: added min bottom padding to start challenge button
+- Bump qs from 6.14.2 to 6.15.0
+- [Security] Bump ajv from 8.12.0 to 8.18.0
+- Bump axios from 1.13.5 to 1.13.6
+- [Security] Bump tar from 7.5.7 to 7.5.9
+- Detox GS-2163: Yunity Quest Activity History
+- Detox GS-2177: Carousel Health Challenge
+- Fix CTE-508 CTE-510: remove duplicate .png planet assets causing iOS archive failure
+- Detox GS-2478: Resolve offline screen for non uk regions
+- Detox GS-2473: SA Product Cards - Details
+- Detox GS-2467: Events Reward Screen
+
 ## [5.0.0] - 2026-02-26
 
 ### Features
