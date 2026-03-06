@@ -58,7 +58,6 @@ const GiftingMessageScreen = ({ options, selectedMessage, onSelect }: Props) => 
                       type="circular"
                       checked={selectedMessage?.id === option.id}
                       strokeColor={Colours.neutral.n400}
-                      activeCheckboxFillColor={Colours.primary.p600}
                     />
                   </Box>
                 </Box>

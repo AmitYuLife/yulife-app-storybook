@@ -9,6 +9,7 @@ import { Colours } from "@styles";
 import { SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH } from "@ids";
 import { t } from "@locale";
 import { noop } from "@utils";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type Props = Pick<
   INotificationsSectionItem,
@@ -27,33 +28,37 @@ const NotificationsItem: FC<Props> = ({
   alertTimestamp,
   testID,
   disabled,
-}) => (
-  <View style={[styles.wrapper, disabled ? styles.disabled : undefined]} testID={testID}>
-    {alertTimestamp ? <View style={styles.seperator} /> : null}
-    <View style={styles.container}>
-      <View style={styles.nameWrapper}>
-        <TextTemplate type="b2b" testID={SETTINGS_NAME(name)}>
-          {name}
-        </TextTemplate>
-        <TextTemplate type="l2" testID={SETTINGS_DESC(description)}>
-          {description}
-        </TextTemplate>
-      </View>
-      <Switch onPress={disabled ? noop : onSwitchPress} value={isActive} testID={SETTINGS_SWITCH(name, isActive)} />
-    </View>
-    {!alertTimestamp ? null : (
-      <>
-        <View style={styles.reminderTime}>
-          <TextTemplate type="b2b">{t("screens.settings.push_notifications.reminder_time")}</TextTemplate>
-        </View>
-        <TouchableOpacityWithDelay onPress={onTimePress ?? noop} style={styles.timer} disabled={!isActive}>
-          <TextTemplate type="b2" color={isActive ? Colours.primary.p600 : Colours.neutral.n800}>
-            {moment(alertTimestamp).format(t("format.time_short")) || ""}
+}) => {
+  const { theme } = useTheme();
+
+  return (
+    <View style={[styles.wrapper, disabled ? styles.disabled : undefined]} testID={testID}>
+      {alertTimestamp ? <View style={styles.seperator} /> : null}
+      <View style={styles.container}>
+        <View style={styles.nameWrapper}>
+          <TextTemplate type="b2b" testID={SETTINGS_NAME(name)}>
+            {name}
           </TextTemplate>
-        </TouchableOpacityWithDelay>
-      </>
-    )}
-  </View>
-);
+          <TextTemplate type="l2" testID={SETTINGS_DESC(description)}>
+            {description}
+          </TextTemplate>
+        </View>
+        <Switch onPress={disabled ? noop : onSwitchPress} value={isActive} testID={SETTINGS_SWITCH(name, isActive)} />
+      </View>
+      {!alertTimestamp ? null : (
+        <>
+          <View style={styles.reminderTime}>
+            <TextTemplate type="b2b">{t("screens.settings.push_notifications.reminder_time")}</TextTemplate>
+          </View>
+          <TouchableOpacityWithDelay onPress={onTimePress ?? noop} style={styles.timer} disabled={!isActive}>
+            <TextTemplate type="b2" color={isActive ? theme.colors.primary.p600 : Colours.neutral.n800}>
+              {moment(alertTimestamp).format(t("format.time_short")) || ""}
+            </TextTemplate>
+          </TouchableOpacityWithDelay>
+        </>
+      )}
+    </View>
+  );
+};
 
 export default NotificationsItem;

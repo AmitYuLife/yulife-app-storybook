@@ -10,6 +10,7 @@ import styles from "./item.styles";
 import ItemTitle from "./item-title";
 import { toCapitalLetter } from "@utils";
 import { t } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const formatDate = (timestamp: number) => {
   const toFormat = moment.unix(timestamp).local();
@@ -33,26 +34,34 @@ const ConnectionsItem: FC<IConnectionsSectionItem> = ({
   isLoading,
   onPress,
   onPressInfo,
-}) => (
-  <View style={[styles.wrapper, { flexDirection: "row" }]}>
-    <View style={styles.nameWrapper}>
-      <ItemTitle name={toCapitalLetter(name)} onPressInfo={onPressInfo} />
-      {isConnected ? (
-        !lastUpdated ? null : (
-          <TextTemplate type="l2">
-            {t("screens.settings.fitness_trackers.last_sync", { date: formatDate(lastUpdated) })}
+}) => {
+  const { theme } = useTheme();
+
+  return (
+    <View style={[styles.wrapper, { flexDirection: "row" }]}>
+      <View style={styles.nameWrapper}>
+        <ItemTitle name={toCapitalLetter(name)} onPressInfo={onPressInfo} />
+        {isConnected ? (
+          !lastUpdated ? null : (
+            <TextTemplate type="l2">
+              {t("screens.settings.fitness_trackers.last_sync", { date: formatDate(lastUpdated) })}
+            </TextTemplate>
+          )
+        ) : (
+          <TextTemplate type="l2" color={Colours.neutral.n400}>
+            {t("screens.settings.fitness_trackers.not_connected")}
           </TextTemplate>
-        )
-      ) : (
-        <TextTemplate type="l2" color={Colours.neutral.n400}>
-          {t("screens.settings.fitness_trackers.not_connected")}
-        </TextTemplate>
-      )}
+        )}
+      </View>
+      <View style={styles.switchWrapper}>
+        {isLoading ? (
+          <ActivityIndicator color={theme.colors.primary.p600} />
+        ) : (
+          <Switch onPress={onPress} value={isConnected} />
+        )}
+      </View>
     </View>
-    <View style={styles.switchWrapper}>
-      {isLoading ? <ActivityIndicator color={Colours.darkHotPink} /> : <Switch onPress={onPress} value={isConnected} />}
-    </View>
-  </View>
-);
+  );
+};
 
 export default ConnectionsItem;
