@@ -5,7 +5,7 @@ import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style, StyleSheet } from "@styles";
 import { ChipList, TouchableOpacityWithDelay } from "@components/molecules";
 import { Item } from "./flatlist-utils/types";
-import { initialWindowMetrics, useSafeAreaFrame } from "react-native-safe-area-context";
+import { useSafeAreaFrame } from "react-native-safe-area-context";
 
 interface IPicker {
   id: string;
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     borderRadius: 16,
     paddingHorizontal: Style.adjust(20),
-    paddingBottom: Style.adjust(18) + (initialWindowMetrics?.insets?.bottom ?? 0),
+    paddingBottom: Style.adjust(20),
     width: Style.DEVICE_WIDTH,
     justifyContent: "center",
     alignItems: "center",
