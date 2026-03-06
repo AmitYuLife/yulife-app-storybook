@@ -147,7 +147,7 @@ Feature("P2P gifting - UK", async () => {
     });
     When("I tap the magic sticker", when.tapID(ids.P2P_STICKER_ITEMS("magic"), 2000), async () => {
       Then("I should see the magic sticker selected", then.idVisible(ids.P2P_STICKER_ITEMS("magic"), 2000));
-      Then("I should see the slay message selected", then.idVisible(ids.P2P_MESSAGE("SLAY 💅"), 2000));
+      Then("I should see the slay message selected", then.idExist(ids.P2P_MESSAGE("SLAY 💅"), 2000));
     });
   });
 

@@ -6,7 +6,7 @@ const locale = process.env.TARGET_LOCALE || "en-GB";
 const translation = getTranslation(locale);
 import { CUSTOMER_1 } from "../../_data";
 import { P2P_GIFTING_AMOUNTS, P2P_MESSAGES, P2P_GIFTING_STICKERS } from "../_resources/constants";
-import { scrollFromID } from "./when";
+
 export { searchReferralVisible } from "../../leaderboard/_steps/then";
 export { leaderboardVisible, isOnInspectScreen } from "../../leaderboard/_steps/then";
 
@@ -108,11 +108,11 @@ export const onGiftingSuccessScreen = (recipients: number) => async () => {
 
 export const cycleThroughGiftMessages = async () => {
   for (let i = 0; i < P2P_MESSAGES.length; i++) {
-    const messageId = P2P_MESSAGES[i];
-    const testID = ids.P2P_MESSAGE(messageId);
+    const testID = ids.P2P_MESSAGE(P2P_MESSAGES[i]);
     await tapID(testID)();
-    if ((i + 1) % 6 === 0 && i !== P2P_MESSAGES.length - 1) {
-      await scrollFromID(testID, "up", "fast", 0.2)();
+    const remaining = P2P_MESSAGES.length - 1 - i;
+    if ((i + 1) % 4 === 0 && remaining > 3) {
+      await element(by.id(ids.P2P_MESSAGE_SCROLL)).scroll(250, "down", NaN, 0.3);
     }
   }
 };

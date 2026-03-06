@@ -1106,6 +1106,7 @@ export const P2P_STICKER_ITEMS = (id: string) => `P2P_STICKER_ITEMS_${id}`;
 export const P2P_STICKER = "P2P_STICKER";
 export const P2P_STICKER_MODAL = "P2P_STICKER_MODAL";
 export const P2P_STICKER_SCROLL = "P2P_STICKER_SCROLL";
+export const P2P_MESSAGE_SCROLL = "P2P_MESSAGE_SCROLL";
 export const P2P_SLIDER = "P2P_SLIDER";
 export const P2P_SLIDER_ITEM = (id: string) => `P2P_SLIDER_ITEM_${id}`;
 export const P2P_THANK_THEM_MESSAGE = "screens.gifting.thank_them";

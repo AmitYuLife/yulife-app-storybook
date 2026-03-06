@@ -5,6 +5,7 @@ import * as data from "../_data/index";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { screens } from "@appScreens";
+import { P2P_MESSAGES_JP } from "../_resources/constants";
 
 export const {
   scrollFromText,
@@ -55,10 +56,7 @@ export const sendGiftUserFlow = (giftRecipient: IDatabaseItem) => async () => {
     5000
   )();
   await tapID(ids.P2P_NEXT_BUTTON, 2000)();
-  await tapID(
-    ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.this_is_just_a_token_of_my_gratitude"),
-    2000
-  )();
+  await tapID(ids.P2P_MESSAGE(P2P_MESSAGES_JP[0]), 2000)();
   await tapID(ids.P2P_NEXT_BUTTON, 2000)();
   await tapID(ids.P2P_GIFTING_AMOUNT("10 YuCoin"), 2000)();
   await tapID(ids.P2P_NEXT_BUTTON, 2000)();
