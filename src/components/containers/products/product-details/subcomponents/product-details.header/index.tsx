@@ -42,7 +42,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
   return (
     <View>
       <View
-        style={[styles.wrapper, { backgroundColor: BACKGROUND_COLOR }, mappedServerStyle]}
+        style={[styles.wrapper, styles.heroWrapper, { backgroundColor: BACKGROUND_COLOR }, mappedServerStyle]}
         onLayout={handleHeaderLayout}
       >
         {!backgroundImage ? null : (
