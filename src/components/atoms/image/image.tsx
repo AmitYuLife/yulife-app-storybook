@@ -24,6 +24,7 @@ import { round } from "lodash";
 import { useBoxProps, useUserFeatures } from "@hooks";
 import { IBoxProps } from "@atoms/box/box.types";
 import { isRTL } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const PIXEL_FIX: number = 1;
 
@@ -187,9 +188,13 @@ export const Image = memo(
         opacity: height === 0 ? 0.1 : 1,
       };
     }, [disableNativeSizing, propHeight, propWidth, nativeSize, loadingHeight]);
+    const { theme: userTheme } = useTheme();
 
     const containerStyle = useMemo(() => [styles.wrapper, dimensions, style], [dimensions, style]);
-    const themeColor = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.primary.p600), [theme]);
+    const themeColor = useMemo(
+      () => (theme === "light" ? Colours.neutral.white : userTheme.colors.primary.p600),
+      [theme, userTheme.colors.primary.p600]
+    );
     const imageStyles = useMemo(() => [dimensions, imageStyle, { tintColor }], [dimensions, imageStyle, tintColor]);
 
     const loadingSpinner = useMemo(() => {

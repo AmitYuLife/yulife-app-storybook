@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { TextInput as Input, View, ViewStyle, TextStyle } from "react-native";
 import { Style, Colours, StyleSheet } from "@styles";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProps {
   value?: string;
@@ -27,13 +28,17 @@ function _MultilineTextInput(props: IProps) {
     error = false,
   } = props;
 
+  const { theme } = useTheme();
+
+  const wrapperFocused = useMemo(() => {
+    return {
+      borderColor: theme.colors.primary.p300,
+    };
+  }, [theme]);
+
   return (
     <View
-      style={StyleSheet.flatten([
-        styles.wrapper,
-        isFocused ? styles.wrapperFocused : {},
-        error ? styles.wrapperError : {},
-      ])}
+      style={StyleSheet.flatten([styles.wrapper, isFocused ? wrapperFocused : {}, error ? styles.wrapperError : {}])}
     >
       <Input
         allowFontScaling={false}
@@ -81,9 +86,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 16,
     paddingTop: 8,
-  } as ViewStyle,
-  wrapperFocused: {
-    borderColor: "#F664A4",
   } as ViewStyle,
   wrapperError: {
     borderColor: Colours.status.er300,

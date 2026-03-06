@@ -52,7 +52,6 @@ const GiftingYuCoinScreen = memo(({ options, selectedUsers, onSelect, selectedAm
                     type="circular"
                     checked={selectedAmount?.id === option.id}
                     strokeColor={Colours.neutral.n400}
-                    activeCheckboxFillColor={Colours.primary.p600}
                   />
                 </Box>
               </Box>

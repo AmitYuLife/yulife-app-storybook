@@ -142,7 +142,7 @@ const ViewAchievementModal = ({
           />
         </Box>
       )}
-      <GenericHeadingAbsolute onRightIconPress={onModalClose} />
+      <GenericHeadingAbsolute onRightIconPress={onModalClose} logo="yulife" />
       {!showAchievementPoints ? null : (
         <Box position="absolute" top={insets.top} left={16}>
           <AchievementPoints autoWidth={true} label={addCommasToNumber(points)} locked={status === "locked"} />

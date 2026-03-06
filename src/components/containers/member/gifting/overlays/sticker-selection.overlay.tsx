@@ -6,6 +6,7 @@ import { Colours, Style, StyleSheet } from "@styles";
 import { Navigation } from "@navigation/main";
 import { chunk } from "lodash";
 import { GiftingAsset } from "../context/gifting-manager.types";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import { P2P_STICKER_ITEMS, P2P_STICKER_MODAL, P2P_STICKER_SCROLL } from "@ids";
 
 type Props = {
@@ -27,6 +28,8 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
     },
     [selectSticker]
   );
+
+  const { theme } = useTheme();
 
   return (
     <Box
@@ -71,8 +74,8 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
                           h={104}
                           br={16}
                           borderWidth={1}
-                          borderColor={selected ? Colours.primary.p600 : Colours.neutral.n100}
-                          bg={selected ? Colours.primary.p50 : Colours.neutral.white}
+                          borderColor={selected ? theme.colors.primary.p600 : Colours.neutral.n100}
+                          bg={selected ? theme.colors.primary.p50 : Colours.neutral.white}
                           justifyContent="center"
                           alignItems="center"
                         >

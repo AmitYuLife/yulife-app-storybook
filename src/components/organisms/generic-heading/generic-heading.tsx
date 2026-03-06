@@ -5,9 +5,11 @@ import { Logo } from "./subcomponents/logo";
 import { BUTTON_CLOSE_HEADER, LEFT_HEADING_BUTTON } from "@ids";
 import GenericHeaderRightIcon from "./subcomponents/generic-header-right-icon";
 import GenericHeaderLeftIcon from "./subcomponents/generic-header-left-icon";
-import { Box, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { View } from "react-native";
+import { useTheme } from "@modules/themes/hooks/useTheme";
+import { Colours } from "@styles";
 
 function GenericHeading(props: IGenericHeadingProps) {
   const {
@@ -24,6 +26,8 @@ function GenericHeading(props: IGenericHeadingProps) {
     disabled,
     logoType,
   } = props;
+
+  const { theme } = useTheme();
 
   return (
     <Box style={styles.wrapper} pointerEvents="box-none">
@@ -48,7 +52,23 @@ function GenericHeading(props: IGenericHeadingProps) {
         style={styles.centerSection}
       >
         {!heading ? (
-          <Logo logo={logo} type={logoType} />
+          <Box
+            alignItems="center"
+            alignSelf="center"
+            flexDirection="row"
+            flexWrap="nowrap"
+            height="100%"
+            justifyContent="center"
+            gap={8}
+          >
+            {theme.assets.logo && logo === "yulife" ? (
+              <>
+                <Image source={{ uri: theme.assets.logo.uri }} width={26} height={26} resizeMode="contain" />
+                <Box w={1} h={26} bg={Colours.neutral.n300} />
+              </>
+            ) : null}
+            <Logo logo={logo} type={logoType} />
+          </Box>
         ) : typeof heading === "string" ? (
           <Box style={styles.centerTextWrapper}>
             <TextTemplate numberOfLines={1} type="b1b" color={color} accessibilityLabel={heading}>
