@@ -2,6 +2,7 @@ import * as ids from "@ids";
 import { expect } from "detox";
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
+import { P2P_MESSAGES_JP } from "../_resources/constants";
 
 export {
   smokingTileVisible,
@@ -45,20 +46,11 @@ export const wellbeingServiceVisible = async () => {
 };
 
 export const cycleThroughGiftMessages = async () => {
-  await tapID(
-    ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.this_is_just_a_token_of_my_gratitude")
-  )();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.thank_you_as_always"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.youve_done_well"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.please_take_a_break"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.lets_do_our_best_today_too"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.keep_it_up"))();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.youve_helped_me_so_much"))();
-  await scrollFromID(
-    ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.youve_helped_me_so_much"),
-    "up",
-    "fast",
-    0.2
-  )();
-  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.happy_birthday"))();
+  for (let i = 0; i < P2P_MESSAGES_JP.length; i++) {
+    const testID = ids.P2P_MESSAGE(P2P_MESSAGES_JP[i]);
+    await tapID(testID)();
+    if ((i + 1) % 6 === 0 && i !== P2P_MESSAGES_JP.length - 1) {
+      await element(by.id(ids.P2P_MESSAGE_SCROLL)).scroll(300, "down", NaN, 0.3);
+    }
+  }
 };

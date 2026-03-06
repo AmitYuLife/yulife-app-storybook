@@ -6,7 +6,7 @@ import { GenericHeadingPad } from "@organisms";
 import { Colours, Style, StyleSheet } from "@styles";
 import { GiftingChoice } from "../context/gifting-manager.types";
 import { GiftingManagerContext } from "../context/gifting-manager.context";
-import { P2P_MESSAGE } from "@ids";
+import { P2P_MESSAGE, P2P_MESSAGE_SCROLL } from "@ids";
 
 type Props = {
   options: Array<GiftingChoice>;
@@ -32,11 +32,12 @@ const GiftingMessageScreen = ({ options, selectedMessage, onSelect }: Props) => 
         ))}
       </Box>
       <Box flex={1} mt={24}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView testID={P2P_MESSAGE_SCROLL} showsVerticalScrollIndicator={false}>
           {options.map((option) => {
             return (
               <Pressable key={option.id} onPress={() => onSelect(option)}>
                 <Box
+                  testID={P2P_MESSAGE(option.label)}
                   justifyContent="center"
                   alignItems="center"
                   mh={16}
@@ -48,7 +49,6 @@ const GiftingMessageScreen = ({ options, selectedMessage, onSelect }: Props) => 
                   pv={12}
                   pl={24}
                   pr={12}
-                  testID={P2P_MESSAGE(option.id)}
                 >
                   <Box flex={1}>
                     <TextTemplate type="b2">{option.label}</TextTemplate>
