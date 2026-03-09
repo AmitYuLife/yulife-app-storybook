@@ -112,8 +112,10 @@ Feature("As a user I can navigate through member routes correctly", async () => 
   });
 
   Scenario("I can talk to yulife via intercom", scenario.start, async () => {
-    Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+    Given("Notifications permission is denied", given.denyNotifications, async () => {
+      Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
+        Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+      });
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
       Then("I should see the menu items", then.menuItemsVisible("enhanced"));
@@ -127,8 +129,10 @@ Feature("As a user I can navigate through member routes correctly", async () => 
   });
 
   Scenario("I can open a support request if my supportLevel is basic", scenario.start, async () => {
-    Given("I login as a user", given.loginAsUser(data.CUSTOMER_13, data.AUTH_13), async () => {
-      Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+    Given("Notifications permission is denied", given.denyNotifications, async () => {
+      Given("I login as a user", given.loginAsUser(data.CUSTOMER_13, data.AUTH_13), async () => {
+        Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+      });
     });
     When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
       Then("I should see the menu items", then.menuItemsVisible("basic"));
@@ -233,7 +237,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500));
       });
     });
-    When("I scroll down", when.scrollUntilTextVisible(ids.SETTINGS_SCREEN_SCROLL, t("Fitness trackers"), "down"), async () => {
+    When("I scroll down", when.scrollUntilTextVisible(ids.SETTINGS_SCREEN_SCROLL, "Fitness trackers", "down"), async () => {
       Then("I should see the right settings details", then.permissionsActivityRightVisible);
     });
     When("I tap permissions settings", when.tapIDAtIndex(ids.ARROW_BUTTON, 1, 4000), async () => {
