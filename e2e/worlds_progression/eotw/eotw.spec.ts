@@ -6,6 +6,7 @@ import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
 import { weeklyQuestsTimeRemaining } from "@navigation";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("End of the world/Yuniverse", async () => {
   Scenario("I complete level 200, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
@@ -572,6 +573,43 @@ Feature("End of the world/Yuniverse", async () => {
       When("I go to the Yu screen", when.tapID(ids.NAV_BAR("yu"), 2000), async () => {
         Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "El Lunar", "Yuniversal", "II", true));
       });
+    });
+  });
+
+  Scenario("I can complete the last Yuniversal level after level 1400 and transition to a new galaxy", scenario.start, () => {
+    Given("I login as a user at Yuniversal level 7 after level 1400", given.logInAndGoToTab("yucoin", data.CUSTOMER_97.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should see 4 challenges available", then.textVisible("Take a challenge (4 left today)", 4000));
+    });
+    When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 4000), async () => {
+      Then("I should be on the Yuniverse map at level 7", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(7)));
+    });
+    When("I tap the last Yuniversal level", when.tapYuniverseLevelForFirstTime(7, 187, 263, 180), async () => {
+      Then("I should receive the celestial chest", then.celestialChestEarned);
+    });
+    When("I open the chest", when.tapText("Open the chest", 4000), async () => {
+      Then("I should see the celestial chest rewards", then.celestialChestAwardsVisible(data.CUSTOMER_97.users));
+    });
+    When("I claim the rewards", when.tapText("Claim rewards", 4000), async () => {
+      Then("I am on the space travel screen", then.idVisible(ids.SPACE_TRAVEL_SCREEN));
+      Then("I should see all completed planets from galaxy 1", then.planetsVisible(["EARTH", "RED", "BRIGHT", "ORANGE", "PURPLE", "RING", "LUNAR"]));
+    });
+    When("I tap next galaxy to reveal the new galaxy", when.tapText("Next galaxy", 3000), async () => {
+      When("I wait for the galaxy scroll animation", when.wait(3000), async () => {
+        Then("I should see the Travel button", then.textVisible("Travel"));
+      });
+    });
+    When("I tap travel", when.tapText("Travel"), async () => {
+      When("I wait for the travel animation", when.wait(7000), async () => {
+        When("I tap a new beginning", when.tapText("A new beginning"), async () => {
+          Then("I should be on the YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
+        });
+      });
+    });
+    When("I go to the Yu screen", when.tapID(ids.NAV_BAR("yu")), async () => {
+      Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Nova Galaxy", "Forest", "1401", false));
+    });
+    When("I go to the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
+      Then("I should see level 1401 unlocked on the new planet", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1401)));
     });
   });
 });
