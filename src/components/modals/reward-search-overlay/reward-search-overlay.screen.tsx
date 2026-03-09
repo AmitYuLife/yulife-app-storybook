@@ -10,7 +10,6 @@ import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards
 import RewardSearchHeader from "./subcomponents/reward-search-header";
 import { t } from "@locale";
 import { REWARD_SEARCH_NO_RESULT } from "@ids";
-import { Modal } from "react-native";
 
 interface IRewardSearchOverlayProps {
   onClose: () => void;
@@ -52,7 +51,7 @@ const RewardSearchOverlay = ({
   );
 
   return (
-    <Modal transparent={true}>
+    <Box style={StyleSheet.absoluteFillObject}>
       <Box h="100%" w="100%" position="absolute" bg="white">
         <GenericHeadingPad />
         <Box pt={8} pb={10}>
@@ -114,7 +113,7 @@ const RewardSearchOverlay = ({
           </>
         ) : null}
       </Box>
-    </Modal>
+    </Box>
   );
 };
 
