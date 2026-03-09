@@ -2,8 +2,10 @@ import {
   generateRandomMongoId,
   IDatabaseItem,
   generateRandomInbox,
+  createCustomerRecords,
 } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
+import { BUSINESS_ACCOUNT_1 } from "./business";
 
 const type = "postgres";
 const modelName = "customer";
@@ -283,3 +285,31 @@ export const CUSTOMER_96 = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_97 = createCustomerRecords({
+  archived: false,
+  firstName: "Nova",
+  lastName: "Galaxy",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      archived: false,
+      employmentStartDate: moment().subtract(8, "months").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  userInfo: {
+    earnRate: 10,
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+  userGameState: {
+    currentBalance: 20000,
+    currentStreak: 0,
+    currentLevel: 1401,
+    yuniversalMap: 7,
+    yuniversalLevel: 7,
+  },
+});
