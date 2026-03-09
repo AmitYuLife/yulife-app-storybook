@@ -12,6 +12,7 @@ export const rewardsUnlock: DeepLinkHandler = {
         name: ROUTES.rewardsUnlock,
         passProps: {
           battlePassId: customParams.battlePassId,
+          passType: customParams.passType,
           showNavigation: true,
         },
       },

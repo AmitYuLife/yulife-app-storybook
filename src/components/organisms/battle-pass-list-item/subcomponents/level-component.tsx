@@ -15,7 +15,11 @@ export const LevelComponent = memo((props: Props) => {
   }
 
   if (props.rewardLevelComponent) {
-    return props.rewardLevelComponent;
+    return (
+      <Box position="absolute" top={9} right={8}>
+        {props.rewardLevelComponent}
+      </Box>
+    );
   }
 
   return (

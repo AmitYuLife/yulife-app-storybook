@@ -1,5 +1,5 @@
-query GetMobileUnlockableBattlePassVouchers {
-  getMobileUnlockableBattlePassVouchers {
+query GetMobileUnlockableBattlePassVouchers($passType: String) {
+  getMobileUnlockableBattlePassVouchers(passType: $passType) {
     header {
       title
       heading
@@ -9,6 +9,20 @@ query GetMobileUnlockableBattlePassVouchers {
           ...RemoteImage
         }
         color
+        passBackground {
+          backgroundImage {
+            ...RemoteImage
+          }
+          foregroundImage {
+            ...RemoteImage
+          }
+          color
+          gradient {
+            colors
+            stops
+            angle
+          }
+        }
       }
     }
     games {

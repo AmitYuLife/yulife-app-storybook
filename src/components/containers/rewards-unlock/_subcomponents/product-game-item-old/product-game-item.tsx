@@ -1,10 +1,12 @@
-import { Box, Image, TextTemplate } from "@atoms";
+import { Box, Image } from "@atoms";
 import { GlowStarsIcon } from "@atoms/icon/glow-stars";
 import { ContentItemWrapper } from "@components/sdui";
 import { BattlePassList } from "@organisms";
 import { Colours, Style, StyleSheet } from "@styles";
 import { ComponentProps, memo } from "react";
-import ProductGameItemProgress from "./progress";
+import { ProductGameItemProgress } from "./progress";
+import { ImageOverlay } from "./image-overlay";
+import { Header } from "./header";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { useNavigation } from "@navigation/navigation.context";
@@ -13,7 +15,10 @@ import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pas
 
 type Props = {
   id?: string;
-  index?: number;
+  title: string;
+  icon?: {
+    uri?: string;
+  };
   progress?: {
     current: number;
     max: number;
@@ -24,23 +29,47 @@ type Props = {
   info?: ComponentProps<typeof ContentItemWrapper>;
 };
 
-const ProductGameItem = ({ index, progress, rewards, info }: Props) => {
+export const ProductGameItem = memo(({ title, icon, progress, rewards, info }: Props) => {
   const { componentId } = useNavigation();
   const { activeListRef, scrollToReward } = useScrollToItem<IBattlePassListItem>({ items: rewards });
 
   return (
-    <Box pt={index ? 40 : 0}>
-      <BattlePassList
-        ref={activeListRef}
-        battlePassType="unlock"
-        items={rewards.map(mapRewardItemToBattlePassListItem(componentId))}
-        onLoad={scrollToReward}
-        contentContainerStyle={styles.padding}
-      />
-      {!progress?.max ? null : <ProductGameItemProgress progress={progress} info={info} />}
+    <Box
+      key={title}
+      borderTopLeftRadius={8}
+      borderTopRightRadius={8}
+      borderBottomLeftRadius={8}
+      borderBottomRightRadius={8}
+      ml={16}
+      mr={16}
+      mt={24}
+      bg={Colours.neutral.white}
+      pt={16}
+      pb={16}
+      borderWidth={1}
+      borderColor={Colours.neutral.n20}
+    >
+      <Header title={title} icon={icon} info={info} />
+      <Box mt={16}>
+        <BattlePassList
+          ref={activeListRef}
+          battlePassType="unlock"
+          items={rewards.map(mapRewardItemToBattlePassListItem(componentId))}
+          onLoad={scrollToReward}
+          contentContainerStyle={styles.padding}
+        />
+      </Box>
+      {!progress?.max ? null : (
+        <ProductGameItemProgress
+          current={progress.current}
+          max={progress.max}
+          title={progress.title}
+          info={progress.info}
+        />
+      )}
     </Box>
   );
-};
+});
 
 function goToRewardDetails({ componentId, rewardId }: { componentId: string; rewardId: string }) {
   Navigation.push(componentId, {
@@ -57,12 +86,14 @@ function goToRewardDetails({ componentId, rewardId }: { componentId: string; rew
 }
 
 function mapRewardItemToBattlePassListItem(componentId: string) {
-  return function (gameRewardItem: Props["rewards"][number], index: number) {
+  return function (gameRewardItem: Props["rewards"][number]) {
     const isClaimed = gameRewardItem.status === "claimed";
 
     return {
       ...gameRewardItem,
       ctaTextColour: gameRewardItem.backgroundColour,
+      imageOverlay:
+        gameRewardItem.status === "pending" ? <ImageOverlay backgroundColor={gameRewardItem.backgroundColour} /> : null,
       background: isClaimed ? (
         <Box opacity={0.5}>
           <GlowStarsIcon />
@@ -70,7 +101,10 @@ function mapRewardItemToBattlePassListItem(componentId: string) {
       ) : null,
       onContainerPress:
         gameRewardItem.onContainerPress ||
-        (isClaimed ? () => goToRewardDetails({ componentId, rewardId: gameRewardItem.rewardId }) : undefined),
+        (isClaimed
+          ? // defaults to going to reward details for goal_products
+            () => goToRewardDetails({ componentId, rewardId: gameRewardItem.rewardId })
+          : undefined),
       overlayIcon: gameRewardItem.icon,
       modalRewardImageComponent: (
         <Box position="absolute">
@@ -79,20 +113,7 @@ function mapRewardItemToBattlePassListItem(componentId: string) {
       ),
       detailsTitle: gameRewardItem.detailsTitle,
       tickColour: gameRewardItem.tickColour,
-      rewardLevelComponent: (
-        <Box
-          br={100}
-          width={24}
-          height={24}
-          alignItems="center"
-          justifyContent="center"
-          bg={gameRewardItem.tickColour || "#956AFF"}
-        >
-          <TextTemplate type="l1b" color={Colours.neutral.white}>
-            {index + 1}
-          </TextTemplate>
-        </Box>
-      ),
+      rewardLevelComponent: <Box position="absolute" />,
       icon: {
         ...gameRewardItem.icon,
         height: 58,
@@ -113,5 +134,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(16),
   },
 });
-
-export default memo(ProductGameItem);

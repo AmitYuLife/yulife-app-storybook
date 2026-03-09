@@ -1,5 +1,5 @@
 import BattlePassContainer from "@components/containers/battle-pass/battle-pass.container";
-import RewardsUnlockContainer from "@components/containers/rewards-unlock/rewards-unlock.container";
+import RewardsUnlockContainer from "@components/containers/rewards-unlock/rewards-unlock-wrapper.container";
 import RewardsUnavailableScreen from "@components/screens/member/rewards/unavailable/rewards-unavailable.screen";
 import { useUserFeatures } from "@hooks";
 import { NOTIF_CENTRE } from "@ids";

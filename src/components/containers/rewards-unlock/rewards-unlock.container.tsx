@@ -1,74 +1,50 @@
-import { memo, useCallback, useMemo } from "react";
-import { ActivityIndicator, ScrollView, useWindowDimensions } from "react-native";
-import { Box, Image, TextTemplate } from "@atoms";
-import { Style, StyleSheet } from "@styles";
+import { memo, useCallback, useState } from "react";
+import {
+  ActivityIndicator,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ScrollView,
+  useWindowDimensions,
+} from "react-native";
+import { Box, Image } from "@atoms";
+import { StyleSheet } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
-import { gql, MobileGameBattlePassReward } from "@graphql/__generated";
 import { ContentItemWrapper } from "@components/sdui";
-import { ProductGames } from "./_subcomponents/product-games";
+import ProductGames from "./_subcomponents/product-games";
 import { FutureGame } from "./_subcomponents/future-game";
-import { useQueryOnScreenSeen } from "@hooks";
-import { useNavigation } from "@navigation/navigation.context";
 import RewardsUnlockEmpty from "@organisms/rewards-unlock-empty/rewards-unlock-empty";
-import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
+import { Rays, TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Navigation } from "@navigation/main";
 import NoStoreWalletButton from "@components/screens/member/rewards/list/subcomponents/no-store-wallet-button/no-store-wallet-button";
-import { useMutation } from "@apollo/client";
 import { REWARDS_UNLOCK_SCROLL } from "@ids";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import RewardPassLottieStars from "@organisms/reward-pass/subcomponents/reward-pass-lottie-stars/reward-pass-lottie-stars";
+import { DETOX_ENABLED } from "@services/socket";
+import useRewardsUnlock from "./use-rewards-unlock";
 
 interface RewardsUnlockContainerProps {
   showNavigation?: boolean;
   onPressWallet?: () => void;
   isInnerScreen?: boolean;
+  passType?: string;
 }
 
-// TODO: Move UI to a screen..
 const RewardsUnlockContainer = ({
   showNavigation = false,
   isInnerScreen,
   onPressWallet,
+  passType,
 }: RewardsUnlockContainerProps) => {
-  const { componentId } = useNavigation();
-  const { height } = useWindowDimensions();
-  const [refetchUnlockables, { data: queryResult }] = useQueryOnScreenSeen(
-    gql("GetMobileUnlockableBattlePassVouchersDocument"),
-    componentId
-  );
+  const { componentId, data, games, isEmpty } = useRewardsUnlock(passType);
+  const { height, width } = useWindowDimensions();
 
-  const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
-    onCompleted: () => refetchUnlockables().catch(),
-  });
+  const [showTopBar, setShowTopBar] = useState(false);
 
-  const getClaimRewardCallback = useCallback(
-    (reward: MobileGameBattlePassReward, participationId: string) => {
-      if (reward.onPress) {
-        return reward.onPress;
-      }
-
-      return async () => {
-        try {
-          const result = await claimMobileGameBattlePassRewards({
-            variables: { rewardIds: [reward.id], participationId },
-          });
-
-          return result;
-        } catch {}
-      };
-    },
-    [claimMobileGameBattlePassRewards]
-  );
-
-  const games = useMemo(() => {
-    return (queryResult?.getMobileUnlockableBattlePassVouchers?.games || []).map((game) => ({
-      ...game,
-      rewards: game.rewards.map((reward) => ({
-        ...reward,
-        onPress: getClaimRewardCallback(reward, game.id),
-      })),
-    }));
-  }, [queryResult?.getMobileUnlockableBattlePassVouchers?.games, getClaimRewardCallback]);
+  const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const offsetY = event.nativeEvent.contentOffset.y;
+    setShowTopBar(offsetY > TOP_BAR_WITH_PAD);
+  }, []);
 
   const onBack = useCallback(() => {
     if (showNavigation) {
@@ -76,7 +52,7 @@ const RewardsUnlockContainer = ({
     }
   }, [componentId, showNavigation]);
 
-  if (!queryResult?.getMobileUnlockableBattlePassVouchers) {
+  if (!data) {
     return (
       <Box flex={1} justifyContent="center" alignItems="center">
         <ActivityIndicator />
@@ -84,13 +60,13 @@ const RewardsUnlockContainer = ({
     );
   }
 
-  const data = queryResult.getMobileUnlockableBattlePassVouchers;
-
-  const isEmpty = !data?.games?.length && !data?.futureGames?.length;
-
   if (isEmpty) {
     return <RewardsUnlockEmpty />;
   }
+
+  const passBackground = data.header.background?.passBackground;
+  const headerColor = passBackground?.color ?? data.header.background.color;
+  const headerGradient = passBackground?.gradient;
 
   return (
     <>
@@ -102,40 +78,55 @@ const RewardsUnlockContainer = ({
           overScrollMode="never"
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
+          onScroll={onScroll}
           testID={REWARDS_UNLOCK_SCROLL}
         >
-          <GenericHeadingPad hideBorder={true} />
-          <Box
-            position="absolute"
-            top={-height / 2 + TOP_BAR_WITH_PAD}
-            width={"100%"}
-            bg={data.header.background.color}
-            h={height / 2}
-          />
+          <Box position="absolute" top={-height / 2} width={"100%"} bg={headerColor} h={height / 2}>
+            {headerGradient ? (
+              <LinearGradient
+                colors={headerGradient.colors}
+                locations={headerGradient.stops}
+                angle={headerGradient.angle}
+                useAngle={true}
+                style={StyleSheet.absoluteFill}
+              />
+            ) : null}
+          </Box>
 
-          <Box>
-            <Box bg={data.header.background.color} pt={10}>
-              <Box right={0} left={0} pl={20} pr={20} pb={84}>
-                <Box position="absolute" right={0}>
-                  <Image width={Style.adjust(240)} source={data.header.background.image} />
-                </Box>
-                <Box flex={1}>
-                  <Box w={230}>
-                    <TextTemplate color={"white"} type="h3">
-                      {data.header.heading}
-                    </TextTemplate>
+          <Box dir="ltr">
+            <Box bg={headerColor} overflow="hidden">
+              {headerGradient ? (
+                <LinearGradient
+                  colors={headerGradient.colors}
+                  locations={headerGradient.stops}
+                  angle={headerGradient.angle}
+                  useAngle={true}
+                  style={StyleSheet.absoluteFill}
+                />
+              ) : null}
+
+              {!DETOX_ENABLED ? (
+                <>
+                  <Box position="absolute" w={"100%"} h={"100%"} top={"-165%"} right={"-50%"}>
+                    <Rays backgroundColor="transparent" style="thin" duration={RAYS_DURATION} />
                   </Box>
-                  <Box mt={8} w={230}>
-                    <TextTemplate color={"white"} type="l1">
-                      {data.header.description}
-                    </TextTemplate>
+                  <Box position="absolute" w="100%" h="100%" right={100}>
+                    <RewardPassLottieStars delay={0} />
+                  </Box>
+                </>
+              ) : null}
+              {passBackground ? (
+                <Box right={0} left={0}>
+                  <Image width={width * 0.7} source={passBackground.backgroundImage} />
+                  <Box position="absolute" bottom={20} left={0} right={0} alignItems="center" justifyContent="center">
+                    <Image width={width * 0.5} source={passBackground.foregroundImage} />
                   </Box>
                 </Box>
-              </Box>
+              ) : null}
             </Box>
           </Box>
-          <Box mt={-75}>
-            <ProductGames games={games} />
+          <Box>
+            <ProductGames title={data.header?.title} description={data.header?.heading} games={games} />
           </Box>
           {!data.futureGames.length
             ? null
@@ -160,12 +151,14 @@ const RewardsUnlockContainer = ({
           type="white"
           leftIcon={LeftIcon.BACK}
           onPressLeftIcon={onBack}
-          backgroundColor={data.header.background.color}
+          backgroundColor={showTopBar ? headerColor : "transparent"}
         />
       ) : null}
     </>
   );
 };
+
+const RAYS_DURATION = 20000;
 
 const linearGradient = {
   start: { x: 0, y: 0.8 },
