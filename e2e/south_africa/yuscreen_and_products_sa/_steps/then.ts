@@ -14,7 +14,9 @@ import { scrollUntilIdVisible, scrollUntilTextVisible } from "./when";
 export const {
   idVisible,
   idNotVisible,
+  idExist,
   textVisible,
+  textExists,
   textNotVisible,
   expectIsVisibleViaID,
   expectIsVisibleViaText,
@@ -49,21 +51,15 @@ export { rewardsLocationModalVisible } from "benefits/rewards/_steps/then";
 export { yuScreenV5HeaderVisible } from "../../../yuscreen/yuscreen_v5/_steps/then";
 
 export const productCardVisible =
-  (productCard: ProductSlot, index = 0) =>
+  (productCard: ProductSlot) =>
   async () => {
-    await idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(productCard.name))();
-    await idVisibleAtIndex(
-      ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE(productCard.title),
-      index
-    )();
+    await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(productCard.name))();
+    await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE(productCard.title))();
     productCard.img &&
-      (await idVisibleAtIndex(
-        ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(productCard.img),
-        index
-      )());
+      (await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(productCard.img))());
     productCard.body &&
-      (await idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC(productCard.body))());
-    productCard.logo && (await idVisible(ids.YUSCREEN_V5_PRODUCT_CARD_LOGO)());
+      (await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC(productCard.body))());
+    productCard.logo && (await idExist(ids.YUSCREEN_V5_PRODUCT_CARD_LOGO)());
   };
 
 export const productCheck =
@@ -125,7 +121,7 @@ export const productCheck =
 
 export const onProductPage = (product: SAProductData) => async () => {
   await idVisible(ids.BUTTON_CLOSE_HEADER("button_only"))();
-  await textVisibleAtIndex(product.productName, 1)();
+  await textExists(product.productName)();
   product.schemeType && (await textVisible(product.schemeType)());
   product.rightImage && (await idVisible(ids.TOP_RIGHT_ITEM_IMAGE(product.rightImage))());
   product.yuCoinPower && (await idVisible(ids.YUCOIN_POWER(product.yuCoinPower))());

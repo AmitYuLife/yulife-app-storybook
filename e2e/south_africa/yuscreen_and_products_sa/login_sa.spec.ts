@@ -36,7 +36,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
         Then("I can see the life cover product card as I'm back on the YuScreen", then.productCardVisible(fixture.lifeCoverTallCard));
       });
     });
-    When("I tap funeral cover card", when.tapText(fixture.funeralCoverSquareCard.name), async () => {
+    When("I tap funeral cover card", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(fixture.funeralCoverSquareCard.name)), async () => {
       Then("I'm on the product page for funeral cover", then.productCheck(fixture.GrFun, fixture.GrFunKeyInfo, true, fixture.GrFunCoverAmounts));
     });
     When("I scroll to the top", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "down", "fast"), async () => {
@@ -44,7 +44,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
         Then("I can see the life cover product card as I'm back on the YuScreen", then.productCardVisible(fixture.lifeCoverTallCard));
       });
     });
-    When("I tap GIP card", when.tapText(fixture.incomeProtectionSquareCard.name), async () => {
+    When("I tap GIP card", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(fixture.incomeProtectionSquareCard.name)), async () => {
       Then("I'm on the product page for GIP", then.productCheck(fixture.GIP, fixture.GIPKeyInfo, false));
     });
     When("I scroll to the top", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "down", "fast"), async () => {
@@ -53,7 +53,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
       });
     });
     When("I swipe to see more cards", when.swipeFromText(fixture.funeralCoverSquareCard.title, "left", "fast"), async () => {
-      When("I tap lump sum disability card", when.tapText(fixture.lumpSumDisabilitySquareCard.name), async () => {
+      When("I tap lump sum disability card", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(fixture.lumpSumDisabilitySquareCard.name)), async () => {
         Then("I'm on the product page for lump sum disability", then.productCheck(fixture.LumpSum, fixture.LMPSKeyInfo, false));
       });
     });
