@@ -3,6 +3,8 @@ import { View, ViewStyle } from "react-native";
 import { TouchableOpacityWithDelay } from "@molecules";
 
 import { StyleSheet } from "@styles";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import { useMemo } from "react";
 interface IProps {
   pageCount: number;
   activePage: number;
@@ -10,11 +12,21 @@ interface IProps {
 }
 
 function PageIndicator({ pageCount, activePage, onPress }: IProps) {
+  const { theme } = useTheme();
+
+  const activePageStyle = useMemo(() => {
+    return {
+      backgroundColor: theme.colors.primary.p400,
+      width: 12,
+      height: 12,
+    };
+  }, [theme]);
+
   return (
     <View style={styles.container}>
       {Array.from({ length: pageCount }).map((_, i: number) => {
         const isActivePage = i === activePage;
-        const indicatorStyles = [styles.pageIndicator, isActivePage ? styles.activePage : styles.inactivePage];
+        const indicatorStyles = [styles.pageIndicator, isActivePage ? activePageStyle : styles.inactivePage];
         const testId = `indicator-${i}-${isActivePage ? "active" : "inactive"}`;
 
         return onPress ? (
@@ -33,11 +45,6 @@ export default PageIndicator;
 
 const styles = StyleSheet.create({
   container: { flexDirection: "row", marginVertical: 20, justifyContent: "center", alignItems: "center" } as ViewStyle,
-  activePage: {
-    backgroundColor: "#f43e8e",
-    width: 12,
-    height: 12,
-  } as ViewStyle,
   inactivePage: {
     width: 8,
     height: 8,

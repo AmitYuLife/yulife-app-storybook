@@ -1,3 +1,4 @@
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import { Box, TextTemplate } from "@atoms";
 import { ProgressEnd } from "@atoms/icon/progress-end";
 import { ContentItemWrapper } from "@components/sdui";
@@ -14,8 +15,10 @@ type Props = {
   info?: ComponentProps<typeof ContentItemWrapper>;
 };
 
-const ProductGameItemProgress = ({ progress, info }: Props) =>
-  !progress.max ? null : (
+const ProductGameItemProgress = ({ progress, info }: Props) => {
+  const { theme } = useTheme();
+
+  return !progress.max ? null : (
     <Box mt={16}>
       <Box pr={16} pl={16} flexDirection="row" alignItems="center" justifyContent="space-between">
         <Box flexDirection="row" alignItems="center">
@@ -52,7 +55,7 @@ const ProductGameItemProgress = ({ progress, info }: Props) =>
           h={8}
         />
         <Box
-          bg={Colours.primary.p400}
+          bg={theme.colors.primary.p400}
           position="absolute"
           left={16}
           top={4}
@@ -68,5 +71,6 @@ const ProductGameItemProgress = ({ progress, info }: Props) =>
       </Box>
     </Box>
   );
+};
 
 export default memo(ProductGameItemProgress);

@@ -1,8 +1,9 @@
 import { Box, TextTemplate, TimeCounter } from "@atoms";
 import { EXTRA_CHALLENGE_INDICATOR } from "@ids";
 import { Colours, Style, StyleSheet } from "@styles";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { View } from "react-native";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IExtraChallengeIndicator {
   value: number;
@@ -10,6 +11,17 @@ interface IExtraChallengeIndicator {
 }
 
 const ChallengeTileExtraIndicator = ({ value, time }: IExtraChallengeIndicator) => {
+  const { theme } = useTheme();
+
+  const extraChallengeTagStyle = useMemo(() => {
+    return {
+      backgroundColor: theme.colors.primary.p600,
+      height: Style.adjust(20),
+      minWidth: Style.adjust(20),
+      borderRadius: Style.adjust(100),
+    };
+  }, [theme]);
+
   return (
     <Box
       style={styles.extraChallengeContainer}
@@ -18,7 +30,7 @@ const ChallengeTileExtraIndicator = ({ value, time }: IExtraChallengeIndicator) 
       alignItems="center"
       gap={5}
     >
-      <Box gap={10} style={styles.extraChallengeTag} center={true}>
+      <Box gap={10} style={extraChallengeTagStyle} center={true}>
         <TextTemplate
           type="l3b"
           color={Colours.neutral.white}
@@ -29,7 +41,7 @@ const ChallengeTileExtraIndicator = ({ value, time }: IExtraChallengeIndicator) 
         </TextTemplate>
       </Box>
       <View style={styles.timeContainer}>
-        <TextTemplate type={"l3b"} color={Colours.primary.p600} lineHeight={Style.adjust(14)}>
+        <TextTemplate type={"l3b"} color={theme.colors.primary.p600} lineHeight={Style.adjust(14)}>
           <TimeCounter time={time} />
         </TextTemplate>
       </View>
@@ -44,12 +56,6 @@ const styles = StyleSheet.create({
     borderRadius: 200,
     paddingStart: Style.adjust(2),
     paddingEnd: Style.adjust(5),
-  },
-  extraChallengeTag: {
-    backgroundColor: Colours.primary.p600,
-    height: Style.adjust(20),
-    minWidth: Style.adjust(20),
-    borderRadius: Style.adjust(100),
   },
   timeContainer: {
     width: Style.adjust(44),
