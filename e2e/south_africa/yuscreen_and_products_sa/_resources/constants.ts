@@ -10,10 +10,10 @@ export const allPoweredUp = "You are all powered up!";
 //SA Products
 export const lifeCoverProduct = "Life Cover";
 export const WellbeingProduct = "Wellbeing Access";
-export const FuneralCover = "Funeral Cover";
-export const IncomeProtection = "Income Protection";
+export const FuneralCover = "Funeral cover";
+export const IncomeProtection = "Income protection";
 export const TemporaryIncome = "Temporary Income Protection";
-export const LumpSump = "Lump Sum Disability";
+export const LumpSump = "Lump Sum Disability Cover";
 export const SpGL = "Spousal Life Cover";
 
 //SA Product details
