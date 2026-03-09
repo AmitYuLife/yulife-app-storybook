@@ -334,7 +334,7 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
               <Box width="13%">
                 <AvPlayerTimer textType="l2b" time={elapsedMs} colour={Colours.neutral.white} />
               </Box>
-              <Box flex={1} height={6} br={3} mh={8} bg={Colours.neutral.white}>
+              <Box flex={1} br={3} mh={8} bg={Colours.neutral.white}>
                 <AvPlayerProgressBar currentProgress={elapsedMs / 1000} duration={selectedDurationMs / 1000} />
               </Box>
               <Box width="13%" alignItems="flex-end">
