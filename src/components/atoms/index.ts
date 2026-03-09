@@ -53,3 +53,4 @@ export { default as BlurredWrapper } from "./blurred-wrapper/blurred-wrapper";
 export { default as StackedShadowWrapper } from "./stacked-shadow-wrapper/stacked-shadow-wrapper";
 export { default as CharacterCounter } from "./character-counter/character-counter";
 export { default as MoodDay } from "./mood-day/mood-day";
+export { default as DeferredRender } from "./deferred-render/deferred-render";
