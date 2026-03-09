@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useRef, useState, useEffect, useMemo } from "react";
 import { FlatList, View, ViewToken, ListRenderItem } from "react-native";
-import { Text, PageIndicator } from "@atoms";
+import { Text, PageIndicator, Box } from "@atoms";
 import styles from "./onboarding-swiper.styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import Logger from "@services/logging/logger";
@@ -107,7 +107,7 @@ const OnboardingSwiper = ({ data, onClose, renderItem, type }: IOnboardingSwiper
   );
 
   return (
-    <View style={styles.wrapper}>
+    <Box h={"100%"}>
       <FlatList
         pagingEnabled={true}
         renderItem={renderItem}
@@ -165,7 +165,7 @@ const OnboardingSwiper = ({ data, onClose, renderItem, type }: IOnboardingSwiper
         )}
       </View>
       <TopBarAbsolute rightIcon={null} />
-    </View>
+    </Box>
   );
 };
 
