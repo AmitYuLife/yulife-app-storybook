@@ -1,29 +1,39 @@
 import { Box, TextTemplate } from "@atoms";
 import { ProgressEnd } from "@atoms/icon/progress-end";
+import { ContentItemWrapper } from "@components/sdui";
 import { Colours } from "@styles";
-import { memo } from "react";
+import { ComponentProps, memo } from "react";
 
 type Props = {
-  current: number;
-  max: number;
-  title?: string;
-  info?: string;
+  progress: {
+    current: number;
+    max: number;
+    title?: string;
+    info?: string;
+  };
+  info?: ComponentProps<typeof ContentItemWrapper>;
 };
 
-export const ProductGameItemProgress = memo(({ current, max, title, info }: Props) =>
-  !max ? null : (
+const ProductGameItemProgress = ({ progress, info }: Props) =>
+  !progress.max ? null : (
     <Box mt={16}>
-      <Box pr={16} pl={16} flexDirection="row">
-        {!title ? null : (
-          <TextTemplate type="l2" color={Colours.neutral.n900}>
-            {title}
-          </TextTemplate>
-        )}
-        {!info ? null : (
-          <Box ml="auto">
-            <TextTemplate type="l2b" color={Colours.neutral.n900}>
-              {info}
+      <Box pr={16} pl={16} flexDirection="row" alignItems="center" justifyContent="space-between">
+        <Box flexDirection="row" alignItems="center">
+          {!progress.title ? null : (
+            <TextTemplate type="l1" color={Colours.neutral.n900}>
+              {progress.title}
             </TextTemplate>
+          )}
+          {!progress.info ? null : (
+            <TextTemplate type="l1b" color={Colours.neutral.n900}>
+              {" "}
+              {progress.info}
+            </TextTemplate>
+          )}
+        </Box>
+        {!info ? null : (
+          <Box>
+            <ContentItemWrapper {...info} />
           </Box>
         )}
       </Box>
@@ -50,12 +60,13 @@ export const ProductGameItemProgress = memo(({ current, max, title, info }: Prop
           bottom={0}
           h={8}
           br={8}
-          w={`${Math.min(current / max, 0.95) * 100}%`}
+          w={`${Math.min(progress.current / progress.max, 0.95) * 100}%`}
         />
         <Box position="absolute" right={16} top={0}>
           <ProgressEnd />
         </Box>
       </Box>
     </Box>
-  )
-);
+  );
+
+export default memo(ProductGameItemProgress);

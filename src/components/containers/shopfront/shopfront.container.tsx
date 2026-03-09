@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 import { useFocusEffect } from "@hooks";
 import BattlePassContainer from "../battle-pass/battle-pass.container";
-import RewardsUnlockContainer from "../rewards-unlock/rewards-unlock.container";
+import RewardsUnlockContainer from "../rewards-unlock/rewards-unlock-wrapper.container";
 import ShopfrontSingleWrapper from "./subcomponents/shopfront-single-wrapper";
 
 interface IRewardPassContainerProps {

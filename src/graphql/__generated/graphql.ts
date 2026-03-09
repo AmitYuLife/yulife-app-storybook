@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -5505,6 +5506,13 @@ export type LifeEvents = {
   isBirthdayGiftingEnabled: Scalars["Boolean"]["output"];
 };
 
+export type LinearGradient = {
+  __typename?: "LinearGradient";
+  angle: Scalars["Float"]["output"];
+  colors: Array<Scalars["String"]["output"]>;
+  stops: Array<Scalars["Float"]["output"]>;
+};
+
 export type LinearGradientOrientation = {
   __typename?: "LinearGradientOrientation";
   x: Scalars["Float"]["output"];
@@ -6504,6 +6512,15 @@ export type MobileUnlockableBattlePassVouchersHeaderBackground = {
   __typename?: "MobileUnlockableBattlePassVouchersHeaderBackground";
   color?: Maybe<Scalars["String"]["output"]>;
   image?: Maybe<RemoteImage>;
+  passBackground?: Maybe<MobileUnlockableBattlePassVouchersPassBackground>;
+};
+
+export type MobileUnlockableBattlePassVouchersPassBackground = {
+  __typename?: "MobileUnlockableBattlePassVouchersPassBackground";
+  backgroundImage: RemoteImage;
+  color: Scalars["String"]["output"];
+  foregroundImage: RemoteImage;
+  gradient: LinearGradient;
 };
 
 export type MobileUpgradeRequired = {
@@ -9295,6 +9312,11 @@ export type QueryGetMobileSocialGroupLeaderboardItemsArgs = {
   leaderboardId: Scalars["String"]["input"];
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   targetId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileUnlockableBattlePassVouchersArgs = {
+  passType?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -33709,7 +33731,9 @@ export type GetMobileRewardsListItemsQuery = {
   };
 };
 
-export type GetMobileUnlockableBattlePassVouchersQueryVariables = Exact<{ [key: string]: never }>;
+export type GetMobileUnlockableBattlePassVouchersQueryVariables = Exact<{
+  passType?: InputMaybe<Scalars["String"]["input"]>;
+}>;
 
 export type GetMobileUnlockableBattlePassVouchersQuery = {
   __typename?: "Query";
@@ -33724,6 +33748,13 @@ export type GetMobileUnlockableBattlePassVouchersQuery = {
         __typename?: "MobileUnlockableBattlePassVouchersHeaderBackground";
         color?: string | null;
         image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        passBackground?: {
+          __typename?: "MobileUnlockableBattlePassVouchersPassBackground";
+          color: string;
+          backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          foregroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          gradient: { __typename?: "LinearGradient"; colors: Array<string>; stops: Array<number>; angle: number };
+        } | null;
       } | null;
     } | null;
     games?: Array<{
@@ -92003,12 +92034,26 @@ export const GetMobileUnlockableBattlePassVouchersDocument = {
       kind: "OperationDefinition",
       operation: "query",
       name: { kind: "Name", value: "GetMobileUnlockableBattlePassVouchers" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "passType" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
       selectionSet: {
         kind: "SelectionSet",
         selections: [
           {
             kind: "Field",
             name: { kind: "Name", value: "getMobileUnlockableBattlePassVouchers" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "passType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "passType" } },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -92036,6 +92081,48 @@ export const GetMobileUnlockableBattlePassVouchersDocument = {
                               },
                             },
                             { kind: "Field", name: { kind: "Name", value: "color" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "passBackground" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "backgroundImage" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "foregroundImage" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } },
+                                      ],
+                                    },
+                                  },
+                                  { kind: "Field", name: { kind: "Name", value: "color" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "gradient" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "Field", name: { kind: "Name", value: "colors" } },
+                                        { kind: "Field", name: { kind: "Name", value: "stops" } },
+                                        { kind: "Field", name: { kind: "Name", value: "angle" } },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
                           ],
                         },
                       },

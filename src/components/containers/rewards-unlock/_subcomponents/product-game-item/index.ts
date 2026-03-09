@@ -1,1 +1,1 @@
-export { ProductGameItem } from "./product-game-item";
+export { default as ProductGameItem } from "./product-game-item";

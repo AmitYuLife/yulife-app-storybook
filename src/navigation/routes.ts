@@ -130,7 +130,7 @@ import YuHealthConnectSelectContainer from "../components/containers/member/yu-h
 // battle pass
 import BattlePassContainer from "../components/containers/battle-pass/battle-pass.container";
 import BattlePassLeaderboardContainer from "../components/containers/battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.container";
-import RewardsUnlockContainer from "../components/containers/rewards-unlock/rewards-unlock.container";
+import RewardsUnlockContainer from "../components/containers/rewards-unlock/rewards-unlock-wrapper.container";
 
 // wrapped
 import WrappedContainer from "../components/containers/wrapped/wrapped.container";
