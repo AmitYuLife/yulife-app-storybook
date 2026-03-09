@@ -116,7 +116,7 @@ export const onPermissionsPage = (status: string) => async () => {
   await idVisibleAtIndex(ids.STATUS_ICON(status), 3);
 
   if (status === "not_determined") {
-    await expect(element(by.text("Apple Health"))).toBeVisible();
+    await expect(element(by.text("healthKit"))).toBeVisible();
   } else if (status === "authorised") {
     await idVisibleAtIndex(ids.STATUS_ICON(status), 4);
     await expect(

@@ -20,3 +20,7 @@ export const loginAsUser = (
 export const allowNotifications = async () => {
   await launchApp({ permissions: { notifications: "YES" } });
 };
+
+export const denyNotifications = async () => {
+  await launchApp({ permissions: { notifications: "NO" } });
+};
