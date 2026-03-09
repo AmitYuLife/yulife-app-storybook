@@ -1,5 +1,5 @@
 import { TextStyle, ViewStyle, Platform } from "react-native";
-import { Style, Colours, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { initialWindowMetrics } from "react-native-safe-area-context";
 
 const NAVIGATION_VIEW_HEIGHT = Style.adjust(40);
@@ -11,7 +11,6 @@ export default StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 0.8,
-    color: Colours.primary.p600,
   } as TextStyle,
   wrapper: {
     height: Style.DEVICE_HEIGHT,
@@ -19,7 +18,6 @@ export default StyleSheet.create({
   backButton: {
     fontSize: 16,
     letterSpacing: 0.8,
-    color: Colours.primary.p600,
   } as TextStyle,
   navigationViewWrapper: {
     position: "absolute",
@@ -54,11 +52,9 @@ export default StyleSheet.create({
     paddingHorizontal: 8,
   } as ViewStyle,
   lastPageActionButton: {
-    backgroundColor: Colours.primary.p600,
     borderRadius: 8,
   } as ViewStyle,
   lastPageActionButtonText: {
-    color: Colours.neutral.white,
     letterSpacing: 0.4,
   } as TextStyle,
 });

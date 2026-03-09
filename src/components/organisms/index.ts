@@ -7,7 +7,7 @@ export { Streak } from "./game-icon-button/streak.button";
 export { Surge } from "./game-icon-button/surge.button";
 export { Weeklies } from "./game-icon-button/weeklies.button";
 export { default as FeedbackForm } from "./feedback-form/feedback-form";
-export { OnboardingSwiper, OnboardingSwiperData } from "./onboarding-swiper/onboarding-swiper";
+export { default as OnboardingSwiper, OnboardingSwiperData } from "./onboarding-swiper/onboarding-swiper";
 export { RadioListItemProps, RadioListItem } from "./radio-list-item/radio-list-item";
 export { default as TapToCopy } from "./tap-to-copy/tap-to-copy";
 export { default as CodeAndLinkCopy } from "./code-and-link-copy/code-and-link-copy";

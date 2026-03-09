@@ -5,11 +5,11 @@ import { memo } from "react";
 import { Image } from "react-native";
 import { Style, StyleSheet } from "@styles";
 import { WALLET_CARD_TITLE } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const SHADOW_COLOR = "#E7E7EB";
 const BACKGROUND_COLOR = "#FFFFFF";
 const TEXT_COLOR = "#5C5757";
-const CHEVRON_COLOR = "#E30D76";
 
 interface IWalletCard<T> {
   icon?: Source;
@@ -25,6 +25,7 @@ interface WalletCardProps<T> {
 }
 
 const WalletCard = <T,>({ item, onPress }: WalletCardProps<T>) => {
+  const { theme } = useTheme();
   return (
     <TouchableOpacityWithDelay
       onPress={() => onPress?.(item.onPress)}
@@ -56,7 +57,7 @@ const WalletCard = <T,>({ item, onPress }: WalletCardProps<T>) => {
               </Box>
             </Box>
             <Box py={4} flexDirection="column" justifyContent="center" alignItems="center">
-              <ArrowIcon size={24} color={CHEVRON_COLOR} />
+              <ArrowIcon size={24} color={theme.colors.primary.p600} />
             </Box>
           </Box>
         </Box>
