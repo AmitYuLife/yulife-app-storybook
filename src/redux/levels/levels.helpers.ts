@@ -14,7 +14,6 @@ import { IActiveLevel } from "./levels.types";
 import { delay } from "@utils/misc";
 import { FitKitSampleType, GenericFitKitResponseType } from "@services/fitkit/fitkit.types";
 import { IFeature } from "@redux/user/user.types";
-import { Platform } from "react-native";
 import { yuHealthPedometerQuery, yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 import { FitKitType } from "@redux/_core/types";
 
@@ -32,14 +31,15 @@ export async function logEmptyResultDebugData({
   features: IFeature;
   result: Unpacked<typeof getEndResultFitkit>;
 }) {
-  const queryData = {
-    startTime: moment().subtract(1, "day").startOf("day").format(),
-    endTime: moment().endOf("day").format(),
-    fitKitTypes: Platform.OS === "ios" ? activeChallenge.fitKitTypes : [],
+  const data = await yuHealthSampleQuery({
+    params: {
+      startTime: moment().subtract(1, "day").startOf("day").toDate(),
+      endTime: moment().endOf("day").toDate(),
+      dataType: activeChallenge.yuHealth?.dataType,
+    },
     features,
-  };
-
-  const data = await queryFitKitSampleData(queryData);
+    metadata: { file: "levels.helpers" },
+  });
 
   const logData = {
     data,
