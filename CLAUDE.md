@@ -6,6 +6,10 @@ YuLife is a React Native mobile application for iOS and Android that provides a 
 
 @.cursor/rules/react-native-best-practices.mdc
 
+### Boundaries
+
+- **Do not modify `ios/` or `android/` directories.** This is an Expo managed project; native code changes belong in plugins or upstream packages, not in these folders directly.
+
 ### Rules
 
 - Always use `import { Box } from "@atoms";` component instead of View. Use the style props in `src/components/atoms/box/box.types.ts` instead of passing a `style` to Box.
