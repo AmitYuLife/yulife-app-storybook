@@ -19,6 +19,7 @@ YuLife is a React Native mobile application for iOS and Android that provides a 
 - All screens must be rendered via a `container` rather than adding the screen file directly to navigation. This is usually via a `screen-name.container.tsx` file.
 - Prop interfaces should be named following the pattern IComponentNameProps
 - Do not create new barrel files. Only add to existing barrel files if needed.
+- Do not use `Style.DEVICE_HEIGHT` or `Style.DEVICE_WIDTH` for the width or height of the outermost `Box`. Use `100%` when you specifically do not need the dimensions and need to cover the whole screen.
 
 ### State Management (Redux)
 

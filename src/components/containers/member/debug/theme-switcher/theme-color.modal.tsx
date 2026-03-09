@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { useCallback } from "react";
 import { Alert, ScrollView } from "react-native";
 import { Box, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 import { omit } from "lodash";
 import { SecondaryButton, Button } from "@molecules";
 
@@ -30,25 +30,16 @@ const ThemeColorsModal = ({ theme, onClose }: IThemeColorsModalProps) => {
 
   return (
     <Box
-      flex={1}
       justifyContent="center"
       alignItems="center"
       bg="rgba(0,0,0,0.7)"
       position="absolute"
       top={0}
       left={0}
-      w={Style.DEVICE_WIDTH}
-      h={Style.DEVICE_HEIGHT}
+      w={"100%"}
+      h={"100%"}
     >
-      <Box
-        bg={Colours.neutral.white}
-        br={12}
-        ph={16}
-        pv={16}
-        w={Style.DEVICE_WIDTH - 48}
-        maxHeight={Style.DEVICE_HEIGHT * 0.75}
-        overflow="hidden"
-      >
+      <Box bg={Colours.neutral.white} br={12} ph={16} pv={16} overflow="hidden" maxHeight={"80%"} w={"90%"}>
         <Box pb={12} borderBottomWidth={1} borderColor={Colours.debug.bottomBorder} mb={12}>
           <TextTemplate type="h3">{theme.name}</TextTemplate>
         </Box>
