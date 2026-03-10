@@ -21,6 +21,7 @@ export const CUSTOMER_USA_1 = {
     firstName: "Usa",
     lastName: "Customer",
     status: "onboarded",
+    preferredContentLocation: "US",
   },
 } as IDatabaseItem;
 
