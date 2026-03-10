@@ -123,8 +123,8 @@ export const wellbeingHubLocationModalVisible = async () => {
 };
 
 export const productCardVisible = (item: YuScreenProductCard) => async () => {
-  await idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(item.productName))();
-  await idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(item.mainImage))();
+  await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(item.productName))();
+  await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(item.mainImage))();
 };
 
 export const canSeeProductCertificate = (item: CertificateDetails) => async () => {

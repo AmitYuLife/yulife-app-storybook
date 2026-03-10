@@ -11,6 +11,7 @@ export {
 } from "../../smoking_cessation/_steps/then";
 
 export const {
+  idExist,
   idVisible,
   idNotVisible,
   textVisible,
@@ -34,6 +35,7 @@ export const {
   scrollUntilIdVisible,
   scrollUntilTextVisible,
   scrollFromID,
+  scrollYuScreenDown,
 } = navigation.scrolling;
 
 export const wellbeingServiceVisible = async () => {

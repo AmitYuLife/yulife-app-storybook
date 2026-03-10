@@ -29,11 +29,9 @@ Feature("As a USA user, I can login and interact with app features", async () =>
       });
     });
     When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
-      Then("I see the rewards location modal", then.idVisible(ids.REWARD_LOCATION_MODAL, 5000));
-    });
-    When("I tap to confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
-      Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
-      Then("I should see no progress on the bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 4, 0), 4000));
+      When("I tap the intro CTA button to continue", when.tapID(ids.BATTLE_PASS_INTRO_SCREEN_CTA_BUTTON, 2000), async () => {
+        Then("I should see the first level variant screen", then.idVisible(ids.BATTLE_PASS_FIRST_LEVEL_SCREEN, 2000));
+      });
     });
   });
 

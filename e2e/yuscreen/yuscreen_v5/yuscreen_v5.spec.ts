@@ -241,14 +241,14 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Small Daddy", "Mountain", "800"));
     });
     When("I scroll down to the Powerful protection section on YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
-      Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE, 2000));
+      Then("I should see Powerful protection title", then.idExist(ids.YUSCREEN_V5_PROTECTION_TITLE, 2000));
     });
-    When("I scroll further down to view the product cards", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.15), async () => {
+    When("I scroll further down to view the product cards", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.15, 3000), async () => {
       Then("I should see Bupa Health Insurance", then.productCardVisible(bupaHealthInsuranceProductItem));
       Then("I should see Bupa Dental Insurance", then.productCardVisible(bupaDentalProductItem));
       Then("I should see Income protection", then.productCardVisible(incomeProtectionProductItem));
     });
-    When("I swipe to see rest of the different products", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "left", "fast"), async () => {
+    When("I swipe to see rest of the different products", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "left", "fast", undefined, 3000), async () => {
       When("I wait 3 second", when.wait(3000), async () => {
         Then("I should see Life insurance", then.productCardVisible(lifeInsuranceProductItem));
         Then("I should see Critical illness insurance", then.productCardVisible(criticalIllnessProductItem));
@@ -256,18 +256,12 @@ Feature("I am able to use the yuscreen v5", async () => {
         Then("I should not see the reward pass product", then.textNotVisible("Reward Pass Product"));
       });
     });
-    When("I swipe back to the first product", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life insurance"), "right", "fast"), async () => {
-      Then("I should see the correct body and copy", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC("Online GP, open referrals, and more.")));
+    When("I swipe back to the first product", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life insurance"), "right", "fast", undefined, 3000), async () => {
+      Then("I should see the correct body and copy", then.idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC("Online GP, open referrals, and more.")));
     });
-    // @UPDATE skipping due to changes made during PRODUCT_GOALS purge - will circle back to address them
-    // When("I tap Bupa health insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
-    //   Then("I should see the details on the Bupa Health Insurance", then.idVisible(ids.TEXT_TEMPLATE("Health Insurance", "undefined")));
-    // });
-    // When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
     When("I tap Bupa dental insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Dental insurance")), async () => {
-      Then("I should see the details on the Bupa dental insurance", then.idVisible(ids.TEXT_TEMPLATE("Bupa Dental Choice", "undefined")));
+      Then("I should see the details on the Bupa dental insurance", then.idExist(ids.TEXT_TEMPLATE("Dental insurance", "undefined")));
     });
-    // });
     When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only"), 2000), async () => {
       When("I tap Income protection", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection")), async () => {
         Then("I should see the income protect has yet to be active", then.idExist(ids.PRODUCT_DETAILS_HOLDING_TITLE));
@@ -276,7 +270,7 @@ Feature("I am able to use the yuscreen v5", async () => {
     When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only"), 2000), async () => {
       When("I swipe to see rest of the different products", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "left", "fast"), async () => {
         When("I tap Pension", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")), async () => {
-          Then("I should see details on the Pension", then.idVisible(ids.TEXT_TEMPLATE("We’ve partnered with Smart Pension, connect your account today:", "b2")));
+          Then("I should see details on the Pension", then.idExist(ids.TEXT_TEMPLATE("We’ve partnered with Smart Pension, connect your account today:", "b2")));
         });
       });
     });

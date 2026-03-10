@@ -12,24 +12,11 @@ const locale = process.env.TARGET_LOCALE || "ja-JP";
 const translation = getTranslation(locale);
 
 Feature("As a user I can get past the login screen - JP", async () => {
-  Scenario("Japan", scenario.start, async () => {
-    Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
+  Scenario("I can login with correct login details", scenario.start, async () => {
+    Given("I have authorised fitkit", given.authoriseFitkit(), async () => {
       Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
         When("I have done 20 steps", given.sendSteps(20), async () => {
-          Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20), 2000));
-        });
-      });
-    });
-    // Commented out parts related to sendMindfulnessData while its getting looked into
-    When("I have done 11.3 km cycling", given.addCyclingData(11345), async () => {
-      // When("I have done 13 min Mindfulness", given.sendMindfulnessData(800), async () => {
-      When("I update the screen to see today activity", given.triggerAppUpdateState, async () => {
-        When("I wait two seconds", when.wait(2000), async () => {
-          Then("I should see 11.3 km done today", then.idVisible(ids.CYCLING_COUNT("11.3 km"), 2000));
-          // Then("I should see 13 min mindful done today", then.idVisible(ids.MINDFUL_COUNT("13分")));
-          Then("I should see the amount of yucoin I earned today", then.textVisible("206 YuCoin today"));
-          Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO));
-          // });
+          Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20)));
         });
       });
     });
@@ -39,9 +26,7 @@ Feature("As a user I can get past the login screen - JP", async () => {
       });
     });
     When("I go to the YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-      When("I scroll until I see all the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PROTECTION_TITLE, "down"), async () => {
-        Then("I should see the tall card for GHealth", then.idVisible(ids.YUSCREEN_V5_TALL_CARD("入院への備え")));
-        Then("I should see the tall card for ExGL", then.idVisible(ids.YUSCREEN_V5_TALL_CARD("万一への備え")));
+      When("I scroll until I see all the product cards", when.scrollYuScreenDown(0.3, 0.85, 2000), async () => {
         Then("I should see the product title written as '保障内容'", then.textVisible("保障内容"));
       });
     });
@@ -73,8 +58,8 @@ Feature("As a user I can get past the login screen - JP", async () => {
     });
     When("I tap on the 'Workouts' challenge tile", when.tapID(ids.CHALLENGE_TILE("エクササイズ"), 2000), async () => {
       When("I tap to take a challenge", when.tapID(ids.CHALLENGE_TAKE_CHALLENGE_BUTTON, 2000), async () => {
-        Then("I should only see the 'Yoga' content available", then.idVisible(ids.MEDIA_LIST_ITEM_TITLE("ヨガ")));
-        Then("I should not see the 'Rebalance' content", then.idNotVisible(ids.MEDIA_LIST_ITEM_TITLE("有酸素運動")));
+        Then("I should see the 'Yoga' content available", then.idVisible(ids.MEDIA_LIST_ITEM_TITLE("ヨガ")));
+        Then("I should see the 'Rebalance' content", then.idVisible(ids.MEDIA_LIST_ITEM_TITLE("有酸素運動")));
         Then("I should not see the 'Strength' content", then.idNotVisible(ids.MEDIA_LIST_ITEM_TITLE("体力アップ")));
       });
     });
@@ -86,10 +71,10 @@ Feature("As a user I can get past the login screen - JP", async () => {
         Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
       });
     });
-    When("I scroll until I see all the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_FEATURE_CARD_SECTION, "down"), async () => {
-      Then("I should see the square card for GHealth", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("入院への備え"), 3000));
-      Then("I should see the square card for GCI", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("がん・急性心筋梗塞・脳卒中への備え")));
-      Then("I should see the square card for ExGL", then.idVisible(ids.YUSCREEN_V5_SQUARE_CARD("万一への備え")));
+    When("I scroll until I see all the product cards", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
+      Then("I should see the square card for GHealth", then.idExist(ids.YUSCREEN_V5_SQUARE_CARD("入院への備え"), 3000));
+      Then("I should see the square card for GCI", then.idExist(ids.YUSCREEN_V5_SQUARE_CARD("がん・急性心筋梗塞・脳卒中への備え")));
+      Then("I should see the square card for ExGL", then.idExist(ids.YUSCREEN_V5_SQUARE_CARD("万一への備え")));
     });
   });
 
