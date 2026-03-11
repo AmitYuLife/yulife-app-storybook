@@ -234,6 +234,7 @@ export const MODALS: Record<string, `${typeof MODAL_PREFIX}.${string}`> = {
   unlockedAchievementsModal: `${MODAL_PREFIX}.unlockedAchievementsModal`,
   // YuHealth
   healthPermission: `${MODAL_PREFIX}.healthPermission`,
+  confirmation: `${MODAL_PREFIX}.confirmation`,
 };
 
 export const bottomTabs: OptionsBottomTabs = {

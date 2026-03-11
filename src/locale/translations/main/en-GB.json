@@ -1225,6 +1225,9 @@
             "heading": "Your wallet is ready to be filled!",
             "subheading": "Start collecting rewards and they'll be ready for you here."
           }
+        },
+        "used_section": {
+          "title": "Used"
         }
       },
       "details": {
