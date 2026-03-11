@@ -104,16 +104,12 @@ const getMarkdownStyles = (supportedMarkdownStyleOverrides: SupportedMarkdownSty
     },
     imageWrapper: {
       width: Style.adjust(16),
+      height: Style.adjust(16),
+      transform: [{ translateY: Style.adjust(16 / 2 + Platform.select({ ios: -2, android: -5 })) }],
     },
     image: {
       width: Style.adjust(16),
       height: Style.adjust(16),
-      bottom: Style.adjust(
-        Platform.select({
-          ios: -8,
-          android: -4,
-        })
-      ),
     },
     link: {
       pointerEvents: "none",
