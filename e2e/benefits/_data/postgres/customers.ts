@@ -72,6 +72,7 @@ export const CUSTOMER_31 = {
     firstName: "Leslie",
     lastName: "Knope",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
@@ -84,6 +85,7 @@ export const CUSTOMER_34 = {
     firstName: "Tim",
     lastName: "Drake",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
@@ -108,6 +110,7 @@ export const CUSTOMER_37 = {
     firstName: "Ron",
     lastName: "Weasley",
     status: "onboarded",
+    preferredContentLocation: "GB",
   },
 } as IDatabaseItem;
 
