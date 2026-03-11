@@ -10,6 +10,7 @@ import { ShareIcon } from "@atoms/icon/share-icon";
 import { REFERRAL_BUTTON, REFERRAL_IMAGE } from "@ids";
 import { ReferralSection as IReferralSection } from "@redux/yu-screen/yu-screen.types";
 import { getMenuSide } from "@navigation/root";
+import { templateTextStylesLineHeight } from "@styles/textStyles";
 
 export const ReferralSection = ({ sectionInstanceId, content }: IReferralSection) => {
   const { illustration, title, markdown, buttonLabel, buttonIcon } = content || {};
@@ -95,15 +96,13 @@ const markdownStyles = StyleSheet.create({
   },
   imageWrapper: {
     width: Style.adjust(16),
+    height: Style.adjust(templateTextStylesLineHeight.b2),
+    transform: [
+      { translateY: Style.adjust(templateTextStylesLineHeight.b2 / 2 + Platform.select({ ios: 6, android: 0 })) },
+    ],
   },
   image: {
     width: Style.adjust(16),
     height: Style.adjust(16),
-    bottom: Style.adjust(
-      Platform.select({
-        ios: -5,
-        android: -2,
-      })
-    ),
   },
 });

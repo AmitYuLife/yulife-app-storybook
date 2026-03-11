@@ -12,6 +12,7 @@ import { FeatureCardSection as IFeatureCardSection } from "@redux/yu-screen/yu-s
 import { SduiAction } from "@graphql/__generated";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import Box from "@atoms/box/box";
+import { templateTextStylesLineHeight } from "@styles/textStyles";
 
 const CARD_BORDER_HEIGHT = Style.adjust(5);
 
@@ -137,16 +138,18 @@ const getMarkdownStyles = (hasButton: SduiAction) => ({
   },
   imageWrapper: {
     width: Style.adjust(16),
+    height: Style.adjust(18),
+    transform: [
+      {
+        translateY: Style.adjust(
+          templateTextStylesLineHeight[hasButton ? "l2" : "l1"] / 2 + Platform.select({ ios: 2, android: -5 })
+        ),
+      },
+    ],
   },
   image: {
     width: Style.adjust(16),
     height: Style.adjust(16),
-    bottom: Style.adjust(
-      Platform.select({
-        ios: -10,
-        android: -3,
-      })
-    ),
   },
 });
 
