@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from "react";
-import { Animated, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
+import Animated, { useAnimatedScrollHandler } from "react-native-reanimated";
 import { ProductDetailsHeader } from "../subcomponents/product-details.header";
 import { UiContext } from "../product-details.context";
 import {
@@ -52,13 +53,17 @@ export const Body = (props: Props) => {
 
   const uiContext = useContext(UiContext);
 
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      uiContext.scrollValue.value = event.contentOffset.y;
+    },
+  });
+
   return (
     <Animated.ScrollView
       testID={PRODUCT_DETAILS_SCROLL_VIEW}
       scrollEventThrottle={16}
-      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: uiContext.scrollValue } } }], {
-        useNativeDriver: true,
-      })}
+      onScroll={scrollHandler}
       showsVerticalScrollIndicator={false}
       style={styles.wrapper}
       bounces={true}

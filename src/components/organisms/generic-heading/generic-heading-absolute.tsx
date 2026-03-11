@@ -5,19 +5,27 @@ import { TOP_BAR, Colours, StyleSheet, Style } from "@styles";
 import { BUTTON_CLOSE, CONNECTION_SETUP_TITLE } from "@ids";
 import { useGenericHeadingShadowOpacity } from "./generic-heading.shadow";
 import { Box } from "@atoms";
-import { Platform } from "react-native";
+import { Platform, ViewStyle } from "react-native";
 
 interface OwnProps {
   backgroundColor?: string;
   hasShadow?: boolean;
   scrollValue?: SharedValue<number>;
   children?: ReactNode;
+  animatedStyle?: ViewStyle;
 }
 
 type Props = ComponentProps<typeof GenericHeading> & OwnProps;
 
 const GenericHeadingAbsolute = (props: Props) => {
-  const { backgroundColor = Colours.neutral.white, hideBorder = true, hasShadow, scrollValue, children } = props;
+  const {
+    backgroundColor = Colours.neutral.white,
+    hideBorder = true,
+    hasShadow,
+    scrollValue,
+    animatedStyle,
+    children,
+  } = props;
 
   const shadowOpacityStyle = useGenericHeadingShadowOpacity(hasShadow, scrollValue);
 
@@ -34,6 +42,8 @@ const GenericHeadingAbsolute = (props: Props) => {
       disableAutoAdjust={true}
       bg={backgroundColor}
       testID={CONNECTION_SETUP_TITLE}
+      forceAnimated={!!animatedStyle}
+      style={animatedStyle}
     >
       <GenericHeading {...props} />
       {children}

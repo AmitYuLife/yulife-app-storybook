@@ -1,54 +1,63 @@
 import React, { memo } from "react";
-import { Animated, View, ViewStyle } from "react-native";
+import {
+  SharedValue,
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import { useDispatch } from "react-redux";
 import { DETOX_ENABLED } from "@services/socket";
 import { ContentItemCollapsingGenericHeaderFragment as Props } from "@graphql/__generated";
 import { CloseSvg } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
-import { Colours, StyleSheet } from "@styles";
+import { Colours } from "@styles";
 
 type OwnProps = Props & {
-  scrollValue: Animated.Value;
+  scrollValue: SharedValue<number>;
 };
 
 export const ContentItemCollapsingGenericHeader = memo((props: OwnProps) => {
   const dispatch = useDispatch();
-  const scrolledHeaderTranslateY = DETOX_ENABLED
-    ? -1000
-    : props.scrollValue.interpolate({
-        inputRange: [0, 0, 1],
-        outputRange: [-1000, -1000, 0],
-        extrapolate: "clamp",
-      });
+  const headerOpacity = useSharedValue(0);
+
+  useAnimatedReaction(
+    () => props.scrollValue.value,
+    (scrollY) => {
+      if (DETOX_ENABLED) {
+        headerOpacity.value = 0;
+        return;
+      }
+
+      const target = scrollY > 0 ? 1 : 0;
+      if (headerOpacity.value !== target) {
+        headerOpacity.value = withTiming(target, { duration: 200 });
+      }
+    }
+  );
+
+  const scrolledHeaderAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: headerOpacity.value,
+  }));
 
   return (
-    <View style={styles.absoluteBase}>
-      <Animated.View style={styles.absoluteBase}>
-        <GenericHeadingAbsolute
-          heading=""
-          RightIcon={<CloseSvg stroke={Colours.neutral.white} />}
-          onRightIconPress={() => dispatch(props.onPressRightIcon)}
-          backgroundColor="transparent"
-        />
-      </Animated.View>
-      <Animated.View style={[styles.absoluteBase, { transform: [{ translateY: scrolledHeaderTranslateY }] }]}>
-        <GenericHeadingAbsolute
-          heading={props.title}
-          RightIcon={<CloseSvg />}
-          onRightIconPress={() => dispatch(props.onPressRightIcon)}
-          backgroundColor={Colours.neutral.white}
-          hideBorder={false}
-        />
-      </Animated.View>
-    </View>
+    <>
+      <GenericHeadingAbsolute
+        heading=""
+        RightIcon={<CloseSvg stroke={Colours.neutral.white} />}
+        onRightIconPress={() => dispatch(props.onPressRightIcon)}
+        backgroundColor="transparent"
+      />
+      <GenericHeadingAbsolute
+        heading={props.title}
+        RightIcon={<CloseSvg />}
+        onRightIconPress={() => dispatch(props.onPressRightIcon)}
+        backgroundColor={Colours.neutral.white}
+        hideBorder={false}
+        scrollValue={props.scrollValue}
+        hasShadow={true}
+        animatedStyle={scrolledHeaderAnimatedStyle}
+      />
+    </>
   );
-});
-
-const styles = StyleSheet.create({
-  absoluteBase: {
-    position: "absolute",
-    top: 0,
-    start: 0,
-    end: 0,
-  } as ViewStyle,
 });
