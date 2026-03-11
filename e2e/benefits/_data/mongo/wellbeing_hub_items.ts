@@ -18,8 +18,8 @@ export const WELLBEING_HUB_ITEM_1 = {
       workLocationCountry: {},
     },
     restrictions: {
-      showForPerkIds: "FIIT_12_MONTH",
-      perkId: "FIIT_12_MONTH",
+      showForPerkIds: ["FIIT_12_MONTH"],
+      hideForPerkIds: [],
     },
     content: [
       {
@@ -37,7 +37,11 @@ export const WELLBEING_HUB_ITEM_1 = {
         image: "",
         restrictToPlatform: "",
         label: "Activate your Fiit account",
-        uri: "yulifeapp-detox://yulife/perk-provision/FIIT_12_MONTH",
+        uri: "https://yulife.com/perk-provision/FIIT_12_MONTH",
+        onPress: {
+          type: "SDUI_ACTION_NAVIGATE",
+          payload: JSON.stringify({ routeId: "yulife.perk.subscriptionInfo", props: { perkId: "FIIT_12_MONTH" } }),
+        },
       },
       {
         _id: generateRandomMongoId(),
@@ -98,8 +102,8 @@ export const WELLBEING_HUB_ITEM_3 = {
       },
     },
     restrictions: {
-      showForPerkIds: "FIIT_12_MONTH",
-      perkId: "FIIT_12_MONTH",
+      showForPerkIds: ["FIIT_12_MONTH"],
+      hideForPerkIds: [],
     },
     content: [
       {
@@ -117,7 +121,11 @@ export const WELLBEING_HUB_ITEM_3 = {
         image: "",
         restrictToPlatform: "",
         label: "Activate your Fiit account",
-        uri: "yulifeapp-detox://yulife/perk-provision/FIIT_12_MONTH",
+        uri: "https://yulife.com/perk-provision/FIIT_12_MONTH",
+        onPress: {
+          type: "SDUI_ACTION_NAVIGATE",
+          payload: JSON.stringify({ routeId: "yulife.perk.subscriptionInfo", props: { perkId: "FIIT_12_MONTH" } }),
+        },
       },
       {
         _id: generateRandomMongoId(),
@@ -155,8 +163,8 @@ export const WELLBEING_HUB_ITEM_4 = {
       },
     },
     restrictions: {
-      showForPerkIds: "FIIT_12_MONTH",
-      perkId: "FIIT_12_MONTH",
+      showForPerkIds: ["FIIT_12_MONTH"],
+      hideForPerkIds: [],
     },
     content: [
       {
@@ -174,7 +182,11 @@ export const WELLBEING_HUB_ITEM_4 = {
         image: "",
         restrictToPlatform: "",
         label: "Activate your Fiit account",
-        uri: "yulifeapp-detox://yulife/perk-provision/FIIT_12_MONTH",
+        uri: "https://yulife.com/perk-provision/FIIT_12_MONTH",
+        onPress: {
+          type: "SDUI_ACTION_NAVIGATE",
+          payload: JSON.stringify({ routeId: "yulife.perk.subscriptionInfo", props: { perkId: "FIIT_12_MONTH" } }),
+        },
       },
       {
         _id: generateRandomMongoId(),
@@ -212,8 +224,8 @@ export const WELLBEING_HUB_ITEM_5 = {
     },
     order: 1,
     restrictions: {
-      perkId: "BUPA_HEALTH_INSURANCE",
-      showForPerkIds: "BUPA_HEALTH_INSURANCE",
+      showForPerkIds: ["BUPA_HEALTH_INSURANCE_BLUA_HEALTH"],
+      hideForPerkIds: [],
     },
     content: [
       {
@@ -364,8 +376,8 @@ export const WELLBEING_HUB_ITEM_6 = {
     },
     order: 2,
     restrictions: {
-      perkId: "BUPA_HEALTH_INSURANCE",
-      showForPerkIds: "BUPA_HEALTH_INSURANCE",
+      showForPerkIds: ["BUPA_HEALTH_INSURANCE_ANYTIME_HELPLINE"],
+      hideForPerkIds: [],
     },
     content: [
       {
@@ -481,8 +493,8 @@ export const WELLBEING_HUB_ITEM_7 = {
     },
     order: 3,
     restrictions: {
-      perkId: "BUPA_HEALTH_INSURANCE",
-      showForPerkIds: "BUPA_HEALTH_INSURANCE",
+      showForPerkIds: ["BUPA_HEALTH_INSURANCE_FAMILY_MENTAL_HEALTHLINE"],
+      hideForPerkIds: [],
     },
     content: [
       {
@@ -599,8 +611,8 @@ export const WELLBEING_HUB_ITEM_8 = {
     },
     order: 4,
     restrictions: {
-      perkId: "BUPA_HEALTH_INSURANCE",
-      showForPerkIds: "BUPA_HEALTH_INSURANCE",
+      showForPerkIds: ["BUPA_HEALTH_INSURANCE_MENOPAUSE_HEALTHLINE"],
+      hideForPerkIds: [],
     },
     content: [
       {
@@ -720,8 +732,8 @@ export const WELLBEING_HUB_ITEM_9 = {
     },
     order: 5,
     restrictions: {
-      perkId: "BUPA_HEALTH_INSURANCE",
-      showForPerkIds: "BUPA_HEALTH_INSURANCE",
+      showForPerkIds: ["BUPA_HEALTH_INSURANCE_DIRECT_ACCESS"],
+      hideForPerkIds: [],
     },
     content: [
       {
