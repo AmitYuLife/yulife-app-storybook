@@ -89,7 +89,7 @@ const ChallengeSuccessOldScreen = ({
               style={styles.successImage}
               source={require("@assets/challenge-success/challenge-success.webp")}
             />
-            <Box position="absolute" left={0} right={0} bottom={24}>
+            <Box position="absolute" left={0} right={0} bottom={23}>
               <TextTemplate type="h2" color={Colours.text.goldBrown} textAlign="center">
                 {renderScore(score, unit)}
               </TextTemplate>
@@ -154,8 +154,8 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   successImage: {
-    width: 375,
-    height: 182,
+    width: Style.adjust(375),
+    height: Style.adjust(182),
   },
 });
 
