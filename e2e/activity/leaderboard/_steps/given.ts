@@ -7,4 +7,4 @@ export {
 export { loginAsUser, logInAndGoToTab } from "../../_common/given";
 export { triggerCreateRandomChestPool } from "../../../battle_pass/_common/given";
 export { triggerGenerateBattlePassSeason } from "../../../battle_pass/_common/given";
-export { triggerSyncAllLeaderboardEnrolmentsForUser } from "_utils/appScreens/leaderboard";
+export { triggerSyncAllLeaderboardEnrolmentsForUser, refreshLeaderboard } from "_utils/appScreens/leaderboard";

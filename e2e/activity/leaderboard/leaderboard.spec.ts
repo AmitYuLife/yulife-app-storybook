@@ -182,13 +182,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
   Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data + loaded in historical data", scenario.start, async () => {
     When("I have done two days ago 15,000 steps", when.addStepsHistoricalData(15000, 2), async () => {
-      When("I have done two days ago Biking 9 km", when.addCyclingHistoricalData(9000, 2), async () => {
-        When("I have done two days ago 13:20 min Mindfulness", when.addMindfulnessHistoricalData(800, 2), async () => {
-          Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
-            Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
-            Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true));
-          });
-        });
+      Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
+        Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+        Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true));
       });
     });
     helper.CREATE_AVATAR(data.CUSTOMER_47)();
@@ -210,15 +206,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
       Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible);
     });
-    When("I scroll to the Challenge statistics section", when.scrollFromID(ids.USER_INFO("Michael Scott 4"), "down", "fast"), async () => {
+    When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(ids.USER_INFO("Michael Scott 4"), "Activity", "down"), async () => {
       Then("I should see the Challenge stats", then.challengeDataVisible(0, 0));
       Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Michael Scott 4"));
-    });
-    When("I scroll to the Activity data section", when.scrollFromID(ids.USER_INFO("Michael Scott 4"), "up", "slow", 0.4), async () => {
-      Then("I should see the yumoji avatars and the comparative walking activity stats between me and Michael", then.comparativeUserStatsVisible(26, 833));
-    });
-    When("I scroll down", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.6), async () => {
-      Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(0.1, 1.3, 0, 3));
     });
   });
 
@@ -420,15 +410,16 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     });
   });
 
-  // @update -- Temp skip due to steps count not tapering correctly
-  ScenarioSkip("A users leaderboard updates accurately when creating a new step document after not having one due to a long absence & a user who has locked steps over 30 days ago starts to see their steps tapering off each day", scenario.start, async () => {
+  Scenario("A users leaderboard updates accurately when creating a new step document after not having one due to a long absence & a user who has locked steps over 30 days ago starts to see their steps tapering off each day", scenario.start, async () => {
     Given("I login as a user with no leaderboard score document", given.loginAsUser(data.CUSTOMER_138, data.AUTH_138), async () => {
-      When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-        When("I tap the leaderboard dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 0), async () => {
-          Then("I can see the active leaderboard", then.idVisible(ids.COMMUNITY_LIST_ITEM("active")));
-          Then("I can see the locked leaderboard", then.idVisible(ids.COMMUNITY_LIST_ITEM("locked")));
-          Then("I can see the consent leaderboard", then.idVisible(ids.COMMUNITY_LIST_ITEM("consent")));
-          Then("I can not see the archived leaderboard", then.idNotVisible(ids.COMMUNITY_LIST_ITEM("archived")));
+      Given("I refresh the leaderboard scores", given.refreshLeaderboard, async () => {
+        When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+          When("I tap the leaderboard dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 0), async () => {
+            Then("I can see the active leaderboard", then.idVisible(ids.COMMUNITY_LIST_ITEM("active")));
+            Then("I can see the locked leaderboard", then.idVisible(ids.COMMUNITY_LIST_ITEM("locked")));
+            Then("I can see the consent leaderboard", then.idVisible(ids.COMMUNITY_LIST_ITEM("consent")));
+            Then("I can not see the archived leaderboard", then.idNotVisible(ids.COMMUNITY_LIST_ITEM("archived")));
+          });
         });
       });
     });

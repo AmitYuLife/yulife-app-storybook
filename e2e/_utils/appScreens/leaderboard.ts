@@ -28,6 +28,10 @@ export const triggerSearchTokens = (userCount: number) => async () => {
   });
 };
 
+export const refreshLeaderboard = async () => {
+  await fetch(`${dataManager.baseUrl}detox/refreshLeaderboard`, { method: "POST" });
+};
+
 export const triggerSyncAllLeaderboardEnrolmentsForUser = (customerIds: string[]) => async () => {
   customerIds.forEach(async (customerId) => {
     await dataManager.triggerWorkerTask("SYNC_ALL_USER_SOCIAL_GROUP_LEADERBOARD_ENROLMENTS", {
