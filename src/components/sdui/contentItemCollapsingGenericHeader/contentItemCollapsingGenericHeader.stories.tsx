@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { ContentItemCollapsingGenericHeader } from "./contentItemCollapsingGenericHeader";
 import { SduiActionType } from "@graphql/__generated";
-import { Animated } from "react-native";
+import { makeMutable } from "react-native-reanimated";
 
 type Story = StoryObj<typeof ContentItemCollapsingGenericHeader>;
 
@@ -24,7 +24,7 @@ const meta: Meta<typeof ContentItemCollapsingGenericHeader> = {
 
     styles: [],
     title: "Life Insurance",
-    scrollValue: new Animated.Value(1),
+    scrollValue: makeMutable(1),
   },
 };
 

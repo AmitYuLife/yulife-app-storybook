@@ -1,5 +1,6 @@
-import React, { memo, useCallback, useMemo, useRef, useState } from "react";
-import { Animated, LayoutChangeEvent, View, ViewStyle } from "react-native";
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { LayoutChangeEvent, View, ViewStyle } from "react-native";
+import { useSharedValue } from "react-native-reanimated";
 import { mapServerStyles } from "@components/sdui";
 import { Absolute, Body } from "./sections";
 import { UiContext } from "./product-details.context";
@@ -19,7 +20,7 @@ interface Props {
 
 export const ProductDetailsScreen = memo((props: Props) => {
   const { body, header, absolute, containerStyles, contentInsetAdjustmentBehavior } = props;
-  const { current: scrollValue } = useRef(new Animated.Value(0));
+  const scrollValue = useSharedValue(0);
   const [headerHeight, setHeaderHeight] = useState(0);
 
   const handleHeaderLayout = useCallback((event: LayoutChangeEvent) => {
