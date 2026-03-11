@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.2.0] - 2026-03-11
+
+### Features
+
+- Feature GS-2419: Theming some more
+- Feature GS-2419: More SDUI theme components
+- Feature GS-2419: Apply theme to markdown, checkbox & item choice
+
+### Bugfixes
+
+- Bugfix GS-2419: Theming debug modal dimensions
+- Bugfix GS-2484: Duel intro screen height
+- Bugfix GS-2506: Search reward overlay
+- Bugfix GS-2370: scroll picker modal bottom padding too big
+- Bugfix GS-2366: Drunk yunity acting up again
+
+### Tasks
+
+- Task GS-2518: Fix inline markdown image vertical alignment
+- Task GS-2520: Fix product details sticky header
+- Task GS-2320: Challenge reward not centered
+- Task GS-2231: Used voucher behaviour - UI
+- Task GS-2457: Debug complete challenge now crashes the app
+- Task GS-2475: Fix progress bar white stripe
+- Task CLAUDE-1: boundaries for ios/android folders
+- Task GS-1810: Single reward pass type on screen
+- Task DEVOPS-4792: Bitrise cleanup
+
+### Chores
+
+- chore DEVOPS-5184: Add global-default Gitlab CI Component
+
+### Extra
+
+- Detox GS-2521: Fix Leaderboard Score Refresh
+- Detox GS-2165: Survey Launch Notification
+- Detox GS-2519: Unskip Wellbeing Hub Scenarios
+- Detox GS-2509: YuScreen Product Cards
+- GS-2458: Fix android cut off text
+- Detox GS-1571: End of Planets Lvl 1400
+- Detox GS-2507: Notifications Permissions
+- Detox GS-2508: Product Details
+- Detox GS-2504: Dynamically Generated Gift Messages
+- Hotfix ISA-4233: PDP header height
+- Detox GS-2504: Update P2P Gifting Stickers
+
 ## [5.1.0] - 2026-03-05
 
 ### Features
