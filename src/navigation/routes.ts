@@ -193,6 +193,7 @@ import OpenRandomChestModal from "../components/modals/open-random-chest/open-ra
 import ViewAchievementModal from "../components/modals/view-achievement-modal/view-achievement-modal";
 import UnlockedAchievementsModal from "../components/modals/unlocked-achievements-modal/unlocked-achievements-modal";
 import ReflectionReminderModal from "@components/modals/reflection-reminder/reflection-reminder.modal";
+import ConfirmationModal from "../components/modals/confirmation-modal/confirmation-modal";
 
 // Type for route definition
 type RouteDefinition = {
@@ -838,6 +839,10 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: MODALS.unlockedAchievementsModal,
     component: UnlockedAchievementsModal,
+  },
+  {
+    name: MODALS.confirmation,
+    component: ConfirmationModal,
   },
 ];
 

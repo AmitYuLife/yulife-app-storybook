@@ -1,7 +1,7 @@
-import { useQuery } from "@apollo/client/react/hooks";
 import { Box, Loading } from "@atoms";
 import WalletDiscountIem from "@components/molecules/reward-wallet/walletDiscountIem";
-import { gql, MobileGameUserWalletItem, SduiAction } from "@graphql/__generated";
+import { MobileGameUserWalletItem, SduiAction } from "@graphql/__generated";
+import { useNavigationComponentDidAppear } from "@hooks";
 import { t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
@@ -9,10 +9,11 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { Style, StyleSheet } from "@styles";
-import { memo, useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import WalletCouponItem from "../../../molecules/reward-wallet/walletCouponItem";
 import WalletItem from "../../../molecules/reward-wallet/walletItem";
+import { useWalletRewardItems } from "./hooks/useWalletRewardItems";
 import WalletHeader, { MobileGameUserWalletHeader, WalletHeaderLoading } from "./subcomponents/wallet-header";
 import WalletItemLoading from "./subcomponents/wallet-item-loading";
 import WalletSectionHeader, {
@@ -23,81 +24,41 @@ import WalletSectionMore, {
   MobileGameUserWalletMoreAction,
   WalletSectionMoreLoading,
 } from "./subcomponents/wallet-section-more";
+import WalletUsedSectionHeader, {
+  MobileGameUserWalletUsedSectionHeader,
+} from "./subcomponents/wallet-used-section-header";
 
 type MobileGameUserWalletListItem =
-  | (MobileGameUserWalletItem & { item_type: "wallet_item" })
+  | (MobileGameUserWalletItem & { item_type: "wallet_item"; isUsed?: boolean })
   | MobileGameUserWalletHeader
   | MobileGameUserWalletSectionHeader
-  | MobileGameUserWalletMoreAction;
+  | MobileGameUserWalletMoreAction
+  | MobileGameUserWalletUsedSectionHeader;
 interface IRewardsWalletItemsContainerProps {
   rewardId: string;
   type?: string;
 }
 function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsContainerProps) {
-  const [loadingMore, setLoadingMore] = useState<boolean>(false);
-  const { data, loading, refetch, fetchMore } = useQuery(gql(`GetMobileGameUserWalletRewardItemsDocument`), {
-    variables: {
-      rewardId,
-      type,
-    },
-    fetchPolicy: "network-only",
+  const { data, loading, loadingMore, handleFetchMore, refetch } = useWalletRewardItems({
+    rewardId,
+    type,
+    markedAsUsed: false,
   });
+  const {
+    data: usedData,
+    loadingMore: loadingMoreUsed,
+    handleFetchMore: handleFetchMoreUsed,
+    refetch: refetchUsed,
+  } = useWalletRewardItems({ rewardId, markedAsUsed: true });
 
   const handleRefresh = useCallback(() => {
-    refetch({
-      rewardId,
-      type,
-    });
-  }, [refetch, rewardId, type]);
+    refetch({ rewardId, type });
+    refetchUsed({ rewardId });
+  }, [refetch, refetchUsed, rewardId, type]);
+
+  useNavigationComponentDidAppear(handleRefresh, ROUTES.walletItems);
 
   const dispatch = useDispatch();
-
-  const handleFetchMore = useCallback(() => {
-    const lastSectionIndex = data?.getMobileGameUserWalletRewardItems?.sections?.length - 1;
-    if (lastSectionIndex === undefined || lastSectionIndex < 0) {
-      return;
-    }
-
-    const lastSection = data?.getMobileGameUserWalletRewardItems?.sections?.[lastSectionIndex];
-
-    if (lastSection?.hasMore) {
-      setLoadingMore(true);
-      fetchMore({
-        variables: {
-          rewardId,
-          type: lastSection.type,
-          offset: lastSection.items.length,
-        },
-        updateQuery: (prev, { fetchMoreResult }) => {
-          const newSection = fetchMoreResult?.getMobileGameUserWalletRewardItems?.sections?.[0];
-          if (!newSection) {
-            return prev;
-          }
-
-          const result = {
-            ...prev,
-            getMobileGameUserWalletRewardItems: {
-              ...prev.getMobileGameUserWalletRewardItems,
-              sections: prev.getMobileGameUserWalletRewardItems.sections.map((section, index) => {
-                if (index === lastSectionIndex) {
-                  return {
-                    ...section,
-                    items: [...section.items, ...(newSection?.items || [])],
-                    hasMore: newSection?.hasMore,
-                  };
-                }
-
-                return section;
-              }),
-            },
-          };
-          return result;
-        },
-      }).finally(() => {
-        setLoadingMore(false);
-      });
-    }
-  }, [data?.getMobileGameUserWalletRewardItems?.sections, fetchMore, rewardId]);
 
   const handleCardPress = useCallback(
     (onPress: SduiAction) => {
@@ -121,19 +82,37 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
         return <WalletSectionMore {...item} />;
       }
 
+      if (item.item_type === "used-section-header") {
+        return <WalletUsedSectionHeader {...item} />;
+      }
+
       if (item.item_type === "header") {
         return <WalletHeader {...item} />;
       }
 
+      const opacity = item.isUsed ? 0.5 : 1;
+
       if (item.type === "coupon") {
-        return <WalletCouponItem item={item} onPress={handleCardPress} index={index} />;
+        return (
+          <Box opacity={opacity}>
+            <WalletCouponItem item={item} onPress={handleCardPress} index={index} />
+          </Box>
+        );
       }
 
       if (item.type === "discount") {
-        return <WalletDiscountIem item={item} onPress={handleCardPress} index={index} />;
+        return (
+          <Box opacity={opacity}>
+            <WalletDiscountIem item={item} onPress={handleCardPress} index={index} />
+          </Box>
+        );
       }
 
-      return <WalletItem item={item} onPress={handleCardPress} index={index} />;
+      return (
+        <Box opacity={opacity}>
+          <WalletItem item={item} onPress={handleCardPress} index={index} />
+        </Box>
+      );
     },
     [handleCardPress]
   );
@@ -151,40 +130,71 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
   }, [rewardId, type]);
 
   const calculatedData = useMemo(() => {
-    return data?.getMobileGameUserWalletRewardItems?.sections?.reduce((list, section, index, sections) => {
-      if (index === 0 && data?.getMobileGameUserWalletRewardItems?.image?.uri) {
-        list.push({
-          item_type: "header",
-          image: data?.getMobileGameUserWalletRewardItems?.image,
+    const list: MobileGameUserWalletListItem[] =
+      data?.getMobileGameUserWalletRewardItems?.sections?.reduce((acc, section, index, sections) => {
+        if (index === 0 && data?.getMobileGameUserWalletRewardItems?.image?.uri) {
+          acc.push({
+            item_type: "header",
+            image: data?.getMobileGameUserWalletRewardItems?.image,
+          });
+        }
+
+        acc.push({
+          item_type: "section-header",
+          title: section.title,
+          icon: section.icon,
+          description: section.description,
+          onPress: () => null,
         });
-      }
 
+        section.items.forEach((item) => {
+          acc.push({ ...item, item_type: "wallet_item", isUsed: false });
+        });
+
+        if (section.hasMore && index < sections.length - 1) {
+          acc.push({
+            item_type: "see_more",
+            onPress: () =>
+              Navigation.updateProps(ROUTES.walletItems, {
+                rewardId,
+                type: section.type,
+              }),
+          });
+        }
+
+        return acc;
+      }, [] as MobileGameUserWalletListItem[]) || [];
+
+    const usedSections = usedData?.getMobileGameUserWalletRewardItems?.sections;
+    if (usedSections?.length) {
       list.push({
-        item_type: "section-header",
-        title: section.title,
-        icon: section.icon,
-        description: section.description,
-        onPress: () => null,
+        item_type: "used-section-header",
+        title: t("screens.rewards.wallet.used_section.title"),
       });
 
-      section.items.forEach((item) => {
-        list.push({ ...item, item_type: "wallet_item" });
+      usedSections.forEach((section) => {
+        section.items.forEach((item) => {
+          list.push({ ...item, item_type: "wallet_item", isUsed: true });
+        });
       });
 
-      if (section.hasMore && index < sections.length - 1) {
+      const hasMoreUsed = usedSections.some((section) => section.hasMore);
+      if (hasMoreUsed) {
         list.push({
           item_type: "see_more",
-          onPress: () =>
-            Navigation.updateProps(ROUTES.walletItems, {
-              rewardId,
-              type: section.type,
-            }),
+          onPress: handleFetchMoreUsed,
         });
       }
+    }
 
-      return list;
-    }, [] as MobileGameUserWalletListItem[]);
-  }, [data?.getMobileGameUserWalletRewardItems?.image, data?.getMobileGameUserWalletRewardItems?.sections, rewardId]);
+    return list;
+  }, [
+    data?.getMobileGameUserWalletRewardItems?.image,
+    data?.getMobileGameUserWalletRewardItems?.sections,
+    usedData?.getMobileGameUserWalletRewardItems?.sections,
+    rewardId,
+    handleFetchMoreUsed,
+  ]);
 
   const keyExtractor = useCallback((item: MobileGameUserWalletListItem, index: number) => {
     if (item.item_type === "header") {
@@ -199,6 +209,10 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
       return `see_more_${index}`;
     }
 
+    if (item.item_type === "used-section-header") {
+      return `used-section-header_${index}`;
+    }
+
     if (item.item_type === "wallet_item") {
       return `wallet_item_${item.id}`;
     }
@@ -207,7 +221,7 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
   }, []);
 
   const renderFooter = useCallback(() => {
-    if (!loadingMore) {
+    if (!loadingMore && !loadingMoreUsed) {
       return null;
     }
 
@@ -216,7 +230,7 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
         <Loading size={24} />
       </Box>
     );
-  }, [loadingMore]);
+  }, [loadingMore, loadingMoreUsed]);
   return (
     <Box flexDirection="column" flex={1} p={16}>
       <GenericHeadingPad hideBorder={false} />
@@ -225,7 +239,7 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
           <ItemsLoadingList />
         ) : (
           <FlashList
-            extraData={loadingMore}
+            extraData={[loadingMore, loadingMoreUsed]}
             data={calculatedData}
             renderItem={renderItem}
             refreshing={loading}

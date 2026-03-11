@@ -5,7 +5,7 @@ import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { store as reduxStore } from "@redux/_core/store";
 import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import routesForRegistration from "@navigation/routes";
 import { Navigation } from "@navigation/main";
 
@@ -19,6 +19,8 @@ export function* sduiActionShowFloatingModal({ payload }: SduiActionWithServerPa
 
     try {
       const ModalComponent = Modal.component;
+      const isBottomSheet = props.modalConfig?.bottomSheet === true;
+
       yield call(() =>
         showFloatingModal({
           modalId,
@@ -29,21 +31,18 @@ export function* sduiActionShowFloatingModal({ payload }: SduiActionWithServerPa
               onConfirm={props.onConfirm ? () => dispatch(props.onConfirm) : undefined}
             />
           ),
-          // possibly move this configs into the server side
           showButton: false,
-          showCloseIcon: false,
+          showCloseIcon: isBottomSheet,
           paddingTop: 0,
-          height: Style.adjust(490),
-          wrapperStyle: {
-            backgroundColor: "transparent",
-            width: Style.DEVICE_WIDTH - Style.adjust(24),
-            borderRadius: 8,
-          },
-          overlayStyle: {
-            justifyContent: "center",
-            alignItems: "center",
-          },
-          // end
+          height: isBottomSheet ? 0 : Style.adjust(490),
+          wrapperStyle: isBottomSheet
+            ? { backgroundColor: Colours.neutral.white }
+            : {
+                backgroundColor: "transparent",
+                width: Style.DEVICE_WIDTH - Style.adjust(24),
+                borderRadius: 8,
+              },
+          overlayStyle: isBottomSheet ? undefined : { justifyContent: "center", alignItems: "center" },
         })
       );
     } catch (e) {

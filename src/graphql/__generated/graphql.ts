@@ -550,6 +550,12 @@ export type AvatarRemoteFilesImageArgs = {
   options?: InputMaybe<AvatarRemoteFileOption>;
 };
 
+export type BannerMarkdown = {
+  __typename?: "BannerMarkdown";
+  description: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+};
+
 export type BasicMemberDataConnection = {
   __typename?: "BasicMemberDataConnection";
   connectionType: ConnectionType;
@@ -1765,6 +1771,7 @@ export type ContentItemAppDownloadPrompt = {
 export type ContentItemBeneficiariesSection = {
   __typename?: "ContentItemBeneficiariesSection";
   id: Scalars["ID"]["output"];
+  onPress?: Maybe<SduiAction>;
   productId: Scalars["String"]["output"];
   styles?: Maybe<Array<SduiStyle>>;
 };
@@ -2470,13 +2477,16 @@ export type ContentItemProductDetailsHeader = {
   coverType: CoverType;
   funding?: Maybe<ContentItemProductDetailsHeaderFunding>;
   id: Scalars["ID"]["output"];
-  itemSlot: YuScreenItemSlot;
+  /** @deprecated ISA-4233 - No longer used in new PDP design from V5.0.1 */
+  itemSlot?: Maybe<YuScreenItemSlot>;
   /** @deprecated No longer used in version 5.0.0 */
   productIdentifier?: Maybe<ContentItemProductDetailsHeaderProductIdentifier>;
   productName: Scalars["String"]["output"];
   providerLogo?: Maybe<VariableRemoteImage>;
+  /** @deprecated ISA-4233 - No longer used in new PDP design from V5.0.1 */
   showItemSlot?: Maybe<Scalars["Boolean"]["output"]>;
-  showSlotLabel: Scalars["Boolean"]["output"];
+  /** @deprecated ISA-4233 - No longer used in new PDP design from V5.0.1 */
+  showSlotLabel?: Maybe<Scalars["Boolean"]["output"]>;
   styles?: Maybe<Array<SduiStyle>>;
   yuCoinPower: Scalars["Int"]["output"];
 };
@@ -3536,7 +3546,9 @@ export type EmployeeDashboard = {
   onboardingSeen: Scalars["Boolean"]["output"];
   ownedProducts: EmployeeDashboardOwnedProducts;
   perks: Array<EmployeeDashboardPerks>;
+  /** @deprecated Kept in for backwards compatibility, use rewardsBannerContent instead. Will be purged after deployment */
   rewardsBanner?: Maybe<EmployeeDashboardRewardsBanner>;
+  rewardsBannerContent?: Maybe<EmployeeDashboardRewardsBannerContent>;
   topBanner?: Maybe<EmployeeDashboardBanner>;
   welcomeBanner: EmployeeDashboardWelcomeBanner;
 };
@@ -3663,6 +3675,32 @@ export type EmployeeDashboardRewardsBanner = {
   qrCodeImage: RemoteImage;
   title: Scalars["String"]["output"];
 };
+
+export type EmployeeDashboardRewardsBannerContent = {
+  __typename?: "EmployeeDashboardRewardsBannerContent";
+  illustrations: EmployeeDashboardRewardsBannerIllustrations;
+  markdown: BannerMarkdown;
+  qrCodeImage: RemoteImage;
+  type: EmployeeDashboardRewardsBannerType;
+};
+
+export type EmployeeDashboardRewardsBannerIllustrations = {
+  __typename?: "EmployeeDashboardRewardsBannerIllustrations";
+  desktop?: Maybe<RemoteImage>;
+  mobile?: Maybe<RemoteImage>;
+  smallMobile?: Maybe<RemoteImage>;
+  tablet?: Maybe<RemoteImage>;
+  wideDesktop?: Maybe<RemoteImage>;
+};
+
+export enum EmployeeDashboardRewardsBannerType {
+  Generic = "Generic",
+  ImpactPass = "ImpactPass",
+  Multipass = "Multipass",
+  PreventionPass = "PreventionPass",
+  RewardStore = "RewardStore",
+  WellbeingPass = "WellbeingPass",
+}
 
 export enum EmployeeDashboardStatus {
   Active = "Active",
@@ -5223,8 +5261,10 @@ export type HrisImportEventsResult = {
 
 export type HrisIntegration = {
   __typename?: "HrisIntegration";
+  docUrl?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
   isBeta: Scalars["Boolean"]["output"];
+  isYuLifeMemberIntegration: Scalars["Boolean"]["output"];
   logoUrl: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
 };
@@ -5690,6 +5730,43 @@ export enum MemberDataFieldNames {
   WorkLocationPostcode = "workLocationPostcode",
 }
 
+export type MemberIntegrationAdapterSummary = {
+  __typename?: "MemberIntegrationAdapterSummary";
+  description: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+  isBeta: Scalars["Boolean"]["output"];
+  logo?: Maybe<Scalars["String"]["output"]>;
+  name: Scalars["String"]["output"];
+  slug: Scalars["String"]["output"];
+};
+
+export type MemberIntegrationDoc = {
+  __typename?: "MemberIntegrationDoc";
+  category: Scalars["String"]["output"];
+  content: Scalars["String"]["output"];
+  description: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+  isBeta: Scalars["Boolean"]["output"];
+  logo?: Maybe<Scalars["String"]["output"]>;
+  order: Scalars["Int"]["output"];
+  slug: Scalars["String"]["output"];
+  tags: Array<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
+};
+
+export type MemberIntegrationDocMeta = {
+  __typename?: "MemberIntegrationDocMeta";
+  category: Scalars["String"]["output"];
+  description: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+  isBeta: Scalars["Boolean"]["output"];
+  logo?: Maybe<Scalars["String"]["output"]>;
+  order: Scalars["Int"]["output"];
+  slug: Scalars["String"]["output"];
+  tags: Array<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
+};
+
 export type MemberOnboardingYuCoinProgress = {
   __typename?: "MemberOnboardingYuCoinProgress";
   current: Scalars["Int"]["output"];
@@ -6137,6 +6214,7 @@ export type MobileGameUserWalletItem = {
   id: Scalars["ID"]["output"];
   image?: Maybe<RemoteImage>;
   info: Array<MobileGameUserWalletItemInfo>;
+  isMarkedAsUsed?: Maybe<Scalars["Boolean"]["output"]>;
   label?: Maybe<Scalars["String"]["output"]>;
   onPress?: Maybe<SduiAction>;
   rewardId: Scalars["String"]["output"];
@@ -6780,6 +6858,7 @@ export type Mutation = {
   markMobileGameUserAchievementsViewed?: Maybe<MobileGameUserAchievements>;
   markMobileNotificationsAsViewedByType: Scalars["Boolean"]["output"];
   markMobileUserWrappedAsViewed: MarkMobileUserWrappedResponse;
+  markRewardsLedgerItemAsUsed?: Maybe<Scalars["Boolean"]["output"]>;
   openMobileGameBattlePassChest: MobileGameBattlePassChestOpenResponse;
   optOutSmoking?: Maybe<Scalars["Boolean"]["output"]>;
   orderWellbeingHubCategories: Scalars["Boolean"]["output"];
@@ -7386,6 +7465,11 @@ export type MutationMarkMobileNotificationsAsViewedByTypeArgs = {
 
 export type MutationMarkMobileUserWrappedAsViewedArgs = {
   wrappedId: Scalars["String"]["input"];
+};
+
+export type MutationMarkRewardsLedgerItemAsUsedArgs = {
+  ledgerId: Scalars["ID"]["input"];
+  used: Scalars["Boolean"]["input"];
 };
 
 export type MutationOpenMobileGameBattlePassChestArgs = {
@@ -8608,6 +8692,7 @@ export type Query = {
   getMemberDataConnections: MemberDataConnectionsResult;
   /** Get the users rewards with image to show featured */
   getMemberFeaturedRewards: Array<Scalars["String"]["output"]>;
+  getMemberIntegrationDoc: MemberIntegrationDoc;
   /** Get the current Url progress */
   getMemberOnboardingYuCoinProgress?: Maybe<MemberOnboardingYuCoinProgress>;
   getMemberSurveyCampaign?: Maybe<MemberBusinessSurveyCampaign>;
@@ -8833,6 +8918,8 @@ export type Query = {
   getYumojiRemoteParts: YumojiRemoteParts;
   /** Gets all the avatar parts svg. */
   listAvatarParts?: Maybe<Array<Maybe<AvatarPart>>>;
+  listMemberIntegrationAdapters: Array<MemberIntegrationAdapterSummary>;
+  listMemberIntegrationDocs: Array<MemberIntegrationDocMeta>;
   mobileUpgradeRequired?: Maybe<MobileUpgradeRequired>;
   pendingAppStoreReview?: Maybe<AppStoreReviewPrompt>;
   pendingFeedbackForm?: Maybe<FeedbackForm>;
@@ -9195,6 +9282,11 @@ export type QueryGetMemberDataConnectionsArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetMemberIntegrationDocArgs = {
+  slug: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetMemberOnboardingYuCoinProgressArgs = {
   url: Scalars["String"]["input"];
 };
@@ -9263,6 +9355,7 @@ export type QueryGetMobileGameUserAchievementsArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileGameUserWalletRewardItemsArgs = {
+  markedAsUsed?: InputMaybe<Scalars["Boolean"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   rewardId: Scalars["String"]["input"];
   type?: InputMaybe<Scalars["String"]["input"]>;
@@ -11229,6 +11322,8 @@ export type TeamEmployeeRecognitionCampaignBillingAddress = {
   hasActiveDirectDebit: Scalars["Boolean"]["output"];
   id: Scalars["String"]["output"];
   label: Scalars["String"]["output"];
+  /** Indicates if VAT is applicable for this billing centre */
+  vatApplies: Scalars["Boolean"]["output"];
 };
 
 export type TeamEmployeeRecognitionCampaignPackage = {
@@ -12918,6 +13013,7 @@ export type YuScreenEnrollCopy = {
 export type YuScreenItemSlot = {
   __typename?: "YuScreenItemSlot";
   backgroundUrl: Scalars["String"]["output"];
+  /** @deprecated ISA-4231 - No longer used in new PDP design from V5.0.0 */
   iconUrl: Scalars["String"]["output"];
 };
 
@@ -33554,6 +33650,7 @@ export type GetMobileGameUserWalletRewardItemsQueryVariables = Exact<{
   type?: InputMaybe<Scalars["String"]["input"]>;
   rewardId: Scalars["String"]["input"];
   offset?: InputMaybe<Scalars["Int"]["input"]>;
+  markedAsUsed?: InputMaybe<Scalars["Boolean"]["input"]>;
 }>;
 
 export type GetMobileGameUserWalletRewardItemsQuery = {
@@ -91297,6 +91394,11 @@ export const GetMobileGameUserWalletRewardItemsDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "offset" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "markedAsUsed" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -91319,6 +91421,11 @@ export const GetMobileGameUserWalletRewardItemsDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "offset" },
                 value: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markedAsUsed" },
+                value: { kind: "Variable", name: { kind: "Name", value: "markedAsUsed" } },
               },
             ],
             selectionSet: {
