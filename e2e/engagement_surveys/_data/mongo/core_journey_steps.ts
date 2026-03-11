@@ -3106,3 +3106,71 @@ export const CORE_JOURNEY_STEPS_35 = {
     nextSteps: [],
   },
 } as IDatabaseItem;
+
+import { CORE_JOURNEY_INSTANCE_SURVEY_PROMPT } from "./core_journey_instances";
+
+export const SURVEY_PROMPT_STEP_INTRO = {
+  type,
+  modelName,
+  data: {
+    _id: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.steps[0].stepId,
+    journey: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.journeyId,
+    stepId: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.steps[0].stepId,
+    stepType: "initial",
+    template: "survey_template_intro",
+    answerKeys: [],
+    hooks: [],
+    temporaryProperties: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const SURVEY_PROMPT_STEP_SCALE = {
+  type,
+  modelName,
+  data: {
+    _id: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.steps[1].stepId,
+    journey: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.journeyId,
+    stepId: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.steps[1].stepId,
+    stepType: "normal",
+    template: "survey_template_scale",
+    templateUi: {
+      categoryName: "Wellbeing",
+      scaleType: "agreement",
+      title: "Maintaining work-life balance is important to you.",
+      isRequired: true,
+    },
+    answerKeys: [],
+    hooks: [],
+    temporaryProperties: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;
+
+export const SURVEY_PROMPT_STEP_REWARD = {
+  type,
+  modelName,
+  data: {
+    _id: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.steps[2].stepId,
+    journey: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.journeyId,
+    stepId: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.steps[2].stepId,
+    stepType: "post_submission_confirmation",
+    template: "survey_template_reward",
+    answerKeys: [],
+    hooks: [
+      {
+        hook: "validateAccessRules",
+        trigger: "onPreSave",
+      },
+      {
+        hook: "awardYucoin",
+        trigger: "onPreFill",
+      },
+    ],
+    temporaryProperties: [],
+    events: [],
+    nextSteps: [],
+  },
+} as IDatabaseItem;

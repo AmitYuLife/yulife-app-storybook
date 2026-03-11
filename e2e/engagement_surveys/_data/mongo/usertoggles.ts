@@ -140,6 +140,19 @@ export const BUSINESS_4_USER_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_SURVEY_PROMPT_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_SURVEY_PROMPT.customer.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showNotificationCentre: true,
+    },
+  },
+} as IDatabaseItem;
+
 export const BUSINESS_5_USER_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",
