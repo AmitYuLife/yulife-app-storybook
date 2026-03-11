@@ -1,5 +1,6 @@
 import { navigation } from "@navigation";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
+import moment from "moment";
 
 export { skipHealthConnection } from "_utils/navigation/login";
 
@@ -16,5 +17,16 @@ export const giveEngagementSurveyAccess =
       journeyId,
       businessAccountId,
       userIdsToInvalidate,
+    });
+  };
+
+export const triggerSurveyInvite =
+  (businessEmployeeIds: string[], journeyId: string, businessSurveyCampaignId: string, endLocalDate?: string) =>
+  async () => {
+    await dataManager.triggerEvent("users_invited_to_survey", {
+      businessEmployeeIds,
+      journeyId,
+      endLocalDate: endLocalDate || moment().add(30, "days").format("YYYY-MM-DD"),
+      businessSurveyCampaignId,
     });
   };

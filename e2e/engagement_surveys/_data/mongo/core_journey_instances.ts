@@ -199,3 +199,34 @@ export const CORE_JOURNEY_INSTANCE_3 = {
     archived: false,
   },
 };
+
+export const CORE_JOURNEY_INSTANCE_SURVEY_PROMPT = {
+  type: "mongo",
+  modelName: model,
+  data: {
+    _id: generateRandomMongoId(),
+    journeyId: generateRandomMongoId(),
+    name: "Detox Survey Prompt Test Journey",
+    journeySourceTemplateId: "engagement_survey",
+    ownerBusinessAccountId: BUSINESS_ACCOUNT_5.business.data.businessAccountId,
+    minAppVersion: ">=4.9.0",
+    allAnswerKeys: [],
+    steps: [
+      { stepId: generateRandomMongoId() },
+      { stepId: generateRandomMongoId() },
+      { stepId: generateRandomMongoId() },
+    ],
+    published: true,
+    showHeroCard: false,
+    uiAccess: [],
+    uiAccessCopy: {},
+    yuCoinRewardAsEarnRateMultiple: 30,
+    yuCoinRewardAsFlatAmount: 0,
+    isStaticJourney: false,
+    requiresUserStateForAccess: false,
+    accessRules: {
+      tags: [BUSINESS_ACCOUNT_5.business.data.businessAccountId],
+    },
+    archived: false,
+  },
+};

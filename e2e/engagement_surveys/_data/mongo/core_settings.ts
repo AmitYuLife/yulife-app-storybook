@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_4 } from "../postgres/business";
+import { BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5 } from "../postgres/business";
 import { BUSINESS_ACCOUNT_3, CUSTOMER_3 } from "engagement_surveys/_data";
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
@@ -58,6 +58,19 @@ export const BUSINESS_4_REFERRALS_SETTINGS = {
     settings: {
       rewardForSenderOnAccountSignup: 2000,
       isEnabled: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_5_ENGAGEMENT_SURVEYS_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "employerTooling.engagementSurveys",
+    entityId: BUSINESS_ACCOUNT_5.business.data.businessAccountId,
+    entityType: "business",
+    settings: {
+      engagementSurveysEnabled: true,
     },
   },
 } as IDatabaseItem;

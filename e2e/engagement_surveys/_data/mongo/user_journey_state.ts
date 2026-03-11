@@ -843,6 +843,24 @@ export const USER_JOURNEY_STATE_04_CUSTOMER_8_1_QUESTION = {
   },
 } as IDatabaseItem;
 
+import { CORE_JOURNEY_INSTANCE_SURVEY_PROMPT } from "./core_journey_instances";
+
+export const USER_JOURNEY_STATE_SURVEY_PROMPT = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journeyId: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.journeyId,
+    triggerSourceId: CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.steps[0].stepId,
+    userId: customer.CUSTOMER_SURVEY_PROMPT.customer.data.customerId,
+    status: "pending",
+    uiAccess: {
+      eventPanel: { alwaysOn: true },
+    },
+    updatedAt: new Date().toISOString(),
+  },
+} as IDatabaseItem;
+
 export const USER_JOURNEY_STATE_FOR_REWARD_MULTIPLIER_TEST_CUSTOMER_1 = {
   type,
   modelName,

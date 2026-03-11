@@ -237,6 +237,33 @@ export const CUSTOMER_11 = createCustomerRecords({
   ],
 });
 
+export const CUSTOMER_SURVEY_PROMPT = createCustomerRecords({
+  archived: false,
+  firstName: "Survey",
+  lastName: "Tester",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_5.business.data.businessAccountId,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  customerCoreSettings: [
+    {
+      domain: "game.healthQuestionnaire",
+      settings: {
+        isQuestionnaireEnabled: false,
+        isMoodMonitorEnabled: false,
+      },
+    },
+  ],
+});
+
 export const CUSTOMER_12 = createCustomerRecords({
   archived: false,
   firstName: "Pathway",
