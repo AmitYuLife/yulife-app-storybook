@@ -1,7 +1,7 @@
-diff --git a/node_modules/storybook/package.json b/node_modules/storybook/package.json
-index d6acdb4..5c5ab2e 100644
---- a/node_modules/storybook/package.json
-+++ b/node_modules/storybook/package.json
+diff --git a/package.json b/package.json
+index d6acdb4fc5c34bc13f2f0b8a1ad088b1981a7dce..5c5ab2e194fec9522c4dfcab5601cab16000aedf 100644
+--- a/package.json
++++ b/package.json
 @@ -45,6 +45,12 @@
        "default": "./template/stories/utils.ts"
      }

@@ -5,9 +5,9 @@ declare -A DEVICES=(["iPhone 8"]="ios" ["iPhone 8 Plus"]="ios" ["iPhone 11"]="io
 start_device() {
   echo "Starting device $2 on $1"
   if [[ "$1" == "android" ]]; then
-    yarn react-native run-$1 &
+    pnpm react-native run-$1 &
   else
-    yarn react-native run-$1 "--simulator=$2"
+    pnpm react-native run-$1 "--simulator=$2"
   fi
 }
 

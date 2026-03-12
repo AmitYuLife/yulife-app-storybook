@@ -1,8 +1,8 @@
-diff --git a/node_modules/detox/src/artifacts/templates/artifact/FileArtifact.js b/node_modules/detox/src/artifacts/templates/artifact/FileArtifact.js
-index 7f07040..593662d 100644
---- a/node_modules/detox/src/artifacts/templates/artifact/FileArtifact.js
-+++ b/node_modules/detox/src/artifacts/templates/artifact/FileArtifact.js
-@@ -87,6 +87,12 @@ class FileArtifact extends Artifact {
+diff --git a/src/artifacts/templates/artifact/FileArtifact.js b/src/artifacts/templates/artifact/FileArtifact.js
+index 65d23d4a8a62f0f7cccaadcb6d3d72d019cfd7b7..cece8e6c21e7185f63f1e72ee2d0d054356ac1ce 100644
+--- a/src/artifacts/templates/artifact/FileArtifact.js
++++ b/src/artifacts/templates/artifact/FileArtifact.js
+@@ -88,6 +88,12 @@ class FileArtifact extends Artifact {
        return true;
      }
  

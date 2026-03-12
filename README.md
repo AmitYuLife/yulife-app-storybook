@@ -43,20 +43,20 @@ Configure your shell to load rbenv: [setting up shell](https://github.com/rbenv/
 
 ### Install app dependencies
 
-This project uses `yarn` for project tasks and dependencies.
+This project uses `pnpm` for project tasks and dependencies.
 
-Before you run `yarn` make sure you have added your [Gitlab token:](https://yulife.atlassian.net/wiki/spaces/ENGINEERIN/pages/1141833734/Engineering+setup+-+gitlab+access+tokens)
+Before you run `pnpm install` make sure you have added your [Gitlab token:](https://yulife.atlassian.net/wiki/spaces/ENGINEERIN/pages/1141833734/Engineering+setup+-+gitlab+access+tokens)
 
 To install dependencies, run:
 
 ```sh
-yarn
+pnpm install
 ```
 
 To generate the native projects:
 
 ```sh
-yarn regenerate
+pnpm regenerate
 ```
 
 To install the much needed ruby gems:
@@ -68,7 +68,7 @@ cd ios && bundle install && cd ..
 You'll also need to install iOS pods by running
 
 ```sh
-yarn pod:install
+pnpm pod:install
 ```
 
 If running `pod:install` produces the error `SDK "iphoneos" cannot be located`, this means the XCode installation path is incorrect (it's probably installed under "Applications").
@@ -97,7 +97,7 @@ sudo xcodebuild -license
 If you’re revisiting the project after a while and encountering issues, it’s a good idea to run the following command:
 
 ```su
-yarn update
+pnpm update
 ```
 
 This ensures that all dependencies are updated, installed, or removed as needed for the project to run smoothly.
@@ -109,13 +109,13 @@ This project uses Apollo/GraphQL for its backend communication.
 To download the latest backend schema from the deployed API develop server, and generate types run:
 
 ```sh
-yarn generate:gql:types
+pnpm generate:gql:types
 ```
 
 Alternatively, if you are developing against a local instance of the API server, you can download its schema by running:
 
 ```sh
-yarn generate:gql:types:local
+pnpm generate:gql:types:local
 ```
 
 ### Download the Translation files
@@ -125,7 +125,7 @@ This project uses tolgee for its localisation.
 To download the latest version of the translations, run:
 
 ```sh
-yarn translations:download:local
+pnpm translations:download:local
 ```
 
 ### Start bundler and TypeScript watch process
@@ -133,7 +133,7 @@ yarn translations:download:local
 The Metro bundler and TypeScript watch process must be started before you can build and run either app. Start these with the following command:
 
 ```sh
-yarn start
+pnpm start
 ```
 
 ### Optimising new image assets
@@ -156,13 +156,13 @@ Building the app using XCode is the only way to install a development build on a
 Build and run the app in the default simulator by running the following command:
 
 ```sh
-yarn start:ios
+pnpm start:ios
 ```
 
 This will run under the default build profile, which will connect to the development API server. To choose a different build profile, add the profile name to the previous command, as below:
 
 ```sh
-yarn start:ios:{profile}
+pnpm start:ios:{profile}
 # config = local | uat | production
 ```
 
@@ -205,10 +205,10 @@ Solution:
 ```
 rm -rf node_modules ios/Pods
 nvm use 18
-yarn
+pnpm install
 npx pod-install
 nvm use 14
-yarn start
+pnpm start
 ```
 
 ##### Building
@@ -216,13 +216,13 @@ yarn start
 If building from GUI doesn't work, you can try building from the CLI using the following command
 
 ```
-yarn react-native run-ios --simulator="iPhone 12 mini"
+pnpm react-native run-ios --simulator="iPhone 12 mini"
 ```
 
 Or more generally
 
 ```
-yarn react-native run-ios --simulator=<SIMULATOR>
+pnpm react-native run-ios --simulator=<SIMULATOR>
 ```
 
 ### Android
@@ -238,7 +238,7 @@ Ensure that the Java SDK (JDK) home path is set as an environment variable calle
 Build and run the app in the default simulator by running the following command:
 
 ```sh
-yarn start:android
+pnpm start:android
 ```
 
 ##### Error: Not Enough Space
@@ -459,7 +459,7 @@ To access locally, run the following `start` commands
 To access run:
 
 ```sh
-yarn start:storybook:web
+pnpm start:storybook:web
 ```
 
 To create a new story, you can run the snippet:
@@ -471,7 +471,7 @@ yustory
 It will generate a default template for you.
 
 > **Note**
-> If the app displays a error message when trying to run it with "yarn start" after using storybook, make sure to revert the changes made to `index.js` before running the app again.
+> If the app displays a error message when trying to run it with "pnpm start" after using storybook, make sure to revert the changes made to `index.js` before running the app again.
 
 ## Folder Structure for YuLife
 
@@ -521,7 +521,7 @@ We can also use ESLint to create our own custom rules specific to our codebase. 
 
 The custom ESLint rules are defined in the `yu-eslint/index.js` file. Define the rule inside of the `rules` object.
 
-To enable your rule, you'll need to run `yarn add -D file:./yu-eslint` and to specify the rule inside of the `.eslintrc` file.
+To enable your rule, you'll need to run `pnpm add -D file:./yu-eslint` and to specify the rule inside of the `.eslintrc` file.
 
 The rule should now display throughout the repo.
 
@@ -537,8 +537,8 @@ For those looking to create their own ESLint rules, here are some recommended ma
 
 ### Disappearing packages
 
-Problem: `yarn add some-package -D` deletes git dependencies in package.json.
-Solution: Re-run `yarn add` after
+Problem: `pnpm add some-package -D` deletes git dependencies in package.json.
+Solution: Re-run `pnpm add` after
 
 ## flow
 
@@ -621,8 +621,8 @@ graph TD;
 
 On `rn-client`, open 2 terminals
 
-- `start:e2e`
-- `detox:run` (if you want to run a specific suite, use `detox:run e2e/path/to/suite.spec.ts`)
+- `pnpm start:e2e`
+- `pnpm detox:run` (if you want to run a specific suite, use `pnpm detox:run e2e/path/to/suite.spec.ts`)
 
 On `api-server`
 
@@ -640,13 +640,13 @@ On `api-server`
 
 ```
 cd ios && bundle exec pod install
-cd ../ && yarn detox:build
+cd ../ && pnpm detox:build
 git reset --hard HEAD
 ```
 
 ## Garmin Sync
 
-Trying to sync Garmin? On `api-server`, do `yarn develop:develop` before trying to toggle Garmin sync.
+Trying to sync Garmin? On `api-server`, do `pnpm develop:develop` before trying to toggle Garmin sync.
 
 ## Testing Remote Push Notifications
 

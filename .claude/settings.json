@@ -3,15 +3,15 @@
     "allow": [
       "Edit(*)",
       "Write(*)",
-      "Bash(yarn update)",
+      "Bash(pnpm update)",
       "mcp__ide__getDiagnostics",
-      "Bash(yarn start:e2e:*)",
-      "Bash(yarn detox:run:*)",
+      "Bash(pnpm start:e2e:*)",
+      "Bash(pnpm detox:run:*)",
       "Bash(applesimutils:*)",
       "Bash(xcrun simctl:*)",
-      "Bash(yarn detox:build)",
-      "Bash(CI=true yarn detox:run:*)",
-      "Bash(yarn e2e:build:*)"
+      "Bash(pnpm detox:build)",
+      "Bash(CI=true pnpm detox:run:*)",
+      "Bash(pnpm e2e:build:*)"
     ],
     "deny": ["Bash(pod install:*)"],
     "ask": []

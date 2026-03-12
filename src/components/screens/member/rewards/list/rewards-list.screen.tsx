@@ -36,7 +36,7 @@ enum RewardListItemTypes {
 
 type IData =
   | IGetMobileRewardsListData["list"][number]
-  | ({ __typename: typeof RewardListItemTypes[keyof typeof RewardListItemTypes] } & { children?: string });
+  | ({ __typename: (typeof RewardListItemTypes)[keyof typeof RewardListItemTypes] } & { children?: string });
 
 const keyExtractor = (item: IData) => {
   if (typeof item === "string") {

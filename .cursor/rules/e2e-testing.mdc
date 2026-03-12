@@ -18,14 +18,14 @@ On `yulife-api-server` (make sure the user has done this at least once in each s
 
 On `yulife-rn-client`, open 2 terminals
 
-- `yarn start:e2e`
-- `CI=true yarn detox:run e2e/path/to/suite.spec.ts`
+- `pnpm start:e2e`
+- `CI=true pnpm detox:run e2e/path/to/suite.spec.ts`
 
 ## Troubleshooting
 
 **"Failed to find the app binary"** - The app hasn't been built yet:
 
-- Run `yarn detox:build` to build the iOS app for testing
+- Run `pnpm detox:build` to build the iOS app for testing
 
 **"Failed to find a device by type"** - The simulator in `.detoxrc.json` doesn't exist:
 

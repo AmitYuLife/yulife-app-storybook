@@ -1,7 +1,7 @@
-diff --git a/node_modules/react-native/Libraries/Text/Text.js b/node_modules/react-native/Libraries/Text/Text.js
-index 52bf37f..a8be316 100644
---- a/node_modules/react-native/Libraries/Text/Text.js
-+++ b/node_modules/react-native/Libraries/Text/Text.js
+diff --git a/Libraries/Text/Text.js b/Libraries/Text/Text.js
+index 52bf37fd3c8c574ff6bec45fe7b3d345fbf9136b..a8be316d6838f0cfc322f5183e76dd3f3a628681 100644
+--- a/Libraries/Text/Text.js
++++ b/Libraries/Text/Text.js
 @@ -44,7 +44,7 @@ const Text: component(
        accessible,
        accessibilityLabel,
@@ -11,10 +11,10 @@ index 52bf37f..a8be316 100644
        'aria-busy': ariaBusy,
        'aria-checked': ariaChecked,
        'aria-disabled': ariaDisabled,
-diff --git a/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp b/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
-index 405392f..4082426 100644
---- a/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
-+++ b/node_modules/react-native/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
+diff --git a/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp b/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
+index 405392f0720fcc3c9c50bc252cc65bfe415a9c7d..40824267a1c9a398855eae011793325d1b6920ed 100644
+--- a/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
++++ b/ReactCommon/react/renderer/scheduler/SurfaceHandler.cpp
 @@ -318,13 +318,21 @@ void SurfaceHandler::applyDisplayMode(DisplayMode displayMode) const {
  void SurfaceHandler::setUIManager(const UIManager* uiManager) const noexcept {
    std::unique_lock lock(linkMutex_);

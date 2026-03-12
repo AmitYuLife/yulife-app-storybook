@@ -324,7 +324,7 @@ const BattlePassContainer = ({
   }, [componentId]);
 
   const getClaimRewardCallback = useCallback(
-    (reward: typeof battlePass.rewards[0]) => {
+    (reward: (typeof battlePass.rewards)[0]) => {
       if (state.current.isSeasonComplete) {
         state.current.isSeasonComplete = false;
         state.current.isEndOfSeasonModalEnabled = true;

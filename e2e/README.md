@@ -76,7 +76,7 @@ The E2E tests require **two projects** running simultaneously:
 - **Apple Simulator Utils** - `brew install wix/brew/applesimutils`
 - **Docker** (for running database services)
 - **pnpm** (for API server)
-- **yarn** (for client)
+- **pnpm** (for client)
 
 ### Required Repositories
 
@@ -103,22 +103,22 @@ git pull && nvm use && pnpm install && pnpm build && pnpm services:start && pnpm
 
 ```bash
 cd yulife-rn-client
-git pull && rm -rf node_modules && yarn install && cd ios && bundle exec pod install --repo-update && cd ../ && yarn detox:build
+git pull && rm -rf node_modules && pnpm install && cd ios && bundle exec pod install --repo-update && cd ../ && pnpm detox:build
 ```
 
 Then start the bundler:
 ```bash
-yarn start:e2e
+pnpm start:e2e
 ```
 
 ### Terminal 3: Run Tests
 
 ```bash
 # Run a single test file
-yarn detox:run e2e/challenges/yudoku/yudoku.spec.ts
+pnpm detox:run e2e/challenges/yudoku/yudoku.spec.ts
 
 # Run all tests
-yarn detox:test:all
+pnpm detox:test:all
 ```
 
 ---
@@ -198,7 +198,7 @@ pnpm detox:changeRegionDatabase:SA && pnpm detox:start:SA
 cd yulife-rn-client
 git pull
 rm -rf node_modules  # Clean install recommended
-yarn install
+pnpm install
 ```
 
 ### Step 2: Install iOS Pods
@@ -212,7 +212,7 @@ cd ../
 ### Step 3: Build Detox App
 
 ```bash
-yarn detox:build
+pnpm detox:build
 ```
 
 > **Note:** This builds the iOS simulator app. It can take 10-15 minutes on first build.
@@ -220,7 +220,7 @@ yarn detox:build
 ### Step 4: Start the Bundler
 
 ```bash
-yarn start:e2e
+pnpm start:e2e
 ```
 
 This starts the React Native Metro bundler in E2E mode.
@@ -229,11 +229,11 @@ This starts the React Native Metro bundler in E2E mode.
 
 | Script | Description |
 |--------|-------------|
-| `yarn detox:build` | Build iOS app for Detox testing |
-| `yarn start:e2e` | Start Metro bundler in E2E mode |
-| `yarn detox:run <path>` | Run a specific test file |
-| `yarn detox:test:all` | Run all tests |
-| `yarn detox:build:translations` | Build translation mapping for localized tests |
+| `pnpm detox:build` | Build iOS app for Detox testing |
+| `pnpm start:e2e` | Start Metro bundler in E2E mode |
+| `pnpm detox:run <path>` | Run a specific test file |
+| `pnpm detox:test:all` | Run all tests |
+| `pnpm detox:build:translations` | Build translation mapping for localized tests |
 
 ---
 
@@ -242,7 +242,7 @@ This starts the React Native Metro bundler in E2E mode.
 ### Run a Single Test File
 
 ```bash
-yarn detox:run e2e/challenges/yudoku/yudoku.spec.ts
+pnpm detox:run e2e/challenges/yudoku/yudoku.spec.ts
 ```
 
 ### Run a Single Scenario
@@ -266,13 +266,13 @@ Feature("My Feature", async () => {
 
 Then run the test file:
 ```bash
-yarn detox:run e2e/path/to/your/test.spec.ts
+pnpm detox:run e2e/path/to/your/test.spec.ts
 ```
 
 ### Run All Tests
 
 ```bash
-yarn detox:test:all
+pnpm detox:test:all
 ```
 
 ### Running Localized Tests
@@ -280,12 +280,12 @@ yarn detox:test:all
 1. Set the target locale and build translations:
 ```bash
 export TARGET_LOCALE=ja-JP
-yarn detox:build:translations
+pnpm detox:build:translations
 ```
 
 2. Run tests with the same locale:
 ```bash
-TARGET_LOCALE=ja-JP yarn detox:test:all
+TARGET_LOCALE=ja-JP pnpm detox:test:all
 ```
 
 ---
@@ -568,9 +568,9 @@ Region-specific tests are in dedicated folders:
 ```bash
 rm -rf node_modules
 rm -rf ios/Pods
-yarn install
+pnpm install
 cd ios && bundle exec pod install --repo-update && cd ../
-yarn detox:build
+pnpm detox:build
 ```
 
 #### 3. App Built in Wrong Location
@@ -609,10 +609,10 @@ yarn detox:build
 **Solution:**
 ```bash
 # Clear Metro cache
-yarn start --reset-cache
+pnpm start --reset-cache
 
 # Or for e2e
-yarn start:e2e --reset-cache
+pnpm start:e2e --reset-cache
 ```
 
 #### 7. Simulator Issues

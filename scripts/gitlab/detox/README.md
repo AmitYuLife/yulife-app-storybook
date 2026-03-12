@@ -165,7 +165,7 @@ variables:
 - **GitLab-native caching** for build artifacts and dependencies
 - **Enhanced caching configuration**:
   - CocoaPods cache: `$CI_PROJECT_DIR/.cocoapods_cache`
-  - Node modules cache: `$CI_PROJECT_DIR/.yarn`
+  - Node modules cache: `$CI_PROJECT_DIR/.pnpm`
   - Build cache: `ios/build/Build/Products`
 
 ## Notification and Reporting

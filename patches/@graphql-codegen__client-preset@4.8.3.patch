@@ -1,0 +1,12 @@
+diff --git a/cjs/index.js b/cjs/index.js
+index 74bef2e234cb7b8dd54ab5e26d19a1c3286e1c7f..5de336f843b0c4e95bba3b80184a3660eb4df204 100644
+--- a/cjs/index.js
++++ b/cjs/index.js
+@@ -133,6 +133,7 @@ exports.preset = {
+         ];
+         const gqlArtifactFileExtension = '.ts';
+         reexports.push('gql');
++        reexports.push('graphql');
+         const config = {
+             ...options.config,
+             inlineFragmentTypes: isMaskingFragments ? 'mask' : options.config['inlineFragmentTypes'],

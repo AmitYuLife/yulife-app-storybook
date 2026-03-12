@@ -16,8 +16,8 @@ deploy:dev:storybook:
     # Install node
     - nvm install -b
     - corepack enable
-    - yarn install --frozen-lockfile
-    - yarn build:storybook:web
+    - pnpm install --frozen-lockfile
+    - pnpm build:storybook:web
     # Recursive touch to update all files' timestamps to force copy them using `aws s3 sync`
     - find "$BUILD_PATH" -type f -exec touch {} +
     - aws s3 sync --delete "$BUILD_PATH"  "s3://$CLOUDFRONT_S3_BUCKET"
@@ -43,7 +43,7 @@ storybook-build:
     # Install node
     - nvm install -b
     - corepack enable
-    - yarn install --frozen-lockfile
-    - yarn build:storybook:web
+    - pnpm install --frozen-lockfile
+    - pnpm build:storybook:web
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"

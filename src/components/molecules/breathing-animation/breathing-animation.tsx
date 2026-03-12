@@ -6,7 +6,7 @@ import { ViewStyle } from "react-native";
 const PLAYABLE_PHASES = ["intro", "inhale", "exhale"];
 
 interface IBreathingAnimationProps {
-  phase: typeof PLAYABLE_PHASES[number] | "hold" | "end";
+  phase: (typeof PLAYABLE_PHASES)[number] | "hold" | "end";
   phaseDurationMs?: number;
   isPlaying: boolean;
   style?: ViewStyle;

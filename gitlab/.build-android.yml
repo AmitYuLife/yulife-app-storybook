@@ -19,8 +19,8 @@ android-develop-build:
   script:
     - nvm install -b
     - corepack enable
-    - yarn install --frozen-lockfile --cache-folder .yarn-cache
-    - yarn tsc
+    - pnpm install --frozen-lockfile
+    - pnpm tsc
     - node ./scripts/replace-package-versionCodes.js "$CI_PIPELINE_IID"
     - EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --clean --no-install
     # Download secure files (App Store Connect API Key)
@@ -58,8 +58,8 @@ android-uat-build:
   script:
     - nvm install -b
     - corepack enable
-    - yarn install --frozen-lockfile --cache-folder .yarn-cache
-    - yarn tsc
+    - pnpm install --frozen-lockfile
+    - pnpm tsc
     - node ./scripts/replace-package-versionCodes.js "$CI_PIPELINE_IID"
     - EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --clean --no-install
     # Download secure files (App Store Connect API Key)
@@ -94,8 +94,8 @@ android-production-build:
   script:
     - nvm install -b
     - corepack enable
-    - yarn install --frozen-lockfile --cache-folder .yarn-cache
-    - yarn tsc
+    - pnpm install --frozen-lockfile
+    - pnpm tsc
     - node ./scripts/replace-package-versionCodes.js "$CI_PIPELINE_IID"
     - EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --clean --no-install
     # Download secure files (App Store Connect API Key)

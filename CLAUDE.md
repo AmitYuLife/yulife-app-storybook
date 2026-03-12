@@ -37,7 +37,7 @@ Client setup: `src/graphql/_core/client.ts`
 **Query Files**: Organized by domain in `src/graphql/[feature]/`
 
 - Auto-generated TypeScript types in `src/graphql/__generated/`
-- Run `yarn generate:gql:types:local` after modifying `.graphql` files
+- Run `pnpm generate:gql:types:local` after modifying `.graphql` files
 
 ### Navigation (React Native Navigation)
 
@@ -75,6 +75,6 @@ Test structure: `e2e/feature/sub-feature/*.spec.ts`
 
 **Running E2E Tests**:
 
-1. Terminal 1: `yarn start:e2e` (bundler + TypeScript watch)
-2. Terminal 2: `CI=true yarn detox:run e2e/path/to/suite.spec.ts`
+1. Terminal 1: `pnpm start:e2e` (bundler + TypeScript watch)
+2. Terminal 2: `CI=true pnpm detox:run e2e/path/to/suite.spec.ts`
 3. Backend: In api-server repo, run `pnpm detox:start` (request the user to do this separately)
