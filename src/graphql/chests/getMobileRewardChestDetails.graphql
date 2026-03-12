@@ -1,0 +1,5 @@
+query GetMobileRewardChestDetails($sourceType: RewardChestSourceType!, $uniqueId: String!, $participationId: String) {
+  details: getMobileRewardChestDetails(sourceType: $sourceType, uniqueId: $uniqueId, participationId: $participationId) {
+    ...RewardChestDetails
+  }
+}

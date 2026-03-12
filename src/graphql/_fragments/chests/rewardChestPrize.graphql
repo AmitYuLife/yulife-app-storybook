@@ -1,0 +1,6 @@
+fragment RewardChestPrize on RewardChestPrize {
+  id
+  item {
+    ...RewardChestItem
+  }
+}

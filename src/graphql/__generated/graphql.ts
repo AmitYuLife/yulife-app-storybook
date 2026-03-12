@@ -904,6 +904,7 @@ export enum BusinessAccessPermission {
   ManageMessagingIntegrations = "manageMessagingIntegrations",
   ManageSurveys = "manageSurveys",
   ManageTags = "manageTags",
+  ManageTeamVsTeam = "manageTeamVsTeam",
   ManageWellbeingHub = "manageWellbeingHub",
   ViewBeneficiaries = "viewBeneficiaries",
   ViewEmployeeBasic = "viewEmployeeBasic",
@@ -1146,6 +1147,7 @@ export type BusinessSessionSettings = {
   /** @deprecated Banner logic now server-side */
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
   showYuStoreDeprecationBanner: Scalars["Boolean"]["output"];
+  teamVsTeamEnabled: Scalars["Boolean"]["output"];
   yuStoreEnabled: Scalars["Boolean"]["output"];
 };
 
@@ -1663,6 +1665,7 @@ export enum ConnectionState {
 export enum ConnectionType {
   Email = "email",
   HrisApi = "hrisApi",
+  MemberApi = "memberApi",
   Sftp = "sftp",
 }
 
@@ -3065,6 +3068,16 @@ export type CreateAccessUserInput = {
   permissions?: InputMaybe<Array<BusinessAccessPermission>>;
 };
 
+export type CreateMemberApiConnectionInput = {
+  providerId: Scalars["String"]["input"];
+  stringifiedJsonSecrets: Scalars["String"]["input"];
+};
+
+export type CreateMemberApiConnectionResult = {
+  __typename?: "CreateMemberApiConnectionResult";
+  connectionId: Scalars["String"]["output"];
+};
+
 export type CreateOrganisationUserResponses = {
   __typename?: "CreateOrganisationUserResponses";
   accountAccessId: Scalars["String"]["output"];
@@ -3694,9 +3707,7 @@ export type EmployeeDashboardRewardsBannerIllustrations = {
 };
 
 export enum EmployeeDashboardRewardsBannerType {
-  Generic = "Generic",
   ImpactPass = "ImpactPass",
-  Multipass = "Multipass",
   PreventionPass = "PreventionPass",
   RewardStore = "RewardStore",
   WellbeingPass = "WellbeingPass",
@@ -4528,6 +4539,12 @@ export type GetTeamSocialGroupsResponse = {
   totalCount: Scalars["Int"]["output"];
 };
 
+export type GetTeamVsTeamEventsResponse = {
+  __typename?: "GetTeamVsTeamEventsResponse";
+  events: Array<TeamVsTeamEvent>;
+  totalCount: Scalars["Int"]["output"];
+};
+
 export type GetYumojiPartSet = {
   __typename?: "GetYumojiPartSet";
   variants: Array<GetYumojiPartSetVariant>;
@@ -5262,6 +5279,7 @@ export type HrisImportEventsResult = {
 export type HrisIntegration = {
   __typename?: "HrisIntegration";
   docUrl?: Maybe<Scalars["String"]["output"]>;
+  fields?: Maybe<Array<SecretField>>;
   id: Scalars["String"]["output"];
   isBeta: Scalars["Boolean"]["output"];
   isYuLifeMemberIntegration: Scalars["Boolean"]["output"];
@@ -5733,6 +5751,7 @@ export enum MemberDataFieldNames {
 export type MemberIntegrationAdapterSummary = {
   __typename?: "MemberIntegrationAdapterSummary";
   description: Scalars["String"]["output"];
+  fields?: Maybe<Array<SecretField>>;
   id: Scalars["String"]["output"];
   isBeta: Scalars["Boolean"]["output"];
   logo?: Maybe<Scalars["String"]["output"]>;
@@ -6803,6 +6822,7 @@ export type Mutation = {
   createCustomValue: CustomValue;
   createEmployeeRecognitionCampaign: TeamEmployeeRecognitionCampaign;
   createEmployerToolingLead: Scalars["Boolean"]["output"];
+  createMemberApiConnection: CreateMemberApiConnectionResult;
   /**
    * Introduced to clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.10.0
    * Incremented feature toggle to V2 on RN version >= 4.16.0
@@ -6814,6 +6834,7 @@ export type Mutation = {
   createSupportRequest?: Maybe<Scalars["Boolean"]["output"]>;
   createTeamMember: CreateTeamMemberResult;
   createTeamSocialGroup: TeamSocialGroup;
+  createTeamVsTeamEvent: TeamVsTeamEvent;
   createWellbeingHubCategory: TeamWellbeingHubCategory;
   createWellbeingHubItem: TeamWellbeingHubResponse;
   createYuCoinTopupRequest: TeamYuCoinTopupRequest;
@@ -6859,7 +6880,9 @@ export type Mutation = {
   markMobileNotificationsAsViewedByType: Scalars["Boolean"]["output"];
   markMobileUserWrappedAsViewed: MarkMobileUserWrappedResponse;
   markRewardsLedgerItemAsUsed?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated Use openMobileRewardChest with sourceType: battlePass */
   openMobileGameBattlePassChest: MobileGameBattlePassChestOpenResponse;
+  openMobileRewardChest: RewardChestOpenResponse;
   optOutSmoking?: Maybe<Scalars["Boolean"]["output"]>;
   orderWellbeingHubCategories: Scalars["Boolean"]["output"];
   orderWellbeingHubItems: Scalars["Boolean"]["output"];
@@ -6997,6 +7020,7 @@ export type Mutation = {
   updateSmokingStreak?: Maybe<HealthSmokingState>;
   updateTeamMember: UpdateTeamMemberProfileResult;
   updateTeamSocialGroup: TeamSocialGroup;
+  updateTeamVsTeamEvent: TeamVsTeamEvent;
   /** Allows the current user to update his yumoji. */
   updateUserAvatar?: Maybe<UpdateUserAvatarResponse>;
   updateUserAvatarParts?: Maybe<UpdateUserAvatarResponse>;
@@ -7239,6 +7263,10 @@ export type MutationCreateEmployerToolingLeadArgs = {
   leadType: Scalars["String"]["input"];
 };
 
+export type MutationCreateMemberApiConnectionArgs = {
+  input: CreateMemberApiConnectionInput;
+};
+
 export type MutationCreateMobileQuestLevelChallengeArgs = {
   contentId?: InputMaybe<Scalars["String"]["input"]>;
   createdBySource?: InputMaybe<ActiveChallengeSourceType>;
@@ -7268,6 +7296,10 @@ export type MutationCreateTeamMemberArgs = {
 
 export type MutationCreateTeamSocialGroupArgs = {
   socialGroup: CreateTeamSocialGroupInput;
+};
+
+export type MutationCreateTeamVsTeamEventArgs = {
+  gameMode: TeamVsTeamGameMode;
 };
 
 export type MutationCreateWellbeingHubCategoryArgs = {
@@ -7475,6 +7507,12 @@ export type MutationMarkRewardsLedgerItemAsUsedArgs = {
 export type MutationOpenMobileGameBattlePassChestArgs = {
   participationId?: InputMaybe<Scalars["String"]["input"]>;
   rewardId: Scalars["String"]["input"];
+};
+
+export type MutationOpenMobileRewardChestArgs = {
+  participationId?: InputMaybe<Scalars["String"]["input"]>;
+  sourceType: RewardChestSourceType;
+  uniqueId: Scalars["String"]["input"];
 };
 
 export type MutationOrderWellbeingHubCategoriesArgs = {
@@ -7985,6 +8023,11 @@ export type MutationUpdateTeamMemberArgs = {
 export type MutationUpdateTeamSocialGroupArgs = {
   socialGroup: UpdateTeamSocialGroupInput;
   socialGroupId: Scalars["String"]["input"];
+};
+
+export type MutationUpdateTeamVsTeamEventArgs = {
+  eventId: Scalars["ID"]["input"];
+  input: UpdateTeamVsTeamEventInput;
 };
 
 export type MutationUpdateUserAvatarArgs = {
@@ -8707,6 +8750,7 @@ export type Query = {
   getMobileBattlePassDonationProgressDetails: MobileBattlePassDonationProgressDetails;
   getMobileBattlePassDonationTemplates: Array<MobileBattlePassDonationTemplate>;
   getMobileGameBattlePass?: Maybe<MobileGameBattlePass>;
+  /** @deprecated Use getMobileRewardChestDetails with sourceType: battlePass */
   getMobileGameBattlePassChestDetails: MobileGameBattlePassChestDetails;
   getMobileGameBattlePassRewardInfo: MobileGameBattlePassRewardInfo;
   getMobileGameRewardPassList: MobileGameRewardPassList;
@@ -8731,6 +8775,7 @@ export type Query = {
   /** Supported RN version >= 4.100.0 */
   getMobileQuestLevelMediaInternalContent?: Maybe<MobileQuestLevelMediaInternalContent>;
   getMobileRecentlyUsedRewardsList: MobileRecentlyUsedRewardsList;
+  getMobileRewardChestDetails: RewardChestDetails;
   getMobileRewardStoreLocations: Array<MobileRewardStoreLocation>;
   getMobileRewardsGoalProductMilestones: MobileRewardsGoalProductMilestones;
   getMobileRewardsList: MobileRewardsList;
@@ -8843,6 +8888,8 @@ export type Query = {
   getTeamSocialGroup: TeamSocialGroup;
   getTeamSocialGroups: GetTeamSocialGroupsResponse;
   getTeamSocialGroupsCount: Scalars["Int"]["output"];
+  getTeamVsTeamEvent: TeamVsTeamEvent;
+  getTeamVsTeamEvents: GetTeamVsTeamEventsResponse;
   getTodayEarnings: TodayEarnings;
   /** Get total coins for user to refresh coin amount */
   getTotalCoins: Scalars["Int"]["output"];
@@ -9392,6 +9439,13 @@ export type QueryGetMobileQuestLevelMediaInternalContentArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetMobileRewardChestDetailsArgs = {
+  participationId?: InputMaybe<Scalars["String"]["input"]>;
+  sourceType: RewardChestSourceType;
+  uniqueId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetMobileRewardsListArgs = {
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   searchTerm?: InputMaybe<Scalars["String"]["input"]>;
@@ -9653,6 +9707,19 @@ export type QueryGetTeamSocialGroupsArgs = {
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy?: InputMaybe<OrderBy>;
   search?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetTeamVsTeamEventArgs = {
+  eventId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetTeamVsTeamEventsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  status?: InputMaybe<TeamVsTeamEventStatus>;
 };
 
 /** Default types to be extended / root query */
@@ -10189,6 +10256,50 @@ export type RestoreStreakResponse = {
   restored: Scalars["Boolean"]["output"];
 };
 
+export type RewardChestDetails = {
+  __typename?: "RewardChestDetails";
+  collectionType: MobileGameChestCollectionType;
+  id: Scalars["String"]["output"];
+  openedRewards: Array<RewardChestPrize>;
+  possibleRewards: Array<RewardChestItem>;
+  redeemedRewards: Array<RewardChestItem>;
+  shouldClaimImmediately?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type RewardChestItem = {
+  __typename?: "RewardChestItem";
+  colors: RewardChestItemColors;
+  id: Scalars["ID"]["output"];
+  image: RemoteImage;
+  label: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type RewardChestItemColors = {
+  __typename?: "RewardChestItemColors";
+  backgroundColor: Scalars["String"]["output"];
+  borderColor: Scalars["String"]["output"];
+  textColor: Scalars["String"]["output"];
+};
+
+export type RewardChestOpenResponse = {
+  __typename?: "RewardChestOpenResponse";
+  chest?: Maybe<RewardChestDetails>;
+  success: Scalars["Boolean"]["output"];
+};
+
+export type RewardChestPrize = {
+  __typename?: "RewardChestPrize";
+  id: Scalars["ID"]["output"];
+  item: RewardChestItem;
+};
+
+export enum RewardChestSourceType {
+  BattlePass = "battlePass",
+  Goal = "goal",
+}
+
 export type RewardImageOverlay = {
   __typename?: "RewardImageOverlay";
   color: Scalars["String"]["output"];
@@ -10483,6 +10594,13 @@ export type SearchQueryInput = {
   workLocationCountry?: InputMaybe<StringQueryInput>;
   workLocationName?: InputMaybe<StringQueryInput>;
   workLocationPostcode?: InputMaybe<StringQueryInput>;
+};
+
+export type SecretField = {
+  __typename?: "SecretField";
+  key: Scalars["String"]["output"];
+  label: Scalars["String"]["output"];
+  required: Scalars["Boolean"]["output"];
 };
 
 /** Represents average score information for a specific segment. */
@@ -11648,6 +11766,36 @@ export enum TeamSummaryCardKey {
   Yudoku = "yudoku",
 }
 
+export type TeamVsTeamEvent = {
+  __typename?: "TeamVsTeamEvent";
+  createdAt?: Maybe<Scalars["String"]["output"]>;
+  endsAt?: Maybe<Scalars["String"]["output"]>;
+  eventName?: Maybe<Scalars["String"]["output"]>;
+  gameMode: TeamVsTeamGameMode;
+  id: Scalars["ID"]["output"];
+  rewardType?: Maybe<TeamVsTeamRewardType>;
+  socialGroupIds?: Maybe<Array<Scalars["String"]["output"]>>;
+  startsAt?: Maybe<Scalars["String"]["output"]>;
+  status: TeamVsTeamEventStatus;
+};
+
+export enum TeamVsTeamEventStatus {
+  Active = "ACTIVE",
+  Completed = "COMPLETED",
+  Draft = "DRAFT",
+  Scheduled = "SCHEDULED",
+}
+
+export enum TeamVsTeamGameMode {
+  Knockout = "knockout",
+  TeamVsTeam = "team_vs_team",
+}
+
+export enum TeamVsTeamRewardType {
+  BraggingRights = "bragging_rights",
+  Yucoin = "yucoin",
+}
+
 export enum TeamWellbeingHubBlockType {
   Content = "CONTENT",
   Document = "DOCUMENT",
@@ -12110,6 +12258,13 @@ export type UpdateTeamSocialGroupInput = {
   eligibility?: InputMaybe<Array<SearchQueryInput>>;
   isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
   name?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type UpdateTeamVsTeamEventInput = {
+  eventName?: InputMaybe<Scalars["String"]["input"]>;
+  rewardType?: InputMaybe<TeamVsTeamRewardType>;
+  socialGroupIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  startsAt?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type UpsertMemberDataConnectionInput = {
@@ -14043,6 +14198,67 @@ export type ChallengeTemplateFragment = {
 };
 
 export type UserChallengesDoneTodayFragment = { __typename?: "UserChallengesDoneToday"; challengesDoneToday: number };
+
+export type RewardChestDetailsFragment = {
+  __typename?: "RewardChestDetails";
+  id: string;
+  collectionType: MobileGameChestCollectionType;
+  possibleRewards: Array<{
+    __typename?: "RewardChestItem";
+    id: string;
+    title: string;
+    label: string;
+    value?: string | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    colors: { __typename?: "RewardChestItemColors"; textColor: string; backgroundColor: string; borderColor: string };
+  }>;
+  redeemedRewards: Array<{
+    __typename?: "RewardChestItem";
+    id: string;
+    title: string;
+    label: string;
+    value?: string | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    colors: { __typename?: "RewardChestItemColors"; textColor: string; backgroundColor: string; borderColor: string };
+  }>;
+  openedRewards: Array<{
+    __typename?: "RewardChestPrize";
+    id: string;
+    item: {
+      __typename?: "RewardChestItem";
+      id: string;
+      title: string;
+      label: string;
+      value?: string | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      colors: { __typename?: "RewardChestItemColors"; textColor: string; backgroundColor: string; borderColor: string };
+    };
+  }>;
+};
+
+export type RewardChestItemFragment = {
+  __typename?: "RewardChestItem";
+  id: string;
+  title: string;
+  label: string;
+  value?: string | null;
+  image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  colors: { __typename?: "RewardChestItemColors"; textColor: string; backgroundColor: string; borderColor: string };
+};
+
+export type RewardChestPrizeFragment = {
+  __typename?: "RewardChestPrize";
+  id: string;
+  item: {
+    __typename?: "RewardChestItem";
+    id: string;
+    title: string;
+    label: string;
+    value?: string | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    colors: { __typename?: "RewardChestItemColors"; textColor: string; backgroundColor: string; borderColor: string };
+  };
+};
 
 export type ConditionalValueFragment = {
   __typename?: "ConditionalValue";
@@ -23701,67 +23917,6 @@ export type GetMobileGameBattlePassQuery = {
   } | null;
 };
 
-export type GetMobileGameBattlePassChestDetailsQueryVariables = Exact<{
-  participationId?: InputMaybe<Scalars["String"]["input"]>;
-  milestoneId: Scalars["String"]["input"];
-}>;
-
-export type GetMobileGameBattlePassChestDetailsQuery = {
-  __typename?: "Query";
-  details: {
-    __typename?: "MobileGameBattlePassChestDetails";
-    id: string;
-    battlePassType: MobileGameBattlePassType;
-    collectionType: MobileGameChestCollectionType;
-    possibleRewards: Array<{
-      __typename?: "MobileGameBattlePassChestItem";
-      id: string;
-      title: string;
-      label: string;
-      value?: string | null;
-      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      colors: {
-        __typename?: "MobileGameBattlePassChestItemColors";
-        textColor: string;
-        backgroundColor: string;
-        borderColor: string;
-      };
-    }>;
-    redeemedRewards: Array<{
-      __typename?: "MobileGameBattlePassChestItem";
-      id: string;
-      title: string;
-      label: string;
-      value?: string | null;
-      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      colors: {
-        __typename?: "MobileGameBattlePassChestItemColors";
-        textColor: string;
-        backgroundColor: string;
-        borderColor: string;
-      };
-    }>;
-    openedRewards: Array<{
-      __typename?: "MobileGameBattlePassChestPrize";
-      id: string;
-      item: {
-        __typename?: "MobileGameBattlePassChestItem";
-        id: string;
-        title: string;
-        label: string;
-        value?: string | null;
-        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        colors: {
-          __typename?: "MobileGameBattlePassChestItemColors";
-          textColor: string;
-          backgroundColor: string;
-          borderColor: string;
-        };
-      };
-    }>;
-  };
-};
-
 export type GetMobileGameBattlePassFullQueryVariables = Exact<{
   socialGroupId?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -23917,72 +24072,6 @@ export type GetMobileUnlockableBattlePassTeasersQuery = {
         overlayImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       }>;
     }>;
-  };
-};
-
-export type OpenMobileGameBattlePassChestMutationVariables = Exact<{
-  participationId?: InputMaybe<Scalars["String"]["input"]>;
-  rewardId: Scalars["String"]["input"];
-}>;
-
-export type OpenMobileGameBattlePassChestMutation = {
-  __typename?: "Mutation";
-  openMobileGameBattlePassChest: {
-    __typename?: "MobileGameBattlePassChestOpenResponse";
-    success: boolean;
-    chest?: {
-      __typename?: "MobileGameBattlePassChestDetails";
-      shouldClaimImmediately?: boolean | null;
-      id: string;
-      battlePassType: MobileGameBattlePassType;
-      collectionType: MobileGameChestCollectionType;
-      possibleRewards: Array<{
-        __typename?: "MobileGameBattlePassChestItem";
-        id: string;
-        title: string;
-        label: string;
-        value?: string | null;
-        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        colors: {
-          __typename?: "MobileGameBattlePassChestItemColors";
-          textColor: string;
-          backgroundColor: string;
-          borderColor: string;
-        };
-      }>;
-      redeemedRewards: Array<{
-        __typename?: "MobileGameBattlePassChestItem";
-        id: string;
-        title: string;
-        label: string;
-        value?: string | null;
-        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        colors: {
-          __typename?: "MobileGameBattlePassChestItemColors";
-          textColor: string;
-          backgroundColor: string;
-          borderColor: string;
-        };
-      }>;
-      openedRewards: Array<{
-        __typename?: "MobileGameBattlePassChestPrize";
-        id: string;
-        item: {
-          __typename?: "MobileGameBattlePassChestItem";
-          id: string;
-          title: string;
-          label: string;
-          value?: string | null;
-          image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-          colors: {
-            __typename?: "MobileGameBattlePassChestItemColors";
-            textColor: string;
-            backgroundColor: string;
-            borderColor: string;
-          };
-        };
-      }>;
-    } | null;
   };
 };
 
@@ -24784,6 +24873,123 @@ export type UpsertOnboardingChallengeMutation = {
     yuCoinAwarded?: number | null;
     totalCoins: number;
   } | null;
+};
+
+export type GetMobileRewardChestDetailsQueryVariables = Exact<{
+  sourceType: RewardChestSourceType;
+  uniqueId: Scalars["String"]["input"];
+  participationId?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type GetMobileRewardChestDetailsQuery = {
+  __typename?: "Query";
+  details: {
+    __typename?: "RewardChestDetails";
+    id: string;
+    collectionType: MobileGameChestCollectionType;
+    possibleRewards: Array<{
+      __typename?: "RewardChestItem";
+      id: string;
+      title: string;
+      label: string;
+      value?: string | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      colors: { __typename?: "RewardChestItemColors"; textColor: string; backgroundColor: string; borderColor: string };
+    }>;
+    redeemedRewards: Array<{
+      __typename?: "RewardChestItem";
+      id: string;
+      title: string;
+      label: string;
+      value?: string | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      colors: { __typename?: "RewardChestItemColors"; textColor: string; backgroundColor: string; borderColor: string };
+    }>;
+    openedRewards: Array<{
+      __typename?: "RewardChestPrize";
+      id: string;
+      item: {
+        __typename?: "RewardChestItem";
+        id: string;
+        title: string;
+        label: string;
+        value?: string | null;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        colors: {
+          __typename?: "RewardChestItemColors";
+          textColor: string;
+          backgroundColor: string;
+          borderColor: string;
+        };
+      };
+    }>;
+  };
+};
+
+export type OpenMobileRewardChestMutationVariables = Exact<{
+  sourceType: RewardChestSourceType;
+  uniqueId: Scalars["String"]["input"];
+  participationId?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type OpenMobileRewardChestMutation = {
+  __typename?: "Mutation";
+  openMobileRewardChest: {
+    __typename?: "RewardChestOpenResponse";
+    success: boolean;
+    chest?: {
+      __typename?: "RewardChestDetails";
+      shouldClaimImmediately?: boolean | null;
+      id: string;
+      collectionType: MobileGameChestCollectionType;
+      possibleRewards: Array<{
+        __typename?: "RewardChestItem";
+        id: string;
+        title: string;
+        label: string;
+        value?: string | null;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        colors: {
+          __typename?: "RewardChestItemColors";
+          textColor: string;
+          backgroundColor: string;
+          borderColor: string;
+        };
+      }>;
+      redeemedRewards: Array<{
+        __typename?: "RewardChestItem";
+        id: string;
+        title: string;
+        label: string;
+        value?: string | null;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        colors: {
+          __typename?: "RewardChestItemColors";
+          textColor: string;
+          backgroundColor: string;
+          borderColor: string;
+        };
+      }>;
+      openedRewards: Array<{
+        __typename?: "RewardChestPrize";
+        id: string;
+        item: {
+          __typename?: "RewardChestItem";
+          id: string;
+          title: string;
+          label: string;
+          value?: string | null;
+          image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          colors: {
+            __typename?: "RewardChestItemColors";
+            textColor: string;
+            backgroundColor: string;
+            borderColor: string;
+          };
+        };
+      }>;
+    } | null;
+  };
 };
 
 export type GetPublicYuApiConfigQueryVariables = Exact<{ [key: string]: never }>;
@@ -39979,7 +40185,7 @@ export type GetWellbeingHubItemsQueryVariables = Exact<{
 
 export type GetWellbeingHubItemsQuery = {
   __typename?: "Query";
-  listItems: Array<{
+  listItems?: Array<{
     __typename?: "WellbeingHubItem";
     id: string;
     sduiStepId: string;
@@ -39995,7 +40201,7 @@ export type GetWellbeingHubItemsQuery = {
     location?: string | null;
     locationLabel?: string | null;
   } | null;
-  categories: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
+  categories?: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
   linkedBusinesses: Array<{
     __typename?: "UserBusinessLink";
     id: string;
@@ -48096,6 +48302,233 @@ export const UserChallengesDoneTodayFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UserChallengesDoneTodayFragment, unknown>;
+export const RewardChestItemFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RewardChestItemFragment, unknown>;
+export const RewardChestPrizeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestPrize" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestPrize" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "item" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RewardChestPrizeFragment, unknown>;
+export const RewardChestDetailsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestDetails" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestDetails" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "collectionType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "possibleRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "redeemedRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "openedRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestPrize" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestPrize" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestPrize" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "item" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RewardChestDetailsFragment, unknown>;
 export const GameConsumableFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -73392,161 +73825,6 @@ export const GetMobileGameBattlePassDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileGameBattlePassQuery, GetMobileGameBattlePassQueryVariables>;
-export const GetMobileGameBattlePassChestDetailsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetMobileGameBattlePassChestDetails" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "milestoneId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "details" },
-            name: { kind: "Name", value: "getMobileGameBattlePassChestDetails" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "participationId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "milestoneId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "milestoneId" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestDetails" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameBattlePassChestItem" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassChestItem" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "image" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "colors" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "textColor" } },
-                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameBattlePassChestPrize" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassChestPrize" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "item" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestItem" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameBattlePassChestDetails" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassChestDetails" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "battlePassType" } },
-          { kind: "Field", name: { kind: "Name", value: "collectionType" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "possibleRewards" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestItem" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "redeemedRewards" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestItem" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "openedRewards" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestPrize" } }],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetMobileGameBattlePassChestDetailsQuery,
-  GetMobileGameBattlePassChestDetailsQueryVariables
->;
 export const GetMobileGameBattlePassFullDocument = {
   kind: "Document",
   definitions: [
@@ -74132,168 +74410,6 @@ export const GetMobileUnlockableBattlePassTeasersDocument = {
   GetMobileUnlockableBattlePassTeasersQuery,
   GetMobileUnlockableBattlePassTeasersQueryVariables
 >;
-export const OpenMobileGameBattlePassChestDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "OpenMobileGameBattlePassChest" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "rewardId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "openMobileGameBattlePassChest" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "participationId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "rewardId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "rewardId" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "success" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "chest" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "shouldClaimImmediately" } },
-                      { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestDetails" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameBattlePassChestItem" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassChestItem" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "image" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "colors" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "textColor" } },
-                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameBattlePassChestPrize" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassChestPrize" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "item" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestItem" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameBattlePassChestDetails" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassChestDetails" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "battlePassType" } },
-          { kind: "Field", name: { kind: "Name", value: "collectionType" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "possibleRewards" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestItem" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "redeemedRewards" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestItem" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "openedRewards" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassChestPrize" } }],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<OpenMobileGameBattlePassChestMutation, OpenMobileGameBattlePassChestMutationVariables>;
 export const SubmitMobileGameBattlePassDonationsDocument = {
   kind: "Document",
   definitions: [
@@ -77036,6 +77152,342 @@ export const UpsertOnboardingChallengeDocument = {
     },
   ],
 } as unknown as DocumentNode<UpsertOnboardingChallengeMutation, UpsertOnboardingChallengeMutationVariables>;
+export const GetMobileRewardChestDetailsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileRewardChestDetails" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "sourceType" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "RewardChestSourceType" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "uniqueId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "details" },
+            name: { kind: "Name", value: "getMobileRewardChestDetails" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "sourceType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "sourceType" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "uniqueId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "uniqueId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "participationId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestDetails" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestPrize" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestPrize" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "item" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestDetails" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestDetails" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "collectionType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "possibleRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "redeemedRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "openedRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestPrize" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileRewardChestDetailsQuery, GetMobileRewardChestDetailsQueryVariables>;
+export const OpenMobileRewardChestDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "OpenMobileRewardChest" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "sourceType" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "RewardChestSourceType" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "uniqueId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "openMobileRewardChest" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "sourceType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "sourceType" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "uniqueId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "uniqueId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "participationId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "success" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "chest" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "shouldClaimImmediately" } },
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestDetails" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestPrize" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestPrize" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "item" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RewardChestDetails" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RewardChestDetails" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "collectionType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "possibleRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "redeemedRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestItem" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "openedRewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RewardChestPrize" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<OpenMobileRewardChestMutation, OpenMobileRewardChestMutationVariables>;
 export const GetPublicYuApiConfigDocument = {
   kind: "Document",
   definitions: [

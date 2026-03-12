@@ -1,0 +1,9 @@
+mutation OpenMobileRewardChest($sourceType: RewardChestSourceType!, $uniqueId: String!, $participationId: String) {
+  openMobileRewardChest(sourceType: $sourceType, uniqueId: $uniqueId, participationId: $participationId) {
+    success
+    chest {
+      shouldClaimImmediately
+      ...RewardChestDetails
+    }
+  }
+}

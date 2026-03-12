@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { GetMobileGameBattlePassChestDetailsQuery, GamePrizeType } from "@graphql/__generated";
+import { GetMobileRewardChestDetailsQuery, GamePrizeType } from "@graphql/__generated";
 import { FadeInUp } from "react-native-reanimated";
 import ChestHeaderText from "../../chest-header-text";
 import { YumojiRewardPicker } from "@components/molecules";
@@ -12,7 +12,7 @@ import RedeemedStageFooter from "../../redeemed-stage-footer";
 import { DETOX_ENABLED } from "@services/socket";
 
 interface IRedeemedStageProps {
-  redeemedItems: GetMobileGameBattlePassChestDetailsQuery["details"]["redeemedRewards"];
+  redeemedItems: GetMobileRewardChestDetailsQuery["details"]["redeemedRewards"];
   onClose?: () => void;
   awardedPrizeTypes?: GamePrizeType[];
   title?: string;

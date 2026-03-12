@@ -1,0 +1,13 @@
+fragment RewardChestDetails on RewardChestDetails {
+  id
+  collectionType
+  possibleRewards {
+    ...RewardChestItem
+  }
+  redeemedRewards {
+    ...RewardChestItem
+  }
+  openedRewards {
+    ...RewardChestPrize
+  }
+}

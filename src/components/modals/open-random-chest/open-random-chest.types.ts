@@ -1,6 +1,6 @@
-import { GetMobileGameBattlePassChestDetailsQuery } from "@graphql/__generated";
+import { GetMobileRewardChestDetailsQuery } from "@graphql/__generated";
 
-export type OpenedReward = GetMobileGameBattlePassChestDetailsQuery["details"]["openedRewards"][0];
+export type OpenedReward = GetMobileRewardChestDetailsQuery["details"]["openedRewards"][0];
 
 export interface IPickStageProps {
   isLoading?: boolean;
