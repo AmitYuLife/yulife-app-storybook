@@ -12,8 +12,8 @@ test:
     - nvm install -b
     - corepack enable
     - export GITLAB_TOKEN="${CI_JOB_TOKEN}"
-    - yarn install --frozen-lockfile
-    - yarn test
+    - pnpm install --frozen-lockfile
+    - pnpm test
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never

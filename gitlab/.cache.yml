@@ -3,8 +3,11 @@
   cache:
     key:
       files:
+        - pnpm-lock.yaml
         - package.json
     paths:
+      # https://pnpm.io/continuous-integration#gitlab-ci
+      - $PNPM_HOME/store
       - $COREPACK_HOME
 
 .cache-pull:

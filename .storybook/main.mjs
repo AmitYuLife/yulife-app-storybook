@@ -147,5 +147,8 @@ export default {
 
   typescript: {
     reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      exclude: ["**/switch/switch.tsx"],
+    },
   },
 };

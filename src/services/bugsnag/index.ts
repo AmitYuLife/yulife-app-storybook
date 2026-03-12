@@ -12,7 +12,7 @@ const bugsnagLogger = {
   debug: noop,
   info: noop,
   warn: noop,
-  error: function (...args: Parameters<typeof console["log"]>) {
+  error: function (...args: Parameters<(typeof console)["log"]>) {
     console.log(...args);
   },
 };

@@ -83,7 +83,7 @@ The password changes from `"letmein"` to `"LetmeinNow1!"` when using `createCust
 **IMPORTANT**: Run tests with `CI=true` to avoid interactive prompts:
 
 ```bash
-CI=true yarn detox:run e2e/path/to/spec.spec.ts
+CI=true pnpm detox:run e2e/path/to/spec.spec.ts
 ```
 
 Run the affected `spec.ts` files **before** making changes (baseline) and **after** to identify any regressions.

@@ -3,20 +3,21 @@
     policy: pull-push
     key:
       files:
-        - yarn.lock
+        - pnpm-lock.yaml
         - support/ios/Podfile.lock
       prefix: "${MACOS_VM_IMAGE_VERSION}-ios-build"
     paths:
-      - .cocoapods_cache
-      - .yarn-cache/
+      # https://pnpm.io/continuous-integration#gitlab-ci
+      - $PNPM_HOME/store
       - $COREPACK_HOME
+      - .cocoapods_cache
 
 .ios-pre-build:
   script:
     - nvm install -b
     - corepack enable
-    - yarn install --frozen-lockfile --cache-folder .yarn-cache
-    - yarn tsc
+    - pnpm install --frozen-lockfile
+    - pnpm tsc
     - node ./scripts/replace-package-versionCodes.js "$CI_PIPELINE_IID"
     # Generate native projects
     - EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --clean --no-install

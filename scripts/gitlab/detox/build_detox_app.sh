@@ -28,7 +28,7 @@ function build_app() {
   CP_HOME_DIR=$CP_HOME_DIR bundle exec pod install --repo-update
   cd ..
   echo "🔨 Building app..."
-  yarn detox:build -c "$DETOX_BUILD_CONFIG" > detox-build.log || (tail -n 100 detox-build.log && exit 1)
+  pnpm detox:build -c "$DETOX_BUILD_CONFIG" > detox-build.log || (tail -n 100 detox-build.log && exit 1)
   echo "🔨 Done."
 }
 
@@ -40,7 +40,7 @@ function install_dependencies() {
   echo "Node version: $(node --version)"
   corepack enable
   # Install node dependencies
-  yarn install --frozen-lockfile
+  pnpm install --frozen-lockfile
 }
 
 if [[ "$DETOX_BUILD_CONFIG" == "ios.sim.release" ]]; then
@@ -62,6 +62,6 @@ else
   fi
   install_dependencies
   # TSC check
-  yarn tsc
+  pnpm tsc
   build_app
 fi

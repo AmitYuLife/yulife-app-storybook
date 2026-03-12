@@ -33,18 +33,18 @@ node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 ##############################
 # Clean and re-build detox cache
 ##############################
-yarn detox clean-framework-cache && yarn detox build-framework-cache
+pnpm detox clean-framework-cache && pnpm detox build-framework-cache
 
 ##############################
 # Build the translation mapping
 ##############################
-yarn detox:build:translations
+pnpm detox:build:translations
 ##############################
 # Metro bundler functions
 ##############################
 function start_metro_bundler() {
   echo "🚀 Starting Metro bundler in background..."
-  yarn start:e2e:ci &
+  pnpm start:e2e:ci &
   METRO_PID=$!
   echo "Metro bundler started with PID: $METRO_PID"
   # Wait for Metro to be ready
@@ -90,7 +90,7 @@ fi
 # Install timeout
 brew install coreutils
 
-timeout --preserve-status --foreground 90m yarn detox:run "$TEST_TYPE_ARG" -c "$DETOX_BUILD_CONFIG" \
+timeout --preserve-status --foreground 90m pnpm detox:run "$TEST_TYPE_ARG" -c "$DETOX_BUILD_CONFIG" \
   --take-screenshots all \
   --artifacts-location ./e2e-report \
   --loglevel "${DETOX_LOG_LEVEL:=warn}" \

@@ -138,7 +138,7 @@ const init = async () => {
       [
         `API_URL=${API_URL}`,
         `TARGET_LOCALE=${TARGET_LOCALE}`,
-        "yarn",
+        "pnpm",
         "detox",
         "test",
         "-i",
@@ -171,7 +171,7 @@ const init = async () => {
     }
 
     await execSync(
-      "yarn allure generate ./e2e-report/allure-results --clean -o ./e2e-report/allure-report"
+      "pnpm allure generate ./e2e-report/allure-results --clean -o ./e2e-report/allure-report"
     );
 
     if (!CI) {
@@ -233,7 +233,7 @@ async function assertBundlerIsRunning() {
     console.error(`--------------------------------`);
     console.error(`--------------------------------`);
     console.error(`ERROR: Bundler is not running at ${BUNDLER_URL}`);
-    console.error(`Run "yarn start:e2e" to start the bundler`);
+    console.error(`Run "pnpm start:e2e" to start the bundler`);
     console.error(`--------------------------------`);
     console.error(`--------------------------------`);
     process.exit(1);

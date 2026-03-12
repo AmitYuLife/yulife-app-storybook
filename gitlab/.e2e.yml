@@ -409,7 +409,7 @@ detox-test-mr-reporter:
   script:
     - nvm install -b
     - corepack enable
-    - yarn install --frozen-lockfile
+    - pnpm install --frozen-lockfile
     - node ./scripts/gitlab/detox/gitlab_mr_test_reporter.js
   rules:
     - if: $CI_PIPELINE_SOURCE == "api"

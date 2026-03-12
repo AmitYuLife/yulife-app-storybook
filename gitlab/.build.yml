@@ -9,8 +9,8 @@ build:e2e:
     - nvm install -b
     - corepack enable
     - export GITLAB_TOKEN="${CI_JOB_TOKEN}"
-    - yarn install --frozen-lockfile --cache-folder .yarn/
-    - yarn e2e:build
+    - pnpm install --frozen-lockfile
+    - pnpm e2e:build
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never

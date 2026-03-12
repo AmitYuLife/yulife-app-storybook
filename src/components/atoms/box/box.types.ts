@@ -171,6 +171,6 @@ interface IBoxSpecialProps {
 }
 
 export type IBoxProps = Partial<{
-  [Key in keyof typeof PROPERTY_MAP]: ViewStyle[typeof PROPERTY_MAP[Key]];
+  [Key in keyof typeof PROPERTY_MAP]: ViewStyle[(typeof PROPERTY_MAP)[Key]];
 }> &
   IBoxSpecialProps;

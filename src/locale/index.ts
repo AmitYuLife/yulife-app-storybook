@@ -7,7 +7,7 @@ export * from "./region";
 export * from "./translations/translations.types";
 
 export const region = new RegionService();
-export const translate: typeof translator["translate"] = (key, args) => {
+export const translate: (typeof translator)["translate"] = (key, args) => {
   const keyWithRegion = `${key}.${region.getPreferredRegion()?.toLowerCase()}`;
 
   if (translator.has(keyWithRegion)) {

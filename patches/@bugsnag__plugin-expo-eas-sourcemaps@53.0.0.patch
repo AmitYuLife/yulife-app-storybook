@@ -1,0 +1,12 @@
+diff --git a/lib/eas-build-on-success.js b/lib/eas-build-on-success.js
+index c6cb086654482c9f55efd44ffe7cc92d0a3aaa22..ad90d2a1ff12a3cd7b82284cf369ffa8df0a4227 100755
+--- a/lib/eas-build-on-success.js
++++ b/lib/eas-build-on-success.js
+@@ -49,7 +49,6 @@ const uploadSourceMaps = async () => {
+     sourceMap,
+     platform: 'android',
+     appVersion: appConfig?.exp?.version,
+-    appVersionCode: appConfig?.exp?.android?.versionCode?.toString()
+   }).then(() => {
+     console.log(`Successfully uploaded the following files:\n${[bundle, sourceMap].join('\n')}`)
+   }).catch(error => {

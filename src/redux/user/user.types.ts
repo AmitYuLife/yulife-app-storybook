@@ -81,7 +81,7 @@ export enum AppDataType {
 
 export type UserConnection = Connections & { isLoading?: boolean };
 
-type FeatureKey = typeof userFeatures[number];
+type FeatureKey = (typeof userFeatures)[number];
 
 export type IFeature = Partial<Record<FeatureKey, boolean>>;
 

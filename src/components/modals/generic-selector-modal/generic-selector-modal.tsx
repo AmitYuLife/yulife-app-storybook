@@ -38,7 +38,7 @@ const GenericSelectorModal = <T,>({
     }));
   }, [activeItem, items]);
 
-  const renderItem = useCallback(({ item }: ListRenderItemInfo<typeof data[0]>) => {
+  const renderItem = useCallback(({ item }: ListRenderItemInfo<(typeof data)[0]>) => {
     return <GenericSelectorItem label={item.label} onPress={item.onPress} isActive={item.isActive} />;
   }, []);
 

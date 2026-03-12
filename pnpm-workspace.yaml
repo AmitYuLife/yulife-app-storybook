@@ -1,0 +1,35 @@
+nodeLinker: hoisted
+autoInstallPeers: true
+
+onlyBuiltDependencies:
+  - "@datadog/mobile-react-native"
+  - customerio-expo-plugin
+  - customerio-reactnative
+  - detox
+  - dtrace-provider
+  - electron
+  - esbuild
+  - fsevents
+  - git-hooks
+
+patchedDependencies:
+  "@bugsnag/plugin-expo-eas-sourcemaps@53.0.0": "patches/@bugsnag__plugin-expo-eas-sourcemaps@53.0.0.patch"
+  "@graphql-codegen/client-preset@4.8.3": "patches/@graphql-codegen__client-preset@4.8.3.patch"
+  "@graphql-codegen/gql-tag-operations@4.0.17": "patches/@graphql-codegen__gql-tag-operations@4.0.17.patch"
+  "detox@20.47.0": "patches/detox@20.47.0.patch"
+  "react-native@0.79.6": "patches/react-native@0.79.6.patch"
+  "react-native-navigation@8.7.5": "patches/react-native-navigation@8.7.5.patch"
+  "react-native-video@6.19.0": "patches/react-native-video@6.19.0.patch"
+  "storybook@10.2.13": "patches/storybook@10.2.13.patch"
+  "@bacons/apple-targets@0.0.5": "patches/@bacons__apple-targets@0.0.5.patch"
+
+peerDependencyRules:
+  allowedVersions:
+    # we'll need to upgrade RTK to v2 in order to remove the redux ones
+    "react-redux>redux": "4"
+    "@reduxjs/toolkit>react": "19"
+    "@reduxjs/toolkit>react-redux": "9"
+    # waiting on bugsnag to upgrade to expo-secure-store v16
+    "@bugsnag/plugin-expo-device>expo-secure-store": "15"
+    # this will be purged in favour of yu-health
+    "@yu-life/react-native-fitkit>react-native": "0.79"

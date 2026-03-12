@@ -1,7 +1,7 @@
-diff --git a/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ExoPlayerView.kt b/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ExoPlayerView.kt
-index bb945fe..f7be404 100644
---- a/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ExoPlayerView.kt
-+++ b/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ExoPlayerView.kt
+diff --git a/android/src/main/java/com/brentvatne/exoplayer/ExoPlayerView.kt b/android/src/main/java/com/brentvatne/exoplayer/ExoPlayerView.kt
+index bb945fe79399d4ff41579890e9a061059e0384b5..f7be4045dbcbc8cef894e1161e6cf274f1a47e18 100644
+--- a/android/src/main/java/com/brentvatne/exoplayer/ExoPlayerView.kt
++++ b/android/src/main/java/com/brentvatne/exoplayer/ExoPlayerView.kt
 @@ -141,6 +141,49 @@ class ExoPlayerView @JvmOverloads constructor(context: Context, attrs: Attribute
  
      fun updateSurfaceView(viewType: Int) {
@@ -52,10 +52,10 @@ index bb945fe..f7be404 100644
      }
  
      val isPlaying: Boolean
-diff --git a/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java b/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java
-index e16ac96..bedeadc 100644
---- a/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java
-+++ b/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java
+diff --git a/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java b/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java
+index e16ac96d8a89055ee6e950777ce73388d22061ee..bedeadce9703a67d5b40acc39b4dc4ae9ec31693 100644
+--- a/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java
++++ b/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java
 @@ -558,6 +558,7 @@ public class ReactExoplayerView extends FrameLayout implements
      }
  
@@ -64,10 +64,10 @@ index e16ac96..bedeadc 100644
          exoPlayerView.updateSurfaceView(viewType);
      }
  
-diff --git a/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift b/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift
-index a52e930..e09c33a 100644
---- a/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift
-+++ b/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift
+diff --git a/ios/Video/NowPlayingInfoCenterManager.swift b/ios/Video/NowPlayingInfoCenterManager.swift
+index a52e930e33142ce6b39c85c0acb95c48cf9508db..e09c33af7be1ab8a685bb897c1dfcf2066f3e46a 100644
+--- a/ios/Video/NowPlayingInfoCenterManager.swift
++++ b/ios/Video/NowPlayingInfoCenterManager.swift
 @@ -14,10 +14,6 @@ class NowPlayingInfoCenterManager {
  
      private var playTarget: Any?

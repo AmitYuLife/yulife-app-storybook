@@ -89,6 +89,7 @@ variables:
   FL_ANDROID_PRODUCTION_KEY_ALIAS: yulife
   FL_ITC_TEAM_ID: 118777487
   FL_TEAM_ID: 739BJV2T6V
+  PNPM_HOME: "$CI_PROJECT_DIR/.pnpm"
   COREPACK_HOME: "$CI_PROJECT_DIR/.cache/node/corepack"
 
 stages:

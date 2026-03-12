@@ -14,11 +14,11 @@ translate:
     - git config --global user.name "$GITLAB_USER_NAME"
     - git fetch -q
     - git checkout $CI_COMMIT_REF_NAME
-    - yarn install --frozen-lockfile
+    - pnpm install --frozen-lockfile
     # Push new keys and translate them
-    - yarn translations:push
+    - pnpm translations:push
     # Download, commit and push the translation changes
-    - yarn translations:download
+    - pnpm translations:download
     - git add ./src/locale/translations/downloaded
     - git commit --no-verify -m "Chore - Updated translations" || (echo "No new translations to commit" && exit 0)
     - git push --no-verify

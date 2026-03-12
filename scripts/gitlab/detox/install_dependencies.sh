@@ -25,6 +25,6 @@ export PATH
 echo "Node version: $(node --version)"
 corepack enable
 # Install node dependencies
-yarn install --frozen-lockfile
+pnpm install --frozen-lockfile
 # TSC check
-yarn tsc
+pnpm tsc

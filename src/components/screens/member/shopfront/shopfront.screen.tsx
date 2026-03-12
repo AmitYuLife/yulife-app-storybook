@@ -59,7 +59,7 @@ const ShopfrontScreen = ({
   shouldShowFirstTimeModal,
 }: IShopfrontScreenProps) => {
   const renderItem = useCallback(
-    ({ item, index }: ListRenderItemInfo<typeof listData[number]>) => {
+    ({ item, index }: ListRenderItemInfo<(typeof listData)[number]>) => {
       if (item.__typename === "RewardStoreExpiryWarning") {
         if (!shopfront?.rewardList?.rewardStoreAccessRevokesAt) {
           return null;

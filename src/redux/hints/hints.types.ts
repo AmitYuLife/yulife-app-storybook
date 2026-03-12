@@ -5,7 +5,7 @@ export interface IHintsStore {
   shownHints?: IShownHint[];
 }
 
-export type HintScreenType = typeof ROUTES[keyof typeof ROUTES];
+export type HintScreenType = (typeof ROUTES)[keyof typeof ROUTES];
 
 export interface IHint {
   id: string;
