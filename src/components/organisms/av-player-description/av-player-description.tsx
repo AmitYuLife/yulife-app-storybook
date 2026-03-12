@@ -33,6 +33,20 @@ const AvPlayerDescription = ({ title, subtitle, tag, description, duration, star
     [durationFormatted, timeType]
   );
 
+  const subtitleText = useMemo(() => {
+    if (subtitle && durationWithTime) {
+      return `${subtitle} • ${durationWithTime}`;
+    }
+
+    if (!subtitle && durationWithTime) {
+      return durationWithTime;
+    }
+
+    if (subtitle) {
+      return subtitle;
+    }
+  }, [subtitle, durationWithTime]);
+
   return (
     <View testID={VIDEO_PLAYER_DESCRIPTION_SCREEN} style={styles.wrapper}>
       <TextTemplate textAlign="center" type="h3">
@@ -40,11 +54,9 @@ const AvPlayerDescription = ({ title, subtitle, tag, description, duration, star
       </TextTemplate>
       <View style={styles.info}>
         {logo ? <Image testID={MEDIA_SMALL_LOGO(logo)} source={{ uri: logo }} width={16} height={16} /> : null}
-        {duration ? (
+        {subtitleText ? (
           <View style={styles.subTitle}>
-            <TextTemplate type="l2b">
-              {subtitle} • {durationWithTime}
-            </TextTemplate>
+            <TextTemplate type="l2b">{subtitleText}</TextTemplate>
           </View>
         ) : null}
       </View>
