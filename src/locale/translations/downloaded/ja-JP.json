@@ -1731,7 +1731,10 @@
             "subheading": "引き換え済みの報酬はここに表示されます"
           }
         },
-        "title": "ウォレット"
+        "title": "ウォレット",
+        "used_section": {
+          "title": "使用済み"
+        }
       }
     },
     "rewards_unlock": {

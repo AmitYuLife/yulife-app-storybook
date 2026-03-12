@@ -1731,7 +1731,10 @@
             "subheading": "ستكون المكافآت المستردة جاهزة لك هنا"
           }
         },
-        "title": "محفظة"
+        "title": "محفظة",
+        "used_section": {
+          "title": "مستخدم"
+        }
       }
     },
     "rewards_unlock": {

@@ -1731,7 +1731,10 @@
             "subheading": "Las recompensas canjeadas estarán listas para ti aquí"
           }
         },
-        "title": "Cartera"
+        "title": "Cartera",
+        "used_section": {
+          "title": "Usado"
+        }
       }
     },
     "rewards_unlock": {
