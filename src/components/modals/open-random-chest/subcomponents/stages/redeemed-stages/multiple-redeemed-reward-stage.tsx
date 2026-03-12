@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { GetMobileGameBattlePassChestDetailsQuery, GamePrizeType } from "@graphql/__generated";
+import { GetMobileRewardChestDetailsQuery, GamePrizeType } from "@graphql/__generated";
 import ChestHeaderText from "../../chest-header-text";
 import { ShowcaseStack } from "@components/molecules";
 import StageContainer from "../../stage-container";
@@ -15,7 +15,7 @@ import { TOP_BAR } from "@styles";
 
 interface IRedeemedStageProps {
   onClose?: () => void;
-  redeemedItems: GetMobileGameBattlePassChestDetailsQuery["details"]["redeemedRewards"];
+  redeemedItems: GetMobileRewardChestDetailsQuery["details"]["redeemedRewards"];
   awardedPrizeTypes?: GamePrizeType[];
   title?: string;
 }

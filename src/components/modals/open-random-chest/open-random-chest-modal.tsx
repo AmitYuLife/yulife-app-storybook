@@ -4,7 +4,7 @@ import { CloseSvg, Image } from "@atoms";
 import { Pressable } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { useMutation, useQuery } from "@apollo/client";
-import { gql, MobileGameBattlePassType, MobileGameChestCollectionType } from "@graphql/__generated";
+import { gql, MobileGameChestCollectionType, RewardChestSourceType } from "@graphql/__generated";
 import { Style, StyleSheet } from "@styles";
 import ListPickReward from "./subcomponents/stages/pick-stages/list-pick-reward-stage";
 import { ChestStage, IPickStageProps } from "./open-random-chest.types";
@@ -28,8 +28,9 @@ import MultipleRedeemedRewardStage from "./subcomponents/stages/redeemed-stages/
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
   backgroundImage?: string;
-  milestoneId: string;
+  uniqueId: string;
   participationId?: string;
+  sourceType: RewardChestSourceType;
 }
 
 const CHEST_PICK_STAGE_TYPES: Record<MobileGameChestCollectionType, (props: IPickStageProps) => ReactNode> = {
@@ -40,33 +41,35 @@ const CHEST_PICK_STAGE_TYPES: Record<MobileGameChestCollectionType, (props: IPic
 
 const OpenRandomChestModal = ({
   participationId,
-  milestoneId,
+  uniqueId,
   backgroundImage,
   overlayImage,
+  sourceType,
 }: IOpenRandomChestModalProps) => {
-  const { data, refetch } = useQuery(gql("GetMobileGameBattlePassChestDetailsDocument"), {
-    variables: { participationId, milestoneId },
+  const { data, refetch } = useQuery(gql("GetMobileRewardChestDetailsDocument"), {
+    variables: { sourceType, participationId, uniqueId },
     fetchPolicy: "network-only",
   });
 
   const dispatch = useDispatch();
   const socialGroupId = useSelector(getActiveSocialGroupId);
 
-  const [openChest, { loading: openLoading }] = useMutation(gql("OpenMobileGameBattlePassChestDocument"));
+  const [openChest, { loading: openLoading }] = useMutation(gql("OpenMobileRewardChestDocument"));
+  const claimRefetchQueries =
+    sourceType === RewardChestSourceType.BattlePass
+      ? [
+          { query: gql("GetMobileUnlockableBattlePassVouchersDocument"), errorPolicy: "ignore" as const },
+          {
+            query: gql("GetMobileGameBattlePassFullDocument"),
+            variables: { socialGroupId },
+            errorPolicy: "ignore" as const,
+          },
+        ]
+      : [];
+
   const [claimPrizes, { loading: claimLoading, data: claimedChestData }] = useMutation(
     gql("ClaimMobileGameBattlePassChestPrizesDocument"),
-    {
-      refetchQueries:
-        data?.details?.battlePassType === MobileGameBattlePassType.Unlockables
-          ? [{ query: gql("GetMobileUnlockableBattlePassVouchersDocument"), errorPolicy: "ignore" }]
-          : [
-              {
-                query: gql("GetMobileGameBattlePassFullDocument"),
-                variables: { socialGroupId },
-                errorPolicy: "ignore",
-              },
-            ],
-    }
+    { refetchQueries: claimRefetchQueries }
   );
 
   const [stage, setStage] = useState<ChestStage>(ChestStage.loading);
@@ -134,10 +137,10 @@ const OpenRandomChestModal = ({
     setIsDetailsLoading(true);
     try {
       const result = await openChest({
-        variables: { rewardId: data?.details?.id, participationId },
+        variables: { sourceType, uniqueId, participationId },
       });
 
-      const { shouldClaimImmediately, openedRewards } = result.data.openMobileGameBattlePassChest.chest;
+      const { shouldClaimImmediately, openedRewards } = result.data.openMobileRewardChest.chest;
 
       if (shouldClaimImmediately) {
         await onClaimItems(
@@ -150,7 +153,7 @@ const OpenRandomChestModal = ({
     } finally {
       setIsDetailsLoading(false);
     }
-  }, [data?.details?.id, onClaimItems, openChest, participationId]);
+  }, [sourceType, uniqueId, onClaimItems, openChest, participationId]);
 
   const onClosePress = useCallback(async () => {
     Navigation.dismissAllModals();

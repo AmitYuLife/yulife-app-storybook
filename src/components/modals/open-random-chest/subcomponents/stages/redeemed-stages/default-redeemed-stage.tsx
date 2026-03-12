@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { GetMobileGameBattlePassChestDetailsQuery } from "@graphql/__generated";
+import { GetMobileRewardChestDetailsQuery } from "@graphql/__generated";
 import RadioBattlePassRewardItem from "@components/molecules/radio-battle-pass-reward-item/radio-battle-pass-reward-item";
 import { FadeOutDown } from "react-native-reanimated";
 import { Button } from "@components/molecules";
@@ -8,7 +8,7 @@ import { Box } from "@atoms";
 import { t } from "@locale";
 
 interface IChestRedeemedStageProps {
-  redeemedItems: GetMobileGameBattlePassChestDetailsQuery["details"]["redeemedRewards"];
+  redeemedItems: GetMobileRewardChestDetailsQuery["details"]["redeemedRewards"];
   onClose?: () => void;
 }
 

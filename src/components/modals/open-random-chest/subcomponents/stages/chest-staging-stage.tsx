@@ -1,7 +1,7 @@
 import SpinningRewards from "@components/molecules/spinning-rewards/spinning-rewards";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
 import { ChestStage } from "../../open-random-chest.types";
-import { GetMobileGameBattlePassChestDetailsQuery } from "@graphql/__generated";
+import { GetMobileRewardChestDetailsQuery } from "@graphql/__generated";
 import { Button } from "@components/molecules";
 import StageContainer from "../stage-container";
 import { t } from "@locale";
@@ -12,7 +12,7 @@ interface IChestStagingStageProps {
   overlayImage?: string;
   onFinish?: () => void;
   stage: ChestStage.staging | ChestStage.ingest;
-  possibleItems: GetMobileGameBattlePassChestDetailsQuery["details"]["possibleRewards"];
+  possibleItems: GetMobileRewardChestDetailsQuery["details"]["possibleRewards"];
 }
 
 export const ChestStagingStage = ({

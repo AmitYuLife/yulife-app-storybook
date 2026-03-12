@@ -1,9 +1,0 @@
-mutation OpenMobileGameBattlePassChest($participationId: String, $rewardId: String!) {
-  openMobileGameBattlePassChest(participationId: $participationId, rewardId: $rewardId) {
-    success
-    chest {
-      shouldClaimImmediately
-      ...MobileGameBattlePassChestDetails
-    }
-  }
-}
