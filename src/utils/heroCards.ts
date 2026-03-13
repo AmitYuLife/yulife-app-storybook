@@ -17,6 +17,7 @@ export type HeroCardHeader = {
   heading: string;
   image?: { uri?: string };
   subheadingMargin?: number;
+  headingWidth?: number;
   subheading?: { text?: string; icon?: string }[];
   button?: { text?: string; icon?: string; state: HeroCardHeaderButtonState; onPress?: () => void };
   fontColor?: string;

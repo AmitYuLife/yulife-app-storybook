@@ -3148,6 +3148,11 @@ export type CreateTeamSocialGroupInput = {
   name: Scalars["String"]["input"];
 };
 
+export type CreateTeamVsTeamEventInput = {
+  eventName: Scalars["String"]["input"];
+  gameMode: TeamVsTeamGameMode;
+};
+
 export type CustomValue = {
   __typename?: "CustomValue";
   assignedEmployeesCount: Scalars["Int"]["output"];
@@ -4455,6 +4460,14 @@ export type GetMembersOrCsmWithPermissionResult = {
   users?: Maybe<Array<BusinessAccessUserWithPermission>>;
 };
 
+export type GetMobileGameFingerprintThemeInput = {
+  deviceHeight: Scalars["Int"]["input"];
+  deviceModel: Scalars["String"]["input"];
+  deviceWidth: Scalars["Int"]["input"];
+  installationReferrerId?: InputMaybe<Scalars["String"]["input"]>;
+  osVersion: Scalars["String"]["input"];
+};
+
 export type GetMobileUserContentLocation = {
   __typename?: "GetMobileUserContentLocation";
   hasUserSelectedContentLocation?: Maybe<Scalars["Boolean"]["output"]>;
@@ -5120,6 +5133,7 @@ export type HeroCardHeader = {
   __typename?: "HeroCardHeader";
   button?: Maybe<HeroCardHeaderButton>;
   heading: Scalars["String"]["output"];
+  headingWidth?: Maybe<Scalars["Int"]["output"]>;
   image?: Maybe<RemoteImage>;
   subheading?: Maybe<Array<HeroCardTextWithIcon>>;
   subheadingMargin?: Maybe<Scalars["Int"]["output"]>;
@@ -5198,6 +5212,7 @@ export enum HeroCardType {
   Competition = "COMPETITION",
   Goal = "GOAL",
   Journey = "JOURNEY",
+  Pathways = "PATHWAYS",
   Smoking = "SMOKING",
 }
 
@@ -5756,7 +5771,6 @@ export type MemberIntegrationAdapterSummary = {
   isBeta: Scalars["Boolean"]["output"];
   logo?: Maybe<Scalars["String"]["output"]>;
   name: Scalars["String"]["output"];
-  slug: Scalars["String"]["output"];
 };
 
 export type MemberIntegrationDoc = {
@@ -5768,7 +5782,6 @@ export type MemberIntegrationDoc = {
   isBeta: Scalars["Boolean"]["output"];
   logo?: Maybe<Scalars["String"]["output"]>;
   order: Scalars["Int"]["output"];
-  slug: Scalars["String"]["output"];
   tags: Array<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
 };
@@ -5781,7 +5794,6 @@ export type MemberIntegrationDocMeta = {
   isBeta: Scalars["Boolean"]["output"];
   logo?: Maybe<Scalars["String"]["output"]>;
   order: Scalars["Int"]["output"];
-  slug: Scalars["String"]["output"];
   tags: Array<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
 };
@@ -7299,7 +7311,7 @@ export type MutationCreateTeamSocialGroupArgs = {
 };
 
 export type MutationCreateTeamVsTeamEventArgs = {
-  gameMode: TeamVsTeamGameMode;
+  input: CreateTeamVsTeamEventInput;
 };
 
 export type MutationCreateWellbeingHubCategoryArgs = {
@@ -8753,8 +8765,9 @@ export type Query = {
   /** @deprecated Use getMobileRewardChestDetails with sourceType: battlePass */
   getMobileGameBattlePassChestDetails: MobileGameBattlePassChestDetails;
   getMobileGameBattlePassRewardInfo: MobileGameBattlePassRewardInfo;
+  getMobileGameFingerprintTheme: MobileGameTheme;
   getMobileGameRewardPassList: MobileGameRewardPassList;
-  getMobileGameTheme?: Maybe<MobileGameTheme>;
+  getMobileGameTheme: MobileGameTheme;
   getMobileGameUserAchievements: MobileGameUserAchievements;
   getMobileGameUserWalletRewardItems: MobileGameUserWalletSections;
   getMobileGameUserWalletRewards: MobileGameUserWalletRewards;
@@ -9391,6 +9404,11 @@ export type QueryGetMobileGameBattlePassChestDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileGameBattlePassRewardInfoArgs = {
   milestoneId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileGameFingerprintThemeArgs = {
+  input: GetMobileGameFingerprintThemeInput;
 };
 
 /** Default types to be extended / root query */
@@ -11447,6 +11465,7 @@ export type TeamEmployeeRecognitionCampaignBillingAddress = {
 export type TeamEmployeeRecognitionCampaignPackage = {
   __typename?: "TeamEmployeeRecognitionCampaignPackage";
   amount: Scalars["Int"]["output"];
+  default?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
 };
 
@@ -20798,6 +20817,7 @@ export type HeroCardFragment = {
     __typename?: "HeroCardHeader";
     heading: string;
     subheadingMargin?: number | null;
+    headingWidth?: number | null;
     image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
     button?: {
@@ -25078,7 +25098,7 @@ export type GetPublicYuApiConfigWithThemeQuery = {
     }>;
     sduiJourney: { __typename?: "APIConfigSDUIJourney"; supportRequest: string };
   };
-  theme?: {
+  theme: {
     __typename?: "MobileGameTheme";
     id: string;
     name: string;
@@ -25104,7 +25124,7 @@ export type GetPublicYuApiConfigWithThemeQuery = {
       __typename?: "MobileGameThemeAssets";
       logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
-  } | null;
+  };
 };
 
 export type DeleteConnectionMutationVariables = Exact<{
@@ -25948,6 +25968,7 @@ export type GetMobileHeroCardsQuery = {
       __typename?: "HeroCardHeader";
       heading: string;
       subheadingMargin?: number | null;
+      headingWidth?: number | null;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
       button?: {
@@ -39361,7 +39382,7 @@ export type GetMobileGameThemeQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetMobileGameThemeQuery = {
   __typename?: "Query";
-  getMobileGameTheme?: {
+  getMobileGameTheme: {
     __typename?: "MobileGameTheme";
     id: string;
     name: string;
@@ -39387,7 +39408,7 @@ export type GetMobileGameThemeQuery = {
       __typename?: "MobileGameThemeAssets";
       logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
-  } | null;
+  };
 };
 
 export type SetTestMobileGameThemeMutationVariables = Exact<{
@@ -39864,6 +39885,7 @@ export type GetUserProfileQuery = {
         __typename?: "HeroCardHeader";
         heading: string;
         subheadingMargin?: number | null;
+        headingWidth?: number | null;
         image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
         subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
         button?: {
@@ -61088,6 +61110,7 @@ export const HeroCardFragmentDoc = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "subheadingMargin" } },
+                { kind: "Field", name: { kind: "Name", value: "headingWidth" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },
@@ -81013,6 +81036,7 @@ export const GetMobileHeroCardsDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "subheadingMargin" } },
+                { kind: "Field", name: { kind: "Name", value: "headingWidth" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },
@@ -100443,6 +100467,7 @@ export const GetUserProfileDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "subheadingMargin" } },
+                { kind: "Field", name: { kind: "Name", value: "headingWidth" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },

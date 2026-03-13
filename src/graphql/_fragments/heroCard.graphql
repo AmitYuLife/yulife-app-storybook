@@ -16,6 +16,7 @@ fragment HeroCard on HeroCard {
       ...RemoteImage
     }
     subheadingMargin
+    headingWidth
     subheading {
       text
       icon

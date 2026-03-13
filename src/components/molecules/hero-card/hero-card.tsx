@@ -107,7 +107,7 @@ const HeroCard = ({
                   {...header}
                   fontColor={fontColor}
                   boldTextColor={boldTextColor}
-                  textWidth={body.rightImage ? cardWidth - imageWidth : cardWidth}
+                  textWidth={header?.headingWidth ?? (body.rightImage ? cardWidth - imageWidth : cardWidth)}
                   headingNumberOfLines={headingNumberOfLines}
                 />
               ) : null}
