@@ -59,7 +59,7 @@
     "watch:translations": "ts-node ./scripts/watch-translations.ts",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "update": "pnpm install && pnpm regenerate && pnpm pod:install",
+    "bootstrap": "pnpm install && pnpm regenerate && pnpm pod:install",
     "yuhealth:push": "rm -rf ../react-native-yu-health/android/src/main/java && cp -r node_modules/@yu-life/react-native-yu-health/android/src/main/java/ ../react-native-yu-health/android/src/main/java",
     "yuhealth:pull": "rm -rf node_modules/@yu-life/react-native-yu-health/android/src/main/java/ && cp -r ../react-native-yu-health/android/src/main/java/ node_modules/@yu-life/react-native-yu-health/android/src/main/java/"
   },
