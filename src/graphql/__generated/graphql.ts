@@ -5133,6 +5133,7 @@ export type HeroCardHeader = {
   __typename?: "HeroCardHeader";
   button?: Maybe<HeroCardHeaderButton>;
   heading: Scalars["String"]["output"];
+  headingWidth?: Maybe<Scalars["Int"]["output"]>;
   image?: Maybe<RemoteImage>;
   subheading?: Maybe<Array<HeroCardTextWithIcon>>;
   subheadingMargin?: Maybe<Scalars["Int"]["output"]>;
@@ -5211,6 +5212,7 @@ export enum HeroCardType {
   Competition = "COMPETITION",
   Goal = "GOAL",
   Journey = "JOURNEY",
+  Pathways = "PATHWAYS",
   Smoking = "SMOKING",
 }
 
@@ -5769,7 +5771,6 @@ export type MemberIntegrationAdapterSummary = {
   isBeta: Scalars["Boolean"]["output"];
   logo?: Maybe<Scalars["String"]["output"]>;
   name: Scalars["String"]["output"];
-  slug: Scalars["String"]["output"];
 };
 
 export type MemberIntegrationDoc = {
@@ -5781,7 +5782,6 @@ export type MemberIntegrationDoc = {
   isBeta: Scalars["Boolean"]["output"];
   logo?: Maybe<Scalars["String"]["output"]>;
   order: Scalars["Int"]["output"];
-  slug: Scalars["String"]["output"];
   tags: Array<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
 };
@@ -5794,7 +5794,6 @@ export type MemberIntegrationDocMeta = {
   isBeta: Scalars["Boolean"]["output"];
   logo?: Maybe<Scalars["String"]["output"]>;
   order: Scalars["Int"]["output"];
-  slug: Scalars["String"]["output"];
   tags: Array<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
 };
@@ -20822,6 +20821,7 @@ export type HeroCardFragment = {
     __typename?: "HeroCardHeader";
     heading: string;
     subheadingMargin?: number | null;
+    headingWidth?: number | null;
     image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
     button?: {
@@ -25980,6 +25980,7 @@ export type GetMobileHeroCardsQuery = {
       __typename?: "HeroCardHeader";
       heading: string;
       subheadingMargin?: number | null;
+      headingWidth?: number | null;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
       button?: {
@@ -39904,6 +39905,7 @@ export type GetUserProfileQuery = {
         __typename?: "HeroCardHeader";
         heading: string;
         subheadingMargin?: number | null;
+        headingWidth?: number | null;
         image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
         subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
         button?: {
@@ -61128,6 +61130,7 @@ export const HeroCardFragmentDoc = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "subheadingMargin" } },
+                { kind: "Field", name: { kind: "Name", value: "headingWidth" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },
@@ -81117,6 +81120,7 @@ export const GetMobileHeroCardsDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "subheadingMargin" } },
+                { kind: "Field", name: { kind: "Name", value: "headingWidth" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },
@@ -100611,6 +100615,7 @@ export const GetUserProfileDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "subheadingMargin" } },
+                { kind: "Field", name: { kind: "Name", value: "headingWidth" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },

@@ -165,6 +165,7 @@ export type YuScreenSection =
   | WellbeingHubSection
   | ReferralSection
   | MaximiseYuSection
+  | FeatureCardSection
   | HeroCardSection;
 
 export type YumojiPrompt = {
