@@ -109,6 +109,7 @@ function Button(props: IButtonProps) {
         size={size}
         contentWrapperStyle={contentWrapperStyle}
         contentTextStyle={contentTextStyle}
+        theme={theme}
       />
       {!animate || DETOX_ENABLED ? null : <ButtonAnimation />}
     </View>
