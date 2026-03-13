@@ -3148,6 +3148,11 @@ export type CreateTeamSocialGroupInput = {
   name: Scalars["String"]["input"];
 };
 
+export type CreateTeamVsTeamEventInput = {
+  eventName: Scalars["String"]["input"];
+  gameMode: TeamVsTeamGameMode;
+};
+
 export type CustomValue = {
   __typename?: "CustomValue";
   assignedEmployeesCount: Scalars["Int"]["output"];
@@ -4453,6 +4458,14 @@ export type GetMembersOrCsmWithPermissionResult = {
   readablePermission?: Maybe<Scalars["String"]["output"]>;
   role: Scalars["String"]["output"];
   users?: Maybe<Array<BusinessAccessUserWithPermission>>;
+};
+
+export type GetMobileGameFingerprintThemeInput = {
+  deviceHeight: Scalars["Int"]["input"];
+  deviceModel: Scalars["String"]["input"];
+  deviceWidth: Scalars["Int"]["input"];
+  installationReferrerId?: InputMaybe<Scalars["String"]["input"]>;
+  osVersion: Scalars["String"]["input"];
 };
 
 export type GetMobileUserContentLocation = {
@@ -6169,7 +6182,11 @@ export type MobileGameTheme = {
 
 export type MobileGameThemeAssets = {
   __typename?: "MobileGameThemeAssets";
+  icon?: Maybe<RemoteImage>;
+  iconWhite?: Maybe<RemoteImage>;
+  loginBackgroundImage?: Maybe<RemoteImage>;
   logo?: Maybe<RemoteImage>;
+  logoWhite?: Maybe<RemoteImage>;
 };
 
 export type MobileGameThemeColors = {
@@ -7299,7 +7316,7 @@ export type MutationCreateTeamSocialGroupArgs = {
 };
 
 export type MutationCreateTeamVsTeamEventArgs = {
-  gameMode: TeamVsTeamGameMode;
+  input: CreateTeamVsTeamEventInput;
 };
 
 export type MutationCreateWellbeingHubCategoryArgs = {
@@ -8753,8 +8770,9 @@ export type Query = {
   /** @deprecated Use getMobileRewardChestDetails with sourceType: battlePass */
   getMobileGameBattlePassChestDetails: MobileGameBattlePassChestDetails;
   getMobileGameBattlePassRewardInfo: MobileGameBattlePassRewardInfo;
+  getMobileGameFingerprintTheme: MobileGameTheme;
   getMobileGameRewardPassList: MobileGameRewardPassList;
-  getMobileGameTheme?: Maybe<MobileGameTheme>;
+  getMobileGameTheme: MobileGameTheme;
   getMobileGameUserAchievements: MobileGameUserAchievements;
   getMobileGameUserWalletRewardItems: MobileGameUserWalletSections;
   getMobileGameUserWalletRewards: MobileGameUserWalletRewards;
@@ -9391,6 +9409,11 @@ export type QueryGetMobileGameBattlePassChestDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileGameBattlePassRewardInfoArgs = {
   milestoneId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileGameFingerprintThemeArgs = {
+  input: GetMobileGameFingerprintThemeInput;
 };
 
 /** Default types to be extended / root query */
@@ -11447,6 +11470,7 @@ export type TeamEmployeeRecognitionCampaignBillingAddress = {
 export type TeamEmployeeRecognitionCampaignPackage = {
   __typename?: "TeamEmployeeRecognitionCampaignPackage";
   amount: Scalars["Int"]["output"];
+  default?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
 };
 
@@ -20943,6 +20967,10 @@ export type MobileGameThemeFragment = {
   assets: {
     __typename?: "MobileGameThemeAssets";
     logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    logoWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    iconWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    loginBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   };
 };
 
@@ -25078,7 +25106,7 @@ export type GetPublicYuApiConfigWithThemeQuery = {
     }>;
     sduiJourney: { __typename?: "APIConfigSDUIJourney"; supportRequest: string };
   };
-  theme?: {
+  theme: {
     __typename?: "MobileGameTheme";
     id: string;
     name: string;
@@ -25103,8 +25131,12 @@ export type GetPublicYuApiConfigWithThemeQuery = {
     assets: {
       __typename?: "MobileGameThemeAssets";
       logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      logoWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      iconWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      loginBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
-  } | null;
+  };
 };
 
 export type DeleteConnectionMutationVariables = Exact<{
@@ -39353,6 +39385,10 @@ export type GetAllMobileGameThemesQuery = {
     assets: {
       __typename?: "MobileGameThemeAssets";
       logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      logoWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      iconWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      loginBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
   }>;
 };
@@ -39361,7 +39397,7 @@ export type GetMobileGameThemeQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetMobileGameThemeQuery = {
   __typename?: "Query";
-  getMobileGameTheme?: {
+  getMobileGameTheme: {
     __typename?: "MobileGameTheme";
     id: string;
     name: string;
@@ -39386,8 +39422,12 @@ export type GetMobileGameThemeQuery = {
     assets: {
       __typename?: "MobileGameThemeAssets";
       logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      logoWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      iconWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      loginBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
-  } | null;
+  };
 };
 
 export type SetTestMobileGameThemeMutationVariables = Exact<{
@@ -61659,6 +61699,38 @@ export const MobileGameThemeFragmentDoc = {
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logoWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "iconWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loginBackgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -77809,6 +77881,38 @@ export const GetPublicYuApiConfigWithThemeDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logoWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "iconWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loginBackgroundImage" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
@@ -98468,6 +98572,38 @@ export const GetAllMobileGameThemesDocument = {
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logoWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "iconWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loginBackgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -98557,6 +98693,38 @@ export const GetMobileGameThemeDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logoWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "iconWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loginBackgroundImage" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],

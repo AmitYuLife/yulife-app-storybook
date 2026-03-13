@@ -17,6 +17,7 @@ import { TextTemplate } from "@atoms/text/text-template";
 import { BadgeIcon } from "@atoms/icon/badge-icon";
 import { Image } from "@atoms";
 import { Sizes } from "./button.types";
+import { MobileGameTheme } from "@app/modules/themes/types";
 
 interface IProps {
   disabled?: boolean;
@@ -46,6 +47,7 @@ interface IProps {
   size: Sizes;
   contentWrapperStyle?: ViewStyle;
   contentTextStyle?: TemplateTextType;
+  theme?: MobileGameTheme;
 }
 
 interface IState {
@@ -85,6 +87,7 @@ export function ButtonBase(props: IProps) {
     size,
     contentWrapperStyle,
     contentTextStyle,
+    theme,
   } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({
@@ -113,6 +116,7 @@ export function ButtonBase(props: IProps) {
           height={height - SHADOW_DIFF - SHADOW_TRIM}
           borderRadius={borderRadius}
           disabled={disabled}
+          theme={theme}
         />
       )}
       <Main
@@ -142,6 +146,7 @@ export function ButtonBase(props: IProps) {
         size={size}
         contentWrapperStyle={contentWrapperStyle}
         contentTextStyle={contentTextStyle}
+        theme={theme}
       >
         <View>{children}</View>
       </Main>
@@ -149,10 +154,10 @@ export function ButtonBase(props: IProps) {
   );
 }
 
-type ShadowProps = "height" | "borderRadius" | "shadowColor" | "testID" | "disabled";
+type ShadowProps = "height" | "borderRadius" | "shadowColor" | "testID" | "disabled" | "theme";
 
-function Shadow({ height, borderRadius, shadowColor, testID, disabled }: Pick<IProps, ShadowProps>) {
-  const backgroundColor = getOptionallyDisabledColor({ color: shadowColor, disabled });
+function Shadow({ height, borderRadius, shadowColor, testID, disabled, theme }: Pick<IProps, ShadowProps>) {
+  const backgroundColor = getOptionallyDisabledColor({ color: shadowColor, disabled, theme });
 
   return (
     <View style={[styles.shadow, { height, borderRadius, backgroundColor }]}>
@@ -187,9 +192,10 @@ function Main({
   size,
   contentWrapperStyle,
   contentTextStyle,
+  theme,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
-  const adjustedColor = getOptionallyDisabledColor({ color, disabled });
-  const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled });
+  const adjustedColor = getOptionallyDisabledColor({ color, disabled, theme });
+  const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled, theme });
   const border = borderColor ? { borderColor: adjustedBorderColor, borderWidth: 1 } : {};
 
   return (
@@ -209,7 +215,12 @@ function Main({
         <Animated.View
           style={[styles.main, backgroundStyles.wrapper, { height, transform: [{ translateY: translateYAnimation }] }]}
         >
-          <Background disabled={disabled} backgroundColor={backgroundColor} backgroundGradient={backgroundGradient} />
+          <Background
+            disabled={disabled}
+            backgroundColor={backgroundColor}
+            backgroundGradient={backgroundGradient}
+            theme={theme}
+          />
         </Animated.View>
         <Animated.View
           style={[styles.main, { height, borderRadius, transform: [{ translateY: translateYAnimation }], ...border }]}
@@ -312,16 +323,18 @@ const Background = memo(
     backgroundGradient,
     backgroundColor = "transparent",
     disabled,
+    theme,
   }: {
     backgroundGradient: string[];
     backgroundColor: string;
     disabled: boolean;
+    theme: MobileGameTheme;
   }) => {
     if (backgroundGradient?.length) {
       return <LinearGradient style={backgroundStyles.wrapper} colors={backgroundGradient} />;
     }
 
-    const adjustedBackgroundColor = getOptionallyDisabledColor({ color: backgroundColor, disabled });
+    const adjustedBackgroundColor = getOptionallyDisabledColor({ color: backgroundColor, disabled, theme });
 
     return (
       <View style={StyleSheet.flatten([backgroundStyles.wrapper, { backgroundColor: adjustedBackgroundColor }])} />

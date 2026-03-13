@@ -44,9 +44,9 @@ export default function Center(props: Props) {
       justifyContent="center"
       gap={8}
     >
-      {theme.assets.logo ? (
+      {theme.assets.icon ? (
         <>
-          <Image source={{ uri: theme.assets.logo.uri }} width={26} height={26} resizeMode="contain" />
+          <Image source={{ uri: theme.assets.icon.uri }} width={26} height={26} resizeMode="contain" />
           <Box w={1} h={26} bg={Colours.neutral.n300} />
         </>
       ) : null}
