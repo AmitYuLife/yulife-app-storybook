@@ -14,15 +14,15 @@ import {
 import { Box, Image, TextTemplate } from "@atoms";
 import { GenericYucoin } from "@atoms/yucoin-badge";
 import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
-import { Spotlight, SpotlightProps, TipCard } from "@organisms";
+import { TipCard } from "@organisms";
 import { Colours, Style, templateTextMarkdownStyles, StyleSheet } from "@styles";
 import { Button, Markdown } from "@components/molecules";
 import { VoidFunctionOrPromise } from "@utils";
 import {
   CUSTOM_IMAGE_SIZE,
   DEFAULT_MAIN_IMAGE_SIZE,
+  ICON_Y_OFFSET,
   MAX_SIZE_GAPS_EXPECTED_HEIGHT,
-  SPOTLIGHT_PROPS,
 } from "./smoking-celebration-constants";
 import { SmokingCelebrationDisplayProps } from "./smoking-celebration-types";
 import { useSmokingCelebrationAnimations } from "./use-smoking-celebration-animations";
@@ -59,17 +59,6 @@ const SmokingCelebration = (props: SmokingCelebrationProps) => {
     [calculateGap]
   );
 
-  const spotlightProps = useMemo(() => {
-    return {
-      ...SPOTLIGHT_PROPS,
-      wrapperProps: {
-        ...DEFAULT_MAIN_IMAGE_SIZE,
-        justifyContent: "center",
-        alignItems: "center",
-      } as SpotlightProps["wrapperProps"],
-    };
-  }, []);
-
   return (
     <Box forceAnimated={true} pb={10} flex={1} style={animatedStyles.container}>
       <Box flex={1} ph={38} justifyContent="space-between" alignItems="center">
@@ -102,54 +91,63 @@ const SmokingCelebration = (props: SmokingCelebrationProps) => {
                 </Box>
               ) : null}
 
-              {displayProps.yuCoin > 0 ? (
-                <Box forceAnimated={true} style={animatedStyles.yuCoin}>
-                  <Box flexDirection="row" justifyContent="center" alignItems="center">
-                    <TextTemplate
-                      color={Colours.neutral.white}
-                      type="h3"
-                      textAlign="center"
-                      lineHeight={Style.adjust(20)}
-                    >
-                      +
-                    </TextTemplate>
-                    <TextTemplate
-                      color={Colours.neutral.white}
-                      type="h3"
-                      textAlign="center"
-                      testID={SMOKING_CELEBRATION_YUCOIN(displayProps.yuCoin)}
-                    >
-                      {displayProps.yuCoin}
-                    </TextTemplate>
-                    <Box mt={-1} ml={4}>
-                      <YuCoinTopNavIcon />
-                    </Box>
+              <Box forceAnimated={true} style={animatedStyles.yuCoin}>
+                <Box
+                  flexDirection="row"
+                  justifyContent="center"
+                  alignItems="center"
+                  opacity={displayProps.yuCoin ? 1 : 0}
+                >
+                  <TextTemplate
+                    color={Colours.neutral.white}
+                    type="h3"
+                    textAlign="center"
+                    lineHeight={Style.adjust(20)}
+                  >
+                    +
+                  </TextTemplate>
+                  <TextTemplate
+                    color={Colours.neutral.white}
+                    type="h3"
+                    textAlign="center"
+                    testID={SMOKING_CELEBRATION_YUCOIN(displayProps.yuCoin)}
+                  >
+                    {displayProps.yuCoin ?? 0}
+                  </TextTemplate>
+                  <Box mt={-1} ml={4}>
+                    <YuCoinTopNavIcon />
                   </Box>
                 </Box>
-              ) : null}
+              </Box>
             </Box>
           ) : null}
 
-          <Spotlight {...spotlightProps}>
-            <Box
-              {...DEFAULT_MAIN_IMAGE_SIZE}
-              testID={SMOKING_CELEBRATION_IMAGE_CONTAINER}
-              justifyContent="center"
-              alignItems="center"
-            >
-              {displayProps.image ? (
-                <Image
-                  source={displayProps.image}
-                  width={Style.adjust(CUSTOM_IMAGE_SIZE.w)}
-                  height={Style.adjust(CUSTOM_IMAGE_SIZE.h)}
-                  testID={SMOKING_CELEBRATION_CUSTOM_IMAGE(displayProps.image.id)}
-                  suppressLoadingUi={true}
-                />
-              ) : (
+          <Box
+            {...DEFAULT_MAIN_IMAGE_SIZE}
+            mt={ICON_Y_OFFSET / 2}
+            testID={SMOKING_CELEBRATION_IMAGE_CONTAINER}
+            justifyContent="center"
+            alignItems="center"
+          >
+            {displayProps.image ? (
+              <Image
+                source={displayProps.image}
+                width={Style.adjust(CUSTOM_IMAGE_SIZE.w)}
+                height={Style.adjust(CUSTOM_IMAGE_SIZE.h)}
+                testID={SMOKING_CELEBRATION_CUSTOM_IMAGE(displayProps.image.id)}
+                suppressLoadingUi={true}
+              />
+            ) : (
+              <Box
+                w={DEFAULT_MAIN_IMAGE_SIZE.w}
+                h={DEFAULT_MAIN_IMAGE_SIZE.h}
+                justifyContent="center"
+                alignItems="center"
+              >
                 <GenericYucoin width={DEFAULT_MAIN_IMAGE_SIZE.w} height={DEFAULT_MAIN_IMAGE_SIZE.h} margin={0} />
-              )}
-            </Box>
-          </Spotlight>
+              </Box>
+            )}
+          </Box>
 
           {displayProps.description ? (
             <Box>

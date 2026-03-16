@@ -10,6 +10,7 @@ export const CUSTOM_IMAGE_SIZE = {
   w: 106,
   h: 106,
 };
+export const ICON_Y_OFFSET = -65;
 export const FADE_IN_DURATION = 500;
 export const FADE_OUT_DURATION = 300;
 export const TEXT_FADE_IN_DELAY = 200;
