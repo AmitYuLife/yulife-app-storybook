@@ -6,11 +6,11 @@ import { Image } from "react-native";
 
 const PathwaysTitle = () => {
   return (
-    <Box flexDirection="row" alignItems="center" gap={4}>
+    <Box flexDirection="row" alignItems="center">
       <TextTemplate type="b2" color={Colours.neutral.white}>
         {t("screens.pathways.powered_by_yunity")}
       </TextTemplate>
-      <Box mt={-1}>
+      <Box mt={"-2%"}>
         <Image source={require("../../assets/yunity.png")} style={styles.image} />
       </Box>
     </Box>
