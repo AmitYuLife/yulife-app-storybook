@@ -1,4 +1,6 @@
-import HealthPermissionModal from "@components/modals/health-permission/health-permission.modal";
+import { BlurredWrapper, Box } from "@atoms";
+import ConfirmationModal from "@components/modals/confirmation-modal/confirmation-modal";
+import { Colours } from "@styles";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { getEnabledHealthProviders } from "@redux/user/user.selectors";
@@ -7,7 +9,7 @@ import { getActiveProvider, getProviderAvailabilities } from "@redux/yu-health/y
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 import { API_HEALTH_PROVIDER_TO_GQL_MAP } from "@services/fitkit/yu-health.helpers";
 import Logger from "@services/logging/logger";
-import { shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
+import { joinCapabilities, shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
 import {
   HealthPermissionStatus,
   HealthProvider,
@@ -41,6 +43,10 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
     "yu_health.connect.system_permission_needed.body",
     "yu_health.connect.system_permission_needed.cancel",
     "yu_health.connect.system_permission_needed.button",
+    "yu_health.capabilitiesRequest.header",
+    "yu_health.capabilitiesRequest.body",
+    "yu_health.capabilitiesRequest.continue",
+    "yu_health.capabilitiesRequest.cancel",
   ]);
 
   const enabledHealthProviders = useSelector(getEnabledHealthProviders);
@@ -161,24 +167,35 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
 
   const handlePermissionRequestModal = useCallback(
     async (capabilities: HealthProviderCapability[]) => {
+      const copy = joinCapabilities(capabilities);
+
       return new Promise<boolean>((res) => {
         showModal(({ onClose }) => (
-          <HealthPermissionModal
-            capabilities={capabilities}
-            onCancel={() => {
-              onClose();
-              return res(false);
-            }}
-            onRequestPermissions={async () => {
-              const result = await requestCapabilityPermissions(capabilities);
-              onClose();
-              return res(result);
-            }}
-          />
+          <BlurredWrapper>
+            <Box flex={1} justifyContent="flex-end">
+              <Box borderTopLeftRadius={20} borderTopRightRadius={20} bg={Colours.neutral.white}>
+                <ConfirmationModal
+                  header={t["yu_health.capabilitiesRequest.header"]}
+                  description={`${t["yu_health.capabilitiesRequest.body"]} ${copy}`}
+                  confirmLabel={t["yu_health.capabilitiesRequest.continue"]}
+                  cancelLabel={t["yu_health.capabilitiesRequest.cancel"]}
+                  onConfirm={async () => {
+                    onClose();
+                    const result = await requestCapabilityPermissions(capabilities);
+                    res(result);
+                  }}
+                  onCancel={() => {
+                    onClose();
+                    res(false);
+                  }}
+                />
+              </Box>
+            </Box>
+          </BlurredWrapper>
         ));
       });
     },
-    [requestCapabilityPermissions, showModal]
+    [requestCapabilityPermissions, showModal, t]
   );
 
   /**

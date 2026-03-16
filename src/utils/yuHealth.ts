@@ -83,7 +83,8 @@ export const joinCapabilities = (capabilities: HealthProviderCapability[]) => {
     .filter(Boolean)
     .reduce(
       (acc, curr, index, array) =>
-        acc + (index < array.length - 1 ? ", " : ` ${t("yu_health.capabilitiesRequest.join")} `) + curr
+        acc + (index < array.length - 1 ? ", " : ` ${t("yu_health.capabilitiesRequest.join")} `) + curr,
+      ""
     );
 };
 

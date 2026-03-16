@@ -186,7 +186,6 @@ import ChallengeNoDataModal from "../components/modals/challenge-no-data/challen
 import JoinLeaderboardOverlay from "../components/modals/join-leaderboard-overlay/join-leaderboard-overlay";
 import LeaderboardRankModal from "../components/modals/leaderboard-rank-modal/leaderboard-rank-modal";
 import HeroImageModal from "../components/modals/hero-image-modal/hero-image-modal";
-import HealthPermissionModal from "../components/modals/health-permission/health-permission.modal";
 import SmokingStreakCelebrationModal from "../components/modals/smoking-streak-celebration/smoking-streak-celebration.modal";
 import SmokingEditStateModal from "../components/modals/smoking-edit-state/smoking-edit-state.modal";
 import OpenRandomChestModal from "../components/modals/open-random-chest/open-random-chest-modal";
@@ -815,10 +814,6 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: MODALS.genericWithHeroImage,
     component: HeroImageModal,
-  },
-  {
-    name: MODALS.healthPermission,
-    component: HealthPermissionModal,
   },
   {
     name: MODALS.smokingStreakCelebration,

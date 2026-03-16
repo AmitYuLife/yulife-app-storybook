@@ -1,19 +1,20 @@
 import React, { memo, useCallback } from "react";
-import { Buttons } from "../hero-image-modal/subcomponents/buttons";
 import { Colours, Style } from "@styles";
 import { Box, TextTemplate } from "@atoms";
+import { Button, SecondaryButton } from "@molecules";
 
 interface Props {
   header: string;
   description: string;
   onConfirm: () => void;
   closeOverlay?: () => void;
+  onCancel?: () => void;
   confirmLabel?: string;
   cancelLabel?: string;
 }
 
 const ConfirmationModal = (props: Props) => {
-  const { onConfirm, cancelLabel, confirmLabel, header, description, closeOverlay } = props;
+  const { onConfirm, cancelLabel, confirmLabel, header, description, closeOverlay, onCancel } = props;
 
   const onConfirmButtonPressed = useCallback(() => {
     if (closeOverlay) {
@@ -35,12 +36,24 @@ const ConfirmationModal = (props: Props) => {
           {description}
         </TextTemplate>
       </Box>
-      <Buttons
-        onConfirm={onConfirmButtonPressed}
-        onCancel={closeOverlay}
-        cancelLabel={cancelLabel}
-        confirmLabel={confirmLabel}
-      />
+      <Box width="100%" mt={32} gap={12}>
+        {confirmLabel ? (
+          <Button
+            testID="confirmation-confirm-button"
+            size="Fill"
+            translatedLabel={confirmLabel}
+            onPress={onConfirmButtonPressed}
+          />
+        ) : null}
+        {cancelLabel ? (
+          <SecondaryButton
+            testID="confirmation-cancel-button"
+            size="Fill"
+            translatedLabel={cancelLabel}
+            onPress={onCancel ?? closeOverlay}
+          />
+        ) : null}
+      </Box>
     </Box>
   );
 };
