@@ -103,7 +103,7 @@ const PathwaysChallengeFeedbackScreen = ({ onPressCta, onPressSkip }: IPathwaysC
                   bg={Colours.primary.p600}
                   borderWidth={3}
                   borderColor={Colours.neutral.white}
-                  mt={18}
+                  mt={20}
                 />
               </LikertScale>
             </Box>
