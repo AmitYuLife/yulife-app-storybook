@@ -51,6 +51,7 @@ const PathwaysChallengeIntroScreen = ({ onPressCta, componentId }: IProps) => {
   const scrollContentStyle = useMemo(() => {
     const availableHeight = height - headerHeight;
     return {
+      paddingBottom: Style.adjust(50),
       minHeight: availableHeight,
       flexGrow: 1,
     };
@@ -143,8 +144,12 @@ const PathwaysChallengeIntroScreen = ({ onPressCta, componentId }: IProps) => {
           </Box>
         </Box>
       </Animated.ScrollView>
-      <Box px={32} pb={Math.max(bottom, 32)}>
-        <Button translationKey="labels.cta.continue" onPress={onPressCta} size="Fill" />
+      <Box>
+        <LinearGradient style={styles.footer} colors={["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 1)"]} />
+
+        <Box px={32} pb={Math.max(bottom, 32)} pt={5}>
+          <Button translationKey="labels.cta.continue" onPress={onPressCta} size="Fill" />
+        </Box>
       </Box>
 
       <GenericHeadingAbsolute
@@ -158,6 +163,12 @@ const PathwaysChallengeIntroScreen = ({ onPressCta, componentId }: IProps) => {
 };
 
 const styles = StyleSheet.create({
+  footer: {
+    height: Style.adjust(20),
+    width: "100%",
+    position: "absolute",
+    top: Style.adjust(-20),
+  },
   headerGradient: {
     position: "absolute",
     top: 0,
