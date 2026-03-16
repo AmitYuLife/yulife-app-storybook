@@ -233,7 +233,6 @@ export const MODALS: Record<string, `${typeof MODAL_PREFIX}.${string}`> = {
   viewAchievementModal: `${MODAL_PREFIX}.viewAchievementModal`,
   unlockedAchievementsModal: `${MODAL_PREFIX}.unlockedAchievementsModal`,
   // YuHealth
-  healthPermission: `${MODAL_PREFIX}.healthPermission`,
   confirmation: `${MODAL_PREFIX}.confirmation`,
 };
 
