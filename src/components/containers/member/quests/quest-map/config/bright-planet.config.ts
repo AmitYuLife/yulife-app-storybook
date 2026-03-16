@@ -411,7 +411,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     snapPosition: "center",
     levels: {
-      550: { x: 375 / 2, y: 140 },
+      550: { x: 375 / 2, y: 170 },
     },
   },
 
