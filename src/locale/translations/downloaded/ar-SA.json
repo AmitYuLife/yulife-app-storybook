@@ -1028,7 +1028,7 @@
     "daily": {
       "challenge_button": {
         "back_to_challenge": "العودة إلى التحدي",
-        "pathway_challenge": "مهمة الصحة متوفرة",
+        "pathway_challenge": "مهمة Yunity متوفرة",
         "take_challenge": "ادخل تحدي ( باقي %{challenges} اليوم)"
       },
       "daily_passive": {
@@ -1500,13 +1500,13 @@
         "bullet_point_1": "مُخصّص بناءً على إجاباتك في الاستبيان الصحي",
         "bullet_point_2": "يتكيف معك ومع احتياجاتك بمرور الوقت",
         "bullet_point_3": "يهدف إلى الوقاية من المشكلات الصحية قبل أن تبدأ",
-        "description": "تقدم لك مهمة يونيتي محتوى محدد ومخصص بناءً على إجاباتك التأملية اليومية.",
-        "heading": "مهمة الصحة",
+        "description": "مهمة Yunity تتيح لك محتوى مخصص وموجه بناءً على إجاباتك اليومية عن التأمل الشخصي.",
+        "heading": "مهمة Yunity ",
         "info_panel_markdown": "هذه المهمة لا تُحتسب ضمن سجل إنجازاتك!",
-        "title": "مصمم لـ يو"
+        "title": "مصمم لـ Yu"
       },
       "claim": {
-        "health_challenge": "مهمة الصحة",
+        "health_challenge": "تحدي Yunity ",
         "reward_subtitle": "يمكنك العثور عليه في قائمة التحديات.",
         "reward_title": "تم جمع المكافأة!",
         "title": "إليك كل ما حصلت عليه اليوم!",
@@ -1516,16 +1516,16 @@
       "header": "تأمل اليوم",
       "health_insights": "التحليلات الصحية",
       "journey_header": "الرحلة الحالية",
-      "journey_header_starts": "انعكس لمدة %{maxProgress} أيام متتالية لاكتساب مهمة مكافئة إضافية",
+      "journey_header_starts": "حافظ على التأمل طوال %{maxProgress} أيام متتالية لفتح مهمة إضافية",
       "personal_health_path": {
         "heading": "مسار الصحة الشخصية"
       },
-      "powered_by_yunity": "مدعوم من",
+      "powered_by_yunity": "مدعوم بواسطة ",
       "recommended_for_you": "موصى به لك",
       "reflect": "يعكس",
       "reflected": {
         "subtitle": {
-          "day1": "تم تسجيل أول انعكاس. واصل التقدم!",
+          "day1": "تم تسجيل أول لحظة تأمّل. استمر",
           "day2": "استمر في الظهور",
           "day3": "ثلاثة على التوالي. رائع!",
           "day4": "على وشك الانتهاء!",
