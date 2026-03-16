@@ -12,10 +12,11 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { READY_TO_SET_MAIN_ROOT, setMainRoot } from "../../app.actions";
 import { getToken } from "@services/storage";
 import queryConfig from "./queryConfig";
+import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
 
 const HYDRATE_TIMEOUT_MS = 4_000;
 
-const initialPayloadTypes = ["INIT"];
+const initialPayloadTypes = ["INIT", SET_DEVICE_LOCALE];
 
 export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
   const isFromInit = initialPayloadTypes.includes(type);
