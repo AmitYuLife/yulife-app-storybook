@@ -7,6 +7,9 @@ import { useQuery } from "@apollo/client";
 import LinearGradient from "react-native-linear-gradient";
 import AnimatedChest from "./components/animated-chest";
 import { LoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import { Image } from "@atoms";
+import { initialWindowMetrics } from "react-native-safe-area-context";
 
 type LoginHeroScreenProps = {
   onLoginEmailPress: () => void;
@@ -33,12 +36,21 @@ export const LoginHeroScreen = memo(({ onLoginEmailPress }: LoginHeroScreenProps
     [titleSectionHeight, ctaContainerHeight]
   );
 
+  const { theme } = useTheme();
+
   const slides = useMemo(
     () => [
       {
         title: t("screens.login_hero.slides.rewards"),
         foregroundComponent: <AnimatedChest rewards={data?.getPotentialRewards || []} />,
-        backgroundComponent: (
+        backgroundComponent: theme.assets.loginBackgroundImage?.uri ? (
+          <Image
+            source={{ uri: theme.assets.loginBackgroundImage?.uri }}
+            width={initialWindowMetrics.frame.width}
+            height={initialWindowMetrics.frame.height}
+            resizeMode="cover"
+          />
+        ) : (
           <LinearGradient
             colors={[Colours.secondary.s100S3, "#7238FF"]}
             style={styles.gradient}

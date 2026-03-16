@@ -1,14 +1,29 @@
 import { useQuery } from "@apollo/client";
-import { gql, MobileGameTheme } from "@graphql/__generated";
-import { getUserFeatures } from "@redux/user/user.selectors";
+import { gql } from "@graphql/__generated";
+import { getCurrentUserId, getUserFeatures } from "@redux/user/user.selectors";
+import { useMemo } from "react";
+import Config from "react-native-config";
 import { useSelector } from "react-redux";
+import { MobileGameTheme } from "../types";
 
 export const useTheme = () => {
+  const shouldApplyThemeOnLogin = Config.HAS_THEME_ON_LOGIN === "true";
+
+  const currentUserId = useSelector(getCurrentUserId);
   const { tempGameEnableAppTheme } = useSelector(getUserFeatures);
+
+  const skip = useMemo(() => {
+    if (currentUserId) {
+      return !tempGameEnableAppTheme;
+    }
+
+    return !shouldApplyThemeOnLogin;
+  }, [shouldApplyThemeOnLogin, tempGameEnableAppTheme, currentUserId]);
+
   const query = useQuery(gql("GetMobileGameThemeDocument"), {
     fetchPolicy: "cache-first",
     nextFetchPolicy: "cache-only",
-    skip: !tempGameEnableAppTheme,
+    skip,
     errorPolicy: "ignore",
   });
 
@@ -19,7 +34,7 @@ export const useTheme = () => {
 };
 
 const defaultTheme: MobileGameTheme = {
-  id: "default",
+  id: "yulife",
   name: "YuLife",
   colors: {
     primary: {

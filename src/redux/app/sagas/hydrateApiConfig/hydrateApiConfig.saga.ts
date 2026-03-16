@@ -5,17 +5,13 @@ import { initStripe } from "@services/stripe";
 import { SyncAction } from "@redux/_core/types";
 import deepLink from "@navigation/deepLink";
 import client, { regionalClients } from "@graphql/_core/client";
-import {
-  gql,
-  GetMobileGameThemeDocument,
-  GetPublicYuApiConfigWithThemeQuery,
-  GetPublicYuApiConfigQuery,
-} from "@graphql/__generated";
+import { GetMobileGameThemeDocument } from "@graphql/__generated";
 import { DETOX_ENABLED } from "@services/socket";
 import dd from "@services/datadog";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { ApolloQueryResult } from "@apollo/client";
-import { READY_TO_SET_MAIN_ROOT, setMainRoot } from "../app.actions";
+import { READY_TO_SET_MAIN_ROOT, setMainRoot } from "../../app.actions";
+import { getToken } from "@services/storage";
+import queryConfig from "./queryConfig";
 
 const HYDRATE_TIMEOUT_MS = 4_000;
 
@@ -58,12 +54,13 @@ function* runHydration({ type, payload }: SyncAction) {
       // When reloading the app only, we need the previous part (hydration) to run as it was saved locally
     }
 
+    const token: string = yield call(getToken);
     if (shouldFetchConfig) {
       if (DETOX_ENABLED) {
-        yield call(hydrateForDetox, features.tempGameEnableAppTheme);
+        yield call(hydrateForDetox, features.tempGameEnableAppTheme, token);
       } else {
         const response: Awaited<ReturnType<typeof queryConfig>> = yield call(() =>
-          queryConfig({ apolloClient: client(), tempGameEnableAppTheme: features.tempGameEnableAppTheme })
+          queryConfig({ apolloClient: client(), tempGameEnableAppTheme: features.tempGameEnableAppTheme, token })
         );
 
         if (response?.data?.config?.__typename) {
@@ -97,30 +94,10 @@ function* runHydration({ type, payload }: SyncAction) {
   return true;
 }
 
-async function queryConfig({
-  apolloClient,
-  tempGameEnableAppTheme,
-}: {
-  apolloClient: ReturnType<typeof client>;
-  tempGameEnableAppTheme: boolean;
-}): Promise<ApolloQueryResult<GetPublicYuApiConfigQuery | GetPublicYuApiConfigWithThemeQuery>> {
-  if (tempGameEnableAppTheme) {
-    return await apolloClient.query({
-      query: gql("GetPublicYuApiConfigWithThemeDocument"),
-      fetchPolicy: "no-cache",
-    });
-  }
-
-  return await apolloClient.query({
-    query: gql("GetPublicYuApiConfigDocument"),
-    fetchPolicy: "no-cache",
-  });
-}
-
-const hydrateForDetox = async (tempGameEnableAppTheme: boolean) => {
+const hydrateForDetox = async (tempGameEnableAppTheme: boolean, token: string) => {
   for (const regionalClient of regionalClients) {
     try {
-      const response = await queryConfig({ apolloClient: regionalClient, tempGameEnableAppTheme });
+      const response = await queryConfig({ apolloClient: regionalClient, tempGameEnableAppTheme, token });
 
       if (response?.data?.config?.__typename) {
         await region.setConfig(response.data.config);

@@ -13,7 +13,7 @@ import listenToDeepLinkingSaga from "./listenToDeepLinking.saga";
 import listenToComponentDidAppear from "./listenToComponentDidAppear";
 import listenToComponentDidDisappear from "./listenToComponentDidDisappear";
 import listenToNetworkStateSaga from "./listenToNetworkState.saga";
-import hydrateApiConfig from "./hydrateApiConfig.saga";
+import hydrateApiConfig from "./hydrateApiConfig/hydrateApiConfig.saga";
 import setMainRootSaga from "./setMainRoot.saga";
 import showMaintenanceSaga from "./showMaintenance.saga";
 import checkConnectionSaga from "./checkConnection.saga";
