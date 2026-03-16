@@ -3,6 +3,7 @@ import RewardSearchOverlayScreen from "./reward-search-overlay.screen";
 import { useBackHandler, useDebouncedQuery } from "@hooks";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
 import { gql } from "@graphql/__generated";
+import { Keyboard } from "react-native";
 
 interface IRewardSearchOverlayProps {
   onClose: () => void;
@@ -47,6 +48,7 @@ const RewardSearchOverlayContainer = ({ onClose, onItemPress, onPressWallet }: I
 
   const handleItemPress = useCallback(
     (item: RewardOnPressArgs) => {
+      Keyboard.dismiss();
       onItemPress?.(item);
     },
     [onItemPress]
