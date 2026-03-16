@@ -1,5 +1,5 @@
 import { persistor, store } from "@redux/_core/store";
-import { setMainRoot } from "@redux/app/app.actions";
+import { readyToSetMainRoot } from "@redux/app/app.actions";
 import SplashScreen from "@screens/splash/splash.screen";
 import * as React from "react";
 
@@ -22,7 +22,14 @@ export const AppLoadingContainer: React.FC<IProps> = ({ loadingText }) => {
 
   React.useEffect(() => {
     if (persistorBoostrapped && animationEnded) {
-      store.dispatch(setMainRoot());
+      /**
+       * hydrateApiConfig.saga is called on INIT.
+       *  1. it listens to readyToSetMainRoot (used as a signal to set the auth/unauthenticated root)
+       *  2. hydrates the api config or times out after 4 seconds.
+       * Calling readyToSetMainRoot until the animation is completed & redux persist state has been bootstrapped
+       * hydrateApiConfig.saga calls setMainRoot() after receiving the action.
+       */
+      store.dispatch(readyToSetMainRoot());
     }
 
     return () => null;

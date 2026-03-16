@@ -35,7 +35,7 @@ export default [
   takeLatest("INIT", listenToDeepLinkingSaga),
   takeLatest("INIT", listenToMemoryWarning),
   takeLatest("INIT", loggingNetworkState),
-  takeLatest(["INIT", SET_REGION_CONFIG, SET_MAIN_ROOT], hydrateApiConfig),
+  takeLatest(["INIT", SET_REGION_CONFIG], hydrateApiConfig),
   takeLatest(SET_MAIN_ROOT, setMainRootSaga),
   takeLatest(AUTHENTICATED, listenToNetworkStateSaga),
   takeLatest(SHOW_MAINTENANCE, showMaintenanceSaga),
