@@ -84,6 +84,7 @@ export const SecondaryButton = (props: Props) => {
         size={size}
         contentWrapperStyle={contentWrapperStyle}
         contentTextStyle={contentTextStyle}
+        theme={theme}
       />
     </View>
   );

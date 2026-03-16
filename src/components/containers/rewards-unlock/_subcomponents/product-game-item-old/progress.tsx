@@ -1,3 +1,4 @@
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import { Box, TextTemplate } from "@atoms";
 import { ProgressEnd } from "@atoms/icon/progress-end";
 import { Colours } from "@styles";
@@ -10,8 +11,14 @@ type Props = {
   info?: string;
 };
 
-export const ProductGameItemProgress = memo(({ current, max, title, info }: Props) =>
-  !max ? null : (
+export const ProductGameItemProgress = memo(({ current, max, title, info }: Props) => {
+  const { theme } = useTheme();
+
+  if (!max) {
+    return null;
+  }
+
+  return (
     <Box mt={16}>
       <Box pr={16} pl={16} flexDirection="row">
         {!title ? null : (
@@ -42,7 +49,7 @@ export const ProductGameItemProgress = memo(({ current, max, title, info }: Prop
           h={8}
         />
         <Box
-          bg={Colours.primary.p400}
+          bg={theme.colors.primary.p400}
           position="absolute"
           left={16}
           top={4}
@@ -57,5 +64,5 @@ export const ProductGameItemProgress = memo(({ current, max, title, info }: Prop
         </Box>
       </Box>
     </Box>
-  )
-);
+  );
+});

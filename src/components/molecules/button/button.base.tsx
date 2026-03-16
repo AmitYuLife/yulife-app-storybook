@@ -47,7 +47,7 @@ interface IProps {
   size: Sizes;
   contentWrapperStyle?: ViewStyle;
   contentTextStyle?: TemplateTextType;
-  theme?: MobileGameTheme;
+  theme: MobileGameTheme;
 }
 
 interface IState {
