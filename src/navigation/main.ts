@@ -32,6 +32,10 @@ export class Navigation {
   /** Makes the specified routes(tabs) as inaccessible */
   public static SUSPENDED_NAV_BAR_ROUTES: Set<string> = new Set([]);
 
+  /**
+   * Should be called with a redux action that hydrateApiConfig.saga can listen to
+   * to trigger setting the main root.
+   */
   public static setAppLoading = async (loadingText?: string) => {
     await Navigation.setRoot({
       root: {
