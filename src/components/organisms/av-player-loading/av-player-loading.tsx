@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { View } from "react-native";
 import { Style, Colours, StyleSheet } from "@styles";
-import { Box, TextTemplate } from "@atoms";
+import { Box, DeferredRender, TextTemplate } from "@atoms";
 const lottieJson = require("./meditation-lottie.json");
 import { MEDITOPIA_CHALLENGE_LOAD_SCREEN } from "@ids";
 import { t } from "@locale";
@@ -10,11 +10,13 @@ import { LottieView } from "@molecules";
 const AvPlayerLoading = () => (
   <View style={styles.wrapper} testID={MEDITOPIA_CHALLENGE_LOAD_SCREEN}>
     <LottieView resizeMode="cover" style={styles.lottie} source={lottieJson} autoPlay={true} />
-    <Box mt={40} w="100%" justifyContent="center" alignItems="center">
-      <TextTemplate type="b1b" color={Colours.neutral.n400}>
-        {t("screens.challenges.details.loading")}
-      </TextTemplate>
-    </Box>
+    <DeferredRender>
+      <Box mt={40} w="100%" justifyContent="center" alignItems="center">
+        <TextTemplate type="b1b" color={Colours.neutral.n400}>
+          {t("screens.challenges.details.loading")}
+        </TextTemplate>
+      </Box>
+    </DeferredRender>
   </View>
 );
 
