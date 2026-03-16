@@ -1,4 +1,4 @@
-import { GetMobileGameThemeDocument, gql, LoginUserMutation, MobileGameTheme } from "@graphql/__generated";
+import { gql, LoginUserMutation } from "@graphql/__generated";
 import { t } from "@locale";
 import { IFeature, ILoginUserPayload } from "@redux/user/user.types";
 import { VoidFunction } from "@utils";
@@ -27,11 +27,16 @@ export const applyLoginSession = async ({
   componentId: string;
   dispatch: Dispatch<unknown>;
 }) => {
-  const tempGameEnableAppTheme = !!loginResponse?.data?.loginUser?.user?.userFeatures?.find(
-    (r) => r.name === "tempGameEnableAppTheme"
-  )?.value;
-  // let's persist the region and config
+  const loginUser = loginResponse?.data?.loginUser;
+
+  const tempGameEnableAppTheme = !!loginUser?.user?.userFeatures?.find((r) => r.name === "tempGameEnableAppTheme")
+    ?.value;
+
   regionService.setRegion(region);
+
+  if (loginUser?.token) {
+    await setToken(loginUser.token);
+  }
 
   const response = await client().query({
     query: tempGameEnableAppTheme ? gql("GetPublicYuApiConfigWithThemeDocument") : gql("GetPublicYuApiConfigDocument"),
@@ -42,24 +47,16 @@ export const applyLoginSession = async ({
     await regionService.setConfig(response.data.config);
   }
 
-  if (response?.data && "theme" in response.data) {
-    client().writeQuery({
-      query: GetMobileGameThemeDocument,
-      data: { getMobileGameTheme: response.data?.theme as MobileGameTheme },
-    });
-  }
-
   dispatch(setRegionConfig({ shouldFetchConfig: false }));
 
-  if (loginResponse?.data?.loginUser?.token) {
-    const features = loginResponse?.data?.loginUser?.user?.userFeatures;
+  if (loginUser?.token) {
+    const features = loginUser?.user?.userFeatures;
 
-    await setToken(loginResponse.data.loginUser.token);
     dispatch(loginUserSuccess(toLoginUserSuccessPayload(loginResponse.data)));
 
     // no need to send the user to healthkit-connect if device is an ipad
     await transitionFromLoginToAuthenticated({
-      onboarded: loginResponse?.data?.loginUser?.user?.redeemedOnboarding,
+      onboarded: loginResponse.data.loginUser.user?.redeemedOnboarding,
       userFeatures: features.reduce(reduceUserFeatures, {}),
       componentId,
       dispatch,

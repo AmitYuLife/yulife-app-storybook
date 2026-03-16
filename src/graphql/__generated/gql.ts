@@ -199,6 +199,7 @@ type Documents = {
   GetMobileRewardChestDetailsDocument: typeof types.GetMobileRewardChestDetailsDocument;
   OpenMobileRewardChestDocument: typeof types.OpenMobileRewardChestDocument;
   GetPublicYuApiConfigDocument: typeof types.GetPublicYuApiConfigDocument;
+  GetPublicYuApiConfigWithFingerprintThemeDocument: typeof types.GetPublicYuApiConfigWithFingerprintThemeDocument;
   GetPublicYuApiConfigWithThemeDocument: typeof types.GetPublicYuApiConfigWithThemeDocument;
   DeleteConnectionDocument: typeof types.DeleteConnectionDocument;
   GetConnectionsDocument: typeof types.GetConnectionsDocument;
@@ -545,6 +546,7 @@ const documents: Documents = {
   GetMobileRewardChestDetailsDocument: types.GetMobileRewardChestDetailsDocument,
   OpenMobileRewardChestDocument: types.OpenMobileRewardChestDocument,
   GetPublicYuApiConfigDocument: types.GetPublicYuApiConfigDocument,
+  GetPublicYuApiConfigWithFingerprintThemeDocument: types.GetPublicYuApiConfigWithFingerprintThemeDocument,
   GetPublicYuApiConfigWithThemeDocument: types.GetPublicYuApiConfigWithThemeDocument,
   DeleteConnectionDocument: types.DeleteConnectionDocument,
   GetConnectionsDocument: types.GetConnectionsDocument,
@@ -1633,6 +1635,12 @@ export function gql(source: "OpenMobileRewardChestDocument"): (typeof documents)
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetPublicYuApiConfigDocument"): (typeof documents)["GetPublicYuApiConfigDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetPublicYuApiConfigWithFingerprintThemeDocument"
+): (typeof documents)["GetPublicYuApiConfigWithFingerprintThemeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

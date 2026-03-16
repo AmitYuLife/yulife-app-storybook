@@ -1,0 +1,8 @@
+query GetPublicYuAPIConfigWithFingerprintTheme($input: GetMobileGameFingerprintThemeInput!) {
+  config: getPublicYuAPIConfig {
+    ...APIConfig
+  }
+  theme: getMobileGameFingerprintTheme(input: $input) {
+    ...MobileGameTheme
+  }
+}

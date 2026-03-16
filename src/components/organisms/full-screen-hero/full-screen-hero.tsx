@@ -1,15 +1,17 @@
-import { Box, Logo, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { Button, Markdown, TouchableOpacityWithDelay } from "@components/molecules";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 import { FullScreenHeroProps } from "./types";
 import { LayoutChangeEvent, SafeAreaView } from "react-native";
-import { markdownStyles, styles } from "./styles";
+import { markdownStyles } from "./styles";
 import { memo, useCallback, useState } from "react";
 import LoopingCarousel from "./components/looping-carousel";
 import { FadeIn, SlideInDown } from "react-native-reanimated";
 import { LOGIN_HERO_CLAIM_ACCOUNT_BUTTON, LOGIN_HERO_LOGIN_BUTTON } from "@ids";
 import { useLoginHeroContext } from "@components/screens/login/login-hero/login-hero.context";
 import { DETOX_ENABLED } from "@services/socket";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import HeroLogo from "./hero-logo";
 
 const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }: FullScreenHeroProps) => {
   const { setCtaContainerHeight } = useLoginHeroContext();
@@ -22,6 +24,8 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
     [setCtaContainerHeight]
   );
 
+  const { theme } = useTheme();
+
   return (
     <Box
       h="100%"
@@ -32,7 +36,7 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
       <LoopingCarousel data={slides} setCurrentSlide={(index: number) => setCurrentSlide(index)} />
       <Box position="absolute" top={0} left={0} right={0}>
         <SafeAreaView>
-          <Logo type="full" width={Style.adjust(76)} style={styles.logo} colour={Colours.neutral.white} />
+          <HeroLogo logoUri={theme.assets.iconWhite?.uri} />
         </SafeAreaView>
       </Box>
       <Box position="absolute" bottom={0} left={0} right={0} h="100%" justifyContent="flex-end">
@@ -66,7 +70,7 @@ const FullScreenHero = ({ primaryCta, secondaryCta, disclaimerMarkdown, slides }
                     <TextTemplate
                       type="l1b"
                       textAlign="center"
-                      color={Colours.primary.p600}
+                      color={theme.colors.primary.p600}
                       decoration="underline"
                       testID={LOGIN_HERO_LOGIN_BUTTON}
                     >

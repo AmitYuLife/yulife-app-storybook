@@ -6914,6 +6914,7 @@ export type Mutation = {
   refreshBusinessCard: BusinessCard;
   refreshBusinessSession?: Maybe<BusinessPayload>;
   refreshEngagementDashboardActivities: Scalars["Boolean"]["output"];
+  refreshPaymentIntent: RefreshPaymentIntentResult;
   refreshSession?: Maybe<UserPayload>;
   registerInterestInCustomEvents: Scalars["Boolean"]["output"];
   reinviteEmployees?: Maybe<Scalars["Boolean"]["output"]>;
@@ -7328,6 +7329,7 @@ export type MutationCreateWellbeingHubItemArgs = {
 
 export type MutationCreateYuCoinTopupRequestArgs = {
   billingAddressId: Scalars["String"]["input"];
+  businessPaymentMethodId?: InputMaybe<Scalars["String"]["input"]>;
   price: Scalars["Float"]["input"];
   yucoin: Scalars["Int"]["input"];
 };
@@ -7586,6 +7588,10 @@ export type MutationRefreshBusinessCardArgs = {
 
 export type MutationRefreshBusinessSessionArgs = {
   intercomHashMethod?: InputMaybe<IntercomHashMethod>;
+};
+
+export type MutationRefreshPaymentIntentArgs = {
+  paymentIntentId: Scalars["String"]["input"];
 };
 
 export type MutationRefreshSessionArgs = {
@@ -10183,6 +10189,12 @@ export type ReferralSectionContent = {
   title: Scalars["String"]["output"];
 };
 
+export type RefreshPaymentIntentResult = {
+  __typename?: "RefreshPaymentIntentResult";
+  released: Scalars["Boolean"]["output"];
+  status: Scalars["String"]["output"];
+};
+
 export type RemoteImage = {
   __typename?: "RemoteImage";
   hash?: Maybe<Scalars["String"]["output"]>;
@@ -11970,8 +11982,12 @@ export type TeamYuCoinAmountSuggestion = {
 
 export type TeamYuCoinTopupRequest = {
   __typename?: "TeamYuCoinTopupRequest";
+  /** Stripe PaymentIntent client_secret for confirming card payment (e.g. 3DS); null otherwise. */
+  clientSecret?: Maybe<Scalars["String"]["output"]>;
   createdAt?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
+  /** Stripe PaymentIntent id when payment was initiated via saved card; null otherwise. */
+  paymentIntentId?: Maybe<Scalars["String"]["output"]>;
   price?: Maybe<Scalars["Float"]["output"]>;
   requestedBy: Scalars["String"]["output"];
   status: TeamYuCoinTopupRequestStatus;
@@ -25061,6 +25077,83 @@ export type GetPublicYuApiConfigQuery = {
       dynamicRouteId?: string | null;
     }>;
     sduiJourney: { __typename?: "APIConfigSDUIJourney"; supportRequest: string };
+  };
+};
+
+export type GetPublicYuApiConfigWithFingerprintThemeQueryVariables = Exact<{
+  input: GetMobileGameFingerprintThemeInput;
+}>;
+
+export type GetPublicYuApiConfigWithFingerprintThemeQuery = {
+  __typename?: "Query";
+  config: {
+    __typename?: "APIConfig";
+    language: string;
+    stripeKey: string;
+    mixpanelKey: string;
+    mixpanelBaseUrl: string;
+    enabledCaptchaProviders?: Array<string | null> | null;
+    hcaptchaSiteKey?: string | null;
+    sessionTimeout: number;
+    urls: {
+      __typename?: "APIConfigUrls";
+      members: string;
+      forgotPassword: string;
+      website: string;
+      privacyPolicy: string;
+      rewardsPolicy: string;
+      eula: string;
+    };
+    intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
+    leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
+    customerio?: { __typename?: "APIConfigCustomerio"; apiKey: string; siteId: string; region: string } | null;
+    datadog: {
+      __typename?: "APIConfigDatadog";
+      appId?: string | null;
+      appKey?: string | null;
+      site: string;
+      trackUserInteractions: boolean;
+      trackXHRs: boolean;
+      trackErrors: boolean;
+    };
+    sduiStaticDeeplinks: Array<{
+      __typename?: "APIConfigSDUIStaticDeepLink";
+      name: string;
+      stepId: string;
+      dynamicRouteId?: string | null;
+    }>;
+    sduiJourney: { __typename?: "APIConfigSDUIJourney"; supportRequest: string };
+  };
+  theme: {
+    __typename?: "MobileGameTheme";
+    id: string;
+    name: string;
+    colors: {
+      __typename?: "MobileGameThemeColors";
+      primary: {
+        __typename?: "PrimaryThemeColor";
+        p20: string;
+        p40: string;
+        p50: string;
+        p60: string;
+        p80: string;
+        p100: string;
+        p200: string;
+        p300: string;
+        p400: string;
+        p500: string;
+        p600: string;
+        p600Shadow: string;
+      };
+    };
+    assets: {
+      __typename?: "MobileGameThemeAssets";
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      logoWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      iconWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      loginBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
   };
 };
 
@@ -77690,6 +77783,265 @@ export const GetPublicYuApiConfigDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPublicYuApiConfigQuery, GetPublicYuApiConfigQueryVariables>;
+export const GetPublicYuApiConfigWithFingerprintThemeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPublicYuAPIConfigWithFingerprintTheme" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "input" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "GetMobileGameFingerprintThemeInput" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "config" },
+            name: { kind: "Name", value: "getPublicYuAPIConfig" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "APIConfig" } }],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "theme" },
+            name: { kind: "Name", value: "getMobileGameFingerprintTheme" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: { kind: "Variable", name: { kind: "Name", value: "input" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameTheme" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "APIConfig" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "APIConfig" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "language" } },
+          { kind: "Field", name: { kind: "Name", value: "stripeKey" } },
+          { kind: "Field", name: { kind: "Name", value: "mixpanelKey" } },
+          { kind: "Field", name: { kind: "Name", value: "mixpanelBaseUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "enabledCaptchaProviders" } },
+          { kind: "Field", name: { kind: "Name", value: "hcaptchaSiteKey" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "urls" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "members" } },
+                { kind: "Field", name: { kind: "Name", value: "forgotPassword" } },
+                { kind: "Field", name: { kind: "Name", value: "website" } },
+                { kind: "Field", name: { kind: "Name", value: "privacyPolicy" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardsPolicy" } },
+                { kind: "Field", name: { kind: "Name", value: "eula" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "intercom" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "ios" } },
+                { kind: "Field", name: { kind: "Name", value: "android" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leanplum" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "prodKey" } },
+                { kind: "Field", name: { kind: "Name", value: "devKey" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customerio" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "apiKey" } },
+                { kind: "Field", name: { kind: "Name", value: "siteId" } },
+                { kind: "Field", name: { kind: "Name", value: "region" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "datadog" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "appKey" } },
+                { kind: "Field", name: { kind: "Name", value: "site" } },
+                { kind: "Field", name: { kind: "Name", value: "trackUserInteractions" } },
+                { kind: "Field", name: { kind: "Name", value: "trackXHRs" } },
+                { kind: "Field", name: { kind: "Name", value: "trackErrors" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiStaticDeeplinks" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "stepId" } },
+                { kind: "Field", name: { kind: "Name", value: "dynamicRouteId" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiJourney" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "supportRequest" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sessionTimeout" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameTheme" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameTheme" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "primary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "p20" } },
+                      { kind: "Field", name: { kind: "Name", value: "p40" } },
+                      { kind: "Field", name: { kind: "Name", value: "p50" } },
+                      { kind: "Field", name: { kind: "Name", value: "p60" } },
+                      { kind: "Field", name: { kind: "Name", value: "p80" } },
+                      { kind: "Field", name: { kind: "Name", value: "p100" } },
+                      { kind: "Field", name: { kind: "Name", value: "p200" } },
+                      { kind: "Field", name: { kind: "Name", value: "p300" } },
+                      { kind: "Field", name: { kind: "Name", value: "p400" } },
+                      { kind: "Field", name: { kind: "Name", value: "p500" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600Shadow" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "assets" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logoWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "iconWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loginBackgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetPublicYuApiConfigWithFingerprintThemeQuery,
+  GetPublicYuApiConfigWithFingerprintThemeQueryVariables
+>;
 export const GetPublicYuApiConfigWithThemeDocument = {
   kind: "Document",
   definitions: [

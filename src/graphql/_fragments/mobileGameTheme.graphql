@@ -33,6 +33,5 @@ fragment MobileGameTheme on MobileGameTheme {
     loginBackgroundImage {
       ...RemoteImage
     }
-
   }
 }
