@@ -23,6 +23,7 @@ export const UPDATE_CURRENT_MODAL = "UPDATE_CURRENT_MODAL";
 export const UPDATE_OFFLINE_STATE = "UPDATE_OFFLINE_STATE";
 export const HIGHLIGHT_NAVBAR_TAB = "HIGHLIGHT_NAVBAR_TAB";
 export const HIGHTLIGHT_NAVBAR_TAB_RESET = "HIGHLIGHT_NAVBAR_TAB_RESET";
+export const READY_TO_SET_MAIN_ROOT = "READY_TO_SET_MAIN_ROOT";
 
 export const updateAppState = createAction<UpdateAppStatePayload, typeof UPDATE_APP_STATE>(UPDATE_APP_STATE);
 
@@ -49,6 +50,8 @@ export const setRegionConfig = createAction<SetRegionConfigPayload, typeof SET_R
 export const checkConnection = createAction<CheckConnectionPayload, typeof CHECK_CONNECTION>(CHECK_CONNECTION);
 
 export const setMainRoot = createAction(SET_MAIN_ROOT);
+
+export const readyToSetMainRoot = createAction(READY_TO_SET_MAIN_ROOT);
 
 export const highlightNavbarTabs = createAction<HighlightNavbarTabsPayload, typeof HIGHLIGHT_NAVBAR_TAB>(
   HIGHLIGHT_NAVBAR_TAB

@@ -1,4 +1,4 @@
-import { call, select } from "redux-saga/effects";
+import { all, call, put, race, delay, select, take } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { region } from "@locale";
 import { initStripe } from "@services/stripe";
@@ -15,10 +15,35 @@ import { DETOX_ENABLED } from "@services/socket";
 import dd from "@services/datadog";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { ApolloQueryResult } from "@apollo/client";
+import { READY_TO_SET_MAIN_ROOT, setMainRoot } from "../app.actions";
 
-const initialPayloadTypes = ["INIT", "SET_MAIN_ROOT"];
+const HYDRATE_TIMEOUT_MS = 4_000;
+
+const initialPayloadTypes = ["INIT"];
 
 export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
+  const isFromInit = initialPayloadTypes.includes(type);
+
+  if (isFromInit) {
+    const [{ timeout }] = yield all([
+      race({
+        hydration: call(runHydration, { type, payload }),
+        timeout: delay(HYDRATE_TIMEOUT_MS),
+      }),
+      take(READY_TO_SET_MAIN_ROOT),
+    ]);
+
+    if (timeout) {
+      Logger.error(new Error("API config hydration timed out"), { file: "hydrateApiConfigSaga" });
+    }
+
+    yield put(setMainRoot());
+  } else {
+    yield call(runHydration, { type, payload });
+  }
+}
+
+function* runHydration({ type, payload }: SyncAction) {
   try {
     const isFromInit = initialPayloadTypes.includes(type);
     let shouldFetchConfig: boolean = typeof payload === "object" ? (payload || {})?.shouldFetchConfig : true;
@@ -68,6 +93,8 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
   } catch (error) {
     Logger.error(error, { file: "hydrateApiConfigSaga" });
   }
+
+  return true;
 }
 
 async function queryConfig({
