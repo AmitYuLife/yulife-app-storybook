@@ -64,7 +64,8 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
     // rays height is Style.DEVICE_WIDTH
     // rays top is 100
     // rays wrapper top in blurred rays wrapper is 130
-    const raysCenterY = Style.adjust(100) + Style.DEVICE_WIDTH / 2 - Style.adjust(130);
+    // -20 due to slight offset on the rays
+    const raysCenterY = Style.adjust(100) + Style.DEVICE_WIDTH / 2 - Style.adjust(130) - Style.adjust(20);
     return [
       styles.imageWrapper,
       {
