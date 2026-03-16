@@ -24,23 +24,25 @@ const ControlledYuCoinCounter = ({
       bg={backgroundColor}
       h={TOP_BAR.TOP_BAR_WITH_PAD}
       pt={TOP_BAR.PADDING_TOP}
+      disableAutoAdjust={true}
       justifyContent="flex-end"
       alignItems="flex-end"
-      ph={16}
       position="absolute"
       left={0}
       right={0}
     >
-      <Box alignItems="center" alignSelf="flex-end" justifyContent="center" flexDirection="row" height="100%">
-        <Box mr={8}>
-          <Counter
-            value={coins || 0}
-            type="b2"
-            color={shouldHighlightCoins ? Colours.darkHotPink : (textStyle.color as string)}
-          />
-        </Box>
-        <Box>
-          <YuCoinTopNavIcon />
+      <Box ph={16}>
+        <Box alignItems="center" alignSelf="flex-end" justifyContent="center" flexDirection="row" height="100%">
+          <Box mr={8}>
+            <Counter
+              value={coins || 0}
+              type="b2"
+              color={shouldHighlightCoins ? Colours.darkHotPink : (textStyle.color as string)}
+            />
+          </Box>
+          <Box>
+            <YuCoinTopNavIcon />
+          </Box>
         </Box>
       </Box>
     </Box>
