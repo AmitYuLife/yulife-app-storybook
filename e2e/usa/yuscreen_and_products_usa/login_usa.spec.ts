@@ -12,7 +12,7 @@ import * as ids from "@ids";
 Feature("As a USA user, I can login and interact with app features", async () => {
   Scenario("As a user I can get past the login screen and see the donate tab after selecting my location", scenario.start, async () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_ACCOUNT_USA_1.data.business_account_id]), async () => {
-      Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", CUSTOMER_USA_1, AUTH_USA_1, true, "US"), async () => {
+      Given("I login and go to the daily steps screen", given.loginAsUser(CUSTOMER_USA_1, AUTH_USA_1, true, "US"), async () => {
         When("I have done 20 steps", given.sendSteps(20), async () => {
           Then("I should see 20 steps", then.idVisible(STEPS_COUNT(20), 5000));
         });

@@ -9,9 +9,11 @@ import moment from "moment";
 
 Feature("As an enabled user I am able to use the duels feature", async () => {
   Scenario("As a user I am able to invite another user to a duel, and the opponent is able to accept the duel", scenario.start, async () => {
-    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_20, data.AUTH_20), async () => {
-      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
-        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+    Given("I login as a user with duels enabled and go to the duels hub", given.loginAsUser(data.CUSTOMER_20, data.AUTH_20), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+          Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+        });
       });
     });
     When("I tap duels icon", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
@@ -95,9 +97,11 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
   });
 
   Scenario("As a user who has accepted a duel, I am able to compete in it", scenario.start, async () => {
-    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_17, data.AUTH_17), async () => {
-      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
-        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+    Given("I login as a user with duels enabled and go to the duels hub", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+          Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+        });
       });
     });
     When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
@@ -118,8 +122,10 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
   });
 
   Scenario("I should see a confirmation prompt when ending a duel to ensure step sync accuracy", scenario.withSearchToken(55), async () => {
-    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_17, data.AUTH_17), async () => {
-      Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+    Given("I login as a user with duels enabled and go to the duels hub", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+      });
     });
     When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 2500), async () => {
       Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]));
@@ -155,9 +161,11 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
   });
 
   Scenario("I should see a pending duel state when the opponent has not yet confirmed their steps", scenario.start, async () => {
-    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_19, data.AUTH_17), async () => {
-      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
-        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+    Given("I login as a user with duels enabled and go to the duels hub", given.loginAsUser(data.CUSTOMER_19, data.AUTH_17), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+          Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+        });
       });
     });
     When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
@@ -177,8 +185,10 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
   });
 
   Scenario("I am able to view my won and lost duels", scenario.start, async () => {
-    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_19, data.AUTH_19), async () => {
-      Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON, 4000));
+    Given("I login as a user with duels enabled and go to the duels hub", given.loginAsUser(data.CUSTOMER_19, data.AUTH_19), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON, 4000));
+      });
     });
     When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
       Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]));
@@ -197,8 +207,10 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
   });
 
   Scenario("I am able to view my past duels with deleted users", scenario.start, async () => {
-    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_84, data.AUTH_84), async () => {
-      Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+    Given("I login as a user with duels enabled and go to the duels hub", given.loginAsUser(data.CUSTOMER_84, data.AUTH_84), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+      });
     });
     When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
       Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]));
@@ -214,9 +226,11 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
   });
 
   Scenario("I can view and challenge people I have dueled before", scenario.start, async () => {
-    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_27, data.AUTH_27), async () => {
-      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
-        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+    Given("I login as a user with duels enabled and go to the duels hub", given.loginAsUser(data.CUSTOMER_27, data.AUTH_27), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+          Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+        });
       });
     });
     When("I tap duels icon", when.tapID(ids.DUELS_BUTTON, 1500), async () => {

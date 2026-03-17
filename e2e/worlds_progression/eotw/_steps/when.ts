@@ -15,13 +15,13 @@ export const {
   navigateViaID,
 } = navigation.common;
 
+export const { loginAsUser } = navigation.login;
+
 export const { startChallenge, startChallengeFromQuests } = screens.challenges;
 
 export const { scrollFromID, swipeFromText, scrollUntilIdVisible } = navigation.scrolling;
 
 export const { goToYuScreenAndDismissIntro, startYumojiBuilder, saveYumoji } = screens.yuscreen;
-
-export const { logInAndGoToTab } = navigation.login;
 
 export const selectAndCompleteWalkingChallenge =
   (challengeType: string, steps: number) => async () => {

@@ -92,7 +92,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
   });
 
   Scenario("Cycling data is successfully synced on log in through today's activities query", scenario.start, async () => {
-    Given("I login and go to Yucoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_73, data.AUTH_73), async () => {
+    Given("I login and go to Yucoin screen", given.loginAsUser(data.CUSTOMER_73, data.AUTH_73), async () => {
       Then("I should see my current YuCoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560), 5000));
     });
     When("I tap to see my daily activity", when.tapID(ids.DAILYSTEP_SCREEN_COIN, 3000), async () => {

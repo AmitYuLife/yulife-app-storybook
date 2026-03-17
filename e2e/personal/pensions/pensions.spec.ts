@@ -46,7 +46,7 @@ Feature("Smart Pension", async () => {
   });
 
   Scenario("I can see a pending pension due to contribution not exisiting", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_112, data.AUTH_112), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_112, data.AUTH_112), async () => {
       Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)));
     });
     When("I go to the Yu tab", when.navigateTo("yu"), async () => {
@@ -134,7 +134,7 @@ Feature("Smart Pension", async () => {
   });
 
   Scenario("A user with an active, connected pension, but with smartPension setting disabled, should not see the pension feature", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_115.customer, GENERIC_AUTH_PASSWORD), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_115.customer, GENERIC_AUTH_PASSWORD), async () => {
       When("I go to the Yu tab", when.navigateTo("yu"), async () => {
         Then("I do not see the onboarding screen as I have a connection", then.cannotSeePensionOnboarding);
       });

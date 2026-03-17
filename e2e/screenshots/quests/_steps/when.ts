@@ -5,6 +5,7 @@ import moment from "moment";
 
 export const {
     navigateTo,
+    tapID,
 } = navigation.common
 
 export const triggerSetUserQuestProgress =  (userId: string, currentLevel: number, ) => async ()=> {

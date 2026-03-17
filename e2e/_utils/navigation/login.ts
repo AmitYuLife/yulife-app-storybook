@@ -60,20 +60,6 @@ export const loginAsUser =
     await waitFor(dailyStepsScreen).toBeVisible().withTimeout(25_000);
   };
 
-export const logInAndGoToTab =
-  (
-    tab: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu",
-    customer: IDatabaseItem,
-    auth: IDatabaseItem,
-    fitkitAuth = true,
-    region: "UK" | "US" | "JP" | "SA" = "UK"
-  ) =>
-  async () => {
-    await new Promise((res) => setTimeout(res, 5000));
-    await loginAsUser(customer, auth, fitkitAuth, region)();
-    await navigateViaID(NAV_BAR(tab), 10_000)();
-  };
-
 export const restartAndLoginToTab =
   (
     tab: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu",
@@ -141,7 +127,8 @@ export const continueLoginAfterSignupBonus = async () => {
 export const loginToYuScreen =
   (skipIntro = true, customer: IDatabaseItem, auth: IDatabaseItem) =>
   async () => {
-    await logInAndGoToTab("yu", customer, auth, true)();
+    await loginAsUser(customer, auth, true)();
+    await navigateViaID(NAV_BAR("yu"), 10_000)();
     if (skipIntro === true) {
       await completeOnboardingIntro();
       await skipHealthConnection();

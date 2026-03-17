@@ -1,3 +1,3 @@
 import { navigation } from "@navigation";
 
-export const { logInAndGoToTab, loginAsUser } = navigation.login;
+export const { loginAsUser } = navigation.login;

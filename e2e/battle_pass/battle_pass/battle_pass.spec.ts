@@ -255,8 +255,10 @@ Feature("I can view and use all battle pass features", async () => {
   Scenario("As a member with concurrent employments, I should be able to access Battle Pass if one of my employments has it enabled for me", scenario.start, () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_ACCOUNT_2.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
-        Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
+        Given("I login and navigate to the rewards store", given.loginAsUser(data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+          When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+            Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
+          });
         });
       });
     });
@@ -271,8 +273,10 @@ Feature("I can view and use all battle pass features", async () => {
   Scenario("I can view, adjust and validate coupon values before completing checkout", scenario.start, () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([BUSINESS_THE_BEAR.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
-        Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-          Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
+        Given("I login and navigate to the rewards store", given.loginAsUser(data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+          When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+            Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85200)));
+          });
         });
       });
     });

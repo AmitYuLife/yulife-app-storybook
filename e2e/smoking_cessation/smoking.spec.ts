@@ -177,8 +177,10 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   });
 
   Scenario("As a user with smoking hub history, I can view my cessation progression", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_LEELA, data.AUTH_LEELA), async () => {
-      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Turanga Leela", "Forest", "212", true));
+    Given("I login", given.loginAsUser(data.CUSTOMER_LEELA, data.AUTH_LEELA), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Turanga Leela", "Forest", "212", true));
+      });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       Then("I should see the initial smoking tile", then.smokingTileVisible("17 days smoke-free"));
@@ -227,8 +229,10 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   });
 
   Scenario("I can get help with a smoking craving by playing the smoking game, and opt out", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_BENDER, data.AUTH_BENDER), async () => {
-      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bender Rodriguez", "Forest", "212", true));
+    Given("I login", given.loginAsUser(data.CUSTOMER_BENDER, data.AUTH_BENDER), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bender Rodriguez", "Forest", "212", true));
+      });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.5, 0.85, 3000), async () => {
       Then("I should see the smoking tile", then.idVisible(ids.SMOKING_TILE_BUTTON, 3000));
@@ -302,7 +306,7 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   });
 
   Scenario("I can tell the app when I have lapsed, and it will correctly end my streak at the last confirmed point I had succeeded", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_ZOIDBERG, data.AUTH_ZOIDBERG), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_ZOIDBERG, data.AUTH_ZOIDBERG), async () => {
       Then("I can see the smoking card is there", then.smokingCardVisible(10, locale));
     });
     When("I tap the smoking card", when.tapID(ids.FLAT_LIST_EVENTS), async () => {
@@ -358,8 +362,10 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   });
 
   Scenario("Opting out is limited to once per day", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_BENDER, data.AUTH_BENDER), async () => {
-      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bender Rodriguez", "Forest", "212", true));
+    Given("I login", given.loginAsUser(data.CUSTOMER_BENDER, data.AUTH_BENDER), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bender Rodriguez", "Forest", "212", true));
+      });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("6 days smoke-free"), 3000), async () => {
@@ -452,8 +458,10 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   });
 
   Scenario("I see the correct celebration screen when reaching 28 days and my rewards are autoclaimed", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_ZAPP, data.AUTH_ZAPP), async () => {
-      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Zapp Brannigan", "Forest", "212", true));
+    Given("I login", given.loginAsUser(data.CUSTOMER_ZAPP, data.AUTH_ZAPP), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Zapp Brannigan", "Forest", "212", true));
+      });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.5, 0.85, 3000), async () => {
       When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("27 days smoke-free"), 3000), async () => {
@@ -474,8 +482,10 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   });
 
   Scenario("I start my smoking journey complete the questionnaire and receive my YuCoins as a reward. If I opt out and later restart, completing the questionnaire again should not grant me any additional YuCoin reward", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_AMY, data.AUTH_AMY), async () => {
-      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Amy Wong", "Forest", "212", true));
+    Given("I login", given.loginAsUser(data.CUSTOMER_AMY, data.AUTH_AMY), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Amy Wong", "Forest", "212", true));
+      });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       Then("I should see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?"));
@@ -647,9 +657,11 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   });
 
   Scenario("After I opt-out 5 times as a user who has 0 streak days claimed, I will have a delay in getting any YuCoin rewards for the next 7 days in the streak for the daily rewards as well as the questionnaire.", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_HERMES, data.AUTH_HERMES), async () => {
-      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Hermes Conrad", "Forest", "212", true));
-      Then("I can see my YuCoin Balance is 1200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1200)));
+    Given("I login", given.loginAsUser(data.CUSTOMER_HERMES, data.AUTH_HERMES), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Hermes Conrad", "Forest", "212", true));
+        Then("I can see my YuCoin Balance is 1200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1200)));
+      });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("1 day smoke-free"), 3000), async () => {
@@ -666,9 +678,11 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   });
 
   Scenario("After I opt-out 10 times as a user who has 0 streak days claimed, I will have a delay in getting any YuCoin rewards for the next 14 days in the streak for the daily rewards as well as the questionnaire.", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_KIF, data.AUTH_KIF), async () => {
-      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Kif Kroker", "Forest", "212", true));
-      Then("I can see my YuCoin Balance is 1200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1200), 3_000));
+    Given("I login", given.loginAsUser(data.CUSTOMER_KIF, data.AUTH_KIF), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Kif Kroker", "Forest", "212", true));
+        Then("I can see my YuCoin Balance is 1200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1200), 3_000));
+      });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("1 day smoke-free"), 3000), async () => {
@@ -703,8 +717,10 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
   });
 
   Scenario("I see the correct behaviours once I pass 28 days", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_CALCULON, data.AUTH_CALCULON), async () => {
-      Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Calculon Robot", "Forest", "212", true));
+    Given("I login", given.loginAsUser(data.CUSTOMER_CALCULON, data.AUTH_CALCULON), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Calculon Robot", "Forest", "212", true));
+      });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       When("I tap the smoking tile", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("28 days smoke-free"), 3000), async () => {

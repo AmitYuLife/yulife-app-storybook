@@ -4,7 +4,7 @@ import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { loginWithCredentials, authoriseFitkit } from "@socket";
 
-export const { loginAsUser, logInAndGoToTab, selectRegionIfVisible } = navigation.login;
+export const { loginAsUser, selectRegionIfVisible } = navigation.login;
 
 export const { wait } = navigation.common;
 

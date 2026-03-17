@@ -10,7 +10,7 @@ import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("Notification centre", async () => {
   Scenario("I can access the notification centre", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_34, AUTH_34), async () => {
+    Given("I login", given.loginAsUser(CUSTOMER_34, AUTH_34), async () => {
       Then("I should see 220 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
       Then("I can see the notification centre icon is visible", then.idVisible(NOTIF_CENTRE));
     });
@@ -22,7 +22,7 @@ Feature("Notification centre", async () => {
 
   Scenario("I should see the deactivation notifications once I'm deactivated", scenario.start, () => {
     Given("I deactivate the pending leaver", given.deactivatePendingLeaversByDate(CUSTOMER_LEAVER_NOTIF["business_employee_0"].data.businessAccountId, "team"), async () => {
-      Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_LEAVER_NOTIF.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Given("I login", given.loginAsUser(CUSTOMER_LEAVER_NOTIF.customer, GENERIC_AUTH_PASSWORD), async () => {
         Then("I can see the notification centre icon is visible", then.idVisible(NOTIF_CENTRE));
       });
     });
@@ -39,7 +39,7 @@ Feature("Notification centre", async () => {
 
   Scenario("As a user who does not have reward store access, I should not see the grace period deactivation notification", scenario.start, () => {
     Given("I deactivate the pending leaver", given.deactivatePendingLeaversByDate(CUSTOMER_LEAVER_NO_STORE_NOTIF["business_employee_0"].data.businessAccountId, "team"), async () => {
-      Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_LEAVER_NO_STORE_NOTIF.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Given("I login", given.loginAsUser(CUSTOMER_LEAVER_NO_STORE_NOTIF.customer, GENERIC_AUTH_PASSWORD), async () => {
         Then("I can see the notification centre icon is visible", then.idVisible(NOTIF_CENTRE));
       });
     });
@@ -52,7 +52,7 @@ Feature("Notification centre", async () => {
 
   Scenario("As a user with concurrent employments, if my remaining employment still has reward store access, then I should not see the grace period notification", scenario.start, () => {
     Given("I deactivate the pending leaver", given.deactivatePendingLeaversByDate(CUSTOMER_LEAVER_CONCURRENT_NOTIF["business_employee_0"].data.businessAccountId, "team"), async () => {
-      Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_LEAVER_CONCURRENT_NOTIF.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Given("I login", given.loginAsUser(CUSTOMER_LEAVER_CONCURRENT_NOTIF.customer, GENERIC_AUTH_PASSWORD), async () => {
         Then("I can see the notification centre icon is visible", then.idVisible(NOTIF_CENTRE));
       });
     });

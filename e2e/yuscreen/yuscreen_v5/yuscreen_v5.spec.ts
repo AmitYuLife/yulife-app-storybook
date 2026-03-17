@@ -79,8 +79,10 @@ Feature("I am able to use the yuscreen v5", async () => {
   });
 
   Scenario("I can view and complete the 'Maximise-Yu' nudges", scenario.start, async () => {
-    Given("I login and go to the 'Yu' tab", given.logInAndGoToTab("yu", data.CUSTOMER_MAXIMISE_YU, data.AUTH_MAXIMISE_YU), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
+    Given("I login and go to the 'Yu' tab", given.loginAsUser(data.CUSTOMER_MAXIMISE_YU, data.AUTH_MAXIMISE_YU), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
+      });
     });
     When("I click on the YuCoin I have earned today", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(130, 400), 3000), async () => {
       Then("I should be on the Today's earnings screen", then.textVisible("Today’s Earnings", 1500));
@@ -140,9 +142,11 @@ Feature("I am able to use the yuscreen v5", async () => {
   });
 
   Scenario("The Yumoji Builder works in the V5 YuScreen as expected", scenario.start, () => {
-    Given("I trigger the worker to give missing yumoji items", given.triggerGiveMissingYumojiItems([data.CUSTOMER_139.data.customerId]), async () => {
-      When("I login as a user on level 800", when.logInAndGoToTab("quests", data.CUSTOMER_139, data.AUTH_139), async () => {
-        Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800)));
+    Given("I login as a user on level 800", given.loginAsUser(data.CUSTOMER_139, data.AUTH_139), async () => {
+      Given("I trigger the worker to give missing yumoji items", given.triggerGiveMissingYumojiItems([data.CUSTOMER_139.data.customerId]), async () => {
+        When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+          Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800)));
+        });
       });
     });
     When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
@@ -213,10 +217,12 @@ Feature("I am able to use the yuscreen v5", async () => {
   });
 
   Scenario("I can create an Yumoji from scratch on the YuScreen", scenario.start, () => {
-    Given("I trigger the worker to give missing yumoji items", given.logInAndGoToTab("yu", data.CUSTOMER_140, data.AUTH_140), async () => {
-      Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 3000));
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Sean Spencer", "Mountain", "800", true));
-      Then("I should see the yumoji create copy", then.yuscreenV5CreateYumojiVisible);
+    Given("I trigger the worker to give missing yumoji items", given.loginAsUser(data.CUSTOMER_140, data.AUTH_140), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 3000));
+        Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Sean Spencer", "Mountain", "800", true));
+        Then("I should see the yumoji create copy", then.yuscreenV5CreateYumojiVisible);
+      });
     });
     When("I tap the yumoji creator", when.tapID(ids.YUMOJI_PROMPT_CTA, 3000), async () => {
       Then("I should be on the Yumoji create screen", then.textVisible("Create your Yumoji to step into the Yuniverse"));
@@ -237,8 +243,10 @@ Feature("I am able to use the yuscreen v5", async () => {
   });
 
   Scenario("I can see 'Powerful Protection' and the product cards in the correct order", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_139, data.AUTH_139), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Small Daddy", "Mountain", "800"));
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_139, data.AUTH_139), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Small Daddy", "Mountain", "800"));
+      });
     });
     When("I scroll down to the Powerful protection section on YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
       Then("I should see Powerful protection title", then.idExist(ids.YUSCREEN_V5_PROTECTION_TITLE, 2000));
@@ -277,8 +285,10 @@ Feature("I am able to use the yuscreen v5", async () => {
   });
 
   Scenario("I can click on a product and see all the information such as the digital certificate", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_141, data.AUTH_141), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Anya Forgar", "Forest", "810"));
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_141, data.AUTH_141), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Anya Forgar", "Forest", "810"));
+      });
     });
 
     When("I scroll down to the Powerful protection section on YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
@@ -308,8 +318,10 @@ Feature("I am able to use the yuscreen v5", async () => {
   });
 
   Scenario("As a user with concurrent employments, I should see all of my companies' wellbeing hub benefits on my YuScreen", scenario.restartWithoutWBHub, async () => {
-    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Forest", "401"));
+    Given("I login to my YuScreen", given.loginAsUser(data.CUSTOMER_138, data.AUTH_138), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Forest", "401"));
+      });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.4, 0.85, 2000), async () => {
       When("I tap See all benefits", when.tapID(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON_TEXT_VIEW, 3000), async () => {
@@ -344,32 +356,40 @@ Feature("I am able to use the yuscreen v5", async () => {
   });
 
   Scenario("As a user with displayScrollItems: false and displayProgress: true, the Maximise yu nudge should not be visible to me", scenario.start, async () => {
-    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_142.customer, GENERIC_AUTH_PASSWORD), async () => {
-      When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
-        Then("I should see the progress bar is visible but the nudge is not visible", then.idVisible(ids.MAXIMISE_YU(true, false)));
+    Given("I login to my YuScreen", given.loginAsUser(data.CUSTOMER_142.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
+          Then("I should see the progress bar is visible but the nudge is not visible", then.idVisible(ids.MAXIMISE_YU(true, false)));
+        });
       });
     });
   });
 
   Scenario("As a user with displayScrollItems: true and displayProgress: false, The Maximise yu progress bar should not be visible to me", scenario.start, async () => {
-    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_143.customer, GENERIC_AUTH_PASSWORD), async () => {
-      When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
-        Then("I should see the progress is not visible but the nudge is visible", then.idVisible(ids.MAXIMISE_YU(false, true)));
+    Given("I login to my YuScreen", given.loginAsUser(data.CUSTOMER_143.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
+          Then("I should see the progress is not visible but the nudge is visible", then.idVisible(ids.MAXIMISE_YU(false, true)));
+        });
       });
     });
   });
 
   Scenario("As a user with displayScrollItems: false and displayProgress: false, I should not see the Maximise yu nudge or the progress bar", scenario.start, async () => {
-    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_144.customer, GENERIC_AUTH_PASSWORD), async () => {
-      When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
-        Then("I should see the progress bar and the nudge is not visible", then.idNotVisible(ids.MAXIMISE_YU_COMPONENT));
+    Given("I login to my YuScreen", given.loginAsUser(data.CUSTOMER_144.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
+          Then("I should see the progress bar and the nudge is not visible", then.idNotVisible(ids.MAXIMISE_YU_COMPONENT));
+        });
       });
     });
   });
 
   Scenario("I am able to see and select all the yumoji builder facial hair options", scenario.start, async () => {
-    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_144.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I can see the create yumoji card with the earnable reward as I have yet not made one", then.idVisible(ids.YUMOJI_PROMPT_COPY("Earn 100 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)\nwhen you create\nyour Yumoji.")));
+    Given("I login to my YuScreen", given.loginAsUser(data.CUSTOMER_144.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I can see the create yumoji card with the earnable reward as I have yet not made one", then.idVisible(ids.YUMOJI_PROMPT_COPY("Earn 100 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)\nwhen you create\nyour Yumoji.")));
+      });
     });
     When("I click on the Create Yumoji button", when.tapID(ids.YUMOJI_PROMPT_CTA), async () => {
       When("I click on the male body", when.tapID(ids.MALE_BODY), async () => {
@@ -389,10 +409,12 @@ Feature("I am able to use the yuscreen v5", async () => {
   });
 
   Scenario("I am able to view locked achievements", scenario.start, async () => {
-    Given("I log in as a user", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Forest", "401"));
-      Then("I should see the achievements showcase panel", then.idVisible(ids.ACHIEVEMENTS_SHOWCASE));
-      Then("I should see the placeholder achievement slot", then.checkEmptyAchievementSlots(1));
+    Given("I log in as a user", given.loginAsUser(data.CUSTOMER_138, data.AUTH_138), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Forest", "401"));
+        Then("I should see the achievements showcase panel", then.idVisible(ids.ACHIEVEMENTS_SHOWCASE));
+        Then("I should see the placeholder achievement slot", then.checkEmptyAchievementSlots(1));
+      });
     });
     When("I tap on the empty achievement slot", when.tapID(ids.ACHIEVEMENT_SLOT(1)), async () => {
       Then("I should see all available achievements in a locked state", then.assertAllLockedAchievements);
@@ -400,9 +422,11 @@ Feature("I am able to use the yuscreen v5", async () => {
   });
 
   Scenario("I can successfully unlock, equip and unequip an achivement badge", scenario.start, async () => {
-    Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_141, data.AUTH_141), async () => {
-      Then("I should see the achievements showcase panel", then.idVisible(ids.ACHIEVEMENTS_SHOWCASE));
-      Then("I should see the empty achivement slot", then.checkEmptyAchievementSlots(1));
+    Given("I login to my YuScreen", given.loginAsUser(data.CUSTOMER_141, data.AUTH_141), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see the achievements showcase panel", then.idVisible(ids.ACHIEVEMENTS_SHOWCASE));
+        Then("I should see the empty achivement slot", then.checkEmptyAchievementSlots(1));
+      });
     });
     When("I navigate to the Quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
       When("I tap on level 810", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(810), 2000), async () => {

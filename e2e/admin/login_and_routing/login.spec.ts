@@ -103,7 +103,7 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("I can login with correct login details and see the correct steps sent", scenario.start, async () => {
-    Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_7, data.AUTH_7, true), async () => {
+    Given("I login and go to the daily steps screen", given.loginAsUser(data.CUSTOMER_7, data.AUTH_7), async () => {
       Then("I should see 0 steps done so far today", then.idVisible(ids.STEPS_COUNT(0), 2000));
     });
     When("I have done 20 steps", given.sendSteps(20), async () => {
@@ -218,7 +218,7 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("I can login with correct login details and see the correct data for every passive/active activity that a user has engaged with", scenario.start, async () => {
-    Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1), async () => {
+    Given("I login and go to the daily steps screen", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
       When("I skip the health connection screen", when.skipHealthConnection, async () => {
         When("I have done 20 steps", given.sendSteps(20, 3000), async () => {
           Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20), 2000));
@@ -278,7 +278,7 @@ Feature("As a user I can get past the login screen", async () => {
   });
 
   Scenario("As a user belonging to a company with bonus onboarding, I should be able to see the bonus YuCoin in app", scenario.start, async () => {
-    Given("I have entered a valid email address and valid password", given.logInAndGoToTab("yucoin", data.CUSTOMER_3, data.AUTH_3), async () => {
+    Given("I have entered a valid email address and valid password", given.loginAsUser(data.CUSTOMER_3, data.AUTH_3), async () => {
       Then("I should be on the daily steps screen", then.dailyStepsScreenVisible);
       Then("I should see I have 420 YuCoin", then.givenCoinsTopRight(420));
     });

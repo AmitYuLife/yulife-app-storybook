@@ -40,17 +40,19 @@ Feature("I receive the correct emails", async () => {
   });
 
   ScenarioSkip("I receive the correct email when redeeming a voucher reward", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_6, data.AUTH_6), async () => {
-      Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN));
-      When("I scroll to Nike reward", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow"), async () => {
-        When("I tap nike reward", when.tapRewardInList(data.CORE_REWARDS_NIKE), async () => {
-          Then("I should be on the nike reward screen", then.idVisible(`${data.CORE_REWARDS_NIKE.data._id}_description`));
-          When("I scroll to the bottom of the page", when.swipeFromText("How to redeem Nike", "up", "fast"), async () => {
-            Then("I should be at the bottom of the page", then.textVisible("Have a question?"));
-            When("I tap buy voucher with yucoin", when.tapText("Buy voucher with YuCoin"), async () => {
-              When("I tap 3rd denomination", when.tapDenomination(data.CORE_REWARDS_NIKE, 2), async () => {
-                When("I tap confirm", when.tapText("Confirm"), async () => {
-                  Then("I should receive the correct email", then.hasReceivedNikeEmail(data.CUSTOMER_6.data.email));
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_6, data.AUTH_6), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN));
+        When("I scroll to Nike reward", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow"), async () => {
+          When("I tap nike reward", when.tapRewardInList(data.CORE_REWARDS_NIKE), async () => {
+            Then("I should be on the nike reward screen", then.idVisible(`${data.CORE_REWARDS_NIKE.data._id}_description`));
+            When("I scroll to the bottom of the page", when.swipeFromText("How to redeem Nike", "up", "fast"), async () => {
+              Then("I should be at the bottom of the page", then.textVisible("Have a question?"));
+              When("I tap buy voucher with yucoin", when.tapText("Buy voucher with YuCoin"), async () => {
+                When("I tap 3rd denomination", when.tapDenomination(data.CORE_REWARDS_NIKE, 2), async () => {
+                  When("I tap confirm", when.tapText("Confirm"), async () => {
+                    Then("I should receive the correct email", then.hasReceivedNikeEmail(data.CUSTOMER_6.data.email));
+                  });
                 });
               });
             });
@@ -82,9 +84,11 @@ Feature("I receive the correct emails", async () => {
   });
 
   Scenario("User sees their gifted YuCoin reward via the email flow", scenario.start, async () => {
-    Given("I log into the app", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async () => {
-      When("I trigger the gifting event", when.triggerGiftReceivedEmail(data.CUSTOMER_2.customer, data.USER_2_GIFT_A), async () => {
-        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I log into the app", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the gifting event", when.triggerGiftReceivedEmail(data.CUSTOMER_2.customer, data.USER_2_GIFT_A), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
       });
     });
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {

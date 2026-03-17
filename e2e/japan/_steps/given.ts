@@ -4,7 +4,7 @@ import { navigation } from "@navigation";
 export { selectRegionIfVisible } from "_utils/navigation/login";
 export { giveEngagementSurveyAccess } from "../../engagement_surveys/_common/given";
 
-export const { logInAndGoToTab, loginAsUser } = navigation.login;
+export const { loginAsUser } = navigation.login;
 
 export const triggerAppUpdateState = async (): Promise<void> => {
   await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });

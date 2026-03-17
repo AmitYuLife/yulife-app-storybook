@@ -22,13 +22,19 @@ if (DETOX_ENABLED) {
   ]);
 }
 
+if (DETOX_ENABLED) {
+  registerScreens();
+}
+
 Navigation.registerComponent(ROUTES.appLoading, () => AppLoadingContainer);
 
 Navigation.events().registerAppLaunchedListener(async () => {
   await Navigation.setAppLoading();
 
-  // register all the screens
-  registerScreens();
+  if (!DETOX_ENABLED) {
+    registerScreens();
+  }
+
   Navigation.setDefaultOptions();
 
   if (__DEV__) {

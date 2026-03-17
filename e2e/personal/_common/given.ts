@@ -1,7 +1,7 @@
 import { navigation } from "@navigation";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 
-export const { logInAndGoToTab, loginAsUser } = navigation.login;
+export const { loginAsUser } = navigation.login;
 
 export const deactivatePendingLeaversByDate =
   (businessAccountId: string, source: string) => async () => {
