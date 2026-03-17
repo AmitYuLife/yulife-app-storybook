@@ -1,0 +1,9 @@
+mutation ClaimMobileRewardChest($sourceType: RewardChestSourceType!, $uniqueId: String!, $prizeIds: [String!]!, $participationId: String!) {
+  claimMobileRewardChest(sourceType: $sourceType, uniqueId: $uniqueId, prizeIds: $prizeIds, participationId: $participationId) {
+    success
+    awardedPrizeTypes
+    rewards {
+      ...RewardChestPrize
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { gql, MobileGameBattlePassReward } from "@graphql/__generated";
+import { gql, MobileGameBattlePassReward, RewardChestSourceType } from "@graphql/__generated";
 import { useQueryOnScreenSeen } from "@hooks";
 import { useNavigation } from "@navigation/navigation.context";
 import { useMutation } from "@apollo/client";
@@ -13,7 +13,7 @@ const useRewardsUnlock = (passType?: string) => {
     { variables: { passType } }
   );
 
-  const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
+  const [claimMobileRewardChest] = useMutation(gql("ClaimMobileRewardChestDocument"), {
     onCompleted: () => refetchUnlockables().catch(() => {}),
   });
 
@@ -24,14 +24,19 @@ const useRewardsUnlock = (passType?: string) => {
       }
 
       return async () => {
-        const result = await claimMobileGameBattlePassRewards({
-          variables: { rewardIds: [reward.id], participationId },
+        const result = await claimMobileRewardChest({
+          variables: {
+            sourceType: RewardChestSourceType.BattlePass,
+            uniqueId: reward.id,
+            prizeIds: [],
+            participationId,
+          },
         });
 
         return result;
       };
     },
-    [claimMobileGameBattlePassRewards]
+    [claimMobileRewardChest]
   );
 
   const data = queryResult?.getMobileUnlockableBattlePassVouchers;

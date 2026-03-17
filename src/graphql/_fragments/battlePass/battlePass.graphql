@@ -1,5 +1,6 @@
 fragment MobileGameBattlePass on MobileGameBattlePass {
   id
+  participationId
   title
   description
   disclaimer

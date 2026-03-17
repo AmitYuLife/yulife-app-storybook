@@ -21,9 +21,6 @@ type Documents = {
   UserProfileBadgeCountsFragmentDoc: typeof types.UserProfileBadgeCountsFragmentDoc;
   MobileGameBattlePassFragmentDoc: typeof types.MobileGameBattlePassFragmentDoc;
   MobileBattlePassDonationTemplateFragmentDoc: typeof types.MobileBattlePassDonationTemplateFragmentDoc;
-  MobileGameBattlePassChestDetailsFragmentDoc: typeof types.MobileGameBattlePassChestDetailsFragmentDoc;
-  MobileGameBattlePassChestItemFragmentDoc: typeof types.MobileGameBattlePassChestItemFragmentDoc;
-  MobileGameBattlePassChestPrizeFragmentDoc: typeof types.MobileGameBattlePassChestPrizeFragmentDoc;
   MobileGameBattlePassRewardInfoFragmentDoc: typeof types.MobileGameBattlePassRewardInfoFragmentDoc;
   MobileGameBattlePassProgressInfoFragmentDoc: typeof types.MobileGameBattlePassProgressInfoFragmentDoc;
   MobileGameBattlePassRewardFragmentDoc: typeof types.MobileGameBattlePassRewardFragmentDoc;
@@ -163,8 +160,6 @@ type Documents = {
   GetInboxMessagesDocument: typeof types.GetInboxMessagesDocument;
   MarkInboxMessagesAsSeenDocument: typeof types.MarkInboxMessagesAsSeenDocument;
   GetMobileAssetsWithVersionDocument: typeof types.GetMobileAssetsWithVersionDocument;
-  ClaimMobileGameBattlePassChestPrizesDocument: typeof types.ClaimMobileGameBattlePassChestPrizesDocument;
-  ClaimMobileGameBattlePassRewardsDocument: typeof types.ClaimMobileGameBattlePassRewardsDocument;
   CompleteMobileGameBattlePassSeasonDocument: typeof types.CompleteMobileGameBattlePassSeasonDocument;
   GetMobileBattlePassDonationProgressDetailsDocument: typeof types.GetMobileBattlePassDonationProgressDetailsDocument;
   GetMobileBattlePassDonationTemplatesDocument: typeof types.GetMobileBattlePassDonationTemplatesDocument;
@@ -196,6 +191,7 @@ type Documents = {
   UpdateUserHourlyActivityDocument: typeof types.UpdateUserHourlyActivityDocument;
   UpsertDailyPassivesDocument: typeof types.UpsertDailyPassivesDocument;
   UpsertOnboardingChallengeDocument: typeof types.UpsertOnboardingChallengeDocument;
+  ClaimMobileRewardChestDocument: typeof types.ClaimMobileRewardChestDocument;
   GetMobileRewardChestDetailsDocument: typeof types.GetMobileRewardChestDetailsDocument;
   OpenMobileRewardChestDocument: typeof types.OpenMobileRewardChestDocument;
   GetPublicYuApiConfigDocument: typeof types.GetPublicYuApiConfigDocument;
@@ -367,9 +363,6 @@ const documents: Documents = {
   UserProfileBadgeCountsFragmentDoc: types.UserProfileBadgeCountsFragmentDoc,
   MobileGameBattlePassFragmentDoc: types.MobileGameBattlePassFragmentDoc,
   MobileBattlePassDonationTemplateFragmentDoc: types.MobileBattlePassDonationTemplateFragmentDoc,
-  MobileGameBattlePassChestDetailsFragmentDoc: types.MobileGameBattlePassChestDetailsFragmentDoc,
-  MobileGameBattlePassChestItemFragmentDoc: types.MobileGameBattlePassChestItemFragmentDoc,
-  MobileGameBattlePassChestPrizeFragmentDoc: types.MobileGameBattlePassChestPrizeFragmentDoc,
   MobileGameBattlePassRewardInfoFragmentDoc: types.MobileGameBattlePassRewardInfoFragmentDoc,
   MobileGameBattlePassProgressInfoFragmentDoc: types.MobileGameBattlePassProgressInfoFragmentDoc,
   MobileGameBattlePassRewardFragmentDoc: types.MobileGameBattlePassRewardFragmentDoc,
@@ -510,8 +503,6 @@ const documents: Documents = {
   GetInboxMessagesDocument: types.GetInboxMessagesDocument,
   MarkInboxMessagesAsSeenDocument: types.MarkInboxMessagesAsSeenDocument,
   GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
-  ClaimMobileGameBattlePassChestPrizesDocument: types.ClaimMobileGameBattlePassChestPrizesDocument,
-  ClaimMobileGameBattlePassRewardsDocument: types.ClaimMobileGameBattlePassRewardsDocument,
   CompleteMobileGameBattlePassSeasonDocument: types.CompleteMobileGameBattlePassSeasonDocument,
   GetMobileBattlePassDonationProgressDetailsDocument: types.GetMobileBattlePassDonationProgressDetailsDocument,
   GetMobileBattlePassDonationTemplatesDocument: types.GetMobileBattlePassDonationTemplatesDocument,
@@ -543,6 +534,7 @@ const documents: Documents = {
   UpdateUserHourlyActivityDocument: types.UpdateUserHourlyActivityDocument,
   UpsertDailyPassivesDocument: types.UpsertDailyPassivesDocument,
   UpsertOnboardingChallengeDocument: types.UpsertOnboardingChallengeDocument,
+  ClaimMobileRewardChestDocument: types.ClaimMobileRewardChestDocument,
   GetMobileRewardChestDetailsDocument: types.GetMobileRewardChestDetailsDocument,
   OpenMobileRewardChestDocument: types.OpenMobileRewardChestDocument,
   GetPublicYuApiConfigDocument: types.GetPublicYuApiConfigDocument,
@@ -757,24 +749,6 @@ export function gql(source: "MobileGameBattlePassFragmentDoc"): (typeof document
 export function gql(
   source: "MobileBattlePassDonationTemplateFragmentDoc"
 ): (typeof documents)["MobileBattlePassDonationTemplateFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "MobileGameBattlePassChestDetailsFragmentDoc"
-): (typeof documents)["MobileGameBattlePassChestDetailsFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "MobileGameBattlePassChestItemFragmentDoc"
-): (typeof documents)["MobileGameBattlePassChestItemFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "MobileGameBattlePassChestPrizeFragmentDoc"
-): (typeof documents)["MobileGameBattlePassChestPrizeFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1455,18 +1429,6 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
-  source: "ClaimMobileGameBattlePassChestPrizesDocument"
-): (typeof documents)["ClaimMobileGameBattlePassChestPrizesDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "ClaimMobileGameBattlePassRewardsDocument"
-): (typeof documents)["ClaimMobileGameBattlePassRewardsDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
   source: "CompleteMobileGameBattlePassSeasonDocument"
 ): (typeof documents)["CompleteMobileGameBattlePassSeasonDocument"];
 /**
@@ -1621,6 +1583,10 @@ export function gql(source: "UpsertDailyPassivesDocument"): (typeof documents)["
 export function gql(
   source: "UpsertOnboardingChallengeDocument"
 ): (typeof documents)["UpsertOnboardingChallengeDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ClaimMobileRewardChestDocument"): (typeof documents)["ClaimMobileRewardChestDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -1,6 +1,0 @@
-fragment MobileGameBattlePassChestPrize on MobileGameBattlePassChestPrize {
-  id
-  item {
-    ...MobileGameBattlePassChestItem
-  }
-}
