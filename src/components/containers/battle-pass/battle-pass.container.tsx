@@ -6,6 +6,7 @@ import { useModal } from "@modules/modals/useModal";
 import {
   GetMobileGameBattlePassFullQuery,
   MobileGameBattlePassProgressInfoFragmentDoc,
+  RewardChestSourceType,
   gql,
 } from "@graphql/__generated";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
@@ -24,7 +25,6 @@ import { pushToScreen } from "@navigation/root";
 import { ROUTES } from "@navigation/constants";
 import FirstTimeContentLocationSelection from "@components/screens/member/content-location/first-time-content-location-selection";
 import { Navigation } from "@navigation/main";
-import { isEmpty } from "lodash";
 import { BattlePassEndOfSeasonModal } from "@components/modals";
 import { t } from "@locale";
 import { prizesAwarded } from "@redux/prizes/prizes.actions";
@@ -68,7 +68,8 @@ const BattlePassContainer = ({
 
   const state = useRef<{
     donationUpdates: Record<string, number>;
-    goalId: string;
+    battlePassSeasonId: string;
+    participationId: string;
     progressInfoId: string;
     battlePass: GetMobileGameBattlePassFullQuery["battlePass"] | undefined;
     templates: GetMobileGameBattlePassFullQuery["templates"] | undefined;
@@ -76,7 +77,8 @@ const BattlePassContainer = ({
     isEndOfSeasonModalEnabled: boolean;
   }>({
     donationUpdates: {},
-    goalId: "",
+    battlePassSeasonId: "",
+    participationId: "",
     progressInfoId: "",
     battlePass: undefined,
     templates: [],
@@ -114,7 +116,8 @@ const BattlePassContainer = ({
 
   useEffect(() => {
     if (battlePass?.progressStatus?.id) {
-      state.current.goalId = battlePass.id;
+      state.current.battlePassSeasonId = battlePass.id;
+      state.current.participationId = battlePass.participationId;
       state.current.progressInfoId = battlePass.progressStatus.id;
       state.current.battlePass = battlePass;
       state.current.templates = templates;
@@ -131,7 +134,7 @@ const BattlePassContainer = ({
 
   const onComplete = useCallback(async () => {
     await completeMobileGameBattlePassSeason({
-      variables: { goalId: state.current.goalId, startNew: true },
+      variables: { goalId: state.current.battlePassSeasonId, startNew: true },
       onCompleted: () => {
         state.current.isSeasonComplete = true;
       },
@@ -172,8 +175,7 @@ const BattlePassContainer = ({
     showEndOfSeasonModal();
   }, [battlePass?.rewards, showEndOfSeasonModal]);
 
-  const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
-    refetchQueries: [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId } }],
+  const [claimMobileRewardChest] = useMutation(gql("ClaimMobileRewardChestDocument"), {
     onCompleted: () => {
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
     },
@@ -241,8 +243,8 @@ const BattlePassContainer = ({
   );
 
   const onDonationSubmit = useRef((donationId: string, amount: number) => {
-    const { goalId } = state.current || {};
-    if (!goalId || userCoins === 0) {
+    const { battlePassSeasonId } = state.current || {};
+    if (!battlePassSeasonId || userCoins === 0) {
       return;
     }
 
@@ -272,7 +274,7 @@ const BattlePassContainer = ({
           ?.filter(([_, a]) => a > 0)
           .map((r) => ({ donationId: r[0], amount: r[1] }));
 
-        submitMobileGameBattlePassDonations({ goalId, donations });
+        submitMobileGameBattlePassDonations({ goalId: battlePassSeasonId, donations });
 
         return {
           ...progress,
@@ -335,22 +337,27 @@ const BattlePassContainer = ({
       }
 
       return async () => {
-        // TODO: add participationId
-        const result = await claimMobileGameBattlePassRewards({ variables: { rewardIds: [reward.id] } });
+        const result = await claimMobileRewardChest({
+          variables: {
+            sourceType: RewardChestSourceType.BattlePass,
+            uniqueId: reward.id,
+            prizeIds: [],
+            participationId: state.current.participationId,
+          },
+        });
+
         dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
 
-        const awardedPrizeTypes = new Set(
-          result.data.claimMobileGameBattlePassRewards.flatMap((prize) => prize.awardedPrizeTypes)
-        );
+        const awardedPrizeTypes = result.data?.claimMobileRewardChest?.awardedPrizeTypes ?? [];
 
-        if (!isEmpty(awardedPrizeTypes)) {
-          dispatch(prizesAwarded({ prizeTypes: Array.from(awardedPrizeTypes) }));
+        if (awardedPrizeTypes.length) {
+          dispatch(prizesAwarded({ prizeTypes: awardedPrizeTypes }));
         }
 
         return result;
       };
     },
-    [battlePass, claimMobileGameBattlePassRewards, dispatch]
+    [battlePass, claimMobileRewardChest, dispatch]
   );
 
   const rewards = useMemo(

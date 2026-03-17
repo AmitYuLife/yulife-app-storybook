@@ -18,7 +18,6 @@ import { AppDataType } from "@redux/user/user.types";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { prizesAwarded } from "@redux/prizes/prizes.actions";
-import { isEmpty } from "lodash";
 import AllPickRewardStage from "./subcomponents/stages/pick-stages/all-pick-reward-stage";
 import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
 import DefaultRedeemedStage from "./subcomponents/stages/redeemed-stages/default-redeemed-stage";
@@ -68,7 +67,7 @@ const OpenRandomChestModal = ({
       : [];
 
   const [claimPrizes, { loading: claimLoading, data: claimedChestData }] = useMutation(
-    gql("ClaimMobileGameBattlePassChestPrizesDocument"),
+    gql("ClaimMobileRewardChestDocument"),
     { refetchQueries: claimRefetchQueries }
   );
 
@@ -105,21 +104,20 @@ const OpenRandomChestModal = ({
   }, [data?.details, setNewStage, stage]);
 
   const onClaimItems = useCallback(
-    async (rewardIds: string[], shouldSetStage: boolean = true) => {
+    async (prizeIds: string[], shouldSetStage: boolean = true) => {
       const result = await claimPrizes({
         variables: {
-          rewardId: data?.details?.id,
-          prizeIds: rewardIds,
+          sourceType,
+          uniqueId,
+          prizeIds,
           participationId,
         },
       });
 
-      const awardedPrizeTypes = new Set(
-        result.data.claimMobileGameBattlePassChestPrizes.rewards.flatMap((prize) => prize.awardedPrizeTypes)
-      );
+      const awardedPrizeTypes = result.data?.claimMobileRewardChest?.awardedPrizeTypes ?? [];
 
-      if (!isEmpty(awardedPrizeTypes)) {
-        dispatch(prizesAwarded({ prizeTypes: Array.from(awardedPrizeTypes) }));
+      if (awardedPrizeTypes.length) {
+        dispatch(prizesAwarded({ prizeTypes: awardedPrizeTypes }));
       }
 
       dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
@@ -130,7 +128,7 @@ const OpenRandomChestModal = ({
         setStage(ChestStage.redeemed);
       }
     },
-    [claimPrizes, data?.details?.id, dispatch, participationId, refetch]
+    [claimPrizes, sourceType, uniqueId, dispatch, participationId, refetch]
   );
 
   const onOpenPress = useCallback(async () => {
@@ -180,10 +178,10 @@ const OpenRandomChestModal = ({
     }
 
     if (stage === ChestStage.redeemed) {
-      const claimedItems = claimedChestData?.claimMobileGameBattlePassChestPrizes.rewards;
+      const claimResponse = claimedChestData?.claimMobileRewardChest;
 
       // fallback in case the user somehow sees the redeemed stage when he shouldn't
-      if (!claimedItems?.length) {
+      if (!claimResponse?.rewards?.length) {
         return (
           <ChestImagePreloader images={redeemedItems.map((item) => item.image.uri)}>
             <DefaultRedeemedStage redeemedItems={redeemedItems} onClose={onClosePress} />
@@ -191,7 +189,7 @@ const OpenRandomChestModal = ({
         );
       }
 
-      const awardedPrizeTypes = claimedItems.flatMap((prize) => prize.awardedPrizeTypes);
+      const awardedPrizeTypes = claimResponse.awardedPrizeTypes ?? [];
 
       const RedeemedStage = redeemedItems.length === 1 ? SingleRedeemedRewardStage : MultipleRedeemedRewardStage;
 

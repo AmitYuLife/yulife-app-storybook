@@ -63,7 +63,7 @@ const typePolicies: TypePolicies = {
       },
     },
   },
-  MobileGameBattlePassChestDetails: {
+  RewardChestDetails: {
     fields: {
       possibleRewards: {
         merge: incomingMergeStrategy,
