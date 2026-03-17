@@ -10,9 +10,11 @@ import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("Level boosts", async () => {
   Scenario("I can see boosted challenges and receive boosted rewards", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_122, data.AUTH_122, true, "UK"), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      Then("I should see that level 50 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)));
+    Given("I login", given.loginAsUser(data.CUSTOMER_122, data.AUTH_122), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+        Then("I should see that level 50 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)));
+      });
     });
     When("I tap the level 50 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(50), 3000), async () => {
       Then("I should see that I've achived Yunity with the Forest", then.canSeeForestYunity);
@@ -56,8 +58,10 @@ Feature("Level boosts", async () => {
   });
 
   Scenario("User with active Yuniversal boost can not activate boost consumables", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_YUNIVERSAL_BOOST.customer, GENERIC_AUTH_PASSWORD, true, "UK"), async () => {
-      Then("I should see the level 51", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51), 4_000));
+    Given("I login", given.loginAsUser(data.CUSTOMER_YUNIVERSAL_BOOST.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see the level 51", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51), 4_000));
+      });
     });
     When("I tap level 51", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51), 3_000), async () => {
       When("I open the Inventory modal", when.openInventoryModal(), async () => {
@@ -72,8 +76,10 @@ Feature("Level boosts", async () => {
   });
 
   Scenario("User with active consumable boost can not activate another boost consumable", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_CONSUMABLE_BOOST.customer, GENERIC_AUTH_PASSWORD, true, "UK"), async () => {
-      Then("I should see the level 10", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(10), 4_000));
+    Given("I login", given.loginAsUser(data.CUSTOMER_CONSUMABLE_BOOST.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see the level 10", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(10), 4_000));
+      });
     });
     When("I tap level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10), 3_000), async () => {
       When("I open the Inventory modal", when.openInventoryModal(), async () => {
@@ -88,8 +94,10 @@ Feature("Level boosts", async () => {
   });
 
   Scenario("Non boost consumables remain usable when a boost is active", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_MIXED_CONSUMABLES.customer, GENERIC_AUTH_PASSWORD, true, "UK"), async () => {
-      Then("I should see the level 10", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(10), 4_000));
+    Given("I login", given.loginAsUser(data.CUSTOMER_MIXED_CONSUMABLES.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see the level 10", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(10), 4_000));
+      });
     });
     When("I tap level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10), 3_000), async () => {
       When("I open the Inventory modal", when.openInventoryModal(), async () => {

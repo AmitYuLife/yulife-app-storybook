@@ -84,13 +84,15 @@ export const START_WALKING_CHALLENGE_FAKE_TIME = async () => {
 
   Given(
     "I am on the quest tab as a user with a chest challenge",
-    given.logInAndGoToTab("quests", data.CUSTOMER_9, data.AUTH_9),
+    given.loginAsUser(data.CUSTOMER_9, data.AUTH_9),
     async () => {
-      Then(
-        "I should see my coins in the top right",
-        then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760))
-      );
-      Then("I should see level 7 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7)));
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then(
+          "I should see my coins in the top right",
+          then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760))
+        );
+        Then("I should see level 7 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7)));
+      });
     }
   );
   When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {
@@ -115,13 +117,15 @@ export const START_WALKING_CHALLENGE_MINIMISE_FAKE_TIME = async () => {
 
   Given(
     "I am on the quest tab as a user with a chest challenge",
-    given.logInAndGoToTab("quests", data.CUSTOMER_9, data.AUTH_9),
+    given.loginAsUser(data.CUSTOMER_9, data.AUTH_9),
     async () => {
-      Then(
-        "I should see my coins in the top right",
-        then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760))
-      );
-      Then("I should see level 7 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7)));
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then(
+          "I should see my coins in the top right",
+          then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760))
+        );
+        Then("I should see level 7 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7)));
+      });
     }
   );
   When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {

@@ -23,10 +23,10 @@ export {
   sendMindfulnessData,
   sendReduxEvent,
 } from "@socket";
-export { logInAndGoToTab, selectRegionIfVisible } from "../../_common/given";
+export { selectRegionIfVisible } from "../../_common/given";
 export { addMindfulnessHistoricalData } from "@socket";
 
-export { skipHealthConnection } from "_utils/navigation/login";
+export { skipHealthConnection, loginAsUser } from "_utils/navigation/login";
 
 export const performLogin =
   (customer: any, auth: any, fitkitAuth?: boolean, region = "United Kingdom") =>

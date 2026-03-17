@@ -27,7 +27,7 @@ export const START_YUDOKU_MINIMISE_FAKE_TIME = async () => {
 
   Given(
     "I login as a user with 4/5 streaks",
-    given.logInAndGoToTab("yucoin", data.CUSTOMER_7, data.AUTH_7),
+    given.loginAsUser(data.CUSTOMER_7, data.AUTH_7),
     async () => {
       Then(
         "I should see 640 YuCoin in the top right hand corner",
@@ -67,7 +67,7 @@ export const START_YUDOKU_CLOSE_OPEN_APP_FAKE_TIME = async () => {
 
   Given(
     "I login as a user with 4/5 streaks",
-    given.logInAndGoToTab("yucoin", data.CUSTOMER_7, data.AUTH_7),
+    given.loginAsUser(data.CUSTOMER_7, data.AUTH_7),
     async () => {
       Then(
         "I should see 640 YuCoin in the top right hand corner",

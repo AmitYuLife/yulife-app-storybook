@@ -93,7 +93,7 @@ Feature("Health questionnaires", async () => {
   });
 
   Scenario("Once I complete the journey, I should see the HQ journey event card gone", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "UK"), async () => {
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
       Then("I should not see the event panel, as I have completed one before", then.textNotVisible("Daily health questions"));
     });
@@ -244,7 +244,7 @@ Feature("Health questionnaires", async () => {
   });
 
   Scenario("I should see the YuScreen CTA update, starting with 'Take a challenge (2 left today)', decreasing to '1 left today'. Once all challenges are done, the CTA should change to 'Check in on your health', and finally update to 'Invite a colleague'", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_8.customer, GENERIC_AUTH_PASSWORD), async () => {
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_8.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see the YuScreen CTA 'Take a challenge (2 left today)'", then.textVisible("Take a challenge (2 left today)", 3000));
     });
     helper.takeChallengeFromYuCoinScreen("Take a challenge (1 left today)", true)();

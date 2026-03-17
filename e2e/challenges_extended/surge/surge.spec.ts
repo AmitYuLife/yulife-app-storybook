@@ -9,9 +9,11 @@ import { COIN_MULTIPLIER_1 } from "./_data";
 
 Feature("Surges work as intended", async () => {
   Scenario("I can complete a challenge with a user that has a surge and my reward is x10", scenario.start, async () => {
-    Given("I login as a user with a surge", given.logInAndGoToTab("quests", data.CUSTOMER_34, data.AUTH_34), async () => {
-      Then("I should see level 1 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
-      Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    Given("I login as a user with a surge", given.loginAsUser(data.CUSTOMER_34, data.AUTH_34), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see level 1 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
+        Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      });
     });
     When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1), 2000), async () => {
       Then("I can see the surged challenge tiles", then.canSeeChallengeTiles(data.USER_34, "surge", COIN_MULTIPLIER_1.data.multiple));
@@ -29,7 +31,7 @@ Feature("Surges work as intended", async () => {
   });
 
   Scenario("I log in and can see the daily surge icon ", scenario.start, async () => {
-    Given("I login as a user with a surge", given.logInAndGoToTab("yucoin", data.CUSTOMER_34, data.AUTH_34), async () => {
+    Given("I login as a user with a surge", given.loginAsUser(data.CUSTOMER_34, data.AUTH_34), async () => {
       Then("I should see the surge icon on the today's screen proving the surge is active", then.iCanSeeSurgeIcon("10x", " 1d"));
     });
     When("I tap the icon", when.tapID(ids.SURGE_ICON), async () => {
@@ -41,9 +43,11 @@ Feature("Surges work as intended", async () => {
   });
 
   Scenario("I can complete a challenge with a user without a surge and get the standard reward", scenario.start, async () => {
-    Given("I login as a user without a surge", given.logInAndGoToTab("quests", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should see level 1 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
-      Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    Given("I login as a user without a surge", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see level 1 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
+        Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      });
     });
     When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
       Then("I should see the reward values are normal", then.canSeeChallengeTiles(data.USER_1));

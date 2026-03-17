@@ -1,11 +1,13 @@
-import { completeOnboardingIntro } from "@navigation";
+import { completeOnboardingIntro, navigateViaID } from "@navigation";
 import { CUSTOMER_7, AUTH_7 } from "../../_data";
-import { logInAndGoToTab } from "../../_common/given";
+import { loginAsUser } from "../../_common/given";
+import { NAV_BAR } from "@ids";
 
-export { logInAndGoToTab } from "../../_common/given";
+export { loginAsUser } from "../../_common/given";
 
 export const loginToYuScreen = (skipIntro = true, customer = CUSTOMER_7, auth = AUTH_7) => async () => {
-    await logInAndGoToTab("yu", customer, auth, true)();
+    await loginAsUser(customer, auth, true)();
+    await navigateViaID(NAV_BAR("yu"), 10_000)();
     if (skipIntro === true) {
         await completeOnboardingIntro();
     }

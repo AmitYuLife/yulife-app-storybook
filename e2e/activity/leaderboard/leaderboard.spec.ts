@@ -127,9 +127,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
   });
 
   Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
-      Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
-      Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true));
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_47, data.AUTH_47), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+        Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true));
+      });
     });
     helper.CREATE_AVATAR(data.CUSTOMER_47)();
     When("I wait", when.wait(6000), async () => {
@@ -182,9 +184,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
   Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data + loaded in historical data", scenario.start, async () => {
     When("I have done two days ago 15,000 steps", when.addStepsHistoricalData(15000, 2), async () => {
-      Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
-        Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
-        Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true));
+      Given("I login as a user", given.loginAsUser(data.CUSTOMER_47, data.AUTH_47), async () => {
+        When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+          Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500));
+          Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true));
+        });
       });
     });
     helper.CREATE_AVATAR(data.CUSTOMER_47)();
@@ -289,12 +293,14 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
   });
 
   Scenario("Social groups / leaderboards based on 'rules' function as expected", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("leaderboard", data.CUSTOMER_39, data.AUTH_39), async () => {
-      When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1, 3000), async () => {
-        When("I click the leaderboard SG5", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5.data.name)), async () => {
-          When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
-            When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-              Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 2500));
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1, 3000), async () => {
+          When("I click the leaderboard SG5", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5.data.name)), async () => {
+            When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
+              When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+                Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 2500));
+              });
             });
           });
         });
@@ -312,12 +318,14 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
   });
 
   Scenario("As a user with concurrent employments, I should see all available leaderboards", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("leaderboard", data.CUSTOMER_39, data.AUTH_39), async () => {
-      When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1, 3000), async () => {
-        When("I tap on first company leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5.data.name)), async () => {
-          When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
-            When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-              Then("I am on the first company leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 2500));
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1, 3000), async () => {
+          When("I tap on first company leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5.data.name)), async () => {
+            When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
+              When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+                Then("I am on the first company leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 2500));
+              });
             });
           });
         });
@@ -472,9 +480,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
   Scenario("I should not be able to search for, or send a gift to a user who has opted-out of all leaderboards, but has donated and is visible on the ESG leaderboard.", scenario.start, async () => {
     Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason([data.BUSINESS_ACCOUNT_2.data.business_account_id]), async () => {
       Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
-        Given("I login", given.logInAndGoToTab("rewards", data.CUSTOMER_18, data.AUTH_18), async () => {
-          Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
-          Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520)));
+        Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18), async () => {
+          When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+            Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
+            Then("I should see my coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520)));
+          });
         });
       });
     });

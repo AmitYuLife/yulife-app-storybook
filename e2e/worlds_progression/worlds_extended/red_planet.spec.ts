@@ -27,9 +27,11 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
   });
 
   Scenario("I can't transition from the level 199 to the yuniverse level 200 on the same day", scenario.start, () => {
-    Given("I login as a user on level 199", given.logInAndGoToTab("quests", data.CUSTOMER_63, data.AUTH_63), async () => {
-      Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 5000));
-      Then("I should see the level 199 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(199), 3000));
+    Given("I login as a user on level 199", given.loginAsUser(data.CUSTOMER_63, data.AUTH_63), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 5000));
+        Then("I should see the level 199 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(199), 3000));
+      });
     });
     When("I complete a walking challenge", when.completeNewWorldShortStroll(199), async () => {
       Then("I should see the level 199 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(199)));
@@ -45,9 +47,11 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
   });
 
   Scenario("When I have unlocked level 200 and level 201, I can do two challenges for level 201", scenario.start, () => {
-    Given("I login as a user on level 201", given.logInAndGoToTab("quests", data.CUSTOMER_64, data.AUTH_64), async () => {
-      Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)));
-      Then("I should see the level 201 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
+    Given("I login as a user on level 201", given.loginAsUser(data.CUSTOMER_64, data.AUTH_64), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)));
+        Then("I should see the level 201 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
+      });
     });
     When("I complete a walking challenge at level 201", when.completeChallenge(201, "Short Stroll"), async () => {
       Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
@@ -67,7 +71,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
   });
 
   Scenario("When I am at level 201 I can see all my challenges with their yucoin value and I can take max 4 in a day", scenario.start, () => {
-    Given("I login as a user on level 201", given.logInAndGoToTab("yucoin", data.CUSTOMER_64, data.AUTH_64), async () => {
+    Given("I login as a user on level 201", given.loginAsUser(data.CUSTOMER_64, data.AUTH_64), async () => {
       Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700), 2000));
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
@@ -124,7 +128,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
   });
 
   Scenario("When I am at level 251 I can see all my challenges with their yucoin value and I can take max 4 in a day", scenario.start, () => {
-    Given("I login as a user on level 251", given.logInAndGoToTab("yucoin", data.CUSTOMER_67, data.AUTH_67), async () => {
+    Given("I login as a user on level 251", given.loginAsUser(data.CUSTOMER_67, data.AUTH_67), async () => {
       Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)));
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
@@ -146,9 +150,11 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
   });
 
   Scenario("As a user opening a Yunity Chest at level 250, I want the chest to contain a level boost and YuCoin worth 50x the users earn rate", scenario.start, () => {
-    Given("I login as a user with level 250 unclaimed", given.logInAndGoToTab("quests", data.CUSTOMER_79, data.AUTH_79), async () => {
-      Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)));
-      Then("I should see the level 250 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(250)));
+    Given("I login as a user with level 250 unclaimed", given.loginAsUser(data.CUSTOMER_79, data.AUTH_79), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)));
+        Then("I should see the level 250 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(250)));
+      });
     });
     When("I tap the level 250 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(250)), async () => {
       Then("I should see that I've achived Yunity with the Forest", then.yunityCorrect("Forest"));

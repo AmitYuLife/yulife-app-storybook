@@ -1,1 +1,1 @@
-export { logInAndGoToTab } from "../../_common/given"
+export { loginAsUser } from "../../_common/given"

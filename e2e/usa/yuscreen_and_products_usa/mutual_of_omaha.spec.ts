@@ -10,12 +10,14 @@ import { wellbeingHubHeaderMessage } from "./_resources/constants";
 
 Feature("Mutual of Omaha specific tests", async () => {
   Scenario("Various features are not visible for a MOO user", scenario.start, async () => {
-    Given("I login and go to the 'Leaderboard' screen", given.logInAndGoToTab("leaderboard", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-      Then("I should see my YuCoin balance is 10 for my first login", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10))); // not 200
-      Then("I can't see the duels button", then.idNotVisible(ids.DUELS_BUTTON));
-      Then("I can't see the search button", then.idNotVisible(ids.SEARCH_BUTTON));
-      Then("I can't see a referral button", then.idNotVisible(ids.REFERRAL_BUTTON("Invite a colleague")));
-      Then("I can find another user", then.idVisible(ids.LEADERBOARD_EMPLOYEE_NAME("Axel")));
+    Given("I login", given.loginAsUser(CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        Then("I should see my YuCoin balance is 10 for my first login", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10))); // not 200
+        Then("I can't see the duels button", then.idNotVisible(ids.DUELS_BUTTON));
+        Then("I can't see the search button", then.idNotVisible(ids.SEARCH_BUTTON));
+        Then("I can't see a referral button", then.idNotVisible(ids.REFERRAL_BUTTON("Invite a colleague")));
+        Then("I can find another user", then.idVisible(ids.LEADERBOARD_EMPLOYEE_NAME("Axel")));
+      });
     });
     When("I tap on another user", when.tapID(ids.LEADERBOARD_EMPLOYEE_NAME("Axel")), async () => {
       Then("I can't see the p2p gifting card", then.idNotVisible(ids.P2P_GIFTING_CARD));
@@ -65,8 +67,10 @@ Feature("Mutual of Omaha specific tests", async () => {
   });
 
   Scenario("As a user on the US region, I should be able to get US rewards", scenario.withBattlePassRewards([BUSINESS_ACCOUNT_USA_2_NPC.business.data.businessAccountId]), async () => {
-    Given("I login and go to the rewards screen", given.logInAndGoToTab("rewards", CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-      Then("I should see the battle pass intro screen", then.idVisible(ids.BATTLE_PASS_INTRO_SCREEN, 3000));
+    Given("I login and go to the rewards screen", given.loginAsUser(CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should see the battle pass intro screen", then.idVisible(ids.BATTLE_PASS_INTRO_SCREEN, 3000));
+      });
     });
     When("I tap the intro CTA button to continue", when.tapID(ids.BATTLE_PASS_INTRO_SCREEN_CTA_BUTTON, 2000), async () => {
       Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 5000));
@@ -88,7 +92,7 @@ Feature("Mutual of Omaha specific tests", async () => {
   });
 
   Scenario("Restricted goals work on the MoO pricing tier", scenario.start, async () => {
-    Given("I login as a non-MoO pricing tier user and go to the YuCoin screen", given.logInAndGoToTab("yucoin", CUSTOMER_USA_5.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+    Given("I login as a non-MoO pricing tier user and go to the YuCoin screen", given.loginAsUser(CUSTOMER_USA_5.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
       Then("I should see the event card 'step to it! - MoO Restriction test' ", then.idVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 5000));
     });
     When("I log out and log in again with a MoO pricing tier user", when.fullRestartAndLogin(CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {

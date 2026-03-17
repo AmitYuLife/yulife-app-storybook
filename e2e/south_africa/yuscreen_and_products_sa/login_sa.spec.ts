@@ -12,10 +12,12 @@ import * as ids from "@ids";
 
 Feature("As a user I can get past the login screen and see all SA products", async () => {
   Scenario("I can login and see MeGL/GrFun/GIP/TmpGIP/LSDC product slot and details", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_1, AUTH_SA_1, true, "SA"), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "SA Customer", "Mountain", "400", true));
-      Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
-      Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I login as a user", given.loginAsUser(CUSTOMER_SA_1, AUTH_SA_1, true, "SA"), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "SA Customer", "Mountain", "400", true));
+        Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
+        Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
+      });
     });
     When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "down"), async () => {
       Then("I can see the life cover product", then.productCardVisible(fixture.lifeCoverTallCard));
@@ -68,10 +70,12 @@ Feature("As a user I can get past the login screen and see all SA products", asy
   });
 
   Scenario("I can login and see MeGL/SpGL/GrFun with dependents, product slot and details", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_2, AUTH_SA_2, true, "SA"), async () => {
-      Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Rei Buldo", "Mountain", "400", true));
-      Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
-      Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I login as a user", given.loginAsUser(CUSTOMER_SA_2, AUTH_SA_2, true, "SA"), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Rei Buldo", "Mountain", "400", true));
+        Then("I should see the button to create a YuMoji", then.idVisible(ids.YUMOJI_PROMPT_CTA));
+        Then("I should see the gifting section", then.idVisible(ids.HERO_CARD_SECTION));
+      });
     });
     When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_PROTECTION_TITLE, "down", undefined, undefined, undefined, 3000), async () => {
       When("I tap life cover card", when.tapTextAtIndex(fixture.lifeCoverTallCard.name, 1, 3000), async () => {
@@ -97,10 +101,12 @@ Feature("As a user I can get past the login screen and see all SA products", asy
   });
 
   Scenario("I can login and see the GCI product in the SA app", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_3, AUTH_SA_3, true, "SA"), async () => {
-      When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
-        Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`));
-        Then("I can see the GCI product", then.productCardVisible(fixture.gciWideCard));
+    Given("I login as a user", given.loginAsUser(CUSTOMER_SA_3, AUTH_SA_3, true, "SA"), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
+          Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`));
+          Then("I can see the GCI product", then.productCardVisible(fixture.gciWideCard));
+        });
       });
     });
     When("I tap the GCI card", when.tapText(fixture.gciWideCard.name), async () => {
@@ -109,8 +115,10 @@ Feature("As a user I can get past the login screen and see all SA products", asy
   });
 
   Scenario("I can see the correct default country in the region selector for the SA app", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_3, AUTH_SA_3, true, "SA"), async () => {
-      Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`));
+    Given("I login as a user", given.loginAsUser(CUSTOMER_SA_3, AUTH_SA_3, true, "SA"), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`));
+      });
     });
     When("I navigate to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
       Then("I should see the modal to select store location", then.rewardsLocationModalVisible());
@@ -119,8 +127,10 @@ Feature("As a user I can get past the login screen and see all SA products", asy
   });
 
   Scenario("I can see Old Mutual products and see the correct hero section", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_SA_4, AUTH_SA_4, true, "SA"), async () => {
-      Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_4.data.firstName} ${CUSTOMER_SA_4.data.lastName}`));
+    Given("I login as a user", given.loginAsUser(CUSTOMER_SA_4, AUTH_SA_4, true, "SA"), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_4.data.firstName} ${CUSTOMER_SA_4.data.lastName}`));
+      });
     });
     When("I swipe to see all of the product cards", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
       Then("I can see the life assurace product", then.productCardVisible(fixture.groupLifeAssuranceOMWideCard));

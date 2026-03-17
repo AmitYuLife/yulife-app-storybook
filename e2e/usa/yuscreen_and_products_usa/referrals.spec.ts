@@ -11,9 +11,11 @@ const locale = process.env.TARGET_LOCALE || "en-US";
 
 Feature("US: Referrals Page", async () => {
   Scenario("When I go to the leaderboard tab I should see the referrals section invite a colleague.", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("leaderboard", data.CUSTOMER_USA_5.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
-      When("I scroll to the bottom", when.scrollFromID(ids.LEADERBOARD_INFO_BUTTON, "up", "fast"), async () => {
-        Then("I should see the leaderboard 'Invite a Colleague' section", then.idVisible(ids.LEADERBOARD_USER_REFERRAL));
+    Given("I log in", given.loginAsUser(data.CUSTOMER_USA_5.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+      When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard"), 3000), async () => {
+        When("I scroll to the bottom", when.scrollFromID(ids.LEADERBOARD_INFO_BUTTON, "up", "fast"), async () => {
+          Then("I should see the leaderboard 'Invite a Colleague' section", then.idVisible(ids.LEADERBOARD_USER_REFERRAL));
+        });
       });
     });
   });

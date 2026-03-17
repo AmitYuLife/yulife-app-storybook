@@ -16,7 +16,7 @@ Feature("Miscellaneous surveys and surveys stored in the database", async () => 
       "The survey is launched and users are invited",
       given.triggerSurveyInvite([data.CUSTOMER_SURVEY_PROMPT["business_employee_0"].data.businessEmployeeId], data.CORE_JOURNEY_INSTANCE_SURVEY_PROMPT.data.journeyId, data.SURVEY_CAMPAIGN_FOR_PROMPT_TEST.data.business_survey_campaign_id, moment().format("YYYY-MM-DD")),
       async () => {
-        Given("I login as the survey user", given.logInAndGoToTab("yucoin", data.CUSTOMER_SURVEY_PROMPT.customer, GENERIC_AUTH_PASSWORD), async () => {
+        Given("I login as the survey user", given.loginAsUser(data.CUSTOMER_SURVEY_PROMPT.customer, GENERIC_AUTH_PASSWORD), async () => {
           Then("I should be on the yucoin tab", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
         });
       }
@@ -40,7 +40,7 @@ Feature("Miscellaneous surveys and surveys stored in the database", async () => 
   });
 
   Scenario("I encounter an error on quiz event without journey", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_5, data.AUTH_5), async () => {
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
       When("I swipe to see the event card", when.scrollFromID(ids.EVENT_CARD("Daily health questions"), "left", "fast", 0.5), async () => {
         When("I click on the event card", when.tapText("Money Mastery#2"), async () => {
           Then("I should see the money mastery quiz", then.customerQuizModalVisible("Money Mastery#2", "6", 0));
@@ -54,7 +54,7 @@ Feature("Miscellaneous surveys and surveys stored in the database", async () => 
   });
 
   Scenario("Upon completing the 'Automated QA Test Journey 10 Multiplier' card, a user with an earn rate of 1 should receive YuCoin equal to 10 times their earn rate.", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "UK"), async () => {
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Automated QA Test Journey 10 Multiplier", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
     });
     When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN", 3000), async () => {
@@ -83,7 +83,7 @@ Feature("Miscellaneous surveys and surveys stored in the database", async () => 
   });
 
   Scenario("Upon completing the 'Automated QA Test Journey 500 YuCoin Flat Amount' card, a user with an earn rate of 1 should receive YuCoin equal to a flat amount of 500.", scenario.start, async () => {
-    Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true), async () => {
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
       Then("I should see my YuCoin balance of 0, before I finish the Automated QA Test Journey 10 Multiplier", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)));
     });
     When("I click on Today's Earnings screen", when.tapID("DAILYSTEP_SCREEN_COIN", 2000), async () => {

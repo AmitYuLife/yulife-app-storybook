@@ -80,23 +80,25 @@ const BATTLE_PASS_REWARD_PASS_ID = "bupa-group-health-uk-v2";
 Feature("Wellbeing pass", async () => {
   Scenario("I can check all the milestone details", scenario.start, async () => {
     Given("A 'business_product_created' event was emitted", commonGiven.triggerProductCreated(BUSINESS_ACCOUNT_ID, BUSINESS_ACCOUNT_ID, BATTLE_PASS_REWARD_PASS_ID, BATTLE_PASS_START_LOCAL_DATE), async () => {
-      Given("I login and go to the rewards screen", commonGiven.logInAndGoToTab("rewards", data.CUSTOMER_WELLBEING_PASS_01.customer, GENERIC_AUTH_PASSWORD), async () => {
-        When("I go to the reward pass screen", when.tapText("Wellbeing Pass"), async () => {
-          for (const { position, titleAssertion, descriptionAssertions } of MILESTTONE_DETAILS_ASSERTIONS) {
-            When(`I scroll until the milestone (position ${position})`, when.scrollUntilIdVisible(ids.BATTLE_PASS_LIST, ids.BATTLE_PASS_LIST_ITEM(position), "right"), async () => {
-              When(`I press on it (position ${position})`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
-                Then(`I can see the reward title (position ${position})`, then.idVisible(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion)));
+      Given("I login", commonGiven.loginAsUser(data.CUSTOMER_WELLBEING_PASS_01.customer, GENERIC_AUTH_PASSWORD), async () => {
+        When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+          When("I go to the reward pass screen", when.tapText("Wellbeing Pass"), async () => {
+            for (const { position, titleAssertion, descriptionAssertions } of MILESTTONE_DETAILS_ASSERTIONS) {
+              When(`I scroll until the milestone (position ${position})`, when.scrollUntilIdVisible(ids.BATTLE_PASS_LIST, ids.BATTLE_PASS_LIST_ITEM(position), "right"), async () => {
+                When(`I press on it (position ${position})`, when.tapID(ids.BATTLE_PASS_LIST_ITEM(position)), async () => {
+                  Then(`I can see the reward title (position ${position})`, then.idVisible(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion)));
 
-                When("I scroll to the bottom of the page", when.scrollFromID(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion), "up", "fast"), async () => {
-                  Then(`I can see the reward descriptions (position ${position})`, commonThen.assertMultipleTextsVisible(descriptionAssertions));
+                  When("I scroll to the bottom of the page", when.scrollFromID(ids.ITEM_DETAILS_HALF_MODAL_TITLE(titleAssertion), "up", "fast"), async () => {
+                    Then(`I can see the reward descriptions (position ${position})`, commonThen.assertMultipleTextsVisible(descriptionAssertions));
 
-                  When("I press the got it button", when.tapID(ids.HALF_MODAL_CTA), async () => {
-                    Then("I'm back at the reward pass screen", then.textVisible("Wellbeing pass"));
+                    When("I press the got it button", when.tapID(ids.HALF_MODAL_CTA), async () => {
+                      Then("I'm back at the reward pass screen", then.textVisible("Wellbeing pass"));
+                    });
                   });
                 });
               });
-            });
-          }
+            }
+          });
         });
       });
     });

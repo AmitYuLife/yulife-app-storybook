@@ -12,8 +12,10 @@ import * as helper from "./_resources/helpers";
 
 Feature("Yudoku", async () => {
   Scenario("I can play, pause, and complete Sudoku and join/view the leaderboard", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_86, data.AUTH_86), async () => {
-      Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700), 2000));
+    Given("I login", given.loginAsUser(data.CUSTOMER_86, data.AUTH_86), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700), 2000));
+      });
     });
     When("I tap on level 152", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152), 3000), async () => {
       When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
@@ -117,7 +119,7 @@ Feature("Yudoku", async () => {
   });
 
   Scenario("I can see Sudoku leaderboard empty states", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_58, data.AUTH_58), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_58, data.AUTH_58), async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(665)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
@@ -141,7 +143,7 @@ Feature("Yudoku", async () => {
   });
 
   Scenario("I am penalised when making more than 3 mistakes", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_86, data.AUTH_86), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_86, data.AUTH_86), async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
@@ -175,7 +177,7 @@ Feature("Yudoku", async () => {
   });
 
   Scenario("I can cancel a yudoku", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_86, data.AUTH_86), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_86, data.AUTH_86), async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
@@ -225,7 +227,7 @@ Feature("Yudoku", async () => {
   });
 
   Scenario("I can go to and leave the Yudoku leaderboard", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_76, data.AUTH_76), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_76, data.AUTH_76), async () => {
       Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
@@ -312,7 +314,7 @@ Feature("Yudoku", async () => {
   });
 
   Scenario("I can see my yudoku daily time in the earnings screen", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_84, data.AUTH_84), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_84, data.AUTH_84), async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
     When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
@@ -321,7 +323,7 @@ Feature("Yudoku", async () => {
   });
 
   Scenario("I can take the Yudoku practice game as many times as I want", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_76, data.AUTH_76), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_76, data.AUTH_76), async () => {
       Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
@@ -360,7 +362,7 @@ Feature("Yudoku", async () => {
   });
 
   Scenario("I can get a reward after I complete a streak with Yudoku", scenario.start, async () => {
-    Given("I login as a user with 4/5 streaks", given.logInAndGoToTab("yucoin", data.CUSTOMER_7, data.AUTH_7), async () => {
+    Given("I login as a user with 4/5 streaks", given.loginAsUser(data.CUSTOMER_7, data.AUTH_7), async () => {
       Then("I should see 640 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(640)));
     });
     When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 2000), async () => {
@@ -403,7 +405,7 @@ Feature("Yudoku", async () => {
   });
 
   Scenario("I can close and reopen the app during a yudoku challenge", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_86, data.AUTH_86), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_86, data.AUTH_86), async () => {
       Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)));
     });
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {

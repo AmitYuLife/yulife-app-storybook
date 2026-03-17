@@ -376,7 +376,7 @@ import * as ids from "@ids";
 
 Feature("Feature Name", async () => {
   Scenario("Descriptive scenario name", scenario.start, () => {
-    Given("I login as a user", given.logInAndGoToTab("home", data.CUSTOMER_1, data.AUTH_1), async () => {
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
       Then("I should see the home screen", then.idVisible(ids.HOME_SCREEN));
     });
     

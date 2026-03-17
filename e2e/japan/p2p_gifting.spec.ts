@@ -9,56 +9,58 @@ import { getFullName } from "_utils/users";
 
 Feature("P2P gifting", async () => {
   Scenario("I should see 8 selectable messages", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
+    Given("I log in", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
           Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
         });
       });
-      When("I tap on the hero card", when.tapID(ids.HERO_CARD_SECTION), async () => {
-        Then("I should see the soft landing intro screen", then.idVisible(ids.GIFTING_INTRO));
-      });
-      When("I tap on the 'Get started' button", when.tapID(ids.CTA_GET_STARTED, 2000), async () => {
-        Then("Then I am on the gifting selection screen", then.idVisible(ids.INPUT_FIELD));
-      });
-      When("I search for user - 福田 太郎 ", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_2_SMOKING, "JP")), async () => {
-        Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 8000));
-      });
-      When("I tap user 福田 太郎 to dismiss the keyboard", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 5000), async () => {
-        When("I tap user 福田 太郎 again to select", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 5000), async () => {
-          When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
-            Then("I can see and select through all 8 gift messages", then.cycleThroughGiftMessages);
-          });
+    });
+    When("I tap on the hero card", when.tapID(ids.HERO_CARD_SECTION), async () => {
+      Then("I should see the soft landing intro screen", then.idVisible(ids.GIFTING_INTRO));
+    });
+    When("I tap on the 'Get started' button", when.tapID(ids.CTA_GET_STARTED, 2000), async () => {
+      Then("Then I am on the gifting selection screen", then.idVisible(ids.INPUT_FIELD));
+    });
+    When("I search for user - 福田 太郎 ", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_2_SMOKING, "JP")), async () => {
+      Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 8000));
+    });
+    When("I tap user 福田 太郎 to dismiss the keyboard", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 5000), async () => {
+      When("I tap user 福田 太郎 again to select", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 5000), async () => {
+        When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+          Then("I can see and select through all 8 gift messages", then.cycleThroughGiftMessages);
         });
       });
     });
   });
 
   Scenario("I should see the gifting restriction messages fit the screen without being cut off.", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
+    Given("I log in", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
           Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
         });
       });
-      When("I send user 福田 太郎 a gift two times", when.completeSendGiftUserFlow(data.CUSTOMER_2_SMOKING, 2), async () => {
-        Then("I should be back on the YuScreen and can see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
-      });
-      When("I tap on the hero card", when.tapID(ids.HERO_CARD_SECTION), async () => {
-        When("I tap on the cta", when.tapID(ids.CTA_GET_STARTED), async () => {
-          When("I search for user - 福田 太郎 again to send another gift", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_2_SMOKING, "JP")), async () => {
-            // @bug LCS-1132 – For now, testing passes if the restriction message copy is visible. However, on the iPhone 15 Pro Max the message still appears cut off. Further adjustments are needed to ensure complete visibility across all screen sizes.
-            Then("I should see a restriction limit message for 福田 太郎", then.idVisible(ids.DISABLED_USER_REASON("制限に到達しました。また明日お試しください。")));
-          });
+    });
+    When("I send user 福田 太郎 a gift two times", when.completeSendGiftUserFlow(data.CUSTOMER_2_SMOKING, 2), async () => {
+      Then("I should be back on the YuScreen and can see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    });
+    When("I tap on the hero card", when.tapID(ids.HERO_CARD_SECTION), async () => {
+      When("I tap on the cta", when.tapID(ids.CTA_GET_STARTED), async () => {
+        When("I search for user - 福田 太郎 again to send another gift", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_2_SMOKING, "JP")), async () => {
+          // @bug LCS-1132 – For now, testing passes if the restriction message copy is visible. However, on the iPhone 15 Pro Max the message still appears cut off. Further adjustments are needed to ensure complete visibility across all screen sizes.
+          Then("I should see a restriction limit message for 福田 太郎", then.idVisible(ids.DISABLED_USER_REASON("制限に到達しました。また明日お試しください。")));
         });
       });
     });
   });
 
   Scenario("I should see the Thanks for the gift notification message with the users name the correct way round", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
-      When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_A), async () => {
-        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I login", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_A), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
       });
     });
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
@@ -70,9 +72,11 @@ Feature("P2P gifting", async () => {
   });
 
   Scenario("I should see the You received a gift! notification message with the users name the correct way round", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
-      When("I trigger the 'You received a gift!' notification", when.triggerGiftReceivedNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_B), async () => {
-        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I login", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the 'You received a gift!' notification", when.triggerGiftReceivedNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_B), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
       });
     });
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {

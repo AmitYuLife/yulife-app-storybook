@@ -8,7 +8,7 @@ import * as data from "./_data";
 
 Feature("I can view and use the wellbeing hub", async () => {
   Scenario("As a user, I should be able to see my SaaS perk details for my Asken membership", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
+    Given("I log in", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
         When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
           Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN));
@@ -29,25 +29,25 @@ Feature("I can view and use the wellbeing hub", async () => {
   });
 
   Scenario("As a user, I should be able to see my SaaS perk details for my LunaLuna membership", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
+    Given("I log in", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
         When("I tap to confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 3000), async () => {
           Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN));
           Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible);
         });
       });
-      When("I select the Health Insurance tab", when.tapID(ids.CHIP_LIST_ITEM("ブパ")), async () => {
-        Then("I should see the 'LunaLuna' title", then.idVisible(ids.TEXT_TEMPLATE("ルナルナ")));
-      });
-      When("I tap to open LunaLuna card", when.tapID(ids.TEXT_TEMPLATE("ルナルナ")), async () => {
-        Then("I should see the 'LunaLuna' title", then.textVisible("ルナ・ルナとは？"));
-      });
-      When("I swipe up", when.swipeFromText("ルナ・ルナとは？", "up", "fast"), async () => {
-        Then("I should see the Luna Code 1 title", then.idVisible(ids.VOUCHER_CODE_TITLE("専用コード")));
-        Then("I should see the Luna Code 1", then.idVisibleAtIndex(ids.VOUCHER_CODE("0001186"), 0));
-        Then("I should see the Luna Code 1 title", then.idVisible(ids.VOUCHER_CODE_TITLE("専用番号")));
-        Then("I should see the Luna Code 2", then.idVisibleAtIndex(ids.VOUCHER_CODE("0001186"), 1));
-      });
+    });
+    When("I select the Health Insurance tab", when.tapID(ids.CHIP_LIST_ITEM("ブパ")), async () => {
+      Then("I should see the 'LunaLuna' title", then.idVisible(ids.TEXT_TEMPLATE("ルナルナ")));
+    });
+    When("I tap to open LunaLuna card", when.tapID(ids.TEXT_TEMPLATE("ルナルナ")), async () => {
+      Then("I should see the 'LunaLuna' title", then.textVisible("ルナ・ルナとは？"));
+    });
+    When("I swipe up", when.swipeFromText("ルナ・ルナとは？", "up", "fast"), async () => {
+      Then("I should see the Luna Code 1 title", then.idVisible(ids.VOUCHER_CODE_TITLE("専用コード")));
+      Then("I should see the Luna Code 1", then.idVisibleAtIndex(ids.VOUCHER_CODE("0001186"), 0));
+      Then("I should see the Luna Code 1 title", then.idVisible(ids.VOUCHER_CODE_TITLE("専用番号")));
+      Then("I should see the Luna Code 2", then.idVisibleAtIndex(ids.VOUCHER_CODE("0001186"), 1));
     });
   });
 });

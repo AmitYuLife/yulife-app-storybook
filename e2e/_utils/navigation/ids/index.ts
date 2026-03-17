@@ -1069,6 +1069,8 @@ export const CTA_LETS_GO = "labels.cta.lets_go";
 export const CTA_GET_STARTED = "labels.cta.get_started";
 export const CTA_SELECT = "labels.cta.select";
 export const CTA_PAUSE = "labels.cta.pause";
+export const CTA_ASK_ME_LATER = "labels.cta.ask_later-text-view";
+
 
 // Yunity Swipe (2048)
 export const YUNITY_SWIPE_SETTINGS = "YUNITY_SWIPE_SETTINGS";

@@ -14,7 +14,7 @@ const translation = getTranslation(locale);
 Feature("As a user I can get past the login screen - JP", async () => {
   Scenario("I can login with correct login details", scenario.start, async () => {
     Given("I have authorised fitkit", given.authoriseFitkit(), async () => {
-      Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
+      Given("I login and go to the daily steps screen", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
         When("I have done 20 steps", given.sendSteps(20), async () => {
           Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20)));
         });
@@ -34,7 +34,7 @@ Feature("As a user I can get past the login screen - JP", async () => {
 
   Scenario("I can view the Wellbeing Hub screen as a yulife user", scenario.start, async () => {
     Given("I have authorised fitkit", given.authoriseFitkit(), async () => {
-      When("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
+      When("I login and go to the daily steps screen", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
         Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(400)));
       });
       When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
@@ -49,8 +49,10 @@ Feature("As a user I can get past the login screen - JP", async () => {
 
   Scenario("I should only have Yoga available in Workout categories", scenario.start, async () => {
     Given("I have authorised fitkit", given.authoriseFitkit(), async () => {
-      When("I login and go to the daily steps screen", given.logInAndGoToTab("quests", data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
-        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+      When("I login and go to the daily steps screen", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true, "JP"), async () => {
+        When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+          Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+        });
       });
     });
     When("I tap on the first level button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
@@ -66,9 +68,11 @@ Feature("As a user I can get past the login screen - JP", async () => {
   });
 
   Scenario("I see the correct Square card layout for my Japanese products", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "JP"), async () => {
-      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
-        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
+    Given("I log in", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "JP"), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+          Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
+        });
       });
     });
     When("I scroll until I see all the product cards", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
@@ -79,9 +83,11 @@ Feature("As a user I can get past the login screen - JP", async () => {
   });
 
   Scenario("I see search for a user by kanji, their latin, or their furigana name", scenario.start, async () => {
-    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "JP"), async () => {
-      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
-        Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
+    Given("I log in", given.loginAsUser(data.CUSTOMER_2_SMOKING, data.AUTH_2, true, "JP"), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+          Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, `${data.CUSTOMER_2_SMOKING.data.lastName} ${data.CUSTOMER_2_SMOKING.data.firstName}`, "フォレスト", "219", true));
+        });
       });
     });
     When("I tap on the hero card", when.tapID(ids.HERO_CARD_SECTION), async () => {

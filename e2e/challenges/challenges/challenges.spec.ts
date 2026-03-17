@@ -41,7 +41,7 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("Active challenge should be cancelled on logout", scenario.start, async () => {
-    Given("I login and go to the yucoin screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1, true), async () => {
+    Given("I login and go to the yucoin screen", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
       Then("I should see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0), 3000));
     });
     When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
@@ -63,9 +63,11 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("I can fail a challenge", scenario.start, async () => {
-    Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
+    Given("I login and go to the quests tab", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+        Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)));
+      });
     });
     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
       Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
@@ -91,9 +93,11 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("I can complete a chest challenge", scenario.start, async () => {
-    Given("I am on the quest tab as a user with a chest challenge", given.logInAndGoToTab("quests", data.CUSTOMER_9, data.AUTH_9), async () => {
-      Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760)));
-      Then("I should see level 7 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7)));
+    Given("I am on the quest tab as a user with a chest challenge", given.loginAsUser(data.CUSTOMER_9, data.AUTH_9), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760)));
+        Then("I should see level 7 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7)));
+      });
     });
     When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {
       Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."));
@@ -129,8 +133,10 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("I can complete today's challenge and then the homepage button updates to invite a colleague through a link and a QR code", scenario.start, async () => {
-    Given("I am on the quest tab as a user with a daily challenge", given.logInAndGoToTab("quests", data.CUSTOMER_35, data.AUTH_35), async () => {
-      Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3280)));
+    Given("I am on the quest tab as a user with a daily challenge", given.loginAsUser(data.CUSTOMER_35, data.AUTH_35), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3280)));
+      });
     });
     When("I tap level 6", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
       Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
@@ -158,7 +164,7 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("I can take challenge with a higher earn rate of 13, see the correct higher number of yucoin earned, and complete the profile viewed event", scenario.start, async () => {
-    Given("I login and go to the YuCoin tab", given.logInAndGoToTab("yucoin", data.CUSTOMER_52, data.AUTH_52), async () => {
+    Given("I login and go to the YuCoin tab", given.loginAsUser(data.CUSTOMER_52, data.AUTH_52), async () => {
       Then("I should be on the Daily Steps screen", then.idVisible(ids.DAILY_STEPS_SCREEN));
       Then("I should be see YuCoin illustration", then.idVisible(ids.DAILYSTEP_SCREEN_COIN));
     });
@@ -343,9 +349,11 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("When I have unlocked level 50 and level 51, I can do two challenges for level 51", scenario.start, () => {
-    Given("I login as a user on level 51", given.logInAndGoToTab("quests", data.CUSTOMER_61, data.AUTH_61), async () => {
-      Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)));
-      Then("I should see the level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)));
+    Given("I login as a user on level 51", given.loginAsUser(data.CUSTOMER_61, data.AUTH_61), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)));
+        Then("I should see the level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)));
+      });
     });
     When("I scroll down", when.scrollFromID(ids.LEVEL_CHALLENGE_BUTTON(51), "up", "slow"), async () => {
       Then("I should see the level 50 chest unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)));
@@ -384,8 +392,10 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("I am able to start a meditation challenge, close, then reopen the app", scenario.start, () => {
-    Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_13, data.AUTH_13), async () => {
-      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50200)));
+    Given("I login as a user who has meditation unlocked", given.loginAsUser(data.CUSTOMER_13, data.AUTH_13), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50200)));
+      });
     });
     When("I send the mindfulness data", when.sendMindfulnessData(500), async () => {
       When("I start a meditation challenge", when.startMeditationChallengeFromQuests(175), async () => {
@@ -434,7 +444,7 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("'Take a challenge' button should take user(level dependent) straight to the challenge page", scenario.start, async () => {
-    Given("I login and go to the quests tab", given.logInAndGoToTab("yucoin", data.CUSTOMER_10, data.AUTH_10), async () => {
+    Given("I login and go to the quests tab", given.loginAsUser(data.CUSTOMER_10, data.AUTH_10), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(12200)));
     });
     When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON, 4000), async () => {
@@ -473,7 +483,7 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("'Take a challenge' button should NOT take user in yuniversal 7 straight to the challenge page", scenario.start, async () => {
-    Given("I login and go to the quests tab", given.logInAndGoToTab("yucoin", data.CUSTOMER_11, data.AUTH_11), async () => {
+    Given("I login and go to the quests tab", given.loginAsUser(data.CUSTOMER_11, data.AUTH_11), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(12200)));
     });
     When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
@@ -482,10 +492,12 @@ Feature("As a user I can take a challenge", async () => {
   });
 
   Scenario("I can start a challenge with the new quest map redesign", scenario.start, async () => {
-    Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_8, data.AUTH_8), async () => {
-      Then("I should see levels 1 to 4 have been completed", then.levelSVGVisible(1, 4, "#FFD600"));
-      Then("I should see levels 6 and 7 are incomplete", then.levelSVGVisible(6, 7, "#F5F5F5"));
-      Then("I should see level 5 is the one I am currently on", then.levelSVGVisible(5, 5, "rgb(226, 1, 119)"));
+    Given("I login and go to the quests tab", given.loginAsUser(data.CUSTOMER_8, data.AUTH_8), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see levels 1 to 4 have been completed", then.levelSVGVisible(1, 4, "#FFD600"));
+        Then("I should see levels 6 and 7 are incomplete", then.levelSVGVisible(6, 7, "#F5F5F5"));
+        Then("I should see level 5 is the one I am currently on", then.levelSVGVisible(5, 5, "rgb(226, 1, 119)"));
+      });
     });
     When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
       Then("I should be on the level 1 summary page", then.textVisible("Level 1 Summary"));

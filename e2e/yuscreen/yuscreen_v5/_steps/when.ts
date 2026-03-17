@@ -37,8 +37,6 @@ export const {
   restartWithoutDelete,
 } = navigation.common;
 
-export const { logInAndGoToTab } = navigation.login;
-
 export const { saveYumoji, unlockedYumojiItemsVisible } = screens.yuscreen;
 
 export const startYumojiBuilderV5 = (bodyTypeID: string) => async () => {

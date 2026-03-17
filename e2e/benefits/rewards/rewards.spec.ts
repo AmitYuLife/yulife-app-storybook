@@ -39,8 +39,10 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("I cannot redeem a locked reward", scenario.start, () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 5000));
+    Given("I login and go to rewards", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 5000));
+      });
     });
     When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id), "up", 4, 3000), async () => {
       Then("I should see the locked bloom reward", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_BLOOM_UNAVAILABLE.data._id)));
@@ -59,10 +61,12 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("I can purchase multiple rewards and adjust the voucher amount successfully", scenario.start, () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_3, data.AUTH_3), () => {
-      Then("I should be on the rewards store", then.idVisible(ids.REWARDS_SCREEN, 7000));
-      Then("I should see the shopfront rewards list", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 1500));
-      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200), 1500));
+    Given("I login and go to rewards", given.loginAsUser(data.CUSTOMER_3, data.AUTH_3), () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should be on the rewards store", then.idVisible(ids.REWARDS_SCREEN, 7000));
+        Then("I should see the shopfront rewards list", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 1500));
+        Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200), 1500));
+      });
     });
     When("I scroll down the rewards list", when.scrollWithLimitedAttemptsUntilIdVisible(ids.SHOPFRONT_REWARDS_LIST, ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), "up", 7, 1500), async () => {
       Then("I should see the Amazon Reward", then.idExist(ids.REWARD_ITEM(data.CORE_REWARDS_AMAZON.data._id), 3000));
@@ -144,8 +148,10 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("I cannot buy a reward if there are issues with a provider", scenario.start, async () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_4, data.AUTH_4), async () => {
-      Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 2_000));
+    Given("I login and go to rewards", given.loginAsUser(data.CUSTOMER_4, data.AUTH_4), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 2_000));
+      });
     });
     When("I scroll down this page", when.scrollWithLimitedAttemptsUntilIdVisible(ids.REWARDS_SCREEN, ids.REWARD_ITEM(data.CORE_REWARDS_BROKEN.data._id), "up", 7, 1000), async () => {
       Then("I should see the Broken Item Reward", then.rewardVisible(data.CORE_REWARDS_BROKEN));
@@ -168,8 +174,10 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("I can login and view my previously purchased rewards", scenario.start, async () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
-      Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200), 3000));
+    Given("I login and go to rewards", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200), 3000));
+      });
     });
     When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
       When("I tap on the Nike wallet card", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
@@ -235,8 +243,10 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("As a member with two concurrent employments, one with store enabled and one without, I should be able to access the store", scenario.start, async () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-      Then("I should see that I have access to the rewards store, even though one of my employments does not", then.idVisible(ids.REWARDS_SCREEN, 3500));
+    Given("I login and go to rewards", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should see that I have access to the rewards store, even though one of my employments does not", then.idVisible(ids.REWARDS_SCREEN, 3500));
+      });
     });
     When("I scroll down", when.scrollFromText("Store", "up", "slow", 0.3, 2_000), async () => {
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));
@@ -248,9 +258,11 @@ Feature("Rewards should act correctly", async () => {
 
   Scenario("As a user with multiple employments, if one of my employments does not have the reward storeEnabled setting explicitly set, my overall store access should resolve to the default values", scenario.start, async () => {
     // storeAccessLevel has been purged as a concept, but this scenario still serves as a test for concurrent employments settings conflict resolutions
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_130.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see that I have access to the rewards store, as is the default setting value", then.rewardsLocationModalVisible());
-      Then("I should see the rewards location modal 'Confirm' button", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 5000));
+    Given("I login and go to rewards", given.loginAsUser(data.CUSTOMER_130.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should see that I have access to the rewards store, as is the default setting value", then.rewardsLocationModalVisible());
+        Then("I should see the rewards location modal 'Confirm' button", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 5000));
+      });
     });
     When("I dismiss the modal", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 3000), async () => {
       Then("I should see the rewards screen", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 5000));
@@ -261,8 +273,10 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("I can login and see the Tillo rewards store item for Hobbycraft", scenario.start, async () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_131.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5200)));
+    Given("I login and go to rewards", given.loginAsUser(data.CUSTOMER_131.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should see my YuCoin balance on the top right showing", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5200)));
+      });
     });
     When("I scroll down the rewards list", when.scrollFromText("Store", "up", "slow", 0.3, 2_000), async () => {
       Then("I should see the 'Hobbycraft' reward from Tillo", then.rewardVisible(data.CORE_REWARDS_HOBBYCRAFT));
@@ -283,8 +297,10 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("I can enter my mobile number when claiming a Bluelabel or Shoprite reward voucher", scenario.start, async () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see that I have access to the rewards store", then.idVisible(ids.REWARDS_SCREEN, 3000));
+    Given("I login and go to rewards", given.loginAsUser(data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should see that I have access to the rewards store", then.idVisible(ids.REWARDS_SCREEN, 3000));
+      });
     });
     When("I click on the 'MTN' reward", when.tapRewardInList(data.CORE_REWARDS_MTN), async () => {
       Then("I should see the 'MTN' reward page", then.idVisible(`${data.CORE_REWARDS_MTN.data._id}_description`));
@@ -326,8 +342,10 @@ Feature("Rewards should act correctly", async () => {
   });
 
   Scenario("Rewards from different regions should not appear together when changing store location", scenario.start, async () => {
-    Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
-      Then("I should see that I have access to the rewards store", then.idVisible(ids.REWARDS_SCREEN, 3500));
+    Given("I login and go to rewards", given.loginAsUser(data.CUSTOMER_132.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
+        Then("I should see that I have access to the rewards store", then.idVisible(ids.REWARDS_SCREEN, 3500));
+      });
     });
     When("I scroll down the rewards list", when.scrollFromText("Store", "up", "slow", 0.3, 2_000), async () => {
       Then("I should see the 'Avios' Miles reward", then.rewardVisible(data.CORE_REWARDS_AVIOS));

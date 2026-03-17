@@ -27,12 +27,14 @@ export const START_MEDITATION_FAKE_TIME = async () => {
 
   Given(
     "I login as a user on level 1 who has meditation unlocked",
-    given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1),
+    given.loginAsUser(data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1),
     async () => {
-      Then(
-        "I should see my current coin amount",
-        then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200))
-      );
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then(
+          "I should see my current coin amount",
+          then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200))
+        );
+      });
     }
   );
   When(

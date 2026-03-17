@@ -63,9 +63,11 @@ Feature("Fiit in app", async () => {
   });
 
   Scenario("As a user with access to Fiit in-app challenges, I am able to start watching and then cancel the challenge mid video", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
-      Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)));
+    Given("I login", given.loginAsUser(data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+        Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)));
+      });
     });
     When("I tap the level 5 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
       When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
@@ -96,9 +98,11 @@ Feature("Fiit in app", async () => {
   });
 
   Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge, close the app and open it again, and still be awarded YuCoin", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
-      Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5), 3000));
+    Given("I login", given.loginAsUser(data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
+        Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5), 3000));
+      });
     });
     When("I tap the level 5 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
       When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {
@@ -143,8 +147,10 @@ Feature("Fiit in app", async () => {
   });
 
   Scenario("As a user with workouts enabled, I am able to close-open app, and still be able to complete a body coach workout", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_BODY_COACH, data.AUTH_BODY_COACH), async () => {
-      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+    Given("I login", given.loginAsUser(data.CUSTOMER_BODY_COACH, data.AUTH_BODY_COACH), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
+      });
     });
     When("I tap the level 5 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
       When("I scroll down the challenge list", when.scrollFromID(ids.CHALLENGE_SET, "up", "fast"), async () => {

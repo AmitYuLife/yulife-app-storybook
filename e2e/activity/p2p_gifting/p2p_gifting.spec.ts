@@ -18,7 +18,7 @@ const translation = getTranslation(locale);
 
 Feature("P2P gifting - UK", async () => {
   Scenario("I can send someone a YuCoin gift from the leaderboard", scenario.start, async () => {
-    Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18, true, "UK"), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard"), 4000), async () => {
           Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name), 3000));
@@ -152,9 +152,11 @@ Feature("P2P gifting - UK", async () => {
   });
 
   Scenario("I should be able to see my gifts from the notification center", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_17, data.AUTH_17), async () => {
-      When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_18, data.USER_18_GIFT_A), async () => {
-        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_18, data.USER_18_GIFT_A), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
       });
     });
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
@@ -184,9 +186,11 @@ Feature("P2P gifting - UK", async () => {
   });
 
   Scenario("Business leavers cannot send gifts but can still view previously received gifts", scenario.start, async () => {
-    Given("I login as a business leaver", given.logInAndGoToTab("yu", data.CUSTOMER_28, data.AUTH_28), async () => {
-      When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_17, data.USER_17_GIFT_A), async () => {
-        Then("I should not see the gifting hero card available as a business leaver", then.idNotVisible(ids.HERO_CARD_SECTION));
+    Given("I login as a business leaver", given.loginAsUser(data.CUSTOMER_28, data.AUTH_28), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_17, data.USER_17_GIFT_A), async () => {
+          Then("I should not see the gifting hero card available as a business leaver", then.idNotVisible(ids.HERO_CARD_SECTION));
+        });
       });
     });
     When("I open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
@@ -199,9 +203,11 @@ Feature("P2P gifting - UK", async () => {
   });
 
   Scenario("I should be able to receive a gift as a non-fully onboarded employee", scenario.start, async () => {
-    Given("I login as a valid, non-onboarded employee", given.logInAndGoToTab("yu", data.CUSTOMER_142, data.AUTH_142), async () => {
-      When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_18, data.USER_18_GIFT_D), async () => {
-        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I login as a valid, non-onboarded employee", given.loginAsUser(data.CUSTOMER_142, data.AUTH_142), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_18, data.USER_18_GIFT_D), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
       });
     });
     When("I open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
@@ -218,9 +224,11 @@ Feature("P2P gifting - UK", async () => {
   });
 
   Scenario("I should only see the notification center 'Thanks for the gift' dot once and not again when I reopen the notification center", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_19, data.AUTH_19), async () => {
-      When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_20, data.USER_20_GIFT_A), async () => {
-        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I login", given.loginAsUser(data.CUSTOMER_19, data.AUTH_19), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_20, data.USER_20_GIFT_A), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
       });
     });
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
@@ -232,9 +240,11 @@ Feature("P2P gifting - UK", async () => {
   });
 
   Scenario("I should only see the notification center 'You received a gift' pink dot once and whereas the pink arrow should stay", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_19, data.AUTH_19), async () => {
-      When("I trigger the 'You received a gift!' notification", when.triggerGiftReceivedNotification(data.CUSTOMER_20, data.USER_20_GIFT_B), async () => {
-        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I login", given.loginAsUser(data.CUSTOMER_19, data.AUTH_19), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the 'You received a gift!' notification", when.triggerGiftReceivedNotification(data.CUSTOMER_20, data.USER_20_GIFT_B), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
       });
     });
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
@@ -254,9 +264,11 @@ Feature("P2P gifting - UK", async () => {
   });
 
   Scenario("When returning a gift through the notification centre, no users are pre-selected, preventing people being able to bypass the sending limit", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_17, data.AUTH_17), async () => {
-      When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_18, data.USER_18_GIFT_A), async () => {
-        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    Given("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_18, data.USER_18_GIFT_A), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
       });
     });
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
@@ -277,9 +289,11 @@ Feature("P2P gifting - UK", async () => {
   });
 
   Scenario("I should see gift auto claim notification in the app inbox", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
-      When("I trigger worker", when.trigger7DayAutoClaim(moment().add(8, "days").toDate()), async () => {
-        Then("I should see my YuCoin balance before the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(250)));
+    Given("I login", given.loginAsUser(data.CUSTOMER_138, data.AUTH_138), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger worker", when.trigger7DayAutoClaim(moment().add(8, "days").toDate()), async () => {
+          Then("I should see my YuCoin balance before the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(250)));
+        });
       });
     });
     When("I trigger the 'You received a gift!' notification 10 YuCoin gift", when.triggerGiftReceivedNotification(data.CUSTOMER_139, data.USER_139_GIFT_B), async () => {
@@ -304,12 +318,14 @@ Feature("P2P gifting - UK", async () => {
   });
 
   Scenario("I should see gift auto claim notification in the app inbox for a gift sent from a business", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_140_NPC_ALTRA.customer, GENERIC_AUTH_PASSWORD), async () => {
-      When("I trigger the issue coin to NPC Biz", when.triggerIssueCoinToNpcBiz(data.BUSINESS_ACCOUNT_14_NPC_ALTRA.business.data.businessAccountId, 30000, "1234"), async () => {
-        When("I trigger the business sending 5000 YuCoin to the user", when.triggerSendGiftFromNpcBiz(data.BUSINESS_ACCOUNT_14_NPC_ALTRA.business.data.businessAccountId, [GiftNpcAltra]), async () => {
-          When("I trigger auto claim worker", when.trigger7DayAutoClaim(moment().add(8, "days").toDate()), async () => {
-            Then("I should be back on YuCoin screen", then.idVisible(ids.HERO_CARD_SECTION, 2000));
-            Then("I should see my YuCoin balance before the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    Given("I login", given.loginAsUser(data.CUSTOMER_140_NPC_ALTRA.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
+        When("I trigger the issue coin to NPC Biz", when.triggerIssueCoinToNpcBiz(data.BUSINESS_ACCOUNT_14_NPC_ALTRA.business.data.businessAccountId, 30000, "1234"), async () => {
+          When("I trigger the business sending 5000 YuCoin to the user", when.triggerSendGiftFromNpcBiz(data.BUSINESS_ACCOUNT_14_NPC_ALTRA.business.data.businessAccountId, [GiftNpcAltra]), async () => {
+            When("I trigger auto claim worker", when.trigger7DayAutoClaim(moment().add(8, "days").toDate()), async () => {
+              Then("I should be back on YuCoin screen", then.idVisible(ids.HERO_CARD_SECTION, 2000));
+              Then("I should see my YuCoin balance before the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+            });
           });
         });
       });
@@ -401,7 +417,7 @@ Feature("P2P gifting - UK", async () => {
   });
 
   Scenario("I should see the app inbox filter out a message sent from a missing/unknown user", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_29, data.AUTH_29), async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_29, data.AUTH_29), async () => {
       When("I trigger the 7 day auto claim worker", when.trigger7DayAutoClaim(moment().add(8, "days").toDate()), async () => {
         Then("I should see my YuCoin balance before the auto claim is triggered", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
       });

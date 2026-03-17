@@ -3,6 +3,7 @@ import {
   COUNTDOWN_UNIT,
   DAILYSTEP_SCREEN_COIN,
   LETS_GO_BUTTON_DUEL_ONBOARDING,
+  LOGIN_HERO_LOGIN_BUTTON,
   NAV_BAR,
   NEXT_BUTTON_DUEL_ONBOARDING,
 } from "@ids";
@@ -76,20 +77,57 @@ export const start = async (locale = DEFAULT_LOCALE) => {
   await new Promise((res) => setTimeout(res, 3000));
 };
 
+const MAX_LAUNCH_RETRIES = 2;
+const FRESH_INSTALL_READY_TIMEOUT = 25_000;
+
 export const launchApp = async (config?: DeviceLaunchAppConfig) => {
   const languageAndLocale = {
     language: DEFAULT_LOCALE,
     locale: DEFAULT_LOCALE,
   };
-  await device.launchApp({
+  const launchConfig = {
     languageAndLocale,
     ...config,
     launchArgs: { detoxEnableSynchronization: 0, ...(config?.launchArgs || {}) },
-  });
-  // Workaround for DetoxSync deadlock with new architecture + RNN (Detox #4506).
-  // Re-enable sync after the app has had time to render past the problematic phase.
-  await new Promise((res) => setTimeout(res, 10000));
-  await device.enableSynchronization();
+  };
+
+  if (config?.delete) {
+    // Fresh install with retry: on CI the app can occasionally fail to render the
+    // login screen after launch (e.g. slow simulator, transient RNN issues).
+    // If the login button doesn't appear in time, terminate and relaunch.
+    for (let attempt = 1; attempt <= MAX_LAUNCH_RETRIES; attempt++) {
+      await device.launchApp(launchConfig);
+
+      try {
+        const loginButton = element(by.id(LOGIN_HERO_LOGIN_BUTTON));
+        await waitFor(loginButton).toExist().withTimeout(FRESH_INSTALL_READY_TIMEOUT);
+        await device.enableSynchronization();
+        return;
+      } catch (e) {
+        console.warn(
+          `[launchApp] App hung on start (attempt ${attempt}/${MAX_LAUNCH_RETRIES}). ` +
+            `Login screen not visible after ${FRESH_INSTALL_READY_TIMEOUT}ms. Retrying…`
+        );
+        if (attempt < MAX_LAUNCH_RETRIES) {
+          try {
+            await device.terminateApp();
+          } catch (_) {
+            /* app may already be dead */
+          }
+          await new Promise((res) => setTimeout(res, 3000));
+        } else {
+          await device.enableSynchronization();
+          throw new Error(
+            `[launchApp] App failed to render login screen after ${MAX_LAUNCH_RETRIES} attempts.`
+          );
+        }
+      }
+    }
+  } else {
+    await device.launchApp(launchConfig);
+    await new Promise((res) => setTimeout(res, 15_000));
+    await device.enableSynchronization();
+  }
 };
 
 export const startWithoutLaunch =

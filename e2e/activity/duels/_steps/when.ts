@@ -1,6 +1,5 @@
 import { launchApp, navigation } from "@utils";
 import * as ids from "@ids";
-import { loginAsUser } from "_utils/navigation/login";
 export { sendSteps, addStepsHistoricalData } from "@socket";
 export { triggerSearchTokens } from "_utils/appScreens/leaderboard";
 
@@ -20,7 +19,7 @@ export const {
   restartWithoutDelete,
 } = navigation.common;
 
-export const { restartAndLoginToTab, fullRestartAndLogin } = navigation.login;
+export const { restartAndLoginToTab, fullRestartAndLogin, loginAsUser } = navigation.login;
 
 export const tapTab = (tabName: string) => async () => {
   const tab = element(by.id(ids.BODY_ITEM_TITLE(tabName)));

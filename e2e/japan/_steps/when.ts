@@ -37,8 +37,8 @@ export const {
 } = navigation.common;
 
 export const goToWellbeingHub = async () => {
-  await tapID(ids.MENU_ICON, 2000)();
-  await tapID(ids.MENU_ITEM("Well-beingセンター"), 2000)();
+  await tapID(ids.MENU_ICON, 4000)();
+  await tapID(ids.MENU_ITEM("Well-beingセンター"), 4000)();
 };
 
 export const { triggerSearchTokens } = screens.leaderboard;

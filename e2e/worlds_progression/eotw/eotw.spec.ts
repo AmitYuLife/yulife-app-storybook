@@ -145,7 +145,7 @@ Feature("End of the world/Yuniverse", async () => {
   });
 
   Scenario("I complete level 7 in EOTW, I finish EOTW and enter the red planet with a yucoin surge of 2", scenario.start, () => {
-    Given("I login as a user on level 207 with a earn rate of 6", given.logInAndGoToTab("yucoin", data.CUSTOMER_70, data.AUTH_70), async () => {
+    Given("I login as a user on level 207 with a earn rate of 6", given.loginAsUser(data.CUSTOMER_70, data.AUTH_70), async () => {
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
     When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu")), async () => {
@@ -244,7 +244,7 @@ Feature("End of the world/Yuniverse", async () => {
   });
 
   Scenario("As a user, I want the celestial chest to be based on earn rate, so that I am rewarded on my policy amounts", scenario.start, () => {
-    Given("I login as a user on level 207 with a earn rate of 9", given.logInAndGoToTab("yucoin", data.CUSTOMER_78, data.AUTH_78), async () => {
+    Given("I login as a user on level 207 with a earn rate of 9", given.loginAsUser(data.CUSTOMER_78, data.AUTH_78), async () => {
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
     When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu"), 2000), async () => {
@@ -264,7 +264,7 @@ Feature("End of the world/Yuniverse", async () => {
   });
 
   Scenario("As a level 201+ user, I have weekly quests so I have extra activity", scenario.start, async () => {
-    Given("I login as a user on level 201", given.logInAndGoToTab("yucoin", data.CUSTOMER_81, data.AUTH_81), async () => {
+    Given("I login as a user on level 201", given.loginAsUser(data.CUSTOMER_81, data.AUTH_81), async () => {
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
     When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
@@ -325,7 +325,7 @@ Feature("End of the world/Yuniverse", async () => {
   });
 
   Scenario("I complete level 400, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
-    Given("I login as a user on level 400 with a earn rate of 10", given.logInAndGoToTab("yucoin", data.CUSTOMER_89, data.AUTH_89), async () => {
+    Given("I login as a user on level 400 with a earn rate of 10", given.loginAsUser(data.CUSTOMER_89, data.AUTH_89), async () => {
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
     When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
@@ -348,7 +348,7 @@ Feature("End of the world/Yuniverse", async () => {
   });
 
   Scenario("I complete level 7 in EOTW, I finish EOTW and enter the bright planet with a yucoin surge of 2", scenario.start, () => {
-    Given("I login as a user on level 407 with a earn rate of 6", given.logInAndGoToTab("yucoin", data.CUSTOMER_90, data.AUTH_90), async () => {
+    Given("I login as a user on level 407 with a earn rate of 6", given.loginAsUser(data.CUSTOMER_90, data.AUTH_90), async () => {
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
     When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
@@ -385,8 +385,10 @@ Feature("End of the world/Yuniverse", async () => {
 
   Scenario("I can complete level 800, and get the epic mountain yumoji item reward", scenario.start, () => {
     Given("I trigger the worker to give missing yumoji items", given.triggerGiveMissingYumojiItems([data.CUSTOMER_93.data.customerId]), async () => {
-      When("I login as a user on level 800", when.logInAndGoToTab("quests", data.CUSTOMER_93, data.AUTH_93), async () => {
-        Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800), 2000));
+      When("I login as a user on level 800", when.loginAsUser(data.CUSTOMER_93, data.AUTH_93), async () => {
+        When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+          Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800), 2000));
+        });
       });
     });
     When("I go the yucsreen", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {
@@ -446,7 +448,7 @@ Feature("End of the world/Yuniverse", async () => {
   });
 
   Scenario("I complete level 800, enter the Yuniverse IV and complete a challenge", scenario.start, () => {
-    Given("I login as a user on level 800 with a earn rate of 10", given.logInAndGoToTab("yucoin", data.CUSTOMER_94, data.AUTH_94), async () => {
+    Given("I login as a user on level 800 with a earn rate of 10", given.loginAsUser(data.CUSTOMER_94, data.AUTH_94), async () => {
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
     When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
@@ -495,7 +497,7 @@ Feature("End of the world/Yuniverse", async () => {
   });
 
   Scenario("I can complete last level in Yuniverse IV and enter the purple planet", scenario.start, () => {
-    Given("I login as a user on level 801 with a earn rate of 10", given.logInAndGoToTab("yucoin", data.CUSTOMER_95, data.AUTH_95), async () => {
+    Given("I login as a user on level 801 with a earn rate of 10", given.loginAsUser(data.CUSTOMER_95, data.AUTH_95), async () => {
       Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"));
     });
     When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
@@ -528,7 +530,7 @@ Feature("End of the world/Yuniverse", async () => {
   });
 
   Scenario("I can complete level 1200 and progress in Yuniverse VI successfully", scenario.start, () => {
-    Given("I login as a user who has 4 challenges available", given.logInAndGoToTab("yucoin", data.CUSTOMER_96, data.AUTH_96), async () => {
+    Given("I login as a user who has 4 challenges available", given.loginAsUser(data.CUSTOMER_96, data.AUTH_96), async () => {
       Then("I should see the 'Take a challenge (4 left today)' button", then.textVisible("Take a challenge (4 left today)", 4000));
     });
     When("I tap the take a challenge button", when.tapText("Take a challenge (4 left today)", 2000), async () => {
@@ -577,7 +579,7 @@ Feature("End of the world/Yuniverse", async () => {
   });
 
   Scenario("I can complete the last Yuniversal level after level 1400 and transition to a new galaxy", scenario.start, () => {
-    Given("I login as a user at Yuniversal level 7 after level 1400", given.logInAndGoToTab("yucoin", data.CUSTOMER_97.customer, GENERIC_AUTH_PASSWORD), async () => {
+    Given("I login as a user at Yuniversal level 7 after level 1400", given.loginAsUser(data.CUSTOMER_97.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see 4 challenges available", then.textVisible("Take a challenge (4 left today)", 4000));
     });
     When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 4000), async () => {

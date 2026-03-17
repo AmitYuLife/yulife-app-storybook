@@ -1,7 +1,7 @@
 import { navigation } from "@navigation";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 
-export const { logInAndGoToTab } = navigation.login;
+export const { loginAsUser } = navigation.login;
 
 /** a battle pass is created when a product is created with the product code "RewardPass" */
 export const triggerProductCreated =
