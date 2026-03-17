@@ -14,7 +14,7 @@ interface Props {
   inviteToDuel: (opponentId: string, type: "recents") => Promise<void>;
 }
 
-function _RecentOpponents({ inviteToDuel }: Props) {
+const _RecentOpponents = ({ inviteToDuel }: Props) => {
   const { data, loading } = useQuery(gql("GetRecentDuelOpponentsDocument"), {
     fetchPolicy: "cache-and-network",
   });
@@ -63,7 +63,7 @@ function _RecentOpponents({ inviteToDuel }: Props) {
       </View>
     </View>
   );
-}
+};
 
 const RecentOpponents = React.memo(_RecentOpponents);
 

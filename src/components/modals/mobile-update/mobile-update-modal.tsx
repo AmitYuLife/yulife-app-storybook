@@ -7,7 +7,7 @@ import MobileUpdateModalScreen, {
 } from "@components/modals/mobile-update/update-mobile-modal.screen";
 import { openYulife } from "@services/app-link";
 
-export default function MobileUpdateModal(props: IMobileUpdateModalProps) {
+const MobileUpdateModal = (props: IMobileUpdateModalProps) => {
   const { heading, subheading } = props;
 
   const backHandler = () => {
@@ -25,4 +25,6 @@ export default function MobileUpdateModal(props: IMobileUpdateModalProps) {
       onPressSecondary={() => Navigation.dismissModal(MODALS.mobileUpdate)}
     />
   );
-}
+};
+
+export default MobileUpdateModal;

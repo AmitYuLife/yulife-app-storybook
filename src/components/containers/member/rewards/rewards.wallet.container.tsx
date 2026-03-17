@@ -19,7 +19,7 @@ interface IRewardsWalletContainerProps {
   componentId: string;
 }
 
-function RewardsWalletContainer({ componentId }: IRewardsWalletContainerProps) {
+const RewardsWalletContainer = ({ componentId }: IRewardsWalletContainerProps) => {
   const dispatch = useDispatch();
 
   const {
@@ -105,7 +105,7 @@ function RewardsWalletContainer({ componentId }: IRewardsWalletContainerProps) {
       />
     </Box>
   );
-}
+};
 
 const styles = StyleSheet.create({
   contentContainer: {

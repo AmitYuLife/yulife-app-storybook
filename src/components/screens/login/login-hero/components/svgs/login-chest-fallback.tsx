@@ -1,6 +1,6 @@
 import Svg, { G, Path, Defs, ClipPath, Stop, LinearGradient, Mask } from "react-native-svg";
 
-function LoginChestFallback({ width, height, ...props }: Svg["props"]) {
+const LoginChestFallback = ({ width, height, ...props }: Svg["props"]) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 375 353" fill="none" {...props}>
       <G clipPath="url(#clip0_1114_44282)">
@@ -265,6 +265,6 @@ function LoginChestFallback({ width, height, ...props }: Svg["props"]) {
       </Defs>
     </Svg>
   );
-}
+};
 
 export default LoginChestFallback;

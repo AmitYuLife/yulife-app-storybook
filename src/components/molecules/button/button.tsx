@@ -42,7 +42,7 @@ type DefaultProps = {
 
 export type IButtonProps = ButtonTranslationProps<DefaultProps> | ButtonLabelProps<DefaultProps>;
 
-function Button(props: IButtonProps) {
+const Button = (props: IButtonProps) => {
   const {
     size = "Large",
     wrapperStyle,
@@ -114,6 +114,6 @@ function Button(props: IButtonProps) {
       {!animate || DETOX_ENABLED ? null : <ButtonAnimation />}
     </View>
   );
-}
+};
 
 export default Button;

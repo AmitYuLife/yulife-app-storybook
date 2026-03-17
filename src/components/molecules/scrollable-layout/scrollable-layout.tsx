@@ -25,7 +25,7 @@ interface Props {
   hideTopBarBorder?: boolean;
 }
 
-export function ScrollableLayout(props: Props) {
+export const ScrollableLayout = (props: Props) => {
   const {
     children,
     buttonTitle,
@@ -87,7 +87,7 @@ export function ScrollableLayout(props: Props) {
       />
     </KeyboardAvoidingView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   keyboardWrapper: {

@@ -6,7 +6,7 @@ import { RawImage } from "@atoms";
 
 //TODO: Move this component outside of duels since were using it in many different places now
 
-export default function DuelImage({ uri, size = "small" }: { uri: string; size?: "small" | "medium" }) {
+const DuelImage = ({ uri, size = "small" }: { uri: string; size?: "small" | "medium" }) => {
   if (!uri) {
     return (
       <View style={[emptyStyles.wrapper, size === "small" ? emptyStyles.small : emptyStyles.medium]}>
@@ -20,4 +20,6 @@ export default function DuelImage({ uri, size = "small" }: { uri: string; size?:
       <RawImage source={{ uri }} style={size === "small" ? filledStyles.imageSmall : filledStyles.imageMedium} />
     </View>
   );
-}
+};
+
+export default DuelImage;

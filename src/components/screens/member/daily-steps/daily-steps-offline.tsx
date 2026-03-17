@@ -9,7 +9,7 @@ export interface IProps {
   lastUpdate?: string;
 }
 
-export default function DailyStepsOffline({ isLight = false, lastUpdate }: IProps) {
+const DailyStepsOffline = ({ isLight = false, lastUpdate }: IProps) => {
   const lightStyle = isLight ? styles.whiteText : {};
   const lastUpdateUnkow = t("labels.unknown");
 
@@ -23,4 +23,6 @@ export default function DailyStepsOffline({ isLight = false, lastUpdate }: IProp
       </Text>
     </>
   );
-}
+};
+
+export default DailyStepsOffline;

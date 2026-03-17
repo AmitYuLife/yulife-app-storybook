@@ -73,7 +73,7 @@ function formatText(text: string, type: Type, options?: { maximumFractionDigits?
   })}`;
 }
 
-export default function TextField(props: Props) {
+const TextField = (props: Props) => {
   const {
     placeholder,
     onChange,
@@ -213,7 +213,9 @@ export default function TextField(props: Props) {
       ) : null}
     </>
   );
-}
+};
+
+export default TextField;
 
 const styles = StyleSheet.create({
   wrapper: {

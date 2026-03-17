@@ -19,7 +19,7 @@ interface Props {
   wrapperStyles?: ViewStyle;
 }
 
-function SearchList({
+const SearchList = ({
   data = [],
   networkStatus,
   onRefresh,
@@ -29,7 +29,7 @@ function SearchList({
   searchItem,
   emptyElement,
   wrapperStyles,
-}: Props) {
+}: Props) => {
   const isLoading = loading || [NetworkStatus.refetch, NetworkStatus.loading].includes(networkStatus);
 
   const emptyComponent = useCallback(() => {
@@ -57,7 +57,7 @@ function SearchList({
       />
     </KeyboardAvoidingView>
   );
-}
+};
 
 export default memo(SearchList);
 

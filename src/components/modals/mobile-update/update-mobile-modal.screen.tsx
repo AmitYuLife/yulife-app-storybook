@@ -15,12 +15,7 @@ export interface IMobileUpdateModalProps {
   subheading: string;
 }
 
-export default function MobileUpdateModalScreen({
-  heading,
-  subheading,
-  onPress,
-  onPressSecondary,
-}: IMobileUpdateModalProps) {
+const MobileUpdateModalScreen = ({ heading, subheading, onPress, onPressSecondary }: IMobileUpdateModalProps) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.contentWrapper}>
@@ -42,7 +37,9 @@ export default function MobileUpdateModalScreen({
       <GenericHeadingAbsolute onRightIconPress={onPressSecondary} />
     </View>
   );
-}
+};
+
+export default MobileUpdateModalScreen;
 
 const styles = StyleSheet.create({
   wrapper: {

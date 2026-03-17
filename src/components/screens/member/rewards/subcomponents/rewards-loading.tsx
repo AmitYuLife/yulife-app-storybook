@@ -4,7 +4,7 @@ import NativeSvg from "@molecules/native-svg/native-svg";
 import { Rect } from "react-native-svg";
 import { Colours, Style, StyleSheet } from "@styles";
 
-export function RewardsListLoading() {
+export const RewardsListLoading = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.loadingContainer}>
@@ -16,9 +16,9 @@ export function RewardsListLoading() {
       </View>
     </ScrollView>
   );
-}
+};
 
-function LoadingCard() {
+const LoadingCard = () => {
   return (
     <View style={styles.loadingCard}>
       <NativeSvg
@@ -58,7 +58,7 @@ function LoadingCard() {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   loadingContainer: {

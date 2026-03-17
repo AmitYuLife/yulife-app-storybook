@@ -17,7 +17,7 @@ interface Props<T> {
   searchItem: ListRenderItem<ISearchItem<T>>;
 }
 
-function SearchList<T>({
+const SearchList = <T,>({
   data = [],
   networkStatus,
   onRefresh,
@@ -25,7 +25,7 @@ function SearchList<T>({
   keyExtractor,
   searchItem,
   emptyElement,
-}: Props<T>) {
+}: Props<T>) => {
   const isLoading = loading || [NetworkStatus.refetch, NetworkStatus.loading].includes(networkStatus);
 
   return (
@@ -40,6 +40,6 @@ function SearchList<T>({
       keyboardShouldPersistTaps="handled"
     />
   );
-}
+};
 
 export default memo(SearchList);

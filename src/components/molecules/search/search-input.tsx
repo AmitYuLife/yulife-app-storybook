@@ -11,7 +11,7 @@ interface Props {
   styleProps?: ViewStyle;
 }
 
-function SearchInput({ title, onChangeText, styleProps }: Props) {
+const SearchInput = ({ title, onChangeText, styleProps }: Props) => {
   const onChange = useCallback(
     (input: string) => {
       onChangeText(input);
@@ -38,6 +38,6 @@ function SearchInput({ title, onChangeText, styleProps }: Props) {
       </View>
     </View>
   );
-}
+};
 
 export default memo(SearchInput);

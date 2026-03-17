@@ -22,7 +22,7 @@ interface Props {
   showTopBar?: boolean;
 }
 
-export function RewardsListLayout({ showNavbar = true, showTopBar, ...props }: Props) {
+export const RewardsListLayout = ({ showNavbar = true, showTopBar, ...props }: Props) => {
   const [activeTab, setActiveTab] = useState(1);
   const { children, onLeftMenuPress, hasBackButton, Overlay } = props;
   const { tempGameShowCouponsTab } = useUserFeatures();
@@ -63,7 +63,7 @@ export function RewardsListLayout({ showNavbar = true, showTopBar, ...props }: P
       {showNavbar ? <NavBar activeIndex={4} /> : null}
     </View>
   );
-}
+};
 
 const MENUS = () => [
   { id: 1, label: t("history") },

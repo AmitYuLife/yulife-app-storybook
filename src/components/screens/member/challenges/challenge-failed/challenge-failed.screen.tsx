@@ -15,7 +15,7 @@ interface IProps {
   onPress: () => void;
 }
 
-export default function ChallengeFailedScreen({ level, yuniversalMap, onPress, loading }: IProps) {
+const ChallengeFailedScreen = ({ level, yuniversalMap, onPress, loading }: IProps) => {
   const { challengeFailedScreen } = getTheme(level, yuniversalMap);
 
   return (
@@ -46,4 +46,6 @@ export default function ChallengeFailedScreen({ level, yuniversalMap, onPress, l
       />
     </CentredScreen>
   );
-}
+};
+
+export default ChallengeFailedScreen;

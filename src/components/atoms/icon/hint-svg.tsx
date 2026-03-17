@@ -6,7 +6,7 @@ interface IProps {
   color?: string;
 }
 
-function HintIcon({ color = "#5C5757" }: IProps) {
+const HintIcon = ({ color = "#5C5757" }: IProps) => {
   return (
     <Svg width={Style.adjust(16)} height={Style.adjust(22)} viewBox="0 0 16 22" fill="none">
       <Path
@@ -15,6 +15,6 @@ function HintIcon({ color = "#5C5757" }: IProps) {
       />
     </Svg>
   );
-}
+};
 
 export default memo(HintIcon);

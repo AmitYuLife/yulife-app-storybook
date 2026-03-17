@@ -20,7 +20,7 @@ function closeWebView() {
   Navigation.dismissModal(ROUTES.webView);
 }
 
-function WebViewContainer(props: WebViewContainerProps) {
+const WebViewContainer = (props: WebViewContainerProps) => {
   const { uri, title, onBothLinksFail = () => null, onClose = (_) => null, onAppHandBack = () => null } = props;
   const dispatch = useDispatch();
 
@@ -42,6 +42,6 @@ function WebViewContainer(props: WebViewContainerProps) {
       <WebViewScreen uri={uri} title={title} handleCloseWebView={handleCloseWebView} onAppHandBack={onAppHandBack} />
     </WebViewErrorBoundary>
   );
-}
+};
 
 export default WebViewContainer;

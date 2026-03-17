@@ -11,7 +11,7 @@ interface IProps {
   onPress?: (pressIndex: number) => void;
 }
 
-function PageIndicator({ pageCount, activePage, onPress }: IProps) {
+const PageIndicator = ({ pageCount, activePage, onPress }: IProps) => {
   const { theme } = useTheme();
 
   const activePageStyle = useMemo(() => {
@@ -39,7 +39,7 @@ function PageIndicator({ pageCount, activePage, onPress }: IProps) {
       })}
     </View>
   );
-}
+};
 
 export default PageIndicator;
 

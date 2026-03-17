@@ -36,10 +36,10 @@ interface Props {
   setOnboardingShown: () => void;
 }
 
-function DuelsIntroScreen(props: Props) {
+const DuelsIntroScreen = (props: Props) => {
   const data = useMemo(() => buildOnboardingData(), []);
   return <OnboardingSwiper data={data} renderItem={renderItem} onClose={props.setOnboardingShown} type="duels" />;
-}
+};
 
 export default memo(DuelsIntroScreen);
 

@@ -23,7 +23,7 @@ interface IProps {
   RightIcon?: React.ReactNode;
 }
 
-export function TertiaryButtonBase(props: IProps) {
+export const TertiaryButtonBase = (props: IProps) => {
   const {
     testID,
     onPress,
@@ -80,7 +80,7 @@ export function TertiaryButtonBase(props: IProps) {
       </Pressable>
     </View>
   );
-}
+};
 
 export default TertiaryButtonBase;
 

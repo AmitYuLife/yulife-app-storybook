@@ -32,7 +32,7 @@ const HIT_SLOP = {
   right: 8,
 };
 
-function _TryOnYumojiPart({ customerProductId, coverType = CoverType.Common, onChange }: Props) {
+const _TryOnYumojiPart = ({ customerProductId, coverType = CoverType.Common, onChange }: Props) => {
   const [selectedWorld, setSelectedWorld] = useState<YuWorld>(null);
   const [avatar, setAvatar] = useState<GetYumojiRemotePartsQuery["avatar"]>(null);
 
@@ -108,7 +108,7 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.Common, onC
       </View>
     </>
   );
-}
+};
 
 export const TryOnYumojiPart = memo(_TryOnYumojiPart);
 

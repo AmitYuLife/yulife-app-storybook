@@ -8,7 +8,7 @@ interface Props {
   accessible?: boolean;
 }
 
-function EnvelopeSvg({ accessible, size = Style.adjust(20) }: Props) {
+const EnvelopeSvg = ({ accessible, size = Style.adjust(20) }: Props) => {
   return (
     <Svg width={size} height={size} accessible={accessible} viewBox="0 0 221 200" fill="none">
       <Path
@@ -37,6 +37,6 @@ function EnvelopeSvg({ accessible, size = Style.adjust(20) }: Props) {
       <Path d="M110.593 124.857l110.403-62.21-.004 120.768s.451 7.099-5.631 12.389l-104.768-70.947z" fill="#B79EFF" />
     </Svg>
   );
-}
+};
 
 export default memo(EnvelopeSvg);

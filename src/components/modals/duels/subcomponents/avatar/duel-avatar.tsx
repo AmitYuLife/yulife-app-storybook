@@ -10,7 +10,7 @@ interface IProps {
   shouldAnimate?: boolean;
 }
 
-function _DuelAvatar({ reverse, uri, shouldAnimate = true }: IProps) {
+const _DuelAvatar = ({ reverse, uri, shouldAnimate = true }: IProps) => {
   const bounce = new Animated.Value(0);
   const fadeIn = new Animated.Value(0);
 
@@ -121,6 +121,6 @@ function _DuelAvatar({ reverse, uri, shouldAnimate = true }: IProps) {
       </Animated.View>
     </View>
   );
-}
+};
 
 export const DuelAvatar = React.memo(_DuelAvatar);

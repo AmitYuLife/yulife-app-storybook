@@ -4,7 +4,7 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 
-export default function GenericModal({
+const GenericModal = ({
   heading,
   subheading,
   ctaLabel,
@@ -17,7 +17,7 @@ export default function GenericModal({
   onPressBack,
   textAlign,
   image,
-}: IGenericModalProps) {
+}: IGenericModalProps) => {
   const backHandler = () => {
     if (onPressBack) {
       onPressBack();
@@ -45,4 +45,6 @@ export default function GenericModal({
       image={image}
     />
   );
-}
+};
+
+export default GenericModal;

@@ -38,7 +38,7 @@ interface IRewardsWalletItemsContainerProps {
   rewardId: string;
   type?: string;
 }
-function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsContainerProps) {
+const RewardsWalletItemsContainer = ({ rewardId, type }: IRewardsWalletItemsContainerProps) => {
   const { data, loading, loadingMore, handleFetchMore, refetch } = useWalletRewardItems({
     rewardId,
     type,
@@ -261,7 +261,7 @@ function RewardsWalletItemsContainer({ rewardId, type }: IRewardsWalletItemsCont
       />
     </Box>
   );
-}
+};
 
 export default memo(RewardsWalletItemsContainer);
 

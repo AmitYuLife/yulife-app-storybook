@@ -16,7 +16,7 @@ interface Props extends Omit<ListRenderItemInfo<ISearchItem<any>>, "index"> {
   index: string | number;
 }
 
-function SearchItem({ item, index }: Props) {
+const SearchItem = ({ item, index }: Props) => {
   const wrapperStyle = item?.isConfirm ? styles.confirmStyles : styles.wrapper;
 
   return (
@@ -38,7 +38,7 @@ function SearchItem({ item, index }: Props) {
       </View>
     </TouchableOpacityWithDelay>
   );
-}
+};
 
 export default SearchItem;
 

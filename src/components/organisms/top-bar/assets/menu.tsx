@@ -10,7 +10,7 @@ interface Props {
   color?: string;
 }
 
-export default function Hamburger(props: Props) {
+const Hamburger = (props: Props) => {
   const { color = Colours.neutral.n800 } = props;
 
   return (
@@ -21,4 +21,6 @@ export default function Hamburger(props: Props) {
       />
     </Svg>
   );
-}
+};
+
+export default Hamburger;

@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import { memo } from "react";
 import Svg, { Rect, Circle, G, Path, Defs, ClipPath } from "react-native-svg";
 
-function SudokuTurnsTakenIcon() {
+const SudokuTurnsTakenIcon = () => {
   return (
     <Svg width={Style.adjust(24)} height={Style.adjust(22)} viewBox="0 0 24 22" fill="none">
       <Rect width={24} height={22} rx={11} fill="#BADAFF" />
@@ -26,6 +26,6 @@ function SudokuTurnsTakenIcon() {
       </Defs>
     </Svg>
   );
-}
+};
 
 export default memo(SudokuTurnsTakenIcon);

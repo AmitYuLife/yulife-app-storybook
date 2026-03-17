@@ -17,7 +17,7 @@ interface Props {
   timer: string;
 }
 
-export default function Center(props: Props) {
+const Center = (props: Props) => {
   const { logoColour = "#E20177", textStyle = { color: "#333333" }, name = "", timer = "" } = props;
   const [finished, setFinished] = useState(null);
   const { theme } = useTheme();
@@ -53,9 +53,9 @@ export default function Center(props: Props) {
       <Logo colour={logoColour} />
     </Box>
   );
-}
+};
 
-function Timer({
+const Timer = ({
   colour,
   textStyle,
   timer,
@@ -65,7 +65,7 @@ function Timer({
   textStyle: TextStyle;
   timer: string;
   setFinished: () => void;
-}) {
+}) => {
   const [countdown, setCountdown] = useState(null);
 
   useInterval(
@@ -89,7 +89,7 @@ function Timer({
       <Text style={StyleSheet.flatten([styles.timer, textStyle])}>{countdown}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   name: {
@@ -120,3 +120,5 @@ const styles = StyleSheet.create({
     gap: Style.adjust(8),
   } as ViewStyle,
 });
+
+export default Center;

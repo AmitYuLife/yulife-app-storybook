@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import { memo } from "react";
 import Svg, { Circle, Path, Rect } from "react-native-svg";
 
-function SudokuTodaysTimeSvg() {
+const SudokuTodaysTimeSvg = () => {
   return (
     <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none">
       <Circle cx={12.5} cy={12} r={10.5} fill="#7EACF0" />
@@ -25,6 +25,6 @@ function SudokuTodaysTimeSvg() {
       />
     </Svg>
   );
-}
+};
 
 export default memo(SudokuTodaysTimeSvg);

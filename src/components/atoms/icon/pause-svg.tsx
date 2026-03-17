@@ -6,7 +6,7 @@ interface IProps {
   color: string;
 }
 
-function PauseIcon({ color = "#5A5A5C" }: IProps) {
+const PauseIcon = ({ color = "#5A5A5C" }: IProps) => {
   return (
     <Svg width={Style.adjust(8)} height={Style.adjust(17)} viewBox="0 0 8 17" fill="none">
       <Path
@@ -15,6 +15,6 @@ function PauseIcon({ color = "#5A5A5C" }: IProps) {
       />
     </Svg>
   );
-}
+};
 
 export default memo(PauseIcon);

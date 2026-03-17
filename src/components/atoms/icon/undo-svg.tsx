@@ -6,7 +6,7 @@ interface IProps {
   testID?: string;
 }
 
-function UndoIcon({ size, testID }: IProps) {
+const UndoIcon = ({ size, testID }: IProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 20 20" fill="none" testID={testID}>
       <Path
@@ -15,6 +15,6 @@ function UndoIcon({ size, testID }: IProps) {
       />
     </Svg>
   );
-}
+};
 
 export default memo(UndoIcon);

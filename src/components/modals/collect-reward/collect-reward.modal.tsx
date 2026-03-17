@@ -8,6 +8,8 @@ interface IProps {
   ctaLabel?: string;
 }
 
-export default function CollectRewardModal({ heading, onPress, yucoin, ctaLabel }: IProps) {
+const CollectRewardModal = ({ heading, onPress, yucoin, ctaLabel }: IProps) => {
   return <CollectRewardScreen heading={heading} onPress={onPress} yucoin={yucoin} ctaLabel={ctaLabel} />;
-}
+};
+
+export default CollectRewardModal;

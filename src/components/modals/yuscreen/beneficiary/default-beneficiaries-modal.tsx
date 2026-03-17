@@ -10,7 +10,7 @@ interface Props {
   onCancelPress: () => void;
 }
 
-export default function AddBeneficiaryModal(props: Props) {
+const AddBeneficiaryModal = (props: Props) => {
   const { onConfirmPress, onCancelPress } = props;
 
   const dismissModal = () => {
@@ -43,4 +43,6 @@ export default function AddBeneficiaryModal(props: Props) {
       onSecondButtonPress={onNoPress}
     />
   );
-}
+};
+
+export default AddBeneficiaryModal;

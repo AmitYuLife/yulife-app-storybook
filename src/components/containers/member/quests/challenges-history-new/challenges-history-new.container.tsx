@@ -19,13 +19,13 @@ interface IProps extends IConnectedScreenProps {
   onPressActivityHistory: () => void;
 }
 
-function ChallengesHistoryNewContainer({
+const ChallengesHistoryNewContainer = ({
   level,
   levelName,
   componentId,
   yuniversalMap,
   onPressActivityHistory,
-}: IProps) {
+}: IProps) => {
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
 
@@ -62,6 +62,6 @@ function ChallengesHistoryNewContainer({
       showSudokuLeaderboard={activeYudokuLeaderboard?.consent}
     />
   );
-}
+};
 
 export default memo(ChallengesHistoryNewContainer);

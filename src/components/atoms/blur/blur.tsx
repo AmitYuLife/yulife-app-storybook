@@ -3,6 +3,8 @@ import { StyleSheet } from "@styles";
 
 export type IBlurProps = BlurViewProps;
 
-export default function Blur(props: IBlurProps) {
+const Blur = (props: IBlurProps) => {
   return <BlurView style={StyleSheet.absoluteFillObject} {...props} />;
-}
+};
+
+export default Blur;

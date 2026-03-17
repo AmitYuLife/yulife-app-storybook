@@ -3,7 +3,7 @@ import Svg, { Path, SvgProps } from "react-native-svg";
 import { Colours, Style } from "@styles";
 
 // TODO: Move to the icons folder
-export function MedicalPracticeIcon(props: SvgProps = {}) {
+export const MedicalPracticeIcon = (props: SvgProps = {}) => {
   const color = props.color || Colours.neutral.n800;
   return (
     <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none" {...props}>
@@ -27,4 +27,4 @@ export function MedicalPracticeIcon(props: SvgProps = {}) {
       />
     </Svg>
   );
-}
+};

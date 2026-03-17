@@ -37,7 +37,7 @@ export interface IChallengeDetailsScreenProps {
 
 export const HEADER_HEIGHT = 268;
 
-function ChallengeDetailsScreen({
+const ChallengeDetailsScreen = ({
   slot,
   onPressCta,
   onPressBack,
@@ -45,7 +45,7 @@ function ChallengeDetailsScreen({
   onPressClose,
   isLoading = false,
   onPressSetUp = null,
-}: IChallengeDetailsScreenProps) {
+}: IChallengeDetailsScreenProps) => {
   const dispatch = useDispatch();
   const { bottom: safeAreaBottom } = useSafeAreaInsets();
   const bottom = Math.max(safeAreaBottom, 16);
@@ -250,7 +250,7 @@ function ChallengeDetailsScreen({
       )}
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   scrollContentContainer: {

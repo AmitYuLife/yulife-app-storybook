@@ -20,7 +20,7 @@ interface IEpisodeLinesProps {
   drawLines?: boolean;
 }
 
-function EpisodeLevels({ levels, formattedLevels, offsetY, episodeWidth, drawLines }: IEpisodeLinesProps) {
+const EpisodeLevels = ({ levels, formattedLevels, offsetY, episodeWidth, drawLines }: IEpisodeLinesProps) => {
   const currentLevel = useSelector(getCurrentLevel);
   const shouldQuestMapAnimateOnboarding = useSelector(getShouldQuestMapAnimateOnboarding);
 
@@ -66,7 +66,7 @@ function EpisodeLevels({ levels, formattedLevels, offsetY, episodeWidth, drawLin
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -18,7 +18,7 @@ export interface Props {
   onBothLinksFail?: () => void;
 }
 
-export function WebViewScreen(props: Props) {
+export const WebViewScreen = (props: Props) => {
   const { uri, handleCloseWebView, title, onAppHandBack } = props;
   const { handlePostMessage, handleInsideLinks, onRenderProcessGone, error, onError } = useWebView({ onAppHandBack });
 
@@ -53,7 +53,7 @@ export function WebViewScreen(props: Props) {
       <GenericHeadingAbsolute hideBorder={false} onRightIconPress={handleCloseWebView} heading={title} />
     </Box>
   );
-}
+};
 
 const styles = StyleSheet.create({
   flex: {

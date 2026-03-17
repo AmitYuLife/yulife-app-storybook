@@ -17,7 +17,7 @@ interface IProps {
   underline?: boolean;
 }
 
-export function LinkButtonBase(props: IProps) {
+export const LinkButtonBase = (props: IProps) => {
   const { onPress, height = 50, delay, underline } = props;
   const { handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
 
@@ -36,11 +36,11 @@ export function LinkButtonBase(props: IProps) {
       />
     </View>
   );
-}
+};
 
 type IMainProps = IProps & ComponentProps<typeof TouchableWithoutFeedback>;
 
-function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress, title, underline }: IMainProps) {
+const Main = ({ height, color, testID, disabled, onPressIn, onPressOut, onPress, title, underline }: IMainProps) => {
   const disabledStyles = disabled ? styles.disabled : {};
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
@@ -90,7 +90,7 @@ function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress,
       </Animated.View>
     </Pressable>
   );
-}
+};
 
 export default LinkButtonBase;
 

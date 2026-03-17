@@ -25,14 +25,14 @@ interface IAddBeneficiaryModalProps {
 
 const keyboardBehavior = Platform.select({ ios: "padding" as "padding", android: null });
 
-export default function AddBeneficiaryModalScreen({
+const AddBeneficiaryModalScreen = ({
   onClose,
   onContinue,
   beneficiary: existingBeneficiary,
   deleteBeneficiary,
   updateBeneficiaryLoading,
   removeBeneficiaryLoading,
-}: IAddBeneficiaryModalProps) {
+}: IAddBeneficiaryModalProps) => {
   const [deleteBeneficiaryPressed, setDeleteBeneficiaryPressed] = useState(false);
   const scrollViewRef = useRef(null);
   const layouts = useRef([] as number[]);
@@ -165,7 +165,9 @@ export default function AddBeneficiaryModalScreen({
       <GenericHeadingAbsolute onRightIconPress={onClose} />
     </View>
   );
-}
+};
+
+export default AddBeneficiaryModalScreen;
 
 const styles = StyleSheet.create({
   wrapper: {

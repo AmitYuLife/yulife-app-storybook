@@ -39,7 +39,7 @@ interface IChallengeProgressScreenProps extends IConnectedScreenProps {
   yuniversalMap?: number;
 }
 
-function ChallengeProgressScreen({
+const ChallengeProgressScreen = ({
   challengeType,
   startDateTime,
   endDateTime,
@@ -52,7 +52,7 @@ function ChallengeProgressScreen({
   level,
   levelSlotTemplateId,
   yuniversalMap,
-}: IChallengeProgressScreenProps) {
+}: IChallengeProgressScreenProps) => {
   const appButton = useSelector(getActiveChallengeAppButton);
   const debugToolsEnabled = useSelector(getDebugToolsEnabled);
 
@@ -174,6 +174,6 @@ function ChallengeProgressScreen({
       <NavBar activeIndex={1} />
     </View>
   );
-}
+};
 
 export default memo(ChallengeProgressScreen);

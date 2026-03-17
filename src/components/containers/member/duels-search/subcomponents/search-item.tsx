@@ -9,7 +9,7 @@ import { DUEL_SEARCH_LIST_ITEM } from "@ids";
 import { SearchedOpponent } from "../duels-search.container";
 import { TextTemplate } from "@atoms";
 
-function DuelsSearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) {
+const DuelsSearchItem = ({ item, index }: ListRenderItemInfo<SearchedOpponent>) => {
   return (
     <TouchableOpacityWithDelay onPress={item?.onPress}>
       <View style={index === 0 ? [styles.opponentCard, styles.firstCard] : styles.opponentCard}>
@@ -25,6 +25,6 @@ function DuelsSearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) 
       </View>
     </TouchableOpacityWithDelay>
   );
-}
+};
 
 export default DuelsSearchItem;

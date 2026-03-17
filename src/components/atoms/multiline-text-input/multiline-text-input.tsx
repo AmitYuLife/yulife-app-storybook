@@ -14,7 +14,7 @@ interface IProps {
   error?: boolean;
 }
 
-function _MultilineTextInput(props: IProps) {
+const _MultilineTextInput = (props: IProps) => {
   const [isFocused, setFocusedState] = useState(false);
 
   const {
@@ -66,7 +66,7 @@ function _MultilineTextInput(props: IProps) {
       />
     </View>
   );
-}
+};
 
 export const MultilineTextInput = React.memo(_MultilineTextInput);
 

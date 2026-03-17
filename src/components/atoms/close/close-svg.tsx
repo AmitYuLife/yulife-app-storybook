@@ -12,7 +12,7 @@ interface Props {
 
 const DEFAULT_SIZE = Style.adjust(24);
 
-function CloseSvg({ stroke, accessible, size = DEFAULT_SIZE, strokeWidth = 1 }: Props) {
+const CloseSvg = ({ stroke, accessible, size = DEFAULT_SIZE, strokeWidth = 1 }: Props) => {
   const safeStroke = stroke || Colours.neutral.n800;
 
   return (
@@ -21,6 +21,6 @@ function CloseSvg({ stroke, accessible, size = DEFAULT_SIZE, strokeWidth = 1 }: 
       <Path d="M20 20L4 4" stroke={safeStroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
     </Svg>
   );
-}
+};
 
 export default memo(CloseSvg);

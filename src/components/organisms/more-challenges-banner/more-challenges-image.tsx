@@ -4,7 +4,7 @@ import * as React from "react";
 import { memo } from "react";
 import Svg, { G, Circle, Path, Defs, LinearGradient, Stop, ClipPath } from "react-native-svg";
 
-function MoreChallengesImage() {
+const MoreChallengesImage = () => {
   const rtl = isRTL();
 
   return (
@@ -125,6 +125,6 @@ function MoreChallengesImage() {
       </Defs>
     </Svg>
   );
-}
+};
 
 export default memo(MoreChallengesImage);

@@ -10,8 +10,10 @@ export type IProps = Omit<TouchableWithoutFeedbackProps, "onPress"> &
     delay?: number;
   };
 
-export default function TouchableWithDelay({ onPress, delay, debounce = true, ...otherProps }: IProps) {
+const TouchableWithDelay = ({ onPress, delay, debounce = true, ...otherProps }: IProps) => {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
 
   return <TouchableWithoutFeedback {...otherProps} onPress={debounce ? handlePress : onPress} />;
-}
+};
+
+export default TouchableWithDelay;

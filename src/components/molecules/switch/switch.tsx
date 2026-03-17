@@ -20,7 +20,7 @@ interface Props {
   styles?: ViewStyle;
 }
 
-function _Switch(props: Props) {
+const _Switch = (props: Props) => {
   const { value, onPress, disabled = false, testID, wrapperStyles, styles: componentStyles } = props;
   const translateX = React.useRef(new Animated.Value(0)).current;
 
@@ -62,7 +62,7 @@ function _Switch(props: Props) {
       </TouchableOpacityWithDelay>
     </View>
   );
-}
+};
 
 const Switch = React.memo(_Switch);
 

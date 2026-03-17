@@ -58,7 +58,7 @@ interface IState {
 const SHADOW_DIFF = 8;
 const SHADOW_TRIM = 2;
 
-export function ButtonBase(props: IProps) {
+export const ButtonBase = (props: IProps) => {
   const {
     children = null,
     onPress,
@@ -152,11 +152,11 @@ export function ButtonBase(props: IProps) {
       </Main>
     </View>
   );
-}
+};
 
 type ShadowProps = "height" | "borderRadius" | "shadowColor" | "testID" | "disabled" | "theme";
 
-function Shadow({ height, borderRadius, shadowColor, testID, disabled, theme }: Pick<IProps, ShadowProps>) {
+const Shadow = ({ height, borderRadius, shadowColor, testID, disabled, theme }: Pick<IProps, ShadowProps>) => {
   const backgroundColor = getOptionallyDisabledColor({ color: shadowColor, disabled, theme });
 
   return (
@@ -164,9 +164,9 @@ function Shadow({ height, borderRadius, shadowColor, testID, disabled, theme }: 
       <View testID={`${testID}-disabled-overlay`} />
     </View>
   );
-}
+};
 
-function Main({
+const Main = ({
   translateYAnimation,
   borderRadius = 50,
   height,
@@ -193,7 +193,7 @@ function Main({
   contentWrapperStyle,
   contentTextStyle,
   theme,
-}: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
+}: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) => {
   const adjustedColor = getOptionallyDisabledColor({ color, disabled, theme });
   const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled, theme });
   const border = borderColor ? { borderColor: adjustedBorderColor, borderWidth: 1 } : {};
@@ -248,7 +248,7 @@ function Main({
       </View>
     </TouchableWithoutFeedback>
   );
-}
+};
 
 interface ContentProps {
   title: string;
@@ -264,7 +264,7 @@ interface ContentProps {
   contentTextStyle?: TemplateTextType;
 }
 
-function Content({
+const Content = ({
   title,
   leftIcon,
   iconUri,
@@ -276,7 +276,7 @@ function Content({
   size,
   contentWrapperStyle,
   contentTextStyle,
-}: ContentProps) {
+}: ContentProps) => {
   if (isLoading) {
     return <ActivityIndicator color={color} />;
   }
@@ -298,7 +298,7 @@ function Content({
   }
 
   return children;
-}
+};
 
 const LeftIcon = memo(({ leftIcon, iconUri }: Pick<ContentProps, "leftIcon" | "iconUri">) => {
   if (leftIcon) {
