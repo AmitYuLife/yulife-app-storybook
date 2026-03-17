@@ -6965,6 +6965,7 @@ export type Mutation = {
   setPlayerBirthday?: Maybe<LifeEvents>;
   /** Updates the shares of a beneficiary */
   setShareOfBenefitForProduct: CustomerProductBeneficiaries;
+  setTeamVsTeamEventPublished: TeamVsTeamEvent;
   setTestMobileGameTheme?: Maybe<Scalars["Boolean"]["output"]>;
   setUserPathwayProgress?: Maybe<Scalars["Boolean"]["output"]>;
   setUserQuestProgress?: Maybe<Scalars["Boolean"]["output"]>;
@@ -7737,6 +7738,11 @@ export type MutationSetPlayerBirthdayArgs = {
 export type MutationSetShareOfBenefitForProductArgs = {
   productId: Scalars["ID"]["input"];
   shares: Array<BeneficiaryShareOfBenefit>;
+};
+
+export type MutationSetTeamVsTeamEventPublishedArgs = {
+  eventId: Scalars["ID"]["input"];
+  published: Scalars["Boolean"]["input"];
 };
 
 export type MutationSetTestMobileGameThemeArgs = {
