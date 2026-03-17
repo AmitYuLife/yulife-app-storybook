@@ -2,7 +2,7 @@ import React from "react";
 import LinearGradient from "react-native-linear-gradient";
 import { Colours, StyleSheet } from "@styles";
 
-function _UnauthorisedGradient() {
+const _UnauthorisedGradient = () => {
   return (
     <LinearGradient
       colors={[Colours.neutral.white, "#ebf9fb"]}
@@ -10,6 +10,6 @@ function _UnauthorisedGradient() {
       style={StyleSheet.absoluteFillObject}
     />
   );
-}
+};
 
 export const UnauthorisedGradient = React.memo(_UnauthorisedGradient);

@@ -17,7 +17,7 @@ export interface InfoModalProps {
   ctaLabel: string;
 }
 
-export default function InfoScreen({ type, heading, subheading, ctaLabel, onPress }: InfoModalProps) {
+const InfoScreen = ({ type, heading, subheading, ctaLabel, onPress }: InfoModalProps) => {
   const buttonStyle = React.useMemo(() => (type === "otherWearables" ? {} : styles.buttonWrapper), [type]);
   return (
     <>
@@ -37,7 +37,9 @@ export default function InfoScreen({ type, heading, subheading, ctaLabel, onPres
       <GenericHeadingAbsolute onRightIconPress={onPress} />
     </>
   );
-}
+};
+
+export default InfoScreen;
 
 const getImage = (type: Type) => {
   if (type === "otherWearables") {

@@ -33,7 +33,7 @@ const REWARD_IMAGE_SIZE_YUCOIN = 120;
 const REWARD_SIZE = 190;
 const STATS_WIDTH = Style.DEVICE_WIDTH * 0.85;
 
-export default function ChallengeSuccessScreen({ level, rating, reward, onPressCta, completionSummary }: IProps) {
+const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionSummary }: IProps) => {
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const totalCoins = useSelector(getTotalCoins);
@@ -128,7 +128,9 @@ export default function ChallengeSuccessScreen({ level, rating, reward, onPressC
       </Box>
     </CentredScreen>
   );
-}
+};
+
+export default ChallengeSuccessScreen;
 
 const styles = StyleSheet.create({
   plusPoints: {

@@ -29,7 +29,7 @@ interface IProps {
   testID?: string;
 }
 
-function _ScalableYumoji(props: IProps) {
+const _ScalableYumoji = (props: IProps) => {
   const { items, zoom = 1, preview = { top: 0, left: 0, zoom: 1 }, height, width, bodyType } = props;
   const [partsLoading, setPartsLoading] = useState(true);
   const loadingCounter = useRef(0);
@@ -94,7 +94,7 @@ function _ScalableYumoji(props: IProps) {
       {parts}
     </View>
   );
-}
+};
 
 export const ScalableYumoji = memo(
   _ScalableYumoji,

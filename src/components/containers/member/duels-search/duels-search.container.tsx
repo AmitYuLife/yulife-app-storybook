@@ -85,7 +85,7 @@ const showDuelRespondModal = ({
 
 const KEYBOARD_BEHAVIOUR = Platform.select<"padding" | null>({ ios: "padding", android: null });
 
-function _DuelsSearchContainer() {
+const _DuelsSearchContainer = () => {
   const userId = useSelector(getCurrentUserId);
   const queryText = useRef("");
 
@@ -176,7 +176,7 @@ function _DuelsSearchContainer() {
       <TopBarAbsolute hasWhiteBackground={false} onPressLeftIcon={navigateBack} leftIcon={LeftIcon.BACK} />
     </KeyboardAvoidingView>
   );
-}
+};
 
 const DuelsSearchContainer = memo(_DuelsSearchContainer);
 

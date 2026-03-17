@@ -12,7 +12,7 @@ interface IProps {
   componentId: string;
 }
 
-function LeaderboardInfoScreen({ componentId }: IProps) {
+const LeaderboardInfoScreen = ({ componentId }: IProps) => {
   const goBack = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
@@ -47,7 +47,7 @@ function LeaderboardInfoScreen({ componentId }: IProps) {
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={goBack} />
     </View>
   );
-}
+};
 
 export default LeaderboardInfoScreen;
 

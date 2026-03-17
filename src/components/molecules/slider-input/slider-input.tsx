@@ -18,7 +18,7 @@ export interface SliderInputProps {
   rightLabel: string;
 }
 
-export function SliderInput(props: SliderInputProps) {
+export const SliderInput = (props: SliderInputProps) => {
   const { maxValue, onChange, leftLabel, rightLabel, score, minValue = 0 } = props;
   const valueIterator = useMemo(
     () => new Array(maxValue - minValue + 1).fill(0).map((_, i) => i + minValue),
@@ -62,14 +62,14 @@ export function SliderInput(props: SliderInputProps) {
       </View>
     </View>
   );
-}
+};
 
 interface AnimatedTextProps {
   isActive: boolean;
   index: number;
 }
 
-function AnimatedText(props: AnimatedTextProps) {
+const AnimatedText = (props: AnimatedTextProps) => {
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const { isActive, index } = props;
 
@@ -104,7 +104,7 @@ function AnimatedText(props: AnimatedTextProps) {
       {index}
     </Animated.Text>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {

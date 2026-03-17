@@ -30,7 +30,7 @@ interface IProgressBarProps {
 
 export const PROGRESS_BAR_DEFAULT_HEIGHT = Style.adjust(14);
 
-export default function ProgressBar(props: IProgressBarProps) {
+const ProgressBar = (props: IProgressBarProps) => {
   const {
     currentPosition: _currentPosition,
     maxLength: _maxLength,
@@ -196,7 +196,9 @@ export default function ProgressBar(props: IProgressBarProps) {
       {props.children}
     </View>
   );
-}
+};
+
+export default ProgressBar;
 
 const styles = StyleSheet.create({
   wrapper: {

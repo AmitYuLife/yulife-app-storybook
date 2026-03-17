@@ -8,7 +8,7 @@ import styles, { NAV_BAR_ICON_SIZE } from "./assets.styles";
 import { Pressable } from "@molecules";
 import { TextTemplate } from "@atoms";
 
-export default function Treasure({ isActive, hasNotification, onPressIn, isSuspended }: IIconProps) {
+const Treasure = ({ isActive, hasNotification, onPressIn, isSuspended }: IIconProps) => {
   const fill = useIconColour(isActive, isSuspended);
 
   return (
@@ -47,4 +47,6 @@ export default function Treasure({ isActive, hasNotification, onPressIn, isSuspe
       </View>
     </Pressable>
   );
-}
+};
+
+export default Treasure;

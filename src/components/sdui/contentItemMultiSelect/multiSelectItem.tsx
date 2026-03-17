@@ -32,7 +32,7 @@ const SIZE = Platform.select({
   web: Style.adjust(40),
 });
 
-function MultiSelectItem(props: MultiSelectItemProps) {
+const MultiSelectItem = (props: MultiSelectItemProps) => {
   const { id, active, label, iconUri, onPress } = props;
 
   const handlePress = useCallback(() => onPress(id), [id, onPress]);
@@ -55,7 +55,7 @@ function MultiSelectItem(props: MultiSelectItemProps) {
       </View>
     </TouchableOpacityWithDelay>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {

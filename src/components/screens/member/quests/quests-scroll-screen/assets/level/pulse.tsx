@@ -10,7 +10,7 @@ interface IProps {
   scale: Animated.AnimatedInterpolation<string | number>;
 }
 
-function _Pulse(props: IProps) {
+const _Pulse = (props: IProps) => {
   const { pulseMaxSize, backgroundColor, size, opacity, scale } = props;
 
   return (
@@ -36,7 +36,7 @@ function _Pulse(props: IProps) {
       />
     </View>
   );
-}
+};
 
 const Pulse = React.memo(_Pulse);
 

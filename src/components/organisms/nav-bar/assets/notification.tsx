@@ -7,11 +7,13 @@ interface IProps {
   isVisible: boolean;
 }
 
-export default function Notification({ isVisible }: IProps) {
+const Notification = ({ isVisible }: IProps) => {
   return !isVisible ? null : (
     <>
       <Circle fill={Colours.navNotification.border} cx="236.1" cy="48.8" r="14" />
       <Circle fill={Colours.navNotification.body} cx="235.8" cy="48.8" r="11" />
     </>
   );
-}
+};
+
+export default Notification;

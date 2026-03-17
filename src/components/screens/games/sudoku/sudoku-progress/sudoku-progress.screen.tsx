@@ -27,7 +27,7 @@ interface IProps extends IConnectedScreenProps {
   onDismissPress: () => void;
 }
 
-function SudokuProgressScreen({ challengeId, onDismissPress, onLeftMenuPress }: IProps) {
+const SudokuProgressScreen = ({ challengeId, onDismissPress, onLeftMenuPress }: IProps) => {
   const t = useTranslation([
     "labels.cta.quit",
     "labels.cta.cancel",
@@ -122,7 +122,7 @@ function SudokuProgressScreen({ challengeId, onDismissPress, onLeftMenuPress }: 
       <NavBar activeIndex={1} />
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   headerContainer: {

@@ -10,7 +10,7 @@ interface Props {
   color?: string;
 }
 
-function Back({ color }: Props) {
+const Back = ({ color }: Props) => {
   const safeColor = color || Colours.neutral.n900;
 
   const style = React.useMemo(() => {
@@ -35,6 +35,6 @@ function Back({ color }: Props) {
       <Path d="M11.25 0.5L0.75 11L11.25 21.5" stroke={safeColor} strokeMiterlimit="10" strokeLinecap="round" />
     </Svg>
   );
-}
+};
 
 export default Back;

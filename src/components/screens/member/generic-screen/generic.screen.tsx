@@ -26,7 +26,7 @@ export interface IGenericModalProps {
   };
 }
 
-export default function GenericScreen({
+const GenericScreen = ({
   image,
   heading,
   subheading,
@@ -38,7 +38,7 @@ export default function GenericScreen({
   isSecondaryLoading,
   isPrimaryOnePressOnly = false,
   textAlign = "center",
-}: IGenericModalProps) {
+}: IGenericModalProps) => {
   const [hasPressedPrimary, setHasTouchedPrimary] = useState(false);
   const onPressPrimary = () => {
     if (isPrimaryOnePressOnly) {
@@ -83,4 +83,6 @@ export default function GenericScreen({
       )}
     </View>
   );
-}
+};
+
+export default GenericScreen;

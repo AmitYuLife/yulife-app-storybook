@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 
-function SudokuHintStatIcon() {
+const SudokuHintStatIcon = () => {
   return (
     <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none">
       <Path
@@ -19,6 +19,6 @@ function SudokuHintStatIcon() {
       />
     </Svg>
   );
-}
+};
 
 export default memo(SudokuHintStatIcon);

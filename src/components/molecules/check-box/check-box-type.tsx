@@ -26,15 +26,6 @@ export const CheckBoxType = (props: Props) => {
   return <Checkbox {...props} activeCheckboxFillColor={props.activeCheckboxFillColor ?? theme.colors.primary.p600} />;
 };
 
-const checkboxHashMap = {
-  circular: Circular,
-  cubic: Cubic,
-} as Record<CheckboxType, React.FC<SvgProps>>;
-
-const animatedCheckboxHashMap = {
-  circular: AnimatedCircular,
-} as Record<CheckboxType, React.FC<SvgProps>>;
-
 interface SvgProps {
   checked: boolean;
   activeCheckboxFillColor?: string;
@@ -44,7 +35,7 @@ interface SvgProps {
   animated?: boolean;
 }
 
-function Circular({ checked, activeCheckboxFillColor, strokeColor, testID, size = 24 }: SvgProps) {
+const Circular = ({ checked, activeCheckboxFillColor, strokeColor, testID, size = 24 }: SvgProps) => {
   return (
     <Svg height={Style.adjust(size)} width={Style.adjust(size)} fill="#fff" viewBox="0 0 24 24" testID={testID}>
       {checked ? (
@@ -57,9 +48,9 @@ function Circular({ checked, activeCheckboxFillColor, strokeColor, testID, size 
       )}
     </Svg>
   );
-}
+};
 
-function Cubic({ checked, activeCheckboxFillColor, strokeColor, testID, size = 24 }: SvgProps) {
+const Cubic = ({ checked, activeCheckboxFillColor, strokeColor, testID, size = 24 }: SvgProps) => {
   return (
     <Svg height={Style.adjust(size)} width={Style.adjust(size)} fill="#fff" viewBox="0 0 24 24" testID={testID}>
       {checked ? (
@@ -78,7 +69,7 @@ function Cubic({ checked, activeCheckboxFillColor, strokeColor, testID, size = 2
       )}
     </Svg>
   );
-}
+};
 
 const timing = (
   animatedValue: AnimatedValue,
@@ -91,7 +82,7 @@ const timing = (
     ...config,
   });
 
-function AnimatedCircular({ checked, activeCheckboxFillColor, strokeColor, testID }: SvgProps) {
+const AnimatedCircular = ({ checked, activeCheckboxFillColor, strokeColor, testID }: SvgProps) => {
   const circleSize = useRef(new Animated.Value(checked ? 6 : 11.5)).current;
 
   useEffect(() => {
@@ -116,4 +107,13 @@ function AnimatedCircular({ checked, activeCheckboxFillColor, strokeColor, testI
       <AnimatedCircle cx={12} cy={12} r={circleSize} fill="#fff" />
     </Svg>
   );
-}
+};
+
+const checkboxHashMap = {
+  circular: Circular,
+  cubic: Cubic,
+} as Record<CheckboxType, React.FC<SvgProps>>;
+
+const animatedCheckboxHashMap = {
+  circular: AnimatedCircular,
+} as Record<CheckboxType, React.FC<SvgProps>>;

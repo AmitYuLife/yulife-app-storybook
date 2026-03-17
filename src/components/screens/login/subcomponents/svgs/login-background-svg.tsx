@@ -8,12 +8,12 @@ interface ILoginBackgroundSvgProps extends SvgProps {
   showBird?: boolean;
 }
 
-function LoginBackgroundSvg({
+const LoginBackgroundSvg = ({
   showBird = false,
   width = Style.DEVICE_WIDTH,
   height = Style.DEVICE_WIDTH * (302 / 375),
   ...props
-}: ILoginBackgroundSvgProps) {
+}: ILoginBackgroundSvgProps) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 375 302" fill="none" {...props}>
       <G clipPath="url(#clip0_39_27)">
@@ -280,6 +280,6 @@ function LoginBackgroundSvg({
       </Defs>
     </Svg>
   );
-}
+};
 
 export default LoginBackgroundSvg;

@@ -9,7 +9,7 @@ interface IProps {
   onPressCta: () => void;
 }
 
-function ChallengeUnavailableModal(props: IProps) {
+const ChallengeUnavailableModal = (props: IProps) => {
   const { nextAvailableAt, onPressCta, isYuniversalLevel } = props;
   const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextAvailableAt).time);
 
@@ -24,6 +24,6 @@ function ChallengeUnavailableModal(props: IProps) {
       isYuniversalLevel={isYuniversalLevel}
     />
   );
-}
+};
 
 export default ChallengeUnavailableModal;

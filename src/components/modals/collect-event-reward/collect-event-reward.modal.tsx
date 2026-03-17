@@ -24,7 +24,7 @@ interface IProps {
 const TRANSITION_DELAY = 500;
 const AFTER_ALL_REWARDS_REDEEMED_DELAY = 200;
 
-export default function CollectEventRewardModal({ goalIds, event, rewards, completed = false }: IProps) {
+const CollectEventRewardModal = ({ goalIds, event, rewards, completed = false }: IProps) => {
   const [localRewards, setLocalRewards] = useState(rewards || []);
   const [eventFinished, setEventFinished] = useState(
     completed && rewards.every(({ status }) => status !== GoalRewardStatus.Completed)
@@ -144,4 +144,6 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
       status={status}
     />
   );
-}
+};
+
+export default CollectEventRewardModal;

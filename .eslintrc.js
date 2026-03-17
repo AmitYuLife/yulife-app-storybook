@@ -110,6 +110,13 @@ module.exports = {
       },
     ],
     "rulesdir/jsx-no-logical-and": "error",
+    "react/function-component-definition": [
+      "error",
+      {
+        namedComponents: "arrow-function",
+        unnamedComponents: "arrow-function",
+      },
+    ],
   },
   settings: {
     react: {

@@ -6,7 +6,7 @@ interface IProps {
   height: number;
 }
 
-function PathwaysHeadingBackground({ width, height }: IProps) {
+const PathwaysHeadingBackground = ({ width, height }: IProps) => {
   const adjustedWidth = Style.adjust(width);
   const adjustedHeight = Style.adjust(height);
 
@@ -82,6 +82,6 @@ function PathwaysHeadingBackground({ width, height }: IProps) {
       </Defs>
     </Svg>
   );
-}
+};
 
 export default PathwaysHeadingBackground;

@@ -3,7 +3,7 @@ import { Image, View } from "react-native";
 import styles from "./duel-background.styles";
 
 import { StyleSheet } from "@styles";
-export default function DuelBackground() {
+const DuelBackground = () => {
   return (
     <View style={StyleSheet.absoluteFill}>
       <Image
@@ -14,4 +14,6 @@ export default function DuelBackground() {
       />
     </View>
   );
-}
+};
+
+export default DuelBackground;

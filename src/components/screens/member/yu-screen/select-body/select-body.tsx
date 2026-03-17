@@ -20,7 +20,7 @@ interface IProps {
 
 const BODY_HEIGHT = Style.adjust(344);
 
-function SelectBody({ bodyType, hasYumoji, onContinue, onPressExitButton }: IProps) {
+const SelectBody = ({ bodyType, hasYumoji, onContinue, onPressExitButton }: IProps) => {
   const [selectedBody, selectBody] = useState<AvatarBodyType>(bodyType);
   const translations = useTranslation([
     "labels.cta.continue",
@@ -92,6 +92,6 @@ function SelectBody({ bodyType, hasYumoji, onContinue, onPressExitButton }: IPro
       </ScrollView>
     </View>
   );
-}
+};
 
 export default memo(SelectBody);

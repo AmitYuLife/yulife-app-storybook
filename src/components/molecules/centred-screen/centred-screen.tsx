@@ -16,7 +16,7 @@ interface Props {
   isFullScreen?: boolean;
 }
 
-function CentredScreen({
+const CentredScreen = ({
   children,
   testID,
   BackgroundGradient = null,
@@ -24,7 +24,7 @@ function CentredScreen({
   style,
   isLottie,
   isFullScreen,
-}: Props) {
+}: Props) => {
   return (
     <View style={[styles.wrapper, style]} testID={testID}>
       {BackgroundGradient}
@@ -53,7 +53,7 @@ function CentredScreen({
       {children}
     </View>
   );
-}
+};
 
 export default memo(CentredScreen);
 

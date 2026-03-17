@@ -16,7 +16,7 @@ interface IProps {
   productId: string;
 }
 
-export default function AddBeneficiaryModal(props: IProps) {
+const AddBeneficiaryModal = (props: IProps) => {
   const { beneficiary: beneficiaryToEdit, pushEditRoot, productId } = props;
   const initialBeneficiary = useRef(null);
 
@@ -119,4 +119,6 @@ export default function AddBeneficiaryModal(props: IProps) {
       removeBeneficiaryLoading={removeBeneficiaryLoading}
     />
   );
-}
+};
+
+export default AddBeneficiaryModal;

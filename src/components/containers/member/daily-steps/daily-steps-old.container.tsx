@@ -23,7 +23,7 @@ import { getTheme } from "@theme";
 import { hideDailyScreenInformationIcon } from "@redux/onboarding/onboarding.actions";
 import { useNavigation } from "@navigation/navigation.context";
 
-function _DailyStepsContainer() {
+const _DailyStepsContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
 
   useYuWatch();
@@ -95,7 +95,7 @@ function _DailyStepsContainer() {
       />
     </FitkitContext.Provider>
   );
-}
+};
 
 const DailyStepsContainer = memo(_DailyStepsContainer);
 

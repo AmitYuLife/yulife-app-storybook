@@ -20,7 +20,7 @@ export const BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(58);
 export const EMPTY_BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(146);
 export const EMPTY_BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(40);
 
-function _Yumoji({
+const _Yumoji = ({
   uri,
   testID,
   theme = "light",
@@ -30,7 +30,7 @@ function _Yumoji({
   emptyWidth = EMPTY_BODY_AVATAR_WIDTH,
   emptyBodyColor,
   suppressLoadingUi,
-}: Props) {
+}: Props) => {
   if (!uri) {
     return <EmptyMaleBody height={emptyHeight} width={emptyWidth} body={emptyBodyColor} />;
   }
@@ -45,7 +45,7 @@ function _Yumoji({
       theme={theme}
     />
   );
-}
+};
 
 const MemoizedYumoji = React.memo(_Yumoji);
 export const Yumoji = Object.assign(MemoizedYumoji, {

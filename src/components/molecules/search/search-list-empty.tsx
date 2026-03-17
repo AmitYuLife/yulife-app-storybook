@@ -7,13 +7,13 @@ interface Props {
   emptyText: string;
 }
 
-function _SearchListEmpty({ emptyText }: Props) {
+const _SearchListEmpty = ({ emptyText }: Props) => {
   return (
     <View style={styles.emptyStateView}>
       <Text>{emptyText}</Text>
     </View>
   );
-}
+};
 
 const SearchListEmpty = React.memo(_SearchListEmpty);
 

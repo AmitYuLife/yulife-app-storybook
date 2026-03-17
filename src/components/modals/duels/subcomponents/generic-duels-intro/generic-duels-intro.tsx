@@ -19,7 +19,7 @@ interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   secondaryBtnTranslationKey?: string;
 }
 
-function GenericDuelsIntro({
+const GenericDuelsIntro = ({
   type,
   heading,
   primaryTranslationKey,
@@ -32,7 +32,7 @@ function GenericDuelsIntro({
   isLoading,
   loadingLabel,
   dismiss,
-}: IGenericDuelsIntro) {
+}: IGenericDuelsIntro) => {
   const [opacity] = React.useState(new Animated.Value(0));
 
   React.useEffect(() => {
@@ -102,6 +102,6 @@ function GenericDuelsIntro({
       </Animated.View>
     </View>
   );
-}
+};
 
 export default GenericDuelsIntro;

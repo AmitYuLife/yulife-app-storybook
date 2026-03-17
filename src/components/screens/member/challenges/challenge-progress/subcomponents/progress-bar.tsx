@@ -29,7 +29,7 @@ export interface IProps {
   title: string;
 }
 
-export default function ProgressBar({ title, amount, goals, type, styleType }: IProps) {
+const ProgressBar = ({ title, amount, goals, type, styleType }: IProps) => {
   return (
     <View style={styles.container}>
       {goals.map((goal, i) => {
@@ -61,4 +61,6 @@ export default function ProgressBar({ title, amount, goals, type, styleType }: I
       <View style={styles.counterPosition}>{renderProgressLabel({ amount, type, styleType })}</View>
     </View>
   );
-}
+};
+
+export default ProgressBar;

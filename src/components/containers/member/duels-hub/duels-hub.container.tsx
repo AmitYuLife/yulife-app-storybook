@@ -34,7 +34,7 @@ const viewabilityConfig = {
 
 const DUEL_HUB_TABS = ["active", "completed"];
 
-function DuelsHubContainer({ componentId }: Props) {
+const DuelsHubContainer = ({ componentId }: Props) => {
   const introShown = useSelector(getDuelsGoalsIntro);
   const dispatch = useDispatch();
   const [activePageIndex, setActivePageIndex] = useState(0);
@@ -106,7 +106,7 @@ function DuelsHubContainer({ componentId }: Props) {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   flex: {

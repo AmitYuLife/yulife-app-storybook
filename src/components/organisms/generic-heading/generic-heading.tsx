@@ -11,7 +11,7 @@ import { View } from "react-native";
 import { useTheme } from "@modules/themes/hooks/useTheme";
 import { Colours } from "@styles";
 
-function GenericHeading(props: IGenericHeadingProps) {
+const GenericHeading = (props: IGenericHeadingProps) => {
   const {
     heading,
     onLeftIconPress,
@@ -96,6 +96,6 @@ function GenericHeading(props: IGenericHeadingProps) {
       </Box>
     </Box>
   );
-}
+};
 
 export default GenericHeading;

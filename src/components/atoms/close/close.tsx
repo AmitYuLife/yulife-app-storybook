@@ -31,10 +31,12 @@ interface IProps {
   onPress?: () => void;
 }
 
-export default function Close({ onPress, style = {}, imageStyle }: IProps) {
+const Close = ({ onPress, style = {}, imageStyle }: IProps) => {
   return (
     <TouchableOpacityWithDelay style={[styles.wrapper, style]} onPress={onPress} testID={BUTTON_CLOSE}>
       <Image style={imageStyle} source={require("@assets/icons/close.png")} />
     </TouchableOpacityWithDelay>
   );
-}
+};
+
+export default Close;

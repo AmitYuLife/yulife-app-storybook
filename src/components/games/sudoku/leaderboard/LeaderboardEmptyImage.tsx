@@ -6,7 +6,7 @@ interface IProps {
   size: number;
 }
 
-function LeaderboardEmptyImage({ size = Style.adjust(200) }: IProps) {
+const LeaderboardEmptyImage = ({ size = Style.adjust(200) }: IProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 170 170" fill="none">
       <Circle cx={85} cy={85} r={85} fill="#EFF0FA" />
@@ -575,6 +575,6 @@ function LeaderboardEmptyImage({ size = Style.adjust(200) }: IProps) {
       </Defs>
     </Svg>
   );
-}
+};
 
 export default memo(LeaderboardEmptyImage);

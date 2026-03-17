@@ -28,7 +28,7 @@ function createLazyLoadingArgs(filter = {}): LazyGqlLoadingArgs<MobilePurchasesL
   };
 }
 
-function RewardsPurchasesContainer(props: Props) {
+const RewardsPurchasesContainer = (props: Props) => {
   const needle = useLazyGqlLoading<Req["data"]["list"][0], Req, ReqVars>(createLazyLoadingArgs(props.filter));
   const { fullData, data, loading, handleEndReached, handleRefresh } = needle;
 
@@ -75,6 +75,6 @@ function RewardsPurchasesContainer(props: Props) {
       loading={loading}
     />
   );
-}
+};
 
 export default RewardsPurchasesContainer;

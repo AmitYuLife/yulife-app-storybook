@@ -15,7 +15,7 @@ interface IProps {
   leftIcons: IIcon[];
 }
 
-function QuestsScreenOffline({ fitkitAvailable, leftIcons }: IProps) {
+const QuestsScreenOffline = ({ fitkitAvailable, leftIcons }: IProps) => {
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
@@ -43,6 +43,6 @@ function QuestsScreenOffline({ fitkitAvailable, leftIcons }: IProps) {
       <NavBar activeIndex={1} />
     </CentredScreen>
   );
-}
+};
 
 export default memo(QuestsScreenOffline);

@@ -58,7 +58,7 @@ const Left = ({ icons = [], colour, label, textStyle, badges }: Props) => {
 
 export default memo(Left);
 
-function Badge() {
+const Badge = () => {
   const props = useMemo(() => {
     return {
       [isRTL() ? "left" : "right"]: -4,
@@ -74,7 +74,7 @@ function Badge() {
   }, []);
 
   return <Box {...props} />;
-}
+};
 
 const getAccessibilityLabel = (iconType: LeftIcon) => {
   if (iconType === LeftIcon.MENU) {
@@ -84,7 +84,7 @@ const getAccessibilityLabel = (iconType: LeftIcon) => {
   return iconType;
 };
 
-function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: string; hasBadge: boolean }) {
+const Icon = ({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: string; hasBadge: boolean }) => {
   switch (icon) {
     case LeftIcon.MENU:
       return (
@@ -115,9 +115,9 @@ function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: 
     default:
       return null;
   }
-}
+};
 
-function MenuLabel({ label, textStyle }: { label: string; textStyle: TextStyle }) {
+const MenuLabel = ({ label, textStyle }: { label: string; textStyle: TextStyle }) => {
   if (!label) {
     return null;
   }
@@ -127,7 +127,7 @@ function MenuLabel({ label, textStyle }: { label: string; textStyle: TextStyle }
       <Text style={StyleSheet.flatten([styles.menuLabel, textStyle])}>{label}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {

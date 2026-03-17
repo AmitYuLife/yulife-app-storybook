@@ -3,7 +3,7 @@ import * as React from "react";
 import { DuelStepProps } from "../../duels.types";
 import GenericDuelsIntro from "../generic-duels-intro/generic-duels-intro";
 
-function DuelIntro(props: Partial<DuelStepProps>) {
+const DuelIntro = (props: Partial<DuelStepProps>) => {
   return (
     <GenericDuelsIntro
       {...props}
@@ -12,6 +12,6 @@ function DuelIntro(props: Partial<DuelStepProps>) {
       primaryTranslationKey="modals.duels.duel_intro.button"
     />
   );
-}
+};
 
 export default DuelIntro;

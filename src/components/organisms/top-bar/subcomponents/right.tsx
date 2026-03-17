@@ -21,7 +21,7 @@ interface Props {
   icon?: RightIconTypes;
 }
 
-export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) {
+const Right = ({ shouldHighlightCoins, textStyle, icon }: Props) => {
   const { componentId } = useNavigation();
   const coins = useSelector(getTotalCoins);
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
@@ -48,7 +48,7 @@ export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) 
       </View>
     </TouchableOpacityWithDelay>
   );
-}
+};
 
 const styles = StyleSheet.create({
   coinsLogoWrapper: {
@@ -75,3 +75,5 @@ const styles = StyleSheet.create({
     paddingEnd: Style.adjust(16),
   } as ViewStyle,
 });
+
+export default Right;

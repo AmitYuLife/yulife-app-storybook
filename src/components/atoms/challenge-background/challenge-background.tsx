@@ -9,12 +9,12 @@ interface IProps {
   onLayout?: (event: LayoutChangeEvent) => void;
 }
 
-function ChallengeBackground({ source, style, backgroundColor, onLayout }: IProps) {
+const ChallengeBackground = ({ source, style, backgroundColor, onLayout }: IProps) => {
   return (
     <View style={[styles.background, { backgroundColor }]}>
       <Image onLayout={onLayout} resizeMode="cover" style={[style, styles.image]} source={source} />
     </View>
   );
-}
+};
 
 export default memo(ChallengeBackground);

@@ -24,12 +24,12 @@ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 const DELAY = 2500;
 const DURATION = 100;
 
-function NotificationSvg({
+const NotificationSvg = ({
   color = Colours.neutral.n800,
   accessible,
   size = Style.adjust(20),
   hasBadge = false,
-}: Props) {
+}: Props) => {
   const rotation = useSharedValue(0);
 
   useEffect(() => {
@@ -70,6 +70,6 @@ function NotificationSvg({
       />
     </AnimatedSvg>
   );
-}
+};
 
 export default memo(NotificationSvg);

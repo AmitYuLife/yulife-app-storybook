@@ -7,7 +7,7 @@ interface IProps {
   height?: number;
 }
 
-function SudokuPracticeIcon({ width = Style.adjust(22), height = Style.adjust(20) }: IProps) {
+const SudokuPracticeIcon = ({ width = Style.adjust(22), height = Style.adjust(20) }: IProps) => {
   return (
     <Svg fill="none" height={height} viewBox="0 0 22 20" width={width}>
       <Path
@@ -24,6 +24,6 @@ function SudokuPracticeIcon({ width = Style.adjust(22), height = Style.adjust(20
       <Circle cx={15} cy={15} fill="#569de9" r={2} />
     </Svg>
   );
-}
+};
 
 export default memo(SudokuPracticeIcon);

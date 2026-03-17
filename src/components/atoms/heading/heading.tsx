@@ -14,7 +14,7 @@ interface IProps {
 
 type Sizes = "medium" | "large" | "small";
 
-function Heading(props: IProps) {
+const Heading = (props: IProps) => {
   const { label, size = "medium", style, bold, color = Colours.darkGray, testID } = props;
   const boldStyles = bold ? styles.bold : null;
 
@@ -23,7 +23,7 @@ function Heading(props: IProps) {
       {label}
     </Text>
   );
-}
+};
 
 export default React.memo(Heading);
 

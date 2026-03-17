@@ -4,7 +4,7 @@ import { Style } from "@styles";
 
 // TODO: Move to the icons folder
 
-function AddressIcon(props: SvgProps = {}) {
+const AddressIcon = (props: SvgProps = {}) => {
   const color = props.color || "#6E6E70";
   return (
     <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none" {...props}>
@@ -18,6 +18,6 @@ function AddressIcon(props: SvgProps = {}) {
       <Path d="M12 18V8" stroke={color} strokeLinecap="round" strokeLinejoin="round" />
     </Svg>
   );
-}
+};
 
 export default AddressIcon;

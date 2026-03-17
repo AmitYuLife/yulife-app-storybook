@@ -16,7 +16,7 @@ import { openAppleHealthSummary } from "@services/app-link";
 
 const MINIMUM_LOADING_TIME = 500;
 
-function ChallengeNoDataModal() {
+const ChallengeNoDataModal = () => {
   const dispatch = useDispatch();
   const { isLoading: isLevelLoading } = useSelector(getActiveLevel);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -107,7 +107,7 @@ function ChallengeNoDataModal() {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {

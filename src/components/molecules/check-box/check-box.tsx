@@ -27,7 +27,7 @@ interface ICheckBox {
   animated?: boolean;
 }
 
-function CheckBox(props: ICheckBox) {
+const CheckBox = (props: ICheckBox) => {
   const {
     checked,
     value,
@@ -95,7 +95,7 @@ function CheckBox(props: ICheckBox) {
       )}
     </OuterWrapper>
   );
-}
+};
 
 export default memo(CheckBox);
 

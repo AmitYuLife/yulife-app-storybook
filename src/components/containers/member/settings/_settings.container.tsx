@@ -25,7 +25,7 @@ interface IOwnProps {
 
 const graphqlFetchPolicy = { fetchPolicy: "cache-and-network" as "cache-and-network" };
 
-function SettingsContainer({ componentId }: IOwnProps) {
+const SettingsContainer = ({ componentId }: IOwnProps) => {
   const dispatch = useDispatch();
 
   const connections = useSelector(getUserConnections);
@@ -388,7 +388,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       )}
     </>
   );
-}
+};
 
 const generateTimes = () => {
   const times = [];

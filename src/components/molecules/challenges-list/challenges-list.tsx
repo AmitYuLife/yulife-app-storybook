@@ -19,14 +19,14 @@ export interface IChallengesListProps {
   pathwayChallenge?: IPathwayChallengeTileProps;
 }
 
-function ChallengeSet({
+const ChallengeSet = ({
   challenges,
   tileColour,
   durationColour,
   durationTextColour,
   loading,
   pathwayChallenge,
-}: IChallengesListProps) {
+}: IChallengesListProps) => {
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
   const scrollContentStyles = useMemo(() => {
     return {
@@ -86,7 +86,7 @@ function ChallengeSet({
       </View>
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   leftColumnWrapper: {

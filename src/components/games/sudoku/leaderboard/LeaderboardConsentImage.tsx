@@ -8,7 +8,7 @@ interface IProps {
   width: number;
 }
 
-function LeaderboardConsentImage({ width = 300 }: IProps) {
+const LeaderboardConsentImage = ({ width = 300 }: IProps) => {
   return (
     <Svg width={width} height={width * ASPECT_RATIO} viewBox="0 0 375 284" fill="none">
       <Path fill="#E3F7FC" d="M0 0H375V284H0z" />
@@ -160,6 +160,6 @@ function LeaderboardConsentImage({ width = 300 }: IProps) {
       </Defs>
     </Svg>
   );
-}
+};
 
 export default memo(LeaderboardConsentImage);

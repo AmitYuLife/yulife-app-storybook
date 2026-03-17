@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 
-function SudokuRewardIcon() {
+const SudokuRewardIcon = () => {
   return (
     <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none">
       <Path
@@ -24,6 +24,6 @@ function SudokuRewardIcon() {
       <Path d="M12 13c-4.5 0-7.307-3.5-7.5-5 0 3 2.5 7 7.5 7 5.5 0 7.5-4 7.5-7-.285 2-3 5-7.5 5z" fill="#F8CB31" />
     </Svg>
   );
-}
+};
 
 export default memo(SudokuRewardIcon);

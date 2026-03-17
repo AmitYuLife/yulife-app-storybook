@@ -31,7 +31,7 @@ const buildSlideAnimation = (direction: -1 | 1) =>
     })
   );
 
-function SplashScreen(props: IProps) {
+const SplashScreen = (props: IProps) => {
   const timeout = useRef(null);
   const logoTextTranslateX = useSharedValue(0);
   const animatedLogoTextXStyle = useAnimatedStyle(() => ({ transform: [{ translateX: logoTextTranslateX.value }] }));
@@ -80,6 +80,6 @@ function SplashScreen(props: IProps) {
       </View>
     </View>
   );
-}
+};
 
 export default memo(SplashScreen);

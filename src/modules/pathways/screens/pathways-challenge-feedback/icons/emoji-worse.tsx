@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 
-function EmojiWorse({ size = 32 }: { size?: number }) {
+const EmojiWorse = ({ size = 32 }: { size?: number }) => {
   const adjustedSize = Style.adjust(size);
 
   return (
@@ -30,6 +30,6 @@ function EmojiWorse({ size = 32 }: { size?: number }) {
       />
     </Svg>
   );
-}
+};
 
 export default memo(EmojiWorse);
