@@ -15,10 +15,7 @@ Feature("Rewards should act correctly", async () => {
         Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN, 5000));
       });
     });
-    When("I scroll down the rewards list", when.scrollFromText("Store", "up", "slow", 0.8, 2_000), async () => {
-      Then("I should see the John Lewis Reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS));
-    });
-    When("I tap on the John Lewis reward", when.tapRewardInList(data.CORE_REWARDS_JOHN_LEWIS), async () => {
+    When("I scroll down the rewards list and tap on the John Lewis reward", when.tapRewardInList(data.CORE_REWARDS_JOHN_LEWIS), async () => {
       Then("I should be on the reward page", then.textVisible("To redeem John Lewis:", 2500));
     });
     When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "fast"), async () => {
@@ -367,6 +364,22 @@ Feature("Rewards should act correctly", async () => {
     When("I close settings", when.tapID(ids.BUTTON_CLOSE_HEADER("Settings"), 3500), async () => {
       Then("I should be back on the reward store", then.idVisible(ids.SHOPFRONT_REWARDS_LIST, 2500));
       Then("I should not see any UK-specific rewards", then.idNotVisible(ids.REWARD_ITEM(data.CORE_REWARDS_AVIOS.data._id), 2500));
+    });
+  });
+
+  Scenario("I can see a Donations section in my wallet with previously made donations", scenario.start, () => {
+    Given("I login as a user who has purchased a gift card and made a donation", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
+      When("I navigate to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 4000), async () => {
+        Then("I should see my coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200), 4000));
+      });
+    });
+    When("I tap to open the Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 4000), async () => {
+      Then("I should see the Save the Children donation card", then.idVisible(ids.WALLET_CARD_TITLE("Save the Children")));
+      Then("I should also see my existing Nike gift card", then.idVisible(ids.WALLET_CARD_TITLE("Nike")));
+    });
+    When("I tap on the Save the Children donation card", when.tapID(ids.WALLET_CARD_TITLE("Save the Children"), 2000), async () => {
+      Then("I should see the donation item with the 'DONATION' label", then.idVisible(ids.WALLET_SECTION_TITLE("Donation")));
+      Then("I should see the donation amount", then.idVisible(ids.WALLET_ITEM_TITLE("5 £ Donation to Save the Children")));
     });
   });
 });

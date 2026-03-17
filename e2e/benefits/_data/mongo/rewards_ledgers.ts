@@ -1,7 +1,11 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
 import { USER_2 } from "./users";
-import { CORE_REWARDS_NIKE, CORE_REWARDS_URBAN_GHI_REWARDS } from "./core_rewards";
+import {
+  CORE_REWARDS_NIKE,
+  CORE_REWARDS_URBAN_GHI_REWARDS,
+  CORE_REWARDS_CHARITY_DONATION,
+} from "./core_rewards";
 
 export const REWARD_LEDGER_1 = {
   type: "mongo",
@@ -17,11 +21,33 @@ export const REWARD_LEDGER_1 = {
     rewardProviderId: "wegift",
     amount: 10,
     yuCoinsSpent: 7750,
+    type: "voucher",
     restrictions: {
       locations: ["GB"],
     },
     reward: CORE_REWARDS_NIKE.data._id,
     createdAt: moment().startOf("day").add(12, "hours").toISOString(),
     claimedAt: moment().startOf("day").add(12, "hours").toISOString(),
+  },
+} as IDatabaseItem;
+
+export const REWARD_LEDGER_DONATION_1 = {
+  type: "mongo",
+  modelName: "rewardsledgers",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_2.data.userId,
+    status: "approved",
+    code: "save-the-children",
+    rewardProviderId: "link",
+    amount: 5,
+    yuCoinsSpent: 500,
+    type: "donation",
+    restrictions: {
+      locations: ["GB"],
+    },
+    reward: CORE_REWARDS_CHARITY_DONATION.data._id,
+    createdAt: moment().startOf("day").add(10, "hours").toISOString(),
+    claimedAt: moment().startOf("day").add(10, "hours").toISOString(),
   },
 } as IDatabaseItem;

@@ -1028,6 +1028,8 @@ export const WALLET_ITEM_LABEL = (label: string) => `WALLET_ITEM_LABEL_${label}`
 export const WALLET_CARD_TITLE = (title: string) => `WALLET_CARD_TITLE_${title}`;
 export const WALLET_COUPON_ITEM_DESCRIPTION = (description: string) =>
   `WALLET_COUPON_ITEM_DESCRIPTION_${description}`;
+export const WALLET_SECTION_TITLE = (title: string) => `WALLET_SECTION_TITLE_${title}`;
+export const WALLET_SECTION_SUBTITLE = (subtitle: string) => `WALLET_SECTION_SUBTITLE_${subtitle}`;
 export const PARTNER_REWARDS_INVENTORY_ITEMS_COUNT = (quantity: number) =>
   `PARTNER_REWARDS_INVENTORY_ITEMS_COUNT_${quantity}`;
 export const PARTNER_REWARDS_INVENTORY_ITEMS_TITLE = (title: string) =>

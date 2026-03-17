@@ -1765,6 +1765,98 @@ export const CORE_REWARDS_HOBBYCRAFT = {
   },
 };
 
+export const CORE_REWARDS_CHARITY_DONATION = {
+  type: "mongo",
+  modelName: "core_rewards",
+  data: {
+    _id: generateRandomMongoId(),
+    loyaltyProgramme: [],
+    restrictions: {
+      availableForLabels: [],
+      restrictedForLabels: [],
+      locations: ["GB"],
+    },
+    tags: [],
+    badge: {},
+    website: {
+      isFeaturedOnWebsite: false,
+    },
+    claimType: "unlimited",
+    images: {
+      detailHeaderKey: "imgixGlobal::cms/1695987416025_GOSH.png",
+      listItemImageKey: "imgixGlobal::cms/1695987416650_GOSH.png",
+      websiteImageKey: "",
+    },
+    rewardProviderId: "link",
+    name: {
+      "en-GB": "Save the Children",
+    },
+    code: "save-the-children",
+    description: {
+      "en-GB":
+        "Support Save the Children's mission to give every child the best chance of a future.",
+    },
+    redemptionUrl: null,
+    currencyCode: "GBP",
+    termsAndConditionsUrl: "https://www.savethechildren.org.uk/terms-and-conditions",
+    shouldCountTowardsDonations: true,
+    donationType: "charity",
+    availableDenominations: [
+      {
+        _id: generateRandomMongoId(),
+        displayName: {
+          "en-GB": "£",
+        },
+        yuCoin: 500,
+        value: 5,
+        availableForRewardsStore: true,
+      },
+      {
+        _id: generateRandomMongoId(),
+        displayName: {
+          "en-GB": "£",
+        },
+        yuCoin: 1000,
+        value: 10,
+        availableForRewardsStore: true,
+      },
+    ],
+    copy: {
+      ctaLabel: {
+        "en-GB": "Donate",
+      },
+      alertHeading: {
+        "en-GB": "Confirm donation",
+      },
+      alertSubheading: {
+        "en-GB": "Are you sure you want to donate?",
+      },
+      redeemCtaLabel: null,
+      unlockedClaimableSlogan: null,
+    },
+    redemptionSteps: {
+      steps: [],
+      info: {
+        "en-GB": "How to donate",
+      },
+    },
+    customConfirmation: {
+      title: {
+        "en-GB": "Thank you for your donation!",
+      },
+      description: {
+        "en-GB": "Your donation will help children around the world.",
+      },
+    },
+    denominationUnit: {
+      "en-GB": "£ Donation to Save the Children",
+    },
+    archived: false,
+    __v: 0,
+    sortOrder: 1,
+  },
+} as IDatabaseItem;
+
 export const CORE_REWARDS_CHECKERS = {
   type: "mongo",
   modelName: "core_rewards",

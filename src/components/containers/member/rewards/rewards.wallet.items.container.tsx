@@ -11,6 +11,7 @@ import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { Style, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
+import { DETOX_ENABLED } from "@services/socket";
 import WalletCouponItem from "../../../molecules/reward-wallet/walletCouponItem";
 import WalletItem from "../../../molecules/reward-wallet/walletItem";
 import { useWalletRewardItems } from "./hooks/useWalletRewardItems";
@@ -242,10 +243,10 @@ const RewardsWalletItemsContainer = ({ rewardId, type }: IRewardsWalletItemsCont
             extraData={[loadingMore, loadingMoreUsed]}
             data={calculatedData}
             renderItem={renderItem}
-            refreshing={loading}
+            onRefresh={DETOX_ENABLED ? undefined : handleRefresh}
+            refreshing={DETOX_ENABLED ? undefined : loading}
             contentContainerStyle={styles.listContent}
             keyExtractor={keyExtractor}
-            onRefresh={handleRefresh}
             showsVerticalScrollIndicator={false}
             onEndReached={handleFetchMore}
             onEndReachedThreshold={0}
