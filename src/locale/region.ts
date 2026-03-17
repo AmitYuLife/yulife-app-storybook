@@ -151,4 +151,8 @@ export class RegionService {
     this.REGION_CONFIG = config;
     this.REGION_CONFIG_LAST_UPDATED = now;
   };
+
+  public clearRegionConfig = async () => {
+    await Storage.removeItem(StorageKey.region);
+  };
 }
