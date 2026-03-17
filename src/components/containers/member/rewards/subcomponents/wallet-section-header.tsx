@@ -2,6 +2,7 @@ import { Box, SkeletonLoading, Source, TextTemplate } from "@atoms";
 import { Colours, StyleSheet } from "@styles";
 import { Image } from "expo-image";
 import { memo } from "react";
+import { WALLET_SECTION_TITLE, WALLET_SECTION_SUBTITLE } from "@ids";
 
 const TEXT_COLOR = Colours.neutral.n900;
 
@@ -19,12 +20,12 @@ const WalletSectionHeader = ({ title, description, icon }: MobileGameUserWalletS
       <Box style={styles.imageContainer}>
         <Image style={styles.image} source={icon} />
       </Box>
-      <TextTemplate color={"#464647"} type="b1b">
+      <TextTemplate color={"#464647"} type="b1b" testID={WALLET_SECTION_TITLE(title)}>
         {title}
       </TextTemplate>
     </Box>
     <Box>
-      <TextTemplate color={"#464647"} type="b2">
+      <TextTemplate color={"#464647"} type="b2" testID={WALLET_SECTION_SUBTITLE(description)}>
         {description}
       </TextTemplate>
     </Box>

@@ -8,6 +8,7 @@ import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { memo, useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
+import { DETOX_ENABLED } from "@services/socket";
 import WalletCard from "../../../molecules/reward-wallet/walletCard";
 
 import EmptyWallet from "./subcomponents/empty-wallet";
@@ -91,8 +92,8 @@ const RewardsWalletContainer = ({ componentId }: IRewardsWalletContainerProps) =
             data={calculatedData}
             renderItem={renderItem}
             contentContainerStyle={styles.contentContainer}
-            onRefresh={refetch}
-            refreshing={loading}
+            onRefresh={DETOX_ENABLED ? undefined : refetch}
+            refreshing={DETOX_ENABLED ? undefined : loading}
             showsVerticalScrollIndicator={false}
           />
         </Box>
