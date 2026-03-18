@@ -181,7 +181,6 @@ export default () => ({
     ],
     "expo-localization",
     "expo-privacy-manifest-polyfill-plugin",
-    "@leanplum/react-native-sdk",
     ["customerio-expo-plugin", {}],
     [
       "expo-notifications",
@@ -233,7 +232,6 @@ export default () => ({
     "./plugins/yulife/with-yulife-split-apks",
     "./plugins/fitkit/with-fitkit.plugin",
     "./plugins/yuwatch/with-yuwatch.plugin",
-    "./plugins/leanplum/with-leanplum.plugin",
     "./plugins/yuhealth/with-yuhealth.plugin",
     "./plugins/mixpanel/with-mixpanel.plugin",
     "./plugins/intercom/with-intercom.plugin.js",

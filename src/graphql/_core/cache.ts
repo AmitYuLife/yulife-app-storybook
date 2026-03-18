@@ -6,8 +6,6 @@ const defaultYuLifeIdFromObject = (object: any) => `${object.__typename}-${objec
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dataIdFromObject = (object: any) => {
   switch (object.__typename) {
-    case "APIConfigLeanplum":
-      return `${object.__typename}-${object.appId}`;
     case "Level":
     case "Duel":
     case "LevelSlot":

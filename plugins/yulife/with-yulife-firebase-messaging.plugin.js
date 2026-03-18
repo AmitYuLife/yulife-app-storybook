@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { withDangerousMod } = require("@expo/config-plugins");
 
-// This combines Yulife, Leanplum and Intercom push notifications
+// This combines Yulife and Intercom push notifications
 
 const YULIFE_PUSH_HANDLER = (packageName) => `package ${packageName};
 
@@ -85,7 +85,7 @@ public class YulifePushNotificationHandler {
         Intent intent;
         
         if (deeplink != null) {
-            // Use ACTION_VIEW with the URI for deep linking, same as Leanplum
+            // Use ACTION_VIEW with the URI for deep linking
             intent = new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(deeplink));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         } else {
@@ -162,8 +162,6 @@ const FIREBASE_MESSAGING = (packageName) => `package ${packageName};
 import androidx.annotation.NonNull;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.leanplum.LeanplumFirebaseServiceHandler;
-
 import java.util.Map;
 import android.content.Intent;
 import android.util.Log;
@@ -172,13 +170,11 @@ import com.intercom.reactnative.IntercomModule;
 
 public class YulifeFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "YulifeFirebaseMessaging";
-    private final LeanplumFirebaseServiceHandler leanplumHandler = new LeanplumFirebaseServiceHandler();
     private YulifePushNotificationHandler yulifeHandler;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        leanplumHandler.onCreate(getApplicationContext());
         yulifeHandler = new YulifePushNotificationHandler(getApplicationContext());
         Log.d(TAG, "Firebase Messaging Service created");
     }
@@ -187,33 +183,30 @@ public class YulifeFirebaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(String token) {
         super.onNewToken(token);
         Log.d(TAG, "New FCM token: " + token);
-        leanplumHandler.onNewToken(token, getApplicationContext());
         IntercomModule.sendTokenToIntercom(getApplication(), token);
     }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d(TAG, "Message received from: " + remoteMessage.getFrom());
-        
+
         // Log full message data
         if (remoteMessage.getData() != null && !remoteMessage.getData().isEmpty()) {
             Log.d(TAG, "Received push data: " + remoteMessage.getData().toString());
         }
-        
+
         // First, check if it's a Yulife backend notification
         if (yulifeHandler != null && yulifeHandler.isYulifePush(remoteMessage)) {
             Log.d(TAG, "Handling as Yulife push notification");
             yulifeHandler.handlePushNotification(remoteMessage);
-        } 
+        }
         // Then check if it's an Intercom push
         else if (IntercomModule.isIntercomPush(remoteMessage)) {
             Log.d(TAG, "Handling as Intercom push notification");
             IntercomModule.handleRemotePushMessage(getApplication(), remoteMessage);
-        } 
-        // Finally, fall back to Leanplum
+        }
         else {
-            Log.d(TAG, "Handling as Leanplum push notification");
-            leanplumHandler.onMessageReceived(remoteMessage, getApplicationContext());
+            Log.d(TAG, "Unhandled push notification from: " + remoteMessage.getFrom());
         }
     }
 }`;

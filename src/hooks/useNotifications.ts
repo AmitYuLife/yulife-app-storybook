@@ -1,15 +1,26 @@
-import { Message } from "@leanplum/react-native-sdk";
-import leanplum from "@services/logging/leanplum";
 import moment from "moment";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { parseJSON, appVersionSatisfies } from "@utils";
+import { parseJSON } from "@utils";
 import { gql, UserProfileBadgeCountType } from "@graphql/__generated";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { isNumber, sortBy } from "lodash";
+import { sortBy } from "lodash";
 
-type MessageWithSource = Message & {
-  source: "leanplum" | "api";
+export type InboxMessage = {
+  messageId: string;
+  title: string;
+  subtitle: string;
+  imageUrl?: string;
+  iconImageUrl?: string;
+  deliveryTimestamp: string;
+  isRead: boolean;
+  expirationTimestamp?: string;
+  source: "api";
+  data: {
+    source: "api";
+    isRead: boolean;
+    onPress: string;
+  };
 };
 
 /**
@@ -17,8 +28,6 @@ type MessageWithSource = Message & {
  * @returns
  */
 export const useNotifications = () => {
-  const [leanplumMessages, setLeanplumMessages] = useState<MessageWithSource[]>([]);
-  const [fetchedFromLeanplum, setFetchedFromLeanplum] = useState<boolean>(false);
   const [fetchMessagesFromApi, { loading, data: appInbox }] = useLazyQuery(gql("GetInboxMessagesDocument"), {
     fetchPolicy: "network-only",
   });
@@ -27,10 +36,10 @@ export const useNotifications = () => {
   const dispatch = useDispatch();
 
   /**
-   * The combined messages from both leanplum and appInbox
+   * The messages from appInbox
    */
   const messages = useMemo(() => {
-    const appInboxMessages: MessageWithSource[] = (appInbox?.data?.messages || []).map((m) => ({
+    const appInboxMessages: InboxMessage[] = (appInbox?.data?.messages || []).map((m) => ({
       messageId: m.id,
       title: m.title,
       subtitle: m.body,
@@ -47,75 +56,40 @@ export const useNotifications = () => {
       },
     }));
 
-    return sortBy([...appInboxMessages, ...leanplumMessages], (item) =>
-      moment(item.deliveryTimestamp).toDate()
-    ).reverse();
-  }, [leanplumMessages, appInbox?.data?.messages]);
+    return sortBy(appInboxMessages, (item) => moment(item.deliveryTimestamp).toDate()).reverse();
+  }, [appInbox?.data?.messages]);
 
   /**
    * Marks all messages as seen
    */
   const markAllMessagesAsSeen = useCallback(async () => {
-    const leanplumUnread = messages.filter((m) => !m.isRead && m.source === "leanplum").map((m) => m.messageId);
-    const serverUnread = messages.filter((m) => !m.isRead && m.source === "api").map((m) => m.messageId);
+    const serverUnread = messages.filter((m) => !m.isRead).map((m) => m.messageId);
 
     if (serverUnread.length > 0) {
       await clearUserProfileBadgeCount({ variables: { type: UserProfileBadgeCountType.InboxMessages } });
     }
-
-    await Promise.all(leanplumUnread.map((messageId) => leanplum.markAsRead(messageId)));
   }, [messages, clearUserProfileBadgeCount]);
 
   /**
    * Marks all messages as seen when the messages are loaded
    */
   useEffect(() => {
-    if (!loading && messages.length > 0 && fetchedFromLeanplum) {
+    if (!loading && messages.length > 0) {
       markAllMessagesAsSeen().catch();
     }
   }, [loading, messages, markAllMessagesAsSeen]);
 
   /**
-   * Fetches messages from Leanplum (from device local storage) and sets them to the state
-   * The inbox is automatically fetched when the app loads
-   */
-  const fetchMessagesFromLeanplum = useCallback(async () => {
-    if (!leanplum?.getInbox) {
-      return;
-    }
-
-    const inbox = await leanplum.getInbox();
-    const days = appInbox?.data?.maximumAgeOfMessageInDays || 7;
-
-    const mappedMessages = inbox.allMessages
-      .filter((message) => moment(message.deliveryTimestamp).isAfter(moment().subtract(days, "days").startOf("day")))
-      .filter((message) =>
-        // We're doing version check in client due to the fact that we can't validate client's version in the server since these messages are redirected by third party service and no way to know which version of the app at the receiving end when the initial sending happens
-        message.data?.requiredAppVersion ? appVersionSatisfies(message.data?.requiredAppVersion as string) : true
-      )
-      .sort((a, b) => moment.utc(b.deliveryTimestamp).unix() - moment.utc(a.deliveryTimestamp).unix())
-      .map((message) => ({
-        ...message,
-        imageUrl: (message.data?.inboxMessageImageUrl as string) || message.imageUrl,
-        source: "leanplum" as const,
-      }));
-
-    setFetchedFromLeanplum(true);
-    setLeanplumMessages(mappedMessages);
-  }, [appInbox, setFetchedFromLeanplum, setLeanplumMessages]);
-
-  /**
    * When a message is opened
    */
   const onOpen = useCallback(
-    (messageId: string, data: Message["data"]) => {
-      if (data?.source === "api" && !data?.isRead) {
+    (messageId: string, data: InboxMessage["data"]) => {
+      if (!data?.isRead) {
         markInboxMessagesAsSeen({ variables: { messageIds: [messageId] } })
           .then(() => fetchMessagesFromApi())
           .catch();
       }
 
-      // SDUI is coming from LP or API app inbox
       if (data?.onPress) {
         const { data: onPressData, isValid } = parseJSON(data.onPress as string, ["type", "payload"]);
 
@@ -125,25 +99,10 @@ export const useNotifications = () => {
             payload: { serverPayload: onPressData.payload },
           });
         }
-
-        return;
-      }
-
-      // If it's leanplum and we want to open the native LP message
-      if (data?.source !== "api") {
-        leanplum.readInbox?.(messageId);
-        return;
       }
     },
     [dispatch, markInboxMessagesAsSeen, fetchMessagesFromApi]
   );
-
-  useEffect(() => {
-    if (isNumber(appInbox?.data?.maximumAgeOfMessageInDays)) {
-      leanplum.refreshInbox?.();
-      fetchMessagesFromLeanplum();
-    }
-  }, [appInbox?.data?.maximumAgeOfMessageInDays, fetchMessagesFromLeanplum]);
 
   // initial load
   useEffect(() => {
@@ -154,10 +113,10 @@ export const useNotifications = () => {
     () => ({
       messages,
       onOpen,
-      isInitialized: fetchedFromLeanplum && !loading,
+      isInitialized: !loading,
       fetchNotifications: fetchMessagesFromApi,
       maximumAgeOfMessageInDays: appInbox?.data?.maximumAgeOfMessageInDays,
     }),
-    [onOpen, fetchedFromLeanplum, messages, fetchMessagesFromApi, loading, appInbox?.data?.maximumAgeOfMessageInDays]
+    [onOpen, messages, fetchMessagesFromApi, loading, appInbox?.data?.maximumAgeOfMessageInDays]
   );
 };

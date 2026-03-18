@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
-import leanplum from "@services/logging/leanplum";
 import { ROUTES } from "@navigation/constants";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { IDebugItem } from "@components/screens/member/debug/debug.screen";
@@ -34,7 +33,6 @@ enum DebugCodes {
   videoPlayer = "video-player",
   dailySurvey = "daily-survey",
   levelSelector = "level-selector",
-  toggleLeanplum = "toggle-leanplum",
   sleepMeditation = "sleep-meditation",
   inspectOpponent = "inspect-opponent",
   showLeaderboardSearch = "show-leaderboard-search",
@@ -100,10 +98,6 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
 
   const formatTitle = useCallback((code: string): string => {
     const formattedTitle = upperFirst(code.replace(/-/g, " "));
-
-    if (code.startsWith(DebugCodes.toggleLeanplum)) {
-      return `${formattedTitle} (${leanplum.isDevMode ? "dev" : "prod"})`;
-    }
 
     return formattedTitle;
   }, []);
@@ -235,9 +229,6 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
             });
             labels[4].onPress();
             return handleClose();
-
-          case DebugCodes.toggleLeanplum:
-            return leanplum.toggleDevelopmentMode();
 
           case DebugCodes.sleepMeditation:
             return dispatch({

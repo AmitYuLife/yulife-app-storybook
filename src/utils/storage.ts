@@ -8,7 +8,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
  */
 export enum StorageKey {
   region = "@yulife:region",
-  leanplum = "@YuStore:leanplum",
   fitkitPermission = "@Store:fitkit",
   mobileAssets = "@YuStore:mobileAssets",
   fitKitAuthorised = "@RNFitKit:authorised",

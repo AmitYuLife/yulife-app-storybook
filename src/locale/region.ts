@@ -36,11 +36,6 @@ type RegionConfig = {
     ios: string;
     android: string;
   };
-  leanplum: {
-    appId: string;
-    prodKey: string;
-    devKey?: string;
-  };
   customerio?: {
     apiKey: string;
     siteId: string;
