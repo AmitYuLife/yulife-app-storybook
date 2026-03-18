@@ -6,7 +6,6 @@ import {
   ContentItemChoiceFragment as GqlChoice,
   ContentItemConfirmCheckboxType,
 } from "@graphql/__generated";
-import { useTheme } from "@modules/themes/hooks/useTheme";
 import { Style, templateTextStyles, TemplateTextType, StyleSheet } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { CheckBox } from "@molecules";
@@ -15,6 +14,7 @@ import { CONTENT_ITEM_CHOICE } from "@ids";
 import colours from "@styles/colours";
 import { templateTextStylesLineHeight } from "@styles/textStyles";
 import { DETOX_ENABLED } from "@services/socket";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export type ChoiceAnswerValue = Record<string, boolean | string> | undefined;
 
@@ -121,17 +121,19 @@ export const ContentItemChoiceBase = (props: Props) => {
   const serverSelectedStyles = useMemo(() => mapServerStyles(selectedStyles), [selectedStyles]);
 
   const renderOptions = useMemo(() => (otherOption ? [...options, otherOption] : options), [options, otherOption]);
+  const designStyles = useMemo(() => {
+    if (design !== ContentItemChoiceDesign.Default) {
+      return {} as typeof defaultDesignStyles & { checkedRowStyles: ViewStyle };
+    }
 
-  const themedCheckedRowStyles = useMemo(
-    () => ({
-      backgroundColor: theme.colors.primary.p20,
-      borderColor: theme.colors.primary.p60,
-    }),
-    [theme]
-  );
-
-  const designStyles: typeof defaultDesignStyles =
-    design === ContentItemChoiceDesign.Default ? defaultDesignStyles : ({} as never);
+    return {
+      ...defaultDesignStyles,
+      checkedRowStyles: {
+        backgroundColor: theme.colors.primary.p20,
+        borderColor: theme.colors.primary.p60,
+      },
+    };
+  }, [design, theme]);
 
   const isOtherOptionMultiline = design === ContentItemChoiceDesign.Default;
 
@@ -140,7 +142,7 @@ export const ContentItemChoiceBase = (props: Props) => {
       key={id}
       testID={CONTENT_ITEM_CHOICE(id)}
       collapsable={DETOX_ENABLED ? false : undefined}
-      style={[baseStyles.choiceWrapper, designStyles.choiceWrapper || {}, mapServerStyles(serverStyles)]}
+      style={[baseStyles.choiceWrapper, designStyles?.choiceWrapper || {}, mapServerStyles(serverStyles)]}
     >
       {renderOptions.map(({ value: optionKey, label }) => {
         const isOtherOption = otherOptionInputKey === optionKey;
@@ -168,7 +170,7 @@ export const ContentItemChoiceBase = (props: Props) => {
               rowStyles={{
                 ...(alignTopCheckbox ? { alignItems: "flex-start", marginTop: 0 } : { alignItems: "center" }),
                 ...(designStyles.rowStyles || {}),
-                ...(isChecked ? themedCheckedRowStyles : {}),
+                ...(isChecked ? designStyles.checkedRowStyles || {} : {}),
                 ...serverRowStyles,
                 ...(isChecked ? serverSelectedStyles : {}),
               }}
