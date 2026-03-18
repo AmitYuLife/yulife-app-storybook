@@ -18,11 +18,6 @@ fragment APIConfig on APIConfig {
     ios
     android
   }
-  leanplum {
-    appId
-    prodKey
-    devKey
-  }
   customerio {
     apiKey
     siteId

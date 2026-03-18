@@ -1,5 +1,5 @@
 import { useTranslation } from "@hooks";
-import { Message } from "@leanplum/react-native-sdk";
+import { InboxMessage } from "@hooks";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { FlashList } from "@shopify/flash-list";
 import { Colours, Style, StyleSheet } from "@styles";
@@ -17,7 +17,7 @@ import {
 
 interface IProps {
   onClose: () => void;
-  notifications: Message[];
+  notifications: InboxMessage[];
   isInitialized?: boolean;
   onRefresh: () => void;
   onOpen: ReturnType<typeof useNotifications>["onOpen"];
@@ -25,7 +25,7 @@ interface IProps {
 }
 
 interface NotificationReducer {
-  result: (Message | string)[];
+  result: (InboxMessage | string)[];
   hasTodayMarker: boolean;
   hasLast7Marker: boolean;
   today: string;
@@ -71,7 +71,7 @@ export const NotificationsScreen = ({
   ).result;
 
   const renderItem = useCallback(
-    ({ item }: { item: Message | string }) => {
+    ({ item }: { item: InboxMessage | string }) => {
       if (typeof item === "string") {
         const isToday = item === t["screens.notifications.headers.today"];
         return (

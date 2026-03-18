@@ -10,7 +10,7 @@ plugin 'cocoapods-bugsnag'
 pod 'RNFitKit', :path => '../node_modules/@yu-life/react-native-fitkit/ios'
 # SDWebImage version pinning removed - expo-image manages this dependency
 
-dynamic_frameworks = ['Leanplum-iOS-SDK', 'CleverTap-iOS-SDK', 'SDWebImage']
+dynamic_frameworks = ['CleverTap-iOS-SDK', 'SDWebImage']
 pre_install do |installer|
   Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
   installer.pod_targets.each do |pod|

@@ -74,7 +74,6 @@
     "@expo/config-plugins": "~9.0.0",
     "@hcaptcha/react-native-hcaptcha": "2.0.5",
     "@intercom/intercom-react-native": "^8.6.0",
-    "@leanplum/react-native-sdk": "^2.3.0",
     "@lottiefiles/react-lottie-player": "^3.6.0",
     "@react-native-async-storage/async-storage": "2.1.2",
     "@react-native-clipboard/clipboard": "^1.16.1",
