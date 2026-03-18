@@ -76,7 +76,7 @@ const ReflectionReminderModal = ({ callback, componentId }: IReflectionReminderM
   return (
     <GenericScreen
       ctaLabel={t("modals.reflection_reminder.cta_label")}
-      ctaLabelSecondary={t("labels.cta.skip")}
+      ctaLabelSecondary={t("modals.reflection_reminder.secondary_cta_label")}
       heading={t("modals.reflection_reminder.heading")}
       onPress={handleConfirm}
       onPressSecondary={dismissModal}
