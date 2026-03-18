@@ -7,7 +7,7 @@ import { permissionsStyles } from "./_styles";
 import {
   IProviderPermission,
   ISystemPermission,
-} from "@yu-life/react-native-yu-health/lib/typescript/src/interface/permissions.interface";
+} from "@yu-life/react-native-yu-health/interface/permissions.interface";
 import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 
 interface IProps {

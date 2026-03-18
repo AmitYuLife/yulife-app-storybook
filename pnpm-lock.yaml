@@ -98,8 +98,8 @@ importers:
         specifier: 1.0.41
         version: 1.0.41(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))
       '@yu-life/react-native-yu-health':
-        specifier: ^1.4.6
-        version: 1.4.6(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+        specifier: link:./targets/YuHealth
+        version: link:targets/YuHealth
       '@yu-life/react-native-yu-watch':
         specifier: 1.1.1
         version: 1.1.1(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -3151,13 +3151,6 @@ packages:
     resolution: {integrity: sha1-z+tOhQKy0i+93pMC2HyE0bBhH20=, tarball: https://gitlab.com/api/v4/projects/7775989/packages/npm/@yu-life/react-native-fitkit/-/@yu-life/react-native-fitkit-1.0.41.tgz}
     peerDependencies:
       react-native: ^0.62.0
-
-  '@yu-life/react-native-yu-health@1.4.6':
-    resolution: {integrity: sha1-ELs60IeY4cA8UvQK6IK1OViqzXM=, tarball: https://gitlab.com/api/v4/projects/52134022/packages/npm/@yu-life/react-native-yu-health/-/@yu-life/react-native-yu-health-1.4.6.tgz}
-    engines: {node: '>= 16.0.0'}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
 
   '@yu-life/react-native-yu-watch@1.1.1':
     resolution: {integrity: sha1-WrgL39+Q1fAWcBmjyH0B+opPqHg=, tarball: https://gitlab.com/api/v4/projects/55451146/packages/npm/@yu-life/react-native-yu-watch/-/@yu-life/react-native-yu-watch-1.1.1.tgz}
@@ -12506,7 +12499,9 @@ snapshots:
       metro-runtime: 0.82.5
     transitivePeerDependencies:
       - '@babel/core'
+      - bufferutil
       - supports-color
+      - utf-8-validate
 
   '@react-native/normalize-color@2.1.0': {}
 
@@ -13384,11 +13379,6 @@ snapshots:
 
   '@yu-life/react-native-fitkit@1.0.41(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))':
     dependencies:
-      react-native: 0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0)
-
-  '@yu-life/react-native-yu-health@1.4.6(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
-    dependencies:
-      react: 19.0.0
       react-native: 0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0)
 
   '@yu-life/react-native-yu-watch@1.1.1(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':

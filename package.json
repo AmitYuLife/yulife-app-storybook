@@ -46,7 +46,7 @@
     "start:storybook:web": "storybook dev ",
     "build:storybook:web": "pnpm translations:download:local && storybook build",
     "pod:install": "cd ios && bundle exec pod install --repo-update",
-    "pod:install:full": "ENABLE_YUWATCH=1 pnpm pod:install:no-watch",
+    "pod:install:full": "ENABLE_YUWATCH=1 pnpm pod:install",
     "postpod:install:full": "cp ios/Podfile.lock support/ios/Podfile.lock | true",
     "start": "run-p start:bundler tsc:watch",
     "test": "run-p lint tsc test:unit",
@@ -60,9 +60,7 @@
     "watch:translations": "ts-node ./scripts/watch-translations.ts",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "bootstrap": "pnpm install && pnpm regenerate && pnpm pod:install",
-    "yuhealth:push": "rm -rf ../react-native-yu-health/android/src/main/java && cp -r node_modules/@yu-life/react-native-yu-health/android/src/main/java/ ../react-native-yu-health/android/src/main/java",
-    "yuhealth:pull": "rm -rf node_modules/@yu-life/react-native-yu-health/android/src/main/java/ && cp -r ../react-native-yu-health/android/src/main/java/ node_modules/@yu-life/react-native-yu-health/android/src/main/java/"
+    "bootstrap": "pnpm install && pnpm regenerate && pnpm pod:install"
   },
   "dependencies": {
     "@apollo/client": "3.13.9",
@@ -85,7 +83,7 @@
     "@stripe/stripe-react-native": "0.43.0",
     "@use-it/interval": "^1.0.0",
     "@yu-life/react-native-fitkit": "1.0.41",
-    "@yu-life/react-native-yu-health": "^1.4.6",
+    "@yu-life/react-native-yu-health": "link:./targets/YuHealth",
     "@yu-life/react-native-yu-watch": "1.1.1",
     "@yu-life/yulife-bdd-framework": "0.4.0",
     "ajv": "^8.18.0",

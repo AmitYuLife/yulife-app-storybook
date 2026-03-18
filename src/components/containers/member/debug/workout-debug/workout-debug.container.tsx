@@ -68,10 +68,10 @@ const WorkoutDebugContainer = () => {
                 <TextTemplate type="b1b">Workouts found in last 12h: ({workouts.length})</TextTemplate>
               </View>
               <View style={styles.workoutContainer}>
-                {workouts.map((workout: IActivityQueryResponse) => (
-                  <View style={styles.workout} key={workout.startTime}>
+                {workouts.map((workout: IActivityQueryResponse, index: number) => (
+                  <View style={styles.workout} key={workout.startTime.toISOString()}>
                     <View style={styles.workoutHeader}>
-                      <TextTemplate type="b2b">{workout.activity}</TextTemplate>
+                      <TextTemplate type="b2b">Workout {index + 1}</TextTemplate>
                     </View>
                     <TextTemplate type="l1">
                       <TextTemplate type="l1b">Start time: </TextTemplate>

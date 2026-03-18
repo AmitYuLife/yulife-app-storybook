@@ -16,6 +16,7 @@ module.exports = (app) => {
     [settingsPlugin, {}],
     [permissionRationalePlugin, {}],
     [mainApplicationPlugin, {}],
+    [autolinkingPlugin, {}],
   ]);
 };
 
@@ -26,7 +27,8 @@ const appBuildGradlePlugin = (app) => {
     splitContents.splice(
       dependenciesLine + 1,
       0,
-      `implementation "androidx.health.connect:connect-client:1.1.0-alpha06"`
+      `implementation "androidx.health.connect:connect-client:1.1.0-alpha06"`,
+      `implementation project(':react-native-yu-health')`
     );
     config.modResults.contents = splitContents.join(`\n`);
     return config;
@@ -199,6 +201,8 @@ const settingsPlugin = (config) => {
 
       const splitSettings = file.split(`\n`);
       splitSettings.splice(splitSettings.length - 2, 0, `include ':samsung-health-data'`);
+      splitSettings.splice(splitSettings.length - 2, 0, `include ':react-native-yu-health'`);
+      splitSettings.splice(splitSettings.length - 2, 0, `project(':react-native-yu-health').projectDir = new File(rootProject.projectDir, '../targets/YuHealth/android')`);
 
       fs.writeFileSync(path, splitSettings.join(`\n`));
 
@@ -269,6 +273,56 @@ class PermissionsRationaleActivity: AppCompatActivity() {
         setContentView(webView)
     }
 }`;
+
+const autolinkingPlugin = (app) => {
+  return withAppBuildGradle(app, (config) => {
+    // Inject a Gradle task that patches autolinking.json to include YuHealth
+    // before the C++ autolinking code generation runs.
+    const patchTask = `
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+tasks.register("patchAutolinkingForYuHealth") {
+    def autolinkingFile = rootProject.layout.buildDirectory.file("generated/autolinking/autolinking.json")
+    doLast {
+        def file = autolinkingFile.get().asFile
+        if (file.exists()) {
+            def json = new JsonSlurper().parseText(file.text)
+            if (json.dependencies && !json.dependencies.containsKey("@yu-life/react-native-yu-health")) {
+                json.dependencies["@yu-life/react-native-yu-health"] = [
+                    root: rootProject.projectDir.absolutePath + "/../targets/YuHealth",
+                    name: "@yu-life/react-native-yu-health",
+                    platforms: [
+                        android: [
+                            sourceDir: rootProject.projectDir.absolutePath + "/../targets/YuHealth/android",
+                            packageImportPath: "import com.yuhealth.YuHealthPackage;",
+                            packageInstance: "new YuHealthPackage()",
+                            buildTypes: [],
+                            libraryName: "RNYuHealthSpec",
+                            componentDescriptors: [],
+                            cmakeListsPath: rootProject.projectDir.absolutePath + "/../targets/YuHealth/android/build/generated/source/codegen/jni/CMakeLists.txt",
+                            cxxModuleCMakeListsModuleName: null,
+                            cxxModuleCMakeListsPath: null,
+                            cxxModuleHeaderName: null
+                        ]
+                    ]
+                ]
+                file.text = JsonOutput.prettyPrint(JsonOutput.toJson(json))
+            }
+        }
+    }
+}
+
+tasks.configureEach { task ->
+    if (task.name == "generateAutolinkingNewArchitectureFiles" || task.name == "generateAutolinkingPackageList") {
+        task.dependsOn("patchAutolinkingForYuHealth")
+    }
+}
+`;
+    config.modResults.contents += patchTask;
+    return config;
+  });
+};
 
 const permissionRationalePlugin = (app) => {
   return withDangerousMod(app, [
