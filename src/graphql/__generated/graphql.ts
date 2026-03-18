@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -6968,7 +6969,6 @@ export type Mutation = {
   setPlayerBirthday?: Maybe<LifeEvents>;
   /** Updates the shares of a beneficiary */
   setShareOfBenefitForProduct: CustomerProductBeneficiaries;
-  setTeamVsTeamEventPublished: TeamVsTeamEvent;
   setTestMobileGameTheme?: Maybe<Scalars["Boolean"]["output"]>;
   setTournamentEventPublished: TournamentEvent;
   setUserPathwayProgress?: Maybe<Scalars["Boolean"]["output"]>;
@@ -7749,11 +7749,6 @@ export type MutationSetPlayerBirthdayArgs = {
 export type MutationSetShareOfBenefitForProductArgs = {
   productId: Scalars["ID"]["input"];
   shares: Array<BeneficiaryShareOfBenefit>;
-};
-
-export type MutationSetTeamVsTeamEventPublishedArgs = {
-  eventId: Scalars["ID"]["input"];
-  published: Scalars["Boolean"]["input"];
 };
 
 export type MutationSetTestMobileGameThemeArgs = {
@@ -8934,6 +8929,7 @@ export type Query = {
   getTeamSocialGroups: GetTeamSocialGroupsResponse;
   getTeamSocialGroupsCount: Scalars["Int"]["output"];
   getTodayEarnings: TodayEarnings;
+  getTopupPaymentOptions: TopupPaymentOptions;
   /** Get total coins for user to refresh coin amount */
   getTotalCoins: Scalars["Int"]["output"];
   getTournamentEvent: TournamentEvent;
@@ -9757,6 +9753,11 @@ export type QueryGetTeamSocialGroupsArgs = {
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy?: InputMaybe<OrderBy>;
   search?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetTopupPaymentOptionsArgs = {
+  includeOtherPaymentMethods?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -12156,6 +12157,29 @@ export enum TopBarType {
   White = "WHITE",
 }
 
+export type TopupOtherPaymentMethods = {
+  __typename?: "TopupOtherPaymentMethods";
+  cards: Array<TopupPaymentOptionMethod>;
+  directDebits: Array<TopupPaymentOptionMethod>;
+};
+
+export type TopupPaymentOptionMethod = {
+  __typename?: "TopupPaymentOptionMethod";
+  accountNumberEnding?: Maybe<Scalars["String"]["output"]>;
+  businessBillingAddressId?: Maybe<Scalars["String"]["output"]>;
+  businessPaymentMethodId: Scalars["String"]["output"];
+  cardType?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type TopupPaymentOptions = {
+  __typename?: "TopupPaymentOptions";
+  bacs: Scalars["Boolean"]["output"];
+  card?: Maybe<TopupPaymentOptionMethod>;
+  directDebit?: Maybe<TopupPaymentOptionMethod>;
+  otherPaymentMethodCount: Scalars["Int"]["output"];
+  otherPaymentMethods?: Maybe<TopupOtherPaymentMethods>;
+};
+
 export type TournamentEvent = {
   __typename?: "TournamentEvent";
   createdAt?: Maybe<Scalars["String"]["output"]>;
@@ -13808,7 +13832,6 @@ export type ApiConfigFragment = {
     eula: string;
   };
   intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
-  leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
   customerio?: { __typename?: "APIConfigCustomerio"; apiKey: string; siteId: string; region: string } | null;
   datadog: {
     __typename?: "APIConfigDatadog";
@@ -24962,7 +24985,6 @@ export type GetPublicYuApiConfigQuery = {
       eula: string;
     };
     intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
-    leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
     customerio?: { __typename?: "APIConfigCustomerio"; apiKey: string; siteId: string; region: string } | null;
     datadog: {
       __typename?: "APIConfigDatadog";
@@ -25008,7 +25030,6 @@ export type GetPublicYuApiConfigWithFingerprintThemeQuery = {
       eula: string;
     };
     intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
-    leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
     customerio?: { __typename?: "APIConfigCustomerio"; apiKey: string; siteId: string; region: string } | null;
     datadog: {
       __typename?: "APIConfigDatadog";
@@ -25083,7 +25104,6 @@ export type GetPublicYuApiConfigWithThemeQuery = {
       eula: string;
     };
     intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
-    leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
     customerio?: { __typename?: "APIConfigCustomerio"; apiKey: string; siteId: string; region: string } | null;
     datadog: {
       __typename?: "APIConfigDatadog";
@@ -40223,7 +40243,7 @@ export type GetWellbeingHubItemsQueryVariables = Exact<{
 
 export type GetWellbeingHubItemsQuery = {
   __typename?: "Query";
-  listItems?: Array<{
+  listItems: Array<{
     __typename?: "WellbeingHubItem";
     id: string;
     sduiStepId: string;
@@ -40239,7 +40259,7 @@ export type GetWellbeingHubItemsQuery = {
     location?: string | null;
     locationLabel?: string | null;
   } | null;
-  categories?: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
+  categories: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
   linkedBusinesses: Array<{
     __typename?: "UserBusinessLink";
     id: string;
@@ -46909,18 +46929,6 @@ export const ApiConfigFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "appId" } },
                 { kind: "Field", name: { kind: "Name", value: "ios" } },
                 { kind: "Field", name: { kind: "Name", value: "android" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "leanplum" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "appId" } },
-                { kind: "Field", name: { kind: "Name", value: "prodKey" } },
-                { kind: "Field", name: { kind: "Name", value: "devKey" } },
               ],
             },
           },
@@ -77183,18 +77191,6 @@ export const GetPublicYuApiConfigDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "leanplum" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "appId" } },
-                { kind: "Field", name: { kind: "Name", value: "prodKey" } },
-                { kind: "Field", name: { kind: "Name", value: "devKey" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "customerio" },
             selectionSet: {
               kind: "SelectionSet",
@@ -77343,18 +77339,6 @@ export const GetPublicYuApiConfigWithFingerprintThemeDocument = {
                 { kind: "Field", name: { kind: "Name", value: "appId" } },
                 { kind: "Field", name: { kind: "Name", value: "ios" } },
                 { kind: "Field", name: { kind: "Name", value: "android" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "leanplum" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "appId" } },
-                { kind: "Field", name: { kind: "Name", value: "prodKey" } },
-                { kind: "Field", name: { kind: "Name", value: "devKey" } },
               ],
             },
           },
@@ -77585,18 +77569,6 @@ export const GetPublicYuApiConfigWithThemeDocument = {
                 { kind: "Field", name: { kind: "Name", value: "appId" } },
                 { kind: "Field", name: { kind: "Name", value: "ios" } },
                 { kind: "Field", name: { kind: "Name", value: "android" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "leanplum" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "appId" } },
-                { kind: "Field", name: { kind: "Name", value: "prodKey" } },
-                { kind: "Field", name: { kind: "Name", value: "devKey" } },
               ],
             },
           },
