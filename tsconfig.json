@@ -111,6 +111,12 @@
       "@modules/*": [
         "./src/modules/*"
       ],
+      "@yu-life/react-native-yu-health": [
+        "./targets/YuHealth/src/index"
+      ],
+      "@yu-life/react-native-yu-health/*": [
+        "./targets/YuHealth/src/*"
+      ],
       "@storybook/react-webpack5": [
         "./node_modules/@storybook/react-webpack5/dist/index.d.ts"
       ],

@@ -31,6 +31,7 @@ module.exports = api => {
           '@ids': './e2e/_utils/navigation/ids',
           '@theme': './src/theme',
           '@modules': './src/modules',
+          '@yu-life/react-native-yu-health': './targets/YuHealth/src',
         },
       },
     ],

@@ -4,6 +4,10 @@ const path = require("path");
 
 // Updated for Expo SDK 53 with Swift AppDelegate
 module.exports = (data) => {
+  return plugins.withPlugins(data, [appDelegatePlugin, podfilePlugin]);
+};
+
+const appDelegatePlugin = (data) => {
   return plugins.withDangerousMod(data, [
     "ios",
     async (config) => {
@@ -45,6 +49,36 @@ extension AppDelegate {
       }
 
       fs.writeFileSync(appDelegatePath, contents);
+      return config;
+    },
+  ]);
+};
+
+const podfilePlugin = (data) => {
+  return plugins.withDangerousMod(data, [
+    "ios",
+    async (config) => {
+      const podfilePath = path.join(config.modRequest.platformProjectRoot, "Podfile");
+
+      if (!fs.existsSync(podfilePath)) {
+        console.warn("Podfile not found, skipping YuHealth pod injection");
+        return config;
+      }
+
+      let contents = fs.readFileSync(podfilePath, "utf-8");
+
+      const podLine = `  pod 'react-native-yu-health', :path => '../targets/YuHealth'`;
+
+      if (!contents.includes("react-native-yu-health")) {
+        // Insert after the first "use_expo_modules!" or "target" block's opening
+        contents = contents.replace(
+          /use_expo_modules!/,
+          `use_expo_modules!\n${podLine}`
+        );
+
+        fs.writeFileSync(podfilePath, contents);
+      }
+
       return config;
     },
   ]);

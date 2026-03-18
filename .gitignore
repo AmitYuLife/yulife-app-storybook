@@ -122,6 +122,8 @@ dist
 
 !support/android
 !support/ios
+!targets/YuHealth/android
+!targets/YuHealth/ios
 
 allure-*
 artifacts/
@@ -132,3 +134,4 @@ build-logs/
 
 # corepack
 .cache/node/corepack/
+targets/YuHealth/android/build

@@ -1,0 +1,12 @@
+{
+  "name": "@yu-life/react-native-yu-health",
+  "version": "1.5.0",
+  "description": "YuLife Health module",
+  "react-native": "./src/index",
+  "source": "./src/index",
+  "codegenConfig": {
+    "name": "RNYuHealthSpec",
+    "type": "modules",
+    "jsSrcsDir": "./src"
+  }
+}

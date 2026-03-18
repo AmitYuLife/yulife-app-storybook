@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { withDangerousMod } = require("@expo/config-plugins");
+const { withDangerousMod, withAppBuildGradle, withPlugins } = require("@expo/config-plugins");
 
 // This combines Yulife and Intercom push notifications
 
@@ -211,7 +211,24 @@ public class YulifeFirebaseMessagingService extends FirebaseMessagingService {
     }
 }`;
 
-module.exports = (app) => {
+const firebaseBuildGradlePlugin = (app) => {
+  return withAppBuildGradle(app, (config) => {
+    const contents = config.modResults.contents;
+    if (!contents.includes("firebase-messaging")) {
+      const splitContents = contents.split(`\n`);
+      const dependenciesLine = splitContents.findIndex((line) => line.includes(`dependencies {`));
+      splitContents.splice(
+        dependenciesLine + 1,
+        0,
+        `    implementation 'com.google.firebase:firebase-messaging:25.0.1'`
+      );
+      config.modResults.contents = splitContents.join(`\n`);
+    }
+    return config;
+  });
+};
+
+const firebaseFilesPlugin = (app) => {
   return withDangerousMod(app, [
     "android",
     async (config) => {
@@ -232,4 +249,8 @@ module.exports = (app) => {
       return config;
     },
   ]);
+};
+
+module.exports = (app) => {
+  return withPlugins(app, [firebaseBuildGradlePlugin, firebaseFilesPlugin]);
 };

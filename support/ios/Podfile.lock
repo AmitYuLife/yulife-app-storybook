@@ -234,8 +234,6 @@ PODS:
     - Intercom (~> 18.7.3)
     - React-Core
   - JSONSafeEncoding (2.0.0)
-  - Leanplum-iOS-SDK (6.6.1):
-    - CleverTap-iOS-SDK (~> 7.1)
   - libavif/core (1.0.0)
   - libavif/libdav1d (1.0.0):
     - libavif/core
@@ -1648,9 +1646,6 @@ PODS:
     - React
   - react-native-in-app-review (4.4.2):
     - React-Core
-  - react-native-leanplum (2.4.0):
-    - Leanplum-iOS-SDK (~> 6.4)
-    - React-Core
   - react-native-netinfo (11.4.1):
     - React-Core
   - react-native-safe-area-context (5.6.2):
@@ -1850,7 +1845,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-yu-health (1.4.6):
+  - react-native-yu-health (1.5.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2692,13 +2687,12 @@ DEPENDENCIES:
   - react-native-encrypted-storage (from `../node_modules/react-native-encrypted-storage`)
   - react-native-google-cast (from `../node_modules/react-native-google-cast`)
   - react-native-in-app-review (from `../node_modules/react-native-in-app-review`)
-  - "react-native-leanplum (from `../node_modules/@leanplum/react-native-sdk`)"
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - react-native-webview (from `../node_modules/react-native-webview`)
-  - "react-native-yu-health (from `../node_modules/@yu-life/react-native-yu-health`)"
+  - react-native-yu-health (from `../targets/YuHealth`)
   - "react-native-yu-watch (from `../node_modules/@yu-life/react-native-yu-watch`)"
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-oscompat (from `../node_modules/react-native/ReactCommon/oscompat`)
@@ -2767,7 +2761,6 @@ SPEC REPOS:
     - HMSegmentedControl
     - Intercom
     - JSONSafeEncoding
-    - Leanplum-iOS-SDK
     - libavif
     - libdav1d
     - libwebp
@@ -2930,8 +2923,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-google-cast"
   react-native-in-app-review:
     :path: "../node_modules/react-native-in-app-review"
-  react-native-leanplum:
-    :path: "../node_modules/@leanplum/react-native-sdk"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
@@ -2943,7 +2934,7 @@ EXTERNAL SOURCES:
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   react-native-yu-health:
-    :path: "../node_modules/@yu-life/react-native-yu-health"
+    :path: "../targets/YuHealth"
   react-native-yu-watch:
     :path: "../node_modules/@yu-life/react-native-yu-watch"
   React-NativeModulesApple:
@@ -3086,7 +3077,6 @@ SPEC CHECKSUMS:
   Intercom: 93c6f5d9815b34bf2a7e5f03bcf7b6e08c1a4788
   intercom-react-native: 0e561712e24ae1a1a3e4c13a397c748e0058eb75
   JSONSafeEncoding: 54722ebc4fe1482e3e60a8450e1287481e32dd8b
-  Leanplum-iOS-SDK: b086671d0b96064bb9832835e6df71731986ec1e
   libavif: 5f8e715bea24debec477006f21ef9e95432e254d
   libdav1d: 23581a4d8ec811ff171ed5e2e05cd27bad64c39f
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
@@ -3097,7 +3087,7 @@ SPEC CHECKSUMS:
   OpenTelemetrySwiftApi: aaee576ed961e0c348af78df58b61300e95bd104
   PLCrashReporter: db59ef96fa3d25f3650040d02ec2798cffee75f2
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
-  RCT-Folly: 36fe2295e44b10d831836cc0d1daec5f8abcf809
+  RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 9bc64754b40b86fa5e32f293ab3ea8eea2248339
   RCTRequired: ee36c1ce9a5e65a3f629c13f38a85308eb8eebda
   RCTTypeSafety: 7c0b654b92ef732fffc2a3992a02d10dc8f94bfd
@@ -3133,13 +3123,12 @@ SPEC CHECKSUMS:
   react-native-encrypted-storage: db300a3f2f0aba1e818417c1c0a6be549038deb7
   react-native-google-cast: 85727694aef6365d871f72b3ec1c722c612a1578
   react-native-in-app-review: bb863fb300f2c716479c4285201df746cf5e20a2
-  react-native-leanplum: 5ffb4a4093cab5ec19922ee26b0a467ed1c0817e
   react-native-netinfo: f0a9899081c185db1de5bb2fdc1c88c202a059ac
   react-native-safe-area-context: bc59472155ffb889a1ffe16c19a04c0cd451562b
   react-native-video: ae4faa348d6978c54b271c8d2a79ffea438c5e43
   react-native-view-shot: 41c5c50c809f1fd61f91c99400b2222c9b80d13f
   react-native-webview: cde150463e7caa49b316b0ed1871e7ef8193bef4
-  react-native-yu-health: 0033a75f241dedd0badb37e9d34cc49def83fabf
+  react-native-yu-health: 5371a29722f5ba570046b012945e71c43c5ca569
   react-native-yu-watch: 71a45ee270bbb6baf98ccb9bbbe21322186c86d9
   React-NativeModulesApple: a398af5d9799bb49f0b0fabab09c362a3899d8bc
   React-oscompat: 56b4766e96b06843a3af49a6763ef40992e720aa
@@ -3201,6 +3190,6 @@ SPEC CHECKSUMS:
   StripeUICore: 17a4f3adb81ae05ab885e1b353022a430176eab1
   Yoga: dc7c21200195acacb62fa920c588e7c2106de45e
 
-PODFILE CHECKSUM: e38b4892d40560f5b77f7e07a553908372fa912c
+PODFILE CHECKSUM: 63ecb83233b9ba96c315eed139b983487b5fa4ec
 
 COCOAPODS: 1.16.2
