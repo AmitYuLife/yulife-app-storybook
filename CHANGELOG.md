@@ -7,6 +7,66 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.3.0] - 2026-03-19
+
+### Features
+
+- Feature GS-2419: theming on login
+
+### Bugfixes
+
+- Bugfix GS-2544: Capitalise skip on reflection modal
+- Bugfix GS-2419: Apply checked row style only on ContentItemChoiceDesign.Default
+- Bugfix GS-2419: Clear region config on logout
+- Bugfix GS-2531: Level 550 positioned wrong
+- Bugfix GS-2419: Hydrate API Config listen to set device locale
+- Bugfix GS-2419: Make hydrateApiConfigSaga call setMainRoot
+- Bugfix GS-2419: Fix secondary-button no theme
+- Bugfix GS-2419: Fix button disabled color and headers
+
+### Tasks
+
+- Task DEVOPS-4911: Build RN with iOS SDK 26
+- Task GS-2548: Auto pause yudoku challenge when app leaves foreground
+- Task GS-2108: Event goal chest rewards
+- Task GS-2454: See more button in wallet
+- Task GS-2541: YuHealth linking changes
+- Task GS-2539: Fix GQL errors
+- Task GS-2535: Unified reward chest mutation
+- Task GS-2536: Force arrow function components in React via eslint
+- Task GS-2476: Fix pathways challenge feedback spacing
+- Task GS-2516: Fix Yunity quest screen padding
+- Task GS-2526: Level up modal not centered rays
+- Task GS-2533: Smoking modal fixes
+- Task GS-2366: Fix pathways title
+- Task GS-2511: Adjust controlled yucoin padding
+- Task GS-2534: AV Player text cut off
+- Task GS-2510: Force dismiss keyboard on rewards search
+- Task GS-2515: Convert health permission modal to use new confirmation modal
+- Task GS-2257: Daily Reflection Card - UI Update and Re-engagement Logic - UI
+- (grafted) Task GS-2523: Update Podfile.lock for react-native-yu-health 1.4.6
+- (grafted) Merge branch 'task/GS-2523-update-yuhealth' into 'develop'
+
+### Chores
+
+- Chore GS-2541: Update Podfile.lock
+- Chore - Updated translations
+- Chore CTE-658: Bump bdd-framework to 0.4.0
+- Chore - Updated translations
+- Chore GS-2528: Rename update script to setup
+
+### Improvements
+
+- Detox GS-2525: Improve Login Flow to Fix Race Conditions on CI
+
+### Extra
+
+- Detox GS-2550: Fix E2E Build
+- Detox INS-6091: Surveys Hero Card App Refresh
+- GS-2541: Purge YuHealth in favour of YuHealth
+- CTE-668: Remove Leanplum SDK and all related integrations
+- Detox GS-2182: Donations Section in Wallet
+
 ## [5.2.0] - 2026-03-11
 
 ### Features
