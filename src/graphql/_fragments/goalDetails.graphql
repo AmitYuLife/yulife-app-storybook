@@ -33,6 +33,9 @@ fragment GoalDetails on GoalDetails {
       id
       uri
     }
+    onPress {
+      ...SduiAction
+    }
   }
   progressUnit
   currentProgress

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -4743,6 +4742,7 @@ export type GoalReward = {
   infoText?: Maybe<Scalars["String"]["output"]>;
   item: RemoteImage;
   itemBackground: RemoteImage;
+  onPress?: Maybe<SduiAction>;
   stars?: Maybe<Array<RemoteImage>>;
   status: GoalRewardStatus;
   title: Scalars["String"]["output"];
@@ -12183,13 +12183,13 @@ export type TopupPaymentOptions = {
 export type TournamentEvent = {
   __typename?: "TournamentEvent";
   createdAt?: Maybe<Scalars["String"]["output"]>;
-  endsAt?: Maybe<Scalars["String"]["output"]>;
+  endLocalDate?: Maybe<Scalars["String"]["output"]>;
   eventName?: Maybe<Scalars["String"]["output"]>;
   gameMode: TournamentGameMode;
   id: Scalars["ID"]["output"];
   rewardType?: Maybe<TournamentRewardType>;
   socialGroupIds?: Maybe<Array<Scalars["String"]["output"]>>;
-  startsAt?: Maybe<Scalars["String"]["output"]>;
+  startLocalDate?: Maybe<Scalars["String"]["output"]>;
   status: TournamentEventStatus;
 };
 
@@ -12356,7 +12356,7 @@ export type UpdateTournamentEventInput = {
   eventName?: InputMaybe<Scalars["String"]["input"]>;
   rewardType?: InputMaybe<TournamentRewardType>;
   socialGroupIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  startsAt?: InputMaybe<Scalars["String"]["input"]>;
+  startLocalDate?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type UpsertMemberDataConnectionInput = {
@@ -20742,6 +20742,7 @@ export type GoalDetailsFragment = {
     item: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     stars?: Array<{ __typename?: "RemoteImage"; id: string; uri?: string | null }> | null;
     infoBadgeUri?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   }>;
   progressIcon: { __typename?: "RemoteImage"; uri?: string | null };
   about?: { __typename?: "GoalInfoComponent"; title?: string | null; markdown?: string | null } | null;
@@ -25720,6 +25721,7 @@ export type ClaimGoalRewardsMutation = {
       item: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       stars?: Array<{ __typename?: "RemoteImage"; id: string; uri?: string | null }> | null;
       infoBadgeUri?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
     progressIcon: { __typename?: "RemoteImage"; uri?: string | null };
     about?: { __typename?: "GoalInfoComponent"; title?: string | null; markdown?: string | null } | null;
@@ -25847,6 +25849,7 @@ export type GetGoalDetailsQuery = {
       item: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       stars?: Array<{ __typename?: "RemoteImage"; id: string; uri?: string | null }> | null;
       infoBadgeUri?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
     progressIcon: { __typename?: "RemoteImage"; uri?: string | null };
     about?: { __typename?: "GoalInfoComponent"; title?: string | null; markdown?: string | null } | null;
@@ -40243,7 +40246,7 @@ export type GetWellbeingHubItemsQueryVariables = Exact<{
 
 export type GetWellbeingHubItemsQuery = {
   __typename?: "Query";
-  listItems: Array<{
+  listItems?: Array<{
     __typename?: "WellbeingHubItem";
     id: string;
     sduiStepId: string;
@@ -40259,7 +40262,7 @@ export type GetWellbeingHubItemsQuery = {
     location?: string | null;
     locationLabel?: string | null;
   } | null;
-  categories: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
+  categories?: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
   linkedBusinesses: Array<{
     __typename?: "UserBusinessLink";
     id: string;
@@ -60668,6 +60671,14 @@ export const GoalDetailsFragmentDoc = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
               ],
             },
           },
@@ -60839,6 +60850,18 @@ export const GoalDetailsFragmentDoc = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -79740,6 +79763,18 @@ export const ClaimGoalRewardsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "RemoteImage" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
       selectionSet: {
@@ -79829,6 +79864,14 @@ export const ClaimGoalRewardsDocument = {
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "uri" } },
                     ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                   },
                 },
               ],
@@ -80087,18 +80130,6 @@ export const GetGoalDetailsDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiAction" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
       selectionSet: {
@@ -80106,6 +80137,18 @@ export const GetGoalDetailsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
@@ -80188,6 +80231,14 @@ export const GetGoalDetailsDocument = {
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "uri" } },
                     ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                   },
                 },
               ],
