@@ -23,6 +23,17 @@ PATH="$(dirname "$(nvm which --silent)"):$PATH"
 export PATH
 echo "Node version: $(node --version)"
 
+# Export DEVELOPER_DIR to ensure xcodebuild uses the correct Xcode version
+if [[ -n "${DEVELOPER_DIR:-}" ]] && [[ -d "$DEVELOPER_DIR" ]]; then
+  export DEVELOPER_DIR
+  echo "🔧 Using Xcode at: $DEVELOPER_DIR"
+  echo "🔧 Xcode version: $(xcodebuild -version | head -1)"
+else
+  echo "⚠️  DEVELOPER_DIR not set or path does not exist, using default Xcode"
+  echo "🔧 Default Xcode: $(xcode-select -p)"
+  echo "🔧 Xcode version: $(xcodebuild -version | head -1)"
+fi
+
 ##############################
 # Set detox test device
 echo "Available devices: $(xcrun simctl list devices)"

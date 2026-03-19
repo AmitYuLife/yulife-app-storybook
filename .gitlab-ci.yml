@@ -77,7 +77,7 @@ variables:
   # https://gitlab.com/yu-life/infrastructure/yulife-devops-packer/-/blob/main/packer/macos-xcode/CHANGELOG.md#120---2026-01-29
   MACOS_VM_IMAGE_VERSION: v1.2.0
   MACOS_VM_IMAGE: $DEVOPS_AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-xcode:$MACOS_VM_IMAGE_VERSION
-  IOS_XCODE_VERSION: 16.4
+  IOS_XCODE_VERSION: 26.2
   DEVELOPER_DIR: "/Applications/Xcode_${IOS_XCODE_VERSION}.app"
   DEVELOP_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-develop-react-native-builds
   PRODUCTION_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-production-react-native-builds

@@ -41,7 +41,7 @@
     "ios.release": {
       "type": "ios.app",
       "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/YuLife.app",
-      "build": "xcodebuild -workspace ios/YuLife.xcworkspace -scheme YuLife -configuration Release -sdk iphonesimulator -derivedDataPath ios/build EXCLUDED_ARCHS=arm64"
+      "build": "xcodebuild -workspace ios/YuLife.xcworkspace -scheme YuLife -configuration Release -sdk iphonesimulator -derivedDataPath ios/build"
     },
     "android.debug": {
       "type": "android.apk",
@@ -54,7 +54,7 @@
     "ios.simulator": {
       "type": "ios.simulator",
       "device": {
-        "type": "iPhone 16 Pro"
+        "type": "iPhone 17 Pro"
       }
     },
     "emulator": {

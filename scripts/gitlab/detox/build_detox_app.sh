@@ -14,6 +14,17 @@ set -eo pipefail
 # shellcheck disable=SC1090
 source ~/.zprofile
 
+# Export DEVELOPER_DIR to ensure xcodebuild uses the correct Xcode version
+if [[ -n "${DEVELOPER_DIR:-}" ]] && [[ -d "$DEVELOPER_DIR" ]]; then
+  export DEVELOPER_DIR
+  echo "🔧 Using Xcode at: $DEVELOPER_DIR"
+  echo "🔧 Xcode version: $(xcodebuild -version | head -1)"
+else
+  echo "⚠️  DEVELOPER_DIR not set or path does not exist, using default Xcode"
+  echo "🔧 Default Xcode: $(xcode-select -p)"
+  echo "🔧 Xcode version: $(xcodebuild -version | head -1)"
+fi
+
 function build_app() {
   echo "🔨 Prebuilding app..."
   EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --no-install --clean
