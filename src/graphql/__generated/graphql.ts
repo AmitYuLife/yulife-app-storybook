@@ -21060,6 +21060,7 @@ export type UserWalletItemFragment = {
   label?: string | null;
   type: string;
   rewardId: string;
+  isMarkedAsUsed?: boolean | null;
   image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   info: Array<{ __typename?: "MobileGameUserWalletItemInfo"; text: string; style?: string | null }>;
@@ -21094,6 +21095,7 @@ export type UserWalletSectionFragment = {
     label?: string | null;
     type: string;
     rewardId: string;
+    isMarkedAsUsed?: boolean | null;
     image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     info: Array<{ __typename?: "MobileGameUserWalletItemInfo"; text: string; style?: string | null }>;
@@ -33927,6 +33929,7 @@ export type GetMobileGameUserWalletRewardItemsQuery = {
         label?: string | null;
         type: string;
         rewardId: string;
+        isMarkedAsUsed?: boolean | null;
         image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
         onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         info: Array<{ __typename?: "MobileGameUserWalletItemInfo"; text: string; style?: string | null }>;
@@ -62044,6 +62047,7 @@ export const UserWalletItemFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "isMarkedAsUsed" } },
         ],
       },
     },
@@ -62171,6 +62175,7 @@ export const UserWalletSectionFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "isMarkedAsUsed" } },
         ],
       },
     },
@@ -91864,6 +91869,7 @@ export const GetMobileGameUserWalletRewardItemsDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "isMarkedAsUsed" } },
         ],
       },
     },

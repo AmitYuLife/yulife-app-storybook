@@ -15,5 +15,5 @@ fragment UserWalletItem on MobileGameUserWalletItem {
     text
     style
   }
-  
+  isMarkedAsUsed
 }

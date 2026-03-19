@@ -10,7 +10,7 @@ export type MobileGameUserWalletMoreAction = {
 };
 
 const WalletSectionMore = ({ onPress }: MobileGameUserWalletMoreAction) => (
-  <Box flexDirection="row" justifyContent="center" alignItems="center" mb={40}>
+  <Box flexDirection="row" justifyContent="center" alignItems="center" mb={16}>
     <SecondaryButton
       onPress={onPress}
       translatedLabel={t("screens.rewards.wallet.cta.see_more")}
@@ -20,7 +20,7 @@ const WalletSectionMore = ({ onPress }: MobileGameUserWalletMoreAction) => (
 );
 
 export const WalletSectionMoreLoading = memo(() => (
-  <Box flexDirection="row" justifyContent="center" alignItems="center" mb={40}>
+  <Box flexDirection="row" justifyContent="center" alignItems="center" mb={16}>
     <SkeletonLoading style={styles.skeleton} />
   </Box>
 ));

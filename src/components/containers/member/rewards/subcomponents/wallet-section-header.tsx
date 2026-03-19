@@ -11,7 +11,7 @@ export type MobileGameUserWalletSectionHeader = {
   title: string;
   description?: string;
   icon: Source;
-  onPress: () => void;
+  onPress?: () => void;
 };
 
 const WalletSectionHeader = ({ title, description, icon }: MobileGameUserWalletSectionHeader) => (

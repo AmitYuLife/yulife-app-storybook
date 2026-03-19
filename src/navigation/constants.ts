@@ -29,6 +29,7 @@ export const ROUTES = {
   purchases: "yulife.member.Purchases",
   wallet: "yulife.member.Wallet",
   walletItems: "yulife.member.WalletItems",
+  walletSeeMore: "yulife.member.WalletSeeMore",
   activityHistory: "yulife.member.ActivityHistory",
   challengesHistoryNew: "yulife.member.ActivityHistoryNew",
   duelsHub: "yulife.member.DuelsHub",
