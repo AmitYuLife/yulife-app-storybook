@@ -5,6 +5,21 @@ import * as customer from '../postgres/customers';
 const type = "mongo";
 const modelName = "users";
 
+export const NPC_YUGI_YULIFER = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: "NPC_YUGI",
+    earnRate: 0,
+    isAvatarCreated: false,
+    npcInfo: {
+      firstName: "Yugi",
+      lastName: "",
+    },
+  },
+} as IDatabaseItem;
+
 const USER_DATA_TEMPLATE = {
   data: {
     _id: "",

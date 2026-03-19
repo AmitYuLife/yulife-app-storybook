@@ -300,3 +300,29 @@ export const CUSTOMER_12 = createCustomerRecords({
     },
   ],
 });
+
+export const CUSTOMER_14 = createCustomerRecords({
+  archived: false,
+  firstName: "Submit",
+  lastName: "Tester",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_5.business.data.businessAccountId,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  userGameState: {
+    currentBalance: 0,
+    currentStreak: 0,
+    currentLevel: 1,
+  },
+  userInfo: {
+    earnRate: 1,
+  },
+});
