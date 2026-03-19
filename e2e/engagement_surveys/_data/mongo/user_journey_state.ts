@@ -892,3 +892,19 @@ export const USER_JOURNEY_STATE_FOR_REWARD_FLAT_RATE_TEST_CUSTOMER_1 = {
     updatedAt: "2024-04-23T10:42:19.959+0000",
   },
 } as IDatabaseItem;
+
+export const USER_JOURNEY_STATE_14 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journeyId: "automated_qa_test_journey_10_multiplier",
+    triggerSourceId: "initial_multiplier",
+    userId: customer.CUSTOMER_14.customer.data.customerId,
+    status: "pending",
+    uiAccess: {
+      eventPanel: { alwaysOn: true },
+    },
+    updatedAt: new Date().toISOString(),
+  },
+} as IDatabaseItem;
