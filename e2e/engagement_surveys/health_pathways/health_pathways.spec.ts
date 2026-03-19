@@ -104,7 +104,7 @@ Feature("Health Pathways", async () => {
     When("I tap Continue after reflection completion", when.tapID(ids.PATHWAYS_REFLECTED_CONTINUE, 2_000), async () => {
       Then("I should see the notifications reminder modal", then.idVisible(ids.GENERIC_SCREEN_HEADING("Stay on track with your reflections"), 5_000));
     });
-    When("I tap to skip the reminder", when.tapID(ids.GENERIC_SCREEN_CTA("skip-text-view"), 4_000), async () => {
+    When("I tap to skip the reminder", when.tapID(ids.GENERIC_SCREEN_CTA("Skip-text-view"), 4_000), async () => {
       Then("I should see the next day reflection in a locked state", then.idVisible(ids.PATHWAYS_REFLECTION_UNLOCKS_IN, 2_000));
     });
     When("I scroll down to the 'Your Mood' section", when.scrollFromID(ids.PATHWAYS_SCREEN, "up", "fast", 0.5, 2_000), async () => {

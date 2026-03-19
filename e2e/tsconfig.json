@@ -18,7 +18,8 @@
         ],
         "types": [
             "jest",
-            "node"
+            "node",
+            "react"
         ],
         "baseUrl": ".",
         "paths": {
@@ -48,6 +49,12 @@
             ],
             "@images":[
                 "./_utils/navigation/images/index.ts"
+            ],
+            "@yu-life/react-native-yu-health": [
+                "../targets/YuHealth/src/index"
+            ],
+            "@yu-life/react-native-yu-health/*": [
+                "../targets/YuHealth/src/*"
             ]
         }
     },
