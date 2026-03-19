@@ -16,7 +16,7 @@ import { refreshUserProfileEvents, getUserDataStart } from "@redux/user/user.act
 import { AppDataType } from "@redux/user/user.types";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { GoalRewardStatus, RemoteImage } from "@graphql/__generated";
+import { GoalRewardStatus, RemoteImage, SduiAction } from "@graphql/__generated";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const shineAnimationSource = require("@assets/lottie/shine.json");
@@ -49,6 +49,7 @@ export interface IReward {
   status: GoalRewardStatus;
   infoBadgeUri?: RemoteImage;
   itemBackground: RemoteImage;
+  onPress?: SduiAction;
 }
 
 interface IEventRewardProps {

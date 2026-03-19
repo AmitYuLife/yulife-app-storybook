@@ -29,6 +29,7 @@ interface IOpenRandomChestModalProps {
   backgroundImage?: string;
   uniqueId: string;
   participationId?: string;
+  goalId?: string;
   sourceType: RewardChestSourceType;
 }
 
@@ -38,12 +39,42 @@ const CHEST_PICK_STAGE_TYPES: Record<MobileGameChestCollectionType, (props: IPic
   [MobileGameChestCollectionType.All]: AllPickRewardStage,
 };
 
+const buildRefetchQueries = ({
+  sourceType,
+  socialGroupId,
+  goalId,
+}: {
+  sourceType: RewardChestSourceType;
+  socialGroupId: string;
+  goalId?: string;
+}) => {
+  const errorPolicy = "ignore" as const;
+
+  if (sourceType === RewardChestSourceType.BattlePass) {
+    return [
+      { query: gql("GetMobileUnlockableBattlePassVouchersDocument"), errorPolicy },
+      {
+        query: gql("GetMobileGameBattlePassFullDocument"),
+        variables: { socialGroupId },
+        errorPolicy,
+      },
+    ];
+  }
+
+  if (sourceType === RewardChestSourceType.Goal) {
+    return [{ query: gql("GetGoalDetailsDocument"), variables: { id: goalId }, errorPolicy }];
+  }
+
+  return [];
+};
+
 const OpenRandomChestModal = ({
   participationId,
   uniqueId,
   backgroundImage,
   overlayImage,
   sourceType,
+  goalId,
 }: IOpenRandomChestModalProps) => {
   const { data, refetch } = useQuery(gql("GetMobileRewardChestDetailsDocument"), {
     variables: { sourceType, participationId, uniqueId },
@@ -54,21 +85,9 @@ const OpenRandomChestModal = ({
   const socialGroupId = useSelector(getActiveSocialGroupId);
 
   const [openChest, { loading: openLoading }] = useMutation(gql("OpenMobileRewardChestDocument"));
-  const claimRefetchQueries =
-    sourceType === RewardChestSourceType.BattlePass
-      ? [
-          { query: gql("GetMobileUnlockableBattlePassVouchersDocument"), errorPolicy: "ignore" as const },
-          {
-            query: gql("GetMobileGameBattlePassFullDocument"),
-            variables: { socialGroupId },
-            errorPolicy: "ignore" as const,
-          },
-        ]
-      : [];
-
   const [claimPrizes, { loading: claimLoading, data: claimedChestData }] = useMutation(
     gql("ClaimMobileRewardChestDocument"),
-    { refetchQueries: claimRefetchQueries }
+    { refetchQueries: buildRefetchQueries({ sourceType, socialGroupId, goalId }) }
   );
 
   const [stage, setStage] = useState<ChestStage>(ChestStage.loading);

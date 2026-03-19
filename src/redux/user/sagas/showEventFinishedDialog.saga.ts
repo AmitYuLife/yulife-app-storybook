@@ -30,8 +30,13 @@ function* showCompletedEvents(completedEvents: Partial<Events>[]) {
       );
     })
   );
-  // flatten getGoalDetails.rewards into single array
-  const rewards = [].concat(...response.map(({ data }) => data.getGoalDetails.rewards));
+
+  const rewards = response
+    .map(({ data }) => data.getGoalDetails.rewards)
+    // flatten getGoalDetails.rewards into single array
+    .flat()
+    // ignore rewards that have a chest in them, they have to be manually claimed one by one
+    .filter((r) => !r.onPress);
 
   if (rewards.length) {
     showYuModal({

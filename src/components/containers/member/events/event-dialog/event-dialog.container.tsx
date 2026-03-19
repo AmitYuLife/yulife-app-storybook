@@ -56,13 +56,18 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
    */
   const onClaimReward = useCallback(
     async (reward: IReward): Promise<void> => {
+      if (reward.onPress) {
+        dispatch(reward.onPress);
+        return;
+      }
+
       await claimGoalRewardsMutation({
         variables: {
           rewardIds: [reward.id],
         },
       });
     },
-    [claimGoalRewardsMutation]
+    [claimGoalRewardsMutation, dispatch]
   );
 
   /**
