@@ -1227,7 +1227,8 @@
           }
         },
         "used_section": {
-          "title": "Used"
+          "title": "Used",
+          "label": "USED"
         }
       },
       "details": {

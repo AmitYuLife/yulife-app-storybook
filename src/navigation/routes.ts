@@ -37,6 +37,7 @@ import RewardsManager from "../components/containers/member/rewards/rewards.mana
 import PurchasesContainer from "../components/containers/member/rewards/rewards.purchases.container";
 import WalletContainer from "../components/containers/member/rewards/rewards.wallet.container";
 import WalletItemsContainer from "../components/containers/member/rewards/rewards.wallet.items.container";
+import WalletSeeMoreContainer from "../modules/wallet/containers/wallet-see-more.container";
 import ActivityHistoryContainer from "../components/containers/member/activity-history/index";
 import ChallengesHistoryNewContainer from "../components/containers/member/quests/challenges-history-new/challenges-history-new.container";
 import DuelsHubContainer from "../components/containers/member/duels-hub/duels-hub.container";
@@ -329,6 +330,10 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: ROUTES.walletItems,
     component: WalletItemsContainer,
+  },
+  {
+    name: ROUTES.walletSeeMore,
+    component: WalletSeeMoreContainer,
   },
   {
     name: ROUTES.rewardPurchase,
