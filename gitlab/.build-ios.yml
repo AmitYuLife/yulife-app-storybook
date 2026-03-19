@@ -5,7 +5,7 @@
       files:
         - pnpm-lock.yaml
         - support/ios/Podfile.lock
-      prefix: "${MACOS_VM_IMAGE_VERSION}-ios-build"
+      prefix: "${MACOS_VM_IMAGE_VERSION}-${IOS_XCODE_VERSION}-ios-build"
     paths:
       # https://pnpm.io/continuous-integration#gitlab-ci
       - $PNPM_HOME/store
