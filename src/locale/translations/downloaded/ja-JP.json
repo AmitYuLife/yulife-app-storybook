@@ -465,6 +465,7 @@
     "reflection_reminder": {
       "cta_label": "リマインダーを設定",
       "heading": "振り返りを続けましょう",
+      "secondary_cta_label": "スキップ",
       "subheading": "リマインダーを設定して毎日のプレイを習慣化することで、Yunityクエストをアンロックしましょう!"
     },
     "reward_info": {

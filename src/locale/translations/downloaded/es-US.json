@@ -465,6 +465,7 @@
     "reflection_reminder": {
       "cta_label": "Establecer recordatorio",
       "heading": "Mantén el rumbo de tus reflexiones",
+      "secondary_cta_label": "Saltar",
       "subheading": "Elige una hora diaria de recordatorio para que no se te pase ningún día y puedas desbloquear la Yunity Quest."
     },
     "reward_info": {

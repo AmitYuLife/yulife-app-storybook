@@ -465,6 +465,7 @@
     "reflection_reminder": {
       "cta_label": "ضبط التذكير",
       "heading": "ابقَ على المسار الصحيح مع تأملاتك",
+      "secondary_cta_label": "تخطي",
       "subheading": "اختر وقتًا للتذكير اليومي حتى لا تفوتك يوم وتتمكن من فتح مهمة Yunity."
     },
     "reward_info": {

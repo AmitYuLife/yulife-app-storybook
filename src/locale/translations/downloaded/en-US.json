@@ -465,6 +465,7 @@
     "reflection_reminder": {
       "cta_label": "Set reminder",
       "heading": "Stay on track with your reflections",
+      "secondary_cta_label": "Skip",
       "subheading": "Choose a daily reminder time so you don’t miss a day and can unlock the Yunity Quest."
     },
     "reward_info": {
