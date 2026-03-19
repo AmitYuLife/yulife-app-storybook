@@ -1,4 +1,6 @@
 import { ReactNode, memo, useReducer, useCallback, useEffect, useMemo, useRef } from "react";
+import { AppStateStatus } from "react-native";
+import { useAppState } from "@hooks";
 import { SudokuBoardType } from "./sudoku.enum";
 import { ISodukuHistory, ISudokuConfig, ISudokuPosition, ISudokuResults } from "./sudoku.interface";
 import { CellStatus, ISudokuContext, SodukuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";
@@ -581,6 +583,20 @@ const SudokuManager = ({
       onResume();
     }
   }, [getTimeDifferenceSincePause, onResume, sudokuState.lastHintTime, sudokuState.startTime, updateGameState]);
+
+  const handleAppStateChange = useCallback(
+    (appState: AppStateStatus) => {
+      if (
+        (appState === "background" || appState === "inactive") &&
+        !sudokuState.lastPauseTime &&
+        !sudokuState.endDate
+      ) {
+        pause();
+      }
+    },
+    [sudokuState.lastPauseTime, sudokuState.endDate, pause]
+  );
+  useAppState(handleAppStateChange);
 
   const setSelectedCell = useCallback(
     (position?: ISudokuPosition) => {
