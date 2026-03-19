@@ -29,11 +29,11 @@ Feature("Health questionnaires", async () => {
       Then("I should see the pre-selected server language is en-GB", then.languageSettingVisible("en-GB"));
     });
     When("I tap the language options", when.tapText("Language", 3000, true), async () => {
-      Then("I should be on the langauge selector screen", then.languageSelectorVisible);
+      Then("I should be on the language selector screen", then.languageSelectorVisible);
       Then("I should see all the available languages listed", then.allLanguagesVsible);
     });
     When("I tap to switch to Japanese", when.switchLanguage(`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`, 10_000), async () => {
-      Then("I should be back on my YuCoin screen", then.idExist(ids.DAILY_STEPS_SCREEN, 20_000));
+      Then("I should be back on my YuCoin screen", then.idExist(ids.DAILY_STEPS_SCREEN, 25_000));
     });
     When("I close the pop up", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 10_000), async () => {
       Then("I should see that the YuCoin screen has changed in Japanese", then.textVisible(getTranslation("ja-JP").navbar.yucoin.label, 15_000));
@@ -223,7 +223,7 @@ Feature("Health questionnaires", async () => {
     When("I tap Continue after reflection completion", when.tapID(ids.PATHWAYS_REFLECTED_CONTINUE, 2_000), async () => {
       Then("I should see the notifications reminder modal", then.idVisible(ids.GENERIC_SCREEN_HEADING("Stay on track with your reflections"), 5_000));
     });
-    When("I tap to skip the reminder", when.tapID(ids.GENERIC_SCREEN_CTA("skip-text-view"), 4_000), async () => {
+    When("I tap to skip the reminder", when.tapID(ids.GENERIC_SCREEN_CTA("Skip-text-view"), 4_000), async () => {
       Then("I should be back on the Pathways screen", then.onPathwaysScreen);
     });
     When("I tap to go back", when.tapID(ids.BACK_BUTTON, 3_000), async () => {

@@ -29,12 +29,6 @@ export const tapOnLogin = async (): Promise<void> => {
   await target.tap();
 };
 
-export const pressSkipOnHealth = async (): Promise<void> => {
-  const target = element(by.text(t("Skip this step")));
-  await waitFor(target).toExist().withTimeout(5000);
-  await target.tap();
-};
-
 export const collectOnboardingYucoin = async (): Promise<void> => {
   const next = element(by.text(t("Let's go")));
   await waitFor(next).toExist().withTimeout(5000);

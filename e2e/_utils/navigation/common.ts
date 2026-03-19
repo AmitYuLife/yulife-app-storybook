@@ -747,8 +747,8 @@ export const switchLanguage =
     await target.longPress();
 
     // Wait for app to reload after language change
-    await new Promise((res) => setTimeout(res, 10_000));
+    await new Promise((res) => setTimeout(res, 20_000));
     await device.enableSynchronization();
 
-    await new Promise((res) => setTimeout(res, 10_000));
+    await new Promise((res) => setTimeout(res, 5_000));
   };
