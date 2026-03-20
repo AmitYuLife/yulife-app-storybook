@@ -1,6 +1,7 @@
 import { Image, Box } from "@atoms";
 import React, { FC, memo, useCallback, useEffect, useMemo } from "react";
 import { ImageSourcePropType, View, ViewStyle } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -13,6 +14,7 @@ import EOTWPlanet, { PLANET_ASSETS, PLANET_STATE } from "./eotw-planet";
 import { SPACE_TRAVEL_SCREEN } from "@ids";
 import { GalaxyType, getGalaxyPlanets } from "./eotw-planets.config";
 import { PLANETS_PER_GALAXY } from "./eotw.constants";
+import { isAndroid } from "@utils";
 
 const GALAXY_SCROLL_DURATION = 1000;
 
@@ -46,7 +48,10 @@ const EOTWSpaceTravel: FC<IProps> = memo(
     galaxyScroll = false,
     onGalaxyScrollComplete,
   }) => {
-    const topPadding = currentGalaxy === GalaxyType.FIRST ? FIRST_GALAXY_TOP_PADDING : SECOND_GALAXY_TOP_PADDING;
+    const { top } = useSafeAreaInsets();
+    const topPadding =
+      (currentGalaxy === GalaxyType.FIRST ? FIRST_GALAXY_TOP_PADDING : SECOND_GALAXY_TOP_PADDING) +
+      (isAndroid() ? top : 0);
     const contentHeight = useMemo(() => height - BOTTOM_PADDING - topPadding, [height, topPadding]);
     const scrollAnim = useSharedValue(0);
 
