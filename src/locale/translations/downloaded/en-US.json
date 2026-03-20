@@ -1734,6 +1734,7 @@
         },
         "title": "Wallet",
         "used_section": {
+          "label": "USED",
           "title": "Used"
         }
       }

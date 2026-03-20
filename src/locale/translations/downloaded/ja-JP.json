@@ -1734,6 +1734,7 @@
         },
         "title": "ウォレット",
         "used_section": {
+          "label": "使用済み",
           "title": "使用済み"
         }
       }
