@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Box, TextTemplate, Image } from "@atoms";
 import { Button, InfoPanel } from "@molecules";
 import { Colours, StyleSheet, Style } from "@styles";
+import { MIN_SAFE_BOTTOM_PADDING } from "@styles/safeAreaViewOffset";
 import { t } from "@locale";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import { PathwaysHeartIcon } from "./pathways-heart-icon";
@@ -147,7 +148,7 @@ const PathwaysChallengeIntroScreen = ({ onPressCta, componentId }: IProps) => {
       <Box>
         <LinearGradient style={styles.footer} colors={["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 1)"]} />
 
-        <Box px={32} pb={Math.max(bottom, 32)} pt={5}>
+        <Box px={32} pb={Math.max(bottom, MIN_SAFE_BOTTOM_PADDING)} pt={5}>
           <Button translationKey="labels.cta.continue" onPress={onPressCta} size="Fill" />
         </Box>
       </Box>

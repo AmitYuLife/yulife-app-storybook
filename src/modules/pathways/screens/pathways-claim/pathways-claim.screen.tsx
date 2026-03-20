@@ -19,6 +19,7 @@ import { getUserAvatar } from "@redux/user/user.selectors";
 import { addCommasToNumber } from "@utils";
 import PathwayNoAvatar from "@components/molecules/challenge-tile/pathway-no-avatar";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import { MIN_SAFE_BOTTOM_PADDING } from "@styles/safeAreaViewOffset";
 
 interface Props {
   onClose: () => void;
@@ -123,7 +124,15 @@ const PathwaysClaimScreen = ({ onClose, healthChallenge, yucoinReward }: Props) 
           </Box>
         </Box>
       </ScrollView>
-      <Box position="absolute" bottom={0} width="100%" pb={bottom} px={20} gap={20} alignItems="center">
+      <Box
+        position="absolute"
+        bottom={0}
+        width="100%"
+        pb={Math.max(bottom, MIN_SAFE_BOTTOM_PADDING)}
+        px={20}
+        gap={20}
+        alignItems="center"
+      >
         {healthChallenge ? (
           <Hint
             label={t("screens.pathways.claim.reward_title")}
