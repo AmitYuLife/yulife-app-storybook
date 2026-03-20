@@ -861,6 +861,7 @@ export const LEVEL_SUMMARY_YUDOKU_LEADERBOARD = (date: string) =>
 export const JOIN_DAILY_SODOKU_LEADERBOARD = "sudoku.leaderboard_consent.confirm";
 export const SODOKU_COMPLETED_REWARD_COLLECT = "sudoku.completed.collect";
 export const START_SODOKU_GAME = "sudoku.staging.startGame";
+export const RESUME_SODOKU_GAME = "sudoku.pause.resume-text-view";
 
 // functions
 

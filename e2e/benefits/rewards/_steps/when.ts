@@ -21,7 +21,7 @@ export const {
   scrollWithLimitedAttemptsUntilIdVisible,
 } = navigation.scrolling;
 
-export const { tapText, reloadAppToTab, tapID } = navigation.common;
+export const { tapText, reloadAppToTab, tapID, switchLanguage } = navigation.common;
 
 export const { selectRegionIfVisible } = navigation.login;
 
