@@ -6,6 +6,7 @@ import { logOutSuccess } from "../user.actions";
 import dd from "@services/datadog";
 import customerio from "@services/customerio";
 import { region } from "@locale";
+import themeService from "@modules/themes/theme.service";
 
 export default function* logOutSaga() {
   yield call(Logger.logEvent, "log_out");
@@ -21,5 +22,6 @@ export default function* logOutSaga() {
   yield call(dd.unsetUserId);
   yield call(customerio.clearIdentity);
   yield call(region.clearRegionConfig);
+  yield call(themeService.clearThemeId);
   yield put(logOutSuccess());
 }

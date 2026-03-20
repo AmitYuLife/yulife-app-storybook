@@ -6,6 +6,7 @@ import { Box, TextTemplate } from "@atoms";
 import { Colours } from "@styles";
 import { omit } from "lodash";
 import { SecondaryButton, Button } from "@molecules";
+import themeService from "@app/modules/themes/theme.service";
 
 interface IThemeColorsModalProps {
   theme: MobileGameThemeFragment;
@@ -13,20 +14,25 @@ interface IThemeColorsModalProps {
 }
 
 const ThemeColorsModal = ({ theme, onClose }: IThemeColorsModalProps) => {
-  const [setTestMobileGameTheme] = useMutation(gql("SetTestMobileGameThemeDocument"), {
+  const [setTestMobileGameTheme, { client }] = useMutation(gql("SetTestMobileGameThemeDocument"), {
     refetchQueries: [gql("GetMobileGameThemeDocument")],
+    awaitRefetchQueries: true,
   });
 
   const handleSetTheme = useCallback(async () => {
     try {
       await setTestMobileGameTheme({ variables: { themeId: theme.id } });
 
+      const query = client.readQuery({ query: gql("GetMobileGameThemeDocument") });
+
+      await themeService.setThemeId(query.getMobileGameTheme.id);
+
       Alert.alert("Success", `Theme "${theme.name}" has been set.`);
       onClose();
     } catch {
       Alert.alert("Error", `Failed to set theme "${theme.name}".`);
     }
-  }, [theme, setTestMobileGameTheme, onClose]);
+  }, [theme, setTestMobileGameTheme, onClose, client]);
 
   return (
     <Box

@@ -5,6 +5,7 @@ import { ArrowButton, Pressable } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { VoidFunction } from "@utils";
 import { INBOX_MESSAGE_ITEM, NOTIFICATION_PINK_DOT_ARROW, PINK_DOT } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type Props = {
   onPress?: VoidFunction;
@@ -34,6 +35,8 @@ const InboxMessageItem = ({
   const onError = useCallback(() => {
     setHasFailedToLoadImage(true);
   }, []);
+
+  const { theme } = useTheme();
 
   return (
     <Pressable onPress={onPress}>
@@ -99,9 +102,9 @@ const InboxMessageItem = ({
         </Box>
         <Box h="100%" justifyContent="center" alignItems="center" flexDirection="row">
           {showNotificationDot ? (
-            <Box rounded={true} mr={4} h={8} w={8} bg={Colours.primary.p600} testID={PINK_DOT} />
+            <Box rounded={true} mr={4} h={8} w={8} bg={theme.colors.primary.p600} testID={PINK_DOT} />
           ) : null}
-          {onPress ? <ArrowButton color={Colours.primary.p600} /> : null}
+          {onPress ? <ArrowButton color={theme.colors.primary.p600} /> : null}
         </Box>
       </Box>
     </Pressable>

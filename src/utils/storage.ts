@@ -16,6 +16,7 @@ export enum StorageKey {
   iosCyclingPermissionShown = "@RNFitKit:iosCyclingPermissionShown",
   debugFavourites = "@yulife:debugFavourites",
   debugTestJourney = "@yulife:debugTestJourney",
+  themeId = "@yulife:themeId",
 }
 
 /**

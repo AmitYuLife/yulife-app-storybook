@@ -71,7 +71,7 @@ export const GiftingMessagePreviewScreen = ({
   }, [stickers, showStickerSelectionOverlay]);
 
   return (
-    <Box flex={1} disableAutoAdjust={true} width={Style.DEVICE_WIDTH} bg="red">
+    <Box flex={1} disableAutoAdjust={true} width={Style.DEVICE_WIDTH}>
       <GiftView
         yuCoinAmount={yuCoin?.id}
         yuCoinTextColor={yuCoinTextColor}

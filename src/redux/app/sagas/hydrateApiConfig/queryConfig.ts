@@ -19,7 +19,7 @@ export default async function queryConfig({
     const fingerprintDeviceInput = await buildFingerprintDeviceInput();
     return await apolloClient.query({
       query: gql("GetPublicYuApiConfigWithFingerprintThemeDocument"),
-      fetchPolicy: "network-only",
+      fetchPolicy: "no-cache",
       variables: {
         input: fingerprintDeviceInput,
       },

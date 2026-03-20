@@ -1,9 +1,11 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { P2P_SLIDER, P2P_SLIDER_ITEM } from "@ids";
-import { Colours, Style, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { isRTL } from "@locale";
 import { useRef, useEffect } from "react";
 import { Pressable, ScrollView } from "react-native";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import Icon from "@atoms/icon";
 
 type BaseItem = {
   id?: string;
@@ -22,6 +24,7 @@ type Props<T> = {
 
 export const Slider = <T extends BaseItem>({ title, textColor, items, selectedItem, selectItem }: Props<T>) => {
   const scrollViewRef = useRef<ScrollView>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const index = items.findIndex((item) => item?.id === selectedItem?.id) || 0;
@@ -62,14 +65,15 @@ export const Slider = <T extends BaseItem>({ title, textColor, items, selectedIt
                   borderTopRadius={4}
                   borderBottomRadius={4}
                   borderWidth={1}
-                  borderColor={Colours.primary.p600}
-                  bg="rgba(227, 13, 118, 0.24)"
+                  borderColor={theme.colors.primary.p600}
+                  bg={`${theme.colors.primary.p600}24`}
                   center={true}
                 >
-                  <Image
-                    source={require("@assets/icons/check.png")}
+                  <Icon.RadioIcon
                     width={Style.adjust(16)}
                     height={Style.adjust(16)}
+                    checked={true}
+                    checkedColour={theme.colors.primary.p600}
                   />
                 </Box>
               )}

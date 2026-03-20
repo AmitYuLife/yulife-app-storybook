@@ -1,6 +1,7 @@
 import { DETOX_ENABLED } from "@services/socket";
 import { getToken } from "@services/storage";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
+import themeService from "@modules/themes/theme.service";
 import { setContext } from "@apollo/client/link/context";
 import { ApolloClient, NormalizedCacheObject, from, createHttpLink } from "@apollo/client";
 import moment from "moment";
@@ -89,6 +90,7 @@ const authMiddleware = (r?: REGION) =>
         date: moment().format(DATE_FORMAT_WITH_TZ),
         yu_client_token: Config.YU_CLIENT_TOKEN,
         yu_locale: getCurrentLocale(),
+        yu_theme_id: themeService.getThemeId(),
         [`x-request-id`]: requestId,
       },
     };

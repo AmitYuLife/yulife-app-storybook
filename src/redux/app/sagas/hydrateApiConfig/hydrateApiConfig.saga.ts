@@ -11,6 +11,7 @@ import dd from "@services/datadog";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { READY_TO_SET_MAIN_ROOT, setMainRoot } from "../../app.actions";
 import { getToken } from "@services/storage";
+import themeService from "@modules/themes/theme.service";
 import queryConfig from "./queryConfig";
 import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
 
@@ -49,6 +50,7 @@ function* runHydration({ type, payload }: SyncAction) {
 
     if (isFromInit) {
       const hasValidRegionConfig: boolean = yield call(region.hydratePreferredRegion);
+      yield call(themeService.hydrateThemeId);
       shouldFetchConfig = !hasValidRegionConfig;
 
       // We're not running 3 servers for each region at the same time; so every time we select a region that's not spun up, we get a thrown error
@@ -73,6 +75,8 @@ function* runHydration({ type, payload }: SyncAction) {
             query: GetMobileGameThemeDocument,
             data: { getMobileGameTheme: response.data.theme },
           });
+
+          yield call(themeService.setThemeId, response.data.theme.id);
         }
 
         if (response?.data?.config?.__typename) {
@@ -110,6 +114,8 @@ const hydrateForDetox = async (tempGameEnableAppTheme: boolean, token: string) =
           query: GetMobileGameThemeDocument,
           data: { getMobileGameTheme: response.data.theme },
         });
+
+        await themeService.setThemeId(response.data.theme.id);
       }
     } catch {
       //
