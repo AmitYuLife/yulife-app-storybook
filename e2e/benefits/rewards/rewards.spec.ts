@@ -221,7 +221,7 @@ Feature("Rewards should act correctly", async () => {
       When("I press the option to change my language", when.tapID(ids.TEXT_TEMPLATE(getLocalisedString("Language")), 3000), async () => {
         Then("I can see a different language option", then.idVisible(ids.SETTINGS_NAME("en-US")));
       });
-      When("I select a different language", when.tapID(ids.SETTINGS_NAME("en-US"), 2000), async () => {
+      When("I select a different language", when.switchLanguage("🇺🇸 English (US)", 5_000), async () => {
         Then("The app should restart, bringing me to the tab view", then.idVisible(ids.NAV_BAR("rewards"), 15000));
       });
       When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 2000), async () => {

@@ -422,7 +422,9 @@ Feature("Yudoku", async () => {
       });
     });
     When("I close and reopen the app", when.closeAndReopenApp, async () => {
-      Then("I am back on the Sudoku challenge screen", then.amOnSudokuChallenge);
+      When("I tap to resume the game", when.tapID(ids.RESUME_SODOKU_GAME, 4000), async () => {
+        Then("I am back on the Sudoku challenge screen", then.amOnSudokuChallenge);
+      });
     });
     When("I complete the Yudoku", when.completeYudoku(true, false, 3000), async () => {
       Then("I should see that level 152 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(152)));

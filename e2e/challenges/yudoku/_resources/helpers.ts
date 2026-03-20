@@ -53,7 +53,9 @@ export const START_YUDOKU_MINIMISE_FAKE_TIME = async () => {
   When("I start the soduku game", when.tapStartGame, async () => {
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
       When("I wait", when.wait(15000), async () => {
-        Then("I am back on the sudoku page", then.amOnSudokuChallenge);
+        When("I tap to resume the game", when.tapID(ids.RESUME_SODOKU_GAME, 4000), async () => {
+          Then("I am back on the sudoku page", then.amOnSudokuChallenge);
+        });
       });
     });
   });
