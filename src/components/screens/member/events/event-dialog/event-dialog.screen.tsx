@@ -4,6 +4,7 @@ import React, { useCallback, useMemo, useRef, useState } from "react";
 
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
+import { MIN_SAFE_BOTTOM_PADDING } from "@styles/safeAreaViewOffset";
 import { Box, Image } from "@atoms";
 import { addCommasToNumber } from "@utils";
 import { Source, ProgressBar, TextTemplate } from "@atoms";
@@ -366,7 +367,7 @@ const EventDialogScreen = ({
       {!button ? null : (
         <Box position="absolute" bottom={0} w="100%">
           <LinearGradient style={style.gradient} colors={SMOOTH_GRADIENT_COLORS} />
-          <Box p={32} pt={50} pb={Math.max(bottom, 32)} bottom={0}>
+          <Box p={32} pt={50} pb={Math.max(bottom, MIN_SAFE_BOTTOM_PADDING)} bottom={0}>
             <Button
               testID={EVENT_DIALOG_BUTTON}
               size="Fill"
