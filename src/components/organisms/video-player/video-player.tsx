@@ -7,7 +7,7 @@ import Video, {
   ResizeMode,
   IgnoreSilentSwitchType,
   ViewType,
-} from "react-native-video";
+} from "@atoms/video/video";
 import moment from "moment";
 import { Animated, View, AppStateStatus } from "react-native";
 import { useCasting, useCastingAntiCheat, AirplayButton, CastButton, showRoutePicker } from "@services/casting";
