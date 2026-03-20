@@ -1,13 +1,14 @@
 import React, { memo } from "react";
 import { Box, TextTemplate } from "@atoms";
 import { BoxOption } from "@molecules";
-import { Colours, Style, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { View } from "react-native";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import HealthProviderLogo from "@components/molecules/health-provider-logo/health-provider-logo";
 import { HealthProvider } from "@yu-life/react-native-yu-health";
 import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
 import { useTranslation } from "@hooks";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 
 interface IProps {
   provider: HealthProvider;
@@ -17,6 +18,7 @@ interface IProps {
 const HealthProviderItem = ({ provider, onPress }: IProps) => {
   const options = HEALTH_PROVIDER_OPTIONS[provider];
   const t = useTranslation(["yu_health.activitySelection.recommended", "yu_health.activitySelection.optional"]);
+  const { theme } = useTheme();
   if (!options) {
     return null;
   }
@@ -38,7 +40,7 @@ const HealthProviderItem = ({ provider, onPress }: IProps) => {
           </View>
         </View>
         <View style={styles.arrow}>
-          <ArrowButton color={Colours.primary.p600} />
+          <ArrowButton color={theme.colors.primary.p600} />
         </View>
       </Box>
     </BoxOption>

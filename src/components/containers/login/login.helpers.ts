@@ -1,4 +1,4 @@
-import { gql, LoginUserMutation } from "@graphql/__generated";
+import { gql, LoginUserMutation, MobileGameTheme } from "@graphql/__generated";
 import { t } from "@locale";
 import { IFeature, ILoginUserPayload } from "@redux/user/user.types";
 import { VoidFunction } from "@utils";
@@ -12,6 +12,7 @@ import { Style } from "@styles";
 import client from "@graphql/_core/client";
 import { REGION, region as regionService } from "@locale";
 import { setToken } from "@services/storage";
+import themeService from "@modules/themes/theme.service";
 import { FetchResult } from "@apollo/client";
 import { loginUserSuccess } from "@redux/user/user.actions";
 import { reduceUserFeatures } from "@redux/user/user.helpers";
@@ -45,6 +46,15 @@ export const applyLoginSession = async ({
 
   if (response?.data?.config?.__typename) {
     await regionService.setConfig(response.data.config);
+  }
+
+  if ("theme" in response.data) {
+    const theme = response.data.theme as MobileGameTheme;
+    await themeService.setThemeId(theme.id);
+    client().writeQuery({
+      query: gql("GetMobileGameThemeDocument"),
+      data: { getMobileGameTheme: theme },
+    });
   }
 
   dispatch(setRegionConfig({ shouldFetchConfig: false }));
