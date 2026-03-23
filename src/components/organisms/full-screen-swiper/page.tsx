@@ -1,12 +1,13 @@
 import React, { memo, MutableRefObject, useEffect, useRef } from "react";
-import { Animated, View } from "react-native";
+import { Animated, useWindowDimensions, View } from "react-native";
 import type Lottie from "lottie-react-native";
-import { Image, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { Colours, Style, StyleSheet } from "@styles";
 import { useGetLottieJson } from "@hooks";
 import { LottieView } from "@molecules";
 import media from "@styles/media";
 import { SMOKING_STORY_SCREEN } from "@ids";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export interface IPageItem {
   id: string;
@@ -34,9 +35,11 @@ const IMAGE_WIDTH = media.select(
 
 export const Page = (props: IPageItem) => {
   const { heading, paragraph, textColor, image } = props;
+  const { bottom } = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
 
   return (
-    <View style={styles.wrapper}>
+    <Box w={width} disableAutoAdjust={true} h="100%" pb={bottom}>
       <Background {...props} />
       <View style={styles.container}>
         <View style={styles.header}>
@@ -57,7 +60,7 @@ export const Page = (props: IPageItem) => {
           </View>
         )}
       </View>
-    </View>
+    </Box>
   );
 };
 
