@@ -14,11 +14,14 @@ import {
   YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE,
   YUSCREEN_V5_TALL_CARD,
 } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export const TallCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) => {
   const showButton = !!item.buttonCta && !!onButtonPress;
   const showCardCta = !!item.cardCta;
   const showBody = !showButton || !showCardCta;
+
+  const { theme } = useTheme();
 
   return (
     <View style={styles.card} testID={YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(item.productName)}>
@@ -76,7 +79,7 @@ export const TallCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) =
             <TextTemplate type="l3b" testID={YUSCREEN_V5_CTA_BUTTON(item.productName)}>
               {item.cardCta}
             </TextTemplate>
-            <ArrowButton size={Style.adjust(16)} color={Colours.primary.p600} />
+            <ArrowButton size={Style.adjust(16)} color={theme.colors.primary.p600} />
           </View>
         )}
       </View>

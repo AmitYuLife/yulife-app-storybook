@@ -9,6 +9,7 @@ import { DUEL_AVATAR } from "@ids";
 import { t } from "@locale";
 import { formatOpponentName } from "@utils/duels";
 import { gql } from "@graphql/__generated";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface Props {
   inviteToDuel: (opponentId: string, type: "recents") => Promise<void>;
@@ -20,6 +21,7 @@ const _RecentOpponents = ({ inviteToDuel }: Props) => {
   });
 
   const opponents = data?.getRecentDuelOpponents || [];
+  const { theme } = useTheme();
 
   if (loading) {
     return (
@@ -52,7 +54,7 @@ const _RecentOpponents = ({ inviteToDuel }: Props) => {
                 style={[styles.opponent, isMiddleRecentOpponent ? styles.middleOpponent : {}]}
                 testID={DUEL_AVATAR(opponent.fullName)}
               >
-                <Text bold={true} style={styles.name}>
+                <Text bold={true} style={[styles.name, { color: theme.colors.primary.p600 }]}>
                   {formatOpponentName(opponent?.fullName)}
                 </Text>
                 <DuelImage size="medium" uri={opponent?.avatar} />
