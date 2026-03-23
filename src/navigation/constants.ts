@@ -110,6 +110,7 @@ export const ROUTES = {
 
   // media
   meditopiaMediaList: "yulife.meditopia.media.list",
+  meditopiaMediaAll: "yulife.meditopia.media.all",
   fiitMediaCategoryList: "yulife.fiit.media.category.list",
   fiitMediaList: "yulife.fiit.media.list",
   mediaPlayer: "yulife.media.player",

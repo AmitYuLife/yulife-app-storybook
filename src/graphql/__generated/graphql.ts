@@ -9479,6 +9479,7 @@ export type QueryGetMobileQuestLevelChallengeDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileQuestLevelMediaInternalContentArgs = {
   contentTags: Array<Scalars["String"]["input"]>;
+  includeAllMedia?: InputMaybe<Scalars["Boolean"]["input"]>;
   level: Scalars["Int"]["input"];
   levelSlotTemplateId: Scalars["String"]["input"];
   yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
@@ -9951,6 +9952,8 @@ export type QuestMapLevel = {
 
 export type QuestMapLevelChallengeContent = {
   __typename?: "QuestMapLevelChallengeContent";
+  category?: Maybe<Scalars["String"]["output"]>;
+  categoryOrder?: Maybe<Scalars["Int"]["output"]>;
   formattedDuration: Scalars["String"]["output"];
   media: Media;
   reward: Scalars["Int"]["output"];
@@ -24334,6 +24337,7 @@ export type GetMobileQuestLevelMediaInternalContentQueryVariables = Exact<{
   yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
   levelSlotTemplateId: Scalars["String"]["input"];
   contentTags: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
+  includeAllMedia?: InputMaybe<Scalars["Boolean"]["input"]>;
 }>;
 
 export type GetMobileQuestLevelMediaInternalContentQuery = {
@@ -24384,6 +24388,8 @@ export type GetMobileQuestLevelMediaInternalContentQuery = {
       reward: number;
       stars: number;
       formattedDuration: string;
+      category?: string | null;
+      categoryOrder?: number | null;
       media: {
         __typename?: "Media";
         id: string;
@@ -75006,6 +75012,11 @@ export const GetMobileQuestLevelMediaInternalContentDocument = {
             },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "includeAllMedia" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -75033,6 +75044,11 @@ export const GetMobileQuestLevelMediaInternalContentDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "contentTags" },
                 value: { kind: "Variable", name: { kind: "Name", value: "contentTags" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "includeAllMedia" },
+                value: { kind: "Variable", name: { kind: "Name", value: "includeAllMedia" } },
               },
             ],
             selectionSet: {
@@ -75172,6 +75188,8 @@ export const GetMobileQuestLevelMediaInternalContentDocument = {
                       { kind: "Field", name: { kind: "Name", value: "reward" } },
                       { kind: "Field", name: { kind: "Name", value: "stars" } },
                       { kind: "Field", name: { kind: "Name", value: "formattedDuration" } },
+                      { kind: "Field", name: { kind: "Name", value: "category" } },
+                      { kind: "Field", name: { kind: "Name", value: "categoryOrder" } },
                     ],
                   },
                 },
