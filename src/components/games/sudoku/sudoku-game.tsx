@@ -21,7 +21,7 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
 
   const pauseModal = useMemo(() => {
     return (
-      <FloatingModal showButton={false}>
+      <FloatingModal showButton={false} showCloseIcon={false}>
         <SudokuPauseModal onClose={unpause} />
       </FloatingModal>
     );
