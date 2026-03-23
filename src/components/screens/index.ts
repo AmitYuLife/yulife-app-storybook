@@ -65,6 +65,7 @@ export { default as CollectEventRewardScreen } from "./member/events/collect-eve
 
 // media
 export { default as MeditopiaMediaListScreen } from "./member/media/meditopia-media-list/meditopia-media-list.screen";
+export { default as MeditopiaMediaAllScreen } from "./member/media/meditopia-media-all/meditopia-media-all.screen";
 export { default as MediaPlayerScreen } from "./member/media/media-player/media-player.screen";
 export { default as MediaPlayerProgressScreen } from "./member/media/media-player/media-player-progress.screen";
 export { default as FiitMediaCategoryListScreen } from "./member/media/fiit-media-category-list/fiit-media-category-list.screen";

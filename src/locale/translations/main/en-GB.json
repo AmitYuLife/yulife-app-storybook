@@ -1295,7 +1295,11 @@
       "description": "Free classes powered by"
     },
     "meditopia_media_list": {
-      "startChallengeButtonLabel": "Start session"
+      "startChallengeButtonLabel": "Start session",
+      "see_all_button": "See all meditations"
+    },
+    "meditopia_media_all": {
+      "title": "All Meditations"
     },
     "yu_coin_power_explained": {
       "heading": "YuCoin Power",

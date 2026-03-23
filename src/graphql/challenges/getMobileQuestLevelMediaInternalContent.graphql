@@ -3,12 +3,14 @@ query GetMobileQuestLevelMediaInternalContent(
   $yuniversalMap: Int
   $levelSlotTemplateId: String!
   $contentTags: [String!]!
+  $includeAllMedia: Boolean
 ) {
   getMobileQuestLevelMediaInternalContent(
     level: $level
     yuniversalMap: $yuniversalMap
     levelSlotTemplateId: $levelSlotTemplateId
     contentTags: $contentTags
+    includeAllMedia: $includeAllMedia
   ) {
     title
     mediaListHeader
@@ -68,6 +70,8 @@ query GetMobileQuestLevelMediaInternalContent(
         reward
         stars
         formattedDuration
+        category
+        categoryOrder
     }
   }
 }

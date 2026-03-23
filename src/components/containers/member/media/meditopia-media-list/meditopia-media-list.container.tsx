@@ -161,6 +161,21 @@ const MeditopiaMediaListContainer = ({
     }
   }, [dispatch, promotionReward]);
 
+  const onSeeAllPress = useCallback(() => {
+    Navigation.push(ROUTES.meditopiaMediaList, {
+      component: {
+        id: ROUTES.meditopiaMediaAll,
+        name: ROUTES.meditopiaMediaAll,
+        passProps: {
+          level,
+          levelSlotTemplateId,
+          contentMediaTags,
+          yuniversalMap,
+        },
+      },
+    });
+  }, [level, levelSlotTemplateId, contentMediaTags, yuniversalMap]);
+
   const formattedVideos = useMemo(() => {
     const videos = internalContent?.media || [];
     return videos.map(({ media, reward, stars, formattedDuration }) => ({
@@ -193,6 +208,7 @@ const MeditopiaMediaListContainer = ({
       moreInformationPress={moreInformationPress}
       level={level}
       levelSlotTemplateId={levelSlotTemplateId}
+      onSeeAllPress={onSeeAllPress}
     />
   );
 };

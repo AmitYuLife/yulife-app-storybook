@@ -87,6 +87,7 @@ import ThemeSwitcherContainer from "../components/containers/member/debug/theme-
 
 // meditation
 import MeditopiaMediaListContainer from "../components/containers/member/media/meditopia-media-list/meditopia-media-list.container";
+import MeditopiaMediaAllContainer from "../components/containers/member/media/meditopia-media-all/meditopia-media-all.container";
 import BreathingExerciseContainer from "../components/games/breathing/exercise/breathing-exercise.container";
 
 // fiit media
@@ -467,6 +468,10 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: ROUTES.meditopiaMediaList,
     component: MeditopiaMediaListContainer,
+  },
+  {
+    name: ROUTES.meditopiaMediaAll,
+    component: MeditopiaMediaAllContainer,
   },
   {
     name: ROUTES.breathingExercise,

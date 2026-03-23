@@ -30,6 +30,7 @@ interface IProps {
   promotionReward: IPromotionReward;
   level: number;
   levelSlotTemplateId: string;
+  onSeeAllPress: () => void;
 }
 
 const MeditopiaMediaListScreen = ({
@@ -47,6 +48,7 @@ const MeditopiaMediaListScreen = ({
   moreInformationPress,
   level,
   levelSlotTemplateId,
+  onSeeAllPress,
 }: IProps) => {
   const handleOnPress = useCallback((video: IITem) => {
     Navigation.push(ROUTES.meditopiaMediaList, {
@@ -80,6 +82,11 @@ const MeditopiaMediaListScreen = ({
         <View style={styles.wrapper}>
           <MediaListHeader title={title} description={description} logo={logoProps} />
           <MediaListItems items={videos} isLoading={loading} type="media" onPress={handleOnPress} />
+          <SecondaryButton
+            size="Fill"
+            translationKey="screens.meditopia_media_list.see_all_button"
+            onPress={onSeeAllPress}
+          />
           <View>
             <MediaListButtons
               title={t("screens.media_list.different_app_section_label")}
