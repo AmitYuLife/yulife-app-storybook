@@ -121,6 +121,7 @@ export function mapHeroCard(item: GqlHeroCard): HeroCard {
     header: {
       heading: item.header?.heading,
       subheadingMargin: item.header?.subheadingMargin,
+      headingWidth: item.header?.headingWidth,
       subheading: item.header?.subheading,
       image: item.header?.image,
       button: {
