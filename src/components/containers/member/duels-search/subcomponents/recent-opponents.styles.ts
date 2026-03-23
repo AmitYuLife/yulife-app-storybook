@@ -38,7 +38,6 @@ export default StyleSheet.create({
   } as ViewStyle,
   name: {
     textAlign: "center",
-    color: Colours.primary.p600,
     fontSize: Style.adjust(12),
     lineHeight: Style.adjust(16),
     paddingTop: Style.adjust(14),

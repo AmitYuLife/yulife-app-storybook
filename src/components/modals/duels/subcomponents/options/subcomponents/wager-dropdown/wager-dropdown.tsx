@@ -8,6 +8,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { PICKER_AMOUNT_LABEL } from "@ids";
 import { Colours } from "@styles";
 import { ArrowButton } from "@components/molecules/arrow-button";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProps {
   yucoin: number;
@@ -22,6 +23,7 @@ const WagerDropdown: FC<IProps> = ({
   description = t("modals.duels.duel_options.your_wager"),
   onPress,
 }) => {
+  const { theme } = useTheme();
   return (
     <TouchableOpacityWithDelay onPress={onPress} style={styles.wagerButton}>
       <View style={styles.boxShadow} />
@@ -42,7 +44,7 @@ const WagerDropdown: FC<IProps> = ({
           </View>
         </View>
         <View style={styles.dropdownArrow}>
-          <ArrowButton color={Colours.primary.p600} />
+          <ArrowButton color={theme.colors.primary.p600} />
         </View>
       </View>
     </TouchableOpacityWithDelay>
