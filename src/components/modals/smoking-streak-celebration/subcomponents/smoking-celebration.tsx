@@ -26,6 +26,7 @@ import {
 } from "./smoking-celebration-constants";
 import { SmokingCelebrationDisplayProps } from "./smoking-celebration-types";
 import { useSmokingCelebrationAnimations } from "./use-smoking-celebration-animations";
+import RaysSpotlightFocal from "@organisms/rays/rays-spotlight-focal";
 
 export type SmokingCelebrationProps = SmokingCelebrationDisplayProps & {
   onPress?: VoidFunctionOrPromise;
@@ -129,24 +130,19 @@ const SmokingCelebration = (props: SmokingCelebrationProps) => {
             justifyContent="center"
             alignItems="center"
           >
-            {displayProps.image ? (
-              <Image
-                source={displayProps.image}
-                width={Style.adjust(CUSTOM_IMAGE_SIZE.w)}
-                height={Style.adjust(CUSTOM_IMAGE_SIZE.h)}
-                testID={SMOKING_CELEBRATION_CUSTOM_IMAGE(displayProps.image.id)}
-                suppressLoadingUi={true}
-              />
-            ) : (
-              <Box
-                w={DEFAULT_MAIN_IMAGE_SIZE.w}
-                h={DEFAULT_MAIN_IMAGE_SIZE.h}
-                justifyContent="center"
-                alignItems="center"
-              >
+            <RaysSpotlightFocal style={styles.focalImage}>
+              {displayProps.image ? (
+                <Image
+                  source={displayProps.image}
+                  width={Style.adjust(CUSTOM_IMAGE_SIZE.w)}
+                  height={Style.adjust(CUSTOM_IMAGE_SIZE.h)}
+                  testID={SMOKING_CELEBRATION_CUSTOM_IMAGE(displayProps.image.id)}
+                  suppressLoadingUi={true}
+                />
+              ) : (
                 <GenericYucoin width={DEFAULT_MAIN_IMAGE_SIZE.w} height={DEFAULT_MAIN_IMAGE_SIZE.h} margin={0} />
-              </Box>
-            )}
+              )}
+            </RaysSpotlightFocal>
           </Box>
 
           {displayProps.description ? (
@@ -189,6 +185,12 @@ const styles = StyleSheet.create({
   tipCardStyles: {
     backgroundColor: Colours.neutral.white,
     width: TIP_CARD_WIDTH,
+  },
+  focalImage: {
+    width: DEFAULT_MAIN_IMAGE_SIZE.w,
+    height: DEFAULT_MAIN_IMAGE_SIZE.h,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 const markdownStyles = StyleSheet.create({

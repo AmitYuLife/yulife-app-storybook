@@ -14,7 +14,7 @@ export interface IGradientStop {
   opacity?: number;
 }
 
-interface IRaysProps {
+export interface IRaysProps {
   containerStyle?: ViewStyle;
   backgroundColor?: string;
   duration?: number;

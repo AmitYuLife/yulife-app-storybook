@@ -1,13 +1,12 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import { ScrollView } from "react-native";
 import { initialWindowMetrics, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { t } from "@locale";
 import { Box } from "@atoms";
-import { Rays } from "@organisms";
-import { DETOX_ENABLED } from "@services/socket";
 import { VoidFunction, VoidFunctionOrPromise } from "@utils";
 import { default as SmokingCelebration, SmokingCelebrationProps } from "./subcomponents/smoking-celebration";
+import RaysSpotlightLayout from "@organisms/rays/rays-spotlight-layout";
 
 type Page = "streakIncrease" | "milestone";
 
@@ -89,19 +88,16 @@ const SmokingStreakCelebrationModal = ({ onClose, smokingData, closeOverlay }: I
 
   return (
     <Box flex={1} bg="rgba(0,0,0,.5)">
-      <Box w="100%" h="100%" position="absolute" opacity={0.4}>
-        <Box forceAnimated={true} w="100%" h="100%" position="absolute" top={-130}>
-          {!DETOX_ENABLED ? <Rays backgroundColor="transparent" style="alternate" /> : null}
-        </Box>
-      </Box>
-      <ScrollView
-        bounces={false}
-        showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="never"
-        contentContainerStyle={{ flexGrow: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}
-      >
-        <SmokingCelebration {...smokingCelebrationPageData} />
-      </ScrollView>
+      <RaysSpotlightLayout>
+        <ScrollView
+          bounces={false}
+          showsVerticalScrollIndicator={false}
+          contentInsetAdjustmentBehavior="never"
+          contentContainerStyle={{ flexGrow: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}
+        >
+          <SmokingCelebration {...smokingCelebrationPageData} />
+        </ScrollView>
+      </RaysSpotlightLayout>
     </Box>
   );
 };
