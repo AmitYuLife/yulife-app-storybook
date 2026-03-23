@@ -26,7 +26,7 @@ const SudokuPauseModal = ({ onClose }: { onClose: () => void }) => {
       { label: t["sudoku.pause.time"], value: pauseTime ?? "00:00" },
       { label: t["sudoku.pause.difficulty"], value: t["sudoku.difficulty.easy"] },
     ],
-    [mistakes, pauseTime, t]
+    [config, mistakes, pauseTime, t]
   );
 
   const onResumePress = useCallback(() => {
@@ -67,33 +67,24 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     borderRadius: Style.adjust(100),
-    position: "absolute",
-    flex: 1,
     zIndex: 99,
+    paddingHorizontal: Style.adjust(16),
   },
   pauseText: {
     fontSize: 24,
-    marginTop: Style.adjust(35),
     marginBottom: Style.adjust(35),
     fontWeight: "600",
     color: Colours.neutral.n900,
     marginVertical: Style.adjust(20),
   },
   container: {
-    padding: Style.adjust(30),
-    paddingTop: Style.adjust(40),
     alignItems: "center",
-    borderTopLeftRadius: Style.adjust(25),
-    borderTopRightRadius: Style.adjust(25),
-    backgroundColor: "white",
     flex: 1,
   },
   statsWrapper: {
     flexDirection: "row",
     padding: Style.adjust(18),
-    borderTopLeftRadius: Style.adjust(25),
-    borderTopRightRadius: Style.adjust(25),
-    borderRadius: Style.adjust(10),
+    borderRadius: Style.adjust(25),
     backgroundColor: "#F5F5F5",
     marginBottom: Style.adjust(30),
   },
@@ -102,7 +93,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   statValue: {
     marginTop: Style.adjust(6),
   },
