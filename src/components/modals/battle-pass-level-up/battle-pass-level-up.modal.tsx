@@ -13,6 +13,7 @@ import { memo, useCallback, useEffect, useMemo } from "react";
 import { View } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import BlurredRaysWrapper from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
+import RaysSpotlightFocal from "@organisms/rays/rays-spotlight-focal";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import { isAndroid } from "@utils";
 
@@ -22,7 +23,7 @@ interface IBattlePassLevelUpModalProps {
   onClaim?: (reward: MobileGameBattlePassReward) => VoidFunctionOrSduiActionPayload;
 }
 
-const ANIMATION_START_DELAY = 700;
+const ANIMATION_START_DELAY = 300;
 
 const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBattlePassLevelUpModalProps) => {
   const track = useTrack();
@@ -99,9 +100,11 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
       titlePaddingTop={isAndroid() ? TOP_BAR_WITH_PAD : 40}
     >
       <View style={imageWrapperStyles}>
-        <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
-          <ItemDetailsReward size={180} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
-        </Animated.View>
+        <RaysSpotlightFocal style={styles.animatedImageWrapper}>
+          <Animated.View entering={FadeInDown.delay(300).duration(600)} style={styles.animatedImageWrapper}>
+            <ItemDetailsReward size={180} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
+          </Animated.View>
+        </RaysSpotlightFocal>
       </View>
     </BlurredRaysWrapper>
   );
