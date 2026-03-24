@@ -46,7 +46,12 @@ const Center = (props: Props) => {
     >
       {theme.assets.icon ? (
         <>
-          <Image source={{ uri: theme.assets.icon.uri }} width={26} height={26} resizeMode="contain" />
+          <Image
+            source={{ uri: theme.assets.icon.uri }}
+            width={Style.adjust(26)}
+            height={Style.adjust(26)}
+            disableAutoAdjust={true}
+          />
           <Box w={1} h={26} bg={Colours.neutral.n300} />
         </>
       ) : null}

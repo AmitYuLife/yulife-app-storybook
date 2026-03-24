@@ -2,6 +2,7 @@ import React, { memo, useMemo } from "react";
 import { Colours, Style, StyleSheet } from "@styles";
 import { ArrowIcon, IArrowIconProps } from "@atoms/icon/arrow";
 import { View } from "react-native";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type IArrowButtonProps = IArrowIconProps;
 
@@ -12,12 +13,13 @@ export const ArrowButton = memo(
     intent = "transparent",
     direction = "right",
   }: IArrowButtonProps) => {
+    const { theme } = useTheme();
     const arrowStyles = useMemo(() => {
       switch (intent) {
         case "primary":
-          return [styles.arrowPrimary, { width: size, height: size }];
+          return [styles.arrowPrimary, { width: size, height: size, backgroundColor: theme.colors.primary.p600 }];
         case "secondary":
-          return [styles.arrowSecondary, { width: size, height: size }];
+          return [styles.arrowSecondary, { width: size, height: size, borderColor: theme.colors.primary.p600 }];
         case "transparent":
           return [styles.arrowTransparent, { width: size, height: size }];
         default:
@@ -46,12 +48,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   arrowPrimary: {
-    backgroundColor: Colours.primary.p600,
     borderRadius: Style.adjust(12),
   },
   arrowSecondary: {
     borderWidth: Style.adjust(1),
-    borderColor: Colours.primary.p600,
     borderRadius: Style.adjust(12),
   },
   arrowTransparent: {},

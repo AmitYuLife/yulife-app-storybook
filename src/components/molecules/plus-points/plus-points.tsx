@@ -1,11 +1,12 @@
 import { memo, useMemo } from "react";
 import { Platform, View } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Colours, TemplateTextType } from "@styles";
+import { TemplateTextType } from "@styles";
 import { addCommasToNumber } from "@utils";
 import Plus from "./assets/plus";
 import styles from "./plus-points.styles";
 import { t } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProps {
   coins: number;
@@ -24,6 +25,7 @@ const getScaleForTextType = (textType: TemplateTextType): number => {
 
 const PlusPoints = ({ coins, testID, textType = "h1" }: IProps) => {
   const scale = useMemo(() => getScaleForTextType(textType), [textType]);
+  const { theme } = useTheme();
 
   return (
     <View
@@ -33,9 +35,15 @@ const PlusPoints = ({ coins, testID, textType = "h1" }: IProps) => {
       importantForAccessibility={"no"}
     >
       <View style={styles.plusWrapper}>
-        <Plus scale={scale} />
+        <Plus scale={scale} colour={theme.colors.primary.p600} />
       </View>
-      <TextTemplate type={textType} textAlign="center" color={Colours.darkHotPink} testID={testID} accessible={false}>
+      <TextTemplate
+        type={textType}
+        textAlign="center"
+        color={theme.colors.primary.p600}
+        testID={testID}
+        accessible={false}
+      >
         {`${addCommasToNumber(coins)}`}
       </TextTemplate>
     </View>

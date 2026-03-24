@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import Svg, { G, Rect, Path, Defs, LinearGradient, Stop, Text, ForeignObject } from "react-native-svg";
 import { Colours, Style, StyleSheet } from "@styles";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { InfoIcon } from "@atoms/icon/info-icon";
 import { TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { t } from "@locale";
@@ -10,6 +11,7 @@ import { SecondaryButton } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { addCommasToNumber } from "@utils";
 import { EARN_RATE } from "@ids";
+import { MobileGameTheme } from "@app/modules/themes/types";
 
 interface IProps {
   isPoweredUp?: boolean;
@@ -17,7 +19,7 @@ interface IProps {
   yuCoinAmount: number;
 }
 
-const COLOURS = {
+const getColours = (primary: MobileGameTheme["colors"]["primary"]) => ({
   default: [
     "#EDB720",
     "#EDB720",
@@ -35,32 +37,32 @@ const COLOURS = {
     "#FFF48E",
     Colours.neutral.white,
     "#DB8200",
-    "#640038",
-    Colours.primary.p400,
+    primary.p600Shadow,
+    primary.p400,
     "#464647",
   ],
   selected: [
-    "#C80D6C",
-    "#DE267D",
+    primary.p600Shadow,
+    primary.p600,
     "#EDB720",
     "#F8CB31",
     Colours.neutral.white,
-    Colours.primary.p400,
-    Colours.primary.p400,
-    Colours.primary.p400,
-    Colours.primary.p400,
-    Colours.primary.p400,
-    Colours.primary.p400,
+    primary.p400,
+    primary.p400,
+    primary.p400,
+    primary.p400,
+    primary.p400,
+    primary.p400,
     "#FFF48E",
     "#FFED44",
     "#FFF48E",
     Colours.neutral.white,
-    "#CC0D6E",
+    primary.p600,
     Colours.neutral.white,
     Colours.neutral.white,
     Colours.neutral.white,
   ],
-};
+});
 
 const INFO_ICON_MEASURES = {
   x: 183,
@@ -72,7 +74,9 @@ const YUCOIN_POWER_HEIGHT = Style.adjust(90);
 
 const YuCoinPowerCard = ({ isPoweredUp, yuCoinPower = 0, yuCoinAmount }: IProps) => {
   const [measures, setMeasures] = useState({ x: 0, y: 0 });
-  const selectedColours = useMemo(() => (isPoweredUp ? COLOURS.selected : COLOURS.default), [isPoweredUp]);
+  const { theme } = useTheme();
+  const colours = useMemo(() => getColours(theme.colors.primary), [theme.colors.primary]);
+  const selectedColours = useMemo(() => (isPoweredUp ? colours.selected : colours.default), [isPoweredUp, colours]);
 
   const onLayout = useCallback(({ nativeEvent }: LayoutChangeEvent) => {
     const offset = 5;

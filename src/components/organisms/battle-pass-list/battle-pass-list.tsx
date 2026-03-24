@@ -9,6 +9,7 @@ import { FlatList } from "@atoms";
 import { FlatList as RNFlatList } from "react-native";
 import { BATTLE_PASS_LIST } from "@ids";
 import { VoidFunction } from "@utils";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export interface IBattlePassList {
   items: IBattlePassListItem[];
@@ -25,11 +26,12 @@ const BattlePassList = forwardRef(
     { items, onScrollStart, onLoad, battlePassType, initialScrollIndex, contentContainerStyle }: IBattlePassList,
     forwardRefProp: React.MutableRefObject<RNFlatList<IBattlePassListItem>>
   ) => {
+    const { theme } = useTheme();
     const renderItem = useCallback(
       ({ item }: { item: IBattlePassListItem }) => {
         return (
           <View style={styles.itemWrapper}>
-            <BattlePassListItem {...item} battlePassType={battlePassType} />
+            <BattlePassListItem {...item} battlePassType={battlePassType} ctaTextColour={theme.colors.primary.p600} />
           </View>
         );
       },

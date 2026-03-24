@@ -1,4 +1,5 @@
-import { Colours, StyleSheet } from "@styles";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import { StyleSheet } from "@styles";
 import React, { memo } from "react";
 import { View } from "react-native";
 
@@ -10,6 +11,7 @@ interface IProps {
 const AvPlayerProgressBar = ({ currentProgress, duration }: IProps) => {
   const currentInMilliSeconds = currentProgress * 1000;
   const durationInMilliSeconds = duration * 1000 || 100; //condition only for android
+  const { theme } = useTheme();
 
   return (
     <View
@@ -17,6 +19,7 @@ const AvPlayerProgressBar = ({ currentProgress, duration }: IProps) => {
         styles.wrapper,
         {
           width: `${Math.round((currentInMilliSeconds / durationInMilliSeconds) * 100)}%` || 0,
+          backgroundColor: theme.colors.primary.p400,
         },
       ]}
     />
@@ -26,7 +29,6 @@ const AvPlayerProgressBar = ({ currentProgress, duration }: IProps) => {
 const styles = StyleSheet.create({
   wrapper: {
     height: 6,
-    backgroundColor: Colours.primary.p400,
     borderRadius: 3,
   },
 });
