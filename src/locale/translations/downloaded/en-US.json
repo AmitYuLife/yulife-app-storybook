@@ -1423,7 +1423,11 @@
       "different_app_section_label": "Or use an app",
       "video_duration_reward_label": "%{formattedDuration} • Earn %{reward}"
     },
+    "meditopia_media_all": {
+      "title": "All Meditations"
+    },
     "meditopia_media_list": {
+      "see_all_button": "See all meditations",
       "startChallengeButtonLabel": "Start session"
     },
     "menu": {
