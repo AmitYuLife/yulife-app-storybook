@@ -91,11 +91,14 @@ Feature("Mutual of Omaha specific tests", async () => {
     });
   });
 
-  Scenario("Restricted goals work on the MoO pricing tier", scenario.start, async () => {
-    Given("I login as a non-MoO pricing tier user and go to the YuCoin screen", given.loginAsUser(CUSTOMER_USA_5.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+  Scenario("Non-MoO pricing tier user can see restricted goals", scenario.start, async () => {
+    Given("I login as a non-MoO pricing tier user", given.loginAsUser(CUSTOMER_USA_5.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
       Then("I should see the event card 'step to it! - MoO Restriction test' ", then.idVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 5000));
     });
-    When("I log out and log in again with a MoO pricing tier user", when.fullRestartAndLogin(CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
+  });
+
+  Scenario("MoO pricing tier user cannot see restricted goals", scenario.start, async () => {
+    Given("I login as a MoO pricing tier user", given.loginAsUser(CUSTOMER_USA_4.customer, GENERIC_AUTH_PASSWORD, true, "US"), async () => {
       Then("I should NOT see the event card 'step to it! - MoO Restriction test' ", then.idNotVisible(ids.EVENT_CARD("Step to it! - MoO Restriction test"), 5000));
     });
   });

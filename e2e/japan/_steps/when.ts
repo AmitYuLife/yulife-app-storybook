@@ -43,27 +43,31 @@ export const goToWellbeingHub = async () => {
 
 export const { triggerSearchTokens } = screens.leaderboard;
 
+const selectRecipient = async (recipientName: string, waitTime = 4000) => {
+  await tapID(ids.HERO_CARD_SECTION, waitTime)();
+  await tapID(ids.CTA_GET_STARTED, waitTime)();
+  await replaceTextViaID(ids.INPUT_FIELD, recipientName)();
+  await tapID(
+    ids.LEADERBOARD_NAME(recipientName, undefined, undefined, "search"),
+    10000,
+  )();
+};
+
+const composeAndSendGift = async (waitTime = 4000) => {
+  await tapID(ids.P2P_NEXT_BUTTON, waitTime)();
+  await tapID(ids.P2P_MESSAGE(P2P_MESSAGES_JP[0]), waitTime)();
+  await tapID(ids.P2P_NEXT_BUTTON, waitTime)();
+  await tapID(ids.P2P_GIFTING_AMOUNT("10 YuCoin"), waitTime)();
+  await tapID(ids.P2P_NEXT_BUTTON, waitTime)();
+  await tapID(ids.P2P_STICKER, waitTime)();
+  await tapID(ids.P2P_STICKER_ITEMS("gift"), waitTime)();
+  await tapID(ids.P2P_SEND_BUTTON, waitTime)();
+  await tapID(ids.CTA_GOT_IT, waitTime)();
+};
+
 export const sendGiftUserFlow = (giftRecipient: IDatabaseItem) => async () => {
-  await tapID(ids.HERO_CARD_SECTION)();
-  await tapID(ids.CTA_GET_STARTED)();
-  await typeViaID(ids.INPUT_FIELD, getFullName(giftRecipient, "JP"))();
-  await tapID(
-    ids.LEADERBOARD_NAME(getFullName(giftRecipient, "JP"), undefined, undefined, "search"),
-    8000
-  )();
-  await tapID(
-    ids.LEADERBOARD_NAME(getFullName(giftRecipient, "JP"), undefined, undefined, "search"),
-    5000
-  )();
-  await tapID(ids.P2P_NEXT_BUTTON, 2000)();
-  await tapID(ids.P2P_MESSAGE(P2P_MESSAGES_JP[0]), 2000)();
-  await tapID(ids.P2P_NEXT_BUTTON, 2000)();
-  await tapID(ids.P2P_GIFTING_AMOUNT("10 YuCoin"), 2000)();
-  await tapID(ids.P2P_NEXT_BUTTON, 2000)();
-  await tapID(ids.P2P_STICKER, 2000)();
-  await tapID(ids.P2P_STICKER_ITEMS("gift"), 2000)();
-  await tapID(ids.P2P_SEND_BUTTON, 2000)();
-  await tapID(ids.CTA_GOT_IT, 2000)();
+  await selectRecipient(getFullName(giftRecipient, "JP"));
+  await composeAndSendGift();
 };
 
 export const completeSendGiftUserFlow =
