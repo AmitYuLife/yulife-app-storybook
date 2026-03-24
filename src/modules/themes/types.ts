@@ -27,3 +27,8 @@ export interface MobileGameTheme {
     loginBackgroundImage?: Image;
   };
 }
+
+export enum ThemeId {
+  YuLife = "yulife",
+  Metlife = "metlife",
+}

@@ -19,6 +19,7 @@ import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import { gql } from "@graphql/__generated";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
 
@@ -274,7 +275,7 @@ const RemainingTime = ({ endDateTime, isClaimed }: IRemainingTimeProps) => {
   }, [endDateTime]);
 
   const t = useTranslation(["screens.weekly_quests.quest_resets_in", "screens.weekly_quests.come_back_in"]);
-
+  const { theme } = useTheme();
   useEffect(() => {
     const interval = setInterval(
       () => {
@@ -290,7 +291,7 @@ const RemainingTime = ({ endDateTime, isClaimed }: IRemainingTimeProps) => {
     <View style={styles.remainingTime}>
       <TextTemplate type="b2" textAlign="center">
         {!isClaimed ? t["screens.weekly_quests.quest_resets_in"] : t["screens.weekly_quests.come_back_in"]}{" "}
-        <TextTemplate type="b2b" color={Colours.primary.p600}>
+        <TextTemplate type="b2b" color={theme.colors.primary.p600}>
           {time}
         </TextTemplate>
       </TextTemplate>

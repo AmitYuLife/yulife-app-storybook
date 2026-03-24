@@ -1,5 +1,5 @@
 import { Box, TextTemplate } from "@atoms";
-import { Colours, StyleSheet } from "@styles";
+import { StyleSheet } from "@styles";
 import { random } from "lodash";
 import { memo, useEffect, useMemo } from "react";
 import Animated, {
@@ -11,6 +11,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IDecayingCoinProps {
   id: string;
@@ -34,6 +35,8 @@ const DecayingRewardText = ({ id, onFinish, amount, minX, maxX }: IDecayingCoinP
     positionX.value += velocityX.value;
     positionY.value += velocityY.value;
   });
+
+  const { theme } = useTheme();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -84,7 +87,7 @@ const DecayingRewardText = ({ id, onFinish, amount, minX, maxX }: IDecayingCoinP
     <Animated.View style={containerStyle} pointerEvents="box-none">
       <Animated.View style={scaleStyle}>
         <Box w={BASE_WIDTH} alignItems="center">
-          <TextTemplate type="l2b" color={Colours.primary.p400}>
+          <TextTemplate type="l2b" color={theme.colors.primary.p400}>
             +{amount}
           </TextTemplate>
         </Box>

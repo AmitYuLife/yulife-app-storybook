@@ -40,7 +40,7 @@ const TodayEarningsScreen = ({
 
   return (
     <View style={styles.wrapper}>
-      <GenericHeadingPad />
+      <GenericHeadingPad hideBorder={true} />
       <ScrollThresholdView
         bounces={false}
         style={styles.wrapper}

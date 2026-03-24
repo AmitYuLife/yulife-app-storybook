@@ -11,6 +11,7 @@ import Logger from "@services/logging/logger";
 import { MixpanelEvent } from "@services/logging/types";
 import { t } from "@locale";
 import { VOUCHER_CODE, VOUCHER_CODE_TITLE } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProps {
   heading?: string;
@@ -47,7 +48,8 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
     }
   };
 
-  const color = isCopied ? "#40C057" : Colours.primary.p600;
+  const { theme } = useTheme();
+  const color = isCopied ? "#40C057" : theme.colors.primary.p600;
 
   return (
     <Pressable delay={1000} onPress={copyMarkdown} disabled={!canCopy}>
@@ -71,7 +73,7 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
           </View>
           {!canCopy ? null : (
             <View style={styles.copyWrapper}>
-              <View style={styles.copyText}>{isCopied ? <Copied /> : <Copy />}</View>
+              <View style={styles.copyText}>{isCopied ? <Copied /> : <Copy color={theme.colors.primary.p600} />}</View>
               <CopyIcon color={color} />
             </View>
           )}
@@ -81,8 +83,8 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
   );
 };
 
-const Copy = memo(() => (
-  <TextTemplate type="l2b" color={Colours.primary.p600}>
+const Copy = memo(({ color }: { color: string }) => (
+  <TextTemplate type="l2b" color={color}>
     {t("labels.cta.copy")}
   </TextTemplate>
 ));

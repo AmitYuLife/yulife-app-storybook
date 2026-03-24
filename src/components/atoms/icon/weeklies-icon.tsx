@@ -3,6 +3,7 @@ import { Style, StyleSheet } from "@styles";
 import Svg, { Rect, Path, Circle } from "react-native-svg";
 import { View } from "react-native";
 import { LottieView } from "@molecules";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 
 const shineLottie = require("@assets/lottie/shine.json");
 
@@ -13,7 +14,9 @@ type Props = {
 };
 
 export const WeekliesIcon = memo(({ hasBadge, active = true, animated = false }: Props) => {
-  const color = active ? "#F43E8E" : "#F49DC8";
+  const { theme } = useTheme();
+  const { primary } = theme.colors;
+  const color = active ? primary.p400 : primary.p100;
   return (
     <>
       <Svg width={Style.adjust(64)} height={Style.adjust(72)} viewBox="0 0 64 72" fill="none">

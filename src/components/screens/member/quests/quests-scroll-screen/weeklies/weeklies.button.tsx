@@ -5,8 +5,17 @@ import { showFloatingModal } from "@modals";
 import { Weeklies } from "@organisms";
 import { QuestsMapContext } from "../quests.context";
 import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
+import { ThemeId } from "@app/modules/themes/types";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
-const ICON = require("@assets/icons/weeklies.png");
+const getIconThemMap = (themeId: ThemeId) => {
+  if (themeId === ThemeId.Metlife) {
+    return require("@assets/icons/weeklies.metlife.webp");
+  }
+
+  return require("@assets/icons/weeklies.webp");
+};
+
 const CLAIMED_ICON = require("@assets/icons/trophy.png");
 
 type Props = {
@@ -14,12 +23,12 @@ type Props = {
   isVisible: boolean;
 };
 
-const handlePress = async (isClaimed?: boolean) => {
+const handlePress = async (isClaimed?: boolean, themeId?: ThemeId) => {
   await showFloatingModal({
     children: WeeklyQuestsModal,
     modalId: MODALS.weeklyQuestsOverlay,
     showButton: false,
-    icon: isClaimed ? CLAIMED_ICON : ICON,
+    icon: isClaimed ? CLAIMED_ICON : getIconThemMap(themeId),
   });
 };
 
@@ -29,8 +38,9 @@ export const WeeklyQuestsButton = memo(({ weeklies: weekliesProp, isVisible }: P
 
   const claimableRewards = weeklies?.activityProgress?.filter?.((e) => e.isClaimable)?.length;
   const isClaimed = !!weeklies?.activityProgress.every((e) => e.isClaimed);
+  const { theme } = useTheme();
 
-  const onPress = useCallback(() => handlePress(isClaimed), [isClaimed]);
+  const onPress = useCallback(() => handlePress(isClaimed, theme.id as ThemeId), [isClaimed, theme.id]);
 
   if (!isVisible || !weeklies?.endDateTime) {
     return null;
