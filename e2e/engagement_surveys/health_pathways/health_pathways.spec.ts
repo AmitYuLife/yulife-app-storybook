@@ -226,6 +226,30 @@ Feature("Health Pathways", async () => {
     });
   });
 
+  Scenario("Day 5 reflection accessible via today's earnings when hero card is unavailable", scenario.start, async () => {
+    Given("I am logged in", given.loginAsUser(data.CUSTOMER_13.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I open the debug menu item 'pathways-progress'", when.openDebugMenuItem("pathways-progress", "pathways progress"), async () => {
+        When("I set Day 5 with a pre-existing quest awarded", when.setPathwaysProgress("Last day", "Award"), async () => {
+          When("I exit debug", when.closeDebug, async () => {
+            When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 5_000), async () => {
+              Then("I should see the YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 5_000));
+            });
+          });
+        });
+      });
+    });
+    When("I tap the YuCoin icon to see today's earnings", when.tapYuCoinIcon, async () => {
+      Then("I should be on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS));
+    });
+    When("I scroll down to find the reflection activity", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5, 2_000), async () => {
+      Then("I should see the Daily Reflection entry", then.textVisible("Daily Reflection", 3_000));
+    });
+    When("I tap the Let's go! button to access reflections", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0, 2_000), async () => {
+      Then("I should land on the Pathways screen", then.idVisible(ids.PATHWAYS_SCREEN, 3_000));
+      Then("The quest chest should be active and accessible", then.idVisible(ids.PATHWAYS_REFLECT_CHEST("active"), 3_000));
+    });
+  });
+
   Scenario("Yesterday's completed pathway challenge appears in activity history", scenario.start, async () => {
     Given("I am logged in as a user who completed a pathway challenge yesterday", given.loginAsUser(data.CUSTOMER_12.customer, GENERIC_AUTH_PASSWORD), async () => {
       Then("I should see the menu icon", then.idVisible(ids.MENU_ICON, 5_000));

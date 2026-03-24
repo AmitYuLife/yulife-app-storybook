@@ -90,8 +90,12 @@ export const closeDebug = async () => {
   await tapID(ids.SCREEN_CLOSE, 2_000)();
 };
 
-export const setPathwaysProgress = (progress: string) => async () => {
-  await tapText(progress, 2_000)();
-  await tapID(ids.PATHWAYS_DEBUG_SAVE, 2_000)();
-  await tapText("OK", 2_000)();
-};
+export const setPathwaysProgress =
+  (...selections: string[]) =>
+  async () => {
+    for (const selection of selections) {
+      await tapText(selection, 2_000)();
+    }
+    await tapID(ids.PATHWAYS_DEBUG_SAVE, 2_000)();
+    await tapText("OK", 2_000)();
+  };
