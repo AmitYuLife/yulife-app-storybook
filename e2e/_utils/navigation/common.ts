@@ -554,6 +554,14 @@ export const idExist =
     await expect(target).toExist();
   };
 
+export const idNotExist =
+  (id: string, waitTime = 3000) =>
+  async () => {
+    const target = element(by.id(id));
+    await waitFor(target).not.toExist().withTimeout(waitTime);
+    await expect(target).not.toExist();
+  };
+
 export const tapIDAtIndex =
   (id: string, index = 0, waitTime = 3000) =>
   async () => {

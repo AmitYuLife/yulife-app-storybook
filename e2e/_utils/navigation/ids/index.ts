@@ -246,6 +246,7 @@ export const VOUCHER_CODE = (code: string) => `VOUCHER_CODE_${code}`;
 export const ITEM_DETAILS_REWARD = (label: string) => `ITEM_DETAILS_REWARD_${label}`;
 export const NOTIFICATIONS_EMPTY = "NOTIFICATIONS_EMPTY";
 export const REWARD_STORE_TEASER = (label: string) => `REWARD_STORE_TEASER_${label}`;
+export const FEATURES_CONTENT = "features-content";
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`;
@@ -1073,7 +1074,6 @@ export const CTA_GET_STARTED = "labels.cta.get_started";
 export const CTA_SELECT = "labels.cta.select";
 export const CTA_PAUSE = "labels.cta.pause";
 export const CTA_ASK_ME_LATER = "labels.cta.ask_later-text-view";
-
 
 // Yunity Swipe (2048)
 export const YUNITY_SWIPE_SETTINGS = "YUNITY_SWIPE_SETTINGS";
