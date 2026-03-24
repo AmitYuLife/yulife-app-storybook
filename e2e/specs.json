@@ -40,6 +40,10 @@
     "region": "UK",
     "specs": ["benefits/**/*.spec.ts"]
   },
+  "cash_plan": {
+    "region": "UK",
+    "specs": ["cash_plan/*.spec.ts"]
+  },
   "challenges": {
     "region": "UK",
     "specs": ["challenges/challenges/*.spec.ts", "challenges/events/*.spec.ts"]

@@ -11,6 +11,7 @@ spec:
         - admin:2
         - battle-pass
         - benefits
+        - cash_plan
         - challenges
         - challenges-2
         - challenges-extended

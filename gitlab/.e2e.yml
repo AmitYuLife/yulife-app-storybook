@@ -11,6 +11,7 @@ spec:
         - admin:2
         - battle-pass
         - benefits
+        - cash_plan
         - challenges
         - challenges-2
         - challenges-extended
@@ -263,6 +264,15 @@ ios-detox-benefits:
   rules:
     - !reference [.detox-overnight-rules, rules]
     - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "benefits"'
+      interruptible: false
+
+ios-detox-cash-plan:
+  extends: .base-detox-test
+  variables:
+    DETOX_TEST_TYPE: cash_plan
+  rules:
+    - !reference [.detox-overnight-rules, rules]
+    - if: '($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api") && "$[[ inputs.detox_test_type ]]" == "cash_plan"'
       interruptible: false
 
 ios-detox-challenges:
