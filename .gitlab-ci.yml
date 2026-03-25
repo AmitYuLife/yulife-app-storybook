@@ -82,7 +82,7 @@ variables:
   DEVELOP_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-develop-react-native-builds
   PRODUCTION_BUILDS_ROLE_ARN: arn:aws:iam::$DEVOPS_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-production-react-native-builds
   BINARY_S3_BUCKET_NAME: yu-shared-react-native-binaries
-  LAMBDA_DOWNLOADS_URL: https://taiecnsb42.execute-api.eu-west-2.amazonaws.com/download
+  LAMBDA_DOWNLOADS_URL: https://builds.yulife.dev/download
   FL_ANDROID_DEVELOP_KEYSTORE_PATH: .secure_files/yulife-android-develop.keystore
   FL_ANDROID_DEVELOP_KEY_ALIAS: yulife-android-develop
   FL_ANDROID_PRODUCTION_KEYSTORE_PATH: .secure_files/yulife-react-native-client.jks
