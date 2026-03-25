@@ -90,7 +90,7 @@ class LoggerInstance {
       }
 
       this.bugsnag.setUser(userId, "", "");
-      this.mixpanel.identify(userId);
+      await this.mixpanel.identify(userId);
       this.userId = userId;
 
       this.anonymousEvents.forEach(({ name, metadata }) => {
