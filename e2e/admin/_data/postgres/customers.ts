@@ -283,6 +283,33 @@ export const CUSTOMER_16 = createCustomerRecords({
   },
 });
 
+export const CUSTOMER_VOUCHER_EMAIL = createCustomerRecords({
+  customerId: generateRandomPostgresId(),
+  archived: false,
+  firstName: "Voucher",
+  lastName: "Tester",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+      employmentStartDate: moment().subtract(1, "year").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  userInfo: {
+    earnRate: 10,
+    isAvatarCreated: true,
+    avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg",
+  },
+  userGameState: {
+    currentBalance: 100000,
+    currentStreak: 0,
+    currentLevel: 90,
+  },
+});
+
 export const CUSTOMER_17 = {
   type,
   modelName,

@@ -117,28 +117,6 @@ Feature("As a user I can get past the login screen", async () => {
     });
   });
 
-  // skipping as unsure if forgotten password flow exists in same way - Rogers investigating
-  ScenarioSkip("I can view all unauthenticated screens", scenario.start, async () => {
-    Given("I select region United Kingdom", given.selectRegionIfVisible("United Kingdom"), async () => {
-      Given("I am on the login screen", given.onLoginScreen, async () => {
-        When("I press forgot password", when.tapText(t("Need help logging in?")), async () => {
-          Then("I should be on the forgot password screen", then.onPasswordHelp);
-        });
-        When("I enter an email", when.typeViaID(ids.INPUT_RESET_PASSWORD, "test@email.com"), async () => {
-          When("I tap 'email me...' ", when.tapText(t("Email me a magic link"), 2000), async () => {
-            Then("I should be on the email sent screen", then.textVisible(t("Email sent"), 2000));
-          });
-        });
-        When("I press back", when.tapText(t("Back")), async () => {
-          Then("I should be on the forgot password screen", then.onPasswordHelp);
-        });
-        When("I press back", when.tapText(t("Back")), async () => {
-          Then("I should be on the login screen", given.onLoginScreen);
-        });
-      });
-    });
-  });
-
   Scenario("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
     When("I press `log in`", when.tapID(ids.LOGIN_HERO_LOGIN_BUTTON), async () => {
       When("I input my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_11.data.email), async () => {

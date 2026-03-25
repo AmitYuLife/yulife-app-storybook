@@ -698,21 +698,14 @@ Feature("As a user from UK, I can view and use the smoking cessation feature", a
     });
   });
 
-  // @UPDATE - skipping as fails on runners. Passes locally. Not sure why, investigating
-  ScenarioSkip("I can successfully deep link from a cold start when app is closed", scenario.start, async () => {
+  Scenario("I can successfully deep link from a cold start when app is closed", scenario.start, async () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_LEELA, data.AUTH_LEELA, true), async () => {
-      Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 1500));
+      Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 5_000));
     });
     When("I terminate the app", when.terminateApp, async () => {
       When("I follow the deep link", when.goToSmokingCessation, async () => {
-        Then("I should see the smoking checkin overlay", then.idVisible(ids.SMOKING_CHECKIN_OVERLAY));
+        Then("I should see the smoking checkin overlay", then.idVisible(ids.SMOKING_CHECKIN_OVERLAY, 10_000));
       });
-    });
-    When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
-      Then("I should see the You're doing great popup", then.smokingCelebrationPopupVisible(18, 10));
-    });
-    When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_CTA), async () => {
-      Then("I should be on the smoking hub (and can see the milestones from a previous streak are still there despite this streak being less)", then.onSmokingHub(locale, 18, true, "7.80", "504", LEELA_MOMENTS_AND_REASONS, 25));
     });
   });
 

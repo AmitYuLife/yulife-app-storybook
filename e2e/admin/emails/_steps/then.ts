@@ -52,12 +52,12 @@ export const hasReceivedAviosEmail = (email: string) => async () => {
   }
 };
 
-export const hasReceivedNikeEmail = (email: string) => async () => {
+export const hasReceivedAdidasEmail = (email: string) => async () => {
   const inbox = await readInbox(email, true);
   const subject = inbox[0].subject;
 
-  if (subject !== "[detox] Your link to your Nike voucher") {
-    throw new Error("Email subject is incorrect");
+  if (subject !== "[detox] Your link to your Adidas voucher") {
+    throw new Error(`Email subject is incorrect. Expected "[detox] Your link to your Adidas voucher" but got "${subject}"`);
   }
 };
 
