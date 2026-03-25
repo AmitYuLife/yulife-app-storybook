@@ -17,7 +17,6 @@
     - nvm install -b
     - corepack enable
     - pnpm install --frozen-lockfile
-    - pnpm tsc
     - node ./scripts/replace-package-versionCodes.js "$CI_PIPELINE_IID"
     # Generate native projects
     - EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 npx expo prebuild --platform "$PLATFORM" --clean --no-install

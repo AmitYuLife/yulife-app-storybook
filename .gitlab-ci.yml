@@ -94,8 +94,8 @@ variables:
   COREPACK_HOME: "$CI_PROJECT_DIR/.cache/node/corepack"
 
 stages:
-  - build
   - quality
+  - build
   - test
   - test-report
   - release
