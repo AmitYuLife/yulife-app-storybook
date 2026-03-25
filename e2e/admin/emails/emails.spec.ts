@@ -5,6 +5,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("I receive the correct emails", async () => {
   Scenario("I should receive the correct magic link to access the App via the Login flow", scenario.start, async () => {
@@ -39,23 +40,22 @@ Feature("I receive the correct emails", async () => {
     });
   });
 
-  ScenarioSkip("I receive the correct email when redeeming a voucher reward", scenario.start, async () => {
-    Given("I login as a user", given.loginAsUser(data.CUSTOMER_6, data.AUTH_6), async () => {
+  Scenario("I receive the correct email when redeeming a voucher reward", scenario.start, async () => {
+    Given("I login as a user", given.loginAsUser(data.CUSTOMER_VOUCHER_EMAIL.customer, GENERIC_AUTH_PASSWORD), async () => {
       When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 3000), async () => {
-        Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN));
-        When("I scroll to Nike reward", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow"), async () => {
-          When("I tap nike reward", when.tapRewardInList(data.CORE_REWARDS_NIKE), async () => {
-            Then("I should be on the nike reward screen", then.idVisible(`${data.CORE_REWARDS_NIKE.data._id}_description`));
-            When("I scroll to the bottom of the page", when.swipeFromText("How to redeem Nike", "up", "fast"), async () => {
-              Then("I should be at the bottom of the page", then.textVisible("Have a question?"));
-              When("I tap buy voucher with yucoin", when.tapText("Buy voucher with YuCoin"), async () => {
-                When("I tap 3rd denomination", when.tapDenomination(data.CORE_REWARDS_NIKE, 2), async () => {
-                  When("I tap confirm", when.tapText("Confirm"), async () => {
-                    Then("I should receive the correct email", then.hasReceivedNikeEmail(data.CUSTOMER_6.data.email));
-                  });
-                });
-              });
-            });
+        Then("I should be on the Rewards tab", then.idVisible(ids.SHOPFRONT_REWARDS_LIST));
+      });
+    });
+    When("I scroll to the Adidas reward", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow", 0.5, 3_000), async () => {
+      When("I tap the Adidas reward", when.tapText("Adidas"), async () => {
+        Then("I should be on the Adidas reward screen", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW));
+      });
+    });
+    When("I scroll to the buy button", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast", 0.5, 3_000), async () => {
+      When("I tap buy voucher with YuCoin", when.tapID(ids.BUTTON_BASE("Claim Reward", false), 4000), async () => {
+        When("I tap a denomination", when.tapID(ids.TEXT_TEMPLATE("£10 - 7,760 YuCoin", undefined)), async () => {
+          When("I tap confirm", when.tapText("Confirm", 3000), async () => {
+            Then("I should receive the correct email", then.hasReceivedAdidasEmail(data.CUSTOMER_VOUCHER_EMAIL.customer.data.email));
           });
         });
       });
