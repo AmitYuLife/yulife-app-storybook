@@ -1,5 +1,5 @@
-query GetMobileGameUserWalletRewardItems($type: String, $rewardId: String!, $offset: Int, $markedAsUsed: Boolean) {
-  getMobileGameUserWalletRewardItems(type: $type, rewardId: $rewardId, offset: $offset, markedAsUsed: $markedAsUsed) {
+query GetMobileGameUserWalletRewardItems($type: String, $rewardId: String!, $offset: Int, $markedAsUsed: Boolean, $expired: Boolean) {
+  getMobileGameUserWalletRewardItems(type: $type, rewardId: $rewardId, offset: $offset, markedAsUsed: $markedAsUsed, expired: $expired) {
     sections {
       ...UserWalletSection
     }

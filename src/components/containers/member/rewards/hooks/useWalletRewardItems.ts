@@ -6,10 +6,11 @@ import { useCallback, useState } from "react";
 interface IUseWalletRewardItemsParams {
   rewardId: string;
   type?: string;
-  markedAsUsed: boolean;
+  markedAsUsed?: boolean;
+  expired?: boolean;
 }
 
-export const useWalletRewardItems = ({ rewardId, type, markedAsUsed }: IUseWalletRewardItemsParams) => {
+export const useWalletRewardItems = ({ rewardId, type, markedAsUsed, expired }: IUseWalletRewardItemsParams) => {
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
   const { data, loading, refetch, fetchMore } = useQuery(gql(`GetMobileGameUserWalletRewardItemsDocument`), {
@@ -17,6 +18,7 @@ export const useWalletRewardItems = ({ rewardId, type, markedAsUsed }: IUseWalle
       rewardId,
       type,
       markedAsUsed,
+      expired,
     },
     fetchPolicy: "no-cache",
   });
@@ -35,6 +37,7 @@ export const useWalletRewardItems = ({ rewardId, type, markedAsUsed }: IUseWalle
       variables: {
         rewardId,
         markedAsUsed,
+        expired,
         type: lastSection.type,
         offset: lastSection.items.length,
       },
@@ -65,7 +68,7 @@ export const useWalletRewardItems = ({ rewardId, type, markedAsUsed }: IUseWalle
     }).finally(() => {
       setLoadingMore(false);
     });
-  }, [data?.getMobileGameUserWalletRewardItems?.sections, fetchMore, rewardId, markedAsUsed]);
+  }, [data?.getMobileGameUserWalletRewardItems?.sections, fetchMore, rewardId, markedAsUsed, expired]);
 
   return {
     data,

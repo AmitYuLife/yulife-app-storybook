@@ -2,18 +2,18 @@ import { Box, TextTemplate } from "@atoms";
 import { Colours } from "@styles";
 import { memo } from "react";
 
-export type MobileGameUserWalletUsedSectionHeader = {
-  item_type: "used-section-header";
+export type MobileGameUserWalletSubSectionHeader<T extends string> = {
+  itemType: T;
   title: string;
   description?: string;
 };
 
-interface IWalletUsedSectionHeaderProps {
+interface IWalletSubSectionHeaderProps {
   title: string;
   description?: string;
 }
 
-const WalletUsedSectionHeader = ({ title, description }: IWalletUsedSectionHeaderProps) => (
+const WalletSubSectionHeader = ({ title, description }: IWalletSubSectionHeaderProps) => (
   <Box flexDirection="column" mt={24} mb={16}>
     <TextTemplate color={Colours.neutral.n900} type="b1b">
       {title}
@@ -26,4 +26,4 @@ const WalletUsedSectionHeader = ({ title, description }: IWalletUsedSectionHeade
   </Box>
 );
 
-export default memo(WalletUsedSectionHeader);
+export default memo(WalletSubSectionHeader);

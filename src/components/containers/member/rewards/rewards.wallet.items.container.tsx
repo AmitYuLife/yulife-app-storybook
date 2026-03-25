@@ -1,5 +1,5 @@
 import { Box } from "@atoms";
-import { MobileGameUserWalletItem } from "@graphql/__generated";
+import { MobileGameUserWalletItem, GetMobileGameUserWalletRewardItemsQuery } from "@graphql/__generated";
 import { useNavigationComponentDidAppear } from "@hooks";
 import { t } from "@locale";
 import { ROUTES } from "@navigation/constants";
@@ -23,18 +23,65 @@ import WalletSectionMore, {
   MobileGameUserWalletMoreAction,
   WalletSectionMoreLoading,
 } from "./subcomponents/wallet-section-more";
-import WalletUsedSectionHeader, {
-  MobileGameUserWalletUsedSectionHeader,
-} from "./subcomponents/wallet-used-section-header";
+import WalletSubSectionHeader, {
+  MobileGameUserWalletSubSectionHeader,
+} from "./subcomponents/wallet-sub-section-header";
 
-const MAX_USED_ITEMS_PREVIEW = 3;
+const MAX_SUB_SECTION_PREVIEW = 3;
+
+const parseListItem = (item: MobileGameUserWalletItem, isExpired?: boolean): MobileGameUserWalletListItem => ({
+  ...item,
+  itemType: "wallet_item",
+  ...(isExpired && { isExpired }),
+});
+
+type WalletSections = GetMobileGameUserWalletRewardItemsQuery["getMobileGameUserWalletRewardItems"]["sections"];
+
+const appendSubSection = (
+  list: MobileGameUserWalletListItem[],
+  sections: WalletSections | undefined,
+  config: {
+    headerType: "used-section-header" | "expired-section-header";
+    title: string;
+    isExpired?: boolean;
+    seeMoreProps: Record<string, unknown>;
+  }
+) => {
+  if (!sections?.length) {
+    return;
+  }
+
+  list.push({ itemType: config.headerType, title: config.title });
+
+  const allItems = sections.flatMap((section) => section.items);
+
+  allItems.slice(0, MAX_SUB_SECTION_PREVIEW).forEach((item) => {
+    list.push(parseListItem(item, config.isExpired));
+  });
+
+  const hasMore = allItems.length > MAX_SUB_SECTION_PREVIEW || sections.some((section) => section.hasMore);
+  if (hasMore) {
+    list.push({
+      itemType: "see_more",
+      onPress: () =>
+        Navigation.push(ROUTES.walletItems, {
+          component: {
+            id: ROUTES.walletSeeMore,
+            name: ROUTES.walletSeeMore,
+            passProps: { ...config.seeMoreProps, title: config.title },
+          },
+        }),
+    });
+  }
+};
 
 type MobileGameUserWalletListItem =
-  | (MobileGameUserWalletItem & { item_type: "wallet_item" })
+  | (MobileGameUserWalletItem & { itemType: "wallet_item"; isExpired?: boolean })
   | MobileGameUserWalletHeader
   | MobileGameUserWalletSectionHeader
   | MobileGameUserWalletMoreAction
-  | MobileGameUserWalletUsedSectionHeader;
+  | MobileGameUserWalletSubSectionHeader<"used-section-header">
+  | MobileGameUserWalletSubSectionHeader<"expired-section-header">;
 interface IRewardsWalletItemsContainerProps {
   rewardId: string;
 }
@@ -42,13 +89,20 @@ const RewardsWalletItemsContainer = ({ rewardId }: IRewardsWalletItemsContainerP
   const { data, loading, refetch } = useWalletRewardItems({
     rewardId,
     markedAsUsed: false,
+    expired: false,
   });
-  const { data: usedData, refetch: refetchUsed } = useWalletRewardItems({ rewardId, markedAsUsed: true });
+  const { data: usedData, refetch: refetchUsed } = useWalletRewardItems({
+    rewardId,
+    markedAsUsed: true,
+    expired: false,
+  });
+  const { data: expiredData, refetch: refetchExpired } = useWalletRewardItems({ rewardId, expired: true });
 
   const handleRefresh = useCallback(() => {
     refetch();
     refetchUsed();
-  }, [refetch, refetchUsed]);
+    refetchExpired();
+  }, [refetch, refetchUsed, refetchExpired]);
 
   useNavigationComponentDidAppear(handleRefresh, ROUTES.walletItems);
 
@@ -56,23 +110,23 @@ const RewardsWalletItemsContainer = ({ rewardId }: IRewardsWalletItemsContainerP
 
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<MobileGameUserWalletListItem>) => {
-      if (item.item_type === "section-header") {
+      if (item.itemType === "section-header") {
         return <WalletSectionHeader {...item} />;
       }
 
-      if (item.item_type === "see_more") {
+      if (item.itemType === "see_more") {
         return <WalletSectionMore {...item} />;
       }
 
-      if (item.item_type === "used-section-header") {
-        return <WalletUsedSectionHeader {...item} />;
+      if (item.itemType === "used-section-header" || item.itemType === "expired-section-header") {
+        return <WalletSubSectionHeader {...item} />;
       }
 
-      if (item.item_type === "header") {
+      if (item.itemType === "header") {
         return <WalletHeader {...item} />;
       }
 
-      return <WalletItemCard item={item} index={index} onPress={handleCardPress} />;
+      return <WalletItemCard item={item} index={index} onPress={handleCardPress} isExpired={item.isExpired} />;
     },
     [handleCardPress]
   );
@@ -86,25 +140,25 @@ const RewardsWalletItemsContainer = ({ rewardId }: IRewardsWalletItemsContainerP
       data?.getMobileGameUserWalletRewardItems?.sections?.reduce((acc, section, index) => {
         if (index === 0 && data?.getMobileGameUserWalletRewardItems?.image?.uri) {
           acc.push({
-            item_type: "header",
+            itemType: "header",
             image: data?.getMobileGameUserWalletRewardItems?.image,
           });
         }
 
         acc.push({
-          item_type: "section-header",
+          itemType: "section-header",
           title: section.title,
           icon: section.icon,
           description: section.description,
         });
 
         section.items.forEach((item) => {
-          acc.push({ ...item, item_type: "wallet_item" });
+          acc.push(parseListItem(item));
         });
 
         if (section.hasMore) {
           acc.push({
-            item_type: "see_more",
+            itemType: "see_more",
             onPress: () =>
               Navigation.push(ROUTES.walletItems, {
                 component: {
@@ -125,70 +179,34 @@ const RewardsWalletItemsContainer = ({ rewardId }: IRewardsWalletItemsContainerP
         return acc;
       }, [] as MobileGameUserWalletListItem[]) || [];
 
-    const usedSections = usedData?.getMobileGameUserWalletRewardItems?.sections;
-    if (usedSections?.length) {
-      list.push({
-        item_type: "used-section-header",
-        title: t("screens.rewards.wallet.used_section.title"),
-      });
+    appendSubSection(list, usedData?.getMobileGameUserWalletRewardItems?.sections, {
+      headerType: "used-section-header",
+      title: t("screens.rewards.wallet.used_section.title"),
+      seeMoreProps: { rewardId, markedAsUsed: true },
+    });
 
-      const allUsedItems = usedSections.flatMap((section) => section.items);
-
-      allUsedItems.slice(0, MAX_USED_ITEMS_PREVIEW).forEach((item) => {
-        list.push({ ...item, item_type: "wallet_item" });
-      });
-
-      const hasMoreUsed =
-        allUsedItems.length > MAX_USED_ITEMS_PREVIEW || usedSections.some((section) => section.hasMore);
-      if (hasMoreUsed) {
-        list.push({
-          item_type: "see_more",
-          onPress: () =>
-            Navigation.push(ROUTES.walletItems, {
-              component: {
-                id: ROUTES.walletSeeMore,
-                name: ROUTES.walletSeeMore,
-                passProps: {
-                  rewardId,
-                  markedAsUsed: true,
-                  title: t("screens.rewards.wallet.used_section.title"),
-                },
-              },
-            }),
-        });
-      }
-    }
+    appendSubSection(list, expiredData?.getMobileGameUserWalletRewardItems?.sections, {
+      headerType: "expired-section-header",
+      title: t("screens.rewards.wallet.expired_section.title"),
+      isExpired: true,
+      seeMoreProps: { rewardId, expired: true },
+    });
 
     return list;
   }, [
     data?.getMobileGameUserWalletRewardItems?.image,
     data?.getMobileGameUserWalletRewardItems?.sections,
     usedData?.getMobileGameUserWalletRewardItems?.sections,
+    expiredData?.getMobileGameUserWalletRewardItems?.sections,
     rewardId,
   ]);
 
   const keyExtractor = useCallback((item: MobileGameUserWalletListItem, index: number) => {
-    if (item.item_type === "header") {
-      return `header`;
+    if (item.itemType === "wallet_item") {
+      return `${item.isExpired ? "expired_" : ""}wallet_item_${item.id}`;
     }
 
-    if (item.item_type === "section-header") {
-      return `section-header_${index}`;
-    }
-
-    if (item.item_type === "see_more") {
-      return `see_more_${index}`;
-    }
-
-    if (item.item_type === "used-section-header") {
-      return `used-section-header_${index}`;
-    }
-
-    if (item.item_type === "wallet_item") {
-      return `wallet_item_${item.id}`;
-    }
-
-    return `wallet_item_${index}`;
+    return `${item.itemType}_${index}`;
   }, []);
 
   return (

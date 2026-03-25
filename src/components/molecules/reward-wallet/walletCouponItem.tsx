@@ -32,9 +32,11 @@ interface WalletCouponItemProps<T> {
   item: IWalletCouponItem<T>;
   index: number;
   onPress: (action: T) => void;
+  backgroundColor?: string;
+  labelHidden?: boolean;
 }
 
-const WalletCouponItem = <T,>({ item, index, onPress }: WalletCouponItemProps<T>) => (
+const WalletCouponItem = <T,>({ item, index, onPress, backgroundColor, labelHidden }: WalletCouponItemProps<T>) => (
   <TouchableOpacityWithDelay
     onPress={() => onPress?.(item.onPress)}
     hitSlop={HIT_SLOP}
@@ -44,14 +46,14 @@ const WalletCouponItem = <T,>({ item, index, onPress }: WalletCouponItemProps<T>
   >
     <Box flexDirection="row" mb={24}>
       <StackedShadowWrapper
-        style={styles.leftContainer}
+        style={backgroundColor ? { ...styles.leftContainer, backgroundColor } : styles.leftContainer}
         outerStyle={styles.leftOuterContainer}
-        stackColors={[SHADOW_COLOR]}
+        stackColors={[backgroundColor ?? SHADOW_COLOR]}
         borderRadius={BORDER_RADIUS}
       >
         <WalletShine index={index} />
         {!item.label ? null : (
-          <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
+          <Box br={8} ph={12} pv={4} bg={Colours.neutral.white} opacity={labelHidden ? 0 : 1}>
             <TextTemplate color={LABEL_TEXT_COLOR} type="l2b" numberOfLines={1}>
               {item.label}
             </TextTemplate>
@@ -72,9 +74,9 @@ const WalletCouponItem = <T,>({ item, index, onPress }: WalletCouponItemProps<T>
         </Box>
       </StackedShadowWrapper>
       <StackedShadowWrapper
-        style={styles.rightContainer}
+        style={backgroundColor ? { ...styles.rightContainer, backgroundColor } : styles.rightContainer}
         outerStyle={styles.rightOuterContainer}
-        stackColors={[SHADOW_COLOR]}
+        stackColors={[backgroundColor ?? SHADOW_COLOR]}
         borderRadius={BORDER_RADIUS}
       >
         <Box style={styles.dottedBorder} />

@@ -4,7 +4,7 @@ import { Image } from "expo-image";
 import { memo } from "react";
 
 export type MobileGameUserWalletHeader = {
-  item_type: "header";
+  itemType: "header";
   image: Source;
 };
 
