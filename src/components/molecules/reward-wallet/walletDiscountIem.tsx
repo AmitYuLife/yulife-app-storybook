@@ -28,9 +28,11 @@ interface WalletDiscountItemProps<T> {
   item: IWalletDiscountItem<T>;
   index: number;
   onPress: (action: T) => void;
+  backgroundColor?: string;
+  labelHidden?: boolean;
 }
 
-const WalletDiscountItem = <T,>({ item, index, onPress }: WalletDiscountItemProps<T>) => (
+const WalletDiscountItem = <T,>({ item, index, onPress, backgroundColor, labelHidden }: WalletDiscountItemProps<T>) => (
   <TouchableOpacityWithDelay
     onPress={() => onPress?.(item.onPress)}
     hitSlop={HIT_SLOP}
@@ -38,11 +40,15 @@ const WalletDiscountItem = <T,>({ item, index, onPress }: WalletDiscountItemProp
     accessibilityRole="button"
     accessibilityLabel={`${item.title} ${item.description || ""}`}
   >
-    <StackedShadowWrapper style={styles.container} outerStyle={styles.outerContainer} stackColors={[SHADOW_COLOR]}>
+    <StackedShadowWrapper
+      style={backgroundColor ? { ...styles.container, backgroundColor } : styles.container}
+      outerStyle={styles.outerContainer}
+      stackColors={[backgroundColor ?? SHADOW_COLOR]}
+    >
       <WalletShine index={index} />
       <Box flex={2} justifyContent="space-around" alignItems="stretch" flexDirection="column">
         {!item.label ? null : (
-          <Box justifyContent="flex-start" alignItems="flex-start">
+          <Box justifyContent="flex-start" alignItems="flex-start" opacity={labelHidden ? 0 : 1}>
             <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
               <TextTemplate color={"#4801AF"} type="l2b">
                 {item.label}

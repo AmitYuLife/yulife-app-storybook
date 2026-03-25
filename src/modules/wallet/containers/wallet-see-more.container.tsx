@@ -14,14 +14,15 @@ import WalletItemCard from "../subcomponents/wallet-item-card";
 import WalletItemLoading from "@components/containers/member/rewards/subcomponents/wallet-item-loading";
 import WalletLoadingFooter from "../subcomponents/wallet-loading-footer";
 import WalletSectionHeader from "@components/containers/member/rewards/subcomponents/wallet-section-header";
-import WalletUsedSectionHeader from "@components/containers/member/rewards/subcomponents/wallet-used-section-header";
+import WalletSubSectionHeader from "@components/containers/member/rewards/subcomponents/wallet-sub-section-header";
 
-type WalletListItem = MobileGameUserWalletItem & { item_type: "wallet_item" };
+type WalletListItem = MobileGameUserWalletItem & { itemType: "wallet_item" };
 
 interface IRewardsWalletSeeMoreContainerProps {
   rewardId: string;
   type?: string;
   markedAsUsed?: boolean;
+  expired?: boolean;
   title: string;
   icon?: Source;
   description?: string;
@@ -31,6 +32,7 @@ const RewardsWalletSeeMoreContainer = ({
   rewardId,
   type,
   markedAsUsed,
+  expired,
   title,
   icon,
   description,
@@ -38,7 +40,9 @@ const RewardsWalletSeeMoreContainer = ({
   const { data, loading, loadingMore, handleFetchMore, refetch } = useWalletRewardItems({
     rewardId,
     type,
-    markedAsUsed: markedAsUsed ?? false,
+    // When viewing expired items, don't filter by used status; otherwise default to showing non-used items
+    markedAsUsed: markedAsUsed ?? (expired ? undefined : false),
+    expired,
   });
 
   const handleRefresh = useCallback(() => {
@@ -57,7 +61,7 @@ const RewardsWalletSeeMoreContainer = ({
 
     return sections.reduce((acc, section) => {
       section.items.forEach((item) => {
-        acc.push({ ...item, item_type: "wallet_item" });
+        acc.push({ ...item, itemType: "wallet_item" });
       });
       return acc;
     }, [] as WalletListItem[]);
@@ -65,18 +69,22 @@ const RewardsWalletSeeMoreContainer = ({
 
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<WalletListItem>) => {
-      return <WalletItemCard item={item} index={index} onPress={handleCardPress} />;
+      return <WalletItemCard item={item} index={index} onPress={handleCardPress} isExpired={expired} />;
     },
-    [handleCardPress]
+    [handleCardPress, expired]
   );
 
   const renderHeader = useCallback(() => {
-    if (!markedAsUsed && icon) {
-      return <WalletSectionHeader item_type="section-header" title={title} description={description} icon={icon} />;
+    if (!markedAsUsed && !expired && icon) {
+      return <WalletSectionHeader itemType="section-header" title={title} description={description} icon={icon} />;
     }
 
-    return <WalletUsedSectionHeader title={title} />;
-  }, [markedAsUsed, title, icon, description]);
+    if (expired) {
+      return <WalletSubSectionHeader title={title} />;
+    }
+
+    return <WalletSubSectionHeader title={title} />;
+  }, [markedAsUsed, expired, title, icon, description]);
 
   const handleBackPress = useCallback(() => {
     Navigation.pop(ROUTES.walletSeeMore);

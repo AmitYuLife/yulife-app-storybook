@@ -29,9 +29,11 @@ interface WalletItemProps<T> {
   item: IWalletItem<T>;
   index: number;
   onPress: (action: T) => void;
+  backgroundColor?: string;
+  labelHidden?: boolean;
 }
 
-const WalletItem = <T,>({ item, index, onPress }: WalletItemProps<T>) => (
+const WalletItem = <T,>({ item, index, onPress, backgroundColor, labelHidden }: WalletItemProps<T>) => (
   <TouchableOpacityWithDelay
     onPress={() => onPress?.(item.onPress)}
     hitSlop={HIT_SLOP}
@@ -39,14 +41,18 @@ const WalletItem = <T,>({ item, index, onPress }: WalletItemProps<T>) => (
     accessibilityRole="button"
     accessibilityLabel={`${item.title} ${item.description || ""}`}
   >
-    <StackedShadowWrapper style={styles.container} stackColors={[SHADOW_COLOUR]} outerStyle={styles.outerContainer}>
+    <StackedShadowWrapper
+      style={backgroundColor ? { ...styles.container, backgroundColor } : styles.container}
+      stackColors={[backgroundColor ?? SHADOW_COLOUR]}
+      outerStyle={styles.outerContainer}
+    >
       <WalletShine index={index} />
       <Box style={styles.imageContainer}>
         {item.image ? <Image style={styles.image} source={item.image} resizeMode="cover" /> : null}
       </Box>
       <Box style={styles.infoContainer}>
         {!item.label ? null : (
-          <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
+          <Box br={8} ph={12} pv={4} bg={Colours.neutral.white} opacity={labelHidden ? 0 : 1}>
             <TextTemplate color={TEXT_COLOUR} type="l2b" testID={WALLET_ITEM_LABEL(item.label)}>
               {item.label}
             </TextTemplate>

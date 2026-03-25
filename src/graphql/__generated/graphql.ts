@@ -4417,6 +4417,7 @@ export type GetEmployeeInsightsConfigurationAgeRange = {
 export type GetEmployeeInsightsConfigurationResults = {
   __typename?: "GetEmployeeInsightsConfigurationResults";
   ageRange?: Maybe<GetEmployeeInsightsConfigurationAgeRange>;
+  hasUsersWithDateOfBirth: Scalars["Boolean"]["output"];
   surveyEmptyState?: Maybe<EmployeeInsightsSurveyEmptyState>;
   surveyLastCompletedAt?: Maybe<Scalars["String"]["output"]>;
 };
@@ -9448,6 +9449,7 @@ export type QueryGetMobileGameUserAchievementsArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileGameUserWalletRewardItemsArgs = {
+  expired?: InputMaybe<Scalars["Boolean"]["input"]>;
   markedAsUsed?: InputMaybe<Scalars["Boolean"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   rewardId: Scalars["String"]["input"];
@@ -9750,6 +9752,7 @@ export type QueryGetTeamSocialGroupArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetTeamSocialGroupsArgs = {
+  filter?: InputMaybe<TeamSocialGroupsFilter>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy?: InputMaybe<OrderBy>;
@@ -11818,6 +11821,11 @@ export type TeamSocialGroup = {
   socialGroupId: Scalars["String"]["output"];
 };
 
+export type TeamSocialGroupsFilter = {
+  includeArchived?: InputMaybe<Scalars["Boolean"]["input"]>;
+  socialGroupIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
+};
+
 export enum TeamSummaryCardKey {
   Cycling = "cycling",
   DailyAverageSteps = "dailyAverageSteps",
@@ -11988,7 +11996,9 @@ export type TeamYuCoinTopupRequest = {
   /** Stripe PaymentIntent client_secret for confirming card payment (e.g. 3DS); null otherwise. */
   clientSecret?: Maybe<Scalars["String"]["output"]>;
   createdAt?: Maybe<Scalars["String"]["output"]>;
+  downloadUrl?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
+  invoiceNumber?: Maybe<Scalars["String"]["output"]>;
   /** Stripe PaymentIntent id when payment was initiated via saved card; null otherwise. */
   paymentIntentId?: Maybe<Scalars["String"]["output"]>;
   price?: Maybe<Scalars["Float"]["output"]>;
@@ -33917,6 +33927,7 @@ export type GetMobileGameUserWalletRewardItemsQueryVariables = Exact<{
   rewardId: Scalars["String"]["input"];
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   markedAsUsed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  expired?: InputMaybe<Scalars["Boolean"]["input"]>;
 }>;
 
 export type GetMobileGameUserWalletRewardItemsQuery = {
@@ -91820,6 +91831,11 @@ export const GetMobileGameUserWalletRewardItemsDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "markedAsUsed" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "expired" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -91847,6 +91863,11 @@ export const GetMobileGameUserWalletRewardItemsDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "markedAsUsed" },
                 value: { kind: "Variable", name: { kind: "Name", value: "markedAsUsed" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "expired" },
+                value: { kind: "Variable", name: { kind: "Name", value: "expired" } },
               },
             ],
             selectionSet: {

@@ -7,7 +7,7 @@ import { WALLET_SECTION_TITLE, WALLET_SECTION_SUBTITLE } from "@ids";
 const TEXT_COLOR = Colours.neutral.n900;
 
 export type MobileGameUserWalletSectionHeader = {
-  item_type: "section-header";
+  itemType: "section-header";
   title: string;
   description?: string;
   icon: Source;

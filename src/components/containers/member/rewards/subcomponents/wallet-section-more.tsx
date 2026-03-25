@@ -5,7 +5,7 @@ import { memo } from "react";
 
 import { StyleSheet } from "@styles";
 export type MobileGameUserWalletMoreAction = {
-  item_type: "see_more";
+  itemType: "see_more";
   onPress: () => void;
 };
 

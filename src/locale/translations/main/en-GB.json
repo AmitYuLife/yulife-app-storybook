@@ -1229,6 +1229,9 @@
         "used_section": {
           "title": "Used",
           "label": "USED"
+        },
+        "expired_section": {
+          "title": "Expired"
         }
       },
       "details": {
