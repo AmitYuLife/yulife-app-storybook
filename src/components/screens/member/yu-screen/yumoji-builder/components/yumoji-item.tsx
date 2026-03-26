@@ -9,6 +9,7 @@ import { COLOUR, YUMOJI_PART_ID, YUMOJI_PART_ID_STATUS } from "@ids";
 import { BOX_OPTION_BORDER_RADIUS, BoxOption } from "@molecules";
 import { useUserFeatures } from "@hooks";
 import { GetYumojiBuilderItemsForCategoryQuery } from "@graphql/__generated";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type YumojiBuilderItemsForCategoryItems =
   GetYumojiBuilderItemsForCategoryQuery["getYumojiBuilderItemsForCategory"]["items"][number];
@@ -34,6 +35,12 @@ export const YumojiItem = memo(
     const [partsLoading, setPartsLoading] = useState(!!item?.parts?.filter((part) => part?.remoteUrl?.uri).length);
     const { gameEnableExpoImageDiskCachingPolicyInYumojiBuilder } = useUserFeatures();
     const loadingCounter = useRef(item?.parts?.filter((part) => part?.remoteUrl?.uri).length || 0);
+    const { theme } = useTheme();
+
+    const itemSelectedStyle = useMemo(
+      () => ({ borderColor: theme.colors.primary.p600, backgroundColor: theme.colors.primary.p50 }),
+      [theme]
+    );
 
     const onPress = useCallback(() => {
       onItemPress(item);
@@ -120,7 +127,7 @@ export const YumojiItem = memo(
         <BoxOption
           onPress={onPress}
           isSelected={item.isSelected}
-          selectedStyle={styles.itemSelected}
+          selectedStyle={itemSelectedStyle}
           innerHeight={boxHeight}
           testID={YUMOJI_PART_ID(item.parts[0].partId)}
         >

@@ -1,13 +1,16 @@
 import { EncircledCheckIcon } from "@atoms/icon/encircled-check-icon";
-import { Style, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { memo } from "react";
 import { View } from "react-native";
 
-export const ProgressMilestoneComplete = memo(() => (
+interface Props {
+  color?: string;
+}
+export const ProgressMilestoneComplete = memo(({ color = Colours.primary.p600 }: Props) => (
   <>
     <View style={styles.background} />
     <View style={styles.iconWrapper}>
-      <EncircledCheckIcon size={Style.adjust(20)} />
+      <EncircledCheckIcon size={Style.adjust(20)} color={color} />
     </View>
   </>
 ));

@@ -154,18 +154,6 @@ const getMarkdownStyles = (hasButton: SduiAction) => ({
 });
 
 const styles = StyleSheet.create({
-  caretWrapper: {
-    position: "absolute",
-    top: Style.adjust(16),
-    right: Style.adjust(16),
-    height: Style.adjust(24),
-    width: Style.adjust(24),
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: Style.adjust(50),
-    borderWidth: Style.adjust(1),
-    borderColor: colours.primary.p600,
-  },
   cardWrapper: {
     position: "relative",
     borderWidth: Style.adjust(1),
