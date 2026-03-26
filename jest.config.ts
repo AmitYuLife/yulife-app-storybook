@@ -1,9 +1,20 @@
-import type { JestConfigWithTsJest } from "ts-jest";
+import type { Config } from "@jest/types";
 
-const jestConfig: JestConfigWithTsJest = {
+const jestConfig: Config.InitialOptions = {
   testRunner: "jest-circus/runner",
   testMatch: ["**/*.test.ts"],
-  preset: "ts-jest",
+  transform: {
+    "^.+\\.tsx?$": [
+      "@swc/jest",
+      {
+        jsc: {
+          parser: { syntax: "typescript", decorators: true },
+          target: "es2024",
+        },
+        module: { type: "commonjs" },
+      },
+    ],
+  },
   modulePaths: [__dirname],
 };
 

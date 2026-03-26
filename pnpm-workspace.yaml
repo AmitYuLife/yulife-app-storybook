@@ -10,6 +10,7 @@ onlyBuiltDependencies:
   - electron
   - esbuild
   - fsevents
+  - "@swc/core"
   - git-hooks
 
 patchedDependencies:
