@@ -18,6 +18,7 @@ import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
 import { UserConnection } from "@redux/user/user.types";
 import { getPushNotifications } from "@redux/device/device.selectors";
 import { PushPermissionsStatus } from "@redux/device/device.types";
+import { isNumber } from "lodash";
 
 interface IOwnProps {
   componentId: string;
@@ -35,7 +36,7 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
   const dataSaverModeEnabled = useSelector(getUserDataSaverModeEnabled);
 
   const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false);
-  const [modalDate, setModalDate] = useState<string>(null);
+  const [selectedMinutesFromMidnight, setSelectedMinutesFromMidnight] = useState<number | null>(null);
   const [selectedNotification, setNotification] = useState<NotificationSettingsProps>(null);
   const blackListedNavBarTabs = useSelector(getBlackListedNavBarTabs);
 
@@ -63,11 +64,23 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
   const client = useApolloClient();
 
   const updateQueryCache = useCallback(
-    (type: string, isActive: boolean, time?: string) => {
+    ({
+      type,
+      isActive,
+      minutesFromStartOfDay,
+      alertTimestamp,
+    }: {
+      type: string;
+      isActive: boolean;
+      minutesFromStartOfDay?: number;
+      alertTimestamp?: string;
+    }) => {
       const updatedPushNotifications = pushNotifications?.notifications?.map((i) => ({
         ...i,
         isActive: i.type === type ? isActive : i.isActive,
-        alertTimestamp: i.type === type && time ? time : i.alertTimestamp,
+        alertTimestamp: i.type === type && alertTimestamp ? alertTimestamp : i.alertTimestamp,
+        minutesFromStartOfDay:
+          i.type === type && isNumber(minutesFromStartOfDay) ? minutesFromStartOfDay : i.minutesFromStartOfDay,
       }));
       const updatedEmailNotifications = emailNotifications.map((i) => ({
         ...i,
@@ -95,10 +108,18 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
           return;
         }
 
-        updateQueryCache(selectedNotification.type, true, modalDate);
+        updateQueryCache({
+          type: selectedNotification.type,
+          isActive: true,
+          minutesFromStartOfDay: selectedMinutesFromMidnight,
+        });
         setIsTimeModalVisible(false);
         await updateNotification({
-          variables: { type: selectedNotification.type, isActive: true, time: modalDate },
+          variables: {
+            type: selectedNotification.type,
+            isActive: true,
+            minutesFromStartOfDay: selectedMinutesFromMidnight,
+          },
         });
       } catch (e) {
         Logger.error(e, { file: "settings-container-time" });
@@ -107,7 +128,7 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [selectedNotification, modalDate]
+    [selectedNotification, selectedMinutesFromMidnight]
   );
 
   const handleConnectionItemPress = React.useCallback(
@@ -275,7 +296,7 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
         ...n,
         onSwitchPress: async () => {
           try {
-            updateQueryCache(n.type, !n.isActive);
+            updateQueryCache({ type: n.type, isActive: !n.isActive });
             await updateNotification({
               variables: {
                 type: n.type,
@@ -325,12 +346,15 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
               return;
             }
 
-            updateQueryCache(n.type, newActiveState);
+            updateQueryCache({
+              type: n.type,
+              isActive: newActiveState,
+            });
             await updateNotification({
               variables: {
                 type: n.type,
                 isActive: newActiveState,
-                time: n.alertTimestamp,
+                minutesFromStartOfDay: n.minutesFromStartOfDay,
               },
             });
           } catch (e) {
@@ -346,7 +370,13 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
           }
 
           setIsTimeModalVisible(true);
-          setModalDate(n.alertTimestamp);
+          if (isNumber(n.minutesFromStartOfDay)) {
+            setSelectedMinutesFromMidnight(n.minutesFromStartOfDay);
+          } else {
+            const alertMoment = moment.utc(n.alertTimestamp);
+            setSelectedMinutesFromMidnight(alertMoment.hours() * 60 + alertMoment.minutes());
+          }
+
           setNotification(n);
         },
       })),
@@ -357,28 +387,23 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
   );
 
   const pickers = useMemo(() => {
-    /**
-     * modalDate is initialized with null, if we don't return empty array
-     * moment(modalDate).format(t("format.time_short")) will be not a valid date
-     * and that will lead to defaultIndex = -1
-     */
-    if (modalDate === null) {
+    if (selectedMinutesFromMidnight === null) {
       return [];
     }
 
     const times = generateTimes();
-    const format = moment(modalDate).format(t("format.time_short"));
-    const currentTime = times.findIndex((time) => time.label === format);
 
     return [
       {
         id: "settings-date-picker",
         items: times,
-        onIndexChange: (index: number) => setModalDate(times[index].value),
-        defaultIndex: currentTime,
+        onIndexChange: (index: number) => {
+          setSelectedMinutesFromMidnight(times[index].value);
+        },
+        defaultIndex: selectedMinutesFromMidnight / 30,
       },
     ];
-  }, [modalDate]);
+  }, [selectedMinutesFromMidnight]);
 
   return (
     <>
@@ -392,29 +417,23 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
 
 const generateTimes = () => {
   const times = [];
-  const date = moment();
 
   for (let hour = 0; hour < 24; hour++) {
-    const hourMoment = date.clone().set({ year: 2000, month: 0, date: 1, hour, second: 0, millisecond: 0 });
+    const hourMoment = moment({ hour, minute: 0 });
 
-    hourMoment.minute(0);
     times.push({
       label: hourMoment.format(t("format.time_short")),
-      value: formatToDefaultDate(hourMoment.toISOString()),
+      value: hour * 60,
     });
 
     hourMoment.minute(30);
     times.push({
       label: hourMoment.format(t("format.time_short")),
-      value: formatToDefaultDate(hourMoment.toISOString()),
+      value: hour * 60 + 30,
     });
   }
 
   return times;
 };
-
-const DATE_REG_EX = /^.{10}/g;
-const DEFAULT_DATE = "2000-01-01";
-const formatToDefaultDate = (date: string) => date.replace(DATE_REG_EX, DEFAULT_DATE);
 
 export default SettingsContainer;

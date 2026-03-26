@@ -109,7 +109,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
       <View key={index} style={styles.wrapper}>
         <SettingsHeader title={section.title} />
         <View style={styles.notificationsItemsWrapper}>
-          {sortBy(section.items, (item) => !!item.alertTimestamp).map((item, i) => (
+          {sortBy(section.items, (item) => !!(item.alertTimestamp || item.minutesFromStartOfDay)).map((item, i) => (
             <NotificationsItem {...item} key={i} />
           ))}
         </View>

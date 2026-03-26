@@ -6913,6 +6913,7 @@ export type Mutation = {
   processMembersBulkUpload?: Maybe<Scalars["Boolean"]["output"]>;
   provisionDependantUserAccount: SduiAction;
   publishBusinessSurveyCampaign: Scalars["Boolean"]["output"];
+  publishTournamentEvent: TournamentEvent;
   reactivateTeamEmployee: Scalars["Boolean"]["output"];
   reassignProductToTeamMember: Scalars["Boolean"]["output"];
   redeemMobileSduiReward: SduiAction;
@@ -6971,7 +6972,6 @@ export type Mutation = {
   /** Updates the shares of a beneficiary */
   setShareOfBenefitForProduct: CustomerProductBeneficiaries;
   setTestMobileGameTheme?: Maybe<Scalars["Boolean"]["output"]>;
-  setTournamentEventPublished: TournamentEvent;
   setUserPathwayProgress?: Maybe<Scalars["Boolean"]["output"]>;
   setUserQuestProgress?: Maybe<Scalars["Boolean"]["output"]>;
   startMembersBulkUpload: BulkMemberImportStart;
@@ -7577,6 +7577,10 @@ export type MutationPublishBusinessSurveyCampaignArgs = {
   campaignId: Scalars["ID"]["input"];
 };
 
+export type MutationPublishTournamentEventArgs = {
+  eventId: Scalars["ID"]["input"];
+};
+
 export type MutationReactivateTeamEmployeeArgs = {
   businessEmployeeId: Scalars["String"]["input"];
 };
@@ -7754,11 +7758,6 @@ export type MutationSetShareOfBenefitForProductArgs = {
 
 export type MutationSetTestMobileGameThemeArgs = {
   themeId: Scalars["String"]["input"];
-};
-
-export type MutationSetTournamentEventPublishedArgs = {
-  eventId: Scalars["ID"]["input"];
-  published: Scalars["Boolean"]["input"];
 };
 
 export type MutationSetUserPathwayProgressArgs = {
@@ -8084,7 +8083,7 @@ export type MutationUpdateUserHourlyActivityArgs = {
 
 export type MutationUpdateUserNotificationsSettingsArgs = {
   isActive: Scalars["Boolean"]["input"];
-  time?: InputMaybe<Scalars["String"]["input"]>;
+  minutesFromStartOfDay?: InputMaybe<Scalars["Int"]["input"]>;
   type: UserNotificationsType;
 };
 
@@ -8174,6 +8173,7 @@ export type NotificationSettingsProps = {
   id: Scalars["String"]["output"];
   isActive: Scalars["Boolean"]["output"];
   isAvailable: Scalars["Boolean"]["output"];
+  minutesFromStartOfDay?: Maybe<Scalars["Int"]["output"]>;
   name: Scalars["String"]["output"];
   order: Scalars["Int"]["output"];
   /** @deprecated Not supported */
@@ -11987,6 +11987,7 @@ export type TeamYAxisValue = {
 export type TeamYuCoinAmountSuggestion = {
   __typename?: "TeamYuCoinAmountSuggestion";
   amount: Scalars["Int"]["output"];
+  default?: Maybe<Scalars["Boolean"]["output"]>;
   formattedApproximateValue: Scalars["String"]["output"];
   id: Scalars["String"]["output"];
 };
@@ -13623,14 +13624,6 @@ export enum YuWorld {
   Forest = "forest",
   Mountain = "mountain",
   Ocean = "ocean",
-}
-
-/** Payment method for YuCoin top-up requests. */
-export enum YucoinTopupPaymentMethod {
-  /** Bank transfer (BACS) - higher minimum charge */
-  Bacs = "bacs",
-  /** Direct Debit - lower minimum charge */
-  DirectDebit = "direct_debit",
 }
 
 export enum YucoinTransferStatus {
@@ -21010,6 +21003,7 @@ export type NotificationSettingsPropsFragment = {
   isAvailable: boolean;
   order: number;
   description?: string | null;
+  minutesFromStartOfDay?: number | null;
 };
 
 export type UserProfileNotificationFragment = {
@@ -29890,6 +29884,7 @@ export type GetLeaderboardSettingsQuery = {
     isAvailable: boolean;
     order: number;
     description?: string | null;
+    minutesFromStartOfDay?: number | null;
   } | null> | null;
 };
 
@@ -30117,6 +30112,7 @@ export type GetInboxNotificationsSettingsQuery = {
     isAvailable: boolean;
     order: number;
     description?: string | null;
+    minutesFromStartOfDay?: number | null;
   } | null> | null;
 };
 
@@ -30156,6 +30152,7 @@ export type GetUserNotificationsSettingsQuery = {
       isAvailable: boolean;
       order: number;
       description?: string | null;
+      minutesFromStartOfDay?: number | null;
     }>;
   } | null;
   emailNotifications?: Array<{
@@ -30168,13 +30165,14 @@ export type GetUserNotificationsSettingsQuery = {
     isAvailable: boolean;
     order: number;
     description?: string | null;
+    minutesFromStartOfDay?: number | null;
   } | null> | null;
 };
 
 export type UpdateUserNotificationsSettingsMutationVariables = Exact<{
   type: UserNotificationsType;
   isActive: Scalars["Boolean"]["input"];
-  time?: InputMaybe<Scalars["String"]["input"]>;
+  minutesFromStartOfDay?: InputMaybe<Scalars["Int"]["input"]>;
 }>;
 
 export type UpdateUserNotificationsSettingsMutation = {
@@ -61718,6 +61716,7 @@ export const NotificationSettingsPropsFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "order" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "minutesFromStartOfDay" } },
         ],
       },
     },
@@ -84407,6 +84406,7 @@ export const GetLeaderboardSettingsDocument = {
           { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "order" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "minutesFromStartOfDay" } },
         ],
       },
     },
@@ -85285,6 +85285,7 @@ export const GetInboxNotificationsSettingsDocument = {
           { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "order" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "minutesFromStartOfDay" } },
         ],
       },
     },
@@ -85410,6 +85411,7 @@ export const GetUserNotificationsSettingsDocument = {
           { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
           { kind: "Field", name: { kind: "Name", value: "order" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "minutesFromStartOfDay" } },
         ],
       },
     },
@@ -85438,8 +85440,8 @@ export const UpdateUserNotificationsSettingsDocument = {
         },
         {
           kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "time" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+          variable: { kind: "Variable", name: { kind: "Name", value: "minutesFromStartOfDay" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
         },
       ],
       selectionSet: {
@@ -85461,8 +85463,8 @@ export const UpdateUserNotificationsSettingsDocument = {
               },
               {
                 kind: "Argument",
-                name: { kind: "Name", value: "time" },
-                value: { kind: "Variable", name: { kind: "Name", value: "time" } },
+                name: { kind: "Name", value: "minutesFromStartOfDay" },
+                value: { kind: "Variable", name: { kind: "Name", value: "minutesFromStartOfDay" } },
               },
             ],
           },
