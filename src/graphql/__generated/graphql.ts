@@ -23,6 +23,7 @@ export type ApiConfig = {
   hcaptchaSiteKey?: Maybe<Scalars["String"]["output"]>;
   intercom: ApiConfigIntercom;
   language: Scalars["String"]["output"];
+  /** @deprecated Leanplum decommissioned. Safe to remove once all clients are on >=5.3.0 (first version without Leanplum). */
   leanplum: ApiConfigLeanplum;
   mixpanelBaseUrl: Scalars["String"]["output"];
   mixpanelKey: Scalars["String"]["output"];
@@ -989,11 +990,21 @@ export type BusinessInvoice = {
   documentId?: Maybe<Scalars["String"]["output"]>;
   invoiceNumber?: Maybe<Scalars["String"]["output"]>;
   invoiceType?: Maybe<BusinessInvoiceType>;
+  paymentMethod?: Maybe<BusinessInvoicePaymentMethod>;
   status: BusinessInvoiceStatus;
   totalAmount?: Maybe<Scalars["Float"]["output"]>;
 };
 
+export type BusinessInvoicePaymentMethod = {
+  __typename?: "BusinessInvoicePaymentMethod";
+  accountNumberEnding?: Maybe<Scalars["String"]["output"]>;
+  businessPaymentMethodId: Scalars["String"]["output"];
+  name?: Maybe<Scalars["String"]["output"]>;
+  paymentMethodId: Scalars["String"]["output"];
+};
+
 export enum BusinessInvoiceStatus {
+  Failed = "failed",
   Paid = "paid",
   PartialOverdue = "partial_overdue",
   PartialUpToDate = "partial_up_to_date",
@@ -1003,6 +1014,7 @@ export enum BusinessInvoiceStatus {
 }
 
 export enum BusinessInvoiceStatusFilter {
+  Failed = "failed",
   Paid = "paid",
   PartialOverdue = "partial_overdue",
   PartialUpToDate = "partial_up_to_date",
@@ -11989,7 +12001,9 @@ export type TeamYuCoinAmountSuggestion = {
   amount: Scalars["Int"]["output"];
   default?: Maybe<Scalars["Boolean"]["output"]>;
   formattedApproximateValue: Scalars["String"]["output"];
+  formattedPrice: Scalars["String"]["output"];
   id: Scalars["String"]["output"];
+  price: Scalars["Int"]["output"];
 };
 
 export type TeamYuCoinTopupRequest = {
@@ -12024,6 +12038,7 @@ export type TeamYucoinWalletHistory = {
   id: Scalars["String"]["output"];
   /** @deprecated Not supported yet, can be removed if not used */
   invoiceDownloadUrl?: Maybe<Scalars["String"]["output"]>;
+  paymentMethod?: Maybe<BusinessInvoicePaymentMethod>;
   requestedBy?: Maybe<Scalars["String"]["output"]>;
   sourceId?: Maybe<Scalars["String"]["output"]>;
   sourceType?: Maybe<TransactionHistorySourceType>;
