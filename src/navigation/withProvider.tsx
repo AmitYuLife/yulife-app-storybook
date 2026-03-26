@@ -7,7 +7,7 @@ const Provider = ReduxProvider as unknown as React.FC<{
 }>;
 import { ApolloProvider, ApolloClient } from "@apollo/client";
 import { store } from "@redux/_core/store";
-import { ComponentClass } from "react";
+import { ComponentType } from "react";
 import React from "react";
 import { generateOnLeftMenuPress } from "./root";
 import { NavigationContext } from "./navigation.context";
@@ -15,7 +15,7 @@ import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-c
 import ModalProvider from "@modules/modals/modal-provider";
 
 const withProvider =
-  (WrappedComponent: ComponentClass, client: ApolloClient<Record<string, unknown>>, hasMenu = false) =>
+  (WrappedComponent: ComponentType<any>, client: ApolloClient<Record<string, unknown>>, hasMenu = false) =>
   (props: any) => {
     return (
       <Provider store={store}>
