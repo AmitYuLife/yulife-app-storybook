@@ -34,7 +34,9 @@ const TopBarView = ({
       {/* collapsable=false https://github.com/facebook/react-native/issues/29712 */}
       <Box viewRef={leftRef} collapsable={false} h="100%" />
       <Left badges={badges} label={menuLabel} icons={leftIcons} colour={colour} textStyle={textStyle} />
-      <Center name={name} timer={timer} logoColour={logoColour} colour={colour} textStyle={textStyle} />
+      <Box pointerEvents="none">
+        <Center name={name} timer={timer} logoColour={logoColour} colour={colour} textStyle={textStyle} />
+      </Box>
       <Right icon={rightIcon} shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} />
     </View>
   );
