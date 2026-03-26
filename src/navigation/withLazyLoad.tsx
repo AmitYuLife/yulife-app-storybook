@@ -1,9 +1,9 @@
-import React, { ComponentClass, useState, useEffect } from "react";
+import React, { useState, useEffect, ComponentType } from "react";
 import { View } from "react-native";
 
 const withLazyLoad =
-  (WrappedComponent: ComponentClass, renderAfterMs = 50) =>
-  (props: any) => {
+  (WrappedComponent: ComponentType<unknown>, renderAfterMs = 50) =>
+  (props: Record<string, unknown>) => {
     const [shouldRender, setRender] = useState(false);
 
     useEffect(() => {
