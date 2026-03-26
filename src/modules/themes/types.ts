@@ -31,4 +31,5 @@ export interface MobileGameTheme {
 export enum ThemeId {
   YuLife = "yulife",
   Metlife = "metlife",
+  NN = "nn",
 }
