@@ -1736,6 +1736,9 @@
             "subheading": "Redeemed rewards will be ready for you here"
           }
         },
+        "expired_section": {
+          "title": "Expired"
+        },
         "title": "Wallet",
         "used_section": {
           "label": "USED",

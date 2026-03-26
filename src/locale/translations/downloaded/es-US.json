@@ -1736,6 +1736,9 @@
             "subheading": "Las recompensas canjeadas estarán listas para ti aquí"
           }
         },
+        "expired_section": {
+          "title": "Caducado"
+        },
         "title": "Cartera",
         "used_section": {
           "label": "USADO",

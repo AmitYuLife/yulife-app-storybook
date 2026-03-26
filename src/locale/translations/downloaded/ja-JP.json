@@ -1736,6 +1736,9 @@
             "subheading": "引き換え済みの報酬はここに表示されます"
           }
         },
+        "expired_section": {
+          "title": "期限切れ"
+        },
         "title": "ウォレット",
         "used_section": {
           "label": "使用済み",

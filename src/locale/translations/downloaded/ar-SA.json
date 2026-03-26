@@ -1736,6 +1736,9 @@
             "subheading": "ستكون المكافآت المستردة جاهزة لك هنا"
           }
         },
+        "expired_section": {
+          "title": "منتهي"
+        },
         "title": "محفظة",
         "used_section": {
           "label": "مستعمل",
