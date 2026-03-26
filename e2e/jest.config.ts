@@ -1,23 +1,36 @@
-import { pathsToModuleNameMapper } from "ts-jest";
 import { compilerOptions } from "./tsconfig.json";
-import type { JestConfigWithTsJest } from "ts-jest";
-import { mapValues } from "lodash";
+import type { Config } from "@jest/types";
 import { readFileSync } from "fs";
-import type { ReporterOptions } from "jest-allure2-reporter";
 
-const pathObj = pathsToModuleNameMapper(compilerOptions.paths);
+const moduleNameMapper: Record<string, string> = {};
+for (const [alias, [target]] of Object.entries(compilerOptions.paths)) {
+  const key = alias.includes("*") ? `^${alias.replace("/*", "/(.*)$")}` : `^${alias}$`;
+  const value = `<rootDir>/${target.includes("*") ? target.replace("*", "$1") : target}`;
+  moduleNameMapper[key] = value;
+}
 
 let count = 0;
 
 const timestamp = Date.now();
 
 /** @type {import('@jest/types').Config.InitialOptions} */
-const jestConfig: JestConfigWithTsJest = {
+const jestConfig: Config.InitialOptions = {
   testRunner: "jest-circus/runner",
   testTimeout: 180000,
   testMatch: ["**/*.spec.ts"],
   verbose: true,
-  preset: "ts-jest",
+  transform: {
+    "^.+\\.tsx?$": [
+      "@swc/jest",
+      {
+        jsc: {
+          parser: { syntax: "typescript", decorators: true },
+          target: "es2024",
+        },
+        module: { type: "commonjs" },
+      },
+    ],
+  },
   reporters: [
     "default",
     ["jest-html-reporters", { publicPath: "./e2e-report" }],
@@ -79,7 +92,7 @@ const jestConfig: JestConfigWithTsJest = {
     ],
   ],
   modulePaths: [__dirname],
-  moduleNameMapper: mapValues(pathObj, (v) => `<rootDir>/${v}`),
+  moduleNameMapper,
   resolver: undefined,
   setupFilesAfterEnv: ["./init.ts"],
   globalSetup: "detox/runners/jest/globalSetup",

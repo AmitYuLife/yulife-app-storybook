@@ -64,9 +64,7 @@ export const restartWithoutDelete = async () => {
 export const start = async (locale = DEFAULT_LOCALE) => {
   console.log(`Restarting app...`);
   await device.terminateApp();
-  await new Promise((res) => setTimeout(res, 2000));
   await device.clearKeychain();
-  await new Promise((res) => setTimeout(res, 1000));
   await launchApp({
     languageAndLocale: {
       language: locale,
@@ -74,7 +72,7 @@ export const start = async (locale = DEFAULT_LOCALE) => {
     },
     delete: true,
   });
-  await new Promise((res) => setTimeout(res, 3000));
+  await new Promise((res) => setTimeout(res, 1000));
 };
 
 const MAX_LAUNCH_RETRIES = 2;
