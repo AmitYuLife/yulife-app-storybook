@@ -2,11 +2,12 @@ import { useMemo } from "react";
 import { View } from "react-native";
 import { Image, TextTemplate, WorldCard } from "@atoms";
 import { t } from "@locale";
-import { Colours, Style, StyleSheet } from "@styles";
+import { Style, StyleSheet } from "@styles";
 import { MAX_PROGRESS_WIDTH, MAX_UI_PROGRESS_PERCENTAGE, rewardCardStyles as styles } from "./reward-card.styles";
 import { ProgressMilestoneComplete } from "../progress-milestone/progress-milestone-complete";
 import { ProgressMilestoneIncomplete } from "../progress-milestone/progress-milestone-incomplete";
 import LottieView from "../lottie-view/lottie-view";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type RewardCardProps = {
   progress: number;
@@ -39,6 +40,7 @@ export const RewardCard = ({
   overlayColor,
   overlayImage,
 }: RewardCardProps) => {
+  const { theme } = useTheme();
   const calculated = useMemo(() => {
     const filledBarWidth = {
       width: Math.max(0, MAX_PROGRESS_WIDTH * Math.min(MAX_UI_PROGRESS_PERCENTAGE, progress / target)),
@@ -49,8 +51,8 @@ export const RewardCard = ({
       ...styles.barTargetWrapper,
       ...(isMaxProgress
         ? {
-            backgroundColor: Colours.primary.p600,
-            borderColor: Colours.primary.p600,
+            backgroundColor: theme.colors.primary.p600,
+            borderColor: theme.colors.primary.p600,
           }
         : {}),
     };
@@ -60,7 +62,7 @@ export const RewardCard = ({
       barTargetWrapperStyles,
       isMaxProgress,
     };
-  }, [progress, target]);
+  }, [progress, target, theme]);
 
   return (
     <View style={styles.wrapper}>
@@ -78,11 +80,20 @@ export const RewardCard = ({
           <View style={styles.flex} />
         </View>
         <View style={styles.barWrapper}>
-          <View style={styles.emptyBar} />
+          <View style={[styles.emptyBar, { borderColor: theme.colors.primary.p600 }]} />
           <View style={styles.barTargetWrapperShimLeft} />
-          <View style={[styles.filledBar, calculated.filledBarWidth]} />
+          <View style={[styles.filledBar, calculated.filledBarWidth, { backgroundColor: theme.colors.primary.p600 }]} />
           <View style={styles.progressMilestoneWrapper}>
-            {progress >= target ? <ProgressMilestoneComplete /> : <ProgressMilestoneIncomplete index={0} target={1} />}
+            {progress >= target ? (
+              <ProgressMilestoneComplete color={theme.colors.primary.p600} />
+            ) : (
+              <ProgressMilestoneIncomplete
+                starColor={theme.colors.primary.p60}
+                borderColor={theme.colors.primary.p600}
+                index={0}
+                target={1}
+              />
+            )}
           </View>
         </View>
       </View>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, memo } from "react";
+import React, { useCallback, useEffect, useState, memo, useMemo } from "react";
 import { ScrollView, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Button, LinkButton } from "@molecules";
@@ -10,6 +10,7 @@ import { Style } from "@styles";
 import { BoxOption } from "@molecules";
 import { useTranslation } from "@hooks";
 import { AvatarBodyType } from "@graphql/__generated";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IProps {
   bodyType: AvatarBodyType;
@@ -28,6 +29,13 @@ const SelectBody = ({ bodyType, hasYumoji, onContinue, onPressExitButton }: IPro
     "screens.yumoji_builder.create.link",
     "screens.yumoji_builder.edit.title",
   ]);
+
+  const { theme } = useTheme();
+
+  const bodySelectedStyle = useMemo(
+    () => ({ borderColor: theme.colors.primary.p600, backgroundColor: theme.colors.primary.p50 }),
+    [theme]
+  );
 
   const isMale = selectedBody === AvatarBodyType.Male;
   const isFemale = selectedBody === AvatarBodyType.Female;
@@ -67,7 +75,7 @@ const SelectBody = ({ bodyType, hasYumoji, onContinue, onPressExitButton }: IPro
             <BoxOption
               onPress={selectMaleBody}
               isSelected={isMale}
-              selectedStyle={styles.bodySelected}
+              selectedStyle={bodySelectedStyle}
               innerHeight={BODY_HEIGHT}
             >
               <MaleBody isSelected={isMale} />
@@ -76,7 +84,7 @@ const SelectBody = ({ bodyType, hasYumoji, onContinue, onPressExitButton }: IPro
             <BoxOption
               onPress={selectFemaleBody}
               isSelected={isFemale}
-              selectedStyle={styles.bodySelected}
+              selectedStyle={bodySelectedStyle}
               innerHeight={BODY_HEIGHT}
             >
               <FemaleBody isSelected={isFemale} />

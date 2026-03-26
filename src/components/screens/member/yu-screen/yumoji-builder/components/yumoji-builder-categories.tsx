@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState, FC } from "react";
+import React, { memo, useRef, useState, FC, useMemo } from "react";
 import { ScrollView, View, ViewStyle } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
 import YumojiBuilderCategory from "./yumoji-builder-category";
@@ -6,6 +6,7 @@ import YumojiBuilderCategory from "./yumoji-builder-category";
 import { SkeletonLoading } from "@atoms";
 import { CATEGORY_TYPE } from "@ids";
 import { GetYumojiBuilderCategoryListQuery } from "@graphql/__generated";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 type YumojiBuilderCategoryList = GetYumojiBuilderCategoryListQuery["getYumojiBuilderCategoryList"][number];
 type CategoryListChildren = YumojiBuilderCategoryList["children"][number];
@@ -20,6 +21,17 @@ interface Props {
 const YumojiBuilderCategories: FC<Props> = ({ categories, loading, selectedCategoryId, onPress }) => {
   const [categoryDetails, setCategoryDetails] = useState({ parentId: null, hasChildren: false });
   const scrollViewRef = useRef<ScrollView | null>(null);
+  const { theme } = useTheme();
+  const bodyItemWrapperSelectedStyle = useMemo(
+    () =>
+      ({
+        ...defaultStyles,
+        borderRadius: 30,
+        backgroundColor: theme.colors.primary.p50,
+      } as ViewStyle),
+    [theme]
+  );
+
   return (
     <View style={styles.wrapper}>
       <ScrollView
@@ -39,7 +51,7 @@ const YumojiBuilderCategories: FC<Props> = ({ categories, loading, selectedCateg
             return (
               <View
                 key={category.id}
-                style={isParentSelected || showChildren ? styles.bodyItemWrapperSelected : styles.bodyItemWrapper}
+                style={isParentSelected || showChildren ? bodyItemWrapperSelectedStyle : styles.bodyItemWrapper}
                 testID={CATEGORY_TYPE(category.id)}
               >
                 <YumojiBuilderCategory
@@ -127,11 +139,6 @@ const styles = StyleSheet.create({
   },
   bodyItemWrapper: {
     ...defaultStyles,
-  } as ViewStyle,
-  bodyItemWrapperSelected: {
-    ...defaultStyles,
-    borderRadius: 30,
-    backgroundColor: Colours.primary.p50,
   } as ViewStyle,
   skeleton: {
     ...defaultStyles,

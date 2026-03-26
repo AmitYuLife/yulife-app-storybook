@@ -6,17 +6,21 @@ import { View } from "react-native";
 interface Props {
   index: number;
   target: number;
+  borderColor?: string;
+  starColor?: string;
 }
 
-export const ProgressMilestoneIncomplete = memo(({ index, target }: Props) => (
-  <>
-    <View style={styles.iconWrapper}>
-      <StarIcon size={Style.adjust(12)} color={Colours.primary.p60} />
-    </View>
-    {index + 1 === target ? null : <View style={styles.shimRight} />}
-    <View style={styles.shimLeft} />
-  </>
-));
+export const ProgressMilestoneIncomplete = memo(
+  ({ index, target, starColor = Colours.primary.p60, borderColor = Colours.primary.p600 }: Props) => (
+    <>
+      <View style={[styles.iconWrapper, { borderColor: borderColor }]}>
+        <StarIcon size={Style.adjust(12)} color={starColor} />
+      </View>
+      {index + 1 === target ? null : <View style={styles.shimRight} />}
+      <View style={styles.shimLeft} />
+    </>
+  )
+);
 
 const SHIM_TOP = Style.adjust(11);
 const SHIM_HEIGHT = Style.adjust(6);
@@ -31,7 +35,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: Colours.primary.p600,
     paddingBottom: 1,
   },
   shimRight: {

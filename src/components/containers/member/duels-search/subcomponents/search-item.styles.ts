@@ -30,10 +30,6 @@ export default StyleSheet.create({
     fontSize: Style.adjust(16),
     marginStart: Style.adjust(2),
   } as TextStyle,
-  duelText: {
-    color: Colours.primary.p600,
-    fontSize: Style.adjust(16),
-  } as TextStyle,
   duelImageWrapper: {
     marginTop: Style.adjust(-4),
   } as ViewStyle,
