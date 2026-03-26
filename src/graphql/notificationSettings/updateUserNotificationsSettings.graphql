@@ -1,3 +1,3 @@
-mutation UpdateUserNotificationsSettings($type: UserNotificationsType!, $isActive: Boolean!, $time: String) {
-  updateUserNotificationsSettings(type: $type, isActive: $isActive, time: $time)
+mutation UpdateUserNotificationsSettings($type: UserNotificationsType!, $isActive: Boolean!, $minutesFromStartOfDay: Int) {
+  updateUserNotificationsSettings(type: $type, isActive: $isActive, minutesFromStartOfDay: $minutesFromStartOfDay)
 }

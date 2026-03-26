@@ -7,4 +7,5 @@ fragment NotificationSettingsProps on NotificationSettingsProps {
   isAvailable
   order
   description
+  minutesFromStartOfDay
 }
