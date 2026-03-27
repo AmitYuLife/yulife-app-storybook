@@ -1,6 +1,13 @@
 import { IDatabaseItem, generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import * as customer from "../postgres/customers";
-import { GOALS_2, GOALS_3, GOALS_4, GOALS_5, GOALS_TOURNAMENT } from "./goals_for_global";
+import {
+  GOALS_2,
+  GOALS_3,
+  GOALS_4,
+  GOALS_5,
+  GOALS_RANDOM_CHEST,
+  GOALS_TOURNAMENT,
+} from "./goals_for_global";
 import moment from "moment";
 
 export const GOAL_TEAM_1 = {
@@ -50,6 +57,19 @@ export const GOAL_TEAM_5 = {
     goal: GOALS_5.data._id,
     teamName: customer.CUSTOMER_81.data._id,
     createdAt: moment().subtract(3, "days").format("YYYY-MM-DDTHH:mm:ss"),
+    membersCount: 0,
+    overallProgress: 0,
+  },
+} as IDatabaseItem;
+
+export const GOAL_TEAM_RANDOM_CHEST = {
+  type: "mongo",
+  modelName: "goal_team",
+  data: {
+    _id: generateRandomMongoId(),
+    goal: GOALS_RANDOM_CHEST.data._id,
+    teamName: customer.CUSTOMER_RANDOM_CHEST.data._id,
+    createdAt: moment(),
     membersCount: 0,
     overallProgress: 0,
   },

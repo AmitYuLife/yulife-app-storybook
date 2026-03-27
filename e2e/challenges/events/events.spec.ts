@@ -178,6 +178,29 @@ Feature("As a user I can opt in and take an event", async () => {
     // });
   });
 
+  Scenario("User completes a passive steps event and claims a random chest reward", scenario.start, async () => {
+    Given("I'm logged in as a random chest user", given.loginAsUser(data.CUSTOMER_RANDOM_CHEST, data.AUTH_RANDOM_CHEST), async () => {
+      When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+        Then("I should see the passive steps event card on the YuCoin screen", then.textVisible(data.GOALS_RANDOM_CHEST.data.title));
+      });
+      When("I walk enough steps to complete the milestone", when.sendSteps(1000, 3000), async () => {
+        Then("I should see the event milestone is claimable", then.idVisible(ids.DAILY_STEPS_SCREEN));
+      });
+      When("I tap on the event card", when.tapChallenge(data.GOALS_RANDOM_CHEST.data.title), async () => {
+        Then("I should see the event details with 100% progress", then.idVisible(ids.EVENT_PROGRESS_BAR(1)));
+      });
+      When("I tap Claim on the milestone", when.tapID(ids.CLAIM_BUTTON), async () => {
+        Then("I should see the '5' spinning rewards", then.idVisible(ids.SPINNING_REWARD_ITEMS(5)));
+      });
+      When("I tap Open", when.tapID(ids.CLAIM_REWARD_MODAL), async () => {
+        Then("I should see 3 items claimed", then.idVisible(ids.CLAIMED_REWARD_ITEMS(3), 2000));
+      });
+      When("I tap the Continue button", when.tapID(ids.CONTINUE_CHEST_PRIZE_BUTTON, 2000), async () => {
+        Then("I can see the milestone as claimed", then.textVisible("Claimed"));
+      });
+    });
+  });
+
   Scenario("I can view the active Team vs Team tournament with the remaining days and current team standings", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_76, data.AUTH_76), async () => {
       When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 5000), async () => {

@@ -1,5 +1,11 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { GOALS_2, GOALS_4, GOALS_5, GOALS_TOURNAMENT } from "./goals_for_global";
+import {
+  GOALS_2,
+  GOALS_4,
+  GOALS_5,
+  GOALS_RANDOM_CHEST,
+  GOALS_TOURNAMENT,
+} from "./goals_for_global";
 
 const type = "mongo";
 const modelName = "goal_events_for_global";
@@ -33,6 +39,17 @@ export const GOAL_EVENTS_5 = {
     goal: GOALS_5.data._id,
     type: "passive_challenge_steps",
     targetValue: 10000,
+    parentType: "goals",
+  },
+} as IDatabaseItem;
+
+export const GOAL_EVENTS_RANDOM_CHEST = {
+  type,
+  modelName,
+  data: {
+    goal: GOALS_RANDOM_CHEST.data._id,
+    type: "passive_challenge_steps",
+    targetValue: 1000,
     parentType: "goals",
   },
 } as IDatabaseItem;

@@ -1,5 +1,12 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { GOALS_2, GOALS_4, GOALS_5, GOALS_TOURNAMENT } from "./goals_for_global";
+import {
+  GOALS_2,
+  GOALS_4,
+  GOALS_5,
+  GOALS_RANDOM_CHEST,
+  GOALS_TOURNAMENT,
+} from "./goals_for_global";
+import { USER_CHEST_CONFIG_1 } from "./user_chest_config";
 
 const type = "mongo";
 const modelName = "goal_reward_milestones_for_global";
@@ -196,6 +203,25 @@ export const GOAL_REWARD_MILESTONE_14 = {
     rewardValue: 500,
     rewardTitle: "500 YuCoin",
     rewardDescription: "All steps",
+    parentType: "goals",
+    earnRateBased: true,
+  },
+} as IDatabaseItem;
+
+export const GOAL_REWARD_MILESTONE_RANDOM_CHEST = {
+  type,
+  modelName,
+  data: {
+    goal: GOALS_RANDOM_CHEST.data._id,
+    animated: true,
+    rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+    rewardImageKey: "cms/1650355411333_CoinTop.png",
+    targetValue: 1.0,
+    rewardId: USER_CHEST_CONFIG_1.data._id.toString(),
+    rewardType: "random_chest",
+    rewardValue: 0,
+    rewardTitle: "Random Chest",
+    rewardDescription: "1,000 steps",
     parentType: "goals",
     earnRateBased: true,
   },
