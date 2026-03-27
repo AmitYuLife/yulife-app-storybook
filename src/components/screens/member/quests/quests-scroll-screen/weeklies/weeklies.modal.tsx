@@ -20,6 +20,7 @@ import { AppDataType } from "@redux/user/user.types";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import { gql } from "@graphql/__generated";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import { CLAIMABLE_YUCOIN } from "@ids";
 
 const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
 
@@ -195,7 +196,7 @@ const ClaimableYucoin = ({ coins, isClaimed }: { coins: string; isClaimed: boole
   );
 
   return (
-    <View style={styles.claimableYucoinContainer}>
+    <View testID={CLAIMABLE_YUCOIN(coins)} style={styles.claimableYucoinContainer}>
       <View style={style}>
         {!isClaimed ? null : (
           <View style={styles.selectedCheck}>
