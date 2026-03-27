@@ -23,7 +23,7 @@ export const SURVEY_ADMIN_ACCESS_USER = {
   },
 } as IDatabaseItem;
 
-export const SURVEY_ADMIN_ACCESS = {
+export const SURVEY_BUSINESS_ACCESS = {
   type: "postgres",
   modelName: "business_access",
   data: {
