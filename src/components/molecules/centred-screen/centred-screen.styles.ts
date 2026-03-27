@@ -13,6 +13,7 @@ export default StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     width: "100%",
+    flex: 1,
     flexDirection: "column",
     paddingTop: TOP_BAR.PADDING_TOP,
     height: "100%",
