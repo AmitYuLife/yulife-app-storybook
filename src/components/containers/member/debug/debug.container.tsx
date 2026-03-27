@@ -66,6 +66,7 @@ enum DebugCodes {
   pathwaysFeedback = "pathways-feedback",
   viewUserInfo = "view-user-info",
   getThemes = "get-themes",
+  welcomeScreen = "welcome-screen",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -424,6 +425,15 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
               component: {
                 id: ROUTES.themeSwitcher,
                 name: ROUTES.themeSwitcher,
+              },
+            });
+          }
+
+          case DebugCodes.welcomeScreen: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.onboardingSignUpReward,
+                name: ROUTES.onboardingSignUpReward,
               },
             });
           }
