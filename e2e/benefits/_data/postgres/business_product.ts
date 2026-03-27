@@ -208,7 +208,7 @@ export const BUSINESS_PRODUCT_13_GHI_REWARDS = generateProductRecords({
     optalitix_id: null,
   },
   schedule: {
-    business_quote_id: "GOYT9B8HK3",
+    business_quote_id: "GOYT9B8HK4",
     external_schedule_id: null,
     pension_scheme_tax_ref: null,
     effective_date: "2020-02-02",
@@ -305,7 +305,7 @@ export const BUSINESS_PRODUCT_15_GHI_REWARDS = generateProductRecords({
     optalitix_id: null,
   },
   schedule: {
-    business_quote_id: "GOYT9B8HK3",
+    business_quote_id: "GOYT9B8HK5",
     external_schedule_id: null,
     pension_scheme_tax_ref: null,
     effective_date: "2020-02-02",
@@ -393,7 +393,7 @@ export const BUSINESS_PRODUCT_16_GHI_REWARDS = generateProductRecords({
     optalitix_id: null,
   },
   schedule: {
-    business_quote_id: "GOYT9B8HK3",
+    business_quote_id: "GOYT9B8HK6",
     external_schedule_id: null,
     pension_scheme_tax_ref: null,
     effective_date: "2020-02-02",
