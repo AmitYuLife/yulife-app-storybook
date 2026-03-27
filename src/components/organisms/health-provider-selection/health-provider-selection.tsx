@@ -1,3 +1,4 @@
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import { Box, TextTemplate } from "@atoms";
 import Radio from "@atoms/radio/radio";
 import HealthProviderActivities from "@components/molecules/health-provider-activities/health-provider-activities";
@@ -16,6 +17,7 @@ interface IHealthProviderSelectionProps {
 
 const HealthProviderSelection = ({ provider, onPress, isSelected }: IHealthProviderSelectionProps) => {
   const options = HEALTH_PROVIDER_OPTIONS[provider];
+  const { theme } = useTheme();
 
   if (!options) {
     return null;
@@ -28,7 +30,7 @@ const HealthProviderSelection = ({ provider, onPress, isSelected }: IHealthProvi
           <HealthProviderLogo size={Style.adjust(48)} provider={provider} />
           <Box style={styles.headerContent} gap={2}>
             <TextTemplate type="b2b">{options.label}</TextTemplate>
-            <TextTemplate type="l1" color={options.isRecommended ? Colours.primary.p300 : undefined}>
+            <TextTemplate type="l1" color={options.isRecommended ? theme.colors.primary.p300 : undefined}>
               {options.isRecommended ? "Recommended" : "Optional"}
             </TextTemplate>
           </Box>

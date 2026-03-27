@@ -13,6 +13,7 @@ import EmojiWorse from "./icons/emoji-worse";
 import EmojiNeutral from "./icons/emoji-neutral";
 import EmojiBetter from "./icons/emoji-better";
 import EmojiGreat from "./icons/emoji-great";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IPathwaysChallengeFeedbackScreenProps {
   onPressCta: (rating: number) => void;
@@ -54,6 +55,8 @@ const PathwaysChallengeFeedbackScreen = ({ onPressCta, onPressSkip }: IPathwaysC
   );
 
   const CurrentEmoji = emojiMap[value as keyof typeof emojiMap];
+
+  const { theme } = useTheme();
 
   const handlePressCta = () => {
     onPressCta(value);
@@ -100,7 +103,7 @@ const PathwaysChallengeFeedbackScreen = ({ onPressCta, onPressSkip }: IPathwaysC
                   w={HANDLE_SIZE}
                   h={HANDLE_SIZE}
                   br={HANDLE_SIZE / 2}
-                  bg={Colours.primary.p600}
+                  bg={theme.colors.primary.p600}
                   borderWidth={3}
                   borderColor={Colours.neutral.white}
                   mt={20}

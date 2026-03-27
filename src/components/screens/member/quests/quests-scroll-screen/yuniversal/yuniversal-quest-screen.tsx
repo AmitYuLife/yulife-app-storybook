@@ -9,6 +9,7 @@ import { IIcon } from "@organisms/top-bar/subcomponents/left";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 import { getChallengesStatus, getCurrentLevel, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
 import { getUserAvatar, getUserFeatures } from "@redux/user/user.selectors";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 import { FC, memo, useCallback, useMemo } from "react";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,6 +41,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   leftIcons,
 }) => {
   const dispatch = useDispatch();
+  const { theme } = useTheme();
   const challengesStatus = useSelector(getChallengesStatus);
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
   const currentLevel = useSelector(getCurrentLevel);
@@ -63,7 +65,8 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
     currentLevel,
     { uri: avatar?.avatarRemoteFiles?.pngMini },
     submitUnity,
-    features.tempQuestMapInterstitialModal
+    features.tempQuestMapInterstitialModal,
+    theme
   );
 
   const formatLevelsForAccessibility = useMemo(

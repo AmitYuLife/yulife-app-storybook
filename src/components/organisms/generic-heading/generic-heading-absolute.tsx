@@ -36,7 +36,7 @@ const GenericHeadingAbsolute = (props: Props) => {
       left={0}
       right={0}
       minHeight={TOP_BAR.TOP_BAR_WITH_PAD}
-      pt={TOP_BAR.PADDING_TOP}
+      pt={TOP_BAR.PADDING_TOP - Style.adjust(7)}
       justifyContent="center"
       alignItems="center"
       disableAutoAdjust={true}

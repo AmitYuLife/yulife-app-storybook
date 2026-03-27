@@ -9,7 +9,8 @@ import { Box, Image, TextTemplate } from "@atoms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { View } from "react-native";
 import { useTheme } from "@modules/themes/hooks/useTheme";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
+import { MobileGameTheme } from "@app/modules/themes/types";
 
 const GenericHeading = (props: IGenericHeadingProps) => {
   const {
@@ -28,6 +29,7 @@ const GenericHeading = (props: IGenericHeadingProps) => {
   } = props;
 
   const { theme } = useTheme();
+  const themeIconAssetKey = getIconThemeLogo(theme, logoType);
 
   return (
     <Box style={styles.wrapper} pointerEvents="box-none">
@@ -61,9 +63,14 @@ const GenericHeading = (props: IGenericHeadingProps) => {
             justifyContent="center"
             gap={8}
           >
-            {theme.assets.icon && logo === "yulife" ? (
+            {themeIconAssetKey && logo === "yulife" ? (
               <>
-                <Image source={{ uri: theme.assets.icon.uri }} width={26} height={26} resizeMode="contain" />
+                <Image
+                  source={{ uri: themeIconAssetKey.uri }}
+                  width={Style.adjust(26)}
+                  height={Style.adjust(26)}
+                  disableAutoAdjust={true}
+                />
                 <Box w={1} h={26} bg={Colours.neutral.n300} />
               </>
             ) : null}
@@ -96,6 +103,17 @@ const GenericHeading = (props: IGenericHeadingProps) => {
       </Box>
     </Box>
   );
+};
+
+const LOGO_TYPE_TO_ASSET: Partial<Record<IGenericHeadingProps["logoType"], keyof MobileGameTheme["assets"]>> = {
+  inverted: "iconWhite",
+  "logo-only": "icon",
+};
+
+const getIconThemeLogo = (theme: MobileGameTheme, logoType: IGenericHeadingProps["logoType"]) => {
+  const assetKey = LOGO_TYPE_TO_ASSET[logoType] ?? LOGO_TYPE_TO_ASSET["logo-only"];
+  const icon = theme.assets[assetKey];
+  return icon ? icon : null;
 };
 
 export default GenericHeading;
