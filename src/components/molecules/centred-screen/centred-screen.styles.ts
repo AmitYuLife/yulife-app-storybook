@@ -12,9 +12,10 @@ export default StyleSheet.create({
   wrapper: {
     alignItems: "center",
     backgroundColor: "white",
-    flex: 1,
+    width: "100%",
     flexDirection: "column",
     paddingTop: TOP_BAR.PADDING_TOP,
+    height: "100%",
   } as ViewStyle,
   lottie: {
     width: Style.DEVICE_WIDTH,
