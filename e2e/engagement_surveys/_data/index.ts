@@ -24,4 +24,5 @@ export * from "./mongo/pathways_advice_cards";
 export * from "./mongo/user_habit_tracking_state";
 export * from "./mongo/user_habit_tracking_actions";
 export * from "./mongo/user_journey_state";
+export * from "./mongo/goal_weeklies_for_global";
 export * from "./mongo/user_activity_history";

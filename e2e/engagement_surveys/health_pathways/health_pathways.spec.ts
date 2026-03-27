@@ -7,6 +7,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
+import { weeklyQuestsTimeRemaining } from "@navigation";
 import moment from "moment";
 
 Feature("Health Pathways", async () => {
@@ -258,6 +259,27 @@ Feature("Health Pathways", async () => {
       When("I tap Activity History", when.tapMenuItem("Activity History"), async () => {
         Then("I should be on the Activity History screen", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 4_000));
         Then("I should see the Yunity Quest entry in the additional rewards section", then.multipleTextVisible(["Yunity Quest", "90"], 4_000));
+      });
+    });
+  });
+
+  Scenario("Complete 3 Reflections weekly quest is visible for a user with pathways enabled", scenario.start, async () => {
+    Given("I am logged in as a level 201+ user with pathways enabled", given.loginAsUser(data.CUSTOMER_15.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I navigate to the Quests screen", when.tapID(ids.NAV_BAR("quests"), 5_000), async () => {
+        Then("I should see the Weekly Quests icon", then.idVisible(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true), 5_000));
+      });
+    });
+    When("I tap the Weekly Quests icon", when.tapID(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true), 2_000), async () => {
+      Then("I should see the Weekly quest popup", then.textVisible("Weekly quest", 3_000));
+      Then("I should see the 'Complete 3 reflections' quest option", then.textVisible("Complete 3 reflections", 3_000));
+    });
+    When("I tap 'Let's go' without selecting a quest", when.tapText("Let's go", 2_000), async () => {
+      Then("Nothing happens, I should not see the next modal", then.textNotVisible("Reward"));
+    });
+    When("I select the 'Complete 3 reflections' quest", when.tapText("Complete 3 reflections", 2_000), async () => {
+      When("I tap 'Let's go'", when.tapText("Let's go", 2_000), async () => {
+        Then("I should see the claimable YuCoin reward of 100", then.idVisible(ids.CLAIMABLE_YUCOIN("100"), 3_000));
+        Then("I should see the reflection progress", then.textVisible("0 / 3 reflections completed this week", 2_000));
       });
     });
   });

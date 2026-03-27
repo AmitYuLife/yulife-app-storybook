@@ -818,6 +818,7 @@ export const WEEKLY_GOAL_ICON = (label: number, badge: Boolean) =>
   `WEEKLY_GOAL_ICON_${label}_${badge}`;
 export const WEEKLY_PROGRESS_BAR = (progress: number, max: number, color: string) =>
   `WEEKLY_PROGRESS_BAR_${progress}_${max}_${color}`;
+export const CLAIMABLE_YUCOIN = (coins: string) => `CLAIMABLE_YUCOIN_${coins}`;
 
 // Fiit
 export const FIIT_CATEGORY_LIST_SCREEN = "FIIT_CATEGORY_LIST_SCREEN";

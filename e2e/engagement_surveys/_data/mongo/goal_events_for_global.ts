@@ -1,5 +1,6 @@
 import { IDatabaseItem, generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { GOALS_1, GOALS_FTUE } from "./goals_for_global";
+import { WEEKLY_GOAL_REFLECTIONS } from "./goal_weeklies_for_global";
 
 const type = "mongo";
 const modelName = "goal_events_for_global";
@@ -29,6 +30,19 @@ export const GOAL_EVENTS_FTUE = {
     goal: GOALS_FTUE.data._id,
     type: "passive_challenge_steps",
     targetValue: 1000,
+    goalWeight: 1,
+  },
+} as IDatabaseItem;
+
+export const WEEKLY_GOAL_EVENT_REFLECTIONS = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    goal: WEEKLY_GOAL_REFLECTIONS.data._id,
+    parentType: "goal_weeklies_for_global",
+    type: "daily_reflection_logged",
+    targetValue: 3,
     goalWeight: 1,
   },
 } as IDatabaseItem;
