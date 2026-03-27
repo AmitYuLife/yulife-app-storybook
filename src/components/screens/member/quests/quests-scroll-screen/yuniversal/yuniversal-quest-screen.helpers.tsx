@@ -17,6 +17,7 @@ import { Navigation } from "@navigation/main";
 import { getAssets } from "../unity-movies/unity.data";
 import { GetQuestMapQuery, RemoteImage } from "@graphql/__generated";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
+import { MobileGameTheme } from "@modules/themes/types";
 
 type LevelButtonState =
   | "Completed"
@@ -81,13 +82,13 @@ interface SlotColours {
   notificationColour: string;
 }
 
-export const slotColours: Record<string, SlotColours> = {
+export const getSlotColours = (theme: MobileGameTheme): Record<string, SlotColours> => ({
   active: {
-    backgroundColour: Colours.primary.p600,
-    shadowColour: Colours.primary.p600Shadow,
+    backgroundColour: theme.colors.primary.p600,
+    shadowColour: theme.colors.primary.p600Shadow,
     textColour: Colours.neutral.white,
-    pressColour: Colours.primary.p100,
-    notificationColour: Colours.primary.p600,
+    pressColour: theme.colors.primary.p100,
+    notificationColour: theme.colors.primary.p600,
   },
   waiting: {
     backgroundColour: Colours.quest.yuniversal.background,
@@ -118,7 +119,7 @@ export const slotColours: Record<string, SlotColours> = {
     pressColour: Colours.neutral.n200,
     notificationColour: "#956AFF",
   },
-};
+});
 
 interface ILevelProps {
   x: number;
@@ -155,8 +156,10 @@ const getLevelProps = (
   avatar: { uri: string },
   submitUnity: (levelId: string) => void,
   isLast: boolean,
-  questMapInterstitialModal: boolean
+  questMapInterstitialModal: boolean,
+  theme: MobileGameTheme
 ): ILevelProps => {
+  const slotColours = getSlotColours(theme);
   const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, isLast);
 
   const levelSlot = YUNIVERSAL_LEVEL_SLOTS.find((slot) => slot.level === level.level);
@@ -314,7 +317,8 @@ export const getLevelsProps = (
   currentLevel: number,
   avatar: { uri: string },
   submitUnity: (levelId: string) => void,
-  questMapInterstitialModal: boolean
+  questMapInterstitialModal: boolean,
+  theme: MobileGameTheme
 ): ILevelProps[] =>
   levelList.reduce((acc, level, index) => {
     const levelProps = getLevelProps(
@@ -328,7 +332,8 @@ export const getLevelsProps = (
       avatar,
       submitUnity,
       index === levelList.length - 1,
-      questMapInterstitialModal
+      questMapInterstitialModal,
+      theme
     );
     if (levelProps) {
       acc.push(levelProps);

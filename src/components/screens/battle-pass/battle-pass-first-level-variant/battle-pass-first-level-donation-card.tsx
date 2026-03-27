@@ -14,6 +14,7 @@ import {
   BATTLE_PASS_FIRST_LEVEL_DONATION_CARD_TITLE,
 } from "@ids";
 import { t } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface Props {
   id: string;
@@ -54,6 +55,8 @@ const BattlePassFirstLevelDonationCard: FC<Props> = ({
     setButtonX(event.nativeEvent.layout.x);
   }, []);
 
+  const { theme } = useTheme();
+
   return (
     <Box
       w={CARD_WIDTH}
@@ -73,7 +76,7 @@ const BattlePassFirstLevelDonationCard: FC<Props> = ({
           hitSlop={10}
           testID={BATTLE_PASS_FIRST_LEVEL_DONATION_CARD_INFO_BUTTON(id)}
         >
-          <InfoIcon colour={Colours.primary.p600} width={Style.adjust(16)} height={Style.adjust(16)} />
+          <InfoIcon colour={theme.colors.primary.p600} width={Style.adjust(16)} height={Style.adjust(16)} />
         </Pressable>
       </Box>
 

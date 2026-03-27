@@ -4,6 +4,7 @@ import { StyleProp, ViewStyle } from "react-native";
 import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 
 type IType = "full" | "logo-only" | "text-only" | "inverted";
+
 export interface IYuLifeLogoProps {
   type?: IType;
   scale?: number;
@@ -108,8 +109,8 @@ export const Logo = ({
     case "inverted":
       return (
         <Svg
-          width={Style.adjust(width || 24)}
-          height={Style.adjust(height || 24)}
+          width={Style.adjust(width || 26)}
+          height={Style.adjust(height || 26)}
           viewBox="0 0 15 16"
           fill="none"
           style={style}
