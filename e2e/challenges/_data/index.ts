@@ -35,3 +35,4 @@ export * from "./mongo/user_social_leaderboard_scores";
 export * from "./mongo/social_group_knockout_tournaments";
 export * from "./mongo/social_group_knockout_tournament_match_ups";
 export * from "./mongo/user_statistics";
+export * from "./mongo/user_chest_config";

@@ -201,6 +201,49 @@ export const GOALS_5 = {
   },
 } as IDatabaseItem;
 
+export const GOALS_RANDOM_CHEST = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    autoJoin: false,
+    status: "active",
+    type: "individual",
+    synchronousProgress: true,
+    tags: [],
+    participantsCount: 0,
+    title: "Walk 1k this week",
+    illustrationImageKey: "cms/1652745617947_Walk of the worlds (1).png",
+    illustrationBackgroundColor: "#FEFBE9",
+    illustrationTextColor: "#5A5A5C",
+    startDateTime: moment().subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss"),
+    endDateTime: moment().add(7, "day").format("YYYY-MM-DDTHH:mm:ss"),
+    startOn: null,
+    badgeBackgroundColor: "#FF5F5F",
+    badgeImageKey: "cms/1649947633967_fire.png",
+    badgeText: "NEW",
+    badgeTextColor: "#FFFFFF",
+    description: "Complete 1,000 steps to earn a random chest reward.",
+    descriptionTitle: "Walk and earn a chest!",
+    duration: 2880,
+    faqText: "FAQ test",
+    backFill: true,
+    info: [
+      {
+        imageKey: "personalProducts/policy-terms-conditions.svg",
+        title: "Task",
+        description: "Walk 1,000 steps to complete the milestone.",
+      },
+      {
+        imageKey: "cms/1651070115152_Chest.png",
+        title: "Reward",
+        description: "Earn a random chest reward by completing the milestone.",
+      },
+    ],
+    tagImageKey: "cms/1649947806334_Vector.png",
+  },
+} as IDatabaseItem;
+
 export const GOALS_TOURNAMENT = {
   type,
   modelName,
