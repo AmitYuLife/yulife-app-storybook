@@ -136,13 +136,15 @@ const RewardsWalletItemsContainer = ({ rewardId }: IRewardsWalletItemsContainerP
   }, []);
 
   const calculatedData = useMemo(() => {
+    const image =
+      data?.getMobileGameUserWalletRewardItems?.image ??
+      usedData?.getMobileGameUserWalletRewardItems?.image ??
+      expiredData?.getMobileGameUserWalletRewardItems?.image;
+
     const list: MobileGameUserWalletListItem[] =
       data?.getMobileGameUserWalletRewardItems?.sections?.reduce((acc, section, index) => {
-        if (index === 0 && data?.getMobileGameUserWalletRewardItems?.image?.uri) {
-          acc.push({
-            itemType: "header",
-            image: data?.getMobileGameUserWalletRewardItems?.image,
-          });
+        if (index === 0 && image?.uri) {
+          acc.push({ itemType: "header", image });
         }
 
         acc.push({
@@ -179,6 +181,10 @@ const RewardsWalletItemsContainer = ({ rewardId }: IRewardsWalletItemsContainerP
         return acc;
       }, [] as MobileGameUserWalletListItem[]) || [];
 
+    if (!list.some((item) => item.itemType === "header") && image?.uri) {
+      list.unshift({ itemType: "header", image });
+    }
+
     appendSubSection(list, usedData?.getMobileGameUserWalletRewardItems?.sections, {
       headerType: "used-section-header",
       title: t("screens.rewards.wallet.used_section.title"),
@@ -196,7 +202,9 @@ const RewardsWalletItemsContainer = ({ rewardId }: IRewardsWalletItemsContainerP
   }, [
     data?.getMobileGameUserWalletRewardItems?.image,
     data?.getMobileGameUserWalletRewardItems?.sections,
+    usedData?.getMobileGameUserWalletRewardItems?.image,
     usedData?.getMobileGameUserWalletRewardItems?.sections,
+    expiredData?.getMobileGameUserWalletRewardItems?.image,
     expiredData?.getMobileGameUserWalletRewardItems?.sections,
     rewardId,
   ]);
