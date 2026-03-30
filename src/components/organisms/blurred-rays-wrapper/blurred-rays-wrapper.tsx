@@ -60,7 +60,7 @@ const BlurredRaysWrapper = ({
     <BlurredWrapper tint="dark" isBlurred={isBlurred}>
       <Animated.View entering={FadeIn.duration(200)} style={styles.wrapper}>
         <RaysSpotlightLayout showRays={showRays}>
-          <Box style={wrapperStyle} testID={testID}>
+          <Box style={wrapperStyle} testID={testID} gap={50}>
             <Box pt={titlePaddingTop}>
               <Animated.View
                 entering={FadeInDown.delay(200).duration(500)}
@@ -76,7 +76,9 @@ const BlurredRaysWrapper = ({
                 )}
               </Animated.View>
             </Box>
-            {children}
+            <Box justifyContent="center" alignItems="center">
+              {children}
+            </Box>
             {!buttonIsEnabled ? null : (
               <Box flex={1} justifyContent="flex-end" gap={5} mb={bottom + Style.adjust(10)} disableAutoAdjust={true}>
                 <Button
