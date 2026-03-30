@@ -28,7 +28,7 @@ const CoinConfetti: FC<IProps> = ({ coins, isExpanded, animationType }) => (
     <View style={styles.confettiWrapper}>
       <Image style={styles.confetti} source={require("../../../../assets/coin-confetti/confetti.png")} />
     </View>
-    <View style={[styles.coinWrapper, { top: Style.adjust(isExpanded ? -30 : -10) }]}>
+    <View style={[styles.coinWrapper, { top: Style.adjust(isExpanded ? -30 : 0) }]}>
       {!coins ? null : animationType ? (
         <AnimatedPlusPoints type={animationType} coins={coins} />
       ) : (
