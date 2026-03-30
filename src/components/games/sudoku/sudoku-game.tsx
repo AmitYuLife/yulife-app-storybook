@@ -9,6 +9,7 @@ import Grid from "./grid";
 import NumbersInput from "./numbers-input";
 import SudokuHeader from "./sudoku-header";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import { Box } from "@atoms";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -36,10 +37,10 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
         contentContainerStyle={styles.scrollContent}
       >
         <SudokuHeader invert={invertHeader} />
-        <View style={styles.gameWrapper}>
+        <Box pt={10} br={10} bg={Colours.neutral.n50} flex={1}>
           <Grid />
           <NumbersInput />
-        </View>
+        </Box>
       </ScrollView>
 
       {lastPauseTime ? (
@@ -62,10 +63,11 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    maxHeight: Style.DEVICE_HEIGHT - TOP_BAR_WITH_PAD,
+    height: Style.DEVICE_HEIGHT - (TOP_BAR_WITH_PAD - Style.adjust(15)),
   },
   scrollContent: {
     paddingBottom: Style.adjust(15),
+    flex: 1,
   },
   gameWrapper: {
     paddingTop: Style.adjust(10),
