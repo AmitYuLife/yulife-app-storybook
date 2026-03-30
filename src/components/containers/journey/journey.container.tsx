@@ -7,6 +7,7 @@ import { gql } from "@graphql/__generated";
 import { useDispatch, useSelector } from "react-redux";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 import { setLoadingState } from "@redux/server-driven-ui/sdui.actions";
+import { Keyboard } from "react-native";
 
 interface JourneyContainerProps {
   journeyId: string;
@@ -29,6 +30,10 @@ const JourneyContainer = ({ journeyId, dynamicId }: JourneyContainerProps) => {
     if (stepId !== data?.getSduiJourney?.stepId) {
       setStepId(data?.getSduiJourney?.stepId);
       dispatch(setLoadingState({ __disabled: false }));
+
+      if (Keyboard.isVisible()) {
+        Keyboard.dismiss();
+      }
     }
   }, [data]);
 
