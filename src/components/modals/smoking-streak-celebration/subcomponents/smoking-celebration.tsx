@@ -39,6 +39,7 @@ const SmokingCelebration = (props: SmokingCelebrationProps) => {
     smokingCelebrationProps: props,
   });
 
+  // TODO: wtf is this
   const calculateGap = useCallback(
     (min: number, max: number) => {
       if (!minHeight) {
@@ -187,8 +188,8 @@ const styles = StyleSheet.create({
     width: TIP_CARD_WIDTH,
   },
   focalImage: {
-    width: DEFAULT_MAIN_IMAGE_SIZE.w,
-    height: DEFAULT_MAIN_IMAGE_SIZE.h,
+    width: Style.adjust(DEFAULT_MAIN_IMAGE_SIZE.w),
+    height: Style.adjust(DEFAULT_MAIN_IMAGE_SIZE.h),
     justifyContent: "center",
     alignItems: "center",
   },

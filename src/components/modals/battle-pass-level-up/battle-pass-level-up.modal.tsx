@@ -10,12 +10,12 @@ import Logger from "@services/logging/logger";
 import { Style, StyleSheet } from "@styles";
 import * as Haptics from "expo-haptics";
 import { memo, useCallback, useEffect, useMemo } from "react";
-import { View } from "react-native";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import { FadeInDown } from "react-native-reanimated";
 import BlurredRaysWrapper from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
 import RaysSpotlightFocal from "@organisms/rays/rays-spotlight-focal";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import { isAndroid } from "@utils";
+import { Box } from "@atoms";
 
 interface IBattlePassLevelUpModalProps {
   onClose: () => void;
@@ -61,21 +61,6 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
     }
   }, [handleSduiAction, onClose, reward.id, reward.title, track]);
 
-  const imageWrapperStyles = useMemo(() => {
-    // rays height is Style.DEVICE_WIDTH
-    // rays top is 100
-    // rays wrapper top in blurred rays wrapper is 130
-    // -20 due to slight offset on the rays
-    const raysCenterY = Style.adjust(100) + Style.DEVICE_WIDTH / 2 - Style.adjust(130) - Style.adjust(20);
-    return [
-      styles.imageWrapper,
-      {
-        // REWARD_IMAGE_SIZE is 180
-        top: raysCenterY + 180 / 2,
-      },
-    ];
-  }, []);
-
   useEffect(() => {
     track("battlepass_level_up", { level_achieved: reward.position });
   }, [reward.position, track]);
@@ -99,13 +84,17 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
       onButtonPress={onButtonPress}
       titlePaddingTop={isAndroid() ? TOP_BAR_WITH_PAD : 40}
     >
-      <View style={imageWrapperStyles}>
-        <RaysSpotlightFocal style={styles.animatedImageWrapper}>
-          <Animated.View entering={FadeInDown.delay(300).duration(600)} style={styles.animatedImageWrapper}>
-            <ItemDetailsReward size={180} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
-          </Animated.View>
-        </RaysSpotlightFocal>
-      </View>
+      <RaysSpotlightFocal style={styles.animatedImageWrapper}>
+        <Box
+          alignItems="center"
+          w={REWARD_IMAGE_SIZE}
+          h={REWARD_IMAGE_SIZE}
+          justifyContent="center"
+          entering={FadeInDown.delay(300).duration(600)}
+        >
+          <ItemDetailsReward size={REWARD_IMAGE_SIZE} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
+        </Box>
+      </RaysSpotlightFocal>
     </BlurredRaysWrapper>
   );
 };
