@@ -97,7 +97,9 @@ const ViewAchievementModal = ({
         <Box mt={Style.isIphone8() ? 30 : 60} mb={16}>
           <TextTemplate type="h2">{name}</TextTemplate>
         </Box>
-        <TextTemplate type="b2">{description}</TextTemplate>
+        <TextTemplate type="b2" textAlign="center">
+          {description}
+        </TextTemplate>
 
         <Box mt={status === AchievementStatus.locked ? 28 : 56}>
           {status !== AchievementStatus.locked || !progress ? null : (
