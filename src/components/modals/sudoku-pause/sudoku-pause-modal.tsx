@@ -5,11 +5,13 @@ import { memo, useCallback, useMemo } from "react";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { useTranslation } from "@hooks";
 import { Colours, Style, StyleSheet } from "@styles";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SudokuPauseModal = ({ onClose }: { onClose: () => void }) => {
   const { unpause, getDurationText, config, mistakes } = useSudokuContext();
   const pauseTime = getDurationText();
+  const { bottom } = useSafeAreaInsets();
 
   const t = useTranslation([
     "sudoku.pause.title",
@@ -54,7 +56,9 @@ const SudokuPauseModal = ({ onClose }: { onClose: () => void }) => {
               </View>
             ))}
           </View>
-          <Button translationKey="sudoku.pause.resume" onPress={onResumePress} />
+          <Box pb={bottom + Style.adjust(30)} disableAutoAdjust={true}>
+            <Button translationKey="sudoku.pause.resume" onPress={onResumePress} />
+          </Box>
         </View>
       </View>
     </>
