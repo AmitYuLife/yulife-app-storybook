@@ -141,7 +141,6 @@ export const CUSTOMER_17_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       useNewLeaderboardServices: true,
-      tempGameConfirmDuelScore: true,
     },
   },
 } as IDatabaseItem;

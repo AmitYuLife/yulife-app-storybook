@@ -53,7 +53,6 @@ export const features = [
   "canUpdateActivityHistory",
   "gameEnableExpoImageDiskCachingPolicy",
   "tempQuestMapInterstitialModal",
-  "tempGameConfirmDuelScore",
   "tempGameShowCouponsTab",
   "tempGameShowAchievements",
   "tempGameNewRewardsScreen",

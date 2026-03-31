@@ -12,11 +12,10 @@ interface IProps {
   duel: GetDuelsTomorrowQuery["getDuelsTomorrow"][0] | GetDuelsTodayQuery["getDuelsToday"][0];
   type: "today" | "tomorrow" | "completed";
   userId: string;
-  confirmDuelEnabled?: boolean;
   stepsSynced?: boolean;
 }
 
-const DuelEntry = ({ duel, type, userId, confirmDuelEnabled, stepsSynced }: IProps) => {
+const DuelEntry = ({ duel, type, userId, stepsSynced }: IProps) => {
   const opponent = duel.opponents.find((user) => user.userId !== userId);
 
   return (
@@ -30,13 +29,7 @@ const DuelEntry = ({ duel, type, userId, confirmDuelEnabled, stepsSynced }: IPro
         >
           {formatOpponentName(opponent?.name?.fullName)}
         </TextTemplate>
-        <Description
-          duel={duel}
-          type={type}
-          userId={userId}
-          confirmDuelEnabled={confirmDuelEnabled}
-          stepsSynced={stepsSynced}
-        />
+        <Description duel={duel} type={type} userId={userId} stepsSynced={stepsSynced} />
       </Box>
       <DuelIcon duel={duel} type={type} userId={userId} />
     </Box>
