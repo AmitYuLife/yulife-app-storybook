@@ -1674,7 +1674,6 @@
         "invitations_respond": "Respond",
         "steps_today": "steps today",
         "steps": "steps",
-        "waiting_user_steps_sync": "Waiting for user’s steps to sync",
         "last_know_step": "Last known step count:",
         "synced": "synced",
         "score": "%{opponentScore} vs. %{userScore} steps",

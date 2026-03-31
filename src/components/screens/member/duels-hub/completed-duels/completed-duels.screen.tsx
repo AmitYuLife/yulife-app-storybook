@@ -129,12 +129,10 @@ const CompletedDuelsScreen = () => {
 
   const renderItem = useCallback(
     ({ item }: { item: IGetDuelsCompleted & { isSyncing: boolean; stepsSynced: boolean; isConfirming: boolean } }) => {
-      const hideConfirmSection =
-        !features.tempGameConfirmDuelScore ||
-        item.duels.every(
-          ({ opponents, status }) =>
-            opponents.find(({ userId: id }) => userId === id)?.status === "confirmed_by_user" || status === "finished"
-        );
+      const hideConfirmSection = item.duels.every(
+        ({ opponents, status }) =>
+          opponents.find(({ userId: id }) => userId === id)?.status === "confirmed_by_user" || status === "finished"
+      );
 
       const maxUserScore = Math.max(
         ...item.duels.map(({ opponents }) => {
@@ -192,7 +190,6 @@ const CompletedDuelsScreen = () => {
                   }}
                   type="completed"
                   userId={userId}
-                  confirmDuelEnabled={features.tempGameConfirmDuelScore}
                   stepsSynced={item.stepsSynced}
                 />
               </Box>
@@ -201,7 +198,7 @@ const CompletedDuelsScreen = () => {
         </Box>
       );
     },
-    [userId, onConfirmPress, onSyncPress, features.tempGameConfirmDuelScore]
+    [userId, onConfirmPress, onSyncPress]
   );
 
   if (getDuelsCompletedLoading) {

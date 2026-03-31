@@ -11,11 +11,10 @@ interface IProps {
   duel: GetDuelsTomorrowQuery["getDuelsTomorrow"][0] | GetDuelsTodayQuery["getDuelsToday"][0];
   type: "today" | "tomorrow" | "completed";
   userId: string;
-  confirmDuelEnabled: boolean;
   stepsSynced?: boolean;
 }
 
-const Description = ({ duel, type, userId, confirmDuelEnabled, stepsSynced }: IProps) => {
+const Description = ({ duel, type, userId, stepsSynced }: IProps) => {
   const opponent = duel.opponents.find((dueller) => dueller.userId !== userId);
   const user = duel.opponents.find((dueller) => dueller.userId === userId);
 
@@ -25,11 +24,7 @@ const Description = ({ duel, type, userId, confirmDuelEnabled, stepsSynced }: IP
 
   const fromNow = minifiedFromNow(lastTimeOpponentDataRetrieved).shortFormat;
 
-  const getDescription = (userStepsSynced: boolean, confirmDuelFeatureEnabled: boolean) => {
-    if (!confirmDuelFeatureEnabled) {
-      return t("modals.duels.hub.waiting_user_steps_sync");
-    }
-
+  const getDescription = (userStepsSynced: boolean) => {
     if (!userStepsSynced && user.status !== "confirmed_by_user") {
       return t("modals.duels.hub.sync_duel_steps");
     }
@@ -61,7 +56,7 @@ const Description = ({ duel, type, userId, confirmDuelEnabled, stepsSynced }: IP
     if (duel.status === "pending_submission") {
       return (
         <Box flexDirection="column">
-          <TextTemplate type={"l1"}>{getDescription(stepsSynced, confirmDuelEnabled)}</TextTemplate>
+          <TextTemplate type={"l1"}>{getDescription(stepsSynced)}</TextTemplate>
           <TextTemplate type={"l1"} color={Colours.neutral.n600}>
             {t("modals.duels.hub.score", {
               opponentScore: addCommasToNumber(opponent.score || 0),
