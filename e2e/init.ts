@@ -2,11 +2,8 @@ import * as path from "path";
 import { socketServer } from "./_utils/socket";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { takeLocalisedScreenshots } from "@i18n";
-import axios from "axios";
 
-require("dotenv").config({
-  path: path.resolve(__dirname, "..", ".env.e2e"),
-});
+require("dotenv").config({ path: path.resolve(__dirname, "..", ".env.e2e") });
 
 beforeAll(async () => {
   await socketServer.startServer();
