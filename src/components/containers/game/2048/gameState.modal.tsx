@@ -4,7 +4,7 @@ import { initialWindowMetrics, SafeAreaProvider, useSafeAreaInsets } from "react
 import { clamp } from "lodash";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { Box, Image, TextTemplate } from "@atoms";
+import { BlurredWrapper, Box, Image, TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
 import { showFloatingModal } from "@modals";
 import { Colours, Style } from "@styles";
@@ -115,50 +115,52 @@ const GameStateModal = memo(
     );
 
     return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-        bounces={false}
-        contentContainerStyle={scrollViewContainerStyles}
-      >
-        <Box flex={1} ph={24} pt={36} pb={10} gap={10} alignItems="center" justifyContent="space-between">
-          <Box flex={1} gap={contentGap}>
-            {copy?.title ? (
-              <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
-                {copy.title}
-              </TextTemplate>
-            ) : null}
-            <Box h={MAIN_IMAGE_SIZE} justifyContent="center" alignItems="center">
-              {spotlightProps ? <Spotlight {...spotlightProps}>{mainImage}</Spotlight> : mainImage}
-            </Box>
-            <Box gap={8} alignItems="center">
-              {copy?.info ? (
+      <BlurredWrapper tint="dark" backgroundColor="rgba(0,0,0,.2)">
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentInsetAdjustmentBehavior="automatic"
+          bounces={false}
+          contentContainerStyle={scrollViewContainerStyles}
+        >
+          <Box flex={1} ph={24} pt={36} pb={10} gap={10} alignItems="center" justifyContent="space-between">
+            <Box flex={1} gap={contentGap}>
+              {copy?.title ? (
                 <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
-                  {copy.info}
+                  {copy.title}
                 </TextTemplate>
               ) : null}
-              {copy?.description ? (
-                <TextTemplate type="b1b" color={Colours.neutral.white} textAlign="center">
-                  {copy.description}
-                </TextTemplate>
-              ) : null}
+              <Box h={MAIN_IMAGE_SIZE} justifyContent="center" alignItems="center">
+                {spotlightProps ? <Spotlight {...spotlightProps}>{mainImage}</Spotlight> : mainImage}
+              </Box>
+              <Box gap={8} alignItems="center">
+                {copy?.info ? (
+                  <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
+                    {copy.info}
+                  </TextTemplate>
+                ) : null}
+                {copy?.description ? (
+                  <TextTemplate type="b1b" color={Colours.neutral.white} textAlign="center">
+                    {copy.description}
+                  </TextTemplate>
+                ) : null}
+              </Box>
+            </Box>
+            <Box mt={20} gap={8}>
+              {allowRestart ? <Button leftIcon={restartIcon} translationKey="2048.restart" onPress={onPress} /> : null}
+              {allowRestart ? (
+                <SecondaryButton
+                  translationKey="labels.cta.exit"
+                  onPress={onExitPress}
+                  textColor={Colours.neutral.white}
+                  borderColor={Colours.gradients.whiteTransparent}
+                />
+              ) : (
+                <Button translationKey="labels.cta.exit" onPress={onExitPress} />
+              )}
             </Box>
           </Box>
-          <Box mt={20} gap={8}>
-            {allowRestart ? <Button leftIcon={restartIcon} translationKey="2048.restart" onPress={onPress} /> : null}
-            {allowRestart ? (
-              <SecondaryButton
-                translationKey="labels.cta.exit"
-                onPress={onExitPress}
-                textColor={Colours.neutral.white}
-                borderColor={Colours.gradients.whiteTransparent}
-              />
-            ) : (
-              <Button translationKey="labels.cta.exit" onPress={onExitPress} />
-            )}
-          </Box>
-        </Box>
-      </ScrollView>
+        </ScrollView>
+      </BlurredWrapper>
     );
   }
 );
@@ -181,9 +183,7 @@ export const showGameStateModal = (props: GameStateProps) => {
     wrapperStyle: {
       backgroundColor: "transparent",
     },
-    withBlurBackground: true,
-    type: "dark",
-    blurBackgroundColor: "rgba(0,0,0,.2)",
+    withBlurBackground: false,
     paddingTop: 0,
     children: <GameStateModalWithProviders {...props} />,
   });
