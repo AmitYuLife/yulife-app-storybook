@@ -130,7 +130,7 @@ export const ContentItemChoiceBase = (props: Props) => {
       ...defaultDesignStyles,
       checkedRowStyles: {
         backgroundColor: theme.colors.primary.p20,
-        borderColor: theme.colors.primary.p60,
+        borderColor: theme.colors.primary.p600,
       },
     };
   }, [design, theme]);
