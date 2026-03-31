@@ -29,8 +29,8 @@ const GameTiles = ({ board, skin }: GameTilesProps) => {
           board={previewBoard}
           boardSize={PREVIEW_BOARD_SIZE}
           skin={skin}
-          cellSize={CELL_SIZE}
-          margin={MARGIN}
+          cellSize={Style.adjust(CELL_SIZE)}
+          margin={Style.adjust(MARGIN)}
         />
       </Box>
     </Box>

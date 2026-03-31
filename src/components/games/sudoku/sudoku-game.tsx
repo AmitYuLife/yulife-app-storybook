@@ -3,7 +3,7 @@ import { SUDOKU_PAUSE_ANIMATION_DURATION } from "@components/screens/games/sudok
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { Colours, Style, StyleSheet } from "@styles";
 import React, { useMemo } from "react";
-import { ScrollView, View } from "react-native";
+import { Dimensions, ScrollView, View } from "react-native";
 import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
 import Grid from "./grid";
 import NumbersInput from "./numbers-input";
@@ -22,7 +22,7 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
 
   const pauseModal = useMemo(() => {
     return (
-      <FloatingModal showButton={false} showCloseIcon={false}>
+      <FloatingModal showButton={false} showCloseIcon={false} height={0}>
         <SudokuPauseModal onClose={unpause} />
       </FloatingModal>
     );
@@ -61,6 +61,8 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
   );
 };
 
+const { height: windowHeight } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   scrollView: {
     height: Style.DEVICE_HEIGHT - (TOP_BAR_WITH_PAD - Style.adjust(15)),
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
   },
   pauseContainer: {
     ...StyleSheet.absoluteFillObject,
+    height: windowHeight,
     zIndex: 100,
     flexDirection: "column",
     justifyContent: "flex-end",
