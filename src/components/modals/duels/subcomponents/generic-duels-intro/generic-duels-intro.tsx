@@ -11,6 +11,7 @@ import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { formatOpponentName } from "@utils/duels";
 import { t } from "@locale";
 import { DUEL_NOTIFICATION_HEADING } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   type: "invite" | "response";
@@ -45,6 +46,8 @@ const GenericDuelsIntro = ({
     }
   }, [loading, opacity]);
 
+  const { theme } = useTheme();
+
   if (loading) {
     return null;
   }
@@ -72,7 +75,7 @@ const GenericDuelsIntro = ({
             </TextTemplate>
           </View>
           <View style={styles.flex50}>
-            <TextTemplate type="h3" color={colours.primary.p600}>
+            <TextTemplate type="h3" color={theme.colors.primary.p600}>
               {t("labels.vs")}
             </TextTemplate>
           </View>

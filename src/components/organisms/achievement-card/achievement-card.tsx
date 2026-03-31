@@ -6,6 +6,7 @@ import { Style, StyleSheet } from "@styles";
 import { memo, useMemo, ReactNode } from "react";
 import { addCommasToNumber } from "@utils";
 import { ACHIEVEMENT_CARD } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 export enum AchievementStatus {
   locked = "locked",
@@ -74,11 +75,14 @@ const AchievementCard = ({ name, description, onPress, points, icon, status }: I
   );
 };
 
-const Equipped = () => (
-  <Box w={20} h={20} br={100} p={2} bg="#E30D76" alignItems="center" justifyContent="center">
-    <CheckIcon color="white" size={11} />
-  </Box>
-);
+const Equipped = () => {
+  const { theme } = useTheme();
+  return (
+    <Box w={20} h={20} br={100} p={2} bg={theme.colors.primary.p600} alignItems="center" justifyContent="center">
+      <CheckIcon color="white" size={11} />
+    </Box>
+  );
+};
 
 const Locked = () => (
   <Box br={100} bg="#D9D9D7" p={4} alignItems="center" justifyContent="center">
