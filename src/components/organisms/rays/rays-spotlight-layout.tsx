@@ -38,7 +38,7 @@ const RaysSpotlightLayout = ({
     [top]
   );
 
-  const raysTop = focalY != null ? focalY + focalHeight / 2 : Style.DEVICE_HEIGHT * 0.4 - Style.DEVICE_WIDTH / 2;
+  const raysTop = focalY != null ? focalY + focalHeight / 2 : Style.DEVICE_HEIGHT / 2 + Style.DEVICE_HEIGHT * 0.05;
 
   return (
     <>
