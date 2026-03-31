@@ -1337,6 +1337,15 @@ export type CancelPathwayChallengeResponse = {
   success: Scalars["Boolean"]["output"];
 };
 
+export enum CannotAutoApproveReason {
+  AutoApprovalStrategyNotAllowed = "auto_approval_strategy_not_allowed",
+  BillingAddressNotComplete = "billing_address_not_complete",
+  ExistingIncompleteRequest = "existing_incomplete_request",
+  PayingByCard = "paying_by_card",
+  PaymentMethodNotActive = "payment_method_not_active",
+  PriceExceedsApprovalLimit = "price_exceeds_approval_limit",
+}
+
 export type CaptchaResponse = {
   debugInfo?: InputMaybe<Scalars["String"]["input"]>;
   provider: Scalars["String"]["input"];
@@ -6483,6 +6492,10 @@ export type MobileRewardStoreLocation = {
   label: Scalars["String"]["output"];
 };
 
+export enum MobileRewardTag {
+  All = "All",
+}
+
 export type MobileRewardsGoalProductMilestones = {
   __typename?: "MobileRewardsGoalProductMilestones";
   goalProductMilestones?: Maybe<MobileGoalProductMilestones>;
@@ -6889,6 +6902,8 @@ export type Mutation = {
   exportBusinessPerkClaims: Scalars["Boolean"]["output"];
   exportEmployees: Scalars["Boolean"]["output"];
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
+  /** Fingerprint the user's device for pre-auth app theme display */
+  fingerprintUserDevice: Scalars["Boolean"]["output"];
   /** Generates a signed URL for the member's product document and returns an action to open it */
   generateMemberProductDocumentUrl: SduiAction;
   generateSignedDownloadUrl: GenerateSignedDownloadUrlResponse;
@@ -7422,6 +7437,12 @@ export type MutationExportEmployeesArgs = {
 export type MutationExportYuCoinRedemptionReportArgs = {
   endDate?: InputMaybe<Scalars["String"]["input"]>;
   startDate?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationFingerprintUserDeviceArgs = {
+  devicePixelRatio: Scalars["Float"]["input"];
+  height: Scalars["Int"]["input"];
+  width: Scalars["Int"]["input"];
 };
 
 export type MutationGenerateMemberProductDocumentUrlArgs = {
@@ -8987,6 +9008,7 @@ export type Query = {
   getWellbeingHubItem: TeamWellbeingHubItem;
   getWellbeingHubItems?: Maybe<Array<TeamWellbeingHubItem>>;
   getYuCoinPowerInfo: YuCoinPowerExplainedScreen;
+  getYuCoinTopupAutoApprovalStatus: YuCoinTopupAutoApprovalStatusResponse;
   getYuCoinTopupRequests: TeamGetYuCoinTopupRequestsResponse;
   getYuScreen?: Maybe<YuScreen>;
   getYuScreenProductDetails: YuScreenProductDetails;
@@ -9826,6 +9848,13 @@ export type QueryGetWellbeingHubItemArgs = {
 /** Default types to be extended / root query */
 export type QueryGetYuCoinPowerInfoArgs = {
   productIds: Array<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetYuCoinTopupAutoApprovalStatusArgs = {
+  billingAddressId: Scalars["String"]["input"];
+  paymentMethod: YuCoinTopupPaymentMethod;
+  price: Scalars["Float"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -13132,6 +13161,12 @@ export type YuCoinPowerExplainedScreenYuCoinInfo = {
   title: Scalars["String"]["output"];
 };
 
+export type YuCoinTopupAutoApprovalStatusResponse = {
+  __typename?: "YuCoinTopupAutoApprovalStatusResponse";
+  autoApprove: Scalars["Boolean"]["output"];
+  reason?: Maybe<CannotAutoApproveReason>;
+};
+
 /**
  * Fee band for progressive fee calculation.
  * Each percentage is applied only to the portion of the transaction value within that band.
@@ -13145,6 +13180,12 @@ export type YuCoinTopupFeeBand = {
   /** Fee percentage as decimal (e.g., 0.10 for 10%) */
   percentage: Scalars["Float"]["output"];
 };
+
+export enum YuCoinTopupPaymentMethod {
+  BacsTransfer = "bacs_transfer",
+  Card = "card",
+  DirectDebit = "direct_debit",
+}
 
 /** Fee configuration for a specific payment method. */
 export type YuCoinTopupPaymentMethodFee = {

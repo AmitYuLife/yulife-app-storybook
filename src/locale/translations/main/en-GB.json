@@ -1152,6 +1152,7 @@
     },
     "rewards": {
       "search": {
+        "all": "All",
         "title": "Store",
         "subheading": "Search brands",
         "placeholder": "Search all brands",
