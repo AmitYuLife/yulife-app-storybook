@@ -67,6 +67,7 @@ enum DebugCodes {
   viewUserInfo = "view-user-info",
   getThemes = "get-themes",
   welcomeScreen = "welcome-screen",
+  scheduleWeeklyGoals = "schedule-weekly-goals",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
