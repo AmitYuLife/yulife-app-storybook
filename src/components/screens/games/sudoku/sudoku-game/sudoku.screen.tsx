@@ -46,7 +46,7 @@ export const SudokuScreen = ({ onBack, ...props }: IProps) => {
 
 const styles = StyleSheet.create({
   screenWrapper: {
-    height: Style.DEVICE_HEIGHT,
+    flex: 1,
     zIndex: 10,
   },
   lottie: {

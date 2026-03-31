@@ -70,7 +70,6 @@ export default memo(SudokuPauseModal);
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    borderRadius: Style.adjust(100),
     zIndex: 99,
     paddingHorizontal: Style.adjust(16),
   },
