@@ -73,7 +73,7 @@ const BattlePassEndOfSeasonModal = ({ items, title, onComplete, isLoading }: IBa
       onButtonPress={onButtonPress}
     >
       {showStatics ? (
-        <Box p={53} mt={(BLURRED_RAYS_Y_OFFSET / validFrames.length) * 1.5}>
+        <Box p={53} mt={(BLURRED_RAYS_Y_OFFSET / validFrames.length) * 1.5} w="100%">
           <Box forceAnimated={true} entering={FadeInDown.delay(100).duration(600)}>
             <EndOfSeasonRewardsInfo items={validItems} />
           </Box>
