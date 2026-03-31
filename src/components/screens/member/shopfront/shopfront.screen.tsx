@@ -198,6 +198,7 @@ const ShopfrontScreen = ({
       <NavBar activeIndex={4} />
       {isSearchOpen ? (
         <RewardSearchOverlayContainer
+          tags={shopfront?.rewardList?.tags || []}
           onItemPress={onItemPress}
           onClose={() => setIsSearchOpen(false)}
           onPressWallet={onPressWallet}

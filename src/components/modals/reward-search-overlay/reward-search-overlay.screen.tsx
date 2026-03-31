@@ -1,9 +1,9 @@
 import { Box, MagnifyingGlass, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad, RewardSearchListItem } from "@organisms";
 import React, { memo, useCallback } from "react";
-import { UserSearchHeading } from "@components/molecules";
+import { ChipList, UserSearchHeading } from "@components/molecules";
 import { FlashList } from "@shopify/flash-list";
-import { GetMobileRewardsListQuery } from "@graphql/__generated";
+import { GetMobileRewardsListQuery, MobileRewardTag } from "@graphql/__generated";
 import { Colours, Style, StyleSheet } from "@styles";
 import { isEmpty } from "lodash";
 import { RewardOnPressArgs } from "@components/containers/member/rewards/rewards.types";
@@ -21,6 +21,9 @@ interface IRewardSearchOverlayProps {
   setSearchTerm?: (term: string) => void;
   items?: GetMobileRewardsListQuery["data"]["list"];
   onItemPress?: (item: RewardOnPressArgs) => void;
+  tags: string[];
+  selectedTag: string;
+  setSelectedTag: (tag: string) => void;
 }
 
 const RewardSearchOverlay = ({
@@ -33,6 +36,9 @@ const RewardSearchOverlay = ({
   setSearchTerm,
   showResults,
   onItemPress,
+  tags,
+  setSelectedTag,
+  selectedTag,
 }: IRewardSearchOverlayProps) => {
   const renderItem = useCallback(
     ({ item }: { item: GetMobileRewardsListQuery["data"]["list"][0] }) => {
@@ -62,6 +68,15 @@ const RewardSearchOverlay = ({
             editable={!isClosing}
             value={searchTerm}
           />
+          {!tags.length ? null : (
+            <ChipList
+              chips={tags.map((value) => ({
+                value: value === MobileRewardTag.All ? t("screens.rewards.search.all") : value,
+                isSelected: selectedTag === value,
+                onPress: () => setSelectedTag(value),
+              }))}
+            />
+          )}
         </Box>
 
         {!isClosing ? (
@@ -84,7 +99,7 @@ const RewardSearchOverlay = ({
                 renderItem={renderItem}
                 contentContainerStyle={styles.listContent}
                 extraData={[isLoading]}
-                data={isEmpty(searchTerm) || isLoading || !showResults ? [] : items}
+                data={isLoading || !showResults ? [] : items}
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={
                   <>
