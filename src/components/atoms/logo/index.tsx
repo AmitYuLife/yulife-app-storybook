@@ -111,7 +111,7 @@ export const Logo = ({
         <Svg
           width={Style.adjust(width || 26)}
           height={Style.adjust(height || 26)}
-          viewBox="0 0 15 16"
+          viewBox="0 0 16 16"
           fill="none"
           style={style}
         >
@@ -133,7 +133,7 @@ export const Logo = ({
         <Svg
           width={Style.adjust(width || 26)}
           height={Style.adjust(height || 26)}
-          viewBox="0 0 15 16"
+          viewBox="0 0 16 16"
           fill="none"
           style={style}
         >

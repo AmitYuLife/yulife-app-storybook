@@ -14,6 +14,7 @@ import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
 import { formatOpponentName } from "@utils/duels";
 import { GetDuelInvitationsQuery, gql } from "@graphql/__generated";
+import { useTheme } from "@modules/themes/hooks/useTheme";
 
 const DuelInvitations = () => {
   const [, { data, loading }] = useQueryOnScreenSeen(gql("GetDuelInvitationsDocument"), ROUTES.duelsHub, {
@@ -90,6 +91,8 @@ const DuelInvitationStatus = ({ duel }: DuelInvitationStatusProps) => {
     });
   }, [duel]);
 
+  const { theme } = useTheme();
+
   if (duel.inviteStatus === "invited") {
     return (
       <TextTemplate type="l1b" color={Colours.neutral.n500}>
@@ -108,7 +111,7 @@ const DuelInvitationStatus = ({ duel }: DuelInvitationStatusProps) => {
 
   return (
     <TouchableOpacityWithDelay delay={200} onPress={showRespondModal}>
-      <TextTemplate type="l1b" decoration="underline" color={Colours.primary.p600}>
+      <TextTemplate type="l1b" decoration="underline" color={theme.colors.primary.p600}>
         {t("modals.duels.hub.invitations_respond")}
       </TextTemplate>
     </TouchableOpacityWithDelay>
