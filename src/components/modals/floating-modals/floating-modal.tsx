@@ -31,7 +31,7 @@ interface IProps {
   showButton?: boolean;
   buttonLabel?: string;
   buttonOnPress?: () => void;
-  icon?: Source;
+  icon?: Source | ReactNode;
   isCloseButtonSecondary?: boolean;
   title?: string;
   wrapperStyle?: ViewStyle;
@@ -42,7 +42,7 @@ interface IProps {
 
 export interface IFloatingModalContentProps {
   onClose?: () => void;
-  setIcon?: (icon: Source) => void;
+  setIcon?: (icon: Source | ReactNode) => void;
 }
 
 const FloatingModal = ({
@@ -64,7 +64,7 @@ const FloatingModal = ({
   overlayStyle,
 }: IProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [iconAsset, setIconAsset] = useState<Source>(icon);
+  const [iconAsset, setIconAsset] = useState<Source | ReactNode>(icon);
   const CloseButton = isCloseButtonSecondary ? SecondaryButton : Button;
   const translation = useTranslation(["labels.cta.close"]);
 
@@ -115,7 +115,11 @@ const FloatingModal = ({
           )}
           {!iconAsset ? null : (
             <View style={styles.iconWrapper}>
-              <Image width={Style.adjust(140)} height={Style.adjust(140)} source={iconAsset} />
+              {isValidElement(iconAsset) ? (
+                iconAsset
+              ) : (
+                <Image width={Style.adjust(140)} height={Style.adjust(140)} source={iconAsset as Source} />
+              )}
             </View>
           )}
           {content}
@@ -164,6 +168,8 @@ const styles = StyleSheet.create({
     top: Style.adjust(-40),
     position: "absolute",
     alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonWrapperStyle: {
     position: "absolute",
