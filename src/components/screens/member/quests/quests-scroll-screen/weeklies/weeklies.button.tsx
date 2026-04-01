@@ -1,35 +1,20 @@
-import React, { memo, useCallback, useContext } from "react";
+import React, { memo, useCallback, useContext, useMemo } from "react";
 import { MODALS } from "@navigation/constants";
 import { WeeklyQuestsModal } from "./weeklies.modal";
 import { showFloatingModal } from "@modals";
 import { Weeklies } from "@organisms";
 import { QuestsMapContext } from "../quests.context";
 import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
-import { ThemeId } from "@app/modules/themes/types";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
-
-const getIconThemMap = (themeId: ThemeId) => {
-  if (themeId === ThemeId.Metlife) {
-    return require("@assets/icons/weeklies.metlife.webp");
-  }
-
-  return require("@assets/icons/weeklies.webp");
-};
+import { Box } from "@atoms";
+import { Style } from "@styles";
+import WeekliesCalendarIcon from "@atoms/icon/weeklies-calendar-icon";
 
 const CLAIMED_ICON = require("@assets/icons/trophy.png");
 
 type Props = {
   weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
   isVisible: boolean;
-};
-
-const handlePress = async (isClaimed?: boolean, themeId?: ThemeId) => {
-  await showFloatingModal({
-    children: WeeklyQuestsModal,
-    modalId: MODALS.weeklyQuestsOverlay,
-    showButton: false,
-    icon: isClaimed ? CLAIMED_ICON : getIconThemMap(themeId),
-  });
 };
 
 export const WeeklyQuestsButton = memo(({ weeklies: weekliesProp, isVisible }: Props) => {
@@ -40,7 +25,31 @@ export const WeeklyQuestsButton = memo(({ weeklies: weekliesProp, isVisible }: P
   const isClaimed = !!weeklies?.activityProgress.every((e) => e.isClaimed);
   const { theme } = useTheme();
 
-  const onPress = useCallback(() => handlePress(isClaimed, theme.id as ThemeId), [isClaimed, theme.id]);
+  const themedIcon = useMemo(
+    () => (
+      <Box
+        size={Style.adjust(112)}
+        br={Style.adjust(56)}
+        bg={theme.colors.primary.p400}
+        alignItems="center"
+        justifyContent="center"
+      >
+        <WeekliesCalendarIcon size={Style.adjust(64)} />
+      </Box>
+    ),
+    [theme.colors.primary.p400]
+  );
+
+  const onPress = useCallback(
+    () =>
+      showFloatingModal({
+        children: WeeklyQuestsModal,
+        modalId: MODALS.weeklyQuestsOverlay,
+        showButton: false,
+        icon: isClaimed ? CLAIMED_ICON : themedIcon,
+      }),
+    [isClaimed, themedIcon]
+  );
 
   if (!isVisible || !weeklies?.endDateTime) {
     return null;
