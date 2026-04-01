@@ -22,4 +22,8 @@ export default StyleSheet.create({
   messageWrapper: {
     paddingHorizontal: Style.adjust(32),
   } as ViewStyle,
+  scrollContent: {
+    flexGrow: 1,
+    alignItems: "center",
+  } as ViewStyle,
 });

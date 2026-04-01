@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ScrollView } from "react-native";
 import { Blurb, Box, Heading } from "@atoms";
 import { Button } from "@molecules";
 import styles from "./signup-reward.screen.styles";
@@ -21,27 +22,29 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoi
 
   return (
     <CentredScreen backgroundImage={require("@assets/centred-screen/forestBackground.png")} style={styles.wrapper}>
-      <Box w="100%">
-        <Box pb={78} />
-        <CoinConfetti coins={yuCoin} />
+      <ScrollView contentContainerStyle={styles.scrollContent} scrollEnabled={false}>
         <Box w="100%">
-          <Heading style={styles.heading} bold={true} label={translations["screens.signup_reward.title"]} />
-        </Box>
-        <Box pt={16} pb={40} justifyContent="center">
-          <Blurb
-            textStyle={styles.message}
-            wrapperStyle={styles.messageWrapper}
-            label={translations["screens.signup_reward.description"]}
+          <Box pb={78} />
+          <CoinConfetti coins={yuCoin} />
+          <Box w="100%">
+            <Heading style={styles.heading} bold={true} label={translations["screens.signup_reward.title"]} />
+          </Box>
+          <Box pt={16} pb={40} justifyContent="center">
+            <Blurb
+              textStyle={styles.message}
+              wrapperStyle={styles.messageWrapper}
+              label={translations["screens.signup_reward.description"]}
+            />
+          </Box>
+          <Button
+            testID={BUTTON_BASE("SIGN_UP_REWARD_SCREEN", isLoading)}
+            translationKey="labels.cta.lets_go"
+            onPress={onCollectPress}
+            isLoading={isLoading}
+            disabled={isLoading}
           />
         </Box>
-        <Button
-          testID={BUTTON_BASE("SIGN_UP_REWARD_SCREEN", isLoading)}
-          translationKey="labels.cta.lets_go"
-          onPress={onCollectPress}
-          isLoading={isLoading}
-          disabled={isLoading}
-        />
-      </Box>
+      </ScrollView>
     </CentredScreen>
   );
 };

@@ -22,7 +22,4 @@ export default StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
   } as ImageStyle,
-  scrollContent: {
-    flexGrow: 1,
-  } as ViewStyle,
 });
