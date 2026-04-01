@@ -1,5 +1,5 @@
 import { memo, PropsWithChildren, JSX, ReactElement, isValidElement } from "react";
-import { Image as RNImage, ImageStyle, View, ViewStyle } from "react-native";
+import { Image as RNImage, ImageStyle, ScrollView, View, ViewStyle } from "react-native";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
 import { IScreen } from "@theme";
@@ -50,7 +50,9 @@ const CentredScreen = ({
           />
         </View>
       )}
-      {children}
+      <ScrollView contentContainerStyle={styles.scrollContent} scrollEnabled={false}>
+        {children}
+      </ScrollView>
     </View>
   );
 };
