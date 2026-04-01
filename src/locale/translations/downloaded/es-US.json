@@ -341,7 +341,6 @@
         "today_title": "Duelos de hoy",
         "tomorrow_title": "Duelos de mañana",
         "waiting_for_opponent_steps_sync": "Esperando a que %{opponentName} sincronice sus pasos",
-        "waiting_user_steps_sync": "Esperando sincronización de pasos",
         "you_drew": "Empataron ",
         "you_lost": "perdiste",
         "you_won": "¡Ganaste!"
@@ -1702,6 +1701,7 @@
         }
       },
       "search": {
+        "all": "Todos",
         "initial_state": "Busca descuentos, vales y suscripciones.",
         "no_results": "No encontramos la marca que buscas.",
         "placeholder": "Buscar todas las marcas",

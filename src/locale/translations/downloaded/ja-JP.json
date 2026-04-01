@@ -341,7 +341,6 @@
         "today_title": "今日のデュエル",
         "tomorrow_title": "明日のデュエル",
         "waiting_for_opponent_steps_sync": "%{opponentName}さんの歩数の同期待ちです",
-        "waiting_user_steps_sync": "ユーザーの歩数の同期待ちです",
         "you_drew": "引き分け",
         "you_lost": "負け",
         "you_won": "あなたの勝利!"
@@ -1702,6 +1701,7 @@
         }
       },
       "search": {
+        "all": "すべて",
         "initial_state": "割引、バウチャー、サブスクリプションを検索",
         "no_results": "ブランドが見つかりません。",
         "placeholder": "検索",

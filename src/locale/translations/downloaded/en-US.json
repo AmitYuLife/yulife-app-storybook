@@ -341,7 +341,6 @@
         "today_title": "Today’s Duels",
         "tomorrow_title": "Tomorrow’s Duels",
         "waiting_for_opponent_steps_sync": "Waiting for %{opponentName} to sync their steps",
-        "waiting_user_steps_sync": "Waiting for user’s steps to sync",
         "you_drew": "you drew",
         "you_lost": "you lost",
         "you_won": "you won!"
@@ -1702,6 +1701,7 @@
         }
       },
       "search": {
+        "all": "All",
         "initial_state": "Search for discounts, vouchers, and subscriptions.",
         "no_results": "We could not find the brand you are looking for.",
         "placeholder": "Search all brands",

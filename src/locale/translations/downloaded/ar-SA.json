@@ -341,7 +341,6 @@
         "today_title": "تحديات اليوم",
         "tomorrow_title": "تحديات الغد",
         "waiting_for_opponent_steps_sync": "في انتظار مزامنة خطوات %{opponentName}",
-        "waiting_user_steps_sync": "في انتظار مزامنة خطوات المستخدم",
         "you_drew": "تعادلتم",
         "you_lost": "لقد خسرت",
         "you_won": "انت فزت!"
@@ -1702,6 +1701,7 @@
         }
       },
       "search": {
+        "all": "الكل",
         "initial_state": "ابحث عن الخصومات والقسائم والاشتراكات.",
         "no_results": "لم نتمكن من العثور على العلامة التجارية التي تبحث عنها.",
         "placeholder": "البحث في جميع العلامات التجارية",
