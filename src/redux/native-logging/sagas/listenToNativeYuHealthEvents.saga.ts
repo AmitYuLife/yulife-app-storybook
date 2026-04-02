@@ -1,20 +1,13 @@
-import { call, put, spawn, take, select } from "redux-saga/effects";
+import { call, put, spawn, take } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { yuHealthNativeEventsChannel } from "../yuHealthNativeEvents.channels";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 interface NativeEvent {
   message: string;
 }
 
 export default function* listenToNativeYuHealthEvents() {
-  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-
-  if (features.disableFitkitEventsLogging) {
-    return;
-  }
-
   const channel: ReturnType<typeof yuHealthNativeEventsChannel> = yield call(yuHealthNativeEventsChannel);
   while (true) {
     try {

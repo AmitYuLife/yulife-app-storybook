@@ -38,7 +38,7 @@ export const features = [
   "yuScreenV4",
   "shouldQueryHourlyActivity",
   "disableCheckPermission",
-  "disableFitkitEventsLogging",
+
   "enhanceConnectionLogging",
   "logReduxState",
   "gameEnableExpoImageDiskCachingPolicyInYumojiBuilder",

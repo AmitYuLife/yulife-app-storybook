@@ -1,8 +1,7 @@
-import { call, spawn, take, select } from "redux-saga/effects";
+import { call, spawn, take } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import dd from "@services/datadog";
 import { nativeEventsChannel } from "../nativeEvents.channels";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 interface NativeEvent {
   type: string;
@@ -10,12 +9,6 @@ interface NativeEvent {
 }
 
 export default function* listenToNativeEvents() {
-  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-
-  if (features.disableFitkitEventsLogging) {
-    return;
-  }
-
   const channel: ReturnType<typeof nativeEventsChannel> = yield call(nativeEventsChannel);
   while (true) {
     try {
