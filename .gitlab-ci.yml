@@ -74,9 +74,9 @@ variables:
   UK_DEV_APP_COMPONENTS_ROLE_ARN: arn:aws:iam::$UK_DEV_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-yulife-app-components
   GITLAB_TOKEN: $CI_JOB_TOKEN
   QA_REPORTER_ROLE_ARN: arn:aws:iam::$TEAM_QA_AWS_ACCOUNT_ID:role/oidc/OIDC-gitlab-yulife-cypress-reports
-  # MacOS VM v1.2.0: MacOS 26.2 tahoe with Xcode versions 26.2 and 16.4
-  # https://gitlab.com/yu-life/infrastructure/yulife-devops-packer/-/blob/main/packer/macos-xcode/CHANGELOG.md#120---2026-01-29
-  MACOS_VM_IMAGE_VERSION: v1.2.0
+  # MacOS VM v1.3.0: MacOS 26.2 tahoe with Xcode versions 26.2 and 16.4 - PG 18
+  # https://gitlab.com/yu-life/infrastructure/yulife-devops-packer/-/blob/main/packer/macos-xcode/CHANGELOG.md#130---2026-02-23
+  MACOS_VM_IMAGE_VERSION: v1.3.0
   MACOS_VM_IMAGE: $DEVOPS_AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/yulife-macos-xcode:$MACOS_VM_IMAGE_VERSION
   IOS_XCODE_VERSION: 26.2
   DEVELOPER_DIR: "/Applications/Xcode_${IOS_XCODE_VERSION}.app"
