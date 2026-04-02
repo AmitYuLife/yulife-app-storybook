@@ -7,6 +7,61 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.4.0] - 2026-04-02
+
+### Features
+
+- Task GS-2596: Purge disableFitkitEventsLogging feature flag
+- (grafted) Merge branch 'feature/gs-2577-nn-theming' into 'develop'
+
+### Bugfixes
+
+- Bugfix GS-2609: Don't crash when AJV schema is invalid
+- Bugfix GS-2419: More theming for achievement & deul screens
+- Bugfix GS-2419: Themeing issue + generic heading icons padding
+
+### Tasks
+
+- Task DEVOPS-5075: Upgrade Postgres DB to v18
+- Task GS-2562: Add schedule-weekly-goals debug item
+- Task GS-2546: Purge tempGameConfirmDuelScore
+- Task GS-2526: Refactor modal rays and celebration components
+- Task GS-2570: Center achievement description text
+- Task GS-2586: Copy Podfile.lock instead of symlinking in Expo plugin
+- Task GS-2455: Expired wallet items - UI
+- (grafted) Task DEVOPS-4606: Custom domain for builds install page
+- (grafted) Merge branch 'task/devops-5297' into 'develop'
+
+### Chores
+
+- Chore - Updated translations
+- Chore CTE-681: extract e2e data manager retry
+
+### Extra
+
+- Fix CTE-684: fix Android text cut-off on signup reward screen
+- Fix CTE-684: wrap CentredScreen children in ScrollView to fix Android text cut-off
+- GS-2562: Theme weeklies modal icon
+- Fix GS-2595: Fix 2048 game state modal blur on Android
+- Fix GS-2594: Fix end of season modal
+- Fix GS-2577: Use p600 for selected choice item border color
+- Feat CTE-682: reward search tag filter
+- Fix GS-2590: Fix 2048 end tiles
+- Fix GS-2557: Fix Sudoku pause modal
+- Fix GS-2557: Fix Sudoku pause modal
+- Fix GS-2458: Fix welcome screen cut off
+- Fix GS-2355: Dismiss keyboard when journey step changes
+- Detox GS-2108: Random chest events E2E
+- Fix GS-2458: Fix welcome screen cut off
+- Fix GS-2458: Fix welcome screen cut off
+- Fix GS-2455: show banner image when reward has only expired or used items
+- Detox GS-2219: Reflections Weekly Quest
+- (grafted) [Security] Bump flatted from 3.3.4 to 3.4.2
+- (grafted) Merge branch 'detox/gs-2583-fix-data-seeding-order' into 'develop'
+- CTE-677: Fix Mixpanel identify race condition causing anonymous device ID events
+- (grafted) Detox GS-2289: Reflections via Today's Earnings
+- (grafted) Merge branch 'detox/gs-2566-stabilise-jp-gifting' into 'develop'
+
 ## [5.3.0] - 2026-03-19
 
 ### Features
