@@ -43,6 +43,7 @@ include:
   - local: "gitlab/.test.yml"
   - local: "gitlab/.translate.yml"
   - local: "gitlab/.version-label.yml"
+  - local: "gitlab/.debug-build.yml"
   - local: "gitlab/.build-android.yml"
   - local: "gitlab/.build-ios.yml"
   - local: "gitlab/.e2e.yml"
