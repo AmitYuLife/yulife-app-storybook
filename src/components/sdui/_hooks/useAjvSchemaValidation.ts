@@ -1,4 +1,3 @@
-import Logger from "@services/logging/logger";
 import Ajv from "ajv";
 import { useEffect, useState } from "react";
 
@@ -49,34 +48,30 @@ export function useAjvSchemaValidation({ schema, data, isValidationEnabled }: Pa
     }
 
     const schemaKey = schema; // Hashing is an overcomplication here
-    try {
-      let validate = ajv.getSchema(schemaKey);
 
-      if (!validate) {
-        try {
-          const schemaJson = {
-            ...JSON.parse(schema),
-            $async: false,
-          };
+    let validate = ajv.getSchema(schemaKey);
 
-          cleanupSchemaRegistry();
-          ajv.addSchema(schemaJson, schemaKey);
-          schemaRegistry.set(schemaKey, {
-            timestamp: Date.now(),
-          });
-        } catch {
-          setIsValid(false);
-          return;
-        }
+    if (!validate) {
+      try {
+        const schemaJson = {
+          ...JSON.parse(schema),
+          $async: false,
+        };
 
-        validate = ajv.getSchema(schemaKey);
-        setIsValid(!!validate(data));
+        cleanupSchemaRegistry();
+        ajv.addSchema(schemaJson, schemaKey);
+        schemaRegistry.set(schemaKey, {
+          timestamp: Date.now(),
+        });
+      } catch {
+        setIsValid(true);
+        return;
       }
-    } catch {
-      Logger.error(new Error("Error adding schema to AJV"), { schema });
-      setIsValid(false);
-      return;
+
+      validate = ajv.getSchema(schemaKey);
     }
+
+    setIsValid(!!validate(data));
   }, [schema, data]);
 
   if (!isValidationEnabled || !schema) {
