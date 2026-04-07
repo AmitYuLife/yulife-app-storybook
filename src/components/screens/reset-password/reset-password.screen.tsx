@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { Blurb, Box, Heading, Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
+import { Box, Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
 import { Button, LinkButton, TextInput, CentredScreen } from "@molecules";
 import styles from "./reset-password.screen.styles";
 import { INPUT_RESET_PASSWORD } from "@ids";
@@ -46,9 +46,17 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
       BackgroundGradient={<UnauthorisedGradient />}
     >
       <Pad height={120} />
-      <Heading style={styles.heading} label={translations["screens.reset_password.heading"]} />
+      <Box w="100%" collapsable={false}>
+        <TextTemplate type="h3" textAlign="center" color={Colours.darkGray}>
+          {translations["screens.reset_password.heading"]}
+        </TextTemplate>
+      </Box>
       <Pad height={9} />
-      <Blurb wrapperStyle={styles.blurbWrapper} label={translations["screens.reset_password.subheading"]} />
+      <Box px={40} collapsable={false}>
+        <TextTemplate type="l1" textAlign="center" color={Colours.darkGray}>
+          {translations["screens.reset_password.subheading"]}
+        </TextTemplate>
+      </Box>
       <Pad height={21} />
       <TextInput
         testID={INPUT_RESET_PASSWORD}
@@ -60,7 +68,7 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
       />
       <Pad height={15} />
       {!error ? null : (
-        <Box pl={30} pr={30} pb={10} pt={10}>
+        <Box pl={30} pr={30} pb={10} pt={10} collapsable={false}>
           <TextTemplate type={"l2"} color={Colours.lightRed} textAlign="center">
             {error}
           </TextTemplate>
