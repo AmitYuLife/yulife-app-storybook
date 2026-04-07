@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class YulifePushNotificationHandler {
     private static final String TAG = "YulifePushHandler";
-    private static final String CHANNEL_ID = "yulife_notifications";
+    private static final String CHANNEL_ID = "YULIFE_PUSH_NOTIFICATION_CHANNEL";
     private static final String CHANNEL_NAME = "Yulife Notifications";
     private static final String CHANNEL_DESCRIPTION = "Notifications from Yulife";
     
@@ -160,15 +160,15 @@ public class YulifePushNotificationHandler {
 const FIREBASE_MESSAGING = (packageName) => `package ${packageName};
 
 import androidx.annotation.NonNull;
-import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import java.util.Map;
 import android.content.Intent;
 import android.util.Log;
 
 import com.intercom.reactnative.IntercomModule;
+import expo.modules.notifications.service.ExpoFirebaseMessagingService;
 
-public class YulifeFirebaseMessagingService extends FirebaseMessagingService {
+public class YulifeFirebaseMessagingService extends ExpoFirebaseMessagingService {
     private static final String TAG = "YulifeFirebaseMessaging";
     private YulifePushNotificationHandler yulifeHandler;
 
@@ -195,19 +195,23 @@ public class YulifeFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Received push data: " + remoteMessage.getData().toString());
         }
 
-        // First, check if it's a Yulife backend notification
+        // Yulife backend notification — handle natively
         if (yulifeHandler != null && yulifeHandler.isYulifePush(remoteMessage)) {
             Log.d(TAG, "Handling as Yulife push notification");
             yulifeHandler.handlePushNotification(remoteMessage);
+            return;
         }
-        // Then check if it's an Intercom push
-        else if (IntercomModule.isIntercomPush(remoteMessage)) {
+
+        // Intercom push
+        if (IntercomModule.isIntercomPush(remoteMessage)) {
             Log.d(TAG, "Handling as Intercom push notification");
             IntercomModule.handleRemotePushMessage(getApplication(), remoteMessage);
+            return;
         }
-        else {
-            Log.d(TAG, "Unhandled push notification from: " + remoteMessage.getFrom());
-        }
+
+        // Everything else — delegate to Expo's handler
+        Log.d(TAG, "Delegating to Expo notification handler");
+        super.onMessageReceived(remoteMessage);
     }
 }`;
 
@@ -224,6 +228,7 @@ const firebaseBuildGradlePlugin = (app) => {
       );
       config.modResults.contents = splitContents.join(`\n`);
     }
+
     return config;
   });
 };

@@ -31,6 +31,43 @@ module.exports = (app) => {
 
     androidManifest.application[0].$["android:largeHeap"] = "true";
 
+    // Replace Expo's ExpoFirebaseMessagingService with YulifeFirebaseMessagingService
+    if (!androidManifest.application[0].service) {
+      androidManifest.application[0].service = [];
+    }
+
+    // Remove Expo's default Firebase messaging service via tools:node="remove"
+    // (it comes from the library's AAR manifest, so we need manifest merger to remove it)
+    androidManifest.application[0].service.push({
+      $: {
+        "android:name": "expo.modules.notifications.service.ExpoFirebaseMessagingService",
+        "tools:node": "remove",
+      },
+    });
+
+    // Register our service which extends ExpoFirebaseMessagingService
+    const serviceName = `${config.android.package}.YulifeFirebaseMessagingService`;
+    const hasService = androidManifest.application[0].service.some((s) => s.$["android:name"] === serviceName);
+    if (!hasService) {
+      androidManifest.application[0].service.push({
+        $: {
+          "android:name": serviceName,
+          "android:exported": "false",
+        },
+        "intent-filter": [
+          {
+            action: [
+              {
+                $: {
+                  "android:name": "com.google.firebase.MESSAGING_EVENT",
+                },
+              },
+            ],
+          },
+        ],
+      });
+    }
+
     androidManifest.application[0]["meta-data"].push(
       {
         $: {
