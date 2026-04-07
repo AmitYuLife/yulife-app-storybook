@@ -187,6 +187,7 @@ export default () => ({
       {
         icon: "./assets/native/push-icon.png",
         color: "#e30d76",
+        defaultChannel: "YULIFE_PUSH_NOTIFICATION_CHANNEL",
       },
     ],
     ["@betomorrow/expo-app-name", { name: appNameWithVersion }],
