@@ -36,6 +36,7 @@ module.exports = api => {
       },
     ],
     '@babel/plugin-proposal-unicode-property-regex',
+    'babel-plugin-add-react-displayname',
     'react-native-reanimated/plugin',
   ];
 
