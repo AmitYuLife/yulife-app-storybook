@@ -12,6 +12,7 @@ export const CHALLENGE_HISTORY_7 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_7.data.userId,
+        challengesForEveryLevel: {},
     }
 } as IDatabaseItem
 
@@ -21,6 +22,7 @@ export const CHALLENGE_HISTORY_67 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_67.data.userId,
+        challengesForEveryLevel: {},
     }
 } as IDatabaseItem
 
@@ -30,6 +32,7 @@ export const CHALLENGE_HISTORY_68 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_68.data.userId,
+        challengesForEveryLevel: {},
     }
 } as IDatabaseItem
 
@@ -39,6 +42,7 @@ export const CHALLENGE_HISTORY_72 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_72.data.userId,
+        challengesForEveryLevel: {},
     }
 } as IDatabaseItem
 
@@ -48,6 +52,7 @@ export const CHALLENGE_HISTORY_76 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_76.data.userId,
+        challengesForEveryLevel: {},
     }
 } as IDatabaseItem
 
@@ -80,6 +85,7 @@ export const CHALLENGE_HISTORY_86 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_86.data.userId,
+        challengesForEveryLevel: {},
     }
 } as IDatabaseItem
 
@@ -89,5 +95,6 @@ export const CHALLENGE_HISTORY_132 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_132.data.customerId,
+        challengesForEveryLevel: {},
     }
 } as IDatabaseItem

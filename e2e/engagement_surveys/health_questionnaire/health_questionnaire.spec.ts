@@ -84,9 +84,9 @@ Feature("Health questionnaires", async () => {
     When("I tap to go back", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife"), 3_000), async () => {
       When("I go back to the yucoin screen", when.tapID(ids.BACK_BUTTON, 3_000), async () => {
         When("I go back to the todays earning screen", when.tapID(ids.LEFT_HEADING_BUTTON("今日の活動一覧"), 3_000), async () => {
-          Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("健康チェックの質問"), 1500));
-          Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("健康に関する質問への回答で\n**60**![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)をプレゼント。", "#464647"), 1500));
-          Then("I should see the HQ card's pink arrow", then.idVisible(ids.PINK_ARROW_ICON, 1500));
+          Then("I should see the HQ event panel", then.idVisible(ids.EVENT_CARD("今日の振り返り"), 5_000));
+          Then("I should see the correct markdown for the HQ", then.idVisible(ids.EVENT_DESCRIPTION("自分の健康についてもっと知るために、振り返りを習慣にしましょう。\n\nリワード: **60** ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)", "#464647"), 5_000));
+          Then("I should see the HQ card's pink arrow", then.idVisible(ids.ARROW_BUTTON, 5_000));
         });
       });
     });
@@ -292,3 +292,4 @@ Feature("Health questionnaires", async () => {
     });
   });
 });
+
