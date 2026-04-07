@@ -123,7 +123,6 @@ const buildHealthConnectPermissions = (): IPermission[] => [
   {
     identifier: "mindfulMinutes",
     title: t("permissions.android.health_connect.meditation.title"),
-    requirement: t("permissions.android.health_connect.meditation.requirement"),
     description: t("permissions.android.health_connect.meditation.description"),
     capability: HealthProviderCapability.MINDFUL_MINUTES,
   },
