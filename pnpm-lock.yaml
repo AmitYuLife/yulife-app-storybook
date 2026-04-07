@@ -431,6 +431,9 @@ importers:
       babel-loader:
         specifier: ^9.1.2
         version: 9.2.1(@babel/core@7.29.0)(webpack@5.105.4(@swc/core@1.15.21)(esbuild@0.27.3))
+      babel-plugin-add-react-displayname:
+        specifier: ^0.0.5
+        version: 0.0.5
       babel-plugin-dynamic-import-node:
         specifier: ^2.3.3
         version: 2.3.3
@@ -3647,6 +3650,9 @@ packages:
     peerDependencies:
       '@babel/core': ^7.12.0
       webpack: '>=5'
+
+  babel-plugin-add-react-displayname@0.0.5:
+    resolution: {integrity: sha512-LY3+Y0XVDYcShHHorshrDbt4KFWL4bSeniCtl4SYZbask+Syngk1uMPCeN9+nSiZo6zX5s0RTq/J9Pnaaf/KHw==}
 
   babel-plugin-dynamic-import-node@2.3.3:
     resolution: {integrity: sha512-jZVI+s9Zg3IqA/kdi0i6UDCybUI3aSBLnglhYbSSjKlV7yF1F/5LWv8MakQmvYpnbJDS6fcBL2KzHSxNCMtWSQ==}
@@ -13994,6 +14000,8 @@ snapshots:
       find-cache-dir: 4.0.0
       schema-utils: 4.3.3
       webpack: 5.105.4(@swc/core@1.15.21)(esbuild@0.27.3)
+
+  babel-plugin-add-react-displayname@0.0.5: {}
 
   babel-plugin-dynamic-import-node@2.3.3:
     dependencies:
