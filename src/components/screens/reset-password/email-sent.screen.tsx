@@ -1,7 +1,8 @@
 import React, { FC } from "react";
-import { Blurb, Heading, Pad, UnauthorisedGradient } from "@atoms";
+import { Box, Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
 import { Button, LinkButton } from "@molecules";
 import styles from "./reset-password.screen.styles";
+import { Colours } from "@styles";
 import { CentredScreen } from "@molecules";
 import { t } from "@locale";
 
@@ -18,9 +19,17 @@ const EmailSentScreen: FC<IProps> = ({ onCtaPress, onSecondaryCtaPress, email })
     BackgroundGradient={<UnauthorisedGradient />}
   >
     <Pad height={120} />
-    <Heading style={styles.heading} label={t("screens.reset_password_submitted.heading")} />
+    <Box w="100%" collapsable={false}>
+      <TextTemplate type="h3" textAlign="center" color={Colours.darkGray}>
+        {t("screens.reset_password_submitted.heading")}
+      </TextTemplate>
+    </Box>
     <Pad height={9} />
-    <Blurb label={t("screens.reset_password_submitted.subheading", { email })} />
+    <Box px={40} collapsable={false}>
+      <TextTemplate type="l1" textAlign="center" color={Colours.darkGray}>
+        {t("screens.reset_password_submitted.subheading", { email })}
+      </TextTemplate>
+    </Box>
     <Pad height={45} />
     <Button translationKey="screens.reset_password_submitted.cta_label" onPress={onCtaPress} />
     <Pad height={10} />

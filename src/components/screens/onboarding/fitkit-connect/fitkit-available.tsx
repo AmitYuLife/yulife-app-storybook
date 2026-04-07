@@ -1,8 +1,8 @@
 import React, { FC, useState, useCallback } from "react";
 import { isSamsung } from "@utils";
-import { Colours, Style, StyleSheet } from "@styles";
+import { Style } from "@styles";
 import { Alert } from "react-native";
-import { Blurb, Heading, Pad } from "@atoms";
+import { Box, Pad, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { getFitKitConnectCopy } from "./copy";
 import { ConnectCheckList } from "@molecules";
@@ -59,13 +59,15 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
 
   return (
     <>
-      <Heading label={heading} bold={true} style={styles.heading} />
+      <TextTemplate type="h1" textAlign="center">
+        {heading}
+      </TextTemplate>
       <Pad height={14} />
-      <Blurb
-        label={connectMessage}
-        wrapperStyle={styles.connectMessageWrapperStyle}
-        textStyle={styles.connectMessage}
-      />
+      <Box px={32}>
+        <TextTemplate type="b2" textAlign="center" lineHeight={Style.adjust(24)}>
+          {connectMessage}
+        </TextTemplate>
+      </Box>
       <Pad height={34} />
       {!isSamsung() ? null : (
         <>
@@ -83,23 +85,5 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  heading: {
-    fontSize: Style.adjust(32),
-    lineHeight: Style.adjust(40),
-    color: Colours.neutral.n800,
-    letterSpacing: Style.adjust(1),
-  },
-  connectMessage: {
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: Style.adjust(0.6),
-    color: Colours.neutral.n800,
-  },
-  connectMessageWrapperStyle: {
-    paddingHorizontal: Style.adjust(32),
-  },
-});
 
 export default FitKitAvailable;

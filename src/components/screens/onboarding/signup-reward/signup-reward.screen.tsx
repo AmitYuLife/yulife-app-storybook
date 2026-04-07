@@ -1,9 +1,8 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
-import { Blurb, Box, Heading } from "@atoms";
-import { Button } from "@molecules";
+import { Box, TextTemplate } from "@atoms";
+import { Button, CoinConfetti, CentredScreen } from "@molecules";
 import styles from "./signup-reward.screen.styles";
-import { CoinConfetti, CentredScreen } from "@molecules";
 import { useTranslation } from "@hooks";
 import { BUTTON_BASE } from "@ids";
 
@@ -27,14 +26,14 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoi
           <Box pb={78} />
           <CoinConfetti coins={yuCoin} />
           <Box w="100%">
-            <Heading style={styles.heading} bold={true} label={translations["screens.signup_reward.title"]} />
+            <TextTemplate type="h1" textAlign="center">
+              {translations["screens.signup_reward.title"]}
+            </TextTemplate>
           </Box>
           <Box pt={16} pb={40} justifyContent="center">
-            <Blurb
-              textStyle={styles.message}
-              wrapperStyle={styles.messageWrapper}
-              label={translations["screens.signup_reward.description"]}
-            />
+            <TextTemplate type="b2" textAlign="center">
+              {translations["screens.signup_reward.description"]}
+            </TextTemplate>
           </Box>
           <Button
             testID={BUTTON_BASE("SIGN_UP_REWARD_SCREEN", isLoading)}
