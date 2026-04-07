@@ -72,14 +72,18 @@ class DeepLink {
   };
 
   private mapWithAuth({ name, action, unauthorisedOnly }: DeepLinkHandler): [string, DeepLinkHandler["action"]] {
-    if (unauthorisedOnly) {
-      return [name, action];
-    }
-
     const actionWithAuth: DeepLinkHandler["action"] = (args) => {
-      if (args.hasToken) {
+      if (!unauthorisedOnly && args.hasToken) {
+        // allow authorised actions to run if we have a token
         return action(args);
       }
+
+      if (unauthorisedOnly && !args.hasToken) {
+        // allow unauthorised actions to run if we don't have a token
+        return action(args);
+      }
+
+      // otherwise, do nothing
     };
 
     return [name, actionWithAuth];
