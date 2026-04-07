@@ -8,8 +8,6 @@ const {
 } = require("@expo/config-plugins");
 
 const fs = require("fs");
-const path = require("path");
-
 module.exports = (app) => {
   return withPlugins(app, [
     [mainActivityPlugin, {}],
@@ -18,7 +16,6 @@ module.exports = (app) => {
     [samsungHealthSettingsPlugin, {}],
     [permissionRationalePlugin, {}],
     [mainApplicationPlugin, {}],
-    [healthConnectBuildConfigPlugin, {}],
   ]);
 };
 
@@ -66,11 +63,6 @@ const manifestPlugin = (config) => {
       {
         $: {
           "android:name": "android.permission.health.READ_DISTANCE",
-        },
-      },
-      {
-        $: {
-          "android:name": "android.permission.health.READ_MINDFULNESS",
         },
       }
     );
@@ -202,13 +194,13 @@ const samsungHealthSettingsPlugin = (config) => {
   return withDangerousMod(config, [
     "android",
     (mod) => {
-      const settingsPath = `${mod.modRequest.platformProjectRoot}/settings.gradle`;
-      const file = fs.readFileSync(settingsPath, "utf-8");
+      const path = `${mod.modRequest.platformProjectRoot}/settings.gradle`;
+      const file = fs.readFileSync(path, "utf-8");
 
       const splitSettings = file.split(`\n`);
       splitSettings.splice(splitSettings.length - 2, 0, `include ':samsung-health-data'`);
 
-      fs.writeFileSync(settingsPath, splitSettings.join(`\n`));
+      fs.writeFileSync(path, splitSettings.join(`\n`));
 
       return mod;
     },
@@ -286,60 +278,6 @@ const permissionRationalePlugin = (app) => {
         `./android/app/src/main/java/${config.android.package.replace(/\./g, "/")}/PermissionsRationaleActivity.kt`,
         PERMISSION_RATIONALE(config.android.package)
       );
-      return config;
-    },
-  ]);
-};
-
-/**
- * Health Connect 1.2.0-alpha03 requires compileSdk 36 and AGP 8.9.1+.
- * React Native 0.79.x ships AGP 8.8.2 and compileSdk 35, so we patch
- * the RN version catalog and add @Suppress annotations to the YuHealth
- * Kotlin sources that use experimental Health Connect APIs.
- */
-const healthConnectBuildConfigPlugin = (app) => {
-  return withDangerousMod(app, [
-    "android",
-    (config) => {
-      // 1. Patch React Native's libs.versions.toml files to bump AGP and compileSdk
-      const tomlPaths = [
-        "node_modules/react-native/gradle/libs.versions.toml",
-        "node_modules/@react-native/gradle-plugin/gradle/libs.versions.toml",
-      ];
-      for (const rel of tomlPaths) {
-        const tomlPath = path.resolve(config.modRequest.projectRoot, rel);
-        if (fs.existsSync(tomlPath)) {
-          let toml = fs.readFileSync(tomlPath, "utf-8");
-          toml = toml.replace(/^agp = ".*"/m, 'agp = "8.9.1"');
-          toml = toml.replace(/^compileSdk = ".*"/m, 'compileSdk = "36"');
-          fs.writeFileSync(tomlPath, toml);
-        }
-      }
-
-      // 2. Add compileSdkExtension to app/build.gradle
-      const appBuildGradlePath = path.resolve(config.modRequest.platformProjectRoot, "app/build.gradle");
-      if (fs.existsSync(appBuildGradlePath)) {
-        let appGradle = fs.readFileSync(appBuildGradlePath, "utf-8");
-        if (!appGradle.includes("compileSdkExtension")) {
-          appGradle = appGradle.replace(
-            /compileSdk rootProject\.ext\.compileSdkVersion/,
-            "compileSdk rootProject.ext.compileSdkVersion\n    compileSdkExtension 19"
-          );
-          fs.writeFileSync(appBuildGradlePath, appGradle);
-        }
-      }
-
-      // 3. Bump connect-client version in the YuHealth node_modules build.gradle
-      const yuHealthBuildGradle = path.resolve(
-        config.modRequest.projectRoot,
-        "node_modules/@yu-life/react-native-yu-health/android/build.gradle"
-      );
-      if (fs.existsSync(yuHealthBuildGradle)) {
-        let gradle = fs.readFileSync(yuHealthBuildGradle, "utf-8");
-        gradle = gradle.replace(/connect-client:[\d.]+(-alpha\d+)?/, "connect-client:1.2.0-alpha03");
-        fs.writeFileSync(yuHealthBuildGradle, gradle);
-      }
-
       return config;
     },
   ]);

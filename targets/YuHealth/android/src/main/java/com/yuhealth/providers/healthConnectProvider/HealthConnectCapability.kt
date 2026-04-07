@@ -7,7 +7,6 @@ import androidx.health.connect.client.records.ActiveCaloriesBurnedRecord
 import androidx.health.connect.client.records.DistanceRecord
 import androidx.health.connect.client.records.ExerciseSessionRecord
 import androidx.health.connect.client.records.HeartRateRecord
-import androidx.health.connect.client.records.MindfulnessSessionRecord
 import androidx.health.connect.client.records.StepsRecord
 import androidx.health.connect.client.records.WheelchairPushesRecord
 import com.yuhealth.types.HealthProviderCapabilities
@@ -50,7 +49,7 @@ object HealthConnectCapability {
       }
 
       HealthProviderCapabilities.MINDFUL_MINUTES -> {
-        permissions.add(HealthPermission.getReadPermission(MindfulnessSessionRecord::class))
+        permissions.add(HealthPermission.getReadPermission(ExerciseSessionRecord::class))
       }
 
       else -> {

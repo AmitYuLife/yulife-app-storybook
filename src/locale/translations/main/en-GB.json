@@ -1467,8 +1467,7 @@
         },
         "meditation": {
           "title": "Mindful minutes",
-          "requirement": "Requires: Mindfulness sessions",
-          "description": "Needed by the YuLife app to sync mindful minutes from your meditation sessions to your Health Connect account."
+          "description": "Meditation is not supported by Health Connect. To get rewarded switch to Google Fit."
         },
         "exercise": {
           "title": "Workouts",

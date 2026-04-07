@@ -179,7 +179,7 @@ class HealthConnectAggregateQuery(
     val activityQuery = ActivityQueryParams(
       request.startTime, request.endTime, QueryOptions(
         disableUserEntries = request.queryOptions.disableUserEntries,
-        whitelistActivityTypes = activityFilters ?: request.queryOptions.whitelistActivityTypes,
+        whitelistActivityTypes = request.queryOptions.whitelistActivityTypes,
         whitelistApps = request.queryOptions.whitelistApps,
       )
     )

@@ -81,10 +81,6 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
-  kotlinOptions {
-    freeCompilerArgs += ["-opt-in=androidx.health.connect.client.ExperimentalHealthConnectApi"]
-  }
-
   sourceSets {
     main {
       if (isNewArchitectureEnabled()) {
@@ -120,7 +116,7 @@ dependencies {
   implementation "joda-time:joda-time:2.12.5"
 
   // Health Connect
-  implementation "androidx.health.connect:connect-client:1.2.0-alpha03"
+  implementation "androidx.health.connect:connect-client:1.1.0-alpha06"
 
   // Samsung Health
   compileOnly files('libs/samsung-health-data-1.5.0.aar')
