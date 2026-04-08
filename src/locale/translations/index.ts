@@ -80,4 +80,17 @@ export const translations: Record<Language, Translation> = {
       moment.locale("ar-sa");
     },
   },
+  "nl-NL": {
+    name: "Nederlands",
+    intercomLanguage: "nl",
+    flag: "🇳🇱",
+    isEnabled: false,
+    isEnabledForTest: true,
+    load: () => require("./downloaded/nl-NL.json"),
+    direction: "ltr",
+    setMomentLocale: () => {
+      require("moment/locale/nl");
+      require("moment").locale("nl");
+    },
+  },
 };

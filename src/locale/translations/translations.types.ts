@@ -1,4 +1,4 @@
-export type Language = "en" | "en-US" | "en-GB" | "ja-JP" | "es-US" | "ar-SA";
+export type Language = "en" | "en-US" | "en-GB" | "ja-JP" | "es-US" | "ar-SA" | "nl-NL";
 
 export type Translation = {
   name: string;
