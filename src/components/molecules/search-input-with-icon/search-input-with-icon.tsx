@@ -1,6 +1,7 @@
 import { SearchIcon } from "@atoms/icon/search-icon";
 import { INPUT_FIELD } from "@ids";
 import { isRTL } from "@locale";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useCallback, useMemo, useState } from "react";
 import { TextInput, TextStyle, View, ViewStyle } from "react-native";
@@ -14,13 +15,20 @@ interface IProps {
 
 const SearchInputWithIcon = ({ onChangeText, placeholder, wrapperStyles, textInputStyle }: IProps) => {
   const [isActive, setIsActive] = useState(false);
+  const { theme } = useTheme();
 
   const onFocus = useCallback(() => setIsActive(true), []);
   const onBlur = useCallback(() => setIsActive(false), []);
 
   const wrapperStyle = useMemo(
-    () => [styles.wrapper, isActive ? styles.wrapperActive : styles.wrapperDefault, wrapperStyles],
-    [isActive, wrapperStyles]
+    () => [
+      styles.wrapper,
+      isActive
+        ? [styles.wrapperActive, { borderColor: theme.colors.primary.p600 }]
+        : [styles.wrapperDefault, { borderColor: theme.colors.primary.p200 }],
+      wrapperStyles,
+    ],
+    [isActive, theme.colors.primary.p200, theme.colors.primary.p600, wrapperStyles]
   );
 
   const textInputStyles = useMemo(
@@ -63,7 +71,6 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(48),
   },
   wrapperDefault: {
-    borderColor: Colours.neutral.n250,
     borderWidth: Style.adjust(1),
   },
   wrapperActive: {
