@@ -58,8 +58,8 @@ const Center = (props: Props) => {
           <Box w={1} h={26} bg={Colours.neutral.n300} />
         </>
       ) : null}
-      <Box w={0} h={0} testID={THEME_PRIMARY_COLOR(theme.colors.primary.p600)} />
       <Logo colour={logoColour} />
+      <Box position="absolute" w={0} h={0} testID={THEME_PRIMARY_COLOR(theme.colors.primary.p600)} />
     </Box>
   );
 };
