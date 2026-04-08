@@ -21,7 +21,6 @@ export interface MobileGameTheme {
   };
   assets: {
     logo?: Image;
-    logoWhite?: Image;
     icon?: Image;
     iconWhite?: Image;
     loginBackgroundImage?: Image;

@@ -21,9 +21,6 @@ fragment MobileGameTheme on MobileGameTheme {
     logo {
       ...RemoteImage
     }
-    logoWhite {
-      ...RemoteImage
-    }
     icon {
       ...RemoteImage
     }
