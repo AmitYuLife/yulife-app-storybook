@@ -1137,6 +1137,14 @@ export const P2P_THANK_THEM_HEART = (hasSaidThankYou: boolean) =>
 
 export const TEXT = (id: string) => `${id}_TEXT`;
 
+// Theming
+export const HERO_LOGO_CARRIER_ICON = "HERO_LOGO_CARRIER_ICON";
+export const TOP_BAR_CARRIER_ICON = "TOP_BAR_CARRIER_ICON";
+export const THEME_PRIMARY_COLOR = (color: string) => `THEME_PRIMARY_COLOR_${color}`;
+export const THEME_NAME = (name: string) => `THEME_NAME_${name}`;
+export const THEME_SWITCHER_VIEW_COLORS = (themeId: string) => `THEME_SWITCHER_VIEW_COLORS_${themeId}`;
+export const THEME_SWITCHER_SET_THEME_BUTTON = "set-theme-button";
+
 // Pathways
 export const PATHWAYS_SCREEN = "PATHWAYS_SCREEN";
 export const PATHWAYS_STREAKS = "PATHWAYS_STREAKS";

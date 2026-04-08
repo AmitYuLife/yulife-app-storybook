@@ -11,6 +11,7 @@ import { Colours, Style, StyleSheet, TOP_BAR } from "@styles";
 import { useModal } from "@modules/modals/useModal";
 import ThemeColorsModal from "./theme-color.modal";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import { THEME_SWITCHER_VIEW_COLORS } from "@ids";
 
 const ThemeSwitcherContainer = () => {
   const { data } = useQuery(gql("GetAllMobileGameThemesDocument"));
@@ -53,7 +54,11 @@ const ThemeSwitcherContainer = () => {
                 ))}
               </Box>
             </Box>
-            <TouchableOpacity style={styles.viewColorsButton} onPress={() => handleViewColors(theme)}>
+            <TouchableOpacity
+              style={styles.viewColorsButton}
+              onPress={() => handleViewColors(theme)}
+              testID={THEME_SWITCHER_VIEW_COLORS(theme.id)}
+            >
               <TextTemplate type="b2b" color={currentTheme.colors.primary.p500}>
                 View Colors
               </TextTemplate>

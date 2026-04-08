@@ -9,6 +9,7 @@ import { Colours, Style } from "@styles/index";
 import { formatSeconds } from "../top-bar.helpers";
 import { StyleSheet } from "@styles";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import { TOP_BAR_CARRIER_ICON, THEME_PRIMARY_COLOR, THEME_NAME } from "@ids";
 interface Props {
   colour: string;
   logoColour: string;
@@ -43,6 +44,7 @@ const Center = (props: Props) => {
       height="100%"
       justifyContent="center"
       gap={8}
+      testID={THEME_NAME(theme.id)}
     >
       {theme.assets.icon ? (
         <>
@@ -51,10 +53,12 @@ const Center = (props: Props) => {
             width={Style.adjust(26)}
             height={Style.adjust(26)}
             disableAutoAdjust={true}
+            testID={TOP_BAR_CARRIER_ICON}
           />
           <Box w={1} h={26} bg={Colours.neutral.n300} />
         </>
       ) : null}
+      <Box w={0} h={0} testID={THEME_PRIMARY_COLOR(theme.colors.primary.p600)} />
       <Logo colour={logoColour} />
     </Box>
   );
