@@ -8,6 +8,7 @@ const {
 } = require("@expo/config-plugins");
 
 const fs = require("fs");
+
 module.exports = (app) => {
   return withPlugins(app, [
     [mainActivityPlugin, {}],
@@ -28,6 +29,18 @@ const appBuildGradlePlugin = (app) => {
       0,
       `implementation "androidx.health.connect:connect-client:1.1.0-alpha06"`
     );
+
+    // Health Connect 1.2.0-alpha03 (used by YuHealth module) declares AAR metadata
+    // requiring compileSdk 36 and AGP 8.9.1. The YuHealth module compiles against
+    // SDK 36 directly; the app module doesn't use HC APIs, so we skip the check
+    // to avoid bumping AGP globally (which breaks codegen task ordering in CI).
+    splitContents.push(`
+afterEvaluate {
+    tasks.matching { it.name.contains("AarMetadata") }.configureEach {
+        enabled = false
+    }
+}`);
+
     config.modResults.contents = splitContents.join(`\n`);
     return config;
   });
@@ -63,6 +76,11 @@ const manifestPlugin = (config) => {
       {
         $: {
           "android:name": "android.permission.health.READ_DISTANCE",
+        },
+      },
+      {
+        $: {
+          "android:name": "android.permission.health.READ_MINDFULNESS",
         },
       }
     );
@@ -194,13 +212,13 @@ const samsungHealthSettingsPlugin = (config) => {
   return withDangerousMod(config, [
     "android",
     (mod) => {
-      const path = `${mod.modRequest.platformProjectRoot}/settings.gradle`;
-      const file = fs.readFileSync(path, "utf-8");
+      const settingsPath = `${mod.modRequest.platformProjectRoot}/settings.gradle`;
+      const file = fs.readFileSync(settingsPath, "utf-8");
 
       const splitSettings = file.split(`\n`);
       splitSettings.splice(splitSettings.length - 2, 0, `include ':samsung-health-data'`);
 
-      fs.writeFileSync(path, splitSettings.join(`\n`));
+      fs.writeFileSync(settingsPath, splitSettings.join(`\n`));
 
       return mod;
     },
