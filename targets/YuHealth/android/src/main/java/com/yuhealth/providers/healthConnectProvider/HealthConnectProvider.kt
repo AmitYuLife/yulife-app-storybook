@@ -1,11 +1,15 @@
 package com.yuhealth.yuhealth.providers.healthConnectProvider
 
+import androidx.health.connect.client.feature.ExperimentalPersonalHealthRecordApi
+
 import ActivityQueryParams
 import SampleQueryParams
 import SampleQueryResponse
 import android.app.Activity
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.health.connect.client.HealthConnectClient
+import androidx.health.connect.client.HealthConnectFeatures
 import com.facebook.react.bridge.ReactContext
 import com.yuhealth.HealthProvider
 import com.yuhealth.events.LogEvent
@@ -28,6 +32,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+@OptIn(ExperimentalPersonalHealthRecordApi::class)
 class HealthConnectProvider(val context: ReactContext) : HealthProvider {
   override val providerName: String = "HealthConnect"
   override val supportsDisconnect: Boolean = true;
@@ -36,6 +41,19 @@ class HealthConnectProvider(val context: ReactContext) : HealthProvider {
     HealthConnectClient.getOrCreate(context)
   } catch (e: Exception) {
     null
+  }
+
+  val supportsMeditation: Boolean = if (healthConnectClient != null) {
+    try {
+      healthConnectClient
+        .features
+        .getFeatureStatus(HealthConnectFeatures.FEATURE_MINDFULNESS_SESSION) == HealthConnectFeatures.FEATURE_STATUS_AVAILABLE
+    } catch (e: Exception) {
+      Log.w("YuHealthModule", "Failed to check mindfulness feature support", e)
+      false
+    }
+  } else {
+    false
   }
 
   val sampleQuery = HealthConnectSampleQuery(healthConnectClient, this)
