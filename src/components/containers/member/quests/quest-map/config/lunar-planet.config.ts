@@ -562,7 +562,7 @@ export const LUNAR_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 96,
     episodeWidth: 375,
     snapPosition: "center",
-    snapOffsetY: 0,
+    snapOffsetY: 25,
     bubbleOffsetY: -30,
     seperator: {
       width: 1080,
