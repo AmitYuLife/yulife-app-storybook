@@ -110,5 +110,9 @@
   "reward-passes": {
     "region": "UK",
     "specs": ["reward_passes/**/*.spec.ts"]
+  },
+  "theming": {
+    "region": "UK",
+    "specs": ["theming/**/*.spec.ts"]
   }
 }

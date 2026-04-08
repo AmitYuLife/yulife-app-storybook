@@ -2,6 +2,7 @@ import { Logo, Image, Box } from "@atoms";
 import { Colours, Style, StyleSheet } from "@styles";
 import { memo } from "react";
 import { Platform } from "react-native";
+import { HERO_LOGO_CARRIER_ICON } from "@ids";
 
 interface Props {
   logoUri: string;
@@ -20,7 +21,7 @@ const HeroLogo = ({ logoUri }: Props) => {
         mt={Platform.select({ ios: 4, android: 12 })}
         height={120}
       >
-        <Image source={{ uri: logoUri }} width={26} height={26} />
+        <Image source={{ uri: logoUri }} width={26} height={26} testID={HERO_LOGO_CARRIER_ICON} />
         <Box w={1} h={26} bg={Colours.neutral.n300} />
         <Logo type="logo-only" scale={0.2} style={styles.logo} colour={Colours.neutral.white} />
       </Box>
