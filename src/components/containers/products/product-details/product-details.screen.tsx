@@ -41,7 +41,7 @@ export const ProductDetailsScreen = memo((props: Props) => {
   }, [absolute]);
 
   return (
-    <UiContext.Provider
+    <UiContext
       value={{
         scrollValue,
       }}
@@ -57,7 +57,7 @@ export const ProductDetailsScreen = memo((props: Props) => {
         <Absolute absolute={foreground} />
         <Header onLayout={handleHeaderLayout} header={header} />
       </View>
-    </UiContext.Provider>
+    </UiContext>
   );
 });
 

@@ -64,7 +64,7 @@ const RaysSpotlightLayout = ({
           </Box>
         </Box>
       ) : null}
-      <RaysSpotlightContext.Provider value={onFocalLayout}>{children}</RaysSpotlightContext.Provider>
+      <RaysSpotlightContext value={onFocalLayout}>{children}</RaysSpotlightContext>
     </>
   );
 };

@@ -30,12 +30,12 @@ const ModalProvider = ({ children, componentId }: IModalProviderProps) => {
   }
 
   return (
-    <ModalContext.Provider value={value}>
+    <ModalContext value={value}>
       <BlurTarget id={componentId} style={styles.children}>
         {children}
       </BlurTarget>
       {modal}
-    </ModalContext.Provider>
+    </ModalContext>
   );
 };
 

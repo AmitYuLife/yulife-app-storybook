@@ -21,7 +21,7 @@ const withProvider =
       <Provider store={store}>
         <ApolloProvider client={client}>
           <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-            <NavigationContext.Provider
+            <NavigationContext
               value={{
                 componentId: props.componentId,
                 onLeftMenuPress: hasMenu ? generateOnLeftMenuPress(props.componentId) : null,
@@ -30,7 +30,7 @@ const withProvider =
               <ModalProvider componentId={props.componentId}>
                 <WrappedComponent {...props} />
               </ModalProvider>
-            </NavigationContext.Provider>
+            </NavigationContext>
           </SafeAreaProvider>
         </ApolloProvider>
       </Provider>

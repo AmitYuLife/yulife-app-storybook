@@ -47,13 +47,13 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
 
   return (
     <>
-      <YuScreenContext.Provider value={{ earnRate, yumojiRemoteUrl }}>
+      <YuScreenContext value={{ earnRate, yumojiRemoteUrl }}>
         <YuScreenV5
           onNotificationPress={onNotificationPress}
           achievement={achievements?.getMobileGameUserAchievements?.equippedAchievements[0]}
           showAchievements={tempGameShowAchievements}
         />
-      </YuScreenContext.Provider>
+      </YuScreenContext>
     </>
   );
 });

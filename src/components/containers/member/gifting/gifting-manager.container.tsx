@@ -150,7 +150,7 @@ const GiftingManager = ({ preselectedUserIds, startingPage, componentId }: Props
   const textColor = isInPreview && selectedBackground?.textColor ? selectedBackground.textColor : Colours.neutral.n800;
 
   return (
-    <GiftingManagerContext.Provider value={context}>
+    <GiftingManagerContext value={context}>
       <GiftingManagerScreen
         scrollViewRef={scrollViewRef}
         messagePresets={messagePresets}
@@ -184,7 +184,7 @@ const GiftingManager = ({ preselectedUserIds, startingPage, componentId }: Props
         goToSuccess={goToSuccess}
         page={page}
       />
-    </GiftingManagerContext.Provider>
+    </GiftingManagerContext>
   );
 };
 

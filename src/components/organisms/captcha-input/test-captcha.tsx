@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, { Ref, useImperativeHandle } from "react";
 import { Alert } from "react-native";
 import { CaptchaHandleExecuteResponse } from "./types";
 
@@ -7,6 +7,10 @@ export type TestCaptchaHandle = {
   reset?: () => void;
 };
 
+interface ITestCaptchaProps {
+  ref?: Ref<TestCaptchaHandle>;
+}
+
 const options = ["INVALID", "PASS", "FAIL"];
 
 /**
@@ -14,7 +18,7 @@ const options = ["INVALID", "PASS", "FAIL"];
  *
  * This gets included in the enabledCaptchaProviders when the api-server is run in detox mode
  */
-export const TestCaptcha = forwardRef<TestCaptchaHandle>((_, ref) => {
+export const TestCaptcha = ({ ref }: ITestCaptchaProps) => {
   useImperativeHandle(ref, () => ({
     execute: () => {
       return new Promise<CaptchaHandleExecuteResponse>((resolve) => {
@@ -35,4 +39,4 @@ export const TestCaptcha = forwardRef<TestCaptchaHandle>((_, ref) => {
   }));
 
   return <></>;
-});
+};
