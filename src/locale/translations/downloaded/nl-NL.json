@@ -1,22 +1,22 @@
 {
   "2048": {
     "current_score": "Huidige score",
-    "high_score": "Hoogste score",
+    "high_score": "Hoge score",
     "lost": {
       "info": "Geef niet op",
-      "title": "Je hebt geen ruimte meer!"
+      "title": "Je ruimte is op!"
     },
-    "restart": "Spel herstarten",
+    "restart": "Spel opnieuw starten",
     "restart_dialog": {
-      "description": "Je voortgang voor het huidige spel gaat verloren.",
+      "description": "Je voortgang van het huidige spel gaat verloren.",
       "no": "Annuleren",
-      "title": "Spel herstarten?",
+      "title": "Spel opnieuw starten?",
       "yes": "Herstart"
     },
-    "subtext": "Veeg om de tegels te verplaatsen. Tegels met hetzelfde nummer versmelten tot één als ze elkaar raken. Tel ze op om %{finalScore} te bereiken!",
+    "subtext": "Veeg om de tegels te verplaatsen. Tegels met hetzelfde nummer worden één als ze elkaar raken. Tel ze op om %{finalScore}! te bereiken",
     "time": "Tijd",
-    "title": "Voeg de tegels samen en bereik %{finalScore}!",
-    "vibration": "Trilling",
+    "title": "Doe mee met de tegels en bereik %{finalScore}!",
+    "vibration": "Vibratie",
     "victory": {
       "info": "Je bent geweldig",
       "title": "Gefeliciteerd!"
@@ -24,40 +24,40 @@
   },
   "2048_selector": {
     "difficulty": {
-      "label": "Moeilijkheidsgraad",
+      "label": "Moeilijkheid",
       "options": {
         "extreme": "extreem",
-        "hard": "moeilijk",
+        "hard": "hard",
         "normal": "normaal"
       },
-      "title": "Spelniveau"
+      "title": "Moeilijkheidsgraad van het spel"
     },
     "final_score": "Eindscore",
-    "haptics": "Trilmodus",
-    "size": "Bordgrootte",
+    "haptics": "Vibratie",
+    "size": "Grootte bord",
     "skin": {
-      "label": "Thema",
+      "label": "Uiterlijk",
       "options": {
         "numerical": "numeriek",
         "symbols": "symbolen"
       },
-      "title": "Spelthema"
+      "title": "Speluiterlijk "
     },
     "start_game": "Spel starten"
   },
   "achievements": "Prestaties",
-  "achievements_earned": "Behaalde prestaties!",
+  "achievements_earned": "Prestaties verdiend!",
   "activity_types": {
     "cycling": {
       "plural": "gefietst"
     },
     "meditation": {
-      "plural": "bewuste minuten",
+      "plural": "mindful mins",
       "short": "%{min} min",
-      "singular": "bewuste minuut"
+      "singular": "mindful min"
     },
     "pension": {
-      "plural": "Spaargelden"
+      "plural": "Besparingen"
     },
     "steps": {
       "plural": "stappen",
@@ -74,26 +74,26 @@
   "apple_health": "Apple Gezondheid",
   "button": "Knop",
   "captcha_input": {
-    "hcaptcha_disclaimer": "Deze app wordt beschermd door hCaptcha en de [Privacybeleid](https://www.hcaptcha.com/privacy) en [Servicevoorwaarden](https://www.hcaptcha.com/terms) zijn van toepassing."
+    "hcaptcha_disclaimer": "Deze app wordt beschermd door hCaptcha en haar [Privacybeleid](https://www.hcaptcha.com/privacy) en [Servicevoorwaarden](https://www.hcaptcha.com/terms) zijn van toepassing."
   },
   "communities": "Gemeenschappen",
   "config": {
     "ios": {
       "plist": {
-        "ns_camera_usage_description": "Foto's verzenden om app-problemen op te lossen",
-        "ns_health_share_usage_description": "We gebruiken je stappen en meditatiegegevens zodat we kunnen controleren of je de uitdagingen hebt voltooid",
-        "ns_health_update_usage_description": "Moet de mogelijkheid hebben om je stappen- en meditatiegegevens te schrijven zodat we voltooide uitdagingen kunnen bijwerken",
-        "ns_location_always_usage_description": "Toegang tot uw locatiewijzigingen nodig voor stappendoelen en uitdagingen",
-        "ns_motion_usage_description": "We gebruiken je stappenteller om het aantal stappen te volgen dat je gedurende de dag hebt gezet.",
-        "ns_photo_library_add_usage_description": "Om deze afbeelding op te slaan moet YuLife toegang hebben om aan je foto's toe te voegen.",
-        "ns_photo_library_usage_description": "Foto's verzenden om app-problemen op te lossen"
+        "ns_camera_usage_description": "Stuur foto's om problemen met de app op te lossen",
+        "ns_health_share_usage_description": "We gebruiken je stap- en meditatiegegevens zodat we kunnen controleren of je uitdagingen hebt voltooid",
+        "ns_health_update_usage_description": "Je moet je stap- en meditatiegegevens kunnen wegschrijven zodat we de voltooide uitdagingen kunnen bijwerken",
+        "ns_location_always_usage_description": "De mogelijkheid nodig om je locatiebeweging te gebruiken voor stappentracking uitdagingen",
+        "ns_motion_usage_description": "We gebruiken je stappenteller om bij te houden hoeveel stappen je gedurende de dag hebt gezet.",
+        "ns_photo_library_add_usage_description": "Om deze afbeelding op te slaan moet YuLife kunnen toevoegen aan je foto's.",
+        "ns_photo_library_usage_description": "Stuur foto's om problemen met apps op te lossen"
       }
     }
   },
-  "coupons": "Kortingsbonnen",
-  "create_challenge_error": "Sorry, er was een probleem met het starten van je uitdaging. \n Probeer het alstublieft opnieuw!",
+  "coupons": "Coupons",
+  "create_challenge_error": "Sorry, er is een probleem opgetreden bij het starten van je uitdaging.\n Probeer het opnieuw!",
   "device_not_supported": "apparaat niet ondersteund",
-  "equip": "Uitrusten",
+  "equip": "Uitrusting",
   "equipped": "Uitgerust",
   "format": {
     "date_picker_display": "DD / MM / JJJJ",
@@ -103,35 +103,35 @@
     "date_time_readable": "HH:mm Do MMM JJJJ",
     "date_time_readable_short": "HH:mm Do MMM",
     "duration": "m[m] s[s]",
-    "duration_long": "u[u] m[m] s[s]",
-    "duration_longer": "d[d] u[u] m[m] s[s]",
+    "duration_long": "h[h] m[m] s[s]",
+    "duration_longer": "d[d] h[h] m[m] s[s]",
     "month_full": "MMMM",
     "time_short": "HH:mm"
   },
   "generic_heading": {
     "left_icon": {
       "close": {
-        "accessibility_label": "Sluiten"
+        "accessibility_label": "Sluit"
       }
     },
     "right_icon": {
       "close": {
-        "accessibility_label": "Sluiten"
+        "accessibility_label": "Sluit"
       },
       "coins": {
         "accessibility_label": "Munten"
       },
       "done": {
-        "accessibility_label": "Klaar"
+        "accessibility_label": "Gedaan"
       },
       "edit": {
-        "accessibility_label": "Bewerken"
+        "accessibility_label": "Bewerk"
       },
       "plus": {
         "accessibility_label": "Plus"
       },
       "save": {
-        "accessibility_label": "Opslaan"
+        "accessibility_label": "Sla"
       },
       "settings": {
         "accessibility_label": "Instellingen"
@@ -141,15 +141,15 @@
   "google_fit": "Google Fit",
   "hints": {
     "unlock_more_challenges": {
-      "description": "Elke 50 levels krijg je de mogelijkheid om één extra uitdaging per dag te voltooien. In totaal tot 4 uitdagingen!",
-      "title": "Meer uitdagingen ontgrendelen"
+      "description": "Elke 50 levels krijg je de mogelijkheid om een extra uitdaging per dag te doen. Tot 4 uitdagingen in totaal!",
+      "title": "Speel meer uitdagingen vrij"
     }
   },
   "history": "Geschiedenis",
   "labels": {
     "accessibility": {
-      "hide": "Verbergen",
-      "show": "Tonen"
+      "hide": "Verberg",
+      "show": "Toon"
     },
     "account": "Account",
     "amount": "Bedrag",
@@ -157,48 +157,48 @@
     "cta": {
       "accept": "Accepteer",
       "allow": "toestaan",
-      "ask_later": "Vraag het later opnieuw",
+      "ask_later": "Vraag het me later",
       "back": "Terug",
       "cancel": "Annuleren",
-      "claim": "Claimen",
-      "close": "Sluiten",
-      "collect": "Verzamelen",
-      "confirm": "Bevestigen",
-      "connect": "Verbinden",
-      "connect_health_app": "Verbind met %{healthApp}",
-      "continue": "Doorgaan",
+      "claim": "Claim",
+      "close": "Sluit",
+      "collect": "Verzamel",
+      "confirm": "Bevestig",
+      "connect": "Maak verbinding met",
+      "connect_health_app": "Verbind %{healthApp}",
+      "continue": "Ga verder",
       "cool": "Gaaf!",
-      "copy": "Kopiëren",
-      "decline": "Afwijzen",
-      "dismiss": "Sluiten",
-      "done": "Klaar",
-      "exit": "Afsluiten",
+      "copy": "Kopie",
+      "decline": "Afname",
+      "dismiss": "Ontsla",
+      "done": "Gedaan",
+      "exit": "Ga naar",
       "get_started": "Aan de slag",
-      "give_feedback": "Geef feedback",
+      "give_feedback": "Feedback geven",
       "go_back": "Ga terug",
-      "got_it": "Begrepen",
+      "got_it": "Ik heb het",
       "great": "Geweldig!",
       "invite": "Nodig een collega uit",
-      "join": "Deel",
+      "join": "Word lid van",
       "later": "Later",
-      "learn_more": "Meer lezen",
+      "learn_more": "Meer leren",
       "lets_go": "Laten we gaan",
-      "loading": "Bezig met laden...",
+      "loading": "Aan het laden...",
       "next": "Volgende",
-      "no": "Nee",
-      "no_thanks": "Nee bedankt",
-      "not_now": "Nu niet",
+      "no": "Geen",
+      "no_thanks": "Geen dank",
+      "not_now": "Niet nu",
       "not_really": "Niet echt",
       "ok": "Ok",
-      "open": "Openen",
+      "open": "Open",
       "pause": "Pauze",
-      "quit": "Afsluiten",
-      "resume": "Hervatten",
-      "save": "Opslaan",
-      "select": "Selecteren",
+      "quit": "Stoppen met",
+      "resume": "CV",
+      "save": "Sla",
+      "select": "Selecteer",
       "skip": "overslaan",
-      "start": "Begin",
-      "submit": "Verzenden",
+      "start": "Start",
+      "submit": "Stuur  in",
       "use": "Gebruik",
       "yeah": "Ja!",
       "yes": "Ja"
@@ -207,16 +207,16 @@
     "level": "Niveau %{level}",
     "many_more": "+veel meer",
     "off": "Uit",
-    "on": "Aan",
-    "power": "Vermogen",
+    "on": "Op",
+    "power": "Stroom",
     "quest_map": "kaart",
-    "spend": "Uitgeven",
+    "spend": "Besteed",
     "time": {
       "days": "Dagen",
       "hours": "Uren",
-      "mins": "minuten"
+      "mins": "Mins"
     },
-    "to_level": "naar niveau",
+    "to_level": "op niveau",
     "unknown": "onbekend",
     "vs": "VS",
     "world_name": {
@@ -225,13 +225,13 @@
       "mountain": "Berg",
       "ocean": "Oceaan"
     },
-    "you": "U"
+    "you": "Jij"
   },
-  "leaderboard": "Klassement",
+  "leaderboard": "Leaderboard",
   "meditation": "Meditatie",
   "meditation_progress": {
-    "paused": "Meditatie Gepauzeerd",
-    "resume": "Hervat meditatie"
+    "paused": "Meditatie gepauzeerd",
+    "resume": "Hervatten Meditatie"
   },
   "modals": {
     "active_buffs": {
@@ -239,48 +239,48 @@
     },
     "add_beneficiary": {
       "confirmation": {
-        "title": "Weet u zeker dat u deze begunstigde wilt verwijderen?"
+        "title": "Weet je zeker dat je deze begunstigde wilt verwijderen?"
       },
       "default_confirmation": {
-        "title": "Wilt u dat deze uw standaardbegunstigden worden voor andere producten in de toekomst?"
+        "title": "Wil je dat dit voortaan je standaardbegunstigden zijn voor andere producten?"
       },
-      "delete_beneficiary_label": "Verwijder Begunstigde",
-      "title": "Begunstigde Gegevens"
+      "delete_beneficiary_label": "Begunstigde verwijderen",
+      "title": "Gegevens begunstigde"
     },
     "battle_pass": {
       "completed": {
         "button_label": "Beloningen claimen",
-        "description": "Je hebt dit seizoen voltooid!\n\nClaim al je beloningen zodat je een nieuw seizoen kunt beginnen.",
+        "description": "Je hebt dit seizoen voltooid!\n \n Claim al je beloningen zodat je aan een nieuw seizoen kunt beginnen.",
         "title": "Gefeliciteerd!"
       },
       "finished": {
-        "button_label": "Start nieuw seizoen",
-        "description": "Je hebt dit seizoen voltooid!\n\nBegin een nieuw seizoen om meer geweldige beloningen vrij te spelen!",
+        "button_label": "Begin nieuw seizoen",
+        "description": "Je hebt dit seizoen voltooid!\n \n Start een nieuw seizoen om meer geweldige beloningen vrij te spelen!",
         "title": "Gefeliciteerd!"
       },
       "out_of_coin": {
-        "description": "Je hebt een onvoldoende saldo om deze aankoop te doen. \n \n Probeer enkele uitdagingen te voltooien om meer munten te verdienen.",
+        "description": "Je hebt onvoldoende saldo om deze aankoop te doen.\n \n Probeer een aantal uitdagingen te voltooien om meer munten te verdienen.",
         "title": "Oh nee!"
       }
     },
     "consumables": {
-      "activate_button": "Activeren",
-      "already_active_end": "gebruik het totdat het verloopt.",
+      "activate_button": "Activeer",
+      "already_active_end": "om het te gebruiken totdat het verloopt.",
       "already_active_start": "Je power-up is actief. Je hebt",
-      "close": "Sluiten",
-      "empty": "Je inventaris is leeg. Ga naar je seizoensbeloningspad om nuttige items te verdienen om je tijdens je reis te helpen.",
+      "close": "Sluit",
+      "empty": "Je inventaris is leeg. Ga naar je seizoensbeloningenpad om nuttige voorwerpen te verdienen die je op je reis kunnen helpen.",
       "go_to_rewards_button": "Ga naar beloningen",
       "popover_confirm": "Gaaf",
-      "subtitle": "Selecteer een power-up om te activeren",
-      "title": "Voorraad"
+      "subtitle": "Selecteer een power-up om deze te activeren",
+      "title": "Inventaris"
     },
     "duels": {
       "dialog_helpers": {
         "alternative_name": "je collega",
-        "description_already_accepted": "Je duel met %{name} vindt plaats op %{duelStart}. Je kunt ze daarna uitdagen voor een revanche, of nu een andere vriend uitdagen.",
-        "description_not_accepted": "Je hebt %{name} al uitgedaagd voor een duel. Wacht tot ze reageren, of daag nu een andere vriend uit.",
-        "title_already_accepted": "Het is al aan!",
-        "title_not_accepted": "Een ogenblikje!"
+        "description_already_accepted": "Je duel met %{name} zal plaatsvinden %{duelStart}. Je kunt ze daarna uitdagen voor een rematch of nu een andere vriend uitdagen.",
+        "description_not_accepted": "Je hebt %{name} al uitgenodigd voor een duel. Wacht tot ze reageren of daag nu een andere vriend uit.",
+        "title_already_accepted": "Hij staat al aan!",
+        "title_not_accepted": "Wacht even!"
       },
       "duel_intro": {
         "button": "Stel het duel in",
@@ -289,7 +289,7 @@
       "duel_invite": {
         "confirm_invitation": {
           "heading": "Uitnodiging bevestigen?",
-          "subheading": "Als geaccepteerd, zal het in je aankomende duels worden vermeld en morgen beginnen"
+          "subheading": "Als het wordt geaccepteerd, wordt het vermeld in je komende duels en begint het morgen"
         },
         "not_enought_yucoin": {
           "heading": "Niet genoeg YuCoin",
@@ -298,63 +298,63 @@
       },
       "duel_options": {
         "bragging_rights_option": "Opscheprechten",
-        "button_label": "Verzend duelverzoek",
+        "button_label": "Verzoek om duel verzenden",
         "colleague": "een collega",
-        "header": "Je daagt **%{name}** uit voor een duel. Degene die de meeste stappen registreert tijdens het duel, wint!",
-        "instruction": "Waar duel je om?",
+        "header": "Je daagt **%{name}** uit voor een duel. Wie tijdens het duel de meeste stappen registreert, wint!",
+        "instruction": "Waarom duelleer je?",
         "select_wager": "Selecteer een inzet",
-        "subheader_1": "Het duel begint morgen en duurt de hele dag. Uitslagen die de winnaar aankondigen verschijnen de volgende ochtend.",
-        "subheader_2": "Waar duel je om?",
-        "your_wager": "Je inzet"
+        "subheader_1": "Het duel begint morgen en duurt de hele dag. De uitslag met de winnaar verschijnt de volgende ochtend.",
+        "subheader_2": "**Waarvoor duelleer je?",
+        "your_wager": "Jouw inzet"
       },
       "duel_respond": {
         "heading": "Weet je het zeker?",
-        "subheading": "Onthoud, als je dit duel accepteert, kun je %{yucoin} YuCoin verliezen. Ben je tevreden om door te gaan?",
-        "subheading_no_yucoin": "Dit duel is alleen voor opscheprechten, dus je zult geen YuCoin winnen of verliezen. Wil je doorgaan?"
+        "subheading": "Onthoud dat als je dit duel accepteert, je %{yucoin} YuCoin verliezen. Wil je doorgaan?",
+        "subheading_no_yucoin": "Dit duel is alleen om op te scheppen, dus je zult geen YuCoin winnen of verliezen. Ben je blij om door te gaan?"
       },
       "duel_response_intro": {
-        "bragging_rights": "Opscheprechten",
+        "bragging_rights": "opscheprechten",
         "collegue": "Een collega",
-        "heading": "heeft je uitgenodigd voor een duel van 1 dag!",
-        "yucoin_heading": "heeft je uitgenodigd voor een duel van 1 dag voor %{yucoin}!"
+        "heading": "heeft je uitgenodigd voor een 1-daags duel!",
+        "yucoin_heading": "heeft je uitgenodigd voor een 1-daags duel voor %{yucoin}!"
       },
       "hub": {
         "active_tab": "Actief",
         "all_day_steps": "%{userScore} stappen",
-        "br": "NL",
+        "br": "BR",
         "challenge_friend_button": "Daag een vriend uit",
         "completed_tab": "Voltooid",
-        "confirm_duel_steps": "Bevestig uw stappen",
+        "confirm_duel_steps": "Bevestig je stappen",
         "duel_confirming": "Bevestigen...",
         "duel_syncing": "Synchroniseren...",
         "invitations_declined": "Afgewezen",
         "invitations_invited": "Uitgenodigd",
-        "invitations_respond": "Reageren",
+        "invitations_respond": "Reageer op",
         "invitations_title": "Uitnodigingen",
-        "last_know_step": "Laatste bekende stappentelling:",
-        "score": "%{opponentScore} tegen %{userScore} stappen",
+        "last_know_step": "Laatst bekende aantal stappen:",
+        "score": "%{opponentScore} vs. %{userScore} stappen",
         "steps": "stappen",
         "steps_today": "stappen vandaag",
-        "sync_duel_steps": "Sync je stappen",
+        "sync_duel_steps": "Synchroniseer je stappen",
         "synced": "gesynchroniseerd",
         "today_empty": "Je duelleert vandaag met niemand.",
-        "today_title": "Vandaag Duels",
-        "tomorrow_title": "Morgenduels",
+        "today_title": "Duels van vandaag",
+        "tomorrow_title": "Duels van morgen",
         "waiting_for_opponent_steps_sync": "Wachten op %{opponentName} om hun stappen te synchroniseren",
-        "you_drew": "het is gelijkspel",
-        "you_lost": "je verloor",
+        "you_drew": "je tekende",
+        "you_lost": "je hebt verloren",
         "you_won": "je hebt gewonnen!"
       },
       "intro": {
-        "subtitle_1": "Wil je de strijd aangaan? Selecteer een vriend van het leaderboard en daag ze uit voor een duel!",
-        "subtitle_2": "Voel je je zelfverzekerd? Duelleer voor YuCoin of opscheprechten!",
-        "subtitle_3": "Je duel begint de volgende dag en je hebt 24 uur om zoveel mogelijk stappen te maken!",
+        "subtitle_1": "Wil je het tegen elkaar opnemen? Selecteer een vriend uit het klassement en daag hem uit voor een duel!",
+        "subtitle_2": "Voel je je zelfverzekerd? Duel om YuCoin of om opscheprechten!",
+        "subtitle_3": "Je duel begint de volgende dag en je hebt 24 uur de tijd om zoveel mogelijk stappen te zetten!",
         "title_1": "Daag een vriend uit!",
-        "title_2": "Stel de inzet in",
-        "title_3": "Overstap je tegenstander"
+        "title_2": "Inzetten",
+        "title_3": "Overtref je tegenstander"
       },
       "search": {
-        "friends_not_found": "We konden de vriend die u zoekt niet vinden.\nGeef ze een seintje om op het leaderboard te komen of nodig ze uit voor de app!",
+        "friends_not_found": "We konden de vriend die je zoekt niet vinden.\nzoeken. Geef ze een duwtje om mee te doen aan het leaderboard of nodig ze uit voor de app!",
         "item_duel": "Duel >",
         "recent_opponents": "Recent",
         "title": "Zoek een vriend:"
@@ -363,34 +363,34 @@
     "generic_connection_error": {
       "offline": {
         "heading": "je bent offline",
-        "subheading": "Controleer je internetverbinding."
+        "subheading": "controleer je internetverbinding"
       }
     },
     "generic_modal": {
       "cancel_challenge": {
-        "cta_label": "Verlaat uitdaging",
-        "heading": "Stoppen?",
-        "subheading": "Je huidige voortgang gaat verloren maar je kunt altijd opnieuw proberen"
+        "cta_label": "Uitdaging",
+        "heading": "Ermee stoppen?",
+        "subheading": "Je huidige voortgang gaat verloren, maar je kunt het altijd opnieuw proberen."
       },
       "on_media_challenge_end_error": {
-        "cta_label": "Questmenu",
-        "heading": "Het lijkt erop dat Yugi\nfout heeft gesignaleerd!",
-        "subheading": "U kunt het later opnieuw proberen of contact met ons opnemen via uw in-app chat — wij zijn vriendelijk!"
+        "cta_label": "Zoektocht menu",
+        "heading": "Het lijkt erop dat Yugi een\neen fout heeft ontdekt!",
+        "subheading": "Je kunt het later nog eens proberen of contact met ons opnemen via de in-app chat - we zijn vriendelijk!"
       },
       "on_meditopia_error": {
-        "cta_label": "Opnieuw",
-        "cta_label_secondary": "Questmenu",
-        "heading": "Oh jee, er is iets niet helemaal goed.",
-        "subheading": "We konden de media niet laden. Controleer uw verbinding en probeer het opnieuw. Als u dit bericht blijft zien, neem dan contact met ons op via de chat."
+        "cta_label": "Opnieuw proberen",
+        "cta_label_secondary": "Zoektocht menu",
+        "heading": "Uh oh, er klopt iets niet.",
+        "subheading": "We konden de media niet laden. Controleer je verbinding en probeer het opnieuw. Als je dit bericht blijft zien, neem dan contact met ons op via chat."
       },
       "on_pathways_challenge_cancel": {
-        "cta_label": "Probeer het later"
+        "cta_label": "Probeer later"
       },
       "on_pathways_media_error": {
-        "cta_label": "Opnieuw",
-        "cta_label_secondary": "Uitdagingenmenu",
-        "heading": "Oh jee, er is iets niet helemaal goed.",
-        "subheading": "We konden de media niet laden. Controleer uw verbinding en probeer het opnieuw. Als u dit bericht blijft zien, neem dan contact met ons op via de chat."
+        "cta_label": "Opnieuw proberen",
+        "cta_label_secondary": "Uitdagingen menu",
+        "heading": "Uh oh, er klopt iets niet.",
+        "subheading": "We konden de media niet laden. Controleer je verbinding en probeer het opnieuw. Als je dit bericht blijft zien, neem dan contact met ons op via chat."
       },
       "yumoji_builder": {
         "cta_label": "Wijzigingen opslaan",
@@ -400,88 +400,88 @@
     },
     "leaderboards": {
       "frame_select": {
-        "confirm": "Bevestigen",
-        "heading": "Klassementframe",
+        "confirm": "Bevestig",
+        "heading": "Leaderboard lijst",
         "no_frames": "Er zijn geen avatarframes beschikbaar",
-        "subheading": "Kies een kader om je prestaties te laten zien"
+        "subheading": "Kies een lijst om je prestaties te laten zien"
       },
       "invite": {
         "cta_label": "uitnodiging accepteren",
-        "cta_label_secondary": "uitnodiging afwijzen",
-        "heading_after_name": "Klassement",
-        "heading_before_name": "deelnemen",
-        "subheading_after_name": "scorebord en ook hun voortgang zien.",
-        "subheading_before_name": "door de uitnodiging te accepteren, deel je je stappen en yucoin met andere leden van"
+        "cta_label_secondary": "uitnodiging afslaan",
+        "heading_after_name": "klassement",
+        "heading_before_name": "word lid van",
+        "subheading_after_name": "leaderboard en ook hun voortgang kunnen zien.",
+        "subheading_before_name": "door de uitnodiging te accepteren deel je je stappen en yucoin met andere leden van"
       }
     },
     "locked_achievement": {
-      "title": "Doe dit nog een keer om deze prestatie te ontgrendelen"
+      "title": "Doe dit nog een keer om deze prestatie vrij te spelen"
     },
     "open_random_chest": {
-      "claim_all_subtitle": "Bekijk wat je hebt ontgrendeld!",
-      "claim_all_title": "Hoofdprijs!",
+      "claim_all_subtitle": "Kijk wat je hebt vrijgespeeld!",
+      "claim_all_title": "Jackpot!",
       "claim_reward": "Beloning claimen",
-      "default_redeemed_stage_title": "Je hebt je prijs al ingewisseld!",
+      "default_redeemed_stage_title": "Je hebt je prijs al verzilverd!",
       "info_card": {
         "power_up_inventory": {
-          "description": "Je kunt je versterking vinden in je Versterkingen-inventaris.",
-          "title": "Versterking verzameld!"
+          "description": "Je kunt je Power Ups vinden in je Power Ups inventaris.",
+          "title": "Macht verzameld!"
         },
         "wallet": {
-          "description": "Je kunt je beloning vinden in je Portemonnee in Winkel.",
-          "title": "Beloning ontvangen!"
+          "description": "Je vindt je beloning in je portemonnee in de winkel.",
+          "title": "Beloning verzameld!"
         },
         "yumoji_inventory": {
-          "description": "Je kunt je beloning vinden in je Yumoji-inventaris.",
-          "title": "Beloning ontvangen!"
+          "description": "Je kunt je beloning vinden in je Yumoji inventaris.",
+          "title": "Beloning verzameld!"
         }
       },
-      "open": "Openen",
-      "open_chest": "Kist openen",
-      "reward_collected": "%{reward} ontvangen!",
-      "rewards_collected": "Hier is alles dat je hebt gekregen!",
-      "select_one": "Een selecteren om verder te gaan",
+      "open": "Open",
+      "open_chest": "Open kist",
+      "reward_collected": "%{reward} verzameld!",
+      "rewards_collected": "Hier is alles wat je hebt!",
+      "select_one": "Selecteer er een om verder te gaan",
       "title": "Je hebt een beloning gekregen!",
-      "won_reward": "Je hebt %{reward} gewonnen!"
+      "won_reward": "Je hebt gewonnen %{reward}!"
     },
     "push_notifications": {
       "from_challenge": {
         "cta_label": "natuurlijk",
-        "cta_label_secondary": "Misschien later",
-        "heading": "mis niets",
+        "cta_label_secondary": "misschien later",
+        "heading": "Mis niets",
         "subheading": "Wil je dat we je een seintje geven als je een uitdaging hebt voltooid?"
       },
       "to_settings": {
-        "cta_label": "Ga naar instellingen",
+        "cta_label": "ga naar instellingen",
         "heading": "melding",
-        "subheading": "Om meldingen te ontvangen, moet je naar de systeeminstellingen gaan en deze inschakelen."
+        "subheading": "Om meldingen te krijgen, moet je naar de systeeminstellingen gaan en deze inschakelen."
       },
       "turn_notification_on": {
         "heading": "melding",
-        "subheading": "Zet de melding aan zodat we je kunnen informeren wanneer er een reactie is op je bericht."
+        "subheading": "Zet de notificatie aan zodat we je kunnen laten weten wanneer er een reactie is op je bericht."
       }
     },
     "reflection_reminder": {
       "cta_label": "Herinnering instellen",
-      "heading": "Blijf op koers met je reflecties",
-      "secondary_cta_label": "Overslaan",
+      "heading": "Blijf op koers met je overdenkingen",
+      "secondary_cta_label": "Skip",
       "subheading": "Kies een dagelijkse herinneringstijd zodat je geen dag mist en de Yunity Quest kunt ontgrendelen."
     },
     "reward_info": {
-      "got_it": "Begrepen"
+      "got_it": "Ik heb het"
     },
     "smoking_streak_lapsed": {
       "page_1": {
         "cta": "Volgende",
-        "info": "Je voortgang zal worden gereset, maar houd je oog op de prijs. %{goal} dagen rookvrij is ons ware doel. We zijn hier om je te helpen!",
+        "info": "Je voortgang wordt gereset, maar houd je ogen op de prijs gericht. %{goal} dagen rookvrij is ons echte doel. We zijn hier om je te helpen!",
         "info_title": "Kijk nu niet achterom",
-        "text_1": "Stoppen met roken is moeilijk, en het is normaal om tegenslagen te ervaren. Je bent ook maar een mens!",
-        "text_2": "Wat ertoe doet is erkennen hoe ver je bent gekomen en om door te blijven gaan.",
-        "title": "Dat is oké, iedereen beweegt zich in zijn eigen tempo."
+        "text_1": "Stoppen met roken is moeilijk en het is normaal om tegenslagen te krijgen. Je bent een mens!",
+        "text_2": "Waar het om gaat is om te erkennen hoe ver je al bent gekomen en om door te gaan.",
+        "title": "Dat is niet erg, iedereen beweegt in zijn eigen tempo."
       },
       "page_2": {
         "cta": "Volgende",
-        "markdown": "Je bent al zo ver gekomen, je kunt het opnieuw doen. Wij geloven in jou.\n\nLaten we opnieuw beginnen met een hernieuwde instelling.\n\n**Wanneer heb je voor het laatst gerookt?**",
+        "markdown": "Je bent al zo ver gekomen, je kunt het weer. Wij geloven in jou.\n\nLaten we opnieuw beginnen met een vernieuwde mindset.\n\n**Wanneer heb je voor het laatst gerookt?",
         "title": "Laten we doorgaan!"
       }
     },
@@ -489,10 +489,10 @@
       "next": "Volgende"
     },
     "streak_saver": {
-      "body": "Je hebt een dag gemist, maar iedereen verdient nog een kans — blijf die uitdagingen aan gaan!",
-      "button": "Begrepen!",
-      "inventory_item": "StreakBeschermers",
-      "title": "Streak opgeslagen!"
+      "body": "Je hebt een dag gemist, maar we verdienen het allemaal om nog een keer te gaan - blijf die uitdagingen verpletteren!",
+      "button": "Hebbes!",
+      "inventory_item": "Streepbeschermers",
+      "title": "Streep gered!"
     },
     "switch_to_google_fit": {
       "button_label": "Overschakelen naar Google Fit",
@@ -501,26 +501,26 @@
         "list": {
           "label_1": "Stappen",
           "label_2": "Meditatie",
-          "label_3": "apps van derden"
+          "label_3": "Apps van derden"
         },
         "title": "Google Fit"
       },
-      "heading": "Let op!",
-      "subheading": "Samsung Health synchroniseert momenteel niet de gegevens die we nodig hebben om je voor je sessie te belonen. Om mindful minuten & apps van derden te synchroniseren, schakel alsjeblieft over naar Google Fit."
+      "heading": "Opgelet!",
+      "subheading": "Samsung Health synchroniseert momenteel niet de gegevens die we nodig hebben om je te belonen voor je sessie. Om mindful minuten & apps van derden te synchroniseren, schakel je over naar Google Fit."
     },
     "switch_to_samsung_health": {
       "checklist_info_card": {
-        "description": "Ondersteunt niet alle activiteiten voor de volledige ervaring & beloningen",
+        "description": "Ondersteunt niet alle activiteiten voor volledige ervaring & beloningen",
         "list": {
           "label_1": "Stappen",
           "label_2": "Meditatie",
-          "label_3": "apps van derden"
+          "label_3": "Apps van derden"
         },
-        "title": "Samsung Health"
+        "title": "Samsung Gezondheid"
       }
     },
     "unlocked_achievements": {
-      "description": "Toon ze door ze aan je Yumoji te koppelen.",
+      "description": "Laat ze zien door ze aan je Yumoji te koppelen.",
       "title": "Nieuwe prestatie ontgrendeld! |||| Je hebt %{smart_count} nieuwe prestaties verdiend!"
     }
   },
@@ -529,8 +529,8 @@
       "accessibility_label": "Plus %{coins} yucoin"
     },
     "inventory_banner": {
-      "subtitle": "Open om je items te bekijken",
-      "title": "Voorraad"
+      "subtitle": "Openen om je items te bekijken",
+      "title": "Inventaris"
     },
     "inventory_item": {
       "activated": "Geactiveerd",
@@ -546,58 +546,58 @@
     },
     "reward_item_content": {
       "link_group": {
-        "label_1": "Algemene Voorwaarden",
+        "label_1": "Algemene voorwaarden",
         "label_2": "Beloningsbeleid"
       },
       "titles": {
         "description": "Beschrijving",
-        "how_to_redeem": "Hoe te verzilveren"
+        "how_to_redeem": "Hoe in te wisselen"
       }
     },
     "yucoin_power_button": {
-      "button_label": "Verbetert je beloningsuitdagingen!",
-      "power": "Aan",
+      "button_label": "Verbetert je uitdagingsbeloningen!",
+      "power": "Stroom",
       "yucoin": "YuCoin"
     }
   },
   "navbar": {
     "leaderboard": {
       "accessibility_label": "Open klassement",
-      "accessibility_text_value": "4 van de 5",
-      "label": "Klassement"
+      "accessibility_text_value": "4 van 5",
+      "label": "Leaderboard"
     },
     "quest": {
-      "accessibility_label": "Quest openen",
-      "accessibility_text_value": "2 van de 5",
-      "label": "Missies"
+      "accessibility_label": "Open zoektocht",
+      "accessibility_text_value": "2 van 5",
+      "label": "Zoektochten"
     },
     "rewards": {
       "accessibility_label": "Open beloningen",
-      "accessibility_text_value": "5 van de 5",
+      "accessibility_text_value": "5 van 5",
       "label": "Beloningen"
     },
     "yu": {
-      "accessibility_label": "Open yu-scherm",
-      "accessibility_text_value": "3 van de 5",
+      "accessibility_label": "Open uw scherm",
+      "accessibility_text_value": "3 van 5",
       "label": "Yu"
     },
     "yucoin": {
       "accessibility_label": "Open yucoin",
-      "accessibility_text_value": "1 van de 5",
+      "accessibility_text_value": "1 van 5",
       "label": "YuCoin"
     }
   },
   "overlays": {
     "breathing_exercise_duration_picker": {
-      "button_label": "Begin",
-      "title": "Kies een duur"
+      "button_label": "Start",
+      "title": "Kies een lengte"
     },
     "business_account": {
       "button_label": "Selecteer",
       "title": "Lidmaatschappen"
     },
     "leaderboard_community": {
-      "button_label": "Bekijk klassement"
+      "button_label": "Leaderboard bekijken"
     }
   },
   "period": {
@@ -607,121 +607,122 @@
   "permissions": {
     "android": {
       "activity_recognition": {
-        "description": "Nodig voor de YuLife-app om activiteitsgegevens van je telefoon te verkrijgen.",
-        "requirement": "Vereist voor: Stappen, Mindfulness & Fietsen",
-        "title": "Fysieke Herkenning"
+        "description": "Nodig voor de YuLife app om activiteitsgegevens van je telefoon te krijgen.",
+        "requirement": "Nodig voor: Stappen, Mindfulness & Fietsen",
+        "title": "Fysieke herkenning"
       },
       "activity_recognition_samsung_health": {
-        "description": "Nodig voor de YuLife-app om activiteitsgegevens van je telefoon te verkrijgen.",
-        "requirement": "Vereist voor: Stappen",
-        "title": "Fysieke Herkenning"
+        "description": "Nodig voor de YuLife app om activiteitsgegevens van je telefoon te krijgen.",
+        "requirement": "Nodig voor: Stappen",
+        "title": "Fysieke herkenning"
       },
       "alert": {
-        "accept": "Inschakelen",
+        "accept": "inschakelen",
         "activity": {
-          "message": "Om je beloningen aan te bieden, moet je YuLife toestaan je fysieke activiteit te lezen.",
-          "multiple_items_message": "Om je beloningen aan te bieden, moet je YuLife toestaan je fysieke activiteit te lezen.",
+          "message": "Om je beloningen aan te bieden moet je YuLife toestaan om je fysieke activiteit te lezen.",
+          "multiple_items_message": "Om je beloningen aan te bieden moet je YuLife toestaan om je fysieke activiteit te lezen.",
           "title": "Aan de slag"
         },
         "default": {
-          "message": "Om de Yulife-app te gebruiken, moet u een nieuwe toestemming inschakelen.",
-          "multiple_items_message": "Om de Yulife-app te gebruiken, moet u een nieuwe toestemming inschakelen.",
+          "message": "Om de Yulife app te kunnen gebruiken, moet je een nieuwe toestemming inschakelen.",
+          "multiple_items_message": "Om de Yulife app te kunnen gebruiken, moet je een nieuwe toestemming inschakelen.",
           "title": "Aan de slag"
         },
         "deny": "Misschien later",
         "location": {
-          "message": "Als je beloond wilt worden voor het fietsen met de YuLife-app moet je locatiediensten inschakelen.",
-          "multiple_items_message": "Locatie is alleen vereist als je beloond wilt worden voor het fietsen.",
+          "message": "Als je beloond wilt worden voor het fietsen met de YuLife app moet je locatieservices inschakelen.",
+          "multiple_items_message": "Locatie is alleen nodig als je beloond wilt worden voor het fietsen.",
           "title": "Aan de slag"
         }
       },
       "distance_read": {
-        "description": "Nodig voor de YuLife app om fiets-/fietsgegevens te krijgen die in je Google Fit-account worden gevolgd.",
-        "requirement": "Vereist: Fysieke Herkenning, Locatie",
-        "title": "Afstand Fietsen"
+        "description": "Nodig voor de YuLife app om fietsgegevens bij te houden in je Google Fit account.",
+        "requirement": "Vereist: Fysieke herkenning, locatie",
+        "title": "Fietsafstand"
       },
       "fitness_activity_read": {
-        "description": "Nodig voor de YuLife app om stapgegevens te lezen die in je Google Fit-account worden gevolgd.",
-        "requirement": "Vereist: Fysieke Herkenning",
+        "description": "Nodig voor de YuLife app om stapgegevens te lezen die zijn bijgehouden in je Google Fit account.",
+        "requirement": "Vereist: Fysieke herkenning",
         "title": "Stappen"
       },
       "health_connect": {
         "cycling": {
-          "description": "Nodig voor de YuLife app om fietsafstandgegevens te krijgen die door Health Connect worden gevolgd.",
+          "description": "Nodig voor de YuLife app om fietsafstandgegevens te krijgen die worden bijgehouden door Health Connect.",
           "requirement": "Vereist: Afstand",
           "title": "Fietsen"
         },
         "exercise": {
-          "description": "Nodig voor de YuLife app om trainingsgegevens (bijv. Fiit) te krijgen die door Health Connect worden gevolgd.",
+          "description": "Nodig voor de YuLife app om trainingsgegevens (bijv. Fiit) te krijgen die worden bijgehouden door Health Connect.",
           "requirement": "Vereist: Oefening",
-          "title": "Workouts"
+          "title": "Training"
         },
         "meditation": {
-          "description": "Meditatie wordt niet ondersteund door Health Connect. Om beloond te worden, schakel over naar Google Fit.",
+          "description": "Nodig voor de YuLife app om mindful minuten van je meditatiesessies te synchroniseren met je Health Connect account.",
+          "requirement": "Vereist: Mindfulness sessies",
           "title": "Mindful minuten"
         },
         "steps": {
-          "description": "Nodig voor de YuLife app om stapgegevens te lezen die door Health Connect worden gevolgd.",
+          "description": "Nodig voor de YuLife app om stapgegevens te lezen die worden bijgehouden door Health Connect.",
           "requirement": "Vereist: Stappen",
           "title": "Stappen"
         }
       },
       "location": {
-        "description": "Nodig voor de YuLife-app om activiteitsgegevens van je telefoon te verkrijgen.",
-        "requirement": "Vereist voor: Fietsen",
+        "description": "Nodig voor de YuLife app om activiteitsgegevens van je telefoon te krijgen.",
+        "requirement": "Nodig voor: Fietsen",
         "title": "Locatie"
       },
       "mindfulness_read": {
-        "description": "Nodig voor de YuLife-app om inzichtelijke minuten van je meditatiesessies te synchroniseren naar je Google Fit-account.",
-        "requirement": "Vereist: Fysieke Herkenning",
-        "title": "Mindful Minuten"
+        "description": "Nodig voor de YuLife app om mindful minuten van je meditatiesessies te synchroniseren met je Google Fit account.",
+        "requirement": "Vereist: Fysieke herkenning",
+        "title": "Mindful minuten"
       },
       "samsung_cycling": {
-        "description": "Fietsen wordt niet ondersteund door Samsung Health. Om beloond te worden, schakel over naar Google Fit.",
-        "descriptionSupported": "Nodig voor de YuLife app om fiets-/fietsgegevens te krijgen die in je Samsung Health-account worden gevolgd.",
-        "title": "Fietsen (Niet ondersteund)",
+        "description": "Fietsen wordt niet ondersteund door Samsung Health. Schakel over naar Google Fit om beloond te worden.",
+        "descriptionSupported": "Nodig voor de YuLife app om fietsgegevens bij te houden in je Samsung Health account.",
+        "title": "Fietsen (niet ondersteund)",
         "titleSupported": "Fietsen"
       },
       "samsung_mindful": {
-        "description": "Meditatie wordt niet ondersteund door Samsung Health. Om beloond te worden, schakel over naar Google Fit.",
+        "description": "Meditatie wordt niet ondersteund door Samsung Health. Schakel over naar Google Fit om beloond te worden.",
         "title": "Mindful minuten (Niet ondersteund)"
       },
       "samsung_steps_count": {
-        "description": "Nodig voor de YuLife app om stapgegevens te lezen die in je Samsung Health-account worden gevolgd.",
-        "requirement": "Vereist: Fysieke Herkenning",
-        "title": "Stappentelling"
+        "description": "Nodig voor de YuLife app om stapgegevens uit te lezen die zijn bijgehouden in je Samsung Health account.",
+        "requirement": "Vereist: Fysieke herkenning",
+        "title": "Aantal stappen"
       },
       "samsung_steps_count_trend": {
-        "description": "Nodig voor de YuLife app om stapgegevens te lezen die in je Samsung Health-account worden gevolgd.",
-        "requirement": "Vereist: Fysieke Herkenning",
-        "title": "Dagelijkse trend van stappentelling"
+        "description": "Nodig voor de YuLife app om stapgegevens uit te lezen die zijn bijgehouden in je Samsung Health account.",
+        "requirement": "Vereist: Fysieke herkenning",
+        "title": "Trend van dagelijks aantal stappen"
       },
       "workouts_read": {
-        "description": "Nodig voor de YuLife app om trainingsgegevens (bijv. Fiit) te krijgen die in je Google Fit-account worden gevolgd.",
-        "requirement": "Vereist: Fysieke Herkenning",
-        "title": "Workouts"
+        "description": "Nodig voor de YuLife app om trainingsgegevens (bijv. Fiit) bij te houden in je Google Fit account.",
+        "requirement": "Vereist: Fysieke herkenning",
+        "title": "Training"
       }
     },
     "ios": {
       "cycling_read": {
-        "description": "Nodig voor de YuLife app om fiets-/fietsgegevens te krijgen die in je Apple Health-account worden gevolgd.",
+        "description": "Nodig voor de YuLife app om fietsgegevens bij te houden in je Apple Health account.",
         "title": "Fietsafstand"
       },
       "mindfulness_read": {
-        "description": "Nodig voor de YuLife-app om inzichtelijke minuten van je meditatiesessies te synchroniseren naar je Apple Health-account.",
+        "description": "Nodig voor de YuLife app om mindful minuten van je meditatiesessies te synchroniseren met je Apple Health account.",
         "title": "Mindful minuten"
       },
       "motion_and_fitness": {
-        "description": "Vereist voor de YuLife-app om je te belonen voor je dagelijkse activiteiten.",
+        "description": "Vereist voor de YuLife app om je te belonen voor je dagelijkse activiteiten.",
         "title": "Beweging & Fitness"
       },
       "steps_read": {
-        "description": "Nodig voor de YuLife app om stapgegevens te lezen die in je Apple Health-account worden gevolgd.",
+        "description": "Nodig voor de YuLife app om stapgegevens te lezen die zijn bijgehouden in je Apple Health account.",
         "title": "Stappen"
       },
       "workouts_read": {
-        "description": "Nodig voor de YuLife app om trainingsgegevens (bijv. Fiit) te krijgen die in je Apple Health-account worden gevolgd.",
-        "title": "Trainingsschema's"
+        "description": "Nodig voor de YuLife app om trainingsgegevens (bijv. Fiit) bij te houden in je Apple Health account.",
+        "title": "Training"
       }
     }
   },
@@ -729,21 +730,21 @@
     "account_number": "Rekeningnummer",
     "email": "E-mail",
     "first_name": "Voornaam",
-    "group_name": "Groepsnaam",
+    "group_name": "Naam groep",
     "last_name": "Achternaam",
     "password": "Wachtwoord",
     "phone_number": "Telefoonnummer",
-    "relation": "Verhouding"
+    "relation": "Relatie"
   },
   "prizes": {
     "tooltips": {
       "power_up": {
-        "body": "Vind het in je inventaris bij Quests.",
-        "title": "Versterking verzameld!"
+        "body": "Zoek het in je inventaris in Quests.",
+        "title": "Power-up verzameld!"
       },
       "purchase": {
-        "body": "Vind het in je portemonnee.",
-        "title": "Beloning ontvangen!"
+        "body": "Zoek het in je portemonnee.",
+        "title": "Beloning verzameld!"
       },
       "yucoin": {
         "body": "Bekijk het op het YuCoin-scherm",
@@ -751,42 +752,42 @@
       },
       "yumoji": {
         "body": "Probeer het op je Yumoji.",
-        "title": "Yumoji-item verzameld!"
+        "title": "Yumoji item verzameld!"
       }
     }
   },
   "push_notification": {
     "challenge_completed": {
-      "message": "Tijd is om! Controleer hoe je hebt gepresteerd bij je laatste uitdaging.",
+      "message": "De tijd is om! Kijk hoe je het hebt gedaan met je laatste uitdaging.",
       "title": "Uitdaging voltooid"
     }
   },
-  "samsung_health": "Samsung Health",
+  "samsung_health": "Samsung Gezondheid",
   "save_image": {
     "blocked": {
-      "confirm_label": "Open app-instellingen",
-      "description": "Controleer uw machtigingen en zorg ervoor dat de YuLife-app toegang heeft tot Foto's.",
-      "description_android": "Controleer uw machtigingen en zorg ervoor dat de YuLife-app toegang heeft tot Media.",
+      "confirm_label": "App-instellingen openen",
+      "description": "Controleer je toestemmingen en zorg ervoor dat de YuLife app toegang heeft tot Foto's.",
+      "description_android": "Controleer je toestemmingen en zorg ervoor dat de YuLife app Media toegang heeft.",
       "title": "Kan niet opslaan"
     },
     "error": {
-      "description": "Controleer uw machtigingen en zorg ervoor dat de YuLife-app toegang heeft tot Foto's.",
-      "description_android": "Controleer uw machtigingen en zorg ervoor dat de YuLife-app toegang heeft tot Media.",
-      "title": "Niet opslaan mogelijk"
+      "description": "Controleer je toestemmingen en zorg ervoor dat de YuLife app toegang heeft tot Foto's.",
+      "description_android": "Controleer je toestemmingen en zorg ervoor dat de YuLife app Media toegang heeft.",
+      "title": "Kan niet opslaan"
     },
     "image_saved": {
-      "description": "Je vindt de afbeelding in de Foto's-app.",
+      "description": "Je vindt de afbeelding in de Foto's app.",
       "title": "Afbeelding opgeslagen"
     },
     "no_permission": {
-      "confirm_label": "Bevestigen",
-      "description": "We hebben uw toestemming nodig om de afbeelding op uw apparaat op te slaan.",
-      "title": "Toestemming Vereist"
+      "confirm_label": "Bevestig",
+      "description": "We hebben je toestemming nodig om de afbeelding op je apparaat op te slaan.",
+      "title": "Toestemming vereist"
     },
     "save_button": "Opslaan als afbeelding",
     "unavailable": {
-      "description": "Deze functie is niet beschikbaar op uw apparaat.",
-      "title": "Niet opslaan mogelijk"
+      "description": "Deze functie is niet beschikbaar op je apparaat.",
+      "title": "Kan niet opslaan"
     }
   },
   "screens": {
@@ -794,31 +795,31 @@
       "achievements_points": "%{achievementPoints} Prestatiepunten"
     },
     "activity_history": {
-      "empty_message": "Het lijkt erop dat je nog geen activiteiten hebt voltooid. Begin vandaag je welzijnsreis met een paar uitdagingen."
+      "empty_message": "Het lijkt erop dat je nog geen activiteiten hebt voltooid. Begin je reis naar welzijn vandaag met een aantal uitdagingen."
     },
     "activity_history_levels": {
       "header_left": "datum",
-      "header_level": "Niveau",
-      "header_mid": "activiteit & voortgang",
+      "header_level": "niveau",
+      "header_mid": "activiteit & vooruitgang",
       "header_right": "yucoin",
-      "heading": "Activiteitengeschiedenis"
+      "heading": "Activiteit geschiedenis"
     },
     "animated_chest": {
       "closed_chest": {
         "cta_label": "Open de kist",
-        "heading": "Niveaumijlpaal bereikt!",
-        "subheading": "Je hebt het gedaan!"
+        "heading": "Mijlpaal bereikt!",
+        "subheading": "Het is je gelukt!"
       },
       "opened_chest": {
-        "cta_label": "Doorgaan",
+        "cta_label": "Ga verder",
         "heading": "Je hebt YuCoin verdiend!"
       }
     },
     "battle_pass": {
       "accessibility": {
-        "donate_button": "Doneer %{amount} yu-munten aan %{title}",
+        "donate_button": "Doneer %{amount} yu munt aan %{title}",
         "donation_title": "%{title} donatie",
-        "progress_bar": "%{step} van de %{steps} yu-munten besteed om niveau %{level} te bereiken",
+        "progress_bar": "%{step} van %{steps} yu munt uitgegeven om niveau %{level} te bereiken",
         "reward_item_details": "%{title} beloning",
         "reward_level": "Niveau %{level} beloning",
         "view_details": "Bekijk %{title} beloningsdetails",
@@ -827,16 +828,16 @@
       "claim_modal": {
         "buttons": {
           "claim_reward": "Beloning claimen",
-          "open_chest": "Openen",
-          "select_reward": "Deze beloning selecteren"
+          "open_chest": "Open",
+          "select_reward": "Selecteer deze beloning"
         }
       },
       "ftux": {
         "intro": {
           "button": "Gaaf!",
           "steps": {
-            "step_1": "Verdien **YuCoin** door dagelijkse questen te voltooien!",
-            "step_2": "Level up door **YuCoin** te doneren!",
+            "step_1": "Verdien **YuCoin** door dagelijkse opdrachten te voltooien!",
+            "step_2": "Level omhoog door **YuCoin!** te doneren.",
             "step_3": "Win exclusieve **beloningen!**"
           },
           "title": "Hoe werkt het?"
@@ -850,36 +851,36 @@
       },
       "level_up": {
         "accessibility_title": "Level omhoog! Niveau %{level} bereikt",
-        "title": "Niveau omhoog!"
+        "title": "Level omhoog!"
       },
       "season_complete": {
         "claim_rewards": {
           "claim_action": "Claim je beloningen hierboven!",
           "claim_button": "Beloningen claimen"
         },
-        "go_to_next_season": "Gefeliciteerd met het voltooien van dit seizoen! Tijd om aan het volgende te beginnen!",
-        "go_to_next_season_button": "Doorgaan",
+        "go_to_next_season": "Gefeliciteerd met het afronden van dit seizoen! Tijd om aan het volgende te beginnen!",
+        "go_to_next_season_button": "Ga verder",
         "modal": {
-          "button_label": "Start Nieuw Seizoen",
+          "button_label": "Start nieuw seizoen",
           "title": "%{name} is voltooid!"
         },
         "staging": {
-          "description": "Blijf je dagelijkse uitdagingen aangaan terwijl spannende beloningen op je wachten!",
+          "description": "Blijf je dagelijkse uitdagingen aangaan want er wachten spannende beloningen!",
           "go_to_purchases": "Ga naar aankopen",
-          "go_to_store": "Ga naar beloningen winkel",
+          "go_to_store": "Ga naar de winkel met beloningen",
           "title": "Er komt een nieuw seizoen aan!"
         },
-        "subtitle": "Je hebt de voltooid",
-        "unclaimed_rewards": "Seizoen beëindigd! Claim je beloningen en ga weer op avontuur!"
+        "subtitle": "Je hebt de",
+        "unclaimed_rewards": "Seizoen afgelopen! Claim je beloningen en op naar het volgende avontuur!"
       }
     },
     "breathing_exercise": {
       "completed_exercise": "Je hebt de oefening voltooid",
       "end": "Goed gedaan!",
-      "exhale": "Uitadem",
-      "hold": "Vasthouden",
+      "exhale": "Uitademen",
+      "hold": "Houd",
       "inhale": "Inademen",
-      "length": "Kies een duur",
+      "length": "Kies een lengte",
       "mouth": "Mond",
       "nose": "Neus"
     },
@@ -887,9 +888,9 @@
       "card": "Een kist vol YuCoin!",
       "cta_label_is_next": "Laten we het doen",
       "heading_is_completed": "Je krijgt %{yucoin} YuCoin",
-      "heading_is_next": "Bijna daar! Neem een uitdaging aan om je beloning te ontgrendelen.",
-      "heading_is_not_next_level": "Ontgrendel op niveau %{level}",
-      "heading_is_not_next_stage": "Ontgrendel bij %{name}"
+      "heading_is_next": "Je bent er bijna! Doe een uitdaging om je beloning vrij te spelen.",
+      "heading_is_not_next_level": "Ontgrendelen op niveau %{level}",
+      "heading_is_not_next_stage": "Ontgrendelen op %{name}"
     },
     "challenge_details": {
       "accessibility": {
@@ -897,41 +898,41 @@
       }
     },
     "challenge_failed": {
-      "footer": "Waarom niet opnieuw proberen?",
+      "footer": "Waarom probeer je het niet nog een keer?",
       "heading": "Je was zo dichtbij!",
-      "stage": "Fase %{level}"
+      "stage": "Stadium %{level}"
     },
     "challenge_list": {
       "accessibility": {
         "description": "%{heading} %{reward} yucoin %{duration}"
       },
-      "level_boosted": "Versterk",
+      "level_boosted": "Boost",
       "level_completed": "Voltooid",
-      "level_locked": "Vergrendeld",
+      "level_locked": "Gesloten",
       "time_remaining": "Resterende tijd"
     },
     "challenge_next_modal": {
       "cta_reject": "Misschien later",
       "cta_submit": "Laten we gaan!",
-      "heading": "Bijna daar! Neem een uitdaging aan om je beloning te ontgrendelen.",
-      "tease": "Blijf doorgaan om beloningen vrij te spelen"
+      "heading": "Je bent er bijna! Doe een uitdaging om je beloning vrij te spelen.",
+      "tease": "Blijf levelen om beloningen vrij te spelen"
     },
     "challenge_no_data": {
       "buttons": {
-        "cancel_challenge": "Annuleer uitdaging",
-        "faq": "Veelgestelde Vragen",
-        "open_apple_health": "Open Apple Gezondheid App",
-        "retry": "Probeer opnieuw synchroniseren"
+        "cancel_challenge": "Uitdaging annuleren",
+        "faq": "FAQs",
+        "open_apple_health": "Open de Apple Gezondheid-app",
+        "retry": "Probeer opnieuw te synchroniseren"
       },
-      "cant_open_apple_health_body": "Probeer Apple Health handmatig te openen om uw gegevens te controleren",
-      "cant_open_apple_health_title": "Er is iets misgegaan",
-      "description": "We missen je gegevens van de actieve uitdaging. Zorg ervoor dat de uitdaging activiteit is gesynchroniseerd met je gezondheidsapp. Als je een probleem tegenkomt, kun je altijd annuleren en het nog eens proberen.",
-      "title": "Oeps! Je actieve uitdaging synchroniseert nog niet."
+      "cant_open_apple_health_body": "Probeer Apple Health handmatig te openen om je gegevens te controleren",
+      "cant_open_apple_health_title": "Er ging iets mis",
+      "description": "We missen je actieve challenge-gegevens. Zorg ervoor dat de activiteit van de uitdaging is gesynchroniseerd in je gezondheidsapp. Als je tegen een probleem aanloopt, kun je altijd annuleren en het nog een keer proberen.",
+      "title": "Oeps! Je actieve uitdaging is nog niet gesynchroniseerd."
     },
     "challenge_progress": {
       "debug_info": {
         "cta": "Gegevens exporteren",
-        "current_pedometer_steps": "2. Huidige Stappenteller Stappen: %{steps}",
+        "current_pedometer_steps": "2. Huidige stappen op de stappenteller: %{steps}",
         "history_steps": "4. Stappenteller geschiedenis stappen:",
         "initial_steps": "1. %{healthProvider} eerste stappen: %{steps}",
         "progress": "3. Voortgang (2 - 1): %{progress}"
@@ -940,19 +941,19 @@
         "different_app_cta_label": "Ik gebruik een andere app",
         "fiit": {
           "heading": "Aan de slag met Fiit",
-          "subheading": "Voltooi een Fiit-les om beloond te worden"
+          "subheading": "Voltooi elke Fiit-les om beloond te worden"
         },
-        "heading": "Kies een app om te starten",
-        "subheading": "Je kunt elke app gebruiken die mindfulness minuten synchroniseert naar %{syncApp}"
+        "heading": "Kies een app om mee te beginnen",
+        "subheading": "Je kunt elke app gebruiken die mindfulness minuten synchroniseert met %{syncApp}"
       },
       "how_meditate_with_other_apps_label": "Hoe mediteer ik met andere apps",
       "workout_with_other_apps": "Hoe train ik met andere apps"
     },
     "challenge_progress_watch": {
-      "body": "Als u een uitdaging vanaf uw telefoon wilt starten, kunt u de actieve uitdaging op uw horloge of vanaf hier annuleren.",
-      "button": "Annuleer uitdaging",
+      "body": "Als je een uitdaging vanaf je telefoon wilt starten, kun je de actieve uitdaging op je horloge of vanaf hier annuleren.",
+      "button": "Uitdaging annuleren",
       "resync": "Opnieuw synchroniseren met horloge",
-      "title": "Uitdaging bezig!"
+      "title": "Uitdaging in uitvoering!"
     },
     "challenges": {
       "animated_chest": {
@@ -960,68 +961,68 @@
       },
       "details": {
         "bonus_info_popup": {
-          "cta_label": "Begrepen",
+          "cta_label": "Ik heb het",
           "text": "Deze boost geeft je een extra vast bedrag aan YuCoin voor deze uitdaging."
         },
-        "boosted_badge": "Versterk",
-        "cta_label": "Neem uitdaging",
+        "boosted_badge": "Boost",
+        "cta_label": "Ga de uitdaging aan",
         "extra_yucoin": "Extra YuCoin",
-        "loading": "Bezig met laden...",
-        "set_up_label": "Instellingstutorial",
-        "surge_badge": "Surge: %{multiplier}x"
+        "loading": "Aan het laden...",
+        "set_up_label": "Zelfstudie instellen",
+        "surge_badge": "Overspanning: %{multiplier}x"
       },
       "history": {
         "completed_challenges": "Voltooide uitdagingen",
-        "full_button_label": "Volledige activiteitenhistorie",
+        "full_button_label": "Volledige activiteitsgeschiedenis",
         "menu_label": "kaart",
         "sudoku_leaderboard": {
-          "default": "Yudoku Klassement (%{date})",
-          "jp": "Klassement Cijferraadsel (%{date})"
+          "default": "Yudoku Leaderboard (%{date})",
+          "jp": "Aantal puzzel Leaderboard (%{date})"
         },
         "sudoku_leaderboard_today": "Vandaag",
-        "summary": "Level %{level} Overzicht",
-        "summary_named": "%{levelName} Overzicht",
-        "unlock_banner_description_bold": "één extra uitdaging per dag",
-        "unlock_banner_description_end": "en ontgrendel een totaal van vier dagelijkse uitdagingen.",
-        "unlock_banner_description_start": "Na het bereiken van niveau 50, 100, en 150, kun je",
-        "unlock_banner_title": "Extra uitdagingen ontgrendelen"
+        "summary": "Niveau %{level} Samenvatting",
+        "summary_named": "%{levelName} Samenvatting",
+        "unlock_banner_description_bold": " één extra uitdaging per dag",
+        "unlock_banner_description_end": "en speel in totaal vier dagelijkse uitdagingen vrij.",
+        "unlock_banner_description_start": "Nadat je niveau 50, 100 en 150 hebt bereikt, kun je het opnemen tegen",
+        "unlock_banner_title": "Speel extra uitdagingen vrij"
       },
       "progress": {
-        "open_fit_app": "Open Fiit-app",
-        "secondary_button_fiit_label": "Openen Fiit",
-        "secondary_button_meditation_label": "Open een meditatie-app"
+        "open_fit_app": "Open Fiit app",
+        "secondary_button_fiit_label": "Open Fiit",
+        "secondary_button_meditation_label": "Open een meditatie app"
       }
     },
     "challenge_success": {
       "footer": "Goed gedaan!",
-      "great_work": "Goed gedaan!",
-      "stage": "Fase %{level}"
+      "great_work": "Geweldig werk!",
+      "stage": "Stadium %{level}"
     },
     "challenge_unavailable": {
-      "level": "Je hebt zojuist een level voltooid",
-      "next": "De volgende is beschikbaar over %{timeRemaining}",
-      "stage": "Je hebt zojuist een fase voltooid"
+      "level": "Je hebt net een niveau voltooid",
+      "next": "De volgende is beschikbaar in %{timeRemaining}",
+      "stage": "Je hebt zojuist een etappe voltooid"
     },
     "challenge_unavailable_modal": {
       "next_available_at": "Dit niveau zal beschikbaar zijn in %{text}"
     },
     "collect_reward_modal": {
-      "cta": "Claimen",
+      "cta": "Claim",
       "description": "Je hebt de mijlpaal van het evenement bereikt!\nGefeliciteerd. Claim je beloningen",
-      "description_title": "Goed gedaan!",
+      "description_title": "Geweldig gedaan!",
       "multiple_events_title": "Een paar van je evenementen",
-      "title": "%{event} evenement"
+      "title": "%{event} gebeurtenis"
     },
     "content_location": {
       "first_time": {
-        "confirm": "Bevestig selectie",
+        "confirm": "Selectie bevestigen",
         "current_location": "Huidige locatie",
-        "description": "Geniet van een YuLife-ervaring die is afgestemd op jouw regio. Maak je geen zorgen, je kunt je locatie later altijd wijzigen als dat nodig is.",
+        "description": "Geniet van een YuLife ervaring op maat van jouw regio. Maak je geen zorgen, je kunt je locatie later altijd nog veranderen als dat nodig is.",
         "heading": "Kies je locatie!"
       },
       "list": {
-        "cta_button": "Bevestig selectie",
-        "rewards_info_box": "Het wijzigen van de winkel locatie zal de valuta van waardebonnen wijzigen. Reeds gekochte waardebonnen worden niet beïnvloed.",
+        "cta_button": "Selectie bevestigen",
+        "rewards_info_box": "Als je de winkellocatie wijzigt, verandert de valuta van de vouchers. Reeds gekochte vouchers worden niet beïnvloed.",
         "title": "Kies je locatie!"
       }
     },
@@ -1029,11 +1030,11 @@
       "challenge_button": {
         "back_to_challenge": "Terug naar uitdaging",
         "pathway_challenge": "Yunity Quest beschikbaar",
-        "take_challenge": "Neem een uitdaging (%{challenges} over vandaag)"
+        "take_challenge": "Ga een uitdaging aan (%{challenges} vandaag over)"
       },
       "daily_passive": {
         "coins": {
-          "accessibility_label": "%{coins} yucoin vandaag verdiend"
+          "accessibility_label": "%{coins} yucoin verdiend vandaag"
         },
         "cycling": {
           "accessibility_label": ", %{cycling} gefietst"
@@ -1050,74 +1051,74 @@
       },
       "disconnected": {
         "unauthorised": {
-          "body": "Het lijkt erop dat je gezondheidsgegevens niet synchroniseren. Heb je je toestemmingen geüpdatet?",
-          "button": "Controleer mijn rechten",
+          "body": "Het lijkt erop dat je gezondheidsgegevens niet worden gesynchroniseerd. Ben je up-to-date met je machtigingen?",
+          "button": "Mijn machtigingen controleren",
           "title": "We kunnen je momenteel niet belonen"
         },
         "unavailable": {
-          "body": "Om YuCoin te verdienen met je stappen en meer, moeten we je machtigingen bijwerken.",
+          "body": "Om YuCoin te verdienen voor je stappen en meer, moeten we je toestemmingen bijwerken.",
           "button": "Verbind je gezondheidsapp",
           "title": "Word beloond voor je activiteit!"
         }
       },
       "fitkit": {
         "help": {
-          "faq_uri": "https://faq.yulife.com/nl/articles/2813117-gezondheidsapps-verbinden-met-yulife",
+          "faq_uri": "https://faq.yulife.com/en/articles/2813117-connecting-health-apps-to-yulife",
           "title": "Help"
         },
         "unauthorised": {
           "android": {
-            "is_samsung_message": "Om je te belonen voor je dagelijkse activiteit moeten we verbinding maken met een Gezondheids-app. Tik hieronder om te beginnen!",
+            "is_samsung_message": "Om je te belonen voor je dagelijkse activiteit moeten we verbinding maken met een Gezondheid app. Tik hieronder om te beginnen!",
             "message": "Om je te belonen voor je dagelijkse activiteit moeten we verbinding maken met Google Fit. Tik hieronder om te beginnen!"
           },
-          "button_label": "Ja, laten we verbinden",
+          "button_label": "Ja, laten we verbinding maken",
           "ios": {
             "first_time_message": "Om je te belonen voor je dagelijkse activiteit moeten we verbinding maken met Apple Health. Tik hieronder om te beginnen!",
             "motion_unauthorised_button_label": "Open machtigingen",
-            "motion_unauthorised_message": "Om beloond te worden voor je stappen en mindfulness, werk je Bewegings- en Fitnessrechten bij.",
-            "post_prompt_button_label": "Verbinding hulp vragen",
-            "post_prompt_message": "We hebben vandaag geen gegevens van Apple Health ontvangen. Kom over een paar minuten terug of tik hieronder om problemen op te lossen."
+            "motion_unauthorised_message": "Om beloond te worden voor je stappen en mindfulness, moet je je Bewegings- en Fitnesstoestemmingen bijwerken.",
+            "post_prompt_button_label": "Krijg hulp bij het aansluiten",
+            "post_prompt_message": "We hebben vandaag geen gegevens ontvangen van Apple Health. Kom over een paar minuten terug of tik hieronder om het probleem op te lossen."
           }
         },
         "unavailable": {
           "heading": "apparaat niet ondersteund",
-          "subheading_android": "uw apparaat vereist Google Play Services om deze app te gebruiken.",
-          "subheading_ios": "uw apparaat vereist Apple Healthkit om deze app te gebruiken."
+          "subheading_android": "je apparaat Google Play Services nodig heeft om deze app te kunnen gebruiken.",
+          "subheading_ios": "Je apparaat heeft Apple Healthkit nodig om deze app te kunnen gebruiken."
         }
       },
       "join_event": {
-        "description": "Neem deel aan het evenement om mee te doen",
-        "title": "Klaar om deel te nemen?"
+        "description": "Doe mee aan het evenement",
+        "title": "Klaar om mee te doen?"
       },
       "offline": {
         "heading": "je bent offline",
-        "subheading": "Je stappen worden bijgewerkt zodra je weer online bent Laatste update: %{lastUpdate}"
+        "subheading": "Je stappen worden bijgewerkt wanneer je de volgende keer online bent Laatste update: %{lastUpdate}"
       },
       "panel": {
         "description": "Het volgende evenement begint binnenkort.",
-        "title": "Blijf op de hoogte!"
+        "title": "Blijf kijken!"
       },
       "streak": {
-        "accessibility_label": "Reeks %{currentStreak} van %{maxStreak} dagen"
+        "accessibility_label": "Streep %{currentStreak} uit %{maxStreak} dagen"
       },
       "surge": {
-        "accessibility_label": "%{multiplier} keer boost %{time} resterend"
+        "accessibility_label": "%{multiplier} keer schommeling %{time} resterend"
       },
       "today_yu_coin": {
-        "accessibility_label": "Vandaag's yucoin"
+        "accessibility_label": "De yucoin van vandaag"
       }
     },
     "eotw_chest": {
       "beginning_button": "Een nieuw begin",
       "claim_button": "Beloningen claimen",
-      "continue_journey_button": "Volgende sterrenstelsel",
+      "continue_journey_button": "Volgende melkwegstelsel",
       "open_chest_button": "Open de kist",
-      "space_travel_text": "Je bent precies waar je was, zwevend boven je wereld, maar het is niet langer alleen.",
+      "space_travel_text": "Je bent precies waar je bent geweest, zwevend boven je wereld, maar hij is niet langer alleen.",
       "title": "Je hebt verdiend",
       "travel_button": "Reizen"
     },
     "event": {
-      "claim_all_rewards_button": "Alles claimen",
+      "claim_all_rewards_button": "Claim alle",
       "close_event_button": "Sluit het evenement",
       "event_ended": "Evenement afgelopen",
       "reward_claimed": "Geclaimd",
@@ -1127,19 +1128,19 @@
       "what_to_do": "Wat te doen"
     },
     "event_close_modal": {
-      "cancel_button": "Nu nog niet",
-      "confirm_button": "Verberg uit zicht",
-      "description": "Als je het evenementenpaneel niet meer wilt zien, kun je het de rest van de looptijd van het evenement verbergen. Dit heeft geen invloed op je behaalde prestaties of verdiende beloningen.",
+      "cancel_button": "Voorlopig houden",
+      "confirm_button": "Aan het zicht onttrekken",
+      "description": "Als je het evenementenpaneel niet meer wilt zien, kun je het voor de rest van de duur van het evenement verbergen. Dit heeft geen invloed op je prestaties of verdiende beloningen.",
       "title": "Sluit het evenement"
     },
     "event_completed": {
-      "description": "Je hebt alle mijlpaalbeloningen verzameld. Goed gedaan!\n Dit evenement wordt afgesloten.",
-      "description_title": "Goed gedaan!",
+      "description": "Je hebt alle mijlpaalbeloningen verzameld. Goed gedaan!\n Dit evenement wordt gesloten.",
+      "description_title": "Geweldig gedaan!",
       "multiple_events_title": "Een paar van je evenementen zijn afgelopen",
-      "title": "%{event} evenement voltooid"
+      "title": "%{event} gebeurtenis beëindigd"
     },
     "event_fail": {
-      "description": "Schiet op om een plekje te bemachtigen voor de volgende en win grote prijzen.",
+      "description": "Haast je om een plekje te bemachtigen voor de volgende en win grote prijzen.",
       "multiple_events_title": "Een paar van je evenementen zijn afgelopen",
       "title": "%{event} evenement is afgelopen"
     },
@@ -1150,32 +1151,32 @@
     "fiit_media_category_list": {
       "promotion": {
         "button_label": "Meer informatie",
-        "description": "Geniet je van Fiit? Yulifers krijgen een gratis proefperiode plus 25% korting op je eerste betaling.",
-        "title": "Fiit: Workouts & Fitnessplannen"
+        "description": "Genieten van Fiit? Yulifers krijgen een gratis proefperiode plus 25% korting op je eerste betaling.",
+        "title": "Fiit: Workouts en fitnessplannen"
       }
     },
     "fiit_media_list": {
       "description": "Gratis lessen mogelijk gemaakt door",
-      "startChallengeButtonLabel": "Begin les"
+      "startChallengeButtonLabel": "Begin klas"
     },
     "fitkit_connect": {
       "android_alert": {
-        "confirm_label": "Ja - ik ben klaar",
-        "download_label": "Download Google Fit",
-        "message": "Voordat je verbinding maakt, zorg ervoor dat je de Google Fit-app op je apparaat hebt gedownload.",
-        "title": "Klaar om te verbinden met Google Fit?"
+        "confirm_label": "Ja - ik ben er klaar voor",
+        "download_label": "Google Fit downloaden",
+        "message": "Voordat je verbinding maakt, moet je ervoor zorgen dat je de Google Fit app op je apparaat hebt gedownload.",
+        "title": "Klaar om verbinding te maken met Google Fit?"
       },
-      "android_heading": "Verbind met Google Fit",
-      "connect_button": "Laten we verbinden",
-      "connect_health_app": "Verbind met een gezondheidsapp zodat we je kunnen belonen voor je dagelijkse activiteiten",
-      "connect_message": "Verbind met %{healthAppName} zodat we je kunnen belonen voor je dagelijkse activiteiten.Je kunt dit op elk moment aanpassen in de instellingen van je apparaat.",
-      "ios_heading": "Synchroniseer met Apple Gezondheid",
+      "android_heading": "Verbinding maken met Google Fit",
+      "connect_button": "Laten we verbinding maken",
+      "connect_health_app": "Verbinden met een gezondheidsapp zodat we je kunnen belonen voor je dagelijkse activiteiten",
+      "connect_message": "Maak verbinding met %{healthAppName} zodat we je kunnen belonen voor je dagelijkse activiteiten. Je kunt dit op elk moment aanpassen in de instellingen van je apparaat.",
+      "ios_heading": "Synchroniseren met Apple Health",
       "link_button_label": "Privacyverklaring",
-      "samsung_heading": "Verbind een gezondheidsapp",
-      "secondary_button_label": "Deze stap overslaan",
-      "unavailable_android": "uw apparaat vereist Google Play Services om deze app te gebruiken.",
+      "samsung_heading": "Een gezondheidsapp aansluiten",
+      "secondary_button_label": "Sla deze stap over",
+      "unavailable_android": "je apparaat Google Play Services nodig heeft om deze app te kunnen gebruiken.",
       "unavailable_heading": "apparaat niet ondersteund",
-      "unavailable_ios": "uw apparaat vereist Apple Healthkit om deze app te gebruiken."
+      "unavailable_ios": "Je apparaat heeft Apple Healthkit nodig om deze app te kunnen gebruiken."
     },
     "generic_error": {
       "heading": "Kan niet laden",
@@ -1185,47 +1186,47 @@
       "add_sticker": "Een sticker toevoegen",
       "already_thanked_them": "Je hebt ze bedankt!",
       "change_background": "Achtergrond wijzigen",
-      "choose_sticker": "Een sticker kiezen",
+      "choose_sticker": "Kies een sticker",
       "gift_view_error": {
-        "description": "Maak je geen zorgen — je kunt het later opnieuw proberen.",
-        "heading": "Het lijkt erop dat er iets is misgegaan!"
+        "description": "Geen zorgen - je kunt het later nog eens proberen.",
+        "heading": "Het lijkt erop dat er iets mis is gegaan!"
       },
       "here_is": "Hier is",
       "intro": {
-        "description": "Toon je vrienden wat waardering door ze goede wensen en wat YuCoin te sturen.",
+        "description": "Laat je vrienden wat waardering zien door ze gelukswensen en wat YuCoin te sturen.",
         "title": "Verspreid de vreugde!"
       },
       "limit_reached": {
-        "description": "Helaas, we hebben ons limiet voor vandaag bereikt. Je zou kunnen wedijveren met de Kerstman met jouw cadeauaantallen! We halen morgen meer inpakpapier voor je.",
-        "info": "Je hebt je dagelijkse limiet van %{smart_count} geschenk bereikt. |||| Je hebt je dagelijkse limiet van %{smart_count} geschenken bereikt.",
-        "title": "Stuur morgen meer cadeaus"
+        "description": "Helaas hebben we onze limiet voor vandaag bereikt. Je zou de Kerstman kunnen overtreffen met je cadeau-aantallen! Morgen hebben we meer inpakpapier voor je.",
+        "info": "Je hebt je dagelijkse verzendlimiet van %{smart_count} geschenk bereikt. |||| Je hebt je dagelijkse verzendlimiet van %{smart_count} geschenken bereikt.",
+        "title": "Morgen meer cadeaus sturen"
       },
-      "not_enough_coin": "Je hebt niet genoeg YuCoin. Probeer alleen een bericht te sturen!",
+      "not_enough_coin": "Je hebt niet genoeg YuCoin. Probeer zelf een bericht te sturen!",
       "no_yu_coin": "Alleen het bericht",
       "send": "Nu verzenden",
       "send_prompt": {
         "button": "Laten we gaan!",
-        "description": "Toon **%{name}** dat je hen waardeert met een klein YuCoin geschenk.",
-        "title": "Verstuur een cadeau"
+        "description": "Laat **%{name}** zien dat je ze waardeert met een klein YuCoin cadeau.",
+        "title": "Stuur een cadeau"
       },
-      "send_your_friend_a_gift": "Verstuur een cadeau naar je vrienden!",
-      "spend_your_yucoin": "Besteden yucoin",
+      "send_your_friend_a_gift": "Stuur je vrienden een cadeau!",
+      "spend_your_yucoin": "Geef je YuCoin uit",
       "success": {
-        "description": "Je vriend ontvangt een bericht in de app. |||| Je vrienden ontvangen een bericht in de app.",
+        "description": "Je vriend(in) ontvangt een bericht in-app. |||| Je vrienden ontvangen een bericht in de app.",
         "title": "Je cadeau is onderweg! |||| Je cadeaus zijn onderweg!"
       },
-      "thank_them": "Bedank hen",
+      "thank_them": "Bedank ze",
       "top_bar": {
         "message_preview": {
-          "heading": "Berichtvoorbeeld"
+          "heading": "Voorbeeld bericht"
         },
         "select_message": {
           "description": "%{smart_count} ontvanger |||| %{smart_count} ontvangers",
           "heading": "Kies je bericht"
         },
         "select_target": {
-          "description": "Selecteer maximaal %{smart_count} Vriend! |||| Selecteer maximaal %{smart_count} Vrienden!",
-          "heading": "Aan wie wil je dit sturen?"
+          "description": "Selecteer tot %{smart_count} Vriend! |||| Selecteer tot %{smart_count} Vrienden!",
+          "heading": "Naar wie wil je dit sturen?"
         },
         "set_coins": {
           "description": "%{smart_count} ontvanger |||| %{smart_count} ontvangers",
@@ -1236,7 +1237,7 @@
     },
     "info_modal": {
       "other_wearables": {
-        "heading": "Zolang je wearable verbonden is met %{platform}, synchroniseren we aan het eind van elke dag om je te belonen voor al je stappen.",
+        "heading": "Zolang je wearable verbinding maakt met %{platform} synchroniseren we aan het einde van elke dag om je te belonen voor al je stappen.",
         "item": "Andere wearables"
       }
     },
@@ -1248,16 +1249,16 @@
     },
     "language_selector_settings": {
       "description": "Selecteer je taal",
-      "setting_language_loading_message": "Het initialiseren van %{value} als uw hoofdtaal...",
+      "setting_language_loading_message": "Initialiseren van %{value} als hoofdtaal ...",
       "title": "Taal"
     },
     "leaderboard": {
       "invites": {
-        "subheading": "Door een ranglijst in te schakelen, stemt u ermee in om uw meest recente %{days} dagen %{metric} gegevens te delen met andere leden van de ranglijst. Dit kan op elk moment worden uitgeschakeld."
+        "subheading": "Door een leaderboard in te schakelen, kies je ervoor om je meest recente %{days} dag %{metric} gegevens te delen met andere leden van het leaderboard. Je kunt dit op elk moment uitschakelen."
       },
       "list": {
-        "empty_leaderboard": "Even geduld, terwijl we je ranglijst opstellen",
-        "heading": "Klassementen"
+        "empty_leaderboard": "Blijf zitten terwijl we je klassement opstellen",
+        "heading": "Leaderboards"
       },
       "metrics": {
         "coins": {
@@ -1268,8 +1269,8 @@
           "plural": "fietsen"
         },
         "meditation": {
-          "plural": "bewuste minuten",
-          "singular": "bewuste minuut"
+          "plural": "mindful mins",
+          "singular": "aandachtige min"
         },
         "steps": {
           "plural": "stappen",
@@ -1277,161 +1278,161 @@
         }
       },
       "pad": {
-        "title": "houd omlaag trekken om te vernieuwen"
+        "title": "blijven trekken om te verversen"
       },
       "podium": {
         "communities_info": {
-          "content": "Gemeenschappen zijn groepen waaraan je bent toegewezen, zoals organisatorische teams of regionale cohorten. Je kunt ranglijsten bekijken en filteren op basis van deze groeperingen.",
+          "content": "Communities zijn groepen waaraan je bent toegewezen, zoals organisatieteams of regionale cohorten. Je kunt leaderboards bekijken en filteren op basis van deze groepen.",
           "heading": "Gemeenschappen"
         },
         "cycling_info": {
-          "content": "Ons rollende maandelijkse klassement waarbij je gefietste afstand meetelt voor je rangschikking. Elke dag wordt je afstand aan je totaal toegevoegd. Zodra er een nieuwe dag begint, worden de stappen van de oudste dag automatisch verwijderd, zodat je positie je meest recente activiteit in een tijdsbestek van 30 dagen weergeeft.",
-          "heading": "Fiets Klassement"
+          "content": "Ons maandelijkse klassement waarin je gefietste afstand meetelt voor je klassement. Elke dag wordt je afstand opgeteld bij je totaal. Als er een nieuwe dag begint, worden de stappen van de oudste dag automatisch verwijderd, zodat je positie je meest recente activiteit binnen een tijdsbestek van 30 dagen weergeeft.",
+          "heading": "Leaderboard fietsen"
         },
         "duels_button": "Duels",
-        "info_copy": "De ranglijsten zijn ingesteld op een %{days} dagen rollend systeem. Dat betekent dat ze je %{metric} geschiedenis alleen voor de laatste %{days} dagen laten zien.\n\nOm hoger op de ranglijst te komen, probeer meer te doen dan je %{days} dagen geleden deed!",
-        "info_heading": "Over Klassementen",
+        "info_copy": "De klassementen zijn ingesteld op een %{days} dag voortschrijdend systeem. Dat betekent dat ze je %{metric} geschiedenis laten zien voor alleen de laatste %{days} dagen.\n\nOm hoger in het klassement te komen, moet je proberen meer te doen dan %{days} dagen geleden!",
+        "info_heading": "Over Leaderboards",
         "opting_info": {
-          "content": "Bezoek het instellingenmenu om je aan of af te melden voor leaderboards en je reis te sturen.",
-          "heading": "Opt-in & Opt-out"
+          "content": "Ga naar het instellingenmenu om je aan of af te melden voor de klassementen om je reis te controleren.",
+          "heading": "In- & uitstappen"
         },
-        "steps": "%{days} dagen %{metric}",
+        "steps": "%{days} dag %{metric}",
         "steps_info": {
-          "content": "Dit 30-daagse rollende klassement is waar je dagelijkse stappen je snelle opmars naar roem aandrijven. Elke dag worden je stappen aan je totaal toegevoegd terwijl je oude stappen van het klassement worden verwijderd.",
-          "heading": "Stappenklassement"
+          "content": "Dit 30-daagse rollende leaderboard is waar je dagelijkse stappen je stijging naar roem aanwakkeren. Elke dag worden je stappen toegevoegd aan je totaal, terwijl je oude stappen van het leaderboard worden gedraaid.",
+          "heading": "Stappen Leaderboard"
         },
         "yudoku_info": {
-          "content": "Deze dagelijkse ranglijst onthult de nieuwste, verbluffende Yudoku-tijden. Zet je denkpet op en laten we zien wie zich naar de topplaats kan Yudoku'en vandaag!",
-          "heading": "Yudoku Klassement"
+          "content": "Dit dagelijkse klassement onthult de nieuwste, verbijsterende Yudoku-tijden. Zet je denkhoed op en laten we eens kijken wie zich vandaag een weg naar de toppositie kan Yudokuën!",
+          "heading": "Yudoku Leaderboard"
         }
       },
       "search": {
-        "friends_not_found": "We konden de vriend die je zocht niet vinden. Je kunt hen uitnodigen met de knop hieronder:",
-        "friends_not_found_no_referrals": "We konden de vriend die je zocht niet vinden.",
-        "loading_state": "Zoeken naar resultaten ...",
-        "sub_heading": "Zoek Klassementen"
+        "friends_not_found": "We konden de vriend die je zoekt niet vinden.\nzoeken. Je kunt ze uitnodigen met\nde knop hieronder:",
+        "friends_not_found_no_referrals": "We konden de vriend die je zoekt niet vinden.\nzoeken.",
+        "loading_state": "Op zoek naar resultaten ...",
+        "sub_heading": "Leaderboards zoeken"
       },
       "turn_board_off": {
-        "ctaLabel": "Houd het aan!",
-        "ctaLabelSecondary": "Schakel het uit",
-        "heading": "Schakel het uit?",
+        "ctaLabel": "Ga zo door!",
+        "ctaLabelSecondary": "Zet het uit",
+        "heading": "Uitzetten?",
         "subheading": "Dit betekent dat je geen toegang hebt tot dit leaderboard."
       },
       "turn_board_on": {
-        "confirm": "Deelnemen aan het Klassement",
+        "confirm": "Doe mee aan het Leaderboard",
         "ctaLabel": "Ja",
-        "ctaLabelSecondary": "Nee bedankt",
-        "description": "Door deel te nemen aan het leaderboard ga je ermee akkoord details over je activiteiten te delen met andere leden van een leaderboard. Je kunt op elk moment afmelden via het instellingenmenu.",
-        "heading": "Deelnemen aan het Klassement?",
-        "subheading": "Door deel te nemen aan het leaderboard ga je ermee akkoord details over je activiteit te delen met andere leden van dit leaderboard.\n\nJe kunt op elk moment afmelden door op de naam van het leaderboard te tikken en je instellingen aan te passen."
+        "ctaLabelSecondary": "Geen dank",
+        "description": "Door deel te nemen aan het leaderboard geef je toestemming om gegevens over je activiteit te delen met andere leden van een leaderboard. Je kunt je op elk moment afmelden via het instellingenmenu.",
+        "heading": "Meedoen aan het Leaderboard?",
+        "subheading": "Door deel te nemen aan het leaderboard geef je toestemming om gegevens over je activiteit te delen met andere leden van dit leaderboard.\n\nJe kunt je op elk moment afmelden door op de naam van het leaderboard te tikken en je instellingen aan te passen."
       }
     },
     "leaderboard_settings": {
-      "consented": "Andere leden van dit klassement kunnen je naam en activiteit zien.",
-      "description": "Status en beheer van uw toegang tot app-gerelateerde ranglijsten.",
-      "error": "Oeps! Er is iets misgegaan",
-      "item_title": "%{name} Klassement",
-      "not_consented": "Sta andere leden van dit klassement toe om je naam en activiteit te zien.",
-      "screen_description": "Beheer van uw toegang tot app-gerelateerde ranglijsten. Let op: als u een ranglijst uitschakelt, kan uw toegang tot sommige functies beperkt zijn.",
-      "title": "Klassementen"
+      "consented": "Andere leden van dit leaderboard kunnen je naam en activiteit zien.",
+      "description": "Status en beheer van je toegang tot app-gerelateerde klassementen.",
+      "error": "Oeps! Er ging iets mis",
+      "item_title": "%{name} Leaderboard",
+      "not_consented": "Sta andere leden van dit leaderboard toe om je naam en activiteit te zien.",
+      "screen_description": "Beheer van je toegang tot app-gerelateerde leaderboards. Let op: je afmelden voor een leaderboard kan je toegang tot sommige functies beperken.",
+      "title": "Leaderboards"
     },
     "level_locked": {
-      "level": "Ontgrendel op niveau %{level}",
-      "stage": "Ontgrendel bij %{name}"
+      "level": "Ontgrendelen op niveau %{level}",
+      "stage": "Ontgrendelen op %{name}"
     },
     "locked_reward_modal": {
-      "cta": "Begrepen!",
-      "heading": "Niveau omhoog om te ontgrendelen",
+      "cta": "Hebbes!",
+      "heading": "Level omhoog om vrij te spelen",
       "hint": {
-        "descriptionMarkdown": "Dagelijkse uitdagingen doen leidt tot sneller het ontgrendelen van meer beloningen.\n\n__**Meer weten**__",
-        "label": "Meer beloningen in het vooruitzicht!"
+        "descriptionMarkdown": "Als je elke dag uitdagingen doet, speel je sneller meer beloningen vrij.\n\nMeer weten**__",
+        "label": "Meer beloningen in het verschiet!"
       },
-      "progress_status": "%{progress} / %{target} niveaus voltooid"
+      "progress_status": "%{progress} / %{target} Niveaus voltooid"
     },
     "login": {
       "accessibility": {
-        "alert_error_default_message": "Er is iets mis",
+        "alert_error_default_message": "Er klopt iets niet",
         "alert_error_title": "Inloggen mislukt",
-        "hide_keyboard": "Toetsenbord verbergen"
+        "hide_keyboard": "Verberg toetsenbord"
       },
       "cta_label": "Inloggen",
-      "disclaimer": "Door verder te gaan, ga je akkoord met ons\n[Privacybeleid](%{privacyPolicyLink}) en [Eindgebruikerslicentieovereenkomst](%{eulaLink}).",
+      "disclaimer": "Door verder te gaan, ga je akkoord met ons\n[Privacybeleid](%{privacyPolicyLink}) en [Licentieovereenkomst voor eindgebruikers](%{eulaLink}).",
       "heading": "Welkom!",
-      "help": "Hulp nodig bij inloggen?",
+      "help": "Hulp nodig bij het inloggen?",
       "server_location": {
-        "description": "We hebben meer dan één account voor je gevonden. Kies de regio waar je je inlogproces wilt voortzetten.",
-        "heading": "Selecteer uw regio",
-        "long": "Selecteer de locatie van uw bedrijf",
-        "short": "Bedrijfslocatie"
+        "description": "We hebben meer dan één account voor je gevonden. Kies de regio waar je je aanmeldreis wilt voortzetten.",
+        "heading": "Selecteer je regio",
+        "long": "Selecteer de locatie van je bedrijf",
+        "short": "Locatie bedrijf"
       }
     },
     "login_confirm": {
-      "cooldown": "Verstuur een nieuwe link in %{seconds}s...",
-      "description": "Gebruik de link in de e-mail die we zojuist naar u hebben gestuurd.",
-      "error_title": "Er is iets misgegaan",
+      "cooldown": "Stuur een nieuwe link in %{seconds}s...",
+      "description": "Gebruik de link in de e-mail die we je zojuist hebben gestuurd.",
+      "error_title": "Er ging iets mis",
       "generic_email_error": {
-        "message": "Als je e-mailapp niet herkend wordt, probeer deze dan handmatig te openen.",
-        "title": "Er is iets misgegaan"
+        "message": "Als je e-mail app niet wordt herkend, probeer hem dan handmatig te openen.",
+        "title": "Er ging iets mis"
       },
-      "heading": "Klaar om jouw beste Yu te zijn? Laten we jouw account verifiëren.",
-      "login_with_password": "Inloggen met wachtwoord in plaats van.",
+      "heading": "Klaar om je beste Yu te zijn? Laten we je account verifiëren.",
+      "login_with_password": "Log in met wachtwoord.",
       "no_email_app_installed": {
-        "message": "Als je e-mailapp niet herkend wordt, probeer deze dan handmatig te openen.",
-        "title": "Geen e-mailapp geïnstalleerd"
+        "message": "Als je e-mail app niet wordt herkend, probeer hem dan handmatig te openen.",
+        "title": "Geen e-mail app geïnstalleerd"
       },
-      "open_email": "Open e-mailapp",
+      "open_email": "Open e-mail app",
       "resend_link": "Niet ontvangen? Stuur een nieuwe link.",
-      "webview_title": "Voorbereiden op lancering…"
+      "webview_title": "Klaarmaken voor lancering..."
     },
     "login_email": {
-      "cta_label": "Doorgaan",
-      "heading": "Hoi daar! Wat is je e-mailadres?",
-      "submitting": "Verzenden..."
+      "cta_label": "Ga verder",
+      "heading": "Hallo! Wat is je e-mail?",
+      "submitting": "Inzenden..."
     },
     "login_hero": {
-      "primary_cta_label": "Claim mijn account",
+      "primary_cta_label": "Mijn account claimen",
       "secondary_cta_label": "Inloggen",
-      "session_expired_error_message": "Je sessie is verlopen. Log alstublieft opnieuw in.",
+      "session_expired_error_message": "Je sessie is verlopen. Log opnieuw in.",
       "slides": {
-        "rewards": "Verander gezonde gewoontes in beloningen!"
+        "rewards": "Maak van gezonde gewoonten een beloning!"
       }
     },
     "login_password": {
-      "cta_label": "Doorgaan",
+      "cta_label": "Ga verder",
       "forgot": {
         "cta": "Wachtwoord vergeten?",
-        "title": "Wachtwoord resetten"
+        "title": "Wachtwoord opnieuw instellen"
       },
       "heading": "Voer je wachtwoord in",
-      "submitting": "Verzenden..."
+      "submitting": "Inzenden..."
     },
     "measurement_cycling_settings": {
-      "description": "Wijzig tussen het imperiale (mijlen) en metrische (kilometers) systeem.",
+      "description": "Wissel tussen het imperiale (mijlen) en metrische (kilometers) systeem.",
       "imperial": {
-        "description": "Afstand wordt weergegeven in mijlen 'mi'",
-        "title": "Imperial systeem"
+        "description": "De afstand wordt weergegeven in mijlen \"mi\".",
+        "title": "Keizerlijk systeem"
       },
       "metric": {
-        "description": "Afstand wordt weergegeven in kilometers 'km'",
-        "title": "Metricsysteem"
+        "description": "De afstand wordt weergegeven in kilometers \"km\".",
+        "title": "Metrisch systeem"
       },
-      "title": "Metingen (Fietsen)"
+      "title": "Meting (Fietsen)"
     },
     "media_list": {
       "different_app_cta_label": "Gebruik een andere app",
       "different_app_section_label": "Of gebruik een app",
-      "video_duration_reward_label": "%{formattedDuration} • Verdien %{reward}"
+      "video_duration_reward_label": "%{formattedDuration} - Verdien %{reward}"
     },
     "meditopia_media_all": {
-      "title": "Alle Meditaties"
+      "title": "Alle meditaties"
     },
     "meditopia_media_list": {
-      "see_all_button": "Alle meditaties",
-      "startChallengeButtonLabel": "Sessie starten"
+      "see_all_button": "Alle meditaties bekijken",
+      "startChallengeButtonLabel": "Begin sessie"
     },
     "menu": {
       "activity_history": {
-        "label": "Activiteitenoverzicht"
+        "label": "Activiteit Geschiedenis"
       },
       "chat": {
         "label": "Chat"
@@ -1440,10 +1441,10 @@
         "label": "Nodig een collega uit"
       },
       "logout": {
-        "alert_description": "Je voortgang en je YuCoin wachten op je als je opnieuw inlogt. Weet je zeker dat je wilt uitloggen van YuLife?",
-        "alert_log_out_button": "Uitloggen",
-        "alert_title": "Uitloggen?",
-        "label": "Uitloggen"
+        "alert_description": "Je voortgang en YuCoin zullen op je wachten als je weer inlogt. Weet je zeker dat je wilt uitloggen uit YuLife?",
+        "alert_log_out_button": "Afmelden",
+        "alert_title": "Afmelden?",
+        "label": "Afmelden"
       },
       "my_account": {
         "label": "Mijn account"
@@ -1461,7 +1462,7 @@
         "accessibility_label": "yu life app versie %{version}"
       },
       "wellbeing_hub": {
-        "label": "Welzijnscentrum"
+        "label": "Hub Welzijn"
       }
     },
     "mood-calendar": {
@@ -1472,8 +1473,8 @@
       "subheading": "Je kunt deze app momenteel niet gebruiken."
     },
     "notifications": {
-      "deleted_disclaimer": "Psst...even dat je het weet, onze berichten verdwijnen na %{days} dagen. Maar maak je geen zorgen, er komen er meer!",
-      "empty": "Wauw, het is hier stil! Blijf regelmatig terugkijken en je zult binnenkort spannende updates zien.",
+      "deleted_disclaimer": "Psst... het is maar dat je het weet, onze berichten verdwijnen na %{days} dagen. Maar maak je geen zorgen, er komen er meer!",
+      "empty": "Wauw, het is stil hier! Blijf terugkijken en je zult binnenkort een aantal spannende updates zien.",
       "headers": {
         "last_7": "Laatste 7 dagen",
         "today": "Vandaag"
@@ -1492,121 +1493,121 @@
         "better": "Beter",
         "great": "Geweldig",
         "no_change": "Geen verandering",
-        "worse": "Slechter"
+        "worse": "Erger"
       },
-      "skip": "Overslaan"
+      "skip": "Skip"
     },
     "pathways": {
       "advice_empty_section": {
-        "title": "Je komt dichter bij je inzichten!"
+        "title": "Je komt steeds dichter bij je inzichten!"
       },
       "challenge_intro": {
-        "bullet_point_1": "Gepersonaliseerd op basis van je antwoorden in de gezondheidsvragenlijst",
-        "bullet_point_2": "Aanpassen aan jou en je behoeften in de loop van de tijd",
+        "bullet_point_1": "Gepersonaliseerd op basis van je antwoorden op de gezondheidsvragenlijst",
+        "bullet_point_2": "Zich na verloop van tijd aanpassen aan jou en je behoeften",
         "bullet_point_3": "Streeft ernaar gezondheidsproblemen te voorkomen voordat ze een probleem worden",
-        "description": "De Yunity Quest biedt je gerichte en gepersonaliseerde content op basis van je dagelijkse reflectie-antwoorden.",
-        "heading": "Yunity Quest",
-        "info_panel_markdown": "Deze queeste telt niet mee voor je reeks!",
+        "description": "De Yunity Quest geeft je gerichte en gepersonaliseerde content op basis van je dagelijkse reflectieantwoorden.",
+        "heading": "Yunity zoektocht",
+        "info_panel_markdown": "Deze zoektocht telt niet mee voor je streak!",
         "title": "Ontworpen voor Yu"
       },
       "claim": {
-        "health_challenge": "Yunity Quest",
-        "reward_subtitle": "Je kunt het vinden in de uitdagingenlijst.",
-        "reward_title": "Beloning ontvangen!",
-        "title": "Hier is alles dat je vandaag hebt gekregen!",
+        "health_challenge": "Yunity zoektocht",
+        "reward_subtitle": "Je kunt het vinden in de lijst met uitdagingen.",
+        "reward_title": "Beloning verzameld!",
+        "title": "Hier is alles wat je vandaag hebt gekregen!",
         "yucoin": "YuCoin"
       },
       "day": "Dag %{day}",
-      "header": "Reflectie van vandaag",
-      "health_insights": "Gezondheidsinzichten",
+      "header": "De overdenking van vandaag",
+      "health_insights": "Inzichten in gezondheid",
       "journey_header": "Huidige reis",
-      "journey_header_starts": "Reflecteer gedurende %{maxProgress} opeenvolgende dagen om een bonusmissie te verdienen",
+      "journey_header_starts": "Reflecteer gedurende %{maxProgress} opeenvolgende dagen om een bonus quest te verdienen",
       "personal_health_path": {
-        "heading": "Persoonlijk Gezondheidspad"
+        "heading": "Persoonlijk gezondheidspad"
       },
-      "powered_by_yunity": "Aangedreven door ",
+      "powered_by_yunity": "Aangedreven door",
       "recommended_for_you": "Aanbevolen voor jou",
-      "reflect": "Weerspiegelen",
+      "reflect": "Reflecteren",
       "reflected": {
         "subtitle": {
-          "day1": "Eerste reflectie vastgelegd. Ga door!",
-          "day2": "Blijf verschijnen",
-          "day3": "Drie op een rij. Mooi!",
-          "day4": "Bijna daar!",
+          "day1": "Eerste reflectie gelogd. Ga zo door!",
+          "day2": "Blijf komen opdagen.",
+          "day3": "Drie op een rij. Leuk!",
+          "day4": "We zijn er bijna!",
           "day5": "Yunity Quest ontgrendeld"
         },
-        "title": "dag van reflectie! |||| dagen van reflectie!"
+        "title": "dag van bezinning! |||| dagen van bezinning!"
       },
-      "reflect_in": "Weerspiegelen in %{hours}u %{minutes}m",
-      "reflection_active_label": "Reflectie",
-      "reflection_chest_button_label": "Yunity Quest",
-      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) Bonus Yunity-zoektocht",
-      "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) Bonus Yunity Quest",
+      "reflect_in": "Reflecteren in %{hours}h %{minutes}m",
+      "reflection_active_label": "Reflecteren",
+      "reflection_chest_button_label": "Yunity zoektocht",
+      "reflection_chest_health_challenge_completed_markdown": "(%{checkboxUrl}) Bonus Yunity Quest",
+      "reflection_chest_health_challenge_to_earn_markdown": "(%{extraChallengeUrl}) Bonus Yunity Quest",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
       "reflection_chest_reward_to_earn_markdown": "Verdienen: **%{amount}** ![](%{yucoinUrl})",
       "reflection_countdown": "%{hours}:%{minutes}:%{seconds}",
-      "reflection_inactive_label": "Inactieve Reflectie",
+      "reflection_inactive_label": "Reflectie",
       "reflection_unlocks_in": "Ontgrendelt in",
       "reflection_yucoin_amount": "**%{amount}** ![](%{yucoinUrl})",
-      "secondary_button_label": "Ga naar Welzijnscentrum",
+      "secondary_button_label": "Ga naar de welzijnshub",
       "today": "Vandaag",
       "user_mood": {
-        "heading": "Jouw Gevoel",
-        "view_calendar": "Bekijk agenda"
+        "heading": "Je stemming",
+        "view_calendar": "Bekijk kalender"
       }
     },
     "permissions": {
       "connect_health_app": "Verbind zorgverlener",
-      "description": "Status en beheer van account- en systeemniveaupermissies.",
-      "heading": "Machtigingen",
+      "description": "Status en beheer van machtigingen op account- en systeemniveau.",
+      "heading": "Rechten",
       "health_section": {
-        "android_header": "Google Fit Machtigingen",
-        "header": "Systeemmachtigingen",
-        "ios_header": "Apple Health Machtigingen",
-        "samsung_header": "Samsung Health Machtigingen"
+        "android_header": "Google Fit-machtigingen",
+        "header": "Systeemrechten",
+        "ios_header": "Apple gezondheidsmachtigingen",
+        "samsung_header": "Samsung gezondheidsmachtigingen"
       },
-      "info_message": "Beheer je toestemmingen om volledig beloond te worden met YuCoin voor je activiteiten.",
-      "open_apple_health": "Apple Gezondheid Machtigingen",
-      "status_ask_permissions": "**Toestemming niet verbonden**\nGebruik de knop \"Verbinden\" om verbinding te maken. Bezoek aub [onze FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) voor extra hulp.",
-      "status_disconnected": "**Status: Verbinding verbroken**\nOm opnieuw verbinding te maken, controleer de instellingen van je telefoon. Bezoek aub [onze FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) voor extra hulp.",
+      "info_message": "Beheer je machtigingen om volledig beloond te worden met YuCoin voor je activiteiten.",
+      "open_apple_health": "Apple gezondheidsmachtigingen",
+      "status_ask_permissions": "**Machtiging niet verbonden**\nGebruik de knop \"Verbinden\" om verbinding te maken. Bezoek [onze FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) voor meer hulp.",
+      "status_disconnected": "**Status: Verbinding verbroken**\nControleer de instellingen van je telefoon om opnieuw verbinding te maken. Bezoek [onze FAQ] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game) voor meer hulp.",
       "status_unknown": "**Status: Onbekend**\nWe kunnen de status van de toestemming niet bepalen. Waarschijnlijk is alles in orde.",
-      "switch_button": "Wijzig zorgverlener",
+      "switch_button": "Veranderen van zorgverlener",
       "switch_to_google_fit": {
-        "button_label": "Gebruik Google Fit",
-        "description": "Samsung Health synchroniseert momenteel niet alle gegevens die we nodig hebben om je te belonen voor je activiteiten. Om mindful minuten, fietsen & apps van derden te synchroniseren, schakel alsjeblieft over naar Google Fit.",
+        "button_label": "Google Fit gebruiken",
+        "description": "Samsung Health synchroniseert momenteel niet alle gegevens die we nodig hebben om je te belonen voor je activiteiten. Om mindful minuten, fietsen & apps van derden te synchroniseren, kun je overschakelen naar Google Fit.",
         "title": "Google Fit"
       },
       "system_section": {
-        "header": "Systeemmachtigingen",
+        "header": "Systeem machtigingen",
         "secondary_button": "Systeeminstellingen"
       },
-      "title": "Activiteitsmachtigingen"
+      "title": "Activiteit machtigingen"
     },
     "products": {
       "beneficiary": {
         "add": {
           "message": "Het lijkt erop dat je nog geen begunstigden hebt ingesteld. Tik hieronder om te beginnen.",
-          "title": "Begunstigden Toevoegen"
+          "title": "Begunstigden toevoegen"
         },
         "edit": {
-          "message": "Stel het toegewezen percentage voor elke begunstigde in. Het totaal moet optellen tot 100%.",
-          "title": "Begunstigden Bewerken"
+          "message": "Stel het toegekende percentage in voor elke begunstigde. Het totaal moet 100% zijn.",
+          "title": "Begunstigden bewerken"
         },
-        "error": "Oeps! Controleer je percentages nog eens. De som moet optellen tot 100%.",
+        "error": "Oeps! Controleer je percentages nog een keer. De som moet 100% zijn.",
         "labels": {
-          "add": "Begunstigde Toevoegen",
-          "skip": "Sla voorlopig over"
+          "add": "Begunstigde toevoegen",
+          "skip": "Voorlopig overslaan"
         }
       }
     },
     "quests": {
       "accessibility": {
         "buttons_label": {
-          "isDone": "Level %{level}, voltooid",
+          "isDone": "Niveau %{level}, voltooid",
           "isNext": "Niveau %{level}",
-          "locked": "Level %{level}, vergrendeld",
-          "locked_chest": "Level %{level}, kist vergrendeld",
-          "nextAvailableAt": "Level %{level}, beschikbaar om te ontgrendelen in %{nextAvailableTimer}"
+          "locked": "Niveau %{level}, vergrendeld",
+          "locked_chest": "Niveau %{level}, kist gesloten",
+          "nextAvailableAt": "Niveau %{level}, ontgrendelt in %{nextAvailableTimer}"
         }
       },
       "level": {
@@ -1617,34 +1618,34 @@
       "or": "OF"
     },
     "reset_password": {
-      "cta_label": "E-mail mij een magische link",
+      "cta_label": "E-mail me een magische link",
       "heading": "Hulp nodig?",
-      "subheading": "Geen probleem! Voer je account-e-mailadres in en we sturen je een magische link direct naar je inbox, geen wachtwoord nodig!",
-      "submitting": "Verzenden ..."
+      "subheading": "Geen probleem! Voer het e-mailadres van je account in en we sturen een magische link rechtstreeks naar je inbox, je hebt geen wachtwoord nodig!",
+      "submitting": "Inzenden ..."
     },
     "reset_password_submitted": {
       "cta_label": "Terug naar inloggen",
       "heading": "E-mail verzonden",
-      "subheading": "Controleer je inbox! Als %{email} overeenkomt met onze gegevens, is een e-mail voor wachtwoordherstel onderweg. Als je geen e-mail ontvangt, neem dan contact op met support@yulife.com."
+      "subheading": "Controleer je inbox! Als %{email} overeenkomt met onze gegevens, is er een e-mail voor wachtwoordherstel onderweg. Als je geen e-mail ontvangt, neem dan contact op met support@yulife.com."
     },
     "rewards": {
       "accessibility": {
-        "change_store_location": "Winkel locatie wijzigen",
+        "change_store_location": "Locatie van winkel wijzigen",
         "view_purchases": "Geclaimde beloningen bekijken"
       },
       "chips": {
-        "all": "Alles"
+        "all": "Alle"
       },
       "confirmed": {
         "card_states": {
           "failed": "aankoop mislukt",
-          "pending": "aankoop in afwachting",
+          "pending": "in afwachting van aankoop",
           "refunded": "aankoop terugbetaald"
         },
         "label_cta": {
-          "get_voucher": "krijg voucher",
-          "need_help": "Hulp nodig? Praat met ons",
-          "other_rewards": "andere beloningen bekijken",
+          "get_voucher": "voucher krijgen",
+          "need_help": "hulp nodig? praat met ons",
+          "other_rewards": "bekijk andere beloningen",
           "rewards_policy": "Beloningsbeleid"
         },
         "purchased_date": "Aankoopdatum",
@@ -1652,87 +1653,88 @@
       },
       "details": {
         "error": {
-          "loyalty_programme": "U moet een loyaliteitsprogramma selecteren",
+          "loyalty_programme": "Je moet een loyaliteitsprogramma selecteren",
           "valid_account_number": "Voer een geldig rekeningnummer in"
         }
       },
       "expiry_warning": {
-        "body": "We vinden het jammer om je te zien vertrekken, maar je hebt nog **%{daysLeft} dagen** om je verdiende YuCoin te verzilveren!",
-        "title": "Jouw beloningen toegang eindigt binnenkort"
+        "body": "We vinden het jammer dat je weggaat, maar je hebt nog **%{daysLeft} dagen** om je zuurverdiende YuCoin in te wisselen!",
+        "title": "Je toegang tot beloningen eindigt binnenkort"
       },
       "list": {
         "history": "Gekocht",
-        "recently_used": "Recent gebruikt",
-        "reward_passes": "Uw beloningspasjes",
+        "recently_used": "Onlangs gebruikt",
+        "reward_passes": "Je beloningspassen",
         "rewards": "Beloningen",
         "store": "Winkel"
       },
       "purchases": {
         "avios_confirmed": {
-          "message": "Uw %{amount} AVIOS punten zullen binnen enkele dagen in uw account verschijnen. We e-mailen u zodra ze daar zijn.",
+          "message": "Je %{amount} AVIOS punten verschijnen binnen een paar dagen op je account. We sturen je een e-mail zodra ze er zijn.",
           "title": "AVIOS Verzonden"
         },
         "empty": {
-          "cta_label": "beloningen bekijken",
-          "heading": "Het is leeg!",
-          "subheading": "Koop een voucher en deze verschijnt hier"
+          "cta_label": "beloningen controleren",
+          "heading": "Hij is leeg!",
+          "subheading": "Koop een voucher en hij verschijnt hier"
         },
         "locked_reward": {
           "cta_label": "terug naar beloningen",
-          "heading": "update wordt uitgevoerd",
-          "subheading": "We zijn je %{rewardName}-beloningservaring aan het bijwerken, kom snel terug!"
+          "heading": "update bezig",
+          "subheading": "We zijn je %{rewardName} beloningenervaring aan het bijwerken, kom snel terug!"
         },
         "no_purchases": {
           "cta_label": "Ga naar beloningen",
-          "subheading": "Het is hier stil. Ga naar je seizoensgebonden beloningspad om exclusieve vouchers en kortingen te verdienen!"
+          "subheading": "Het is rustig hier. Ga naar je seizoensbeloningenpad om exclusieve vouchers en kortingen te verdienen!"
         },
         "not_enough_coins": {
-          "heading": "niet genoeg coin",
+          "heading": "niet genoeg munt",
           "subheading": "Verdien meer en kom later terug!"
         },
         "offline": {
           "heading": "je bent offline",
-          "subheading": "Controleer je internetverbinding."
+          "subheading": "controleer je internetverbinding"
         },
         "voucher_not_available": {
-          "cta_label": "andere beloningen bekijken",
+          "cta_label": "bekijk andere beloningen",
           "heading": "de voucher is momenteel niet beschikbaar",
-          "subheading": "Kom later terug."
+          "subheading": "Kom later nog eens terug."
         }
       },
       "search": {
+        "all": "Alle",
         "initial_state": "Zoek naar kortingen, vouchers en abonnementen.",
-        "no_results": "We konden het merk dat je zocht niet vinden.",
-        "placeholder": "Zoek alle merken",
-        "subheading": "Zoek merken",
+        "no_results": "We konden het merk dat je zoekt niet vinden.",
+        "placeholder": "Alle merken zoeken",
+        "subheading": "Merken zoeken",
         "title": "Winkel"
       },
       "storefront": {
-        "reward_location": "Uw beloningen zijn ingesteld op %{location}",
+        "reward_location": "Je beloningen zijn ingesteld op %{location}",
         "wallet": "Portemonnee"
       },
       "tabs": {
-        "donations": "Doneren",
+        "donations": "Doneer",
         "premium": "Ontgrendel",
         "store": "Winkel"
       },
       "unavailable": {
         "purchase_history": "Aankoopgeschiedenis bekijken",
-        "subtitle": "Hoewel je geen beloningen meer kunt claimen, kun je nog steeds YuCoin verdienen en je gezonde gewoontes behouden door uitdagingen aan te gaan!\n\nAls je met YuLife bij een ander bedrijf aansluit, krijg je weer toegang tot beloningen en kun je je gespaarde YuCoin opnieuw uitgeven.",
+        "subtitle": "Hoewel je geen beloningen meer kunt claimen, kun je nog steeds YuCoin verdienen en je gezonde gewoontes volhouden door uitdagingen aan te gaan!\n\nAls je bij een ander bedrijf met YuLife gaat werken, krijg je weer toegang tot beloningen en kun je je verzamelde YuCoin weer uitgeven.",
         "title": "Beloningen voorlopig gesloten!"
       },
       "wallet": {
         "cta": {
-          "see_more": "Bekijk meer"
+          "see_more": "Meer zien"
         },
         "empty": {
           "discount": {
             "heading": "Je portemonnee is klaar om gevuld te worden!",
-            "subheading": "Begin met het verzamelen van beloningen en ze zullen hier voor je klaarstaan."
+            "subheading": "Begin met het verzamelen van beloningen en ze liggen hier voor je klaar."
           },
           "voucher": {
             "heading": "Je portemonnee is klaar om gevuld te worden!",
-            "subheading": "Ingeloste beloningen zullen hier voor je klaarstaan"
+            "subheading": "Ingewisselde beloningen liggen hier voor je klaar"
           }
         },
         "expired_section": {
@@ -1747,116 +1749,116 @@
     },
     "rewards_unlock": {
       "empty": {
-        "description": "Je kunt nog steeds beloningen inwisselen in je in-app winkel door YuCoin te verdienen! Als je vragen hebt, neem contact met ons op via je in-app chat.",
-        "heading": "Deze beloningen zijn momenteel niet voor jou beschikbaar."
+        "description": "Je kunt nog steeds beloningen inwisselen in je in-app winkel door YuCoin te verdienen! Als je vragen hebt, praat dan met ons in je in-app chat.",
+        "heading": "Deze beloningen zijn op dit moment niet beschikbaar voor jou."
       }
     },
     "settings": {
       "content_location": {
-        "description": "Selecteer uw voorkeurswinkel locatie",
-        "label": "Winkel locatie"
+        "description": "Selecteer de winkel van je voorkeur",
+        "label": "Locatie winkel"
       },
       "data_saver": {
-        "description": "Deze instelling activeert lagere videokwaliteit voor trainingsvideo's",
-        "label": "Databesparing"
+        "description": "Deze instelling maakt een lagere videokwaliteit mogelijk voor trainingsvideo's",
+        "label": "Gegevensbesparing"
       },
       "email_notification": {
         "label": "E-mail"
       },
       "fitness_trackers": {
-        "label": "Fitness trackers",
+        "label": "Fitnesstrackers",
         "last_sync": "Laatst gesynchroniseerd op %{date}",
-        "not_connected": "Niet verbonden",
-        "title": "Verbind je fitness tracker om beloond te worden voor extra dagelijkse stappen. Vergeet niet je telefoon bij je te houden tijdens uitdagingen!"
+        "not_connected": "Niet aangesloten",
+        "title": "Sluit je fitnesstracker aan om beloond te worden voor extra dagelijkse stappen. Vergeet niet je telefoon bij je te houden tijdens de uitdagingen!"
       },
       "game_settings": "Spelinstellingen",
       "heading": "Instellingen",
       "info": {
-        "heading": "Je YuLife-app legt je stappen en fietsaftand vast van zowel de gezondheidsapp van je telefoon als je %{connection}-apparaat. We belonen je met YuCoin voor het apparaat dat de hoogste opnames heeft!"
+        "heading": "Je YuLife app registreert je stappen en fietsafstand van zowel de gezondheidsapp van je telefoon als je %{connection} apparaat. We belonen je met YuCoin voor het apparaat dat de meeste stappen registreert!"
       },
       "push_notifications": {
         "label": "Pushmeldingen",
         "reminder_time": "Herinneringstijd"
       },
       "tracker_info": {
-        "heading": "Je YuLife-app legt je fietsaftstand vast van zowel de gezondheidsapp van je telefoon als je %{connection}-app. We belonen je met YuCoin voor de app die de hoogste opnames heeft!"
+        "heading": "Je YuLife app registreert je fietsafstand van zowel de gezondheidsapp van je telefoon als je %{connection} app. We belonen je met YuCoin voor de app die de hoogste afstand registreert!"
       }
     },
     "signup_reward": {
-      "description": "Verdien meer YuCoin in de app en wissel ze in voor vouchers van je favoriete merken, doneer aan goede doelen, en meer.",
-      "title": "Hier is een snufje YuCoin\nvoor het inloggen"
+      "description": "Verdien meer YuCoin in de app en wissel ze in voor vouchers van je favoriete merken, doneer aan goede doelen en meer.",
+      "title": "Hier is een beetje\nYuCoin voor het inloggen"
     },
     "smoking_commitment": {
-      "avoided": "%{totalAvoided} sigaretten vermeden",
+      "avoided": "%{totalAvoided} vermeden sigaretten",
       "cancel": "Niet op dit moment",
-      "cta": "Opnieuw toewijden",
+      "cta": "Opnieuw toezeggen",
       "saved": "%{totalSaved} opgeslagen",
-      "text_1": "Opnieuw beginnen kan moeilijk aanvoelen, maar we zijn er bij elke stap.",
-      "text_2": "Neem even de tijd om je te richten op je motivatie en waardeer de vooruitgang die je tot nu toe hebt geboekt.",
-      "title": "Klaar voor een nieuwe poging? Laten we gaan.",
-      "why": "Waarom je hieraan toegewijd bent"
+      "text_1": "Opnieuw beginnen voelt misschien moeilijk, maar we staan je bij elke stap bij.",
+      "text_2": "Neem even de tijd om je te concentreren op je motivatie en waardeer je vooruitgang tot nu toe.",
+      "title": "Klaar voor een nieuwe poging? Laten we dit doen.",
+      "why": "Waarom je je hiervoor inzet"
     },
     "smoking_edit_modal": {
       "other": {
-        "reasons": "Voeg een andere motivatie toe",
-        "triggers": "Voeg nog een moment toe"
+        "reasons": "Nog een motivatie toevoegen",
+        "triggers": "Nog een moment toevoegen"
       }
     },
     "smoking_hub": {
-      "distraction_game_button_label": "Speel craving afleidingsspel",
-      "edit": "Bewerken",
-      "moments_to_monitor": "Momenten om mezelf te monitoren",
+      "distraction_game_button_label": "Afleidingsspelletje spelen",
+      "edit": "Bewerk",
+      "moments_to_monitor": "Momenten om mezelf in de gaten te houden",
       "placeholder": {
         "sponsorship": {
-          "cta": "IkDoeMee",
-          "description": "Je kunt steun vragen van je vrienden in de vorm van YuCoin. Wanneer je 28 dagen rookvrij bent, sturen we de gesponsorde YuCoin naar je account.\n\nWe zijn momenteel alles aan het opzetten. We laten het je weten wanneer het klaar is!",
-          "title": "Sponsorschappen komen binnenkort"
+          "cta": "Reken op mij",
+          "description": "Je kunt steun vragen aan je vrienden in de vorm van YuCoin. Als je 28 dagen rookvrij bent, sturen we de gesponsorde YuCoin naar je account.\n\nWe zijn op dit moment bezig met het opzetten ervan. We laten het je weten als het klaar is!",
+          "title": "Sponsoring binnenkort"
         }
       },
-      "reasons": "Waarom ik hieraan toegewijd ben",
+      "reasons": "Waarom ik me hiervoor inzet",
       "success": "Succes"
     },
     "smoking_modals": {
       "all_milestones_passed": "Je hebt al je",
       "days_title": "Dag %{days}",
       "milestone": "mijlpaal!",
-      "milestone_passed": "Je hebt een",
+      "milestone_passed": "Je bent geslaagd voor een",
       "milestones": "mijlpalen!"
     },
     "streak": {
       "accessibility": {
-        "streak_completed": "%{header} %{ribbonLabel} is verzameld, begin je volgende streak over %{time}",
+        "streak_completed": "%{header} %{ribbonLabel} is verzameld, begin je volgende streak in %{time}",
         "streak_start": "%{header} %{subHeader} %{streakCompleted} van %{streakMax} dagen voltooid."
       },
       "completion": {
-        "next_streak": "Begin aan je volgende reeks in"
+        "next_streak": "Begin je volgende streak in"
       },
       "cta_label_collect": "Verzamel %{reward} %{type}",
-      "cta_label_take_challenge": "Neem een uitdaging",
+      "cta_label_take_challenge": "Ga een uitdaging aan",
       "heading": "Geweldige vooruitgang!",
-      "heading_completed": "Verpletterde die reeks!",
+      "heading_completed": "Verbrijzelde die streak!",
       "heading_completed_today_streak": {
-        "day1": "Eerste dag voltooid!",
-        "day2": "Twee dagen gedaan!",
-        "day3": "Je bent over de helft!",
-        "day4": "Laatste stukje!",
-        "day5": "Verpletterde die reeks!"
+        "day1": "Eerste dag gedaan!",
+        "day2": "Twee dagen voorbij!",
+        "day3": "Je bent over de bult heen!",
+        "day4": "De laatste loodjes!",
+        "day5": "Verbrijzelde die streak!"
       },
       "heading_start_streak_day": {
         "day1": "Begin je streak",
-        "day2": "Goed begin gemaakt",
-        "day3": "Ga zo door",
+        "day2": "Een goede start",
+        "day3": "Doorgaan",
         "day4": "Ga zo door",
         "day5": "Sluit je streak af"
       },
-      "subheading_collected": "Goed gedaan! De beloning is geïncasseerd.",
-      "subheading_completed": "Je hebt het gedaan!",
-      "subheading_instructions": "Voltooi uitdagingen nog %{streakMax} dagen op rij om een bonus van %{reward} YuCoin te verdienen.",
-      "subheading_instructions_first_day": "Voltooi uitdagingen %{streakMax} dagen op rij om een bonus van %{reward} YuCoin te verdienen.",
-      "subheading_instructions_today": "Voltooi vandaag een uitdaging om een bonus van %{reward} YuCoin te verdienen.",
+      "subheading_collected": "Goed gedaan! De beloning is geïnd.",
+      "subheading_completed": "Het is je gelukt!",
+      "subheading_instructions": "Voltooi uitdagingen %{streakMax} meer dagen achter elkaar om een bonus %{reward} YuCoin.",
+      "subheading_instructions_first_day": "Voltooi uitdagingen %{streakMax} dagen achter elkaar om een bonus %{reward} YuCoin.",
+      "subheading_instructions_today": "Voltooi vandaag een uitdaging en verdien een bonus %{reward} YuCoin.",
       "subheading_today_streak_done": {
-        "day1": "Goed begin! Ga zo door om %{reward} YuCoin te verdienen.",
-        "day2": "Je bent op weg naar een bonus van %{reward} YuCoin.",
+        "day1": "Geweldig begin! Ga zo door om %{reward} YuCoin.",
+        "day2": "Je bent op weg naar een bonus %{reward} YuCoin.",
         "day3": "Nog maar twee dagen en je verdient %{reward} YuCoin.",
         "day4": "Je bent nog maar één dag verwijderd van %{reward} YuCoin.",
         "day5": "%{reward} YuCoin."
@@ -1866,7 +1868,7 @@
       "activity_feed": {
         "daily_core_activities": {
           "accessibility": {
-            "accessibility_label": "Info dagelijkse kernactiviteiten"
+            "accessibility_label": "Info over dagelijkse kernactiviteiten"
           },
           "question_mark": {
             "toast": {
@@ -1877,44 +1879,44 @@
       },
       "alert": {
         "never_ask_again": {
-          "cta_label": "Open app-instellingen",
-          "message": "Helaas kunnen we geen toestemmingen inschakelen, u moet via de systeeminstellingen locatie-toestemmingen geven",
-          "title": "Machtigingsfout"
+          "cta_label": "Open app instellingen",
+          "message": "Helaas kunnen we geen permissies inschakelen, je moet de locatie permissies geven via systeeminstellingen",
+          "title": "Fout met toestemming"
         }
       },
       "heading": {
-        "title": "Inkomsten van vandaag"
+        "title": "De inkomsten van vandaag"
       },
       "toast": {
         "google_fit_location_permission": {
           "accessibility": {
-            "accessibility_label": "Om yu coin te verdienen met fietsen, hebben we locatietoestemming nodig om gegevens over fietsactiviteit te verzamelen en verbinding te maken met Google Fit."
+            "accessibility_label": "Om yu-munten te verdienen met fietsen, hebben we toestemming van de locatie nodig om gegevens over fietsactiviteiten te verzamelen en verbinding te maken met Google Fit."
           },
-          "cta_label": "Toestemming Verlenen",
-          "message": "Om Yucoin te verdienen met fietsen, hebben we locatietoestemming nodig om gegevens over fietsactiviteit te verzamelen en verbinding te maken met Google Fit."
+          "cta_label": "Toestemming verlenen",
+          "message": "Om Yucoin te verdienen voor het fietsen, hebben we toestemming van de locatie nodig om gegevens over de fietsactiviteit te verzamelen en verbinding te maken met Google Fit."
         },
         "system_location_permission": {
           "accessibility": {
-            "accessibility_label": "Om yu coin te verdienen met fietsen, hebben we locatietoestemming nodig om gegevens over fietsactiviteit te verzamelen."
+            "accessibility_label": "Om yu-munten voor fietsen te verdienen, hebben we toestemming van de locatie nodig om gegevens over fietsactiviteiten te verzamelen."
           },
-          "cta_label": "Toestemming Verlenen",
-          "message": "Om Yucoin te verdienen met fietsen, hebben we locatietoestemming nodig om gegevens over fietsactiviteit te verzamelen."
+          "cta_label": "Toestemming verlenen",
+          "message": "Om Yucoin voor fietsen te verdienen, hebben we toestemming van de locatie nodig om gegevens over fietsactiviteiten te verzamelen."
         },
         "use_google_fit": {
-          "cta_label": "Verbind met Google Fit",
-          "message": "Samsung Health ondersteunt niet alle kernactiviteiten. Om de volledige ervaring en beloningen te krijgen, overweeg om Google Fit te gebruiken."
+          "cta_label": "Verbinding maken met Google Fit",
+          "message": "Samsung Health ondersteunt niet alle kernactiviteiten. Om de volledige ervaring en beloningen te krijgen, kun je overwegen om Google Fit te gebruiken."
         }
       },
       "yucoin_header": {
         "coins": {
           "accessibility": {
-            "accessibility_label": "%{coins} yucoin vandaag verdiend"
+            "accessibility_label": "%{coins} yu munt verdiend vandaag"
           },
           "earned_today": "Vandaag heb je verdiend"
         },
         "yucoin_power": {
           "accessibility": {
-            "accessibility_label": "%{power} yucoin vermogen"
+            "accessibility_label": "%{power} yu munt vermogen"
           }
         }
       }
@@ -1923,82 +1925,82 @@
       "cta_label": "Mijn app bijwerken"
     },
     "video_player": {
-      "error_message": "Er is iets misgegaan. \n Probeer het opnieuw",
-      "one_moment_please": "Een ogenblik alstublieft...",
+      "error_message": "Er is iets fout gegaan.\n Probeer het opnieuw",
+      "one_moment_please": "Een moment, alstublieft...",
       "playing_on_airplay": "Afspelen op AirPlay-apparaat",
       "playing_on_chromecast": "Afspelen op Chromecast",
       "session_complete": "Sessie voltooid.",
       "video_type": {
         "mindfulness": "Meditatie",
-        "workout": "Trainingsschema"
+        "workout": "Training"
       }
     },
     "weekly_quests": {
-      "accept_challenge": "Accepteer uitdaging",
+      "accept_challenge": "Uitdaging accepteren",
       "claimable_activity": "Klaar! Claim je beloning.",
-      "claimed_activity": "Goed gedaan! Kom volgende week weer terug.",
-      "come_back_in": "Kom terug over",
-      "in_progress": "Bezig",
+      "claimed_activity": "Goed bezig! Kom volgende week zeker terug.",
+      "come_back_in": "Kom terug binnen",
+      "in_progress": "In uitvoering",
       "pick_challenge": "Kies je uitdaging.",
       "quest_resets_in": "Quests worden gereset in",
-      "reward": "Beloning",
+      "reward": "Belonen",
       "title": "Wekelijkse zoektocht"
     },
     "wellbeing_hub": {
-      "category_all": "Alles",
-      "header_description": "Je snelle toegangshub om je welzijnsvoordelen te verkennen en ervan te genieten.",
+      "category_all": "Alle",
+      "header_description": "Jouw snel toegankelijke hub om jouw welzijnsvoordelen te ontdekken en ervan te genieten.",
       "header_title": "Hoi %{name}",
       "no_results": {
-        "description": "Je hebt momenteel geen welzijnsvoordelen. Mogelijk kun je ze hier later vinden.",
+        "description": "Je hebt momenteel geen welzijnsvoordelen. Misschien kun je ze hier later vinden.",
         "title": "Kom later terug!"
       },
       "send_documents": {
-        "description": "Voer het e-mailadres in waarnaar u het document/ de documenten wilt verzenden:",
-        "error": "Sorry! Er is iets misgegaan.",
-        "input_placeholder": "Voer e-mailadres in",
-        "send_button": "E-mail verzenden",
+        "description": "Voer het e-mailadres in waar je de documenten naartoe wilt laten sturen:",
+        "error": "Sorry! Er ging iets mis.",
+        "input_placeholder": "E-mailadres invoeren",
+        "send_button": "Stuur e-mail",
         "success": "E-mail verzonden",
         "title": "E-mail document(en)"
       }
     },
     "wrapped": {
       "ending": {
-        "share_error": "Er is een probleem opgetreden bij het delen",
+        "share_error": "Er was een probleem met het delen van",
         "share_unavailable": "Delen is niet beschikbaar op dit apparaat",
-        "subtitle": "Maak je klaar voor een nieuw jaar vol plezier",
+        "subtitle": "Bereid je voor op weer een jaar vol plezier",
         "title": "Bedankt voor alles wat je doet!"
       },
-      "error": "Oeps! Er is iets misgegaan",
+      "error": "Oeps! Er ging iets mis",
       "sharable_card": {
         "best_yudoku_time": "beste Yudoku",
         "challenges_completed": "uitdagingen",
-        "title": "Jaar in Beeld voor %{firstName}",
-        "total_steps": "totale stappen",
+        "title": "Jaaroverzicht voor %{firstName}",
+        "total_steps": "totaal aantal stappen",
         "yucoin_earned": "YuCoin verdiend"
       },
       "stage_1": {
         "subtitle": "uitdagingen",
         "subtitle_single": "uitdaging",
-        "title": "Kijk daar!",
+        "title": "Kijk eens aan!",
         "you_completed": "Je hebt voltooid"
       },
       "stage_2": {
         "challenges": {
-          "BRISK_WALK_001": "flinke wandelingen",
+          "BRISK_WALK_001": "stevige wandelingen",
           "LONG_WALK_001": "lange wandelingen",
           "MEDITATION_001": "meditaties",
           "SHORT_STROLL_001": "korte wandelingen",
-          "WORKOUT_007": "trainingsschema's",
-          "YUDOKU_001": "yudoku's"
+          "WORKOUT_007": "trainingen",
+          "YUDOKU_001": "yudokus"
         },
-        "line_1": "Laten we wat dieper duiken!",
+        "line_1": "Laten we eens wat dieper duiken!",
         "line_2": "Dit zijn alle verschillende",
-        "line_3": "avonturen waarop je bent gegaan:"
+        "line_3": "avonturen die je hebt beleefd:"
       },
       "stage_3": {
         "collected": "Je verzamelde...",
         "steps": "stappen",
-        "subtitle": "Je hebt het geweldig gedaan!",
+        "subtitle": "Je hebt het verpletterd!",
         "title": "Dit jaar liep je...",
         "yucoin_amount": "%{amount} YuCoin"
       },
@@ -2010,87 +2012,87 @@
         "total_time_played": "Totale speeltijd"
       },
       "staging": {
-        "title": "Het is tijd voor uw"
+        "title": "Het is tijd voor je"
       },
-      "title": "in beoordeling"
+      "title": "in Overzicht"
     },
     "yu_coin_power_explained": {
       "heading": "YuCoin Vermogen",
       "no_products": {
-        "description": "Je YuCoin Power vergroot de hoeveelheid YuCoin die je verdient bij elke activiteit. Houd je ogen open voor mogelijkheden om je YuCoin Power in de toekomst te verhogen!",
-        "title": "Verhoog uw kracht om meer YuCoin te verdienen"
+        "description": "Je YuCoin Power verhoogt de hoeveelheid YuCoin die je verdient met elke activiteit. Blijf kijken voor mogelijkheden om je YuCoin Power in de toekomst te verhogen!",
+        "title": "Meer vermogen om meer YuCoin te verdienen"
       }
     },
     "yumoji_builder": {
       "award_modal": {
-        "heading": "Geweldig werk!\nJe Yumoji is klaar voor avontuur."
+        "heading": "Goed gedaan!\nJe Yumoji is klaar voor het avontuur."
       },
       "create": {
-        "link": "Ik doe dit later",
-        "title": "Maak je Yumoji om het Yuniversum binnen te stappen"
+        "link": "Ik zal dit later doen",
+        "title": "Creëer je Yumoji om het Yuniversum binnen te stappen"
       },
       "edit": {
         "title": "Kies een lichaamstype"
       },
       "exit_modal": {
-        "cta_label_secondary": "Blijven Bewerken",
-        "heading": "Yumoji-bouwer afsluiten?",
-        "subheading": "Weet je zeker dat je wilt afsluiten? Je verliest onopgeslagen wijzigingen."
+        "cta_label_secondary": "Blijven bewerken",
+        "heading": "Yumoji bouwer verlaten?",
+        "subheading": "Weet je zeker dat je wilt afsluiten? Je zult alle niet-opgeslagen wijzigingen kwijtraken."
       },
       "heading": "Bewerk je Yumoji"
     },
     "yu": {
       "products_survey": {
-        "text_area_placeholder": "Beschrijf hier alles wat u verder nog zou willen zien..."
+        "text_area_placeholder": "Beschrijf iets anders dat je hier zou willen zien..."
       }
     }
   },
-  "setup_tutorial": "Instellingstutorial",
+  "setup_tutorial": "Zelfstudie instellen",
   "smart_count": {
     "kilometers": "%{smart_count} km",
-    "minutes": "%{smart_count} min |||| %{smart_count} min",
-    "seconds": "%{smart_count} sec |||| %{smart_count} sec",
+    "minutes": "%{smart_count} min |||| %{smart_count} mins",
+    "seconds": "%{smart_count} sec |||| %{smart_count} secs",
     "steps": "%{smart_count} stap |||| %{smart_count} stappen"
   },
   "success": "Succes",
   "sudoku": {
     "cancel": {
       "message": {
-        "default": "Je huidige voortgang gaat verloren en als je vandaag een Yudoku voltooit, wordt deze niet op het leaderboard meegerekend",
-        "jp": "Je huidige voortgang gaat verloren en als je vandaag een Number Puzzle voltooit, wordt deze niet op het leaderboard meegerekend"
+        "default": "Je huidige voortgang gaat verloren en als je vandaag een Yudoku voltooit, wordt deze niet gerangschikt op het klassement.",
+        "jp": "Je huidige voortgang gaat verloren en als je vandaag een Getallen Puzzel voltooit, wordt deze niet gerangschikt op het leaderboard."
       }
     },
     "completed": {
-      "collect": "Verzamelen",
-      "continue": "Doorgaan",
+      "collect": "Verzamel",
+      "continue": "Ga verder",
       "practice": {
         "default": "Probeer nu de dagelijkse Yudoku-uitdaging om YuCoin te verdienen!",
-        "jp": "Probeer nu de dagelijkse Nummerpuzzel-uitdaging om YuCoin te verdienen!"
+        "jp": "Probeer nu de dagelijkse Getallenpuzzel-uitdaging om YuCoin te verdienen!"
       },
       "practice_title": {
         "default": "Yudoku Oefenen",
-        "jp": "Nummers Puzzel Oefening"
+        "jp": "Oefenen met getallenpuzzels"
       },
       "sub1": {
-        "default": "Je hebt je dagelijkse Yudoku voltooid.",
-        "jp": "Je hebt je dagelijkse Nummerpuzzel voltooid."
+        "default": "Je bent klaar met je dagelijkse Yudoku.",
+        "jp": "Je hebt je dagelijkse Getallenpuzzel af."
       },
       "sub2": "Kom morgen terug voor een nieuwe ronde.",
-      "title": "Goed gedaan!"
+      "title": "Geweldig werk!"
     },
     "difficulty": {
-      "easy": "Makkelijk",
-      "hard": "Moeilijk",
-      "medium": "Gemiddeld"
+      "easy": "Gemakkelijk",
+      "hard": "Hard",
+      "medium": "Medium"
     },
     "error": {
       "cancel": "Annuleren",
-      "continue": "Doorgaan",
+      "continue": "Ga verder",
       "message": {
-        "default": "Er is een fout opgetreden bij het indienen van je Yudoku resultaten",
-        "jp": "Er is een fout opgetreden bij het indienen van je nummerpuzzel resultaten"
+        "default": "Er is een fout opgetreden tijdens het indienen van je Yudoku resultaten",
+        "jp": "Er is een fout opgetreden tijdens het indienen van je Getallenraadsel resultaten"
       },
-      "retry": "Opnieuw indienen",
+      "retry": "Opnieuw proberen",
       "title": "Kon resultaten niet indienen"
     },
     "game": {
@@ -2099,95 +2101,95 @@
     "help": {
       "1": {
         "default": "De basisregels van Yudoku:",
-        "jp": "De basisregels van de Nummerpuzzel:"
+        "jp": "De basisregels van de Getallenpuzzel:"
       },
       "2": {
         "default": "Het Yudoku-raster bestaat uit 9x9 cellen.",
-        "jp": "Het getallenspelraster bestaat uit 9x9 cellen."
+        "jp": "Het rooster van de Getallenpuzzel bestaat uit 9x9 cellen."
       },
-      "3": "Je mag alleen de getallen 1 tot 9 gebruiken.",
-      "4": "In elk 3x3 blok kunnen alleen de cijfers 1 tot 9 worden gebruikt.",
-      "5": "Elke verticale kolom mag ook alleen de getallen 1 tot 9 bevatten.",
-      "6": "Evenzo moet elke horizontale rij ook alleen de getallen 1 tot 9 bevatten.",
-      "7": "Geen cijfer in het 3x3 blok, de verticale kolom of de horizontale rij mag worden herhaald.",
+      "3": "Je mag alleen de getallen 1 tot en met 9 gebruiken.",
+      "4": "In elk 3x3 blok kunnen alleen de getallen 1 tot en met 9 worden gebruikt.",
+      "5": "Elke verticale kolom mag ook alleen de getallen 1 tot en met 9 bevatten.",
+      "6": "Op dezelfde manier mag elke horizontale rij ook alleen de getallen 1 tot en met 9 bevatten.",
+      "7": "Geen enkel getal in het 3x3 blok, de verticale kolom of de horizontale rij kan worden herhaald.",
       "outline": {
-        "default": "Om Yudoku te spelen - vul een 9x9 raster in met nummers 1 tot 9, zodat elk nummer slechts één keer voorkomt in elke rij, elke kolom en elk 3x3 blok. Het doel is om een voltooid en correct rooster te hebben aan het einde van het spel.",
-        "jp": "Om het Nummer Puzzel te spelen - vul een 9x9 raster in met cijfers 1 tot 9, zodat elk cijfer slechts één keer voorkomt in elke rij, elke kolom en elk 3x3 blok. Het doel is om een voltooid en correct rooster te hebben aan het einde van het spel."
+        "default": "Om Yudoku te spelen - vul een 9x9 rooster in met de getallen 1 tot 9, zodanig dat elk getal slechts één keer voorkomt in elke rij, elke kolom en elk 3x3 blok. Het doel is om aan het einde van het spel een volledig en correct rooster te hebben.",
+        "jp": "Om de Getallenpuzzel te spelen - vul een rooster van 9x9 in met de getallen 1 tot 9, zodanig dat elk getal slechts één keer voorkomt in elke rij, elke kolom en elk 3x3 blok. Het doel is om een compleet en correct rooster te hebben aan het einde van het spel."
       },
       "title": {
-        "default": "Hoe Yudoku te spelen",
-        "jp": "Hoe te spelen de Nummers Puzzel"
+        "default": "Hoe Yudoku spelen",
+        "jp": "Hoe speel je de Getallenpuzzel?"
       }
     },
     "hint_popup": {
       "cta": "Gebruik een hint",
       "message": "Elke keer dat je de hintknop gebruikt, verlies je 30 seconden van je tijd.",
-      "title": "Hints"
+      "title": "Tips"
     },
     "leaderboard_consent": {
-      "confirm": "Deelnemen aan het Klassement",
-      "description": "Door deel te nemen aan het leaderboard ga je ermee akkoord details over je activiteit te delen met andere leden van dit leaderboard. Je kunt op elk moment afmelden via het instellingenmenu.",
+      "confirm": "Doe mee aan het Leaderboard",
+      "description": "Door deel te nemen aan het leaderboard geef je toestemming om gegevens over je activiteit te delen met andere leden van dit leaderboard. Je kunt je op elk moment afmelden via het instellingenmenu.",
       "title": {
-        "default": "Deelnemen aan het dagelijkse Yudoku Klassement?",
-        "jp": "Deelnemen aan het dagelijkse Klassetment van het Cijferraadsel?"
+        "default": "Meedoen aan het dagelijkse Yudoku klassement?",
+        "jp": "Meedoen aan het dagelijkse Nummer Puzzel leaderboard?"
       }
     },
     "leaderboard": {
       "empty_description": {
-        "default": "Voltooi een Yudoku en sta vandaag als eerste op het leaderboard!",
-        "jp": "Voltooi een Number Puzzle en sta vandaag als eerste op het leaderboard!"
+        "default": "Voltooi een Yudoku en sta vandaag nog als eerste op de ranglijst!",
+        "jp": "Voltooi een Getallenpuzzel en sta vandaag nog als eerste op de ranglijst!"
       },
       "start": "Spel starten",
       "title": {
         "default": "Dagelijkse Yudoku",
-        "jp": "Dagelijkse Nummers Puzzel"
+        "jp": "Dagelijkse getallenpuzzel"
       }
     },
     "pause": {
-      "difficulty": "Moeilijkheidsgraad",
+      "difficulty": "Moeilijkheid",
       "mistakes": "Fouten",
-      "resume": "Spel Hervatten",
+      "resume": "Resume Spel",
       "time": "Tijd",
       "title": "Pauze"
     },
     "progress": {
       "paused": {
-        "default": "Yudoku Gepauzeerd",
-        "jp": "Nummers Puzzel Gepauzeerd"
+        "default": "Yudoku onderbroken",
+        "jp": "Getallenpuzzel Gepauzeerd"
       },
-      "resume": "Spel Hervatten"
+      "resume": "Resume Spel"
     },
     "staging": {
       "alreadyDone": {
-        "default": "Je kunt slechts één Yudoku per dag doen.\nKom morgen terug!",
-        "jp": "Je kunt slechts één Number Puzzle per dag doen.\nKom morgen terug!"
+        "default": "Je kunt maar één Yudoku per dag doen.\nKom morgen terug!",
+        "jp": "Je kunt maar één Getallenpuzzel per dag doen.\nKom morgen terug!"
       },
-      "continueGame": "Doorgaan met spel",
+      "continueGame": "Spel voortzetten",
       "dailyLeaderboard": "Dagelijks klassement",
-      "howToPlay": "Hoe te spelen?",
-      "joinDailyLeaderboard": "Deelnemen aan het dagelijks klassement",
+      "howToPlay": "Hoe speel je?",
+      "joinDailyLeaderboard": "Doe mee aan het dagelijkse leaderboard",
       "practiceGame": "Oefenspel",
-      "secondAttemptDisclaimer": "Omdat dit niet je eerste poging van vandaag is, zal je tijd niet in de ranglijst verschijnen en niet meetellen voor je persoonlijke record.",
+      "secondAttemptDisclaimer": "Omdat dit niet je eerste poging van vandaag is, wordt je tijd niet gerangschikt op het klassement en telt hij niet mee voor je persoonlijke beste tijd.",
       "startGame": "Spel starten",
-      "todaysLeaderboard": "Vandaag klassement"
+      "todaysLeaderboard": "Het klassement van vandaag"
     },
     "stats": {
-      "hints": "Hints",
+      "hints": "Tips",
       "mistakes": "Fouten",
       "notApplicable": "n.v.t.",
       "paused": "Gepauzeerd",
-      "personalBest": "Persoonlijk record",
-      "reward": "Beloning",
-      "todaysTime": "Tijd van vandaag",
-      "unranked": "Niet-gerangschikt"
+      "personalBest": "Persoonlijke topscore",
+      "reward": "Belonen",
+      "todaysTime": "De tijd van vandaag",
+      "unranked": "Niet gerangschikt"
     },
     "title": {
       "default": "Yudoku",
-      "jp": "Nummers Puzzel"
+      "jp": "Getallenpuzzel"
     }
   },
   "test_keys": {
-    "test_key": "Dit is een verzameling testlokalisatiestringen om het vertaalproces te valideren."
+    "test_key": "Dit is een verzameling test-lokalisatiestrings om het vertaalproces te valideren."
   },
   "time_units": {
     "day": "dag",
@@ -2197,12 +2199,12 @@
     "less_than_minute": "minder dan 1 minuut",
     "minute": "minuut",
     "minutes": "minuten",
-    "second": "seconde",
+    "second": "tweede",
     "seconds": "seconden",
     "short_day": "d",
     "short_days": "d",
-    "short_hour": "u",
-    "short_hours": "u",
+    "short_hour": "h",
+    "short_hours": "h",
     "short_minute": "m",
     "short_minutes": "m",
     "short_second": "s",
@@ -2217,11 +2219,11 @@
     },
     "total_bank": {
       "icon": {
-        "accessibility_label": "%{coins} yucoin te besteden"
+        "accessibility_label": "%{coins} yucoin om uit te geven"
       }
     }
   },
-  "unequip": "Uitrusting verwijderen",
+  "unequip": "Uitrusten",
   "unit_of_measure": {
     "centimeters": "%{smart_count}cm |||| %{smart_count}cm",
     "feet": "%{smart_count}ft |||| %{smart_count}ft",
@@ -2235,31 +2237,31 @@
     "description": {
       "action": "voor elke vriend die zich aanmeldt!",
       "amount": "%{yuCoinValue} YuCoin",
-      "reward": "Je zult verdienen"
+      "reward": "Je verdient"
     },
-    "list_item": "Verdien **%{yuCoinValue} YuCoin** voor iedere vriend die je uitnodigt voor de YuLife app.",
+    "list_item": "Verdien **%{yuCoinValue} YuCoin** voor elke vriend die je uitnodigt voor de YuLife app.",
     "recent": "Recent",
     "search_placeholder": "Vrienden zoeken",
     "title": "Zie je je vrienden niet?"
   },
   "validator": {
     "email": "Voer een geldig e-mailadres in.",
-    "password": "Voer een wachtwoord in"
+    "password": "Voer een wachtwoord in."
   },
   "watch": {
     "common": {
-      "close": "Sluiten",
-      "retry": "Opnieuw",
+      "close": "Sluit",
+      "retry": "Opnieuw proberen",
       "steps": "stappen",
       "yucoin": "YuCoin"
     },
     "screens": {
       "challenge_cancel": {
-        "confirm": "Bevestigen",
+        "confirm": "Bevestig",
         "label": "Weet je zeker dat je je uitdaging wilt annuleren?"
       },
       "challenge_failed": {
-        "explanation": "Je was nog maar %d stappen verwijderd van het verdienen van %d YuCoin!"
+        "explanation": "Je was slechts %d stappen verwijderd van het verdienen van %d YuCoin!"
       },
       "challenge_list": {
         "error": "Er is iets misgegaan!",
@@ -2267,37 +2269,37 @@
       },
       "challenge_preview": {
         "buttonError": "Oeps!",
-        "buttonText": "Neem uitdaging"
+        "buttonText": "Ga de uitdaging aan"
       },
       "challenge_start_fail": {
         "errors": {
-          "challenge_on_phone": "Er is al een uitdaging gaande op je telefoon!",
-          "generic_error": "Er is iets fout gegaan!",
-          "has_unity_left": "Controleer uw telefoon om door te gaan!",
-          "no_challenges_left": "Heb alle beschikbare uitdagingen voor vandaag al voltooid"
+          "challenge_on_phone": "Er is al een uitdaging bezig op je telefoon!",
+          "generic_error": "Er is iets misgegaan!",
+          "has_unity_left": "Controleer je telefoon om verder te gaan!",
+          "no_challenges_left": "Alle beschikbare uitdagingen voor vandaag al voltooid"
         }
       },
       "challenge_submit_error": {
-        "message": "Er is een probleem opgetreden bij het indienen van uw resultaten"
+        "message": "Er is een probleem opgetreden bij het indienen van je resultaten"
       },
       "challenge_success": {
         "youGot": "Je hebt verdiend"
       },
       "home": {
-        "yucoin_today": "YuCoin Vandaag"
+        "yucoin_today": "YuCoin vandaag"
       },
       "offline": {
         "label": "Je bent offline!",
-        "text": "Controleer uw netwerk"
+        "text": "Controleer je netwerk"
       },
       "onboarding": {
-        "notAvailable": "De Apple Watch YuLife-app is binnenkort beschikbaar! Hou… dit in de gaten!",
+        "notAvailable": "De Apple Watch YuLife app is binnenkort beschikbaar! Let op... deze ruimte!",
         "open_on_phone": "Open de YuLife app op je telefoon.",
         "pedometer": "Geef de app toestemming om je stappen bij te houden!",
-        "systemPermissionNeeded": "Schakel de toestemming voor Beweging en Fitness in bij de instellingen"
+        "systemPermissionNeeded": "Schakel de Beweging & Fitness-toestemming in bij Instellingen"
       },
       "settings": {
-        "logout": "Uitloggen",
+        "logout": "Afmelden",
         "logout_confirm": "Weet je zeker dat je wilt uitloggen?",
         "title": "Instellingen"
       }
@@ -2310,11 +2312,11 @@
     "lower_case_amount": "%{amount} yucoin"
   },
   "yucoin_power": {
-    "description": "Potentiële YuCoin-verdiensten",
+    "description": "Potentiële YuCoin verdiensten",
     "power": "Stroom",
     "tool_tip": {
-      "description": "Verdien dit aantal YuCoin elke maand door alle vier dagelijkse uitdagingen te voltooien (extra uitdaging ontgrendeld elke 50 niveaus), je dagelijkse kernactiviteiten te maximaliseren, kisten te openen en reeksen te voltooien.",
-      "title": "Potentiële YuCoin-verdiensten"
+      "description": "Verdien dit bedrag aan YuCoin elke maand door alle vier de dagelijkse uitdagingen te voltooien (extra uitdaging wordt elke 50 levels vrijgespeeld), je dagelijkse kernactiviteiten te maximaliseren, kisten te openen en streaks te voltooien.",
+      "title": "Potentiële YuCoin verdiensten"
     },
     "yucoin": "YuCoin"
   },
@@ -2330,57 +2332,57 @@
       "steps": "Stappen"
     },
     "capabilitiesRequest": {
-      "body": "Om verder te gaan, hebben we vriendelijk uw toestemming nodig voor",
+      "body": "Om verder te kunnen gaan, hebben we je toestemming nodig voor",
       "cancel": "Annuleren",
       "capabilities": {
         "calories": "calorieën",
         "cycling": "fietsen",
         "heartRate": "hartslag",
-        "meditation": "Meditatie",
+        "meditation": "meditatie",
         "steps": "stappen",
-        "wheelchair_pushes": "rolstoel duwtjes",
-        "workouts": "trainingsschema's"
+        "wheelchair_pushes": "rolstoel duwt",
+        "workouts": "trainingen"
       },
-      "continue": "Laten we verbinden",
-      "header": "Vereiste machtigingen",
+      "continue": "Laten we verbinding maken",
+      "header": "Benodigde machtigingen",
       "join": "en"
     },
     "connect": {
-      "body": "Verbind een service zodat we je kunnen belonen voor je dagelijkse activiteiten.Je kunt dit op elk moment aanpassen in de instellingen van je apparaat.",
-      "button": "Laten we verbinden",
-      "no_providers": "We konden geen zorgverleners op uw apparaat vinden.",
-      "not_available": "Sommige functies zijn mogelijk niet beschikbaar voor jou. Je mist misschien YuCoin. Je kunt een andere dienst proberen",
+      "body": "Sluit een service aan zodat we je kunnen belonen voor je dagelijkse activiteiten. Je kunt dit op elk moment aanpassen in de instellingen van je apparaat.",
+      "button": "Laten we verbinding maken",
+      "no_providers": "We konden geen zorgverleners vinden op je apparaat.",
+      "not_available": "Sommige functies zijn mogelijk niet beschikbaar voor jou. Misschien mis je onze op YuCoin. Je kunt een andere service proberen",
       "system_permission_needed": {
-        "body": "Open de YuLife-instellingen en schakel de toestemming in",
-        "button": "Open instellingen",
-        "cancel": "Annuleren",
-        "title": "Systeemmachtiging vereist"
+        "body": "Open de instellingen van YuLife en schakel de toestemming in",
+        "button": "Instellingen openen",
+        "cancel": "Sluit",
+        "title": "Systeemtoestemming nodig"
       },
-      "title": "Verbindingsinstelling",
-      "unsupported": "Helaas wordt %{capabilities} niet ondersteund door %{provider}. Overweeg over te schakelen om toegang te krijgen tot dit en de mogelijkheid om YuCoin te verdienen:",
+      "title": "Verbindingsinstellingen",
+      "unsupported": "Helaas wordt %{capabilities} niet ondersteund door %{provider}. Om hier toegang toe te krijgen en de mogelijkheid om YuCoin te verdienen, kun je overwegen om over te stappen:",
       "why": "Waarom moet ik dit doen?"
     },
     "explanation": {
-      "body": "We hebben dit nodig zodat we weten wanneer we je kunnen belonen voor je activiteit, terwijl we je voortgang bijhouden. Wees gerust, je gegevens zijn bij ons altijd veilig en beschermd.",
-      "button": "Begrepen!",
+      "body": "Dit hebben we nodig zodat we weten wanneer we je moeten belonen voor je activiteit, terwijl we je voortgang bijhouden. Wees gerust, je gegevens zitten altijd achter slot en grendel bij ons.",
+      "button": "Hebbes!",
       "title": "Waarom heb ik dit nodig?"
     },
     "foreground_service": {
-      "active_body": "Je stappen zijn gedekt! Blijf bewegen en blijf Yucoin verdienen!",
+      "active_body": "We hebben je stappen gedekt! Blijf bewegen en blijf Yucoin verdienen!",
       "active_title": "%{steps} stappen",
-      "ended_body": "Controleer terug om te zien hoe je hebt gepresteerd!",
+      "ended_body": "Kom terug om te zien hoe je het hebt gedaan!",
       "ended_title": "Uitdaging beëindigd"
     },
     "providers": {
       "generic": "Zorgverlener",
       "googleFit": "Google Fit",
-      "healthConnect": "Gezondheidsverbinding",
+      "healthConnect": "Gezondheid",
       "healthKit": "Apple Gezondheid",
-      "samsungHealth": "Samsung Health"
+      "samsungHealth": "Samsung Gezondheid"
     },
     "select": {
-      "choose": "Kies een dienst",
-      "confirm": "Bevestigen"
+      "choose": "Kies een service",
+      "confirm": "Bevestig"
     }
   }
 }

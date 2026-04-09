@@ -657,7 +657,8 @@
           "title": "التمارين"
         },
         "meditation": {
-          "description": "ميزة التأمل غير متاحة في Health Connect. وللحصول على المكافآت، يرجى التبديل إلى Google Fit.",
+          "description": "مطلوب من تطبيق YuLife لمزامنة دقائق التأمل الذهني من جلسات التأمل الخاصة بك إلى حساب Health Connect الخاص بك.",
+          "requirement": "يتطلب: جلسات اليقظة",
           "title": "دقائق التأمل"
         },
         "steps": {

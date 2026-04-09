@@ -657,7 +657,8 @@
           "title": "Entrenamientos"
         },
         "meditation": {
-          "description": "Samsung Health no es compatible con la meditación. Para obtener recompensas cambia a Google Fit.",
+          "description": "Necesario para que la aplicación YuLife sincronice los minutos mindful de tus sesiones de meditación con tu cuenta de Health Connect.",
+          "requirement": "Requiere: Sesiones de Mindfulness",
           "title": "Minutos de meditación"
         },
         "steps": {

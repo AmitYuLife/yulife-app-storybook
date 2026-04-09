@@ -657,7 +657,8 @@
           "title": "エクササイズ"
         },
         "meditation": {
-          "description": "マインドフルネスはHealth Connectに対応していません。リワードを獲得するには、Google Fitに切り替えてください。",
+          "description": "YuLifeアプリがマインドフル時間をHealth Connectアカウントに同期するために必要となります。",
+          "requirement": "必要: マインドフルネスセッション",
           "title": "マインドフル時間"
         },
         "steps": {
