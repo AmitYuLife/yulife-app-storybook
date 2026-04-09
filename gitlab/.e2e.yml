@@ -76,7 +76,7 @@ ios-detox-build-app:
   variables:
     FORCE_COLOR: 1
     GITLAB_TOKEN: $CI_JOB_TOKEN
-    CI_DETOX_CACHE_PREFIX: "${MACOS_VM_IMAGE_VERSION}-${IOS_XCODE_VERSION}-ios-detox-build"
+    CI_DETOX_CACHE_PREFIX: "${MACOS_VM_IMAGE_VERSION}-${IOS_XCODE_VERSION}-ios-detox-build-modified-files"
     # Configure tart
     TART_EXECUTOR_SHELL: bash -l
     # Set cocoapods cache path to local folder to allow gitlab cache it
@@ -90,8 +90,8 @@ ios-detox-build-app:
     BITRISE_BUILD_NUMBER: 1234
     PLATFORM: ios
     ENABLE_YUWATCH: 0
-    DETOX_BUILD_CONFIG: ios.sim.release
-    FORCE_DETOX_BUILD: "true"
+    DETOX_BUILD_CONFIG: ios.sim.debug
+    FORCE_DETOX_BUILD: "false"
   script:
     - ./scripts/gitlab/detox/build_detox_app.sh
   artifacts:
@@ -100,14 +100,7 @@ ios-detox-build-app:
     expire_in: 7 days
     untracked: false
   rules:
-    - !reference [.detox-overnight-rules, rules]
-    - if: $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api"
-      interruptible: false
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      variables:
-        CI_DETOX_CACHE_PREFIX: "${MACOS_VM_IMAGE_VERSION}-${IOS_XCODE_VERSION}-ios-detox-build-modified-files"
-        DETOX_BUILD_CONFIG: ios.sim.debug
-        FORCE_DETOX_BUILD: "false"
       changes:
         - e2e/**/*
 
@@ -119,20 +112,12 @@ ios-detox-build-app:
   stage: test
   timeout: 100m
   interruptible: true
-  cache:
-    <<: *detox-cache
-    policy: pull
   variables:
     FORCE_COLOR: 1
     GITLAB_TOKEN: $CI_JOB_TOKEN
-    CI_DETOX_CACHE_PREFIX: "${MACOS_VM_IMAGE_VERSION}-${IOS_XCODE_VERSION}-ios-detox-build"
     # Configure tart
     TART_EXECUTOR_SHELL: bash -l
-    # Build env vars
-    CP_HOME_DIR: "$CI_PROJECT_DIR/.cocoapods_cache"
     BUNDLE_ID: "com.yulife.develop"
-    XCODE_WORKSPACE: "YuLife.xcworkspace"
-    XCODE_SCHEME: "YuLife"
     DISPLAY_NAME: "YuLife (e2e)"
     ENVFILE: ".env.e2e"
     # This will be the app version (patch)
@@ -148,8 +133,8 @@ ios-detox-build-app:
     REPORT_DNS_NAME: reports.qa.yulife.engineering
   script:
     - ./scripts/gitlab/detox/install_dependencies.sh
-    # Build app if is not in cache
-    - ./scripts/gitlab/detox/build_detox_app.sh
+    # Download pre-built release app from develop artifacts
+    - ./scripts/gitlab/detox/download-detox-release-build.sh
     # Run API server
     - ./scripts/gitlab/detox/pull_run_api_server.sh
     # Sync allure history
@@ -175,12 +160,31 @@ ios-detox-build-app:
 ios-detox-run-modified-files:
   extends: .base-detox-test
   allow_failure: true
+  cache:
+    <<: *detox-cache
+    policy: pull
   variables:
     GIT_DEPTH: 0
     CI_DETOX_CACHE_PREFIX: "${MACOS_VM_IMAGE_VERSION}-${IOS_XCODE_VERSION}-ios-detox-build-modified-files"
     CI_DETOX_CHANGES: "true"
     DETOX_BUILD_CONFIG: ios.sim.debug
     DETOX_TEST_TYPE: modified-files
+    CP_HOME_DIR: "$CI_PROJECT_DIR/.cocoapods_cache"
+    XCODE_WORKSPACE: "YuLife.xcworkspace"
+    XCODE_SCHEME: "YuLife"
+    FORCE_DETOX_BUILD: "false"
+  script:
+    - ./scripts/gitlab/detox/install_dependencies.sh
+    - ./scripts/gitlab/detox/build_detox_app.sh
+    - ./scripts/gitlab/detox/pull_run_api_server.sh
+    - ./scripts/gitlab/detox/pull_latest_allure_report.sh
+    - |
+      echo "Running detox test"
+      set +e
+      ./scripts/gitlab/detox/run_detox_test.sh
+      export DETOX_EXIT_CODE=$?
+      ./scripts/gitlab/detox/upload_detox_report.sh
+      exit $DETOX_EXIT_CODE
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       changes:
