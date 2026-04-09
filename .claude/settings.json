@@ -13,10 +13,13 @@
       "Bash(CI=true pnpm detox:run:*)",
       "Bash(pnpm e2e:build:*)"
     ],
-    "deny": ["Bash(pod install:*)"],
+    "deny": [
+      "Bash(pod install:*)"
+    ],
     "ask": []
   },
   "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "expo@claude-plugins-official": true
   }
 }
