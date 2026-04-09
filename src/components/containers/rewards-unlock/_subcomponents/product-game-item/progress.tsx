@@ -2,6 +2,7 @@ import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import { Box, TextTemplate } from "@atoms";
 import { ProgressEnd } from "@atoms/icon/progress-end";
 import { ContentItemWrapper } from "@components/sdui";
+import { PRODUCT_GAME_ITEM_PROGRESS } from "@ids";
 import { Colours } from "@styles";
 import { ComponentProps, memo } from "react";
 
@@ -19,7 +20,7 @@ const ProductGameItemProgress = ({ progress, info }: Props) => {
   const { theme } = useTheme();
 
   return !progress.max ? null : (
-    <Box mt={16}>
+    <Box mt={16} testID={PRODUCT_GAME_ITEM_PROGRESS(progress.current, progress.max)}>
       <Box pr={16} pl={16} flexDirection="row" alignItems="center" justifyContent="space-between">
         <Box flexDirection="row" alignItems="center">
           {!progress.title ? null : (

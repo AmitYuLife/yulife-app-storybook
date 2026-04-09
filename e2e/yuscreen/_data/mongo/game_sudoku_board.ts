@@ -4,8 +4,9 @@ import moment from "moment";
 export const BOARD_1 = {
   type: "mongo",
   modelName: "sudokuboards",
-  data: {
+    data: {
     _id: generateRandomMongoId(),
+    _detox: true,
     date: moment().format("YYYY-MM-DD"),
     difficulty: "easy",
     puzzle: [

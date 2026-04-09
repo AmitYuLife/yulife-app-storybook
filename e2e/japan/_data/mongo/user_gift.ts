@@ -14,8 +14,8 @@ export const CUSTOMER_2_SMOKING_GIFT_A = {
     fromUserId: customer.CUSTOMER_1.data.customerId,
     toUserId: customer.CUSTOMER_2_SMOKING.data.customerId,
     thanksSentAt: false,
-    createdAt: moment().subtract(10, "minutes").toISOString(),
-    claimedAt: moment().subtract(5, "minutes").toISOString(),
+    createdAt: moment().startOf("day").add(1, "second").toISOString(),
+    claimedAt: moment().startOf("day").add(1, "minute").toISOString(),
   },
 } as IDatabaseItem;
 
@@ -30,6 +30,6 @@ export const CUSTOMER_2_SMOKING_GIFT_B = {
     message: "Great work today!",
     background: "forest",
     sticker: "lantern",
-    createdAt: moment().subtract(10, "minutes").toISOString(),
+    createdAt: moment().startOf("day").add(1, "second").toISOString(),
   },
 } as IDatabaseItem;

@@ -113,6 +113,6 @@
   },
   "theming": {
     "region": "UK",
-    "specs": ["theming/**/*.spec.ts"]
+    "specs": ["theming/*.spec.ts"]
   }
 }
