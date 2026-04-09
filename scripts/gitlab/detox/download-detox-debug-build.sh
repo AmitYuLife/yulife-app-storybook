@@ -2,24 +2,25 @@
 
 set -euo pipefail
 
-JOB_NAME="build-detox-ios-debug"
-APP_BUILD_DIR="ios/build/Build/Products/Debug-iphonesimulator"
 APP_NAME="YuLife.app"
-TMP_DIR="/tmp/detox-debug-artifacts"
+TMP_DIR="/tmp/detox-build-artifacts"
 
 USE_LATEST=false
+BUILD_VARIANT="debug"
 
 while [[ $# -gt 0 ]]; do
   case $1 in
     --latest) USE_LATEST=true; shift ;;
+    --release) BUILD_VARIANT="release"; shift ;;
     -h|--help)
-      echo "Usage: $0 [--latest]"
+      echo "Usage: $0 [--latest] [--release]"
       echo ""
-      echo "Downloads a pre-built debug Detox app from GitLab pipeline artifacts."
+      echo "Downloads a pre-built Detox app from GitLab pipeline artifacts."
       echo "Matches the build to your local Expo fingerprint hash."
       echo ""
       echo "Options:"
       echo "  --latest    Download the most recent build even if the fingerprint doesn't match"
+      echo "  --release   Download the release build instead of debug"
       echo ""
       echo "Prerequisites: glab CLI authenticated (glab auth login)"
       exit 0
@@ -27,6 +28,14 @@ while [[ $# -gt 0 ]]; do
     *) echo "Unknown option: $1. Use --help for usage."; exit 1 ;;
   esac
 done
+
+if [[ "$BUILD_VARIANT" == "release" ]]; then
+  JOB_NAME="build-detox-ios-release"
+  APP_BUILD_DIR="ios/build/Build/Products/Release-iphonesimulator"
+else
+  JOB_NAME="build-detox-ios-debug"
+  APP_BUILD_DIR="ios/build/Build/Products/Debug-iphonesimulator"
+fi
 
 if ! command -v glab &>/dev/null; then
   echo "ERROR: glab CLI not found. Install it and run 'glab auth login'."
@@ -122,3 +131,14 @@ rm -rf "${APP_BUILD_DIR:?}/${APP_NAME}"
 tar -xzf "${TMP_DIR}/YuLife.app.tar.gz" -C "$APP_BUILD_DIR"
 rm -rf "$TMP_DIR"
 echo "Done. App extracted to ${APP_BUILD_DIR}/${APP_NAME}"
+
+# Release builds have JS baked in — re-bundle to pick up latest code
+if [[ "$BUILD_VARIANT" == "release" ]]; then
+  echo "Re-bundling JS..."
+  BUNDLE_TMP_DIR="dist-rebundle"
+  rm -rf "$BUNDLE_TMP_DIR"
+  pnpm expo export --platform ios --output-dir "$BUNDLE_TMP_DIR"
+  cp "$BUNDLE_TMP_DIR"/_expo/static/js/ios/*.hbc "${APP_BUILD_DIR}/${APP_NAME}/main.jsbundle"
+  rm -rf "$BUNDLE_TMP_DIR"
+  echo "JS bundle updated."
+fi

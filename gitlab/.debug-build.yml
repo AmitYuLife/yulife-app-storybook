@@ -18,7 +18,38 @@ build-detox-ios-debug:
     ENABLE_YUWATCH: 0
     DETOX_BUILD_CONFIG: ios.sim.debug
   script:
-    - ./scripts/gitlab/detox/build_and_upload_debug.sh
+    - ./scripts/gitlab/detox/build_and_upload.sh
+  artifacts:
+    paths:
+      - YuLife.app.tar.gz
+      - fingerprint.txt
+      - detox-build.log
+    expire_in: 7 days
+    untracked: false
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop" && $CI_PIPELINE_SOURCE != "schedule"
+
+build-detox-ios-release:
+  extends:
+    - .base-macos-vm
+  stage: build
+  interruptible: false
+  variables:
+    FORCE_COLOR: 1
+    GITLAB_TOKEN: $CI_JOB_TOKEN
+    TART_EXECUTOR_SHELL: bash -l
+    CP_HOME_DIR: "$CI_PROJECT_DIR/.cocoapods_cache"
+    BUNDLE_ID: "com.yulife.develop"
+    XCODE_WORKSPACE: "YuLife.xcworkspace"
+    XCODE_SCHEME: "YuLife"
+    DISPLAY_NAME: "YuLife (e2e)"
+    ENVFILE: ".env.e2e"
+    BITRISE_BUILD_NUMBER: 1234
+    PLATFORM: ios
+    ENABLE_YUWATCH: 0
+    DETOX_BUILD_CONFIG: ios.sim.release
+  script:
+    - ./scripts/gitlab/detox/build_and_upload.sh
   artifacts:
     paths:
       - YuLife.app.tar.gz

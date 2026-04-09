@@ -13,6 +13,15 @@ else
   echo "DEVELOPER_DIR not set or path does not exist, using default Xcode"
 fi
 
+# --- Derive build variant from DETOX_BUILD_CONFIG ---
+if [[ "$DETOX_BUILD_CONFIG" == "ios.sim.release" ]]; then
+  BUILD_VARIANT="Release"
+else
+  BUILD_VARIANT="Debug"
+fi
+
+BUILD_PRODUCTS_DIR="${BUILD_VARIANT}-iphonesimulator"
+
 # --- Install dependencies ---
 nvm install -b
 PATH="$(dirname "$(nvm which --silent)"):$PATH"
@@ -42,17 +51,17 @@ fi
 GITLAB_API="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}"
 ARTIFACTS_BASE="${GITLAB_API}/jobs/artifacts/develop/raw"
 
-echo "Checking for existing build with fingerprint ${FINGERPRINT_HASH}..."
+echo "Checking for existing ${BUILD_VARIANT} build with fingerprint ${FINGERPRINT_HASH}..."
 EXISTING_FINGERPRINT=$(curl --silent --fail --location \
   --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
-  "${ARTIFACTS_BASE}/fingerprint.txt?job=build-detox-ios-debug" 2>/dev/null || true)
+  "${ARTIFACTS_BASE}/fingerprint.txt?job=${CI_JOB_NAME}" 2>/dev/null || true)
 
 if [[ "$EXISTING_FINGERPRINT" == "$FINGERPRINT_HASH" ]]; then
   echo "Fingerprint matches latest successful build. Downloading existing artifact..."
   curl --fail --location \
     --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
     --output YuLife.app.tar.gz \
-    "${ARTIFACTS_BASE}/YuLife.app.tar.gz?job=build-detox-ios-debug"
+    "${ARTIFACTS_BASE}/YuLife.app.tar.gz?job=${CI_JOB_NAME}"
   echo "Reusing existing build. Skipped xcodebuild."
 else
   echo "No matching build found. Building..."
@@ -74,7 +83,7 @@ else
   pnpm detox:build -c "$DETOX_BUILD_CONFIG" > detox-build.log || (tail -n 100 detox-build.log && exit 1)
 
   # --- Package ---
-  APP_BUILD_PATH="ios/build/Build/Products/Debug-iphonesimulator/YuLife.app"
+  APP_BUILD_PATH="ios/build/Build/Products/${BUILD_PRODUCTS_DIR}/YuLife.app"
 
   if [[ ! -d "$APP_BUILD_PATH" ]]; then
     echo "ERROR: Build output not found at $APP_BUILD_PATH"
@@ -82,7 +91,7 @@ else
   fi
 
   echo "Packaging build..."
-  tar -czf YuLife.app.tar.gz -C ios/build/Build/Products/Debug-iphonesimulator YuLife.app
+  tar -czf YuLife.app.tar.gz -C "ios/build/Build/Products/${BUILD_PRODUCTS_DIR}" YuLife.app
 fi
 
 echo "Build ready: YuLife.app.tar.gz (fingerprint: ${FINGERPRINT_HASH})"
