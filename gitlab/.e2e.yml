@@ -69,7 +69,7 @@ ios-detox-build-app:
   tags:
     - oakhost_macos_m4
   image: $MACOS_VM_IMAGE
-  stage: build
+  stage: build-detox
   interruptible: true
   cache:
     <<: *detox-cache

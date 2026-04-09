@@ -1,7 +1,7 @@
 build-detox-ios-debug:
   extends:
     - .base-macos-vm
-  stage: build
+  stage: build-detox
   interruptible: false
   variables:
     FORCE_COLOR: 1
@@ -32,7 +32,7 @@ build-detox-ios-debug:
 build-detox-ios-release:
   extends:
     - .base-macos-vm
-  stage: build
+  stage: build-detox
   interruptible: false
   variables:
     FORCE_COLOR: 1
