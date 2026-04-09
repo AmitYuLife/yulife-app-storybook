@@ -4,6 +4,7 @@ import { EVENT_CARD_COLOUR, EVENT_CARD } from "@ids";
 import { getTheme } from "@theme";
 import { Style, StyleSheet } from "@styles";
 import { Box } from "@atoms";
+import { isRTL } from "@locale";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { HeroCard as HeroCardProps } from "@utils/heroCards";
 import { HERO_CARD_HEIGHT, HERO_CARD_PADDING } from "./constants";
@@ -57,7 +58,11 @@ const HeroCard = ({
     ({ children }) => {
       if (body.backgroundImage) {
         return (
-          <ImageBackground source={body.backgroundImage} style={styles.backgroundImage}>
+          <ImageBackground
+            source={body.backgroundImage}
+            style={styles.backgroundImage}
+            imageStyle={isRTL() ? { transform: [{ scaleX: -1 }] } : undefined}
+          >
             {children}
           </ImageBackground>
         );
