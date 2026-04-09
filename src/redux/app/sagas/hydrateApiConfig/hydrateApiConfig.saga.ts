@@ -1,4 +1,4 @@
-import { all, call, put, race, delay, select, take } from "redux-saga/effects";
+import { all, call, put, race, delay, select, take, fork, join } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { region } from "@locale";
 import { initStripe } from "@services/stripe";
@@ -14,6 +14,7 @@ import { getToken } from "@services/storage";
 import themeService from "@modules/themes/theme.service";
 import queryConfig from "./queryConfig";
 import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
+import { Task } from "redux-saga";
 
 const HYDRATE_TIMEOUT_MS = 4_000;
 
@@ -23,9 +24,11 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
   const isFromInit = initialPayloadTypes.includes(type);
 
   if (isFromInit) {
+    const runHydrationFork: Task<ReturnType<typeof runHydration>> = yield fork(runHydration, { type, payload });
+
     const [{ timeout }] = yield all([
       race({
-        hydration: call(runHydration, { type, payload }),
+        hydration: join(runHydrationFork),
         timeout: delay(HYDRATE_TIMEOUT_MS),
       }),
       take(READY_TO_SET_MAIN_ROOT),
@@ -78,10 +81,6 @@ function* runHydration({ type, payload }: SyncAction) {
 
           yield call(themeService.setThemeId, response.data.theme.id);
         }
-
-        if (response?.data?.config?.__typename) {
-          yield call(region.setConfig, response.data.config);
-        }
       }
     }
 
@@ -90,10 +89,9 @@ function* runHydration({ type, payload }: SyncAction) {
       yield call(deepLink.setDynamicDeeplinks, sduiStaticDeeplinks);
     }
 
-    yield call(initStripe);
-    yield call(dd.init);
+    yield all([call(initStripe), call(dd.init)]);
   } catch (error) {
-    Logger.error(error, { file: "hydrateApiConfigSaga" });
+    Logger.error(error, { file: "runHydration" });
   }
 
   return true;
