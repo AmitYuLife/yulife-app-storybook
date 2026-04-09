@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { View, ViewStyle } from "react-native";
 import BattlePassListItem, {
   IBattlePassListItem,
@@ -19,44 +19,48 @@ export interface IBattlePassList {
   onLoad?: () => void;
   initialScrollIndex?: number;
   contentContainerStyle?: ViewStyle;
+  ref?: React.MutableRefObject<RNFlatList<IBattlePassListItem>>;
 }
 
-const BattlePassList = forwardRef(
-  (
-    { items, onScrollStart, onLoad, battlePassType, initialScrollIndex, contentContainerStyle }: IBattlePassList,
-    forwardRefProp: React.MutableRefObject<RNFlatList<IBattlePassListItem>>
-  ) => {
-    const { theme } = useTheme();
-    const renderItem = useCallback(
-      ({ item }: { item: IBattlePassListItem }) => {
-        return (
-          <View style={styles.itemWrapper}>
-            <BattlePassListItem {...item} battlePassType={battlePassType} ctaTextColour={theme.colors.primary.p600} />
-          </View>
-        );
-      },
-      [battlePassType]
-    );
+const BattlePassList = ({
+  items,
+  onScrollStart,
+  onLoad,
+  battlePassType,
+  initialScrollIndex,
+  contentContainerStyle,
+  ref: forwardRefProp,
+}: IBattlePassList) => {
+  const { theme } = useTheme();
+  const renderItem = useCallback(
+    ({ item }: { item: IBattlePassListItem }) => {
+      return (
+        <View style={styles.itemWrapper}>
+          <BattlePassListItem {...item} battlePassType={battlePassType} ctaTextColour={theme.colors.primary.p600} />
+        </View>
+      );
+    },
+    [battlePassType]
+  );
 
-    return (
-      <FlatList
-        style={styles.wrapper}
-        testID={BATTLE_PASS_LIST}
-        forwardRef={forwardRefProp}
-        onLayout={onLoad}
-        horizontal={true}
-        data={items}
-        onScrollBeginDrag={onScrollStart}
-        renderItem={renderItem}
-        showsHorizontalScrollIndicator={false}
-        initialScrollIndex={initialScrollIndex}
-        getItemLayout={getItemLayout}
-        disableThrottle={true}
-        contentContainerStyle={contentContainerStyle}
-      />
-    );
-  }
-);
+  return (
+    <FlatList
+      style={styles.wrapper}
+      testID={BATTLE_PASS_LIST}
+      forwardRef={forwardRefProp}
+      onLayout={onLoad}
+      horizontal={true}
+      data={items}
+      onScrollBeginDrag={onScrollStart}
+      renderItem={renderItem}
+      showsHorizontalScrollIndicator={false}
+      initialScrollIndex={initialScrollIndex}
+      getItemLayout={getItemLayout}
+      disableThrottle={true}
+      contentContainerStyle={contentContainerStyle}
+    />
+  );
+};
 
 const getItemLayout = (_: unknown, index: number) => ({
   length: ENTERPRISE_REWARD_ITEM_WIDTH + Style.adjust(8),

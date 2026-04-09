@@ -1,53 +1,55 @@
-import React, { useState, useCallback, memo, useMemo, forwardRef } from "react";
+import React, { Ref, useState, useCallback, memo, useMemo } from "react";
 import TextInput, { IProps as TextInputProps } from "./text-input";
 import { TouchableWithoutFeedback, View } from "react-native";
 import { Eye } from "@atoms/icon/eye";
 import { Style, StyleSheet } from "@styles";
 import { t } from "@locale";
 
-type IProps = Omit<TextInputProps, "type">;
+type IProps = Omit<TextInputProps, "type"> & {
+  ref?: Ref<TextInput>;
+};
 
-export const TextInputPassword = memo(
-  forwardRef<TextInput, IProps>(({ errorMessage, hasError, onChange, value, testID, ...props }: IProps, ref) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const onShowPassword = useCallback(() => setShowPassword((state) => !state), [setShowPassword]);
-    const type = useMemo(
-      () => (showPassword ? TextInput.Types.PASSWORD_REVEAL : TextInput.Types.PASSWORD),
-      [showPassword]
-    );
-    const accessibilityLabel = useMemo(
-      () => (showPassword ? t("labels.accessibility.hide") : t("labels.accessibility.show")),
-      [showPassword]
-    );
+const _TextInputPassword = ({ errorMessage, hasError, onChange, value, testID, ref, ...props }: IProps) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const onShowPassword = useCallback(() => setShowPassword((state) => !state), [setShowPassword]);
+  const type = useMemo(
+    () => (showPassword ? TextInput.Types.PASSWORD_REVEAL : TextInput.Types.PASSWORD),
+    [showPassword]
+  );
+  const accessibilityLabel = useMemo(
+    () => (showPassword ? t("labels.accessibility.hide") : t("labels.accessibility.show")),
+    [showPassword]
+  );
 
-    return (
-      <View>
-        <TextInput
-          {...props}
-          testID={testID}
-          errorMessage={errorMessage}
-          hasError={hasError}
-          onChange={onChange}
-          ref={ref}
-          value={value}
-          type={type}
-        />
+  return (
+    <View>
+      <TextInput
+        {...props}
+        testID={testID}
+        errorMessage={errorMessage}
+        hasError={hasError}
+        onChange={onChange}
+        ref={ref}
+        value={value}
+        type={type}
+      />
 
-        {!value ? null : (
-          <TouchableWithoutFeedback
-            onPress={onShowPassword}
-            accessibilityLabel={accessibilityLabel}
-            accessibilityRole={"button"}
-          >
-            <View style={styles.eyeWrapper}>
-              <Eye open={showPassword} />
-            </View>
-          </TouchableWithoutFeedback>
-        )}
-      </View>
-    );
-  })
-);
+      {!value ? null : (
+        <TouchableWithoutFeedback
+          onPress={onShowPassword}
+          accessibilityLabel={accessibilityLabel}
+          accessibilityRole={"button"}
+        >
+          <View style={styles.eyeWrapper}>
+            <Eye open={showPassword} />
+          </View>
+        </TouchableWithoutFeedback>
+      )}
+    </View>
+  );
+};
+
+export const TextInputPassword = memo(_TextInputPassword);
 
 const styles = StyleSheet.create({
   eyeWrapper: {

@@ -697,7 +697,7 @@ const SudokuManager = ({
     initialBoard.puzzle,
   ]);
 
-  return <SodukuContext.Provider value={sodukuContextValue}>{children}</SodukuContext.Provider>;
+  return <SodukuContext value={sodukuContextValue}>{children}</SodukuContext>;
 };
 
 export default memo(SudokuManager, () => {

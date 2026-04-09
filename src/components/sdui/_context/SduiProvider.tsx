@@ -25,15 +25,15 @@ export const SduiProvider: FC<PropsWithChildren<SduiProviderProps>> = ({ id, isL
   const { current: scrollValue } = useRef(new Animated.Value(0));
 
   return (
-    <SduiScrollContext.Provider value={scrollValue}>
-      <SduiStateContext.Provider value={sduiState}>
-        <SduiDispatchContext.Provider value={sduiDispatch}>
-          <SduiIdContext.Provider value={id}>
-            <SduiLoadingContext.Provider value={isLoading}>{children}</SduiLoadingContext.Provider>
-          </SduiIdContext.Provider>
-        </SduiDispatchContext.Provider>
-      </SduiStateContext.Provider>
-    </SduiScrollContext.Provider>
+    <SduiScrollContext value={scrollValue}>
+      <SduiStateContext value={sduiState}>
+        <SduiDispatchContext value={sduiDispatch}>
+          <SduiIdContext value={id}>
+            <SduiLoadingContext value={isLoading}>{children}</SduiLoadingContext>
+          </SduiIdContext>
+        </SduiDispatchContext>
+      </SduiStateContext>
+    </SduiScrollContext>
   );
 };
 

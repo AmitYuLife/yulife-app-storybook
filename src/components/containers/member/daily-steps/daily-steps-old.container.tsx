@@ -75,7 +75,7 @@ const _DailyStepsContainer = () => {
   useTapBackTwiceToExit(componentId);
 
   return (
-    <FitkitContext.Provider value={fitkit}>
+    <FitkitContext value={fitkit}>
       <DailyStepsScreen
         onCoinPress={navigateToTodayEarnings}
         currentYuniverse={currentYuniverse}
@@ -93,7 +93,7 @@ const _DailyStepsContainer = () => {
         hasEvents={!!userEvents?.length}
         hideInformationIcon={isDailyScreenInformationIconHidden}
       />
-    </FitkitContext.Provider>
+    </FitkitContext>
   );
 };
 

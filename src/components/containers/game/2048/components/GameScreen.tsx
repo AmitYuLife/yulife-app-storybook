@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef, memo, useCallback, useEffect, useMemo } from "react";
+import { Ref, memo, useCallback, useEffect, useMemo } from "react";
 import { Alert, View } from "react-native";
 import { Button, Counter, Switch } from "@components/molecules";
 import { Colours, Style, StyleSheet } from "@styles";
@@ -38,28 +38,32 @@ interface IGameScreenWithStateProps extends IGameScreenProps {
   finalScore: GameValue;
   enableHaptics?: boolean;
   gameOptions: Game2048Options;
+  ref?: Ref<GameEarlyExitHandle>;
 }
 
-const GameScreenWithState = forwardRef(
-  (
-    { boardSize, mode, finalScore, enableHaptics, skin, gameOptions }: IGameScreenWithStateProps,
-    ref: ForwardedRef<GameEarlyExitHandle>
-  ) => {
-    return (
-      <Game2048Manager
-        ref={ref}
-        boardSize={boardSize}
-        skin={skin}
-        mode={mode}
-        finalScore={finalScore}
-        enableHaptics={enableHaptics}
-        gameOptions={gameOptions}
-      >
-        <GameScreen skin={skin} boardSize={boardSize} />
-      </Game2048Manager>
-    );
-  }
-);
+const GameScreenWithState = ({
+  boardSize,
+  mode,
+  finalScore,
+  enableHaptics,
+  skin,
+  gameOptions,
+  ref,
+}: IGameScreenWithStateProps) => {
+  return (
+    <Game2048Manager
+      ref={ref}
+      boardSize={boardSize}
+      skin={skin}
+      mode={mode}
+      finalScore={finalScore}
+      enableHaptics={enableHaptics}
+      gameOptions={gameOptions}
+    >
+      <GameScreen skin={skin} boardSize={boardSize} />
+    </Game2048Manager>
+  );
+};
 
 const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
   const { move, startGame, state: gameState, score, enableHaptics, toggleHaptics, gameOptions } = useGame2048Context();

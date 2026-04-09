@@ -47,9 +47,7 @@ const BattlePassAnimationManager = ({ children, step, showCoinAnimation }: IBatt
 
   return (
     <>
-      <BattlePassAnimationContext.Provider value={animationContextValue}>
-        {children}
-      </BattlePassAnimationContext.Provider>
+      <BattlePassAnimationContext value={animationContextValue}>{children}</BattlePassAnimationContext>
 
       <View pointerEvents="none" style={styles.container}>
         {coins.map(({ id, x, y }) => {

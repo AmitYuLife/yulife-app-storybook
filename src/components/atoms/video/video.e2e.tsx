@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import React, { Ref, useEffect, useImperativeHandle, useRef } from "react";
 import { View } from "react-native";
 
 const SIMULATED_DURATION_SECONDS = 15;
@@ -47,10 +47,11 @@ interface VideoProps {
   onEnd?: () => void;
   onError?: (error: any) => void;
   paused?: boolean;
+  ref?: Ref<VideoRef>;
   [key: string]: any;
 }
 
-const Video = forwardRef<VideoRef, VideoProps>(({ style, onLoad, onProgress, onEnd, paused }, ref) => {
+const Video = ({ style, onLoad, onProgress, onEnd, paused, ref }: VideoProps) => {
   const currentTimeRef = useRef(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const onProgressRef = useRef(onProgress);
@@ -110,6 +111,6 @@ const Video = forwardRef<VideoRef, VideoProps>(({ style, onLoad, onProgress, onE
   }, [paused]);
 
   return <View style={style} />;
-});
+};
 
 export default Video;

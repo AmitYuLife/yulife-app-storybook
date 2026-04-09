@@ -64,7 +64,7 @@ export const LoginHeroScreen = memo(({ onLoginEmailPress }: LoginHeroScreenProps
   );
 
   return (
-    <LoginHeroContext.Provider value={contextValue}>
+    <LoginHeroContext value={contextValue}>
       <FullScreenHero
         primaryCta={{ label: t("screens.login_hero.primary_cta_label"), onPress: onLoginEmailPress }}
         secondaryCta={{ label: t("screens.login_hero.secondary_cta_label"), onPress: onLoginEmailPress }}
@@ -74,7 +74,7 @@ export const LoginHeroScreen = memo(({ onLoginEmailPress }: LoginHeroScreenProps
         })}
         slides={slides}
       />
-    </LoginHeroContext.Provider>
+    </LoginHeroContext>
   );
 });
 

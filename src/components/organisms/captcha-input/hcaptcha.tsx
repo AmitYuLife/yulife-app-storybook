@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from "react";
+import { useCallback, useImperativeHandle, useRef, useState } from "react";
 import ConfirmHcaptcha from "@hcaptcha/react-native-hcaptcha";
 import { WebViewMessageEvent } from "react-native-webview";
 import { CaptchaCancelledError, CaptchaHandleExecuteResponse } from "./types";
@@ -21,7 +21,7 @@ interface HcaptchaProps {
 /**
  * Hcaptcha implementation of captchas
  */
-export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, size }: HcaptchaProps, ref) => {
+export const Hcaptcha = ({ siteKey, size, ref }: HcaptchaProps) => {
   const [resolveFunction, setResolveFunction] = useState<((value: CaptchaHandleExecuteResponse) => void) | null>(null);
   const [rejectFunction, setRejectFunction] = useState<((reason?: Error) => void) | null>(null);
   const captchaRef = useRef<ConfirmHcaptcha>(null);
@@ -92,7 +92,7 @@ export const Hcaptcha = forwardRef<HcaptchaHandle, HcaptchaProps>(({ siteKey, si
       />
     </Box>
   );
-});
+};
 
 const markdownStyles = StyleSheet.create({
   text: {

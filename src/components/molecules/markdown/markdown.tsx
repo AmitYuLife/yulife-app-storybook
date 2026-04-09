@@ -31,11 +31,11 @@ const Markdown: React.FC<IProps> = ({ text, markdownStyles, containerStyle = {},
   const context = useMemo(() => ({ styles, linkActions }), [styles, linkActions]);
 
   return (
-    <MarkdownContext.Provider value={context}>
+    <MarkdownContext value={context}>
       <View style={containerStyle} testID={testID}>
         {renderNodes(syntaxTree, null, null, TEXT(testID))}
       </View>
-    </MarkdownContext.Provider>
+    </MarkdownContext>
   );
 };
 
