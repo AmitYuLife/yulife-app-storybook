@@ -6,6 +6,7 @@ export const BOARD_1 = {
     modelName: "sudokuboards",
     data: {
         _id: generateRandomMongoId(),
+        _detox: true,
         date: moment().format("YYYY-MM-DD"),
         difficulty: "easy",
         puzzle: [
