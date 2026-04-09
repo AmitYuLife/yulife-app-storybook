@@ -98,6 +98,7 @@ variables:
 stages:
   - quality
   - build
+  - build-detox
   - test
   - test-report
   - release
