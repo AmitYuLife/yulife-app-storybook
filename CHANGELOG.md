@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.5.0] - 2026-04-09
+
+### Bugfixes
+
+- Bugfix DEVOPS-5365: Fix iOS build on Xcode 26.4 (fmt consteval error)
+- Revert "Merge branch 'bugfix/gs-2609-ajv-schema-crash' into 'develop'"
+
+### Tasks
+
+- Task CTE-685: Add Dutch locale
+- Task GS-2579: Fix quest map snap offset for level 1400
+- Task GS-2514: Add meditation back to Health Connect
+- Task GS-2587: Remove logoWhite from theming configuration
+- Task GS-2514: Add meditation back to Health Connect
+- Task GS-2611: Add babel-plugin-add-react-displayname
+- Task GS-2610: Fix iOS watch icon
+
+### Chores
+
+- Chore - Updated translations
+- Chore CTE-683: Debug detox build pipeline
+
+### Extra
+
+- [Security] Bump lodash from 4.17.23 to 4.18.1
+- Fix GS-2621: Flip hero card background image for RTL locales
+- Detox GS-2336: Remove layout gap
+- Detox GS-2336: Carrier Theming
+- Fix GS-2577: Theme search input border colors
+- Detox GS-2613: Fix challenges:2 on CI
+- Revert "Merge branch 'GS-2514/add-meditation-health-connect' into 'develop'"
+- Fix CTE-689: Android push service
+- Fix CTE-688: Deep link auth guard preventing logout when already logged in
+- Fix CTE-684: Blurb to TextTemplate migration
+
 ## [5.4.0] - 2026-04-02
 
 ### Features
