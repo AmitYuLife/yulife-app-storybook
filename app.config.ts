@@ -258,5 +258,6 @@ export default () => ({
     ],
     "./plugins/rive/with-rive.plugin.js",
     "./plugins/androidx/with-androidx-core-pin.js",
+    "./plugins/fmt/with-fmt-consteval-fix.plugin.js",
   ],
 });
