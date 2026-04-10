@@ -137,7 +137,7 @@ if [[ "$BUILD_VARIANT" == "release" ]]; then
   echo "Re-bundling JS..."
   BUNDLE_TMP_DIR="dist-rebundle"
   rm -rf "$BUNDLE_TMP_DIR"
-  ENVFILE=.env.e2e RN_SRC_EXT=e2e.ts,e2e.tsx pnpm expo export --platform ios --output-dir "$BUNDLE_TMP_DIR"
+  EXPO_NO_GIT_STATUS=1 EXPO_NO_DOTENV=1 ENVFILE=.env.e2e RN_SRC_EXT=e2e.ts,e2e.tsx pnpm expo export --platform ios --output-dir "$BUNDLE_TMP_DIR"
   cp "$BUNDLE_TMP_DIR"/_expo/static/js/ios/*.hbc "${APP_BUILD_DIR}/${APP_NAME}/main.jsbundle"
   rm -rf "$BUNDLE_TMP_DIR"
   echo "JS bundle updated."
