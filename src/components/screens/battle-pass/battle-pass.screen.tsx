@@ -13,6 +13,7 @@ import { Box } from "@atoms";
 import BattlePassFirstLevelVariant from "./battle-pass-first-level-variant/battle-pass-first-level-variant";
 import { first } from "lodash";
 import { Colours } from "@styles";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   title: string;
@@ -65,7 +66,7 @@ const BattlePassScreen = ({
       const timeout = setTimeout(() => {
         headerListRef.current?.scrollToIndex({
           index: 0,
-          animated: true,
+          animated: !DETOX_ENABLED,
         });
       }, 100);
 

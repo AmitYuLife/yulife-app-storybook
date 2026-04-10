@@ -98,7 +98,7 @@ const LoopingCarousel = ({
 
         listRef.current?.scrollToIndex({
           index: newIndex,
-          animated: true,
+          animated: !DETOX_ENABLED,
         });
 
         resetIndexToMiddleGroup(newIndex);

@@ -14,6 +14,7 @@ import { SocialGroupLeaderboardConfigId } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
+import { DETOX_ENABLED } from "@services/socket";
 
 export interface ITop3 {
   top1?: string;
@@ -243,7 +244,7 @@ export const LeaderboardScreen = ({
 
     flashList.current.scrollToIndex({
       index: currentUserInfo?.position - 2,
-      animated: true,
+      animated: !DETOX_ENABLED,
     });
   }, [currentUserInfo?.position, onShowRankModal, currentUserIsOutOfBounds]);
 

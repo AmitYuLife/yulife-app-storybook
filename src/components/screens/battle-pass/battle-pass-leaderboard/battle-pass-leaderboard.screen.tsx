@@ -12,6 +12,7 @@ import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { SduiAction } from "@redux/user/user.types";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";
 import BattlePassLeaderboardHeader from "@organisms/battle-pass-leaderboard-header/battle-pass-leaderboard-header";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IDetails {
   id: string;
@@ -93,7 +94,7 @@ const BattlePassLeaderboardScreen = ({
   const onPressFloatingRank = useCallback(() => {
     flashList.current.scrollToIndex({
       index: currentUserInfo?.position - 2,
-      animated: true,
+      animated: !DETOX_ENABLED,
     });
   }, [currentUserInfo?.position]);
 

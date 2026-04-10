@@ -14,6 +14,7 @@ import { Button } from "@components/molecules";
 import { Style, StyleSheet } from "@styles";
 import { ROUTES } from "@navigation/constants";
 import { CHALLENGE_FRIEND_BUTTON, DUELS_HUB } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   componentId?: IMainTabsProps["componentId"];
@@ -70,7 +71,7 @@ const DuelsHubContainer = ({ componentId }: Props) => {
 
   const handleChangeTab = useCallback((index: 0 | 1) => {
     setActivePageIndex(index);
-    swiper?.current?.scrollToIndex({ index, animated: true });
+    swiper?.current?.scrollToIndex({ index, animated: !DETOX_ENABLED });
   }, []);
 
   if (introShown) {

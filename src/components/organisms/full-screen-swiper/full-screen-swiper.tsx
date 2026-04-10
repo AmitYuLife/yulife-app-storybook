@@ -11,6 +11,7 @@ import { ProgressItems } from "./progress-items";
 import useStoryMaskAnimation from "./use-story-mask-animation";
 import { LeftRightController } from "./controllers/left-right-controller";
 import { TouchController } from "./controllers/touch-controller";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface Props {
   id: string;
@@ -230,7 +231,7 @@ function useScrollHandler(items: IPageItem[]) {
 
       const offset = Style.DEVICE_WIDTH * activeIndex;
 
-      listRef.current.scrollToOffset({ offset, animated: true });
+      listRef.current.scrollToOffset({ offset, animated: !DETOX_ENABLED });
     }
   }, [activeIndex]);
 
