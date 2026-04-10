@@ -10,6 +10,7 @@ import { t } from "@locale";
 import { LETS_GO_BUTTON_DUEL_ONBOARDING, NEXT_BUTTON_DUEL_ONBOARDING } from "@ids";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import { Colours } from "@styles";
+import { DETOX_ENABLED } from "@services/socket";
 
 export interface OnboardingSwiperData {
   id: string;
@@ -73,7 +74,7 @@ const OnboardingSwiper = ({ data, onClose, renderItem, type }: IOnboardingSwiper
     const newIndex = activePageIndex + 1;
     if (newIndex < data.length) {
       const name = getScreenViewName(type, newIndex);
-      swiperRef.current?.scrollToIndex({ index: newIndex, animated: true });
+      swiperRef.current?.scrollToIndex({ index: newIndex, animated: !DETOX_ENABLED });
       setActivePageIndex(newIndex);
       setButtonLabel(data[newIndex]?.buttonLabel);
       Logger.logMixpanelEvent("screen_view", { name });
@@ -84,7 +85,7 @@ const OnboardingSwiper = ({ data, onClose, renderItem, type }: IOnboardingSwiper
     const newIndex = activePageIndex - 1;
     const name = getScreenViewName(type, newIndex);
     if (newIndex >= 0) {
-      swiperRef.current?.scrollToIndex({ index: newIndex, animated: true });
+      swiperRef.current?.scrollToIndex({ index: newIndex, animated: !DETOX_ENABLED });
       setActivePageIndex(newIndex);
       setButtonLabel(data[newIndex]?.buttonLabel);
       Logger.logMixpanelEvent("screen_view", { name });

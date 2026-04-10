@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Animated, NativeScrollEvent, NativeSyntheticEvent, FlatList as RNFlatList } from "react-native";
 import { CHOICE_WIDTH } from "./styles";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface UseScrollHandler {
   items: Array<{ label: string; value: number }>;
@@ -16,7 +17,7 @@ export function useScrollHandler({ items, onIndexChange, activeValue }: UseScrol
 
   const updateCursor = (idx: number) => {
     if (listRef.current?.scrollToIndex) {
-      listRef.current.scrollToOffset({ offset: CHOICE_WIDTH * idx, animated: true });
+      listRef.current.scrollToOffset({ offset: CHOICE_WIDTH * idx, animated: !DETOX_ENABLED });
     }
   };
 

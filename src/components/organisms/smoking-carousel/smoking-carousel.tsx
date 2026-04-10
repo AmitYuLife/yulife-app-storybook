@@ -5,6 +5,7 @@ import { Colours, Style, StyleSheet } from "@styles";
 import SmokingCarouselList from "./carousel/smoking-carousel-list";
 import { ISmokingCarouselListItem } from "@organisms/smoking-carousel/carousel/smoking-carousel-list-item";
 import { FlatList as RNFlatList } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface Props {
   streak: HealthSmokingStreakCarouselItem[];
@@ -52,7 +53,7 @@ export const SmokingCarousel: FC<Props> = memo(
         setTimeout(() => {
           listRef.current?.scrollToIndex({
             index: scrollTo,
-            animated: true,
+            animated: !DETOX_ENABLED,
             viewOffset: Style.adjust(7) + animationOffset,
           });
           // a slight delay allows the start index to be set before scrolling to the current claim index

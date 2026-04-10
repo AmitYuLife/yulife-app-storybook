@@ -10,6 +10,7 @@ import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { ContentItemLottie } from "@components/sdui";
 import { TEXT_TEMPLATE } from "@ids";
 import { sduiEventActionCreator } from "@components/sdui/_utils/sduiEventActionCreator";
+import { DETOX_ENABLED } from "@services/socket";
 
 type ContextAwareGqlLottie = Omit<GqlLottie, "onAnimationEnd"> & { onAnimationEnd: () => void };
 interface Props {
@@ -195,7 +196,7 @@ function useScrollHandler(items: ContextAwareGqlLottie[]) {
 
     const offset = Style.DEVICE_WIDTH * activeIndex;
 
-    listRef.current.scrollToOffset({ offset, animated: true });
+    listRef.current.scrollToOffset({ offset, animated: !DETOX_ENABLED });
   }, [activeIndex]);
 
   return { listRef, activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler };

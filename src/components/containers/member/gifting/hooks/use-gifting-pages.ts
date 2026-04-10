@@ -12,6 +12,7 @@ import { useBackHandler, useTimeout } from "@hooks";
 import { giftingShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { incrementOnboardingVisits } from "@redux/onboarding/onboarding.actions";
 import { getGiftingPagesConfig, GIFTING_PAGE } from "../context";
+import { DETOX_ENABLED } from "@services/socket";
 
 type Props = {
   maxRecipientsPerGiftRequest: number;
@@ -106,7 +107,7 @@ export const useGiftingPages = ({
       // for rtl, we need to reverse the scroll direction
       const scrollX = width * (isRTL() ? totalPages - 1 - needle : needle);
 
-      scrollViewRef.current?.scrollTo?.({ x: scrollX, animated: true });
+      scrollViewRef.current?.scrollTo?.({ x: scrollX, animated: !DETOX_ENABLED });
     },
     0,
     !isGiftingPagesDataLoading

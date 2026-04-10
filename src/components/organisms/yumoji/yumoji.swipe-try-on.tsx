@@ -21,6 +21,7 @@ import {
   GetYumojiRemotePartsQuery,
   YuWorld,
 } from "@graphql/__generated";
+import { DETOX_ENABLED } from "@services/socket";
 
 type Part = GetYumojiRemoteFittingRoomQuery["getYumojiRemoteFittingRoom"]["yuWorlds"][0]["yumojiParts"][0];
 
@@ -160,13 +161,13 @@ export const YumojiSwipeTryOn = memo(
       const selectedYumojiIndex = avatars.findIndex((x: AvatarPartsWithYuworld) => x.yuWorld === selectedWorld);
 
       if (arrowDirection === ArrowDirection.RIGHT && selectedYumojiIndex < avatars.length - 1) {
-        listRef.current.scrollToIndex({ index: selectedYumojiIndex + 1, animated: true });
+        listRef.current.scrollToIndex({ index: selectedYumojiIndex + 1, animated: !DETOX_ENABLED });
         handlePress(avatars[selectedYumojiIndex + 1].yuWorld as YuWorld);
         return;
       }
 
       if (arrowDirection === ArrowDirection.LEFT && selectedYumojiIndex > 0) {
-        listRef.current.scrollToIndex({ index: selectedYumojiIndex - 1, animated: true });
+        listRef.current.scrollToIndex({ index: selectedYumojiIndex - 1, animated: !DETOX_ENABLED });
         handlePress(avatars[selectedYumojiIndex - 1].yuWorld as YuWorld);
         return;
       }

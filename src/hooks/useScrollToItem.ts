@@ -3,6 +3,7 @@ import { FlatList } from "react-native";
 import { useRef, useCallback, useEffect, MutableRefObject, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { isRTL } from "@locale";
+import { DETOX_ENABLED } from "@services/socket";
 
 type Args<T> = {
   items: Array<{ status?: string }>;
@@ -29,7 +30,7 @@ export function useScrollToItem<T>({ items, ref, scrollToDependencies = [] }: Ar
 
         activeListRef.current?.scrollToIndex({
           index: scrollIndex,
-          animated: true,
+          animated: !DETOX_ENABLED,
         });
       }, 100);
 
