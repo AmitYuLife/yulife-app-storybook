@@ -22,14 +22,36 @@ if [[ -d "${APP_BUILD_DIR}/${APP_NAME}" ]]; then
 fi
 
 GITLAB_API="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}"
-ARTIFACTS_BASE="${GITLAB_API}/jobs/artifacts/develop/raw"
 
-echo "Downloading latest release build artifact from ${JOB_NAME}..."
+echo "Finding latest successful ${JOB_NAME} job on develop..."
+
+JOB_ID=""
+for PAGE in 1 2 3 4 5; do
+  JOB_ID=$(curl --fail --silent \
+    --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+    "${GITLAB_API}/jobs?scope[]=success&per_page=100&page=${PAGE}" | \
+    jq -r "first(.[] | select(.name == \"${JOB_NAME}\" and .ref == \"develop\")) | .id // empty")
+
+  if [[ -n "$JOB_ID" ]]; then
+    break
+  fi
+done
+
+if [[ -z "$JOB_ID" ]]; then
+  echo "ERROR: No successful ${JOB_NAME} job found on develop (searched last 500 jobs)."
+  echo "Trigger a pipeline on develop that includes the ${JOB_NAME} job."
+  exit 1
+fi
+
+echo "Found successful job ${JOB_ID}, downloading artifacts..."
 
 curl --fail --location \
   --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
-  --output YuLife.app.tar.gz \
-  "${ARTIFACTS_BASE}/YuLife.app.tar.gz?job=${JOB_NAME}"
+  --output artifacts.zip \
+  "${GITLAB_API}/jobs/${JOB_ID}/artifacts"
+
+unzip -o artifacts.zip YuLife.app.tar.gz
+rm -f artifacts.zip
 
 mkdir -p "$APP_BUILD_DIR"
 rm -rf "${APP_BUILD_DIR:?}/${APP_NAME}"
