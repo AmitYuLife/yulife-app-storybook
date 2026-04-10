@@ -2,6 +2,13 @@
 
 set -eo pipefail
 
+# shellcheck disable=SC1090
+source ~/.zprofile
+nvm use
+PATH="$(dirname "$(nvm which --silent)"):$PATH"
+export PATH
+corepack enable
+
 # Downloads the latest release build artifact from the build-detox-ios-release job.
 # Used by E2E test jobs to avoid rebuilding the app.
 
