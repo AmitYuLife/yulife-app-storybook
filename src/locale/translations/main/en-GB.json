@@ -1120,7 +1120,8 @@
         "friends_not_found_no_referrals": "We couldn’t find the friend you’re\nlooking for.",
         "loading_state": "Looking for results ...",
         "sub_heading": "Search Leaderboards"
-      }
+      },
+      "grace_period_banner": "Results are still being calculated. Participants have %{hours} hours to log in their steps. Come back then to see who prevailed"
     },
     "fitkit_connect": {
       "ios_heading": "Sync to Apple Health",

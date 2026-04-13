@@ -23,6 +23,7 @@ import style, {
   SMOOTH_GRADIENT_COLORS,
   STATUS_BAR_COVER_HEIGHT,
 } from "./event-dialog.styles";
+import moment from "moment";
 import HintContainer from "@components/molecules/hint/hint.container";
 import { GetGoalDetailsQuery, GetUserProfileQuery, RemoteImage, UserProfileEventStatus } from "@graphql/__generated";
 import { SuccessIcon } from "@atoms/icon/success-icon";
@@ -81,6 +82,7 @@ interface IEventDialogScreenProps {
   onClaimReward: (reward: IReward) => Promise<void>;
   onCompleteEvent: (participationId: string) => Promise<void>;
   tasks?: ITasks[];
+  gracePeriodEnd?: string | null;
 }
 
 interface EventButton {
@@ -110,6 +112,7 @@ const EventDialogScreen = ({
   onClaimReward,
   currentProgress,
   tasks,
+  gracePeriodEnd,
 }: IEventDialogScreenProps) => {
   const { title, labels, source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress } = headerProps;
   const questionMarkRef = useRef<View>(null);
@@ -200,6 +203,8 @@ const EventDialogScreen = ({
   const bgColor = useMemo(() => (showHeading ? backgroundColor : "transparent"), [backgroundColor, showHeading]);
 
   const versus = type.startsWith("vs");
+  const showGracePeriodBanner =
+    versus && !!gracePeriodEnd && !!event?.endDate && moment().isBetween(moment(event.endDate), moment(gracePeriodEnd));
 
   return (
     <Box flexGrow={1} bg={bgColor} testID={EVENT_DIALOG_SCREEN}>
@@ -305,6 +310,17 @@ const EventDialogScreen = ({
             />
           )}
 
+          {!showGracePeriodBanner ? null : (
+            <Box mb={16}>
+              <InfoPanel
+                showIcon={true}
+                type="info"
+                markdown={t("screens.leaderboard.grace_period_banner", {
+                  hours: moment(gracePeriodEnd).diff(moment(event.endDate), "hours"),
+                })}
+              />
+            </Box>
+          )}
           {!versus ? null : (
             <Box mt={-8} mb={24}>
               <TextTemplate type="b1b">{t("screens.event.vs.current_standings")}</TextTemplate>
