@@ -668,6 +668,7 @@ export const REFERRALS_CODE = (code: string) => `REFERRALS_CODE_${code}`;
 export const SETTINGS_NAME = (name: string) => `SETTINGS_NAME_${name}`;
 export const SETTINGS_DESC = (desc: string) => `SETTINGS_DESC_${desc}`;
 export const SETTINGS_SWITCH = (name: string, bool: boolean) => `SETTINGS_SWITCH_${name}_${bool}`;
+export const SETTINGS_REMINDER_TIME = (name: string) => `SETTINGS_REMINDER_TIME_${name}`;
 
 // PLI
 export const YUMOJI_OUTFIT_RADIO = (title: string) => `YUMOJI_OUTFIT_RADIO${title}`;

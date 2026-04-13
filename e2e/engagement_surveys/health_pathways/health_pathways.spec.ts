@@ -103,9 +103,28 @@ Feature("Health Pathways", async () => {
       Then("I should see day 1 marked as completed", then.idVisible(ids.PATHWAY_STREAK_DAY(1, true), 5_000));
     });
     When("I tap Continue after reflection completion", when.tapID(ids.PATHWAYS_REFLECTED_CONTINUE, 2_000), async () => {
-      Then("I should see the notifications reminder modal", then.idVisible(ids.GENERIC_SCREEN_HEADING("Stay on track with your reflections"), 5_000));
+      Then("I should see the reflections reminder modal title", then.idVisible(ids.GENERIC_SCREEN_HEADING("Stay on track with your reflections"), 5_000));
     });
-    When("I tap to skip the reminder", when.tapID(ids.GENERIC_SCREEN_CTA("Skip-text-view"), 4_000), async () => {
+    When("I tap Enable and allow notifications", when.tapEnableAndAllowNotifications, async () => {
+      Then("I should be on the Settings screen", then.idVisible(ids.SETTINGS_SCREEN, 3_000));
+      Then("I should see the Reflection reminder toggle off", then.idVisible(ids.SETTINGS_SWITCH("Reflection reminder", false), 3_000));
+    });
+    When("I enable the Reflection reminder", when.tapID(ids.SETTINGS_SWITCH("Reflection reminder", false), 2_000), async () => {
+      Then("I should see the Reflection reminder toggle on", then.idVisible(ids.SETTINGS_SWITCH("Reflection reminder", true), 3_000));
+    });
+    When("I tap the Reflection reminder time", when.tapID(ids.SETTINGS_REMINDER_TIME("Reflection reminder"), 2_000), async () => {
+      Then("I should see the time picker", then.textVisible("Select", 3_000));
+    });
+    When("I scroll to a new time and confirm", when.scrollTimePickerAndConfirm(1), async () => {
+      Then("I should see the new reminder time set at 12:00", then.textVisible("12:00", 2_000));
+    });
+    When("I go back from Settings", when.tapID(ids.BUTTON_CLOSE_HEADER("Settings"), 2_000), async () => {
+      When("I navigate to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 5_000), async () => {
+        Then("I should see the 'Today's Reflection' hero card", then.idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 5_000));
+      });
+    });
+    When("I tap the 'Today's Reflection' hero card", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 2_000), async () => {
+      Then("I should land on the Pathways screen", then.idVisible(ids.PATHWAYS_SCREEN, 3_000));
       Then("I should see the next day reflection in a locked state", then.idVisible(ids.PATHWAYS_REFLECTION_UNLOCKS_IN, 2_000));
     });
     When("I scroll down to the 'Your Mood' section", when.scrollFromID(ids.PATHWAYS_SCREEN, "up", "fast", 0.5, 2_000), async () => {
@@ -248,6 +267,7 @@ Feature("Health Pathways", async () => {
     When("I tap the Let's go! button to access reflections", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0, 2_000), async () => {
       Then("I should land on the Pathways screen", then.idVisible(ids.PATHWAYS_SCREEN, 3_000));
       Then("The quest chest should be active and accessible", then.idVisible(ids.PATHWAYS_REFLECT_CHEST("active"), 3_000));
+      Then("I should NOT still be on the Today's Earnings screen", then.idNotVisible(ids.TODAYS_EARNINGS, 2_000));
     });
   });
 

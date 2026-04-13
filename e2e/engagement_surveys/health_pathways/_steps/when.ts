@@ -13,6 +13,7 @@ export const {
   tapYuCoinIcon,
   navigateViaID,
   tapIDAtIndex,
+  tapTextAtIndex,
   minimiseApp,
   restartWithoutDelete,
   terminateApp,
@@ -88,6 +89,21 @@ export const openDebugMenuItem =
 export const closeDebug = async () => {
   await tapID(ids.LEFT_HEADING_BUTTON(), 2_000)();
   await tapID(ids.SCREEN_CLOSE, 2_000)();
+};
+
+export const tapEnableAndAllowNotifications = async () => {
+  await device.disableSynchronization();
+  await tapID(ids.GENERIC_SCREEN_CTA("Set reminder-text-view"), 4_000)();
+  await new Promise((res) => setTimeout(res, 2_000));
+  await system.element(by.system.label("Allow")).tap();
+  await device.enableSynchronization();
+};
+
+export const scrollTimePickerAndConfirm = (positions = 1) => async () => {
+  for (let i = 0; i < positions; i++) {
+    await scrollFromID(ids.SCROLL_PICKER("settings-date-picker"), "up", "slow", 0.3, 500)();
+  }
+  await tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON, 2_000)();
 };
 
 export const setPathwaysProgress =

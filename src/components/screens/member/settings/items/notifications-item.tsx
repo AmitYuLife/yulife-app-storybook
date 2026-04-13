@@ -6,7 +6,7 @@ import { Switch, TouchableOpacityWithDelay } from "@molecules";
 import { INotificationsSectionItem } from "../settings.screen";
 import styles from "./item.styles";
 import { Colours } from "@styles";
-import { SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH } from "@ids";
+import { SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH, SETTINGS_REMINDER_TIME } from "@ids";
 import { t } from "@locale";
 import { noop } from "@utils";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
@@ -61,7 +61,12 @@ const NotificationsItem: FC<Props> = ({
           <View style={styles.reminderTime}>
             <TextTemplate type="b2b">{t("screens.settings.push_notifications.reminder_time")}</TextTemplate>
           </View>
-          <TouchableOpacityWithDelay onPress={onTimePress ?? noop} style={styles.timer} disabled={!isActive}>
+          <TouchableOpacityWithDelay
+            onPress={onTimePress ?? noop}
+            style={styles.timer}
+            disabled={!isActive}
+            testID={SETTINGS_REMINDER_TIME(name)}
+          >
             <TextTemplate type="b2" color={isActive ? theme.colors.primary.p600 : Colours.neutral.n800}>
               {isNumber(minutesFromStartOfDay)
                 ? moment.utc().startOf("day").add(minutesFromStartOfDay, "minutes").format(t("format.time_short"))
