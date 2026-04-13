@@ -103,5 +103,6 @@ android-production-build:
     paths:
       - android/app/build/outputs/**/*.apk
     expire_in: 15 days
+    when: always
   rules:
     - if: $CI_COMMIT_TAG =~ /^release\/.*$/
