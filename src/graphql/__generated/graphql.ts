@@ -1167,6 +1167,7 @@ export type BusinessSessionSettings = {
 
 export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
   __typename?: "BusinessSurveyCampaign";
+  anonymizationThreshold: Scalars["Int"]["output"];
   archivedAt?: Maybe<Scalars["String"]["output"]>;
   campaignName: Scalars["String"]["output"];
   categoriesCount: Scalars["Int"]["output"];
@@ -1195,6 +1196,7 @@ export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
 };
 
 export type BusinessSurveyCampaignBase = {
+  anonymizationThreshold: Scalars["Int"]["output"];
   archivedAt?: Maybe<Scalars["String"]["output"]>;
   campaignName: Scalars["String"]["output"];
   completedSurveys: Scalars["Int"]["output"];
@@ -1241,6 +1243,7 @@ export type BusinessSurveyCampaignSearchResults = {
 
 export type BusinessSurveyCampaignSearchResultsEntry = BusinessSurveyCampaignBase & {
   __typename?: "BusinessSurveyCampaignSearchResultsEntry";
+  anonymizationThreshold: Scalars["Int"]["output"];
   archivedAt?: Maybe<Scalars["String"]["output"]>;
   campaignName: Scalars["String"]["output"];
   completedSurveys: Scalars["Int"]["output"];
@@ -4679,6 +4682,7 @@ export type GoalDetails = {
   currentProgress: Scalars["Int"]["output"];
   dialogInfo?: Maybe<UserProfileEvents>;
   faq?: Maybe<GoalFaq>;
+  gracePeriodEnd?: Maybe<Scalars["String"]["output"]>;
   headerBackgroundColor: Scalars["String"]["output"];
   headerImage: RemoteImage;
   headerTextColor: Scalars["String"]["output"];
@@ -6211,6 +6215,8 @@ export type MobileGameThemeAssets = {
   iconWhite?: Maybe<RemoteImage>;
   loginBackgroundImage?: Maybe<RemoteImage>;
   logo?: Maybe<RemoteImage>;
+  /** @deprecated Unused. Removed in app version 5.5.0. Will be removed from schema once old versions age out. */
+  logoWhite?: Maybe<RemoteImage>;
 };
 
 export type MobileGameThemeColors = {
@@ -6891,6 +6897,7 @@ export type Mutation = {
   deleteCustomValue: Scalars["Boolean"]["output"];
   deletePensionConnection?: Maybe<Scalars["Boolean"]["output"]>;
   deleteTeamSocialGroup: TeamSocialGroup;
+  deleteTournamentEvent: TournamentEvent;
   disable2FA: Scalars["Boolean"]["output"];
   disconnectHris: Scalars["Boolean"]["output"];
   disconnectMessagingConnection: Scalars["Boolean"]["output"];
@@ -7404,6 +7411,10 @@ export type MutationDeletePensionConnectionArgs = {
 
 export type MutationDeleteTeamSocialGroupArgs = {
   socialGroupId: Scalars["String"]["input"];
+};
+
+export type MutationDeleteTournamentEventArgs = {
+  eventId: Scalars["ID"]["input"];
 };
 
 export type MutationDisable2FaArgs = {
@@ -8218,6 +8229,7 @@ export type NameVariantInput = {
 
 export type NotificationSettingsProps = {
   __typename?: "NotificationSettingsProps";
+  /** @deprecated Using minutesFromStartOfDay as of 5.4.0 */
   alertTimestamp?: Maybe<Scalars["String"]["output"]>;
   description?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
