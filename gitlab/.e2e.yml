@@ -411,7 +411,9 @@ ios-detox-reward-passes:
       interruptible: false
 
 combine-overnight-detox-reports:
-  extends: .base-detox-test
+  extends:
+    - .base-detox-test
+    - .cache-pull
   stage: test-report
   script:
     - ./scripts/gitlab/detox/combine-overnight-detox-reports.sh

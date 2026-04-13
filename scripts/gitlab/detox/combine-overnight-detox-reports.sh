@@ -19,9 +19,15 @@ command -v aws >/dev/null 2>&1 || brew install awscli
 ##############################
 # Pull the last report if it exists
 ##############################
-npm install --global ts-node@10.9.2
-npm install --global allure-commandline@2.12.1
-ts-node  ./e2e/combineOvernightReports.ts
+# Install project dependencies to use exact versions from the lockfile
+# --- Install dependencies ---
+nvm install -b
+PATH="$(dirname "$(nvm which --silent)"):$PATH"
+export PATH
+echo "Node version: $(node --version)"
+corepack enable
+pnpm install --frozen-lockfile
+pnpm exec ts-node ./e2e/combineOvernightReports.ts
 
 ##############################
 # Send Slack notification
