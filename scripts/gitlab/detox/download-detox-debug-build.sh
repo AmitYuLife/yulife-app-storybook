@@ -64,9 +64,15 @@ fi
 # --- Find recent successful jobs ---
 echo "Searching for a matching build..."
 
-JOB_IDS=$(glab api "projects/:id/jobs?scope=success&per_page=50" 2>/dev/null \
-  | jq -r --arg name "$JOB_NAME" \
-    '[.[] | select(.name == $name and .artifacts_file.filename != null)] | .[].id')
+JOB_IDS=""
+for PAGE in 1 2 3; do
+  PAGE_IDS=$(glab api "projects/:id/jobs?scope=success&per_page=100&page=${PAGE}" 2>/dev/null \
+    | jq -r --arg name "$JOB_NAME" \
+      '[.[] | select(.name == $name and .artifacts_file.filename != null)] | .[].id')
+  if [[ -n "$PAGE_IDS" ]]; then
+    JOB_IDS="${JOB_IDS}${JOB_IDS:+$'\n'}${PAGE_IDS}"
+  fi
+done
 
 if [[ -z "$JOB_IDS" ]]; then
   echo "ERROR: No successful ${JOB_NAME} jobs with artifacts found."
