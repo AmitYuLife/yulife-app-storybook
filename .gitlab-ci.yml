@@ -13,7 +13,7 @@ spec:
         - benefits
         - cash_plan
         - challenges
-        - challenges-2
+        - challenges:2
         - challenges-extended
         - healthcheck
         - jp
@@ -28,7 +28,7 @@ spec:
         - theming
         - usa
         - worlds
-        - worlds-2
+        - worlds:2
         - yuscreen
     api_branch_name:
       type: string
