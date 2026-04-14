@@ -5629,6 +5629,7 @@ export enum LoginMethod {
   Facebook = "FACEBOOK",
   Otp = "OTP",
   Password = "PASSWORD",
+  ShortCode = "SHORT_CODE",
 }
 
 export enum MagicLinkSite {
@@ -10945,6 +10946,7 @@ export type StartSessionResponse = {
   __typename?: "StartSessionResponse";
   hasExistingAccount?: Maybe<Scalars["Boolean"]["output"]>;
   hasSetPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  shortCodeLength?: Maybe<Scalars["Int"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -40258,6 +40260,7 @@ export type SendMagicLinkMutation = {
     __typename?: "StartSessionResponse";
     message?: string | null;
     hasSetPassword?: boolean | null;
+    shortCodeLength?: number | null;
   } | null;
 };
 
@@ -101332,6 +101335,7 @@ export const SendMagicLinkDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "message" } },
                 { kind: "Field", name: { kind: "Name", value: "hasSetPassword" } },
+                { kind: "Field", name: { kind: "Name", value: "shortCodeLength" } },
               ],
             },
           },

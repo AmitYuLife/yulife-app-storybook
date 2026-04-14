@@ -1,6 +1,7 @@
 import { launchApp, navigation } from "@utils";
 import { screens } from "@appScreens";
 import { dataManager, IDatabaseItem, readEmailContent } from "@yu-life/yulife-bdd-framework";
+import { INPUT_SHORT_CODE } from "@ids";
 
 export const {
   scrollFromText,
@@ -70,6 +71,26 @@ export const followEmailLink = (emailAddress: string) => async () => {
     newInstance: true,
     url: deeplink,
   });
+};
+
+export const submitShortCodeFromEmail = (emailAddress: string) => async () => {
+  const email = await readEmailContent(emailAddress, true);
+  // The login email renders the short code as a hyphenated 3-3 string of A-Z/2-9 chars,
+  // wrapped in <span dir="ltr">. Strip the hyphen before typing.
+  const match = email.html.match(/[A-Z2-9]{3}-[A-Z2-9]{3}/);
+
+  if (!match) {
+    throw new Error("Short code not found in the email");
+  }
+
+  const shortCode = match[0].replace("-", "");
+
+  // The hidden TextInput is transparent so Detox won't consider it "visible".
+  // Tap the visible container to focus, then type into the input directly.
+  await element(by.id(INPUT_SHORT_CODE)).tap();
+  const input = element(by.id(`${INPUT_SHORT_CODE}_INPUT`));
+  await waitFor(input).toExist().withTimeout(3000);
+  await input.typeText(shortCode);
 };
 
 export const triggerGiftReceivedEmail =

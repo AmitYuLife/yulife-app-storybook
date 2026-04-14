@@ -33,7 +33,14 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
   }, []);
 
   const navigateToConfirmation = useCallback(
-    async (passProps: { regionResponses: { hasSetPassword: boolean; region: REGION }[]; email: string }) => {
+    async (passProps: {
+      regionResponses: {
+        hasSetPassword: boolean;
+        shortCodeLength: number | null;
+        region: REGION;
+      }[];
+      email: string;
+    }) => {
       await Navigation.push(componentId, {
         component: {
           id: ROUTES.loginConfirm,
@@ -59,7 +66,7 @@ const LoginEnterEmailContainer = ({ componentId, ...props }: Props) => {
   const { sendMagicLink, loading: isSubmitting } = useSendMagicLink({
     email,
     captcha,
-    onSuccess: async (results: { hasSetPassword: boolean; region: REGION }[]) => {
+    onSuccess: async (results: { hasSetPassword: boolean; shortCodeLength: number | null; region: REGION }[]) => {
       setMagicLinkError(null);
 
       await navigateToConfirmation({

@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 interface SendMagicLinkArgs {
   email: string;
   captcha: ReturnType<typeof useCaptcha>;
-  onSuccess?: (results: { hasSetPassword: boolean; region: REGION }[]) => Promise<void>;
+  onSuccess?: (results: { hasSetPassword: boolean; shortCodeLength: number | null; region: REGION }[]) => Promise<void>;
   onFailure?: (error: string) => void;
 }
 
@@ -39,6 +39,7 @@ export const useSendMagicLink = ({ email, captcha, onSuccess, onFailure }: SendM
         await onSuccess(
           results.map((result) => ({
             hasSetPassword: !!result.data?.sendMagicLink.hasSetPassword,
+            shortCodeLength: result.data?.sendMagicLink.shortCodeLength ?? null,
             region: result.region,
           }))
         );

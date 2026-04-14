@@ -108,6 +108,8 @@ export const PLUS_BUTTON = "PLUS_BUTTON";
 export const CHANGE_MEMBER_NICK_BUTTON = "CHANGE_MEMBER_NICK_BUTTON";
 export const INPUT_LOGIN_EMAIL = "INPUT_LOGIN_EMAIL";
 export const INPUT_LOGIN_PASSWORD = (pw: any) => `INPUT_LOGIN_PASSWORD_${pw}`;
+export const INPUT_SHORT_CODE = "INPUT_SHORT_CODE";
+export const BUTTON_SUBMIT_SHORT_CODE = "BUTTON_SUBMIT_SHORT_CODE";
 export const INPUT_BUTTON = (label: string) => `INPUT_BUTTON_${label}`;
 export const TAB_BUTTON = (label: string) => `TAB_BUTTON_${label}`;
 export const MENU_ITEM = (label: string) => `MENU_ITEM_${label.toString().replace(/ /g, "")}`;
@@ -1145,7 +1147,8 @@ export const HERO_LOGO_CARRIER_ICON = "HERO_LOGO_CARRIER_ICON";
 export const TOP_BAR_CARRIER_ICON = "TOP_BAR_CARRIER_ICON";
 export const THEME_PRIMARY_COLOR = (color: string) => `THEME_PRIMARY_COLOR_${color}`;
 export const THEME_NAME = (name: string) => `THEME_NAME_${name}`;
-export const THEME_SWITCHER_VIEW_COLORS = (themeId: string) => `THEME_SWITCHER_VIEW_COLORS_${themeId}`;
+export const THEME_SWITCHER_VIEW_COLORS = (themeId: string) =>
+  `THEME_SWITCHER_VIEW_COLORS_${themeId}`;
 export const THEME_SWITCHER_SET_THEME_BUTTON = "set-theme-button";
 
 // Pathways
