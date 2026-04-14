@@ -7,7 +7,7 @@ import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import Box from "@atoms/box/box";
 import { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
 import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
-import { PADDING_TOP, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 type Body = GetSduiJourneyQuery["getSduiJourney"]["body"];
 
@@ -47,12 +47,11 @@ export const ContentItemBlurredRaysWrapper = memo(
         : undefined;
 
     const wrapperMarginTop = isiOS() ? top : 0;
-    const titlePaddingTop = isiOS() ? PADDING_TOP : TOP_BAR_WITH_PAD;
 
     return (
       <Box height={height} mt={wrapperMarginTop} flex={1} disableAutoAdjust={true}>
         <BlurredRaysWrapper
-          titlePaddingTop={titlePaddingTop}
+          titlePaddingTop={TOP_BAR_WITH_PAD}
           title={title}
           rollingTextProps={rollingTextProps}
           buttonIsEnabled={buttonIsEnabled}

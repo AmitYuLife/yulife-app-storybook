@@ -76,7 +76,7 @@ const BlurredRaysWrapper = ({
                 )}
               </Animated.View>
             </Box>
-            <Box justifyContent="center" alignItems="center">
+            <Box flex={1} justifyContent="center" alignItems="center">
               {children}
             </Box>
             {!buttonIsEnabled ? null : (
