@@ -41,6 +41,21 @@ Feature("Health Pathways", async () => {
     });
   });
 
+  Scenario("Daily reflection card appears for a user who last reflected 7+ days ago", scenario.start, async () => {
+    Given("I am logged in as a lapsed user", given.loginAsUser(data.CUSTOMER_16.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I navigate to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 5_000), async () => {
+        Then("I should see the 'Today's Reflection' hero card", then.idVisible(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 5_000));
+        Then("I should see the correct description on the hero card", then.textVisible(healthPathUnlockedCopy, 2_000));
+      });
+    });
+    When("I tap the 'Today's Reflection' hero card", when.tapID(ids.YUSCREEN_FEATURE_CARD_SECTION_TITLE("Today's reflection"), 2_000), async () => {
+      Then("I should land on the Pathways screen", then.idVisible(ids.PATHWAYS_SCREEN, 3_000));
+      Then("I should see the Pathways streaks", then.idVisible(ids.PATHWAYS_STREAKS, 3_000));
+      Then("I should see all streak days marked as 'not completed'", then.assertStreakDayState(0));
+      Then("I should see the first reflection item as active", then.idVisible(ids.PATHWAYS_REFLECTION_ITEM(0, "active")));
+    });
+  });
+
   Scenario("Completing a reflection marks day 1 as completed", scenario.start, async () => {
     Given("I am logged in", given.loginAsUser(data.CUSTOMER_9.customer, GENERIC_AUTH_PASSWORD), async () => {
       When("I navigate to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 5_000), async () => {
