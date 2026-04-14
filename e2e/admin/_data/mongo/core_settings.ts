@@ -6,6 +6,7 @@ import {
   BUSINESS_ACCOUNT_6,
   BUSINESS_ACCOUNT_1,
 } from "../postgres/business";
+import { CUSTOMER_SHORT_CODE } from "../postgres/customers";
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
   type: "mongo",
@@ -101,6 +102,19 @@ export const BA1_PARTNERSHIP_REWARDS_SETTINGS = {
     entityId: BUSINESS_ACCOUNT_1.data.business_account_id,
     settings: {
       storeEnabled: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_SHORT_CODE_TEMP_FLAGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "temp",
+    entityType: "user",
+    entityId: CUSTOMER_SHORT_CODE.customer.data.customerId,
+    settings: {
+      authEnableShortCodeLogin: true,
     },
   },
 } as IDatabaseItem;

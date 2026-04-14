@@ -23,6 +23,7 @@ interface Props {
   // response from the sendMagicLink mutation
   regionResponses?: {
     hasSetPassword: boolean;
+    shortCodeLength: number | null;
     region: REGION;
   }[];
 
@@ -38,6 +39,8 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
   const captcha = useCaptcha(region.getCaptchaConfig());
 
   const [isRedeemingOtp, setIsRedeemingOtp] = useState(false);
+  const [isSubmittingShortCode, setIsSubmittingShortCode] = useState(false);
+  const [shortCode, setShortCode] = useState("");
 
   const otpRef = useRef<string>("");
   const hasOpenedEmailAppRef = useRef(false);
@@ -45,6 +48,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
   const hasNavigatedAwayRef = useRef(false);
 
   const showLoginWithPassword = props.regionResponses?.some((r) => r.hasSetPassword);
+  const shortCodeLength = props.regionResponses?.reduce((max, r) => Math.max(max, r.shortCodeLength ?? 0), 0) || null;
 
   const onNavigateBack = useCallback(() => {
     if (hasNavigatedAwayRef.current) {
@@ -68,6 +72,46 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
       ]);
     },
   });
+
+  const onSubmitShortCode = useCallback(
+    async (code: string) => {
+      setIsSubmittingShortCode(true);
+
+      try {
+        const loginRegion = props.regionResponses?.[0]?.region || region.getPreferredRegion();
+        region.setRegion(loginRegion);
+
+        const uniqueDeviceId = await getUniqueDeviceId();
+
+        const result = await loginUser({
+          variables: {
+            email: props.email.toLowerCase(),
+            intercomHashMethod: Platform.OS as IntercomHashMethod,
+            method: LoginMethod.ShortCode,
+            password: code,
+            tokenExpiration: TOKEN_EXPIRATION,
+            uniqueDeviceId,
+          },
+        });
+
+        if (result.data?.loginUser?.token) {
+          await applyLoginSession({
+            loginResponse: result,
+            region: loginRegion,
+            componentId,
+            dispatch,
+          });
+          hasNavigatedAwayRef.current = true;
+        }
+      } catch (error) {
+        setShortCode("");
+        Alert.alert(t("screens.login_confirm.error_title"), error.message, [{ text: t("labels.cta.ok") }]);
+      } finally {
+        setIsSubmittingShortCode(false);
+      }
+    },
+    [props.email, props.regionResponses, loginUser, componentId, dispatch]
+  );
 
   useEffect(() => {
     if (!props.otp || !props.email || !props.region) {
@@ -179,6 +223,11 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
       captcha={captcha}
       isResending={isResending}
       isRedeemingOtp={isRedeemingOtp}
+      isSubmittingShortCode={isSubmittingShortCode}
+      onSubmitShortCode={onSubmitShortCode}
+      shortCode={shortCode}
+      onChangeShortCode={setShortCode}
+      shortCodeLength={shortCodeLength}
       showLoginWithPassword={showLoginWithPassword}
       onPressResend={sendMagicLink}
       onPressBack={onNavigateBack}

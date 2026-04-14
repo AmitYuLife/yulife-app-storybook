@@ -6,6 +6,10 @@ YuLife is a React Native mobile application for iOS and Android that provides a 
 
 @.cursor/rules/react-native-best-practices.mdc
 
+### Environment Configuration
+
+API URLs are controlled by `.env.local`, but `.env.local.overrides` takes precedence and will silently replace values set in `.env.local`. When pointing the app at a different API server (e.g. a worktree on a non-default port), update `.env.local.overrides` rather than `.env.local`.
+
 ### Boundaries
 
 - **Do not modify `ios/` or `android/` directories.** This is an Expo managed project; native code changes belong in plugins or upstream packages, not in these folders directly.

@@ -310,6 +310,25 @@ export const CUSTOMER_VOUCHER_EMAIL = createCustomerRecords({
   },
 });
 
+export const CUSTOMER_SHORT_CODE = createCustomerRecords({
+  customerId: generateRandomPostgresId(),
+  archived: false,
+  firstName: "Quinn",
+  lastName: "Shortcode",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      employmentStartDate: moment().subtract(4, "months").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  userInfo: {
+    earnRate: 20,
+  },
+});
+
 export const CUSTOMER_17 = {
   type,
   modelName,

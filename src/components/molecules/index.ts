@@ -25,6 +25,7 @@ export { ScrollableLayout } from "./scrollable-layout/scrollable-layout";
 export { default as TouchableWithDelay } from "./touchable-delay/touchable-delay";
 export { default as TouchableOpacityWithDelay } from "./touchable-opacity-delay/touchable-opacity-delay";
 export { default as Pressable } from "./pressable/pressable";
+export { default as ShortCodeInput, IShortCodeInputProps } from "./short-code-input/short-code-input";
 export { default as Switch } from "./switch/switch";
 export { default as TextField } from "./text-field/text-field";
 export { AvatarEmpty } from "./avatar-empty/avatar-empty";
