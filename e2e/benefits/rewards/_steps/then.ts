@@ -23,6 +23,9 @@ export const {
   purchasedRewardVisible,
   multiplePurchasedRewardVisible,
   onRewardHistoryScreen,
+  walletUsedSectionVisible,
+  walletExpiredSectionVisible,
+  walletSeeMoreButtonVisible,
 } = screens.rewards;
 
 export const { yuCoinPowerInfoVisible } = screens.yuscreen;
