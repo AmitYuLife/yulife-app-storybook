@@ -1253,6 +1253,7 @@
       "title": "Idioma"
     },
     "leaderboard": {
+      "grace_period_banner": "Todavía se están calculando los resultados. Los participantes tienen %{hours} horas para registrar sus pasos. Vuelve entonces para ver quién ha ganado",
       "invites": {
         "subheading": "Al activar una clasificación, estás aceptando compartir tus datos más recientes de %{days} días %{metric} con otros miembros de la misma. Esta opción puede desactivarse en cualquier momento."
       },

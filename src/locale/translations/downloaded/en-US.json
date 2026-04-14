@@ -1253,6 +1253,7 @@
       "title": "Language"
     },
     "leaderboard": {
+      "grace_period_banner": "Results are still being calculated. Participants have %{hours} hours to log in their steps. Come back then to see who prevailed",
       "invites": {
         "subheading": "By turning on a leaderboard, you are opting in to share your most recent %{days} day %{metric} data with other members of the leaderboard. This can be toggled off at any time."
       },

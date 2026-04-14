@@ -1253,6 +1253,7 @@
       "title": "Taal"
     },
     "leaderboard": {
+      "grace_period_banner": "De resultaten worden nog berekend. Deelnemers hebben %{hours} uur om hun stappen in te loggen. Kom dan terug om te zien wie er heeft gewonnen",
       "invites": {
         "subheading": "Door een leaderboard in te schakelen, kies je ervoor om je meest recente %{days} dag %{metric} gegevens te delen met andere leden van het leaderboard. Je kunt dit op elk moment uitschakelen."
       },
