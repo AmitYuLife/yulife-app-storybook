@@ -249,6 +249,24 @@ export const tapPurchasedReward =
     await title.tap();
   };
 
+export const walletUsedSectionVisible =
+  (timeout = 3000) =>
+  async () => {
+    await expectIsVisibleViaID(ids.WALLET_SUB_SECTION("Used"), timeout);
+  };
+
+export const walletExpiredSectionVisible =
+  (timeout = 3000) =>
+  async () => {
+    await expectIsVisibleViaID(ids.WALLET_SUB_SECTION("Expired"), timeout);
+  };
+
+export const walletSeeMoreButtonVisible =
+  (timeout = 3000) =>
+  async () => {
+    await expectIsVisibleViaID(ids.WALLET_SEE_MORE_BUTTON, timeout);
+  };
+
 export const onRewardHistoryScreen =
   (reward: any, ledger: any, locale = "en-GB", index = 0) =>
   async () => {

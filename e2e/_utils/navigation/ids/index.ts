@@ -1036,6 +1036,8 @@ export const WALLET_COUPON_ITEM_DESCRIPTION = (description: string) =>
   `WALLET_COUPON_ITEM_DESCRIPTION_${description}`;
 export const WALLET_SECTION_TITLE = (title: string) => `WALLET_SECTION_TITLE_${title}`;
 export const WALLET_SECTION_SUBTITLE = (subtitle: string) => `WALLET_SECTION_SUBTITLE_${subtitle}`;
+export const WALLET_SUB_SECTION = (title: string) => `WALLET_SUB_SECTION_${title}`;
+export const WALLET_SEE_MORE_BUTTON = "wallet-section-more-button";
 export const PARTNER_REWARDS_INVENTORY_ITEMS_COUNT = (quantity: number) =>
   `PARTNER_REWARDS_INVENTORY_ITEMS_COUNT_${quantity}`;
 export const PARTNER_REWARDS_INVENTORY_ITEMS_TITLE = (title: string) =>

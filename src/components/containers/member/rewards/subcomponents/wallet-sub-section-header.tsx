@@ -1,4 +1,5 @@
 import { Box, TextTemplate } from "@atoms";
+import { WALLET_SUB_SECTION } from "@ids";
 import { Colours } from "@styles";
 import { memo } from "react";
 
@@ -14,7 +15,7 @@ interface IWalletSubSectionHeaderProps {
 }
 
 const WalletSubSectionHeader = ({ title, description }: IWalletSubSectionHeaderProps) => (
-  <Box flexDirection="column" mt={24} mb={16}>
+  <Box flexDirection="column" mt={24} mb={16} testID={WALLET_SUB_SECTION(title)}>
     <TextTemplate color={Colours.neutral.n900} type="b1b">
       {title}
     </TextTemplate>

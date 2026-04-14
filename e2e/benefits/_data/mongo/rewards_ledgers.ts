@@ -7,9 +7,12 @@ import {
   CORE_REWARDS_CHARITY_DONATION,
 } from "./core_rewards";
 
+const type = "mongo";
+const modelName = "rewardsledgers";
+
 export const REWARD_LEDGER_1 = {
-  type: "mongo",
-  modelName: "rewardsledgers",
+  type,
+  modelName,
   data: {
     _id: generateRandomMongoId(),
     userId: USER_2.data.userId,
@@ -32,8 +35,8 @@ export const REWARD_LEDGER_1 = {
 } as IDatabaseItem;
 
 export const REWARD_LEDGER_DONATION_1 = {
-  type: "mongo",
-  modelName: "rewardsledgers",
+  type,
+  modelName,
   data: {
     _id: generateRandomMongoId(),
     userId: USER_2.data.userId,
@@ -51,3 +54,55 @@ export const REWARD_LEDGER_DONATION_1 = {
     claimedAt: moment().startOf("day").add(10, "hours").toISOString(),
   },
 } as IDatabaseItem;
+
+export const REWARD_LEDGER_EXPIRED = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_2.data.userId,
+    deliveryUrl: "https://playground.wegift.io/public/gifts/instant/expired-voucher",
+    expiryDate: moment().subtract(2, "months").format("YYYY-MM-DD"),
+    status: "approved",
+    code: "NIKE-GB",
+    rewardProviderId: "wegift",
+    amount: 10,
+    yuCoinsSpent: 7750,
+    type: "voucher",
+    restrictions: {
+      locations: ["GB"],
+    },
+    reward: CORE_REWARDS_NIKE.data._id,
+    createdAt: moment().subtract(3, "months").toISOString(),
+    claimedAt: moment().subtract(3, "months").toISOString(),
+  },
+} as IDatabaseItem;
+
+const createUsedLedger = (userId: string, daysAgo: number) => ({
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId,
+    deliveryUrl: "https://playground.wegift.io/public/gifts/instant/used-voucher",
+    expiryDate: moment().add(24, "months").format("YYYY-MM-DD"),
+    status: "approved",
+    code: "NIKE-GB",
+    rewardProviderId: "wegift",
+    amount: 10,
+    yuCoinsSpent: 7750,
+    type: "voucher",
+    restrictions: {
+      locations: ["GB"],
+    },
+    reward: CORE_REWARDS_NIKE.data._id,
+    createdAt: moment().subtract(daysAgo, "days").toISOString(),
+    claimedAt: moment().subtract(daysAgo, "days").toISOString(),
+    markedAsUsedAt: moment().subtract(1, "day").toDate(),
+  },
+} as IDatabaseItem);
+
+export const REWARD_LEDGER_USED_1 = createUsedLedger(USER_2.data.userId, 4);
+export const REWARD_LEDGER_USED_2 = createUsedLedger(USER_2.data.userId, 3);
+export const REWARD_LEDGER_USED_3 = createUsedLedger(USER_2.data.userId, 2);
+export const REWARD_LEDGER_USED_4 = createUsedLedger(USER_2.data.userId, 1);

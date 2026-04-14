@@ -178,10 +178,10 @@ Feature("Rewards should act correctly", async () => {
     });
     When("I tap to open Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 1000), async () => {
       When("I tap on the Nike wallet card", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
-        Then("I should see the Nike reward has the correct label", then.idVisible(ids.WALLET_ITEM_LABEL("GIFT CARD")));
+        Then("I should see the Nike reward has the correct label", then.idExist(ids.WALLET_ITEM_LABEL("GIFT CARD")));
       });
     });
-    When("I tap on the Nike wallet card", when.tapID(ids.WALLET_ITEM_TITLE("£10"), 1000), async () => {
+    When("I tap on the Nike gift card", when.tapIDAtIndex(ids.WALLET_ITEM_TITLE("£10"), 0, 1000), async () => {
       Then("I should see the correct reward info I have previously purchased", then.purchasedRewardVisible(data.CORE_REWARDS_NIKE, 0));
     });
   });
@@ -195,13 +195,13 @@ Feature("Rewards should act correctly", async () => {
         Then("I can see my purchased rewards", then.idVisible(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name)));
       });
       When("I tap on a reward", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 1000), async () => {
-        Then("I can see my gift cards on the reward", then.idVisible(ids.WALLET_ITEM_TITLE("£10")));
+        Then("I can see my gift cards on the reward", then.idExist(ids.WALLET_ITEM_TITLE("£10")));
       });
-      When("I tap on a gift card", when.tapID(ids.WALLET_ITEM_TITLE("£10"), 2000), async () => {
+      When("I tap on a gift card", when.tapIDAtIndex(ids.WALLET_ITEM_TITLE("£10"), 0, 2000), async () => {
         Then("I should be on the purchase screen with the correct copy", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE, "en-GB"));
       });
       When("I go back from the purchased gift card screen", when.tapID(ids.LEFT_HEADING_BUTTON(), 2000), async () => {
-        Then("I can see my gift cards on the reward", then.idVisible(ids.WALLET_ITEM_TITLE("£10")));
+        Then("I can see my gift cards on the reward", then.idExist(ids.WALLET_ITEM_TITLE("£10")));
       });
       When("I go back from the reward wallet items screen", when.tapID(ids.LEFT_HEADING_BUTTON(getLocalisedString("Wallet")), 2000), async () => {
         Then("I can see my purchased rewards", then.idVisible(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name)));
@@ -231,9 +231,9 @@ Feature("Rewards should act correctly", async () => {
         Then("I can see my purchased rewards", then.idVisible(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name)));
       });
       When("I tap on a reward", when.tapID(ids.WALLET_CARD_TITLE(data.CORE_REWARDS_NIKE.data.name), 2000), async () => {
-        Then("I can see my gift cards on the reward", then.idVisible(ids.WALLET_ITEM_TITLE("£10")));
+        Then("I can see my gift cards on the reward", then.idExist(ids.WALLET_ITEM_TITLE("£10")));
       });
-      When("I tap on a gift card", when.tapID(ids.WALLET_ITEM_TITLE("£10"), 2000), async () => {
+      When("I tap on a gift card", when.tapIDAtIndex(ids.WALLET_ITEM_TITLE("£10"), 0, 2000), async () => {
         Then("I should be on the purchase screen with the correct copy", then.onRewardPurchasedScreen(data.CORE_REWARDS_NIKE, "en-US"));
       });
     });
@@ -378,8 +378,77 @@ Feature("Rewards should act correctly", async () => {
       Then("I should also see my existing Nike gift card", then.idVisible(ids.WALLET_CARD_TITLE("Nike")));
     });
     When("I tap on the Save the Children donation card", when.tapID(ids.WALLET_CARD_TITLE("Save the Children"), 2000), async () => {
-      Then("I should see the donation item with the 'DONATION' label", then.idVisible(ids.WALLET_SECTION_TITLE("Donation")));
+      Then("I should see the donation item with the 'DONATION' label", then.idVisible(ids.WALLET_ITEM_LABEL("DONATION")));
       Then("I should see the donation amount", then.idVisible(ids.WALLET_ITEM_TITLE("5 £ Donation to Save the Children")));
+    });
+  });
+
+  Scenario("I can mark a voucher as used, undo it, and see expired vouchers in the wallet", scenario.start, () => {
+    Given("I login as a user with wallet items", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
+      When("I navigate to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 4000), async () => {
+        Then("I should see the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 5000));
+      });
+    });
+    When("I open the Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 3000), async () => {
+      Then("I should see the Nike wallet card", then.idVisible(ids.WALLET_CARD_TITLE("Nike"), 3000));
+    });
+    When("I tap the Nike wallet card", when.tapID(ids.WALLET_CARD_TITLE("Nike"), 3000), async () => {
+      Then("I should see the active Nike voucher with GIFT CARD label", then.idExist(ids.WALLET_ITEM_LABEL("GIFT CARD"), 3000));
+      Then("I should see the Used section with pre-existing used vouchers", then.walletUsedSectionVisible(5000));
+    });
+    When("I tap the active Nike voucher", when.tapIDAtIndex(ids.WALLET_ITEM_LABEL("GIFT CARD"), 0, 3000), async () => {
+      Then("I should see the voucher detail screen", then.idExist(ids.SDUI_SCREEN_SCROLL_VIEW, 5000));
+    });
+    When("I scroll down to the Mark as used button", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "slow", 0.5, 2000), async () => {
+      Then("I should see the Mark as used button", then.textVisible("Mark as used", 5000));
+    });
+    When("I tap 'Mark as used'", when.tapText("Mark as used", 3000), async () => {
+      Then("I should see the confirmation modal title", then.textVisible("Are you sure?", 3000));
+      Then("I should see the 'Continue' confirm button", then.textVisible("Continue", 2000));
+    });
+    When("I confirm by tapping 'Continue'", when.tapText("Continue", 3000), async () => {
+      Then("I should still be on the voucher detail screen", then.idExist(ids.SDUI_SCREEN_SCROLL_VIEW, 5000));
+    });
+    When("I scroll down again after the screen refetches", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "slow", 0.5, 3000), async () => {
+      Then("The button should now show 'Mark as unused'", then.textVisible("Mark as unused", 5000));
+    });
+    When("I tap 'Mark as unused' to undo", when.tapText("Mark as unused", 3000), async () => {
+      Then("I should see the undo confirmation modal", then.textVisible("Something not right?", 3000));
+    });
+    When("I confirm the undo", when.tapTextAtIndex("Mark as unused", 1, 3000), async () => {
+      Then("I should still be on the voucher detail screen", then.idExist(ids.SDUI_SCREEN_SCROLL_VIEW, 5000));
+    });
+    When("I scroll down again after the undo refetch", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "slow", 0.5, 3000), async () => {
+      Then("The button should show 'Mark as used' again", then.textVisible("Mark as used", 5000));
+    });
+    When("I go back to the wallet items screen", when.tapID(ids.BACK_BUTTON, 3000), async () => {
+      Then("I should see the Used section", then.walletUsedSectionVisible(5000));
+    });
+    When("I scroll down to the bottom of the wallet", when.scrollFromID(ids.WALLET_SUB_SECTION("Used"), "up", "slow", 0.5, 2000), async () => {
+      Then("I should see the Expired section at the bottom", then.walletExpiredSectionVisible(5000));
+    });
+  });
+
+  Scenario("I can tap See more on the Used section to view all used vouchers on a dedicated screen", scenario.start, () => {
+    Given("I login as a user with multiple used vouchers", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
+      When("I navigate to the rewards tab", when.tapID(ids.NAV_BAR("rewards"), 4000), async () => {
+        Then("I should see the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 5000));
+      });
+    });
+    When("I open the Wallet", when.tapID(ids.SHINE_BUTTON("Wallet"), 3000), async () => {
+      Then("I should see the Nike wallet card", then.idVisible(ids.WALLET_CARD_TITLE("Nike"), 3000));
+    });
+    When("I tap the Nike wallet card", when.tapID(ids.WALLET_CARD_TITLE("Nike"), 3000), async () => {
+      Then("I should see the Used section header", then.walletUsedSectionVisible(5000));
+    });
+    When("I scroll down to the See more button in the Used section", when.scrollFromID(ids.WALLET_SUB_SECTION("Used"), "up", "slow", 0.5, 2000), async () => {
+      Then("I should see a 'See more' button", then.idExist(ids.WALLET_SEE_MORE_BUTTON, 3000));
+    });
+    When("I tap 'See more'", when.tapID(ids.WALLET_SEE_MORE_BUTTON, 3000), async () => {
+      Then("I should be on the dedicated Used vouchers screen", then.idExist(ids.WALLET_SUB_SECTION("Used"), 5000));
+    });
+    When("I go back to the wallet", when.tapID(ids.LEFT_HEADING_BUTTON("Used"), 3000), async () => {
+      Then("I should be back on the wallet items screen", then.idExist(ids.WALLET_SUB_SECTION("Used"), 3000));
     });
   });
 });
