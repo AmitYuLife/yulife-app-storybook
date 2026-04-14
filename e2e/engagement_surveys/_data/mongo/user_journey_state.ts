@@ -843,6 +843,132 @@ export const USER_JOURNEY_STATE_04_CUSTOMER_8_1_QUESTION = {
   },
 } as IDatabaseItem;
 
+export const USER_JOURNEY_STATE_16 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    journeyId: "health_questionnaire",
+    triggerSourceId: "initial",
+    userId: customer.CUSTOMER_16.customer.data.customerId,
+    __v: 0,
+    createdAt: moment().subtract(15, "days").toISOString(),
+    requiresUserStateForAccess: true,
+    static: true,
+    published: true,
+    status: "pending",
+    steps: [
+      {
+        stepId: "health_questionnaire_initial_nov25",
+        animateProgressBar: false,
+        progressBarValue: undefined,
+        isAQuestion: false,
+      },
+      {
+        stepId: "health_questionnaire_consent_nov25",
+        animateProgressBar: false,
+        progressBarValue: undefined,
+        isAQuestion: false,
+      },
+      {
+        stepId: "reflection.rested_today",
+        animateProgressBar: false,
+        progressBarValue: 0,
+        isAQuestion: true,
+      },
+      {
+        stepId: "reflection.your_day_so_far",
+        animateProgressBar: true,
+        progressBarValue: 1,
+        isAQuestion: true,
+      },
+      {
+        stepId: "reflection.how_you_feel_today",
+        animateProgressBar: true,
+        progressBarValue: 2,
+        isAQuestion: true,
+      },
+      {
+        stepId: steps.CORE_JOURNEY_STEPS_01.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 3,
+        isAQuestion: true,
+      },
+      {
+        stepId: steps.CORE_JOURNEY_STEPS_02.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 4,
+        isAQuestion: true,
+      },
+      {
+        stepId: steps.CORE_JOURNEY_STEPS_03.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 5,
+        isAQuestion: true,
+      },
+      {
+        stepId: steps.CORE_JOURNEY_STEPS_04.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 6,
+        isAQuestion: true,
+      },
+      {
+        stepId: steps.CORE_JOURNEY_STEPS_05.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 7,
+        isAQuestion: true,
+      },
+      {
+        stepId: steps.CORE_JOURNEY_STEPS_06.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 8,
+        isAQuestion: true,
+      },
+      {
+        stepId: steps.CORE_JOURNEY_STEPS_07.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 9,
+        isAQuestion: true,
+      },
+      {
+        stepId: steps.CORE_JOURNEY_STEPS_08.data.externalId,
+        animateProgressBar: true,
+        progressBarValue: 10,
+        isAQuestion: true,
+      },
+      {
+        stepId: "health_questionnaire_submission",
+        animateProgressBar: false,
+        progressBarValue: undefined,
+        isAQuestion: false,
+      },
+    ],
+    uiAccess: {
+      eventPanel: {
+        alwaysOn: false,
+        validation: {
+          type: "object",
+          properties: {
+            dateNow: {
+              type: "string",
+              anyOf: [
+                {
+                  format: "date",
+                  formatMinimum: moment().subtract(7, "days").format("YYYY-MM-DD"),
+                  formatMaximum: moment().add(7, "days").format("YYYY-MM-DD"),
+                },
+              ],
+            },
+          },
+          required: ["dateNow"],
+          additionalProperties: false,
+        },
+      },
+    },
+    updatedAt: moment().subtract(8, "days").toISOString(),
+  },
+} as IDatabaseItem;
+
 import { CORE_JOURNEY_INSTANCE_SURVEY_PROMPT } from "./core_journey_instances";
 
 export const USER_JOURNEY_STATE_SURVEY_PROMPT = {
