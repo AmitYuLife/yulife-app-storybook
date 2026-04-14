@@ -15,6 +15,7 @@ import themeService from "@modules/themes/theme.service";
 import queryConfig from "./queryConfig";
 import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
 import { Task } from "redux-saga";
+import { getRouteState } from "@redux/app/app.selectors";
 
 const HYDRATE_TIMEOUT_MS = 4_000;
 
@@ -23,16 +24,37 @@ const initialPayloadTypes = ["INIT", SET_DEVICE_LOCALE];
 export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
   const isFromInit = initialPayloadTypes.includes(type);
 
-  if (isFromInit) {
+  if (type === READY_TO_SET_MAIN_ROOT) {
     const runHydrationFork: Task<ReturnType<typeof runHydration>> = yield fork(runHydration, { type, payload });
 
-    const [{ timeout }] = yield all([
+    yield race({
+      hydration: join(runHydrationFork),
+      // shorter time delay, app loading has already completed.
+      timeout: delay(1_000),
+    });
+
+    yield put(setMainRoot());
+  } else if (isFromInit) {
+    const runHydrationFork: Task<ReturnType<typeof runHydration>> = yield fork(runHydration, { type, payload });
+
+    const [{ timeout }, { setMainRootTimeout }] = yield all([
       race({
         hydration: join(runHydrationFork),
         timeout: delay(HYDRATE_TIMEOUT_MS),
       }),
-      take(READY_TO_SET_MAIN_ROOT),
+      race({
+        readyToSetMainRoot: take(READY_TO_SET_MAIN_ROOT),
+        setMainRootTimeout: delay(HYDRATE_TIMEOUT_MS),
+      }),
     ]);
+
+    const activeRoute: string = yield select(getRouteState);
+    if (setMainRootTimeout) {
+      Logger.error(new Error("Listening to readyToSetMainRoot timed out."), {
+        file: "hydrateApiConfigSaga",
+        activeRoute,
+      });
+    }
 
     if (timeout) {
       Logger.error(new Error("API config hydration timed out"), { file: "hydrateApiConfigSaga" });
@@ -45,6 +67,7 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
 }
 
 function* runHydration({ type, payload }: SyncAction) {
+  const startTime = Date.now();
   try {
     const isFromInit = initialPayloadTypes.includes(type);
     let shouldFetchConfig: boolean = typeof payload === "object" ? (payload || {})?.shouldFetchConfig : true;
@@ -92,6 +115,9 @@ function* runHydration({ type, payload }: SyncAction) {
     yield all([call(initStripe), call(dd.init)]);
   } catch (error) {
     Logger.error(error, { file: "runHydration" });
+  } finally {
+    const durationMs = Date.now() - startTime;
+    Logger.logEvent(`config_hydration_completed`, { file: "runHydration", durationMs });
   }
 
   return true;
