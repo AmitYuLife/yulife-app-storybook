@@ -48,14 +48,16 @@ Feature("I receive the correct emails", async () => {
     When("I enter my email", when.typeViaID(ids.INPUT_LOGIN_EMAIL, data.CUSTOMER_SHORT_CODE.customer.data.email), async () => {
       When("I tap to continue", when.tapID(ids.BUTTON_LOGIN(false), 2000), async () => {
         When("I tap 'PASS' on the captcha prompt", when.tapText("PASS", 2000), async () => {
-          Then("I should have received the correct email", then.hasReceivedMagicLinkEmail(data.CUSTOMER_SHORT_CODE.customer.data.email));
           Then("I should see the short code input field", then.idVisible(ids.INPUT_SHORT_CODE, 2500));
+          Then("I should have received the correct email", then.hasReceivedMagicLinkEmail(data.CUSTOMER_SHORT_CODE.customer.data.email));
         });
       });
     });
     When("I read the short code from the email and enter it", when.submitShortCodeFromEmail(data.CUSTOMER_SHORT_CODE.customer.data.email), async () => {
-      Then("I should see the sign up reward screen", then.rewardScreenVisible);
-      Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
+      When("I wait for the login to complete", when.wait(5000), async () => {
+        Then("I should see the sign up reward screen", then.rewardScreenVisible);
+        Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
+      });
     });
   });
 

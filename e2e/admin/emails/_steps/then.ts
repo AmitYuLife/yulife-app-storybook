@@ -38,8 +38,13 @@ export const hasReceivedMagicLinkEmail = (email: string) => async () => {
   const inbox = await readInbox(email, true);
   const subject = inbox[0].subject;
 
-  if (subject !== "[detox] 🔑 Your login to the Yuniverse!") {
-    throw new Error("Email subject is incorrect");
+  const validSubjects = [
+    "[detox] 🔑 Your login to the Yuniverse!",
+    "[detox] Your YuLife verification code",
+  ];
+
+  if (!validSubjects.includes(subject)) {
+    throw new Error(`Email subject is incorrect: "${subject}"`);
   }
 };
 
@@ -57,7 +62,9 @@ export const hasReceivedAdidasEmail = (email: string) => async () => {
   const subject = inbox[0].subject;
 
   if (subject !== "[detox] Your link to your Adidas voucher") {
-    throw new Error(`Email subject is incorrect. Expected "[detox] Your link to your Adidas voucher" but got "${subject}"`);
+    throw new Error(
+      `Email subject is incorrect. Expected "[detox] Your link to your Adidas voucher" but got "${subject}"`
+    );
   }
 };
 
