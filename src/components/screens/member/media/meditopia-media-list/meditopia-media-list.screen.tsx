@@ -10,6 +10,7 @@ import { Colours, Style, StyleSheet } from "@styles";
 import { USE_OTHER_APP_BUTTON, TODAYS_MEDITATION_SCREEN } from "@ids";
 import { Source } from "@atoms";
 import { GetQuestMapLevelQuery } from "@graphql/__generated";
+import { useBackHandler } from "@hooks";
 
 type IInternalContent = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]["details"]["internalContent"][0];
 type IButton = IInternalContent["buttons"][0];
@@ -70,6 +71,11 @@ const MeditopiaMediaListScreen = ({
       },
     });
   }, []);
+
+  useBackHandler(() => {
+    onLeftIconPress();
+    return true;
+  });
 
   const handleOtherAppPress = useCallback(() => handleOtherMeditationApp("otherApp"), [otherAppLoading]);
 
