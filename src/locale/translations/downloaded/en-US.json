@@ -1383,6 +1383,10 @@
       },
       "open_email": "Open email app",
       "resend_link": "Didn't get it? Send a new link.",
+      "short_code_accessibility_hint": "Enter the code from your email",
+      "short_code_accessibility_label": "Verification code",
+      "short_code_description": "Ready to be your best Yu? Enter the verification code from the email we just sent you.",
+      "submit_short_code": "Log in with code",
       "webview_title": "Preparing for launch..."
     },
     "login_email": {

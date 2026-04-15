@@ -1383,6 +1383,10 @@
       },
       "open_email": "メールアプリを開く",
       "resend_link": "届いていない場合は、新しいリンクを送信できます。",
+      "short_code_accessibility_hint": "メールからのコードを入力してください",
+      "short_code_accessibility_label": "確認コード",
+      "short_code_description": "最高のYuになる準備はできていますか？今送信したメールから、確認コードを入力してください。",
+      "submit_short_code": "コードで ログイン",
       "webview_title": "準備中です..."
     },
     "login_email": {

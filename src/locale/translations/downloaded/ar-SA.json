@@ -1383,6 +1383,10 @@
       },
       "open_email": "افتح تطبيق البريد الإلكتروني",
       "resend_link": "لم يصلك الرابط؟ أرسل رابط جديد.",
+      "short_code_accessibility_hint": "أدخل الرمز من بريدك الإلكتروني",
+      "short_code_accessibility_label": "رمز التحقق",
+      "short_code_description": "مستعد لتكون أفضل ما لديك؟ أدخل رمز التحقق من البريد الإلكتروني الذي أرسلناه لك.",
+      "submit_short_code": "تسجيل الدخول برمز",
       "webview_title": "التهيئة لعملية الإقلاع..."
     },
     "login_email": {

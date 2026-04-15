@@ -1383,6 +1383,10 @@
       },
       "open_email": "Open e-mail app",
       "resend_link": "Niet ontvangen? Stuur een nieuwe link.",
+      "short_code_accessibility_hint": "Voer de code uit je e-mail in",
+      "short_code_accessibility_label": "Verificatiecode",
+      "short_code_description": "Klaar om je beste Yu te zijn? Voer de verificatiecode in uit de e-mail die we je zojuist hebben gestuurd.",
+      "submit_short_code": "Log in met code",
       "webview_title": "Klaarmaken voor lancering..."
     },
     "login_email": {
