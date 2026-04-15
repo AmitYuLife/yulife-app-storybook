@@ -8,12 +8,31 @@ import { CUSTOMER_52, CUSTOMER_84 } from "../postgres/customers";
 const type = "mongo";
 const modelName = "user_social_leaderboard_scores";
 
+const today = moment().format("YYYY-MM-DD");
+const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+
 export const USER_SOCIAL_LEADERBOARD_SCORE_71 = {
     type,
     modelName,
     data: {
         _id: generateRandomMongoId(),
-        date: moment().format("YYYY-MM-DD"),
+        date: today,
+        difficultyLevel: 1,
+        leaderboardConfigId: "SUDOKU_DAILY",
+        userId: USER_71.data.userId,
+        value: SUDOKU_ANSWER_71.data.baseTime,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_1.data._id
+        ]
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_SCORE_71_NEXT_DAY = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        date: tomorrow,
         difficultyLevel: 1,
         leaderboardConfigId: "SUDOKU_DAILY",
         userId: USER_71.data.userId,
@@ -29,7 +48,23 @@ export const USER_SOCIAL_LEADERBOARD_SCORE_67 = {
     modelName,
     data: {
         _id: generateRandomMongoId(),
-        date: moment().format("YYYY-MM-DD"),
+        date: today,
+        difficultyLevel: 1,
+        leaderboardConfigId: "SUDOKU_DAILY",
+        userId: USER_67.data.userId,
+        value: SUDOKU_ANSWER_67.data.baseTime,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_1.data._id
+        ]
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_SCORE_67_NEXT_DAY = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        date: tomorrow,
         difficultyLevel: 1,
         leaderboardConfigId: "SUDOKU_DAILY",
         userId: USER_67.data.userId,
@@ -45,7 +80,23 @@ export const USER_SOCIAL_LEADERBOARD_SCORE_68 = {
     modelName,
     data: {
         _id: generateRandomMongoId(),
-        date: moment().format("YYYY-MM-DD"),
+        date: today,
+        difficultyLevel: 1,
+        leaderboardConfigId: "SUDOKU_DAILY",
+        userId: USER_68.data.userId,
+        value: SUDOKU_ANSWER_68.data.baseTime,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_1.data._id
+        ]
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_SCORE_68_NEXT_DAY = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        date: tomorrow,
         difficultyLevel: 1,
         leaderboardConfigId: "SUDOKU_DAILY",
         userId: USER_68.data.userId,

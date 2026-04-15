@@ -17,7 +17,7 @@ export const CHALLENGE_HISTORY_7 = {
     _id: generateRandomMongoId(),
     userId: CUSTOMER_7.data.customerId,
     firstLevel: 1,
-    lastLevel: 4,
+    lastLevel: 200,
     yuniversalMap: 0,
     history: {
       1: {
@@ -82,6 +82,10 @@ export const CHALLENGE_HISTORY_40 = {
   data: {
     _id: generateRandomMongoId(),
     userId: USER_40.data.userId,
+    firstLevel: 1,
+    lastLevel: 200,
+    yuniversalMap: 0,
+    history: {},
   },
 } as IDatabaseItem;
 
@@ -91,10 +95,13 @@ export const CHALLENGE_HISTORY_84 = {
   data: {
     _id: generateRandomMongoId(),
     userId: CUSTOMER_84.data.customerId,
-    challengesForEveryLevel: {
+    firstLevel: 1,
+    lastLevel: 200,
+    yuniversalMap: 0,
+    history: {
       152: {
         maxRating: 3,
-        challengesForEveryLevelSlot: {
+        challenges: {
           SUDOKU_001: [
             {
               challengeId: CHALLENGE_USER_84.data._id,

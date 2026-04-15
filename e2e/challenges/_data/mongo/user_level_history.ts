@@ -10,9 +10,12 @@ export const CHALLENGE_HISTORY_7 = {
     type,
     modelName,
     data: {
-        "_id": generateRandomMongoId(),
-        "userId": USER_7.data.userId,
-        challengesForEveryLevel: {},
+        _id: generateRandomMongoId(),
+        userId: USER_7.data.userId,
+        firstLevel: 1,
+        lastLevel: 200,
+        yuniversalMap: 0,
+        history: {},
     }
 } as IDatabaseItem
 
@@ -20,9 +23,12 @@ export const CHALLENGE_HISTORY_67 = {
     type,
     modelName,
     data: {
-        "_id": generateRandomMongoId(),
-        "userId": USER_67.data.userId,
-        challengesForEveryLevel: {},
+        _id: generateRandomMongoId(),
+        userId: USER_67.data.userId,
+        firstLevel: 201,
+        lastLevel: 400,
+        yuniversalMap: 0,
+        history: {},
     }
 } as IDatabaseItem
 
@@ -30,9 +36,12 @@ export const CHALLENGE_HISTORY_68 = {
     type,
     modelName,
     data: {
-        "_id": generateRandomMongoId(),
-        "userId": USER_68.data.userId,
-        challengesForEveryLevel: {},
+        _id: generateRandomMongoId(),
+        userId: USER_68.data.userId,
+        firstLevel: 1,
+        lastLevel: 7,
+        yuniversalMap: 1,
+        history: {},
     }
 } as IDatabaseItem
 
@@ -40,9 +49,12 @@ export const CHALLENGE_HISTORY_72 = {
     type,
     modelName,
     data: {
-        "_id": generateRandomMongoId(),
-        "userId": USER_72.data.userId,
-        challengesForEveryLevel: {},
+        _id: generateRandomMongoId(),
+        userId: USER_72.data.userId,
+        firstLevel: 1,
+        lastLevel: 200,
+        yuniversalMap: 0,
+        history: {},
     }
 } as IDatabaseItem
 
@@ -50,9 +62,12 @@ export const CHALLENGE_HISTORY_76 = {
     type,
     modelName,
     data: {
-        "_id": generateRandomMongoId(),
-        "userId": USER_76.data.userId,
-        challengesForEveryLevel: {},
+        _id: generateRandomMongoId(),
+        userId: USER_76.data.userId,
+        firstLevel: 1,
+        lastLevel: 200,
+        yuniversalMap: 0,
+        history: {},
     }
 } as IDatabaseItem
 
@@ -60,12 +75,15 @@ export const CHALLENGE_HISTORY_84 = {
     type,
     modelName,
     data: {
-        "_id": generateRandomMongoId(),
-        "userId": CUSTOMER_84.data.customerId,
-        challengesForEveryLevel: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_84.data.customerId,
+        firstLevel: 1,
+        lastLevel: 200,
+        yuniversalMap: 0,
+        history: {
             152: {
                 maxRating: 3,
-                challengesForEveryLevelSlot: {
+                challenges: {
                     SUDOKU_001: [
                         {
                             challengeId: CHALLENGE_USER_84.data._id,
@@ -83,9 +101,12 @@ export const CHALLENGE_HISTORY_86 = {
     type,
     modelName,
     data: {
-        "_id": generateRandomMongoId(),
-        "userId": USER_86.data.userId,
-        challengesForEveryLevel: {},
+        _id: generateRandomMongoId(),
+        userId: USER_86.data.userId,
+        firstLevel: 1,
+        lastLevel: 200,
+        yuniversalMap: 0,
+        history: {},
     }
 } as IDatabaseItem
 
@@ -93,8 +114,11 @@ export const CHALLENGE_HISTORY_132 = {
     type,
     modelName,
     data: {
-        "_id": generateRandomMongoId(),
-        "userId": USER_132.data.customerId,
-        challengesForEveryLevel: {},
+        _id: generateRandomMongoId(),
+        userId: USER_132.data.customerId,
+        firstLevel: 1,
+        lastLevel: 200,
+        yuniversalMap: 0,
+        history: {},
     }
 } as IDatabaseItem

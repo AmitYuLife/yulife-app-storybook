@@ -718,35 +718,56 @@ export const CHALLENGE_76 = {
     }
 } as IDatabaseItem;
 
+const challengeUser84Data = {
+    ...CHALLENGE_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_84.data.customerId,
+    subtype: "sudoku",
+    level: 152,
+    incomingData: {
+        duration: 400,
+      },
+    milestoneLog: [
+        {
+            completionData: [],
+            _id: generateRandomMongoId(),
+            data: {
+                duration: 400
+            },
+            yuCoinAwarded: 20,
+            id: SUDOKU_MILESTONE.data.id
+        },
+    ],
+};
+
 export const CHALLENGE_USER_84 = {
     type,
     modelName,
     data: {
-        ...CHALLENGE_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_84.data.customerId,
-        subtype: "sudoku",
-        level: 152,
-        incomingData: {
-            duration: 400,
-          },
+        ...challengeUser84Data,
         startTime: moment().toDate(),
         startDateTime: moment().toDate(),
         endDateTime: moment().toDate(),
         date: moment().format('YYYY-MM-DD'),
         milestoneLog: [
-            {
-                completionData: [],
-                _id: generateRandomMongoId(),
-                data: {
-                    duration: 400
-                },
-                yuCoinAwarded: 20,
-                completed: moment().format("YYYY-MM-DD"),
-                id: SUDOKU_MILESTONE.data.id
-            },
+            { ...challengeUser84Data.milestoneLog[0], completed: moment().format("YYYY-MM-DD") },
         ],
+    }
+} as IDatabaseItem;
 
+export const CHALLENGE_USER_84_NEXT_DAY = {
+    type,
+    modelName,
+    data: {
+        ...challengeUser84Data,
+        _id: generateRandomMongoId(),
+        startTime: moment().add(1, "day").toDate(),
+        startDateTime: moment().add(1, "day").toDate(),
+        endDateTime: moment().add(1, "day").toDate(),
+        date: moment().add(1, "day").format('YYYY-MM-DD'),
+        milestoneLog: [
+            { ...challengeUser84Data.milestoneLog[0], _id: generateRandomMongoId(), completed: moment().add(1, "day").format("YYYY-MM-DD") },
+        ],
     }
 } as IDatabaseItem;
 

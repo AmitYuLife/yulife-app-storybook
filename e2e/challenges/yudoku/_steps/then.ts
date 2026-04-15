@@ -44,7 +44,7 @@ export const amOnSudokuPage = async () => {
   await textVisible("Yudoku")();
   await idVisible(SUDOKU_HOWTOPLAY_BUTTON)();
   await idVisible(SUDOKU_JOINLEADERBOARD_BUTTON)();
-  await textVisible(todaysDate)();
+  await textVisible(todaysDate())();
 };
 
 export const amOnSudokuHowToPlay = async () => {
@@ -105,19 +105,17 @@ export const amOnYudokuCompleted = (hintsNum: number, mistakesNum: number) => as
 export const onMidGamePausedScreen = async () => {
   await textVisible("Cancel", 1000)();
   await textVisible("Yudoku Paused")();
-  await textVisible(todaysDate)();
+  await textVisible(todaysDate())();
 };
 
 export const onMidGamePausedScreenAfterQuit = async () => {
   await textVisible("Cancel", 1000)();
   await textVisible("Yudoku Paused")();
-  // @update - Showing US date format on Bitrise
-  // await textVisible(pauseScreenDate)()
 };
 
 export const onSudokuSummaryScreen =
   (hintsNum: number, mistakesNum: number, customer: typeof CUSTOMER_86) => async () => {
-    await textVisible(todaysDate)();
+    await textVisible(todaysDate())();
     await idVisible(SUDOKU_STAT("Hints", hintsNum))();
     await idVisible(SUDOKU_STAT("Mistakes", mistakesNum))();
     await textNotVisible("n/a")();
@@ -179,8 +177,8 @@ export const hintInfoTooltipIsVisible = async () => {
 };
 
 export const canSeeCompleted = async () => {
-  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Completed", "down")();
-  await textVisible("Completed");
+  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Completed", "down", undefined, undefined, 4_000)();
+  await textVisible("Completed", 4_000)();
 };
 
 export const amOnCancelPage = async () => {
