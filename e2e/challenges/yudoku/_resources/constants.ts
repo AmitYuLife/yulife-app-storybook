@@ -1,7 +1,7 @@
 import moment from "moment"
 
-export const todaysDate = moment().format("DD MMM YYYY")
-export const pauseScreenDate = moment().format("DD MMM YYYY")
+export const todaysDate = () => moment().format("DD MMM YYYY")
+export const pauseScreenDate = () => moment().format("DD MMM YYYY")
 
 export const PracticeYudokuAnswers = [
     // row 1 - misses out row 1 cell 4 as it is filled in by using the hint in the practice yudoku scenario
