@@ -7,6 +7,7 @@ import { Style, StyleSheet } from "@styles";
 import YuHealthInfo from "./yu-health-info";
 import YuHealthActivity from "./yu-health-activity";
 import YuHealthChallenges from "./yu-health-challenges";
+import YuHealthLogs from "./yu-health-logs";
 
 const YuHealthDebug = () => {
   const [activeTab, setActiveTab] = useState<string>("YuHealth");
@@ -35,17 +36,24 @@ const YuHealthDebug = () => {
           setActiveTab("Challenges");
         },
       },
+      {
+        name: "Logs",
+        onPress: () => {
+          setActiveTab("Logs");
+        },
+      },
     ];
   }, []);
 
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
-      <Tabs list={list} />
+      <Tabs list={list} scrollEnabled={true} />
       <ScrollView>
         {activeTab === "YuHealth" ? <YuHealthInfo /> : null}
         {activeTab === "Activity" ? <YuHealthActivity /> : null}
         {activeTab === "Challenges" ? <YuHealthChallenges /> : null}
+        {activeTab === "Logs" ? <YuHealthLogs /> : null}
       </ScrollView>
       <GenericHeadingAbsolute heading={"YuHealth"} onLeftIconPress={onBack} />
     </View>
