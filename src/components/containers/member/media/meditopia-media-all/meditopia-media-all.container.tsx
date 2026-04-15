@@ -40,7 +40,7 @@ const MeditopiaMediaAllContainer = ({
 
   useBackHandler(() => {
     onLeftIconPress();
-    return false;
+    return true;
   });
 
   usePopToQuestsRootOnNewDate(level);
