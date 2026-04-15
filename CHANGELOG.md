@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.6.0] - 2026-04-15
+
+### Bugfixes
+
+- Bugfix GS-2217: Fix new challenge-success screen layout
+- Bugfix GS-2657: Handle Android back button on Meditopia media list screen
+- Bugfix GS-2630: Coupon success screen
+- Bugfix GS-2628: more hydrate api config tweaks
+- Bugfix CTE-683: podfile no likey
+- Bugfix GS-2628: Hydrate API config saga improvements
+
+### Tasks
+
+- Task CTE-697: tweaks to short code
+- Task ENG-4404: Add YuHealth aggregate zero-value logging and debug Logs tab
+- Task CTE-697: Add short code input to magic link confirmation screen
+- Task GS-2631: Show grace period banner on Team vs Team leaderboard
+- Task DEVOPS-5379: Use correct version of allure-commandline in combine detox report script
+- Task GS-2640: Save Android production build artifacts on failure
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore CTE-700: disable scroll animations for E2E
+- Chore CTE-683: separate detox builds into dedicated stage
+- Chore CTE-683: detox release build CI
+- (grafted) Chore SDK-55: upgrade RNN to 8.8.1
+- (grafted) Merge branch 'chore/cte-556-claude-expo-plugin' into 'develop'
+
+### Extra
+
+- Detox GS-2662: Fix Yoduku Seed Data
+- Fix GS-2657: Meditopia back handler
+- GS-2634: Update Intercom keys in Dev Env
+- Fix CTE-708: android font size
+- Fix DEVOPS-5379: Load shell profile before combining detox report
+- Refactor CTE-706: drop getCurrentUser.connections
+- Detox GS-2231: Used Vouchers
+- Detox GS-2257: Re Engagement Reflections
+- Detox GS-2641: Fix detox_test_type input for challenges:2 and worlds:2
+- Detox GS-2265: Daily Reflections Reminder Flow
+- Fix CTE-683: detox download pagination
+- Fix CTE-683: expo dotenv override
+- Fix CTE-683: rebundle env vars
+- Fix CTE-683: robust artifact download
+- Fix CTE-683: pnpm not available in download script
+- Detox GS-2629: Fix Yudoku Board
+- Refactor SDK-55: replace forwardRef
+
 ## [5.5.0] - 2026-04-09
 
 ### Bugfixes
