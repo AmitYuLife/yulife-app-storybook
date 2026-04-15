@@ -13,5 +13,8 @@ export async function clearApolloCache({ shouldStop }: Args = {}) {
     client.stop();
   }
 
-  await Promise.all([client.clearStore(), persistor.purge()]);
+  // Use allSettled so that an in-flight query being rejected by clearStore() (or any persistor
+  // failure) does not abort the cleanup — both branches need to run independently, and downstream
+  // logout work (e.g. clearing the auth token) must not be blocked by either failing.
+  await Promise.allSettled([client.clearStore(), persistor.purge()]);
 }
