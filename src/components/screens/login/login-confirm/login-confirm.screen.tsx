@@ -4,10 +4,9 @@ import { Button, LinkButton, ShortCodeInput } from "@molecules";
 import { t } from "@locale";
 import { CaptchaInput, useCaptcha } from "@organisms/captcha-input";
 import LoginFormWrapper from "../subcomponents/login-form-wrapper";
-import { Alert } from "react-native";
+import { Alert, Keyboard } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { openInbox, EmailException } from "react-native-email-link";
-import { LinkButtonSpacing } from "../subcomponents/link-button-spacing";
 import { BUTTON_SUBMIT_SHORT_CODE, INPUT_SHORT_CODE } from "@ids";
 
 import { StyleSheet } from "@styles";
@@ -54,6 +53,7 @@ const LoginConfirmScreen = ({
 
   const handleSubmitShortCode = useCallback(() => {
     if (shortCode.length === shortCodeLength) {
+      Keyboard.dismiss();
       onSubmitShortCode(shortCode);
     }
   }, [shortCode, shortCodeLength, onSubmitShortCode]);
@@ -106,15 +106,20 @@ const LoginConfirmScreen = ({
     return () => clearInterval(interval);
   }, [isCooldownActive, lastResendTime]);
 
+  const heading = shortCodeLength
+    ? t("screens.login_confirm.short_code_heading")
+    : t("screens.login_confirm.heading", { email });
+
   return (
     <LoginFormWrapper
-      heading={t("screens.login_confirm.heading", { email })}
+      heading={heading}
+      headingBottomPadding={shortCodeLength ? 20 : 40}
       onPressBack={onPressBack}
       variant="magicLink"
       showFullScreenLoader={isRedeemingOtp}
     >
-      <Box ph={30} pb={24}>
-        <TextTemplate type="b1" textAlign="left">
+      <Box ph={30} pb={shortCodeLength ? 16 : 24}>
+        <TextTemplate type={shortCodeLength ? "b2" : "b1"} textAlign="left">
           {shortCodeLength ? t("screens.login_confirm.short_code_description") : t("screens.login_confirm.description")}
         </TextTemplate>
       </Box>
@@ -127,6 +132,7 @@ const LoginConfirmScreen = ({
             onChange={onChangeShortCode}
             onSubmit={onSubmitShortCode}
             length={shortCodeLength}
+            autoFocus={true}
           />
           <Button
             testID={BUTTON_SUBMIT_SHORT_CODE}
@@ -141,7 +147,7 @@ const LoginConfirmScreen = ({
         <Button size="Large" onPress={handleOpenEmail} translationKey="screens.login_confirm.open_email" />
       )}
 
-      <LinkButtonSpacing>
+      <Box ph={22} pt={shortCodeLength ? 12 : 16} pb={shortCodeLength ? 12 : 24} gap={shortCodeLength ? 4 : undefined}>
         <LinkButton
           translationKey={isCooldownActive ? "screens.login_confirm.cooldown" : "screens.login_confirm.resend_link"}
           translationArgs={{
@@ -160,7 +166,7 @@ const LoginConfirmScreen = ({
             underline={true}
           />
         ) : null}
-      </LinkButtonSpacing>
+      </Box>
       <CaptchaInput {...captcha} />
     </LoginFormWrapper>
   );

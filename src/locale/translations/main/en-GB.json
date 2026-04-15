@@ -448,6 +448,7 @@
       "webview_title": "Preparing for liftoff...",
       "error_title": "Something went wrong",
       "open_email": "Open email app",
+      "short_code_heading": "Let’s verify it’s you!",
       "short_code_description": "Ready to be your best Yu? Enter the verification code from the email we’ve just sent you.",
       "submit_short_code": "Log in with code",
       "short_code_accessibility_label": "Verification code",

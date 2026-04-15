@@ -2,7 +2,7 @@ import { Box, TextTemplate } from "@atoms";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
 import { t } from "@locale";
 import { Colours, StyleSheet } from "@styles";
-import { memo, useCallback, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { I18nManager, TextInput as RNTextInput, TextInputProps } from "react-native";
 
 export interface IShortCodeInputProps {
@@ -11,14 +11,29 @@ export interface IShortCodeInputProps {
   onSubmit?: (value: string) => void;
   length?: number;
   testID?: string;
+  autoFocus?: boolean;
 }
 
 const DEFAULT_LENGTH = 6;
 const VALID_CHAR_REGEX = /[^A-Z0-9]/g;
 const AUTO_SUBMIT_DELAY_MS = 200;
 
-const ShortCodeInput = ({ value, onChange, onSubmit, length = DEFAULT_LENGTH, testID }: IShortCodeInputProps) => {
+const ShortCodeInput = ({
+  value,
+  onChange,
+  onSubmit,
+  length = DEFAULT_LENGTH,
+  testID,
+  autoFocus,
+}: IShortCodeInputProps) => {
   const inputRef = useRef<RNTextInput>(null);
+
+  useEffect(() => {
+    if (autoFocus) {
+      const timer = setTimeout(() => inputRef.current?.focus(), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [autoFocus]);
   const [isFocused, setIsFocused] = useState(false);
   const { theme } = useTheme();
 

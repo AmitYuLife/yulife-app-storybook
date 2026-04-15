@@ -2,7 +2,7 @@ import { memo } from "react";
 import { Box, Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
 import { CentredScreen } from "@molecules";
 import { Style, StyleSheet } from "@styles";
-import { ScrollView } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import LoginBackgroundSvg from "@components/screens/login/subcomponents/svgs/login-background-svg";
@@ -12,6 +12,7 @@ import AnimalLoader from "@organisms/animal-loader/animal-loader";
 interface ILoginFormWrapperProps {
   onPressBack: () => void;
   heading?: string;
+  headingBottomPadding?: number;
   showFullScreenLoader?: boolean;
   /**
    * Variant of the login form wrapper. This only affects the background image.
@@ -25,6 +26,7 @@ interface ILoginFormWrapperProps {
 export const LoginFormWrapper = ({
   onPressBack,
   heading,
+  headingBottomPadding = 40,
   variant = "default",
   children,
   showFullScreenLoader = false,
@@ -35,17 +37,27 @@ export const LoginFormWrapper = ({
       style={styles.wrapper}
       BackgroundGradient={<UnauthorisedGradient />}
     >
-      <ScrollView keyboardShouldPersistTaps={"handled"} showsVerticalScrollIndicator={false} style={styles.scrollView}>
-        {!heading ? null : (
-          <Box pt={60} pb={40} px={30}>
-            <TextTemplate type="h2" testID={LOGIN_SCREEN_HEADER}>
-              {heading}
-            </TextTemplate>
-          </Box>
-        )}
-        {children}
-        <Pad height={40} />
-      </ScrollView>
+      <KeyboardAvoidingView
+        style={styles.keyboardAvoiding}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        keyboardVerticalOffset={0}
+      >
+        <ScrollView
+          keyboardShouldPersistTaps={"handled"}
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollView}
+        >
+          {!heading ? null : (
+            <Box pt={60} pb={headingBottomPadding} px={30}>
+              <TextTemplate type="h2" testID={LOGIN_SCREEN_HEADER}>
+                {heading}
+              </TextTemplate>
+            </Box>
+          )}
+          {children}
+          <Pad height={40} />
+        </ScrollView>
+      </KeyboardAvoidingView>
       <TopBarAbsolute
         leftIcon={LeftIcon.BACK}
         rightIcon={null}
@@ -63,6 +75,10 @@ const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
     height: Style.adjust(265),
+  },
+  keyboardAvoiding: {
+    flex: 1,
+    width: "100%",
   },
   scrollView: {
     flex: 1,
