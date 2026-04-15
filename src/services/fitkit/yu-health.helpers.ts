@@ -52,16 +52,33 @@ export const yuHealthAggregateQuery = async ({
 
     const results = await aggregateQuery({ ...params, queryOptions: { ...params?.queryOptions, disableUserEntries } });
 
+    const resultItems = results?.result ?? [];
+    const total = resultItems.length;
+    const nonZero = resultItems.filter((r) => r.value > 0).length;
+
     if (loggingEnabled && results) {
       dd.info("YuHealth aggregate query results", {
         metadata,
         params,
-        results,
+        total,
+        nonZero,
         location: "yu-health",
       });
     }
 
-    return results?.result;
+    if (total > 0 && nonZero < total) {
+      dd.warn("YuHealth aggregate zero-value buckets", {
+        dataType: params.dataType,
+        total,
+        nonZero,
+        zeroDays: total - nonZero,
+        startTime: params.startTime,
+        endTime: params.endTime,
+        location: "yu-health",
+      });
+    }
+
+    return resultItems;
   } catch (e) {
     dd.error("YuHealth aggregate query response error", {
       error: e,

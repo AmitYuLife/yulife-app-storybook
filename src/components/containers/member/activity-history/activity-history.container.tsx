@@ -74,7 +74,6 @@ const ActivityHistoryContainer = ({ componentId }: IProps) => {
     });
 
     const payload = [...stepsResults, ...meditationResults, ...cyclingResults];
-
     const querySessionId = sessionId || randomUUID();
 
     if (payload.length) {
