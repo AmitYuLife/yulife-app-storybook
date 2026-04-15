@@ -93,7 +93,15 @@ const scaledYPixel = +(y / 667).toFixed(3);
 
 const SCALE_UP_AND_DOWN = (val: number) => PixelRatio.roundToNearestPixel(scaledPixel * val);
 const SCALE_Y_UP_AND_DOWN = (value: number) => scaledYPixel * value;
-const defaultGrowThreshold = y > 900;
+
+// Under the new architecture on Android, Dimensions.get("window").height
+// includes system bar area that old-arch builds excluded. Without this
+// adjustment, devices that previously sat below the 900 threshold now
+// cross it and have every adjust()-scaled font size inflated by 20%.
+const thresholdY = isAndroid()
+  ? y - (initialWindowMetrics?.insets?.top ?? 0) - (initialWindowMetrics?.insets?.bottom ?? 0)
+  : y;
+const defaultGrowThreshold = thresholdY > 900;
 
 const getShrinkThreshold = () => {
   if (y < 785 && x === 360 && isAndroid()) {
