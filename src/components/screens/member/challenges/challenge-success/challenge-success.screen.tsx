@@ -10,6 +10,7 @@ import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.sel
 import { ChallengeCompletionSummary } from "@redux/levels/levels.types";
 import { DETOX_ENABLED } from "@services/socket";
 import { Style, StyleSheet } from "@styles";
+import { MIN_SAFE_BOTTOM_PADDING } from "@styles/safeAreaViewOffset";
 import { getTheme } from "@theme";
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -97,21 +98,21 @@ const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionS
           <Box justifyContent="center" alignItems="center" gap={50}>
             <Box>
               <ItemDetailsReward size={REWARD_SIZE} imageSize={REWARD_IMAGE_SIZE_YUCOIN} source={YUCOIN_SHADOW_ICON} />
-              {reward > 0 ? (
-                <Box
-                  alignItems="center"
-                  justifyContent="center"
-                  position="absolute"
-                  top={-10}
-                  w={REWARD_SIZE}
-                  h={80}
-                  collapsable={false}
-                  zIndex={2}
-                >
-                  <AnimatedPlusPoints type="challenge-success" coins={reward} textType="h3" style={styles.plusPoints} />
-                </Box>
-              ) : null}
             </Box>
+            {reward > 0 ? (
+              <Box
+                alignItems="center"
+                justifyContent="center"
+                position="absolute"
+                top={-10}
+                w={REWARD_SIZE}
+                h={80}
+                collapsable={false}
+                zIndex={2}
+              >
+                <AnimatedPlusPoints type="challenge-success" coins={reward} textType="h3" style={styles.plusPoints} />
+              </Box>
+            ) : null}
           </Box>
           <Box mt={16}>
             <TextTemplate type="h2" color={challengeSuccessScreen.textStyle.color} textAlign="center">
@@ -123,7 +124,13 @@ const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionS
         </Box>
       </Box>
 
-      <Box position="absolute" bottom={0} width="100%" pb={bottom} disableAutoAdjust={true}>
+      <Box
+        position="absolute"
+        bottom={0}
+        width="100%"
+        pb={Math.max(bottom, MIN_SAFE_BOTTOM_PADDING)}
+        disableAutoAdjust={true}
+      >
         <Button testID={"CHALLENGE_SUCCESS_CTA"} onPress={onPressCta} translationKey="labels.cta.continue" />
       </Box>
     </CentredScreen>
