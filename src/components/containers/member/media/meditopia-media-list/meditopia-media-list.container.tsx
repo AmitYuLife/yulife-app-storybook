@@ -70,7 +70,7 @@ const MeditopiaMediaListContainer = ({
 
   useBackHandler(() => {
     onLeftIconPress();
-    return false;
+    return true;
   });
 
   const createChallengeOnOtherAppSelected = useCallback(
