@@ -198,7 +198,6 @@ type Documents = {
   GetPublicYuApiConfigWithFingerprintThemeDocument: typeof types.GetPublicYuApiConfigWithFingerprintThemeDocument;
   GetPublicYuApiConfigWithThemeDocument: typeof types.GetPublicYuApiConfigWithThemeDocument;
   DeleteConnectionDocument: typeof types.DeleteConnectionDocument;
-  GetConnectionsDocument: typeof types.GetConnectionsDocument;
   GetNewConnectionLinkDocument: typeof types.GetNewConnectionLinkDocument;
   GetMobileAvailableContentLocationsDocument: typeof types.GetMobileAvailableContentLocationsDocument;
   UpdateMobileUserContentLocationDocument: typeof types.UpdateMobileUserContentLocationDocument;
@@ -541,7 +540,6 @@ const documents: Documents = {
   GetPublicYuApiConfigWithFingerprintThemeDocument: types.GetPublicYuApiConfigWithFingerprintThemeDocument,
   GetPublicYuApiConfigWithThemeDocument: types.GetPublicYuApiConfigWithThemeDocument,
   DeleteConnectionDocument: types.DeleteConnectionDocument,
-  GetConnectionsDocument: types.GetConnectionsDocument,
   GetNewConnectionLinkDocument: types.GetNewConnectionLinkDocument,
   GetMobileAvailableContentLocationsDocument: types.GetMobileAvailableContentLocationsDocument,
   UpdateMobileUserContentLocationDocument: types.UpdateMobileUserContentLocationDocument,
@@ -1617,10 +1615,6 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "DeleteConnectionDocument"): (typeof documents)["DeleteConnectionDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "GetConnectionsDocument"): (typeof documents)["GetConnectionsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
