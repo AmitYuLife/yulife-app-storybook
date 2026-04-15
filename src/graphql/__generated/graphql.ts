@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -573,6 +574,46 @@ export type BasicProductInformation = {
 export type BeneficiaryShareOfBenefit = {
   beneficiaryId: Scalars["ID"]["input"];
   percentage: Scalars["Float"]["input"];
+};
+
+export type BillingCentreListItem = {
+  __typename?: "BillingCentreListItem";
+  billingAddressName?: Maybe<Scalars["String"]["output"]>;
+  directDebit?: Maybe<BillingSummaryDirectDebit>;
+  isPrimary: Scalars["Boolean"]["output"];
+  postalAddress?: Maybe<BillingSummaryPostalAddress>;
+};
+
+export type BillingSummary = {
+  __typename?: "BillingSummary";
+  billingCentre?: Maybe<BillingSummaryBillingCentre>;
+  directDebit?: Maybe<BillingSummaryDirectDebit>;
+  totalBillingCentres: Scalars["Int"]["output"];
+};
+
+export type BillingSummaryBillingCentre = {
+  __typename?: "BillingSummaryBillingCentre";
+  billingAddressName?: Maybe<Scalars["String"]["output"]>;
+  isPrimary: Scalars["Boolean"]["output"];
+  postalAddress?: Maybe<BillingSummaryPostalAddress>;
+};
+
+export type BillingSummaryDirectDebit = {
+  __typename?: "BillingSummaryDirectDebit";
+  accountNumberEnding?: Maybe<Scalars["String"]["output"]>;
+  status?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type BillingSummaryPostalAddress = {
+  __typename?: "BillingSummaryPostalAddress";
+  addressLineOne?: Maybe<Scalars["String"]["output"]>;
+  addressLineTwo?: Maybe<Scalars["String"]["output"]>;
+  addressOverride?: Maybe<Scalars["String"]["output"]>;
+  city?: Maybe<Scalars["String"]["output"]>;
+  country?: Maybe<Scalars["String"]["output"]>;
+  county?: Maybe<Scalars["String"]["output"]>;
+  name?: Maybe<Scalars["String"]["output"]>;
+  postcode?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type BlackListApps = {
@@ -1160,6 +1201,7 @@ export type BusinessSessionSettings = {
   /** @deprecated Banner logic now server-side */
   showConnectionsOverrideState?: Maybe<ShowConnectionsOverrideState>;
   showYuStoreDeprecationBanner: Scalars["Boolean"]["output"];
+  /** @deprecated Temporary field for survey export feature, will be removed in next release */
   surveyExportEnabled: Scalars["Boolean"]["output"];
   tournamentsEnabled: Scalars["Boolean"]["output"];
   yuStoreEnabled: Scalars["Boolean"]["output"];
@@ -1178,6 +1220,7 @@ export type BusinessSurveyCampaign = BusinessSurveyCampaignBase & {
   hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   hasPresetLoaded: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
+  isExportable: Scalars["Boolean"]["output"];
   isNameConfirmed: Scalars["Boolean"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
   journeySourceTemplateId?: Maybe<BusinessSurveyPresetId>;
@@ -1204,6 +1247,7 @@ export type BusinessSurveyCampaignBase = {
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
   hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
+  isExportable: Scalars["Boolean"]["output"];
   isNameConfirmed: Scalars["Boolean"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
   launchEmailBody?: Maybe<Scalars["String"]["output"]>;
@@ -1251,6 +1295,7 @@ export type BusinessSurveyCampaignSearchResultsEntry = BusinessSurveyCampaignBas
   endLocalDate?: Maybe<Scalars["String"]["output"]>;
   hasLaunchEmailReminders: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
+  isExportable: Scalars["Boolean"]["output"];
   isNameConfirmed: Scalars["Boolean"]["output"];
   isValidForNpsAggregation: Scalars["Boolean"]["output"];
   launchEmailBody?: Maybe<Scalars["String"]["output"]>;
@@ -4344,6 +4389,12 @@ export type GenericResponse = {
 export type GetAuthorisationUrlsResult = {
   __typename?: "GetAuthorisationUrlsResult";
   authUrls?: Maybe<Array<Maybe<MessagingConnectionAuthUrl>>>;
+};
+
+export type GetBillingCentresResponse = {
+  __typename?: "GetBillingCentresResponse";
+  billingCentres: Array<BillingCentreListItem>;
+  totalCount: Scalars["Int"]["output"];
 };
 
 export type GetBusinessAccessAdmins = {
@@ -8715,6 +8766,8 @@ export type Query = {
   getAvatarColors?: Maybe<Array<Maybe<AvatarColor>>>;
   /** Gets the avatar part svg. */
   getAvatarPart?: Maybe<AvatarPart>;
+  getBillingCentres: GetBillingCentresResponse;
+  getBillingSummary: BillingSummary;
   getBulkMemberImport: BulkMemberImport;
   getBulkMemberImportFileWithErrorsURL: Scalars["String"]["output"];
   getBulkMemberImportFormats: Array<BulkMemberImportFormat>;
@@ -9115,6 +9168,12 @@ export type QueryGetAvatarColorsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetAvatarPartArgs = {
   partId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBillingCentresArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -10946,8 +11005,8 @@ export type StartSessionResponse = {
   __typename?: "StartSessionResponse";
   hasExistingAccount?: Maybe<Scalars["Boolean"]["output"]>;
   hasSetPassword?: Maybe<Scalars["Boolean"]["output"]>;
-  shortCodeLength?: Maybe<Scalars["Int"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
+  shortCodeLength?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type StaticStepData = {
@@ -11199,6 +11258,8 @@ export type SurveyQuestionResult = {
   __typename?: "SurveyQuestionResult";
   /** Number of responses received for this question. */
   answerCount: Scalars["Int"]["output"];
+  /** Number of recipients who provided a non-empty answer for this question (excludes skipped responses). */
+  answeredCount: Scalars["Int"]["output"];
   /** The average score for this question (null if not applicable) for scale questions. */
   averageScore?: Maybe<Scalars["Float"]["output"]>;
   /** Completion rate for this question (0-100). */
@@ -25257,22 +25318,6 @@ export type DeleteConnectionMutationVariables = Exact<{
 }>;
 
 export type DeleteConnectionMutation = { __typename?: "Mutation"; deleteConnection?: boolean | null };
-
-export type GetConnectionsQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetConnectionsQuery = {
-  __typename?: "Query";
-  getCurrentUser?: {
-    __typename: "User";
-    id?: string | null;
-    connections?: Array<{
-      __typename?: "Connection";
-      name?: string | null;
-      isConnected?: boolean | null;
-      lastUpdated?: number | null;
-    } | null> | null;
-  } | null;
-};
 
 export type GetNewConnectionLinkMutationVariables = Exact<{
   name: Scalars["String"]["input"];
@@ -77864,44 +77909,6 @@ export const DeleteConnectionDocument = {
     },
   ],
 } as unknown as DocumentNode<DeleteConnectionMutation, DeleteConnectionMutationVariables>;
-export const GetConnectionsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetConnections" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getCurrentUser" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "connections" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "isConnected" } },
-                      { kind: "Field", name: { kind: "Name", value: "lastUpdated" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetConnectionsQuery, GetConnectionsQueryVariables>;
 export const GetNewConnectionLinkDocument = {
   kind: "Document",
   definitions: [
