@@ -19,8 +19,10 @@ command -v aws >/dev/null 2>&1 || brew install awscli
 ##############################
 # Pull the last report if it exists
 ##############################
-# Install project dependencies to use exact versions from the lockfile
 # --- Install dependencies ---
+# shellcheck disable=SC1090
+source ~/.zprofile
+
 nvm install -b
 PATH="$(dirname "$(nvm which --silent)"):$PATH"
 export PATH
