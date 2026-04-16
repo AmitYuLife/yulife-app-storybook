@@ -4,7 +4,6 @@ import { AUTHENTICATED, UPDATE_APP_STATE, UPDATE_APP_STATE_ACTIVE, UPDATE_CURREN
 import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
   FITKIT_CONSENT_AUTHORISED,
-  GET_USER_START,
   LOGIN_USER_SUCCESS,
   LOGOUT_START,
   OPEN_MY_ACCOUNT,
@@ -26,7 +25,6 @@ import { AppDataType } from "../user.types";
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
 import fetchUserOnAppStateChangeSaga from "./fetchUserOnAppStateChange.saga";
 import fitKitConsentAuthorisedSaga from "./fitKitConsentAuthorised.saga";
-import getUserDataSaga from "./getUserData.saga";
 import loginUserSuccessSaga from "./loginUserSuccess.saga";
 import logOutSaga from "./logOut.saga";
 import openMyAccountSaga from "./openMyAccount.saga";
@@ -64,28 +62,11 @@ export default [
         AppDataType.activeStreak,
         AppDataType.dailyChallengeAmountAvailable,
         AppDataType.challengesDoneToday,
+        AppDataType.currentUser,
+        AppDataType.dailyPension,
       ],
     })
   ),
-  takeLatest(
-    AUTHENTICATED,
-    generateUserDataSaga({
-      types: [
-        AppDataType.todayActivity,
-        AppDataType.socialGroups,
-        AppDataType.hints,
-        AppDataType.coinLedger,
-        AppDataType.dailyChallengeAmountAvailable,
-        AppDataType.inventoryInfo,
-        AppDataType.activeStreak,
-        AppDataType.activeChallenge,
-        AppDataType.connections,
-        AppDataType.challengesDoneToday,
-        AppDataType.todayScreen,
-      ],
-    })
-  ),
-  takeLatest([GET_USER_START, CHALLENGE_RESET_SUCCESS], getUserDataSaga),
   takeLatest(
     UPDATE_CURRENT_DATE,
     generateUserDataSaga({

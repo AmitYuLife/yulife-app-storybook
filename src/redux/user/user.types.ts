@@ -77,6 +77,7 @@ export enum AppDataType {
   inventoryInfo = "inventoryInfo",
   challengesDoneToday = "challengesDoneToday",
   todayScreen = "todayScreen",
+  currentUser = "currentUser",
 }
 
 export type UserConnection = Connections & { isLoading?: boolean };
@@ -88,6 +89,7 @@ export type IFeature = Partial<Record<FeatureKey, boolean>>;
 export interface IAppDataTypePayload {
   types: AppDataType[];
   overrideQueryName?: string;
+  refreshLoggerIdentity?: boolean;
 }
 
 export interface Connections {

@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { sendTestPush } from "@redux/notifications/notifications.actions";
-import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
 import { ROUTES } from "@navigation/constants";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
@@ -442,7 +442,6 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
 
         await resetData({ variables: { code } });
         Alert.alert("Success");
-        dispatch(getUserStart());
         dispatch(getUserDataStart());
         dispatch(sudokuReset());
       } catch {

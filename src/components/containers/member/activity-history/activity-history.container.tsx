@@ -10,7 +10,7 @@ import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getUserFeatures, getUserPassiveChallengesLastUpdate } from "@redux/user/user.selectors";
-import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { has } from "lodash";
 import { randomUUID } from "expo-crypto";
@@ -86,8 +86,11 @@ const ActivityHistoryContainer = ({ componentId }: IProps) => {
 
         if (response?.data && has(response.data, "upsertDailyPassives")) {
           getActivityHistory();
-          dispatch(getUserStart());
-          dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
+          dispatch(
+            getUserDataStart({
+              types: [AppDataType.currentUser, AppDataType.coinLedger, AppDataType.todayActivity],
+            })
+          );
         }
       } catch (e) {
         Logger.error(e, { event: "@activity_history_reload_catched" });

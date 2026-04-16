@@ -32,6 +32,8 @@ import {
   UserChallengesDoneTodayFragmentDoc,
   UserProfileTodayScreenFragmentDoc,
   UserProfileTodayScreenFragment,
+  UserFragment,
+  UserFragmentDoc,
 } from "@graphql/__generated";
 import { DefinitionNode, FragmentDefinitionNode, Kind } from "graphql";
 import Logger from "@services/logging/logger";
@@ -60,6 +62,7 @@ const NAMING_MAP: Record<AppDataType, string> = {
   [AppDataType.inventoryInfo]: "qII",
   [AppDataType.challengesDoneToday]: "qCDT",
   [AppDataType.todayScreen]: "qTS",
+  [AppDataType.currentUser]: "qCU",
 };
 
 // TODO: check if we can use AppDataType for alias
@@ -163,6 +166,13 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     query: "getUserTodayScreen",
     fragmentName: "UserProfileTodayScreen",
   },
+  {
+    type: AppDataType.currentUser,
+    fragment: UserFragmentDoc,
+    alias: "currentUser",
+    query: "getCurrentUser",
+    fragmentName: "User",
+  },
 ];
 
 export const generateQueryName = (types: AppDataType[]) => {
@@ -174,13 +184,25 @@ export const generateQueryName = (types: AppDataType[]) => {
   return `Get${queryNames.join("")}`;
 };
 
-export const generateQuery = (types: AppDataType[], overrideQueryName?: string): DocumentNode => {
+export const generateQuery = (
+  types: AppDataType[],
+  overrideQueryName?: string,
+  includeIntercomHash = false
+): DocumentNode => {
+  if (includeIntercomHash && !types.includes(AppDataType.currentUser)) {
+    throw new Error("includeIntercomHash requires AppDataType.currentUser in the types array");
+  }
+
   const queries = DATA_QUERIES.filter(({ type }) => types.includes(type));
   const queryName = overrideQueryName || generateQueryName(types);
+  const needsIntercomHash = includeIntercomHash && types.includes(AppDataType.currentUser);
+  const queryVariables = needsIntercomHash ? " ($intercomHashMethod: IntercomHashMethod!)" : "";
+  const extraFields = needsIntercomHash ? "intercomHash: getIntercomHash(method: $intercomHashMethod)" : "";
 
   const document = gqlNoCodegen`
-    query ${queryName} {
+    query ${queryName}${queryVariables} {
       ${queries.map(({ alias, fragmentName, query }) => `${alias}: ${query} { ...${fragmentName}}`).join("\n")}
+      ${extraFields}
     }
   `;
 
@@ -235,10 +257,12 @@ export interface GetAllUserDataResponse {
   [AppDataType.inventoryInfo]: MobileInventoryInfoFragment;
   [AppDataType.challengesDoneToday]: UserChallengesDoneTodayFragment;
   [AppDataType.todayScreen]: UserProfileTodayScreenFragment;
+  [AppDataType.currentUser]: UserFragment | null;
+  intercomHash?: string;
 }
 
-export default function getAllUserData({ types, overrideQueryName }: IAppDataTypePayload) {
-  const query = generateQuery(types, overrideQueryName);
+export default function getAllUserData({ types, overrideQueryName, refreshLoggerIdentity }: IAppDataTypePayload) {
+  const query = generateQuery(types, overrideQueryName, refreshLoggerIdentity);
 
   return client().query<GetAllUserDataResponse>({
     fetchPolicy: "network-only",
