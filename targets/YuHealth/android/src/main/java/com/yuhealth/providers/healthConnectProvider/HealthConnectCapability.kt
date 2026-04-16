@@ -51,6 +51,7 @@ object HealthConnectCapability {
 
       HealthProviderCapabilities.MINDFUL_MINUTES -> {
         permissions.add(HealthPermission.getReadPermission(MindfulnessSessionRecord::class))
+        permissions.add(HealthPermission.getReadPermission(ExerciseSessionRecord::class))
       }
 
       else -> {
