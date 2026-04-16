@@ -9049,8 +9049,11 @@ export type Query = {
   getTopupPaymentOptions: TopupPaymentOptions;
   /** Get total coins for user to refresh coin amount */
   getTotalCoins: Scalars["Int"]["output"];
+  getTournamentDetails?: Maybe<TournamentInfo>;
   getTournamentEvent: TournamentEvent;
   getTournamentEvents: GetTournamentEventsResponse;
+  getTournamentLeaderboard?: Maybe<TournamentLeaderboard>;
+  getTournamentTeamLeaderboard?: Maybe<TournamentTeamLeaderboard>;
   getUninvitedEmployeeCount: Scalars["Int"]["output"];
   getUnityRewards: UnityRewards;
   /**
@@ -9888,6 +9891,11 @@ export type QueryGetTopupPaymentOptionsArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetTournamentDetailsArgs = {
+  eventId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetTournamentEventArgs = {
   eventId: Scalars["ID"]["input"];
 };
@@ -9898,6 +9906,19 @@ export type QueryGetTournamentEventsArgs = {
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy?: InputMaybe<OrderBy>;
   status?: InputMaybe<TournamentEventStatus>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetTournamentLeaderboardArgs = {
+  eventId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetTournamentTeamLeaderboardArgs = {
+  eventId: Scalars["ID"]["input"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  teamId: Scalars["ID"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -12355,10 +12376,61 @@ export enum TournamentGameMode {
   TeamVsTeam = "team_vs_team",
 }
 
+export type TournamentInfo = {
+  __typename?: "TournamentInfo";
+  about?: Maybe<GoalInfoComponent>;
+  banner?: Maybe<ContentItemRowIconTextBanner>;
+  button?: Maybe<GoalDetailsButton>;
+  daysLeft?: Maybe<Scalars["Int"]["output"]>;
+  description?: Maybe<Scalars["String"]["output"]>;
+  gameMode?: Maybe<Scalars["String"]["output"]>;
+  headerBackgroundColor: Scalars["String"]["output"];
+  headerImage?: Maybe<RemoteImage>;
+  headerTextColor: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  isCompleted: Scalars["Boolean"]["output"];
+  labels?: Maybe<Array<Scalars["String"]["output"]>>;
+  rewardType?: Maybe<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
+};
+
+export type TournamentLeaderboard = {
+  __typename?: "TournamentLeaderboard";
+  teams: Array<TournamentTeamStanding>;
+};
+
 export enum TournamentRewardType {
   BraggingRights = "bragging_rights",
   Yucoin = "yucoin",
 }
+
+export type TournamentTeamLeaderboard = {
+  __typename?: "TournamentTeamLeaderboard";
+  averageScore: Scalars["Int"]["output"];
+  members: Array<TournamentTeamMember>;
+  membersCount: Scalars["Int"]["output"];
+  teamName: Scalars["String"]["output"];
+  totalScore: Scalars["Int"]["output"];
+};
+
+export type TournamentTeamMember = {
+  __typename?: "TournamentTeamMember";
+  id: Scalars["ID"]["output"];
+  image?: Maybe<RemoteImage>;
+  name: Scalars["String"]["output"];
+  score: Scalars["Int"]["output"];
+};
+
+export type TournamentTeamStanding = {
+  __typename?: "TournamentTeamStanding";
+  avatars: Array<RemoteImage>;
+  averageScore: Scalars["Int"]["output"];
+  id: Scalars["ID"]["output"];
+  includesCurrentUser: Scalars["Boolean"]["output"];
+  membersCount: Scalars["Int"]["output"];
+  name: Scalars["String"]["output"];
+  score: Scalars["Int"]["output"];
+};
 
 export enum TransactionHistorySourceType {
   ManuallyIssued = "manuallyIssued",
@@ -39677,6 +39749,85 @@ export type GetTodayEarningsQuery = {
   };
 };
 
+export type GetTournamentDetailsQueryVariables = Exact<{
+  eventId: Scalars["ID"]["input"];
+}>;
+
+export type GetTournamentDetailsQuery = {
+  __typename?: "Query";
+  getTournamentDetails?: {
+    __typename?: "TournamentInfo";
+    id: string;
+    title: string;
+    description?: string | null;
+    headerBackgroundColor: string;
+    headerTextColor: string;
+    labels?: Array<string> | null;
+    daysLeft?: number | null;
+    gameMode?: string | null;
+    rewardType?: string | null;
+    isCompleted: boolean;
+    headerImage?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+    about?: { __typename?: "GoalInfoComponent"; title?: string | null; markdown?: string | null } | null;
+    banner?: {
+      __typename?: "ContentItemRowIconTextBanner";
+      markdown: string;
+      type: ContentItemRowIconTextBannerType;
+      icon: { __typename?: "RemoteImage"; uri?: string | null };
+    } | null;
+    button?: {
+      __typename?: "GoalDetailsButton";
+      label: string;
+      shadowColor?: string | null;
+      backgroundColor?: string | null;
+    } | null;
+  } | null;
+};
+
+export type GetTournamentLeaderboardQueryVariables = Exact<{
+  eventId: Scalars["ID"]["input"];
+}>;
+
+export type GetTournamentLeaderboardQuery = {
+  __typename?: "Query";
+  getTournamentLeaderboard?: {
+    __typename?: "TournamentLeaderboard";
+    teams: Array<{
+      __typename?: "TournamentTeamStanding";
+      id: string;
+      name: string;
+      score: number;
+      averageScore: number;
+      membersCount: number;
+      includesCurrentUser: boolean;
+      avatars: Array<{ __typename?: "RemoteImage"; uri?: string | null }>;
+    }>;
+  } | null;
+};
+
+export type GetTournamentTeamLeaderboardQueryVariables = Exact<{
+  eventId: Scalars["ID"]["input"];
+  teamId: Scalars["ID"]["input"];
+}>;
+
+export type GetTournamentTeamLeaderboardQuery = {
+  __typename?: "Query";
+  getTournamentTeamLeaderboard?: {
+    __typename?: "TournamentTeamLeaderboard";
+    teamName: string;
+    totalScore: number;
+    averageScore: number;
+    membersCount: number;
+    members: Array<{
+      __typename?: "TournamentTeamMember";
+      id: string;
+      name: string;
+      score: number;
+      image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+    }>;
+  } | null;
+};
+
 export type ClearUserProfileBadgeCountMutationVariables = Exact<{
   type: UserProfileBadgeCountType;
 }>;
@@ -39739,54 +39890,6 @@ export type GetGameConsumablesQuery = {
       isUsable: boolean;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
-  };
-};
-
-export type GetCurrentUserQueryVariables = Exact<{
-  intercomHashMethod: IntercomHashMethod;
-}>;
-
-export type GetCurrentUserQuery = {
-  __typename?: "Query";
-  getIntercomHash?: string | null;
-  getCurrentUser?: {
-    __typename: "User";
-    id?: string | null;
-    archived?: boolean | null;
-    firstName?: string | null;
-    lastName?: string | null;
-    fullName?: string | null;
-    createdAt?: string | null;
-    redeemedOnboarding?: boolean | null;
-    challengesDoneToday?: number | null;
-    userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
-    passiveSteps?: {
-      __typename?: "PassiveChallenge";
-      exchange?: {
-        __typename?: "PassiveStepsExchange";
-        yucoin?: number | null;
-        steps?: number | null;
-        meditation?: number | null;
-        surge?: number | null;
-      } | null;
-      levelSlot?: {
-        __typename?: "LevelSlot";
-        id?: string | null;
-        milestones?: Array<{
-          __typename?: "LevelSlotMilestone";
-          id?: string | null;
-          coins?: number | null;
-        } | null> | null;
-      } | null;
-    } | null;
-    supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
-  } | null;
-  getDailyPensionContribution: {
-    __typename?: "DailyPensionContribution";
-    id: string;
-    active: boolean;
-    yuCoinAwarded?: number | null;
-    contribution?: string | null;
   };
 };
 
@@ -99129,6 +99232,237 @@ export const GetTodayEarningsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetTodayEarningsQuery, GetTodayEarningsQueryVariables>;
+export const GetTournamentDetailsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetTournamentDetails" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "eventId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getTournamentDetails" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "eventId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "eventId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "headerImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "headerBackgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "headerTextColor" } },
+                { kind: "Field", name: { kind: "Name", value: "labels" } },
+                { kind: "Field", name: { kind: "Name", value: "daysLeft" } },
+                { kind: "Field", name: { kind: "Name", value: "gameMode" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardType" } },
+                { kind: "Field", name: { kind: "Name", value: "isCompleted" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "about" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "markdown" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "banner" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "markdown" } },
+                      { kind: "Field", name: { kind: "Name", value: "type" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "icon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "button" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "shadowColor" } },
+                      { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetTournamentDetailsQuery, GetTournamentDetailsQueryVariables>;
+export const GetTournamentLeaderboardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetTournamentLeaderboard" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "eventId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getTournamentLeaderboard" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "eventId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "eventId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "teams" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "score" } },
+                      { kind: "Field", name: { kind: "Name", value: "averageScore" } },
+                      { kind: "Field", name: { kind: "Name", value: "membersCount" } },
+                      { kind: "Field", name: { kind: "Name", value: "includesCurrentUser" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "avatars" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetTournamentLeaderboardQuery, GetTournamentLeaderboardQueryVariables>;
+export const GetTournamentTeamLeaderboardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetTournamentTeamLeaderboard" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "eventId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "teamId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getTournamentTeamLeaderboard" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "eventId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "eventId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "teamId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "teamId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "teamName" } },
+                { kind: "Field", name: { kind: "Name", value: "totalScore" } },
+                { kind: "Field", name: { kind: "Name", value: "averageScore" } },
+                { kind: "Field", name: { kind: "Name", value: "membersCount" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "members" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "score" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetTournamentTeamLeaderboardQuery, GetTournamentTeamLeaderboardQueryVariables>;
 export const ClearUserProfileBadgeCountDocument = {
   kind: "Document",
   definitions: [
@@ -99381,154 +99715,6 @@ export const GetGameConsumablesDocument = {
     },
   ],
 } as unknown as DocumentNode<GetGameConsumablesQuery, GetGameConsumablesQueryVariables>;
-export const GetCurrentUserDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetCurrentUser" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "intercomHashMethod" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "IntercomHashMethod" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getCurrentUser" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "User" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getDailyPensionContribution" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "DailyPensionContribution" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getIntercomHash" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "method" },
-                value: { kind: "Variable", name: { kind: "Name", value: "intercomHashMethod" } },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "User" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "User" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "archived" } },
-          { kind: "Field", name: { kind: "Name", value: "firstName" } },
-          { kind: "Field", name: { kind: "Name", value: "lastName" } },
-          { kind: "Field", name: { kind: "Name", value: "fullName" } },
-          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-          { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
-          { kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "userFeatures" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "passiveSteps" },
-            name: { kind: "Name", value: "passiveChallenge" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "exchange" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "yucoin" } },
-                      { kind: "Field", name: { kind: "Name", value: "steps" } },
-                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                      { kind: "Field", name: { kind: "Name", value: "surge" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "supportConfig" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "Field", name: { kind: "Name", value: "supportLevel" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "DailyPensionContribution" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "DailyPensionContribution" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "active" } },
-          { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
-          { kind: "Field", name: { kind: "Name", value: "contribution" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetCurrentUserQuery, GetCurrentUserQueryVariables>;
 export const GetDailyPensionContributionDocument = {
   kind: "Document",
   definitions: [

@@ -1,0 +1,15 @@
+query GetTournamentLeaderboard($eventId: ID!) {
+  getTournamentLeaderboard(eventId: $eventId) {
+    teams {
+      id
+      name
+      score
+      averageScore
+      membersCount
+      includesCurrentUser
+      avatars {
+        uri
+      }
+    }
+  }
+}

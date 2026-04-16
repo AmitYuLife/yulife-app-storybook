@@ -301,11 +301,13 @@ type Documents = {
   GetMobileGameThemeDocument: typeof types.GetMobileGameThemeDocument;
   SetTestMobileGameThemeDocument: typeof types.SetTestMobileGameThemeDocument;
   GetTodayEarningsDocument: typeof types.GetTodayEarningsDocument;
+  GetTournamentDetailsDocument: typeof types.GetTournamentDetailsDocument;
+  GetTournamentLeaderboardDocument: typeof types.GetTournamentLeaderboardDocument;
+  GetTournamentTeamLeaderboardDocument: typeof types.GetTournamentTeamLeaderboardDocument;
   ClearUserProfileBadgeCountDocument: typeof types.ClearUserProfileBadgeCountDocument;
   GetUserProfileBadgeCountDocument: typeof types.GetUserProfileBadgeCountDocument;
   ActivateGameConsumableDocument: typeof types.ActivateGameConsumableDocument;
   GetGameConsumablesDocument: typeof types.GetGameConsumablesDocument;
-  GetCurrentUserDocument: typeof types.GetCurrentUserDocument;
   GetDailyPensionContributionDocument: typeof types.GetDailyPensionContributionDocument;
   GetMobileHintsDocument: typeof types.GetMobileHintsDocument;
   GetLinkedBusinessesDocument: typeof types.GetLinkedBusinessesDocument;
@@ -643,11 +645,13 @@ const documents: Documents = {
   GetMobileGameThemeDocument: types.GetMobileGameThemeDocument,
   SetTestMobileGameThemeDocument: types.SetTestMobileGameThemeDocument,
   GetTodayEarningsDocument: types.GetTodayEarningsDocument,
+  GetTournamentDetailsDocument: types.GetTournamentDetailsDocument,
+  GetTournamentLeaderboardDocument: types.GetTournamentLeaderboardDocument,
+  GetTournamentTeamLeaderboardDocument: types.GetTournamentTeamLeaderboardDocument,
   ClearUserProfileBadgeCountDocument: types.ClearUserProfileBadgeCountDocument,
   GetUserProfileBadgeCountDocument: types.GetUserProfileBadgeCountDocument,
   ActivateGameConsumableDocument: types.ActivateGameConsumableDocument,
   GetGameConsumablesDocument: types.GetGameConsumablesDocument,
-  GetCurrentUserDocument: types.GetCurrentUserDocument,
   GetDailyPensionContributionDocument: types.GetDailyPensionContributionDocument,
   GetMobileHintsDocument: types.GetMobileHintsDocument,
   GetLinkedBusinessesDocument: types.GetLinkedBusinessesDocument,
@@ -2088,6 +2092,20 @@ export function gql(source: "GetTodayEarningsDocument"): (typeof documents)["Get
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "GetTournamentDetailsDocument"): (typeof documents)["GetTournamentDetailsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetTournamentLeaderboardDocument"): (typeof documents)["GetTournamentLeaderboardDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetTournamentTeamLeaderboardDocument"
+): (typeof documents)["GetTournamentTeamLeaderboardDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(
   source: "ClearUserProfileBadgeCountDocument"
 ): (typeof documents)["ClearUserProfileBadgeCountDocument"];
@@ -2103,10 +2121,6 @@ export function gql(source: "ActivateGameConsumableDocument"): (typeof documents
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetGameConsumablesDocument"): (typeof documents)["GetGameConsumablesDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "GetCurrentUserDocument"): (typeof documents)["GetCurrentUserDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -1,0 +1,33 @@
+query GetTournamentDetails($eventId: ID!) {
+  getTournamentDetails(eventId: $eventId) {
+    id
+    title
+    description
+    headerImage {
+      uri
+    }
+    headerBackgroundColor
+    headerTextColor
+    labels
+    daysLeft
+    gameMode
+    rewardType
+    isCompleted
+    about {
+      title
+      markdown
+    }
+    banner {
+      markdown
+      type
+      icon {
+        uri
+      }
+    }
+    button {
+      label
+      shadowColor
+      backgroundColor
+    }
+  }
+}
