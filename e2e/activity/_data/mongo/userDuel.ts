@@ -96,19 +96,20 @@ export const USER_DUEL_4_PENDING = {
     opponents: [
       {
         userId: customer.CUSTOMER_19.data.customerId,
-        status: "submitted",
+        status: "confirmed_by_user",
         startDateTime: moment().subtract(1, "days").toISOString(),
         score: 100,
       },
       {
         userId: customer.CUSTOMER_17.data.customerId,
-        status: "pending_submission",
+        status: "submitted",
         startDateTime: moment().subtract(1, "days").toISOString(),
+        score: 250,
       },
     ],
     date: moment().subtract(1, "days").format("YYYY-MM-DD"),
     type: "steps",
-    status: "accepted",
+    status: "pending_submission",
     duration: 86400,
     yucoin: 10,
     updatedAt: moment().toISOString(),
@@ -123,7 +124,7 @@ export const USER_DUEL_5_PENDING = {
     opponents: [
       {
         userId: customer.CUSTOMER_18.data.customerId,
-        status: "submitted",
+        status: "confirmed_by_user",
         startDateTime: moment().subtract(2, "days").toISOString(),
         score: 4000,
       },
@@ -135,7 +136,7 @@ export const USER_DUEL_5_PENDING = {
     ],
     date: moment().subtract(2, "days").format("YYYY-MM-DD"),
     type: "steps",
-    status: "accepted",
+    status: "pending_submission",
     duration: 86400,
     yucoin: 10,
     updatedAt: moment().toISOString(),
@@ -416,6 +417,34 @@ export const USER_DUEL_15 = {
     date: moment().subtract(21, "days").format("YYYY-MM-DD"),
     type: "steps",
     status: "finished",
+    duration: 86400,
+    yucoin: 10,
+    updatedAt: moment().toISOString(),
+  },
+} as IDatabaseItem;
+
+export const USER_DUEL_16_PENDING = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    opponents: [
+      {
+        userId: customer.CUSTOMER_19.data.customerId,
+        status: "submitted",
+        startDateTime: moment().subtract(3, "days").toISOString(),
+        score: 200,
+      },
+      {
+        userId: customer.CUSTOMER_21.data.customerId,
+        status: "submitted",
+        startDateTime: moment().subtract(3, "days").toISOString(),
+        score: 150,
+      },
+    ],
+    date: moment().subtract(3, "days").format("YYYY-MM-DD"),
+    type: "steps",
+    status: "pending_submission",
     duration: 86400,
     yucoin: 10,
     updatedAt: moment().toISOString(),

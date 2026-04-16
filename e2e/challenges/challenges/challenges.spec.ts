@@ -470,7 +470,7 @@ Feature("As a user I can take a challenge", async () => {
       When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
         When("I tap on the YuCoin Badge", when.tapYuCoinIcon, async () => {
           When("I scroll to the bottom of the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5, 3000), async () => {
-            When("I tap take a challenge", when.tapIDAtIndex(ids.TAKE_A_CHALLENGE_LEFT_BUTTON, 0, 2000), async () => {
+            When("I tap take a challenge", when.tapIDAtIndex(ids.TAKE_A_CHALLENGE_LEFT_BUTTON, 1, 2000), async () => {
               Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")));
               Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")));
               Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")));

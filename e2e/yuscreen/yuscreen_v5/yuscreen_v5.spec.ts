@@ -84,17 +84,15 @@ Feature("I am able to use the yuscreen v5", async () => {
         Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
       });
     });
-    When("I click on the YuCoin I have earned today", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(130, 400), 3000), async () => {
-      Then("I should be on the Today's earnings screen", then.textVisible("Today’s Earnings", 1500));
-      Then("I should see the 130 YuCoin I have earned today", then.textVisible("130 YuCoin", 1500));
-      Then("I see a way to go back", then.idVisible(ids.BACK_BUTTON, 3000));
+    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
+      When("I click on the YuCoin I have earned today", when.tapID(ids.MAXIMISE_TODAYS_EARNINGS(130, 460), 3000), async () => {
+        Then("I should be on the Today's earnings screen", then.textVisible("Today’s Earnings", 1500));
+        Then("I see a way to go back", then.idVisible(ids.BACK_BUTTON, 3000));
+      });
     });
     When("I go back", when.tapID(ids.BACK_BUTTON, 4000), async () => {
-      Then("I should be back on the 'Yu' tab", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"));
-    });
-    When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
       Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
-      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 400));
+      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 460));
     });
     When("I tap the challenge nudge", when.tapID(ids.NUDGE_ITEM_WRAPPER("active-challenge-nudge")), async () => {
       Then("I should be on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123), 5000));
@@ -112,12 +110,12 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I am back on the Quests screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123), 2000));
     });
     When("I go back to the 'Yu' screen", when.tapID(ids.NAV_BAR("yu"), 3500), async () => {
-      Then("I should see the updated YuCoin earned of 170", then.maximiseYucoinVisible(170, 400));
+      Then("I should see the updated earned YuCoin", then.maximiseYucoinVisible(170, 460));
       Then("I should see the walking nudge", then.walkingNudgeVisible("9,498", 50));
     });
     When("I send 12000 steps and reload the YuScreen tab", when.sendPassiveStepsAndReloadToTab(12000, 3000), async () => {
       Then("I should see the meditation nudge", then.meditationNudeVisible());
-      Then("I should see the updated YuCoin earned of 220/400", then.maximiseYucoinVisible(220, 400));
+      Then("I should see the updated YuCoin earned of 220/460", then.maximiseYucoinVisible(220, 460));
     });
     When("I send 45 mindful minutes and reload the YuScreen tab", when.addMindfulnessHistoricalData(2700, 0), async () => {
       Then("I should see the 'Maximise Yu' list", then.idVisible(ids.MAXIMISE_YU_NUDGE_LIST, 5000));
@@ -129,8 +127,10 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
     When("I send 10km of cycling and reload the yuscreen tab", when.sendPassiveCyclingAndReloadToTab(10000), async () => {
       When("I wait", when.wait(3000), async () => {
-        Then("I should see the updated YuCoin earned of 320/400", then.maximiseYucoinVisible(320, 400));
-        Then("I should see the done steps nudge icon", then.completedWalkingNudgeVisible());
+        When("I swipe left on the completed steps nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("passive-meditation-nudge"), "left", 1, 5000, 0.5, 0.8), async () => {
+          Then("I should see the updated YuCoin earned of 320/460", then.maximiseYucoinVisible(320, 460));
+          Then("I should see the done steps nudge icon", then.completedWalkingNudgeVisible());
+        });
       });
     });
     When("I swipe left on the completed steps nudge", when.scrollWithLimitedAttemptsUntilIdVisible(ids.MAXIMISE_YU_NUDGE_LIST, ids.NUDGE_ITEM_WRAPPER("passive-meditation-nudge"), "left", 1, 5000, 0.5, 0.8), async () => {

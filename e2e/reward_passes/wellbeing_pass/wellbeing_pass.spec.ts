@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as commonThen from "../_common/then";
 import * as commonGiven from "../_common/given";
@@ -92,7 +92,7 @@ Feature("Wellbeing pass", async () => {
                     Then(`I can see the reward descriptions (position ${position})`, commonThen.assertMultipleTextsVisible(descriptionAssertions));
 
                     When("I press the got it button", when.tapID(ids.HALF_MODAL_CTA), async () => {
-                      Then("I'm back at the reward pass screen", then.textVisible("Wellbeing pass"));
+                      Then("I'm back at the reward pass screen", then.textVisible("Wellbeing Pass"));
                     });
                   });
                 });
