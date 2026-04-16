@@ -43,35 +43,28 @@ class HealthConnectActivityQuery(
       return emptyList()
     }
 
-    val hasMindfulnessFilter = request.queryOptions.whitelistActivityTypes?.any {
-      it in HealthActivityType.mindfulnessActivities
-    } ?: false
-    val hasExerciseFilter = request.queryOptions.whitelistActivityTypes?.any {
-      it !in HealthActivityType.mindfulnessActivities
-    } ?: true
-
+    val whitelistApps = HealthConnectUtils.getWhitelistApps(request.queryOptions.whitelistApps)
     val results = mutableListOf<ActivityQueryResponse>()
 
-    if (hasExerciseFilter) {
-      val whitelistApps = HealthConnectUtils.getWhitelistApps(request.queryOptions.whitelistApps)
+    // Query exercise sessions (filtered by whitelistActivityTypes in shouldIncludeDatapoint).
+    // This also captures yoga workouts from apps like Meditopia that save meditation as yoga.
+    val exerciseRequest = ReadRecordsRequest(
+      ExerciseSessionRecord::class,
+      timeRangeFilter = TimeRangeFilter.between(
+        request.startTime.toJavaLocalDateTime(),
+        request.endTime.toJavaLocalDateTime()
+      ),
+      dataOriginFilter = whitelistApps,
+    )
+    val exerciseRecords = healthConnectClient.readRecords(exerciseRequest).records
+    results.addAll(processResponse(request, exerciseRecords, fetchMetrics))
 
-      val readRecordRequest = ReadRecordsRequest(
-        ExerciseSessionRecord::class,
-        timeRangeFilter = TimeRangeFilter.between(
-          request.startTime.toJavaLocalDateTime(),
-          request.endTime.toJavaLocalDateTime()
-        ),
-        dataOriginFilter = whitelistApps,
-      )
+    // Query MindfulnessSessionRecords (a separate record type from exercise sessions)
+    val needsMindfulness = request.queryOptions.whitelistActivityTypes?.any {
+      it in HealthActivityType.mindfulnessActivities
+    } ?: false
 
-      val response = healthConnectClient.readRecords(
-        readRecordRequest
-      ).records
-
-      results.addAll(processResponse(request, response, fetchMetrics))
-    }
-
-    if (hasMindfulnessFilter && healthConnectProvider.supportsMeditation) {
+    if (needsMindfulness) {
       results.addAll(performMindfulnessQuery(request))
     }
 
