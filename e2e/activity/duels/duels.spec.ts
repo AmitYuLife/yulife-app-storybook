@@ -179,7 +179,7 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
         Then("I should see the Sync button", then.idVisible(ids.DUEL_SYNC));
         Then("I should see the Confirm button", then.idVisible(ids.DUEL_CONFIRM));
         Then("I should see the sync steps copy", then.textVisible("Sync your steps", 2500));
-        Then("I should see my duel with Ryan is still pending confirmation", then.idVisible(ids.DUEL_ENTRY("Ryan Howard", 10, "pending_submission"), 3000));
+        Then("I should see my duel with Dwight is still pending confirmation", then.idVisible(ids.DUEL_ENTRY("Dwight Schrute", 10, "pending_submission"), 3000));
       });
     });
   });
