@@ -1386,6 +1386,7 @@
       "short_code_accessibility_hint": "メールからのコードを入力してください",
       "short_code_accessibility_label": "確認コード",
       "short_code_description": "最高のYuになる準備はできていますか？今送信したメールから、確認コードを入力してください。",
+      "short_code_heading": "本人 確認 を 行いましょう！",
       "submit_short_code": "コードで ログイン",
       "webview_title": "準備中です..."
     },

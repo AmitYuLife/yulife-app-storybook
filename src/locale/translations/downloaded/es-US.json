@@ -1386,6 +1386,7 @@
       "short_code_accessibility_hint": "Introduzca el código de su correo electrónico",
       "short_code_accessibility_label": "Código de verificación",
       "short_code_description": "¿Listo para ser tu mejor Yu? Introduce el código de verificación del correo electrónico que acabamos de enviarte.",
+      "short_code_heading": "¡Verifiquemos que eres tú!",
       "submit_short_code": "Iniciar sesión con el código",
       "webview_title": "Preparándose para el despegue..."
     },

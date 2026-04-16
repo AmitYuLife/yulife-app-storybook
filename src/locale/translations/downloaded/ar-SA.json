@@ -1386,6 +1386,7 @@
       "short_code_accessibility_hint": "أدخل الرمز من بريدك الإلكتروني",
       "short_code_accessibility_label": "رمز التحقق",
       "short_code_description": "مستعد لتكون أفضل ما لديك؟ أدخل رمز التحقق من البريد الإلكتروني الذي أرسلناه لك.",
+      "short_code_heading": "دعنا نتأكد أنها أنت!",
       "submit_short_code": "تسجيل الدخول برمز",
       "webview_title": "التهيئة لعملية الإقلاع..."
     },

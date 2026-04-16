@@ -85,8 +85,8 @@
         "ns_health_update_usage_description": "Je moet je stap- en meditatiegegevens kunnen wegschrijven zodat we de voltooide uitdagingen kunnen bijwerken",
         "ns_location_always_usage_description": "De mogelijkheid nodig om je locatiebeweging te gebruiken voor stappentracking uitdagingen",
         "ns_motion_usage_description": "We gebruiken je stappenteller om bij te houden hoeveel stappen je gedurende de dag hebt gezet.",
-        "ns_photo_library_add_usage_description": "Om deze afbeelding op te slaan moet YuLife kunnen toevoegen aan je foto's.",
-        "ns_photo_library_usage_description": "Stuur foto's om problemen met apps op te lossen"
+        "ns_photo_library_add_usage_description": "Om deze afbeelding op te slaan moet YuLife foto's kunnen toevoegen.",
+        "ns_photo_library_usage_description": "Stuur foto's om problemen met de app op te lossen"
       }
     }
   },
@@ -131,7 +131,7 @@
         "accessibility_label": "Plus"
       },
       "save": {
-        "accessibility_label": "Sla"
+        "accessibility_label": "Sla op"
       },
       "settings": {
         "accessibility_label": "Instellingen"
@@ -159,7 +159,7 @@
       "allow": "toestaan",
       "ask_later": "Vraag het me later",
       "back": "Terug",
-      "cancel": "Annuleren",
+      "cancel": "Annuleer",
       "claim": "Claim",
       "close": "Sluit",
       "collect": "Verzamel",
@@ -169,7 +169,7 @@
       "continue": "Ga verder",
       "cool": "Gaaf!",
       "copy": "Kopie",
-      "decline": "Afname",
+      "decline": "Wijs af",
       "dismiss": "Ontsla",
       "done": "Gedaan",
       "exit": "Ga naar",
@@ -1386,6 +1386,7 @@
       "short_code_accessibility_hint": "Voer de code uit je e-mail in",
       "short_code_accessibility_label": "Verificatiecode",
       "short_code_description": "Klaar om je beste Yu te zijn? Voer de verificatiecode in uit de e-mail die we je zojuist hebben gestuurd.",
+      "short_code_heading": "Laten we controleren of jij het bent!",
       "submit_short_code": "Log in met code",
       "webview_title": "Klaarmaken voor lancering..."
     },
