@@ -1,6 +1,6 @@
 import { Platform, View } from "react-native";
 import { memo } from "react";
-import { Image } from "@atoms";
+import { RawImage } from "@atoms";
 import { HeroCardFooter as HeroCardFooterProps } from "@utils/heroCards";
 import { Style, StyleSheet } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
@@ -10,26 +10,14 @@ const HeroCardFooter = ({ left, right, fontColor }: HeroCardFooterProps) => {
     <View style={styles.footerWrapper}>
       {!left.icon && !left.text ? null : (
         <View style={styles.flexRow}>
-          {!left.icon ? null : (
-            <Image
-              source={{ uri: left.icon }}
-              width={Style.adjust(16)}
-              tintColor={fontColor}
-              suppressLoadingUi={true}
-            />
-          )}
+          {!left.icon ? null : <RawImage source={{ uri: left.icon }} width={Style.adjust(16)} tintColor={fontColor} />}
           {!left.text ? null : <Markdown markdownStyles={getMarkdownStyles(fontColor)} text={left.text} />}
         </View>
       )}
       {!right.icon && !right.text ? null : (
         <View style={styles.flexRow}>
           {!right.icon ? null : (
-            <Image
-              source={{ uri: right.icon }}
-              width={Style.adjust(16)}
-              tintColor={fontColor}
-              suppressLoadingUi={true}
-            />
+            <RawImage source={{ uri: right.icon }} width={Style.adjust(16)} tintColor={fontColor} />
           )}
           {!right.text ? null : <Markdown markdownStyles={getMarkdownStyles(fontColor)} text={right.text} />}
         </View>

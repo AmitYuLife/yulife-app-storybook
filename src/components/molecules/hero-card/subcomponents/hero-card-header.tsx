@@ -1,7 +1,7 @@
 import { Platform } from "react-native";
 import { memo, useMemo } from "react";
 import { Colours, Style, StyleSheet } from "@styles";
-import { Box, Image, TextTemplate } from "@atoms";
+import { Box, Image, RawImage, TextTemplate } from "@atoms";
 import { HeroCardHeader as HeroCardHeaderProps, HeroCardHeaderButtonState } from "@utils/heroCards";
 import { HERO_CARD_PADDING } from "../constants";
 import { ArrowIcon } from "@atoms/icon/arrow";
@@ -24,9 +24,7 @@ const Subheading = ({
 }) => {
   return (
     <Box flexDirection="row" alignItems="center" gap={4} style={{ width }}>
-      {!icon ? null : (
-        <Image source={{ uri: icon }} width={Style.adjust(16)} tintColor={fontColor} suppressLoadingUi={true} />
-      )}
+      {!icon ? null : <RawImage source={{ uri: icon }} width={Style.adjust(16)} tintColor={fontColor} />}
       <Markdown
         text={text}
         markdownStyles={getMarkdownStyles(fontColor, boldTextColor, fontWeight)}
