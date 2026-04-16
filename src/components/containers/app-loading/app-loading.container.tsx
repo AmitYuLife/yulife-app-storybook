@@ -37,7 +37,7 @@ export const AppLoadingContainer: React.FC<IProps> = ({ loadingText }) => {
 
   const handleAnimationStart = React.useCallback(() => setRenderPersistor(true), []);
   const handleAnimationEnd = React.useCallback(() => setAnimationEnded(true), []);
-  const handleLayout = React.useCallback(() => setPersistorBoostrapped(true), []);
+  const handlePersistorBootstrapped = React.useCallback(() => setPersistorBoostrapped(true), []);
   const { setSafeAreaViewOffset } = useSafeAreaViewOffset();
 
   const handleWrapperLayout = (event: LayoutChangeEvent) => {
@@ -49,17 +49,7 @@ export const AppLoadingContainer: React.FC<IProps> = ({ loadingText }) => {
       <View onLayout={handleWrapperLayout} style={styles.flex}>
         <View style={styles.wrapper}>
           <SplashScreen onAnimationStart={handleAnimationStart} onAnimationEnd={handleAnimationEnd} />
-          {!renderPersistor ? null : (
-            <PersistGate persistor={persistor}>
-              {(bootstrapped: boolean) => {
-                if (!bootstrapped) {
-                  return null;
-                }
-
-                return <View onLayout={handleLayout} />;
-              }}
-            </PersistGate>
-          )}
+          {!renderPersistor ? null : <PersistGate persistor={persistor} onBeforeLift={handlePersistorBootstrapped} />}
         </View>
       </View>
       {!loadingText ? null : (
