@@ -1441,6 +1441,15 @@
     },
     "achievements": {
       "achievements_points": "%{achievementPoints} Achievement Points"
+    },
+    "tournaments": {
+      "days_left": "%{smart_count} day left |||| %{smart_count} days left",
+      "leaderboard": "Leaderboard",
+      "joined": "%{smart_count} joined",
+      "total_team_score": "Total team score",
+      "members": "Members",
+      "my_team": "My team (%{teamName})",
+      "member_count": "%{smart_count} member |||| %{smart_count} members"
     }
   },
   "permissions": {
@@ -1750,7 +1759,6 @@
       "subheading": "Choose a daily reminder time so you don’t miss a day and can unlock the Yunity Quest.",
       "cta_label": "Set reminder",
       "secondary_cta_label": "Skip"
-
     },
     "leaderboards": {
       "invite": {

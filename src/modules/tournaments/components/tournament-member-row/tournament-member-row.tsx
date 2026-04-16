@@ -1,0 +1,31 @@
+import React, { memo } from "react";
+import { Box } from "@atoms";
+import { ListItem } from "@organisms";
+import type { GetTournamentTeamLeaderboardQuery } from "@graphql/__generated";
+
+type TeamMember = NonNullable<GetTournamentTeamLeaderboardQuery["getTournamentTeamLeaderboard"]>["members"][number];
+
+interface ITournamentMemberRowProps {
+  member: TeamMember;
+  position: number;
+  isCurrentUser?: boolean;
+  onPress?: (userId: string) => void;
+}
+
+const TournamentMemberRow = ({ member, position, isCurrentUser, onPress }: ITournamentMemberRowProps) => (
+  <Box px={24}>
+    <ListItem
+      score={member.score.toLocaleString()}
+      position={position}
+      showNewMedal={true}
+      type="leaderboard"
+      name={member.name}
+      uri={member.image?.uri ?? ""}
+      data={member.id}
+      onPress={onPress}
+      theme={isCurrentUser ? "active" : undefined}
+    />
+  </Box>
+);
+
+export default memo(TournamentMemberRow);
