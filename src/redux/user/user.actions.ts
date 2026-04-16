@@ -23,7 +23,6 @@ export const FITKIT_CONSENT_AUTHORISED = "FITKIT_CONSENT_AUTHORISED";
 export const SET_USER_NO_ACCESS = "SET_USER_NO_ACCESS";
 export const REFRESH_USER_TOKEN = "REFRESH_USER_TOKEN";
 export const REFRESH_USER_PROFILE = "REFRESH_USER_PROFILE";
-export const GET_USER_START = "GET_USER_START";
 export const GET_ALL_USER_DATA_START = "GET_ALL_USER_DATA_START";
 export const GET_ALL_USER_DATA_SUCCESS = "GET_ALL_USER_DATA_SUCCESS";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
@@ -72,8 +71,6 @@ export const getUserDataStart = createAction(
     payload,
   })
 );
-
-export const getUserStart = createAction<null, "GET_USER_START">(GET_USER_START);
 
 export const getUserPassiveChallengesEarnRateSuccess = createAction<
   IPassiveChallengesEarnRateSuccessPayload,

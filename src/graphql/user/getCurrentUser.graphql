@@ -1,9 +1,0 @@
-query GetCurrentUser($intercomHashMethod: IntercomHashMethod!) {
-  getCurrentUser {
-    ...User
-  }
-  getDailyPensionContribution {
-    ...DailyPensionContribution
-  }
-  getIntercomHash(method: $intercomHashMethod)
-}

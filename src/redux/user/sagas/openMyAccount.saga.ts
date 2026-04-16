@@ -6,7 +6,8 @@ import { handleOpenWebView } from "@navigation/utils";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import Logger from "@services/logging/logger";
 import { call, spawn } from "redux-saga/effects";
-import { getUserStart, openMyAccount } from "../user.actions";
+import { getUserDataStart, openMyAccount } from "../user.actions";
+import { AppDataType } from "../user.types";
 
 export default function* openMyAccountSaga({ payload }: ReturnType<typeof openMyAccount>) {
   try {
@@ -26,7 +27,13 @@ export default function* openMyAccountSaga({ payload }: ReturnType<typeof openMy
     yield call(handleOpenWebView, {
       uri: data.getMagicLink,
       title: t("labels.account"),
-      onClose: (dispatch: Dispatch<AnyAction>) => dispatch(getUserStart()),
+      onClose: (dispatch: Dispatch<AnyAction>) =>
+        dispatch(
+          getUserDataStart({
+            types: [AppDataType.currentUser],
+            refreshLoggerIdentity: true,
+          })
+        ),
     });
   } catch (e) {
     yield spawn(() => {

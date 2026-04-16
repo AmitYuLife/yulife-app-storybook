@@ -1,5 +1,5 @@
 import { GetAllUserDataResponse } from "@graphql/user/getAllUserData.gql";
-import { AppDataType, GetUserConnectionsPayload, GetUserFeaturesPayload } from "../user.types";
+import { AppDataType, GetUserConnectionsPayload, GetUserFeaturesPayload, IGetUserSuccessPayload } from "../user.types";
 import { ChallengeSourceType, GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { IGetCoinLedgerSuccessPayload, IGetTodayActivitiesPayload } from "@redux/coins/coins.types";
@@ -22,6 +22,7 @@ import {
   UserDailyChallengeAmountAvailableFragment,
   MobileInventoryInfoFragment,
   UserChallengesDoneTodayFragment,
+  UserFragment,
 } from "@graphql/__generated";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 
@@ -61,10 +62,34 @@ export const toUserDataReduxType = ({
       return toInventoryInfo(data as MobileInventoryInfoFragment);
     case AppDataType.challengesDoneToday:
       return toChallengesDoneToday(data as UserChallengesDoneTodayFragment);
+    case AppDataType.currentUser:
+      return toCurrentUser(data as UserFragment);
     default:
       return null;
   }
 };
+
+export const toCurrentUser = (user: UserFragment): IGetUserSuccessPayload => ({
+  onboarding: { redeemedOnboarding: user?.redeemedOnboarding },
+  passiveSteps: {
+    exchangeRate: {
+      yucoin: user?.passiveSteps?.exchange?.yucoin,
+      steps: user?.passiveSteps?.exchange?.steps,
+      meditation: user?.passiveSteps?.exchange?.meditation,
+      surge: user?.passiveSteps?.exchange?.surge,
+    },
+  },
+  user: {
+    id: user?.id,
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    fullName: user?.fullName,
+    userFeatures: (user?.userFeatures || []).map(({ name, value }) => ({ name, value })),
+    supportConfig: {
+      supportLevel: user?.supportConfig?.supportLevel,
+    },
+  },
+});
 
 export const toChallengeSourceType = (source?: ActiveChallengeSourceTypeNewGql): ChallengeSourceType => {
   switch (source) {

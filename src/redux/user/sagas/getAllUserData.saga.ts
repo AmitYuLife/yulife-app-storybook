@@ -1,8 +1,10 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import getAllUserData from "@graphql/user/getAllUserData.gql";
+import { expireSession } from "@navigation/root";
+import setLoggerIdentity from "./setLoggerIdentity.helper";
 import {
   getUserPassiveChallengesEarnRateSuccess,
   getUserActiveChallengeSuccess,
@@ -11,6 +13,8 @@ import {
   getUserCoinLedgerSuccess,
   getUserFeaturesSuccess,
   getUserConnectionsSuccess,
+  getUserSuccess,
+  setUserNoAccessAction,
 } from "../user.actions";
 import { AppDataType, IAppDataTypePayload, GetUserFeaturesPayload, GetUserConnectionsPayload } from "../user.types";
 import { Action } from "@reduxjs/toolkit";
@@ -28,7 +32,7 @@ import { IPassiveChallengesEarnRateSuccessPayload } from "../user.types";
 import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
-import { toUserDataReduxType } from "./getAllUserData.helper";
+import { toCurrentUser, toUserDataReduxType } from "./getAllUserData.helper";
 import {
   getChallengesDoneTodayActionSuccess,
   getDailyChallengeAmountAvailableActionSuccess,
@@ -67,6 +71,7 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Ac
   [AppDataType.inventoryInfo]: getInventoryInfoSuccess,
   [AppDataType.challengesDoneToday]: getChallengesDoneTodayActionSuccess,
   [AppDataType.todayScreen]: null, // no-op, as we're relying on the Apollo cache (i.e. this is not stored in redux)
+  [AppDataType.currentUser]: null, // handled separately (archived / null-user branching + logger identity spawn)
 };
 
 export default function* getAllUserDataSaga({
@@ -77,11 +82,35 @@ export default function* getAllUserDataSaga({
     if (token) {
       const types = Array.isArray(payload) ? payload : payload.types;
       const overrideQueryName = Array.isArray(payload) ? undefined : payload.overrideQueryName;
+      const refreshLoggerIdentity = Array.isArray(payload) ? false : !!payload.refreshLoggerIdentity;
 
       const requestTimestamp = moment().format();
-      const { data }: Unpacked<typeof getAllUserData> = yield call(getAllUserData, { types, overrideQueryName });
+      const { data }: Unpacked<typeof getAllUserData> = yield call(getAllUserData, {
+        types,
+        overrideQueryName,
+        refreshLoggerIdentity,
+      });
 
       if (data) {
+        if (types.includes(AppDataType.currentUser)) {
+          const currentUser = data[AppDataType.currentUser];
+
+          if (currentUser === null) {
+            yield call(expireSession);
+            return;
+          }
+
+          if (refreshLoggerIdentity) {
+            yield spawn(setLoggerIdentity, currentUser.id, data.intercomHash, currentUser.supportConfig?.supportLevel);
+          }
+
+          if (currentUser.archived) {
+            yield put(setUserNoAccessAction());
+          } else {
+            yield put(getUserSuccess(toCurrentUser(currentUser)));
+          }
+        }
+
         for (const type of types) {
           if (SUCCESS_ACTIONS[type]) {
             yield put(

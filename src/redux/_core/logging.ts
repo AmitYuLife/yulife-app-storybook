@@ -69,7 +69,6 @@ export const WHITELIST_REDUX_EVENTS: string[] = [
   "FITKIT_CONSENT_AUTHORISED",
   "SET_USER_NO_ACCESS",
   "REFRESH_USER_TOKEN",
-  "GET_USER_START",
   //  "GET_USER_SUCCESS", payload has sensitive data
   //  "LOGIN_USER_SUCCESS", payload has sensitive data
   "UPDATE_ACTIVE_LEADERBOARD_ID",

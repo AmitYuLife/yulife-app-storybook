@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { View, Alert } from "react-native";
-import { getUserStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
 import { DATE_FORMAT_WITHOUT_TZ } from "@utils";
@@ -89,7 +90,8 @@ const DuelRespondModal: React.FC<IProps> = ({
           variables: { duelId, hasAccepted, startDateTime, requestLocation, leaderboardPlacement },
         });
 
-        dispatch(getUserStart());
+        // TODO: wot we getting the user for here?
+        dispatch(getUserDataStart({ types: [AppDataType.currentUser] }));
         if (hasAccepted) {
           dispatch(refreshTotalCoins());
         }
