@@ -65,11 +65,11 @@ const ChallengeSuccessOldScreen = ({
         <Box alignItems="center">
           <Box alignItems="center" mt={40}>
             <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
-            <Box alignItems="center" mt={5} mb={24} w={137} overflow="visible">
-              <Box position="absolute" left={0} right={0} bottom={3} overflow="visible">
+            <Box alignItems="center" justifyContent="center" mt={5} mb={24}>
+              <Box position="absolute">
                 <LevelLine colour={challengeSuccessScreen.lineColour} />
               </Box>
-              <Box mt={-10} collapsable={false}>
+              <Box collapsable={false}>
                 <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
                   {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
                 </TextTemplate>
