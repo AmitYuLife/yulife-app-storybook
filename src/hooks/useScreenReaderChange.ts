@@ -5,6 +5,8 @@ export function useScreenReaderChange() {
   const [isScreenReaderEnabled, setIsScreenReaderEnabled] = useState(false);
 
   useEffect(() => {
+    AccessibilityInfo.isScreenReaderEnabled().then(setIsScreenReaderEnabled);
+
     const screenReaderEnabledListener = AccessibilityInfo.addEventListener("screenReaderChanged", (isEnabled) => {
       setIsScreenReaderEnabled(isEnabled);
     });
