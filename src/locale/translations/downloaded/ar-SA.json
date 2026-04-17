@@ -1927,6 +1927,15 @@
         }
       }
     },
+    "tournaments": {
+      "days_left": "%{smart_count} يوم متبقي |||| %{smart_count} أيام متبقية",
+      "joined": "%{smart_count} مُنضم |||| %{smart_count} مُنضمون",
+      "leaderboard": "الترتيب",
+      "member_count": "%{smart_count} عضو |||| %{smart_count} أعضاء",
+      "members": "الأعضاء",
+      "my_team": "فريقي (%{teamName})",
+      "total_team_score": "إجمالي نقاط الفريق"
+    },
     "update_mobile": {
       "cta_label": "تحديث تطبيقي"
     },

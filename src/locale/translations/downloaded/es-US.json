@@ -1927,6 +1927,15 @@
         }
       }
     },
+    "tournaments": {
+      "days_left": "%{smart_count} día restante |||| %{smart_count} días restantes",
+      "joined": "%{smart_count} unido",
+      "leaderboard": "Clasificación",
+      "member_count": "%{smart_count} miembro |||| %{smart_count} miembros",
+      "members": "Miembros",
+      "my_team": "Mi equipo (%{teamName})",
+      "total_team_score": "Puntuación total del equipo"
+    },
     "update_mobile": {
       "cta_label": "Actualizar mi aplicación"
     },

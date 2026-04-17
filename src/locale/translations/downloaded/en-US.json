@@ -1927,6 +1927,15 @@
         }
       }
     },
+    "tournaments": {
+      "days_left": "%{smart_count} day left |||| %{smart_count} days left",
+      "joined": "%{smart_count} joined",
+      "leaderboard": "Leaderboard",
+      "member_count": "%{smart_count} member |||| %{smart_count} members",
+      "members": "Members",
+      "my_team": "My team (%{teamName})",
+      "total_team_score": "Total team score"
+    },
     "update_mobile": {
       "cta_label": "Update my app"
     },

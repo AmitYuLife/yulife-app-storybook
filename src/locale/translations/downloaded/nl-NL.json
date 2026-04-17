@@ -159,7 +159,7 @@
       "allow": "toestaan",
       "ask_later": "Vraag het me later",
       "back": "Terug",
-      "cancel": "Annuleer",
+      "cancel": "Annuleren",
       "claim": "Claim",
       "close": "Sluit",
       "collect": "Verzamel",
@@ -176,7 +176,7 @@
       "get_started": "Aan de slag",
       "give_feedback": "Feedback geven",
       "go_back": "Ga terug",
-      "got_it": "Ik heb het",
+      "got_it": "Ik snap het",
       "great": "Geweldig!",
       "invite": "Nodig een collega uit",
       "join": "Word lid van",
@@ -1926,6 +1926,15 @@
           }
         }
       }
+    },
+    "tournaments": {
+      "days_left": "%{smart_count} dag over |||| %{smart_count} dagen over",
+      "joined": "%{smart_count} aangesloten",
+      "leaderboard": "Leaderboard",
+      "member_count": "%{smart_count} lid |||| %{smart_count} leden",
+      "members": "Leden",
+      "my_team": "Mijn team (%{teamName})",
+      "total_team_score": "Totale teamscore"
     },
     "update_mobile": {
       "cta_label": "Mijn app bijwerken"

@@ -1927,6 +1927,15 @@
         }
       }
     },
+    "tournaments": {
+      "days_left": "%{smart_count}日残り |||| %{smart_count}日残り",
+      "joined": "%{smart_count} 人 参加済み",
+      "leaderboard": "ランキング",
+      "member_count": "%{smart_count} 人 |||| %{smart_count} 人",
+      "members": "メンバー",
+      "my_team": "私のチーム ( %{teamName} )",
+      "total_team_score": "チーム の 合計 得点"
+    },
     "update_mobile": {
       "cta_label": "アプリの更新"
     },
