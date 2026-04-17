@@ -30,7 +30,7 @@ Feature("I receive the correct emails", async () => {
     When("I tap 'Let's go'", when.tapLetsGo, async () => {
       When("I skip the health connection screen", when.skipHealthConnection, async () => {
         When("I terminate the app", when.terminateApp, async () => {
-          When("I follow the email link", when.followEmailLink(data.CUSTOMER_5.data.email), async () => {
+          When("I follow the email link", when.followEmailLink(data.CUSTOMER_5.data.email, { clearKeychainBeforeLaunch: true }), async () => {
             When("I wait", when.wait(5000), async () => {
               Then("I should see the warning that the link has expired", then.textVisible("Something went wrong"));
             });
