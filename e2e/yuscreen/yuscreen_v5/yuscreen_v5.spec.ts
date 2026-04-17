@@ -237,7 +237,7 @@ Feature("I am able to use the yuscreen v5", async () => {
       });
     });
     When("I scroll down the YuScreen", when.scrollYuScreenDown(0.2, 0.85, 2000), async () => {
-      Then("I should see the updated YuCoin value from creating my Yumoji", then.maximiseYucoinVisible(300, 480));
+      Then("I should see the updated YuCoin value from creating my Yumoji", then.maximiseYucoinVisible(300, 540));
       Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17800), 1500));
     });
   });
