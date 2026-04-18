@@ -182,7 +182,7 @@
       "join": "Word lid van",
       "later": "Later",
       "learn_more": "Meer leren",
-      "lets_go": "Laten we gaan",
+      "lets_go": "Start",
       "loading": "Aan het laden...",
       "next": "Volgende",
       "no": "Geen",
@@ -193,10 +193,10 @@
       "open": "Open",
       "pause": "Pauze",
       "quit": "Stoppen met",
-      "resume": "CV",
-      "save": "Sla",
+      "resume": "Herstart",
+      "save": "Sla op",
       "select": "Selecteer",
-      "skip": "overslaan",
+      "skip": "sla over",
       "start": "Start",
       "submit": "Stuur  in",
       "use": "Gebruik",
@@ -231,7 +231,7 @@
   "meditation": "Meditatie",
   "meditation_progress": {
     "paused": "Meditatie gepauzeerd",
-    "resume": "Hervatten Meditatie"
+    "resume": "Hervat Meditatie"
   },
   "modals": {
     "active_buffs": {
@@ -271,14 +271,14 @@
       "empty": "Je inventaris is leeg. Ga naar je seizoensbeloningenpad om nuttige voorwerpen te verdienen die je op je reis kunnen helpen.",
       "go_to_rewards_button": "Ga naar beloningen",
       "popover_confirm": "Gaaf",
-      "subtitle": "Selecteer een power-up om deze te activeren",
+      "subtitle": "Selecteer een power-up om te activeren",
       "title": "Inventaris"
     },
     "duels": {
       "dialog_helpers": {
         "alternative_name": "je collega",
         "description_already_accepted": "Je duel met %{name} zal plaatsvinden %{duelStart}. Je kunt ze daarna uitdagen voor een rematch of nu een andere vriend uitdagen.",
-        "description_not_accepted": "Je hebt %{name} al uitgenodigd voor een duel. Wacht tot ze reageren of daag nu een andere vriend uit.",
+        "description_not_accepted": "Je hebt %{name} al uitgenodigd voor een duel. Wacht op reactie of daag nu een andere vriend uit.",
         "title_already_accepted": "Hij staat al aan!",
         "title_not_accepted": "Wacht even!"
       },
@@ -289,7 +289,7 @@
       "duel_invite": {
         "confirm_invitation": {
           "heading": "Uitnodiging bevestigen?",
-          "subheading": "Als het wordt geaccepteerd, wordt het vermeld in je komende duels en begint het morgen"
+          "subheading": "Bij acceptatie wordt het vermeld in je komende duels en begint het morgen"
         },
         "not_enought_yucoin": {
           "heading": "Niet genoeg YuCoin",
@@ -298,10 +298,10 @@
       },
       "duel_options": {
         "bragging_rights_option": "Opscheprechten",
-        "button_label": "Verzoek om duel verzenden",
+        "button_label": "Verzend verzoek om duel",
         "colleague": "een collega",
         "header": "Je daagt **%{name}** uit voor een duel. Wie tijdens het duel de meeste stappen registreert, wint!",
-        "instruction": "Waarom duelleer je?",
+        "instruction": "Waarvoor duelleer je?",
         "select_wager": "Selecteer een inzet",
         "subheader_1": "Het duel begint morgen en duurt de hele dag. De uitslag met de winnaar verschijnt de volgende ochtend.",
         "subheader_2": "**Waarvoor duelleer je?",
@@ -309,8 +309,8 @@
       },
       "duel_respond": {
         "heading": "Weet je het zeker?",
-        "subheading": "Onthoud dat als je dit duel accepteert, je %{yucoin} YuCoin verliezen. Wil je doorgaan?",
-        "subheading_no_yucoin": "Dit duel is alleen om op te scheppen, dus je zult geen YuCoin winnen of verliezen. Ben je blij om door te gaan?"
+        "subheading": "Onthoud dat als je dit duel accepteert, je %{yucoin} YuCoin kan verliezen. Wil je doorgaan?",
+        "subheading_no_yucoin": "Dit duel is alleen om op te scheppen, dus je wint of verliest geen YuCoin. Wil je doorgaan?"
       },
       "duel_response_intro": {
         "bragging_rights": "opscheprechten",
