@@ -1,8 +1,8 @@
 import { View, ViewStyle } from "react-native";
-import { Image, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { default as BoxOption } from "../box-option/box-option";
 import { ContentItemButtonFragment, RemoteImage, SduiAction, VariableRemoteImage } from "@graphql/__generated";
-import { Style, StyleSheet } from "@styles";
+import { Colours, Style, StyleSheet } from "@styles";
 import { ComponentProps, useCallback, useRef, useState } from "react";
 import { Title } from "./box-option-card.title";
 import { BOX_OPTION_DESCRIPTION, BOX_OPTION_TITLE, RIGHT_SIDE_IMAGE_BOX_OPTION } from "@ids";
@@ -33,6 +33,7 @@ interface Props {
   titleNumberOfLines?: number;
   descriptionNumberOfLines?: number;
   testID?: string;
+  pills?: Array<{ backgroundColor: string; text: string }>;
 }
 
 export const BoxOptionCard = ({
@@ -54,6 +55,7 @@ export const BoxOptionCard = ({
   contentInnerWrapperStyles = {},
   titleNumberOfLines,
   descriptionNumberOfLines,
+  pills,
 }: Props) => {
   const dispatch = useDispatch();
 
@@ -133,6 +135,18 @@ export const BoxOptionCard = ({
             )}
           </View>
         </View>
+
+        {pills?.length ? (
+          <Box top={8} right={8} position="absolute">
+            {pills.map((pill, index) => (
+              <Box bg={pill.backgroundColor} key={`${pill.text}_${index}`} br={12} ph={8} pv={2}>
+                <TextTemplate color={Colours.neutral.white} type="l2b">
+                  {pill.text}
+                </TextTemplate>
+              </Box>
+            ))}
+          </Box>
+        ) : null}
         {!onPress ? null : (
           <View style={styles.arrowWrapper}>
             <ArrowButton color={theme.colors.primary.p600} />

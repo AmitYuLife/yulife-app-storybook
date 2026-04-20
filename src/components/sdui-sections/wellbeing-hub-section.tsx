@@ -10,6 +10,7 @@ import { pushToScreen } from "@navigation/root";
 import { BUTTON_SIZES } from "@components/molecules/button/button.types";
 import { YUSCREEN_V5_WELLBEING_SECTION_BUTTON, YUSCREEN_V5_WELLBEING_SECTION_ITEM } from "@ids";
 import { WellbeingHubSection as IWellbeingHubSection } from "@redux/yu-screen/yu-screen.types";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 
@@ -52,6 +53,8 @@ export const WellbeingHubSection = ({ sectionInstanceId, content, buttonColor }:
     });
   }, [currentRoute]);
 
+  const { theme } = useTheme();
+
   if (!content) {
     return null;
   }
@@ -60,7 +63,7 @@ export const WellbeingHubSection = ({ sectionInstanceId, content, buttonColor }:
 
   return (
     <View key={sectionInstanceId}>
-      {items.map(({ id: itemId, title: itemTitle, description, image, route }, index) => (
+      {items.map(({ id: itemId, title: itemTitle, description, image, route, pillText }, index) => (
         <BoxOptionCard
           key={itemId}
           title={itemTitle}
@@ -70,6 +73,7 @@ export const WellbeingHubSection = ({ sectionInstanceId, content, buttonColor }:
           image={image}
           resizeMode={"cover"}
           onPress={() => onCardPress(itemId, route)}
+          pills={pillText ? [{ backgroundColor: theme.colors.primary.p600, text: pillText }] : undefined}
           testID={YUSCREEN_V5_WELLBEING_SECTION_ITEM(itemTitle, index.toString())}
         />
       ))}
