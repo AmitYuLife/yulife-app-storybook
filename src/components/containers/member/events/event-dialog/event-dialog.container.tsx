@@ -49,6 +49,20 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
     dispatch(refreshUserProfileEvents());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (!goalDetails?.tournamentGameMode) {
+      return;
+    }
+
+    dispatch(
+      logMixpanelEventActionCreator("team_event_visited", {
+        event_id: eventId,
+        tournament_name: goalDetails.title,
+        game_mode: goalDetails.tournamentGameMode,
+      })
+    );
+  }, [goalDetails?.tournamentGameMode, goalDetails?.title, eventId, dispatch]);
+
   /**
    * Claims the specified reward
    *
