@@ -20954,6 +20954,7 @@ export type GoalDetailsFragment = {
   currentProgress: number;
   maxProgress: number;
   milestones: Array<number>;
+  gracePeriodEnd?: string | null;
   headerImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   rewards: Array<{
     __typename?: "GoalReward";
@@ -25920,6 +25921,7 @@ export type ClaimGoalRewardsMutation = {
     currentProgress: number;
     maxProgress: number;
     milestones: Array<number>;
+    gracePeriodEnd?: string | null;
     headerImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     rewards: Array<{
       __typename?: "GoalReward";
@@ -26006,6 +26008,7 @@ export type GetGoalDetailsQuery = {
     currentProgress: number;
     maxProgress: number;
     milestones: Array<number>;
+    gracePeriodEnd?: string | null;
     dialogInfo?: {
       __typename: "UserProfileEvents";
       id: string;
@@ -61099,6 +61102,7 @@ export const GoalDetailsFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "gracePeriodEnd" } },
         ],
       },
     },
@@ -80247,6 +80251,7 @@ export const ClaimGoalRewardsDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "gracePeriodEnd" } },
         ],
       },
     },
@@ -80614,6 +80619,7 @@ export const GetGoalDetailsDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "gracePeriodEnd" } },
         ],
       },
     },
