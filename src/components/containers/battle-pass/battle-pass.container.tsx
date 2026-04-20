@@ -178,6 +178,7 @@ const BattlePassContainer = ({
   const [claimMobileRewardChest] = useMutation(gql("ClaimMobileRewardChestDocument"), {
     onCompleted: () => {
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
+      void refetch();
     },
   });
 
