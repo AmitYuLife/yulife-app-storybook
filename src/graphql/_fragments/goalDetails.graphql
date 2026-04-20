@@ -104,4 +104,5 @@ fragment GoalDetails on GoalDetails {
       ...RemoteImage
     }
   }
+  gracePeriodEnd
 }
