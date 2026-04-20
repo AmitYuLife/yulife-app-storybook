@@ -480,6 +480,7 @@ export const CUSTOMER_76_TOGGLES = {
       showPermissionSettings: true,
       showBrainGameSudoku: true,
       useNewLeaderboardServices: true,
+      tempEnableEnhancedTournament: true,
     },
   },
 } as IDatabaseItem;

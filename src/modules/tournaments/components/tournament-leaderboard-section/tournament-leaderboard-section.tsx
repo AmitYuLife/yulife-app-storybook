@@ -1,10 +1,10 @@
 import { ScrollView } from "react-native";
 import React, { memo } from "react";
-import { Style, StyleSheet } from "@styles";
-import { Box, TextTemplate } from "@atoms";
+import { Colours, Style, StyleSheet } from "@styles";
+import { Box } from "@atoms";
 import { Pressable } from "@molecules";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { t } from "@locale";
+import TournamentSectionHeader from "../tournament-section-header/tournament-section-header";
 import TournamentLeaderboardCard from "../tournament-leaderboard-card/tournament-leaderboard-card";
 import type { GetTournamentLeaderboardQuery } from "@graphql/__generated";
 
@@ -17,15 +17,8 @@ interface ITournamentLeaderboardSectionProps {
 }
 
 const TournamentLeaderboardSection = ({ teams, onViewAll, onTeamPress }: ITournamentLeaderboardSectionProps) => (
-  <>
-    <Box px={24} pt={24}>
-      <Pressable onPress={onViewAll} enableAnimation={true}>
-        <Box flexDirection="row" alignItems="center" justifyContent="space-between">
-          <TextTemplate type="b1b">{t("screens.tournaments.leaderboard")}</TextTemplate>
-          <ArrowIcon direction="right" size={Style.adjust(20)} />
-        </Box>
-      </Pressable>
-    </Box>
+  <Box bg={Colours.neutral.n50}>
+    <TournamentSectionHeader title={t("screens.tournaments.leaderboard")} onPress={onViewAll} />
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.content}>
       {teams.map((team, i) => (
         <Pressable
@@ -43,7 +36,7 @@ const TournamentLeaderboardSection = ({ teams, onViewAll, onTeamPress }: ITourna
         </Pressable>
       ))}
     </ScrollView>
-  </>
+  </Box>
 );
 
 const styles = StyleSheet.create({

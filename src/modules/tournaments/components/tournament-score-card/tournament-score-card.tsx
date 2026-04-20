@@ -8,14 +8,16 @@ interface ITournamentScoreCardProps {
 }
 
 const TournamentScoreCard = ({ label, score }: ITournamentScoreCardProps) => (
-  <Box br={10} borderWidth={1} borderColor={Colours.metallic.m200} p={16} bg={Colours.neutral.white}>
-    <TextTemplate type="l1" color={Colours.neutral.n700}>
-      {label}
-    </TextTemplate>
-    <Box mt={4}>
-      <TextTemplate type="h2" color={Colours.neutral.n900}>
-        {score.toLocaleString()}
+  <Box px={24} pt={8} pb={16} bg={Colours.neutral.n50}>
+    <Box br={10} borderWidth={1} borderColor={Colours.metallic.m200} p={16} bg={Colours.neutral.white}>
+      <TextTemplate type="l1" color={Colours.neutral.n700}>
+        {label}
       </TextTemplate>
+      <Box mt={4}>
+        <TextTemplate type="h2" color={Colours.neutral.n900}>
+          {score.toLocaleString()}
+        </TextTemplate>
+      </Box>
     </Box>
   </Box>
 );

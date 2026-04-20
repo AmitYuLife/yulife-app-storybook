@@ -1,7 +1,6 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_4 } from "../postgres/business";
-
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
   type: "mongo",
   modelName: "core_settings",

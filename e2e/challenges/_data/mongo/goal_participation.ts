@@ -9,7 +9,6 @@ import {
 } from "./goals_for_global";
 import {
   GOAL_TEAM_1,
-  GOAL_TEAM_6,
   GOAL_TEAM_3,
   GOAL_TEAM_4,
   GOAL_TEAM_7,
@@ -72,27 +71,6 @@ export const GOAL_PARTICIPATION_4 = {
     trackingEndDateTime: moment().add(8, "days").format("YYYY-MM-DDTHH:mm:ss"),
     progressSyncedAt: moment(),
     participationId: null,
-  },
-} as IDatabaseItem;
-
-export const GOAL_PARTICIPATION_5 = {
-  type: "mongo",
-  modelName: "goal_participation",
-  data: {
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_76.data.customerId,
-    parentType: "goals",
-    goal: GOALS_TOURNAMENT.data._id,
-    team: GOAL_TEAM_6.data._id,
-    joinGoalTime: moment().format("YYYY-MM-DDTHH:mm:ss"),
-    startDateTime: moment().format("YYYY-MM-DDTHH:mm:ss"),
-    endDateTime: moment().add(7, "days").format("YYYY-MM-DDTHH:mm:ss"),
-    status: "active",
-    typesToTrack: ["passive_challenge_steps"],
-    disableTransactions: false,
-    autoClaimRewards: false,
-    customerProductIds: [],
-    rewardEligibility: [],
   },
 } as IDatabaseItem;
 

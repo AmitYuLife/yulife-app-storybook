@@ -1,4 +1,5 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, dataManager } from "@yu-life/yulife-bdd-framework";
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { tournamentEventDescription } from "./_resources/fixtures";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
@@ -201,18 +202,49 @@ Feature("As a user I can opt in and take an event", async () => {
     });
   });
 
-  Scenario("I can view the active Team vs Team tournament with the remaining days and current team standings", scenario.start, async () => {
+  Scenario("I can view the active Team vs Team tournament with the remaining days and current team standings (legacy card)", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_76, data.AUTH_76), async () => {
       When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 5000), async () => {
         Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 4000));
-        Then("I should see the correct event title", then.idVisible(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#464647"), 4000));
-        Then("I should see the correct event description", then.idVisible(ids.EVENT_DESCRIPTION(tournamentEventDescription, "#464647"), 4000));
+        Then("I should see the correct event title", then.idVisible(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#FFFFFF"), 4000));
+        Then("I should see the correct event description", then.idVisible(ids.EVENT_DESCRIPTION(tournamentEventDescription, "#FFFFFF"), 4000));
       });
     });
-    When("I tap on the event card", when.tapID(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#464647")), async () => {
+    When("I tap on the event card", when.tapID(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#FFFFFF")), async () => {
       Then("I should see the correct remaining days", then.textVisible("6 days left", 2000));
       Then("I should see the correct event info", then.onEventDetailsScreen(data.GOALS_TOURNAMENT));
-      Then("I should see the current team standings and scores", then.assertTeamStandings(data.SOCIAL_GROUP_KNOCKOUT_TOURNAMENT_MATCH_UP));
+      Then("I should see the Leaderboard section", then.textVisible("Leaderboard", 2000));
+      Then("I should see my team section", then.textVisible("My team (Shoreditch)", 2000));
+      Then("I should see the total team score", then.textVisible("Total team score", 2000));
+    });
+  });
+
+  Scenario("I can view the enhanced tournament card when the enableEnhancedTournament flag is enabled", scenario.start, async () => {
+    Given("I enable the enhanced tournament flag", async () => {
+      await dataManager.insertRecords([{
+        type: "mongo",
+        modelName: "core_settings",
+        data: {
+          _id: generateRandomMongoId(),
+          domain: "temp",
+          entityType: "user",
+          entityId: data.CUSTOMER_76.data.customerId,
+          settings: { enableEnhancedTournament: true },
+        },
+      }]);
+    }, async () => {
+      Given("I login", given.loginAsUser(data.CUSTOMER_76, data.AUTH_76), async () => {
+        When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 5000), async () => {
+          Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 4000));
+          Then("I should see the tournament title on the enhanced card", then.textVisible(data.GOALS_TOURNAMENT.data.title, 4000));
+        });
+        When("I tap on the enhanced tournament card", when.tapText(data.GOALS_TOURNAMENT.data.title), async () => {
+          Then("I should see the tournament details screen", then.textVisible("Purple Voyage", 4000));
+          Then("I should see the Leaderboard section", then.textVisible("Leaderboard", 2000));
+          Then("I should see my team section", then.textVisible("My team (Shoreditch)", 2000));
+          Then("I should see the total team score", then.textVisible("Total team score", 2000));
+        });
+      });
     });
   });
 });

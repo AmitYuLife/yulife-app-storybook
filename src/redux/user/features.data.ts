@@ -65,4 +65,5 @@ export const features = [
   "tempGameEnableNewSuccessScreen",
   "tempGameEnableNewRewardScreen",
   "tempGameEnableAppTheme",
+  "tempEnableEnhancedTournament",
 ] as const;
