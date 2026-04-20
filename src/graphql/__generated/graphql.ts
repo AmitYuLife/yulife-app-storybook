@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -246,25 +247,6 @@ export type ActiveStreak = {
   totalStreak?: Maybe<Scalars["Int"]["output"]>;
   type?: Maybe<Scalars["String"]["output"]>;
   value?: Maybe<Scalars["Int"]["output"]>;
-};
-
-export type ActivityHistory = {
-  __typename?: "ActivityHistory";
-  challenges?: Maybe<Array<Maybe<ActivityHistoryChallenge>>>;
-  cycling?: Maybe<Scalars["Int"]["output"]>;
-  cyclingSources?: Maybe<SourceBreakdown>;
-  cyclingYucoin?: Maybe<Scalars["Int"]["output"]>;
-  dayOfMonth?: Maybe<Scalars["String"]["output"]>;
-  dayOfWeek?: Maybe<Scalars["String"]["output"]>;
-  id?: Maybe<Scalars["String"]["output"]>;
-  level?: Maybe<Scalars["Int"]["output"]>;
-  mindfulSeconds?: Maybe<Scalars["Int"]["output"]>;
-  mindfulYucoin?: Maybe<Scalars["Int"]["output"]>;
-  monthAndYear?: Maybe<Scalars["String"]["output"]>;
-  pensionYucoin?: Maybe<Scalars["Int"]["output"]>;
-  sources?: Maybe<SourceBreakdown>;
-  steps?: Maybe<Scalars["Int"]["output"]>;
-  yucoin?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type ActivityHistoryChallenge = {
@@ -4747,6 +4729,7 @@ export type GoalDetails = {
   tasks?: Maybe<Array<GoalTasks>>;
   teams: Array<GoalTeam>;
   title: Scalars["String"]["output"];
+  tournamentGameMode?: Maybe<Scalars["String"]["output"]>;
   type: Scalars["String"]["output"];
 };
 
@@ -7077,7 +7060,6 @@ export type Mutation = {
   submitPathwayAdviceResponse: Scalars["Boolean"]["output"];
   submitPathwayChallengeFeedback: SubmitPathwayChallengeFeedbackResponse;
   submitSduiJourney?: Maybe<Scalars["Boolean"]["output"]>;
-  submitSudokuSolution?: Maybe<Challenge>;
   submitUnity?: Maybe<Scalars["Boolean"]["output"]>;
   submitUserDebugData?: Maybe<SubmitUserDebugDataResponse>;
   subscribeToPerk: SubscribeToPerkResponse;
@@ -7934,10 +7916,6 @@ export type MutationSubmitSduiJourneyArgs = {
   stepId: Scalars["String"]["input"];
 };
 
-export type MutationSubmitSudokuSolutionArgs = {
-  results: SudokuSubmission;
-};
-
 export type MutationSubmitUnityArgs = {
   levelId: Scalars["String"]["input"];
 };
@@ -8753,7 +8731,6 @@ export type Query = {
   getActiveAndInactiveCount: ActiveAndInactiveCount;
   /** Get the user's active employments */
   getActiveEmployments: Array<UserBusinessLink>;
-  getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
   getAllThemes: Array<MobileGameTheme>;
   getAnalyticsConfiguration: AnalyticsConfiguration;
@@ -9148,12 +9125,6 @@ export type Query = {
 /** Default types to be extended / root query */
 export type QueryDownloadUserDocumentArgs = {
   documentId: Scalars["ID"]["input"];
-};
-
-/** Default types to be extended / root query */
-export type QueryGetActivityHistoryWithLevelsArgs = {
-  isFullActivity?: InputMaybe<Scalars["Boolean"]["input"]>;
-  monthsAgo?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -10995,15 +10966,6 @@ export type SocialLeaderboardConstent = {
   id: Scalars["String"]["input"];
 };
 
-export type SourceBreakdown = {
-  __typename?: "SourceBreakdown";
-  device?: Maybe<Scalars["Int"]["output"]>;
-  fitbit?: Maybe<Scalars["Int"]["output"]>;
-  garmin?: Maybe<Scalars["Int"]["output"]>;
-  strava?: Maybe<Scalars["Int"]["output"]>;
-  withings?: Maybe<Scalars["Int"]["output"]>;
-};
-
 export type SpaCheckBusinessType = {
   __typename?: "SpaCheckBusinessType";
   businessAccountId: Scalars["String"]["output"];
@@ -11025,6 +10987,7 @@ export type StartSessionResponse = {
   __typename?: "StartSessionResponse";
   hasExistingAccount?: Maybe<Scalars["Boolean"]["output"]>;
   hasSetPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  hasShortCode?: Maybe<Scalars["Boolean"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
   shortCodeLength?: Maybe<Scalars["Int"]["output"]>;
 };
@@ -11238,17 +11201,6 @@ export type SudokuStats = {
   __typename?: "SudokuStats";
   leaderboardId?: Maybe<Scalars["String"]["output"]>;
   personalBest?: Maybe<Scalars["Int"]["output"]>;
-};
-
-export type SudokuSubmission = {
-  adjustedTime: Scalars["Int"]["input"];
-  baseTime: Scalars["Int"]["input"];
-  date: Scalars["String"]["input"];
-  difficulty: SudokuDifficulty;
-  guesses?: InputMaybe<Array<Scalars["Float"]["input"]>>;
-  hints: Scalars["Int"]["input"];
-  levelSlotId: Scalars["String"]["input"];
-  mistakes: Scalars["Int"]["input"];
 };
 
 export type Surge = {
@@ -11952,6 +11904,7 @@ export type TeamPromotion = {
 
 export type TeamPromotionPrimaryButton = {
   __typename?: "TeamPromotionPrimaryButton";
+  sendSlackNotification: Scalars["Boolean"]["output"];
   title: Scalars["String"]["output"];
   to: Scalars["String"]["output"];
 };
@@ -20955,6 +20908,7 @@ export type GoalDetailsFragment = {
   maxProgress: number;
   milestones: Array<number>;
   gracePeriodEnd?: string | null;
+  tournamentGameMode?: string | null;
   headerImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   rewards: Array<{
     __typename?: "GoalReward";
@@ -25922,6 +25876,7 @@ export type ClaimGoalRewardsMutation = {
     maxProgress: number;
     milestones: Array<number>;
     gracePeriodEnd?: string | null;
+    tournamentGameMode?: string | null;
     headerImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     rewards: Array<{
       __typename?: "GoalReward";
@@ -26009,6 +25964,7 @@ export type GetGoalDetailsQuery = {
     maxProgress: number;
     milestones: Array<number>;
     gracePeriodEnd?: string | null;
+    tournamentGameMode?: string | null;
     dialogInfo?: {
       __typename: "UserProfileEvents";
       id: string;
@@ -61109,6 +61065,7 @@ export const GoalDetailsFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "gracePeriodEnd" } },
+          { kind: "Field", name: { kind: "Name", value: "tournamentGameMode" } },
         ],
       },
     },
@@ -80261,6 +80218,7 @@ export const ClaimGoalRewardsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "gracePeriodEnd" } },
+          { kind: "Field", name: { kind: "Name", value: "tournamentGameMode" } },
         ],
       },
     },
@@ -80629,6 +80587,7 @@ export const GetGoalDetailsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "gracePeriodEnd" } },
+          { kind: "Field", name: { kind: "Name", value: "tournamentGameMode" } },
         ],
       },
     },
