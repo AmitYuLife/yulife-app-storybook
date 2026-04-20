@@ -36,6 +36,7 @@ import {
   MEDIA_PORTRAIT_CLOSE,
 } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
+import dd from "@services/datadog";
 import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -402,13 +403,29 @@ const VideoPlayer = ({
   ]);
 
   const handleOnEnd = useCallback(async (): Promise<void> => {
+    dd.info("video_player handleOnEnd invoked", {
+      durationInSeconds: state.durationInSeconds,
+      currentProgressInSeconds: state.currentProgressInSeconds,
+      appCurrentState,
+      activeCastProtocol,
+      isPaused: state.isPaused,
+    });
+
     if (!canSafelyMarkVideoAsCompleted(state.durationInSeconds)) {
+      dd.info("video_player handleOnEnd blocked by anti-cheat", {
+        durationInSeconds: state.durationInSeconds,
+        activeCastProtocol,
+      });
       return;
     }
 
     remotePlayback?.stop();
 
     if (appCurrentState !== "active") {
+      dd.info("video_player handleOnEnd deferred — app backgrounded", {
+        appCurrentState,
+        activeCastProtocol,
+      });
       dispatch({ type: ActionTypes.SET_IS_DONE_ON_BACKGROUND });
       return;
     }
@@ -428,6 +445,8 @@ const VideoPlayer = ({
     remotePlayback,
     canSafelyMarkVideoAsCompleted,
     state.durationInSeconds,
+    state.currentProgressInSeconds,
+    state.isPaused,
     activeCastProtocol,
   ]);
   handleOnEndRef.current = handleOnEnd;
