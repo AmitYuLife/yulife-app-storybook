@@ -111,6 +111,7 @@ export interface WellbeingHubSection extends CommonSectionProps {
       title: string;
       description: string;
       route?: string;
+      pillText?: string;
     }[];
     businessAccountId: string;
     buttonLabel: string;

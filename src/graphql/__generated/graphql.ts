@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -13233,6 +13232,7 @@ export type WellbeingHubSectionItem = {
   description: Scalars["String"]["output"];
   id: Scalars["ID"]["output"];
   image?: Maybe<RemoteImage>;
+  pillText?: Maybe<Scalars["String"]["output"]>;
   route?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
 };
@@ -32486,6 +32486,7 @@ export type GetUserPathwaysQuery = {
               title: string;
               description: string;
               route?: string | null;
+              pillText?: string | null;
               image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
             }>;
           } | null;
@@ -38436,6 +38437,7 @@ export type WellbeingHubSectionContentFragment = {
     title: string;
     description: string;
     route?: string | null;
+    pillText?: string | null;
     image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   }>;
 };
@@ -38456,6 +38458,7 @@ export type WellbeingHubSectionFragment = {
       title: string;
       description: string;
       route?: string | null;
+      pillText?: string | null;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
   } | null;
@@ -43103,6 +43106,7 @@ export type GetYuScreenV5Query = {
               title: string;
               description: string;
               route?: string | null;
+              pillText?: string | null;
               image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
             }>;
           } | null;
@@ -45122,6 +45126,7 @@ export type GetYuScreenV5SectionsQuery = {
             title: string;
             description: string;
             route?: string | null;
+            pillText?: string | null;
             image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
           }>;
         } | null;
@@ -47118,6 +47123,7 @@ type YuScreenSection_WellbeingHubSection_Fragment = {
       title: string;
       description: string;
       route?: string | null;
+      pillText?: string | null;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
   } | null;
@@ -68434,6 +68440,7 @@ export const WellbeingHubSectionContentFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
                 { kind: "Field", name: { kind: "Name", value: "route" } },
+                { kind: "Field", name: { kind: "Name", value: "pillText" } },
               ],
             },
           },
@@ -68527,6 +68534,7 @@ export const WellbeingHubSectionFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
                 { kind: "Field", name: { kind: "Name", value: "route" } },
+                { kind: "Field", name: { kind: "Name", value: "pillText" } },
               ],
             },
           },
@@ -71674,6 +71682,7 @@ export const YuScreenSectionFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
                 { kind: "Field", name: { kind: "Name", value: "route" } },
+                { kind: "Field", name: { kind: "Name", value: "pillText" } },
               ],
             },
           },
@@ -88741,6 +88750,7 @@ export const GetUserPathwaysDocument = {
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
                 { kind: "Field", name: { kind: "Name", value: "route" } },
+                { kind: "Field", name: { kind: "Name", value: "pillText" } },
               ],
             },
           },
@@ -106669,6 +106679,7 @@ export const GetYuScreenV5Document = {
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
                 { kind: "Field", name: { kind: "Name", value: "route" } },
+                { kind: "Field", name: { kind: "Name", value: "pillText" } },
               ],
             },
           },
@@ -109742,6 +109753,7 @@ export const GetYuScreenV5SectionsDocument = {
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
                 { kind: "Field", name: { kind: "Name", value: "route" } },
+                { kind: "Field", name: { kind: "Name", value: "pillText" } },
               ],
             },
           },
