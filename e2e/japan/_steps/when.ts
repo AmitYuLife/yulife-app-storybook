@@ -51,6 +51,7 @@ const selectRecipient = async (recipientName: string, waitTime = 4000) => {
     ids.LEADERBOARD_NAME(recipientName, undefined, undefined, "search"),
     10000,
   )();
+  await idVisible(ids.P2P_SELECTED_SECTION(1), 5000)();
 };
 
 const composeAndSendGift = async (waitTime = 4000) => {

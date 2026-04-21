@@ -1,5 +1,5 @@
 import * as ids from "@ids";
-import { expect } from "detox";
+import { expect, element, by, waitFor } from "detox";
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import { P2P_MESSAGES_JP } from "../_resources/constants";
@@ -48,9 +48,12 @@ export const wellbeingServiceVisible = async () => {
 };
 
 export const cycleThroughGiftMessages = async () => {
+  const firstTestId = ids.P2P_MESSAGE(P2P_MESSAGES_JP[0]);
+  await waitFor(element(by.id(firstTestId))).toBeVisible().withTimeout(4000);
+
   for (let i = 0; i < P2P_MESSAGES_JP.length; i++) {
     const testID = ids.P2P_MESSAGE(P2P_MESSAGES_JP[i]);
-    await tapID(testID)();
+    await tapID(testID, 3000)();
     if ((i + 1) % 6 === 0 && i !== P2P_MESSAGES_JP.length - 1) {
       await element(by.id(ids.P2P_MESSAGE_SCROLL)).scroll(300, "down", NaN, 0.3);
     }
