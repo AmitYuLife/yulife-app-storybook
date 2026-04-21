@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { useDispatch } from "react-redux";
@@ -18,6 +19,7 @@ interface IProps {
 }
 
 export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }: IProps) => {
+  "use no memo";
   const dispatch = useDispatch();
 
   useBackHandler(() => {

@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import React, { memo, useState, useRef, useEffect } from "react";
 import {
   View,
@@ -59,6 +60,7 @@ const HIT_SLOP = {
 
 export const YumojiSwipeTryOn = memo(
   ({ customerProductId, coverType = CoverType.Common, onChange, flatListItemOverlayStyles, topText }: Props) => {
+    "use no memo";
     const listRef = useRef(null as RNFlatList);
     const scrollToDefaultIndexDelay = useRef(null);
     const { current: scrollX } = useRef(new Animated.Value(0));

@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- SharedValue.value mutation is the correct reanimated API */
 import { memo } from "react";
 import { FlashList, FlashListProps } from "@shopify/flash-list";
 import Animated, { SharedValue, useAnimatedScrollHandler } from "react-native-reanimated";
@@ -14,6 +15,7 @@ interface IMoodCalendarProps {
 }
 
 export const MoodCalendar = ({ data, loading, scrollValue }: IMoodCalendarProps) => {
+  "use no memo";
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
       if (scrollValue) {

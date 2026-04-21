@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { ReactNode, memo, useReducer, useCallback, useEffect, useMemo, useRef } from "react";
 import { AppStateStatus } from "react-native";
 import { useAppState } from "@hooks";
@@ -68,6 +69,7 @@ const SudokuManager = ({
   onStateUpdate,
   onGameComplete,
 }: IProps) => {
+  "use no memo";
   const [sudokuState, sudokuDispatch] = useReducer(sudokuGameReducer, {
     touched: savedState?.touchedCells ?? {},
     endDate: undefined,

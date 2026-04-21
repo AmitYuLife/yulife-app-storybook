@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- SharedValue.value mutation is the correct reanimated API */
 import { useEffect } from "react";
 import {
   Gesture,
@@ -27,6 +28,7 @@ export const usePan = ({
   onSnapToBreakpointIndex,
   left,
 }: MagneticPan) => {
+  "use no memo";
   const sectionWidthHalf = sectionWidth / 2;
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { useCallback } from "react";
 import { Platform, ViewStyle, TextStyle, View } from "react-native";
 import { Style } from "@styles/index";
@@ -22,6 +23,7 @@ interface Props {
 }
 
 const Right = ({ shouldHighlightCoins, textStyle, icon }: Props) => {
+  "use no memo";
   const { componentId } = useNavigation();
   const coins = useSelector(getTotalCoins);
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);

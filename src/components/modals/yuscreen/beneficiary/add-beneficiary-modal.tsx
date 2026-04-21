@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import React, { useCallback, useEffect, useRef } from "react";
 import { Alert, Keyboard } from "react-native";
 import { Navigation } from "@navigation/main";
@@ -17,6 +18,7 @@ interface IProps {
 }
 
 const AddBeneficiaryModal = (props: IProps) => {
+  "use no memo";
   const { beneficiary: beneficiaryToEdit, pushEditRoot, productId } = props;
   const initialBeneficiary = useRef(null);
 

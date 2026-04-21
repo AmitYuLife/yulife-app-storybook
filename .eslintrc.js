@@ -11,7 +11,7 @@ module.exports = {
     "@react-native",
     "plugin:storybook/recommended",
   ],
-  plugins: ["react", "@typescript-eslint", "prettier", "rulesdir", "unused-imports"],
+  plugins: ["react", "@typescript-eslint", "prettier", "rulesdir", "unused-imports", "react-compiler"],
   env: {
     browser: true,
   },
@@ -22,6 +22,7 @@ module.exports = {
     global: "readonly",
   },
   rules: {
+    "react-compiler/react-compiler": "error",
     "comma-dangle": "off",
     quotes: 0,
     "no-shadow": "off",
@@ -165,6 +166,12 @@ module.exports = {
       files: ["src/redux/*/sagas/**/*"],
       rules: {
         "no-restricted-imports": "off",
+      },
+    },
+    {
+      files: ["src/components/sdui/**/*"],
+      rules: {
+        "react-compiler/react-compiler": "off",
       },
     },
   ],

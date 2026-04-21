@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { cloneElement, ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
 import { random, sample } from "lodash";
@@ -71,6 +72,7 @@ export const Particle = ({
   maxRotation = 0,
   fadeOutStartFraction = 0,
 }: ParticleProps) => {
+  "use no memo";
   const progress = useSharedValue(0);
   const angle = useSharedValue(0);
   const distance = useSharedValue(0);

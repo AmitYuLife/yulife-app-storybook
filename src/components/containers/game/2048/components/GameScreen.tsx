@@ -73,8 +73,7 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
     if (gameState === "inactive") {
       startGame();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameState]);
+  }, [gameState, startGame]);
 
   const restartGame = useCallback(() => {
     Alert.alert(

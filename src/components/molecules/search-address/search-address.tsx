@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { NetworkStatus } from "@apollo/client";
 import React, { useCallback, useEffect, memo } from "react";
 import { View, ViewStyle, SafeAreaView } from "react-native";
@@ -23,6 +24,7 @@ export interface ISearchAddress {
 }
 
 export default memo((props: ISearchAddress) => {
+  "use no memo";
   const {
     onClose,
     addressList,

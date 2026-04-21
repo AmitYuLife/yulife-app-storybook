@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- useGetData is a hook passed as a prop */
 import { View } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
 import { ReactNode, memo, useMemo, useState } from "react";
@@ -62,6 +63,7 @@ const ItemDetailsHalfModal = ({
   useGetDataArgs = [],
   useGetData = () => ({ isLoading: false, details: [], error: undefined }),
 }: IItemDetailsHalfModalProps) => {
+  "use no memo";
   const [isPreloading, setIsPreloading] = useState(true);
   const { isLoading: isDataLoading, details: dataDetails } = useGetData(...useGetDataArgs);
 

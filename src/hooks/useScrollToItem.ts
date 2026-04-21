@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { getRouteState } from "@redux/app/app.selectors";
 import { FlatList } from "react-native";
 import { useRef, useCallback, useEffect, MutableRefObject, useMemo } from "react";
@@ -12,6 +13,7 @@ type Args<T> = {
 };
 
 export function useScrollToItem<T>({ items, ref, scrollToDependencies = [] }: Args<T>) {
+  "use no memo";
   const listRef = useRef<FlatList<T>>(null);
   const currentRoute = useSelector(getRouteState);
   const nextRewardIndex = useMemo(

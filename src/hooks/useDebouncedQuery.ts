@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useLazyQuery, LazyQueryHookOptions, DocumentNode, TypedDocumentNode } from "@apollo/client";
 import { QueryResult } from "@apollo/client";
@@ -8,6 +9,7 @@ export function useDebouncedQuery<TData, TVariables>(
   timeout = 750,
   initialQuery?: TVariables
 ): [(variables?: TVariables) => void, QueryResult<TData, TVariables>] {
+  "use no memo";
   const timerId = React.useRef<ReturnType<typeof setTimeout>>(null);
   const [query, res] = useLazyQuery<TData, TVariables>(gql, options);
 

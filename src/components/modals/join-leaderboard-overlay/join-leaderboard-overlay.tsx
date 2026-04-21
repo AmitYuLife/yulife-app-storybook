@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import React, { memo, useState, useCallback, useEffect } from "react";
 import { ScrollView, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
@@ -15,6 +16,7 @@ interface IProps {
 }
 
 const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
+  "use no memo";
   const [leaderboardConsents, setLeaderboardConsents] = useState<IConsents>({});
 
   useEffect(() => {

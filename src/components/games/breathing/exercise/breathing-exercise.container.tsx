@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { Box, TextTemplate } from "@atoms";
 import { BoxOption, Button } from "@components/molecules";
 import { Navigation } from "@navigation/main";
@@ -64,6 +65,7 @@ type Props = {
 };
 
 const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
+  "use no memo";
   const { componentId } = useNavigation();
   const dispatch = useDispatch();
 

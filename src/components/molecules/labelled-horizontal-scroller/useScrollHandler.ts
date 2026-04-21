@@ -13,7 +13,7 @@ export function useScrollHandler({ items, onIndexChange, activeValue }: UseScrol
   const listRef = useRef(null as RNFlatList);
   const scrollX = useRef(new Animated.Value(0)).current;
   const [activeIndex, setActiveIndex] = useState(0);
-  let { current: willTriggerOnIndexChange } = useRef(false);
+  const willTriggerOnIndexChangeRef = useRef(false);
 
   const updateCursor = (idx: number) => {
     if (listRef.current?.scrollToIndex) {
@@ -35,17 +35,17 @@ export function useScrollHandler({ items, onIndexChange, activeValue }: UseScrol
   });
 
   const handleMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (willTriggerOnIndexChange) {
+    if (willTriggerOnIndexChangeRef.current) {
       const idx = Math.round(event.nativeEvent.contentOffset.x / CHOICE_WIDTH);
       setActiveIndex(idx);
       onIndexChange(idx);
     }
 
-    willTriggerOnIndexChange = false;
+    willTriggerOnIndexChangeRef.current = false;
   };
 
   const handleTouchStart = () => {
-    willTriggerOnIndexChange = true;
+    willTriggerOnIndexChangeRef.current = true;
   };
 
   const handleScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>): void => {
@@ -58,11 +58,11 @@ export function useScrollHandler({ items, onIndexChange, activeValue }: UseScrol
 
     const idx = Math.round(event.nativeEvent.contentOffset.x / CHOICE_WIDTH);
 
-    if (willTriggerOnIndexChange) {
+    if (willTriggerOnIndexChangeRef.current) {
       onIndexChange(idx);
     }
 
-    willTriggerOnIndexChange = false;
+    willTriggerOnIndexChangeRef.current = false;
   };
 
   return {

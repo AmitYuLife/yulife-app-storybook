@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- reanimated SharedValue mutation via context */
 import React, { useContext, useMemo } from "react";
 import { View, ViewStyle } from "react-native";
 import Animated, { useAnimatedScrollHandler } from "react-native-reanimated";
@@ -38,6 +39,7 @@ interface Props {
 const DEFAULT_EXTRA_TOP_PADDING = Style.adjust(24) + (initialWindowMetrics?.insets?.top ?? 0);
 
 export const Body = (props: Props) => {
+  "use no memo";
   const { body, headerHeight, containerStyles, contentInsetAdjustmentBehavior } = props;
 
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);

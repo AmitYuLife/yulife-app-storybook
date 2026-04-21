@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import React, { RefObject, memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { Animated, Platform, RefreshControl, View } from "react-native";
 import { GenericHeadingPad, LeaderboardFloatingRank, NavBar, TopBar, UserReferral } from "@organisms";
@@ -95,6 +96,7 @@ export const LeaderboardScreen = ({
   showReferral,
   currentUserIsOutOfBounds,
 }: IProps) => {
+  "use no memo";
   const scrollValue = useRef(new Animated.Value(0)).current;
   const flashList: RefObject<FlashListRef<ISocialGroupLeaderboardListItem>> = useRef(null);
   const { tempGameEnableAnimatedLeaderboardRays } = useUserFeatures();

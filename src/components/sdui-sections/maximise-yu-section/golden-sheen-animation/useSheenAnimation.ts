@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { useEffect } from "react";
 import {
   withTiming,
@@ -13,6 +14,7 @@ import { MAX_YU_SHEEN_X_OFFSET } from "../constants";
 const swipeLength = Style.DEVICE_WIDTH + MAX_YU_SHEEN_X_OFFSET;
 
 export function useSheenAnimation() {
+  "use no memo";
   const opacity = useSharedValue(1);
   const translateX = useSharedValue(0);
 

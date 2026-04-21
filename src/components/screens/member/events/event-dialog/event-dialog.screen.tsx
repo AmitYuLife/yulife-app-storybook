@@ -121,23 +121,24 @@ const EventDialogScreen = ({
 
   const { bottom } = useSafeAreaInsets();
 
-  const onScroll = useCallback(
-    Animated.event<NativeScrollEvent>([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
-      useNativeDriver: true,
-      listener: ({
-        nativeEvent: {
-          contentOffset: { y },
-        },
-      }) => {
-        if (showHeading && y > CONTENT_MARGIN_TOP - TITLE_HEIGHT) {
-          setHeadingVisibilty(false);
-        }
+  const onScroll = useMemo(
+    () =>
+      Animated.event<NativeScrollEvent>([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+        useNativeDriver: true,
+        listener: ({
+          nativeEvent: {
+            contentOffset: { y },
+          },
+        }) => {
+          if (showHeading && y > CONTENT_MARGIN_TOP - TITLE_HEIGHT) {
+            setHeadingVisibilty(false);
+          }
 
-        if (!showHeading && y < CONTENT_MARGIN_TOP - TITLE_HEIGHT) {
-          setHeadingVisibilty(true);
-        }
-      },
-    }),
+          if (!showHeading && y < CONTENT_MARGIN_TOP - TITLE_HEIGHT) {
+            setHeadingVisibilty(true);
+          }
+        },
+      }),
     [scrollY, showHeading]
   );
 
