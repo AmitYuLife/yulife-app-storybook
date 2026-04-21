@@ -26,8 +26,10 @@ Feature("P2P gifting", async () => {
       Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 10000));
     });
     When("I select user 福田 太郎", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_2_SMOKING, "JP"), undefined, undefined, "search"), 5000), async () => {
-      When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
-        Then("I can see and select through all 8 gift messages", then.cycleThroughGiftMessages);
+      When("I see them in the selected recipients strip", when.idVisible(ids.P2P_SELECTED_SECTION(1), 5000), async () => {
+        When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON, 5000), async () => {
+          Then("I can see and select through all 8 gift messages", then.cycleThroughGiftMessages);
+        });
       });
     });
   });

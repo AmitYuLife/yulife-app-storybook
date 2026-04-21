@@ -1,5 +1,5 @@
 import * as ids from "@ids";
-import { expect } from "detox";
+import { by, element, expect, waitFor } from "detox";
 import { screens } from "@appScreens";
 import { navigation } from "@utils";
 import { readInbox } from "@yu-life/yulife-bdd-framework";
@@ -12,6 +12,7 @@ export const {
   textVisible,
   idExist,
   wait,
+  tapID,
   completedTodayStreakCopyVisible,
   multipleIDVisible,
   multipleTextVisible,
@@ -82,6 +83,17 @@ export const assertEndOfSeasonItems =
   };
 
 export const assertWalletPopUp = async () => {
+  // Dismisses "Got it" pop-ups that can appear before the wallet reward pop up (Yumoji and/or power-up).
+  for (const title of ["Yumoji item collected!", "Power-up collected!"] as const) {
+    try {
+      await waitFor(element(by.text(title))).toBeVisible().withTimeout(1500);
+    } catch {
+      continue;
+    }
+
+    await tapID(ids.CTA_GOT_IT, 1500)();
+  }
+
   await multipleTextVisible(["Reward collected!", "Find it in your wallet."], 3000)();
 };
 
