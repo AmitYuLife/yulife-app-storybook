@@ -3,6 +3,7 @@ import { Box, TextTemplate } from "@atoms";
 import { MedalIcon } from "@atoms/icon/medal-icon";
 import { Colours, Style } from "@styles";
 import TournamentAvatarStack from "../tournament-avatar-stack/tournament-avatar-stack";
+import { addCommasToNumber } from "@utils";
 
 interface ITournamentLeaderboardCardProps {
   position: number;
@@ -37,7 +38,7 @@ const TournamentLeaderboardCard = ({ position, teamName, score, avatars }: ITour
         </TextTemplate>
         <Box mt={4}>
           <TextTemplate type="l1" color={Colours.neutral.n900}>
-            {score}
+            {addCommasToNumber(score)}
           </TextTemplate>
         </Box>
       </Box>

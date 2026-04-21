@@ -5,6 +5,7 @@ import { Pressable } from "@molecules";
 import { LeaderboardPositionIcon } from "@atoms/icon/leaderboard-position-icon";
 import TournamentAvatarStack from "../tournament-avatar-stack/tournament-avatar-stack";
 import { t } from "@locale";
+import { addCommasToNumber } from "@utils";
 
 interface ITournamentTeamRowProps {
   name: string;
@@ -42,8 +43,8 @@ const TournamentTeamRow = ({ name, score, membersCount, avatars, position, onPre
       </Box>
 
       <Box flexDirection="row" alignItems="center">
-        <TextTemplate type="b2" color={Colours.neutral.n900}>
-          {score.toLocaleString()}
+        <TextTemplate type="b2b" color={Colours.neutral.n900}>
+          {addCommasToNumber(score)}
         </TextTemplate>
       </Box>
     </Box>

@@ -10,6 +10,7 @@ import TournamentScoreCard from "../../components/tournament-score-card/tourname
 import TournamentSectionHeader from "../../components/tournament-section-header/tournament-section-header";
 import { t } from "@locale";
 import type { GetTournamentTeamLeaderboardQuery } from "@graphql/__generated";
+import { addCommasToNumber } from "@utils";
 
 type MyTeamData = NonNullable<GetTournamentTeamLeaderboardQuery["getTournamentTeamLeaderboard"]>;
 
@@ -57,7 +58,7 @@ const TournamentTeamViewScreen = ({ team, onLeftIconPress, onMemberPress }: ITou
           {team.members.map((member, i) => (
             <ListItem
               key={member.id}
-              score={member.score.toLocaleString()}
+              score={addCommasToNumber(member.score)}
               position={i + 1}
               showNewMedal={true}
               type="leaderboard"

@@ -6,6 +6,7 @@ import { Box } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { PADDING_TOP } from "@styles/top-bar.styles";
+import { t } from "@locale";
 import TournamentTeamRow from "../../components/tournament-team-row/tournament-team-row";
 import type { GetTournamentLeaderboardQuery } from "@graphql/__generated";
 
@@ -35,7 +36,7 @@ const TournamentTeamsScreen = ({ teams, onLeftIconPress, onTeamPress }: ITournam
   );
 
   return (
-    <Box bg={Colours.neutral.n50}>
+    <Box flexGrow={1} bg={Colours.neutral.n50}>
       <FlashList
         data={teams}
         renderItem={renderItem}
@@ -43,7 +44,7 @@ const TournamentTeamsScreen = ({ teams, onLeftIconPress, onTeamPress }: ITournam
         contentContainerStyle={{ paddingTop: PADDING_TOP + Style.adjust(56), paddingBottom: bottom + 80 }}
       />
       <GenericHeadingAbsolute
-        heading={null}
+        heading={t("screens.tournaments.leaderboard")}
         color={Colours.neutral.n900}
         onLeftIconPress={onLeftIconPress}
         backgroundColor={Colours.neutral.n50}

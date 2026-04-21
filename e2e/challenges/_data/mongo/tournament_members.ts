@@ -306,23 +306,6 @@ function makeMember(m: (typeof MEMBER_DATA)[number]): MemberRecords {
 
 const allMembers = MEMBER_DATA.map(makeMember);
 
-const RECORD_KEYS = [
-  "customer",
-  "auth",
-  "user",
-  "gameState",
-  "toggles",
-  "profile",
-  "employee",
-  "participation",
-  "invitation",
-] as const;
-
-export const tournamentMemberRecords: IDatabaseItem[] = allMembers.flatMap((m) =>
-  RECORD_KEYS.map((k) => m[k])
-);
-
-// Individual exports for BDD framework compatibility (re-exported via index.ts)
 export const TOURNAMENT_MEMBER_0_CUSTOMER = allMembers[0].customer;
 export const TOURNAMENT_MEMBER_0_AUTH = allMembers[0].auth;
 export const TOURNAMENT_MEMBER_0_USER = allMembers[0].user;
