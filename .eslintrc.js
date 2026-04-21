@@ -174,6 +174,19 @@ module.exports = {
         "react-compiler/react-compiler": "off",
       },
     },
+    {
+      files: ["e2e/**/*.ts"],
+      rules: {
+        "no-restricted-syntax": [
+          "warn",
+          {
+            selector: "CallExpression[callee.name='wait']",
+            message:
+              "Avoid bare wait() calls. Use waitFor(element).toBeVisible().withTimeout() or waitForAppReady() instead.",
+          },
+        ],
+      },
+    },
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {

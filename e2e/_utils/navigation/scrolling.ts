@@ -5,7 +5,7 @@ import { expect } from "detox";
 import moment from "moment";
 
 export const scrollFromText =
-  (text: string, direction: any, speed: any, percentage?: any, waitTime = 1000) =>
+  (text: string, direction: any, speed: any, percentage?: any, waitTime = 300) =>
   async () => {
     const target = element(by.text(text));
     await target.swipe(direction, speed, percentage);
@@ -13,7 +13,7 @@ export const scrollFromText =
   };
 
 export const scrollFromID =
-  (id: string, direction: any, speed: any, percentage?: any, waitTime = 1000) =>
+  (id: string, direction: any, speed: any, percentage?: any, waitTime = 300) =>
   async () => {
     const target = element(by.id(id));
     await target.swipe(direction, speed, percentage);
@@ -21,7 +21,7 @@ export const scrollFromID =
   };
 
 export const swipeFromIDAtIndex =
-  (id: string, index: number, direction: any, speed: any, percentage?: any, waitTime = 1000) =>
+  (id: string, index: number, direction: any, speed: any, percentage?: any, waitTime = 300) =>
   async () => {
     const target = element(by.id(id)).atIndex(index);
     await target.swipe(direction, speed, percentage);
@@ -29,9 +29,8 @@ export const swipeFromIDAtIndex =
   };
 
 export const swipeFromText =
-  (text: string, direction: any, speed: any, percentage?: any, waitTime = 1000) =>
+  (text: string, direction: any, speed: any, percentage?: any, waitTime = 300) =>
   async () => {
-    await wait(waitTime)();
     const target = element(by.text(text));
     await target.swipe(direction, speed, percentage);
     await wait(waitTime)();
@@ -118,7 +117,7 @@ export const scrollWithLimitedAttemptsUntilIdVisible =
         await waitFor(target).toBeVisible().withTimeout(timeout);
 
         // wait for scroll momentum to end
-        await wait(1000)();
+        await wait(300)();
         done = true;
       } catch (error) {
         attempts -= 1;
@@ -306,7 +305,7 @@ export const scrollUntilIdVisibleAtIndex =
   };
 
 export const scrollYuScreenDown =
-  (percentage = 0.4, startY = 0.8, waitTime = 2000) =>
+  (percentage = 0.4, startY = 0.8, waitTime = 500) =>
   async () => {
     const scrollView = element(by.id(ids.YUSCREEN_SCROLL_VIEW));
     await scrollView.swipe("up", "slow", percentage, 0.5, startY);

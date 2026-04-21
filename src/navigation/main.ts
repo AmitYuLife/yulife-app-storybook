@@ -8,6 +8,7 @@ import {
   OptionsModalPresentationStyle,
   // eslint-disable-next-line no-restricted-imports
   Navigation as NativeNavigation,
+  AnimationOptions,
 } from "react-native-navigation";
 import { MODALS, ROUTES } from "./constants";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
@@ -75,12 +76,23 @@ export class Navigation {
 
     // Base animations configuration
     // waitForRender can deadlock with DetoxSync's
-    const animations = {
+    const animations: AnimationOptions = {
       setRoot: {
         waitForRender: !DETOX_ENABLED,
+        enabled: !DETOX_ENABLED,
+      },
+      setStackRoot: {
+        enabled: !DETOX_ENABLED,
+      },
+      showModal: {
+        enabled: !DETOX_ENABLED,
+      },
+      dismissModal: {
+        enabled: !DETOX_ENABLED,
       },
       push: {
         waitForRender: !DETOX_ENABLED,
+        enabled: !DETOX_ENABLED,
         ...(invertAnimation && {
           content: {
             translationX: {
@@ -91,8 +103,9 @@ export class Navigation {
           },
         }),
       },
-      ...(invertAnimation && {
-        pop: {
+      pop: {
+        enabled: !DETOX_ENABLED,
+        ...(invertAnimation && {
           content: {
             translationX: {
               from: 0,
@@ -100,8 +113,8 @@ export class Navigation {
               duration,
             },
           },
-        },
-      }),
+        }),
+      },
     };
 
     NativeNavigation.setDefaultOptions({

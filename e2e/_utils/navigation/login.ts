@@ -14,7 +14,7 @@ import {
   navigateViaText,
   tapID,
   textVisible,
-  wait,
+  waitForAppReady,
 } from "./common";
 import { authoriseFitkit, loginWithCredentials } from "@socket";
 import { tapText } from "@navigation";
@@ -45,13 +45,8 @@ export const loginAsUser =
 
     await loginWithCredentials(customer.data.email, auth.data.password, region)();
 
-    // Wait for login to process before authorising fitkit
-    await wait(5_000)();
-
     if (fitkitAuth) {
       await authoriseFitkit(fitkitAuth)();
-      // Wait for fitkit auth Redux state changes to settle
-      await wait(5_000)();
     }
 
     // wait for daily steps screen to load
@@ -69,9 +64,9 @@ export const restartAndLoginToTab =
   ) =>
   async () => {
     await device.terminateApp();
-    await new Promise((res) => setTimeout(res, 3000));
+    await new Promise((res) => setTimeout(res, 500));
     await launchApp({ delete: true });
-    await new Promise((res) => setTimeout(res, 3000));
+    await waitForAppReady();
     await loginAsUser(customer, auth, fitkitAuth)();
     await navigateViaID(NAV_BAR(tab), 3000)();
   };
@@ -160,19 +155,9 @@ export const fullRestartAndLogin =
     region: "UK" | "US" | "JP" | "SA" = "UK"
   ) =>
   async () => {
-    await wait(4_000)();
-
     await device.terminateApp();
-
-    await wait(2000)();
-
     await device.clearKeychain();
-
-    await wait(2_000)();
-
     await launchApp({ delete: true, newInstance: true });
-
-    await wait(2_000)();
-
+    await waitForAppReady();
     await loginAsUser(customer, auth, fitkitAuth, region)();
   };

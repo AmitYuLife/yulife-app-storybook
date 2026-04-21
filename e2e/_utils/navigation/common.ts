@@ -1,6 +1,7 @@
 import {
   BUTTON_CLOSE_HEADER,
   COUNTDOWN_UNIT,
+  DAILY_STEPS_SCREEN,
   DAILYSTEP_SCREEN_COIN,
   LETS_GO_BUTTON_DUEL_ONBOARDING,
   LOGIN_HERO_LOGIN_BUTTON,
@@ -24,6 +25,39 @@ import { dataManager } from "@yu-life/yulife-bdd-framework";
  */
 const DEFAULT_LOCALE = process.env.TARGET_LOCALE || "en-GB";
 
+const existsNow = async (id: string) => {
+  try {
+    await expect(element(by.id(id))).toExist();
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+export const waitForAppReady = async (timeout = 10_000) => {
+  // Poll sequentially for either the authenticated home screen or the login screen.
+  // Running two waitFor interactions in parallel (Promise.race) triggers Detox's
+  // "multiple interactions taking place simultaneously" rejection.
+  const deadline = Date.now() + timeout;
+  while (Date.now() < deadline) {
+    // app's ready if the yucoin tab is visible
+    if (await existsNow(NAV_BAR("yucoin"))) {
+      return;
+    }
+
+    // app's also ready if the login screen is visible
+    if (await existsNow(LOGIN_HERO_LOGIN_BUTTON)) {
+      return;
+    }
+
+    await new Promise((res) => setTimeout(res, 250));
+  }
+
+  throw new Error(
+    `waitForAppReady timed out after ${timeout}ms — neither authenticated nor login screen appeared`
+  );
+};
+
 export const restart = async (locale = DEFAULT_LOCALE, dm = dataManager) => {
   await dm.reseed();
   await start(locale);
@@ -37,7 +71,6 @@ export const restartWithoutWBHub = async (dm = dataManager) => {
 
 export const terminateApp = async () => {
   await device.terminateApp();
-  await new Promise((res) => setTimeout(res, 2000));
 };
 
 export const minimiseApp = async () => {
@@ -47,7 +80,7 @@ export const minimiseApp = async () => {
   await device.sendToHome();
 
   // short buffer time to enter background fully
-  await new Promise((res) => setTimeout(res, 5000));
+  await new Promise((res) => setTimeout(res, 500));
 
   // re-enable sync to avoid timeout on next step
   await device.enableSynchronization();
@@ -55,9 +88,9 @@ export const minimiseApp = async () => {
 
 export const restartWithoutDelete = async () => {
   await device.terminateApp();
-  await new Promise((res) => setTimeout(res, 2000));
+  await new Promise((res) => setTimeout(res, 500));
   await launchApp({ delete: false });
-  await new Promise((res) => setTimeout(res, 3000));
+  await waitForAppReady();
 };
 
 /** TOOD: rename this to restartDevice */
@@ -72,7 +105,6 @@ export const start = async (locale = DEFAULT_LOCALE) => {
     },
     delete: true,
   });
-  await new Promise((res) => setTimeout(res, 1000));
 };
 
 const MAX_LAUNCH_RETRIES = 2;
@@ -123,7 +155,7 @@ export const launchApp = async (config?: DeviceLaunchAppConfig) => {
     }
   } else {
     await device.launchApp(launchConfig);
-    await new Promise((res) => setTimeout(res, 15_000));
+    await waitForAppReady();
     await device.enableSynchronization();
   }
 };
@@ -137,17 +169,17 @@ export const startWithoutLaunch =
 export const reloadAppToTab =
   (tab: "yucoin" | "quests" | "leaderboard" | "rewards") => async () => {
     await device.reloadReactNative();
-    // Allow React Native to fully reload
-    await new Promise((res) => setTimeout(res, 3000));
+    await waitForAppReady(10_000);
     await dismissNewLooksModalIfVisible();
     await navigateViaID(NAV_BAR(tab), 5000)();
   };
 
 export const reloadOnly = async () => {
   await device.reloadReactNative();
-  await new Promise((res) => setTimeout(res, 4000));
+  await waitForAppReady(10_000);
 };
 
+/** @deprecated Use `waitFor(element).toBeVisible().withTimeout()` or `waitForAppReady()` instead */
 export const wait =
   (timeout = 5000) =>
   async () =>
@@ -168,8 +200,10 @@ export const navigateViaLabel = async (label: string) => {
 };
 
 /** @deprecated */
-export const navigateViaText = async (text: string, timeout = 0) => {
-  await wait(timeout)();
+export const navigateViaText = async (text: string, timeout = 3000) => {
+  await waitFor(element(by.text(text)))
+    .toBeVisible()
+    .withTimeout(timeout);
   await element(by.text(text)).tap();
 };
 
@@ -395,9 +429,10 @@ export const multipleTextVisible =
 export const multipleTextNotVisible =
   (textArr: string[], waitTime = 3000) =>
   async () => {
-    await wait(waitTime)();
     for (const i of textArr) {
-      await expect(element(by.text(i))).not.toBeVisible();
+      await waitFor(element(by.text(i)))
+        .not.toBeVisible()
+        .withTimeout(waitTime);
     }
   };
 
@@ -442,12 +477,14 @@ export const replaceTextByID =
 export const tryCatchTextVisible =
   (textArr, waitTime = 3000) =>
   async () => {
-    await wait(waitTime)();
-
     try {
-      expect(element(by.text(textArr[0]))).toBeVisible();
+      await waitFor(element(by.text(textArr[0])))
+        .toBeVisible()
+        .withTimeout(waitTime);
     } catch (e) {
-      expect(element(by.text(textArr[1]))).toBeVisible();
+      await waitFor(element(by.text(textArr[1])))
+        .toBeVisible()
+        .withTimeout(waitTime);
     }
   };
 
@@ -467,23 +504,18 @@ export const completeOnboardingIntro =
 export const completedTodayStreakCopyVisible =
   (dayNum: number, waitTime = 3000) =>
   async () => {
-    await wait(waitTime)();
-    switch (dayNum) {
-      case 1:
-        await expect(element(by.text(t("First day done!")))).toBeVisible();
-        break;
-      case 2:
-        await expect(element(by.text(t("Two days down!")))).toBeVisible();
-        break;
-      case 3:
-        await expect(element(by.text(t("You’re over the hump!")))).toBeVisible();
-        break;
-      case 4:
-        await expect(element(by.text(t("Home stretch!")))).toBeVisible();
-        break;
-      case 5:
-        await expect(element(by.text(t("Smashed that streak!")))).toBeVisible();
-        break;
+    const texts = {
+      1: t("First day done!"),
+      2: t("Two days down!"),
+      3: t("You’re over the hump!"),
+      4: t("Home stretch!"),
+      5: t("Smashed that streak!"),
+    };
+    const text = texts[dayNum];
+    if (text) {
+      await waitFor(element(by.text(text)))
+        .toBeVisible()
+        .withTimeout(waitTime);
     }
   };
 
@@ -518,7 +550,7 @@ export const clearFieldByID =
   };
 
 export const slowType =
-  (element: any, string: string, waitTime = 1000) =>
+  (element: any, string: string, waitTime = 200) =>
   async () => {
     const stringArr = string.split("");
     await element.tap();
@@ -534,13 +566,11 @@ export const capitalizeFirstLetter = (string: string) => {
 
 export const restartWithoutDeleteTwoTimes = async () => {
   await device.terminateApp();
-  await new Promise((res) => setTimeout(res, 2000));
   await launchApp({ delete: false });
-  await wait(3000)();
+  await waitForAppReady();
   await device.terminateApp();
-  await new Promise((res) => setTimeout(res, 2000));
   await launchApp({ delete: false });
-  await wait(4000)();
+  await waitForAppReady();
   await dismissNewLooksModalIfVisible();
 };
 
@@ -579,9 +609,10 @@ export const tapTextAtIndex =
 
 export const minimiseAndReopenApp = async () => {
   await device.sendToHome();
-  await new Promise((res) => setTimeout(res, 3000));
+  // short buffer time to enter background fully
+  await new Promise((res) => setTimeout(res, 500));
   await launchApp({ newInstance: false });
-  await new Promise((res) => setTimeout(res, 3000));
+  await waitForAppReady();
 };
 
 /**
@@ -591,9 +622,8 @@ export const minimiseAndReopenApp = async () => {
 export const relaunchAppWithoutSync = async () => {
   await device.disableSynchronization();
   await device.sendToHome();
-  await new Promise((res) => setTimeout(res, 2000));
   await launchApp({ newInstance: false });
-  await new Promise((res) => setTimeout(res, 2000));
+  await waitForAppReady();
   await device.enableSynchronization();
 };
 
@@ -708,29 +738,25 @@ export const objCopyVisible = (obj: Object, scrollView?: string) => async () => 
 export const localisedTextVisible =
   (dictionary: object, locale: string = process.env.TARGET_LOCALE, waitTime = 3000) =>
   async () => {
-    await wait(waitTime)();
     if (!dictionary[locale]) {
       console.log("Locale not found in dictionary. Ignoring for now");
       return;
     }
 
     const target = element(by.text(dictionary[locale]));
-    await wait(waitTime)();
-    await expect(target).toBeVisible();
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
   };
 
 export const tapLocalisedText =
   (dictionary: object, locale: string = process.env.TARGET_LOCALE, waitTime = 3000) =>
   async () => {
-    await wait(waitTime)();
-
     if (!dictionary[locale]) {
       console.log("Locale not found in dictionary. Ignoring for now");
       return;
     }
 
     const target = element(by.text(dictionary[locale]));
-    await wait(waitTime)();
+    await waitFor(target).toBeVisible().withTimeout(waitTime);
     await target.tap();
   };
 
@@ -751,10 +777,6 @@ export const switchLanguage =
     // Disable sync before language switch to prevent "multiple interactions" error
     await device.disableSynchronization();
     await target.longPress();
-
-    // Wait for app to reload after language change
-    await new Promise((res) => setTimeout(res, 30_000));
+    await waitForAppReady();
     await device.enableSynchronization();
-
-    await new Promise((res) => setTimeout(res, 10_000));
   };
