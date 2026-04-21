@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { Colours } from "@styles";
 import { Box, TextTemplate } from "@atoms";
+import { addCommasToNumber } from "@utils";
 
 interface ITournamentScoreCardProps {
   label: string;
@@ -15,7 +16,7 @@ const TournamentScoreCard = ({ label, score }: ITournamentScoreCardProps) => (
       </TextTemplate>
       <Box mt={4}>
         <TextTemplate type="h2" color={Colours.neutral.n900}>
-          {score.toLocaleString()}
+          {addCommasToNumber(score)}
         </TextTemplate>
       </Box>
     </Box>
