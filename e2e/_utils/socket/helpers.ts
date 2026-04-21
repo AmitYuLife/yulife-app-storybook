@@ -1,7 +1,7 @@
 import socketServer from "./server";
 import { EVENT, ReduxEvent, SampleQueriesAdd, AggregateQueriesAdd } from "./events";
 import moment from "moment";
-import { launchApp, wait } from "@navigation";
+import { launchApp, wait, waitForAppReady } from "@navigation";
 
 // TODO: Purge this, detox doesn't start when it's imported directly from the library
 export enum HealthDataType {
@@ -376,14 +376,14 @@ export const getDuration = (seconds: number) => {
 
 export const closeAndReopenApp = async () => {
   await device.sendToHome();
-  await wait(2000)();
+  await wait(1000)();
   await launchApp({ newInstance: false });
-  await wait(2000)();
+  await waitForAppReady();
 };
 
 export const quitAndReopenApp = async () => {
   await device.terminateApp();
-  await wait(1000)();
+  await wait(500)();
   await launchApp({ newInstance: false });
-  await wait(2000)();
+  await waitForAppReady();
 };

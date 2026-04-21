@@ -111,15 +111,15 @@ export const tapLetsGo = async (): Promise<void> => {
 
 export const navigateAppOnboardingFlow = async () => {
   await clickNewAccountCard();
-  await wait(5000)();
+  await wait(3000)();
   await clickWebFlowSubmitButton();
-  await wait(5000)();
+  await wait(3000)();
   await clickWebFlowSubmitButton();
-  await wait(5000)();
+  await wait(3000)();
   await clickThroughOnboardingConsentPage();
-  await wait(5000)();
+  await wait(3000)();
   await clickThroughMarkettingPreferences();
-  await wait(5000)();
+  await wait(3000)();
 };
 
 const clickNewAccountCard = async () => {
@@ -136,12 +136,12 @@ const clickWebFlowSubmitButton = async () => {
 const clickThroughOnboardingConsentPage = async () => {
   const myWebView = web(by.id(ids.WEBVIEW));
   await myWebView.element(by.web.id("checkbox-privacy-notice-agreement")).tap();
-  await wait(2000)();
+  await wait(1500)();
   await element(by.id(ids.WEBVIEW)).swipe("up", "fast", 0.3);
-  await wait(3000)();
+  await wait(2000)();
   await myWebView.element(by.web.id("checkbox-end-user-license-agreement-eula")).tap();
 
-  await wait(2000)();
+  await wait(1500)();
 
   const continueButton = myWebView.element(by.web.cssSelector('button[role="primary"]'));
 
@@ -151,7 +151,7 @@ const clickThroughOnboardingConsentPage = async () => {
 const clickThroughMarkettingPreferences = async () => {
   const myWebView = web(by.id(ids.WEBVIEW));
   await element(by.id(ids.WEBVIEW)).swipe("down", "fast");
-  await wait(4000)();
+  await wait(2000)();
   const continueButton = myWebView.element(by.web.cssSelector('button[role="primary"]'));
 
   await continueButton.tap();
