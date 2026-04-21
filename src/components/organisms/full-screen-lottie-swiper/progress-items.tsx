@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- Animated.Value.setValue and ref mutation are intentional */
 import React, { useCallback, useEffect } from "react";
 import { Animated, Easing, View, ViewStyle } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
@@ -47,6 +48,7 @@ export const ProgressItems = ({
   progressBarForegroundColor?: string;
   progressBarBackgroundColor?: string;
 }) => {
+  "use no memo";
   const reanimateInterpolatedValue = useCallback(() => {
     interpolatedValue.setValue(-width);
     animationRef.current = Animated.timing(interpolatedValue, {

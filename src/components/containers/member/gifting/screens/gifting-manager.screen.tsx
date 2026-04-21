@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { memo, RefObject, useContext, useMemo, useState } from "react";
 import { ScrollView } from "react-native";
 import { Box, Fade, TextTemplate, YuCoinMiniSvg } from "@atoms";
@@ -96,6 +97,7 @@ const GiftingManagerScreen = ({
   goToSuccess,
   page,
 }: Props) => {
+  "use no memo";
   const [showButton, setShowButton] = useState(true);
   const { sendsRemainingToday, targetUsers } = useContext(GiftingManagerContext);
   const showIntro = useSelector(giftingShowIntro);

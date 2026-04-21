@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
@@ -42,6 +43,7 @@ export const Game2048 = ({
   gameIntroModal,
   gameOptions: gameOptionsParams,
 }: IGame2048Props) => {
+  "use no memo";
   const dispatch = useDispatch();
   const gameScreenRef = useRef<GameEarlyExitHandle>(null);
 

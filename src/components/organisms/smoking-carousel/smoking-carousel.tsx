@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { FC, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View } from "react-native";
 import { HealthSmokingStreakCarouselItem } from "@redux/health-smoking/health-smoking.types";
@@ -17,6 +18,7 @@ interface Props {
 
 export const SmokingCarousel: FC<Props> = memo(
   ({ streak, animationOffset = 0, scrollFrom, scrollTo, showClaimButton = true }) => {
+    "use no memo";
     const rewardListItems = useMemo(
       () =>
         streak.map((item, idx) => ({

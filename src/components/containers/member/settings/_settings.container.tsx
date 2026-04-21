@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import moment from "moment";
 import React, { useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
@@ -27,6 +28,7 @@ interface IOwnProps {
 const graphqlFetchPolicy = { fetchPolicy: "cache-and-network" as "cache-and-network" };
 
 const SettingsContainer = ({ componentId }: IOwnProps) => {
+  "use no memo";
   const dispatch = useDispatch();
 
   const connections = useSelector(getUserConnections);

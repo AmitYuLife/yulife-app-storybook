@@ -104,28 +104,21 @@ const SmokingEditStateModal = ({
     handleDismiss();
   }, [editType, defaultOptions, customOptions, updateSmokingState, handleDismiss]);
 
-  const handleDefaultCheckBoxPress = useCallback(
-    (value: string) => {
-      const index = defaultOptions.findIndex((option) => option.value === value);
-      defaultOptions[index].checked = !defaultOptions[index].checked;
-      setDefaultOptions([...defaultOptions]);
-    },
-    [defaultOptions]
-  );
+  const handleDefaultCheckBoxPress = useCallback((value: string) => {
+    setDefaultOptions((prev) =>
+      prev.map((option) => (option.value === value ? { ...option, checked: !option.checked } : option))
+    );
+  }, []);
 
-  const handleCustomValueChange = useCallback(
-    (index: number, value: string) => {
-      customOptions[index].value = value;
-      customOptions[index].label = value;
-      setCustomOptions([...customOptions]);
-    },
-    [customOptions]
-  );
+  const handleCustomValueChange = useCallback((index: number, value: string) => {
+    setCustomOptions((prev) => prev.map((option, i) => (i === index ? { ...option, value, label: value } : option)));
+  }, []);
 
   const handleCustomCheckBoxPress = useCallback(
     (index: number) => {
-      customOptions[index].checked = !customOptions[index].checked;
-      setCustomOptions([...customOptions]);
+      setCustomOptions((prev) =>
+        prev.map((option, i) => (i === index ? { ...option, checked: !option.checked } : option))
+      );
     },
     [customOptions]
   );

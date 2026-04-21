@@ -3,6 +3,12 @@ module.exports = api => {
   const isE2E = process.env.E2E_MODE === 'true';
 
   const plugins = [
+    /**  SDUI components receive GraphQL fragments with many nullable fields and have
+     * unguarded property accesses in handlers (e.g. props.onPress.type). 
+     * The compiler evaluates these eagerly during memoization, causing runtime crashes */
+    ['babel-plugin-react-compiler', {
+      sources: (filename) => !filename.includes('src/components/sdui/'),
+    }],
     ...(isE2E ? ['./babel-plugin-testid-collapsable.js'] : []),
     [
       'module-resolver',

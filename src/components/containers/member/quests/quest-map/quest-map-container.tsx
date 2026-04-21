@@ -58,7 +58,7 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
 
   const isScreenReaderEnabled = useScreenReaderChange();
 
-  const QUEST_MAP_CONFIG = useMemo(getQuestMapConfig, []);
+  const QUEST_MAP_CONFIG = getQuestMapConfig();
   const unlockableRewards = useMemo(
     () => new Map((data?.unlockableTeasers?.targets || []).map((target) => [target.id, target])),
     [data?.unlockableTeasers]

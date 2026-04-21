@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import React, { memo, useEffect, useRef } from "react";
 import { Animated, ViewStyle, NativeScrollEvent, NativeSyntheticEvent, View, FlatList } from "react-native";
 import { ITEM_HEIGHT, WRAPPER_HEIGHT } from "../scroll-picker.styles";
@@ -18,6 +19,7 @@ interface Props {
   defaultIndex: number;
 }
 export const Picker = memo(({ id, items = [], onIndexChange, defaultIndex = 0 }: Props) => {
+  "use no memo";
   const listRef = useRef<FlatList>(null);
   const scrollY = useRef(new Animated.Value(0));
   const scrollToDefaultIndexDelay = useRef(null);

@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { memo, useEffect } from "react";
 import {
   useSharedValue,
@@ -11,6 +12,7 @@ import { Box } from "@atoms";
 import { INITIAL_DELAY, PEAK_DELAY, RAMP_TIMING } from "./animation-constants";
 
 export const BorderOpacityAnimation = memo(() => {
+  "use no memo";
   const opacity = useSharedValue(0);
   const scaleX = useSharedValue(1);
   const scaleY = useSharedValue(1);

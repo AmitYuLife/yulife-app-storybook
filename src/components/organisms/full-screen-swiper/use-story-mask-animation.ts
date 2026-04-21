@@ -23,7 +23,7 @@ const useStoryMaskAnimation = ({
 }: Params) => {
   const maskWidth = useSharedValue(0);
   const paused = useSharedValue(false);
-  const moveForward = useCallback(updateActiveIndex(1), [updateActiveIndex]);
+  const moveForward = useCallback(() => updateActiveIndex(1)(), [updateActiveIndex]);
 
   const getItemStartX = useCallback(
     (index: number, isEndTarget: boolean = false) => {

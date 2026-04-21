@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { SESSION_EXPIRED_ERROR, TOKEN_EXPIRATION } from "@services/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -31,6 +32,7 @@ const LoginContainer: React.FC<Props> = ({
   hasSessionExpiredError = false,
   region,
 }) => {
+  "use no memo";
   const dispatch = useDispatch();
   const { authorised: fitkitAuthorised, loading: fitkitLoading } = useFitKit();
   const [isUsingOtp, setIsUsingOtp] = useState(otp && otp.length > 10);

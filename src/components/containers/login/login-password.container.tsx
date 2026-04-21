@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import LoginPasswordScreen from "@components/screens/login/login-password/login-password.screen";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
 import { useBackHandler, useMutatationAllRegions } from "@hooks";
@@ -23,6 +24,7 @@ interface Props {
 }
 
 const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
+  "use no memo";
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { loading: fitkitLoading } = useFitKit();

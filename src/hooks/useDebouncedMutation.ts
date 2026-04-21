@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler -- has other React ESLint rules disabled */
 import React, { useCallback, useEffect, useMemo } from "react";
 import { MutationHookOptions, DocumentNode, TypedDocumentNode, useMutation, MutationResult } from "@apollo/client";
 
@@ -6,6 +7,7 @@ export function useDebouncedMutation<TData, TVariables>(
   options?: MutationHookOptions<TData, TVariables>,
   { timeout = 750, beforeMutateHook }: { timeout?: number; beforeMutateHook?: () => void } = {}
 ): [(variables?: TVariables) => void, MutationResult<TData>] {
+  "use no memo";
   const timerId = React.useRef<ReturnType<typeof setTimeout>>(null);
   const [mutate, res] = useMutation<TData, TVariables>(gql, options);
 

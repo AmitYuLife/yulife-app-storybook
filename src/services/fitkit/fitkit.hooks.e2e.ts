@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler */
 import mock from "@services/socket/socketClient";
 import { useCallback, useEffect, useState } from "react";
 import { FitKitState } from "./fitkit.types";
@@ -5,6 +6,7 @@ import { FitKitState } from "./fitkit.types";
 let initialState = { loading: false, available: true, authorised: false } as FitKitState;
 
 export function useFitKit() {
+  "use no memo";
   const [globalState, setGlobalState] = useState(initialState);
 
   const authorise = useCallback(

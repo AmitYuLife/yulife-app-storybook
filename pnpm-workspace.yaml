@@ -34,3 +34,5 @@ peerDependencyRules:
     "@bugsnag/plugin-expo-device>expo-secure-store": "15"
     # this will be purged in favour of yu-health
     "@yu-life/react-native-fitkit>react-native": "0.79"
+    # babel-preset-expo expects the beta, but we use @react-native/babel-preset and install stable 1.0.0 directly
+    "babel-preset-expo>babel-plugin-react-compiler": "1"
