@@ -14,7 +14,10 @@ import com.yuhealth.types.HealthProviderCapabilities
 
 object HealthConnectCapability {
   @RequiresApi(34)
-  fun translateCapabilityToPermission(capability: HealthProviderCapabilities?): ArrayList<String> {
+  fun translateCapabilityToPermission(
+    capability: HealthProviderCapabilities?,
+    supportsMindfulness: Boolean = false
+  ): ArrayList<String> {
     val permissions = ArrayList<String>()
     when (capability) {
       HealthProviderCapabilities.STEP_COUNT -> {
@@ -50,7 +53,9 @@ object HealthConnectCapability {
       }
 
       HealthProviderCapabilities.MINDFUL_MINUTES -> {
-        permissions.add(HealthPermission.getReadPermission(MindfulnessSessionRecord::class))
+        if (supportsMindfulness) {
+          permissions.add(HealthPermission.getReadPermission(MindfulnessSessionRecord::class))
+        }
         permissions.add(HealthPermission.getReadPermission(ExerciseSessionRecord::class))
       }
 
@@ -63,10 +68,13 @@ object HealthConnectCapability {
   }
 
   @RequiresApi(34)
-  fun getPermissionsFromCapabilities(capabilities: List<HealthProviderCapabilities>): ArrayList<String> {
+  fun getPermissionsFromCapabilities(
+    capabilities: List<HealthProviderCapabilities>,
+    supportsMindfulness: Boolean = false
+  ): ArrayList<String> {
     val permissions = HashSet<String>()
     capabilities.forEach { capability ->
-      permissions.addAll(translateCapabilityToPermission(capability))
+      permissions.addAll(translateCapabilityToPermission(capability, supportsMindfulness))
     }
 
     return ArrayList(permissions)
