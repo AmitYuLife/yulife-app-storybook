@@ -127,6 +127,8 @@
   },
   "exclude": [
     "e2e",
+    "vibes",
+    "web",
     "node_modules",
     "babel.config.js",
     "metro.config.js"
