@@ -70,26 +70,30 @@ const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionS
         backgroundColor="transparent"
         textStyle={challengeSuccessScreen.textStyle}
       />
-      {DETOX_ENABLED ? null : <ChestAnimatedRaysBackground top={top + 20} gradientStops={gradientStops} />}
+      {DETOX_ENABLED ? null : (
+        <ChestAnimatedRaysBackground raysStyles={{ marginTop: top + 20 }} gradientStops={gradientStops} />
+      )}
       {level !== undefined && rating !== undefined ? (
         <Box
           position="absolute"
-          top={top + Style.adjust(20)}
+          top={top + Style.adjust(60)}
           width="100%"
           alignItems="center"
           disableAutoAdjust={true}
           collapsable={false}
         >
-          <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
-          <Box>
-            <Box>
-              <LevelLine colour={challengeSuccessScreen.lineColour} />
-            </Box>
-            <Box mt={-10}>
-              <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
-                {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
-              </TextTemplate>
-            </Box>
+          <Stars
+            isLeftHighlighted={rating > 0}
+            isMidHighlighted={rating > 1}
+            isRightHighlighted={rating > 2}
+            scale={0.6}
+          />
+          <Box flexDirection="row" alignItems="center" justifyContent="center" gap={8}>
+            <LevelLine colour={challengeSuccessScreen.lineColour} half="left" />
+            <TextTemplate type="b2" color={challengeSuccessScreen.textStyle.color} textAlign="center">
+              {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
+            </TextTemplate>
+            <LevelLine colour={challengeSuccessScreen.lineColour} half="right" />
           </Box>
         </Box>
       ) : null}

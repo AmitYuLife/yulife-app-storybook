@@ -5,12 +5,13 @@ import Svg, { Polygon } from "react-native-svg";
 
 interface IProps {
   isHighlighted: boolean;
+  scale?: number;
 }
 
-const StarMid = ({ isHighlighted }: IProps) => (
+const StarMid = ({ isHighlighted, scale = 1 }: IProps) => (
   <Svg
-    width={String(Style.SCALE_UP_AND_DOWN(87 * 0.5))}
-    height={String(Style.SCALE_UP_AND_DOWN(84 * 0.5))}
+    width={String(Style.SCALE_UP_AND_DOWN(87 * 0.5 * scale))}
+    height={String(Style.SCALE_UP_AND_DOWN(84 * 0.5 * scale))}
     viewBox="0 0 87 84"
   >
     <Polygon
