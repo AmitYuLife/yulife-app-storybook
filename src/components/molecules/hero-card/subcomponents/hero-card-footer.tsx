@@ -10,14 +10,24 @@ const HeroCardFooter = ({ left, right, fontColor }: HeroCardFooterProps) => {
     <View style={styles.footerWrapper}>
       {!left.icon && !left.text ? null : (
         <View style={styles.flexRow}>
-          {!left.icon ? null : <RawImage source={{ uri: left.icon }} width={Style.adjust(16)} tintColor={fontColor} />}
+          {!left.icon ? null : (
+            <RawImage
+              source={{ uri: left.icon }}
+              style={{ width: Style.adjust(16), aspectRatio: 1, tintColor: fontColor }}
+              contentFit="contain"
+            />
+          )}
           {!left.text ? null : <Markdown markdownStyles={getMarkdownStyles(fontColor)} text={left.text} />}
         </View>
       )}
       {!right.icon && !right.text ? null : (
         <View style={styles.flexRow}>
           {!right.icon ? null : (
-            <RawImage source={{ uri: right.icon }} width={Style.adjust(16)} tintColor={fontColor} />
+            <RawImage
+              source={{ uri: right.icon }}
+              style={{ width: Style.adjust(16), aspectRatio: 1, tintColor: fontColor }}
+              contentFit="contain"
+            />
           )}
           {!right.text ? null : <Markdown markdownStyles={getMarkdownStyles(fontColor)} text={right.text} />}
         </View>

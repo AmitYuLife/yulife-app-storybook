@@ -24,7 +24,13 @@ const Subheading = ({
 }) => {
   return (
     <Box flexDirection="row" alignItems="center" gap={4} style={{ width }}>
-      {!icon ? null : <RawImage source={{ uri: icon }} width={Style.adjust(16)} tintColor={fontColor} />}
+      {!icon ? null : (
+        <RawImage
+          source={{ uri: icon }}
+          style={{ width: Style.adjust(16), aspectRatio: 1, tintColor: fontColor }}
+          contentFit="contain"
+        />
+      )}
       <Markdown
         text={text}
         markdownStyles={getMarkdownStyles(fontColor, boldTextColor, fontWeight)}
