@@ -66,7 +66,6 @@ export const restartAndLoginToTab =
     await device.terminateApp();
     await new Promise((res) => setTimeout(res, 500));
     await launchApp({ delete: true });
-    await waitForAppReady();
     await loginAsUser(customer, auth, fitkitAuth)();
     await navigateViaID(NAV_BAR(tab), 3000)();
   };
@@ -158,6 +157,5 @@ export const fullRestartAndLogin =
     await device.terminateApp();
     await device.clearKeychain();
     await launchApp({ delete: true, newInstance: true });
-    await waitForAppReady();
     await loginAsUser(customer, auth, fitkitAuth, region)();
   };

@@ -194,7 +194,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   }, [componentId, startGame, data]);
 
   const onLeaderboardPress = useCallback(() => {
-    if (data.getSudokuBoard.stats?.leaderboardId) {
+    if (data?.getSudokuBoard?.stats?.leaderboardId) {
       dispatch(logMixpanelEventActionCreator("button_pressed", { button_id: "sudoku_leaderboard" }));
       openLeaderboard();
 

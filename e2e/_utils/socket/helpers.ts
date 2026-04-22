@@ -374,16 +374,13 @@ export const getDuration = (seconds: number) => {
   return moment.utc(seconds * 1000).format(formatString);
 };
 
+// TODO: rename to minimiseAndReopenApp
 export const closeAndReopenApp = async () => {
   await device.sendToHome();
-  await wait(1000)();
   await launchApp({ newInstance: false });
-  await waitForAppReady();
 };
 
 export const quitAndReopenApp = async () => {
   await device.terminateApp();
-  await wait(500)();
   await launchApp({ newInstance: false });
-  await waitForAppReady();
 };
