@@ -90,7 +90,6 @@ export const restartWithoutDelete = async () => {
   await device.terminateApp();
   await new Promise((res) => setTimeout(res, 500));
   await launchApp({ delete: false });
-  await waitForAppReady();
 };
 
 /** TOOD: rename this to restartDevice */
@@ -155,7 +154,12 @@ export const launchApp = async (config?: DeviceLaunchAppConfig) => {
     }
   } else {
     await device.launchApp(launchConfig);
-    await waitForAppReady();
+    
+    // by default newInstance should be true or undefined, only avoid waiting for app ready if we're reusing the same instance
+    if (config?.newInstance !== false) {
+      await waitForAppReady();
+    }
+
     await device.enableSynchronization();
   }
 };
@@ -612,7 +616,6 @@ export const minimiseAndReopenApp = async () => {
   // short buffer time to enter background fully
   await new Promise((res) => setTimeout(res, 500));
   await launchApp({ newInstance: false });
-  await waitForAppReady();
 };
 
 /**
@@ -623,7 +626,6 @@ export const relaunchAppWithoutSync = async () => {
   await device.disableSynchronization();
   await device.sendToHome();
   await launchApp({ newInstance: false });
-  await waitForAppReady();
   await device.enableSynchronization();
 };
 
