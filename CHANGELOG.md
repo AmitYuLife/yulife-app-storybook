@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.7.0] - 2026-04-22
+
+### Bugfixes
+
+- Bugfix GS-2699: Fix locale switch navbar timeout
+- Bugfix GS-2649: Request mindfull minutes permission only when it's supported
+- Bugfix GS-2696: Fix invalid hook call in smoking tips
+- Bugfix GS-2217: Unified success screen snags
+- Bugfix GS-2685: Refetch battle pass after claim to fix end of season flow
+- Bugfix GS-2631: Add gracePeriodEnd to GoalDetails query
+- Bugfix GS-2671: Fix level position
+
+### Tasks
+
+- Task GS-2687: Web support & vibe coding workflow
+- Task GS-2669: Disable react compiler in uat and prod
+- Task GS-2648: More Tournament UI improvements
+- Task GS-2669: Enabling react compiler
+- Task GS-2636: Fire team_event_visited for TvT goals
+- Task GS-2648: Tournament details, leaderboard, and team screens
+- Task GS-2664: contextual labels for pathway wellbeing items
+- Task GS-2674: Add logs to video player completion handler
+- Task GS-2648: Tournament module components
+- Task GS-2607: Add tournament GraphQL queries and generated types
+- Task GS-2443: Check initial screen reader state on mount
+- Task GS-2649: Count yoga as meditation
+- (grafted) Merge branch 'task/CTE-697_logout-clear-token-resilient' into 'develop'
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Hotfix GS-2512: Fix blurry event icons in hero cards
+- Refactor CTE-700: app ready waits
+- Detox GS-2691: Impact Pass Reward Pop-ups
+- Detox CTE-700: to the moon
+- Detox GS-2675: Follow Email Link
+- Detox GS-2670: Duels Confirmation Prompt
+- Fix GS-2628: Samsung infinite loading
+- Fix GS-2512: Use RawImage for hero card icons to fix blurry rendering
+- Refactor CTE-706: purge getCurrentUser query
+
 ## [5.6.0] - 2026-04-15
 
 ### Bugfixes
