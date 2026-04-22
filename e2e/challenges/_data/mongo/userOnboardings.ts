@@ -345,6 +345,7 @@ export const USER_ONBOARDING_76 = {
       personalLifeIntro: true,
       newYumojiBuilder: true,
       firstAppOpen: true,
+      referralsPopover: true,
     },
   },
 } as IDatabaseItem;

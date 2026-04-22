@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>YuLife</title>
+    <style>
+      @font-face {
+        font-family: "Bariol-Regular";
+        src: url("/assets/fonts/Bariol-Regular.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Bariol-Bold";
+        src: url("/assets/fonts/Bariol-Bold.otf") format("opentype");
+        font-weight: bold;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Bariol-Light";
+        src: url("/assets/fonts/Bariol-Light.otf") format("opentype");
+        font-weight: 300;
+        font-style: normal;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body, #root {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        font-family: "Bariol-Regular", system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: #fff;
+      }
+
+      /* Mobile-first container */
+      #root {
+        max-width: 500px;
+        margin: 0 auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 500px) {
+        #root {
+          max-width: 100%;
+          box-shadow: none;
+        }
+      }
+
+      /* Hide scrollbars but allow scrolling */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      textarea {
+        font-family: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

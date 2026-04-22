@@ -135,3 +135,7 @@ build-logs/
 # corepack
 .cache/node/corepack/
 targets/YuHealth/android/build
+
+# Playwright / vibes test output
+test-results/
+playwright-report/

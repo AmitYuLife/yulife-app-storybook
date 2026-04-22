@@ -1,0 +1,10 @@
+export const modelId = "web-browser";
+export const modelName = "Web Browser";
+export const brand = "web";
+export const osName = "Web";
+export const osVersion = navigator?.userAgent || "";
+export const deviceName = "Web Browser";
+export const platformApiLevel = 0;
+export const DeviceType = { UNKNOWN: 0, PHONE: 1, TABLET: 2, DESKTOP: 3 };
+export const deviceType = DeviceType.DESKTOP;
+export default { modelId, modelName, brand, osName, osVersion, deviceName, platformApiLevel, DeviceType, deviceType };
