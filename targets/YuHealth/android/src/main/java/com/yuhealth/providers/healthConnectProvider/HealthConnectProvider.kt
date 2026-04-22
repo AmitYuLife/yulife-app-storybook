@@ -100,7 +100,7 @@ class HealthConnectProvider(val context: ReactContext) : HealthProvider {
       return permissionResponse.toMap()
     }
 
-    val hasPermissionsResponse = this.healthConnectPermissionManager!!.hasPermissions(supportedCapabilities)
+    val hasPermissionsResponse = this.healthConnectPermissionManager!!.hasPermissions(supportedCapabilities, supportsMeditation)
     return permissionResponse + hasPermissionsResponse
   }
 
@@ -124,7 +124,7 @@ class HealthConnectProvider(val context: ReactContext) : HealthProvider {
     suspendCoroutine { continuation ->
       CoroutineScope(Dispatchers.Main).launch {
         val healthConnectPermissions =
-          HealthConnectCapability.getPermissionsFromCapabilities(capabilities)
+          HealthConnectCapability.getPermissionsFromCapabilities(capabilities, supportsMeditation)
 
         healthConnectPermissionManager!!.requestPermissions(
           context.currentActivity!!,

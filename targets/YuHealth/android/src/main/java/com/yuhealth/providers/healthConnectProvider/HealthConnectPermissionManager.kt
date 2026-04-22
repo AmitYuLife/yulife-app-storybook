@@ -42,12 +42,15 @@ class HealthConnectPermissionManager(
   }
 
   @RequiresApi(34)
-  suspend fun hasPermissions(capabilities: List<HealthProviderCapabilities>): Map<HealthProviderCapabilities, PermissionStatus> {
+  suspend fun hasPermissions(
+    capabilities: List<HealthProviderCapabilities>,
+    supportsMindfulness: Boolean = false
+  ): Map<HealthProviderCapabilities, PermissionStatus> {
     val granted = healthConnectClient.permissionController.getGrantedPermissions()
     val permissionResponse = mutableMapOf<HealthProviderCapabilities, PermissionStatus>()
 
     for (capability in capabilities) {
-      val permissions = HealthConnectCapability.translateCapabilityToPermission(capability)
+      val permissions = HealthConnectCapability.translateCapabilityToPermission(capability, supportsMindfulness)
       permissionResponse[capability] =
         if (granted.containsAll(permissions)) PermissionStatus.GRANTED else PermissionStatus.DENIED
     }
