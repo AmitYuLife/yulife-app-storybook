@@ -340,14 +340,14 @@
         "today_empty": "Je duelleert vandaag met niemand.",
         "today_title": "Duels van vandaag",
         "tomorrow_title": "Duels van morgen",
-        "waiting_for_opponent_steps_sync": "Wachten op %{opponentName} om hun stappen te synchroniseren",
-        "you_drew": "je tekende",
+        "waiting_for_opponent_steps_sync": "Wachten op %{opponentName} om diens stappen te synchroniseren",
+        "you_drew": "gelijkspel",
         "you_lost": "je hebt verloren",
         "you_won": "je hebt gewonnen!"
       },
       "intro": {
-        "subtitle_1": "Wil je het tegen elkaar opnemen? Selecteer een vriend uit het klassement en daag hem uit voor een duel!",
-        "subtitle_2": "Voel je je zelfverzekerd? Duel om YuCoin of om opscheprechten!",
+        "subtitle_1": "Wil je het tegen elkaar opnemen? Selecteer een vriend uit het klassement en daag ze uit voor een duel!",
+        "subtitle_2": "Voel je je zelfverzekerd? Speel een duel om YuCoin of om opscheprechten!",
         "subtitle_3": "Je duel begint de volgende dag en je hebt 24 uur de tijd om zoveel mogelijk stappen te zetten!",
         "title_1": "Daag een vriend uit!",
         "title_2": "Inzetten",
@@ -368,29 +368,29 @@
     },
     "generic_modal": {
       "cancel_challenge": {
-        "cta_label": "Uitdaging",
-        "heading": "Ermee stoppen?",
+        "cta_label": "Verlaat uitdaging",
+        "heading": "Stoppen?",
         "subheading": "Je huidige voortgang gaat verloren, maar je kunt het altijd opnieuw proberen."
       },
       "on_media_challenge_end_error": {
         "cta_label": "Zoektocht menu",
         "heading": "Het lijkt erop dat Yugi een\neen fout heeft ontdekt!",
-        "subheading": "Je kunt het later nog eens proberen of contact met ons opnemen via de in-app chat - we zijn vriendelijk!"
+        "subheading": "Je kunt het later nog eens proberen of contact met ons opnemen via de chat in de app - we zijn vriendelijk!"
       },
       "on_meditopia_error": {
         "cta_label": "Opnieuw proberen",
         "cta_label_secondary": "Zoektocht menu",
-        "heading": "Uh oh, er klopt iets niet.",
-        "subheading": "We konden de media niet laden. Controleer je verbinding en probeer het opnieuw. Als je dit bericht blijft zien, neem dan contact met ons op via chat."
+        "heading": "Oh jee, er klopt iets niet.",
+        "subheading": "We konden de media niet laden. Controleer je verbinding en probeer het opnieuw. Als je dit bericht blijft zien, neem dan contact met ons op via de chat."
       },
       "on_pathways_challenge_cancel": {
-        "cta_label": "Probeer later"
+        "cta_label": "Probeer het later"
       },
       "on_pathways_media_error": {
         "cta_label": "Opnieuw proberen",
         "cta_label_secondary": "Uitdagingen menu",
-        "heading": "Uh oh, er klopt iets niet.",
-        "subheading": "We konden de media niet laden. Controleer je verbinding en probeer het opnieuw. Als je dit bericht blijft zien, neem dan contact met ons op via chat."
+        "heading": "Oh jee, er klopt iets niet.",
+        "subheading": "We konden de media niet laden. Controleer je verbinding en probeer het opnieuw. Als je dit bericht blijft zien, neem dan contact met ons op via de chat."
       },
       "yumoji_builder": {
         "cta_label": "Wijzigingen opslaan",
