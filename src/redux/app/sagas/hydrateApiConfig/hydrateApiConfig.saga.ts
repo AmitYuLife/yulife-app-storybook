@@ -13,17 +13,12 @@ import { READY_TO_SET_MAIN_ROOT, setMainRoot } from "../../app.actions";
 import { getToken } from "@services/storage";
 import themeService from "@modules/themes/theme.service";
 import queryConfig from "./queryConfig";
-import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
 import { Task } from "redux-saga";
 import { getRouteState } from "@redux/app/app.selectors";
 
 const HYDRATE_TIMEOUT_MS = 4_000;
 
-const initialPayloadTypes = ["INIT", SET_DEVICE_LOCALE];
-
 export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
-  const isFromInit = initialPayloadTypes.includes(type);
-
   if (type === READY_TO_SET_MAIN_ROOT) {
     const runHydrationFork: Task<ReturnType<typeof runHydration>> = yield fork(runHydration, { type, payload });
 
@@ -34,7 +29,10 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
     });
 
     yield put(setMainRoot());
-  } else if (isFromInit) {
+    return;
+  }
+
+  if (type === "INIT") {
     const runHydrationFork: Task<ReturnType<typeof runHydration>> = yield fork(runHydration, { type, payload });
 
     const [{ timeout }, { setMainRootTimeout }] = yield all([
@@ -61,20 +59,20 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
     }
 
     yield put(setMainRoot());
-  } else {
-    yield call(runHydration, { type, payload });
+    return;
   }
+
+  yield call(runHydration, { type, payload });
 }
 
 function* runHydration({ type, payload }: SyncAction) {
   const startTime = Date.now();
   try {
-    const isFromInit = initialPayloadTypes.includes(type);
     let shouldFetchConfig: boolean = typeof payload === "object" ? (payload || {})?.shouldFetchConfig : true;
 
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
-    if (isFromInit) {
+    if (type === "INIT") {
       const hasValidRegionConfig: boolean = yield call(region.hydratePreferredRegion);
       yield call(themeService.hydrateThemeId);
       shouldFetchConfig = !hasValidRegionConfig;
