@@ -26,10 +26,9 @@ import listenToMemoryWarning from "./listenToMemoryWarning.saga";
 import cancelExpiredChalllengeSaga from "./cancelExpiredChallengesSaga";
 import listenOnDateChangeSaga from "./listenOnDateChangeSaga";
 import logBreadcrumbsSaga from "./logBreadcrumbs.saga";
-import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
 
 export default [
-  takeLeading(["INIT", SET_REGION_CONFIG, SET_DEVICE_LOCALE, READY_TO_SET_MAIN_ROOT], hydrateApiConfig),
+  takeLeading(["INIT", SET_REGION_CONFIG, READY_TO_SET_MAIN_ROOT], hydrateApiConfig),
   takeLatest(AUTHENTICATED, listenToAppStateSaga),
   takeLatest(AUTHENTICATED, cancelExpiredChalllengeSaga),
   takeLatest(AUTHENTICATED, listenOnDateChangeSaga),

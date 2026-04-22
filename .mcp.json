@@ -2,10 +2,11 @@
   "mcpServers": {
     "figma": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@figma/mcp-server-figma"
-      ]
+      "args": ["-y", "@figma/mcp-server-figma"]
+    },
+    "metro-mcp": {
+      "command": "npx",
+      "args": ["-y", "metro-mcp"]
     }
   }
 }
