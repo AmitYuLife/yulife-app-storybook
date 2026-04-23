@@ -12,6 +12,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import SplashLoadingDot from "./splash-loading-dot";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   onAnimationStart: () => void;
@@ -19,8 +20,8 @@ interface IProps {
 }
 
 const LOGO_SCALE = 0.85;
-const LOGO_ANIMATION_DELAY = 1500;
-const LOGO_ANIMATION_DURATION = 500;
+const LOGO_ANIMATION_DELAY = DETOX_ENABLED ? 150 : 1500;
+const LOGO_ANIMATION_DURATION = DETOX_ENABLED ? 150 : 500;
 
 const buildSlideAnimation = (direction: -1 | 1) =>
   withDelay(

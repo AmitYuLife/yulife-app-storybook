@@ -5,6 +5,7 @@ import { Clock } from "../assets";
 import { Box, Image, Text } from "@atoms/index";
 import Logo from "@atoms/logo";
 import useInterval from "@use-it/interval";
+import { DETOX_ENABLED } from "@services/socket";
 import { Colours, Style } from "@styles/index";
 import { formatSeconds } from "../top-bar.helpers";
 import { StyleSheet } from "@styles";
@@ -89,7 +90,7 @@ const Timer = ({
 
       return setFinished();
     },
-    timer ? 1000 : null
+    timer && !DETOX_ENABLED ? 1000 : null
   );
 
   return (

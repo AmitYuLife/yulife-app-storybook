@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { Animated } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
 import Svg, { Path } from "react-native-svg";
 
 const SCALE_START = 0.5;
@@ -22,6 +23,10 @@ export const ButtonAnimationStar = ({ delay, delayBasis, duration }: Props) => {
   const scale = useRef(new Animated.Value(SCALE_START)).current;
 
   useEffect(() => {
+    if (DETOX_ENABLED) {
+      return;
+    }
+
     const animation = Animated.loop(
       Animated.sequence([
         Animated.delay(delay),

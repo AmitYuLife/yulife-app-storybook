@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from "react";
+import { DETOX_ENABLED } from "@services/socket";
 import { View, ViewStyle } from "react-native";
 import { Stars1, Stars2 } from "@atoms/icon/stars-icon";
 import { CountdownUnit } from "./countdown-unit";
@@ -76,7 +77,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const REFRESH_RATE_MILLISECONDS = 1000;
+const REFRESH_RATE_MILLISECONDS = DETOX_ENABLED ? 2000 : 1000;
+
 const useCountdownHandler = (secondsUntilTarget: number) => {
   const secondsDiffRef = useRef(secondsUntilTarget);
   const [countdown, setCountdown] = useState(getCountdownFromSeconds(secondsDiffRef.current));
