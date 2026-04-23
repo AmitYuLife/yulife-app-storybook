@@ -2,11 +2,14 @@ import { memo, useCallback, useEffect, useState } from "react";
 
 import moment from "moment";
 import { getTimeUntil } from "@utils";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface ITimeCounterProps {
   time?: string;
   getText?: (time: string) => string;
 }
+
+const TIMEOUT = DETOX_ENABLED ? 2000 : 1000;
 
 const TimeCounter = ({ time = "", getText = defaultGetTime }: ITimeCounterProps) => {
   const [timeString, setTimeString] = useState<string>(getText(time));
@@ -17,7 +20,7 @@ const TimeCounter = ({ time = "", getText = defaultGetTime }: ITimeCounterProps)
   useEffect(() => {
     const interval = setInterval(() => {
       updateTime();
-    }, 1000);
+    }, TIMEOUT);
 
     return () => clearInterval(interval);
   }, [updateTime]);

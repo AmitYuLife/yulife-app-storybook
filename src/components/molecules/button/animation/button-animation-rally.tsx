@@ -1,6 +1,7 @@
 import { Style } from "@styles";
 import { useRef, useEffect } from "react";
 import { Animated, Easing } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
 import Svg, { Defs, LinearGradient, Path, Stop } from "react-native-svg";
 
 const TRANSLATE_X_START = -Style.DEVICE_WIDTH;
@@ -17,6 +18,10 @@ export const ButtonAnimationRally = ({ delay, delayBasis, duration }: Props) => 
   const translateX = useRef(new Animated.Value(TRANSLATE_X_START)).current;
 
   useEffect(() => {
+    if (DETOX_ENABLED) {
+      return;
+    }
+
     const animation = Animated.loop(
       Animated.sequence([
         Animated.delay(delay),

@@ -1,6 +1,7 @@
 import { Colours } from "@styles";
 import { useRef, useEffect } from "react";
 import { Animated } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
 import Svg, { Path } from "react-native-svg";
 import { INITIAL_DELAY, PEAK_DELAY, RAMP_TIMING } from "./animation-constants";
 
@@ -16,6 +17,10 @@ export const StarAnimation = ({ iterations = 1 }: Props) => {
   const scale = useRef(new Animated.Value(SCALE_START)).current;
 
   useEffect(() => {
+    if (DETOX_ENABLED) {
+      return;
+    }
+
     const animation = Animated.sequence([
       Animated.delay(INITIAL_DELAY),
       Animated.loop(

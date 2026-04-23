@@ -1,5 +1,6 @@
 import React from "react";
 import { Animated, Easing, Platform, ViewStyle } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
 import PlusPoints from "./plus-points";
 import styles from "./plus-points.styles";
 import { CHALLENGE_REWARD } from "@ids";
@@ -47,7 +48,7 @@ export default class AnimatedPlusPoints extends React.PureComponent<IProps, ISta
             useNativeDriver: true,
           }).start();
         });
-      } else {
+      } else if (!DETOX_ENABLED) {
         Animated.parallel([
           Animated.loop(
             Animated.sequence([

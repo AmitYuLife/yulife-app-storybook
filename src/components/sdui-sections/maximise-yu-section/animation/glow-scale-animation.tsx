@@ -1,6 +1,7 @@
 import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useEffect, useRef } from "react";
 import { Animated, View } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
 import { INITIAL_DELAY, PEAK_DELAY } from "./animation-constants";
 
 type Props = {
@@ -12,7 +13,7 @@ export const GlowScaleAnimation = memo(({ animate }: Props) => {
   const glowScaleY = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    if (!animate) {
+    if (!animate || DETOX_ENABLED) {
       return;
     }
 

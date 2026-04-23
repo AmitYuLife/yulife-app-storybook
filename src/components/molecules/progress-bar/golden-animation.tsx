@@ -1,6 +1,7 @@
 import { Colours, Style, StyleSheet } from "@styles";
 import { memo, useEffect, useRef } from "react";
 import { Animated } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
 import LinearGradient from "react-native-linear-gradient";
 
 type Props = {
@@ -44,7 +45,9 @@ export const GoldenAnimation = memo(({ type }: Props) => {
     ]);
     const animatedLoop = Animated.loop(animateShinePositionBackAndForth);
 
-    animatedLoop.start();
+    if (!DETOX_ENABLED) {
+      animatedLoop.start();
+    }
 
     return () => {
       if (type === "ease") {
