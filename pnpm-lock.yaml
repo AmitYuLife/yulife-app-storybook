@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@xmldom/xmldom@<=0.8.13': 0.8.13
+
 patchedDependencies:
   '@bacons/apple-targets@0.0.5':
     hash: ceb4798796cdc54a3096d989eb4dda9fc0a4c6063f94bae84ca9f4b0c1bff17d
@@ -42,7 +45,7 @@ importers:
         version: 3.13.9(@types/react@19.0.14)(graphql-ws@6.0.7(graphql@16.13.1)(ws@8.19.0))(graphql@16.13.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@betomorrow/expo-app-name':
         specifier: ^0.0.2
-        version: 0.0.2(@expo/config-plugins@9.0.17)
+        version: 0.0.2(@expo/config-plugins@9.1.0-canary-20250306-d9d3e02)
       '@bugsnag/expo':
         specifier: ^53.0.0
         version: 53.0.0(6b8627c96bf00e8ab1a49c1f502611ee)
@@ -56,8 +59,8 @@ importers:
         specifier: ^2.13.0
         version: 2.14.4(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       '@expo/config-plugins':
-        specifier: ~9.0.0
-        version: 9.0.17
+        specifier: 9.1.0-canary-20250306-d9d3e02
+        version: 9.1.0-canary-20250306-d9d3e02
       '@hcaptcha/react-native-hcaptcha':
         specifier: 2.0.5
         version: 2.0.5(react-native-modal@14.0.0-rc.1(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-webview@13.13.5(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(patch_hash=6d06ead074b0f07cb40a1bfda241bda8294264b20a9309947f7c97531800446a)(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -1702,11 +1705,11 @@ packages:
   '@expo/config-plugins@10.1.2':
     resolution: {integrity: sha512-IMYCxBOcnuFStuK0Ay+FzEIBKrwW8OVUMc65+v0+i7YFIIe8aL342l7T4F8lR4oCfhXn7d6M5QPgXvjtc/gAcw==}
 
-  '@expo/config-plugins@9.0.17':
-    resolution: {integrity: sha512-m24F1COquwOm7PBl5wRbkT9P9DviCXe0D7S7nQsolfbhdCWuvMkfXeoWmgjtdhy7sDlOyIgBrAdnB6MfsWKqIg==}
+  '@expo/config-plugins@9.1.0-canary-20250306-d9d3e02':
+    resolution: {integrity: sha512-8v0v67OV6jcSBUOocyc0ELo66DkZks1wfT1FPHPLZz43J/oOrptAdm71ZKvHweSdHkbOgkS6DyciKdWnjcK6gg==}
 
-  '@expo/config-types@52.0.5':
-    resolution: {integrity: sha512-AMDeuDLHXXqd8W+0zSjIt7f37vUd/BP8p43k68NHpyAvQO+z8mbQZm3cNQVAMySeayK2XoPigAFB1JF2NFajaA==}
+  '@expo/config-types@53.0.0-canary-20250306-d9d3e02':
+    resolution: {integrity: sha512-Kna72gQozGDCeCnayyKksA8XDdGozvK7oL9Yp0/DdjCwZgut3uXE38aN9Agmi5dYK6XzbakpPUimSxNU/i083w==}
 
   '@expo/config-types@53.0.5':
     resolution: {integrity: sha512-kqZ0w44E+HEGBjy+Lpyn0BVL5UANg/tmNixxaRMLS6nf37YsDrLk2VMAmeKMMk5CKG0NmOdVv3ngeUjRQMsy9g==}
@@ -1738,8 +1741,8 @@ packages:
   '@expo/json-file@10.0.12':
     resolution: {integrity: sha512-inbDycp1rMAelAofg7h/mMzIe+Owx6F7pur3XdQ3EPTy00tme+4P6FWgHKUcjN8dBSrnbRNpSyh5/shzHyVCyQ==}
 
-  '@expo/json-file@9.0.2':
-    resolution: {integrity: sha512-yAznIUrybOIWp3Uax7yRflB0xsEpvIwIEqIjao9SGi2Gaa+N0OamWfe0fnXBSWF+2zzF4VvqwT4W5zwelchfgw==}
+  '@expo/json-file@9.0.3-canary-20250306-d9d3e02':
+    resolution: {integrity: sha512-9qrcHOEUqoesMRcjCxnxISvYT6XmKS0k30yBaVOMJ7UN021kgQbe5KT58Nf6kv8tkZ90AouAI1i/XqlBbbOayw==}
 
   '@expo/json-file@9.1.5':
     resolution: {integrity: sha512-prWBhLUlmcQtvN6Y7BpW2k9zXGd3ySa3R6rAguMJkp1z22nunLN64KYTUWfijFlprFoxm9r2VNnGkcbndAlgKA==}
@@ -1757,8 +1760,8 @@ packages:
   '@expo/plist@0.0.18':
     resolution: {integrity: sha512-+48gRqUiz65R21CZ/IXa7RNBXgAI/uPSdvJqoN9x1hfL44DNbUoWHgHiEXTx7XelcATpDwNTz6sHLfy0iNqf+w==}
 
-  '@expo/plist@0.2.2':
-    resolution: {integrity: sha512-ZZGvTO6vEWq02UAPs3LIdja+HRO18+LRI5QuDl6Hs3Ps7KX7xU6Y6kjahWKY37Rx2YjNpX07dGpBFzzC+vKa2g==}
+  '@expo/plist@0.2.3-canary-20250306-d9d3e02':
+    resolution: {integrity: sha512-2ImG5M36tAuKH5YQe7bvtzjQdkCakGmjsyj62RCWwrQ4TsZW7Z0DUHrjMl3GLt7hoy/tzYFGNWLQ7/sASDECyw==}
 
   '@expo/plist@0.3.5':
     resolution: {integrity: sha512-9RYVU1iGyCJ7vWfg3e7c/NVyMFs8wbl+dMWZphtFtsqyN9zppGREU3ctlD3i8KUE0sCUTVnLjCWr+VeUIDep2g==}
@@ -3432,15 +3435,9 @@ packages:
     resolution: {integrity: sha512-FNoYzHawTMk/6KMQoEG5O4PuioX19UbwdQKF44yw0nLfOypfQdjtfZzo/UIJWAJ23sNIFbD1Ug9lbaDGMwbqQA==}
     engines: {node: '>=8'}
 
-  '@xmldom/xmldom@0.7.13':
-    resolution: {integrity: sha512-lm2GW5PkosIzccsaZIz7tp8cPADSIlIHWDFTR1N0SzfinhhYgeIQjFMz4rYzanCScr3DqQLeomUDArp6MWKm+g==}
+  '@xmldom/xmldom@0.8.13':
+    resolution: {integrity: sha512-KRYzxepc14G/CEpEGc3Yn+JKaAeT63smlDr+vjB8jRfgTBBI9wRj/nkQEO+ucV8p8I9bfKLWp37uHgFrbntPvw==}
     engines: {node: '>=10.0.0'}
-    deprecated: this version has critical issues, please update to the latest version
-
-  '@xmldom/xmldom@0.8.11':
-    resolution: {integrity: sha512-cQzWCtO6C8TQiYl1ruKNn2U6Ao4o4WBBcbL61yJl84x+j5sOWWFU9X7DpND8XZG3daDppSsigMdfAIl2upQBRw==}
-    engines: {node: '>=10.0.0'}
-    deprecated: this version has critical issues, please update to the latest version
 
   '@xtuc/ieee754@1.2.0':
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -11309,9 +11306,9 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@betomorrow/expo-app-name@0.0.2(@expo/config-plugins@9.0.17)':
+  '@betomorrow/expo-app-name@0.0.2(@expo/config-plugins@9.1.0-canary-20250306-d9d3e02)':
     dependencies:
-      '@expo/config-plugins': 9.0.17
+      '@expo/config-plugins': 9.1.0-canary-20250306-d9d3e02
 
   '@bugsnag/core@8.8.0':
     dependencies:
@@ -11686,11 +11683,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@expo/config-plugins@9.0.17':
+  '@expo/config-plugins@9.1.0-canary-20250306-d9d3e02':
     dependencies:
-      '@expo/config-types': 52.0.5
-      '@expo/json-file': 9.0.2
-      '@expo/plist': 0.2.2
+      '@expo/config-types': 53.0.0-canary-20250306-d9d3e02
+      '@expo/json-file': 9.0.3-canary-20250306-d9d3e02
+      '@expo/plist': 0.2.3-canary-20250306-d9d3e02
       '@expo/sdk-runtime-versions': 1.0.0
       chalk: 4.1.2
       debug: 4.4.3
@@ -11705,7 +11702,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@expo/config-types@52.0.5': {}
+  '@expo/config-types@53.0.0-canary-20250306-d9d3e02': {}
 
   '@expo/config-types@53.0.5': {}
 
@@ -11802,7 +11799,7 @@ snapshots:
       '@babel/code-frame': 7.29.0
       json5: 2.2.3
 
-  '@expo/json-file@9.0.2':
+  '@expo/json-file@9.0.3-canary-20250306-d9d3e02':
     dependencies:
       '@babel/code-frame': 7.10.4
       json5: 2.2.3
@@ -11852,19 +11849,19 @@ snapshots:
 
   '@expo/plist@0.0.18':
     dependencies:
-      '@xmldom/xmldom': 0.7.13
+      '@xmldom/xmldom': 0.8.13
       base64-js: 1.5.1
       xmlbuilder: 14.0.0
 
-  '@expo/plist@0.2.2':
+  '@expo/plist@0.2.3-canary-20250306-d9d3e02':
     dependencies:
-      '@xmldom/xmldom': 0.7.13
+      '@xmldom/xmldom': 0.8.13
       base64-js: 1.5.1
-      xmlbuilder: 14.0.0
+      xmlbuilder: 15.1.1
 
   '@expo/plist@0.3.5':
     dependencies:
-      '@xmldom/xmldom': 0.8.11
+      '@xmldom/xmldom': 0.8.13
       base64-js: 1.5.1
       xmlbuilder: 15.1.1
 
@@ -13075,9 +13072,7 @@ snapshots:
       metro-runtime: 0.82.5
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   '@react-native/normalize-color@2.1.0': {}
 
@@ -14160,9 +14155,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@xmldom/xmldom@0.7.13': {}
-
-  '@xmldom/xmldom@0.8.11': {}
+  '@xmldom/xmldom@0.8.13': {}
 
   '@xtuc/ieee754@1.2.0': {}
 
@@ -19675,7 +19668,7 @@ snapshots:
 
   plist@3.1.0:
     dependencies:
-      '@xmldom/xmldom': 0.8.11
+      '@xmldom/xmldom': 0.8.13
       base64-js: 1.5.1
       xmlbuilder: 15.1.1
 
