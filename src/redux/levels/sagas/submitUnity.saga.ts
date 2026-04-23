@@ -13,7 +13,7 @@ export default function* submitUnitySaga({ payload }: ReturnType<typeof submitUn
       client().mutate({
         mutation: gql("SubmitUnityDocument"),
         variables: { levelId: payload.levelId },
-        refetchQueries: [{ query: gql("GetQuestMapDocument") }],
+        refetchQueries: [{ query: gql("GetQuestMapDocument"), fetchPolicy: "network-only" }],
       })
     );
     yield call(getUserSurgeData);

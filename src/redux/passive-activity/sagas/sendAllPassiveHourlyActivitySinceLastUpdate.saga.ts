@@ -12,11 +12,17 @@ import { DETOX_ENABLED } from "@services/socket";
 import { PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT } from "@services/constants";
 import client from "@graphql/_core/client";
 import { ChallengesPayload, gql } from "@graphql/__generated";
+import { random } from "lodash";
 
 export default function* sendPassiveHourlyActivity(): any {
   const token: Unpacked<typeof getToken> = yield call(getToken);
   if (!token) {
     return;
+  }
+
+  if (!DETOX_ENABLED) {
+    // We don't want to hammer the device with requests and our server, so we'll add a random delay between 3.5 and 9 seconds
+    yield delay(random(3500, 9000));
   }
 
   try {

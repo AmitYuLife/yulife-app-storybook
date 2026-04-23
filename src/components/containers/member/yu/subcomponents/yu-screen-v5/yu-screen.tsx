@@ -86,7 +86,7 @@ export const YuScreen: FC<IProps> = memo(({ onNotificationPress, achievement, sh
 
   useEffect(() => {
     if (currentScreen === ROUTES.yuScreen) {
-      if (moment().isAfter(moment(lastLayoutUpdate).endOf("day"))) {
+      if (!lastLayoutUpdate || moment().isAfter(moment(lastLayoutUpdate).endOf("day"))) {
         dispatch(queryYuScreenLayout());
         return;
       }
