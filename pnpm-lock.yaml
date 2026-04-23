@@ -429,8 +429,8 @@ importers:
         specifier: ^3.3.2
         version: 3.5.0(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@18.19.130)(ts-node@10.9.2(@swc/core@1.15.21)(@types/node@18.19.130)(typescript@5.9.3)))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@18.19.130)(ts-node@10.9.2(@swc/core@1.15.21)(@types/node@18.19.130)(typescript@5.9.3)))
       axios:
-        specifier: ^1.13.6
-        version: 1.13.6
+        specifier: ^1.15.1
+        version: 1.15.1
       axios-retry:
         specifier: ^3.6.0
         version: 3.9.1
@@ -3790,8 +3790,8 @@ packages:
   axios@0.21.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
 
-  axios@1.13.6:
-    resolution: {integrity: sha512-ChTCHMouEe2kn713WHbQGcuYrr6fXTBiu460OTwWrWob16g1bXn4vtz07Ope7ewMozJAnEquLk5lWQWtBig9DQ==}
+  axios@1.15.1:
+    resolution: {integrity: sha512-WOG+Jj8ZOvR0a3rAn+Tuf1UQJRxw5venr6DgdbJzngJE3qG7X0kL83CZGpdHMxEm+ZK3seAbvFsw4FfOfP9vxg==}
 
   b4a@1.8.0:
     resolution: {integrity: sha512-qRuSmNSkGQaHwNbM7J78Wwy+ghLEYF1zNrSeMxj4Kgw6y33O3mXcQ6Ie9fRvfU/YnxWkOchPXbaLb73TkIsfdg==}
@@ -8263,8 +8263,9 @@ packages:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
 
-  proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+  proxy-from-env@2.1.0:
+    resolution: {integrity: sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==}
+    engines: {node: '>=10'}
 
   proxy-middleware@0.15.0:
     resolution: {integrity: sha512-EGCG8SeoIRVMhsqHQUdDigB2i7qU7fCsWASwn54+nPutYO8n4q6EiwMzyfWlC+dzRFExP+kvcnDFdBDHoZBU7Q==}
@@ -14190,7 +14191,7 @@ snapshots:
     dependencies:
       '@tolgee/cli': 2.16.1(jiti@2.6.1)(typescript@5.9.3)
       '@types/lodash': 4.17.24
-      axios: 1.13.6
+      axios: 1.15.1
       axios-retry: 3.9.1
       commander: 13.1.0
       cosmiconfig: 9.0.1(typescript@5.9.3)
@@ -14520,11 +14521,11 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  axios@1.13.6:
+  axios@1.15.1:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.5
-      proxy-from-env: 1.1.0
+      proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
 
@@ -19791,7 +19792,7 @@ snapshots:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
 
-  proxy-from-env@1.1.0: {}
+  proxy-from-env@2.1.0: {}
 
   proxy-middleware@0.15.0: {}
 
