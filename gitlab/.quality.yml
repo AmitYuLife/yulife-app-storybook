@@ -26,3 +26,43 @@ tsc-check:
     - if: $CI_COMMIT_BRANCH == "develop"
     - if: $CI_COMMIT_BRANCH =~ /^release\/.*$/
     - if: $CI_COMMIT_TAG =~ /^release\/.*$/
+
+lint:
+  extends:
+    - .generic-node
+    - .cache-pull
+  stage: quality
+  # Cancel job if newer commit made
+  interruptible: true
+  variables:
+    GIT_DEPTH: 0 # disable shallow clone for 'git diff'
+    ESLINT_CODE_QUALITY_REPORT: eslint-codequality.json
+  script:
+    - |
+      # Install Node
+      nvm install -b
+      corepack enable
+    - |
+      # Install dependencies
+      echo -e "${ANSI_CLEAR}section_start:$(date +%s):install_dependencies[collapsed=true]\r${ANSI_CLEAR}${ANSI_LIGHT_GREEN}- Output${ANSI_RESET}"
+      pnpm install --frozen-lockfile
+      echo -e "${ANSI_CLEAR}section_end:$(date +%s):install_dependencies\r${ANSI_CLEAR}"
+    - |
+      # Get modified files into a file
+      git diff --diff-filter=d --name-only "origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME...origin/$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" \
+        | grep -E '\.(js|ts|tsx)$' > modified_files.txt || true
+    - |
+      # Run eslint on modified files if there are any, otherwise run on its own config file to verify it's working
+      if [ -s modified_files.txt ]; then
+        cat modified_files.txt | xargs -r pnpm eslint --max-warnings 0 --format gitlab
+      else
+        pnpm eslint --max-warnings 0 --format gitlab .eslintrc.js
+      fi
+      rm modified_files.txt
+  artifacts:
+    reports:
+      codequality: $ESLINT_CODE_QUALITY_REPORT
+  rules:
+    - if: $CI_MERGE_REQUEST_LABELS =~ /skip-lint/
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
