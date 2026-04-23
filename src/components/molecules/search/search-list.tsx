@@ -1,5 +1,5 @@
-import React, { memo, useCallback } from "react";
-import { FlatList, ListRenderItem, KeyboardAvoidingView, Platform } from "react-native";
+import React, { memo, useCallback, type ReactNode } from "react";
+import { FlatList, ListRenderItemInfo, KeyboardAvoidingView, Platform } from "react-native";
 import SearchListEmpty from "./search-list-empty";
 import { Colours, StyleSheet } from "@styles";
 import { ViewStyle } from "react-native";
@@ -7,29 +7,29 @@ import { NetworkStatus } from "@apollo/client";
 import { ISearchItem } from "./search-item";
 import { SEARCH_FLAT_LIST } from "@ids";
 
-interface Props {
-  data: ISearchItem<any>[];
+interface Props<T> {
+  data: ISearchItem<T>[];
   networkStatus: NetworkStatus;
   onRefresh: () => Promise<void>;
   emptyText?: string;
   emptyElement?: React.ReactElement;
   loading: boolean;
-  keyExtractor: (item: any, index: number) => string;
-  searchItem: ListRenderItem<ISearchItem<any>>;
+  keyExtractor: (item: T, index: number) => string;
+  SearchItem: (props: ListRenderItemInfo<ISearchItem<T>>) => ReactNode;
   wrapperStyles?: ViewStyle;
 }
 
-const SearchList = ({
+const SearchList = <T,>({
   data = [],
   networkStatus,
   onRefresh,
   emptyText,
   loading,
   keyExtractor,
-  searchItem,
+  SearchItem,
   emptyElement,
   wrapperStyles,
-}: Props) => {
+}: Props<T>) => {
   const isLoading = loading || [NetworkStatus.refetch, NetworkStatus.loading].includes(networkStatus);
 
   const emptyComponent = useCallback(() => {
@@ -40,6 +40,8 @@ const SearchList = ({
     return null;
   }, [isLoading, emptyText, emptyElement, data.length]);
 
+  const renderItem = useCallback((info: ListRenderItemInfo<ISearchItem<T>>) => <SearchItem {...info} />, [SearchItem]);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : null}
@@ -48,7 +50,7 @@ const SearchList = ({
       <FlatList
         testID={SEARCH_FLAT_LIST}
         data={data}
-        renderItem={searchItem}
+        renderItem={renderItem}
         keyExtractor={keyExtractor}
         refreshing={isLoading}
         onRefresh={onRefresh}

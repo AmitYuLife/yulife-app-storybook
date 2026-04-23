@@ -1,7 +1,7 @@
 import { NetworkStatus } from "@apollo/client";
 import { SEARCH_FLAT_LIST } from "@ids";
-import { memo } from "react";
-import { FlatList, ListRenderItem } from "react-native";
+import React, { memo, ReactNode, useCallback } from "react";
+import { FlatList, ListRenderItemInfo } from "react-native";
 
 export type ISearchItem<T> = T & {
   onPress?: () => void;
@@ -14,7 +14,7 @@ interface Props<T> {
   emptyElement: React.JSX.Element;
   loading: boolean;
   keyExtractor: (item: T, index: number) => string;
-  searchItem: ListRenderItem<ISearchItem<T>>;
+  SearchItem: (props: ListRenderItemInfo<ISearchItem<T>>) => ReactNode;
 }
 
 const SearchList = <T,>({
@@ -23,16 +23,18 @@ const SearchList = <T,>({
   onRefresh,
   loading,
   keyExtractor,
-  searchItem,
+  SearchItem,
   emptyElement,
 }: Props<T>) => {
   const isLoading = loading || [NetworkStatus.refetch, NetworkStatus.loading].includes(networkStatus);
+
+  const renderItem = useCallback((info: ListRenderItemInfo<ISearchItem<T>>) => <SearchItem {...info} />, [SearchItem]);
 
   return (
     <FlatList
       testID={SEARCH_FLAT_LIST}
       data={data}
-      renderItem={searchItem}
+      renderItem={renderItem}
       keyExtractor={keyExtractor}
       refreshing={isLoading}
       onRefresh={onRefresh}

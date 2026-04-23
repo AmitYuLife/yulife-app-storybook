@@ -170,7 +170,7 @@ const _DuelsSearchContainer = () => {
           )
         }
         loading={loading}
-        searchItem={DuelsSearchItem}
+        SearchItem={DuelsSearchItem}
         keyExtractor={keyExtractor}
       />
       <TopBarAbsolute hasWhiteBackground={false} onPressLeftIcon={navigateBack} leftIcon={LeftIcon.BACK} />

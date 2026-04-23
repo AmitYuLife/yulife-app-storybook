@@ -62,7 +62,7 @@ export default memo((props: ISearchAddress) => {
           networkStatus={networkStatus}
           onRefresh={onRefresh}
           loading={loading}
-          searchItem={SearchItem}
+          SearchItem={SearchItem}
           keyExtractor={keyExtractor}
           emptyElement={<SearchListEmpty emptyText={emptyText} />}
         />
