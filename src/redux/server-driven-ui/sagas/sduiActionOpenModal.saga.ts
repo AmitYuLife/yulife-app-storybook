@@ -2,7 +2,7 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { Navigation } from "@navigation/main";
 import { parseJSON } from "@utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call } from "redux-saga/effects";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { getServerPayload } from "../sdui.helpers";
@@ -29,7 +29,7 @@ export function* sduiActionOpenModalSaga(action: SduiActionWithServerPayload) {
     );
   } catch (e) {
     yield call(() =>
-      Logger.error(e, {
+      Logger.notify(e, {
         sdui: true,
         location: "sduiActionOpenModalSaga",
       })

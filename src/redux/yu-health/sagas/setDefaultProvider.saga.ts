@@ -10,7 +10,7 @@ import {
 } from "@yu-life/react-native-yu-health";
 import { setActiveYuHealthProvider } from "../yu-health.actions";
 import { isiOS, shouldContinueWithPermissionStatus } from "@utils";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 
 // Set YuHealth's provider based on existing provider from fitkit
 export default function* setDefaultProviderSaga(): unknown {
@@ -35,7 +35,7 @@ export default function* setDefaultProviderSaga(): unknown {
   ]);
 
   // Log here active providers
-  yield call(Logger.logMixpanelEvent, "yuhealth_available_providers_fetched", availableProviders);
+  yield call(EngagementTracking.logMixpanelEvent, "yuhealth_available_providers_fetched", availableProviders);
 
   if (availableProviders[HealthProvider.samsungHealth] === HealthProviderAvailability.available) {
     const authorisedSamsungHealth: Awaited<ReturnType<typeof hasPermission>> = yield hasPermission(
@@ -43,7 +43,7 @@ export default function* setDefaultProviderSaga(): unknown {
       HealthProvider.samsungHealth
     );
 
-    yield call(Logger.logMixpanelEvent, "yuhealth_permissions_fetched", {
+    yield call(EngagementTracking.logMixpanelEvent, "yuhealth_permissions_fetched", {
       provider: "samsungHealth",
       authorised: authorisedSamsungHealth,
     });
@@ -58,7 +58,7 @@ export default function* setDefaultProviderSaga(): unknown {
   if (availableProviders[HealthProvider.googleFit] === HealthProviderAvailability.available) {
     const authorisedGoogleFit = yield hasPermission(HealthProviderCapability.STEP_COUNT, HealthProvider.googleFit);
 
-    yield call(Logger.logMixpanelEvent, "yuhealth_permissions_fetched", {
+    yield call(EngagementTracking.logMixpanelEvent, "yuhealth_permissions_fetched", {
       provider: "googleFit",
       authorised: authorisedGoogleFit,
     });

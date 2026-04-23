@@ -1,5 +1,5 @@
 import { Source, prefetchImages } from "@atoms";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 const queue: Source[] = [];
 let timer: ReturnType<typeof setInterval> | null = null;
@@ -13,7 +13,7 @@ const preload = async (): Promise<void> => {
     try {
       await prefetchImages(items.map((asset) => asset.uri));
     } catch (error) {
-      Logger.error(error, { location: "image-service", event: "preload" });
+      Logger.notify(error, { location: "image-service", event: "preload" });
     }
   }
 };

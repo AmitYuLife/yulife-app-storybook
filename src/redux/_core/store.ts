@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { configureStore as toolkitConfigureStore, Store } from "@reduxjs/toolkit";
 import { createMigrate, persistReducer, persistStore } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
@@ -17,7 +17,7 @@ const persistConfig = {
 
 const sagaMiddleware = createSagaMiddleware({
   onError: (error, errorInfo) => {
-    Logger.error(error, { where: errorInfo?.sagaStack, source: "saga" });
+    Logger.notify(error, { where: errorInfo?.sagaStack, source: "saga" });
   },
 });
 

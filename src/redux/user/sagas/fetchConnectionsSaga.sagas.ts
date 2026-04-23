@@ -2,7 +2,7 @@ import { QueryResult } from "@apollo/client";
 import client from "@graphql/_core/client";
 import { GetUserConnectionsQuery, gql } from "@graphql/__generated";
 import { updateAppState } from "@redux/app/app.actions";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, put, select } from "redux-saga/effects";
 import { getActiveLevel } from "../../levels/levels.selectors";
 import { updateConnectionSuccess } from "../user.actions";
@@ -39,6 +39,6 @@ export default function* fetchConnectionsSaga({ payload }: ReturnType<typeof upd
       }
     }
   } catch (e) {
-    Logger.error(e, { event: "fetchConnectionsSaga" });
+    Logger.notify(e, { event: "fetchConnectionsSaga" });
   }
 }

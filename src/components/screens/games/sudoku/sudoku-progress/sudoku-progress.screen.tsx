@@ -19,7 +19,7 @@ import SudokuDate from "@components/games/sudoku/sudoku-date";
 import { useGetChallengeDetails } from "@hooks";
 import { getSudokuChallengeIdState } from "@redux/sudoku/sudoku.selectors";
 import { sudokuStateChanged } from "@redux/sudoku/sudoku.actions";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { useDispatch } from "react-redux";
 
 interface IProps extends IConnectedScreenProps {
@@ -56,7 +56,7 @@ const SudokuProgressScreen = ({ challengeId, onDismissPress, onLeftMenuPress }: 
       dispatch(sudokuStateChanged({ challengeId }));
     }
 
-    Logger.logEvent("resume_sudoku_game", { challengeId: activeLevel.id });
+    EngagementTracking.logEvent("resume_sudoku_game", { challengeId: activeLevel.id });
 
     Navigation.push(ROUTES.quests, {
       component: {

@@ -5,7 +5,8 @@ import {
   getForegroundSteps,
   HealthProvider,
 } from "@yu-life/react-native-yu-health";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone } from "@utils";
 import { isForegroundServiceEnabled } from "@utils/yuHealth";
 import moment from "moment";
@@ -51,7 +52,7 @@ export async function logEmptyResultDebugData({
     activeChallengeFitKitTypes: activeChallenge.fitKitTypes,
   };
 
-  Logger.logMixpanelEvent("end_challenge_no_data", logData);
+  EngagementTracking.logMixpanelEvent("end_challenge_no_data", logData);
 }
 
 let hasLoggedError = false;
@@ -78,7 +79,7 @@ const getPedometerEndResult = async ({
     try {
       foregroundSteps = await getForegroundSteps();
     } catch (e) {
-      Logger.error(e, {
+      Logger.notify(e, {
         message: "Error getting foreground steps",
         file: "levels.helpers",
         event: "getPedometerEndResult",
@@ -101,7 +102,7 @@ const getPedometerEndResult = async ({
 
     const pedometerValue = pedometerResults?.value ?? 0;
 
-    Logger.logMixpanelEvent("end_challenge_result", {
+    EngagementTracking.logMixpanelEvent("end_challenge_result", {
       startDateTime,
       endDateTime,
       start,
@@ -115,7 +116,7 @@ const getPedometerEndResult = async ({
   } catch (e) {
     // This method is called frequently when a user completes a challenge. It can fail for various reasons, most of which we don't care about. We limit Bugsnag logging for this method to once per session
     if (!hasLoggedError) {
-      Logger.error(e, { event: "getPedometerEndResult" });
+      Logger.notify(e, { event: "getPedometerEndResult" });
       hasLoggedError = true;
     }
 
@@ -321,7 +322,7 @@ export async function getEndResultFitkit(
     const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end, { blackListApps });
     const pedometerValue = pedometerResults?.steps || 0;
 
-    Logger.logMixpanelEvent("end_challenge_result", {
+    EngagementTracking.logMixpanelEvent("end_challenge_result", {
       startDateTime,
       endDateTime,
       start,
@@ -334,7 +335,7 @@ export async function getEndResultFitkit(
 
     return { value };
   } catch (e) {
-    Logger.error(e, {
+    Logger.notify(e, {
       startDateTime,
       endDateTime,
       message: e.message,

@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 import moment from "moment";
 import { spawn, call, select, delay } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getUserFeatures, getUserPassiveHourlyActivityLastUpdate } from "../../user/user.selectors";
 import getPassiveHourlySinceLastUpdate from "./getPassiveHourlySinceLastUpdate.saga";
 import { Unpacked } from "@utils";
@@ -82,7 +82,7 @@ export default function* sendPassiveHourlyActivity(): any {
               isUpdated = true;
             } catch (e) {
               yield spawn(() => {
-                Logger.error(e, { event: "updateUserHourlyActivity" });
+                Logger.notify(e, { event: "updateUserHourlyActivity" });
               });
               yield delay(15000);
             }
@@ -99,7 +99,7 @@ export default function* sendPassiveHourlyActivity(): any {
     }
   } catch (e) {
     yield call(() => {
-      Logger.error(e, { event: "sendPassiveHourlyActivitySinceLastUpdate" });
+      Logger.notify(e, { event: "sendPassiveHourlyActivitySinceLastUpdate" });
     });
   }
 }

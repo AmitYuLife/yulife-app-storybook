@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 import { Navigation } from "@navigation/main";
 import { FiitMediaCategoryListScreen } from "@components/screens";
 import { MODALS, ROUTES } from "@navigation/constants";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { useBackHandler, usePopToQuestsRootOnNewDate, useUserFeatures, useVerifyAndAuthorizeCapability } from "@hooks";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
@@ -69,7 +69,7 @@ const FiitMediaCategoryListContainer = ({
     try {
       await createChallenge(false);
     } catch (err) {
-      Logger.error(err, { location: "fiit-media-category-list.container.handleOpenApp" });
+      Logger.notify(err, { location: "fiit-media-category-list.container.handleOpenApp" });
     } finally {
       setOtherAppLoading("fiit-workouts-fitness-plans");
     }

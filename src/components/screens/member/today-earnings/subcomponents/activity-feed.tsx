@@ -30,7 +30,7 @@ import {
   getHasNotification,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 
 type IActivityFeed = GetTodayEarningsQuery["getTodayEarnings"]["activityFeed"][0];
 
@@ -168,7 +168,7 @@ const ActivityFeed = ({
       return;
     }
 
-    Logger.logMixpanelEvent("button_pressed", {
+    EngagementTracking.logMixpanelEvent("button_pressed", {
       button_id: "take_a_challenge",
       location: "today_earning",
     });

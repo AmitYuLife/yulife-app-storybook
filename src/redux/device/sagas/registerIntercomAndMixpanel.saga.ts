@@ -3,7 +3,8 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { call, spawn } from "redux-saga/effects";
 import { addDeviceToken } from "../device.actions";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import client from "@graphql/_core/client";
 import { gql } from "@graphql/__generated";
 import customerio from "@services/customerio";
@@ -22,7 +23,7 @@ function* registerDeviceOnYuServer(deviceToken: string) {
       })
     );
   } catch (e) {
-    Logger.error(e, { event: "registerDevice" });
+    Logger.notify(e, { event: "registerDevice" });
   }
 }
 
@@ -30,7 +31,7 @@ function* checkForPermissionsAndSendToIntercom(deviceToken: string) {
   const permission: Notifications.NotificationPermissionsStatus = yield call(Notifications.getPermissionsAsync);
 
   if (permission?.status === "granted") {
-    yield spawn(() => Logger.sendTokenToIntercom(deviceToken));
+    yield spawn(() => EngagementTracking.sendTokenToIntercom(deviceToken));
   }
 }
 

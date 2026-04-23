@@ -1,7 +1,7 @@
 import { getRouteState } from "@redux/app/app.selectors";
 import { Navigation } from "@navigation/main";
 import { all, call, put, select, spawn } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { parseJSON } from "@utils";
 import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";
@@ -21,7 +21,7 @@ export function* sduiActionGenericNavigateBack({ payload }: SduiActionWithServer
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "dispatchActions", file: "sduiActionGenericNavigateBackSaga" });
+      Logger.notify(e, { event: "dispatchActions", file: "sduiActionGenericNavigateBackSaga" });
     });
   }
 

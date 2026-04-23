@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, spawn, select, put } from "redux-saga/effects";
 import client from "@graphql/_core/client";
 import { gql } from "@graphql/__generated";
@@ -23,7 +23,7 @@ export default function* completeGame2048Saga({ payload }: ReturnType<typeof com
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "completeGame2048" });
+      Logger.notify(e, { event: "completeGame2048" });
     });
   }
 

@@ -6,7 +6,7 @@ import { IReward } from "@organisms/event-reward/event-reward";
 import { getUserDataStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { CollectEventRewardScreen } from "@screens";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { delay } from "@utils/misc";
 import React, { useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
@@ -98,7 +98,7 @@ const CollectEventRewardModal = ({ goalIds, event, rewards, completed = false }:
         await delay(unclaimedRewardIds.length * TRANSITION_DELAY + AFTER_ALL_REWARDS_REDEEMED_DELAY);
       }
     } catch (e) {
-      Logger.error(e, { event: "claim-goal" });
+      Logger.notify(e, { event: "claim-goal" });
     } finally {
       if (completed) {
         setEventFinished(true);

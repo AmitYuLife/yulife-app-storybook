@@ -2,7 +2,7 @@ import { call, put, spawn } from "redux-saga/effects";
 import { QueryResult } from "@apollo/client";
 import { GetYuScreenV5Query, gql } from "@graphql/__generated";
 import client from "@graphql/_core/client";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import { updateYuScreen } from "../yu-screen.actions";
@@ -29,7 +29,7 @@ export default function* queryYuScreenSaga() {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "queryYuScreenSaga" });
+      Logger.notify(e, { event: "queryYuScreenSaga" });
     });
   }
 }

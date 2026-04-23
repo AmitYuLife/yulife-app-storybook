@@ -14,7 +14,7 @@ import { ROUTES } from "@navigation/constants";
 import { useCaptcha } from "@organisms/captcha-input";
 import { useSendMagicLink } from "./send-magic-link.hook";
 import { handleOpenWebView } from "@navigation/utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 interface Props {
   componentId: string;
@@ -194,7 +194,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
           errorToLog = new Error("Login network error");
         }
 
-        Logger.error(errorToLog, {
+        Logger.notify(errorToLog, {
           file: "login-confirm.container",
           region: payload.region,
           loginUserSuccess: !!result,

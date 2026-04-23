@@ -1,5 +1,5 @@
 import { call } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import client from "@graphql/_core/client";
 import { gql } from "@graphql/__generated";
 
@@ -12,6 +12,6 @@ export default function* fitKitConsentAuthorisedSaga() {
       })
     );
   } catch (e) {
-    Logger.error(e, { event: "fitkitConsent" });
+    Logger.notify(e, { event: "fitkitConsent" });
   }
 }

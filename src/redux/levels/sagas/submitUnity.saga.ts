@@ -1,5 +1,5 @@
 import getUserSurgeData from "@redux/user/sagas/getUserSurgeData.sagas";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, put, spawn } from "redux-saga/effects";
 import { getUserDataStart } from "../../user/user.actions";
 import { AppDataType } from "../../user/user.types";
@@ -24,7 +24,7 @@ export default function* submitUnitySaga({ payload }: ReturnType<typeof submitUn
     );
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "submitUnity" });
+      Logger.notify(e, { event: "submitUnity" });
     });
   }
 }

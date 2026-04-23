@@ -1,7 +1,8 @@
 import moment from "moment";
 import { call, select, spawn } from "redux-saga/effects";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { UPDATE_APP_STATE, updateAppState } from "@redux/app/app.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getToken } from "@services/storage";
@@ -50,7 +51,7 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
       return;
     }
 
-    Logger.logMixpanelEvent(`debug_tool_query_args`, {
+    EngagementTracking.logMixpanelEvent(`debug_tool_query_args`, {
       disableUserEntries: false,
       endTime,
       startTime,
@@ -74,7 +75,7 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
         }
       );
 
-      Logger.logMixpanelEvent("debug_tool_query_results", {
+      EngagementTracking.logMixpanelEvent("debug_tool_query_results", {
         fitkitResults,
         usingYuHealth: false,
         error: fitkitError,
@@ -100,7 +101,7 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
         metadata: { file: "debugTool.saga" },
       });
 
-      Logger.logMixpanelEvent("debug_tool_query_results", {
+      EngagementTracking.logMixpanelEvent("debug_tool_query_results", {
         yuHealthResults,
         usingYuHealth: true,
         fitKitTypes,
@@ -139,7 +140,7 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
     );
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "debugToolSaga" });
+      Logger.notify(e, { event: "debugToolSaga" });
     });
   }
 }

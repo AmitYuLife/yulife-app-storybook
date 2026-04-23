@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, put, spawn } from "redux-saga/effects";
 import { totalCoinsUpdated } from "../coins.actions";
 import client from "@graphql/_core/client";
@@ -19,7 +19,7 @@ export default function* updateTotalCoinsSaga() {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "updateTotalCoins" });
+      Logger.notify(e, { event: "updateTotalCoins" });
     });
   }
 

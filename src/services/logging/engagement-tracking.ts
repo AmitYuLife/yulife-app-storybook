@@ -1,25 +1,20 @@
-import Config from "react-native-config";
 import * as Application from "expo-application";
 import Intercom from "@intercom/intercom-react-native";
 import { Mixpanel } from "mixpanel-react-native";
-import getBugsnagClient, { BugsnagClient } from "../bugsnag";
 import { MixpanelEvent, MixpanelEventMetadata, UserSupportLevel } from "@services/logging/types";
-import { Event } from "@bugsnag/expo";
 import { region } from "@locale";
-import { Platform } from "react-native";
 import moment from "moment";
+import Logger from "@services/logger/logger";
 
 const MAX_EVENTS_PER_SECOND = 10;
 
-/** Rename to EngagementTracking */
-class LoggerInstance {
+class EngagementTrackingInstance {
   private userId = "";
   private updatingUser: boolean = false;
   private initialised = false;
   private appVersion: string;
   private appVersionMajorMinor: string;
   private appVersionRegex = /(\d+.\d+).(\d+)/;
-  private bugsnag: BugsnagClient;
   private mixpanel: Mixpanel | null = null;
   private eventRates: Map<string, { count: number; resetTime: number }> = new Map();
   private disabledEvents: Set<string> = new Set();
@@ -27,8 +22,6 @@ class LoggerInstance {
   private anonymousEvents: { name: MixpanelEvent; metadata: MixpanelEventMetadata }[] = [];
 
   constructor() {
-    this.bugsnag = getBugsnagClient();
-
     const version = Application.nativeApplicationVersion ?? "1.0";
     this.appVersion = version;
     this.appVersionMajorMinor = version.replace(this.appVersionRegex, "$1");
@@ -54,8 +47,8 @@ class LoggerInstance {
       try {
         await Intercom.logout(); // we should always logout from intercom because sometimes things get weirdly cached...
       } catch (err) {
-        this.error(err, {
-          location: "logger.logOut",
+        Logger.notify(err, {
+          location: "engagement-tracking.logOut",
         });
       }
     }
@@ -89,7 +82,6 @@ class LoggerInstance {
         await this.logOut();
       }
 
-      this.bugsnag.setUser(userId, "", "");
       await this.mixpanel.identify(userId);
       this.userId = userId;
 
@@ -120,8 +112,8 @@ class LoggerInstance {
       await Intercom.setUserHash(hash);
       await Intercom.loginUserWithUserAttributes({ userId });
     } catch (err) {
-      this.error(err, {
-        location: "logger.setIntercomUser",
+      Logger.notify(err, {
+        location: "engagement-tracking.setIntercomUser",
       });
     }
   };
@@ -146,8 +138,8 @@ class LoggerInstance {
     try {
       await Intercom.logEvent(event, data);
     } catch (err) {
-      this.error(err, {
-        location: "logger.logEvent",
+      Logger.notify(err, {
+        location: "engagement-tracking.logEvent",
       });
     }
   };
@@ -176,7 +168,7 @@ class LoggerInstance {
 
     if (rateLimit.count >= MAX_EVENTS_PER_SECOND) {
       this.disabledEvents.add(event);
-      this.bugsnag.notify(new Error(`Rate limited logging event: ${event}`));
+      Logger.warn(`Rate limited engagement event: ${event}`);
       return true;
     }
 
@@ -211,8 +203,8 @@ class LoggerInstance {
     try {
       await Intercom.updateUser({ languageOverride });
     } catch (err) {
-      this.error(err, {
-        location: "logger.setUserLanguagePreferenceOnIntercom",
+      Logger.notify(err, {
+        location: "engagement-tracking.setUserLanguagePreferenceOnIntercom",
       });
     }
   };
@@ -239,32 +231,13 @@ class LoggerInstance {
         await Intercom.updateUser(eventProperties as Record<string, string | number | boolean>);
       }
     } catch (err) {
-      this.error(err, {
-        location: "logger.setUserProperties",
-      });
-    }
-  };
-
-  public error = (error: Error, tags: Record<string, string | number | boolean>) => {
-    if (Config.ENV === "dev") {
-      // tslint:disable-next-line
-      console.error(error, tags);
-    }
-
-    if (Platform.OS !== "web") {
-      this.bugsnag.notify(error, function (event: Event) {
-        // TODO: Omit tags we don't want to see in bugsnag
-        if (Object.keys(tags).length) {
-          for (const tag of Object.keys(tags)) {
-            event.addMetadata("tags", tag, tags[tag]);
-          }
-        }
-        // If this function returns false, the event won't be emitted
+      Logger.notify(err, {
+        location: "engagement-tracking.setUserProperties",
       });
     }
   };
 }
 
-const Logger = new LoggerInstance();
+const EngagementTracking = new EngagementTrackingInstance();
 
-export default Logger;
+export default EngagementTracking;

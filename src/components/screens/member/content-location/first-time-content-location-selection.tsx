@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { Modal, View } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Box, Image, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import { Button, BUTTON_ICON, TertiaryButton } from "@molecules";
@@ -37,7 +37,7 @@ const _FirstTimeContentLocationSelection = (props: Props) => {
     try {
       await updateContentLocation({ variables: { location: contentLocation } });
     } catch (e) {
-      Logger.error(e, { file: "content-location-selection-modal" });
+      Logger.notify(e, { file: "content-location-selection-modal" });
     }
   }, [contentLocation, updateContentLocation]);
 

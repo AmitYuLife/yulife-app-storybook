@@ -5,7 +5,7 @@ import { ROUTES } from "@navigation/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { updateDailyCyclingDistanceMeasurementType } from "@redux/daily-cycling/daily-cycling.actions";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import SettingLayout from "./setting.layout";
 import { GAME_SETTINGS_SCREEN } from "@ids";
 import { t } from "@locale";
@@ -24,7 +24,7 @@ const CyclingMeasurementContainer = ({ componentId }: IProps) => {
   const onSelectedCyclingMeasurement = useCallback(async (measurement: DistanceMeasurementType) => {
     dispatch(updateDailyCyclingDistanceMeasurementType(measurement));
     await updateCyclingMeasurement({ variables: { measurement } });
-    Logger.logMixpanelEvent("settings_toggle", { type: "cycling_measurement", subtype: measurement });
+    EngagementTracking.logMixpanelEvent("settings_toggle", { type: "cycling_measurement", subtype: measurement });
   }, []);
 
   const onRightIconPress = useCallback(() => (loading ? null : Navigation.popToRoot(componentId)), [componentId]);

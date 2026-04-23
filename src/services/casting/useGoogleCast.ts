@@ -9,7 +9,7 @@ import GoogleCast, {
 } from "react-native-google-cast";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 export interface IUseGoogleCastProps {
   videoSourceType?: string;
@@ -145,7 +145,7 @@ const useGoogleCast = ({ videoSourceType, onRemotePlaybackEnd }: IUseGoogleCastP
           autoplay: true,
         });
       } catch (error) {
-        Logger.error(error as Error, { location: "useGoogleCast-startCasting" });
+        Logger.notify(error, { location: "useGoogleCast-startCasting" });
       } finally {
         setIsLoadingMedia(false);
       }

@@ -11,7 +11,7 @@ import {
   COMPLETED_SMOKING_CAROUSEL_LIST_ITEM,
   SMOKING_CAROUSEL_LIST_ITEM,
 } from "@ids";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { HalfModalItemDetails, usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
 import { SmokingCarouselListItemTitle } from "./smoking-carousel-list-item-title";
@@ -101,7 +101,7 @@ const SmokingCarouselListItem = (item: ISmokingCarouselListItem) => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
         await handleSduiAction();
       } catch (e) {
-        Logger.error(e, { event: "@smoking_streak_carousel_item" });
+        Logger.notify(e, { event: "@smoking_streak_carousel_item" });
       } finally {
         setLoadingState(DEFAULT_STATE);
       }

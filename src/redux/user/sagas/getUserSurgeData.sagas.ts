@@ -1,5 +1,5 @@
 import { call, put, spawn } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { updateUserSurge } from "@redux/user/user.actions";
 import client from "@graphql/_core/client";
 import { GetUserSurgeQuery, gql } from "@graphql/__generated";
@@ -14,7 +14,7 @@ export default function* getUserSurgeData() {
     yield put(updateUserSurge(userSurge.getUserSurge));
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "getUserSurgeData" });
+      Logger.notify(e, { event: "getUserSurgeData" });
     });
   }
 

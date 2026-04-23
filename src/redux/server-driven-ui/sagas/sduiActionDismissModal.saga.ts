@@ -1,7 +1,7 @@
 import { spawn } from "redux-saga/effects";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { Navigation as NativeNavigation } from "react-native-navigation";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { noop, parseJSON } from "@utils";
 import { getServerPayload } from "../sdui.helpers";
 
@@ -13,7 +13,7 @@ export function* sduiActionDismissModal({ payload }: SduiActionWithServerPayload
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "dispatchActions", file: "sduiActionDismissModal" });
+      Logger.notify(e, { event: "dispatchActions", file: "sduiActionDismissModal" });
     });
   }
 }

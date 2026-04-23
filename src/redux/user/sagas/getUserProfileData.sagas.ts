@@ -1,5 +1,5 @@
 import { call, put, spawn } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Unpacked } from "@utils";
 import { UPDATE_APP_STATE, updateAppState } from "@redux/app/app.actions";
 import { getToken } from "@services/storage";
@@ -48,7 +48,7 @@ export default function* getUserProfileData(
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "getUserProfileData" });
+      Logger.notify(e, { event: "getUserProfileData" });
     });
   }
 }

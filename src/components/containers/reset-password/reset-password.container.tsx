@@ -1,7 +1,7 @@
 import React, { useState, useMemo, FC, useCallback, useEffect } from "react";
 import { Navigation } from "@navigation/main";
 import { EmailSentScreen, ResetPasswordScreen } from "@screens";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { validateEmail } from "@utils/email";
 import { useMutatationAllRegions } from "@hooks";
 import { CaptchaResponse, gql } from "@graphql/__generated";
@@ -56,7 +56,7 @@ const ResetPasswordContainer: FC<IProps> = (props) => {
           setState({ wasEmailSent: true, emailError, email });
         }
       } catch (e) {
-        Logger.error(e, { file: "reset-password.container" });
+        Logger.notify(e, { file: "reset-password.container" });
       }
     }
   }, [email, emailError, sendMagicLink, captcha]);

@@ -15,7 +15,7 @@ import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { useTranslation } from "@hooks";
 import { Box, CloseSvg, Image, Source, TextTemplate } from "@atoms";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { FLOATING_CONTINUE_BUTTON } from "@ids";
 
 type FloatingModalComponent = (props: IFloatingModalContentProps) => ReactNode;
@@ -85,7 +85,7 @@ const FloatingModal = ({
         setIsLoading(true);
         await buttonOnPress();
       } catch (err) {
-        Logger.error(err, { location: "floating-modal" });
+        Logger.notify(err, { location: "floating-modal" });
       } finally {
         setIsLoading(false);
       }

@@ -12,7 +12,7 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getAdditionalCyclingFitnessActivities } from "@services/fitkit/helpers/additionalCyclingActivities";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { FitKitType } from "@graphql/__generated";
 
 interface Props {
@@ -98,7 +98,7 @@ const ToolsScreen = ({ onClose }: Props) => {
 
     try {
       const fitKitTypes = typePickerItems[typeIndex].types;
-      Logger.logMixpanelEvent(`debug_tool_query_args`, {
+      EngagementTracking.logMixpanelEvent(`debug_tool_query_args`, {
         disableUserEntries: false,
         endTime: endDate,
         startTime: startDate,
@@ -116,7 +116,7 @@ const ToolsScreen = ({ onClose }: Props) => {
         metaData: { file: "tools.screen" },
       });
 
-      Logger.logMixpanelEvent("debug_tool_query_results", {
+      EngagementTracking.logMixpanelEvent("debug_tool_query_results", {
         results: response.results,
         error: response.error,
         fitKitTypes,

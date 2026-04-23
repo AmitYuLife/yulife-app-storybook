@@ -3,6 +3,7 @@ import { getToken } from "@services/storage";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import themeService from "@modules/themes/theme.service";
 import { setContext } from "@apollo/client/link/context";
+import { onError } from "@apollo/client/link/error";
 import { ApolloClient, NormalizedCacheObject, from, createHttpLink } from "@apollo/client";
 import moment from "moment";
 import { Platform, PixelRatio } from "react-native";
@@ -10,7 +11,7 @@ import Config from "react-native-config";
 import * as Device from "expo-device";
 import * as Application from "expo-application";
 import { store } from "@redux/_core/store";
-import getClient from "@services/bugsnag";
+import Logger from "@services/logger/logger";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
 import { getCurrentLocale, region, REGION, REGION_LIST } from "@locale";
@@ -72,7 +73,7 @@ const authMiddleware = (r?: REGION) =>
     // We want to append the prefix with the current milliseconds to make the request ID unique
     const requestId = `${requestIdPrefix}_${getUserId()}_${moment().milliseconds()}_${requestCount}`;
 
-    getClient().leaveBreadcrumb(
+    Logger.breadcrumb(
       "Apollo request",
       { name: op.operationName, requestId, retryCount: op.context?.retries || 0 },
       "request"
@@ -100,13 +101,38 @@ const retryLink = createRetryLink(() => {
   store.dispatch(updateOfflineState({ isOffline: true }));
 });
 
+const errorLink = onError(({ operation, networkError, graphQLErrors }) => {
+  const { headers } = operation.getContext();
+  const metadata = {
+    operationName: operation.operationName,
+    variables: operation.variables,
+    requestId: headers?.["x-request-id"],
+    locale: headers?.yu_locale,
+    appVersion: headers?.app_version,
+    deviceId: headers?.device_id,
+  };
+
+  if (networkError) {
+    Logger.error(networkError, {
+      ...metadata,
+      statusCode: "statusCode" in networkError ? networkError.statusCode : undefined,
+    });
+  }
+
+  if (graphQLErrors) {
+    for (const err of graphQLErrors) {
+      Logger.error(err, { ...metadata, path: err.path });
+    }
+  }
+});
+
 let defaultClient: ApolloClient<NormalizedCacheObject>;
 
 export default () => {
   if (!defaultClient) {
     defaultClient = new ApolloClient({
       cache: gqlInMemoryCache(),
-      link: from([authMiddleware(), retryLink, httpLink()]),
+      link: from([authMiddleware(), retryLink, errorLink, httpLink()]),
     });
 
     // TODO: Re-enable this when expo prebuild is finalised
@@ -128,7 +154,7 @@ export const regionalClients = REGION_LIST.map((r) => {
 
   const client = new ApolloClient({
     cache: gqlInMemoryCache(),
-    link: from([authMiddleware(r), httpLink(r)]),
+    link: from([authMiddleware(r), errorLink, httpLink(r)]),
   }) as ApolloClientWithRegion;
 
   client.__REGION = r;

@@ -8,7 +8,7 @@ import { setYuHealthStatus, yuHealthPermissionsRequested } from "@redux/yu-healt
 import { getActiveProvider, getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 import { API_HEALTH_PROVIDER_TO_GQL_MAP } from "@services/fitkit/yu-health.helpers";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { joinCapabilities, shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
 import {
   HealthPermissionStatus,
@@ -72,7 +72,7 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
         .map(([provider]) => provider);
 
       if (isEmpty(availableProviders)) {
-        Logger.error(new Error(`No available providers for this capability: ${capability}`), {
+        Logger.notify(new Error(`No available providers for this capability: ${capability}`), {
           file: "useVerifyAndAuthorizeCapability",
           capability,
           providerStatuses: JSON.stringify(providerStatuses),

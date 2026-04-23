@@ -1,5 +1,6 @@
 import { Linking, Platform } from "react-native";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { MixpanelEvent } from "@services/logging/types";
 
 interface IAppLinkConfig {
@@ -33,7 +34,7 @@ async function openStore({ appName, appStoreId, appStoreLocale = "gb", playStore
       await Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`);
     }
   } catch (error) {
-    Logger.error(error, { file: "app-link index" });
+    Logger.notify(error, { file: "app-link index" });
   }
 }
 
@@ -107,7 +108,7 @@ export interface IContentHyperLinkProps {
 }
 export const handleContentHyperlink = async ({ id, name, title, componentID, uri, label }: IContentHyperLinkProps) => {
   try {
-    Logger.logMixpanelEvent(`${componentID}_button_pressed` as MixpanelEvent, {
+    EngagementTracking.logMixpanelEvent(`${componentID}_button_pressed` as MixpanelEvent, {
       id,
       name,
       title,
@@ -117,6 +118,6 @@ export const handleContentHyperlink = async ({ id, name, title, componentID, uri
 
     await handleLinkPress(uri)();
   } catch (e) {
-    Logger.logMixpanelEvent(`${componentID}_button_pressed_error` as MixpanelEvent, { error: e.message });
+    EngagementTracking.logMixpanelEvent(`${componentID}_button_pressed_error` as MixpanelEvent, { error: e.message });
   }
 };

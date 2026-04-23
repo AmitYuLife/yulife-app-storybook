@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { useEffect, useState } from "react";
 
 export function useGetLottieJson(uri: string) {
@@ -14,7 +14,7 @@ export function useGetLottieJson(uri: string) {
           const responseInJson = await response.json();
           setJson(responseInJson);
         } catch (error) {
-          Logger.error(error, { file: "useGetLottieJson" });
+          Logger.notify(error, { file: "useGetLottieJson" });
         } finally {
           setLoading(false);
         }

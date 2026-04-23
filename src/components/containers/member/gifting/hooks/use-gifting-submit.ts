@@ -3,7 +3,7 @@ import { gql } from "@graphql/__generated";
 import { UserSearchItem } from "@redux/_core/types";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { useCallback, useState } from "react";
 import uuid from "react-native-uuid";
 import { useDispatch } from "react-redux";
@@ -47,7 +47,7 @@ export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, backg
     } catch (e) {
       setSendingState(GiftSendingStates.ERROR);
       setErrorMessage(e?.message || t("screens.gifting.gift_view_error.description"));
-      Logger.error(e, { location: "gifting-use-submit" });
+      Logger.notify(e, { location: "gifting-use-submit" });
     }
   }, [selectedUsers, amount, messagePresetId, sendGift, dispatch, backgroundId, stickerId]);
 

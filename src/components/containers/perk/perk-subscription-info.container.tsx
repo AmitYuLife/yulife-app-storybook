@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { PerkSubscriptionInfoLoadingScreen, PerkSubscriptionInfoScreen } from "@components/screens";
 import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { gql } from "@graphql/__generated";
 
 interface Props {
@@ -42,7 +42,7 @@ const PerkSubscriptionInfoContainer = ({ componentId, perkId }: Props) => {
         },
       });
     } catch (error) {
-      Logger.error(error, { file: "perk-subscription-info.container" });
+      Logger.notify(error, { file: "perk-subscription-info.container" });
     }
   }, []);
 

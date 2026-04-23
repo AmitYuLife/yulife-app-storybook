@@ -18,7 +18,7 @@ import {
 import { handleTakeAChallengeCTA } from "@navigation/utils";
 import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { ROUTES } from "@navigation/constants";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { getCurrentLocale, t } from "@locale";
@@ -124,7 +124,7 @@ export const DailyStepsOnline = memo(({ isUnauthorised, isUnavailable, showHeroC
   }, [features.tempGameEnableReleaseYuHealthV4, isUnauthorised, isUnavailable]);
 
   const handleTakeAChallengeButtonPress = useCallback(() => {
-    Logger.logMixpanelEvent("button_pressed", {
+    EngagementTracking.logMixpanelEvent("button_pressed", {
       button_id: hasNotification ? "back_to_challenge" : "take_a_challenge",
       location: "daily_steps",
     });

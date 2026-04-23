@@ -2,7 +2,7 @@ import { all, call, put, spawn } from "redux-saga/effects";
 import { getServerPayload } from "../sdui.helpers";
 import { ProductStepAction } from "../sdui.types";
 import { parseJSON } from "@utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Navigation } from "@navigation/main";
 
 export function* sduiActionGenericNavigatePopToSaga({ payload }: ProductStepAction) {
@@ -18,7 +18,7 @@ export function* sduiActionGenericNavigatePopToSaga({ payload }: ProductStepActi
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "dispatchActions", file: "sduiActionNavigateSaga" });
+      Logger.notify(e, { event: "dispatchActions", file: "sduiActionNavigateSaga" });
     });
   }
 

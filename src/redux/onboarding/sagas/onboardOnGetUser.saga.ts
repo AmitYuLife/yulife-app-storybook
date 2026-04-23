@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, select, spawn } from "redux-saga/effects";
 import { getIsOnboardingRedeemed } from "../onboarding.selectors";
 import redeemOnboarding from "./redeemOnboarding.helper";
@@ -12,7 +12,7 @@ export default function* onboardOnGetUser() {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "onboardOnGetUser" });
+      Logger.notify(e, { event: "onboardOnGetUser" });
     });
   }
 }

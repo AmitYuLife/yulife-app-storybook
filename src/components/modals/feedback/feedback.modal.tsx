@@ -7,7 +7,8 @@ import { FeedbackForm } from "@organisms";
 import { useDispatch } from "react-redux";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { AnswerInput, gql } from "@graphql/__generated";
 
 const FeedbackModal = () => {
@@ -21,7 +22,7 @@ const FeedbackModal = () => {
 
   useEffect(() => {
     if (data?.form) {
-      Logger.logMixpanelEvent("modal_viewed", {
+      EngagementTracking.logMixpanelEvent("modal_viewed", {
         name: "feedback.modal",
         survey_title: data.form.title,
         reward_value: data.form.awardYucoin,
@@ -42,7 +43,7 @@ const FeedbackModal = () => {
         });
         dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
       } catch (e) {
-        Logger.error(e, { location: "feedback.modal", feedbackId: data?.form?.id });
+        Logger.notify(e, { location: "feedback.modal", feedbackId: data?.form?.id });
       } finally {
         await Navigation.dismissModal(MODALS.feedback);
       }

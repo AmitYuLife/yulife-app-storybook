@@ -1,5 +1,5 @@
 import { call, put, spawn } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import getAllUserData from "@graphql/user/getAllUserData.gql";
@@ -127,6 +127,6 @@ export default function* getAllUserDataSaga({
       }
     }
   } catch (e) {
-    Logger.error(e, { event: "getAllUserDataSaga", payload: JSON.stringify(payload) });
+    Logger.notify(e, { event: "getAllUserDataSaga", payload: JSON.stringify(payload) });
   }
 }

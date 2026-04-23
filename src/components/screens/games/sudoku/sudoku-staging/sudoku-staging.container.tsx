@@ -17,7 +17,7 @@ import { challengeStartAction } from "@redux/levels/levels.actions";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { getCurrentDateState } from "@redux/device/device.selectors";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
 
 interface IProps {
@@ -134,7 +134,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
         })
       );
 
-      Logger.logEvent("start_sudoku_game", { challengeId: activeLevel.id });
+      EngagementTracking.logEvent("start_sudoku_game", { challengeId: activeLevel.id });
 
       Navigation.push(componentId, {
         component: {

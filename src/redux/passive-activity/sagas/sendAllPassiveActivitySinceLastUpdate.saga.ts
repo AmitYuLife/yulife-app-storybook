@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import moment from "moment";
 import { spawn, call, select, delay, put } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getUserFeatures, getUserPassiveChallengesLastUpdate } from "../../user/user.selectors";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { Platform } from "react-native";
@@ -121,7 +121,7 @@ export default function* sendPassiveActivity(): any {
               isUpdated = true;
             } catch (e) {
               yield spawn(() => {
-                Logger.error(e, { event: "upsertPassiveChallengesSinceLastUpdate" });
+                Logger.notify(e, { event: "upsertPassiveChallengesSinceLastUpdate" });
               });
               yield delay(15000);
             }
@@ -155,7 +155,7 @@ export default function* sendPassiveActivity(): any {
     }
   } catch (e) {
     yield call(() => {
-      Logger.error(e, { event: "sendPassiveActivitySinceLastUpdate" });
+      Logger.notify(e, { event: "sendPassiveActivitySinceLastUpdate" });
     });
   }
 }

@@ -3,7 +3,7 @@ import { delay, put, select, take } from "redux-saga/effects";
 import { YU_HEALTH_SET_ACTIVE_PROVIDER, setYuHealthStatus, updateCapabilityStatuses } from "../yu-health.actions";
 import { getActiveProvider, getProviderAvailabilities } from "../yu-health.selectors";
 import { PayloadAction } from "@reduxjs/toolkit";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { YuHealthStatus } from "../yu-health.types";
 
 export default function* refreshCapabilityPermissionsSaga() {
@@ -45,7 +45,7 @@ export default function* refreshCapabilityPermissionsSaga() {
       // Sometimes, when the app is first opened, the health data service (specifically for Samsung Health)
       // is not yet available. So we can retry this a few times
       if (retries >= 3) {
-        Logger.error(e, { file: "refreshCapabilityPermissions.saga" });
+        Logger.notify(e, { file: "refreshCapabilityPermissions.saga" });
         yield put(setYuHealthStatus(YuHealthStatus.error));
       }
 

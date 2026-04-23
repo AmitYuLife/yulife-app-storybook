@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, put, spawn } from "redux-saga/effects";
 import { fetchGame2048HighScore as fetchGame2048HighScoreAction, updateGame2048HighScore } from "../game-2048.actions";
 import client from "@graphql/_core/client";
@@ -20,7 +20,7 @@ export default function* fetchGame2048HighScore({ payload }: ReturnType<typeof f
     yield put(updateGame2048HighScore(highScore ?? 0));
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "fetchGame2048HighScore" });
+      Logger.notify(e, { event: "fetchGame2048HighScore" });
     });
   }
 

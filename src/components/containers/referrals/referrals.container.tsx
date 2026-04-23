@@ -10,7 +10,8 @@ import {
 import { Navigation } from "@navigation/main";
 import { LazyGqlLoadingArgs, useLazyGqlLoading } from "@hooks";
 import ReferralsLoadingScreen from "@components/screens/referrals/referrals-loading.screen";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { Share } from "react-native";
 import { useLazyQuery } from "@apollo/client";
 import { BusinessAccount } from "@components/molecules/business-picker";
@@ -91,13 +92,13 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
   }, [dispatch, sourceId]);
 
   const onShare = useCallback(async () => {
-    Logger.logMixpanelEvent("referral_link_shared");
+    EngagementTracking.logMixpanelEvent("referral_link_shared");
     try {
       await Share.share({
         message: data?.referralInformation?.shareReferralCodeMessage,
       });
     } catch (e) {
-      Logger.error(e, { file: componentId });
+      Logger.notify(e, { file: componentId });
     }
   }, [componentId, data?.referralInformation?.shareReferralCodeMessage]);
 

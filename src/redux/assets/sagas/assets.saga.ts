@@ -1,5 +1,5 @@
 import { getUserEndPointsVersion } from "@redux/user/user.selectors";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, delay, select, spawn, takeLatest } from "redux-saga/effects";
 import { UPDATE_USER_PROFILE } from "@redux/user/user.actions";
 import { Storage, StorageKey } from "@utils/storage";
@@ -41,7 +41,7 @@ export function* prefetchAssets() {
       }
     } catch (e) {
       yield spawn(() => {
-        Logger.error(e, { event: "prefetchAssets" });
+        Logger.notify(e, { event: "prefetchAssets" });
       });
     }
   }

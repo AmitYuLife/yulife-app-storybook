@@ -7,7 +7,7 @@ import { CopyIcon } from "@atoms/icon/copy-icon";
 import { Pressable } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
 import { IMarkdownStyle } from "@molecules/markdown/markdown.styles";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { MixpanelEvent } from "@services/logging/types";
 import { t } from "@locale";
 import { VOUCHER_CODE, VOUCHER_CODE_TITLE } from "@ids";
@@ -44,7 +44,7 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
     Vibration.vibrate(100);
     setIsCopied(true);
     if (analyticsEvent) {
-      Logger.logMixpanelEvent(analyticsEvent.name, { location: analyticsEvent.location });
+      EngagementTracking.logMixpanelEvent(analyticsEvent.name, { location: analyticsEvent.location });
     }
   };
 

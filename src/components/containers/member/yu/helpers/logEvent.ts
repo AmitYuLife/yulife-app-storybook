@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { MixpanelEvent } from "@services/logging/types";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { SduiAction } from "@graphql/__generated";
 
 interface Payload {
@@ -15,7 +15,7 @@ export const logEvent = (dispatch: Dispatch<ReturnType<typeof logMixpanelEventAc
       const payload = <Payload>JSON.parse(event.payload);
       dispatch(logMixpanelEventActionCreator(payload.name || "button_pressed", payload.props));
     } catch (e) {
-      Logger.error(e, { where: "yu-screen-log-event" });
+      Logger.notify(e, { where: "yu-screen-log-event" });
     }
   }
 };

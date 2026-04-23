@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { View } from "react-native";
 import { Navigation } from "@navigation/main";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { WELLBEING_HUB_SETTINGS_SCREEN } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad, RadioListItem, RadioListItemProps } from "@organisms";
@@ -57,7 +57,7 @@ const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
       await updateMobileUserContentLocation({ variables: { location: contentLocationSelection } });
       await onRightIconPress();
     } catch (e) {
-      Logger.error(e, { file: "select-content-location.container" });
+      Logger.notify(e, { file: "select-content-location.container" });
     }
   }, [contentLocationSelection]);
 

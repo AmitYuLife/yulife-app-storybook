@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, spawn } from "redux-saga/effects";
 import { loginUserSuccess } from "../../user/user.actions";
 import redeemOnboarding from "./redeemOnboarding.helper";
@@ -10,7 +10,7 @@ export default function* onboardOnLogin({ payload }: ReturnType<typeof loginUser
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "onboardOnLogin" });
+      Logger.notify(e, { event: "onboardOnLogin" });
     });
   }
 }

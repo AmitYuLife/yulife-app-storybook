@@ -1,6 +1,5 @@
 import { IFeature } from "@redux/user/user.types";
-import getClient from "@services/bugsnag";
-import dd from "@services/datadog";
+import Logger from "@services/logger/logger";
 import { processYuHealthResult } from "./helpers/sampleToAggregatedData";
 import {
   BucketSize,
@@ -40,10 +39,10 @@ export const yuHealthAggregateQuery = async ({
   };
 
   try {
-    getClient().leaveBreadcrumb("YuHealth Aggregation Queried", { params }, "log");
+    Logger.breadcrumb("YuHealth Aggregation Queried", { params }, "log");
 
     if (loggingEnabled) {
-      dd.info("YuHealth aggregate query args", {
+      Logger.info("YuHealth aggregate query args", {
         metadata,
         params,
         location: "yu-health",
@@ -57,7 +56,7 @@ export const yuHealthAggregateQuery = async ({
     const nonZero = resultItems.filter((r) => r.value > 0).length;
 
     if (loggingEnabled && results) {
-      dd.info("YuHealth aggregate query results", {
+      Logger.info("YuHealth aggregate query results", {
         metadata,
         params,
         total,
@@ -67,7 +66,7 @@ export const yuHealthAggregateQuery = async ({
     }
 
     if (total > 0 && nonZero < total) {
-      dd.warn("YuHealth aggregate zero-value buckets", {
+      Logger.warn("YuHealth aggregate zero-value buckets", {
         dataType: params.dataType,
         total,
         nonZero,
@@ -80,7 +79,7 @@ export const yuHealthAggregateQuery = async ({
 
     return resultItems;
   } catch (e) {
-    dd.error("YuHealth aggregate query response error", {
+    Logger.error("YuHealth aggregate query response error", {
       error: e,
       params,
       metadata,
@@ -107,7 +106,7 @@ export async function yuHealthSampleQuery({
     loggingEnabled: false,
   };
 
-  getClient().leaveBreadcrumb("YuHealth Sample Queried", { params }, "log");
+  Logger.breadcrumb("YuHealth Sample Queried", { params }, "log");
 
   try {
     const args: ISampleQueryParams = {
@@ -116,7 +115,7 @@ export async function yuHealthSampleQuery({
     };
 
     if (loggingEnabled) {
-      dd.info("YuHealth sample query args", {
+      Logger.info("YuHealth sample query args", {
         ...metadata,
         ...args,
         location: "yu-health",
@@ -126,7 +125,7 @@ export async function yuHealthSampleQuery({
     const results = await sampleQuery(args);
 
     if (loggingEnabled && results) {
-      dd.info("YuHealth sample query results", {
+      Logger.info("YuHealth sample query results", {
         ...metadata,
         results,
         location: "yu-health",
@@ -136,9 +135,9 @@ export async function yuHealthSampleQuery({
     return results.result;
   } catch (e) {
     // Add it back when we'll have the logic to log only one error per session
-    // Logger.error(e, { event: "yuHealthSampleQuery" });
+    // Logger.notify(e, { event: "yuHealthSampleQuery" });
 
-    dd.error("YuHealth sample query error", {
+    Logger.error("YuHealth sample query error", {
       ...metadata,
       error: e.message,
       params,

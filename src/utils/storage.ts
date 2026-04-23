@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import * as EncryptedStorage from "expo-secure-store";
 import LegacyEncryptedStorage from "react-native-encrypted-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -78,7 +78,7 @@ export class Storage {
         await LegacyEncryptedStorage.removeItem(key);
       }
     } catch (error) {
-      Logger.error(error, { file: "storage" });
+      Logger.notify(error, { file: "storage" });
     }
   }
 
@@ -92,7 +92,7 @@ export class Storage {
         await this.setEncryptedItem(key, legacyValue);
       }
     } catch (error) {
-      Logger.error(error, { file: "storage" });
+      Logger.notify(error, { file: "storage" });
     }
 
     return legacyValue;

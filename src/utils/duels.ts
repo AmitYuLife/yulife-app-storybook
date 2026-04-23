@@ -1,7 +1,7 @@
 import { t } from "@locale";
 import moment from "moment";
 import { Alert } from "react-native";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { Navigation } from "@navigation/main";
@@ -138,6 +138,6 @@ export const showExistingDuelAlert = (existingDuel: ValidDuel, requestLocation: 
 
   const page = getPage(requestLocation);
   const mixpanelName = isAlreadyAccepted ? `${page}.DuelItsAlreadyOn` : `${page}.DuelHangOnASec`;
-  Logger.logMixpanelEvent("screen_view", { name: mixpanelName });
+  EngagementTracking.logMixpanelEvent("screen_view", { name: mixpanelName });
   Alert.alert(title, description, buildButtons());
 };

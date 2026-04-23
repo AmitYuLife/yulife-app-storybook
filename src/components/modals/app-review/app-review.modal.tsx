@@ -6,7 +6,7 @@ import AppReviewModalScreen from "@screens/app-review/app-review.screen";
 import InAppReview from "react-native-in-app-review";
 import { useMutation } from "@apollo/client";
 import { openYulife } from "@services/app-link";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { t } from "@locale";
 import { AppStoreReviewPromptAction, gql } from "@graphql/__generated";
 import { useDispatch } from "react-redux";
@@ -49,7 +49,7 @@ const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
   const openReview = useCallback(async () => {
     if (InAppReview.isAvailable()) {
       await InAppReview.RequestInAppReview().catch((error) => {
-        Logger.error(error, { file: "app-review-modal" });
+        Logger.notify(error, { file: "app-review-modal" });
       });
     } else {
       openYulife();

@@ -1,5 +1,5 @@
 import { eventChannel } from "redux-saga";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 import * as ExpoNotification from "expo-notifications";
 import { YULIFE_PN_CHANNEL_NAME, YULIFE_PN_CHANNEL_ID, YULIFE_PN_CHANNEL_DESCRIPTION } from "@services/constants";
@@ -20,7 +20,7 @@ export async function createPushNotificationsChannel() {
         };
       },
       handleError(_, error) {
-        Logger.error(error, { event: "pushNotification" });
+        Logger.notify(error, { event: "pushNotification" });
       },
     });
 
@@ -42,7 +42,7 @@ export async function createPushNotificationsChannel() {
           token: value.data,
         })
       )
-      .catch((error) => Logger.error(error, { event: "pushNotification" }));
+      .catch((error) => Logger.notify(error, { event: "pushNotification" }));
 
     return () => null;
   });

@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getDeviceName, isAndroid } from "@utils";
 import { getInstallReferrerAsync } from "expo-application";
 import { Dimensions, Platform } from "react-native";
@@ -30,7 +30,7 @@ const getInstallationReferrerId = async (): Promise<string | undefined> => {
 
     return source === "google-play" ? undefined : source;
   } catch (e) {
-    Logger.error(e, { event: "getInstallationReferrerId", location: "useFingerprintTheme" });
+    Logger.notify(e, { event: "getInstallationReferrerId", location: "useFingerprintTheme" });
   }
 };
 

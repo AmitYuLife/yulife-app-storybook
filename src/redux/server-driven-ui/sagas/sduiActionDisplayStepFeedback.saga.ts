@@ -1,5 +1,5 @@
 import { parseJSON } from "@utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, put } from "redux-saga/effects";
 import { SduiSagaAction } from "../sdui.types";
 import { getServerPayload } from "../sdui.helpers";
@@ -94,7 +94,7 @@ export function* sduiActionDisplayStepFeedback(action: SduiSagaAction) {
     });
   } catch (e) {
     yield call(() =>
-      Logger.error(e, {
+      Logger.notify(e, {
         sdui: true,
         location: "sduiActionDisplayStepFeedback",
         ...(journeyId ? { journeyId } : {}),

@@ -2,7 +2,7 @@ import { all, call, put, select, spawn } from "redux-saga/effects";
 import { QueryResult } from "@apollo/client";
 import { GetYuScreenV5SectionsQuery, SduiAction, gql } from "@graphql/__generated";
 import client from "@graphql/_core/client";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getToken } from "@services/storage";
 import { Unpacked, parseJSON } from "@utils";
 import { setYuScreenSectionsLoading, updateYuScreenSections } from "../yu-screen.actions";
@@ -55,7 +55,7 @@ export default function* queryYuScreenSectionsSaga(action: SduiSagaAction) {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "queryYuScreenSectionsSaga" });
+      Logger.notify(e, { event: "queryYuScreenSectionsSaga" });
     });
   }
 }

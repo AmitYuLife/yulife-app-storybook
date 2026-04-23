@@ -6,7 +6,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 import AddBeneficiaryModalScreen from "./add-beneficiary-modal.screen";
 import { useMutation } from "@apollo/client";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { GetProductBeneficiariesQuery, gql } from "@graphql/__generated";
 
 type Beneficiary = GetProductBeneficiariesQuery["getProductBeneficiaries"]["beneficiaries"][number];
@@ -28,7 +28,7 @@ const AddBeneficiaryModal = (props: IProps) => {
     /**
      * Event taxonomy 115
      */
-    Logger.logEvent("beneficiary_edit_start", {
+    EngagementTracking.logEvent("beneficiary_edit_start", {
       type: beneficiaryToEdit ? "edit" : "new",
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

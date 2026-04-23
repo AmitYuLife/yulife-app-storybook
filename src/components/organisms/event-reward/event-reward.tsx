@@ -7,7 +7,7 @@ import React, { memo, useRef, useMemo, useEffect, useCallback, useState } from "
 import Animated, { useAnimatedStyle, useSharedValue, withTiming, withSequence } from "react-native-reanimated";
 import { Colours, Style, StyleSheet } from "@styles";
 import { Image, TextTemplate } from "@atoms";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
 import { Button, LabelWithImages, LottieView, Pressable } from "@molecules";
@@ -156,7 +156,7 @@ const EventReward = ({
 
       Vibration.vibrate();
     } catch (e) {
-      Logger.error(e, { event: "claim-goal" });
+      Logger.notify(e, { event: "claim-goal" });
     }
   }, [isClaimRewardEnabled, isRewardDelayedStatusCompleted, onClaimReward, reward, dispatch]);
 

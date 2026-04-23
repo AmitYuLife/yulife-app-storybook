@@ -16,7 +16,7 @@ import { t } from "@locale";
 import moment from "moment";
 import { DATE_FORMAT, fetchStepsData } from "@utils";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { delay } from "@utils/misc";
 import { DUEL_CONFIRM, DUEL_DATE, DUEL_STEPS, DUEL_SYNC } from "@ids";
 
@@ -93,7 +93,7 @@ const CompletedDuelsScreen = () => {
 
         await Promise.all([delay(SYNC_MIN_LOADING_TIME), syncScore()]);
       } catch (error) {
-        Logger.error(error, {
+        Logger.notify(error, {
           method: "onSyncPress",
           location: "completed-duels.screen",
         });
@@ -116,7 +116,7 @@ const CompletedDuelsScreen = () => {
 
         await refetchDuelsCompleted();
       } catch (error) {
-        Logger.error(error, {
+        Logger.notify(error, {
           method: "onConfirmPress",
           location: "completed-duels.screen",
         });

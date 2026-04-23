@@ -2,7 +2,7 @@ import { Navigation } from "@navigation/main";
 import { showYuModal } from "@navigation/root";
 import { bottomTabs, MODALS, ROUTES } from "./constants";
 import { WebViewContainerProps } from "@components/containers/web-view/web-view.container";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 
 export function handleNavigateBack(componentId: string) {
@@ -21,7 +21,7 @@ export function handleOpenWebView(props: WebViewContainerProps) {
       },
     });
   } catch {
-    Logger.logEvent("web_view_failed", { message: props ? `Link: ${props.uri}` : "Missing args" });
+    EngagementTracking.logEvent("web_view_failed", { message: props ? `Link: ${props.uri}` : "Missing args" });
   }
 }
 
@@ -118,4 +118,5 @@ export function showGenericModal(
   });
 }
 
-export const setScreenViewForBurgerMenu = () => Logger.logMixpanelEvent("screen_view", { name: "burger_menu" });
+export const setScreenViewForBurgerMenu = () =>
+  EngagementTracking.logMixpanelEvent("screen_view", { name: "burger_menu" });

@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { Navigation } from "@navigation/main";
 import { MeditopiaMediaListScreen } from "@components/screens";
 import { MODALS, ROUTES } from "@navigation/constants";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { t } from "@locale";
@@ -89,7 +89,7 @@ const MeditopiaMediaListContainer = ({
         await createChallenge(false);
         dispatch(updateChallengeAppButton({ appButton: appName === "otherApp" ? otherApp : button }));
       } catch (err) {
-        Logger.error(err, { location: "media-list.container.handleOpenApp" });
+        Logger.notify(err, { location: "media-list.container.handleOpenApp" });
       } finally {
         setOtherAppLoading("");
       }

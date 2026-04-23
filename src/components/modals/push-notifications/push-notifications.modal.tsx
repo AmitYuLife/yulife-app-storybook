@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { requirePushEnabled, denyPushNotification } from "@redux/device/device.actions";
 import { IPushNotification, PushPermissionsStatus } from "@redux/device/device.types";
 import { GenericScreen } from "@screens";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { t } from "@locale";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -53,7 +53,7 @@ class PushNotificationsModal extends PureComponent<Props> {
     try {
       await Linking.openSettings();
     } catch (e) {
-      Logger.error(e, { url: "app-settings" });
+      Logger.notify(e, { url: "app-settings" });
     }
 
     this.dismissModal();

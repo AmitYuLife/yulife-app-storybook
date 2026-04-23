@@ -5,7 +5,7 @@ import { queryPedometerFromDate } from "@yu-life/react-native-yu-health";
 import moment from "moment";
 import Storage from "@services/storage";
 import { handleOpenWebView } from "@navigation/utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { buildFitKitPermissions } from "@services/fitkit/fitkit.permissions";
 import { t } from "@locale";
 import { useUserFeatures } from "@hooks";
@@ -78,13 +78,13 @@ export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAut
           title: t("screens.daily.fitkit.help.title"),
         });
       } catch (e) {
-        Logger.error(e, { file: "daily-steps-content", platform: "ios" });
+        Logger.notify(e, { file: "daily-steps-content", platform: "ios" });
       }
     } else {
       try {
         return await authorise({ ...buildFitKitPermissions(), platform });
       } catch (e) {
-        Logger.error(e, { file: "daily-steps-content", platform: "android" });
+        Logger.notify(e, { file: "daily-steps-content", platform: "android" });
       }
     }
   };

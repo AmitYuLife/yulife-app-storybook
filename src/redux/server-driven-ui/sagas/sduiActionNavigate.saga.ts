@@ -6,7 +6,7 @@ import { ProductStepAction } from "../sdui.types";
 import { parseJSON } from "@utils";
 import { dynamicallyRegisteredRoutes, preRegisteredRoutes } from "@navigation/routes";
 import { registerComponentWithOptions } from "@navigation/registerComponentWithOptions";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 export function* sduiActionNavigateSaga({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -23,7 +23,7 @@ export function* sduiActionNavigateSaga({ payload }: ProductStepAction) {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "dispatchActions", file: "sduiActionNavigateSaga" });
+      Logger.notify(e, { event: "dispatchActions", file: "sduiActionNavigateSaga" });
     });
   }
 

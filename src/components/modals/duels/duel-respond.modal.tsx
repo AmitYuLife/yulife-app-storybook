@@ -22,7 +22,7 @@ import { GetDuelsQuery, gql } from "@graphql/__generated";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 
 import { StyleSheet } from "@styles";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 interface IProps {
   duelId: string;
   componentId: string;
@@ -96,7 +96,7 @@ const DuelRespondModal: React.FC<IProps> = ({
           dispatch(refreshTotalCoins());
         }
       } catch (e) {
-        Logger.error(e, { event: "respondToInvite" });
+        Logger.notify(e, { event: "respondToInvite" });
       } finally {
         setLoadingLabel(null);
         dismissModal();

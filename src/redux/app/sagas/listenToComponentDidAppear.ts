@@ -1,11 +1,11 @@
 import { ROUTES } from "@navigation/constants";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import socket, { DETOX_ENABLED } from "@services/socket";
 import { call, put, select, take } from "redux-saga/effects";
 import { updateCurrentRoute, updateCurrentModal } from "../app.actions";
 import { appComponentDidAppearChannel } from "../app.channels";
 import { getRouteState } from "../app.selectors";
-import getClient from "@services/bugsnag";
 
 export default function* listenToComponentDidAppear() {
   const navigationChannel: ReturnType<typeof appComponentDidAppearChannel> = yield call(appComponentDidAppearChannel);
@@ -31,7 +31,7 @@ export default function* listenToComponentDidAppear() {
       socket.emitTranslationKeysCleared();
     }
 
-    yield call(Logger.logEvent, "screen_view", { name: componentId });
-    yield call(getClient().leaveBreadcrumb, "RNN componentDidAppear", { componentId, currentRoute }, "navigation");
+    yield call(EngagementTracking.logEvent, "screen_view", { name: componentId });
+    yield call(Logger.breadcrumb, "RNN componentDidAppear", { componentId, currentRoute }, "navigation");
   }
 }

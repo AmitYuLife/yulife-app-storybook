@@ -1,8 +1,6 @@
 import RNFitKit, { PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
-import getClient from "@services/bugsnag";
 import moment from "moment";
-import Logger from "../logging/logger";
-import dd from "@services/datadog";
+import Logger from "@services/logger/logger";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { fitkitTypeToGqlType, mapGqlFitKitTypeToFitKitType } from "./cast/fitkitTypes";
 import {
@@ -58,7 +56,7 @@ export async function queryFitKitSampleData<T extends boolean = false>({
     fitKitTypes.push(undefined);
   }
 
-  getClient().leaveBreadcrumb("FitKit Sample Queried", { startTime, endTime, fitKitTypes }, "log");
+  Logger.breadcrumb("FitKit Sample Queried", { startTime, endTime, fitKitTypes }, "log");
 
   for (const fitKitType of fitKitTypes) {
     try {
@@ -70,7 +68,7 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       };
 
       if (loggingEnabled) {
-        dd.info(`Raw ${fitKitType} query args`, {
+        Logger.info(`Raw ${fitKitType} query args`, {
           ...metaData,
           ...args,
           location: "fitkit",
@@ -80,7 +78,7 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       const results = await RNFitKit.sampleQuery(args);
 
       if (loggingEnabled && results) {
-        dd.info(`Raw ${fitKitType} query results`, {
+        Logger.info(`Raw ${fitKitType} query results`, {
           ...metaData,
           results,
           location: "fitkit",
@@ -94,13 +92,13 @@ export async function queryFitKitSampleData<T extends boolean = false>({
 
       const errorMessage: string = e.message || "";
       if (!errorMessage.startsWith("An error occurred retrieving samples of type")) {
-        Logger.error(e, {
+        Logger.notify(e, {
           event: "RNFitKit.sampleQuery",
           userInfo: e.userInfo,
         });
       }
 
-      dd.error(`Raw ${fitKitType} query error`, {
+      Logger.error(`Raw ${fitKitType} query error`, {
         ...metaData,
         error: errorMessage,
         date_start: startTime,
@@ -146,7 +144,7 @@ export const queryFitKitAggregatedData = async ({
     const startTime = start.format(DATE_FORMAT_WITH_TZ);
     const endTime = end.format(DATE_FORMAT_WITH_TZ);
 
-    getClient().leaveBreadcrumb("FitKit Aggregation Queried", { startTime, endTime, fitKitTypes }, "log");
+    Logger.breadcrumb("FitKit Aggregation Queried", { startTime, endTime, fitKitTypes }, "log");
 
     const args = {
       aggregateBy: {
@@ -162,7 +160,7 @@ export const queryFitKitAggregatedData = async ({
     };
 
     if (loggingEnabled) {
-      dd.info("Raw aggregated query args", {
+      Logger.info("Raw aggregated query args", {
         ...metaData,
         ...args,
         fitKitTypes,
@@ -173,7 +171,7 @@ export const queryFitKitAggregatedData = async ({
     const results = await RNFitKit.aggregateQuery(args);
 
     if (loggingEnabled && results) {
-      dd.info("Raw aggregated query results", {
+      Logger.info("Raw aggregated query results", {
         ...metaData,
         results,
         fitKitTypes,
@@ -183,7 +181,7 @@ export const queryFitKitAggregatedData = async ({
 
     return { results: results.map(transformSampleResultToPayloadWithType as any), error: null };
   } catch (e) {
-    dd.error("Raw aggregated query error", {
+    Logger.error("Raw aggregated query error", {
       ...metaData,
       error: e.message,
       date_start: start.format(),

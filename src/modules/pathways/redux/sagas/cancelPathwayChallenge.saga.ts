@@ -1,5 +1,5 @@
 import { call, put, select, spawn } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import { gql } from "@graphql/__generated";
@@ -29,7 +29,7 @@ export function* cancelPathwayChallengeSaga() {
     yield put(pathwayChallengeEnded());
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "cancelPathwayChallengeSaga" });
+      Logger.notify(e, { event: "cancelPathwayChallengeSaga" });
     });
   }
 }

@@ -1,7 +1,7 @@
 import * as ExpoNotification from "expo-notifications";
 import { call, select } from "redux-saga/effects";
 import { getActiveLevel } from "../../levels/levels.selectors";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 export default function* cancelChallengeNotificationSaga() {
   try {
@@ -11,6 +11,6 @@ export default function* cancelChallengeNotificationSaga() {
       yield call(() => ExpoNotification.cancelScheduledNotificationAsync(active.id));
     }
   } catch (error) {
-    Logger.error(error, { file: "cancelChallengeNotificationSaga" });
+    Logger.notify(error, { file: "cancelChallengeNotificationSaga" });
   }
 }

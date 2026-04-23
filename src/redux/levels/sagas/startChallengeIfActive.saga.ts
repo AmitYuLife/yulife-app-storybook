@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, select, put, fork } from "redux-saga/effects";
 import { getActiveLevel, getVideoPlayerIsActive } from "../levels.selectors";
 import startChallenge from "./startChallenge.helper";
@@ -52,7 +52,7 @@ export default function* startChallengeIfActiveSaga() {
         yield put(challengeResetSuccessAction());
         return;
       } catch (error) {
-        Logger.error(error, { file: "cancelMeditopiaChallenge.saga" });
+        Logger.notify(error, { file: "cancelMeditopiaChallenge.saga" });
       }
     }
 
@@ -64,7 +64,7 @@ export default function* startChallengeIfActiveSaga() {
           yuniversalMap,
         });
       } catch (error) {
-        Logger.error(error, { file: "startChallengeIfActiveSaga.saga" });
+        Logger.notify(error, { file: "startChallengeIfActiveSaga.saga" });
       }
 
       if (initialPedometerResult === null) {
@@ -85,6 +85,6 @@ export default function* startChallengeIfActiveSaga() {
       });
     }
   } catch (error) {
-    Logger.error(error, { file: "startChallengeIfActive" });
+    Logger.notify(error, { file: "startChallengeIfActive" });
   }
 }

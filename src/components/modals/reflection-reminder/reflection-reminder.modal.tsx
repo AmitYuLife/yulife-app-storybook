@@ -10,7 +10,7 @@ import { ROUTES } from "@navigation/constants";
 import { pathwayNotificationDenied } from "@app/modules/pathways/redux/pathways.actions";
 import { pushScreenFromActiveRoute } from "@navigation/root";
 import { Linking } from "react-native";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 interface IReflectionReminderModalProps {
   callback?: () => void;
@@ -54,7 +54,7 @@ const ReflectionReminderModal = ({ callback, componentId }: IReflectionReminderM
     try {
       await Linking.openSettings();
     } catch (e) {
-      Logger.error(e, { url: "app-settings" });
+      Logger.notify(e, { url: "app-settings" });
     }
 
     Navigation.dismissModal(componentId);

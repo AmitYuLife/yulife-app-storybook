@@ -25,7 +25,7 @@ import {
   SubmitMobileQuestLevelSudokuSolutionMutation,
 } from "@graphql/__generated";
 import { VoidFunction } from "@utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -154,7 +154,7 @@ export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
                     Navigation.popTo(ROUTES.quests);
                   },
                 });
-                Logger.error(err, {
+                Logger.notify(err, {
                   challengeId: sudokuState.challengeId,
                   date: sudokuState.date,
                 });

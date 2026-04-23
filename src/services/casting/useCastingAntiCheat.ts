@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 
 const SEEK_THRESHOLD_SECONDS = 10;
 
@@ -100,7 +100,7 @@ const useCastingAntiCheat = ({
 
     // Check if seek exceeded threshold (forward or backward)
     if (absoluteDelta > SEEK_THRESHOLD_SECONDS) {
-      Logger.logMixpanelEvent("casting_seek_attempt_detected", {
+      EngagementTracking.logMixpanelEvent("casting_seek_attempt_detected", {
         lastKnownProgress,
         currentProgressInSeconds,
         progressDelta,
