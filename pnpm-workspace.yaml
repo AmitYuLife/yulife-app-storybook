@@ -1,6 +1,5 @@
 nodeLinker: hoisted
 autoInstallPeers: true
-
 onlyBuiltDependencies:
   - "@datadog/mobile-react-native"
   - customerio-expo-plugin
@@ -12,7 +11,6 @@ onlyBuiltDependencies:
   - fsevents
   - "@swc/core"
   - git-hooks
-
 patchedDependencies:
   "@bugsnag/plugin-expo-eas-sourcemaps@53.0.0": "patches/@bugsnag__plugin-expo-eas-sourcemaps@53.0.0.patch"
   "@graphql-codegen/client-preset@4.8.3": "patches/@graphql-codegen__client-preset@4.8.3.patch"
@@ -23,7 +21,6 @@ patchedDependencies:
   "react-native-video@6.19.0": "patches/react-native-video@6.19.0.patch"
   "storybook@10.2.13": "patches/storybook@10.2.13.patch"
   "@bacons/apple-targets@0.0.5": "patches/@bacons__apple-targets@0.0.5.patch"
-
 peerDependencyRules:
   allowedVersions:
     # we'll need to upgrade RTK to v2 in order to remove the redux ones
@@ -36,3 +33,5 @@ peerDependencyRules:
     "@yu-life/react-native-fitkit>react-native": "0.79"
     # babel-preset-expo expects the beta, but we use @react-native/babel-preset and install stable 1.0.0 directly
     "babel-preset-expo>babel-plugin-react-compiler": "1"
+overrides:
+  '@xmldom/xmldom@<=0.8.13': 0.8.13
