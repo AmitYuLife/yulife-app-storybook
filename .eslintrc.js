@@ -11,7 +11,15 @@ module.exports = {
     "@react-native",
     "plugin:storybook/recommended",
   ],
-  plugins: ["react", "@typescript-eslint", "prettier", "rulesdir", "unused-imports", "react-compiler"],
+  plugins: [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "rulesdir",
+    "unused-imports",
+    "react-compiler",
+    "strict-null-checks",
+  ],
   env: {
     browser: true,
   },
@@ -111,6 +119,7 @@ module.exports = {
       },
     ],
     "rulesdir/jsx-no-logical-and": "error",
+    "strict-null-checks/all": "warn",
     "react/function-component-definition": [
       "error",
       {
@@ -187,10 +196,22 @@ module.exports = {
         ],
       },
     },
+    {
+      files: [".eslintrc.js"],
+      env: {
+        node: true,
+      },
+      parserOptions: {
+        project: null,
+      },
+      rules: {
+        "@typescript-eslint/no-deprecated": "off",
+        "strict-null-checks/all": "off",
+      },
+    },
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: "./tsconfig.json",
+    project: "./tsconfig.strictNullChecks.json",
   },
-  ignorePatterns: [".eslintrc.js"],
 };

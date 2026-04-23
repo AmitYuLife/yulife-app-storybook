@@ -94,6 +94,10 @@ variables:
   FL_TEAM_ID: 739BJV2T6V
   PNPM_HOME: "$CI_PROJECT_DIR/.pnpm"
   COREPACK_HOME: "$CI_PROJECT_DIR/.cache/node/corepack"
+  # ANSI color codes
+  ANSI_CLEAR: "\e[0K"
+  ANSI_LIGHT_GREEN: "\e[92m"
+  ANSI_RESET: "\e[0m"
 
 stages:
   - quality
