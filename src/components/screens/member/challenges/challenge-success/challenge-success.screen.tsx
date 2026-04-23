@@ -113,6 +113,7 @@ const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionS
                 h={80}
                 collapsable={false}
                 zIndex={2}
+                elevation={3}
               >
                 <AnimatedPlusPoints type="challenge-success" coins={reward} textType="h3" style={styles.plusPoints} />
               </Box>
