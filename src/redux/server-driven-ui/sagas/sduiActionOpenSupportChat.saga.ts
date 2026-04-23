@@ -5,7 +5,7 @@ import { getMenuSide } from "@navigation/root";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getSupportLevel } from "@redux/user/user.selectors";
 import { IntercomClient } from "@services/logging/intercom";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { UserSupportLevel } from "@services/logging/types";
 import { call, select } from "redux-saga/effects";
 
@@ -18,7 +18,7 @@ export function* sduiActionOpenSupportChatSaga() {
       const sduiJourney = region.getConfig("sduiJourney");
 
       if (!sduiJourney.supportRequest) {
-        Logger.error(new Error("No supportRequest journey found in region config"), {
+        Logger.notify(new Error("No supportRequest journey found in region config"), {
           file: "sduiActionOpenSupportChatSaga",
         });
         return;
@@ -47,6 +47,6 @@ export function* sduiActionOpenSupportChatSaga() {
       yield call(IntercomClient.displayMessenger);
     }
   } catch (e) {
-    Logger.error(e, { file: "sduiActionOpenSupportChatSaga" });
+    Logger.notify(e, { file: "sduiActionOpenSupportChatSaga" });
   }
 }

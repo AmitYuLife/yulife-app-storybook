@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, select, spawn } from "redux-saga/effects";
 import { getRouteState } from "../../app/app.selectors";
 import { ROUTES } from "@navigation/constants";
@@ -33,7 +33,7 @@ export default function* clearMobileTabsUnreadBadgeCounts() {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "clearMobileTabsUnreadBadgeCounts" });
+      Logger.notify(e, { event: "clearMobileTabsUnreadBadgeCounts" });
     });
   }
 }

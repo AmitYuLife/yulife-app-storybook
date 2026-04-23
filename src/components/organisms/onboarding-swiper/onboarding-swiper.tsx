@@ -3,7 +3,7 @@ import { FlatList, View, ViewToken, ListRenderItem } from "react-native";
 import { Text, PageIndicator, Box } from "@atoms";
 import styles from "./onboarding-swiper.styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { ROUTES } from "@navigation/constants";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { t } from "@locale";
@@ -51,7 +51,7 @@ const OnboardingSwiper = ({ data, onClose, renderItem, type }: IOnboardingSwiper
   useEffect(() => {
     const name = getScreenViewName(type, 0);
     if (name) {
-      Logger.logMixpanelEvent("screen_view", { name });
+      EngagementTracking.logMixpanelEvent("screen_view", { name });
     }
   }, [type]);
 
@@ -77,7 +77,7 @@ const OnboardingSwiper = ({ data, onClose, renderItem, type }: IOnboardingSwiper
       swiperRef.current?.scrollToIndex({ index: newIndex, animated: !DETOX_ENABLED });
       setActivePageIndex(newIndex);
       setButtonLabel(data[newIndex]?.buttonLabel);
-      Logger.logMixpanelEvent("screen_view", { name });
+      EngagementTracking.logMixpanelEvent("screen_view", { name });
     }
   }, [activePageIndex, data, type]);
 
@@ -88,7 +88,7 @@ const OnboardingSwiper = ({ data, onClose, renderItem, type }: IOnboardingSwiper
       swiperRef.current?.scrollToIndex({ index: newIndex, animated: !DETOX_ENABLED });
       setActivePageIndex(newIndex);
       setButtonLabel(data[newIndex]?.buttonLabel);
-      Logger.logMixpanelEvent("screen_view", { name });
+      EngagementTracking.logMixpanelEvent("screen_view", { name });
     }
   }, [activePageIndex, data, type]);
 
@@ -101,7 +101,7 @@ const OnboardingSwiper = ({ data, onClose, renderItem, type }: IOnboardingSwiper
         setButtonLabel(data[visibleItem.index]?.buttonLabel || "Next");
 
         const name = getScreenViewName(type, visibleItem.index);
-        Logger.logMixpanelEvent("screen_view", { name });
+        EngagementTracking.logMixpanelEvent("screen_view", { name });
       }
     },
     [data, type]

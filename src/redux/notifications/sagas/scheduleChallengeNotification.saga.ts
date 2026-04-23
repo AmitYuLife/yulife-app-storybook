@@ -2,7 +2,7 @@ import { ApolloQueryResult } from "@apollo/client";
 import moment from "moment";
 import * as ExpoNotification from "expo-notifications";
 import { call } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import client from "@graphql/_core/client";
 import { gql, UserNotificationsType, GetUserNotificationsSettingsQuery } from "@graphql/__generated";
 import { challengeStartSuccessAction } from "../../levels/levels.actions";
@@ -63,6 +63,6 @@ export default function* scheduleChallengeNotificationSaga({ payload }: Action) 
       }
     }
   } catch (e) {
-    Logger.error(e, { file: "scheduleChallengeNotification.saga" });
+    Logger.notify(e, { file: "scheduleChallengeNotification.saga" });
   }
 }

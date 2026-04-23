@@ -5,7 +5,7 @@ import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.action
 import { useMutation } from "@apollo/client";
 import { MobileOnboardingStepPerformed, gql } from "@graphql/__generated";
 import { useDebouncedQuery } from "@hooks";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Popover } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
 import { TOP_BAR, Style } from "@styles";
@@ -39,7 +39,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
       await performOnboardingStep({ variables: { step: id as unknown as MobileOnboardingStepPerformed } }); //remove unknown when we finish to refactor getYuScreen.gql
       await Storage.setItem(StorageKey.referralsPopover, "true");
     } catch (e) {
-      Logger.error(e, { file: "referrals-popover" });
+      Logger.notify(e, { file: "referrals-popover" });
     }
   }, [id]);
 
@@ -61,7 +61,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
   useEffect(() => {
     if (error) {
       setPopoverVisible(false);
-      Logger.error(error, { file: "referrals-popover" });
+      Logger.notify(error, { file: "referrals-popover" });
     }
   }, [error]);
 

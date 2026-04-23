@@ -1,5 +1,5 @@
 import { CioConfig, CioRegion, CustomerIO } from "customerio-reactnative";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { region } from "@locale";
 
 class CustomerIOService {
@@ -30,7 +30,7 @@ class CustomerIOService {
       await CustomerIO.initialize(config);
       this.initialized = true;
     } catch (error) {
-      Logger.error(error as Error, { location: "customerio.init" });
+      Logger.notify(error, { location: "customerio.init" });
     }
   };
 
@@ -47,7 +47,7 @@ class CustomerIOService {
       await CustomerIO.identify({ userId, traits });
       await this.flushPendingDeviceTokens();
     } catch (error) {
-      Logger.error(error as Error, { location: "customerio.identify" });
+      Logger.notify(error, { location: "customerio.identify" });
     }
   };
 
@@ -67,7 +67,7 @@ class CustomerIOService {
     try {
       await CustomerIO.registerDeviceToken(deviceToken);
     } catch (error) {
-      Logger.error(error as Error, { location: "customerio.registerPushToken" });
+      Logger.notify(error, { location: "customerio.registerPushToken" });
     }
   };
 
@@ -79,7 +79,7 @@ class CustomerIOService {
     try {
       await CustomerIO.track(eventName, properties);
     } catch (error) {
-      Logger.error(error as Error, { location: "customerio.track" });
+      Logger.notify(error, { location: "customerio.track" });
     }
   };
 
@@ -92,7 +92,7 @@ class CustomerIOService {
       this.userId = null;
       await CustomerIO.clearIdentify();
     } catch (error) {
-      Logger.error(error as Error, { location: "customerio.clearIdentity" });
+      Logger.notify(error, { location: "customerio.clearIdentity" });
     }
   };
 }

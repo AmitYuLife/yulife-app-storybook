@@ -4,7 +4,7 @@ import getMagicLinkWithClient from "@graphql/user/getMagicLink.gql";
 import { t } from "@locale";
 import { handleOpenWebView } from "@navigation/utils";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, spawn } from "redux-saga/effects";
 import { getUserDataStart, openMyAccount } from "../user.actions";
 import { AppDataType } from "../user.types";
@@ -37,7 +37,7 @@ export default function* openMyAccountSaga({ payload }: ReturnType<typeof openMy
     });
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "openMyAccount" });
+      Logger.notify(e, { event: "openMyAccount" });
     });
   }
 }

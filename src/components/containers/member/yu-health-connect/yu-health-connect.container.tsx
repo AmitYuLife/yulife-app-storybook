@@ -7,7 +7,7 @@ import { Navigation } from "@navigation/main";
 import { setActiveYuHealthProvider } from "@redux/yu-health/yu-health.actions";
 import { getActiveProvider, getProviderAvailabilities, getYuHealthStatus } from "@redux/yu-health/yu-health.selectors";
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
 import {
   PROVIDER_RECOMMENDED_ORDER,
@@ -139,7 +139,7 @@ const YuHealthConnectContainer = ({
   const onConnect = useCallback(async () => {
     const providerCapabilities = await getCapabilities();
     if (!selectedProvider || !providerCapabilities[selectedProvider]) {
-      Logger.error(new Error("YuHealth: No selected provider or no capabilities"), {
+      Logger.notify(new Error("YuHealth: No selected provider or no capabilities"), {
         providerCapabilities: JSON.stringify(providerCapabilities),
         selectedProvider,
       });

@@ -9,7 +9,7 @@ import { getBlackListedNavBarTabs, getUserConnections, getUserDataSaverModeEnabl
 import { SettingsScreen } from "@screens/index";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 import { gql, NotificationSettingsProps } from "@graphql/__generated";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { ScrollPickerModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
@@ -124,7 +124,7 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
           },
         });
       } catch (e) {
-        Logger.error(e, { file: "settings-container-time" });
+        Logger.notify(e, { file: "settings-container-time" });
       } finally {
         setNotification(null);
       }
@@ -306,7 +306,7 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
               },
             });
           } catch (e) {
-            Logger.error(e, { file: "settings-container-consent" });
+            Logger.notify(e, { file: "settings-container-consent" });
           } finally {
             setNotification(null);
             setIsTimeModalVisible(false);
@@ -360,7 +360,7 @@ const SettingsContainer = ({ componentId }: IOwnProps) => {
               },
             });
           } catch (e) {
-            Logger.error(e, { file: "settings-container-consent" });
+            Logger.notify(e, { file: "settings-container-consent" });
           } finally {
             setNotification(null);
             setIsTimeModalVisible(false);

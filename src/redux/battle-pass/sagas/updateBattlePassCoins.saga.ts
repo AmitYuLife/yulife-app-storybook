@@ -1,5 +1,5 @@
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { spawn } from "redux-saga/effects";
 import client from "@graphql/_core/client";
 import {
@@ -36,7 +36,7 @@ export default function* updateBattlePassCoinsSaga(
       });
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "updateBattlePassCoins" });
+      Logger.notify(e, { event: "updateBattlePassCoins" });
     });
   }
 }

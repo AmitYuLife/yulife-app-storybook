@@ -36,7 +36,7 @@ import {
   UserFragmentDoc,
 } from "@graphql/__generated";
 import { DefinitionNode, FragmentDefinitionNode, Kind } from "graphql";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 interface IUserDataQuery {
   type: AppDataType;
@@ -211,7 +211,7 @@ export const generateQuery = (
   for (const { fragment } of queries) {
     for (const definition of fragment.definitions) {
       if (!isFragmentDefinitionNode(definition)) {
-        Logger.error(new Error("Definition node is not a fragment definition node"), {
+        Logger.notify(new Error("Definition node is not a fragment definition node"), {
           definition: JSON.stringify(definition),
         });
         continue;

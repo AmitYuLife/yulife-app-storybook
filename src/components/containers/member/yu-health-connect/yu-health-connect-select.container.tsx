@@ -3,7 +3,7 @@ import { Navigation } from "@navigation/main";
 import { getEnabledHealthProviders } from "@redux/user/user.selectors";
 import { getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
 import { API_HEALTH_PROVIDER_TO_GQL_MAP } from "@services/fitkit/yu-health.helpers";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { CLIENT_SUPPORTED_PROVIDERS } from "@utils";
 import { HealthProvider, HealthProviderAvailability } from "@yu-life/react-native-yu-health";
 import { memo, useCallback, useMemo, useState } from "react";
@@ -34,7 +34,7 @@ const YuHealthConnectContainer = ({
     return CLIENT_SUPPORTED_PROVIDERS.filter((provider) => {
       if (!enabledHealthProviders) {
         // Should never happen - we don't have user profile data
-        Logger.error(new Error("enabledHealthProviders is empty"), { file: "yu-health-connect-select.container.tsx" });
+        Logger.notify(new Error("enabledHealthProviders is empty"), { file: "yu-health-connect-select.container.tsx" });
         return true;
       }
 

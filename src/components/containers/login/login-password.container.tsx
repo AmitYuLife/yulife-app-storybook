@@ -5,7 +5,7 @@ import { useBackHandler, useMutatationAllRegions } from "@hooks";
 import { REGION, t } from "@locale";
 import { TOKEN_EXPIRATION } from "@services/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { memo, useCallback, useMemo, useState } from "react";
 import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
 import { getUniqueDeviceId } from "@utils";
@@ -82,7 +82,7 @@ const LoginPasswordContainer = ({ componentId, email, regions }: Props) => {
     } catch (e) {
       // error display to user is handled via lastError
       handleError(e);
-      Logger.error(e, { file: "login-password.container" });
+      Logger.notify(e, { file: "login-password.container" });
     }
   }, [email, password, loginUser, handleError, componentId, dispatch]);
 

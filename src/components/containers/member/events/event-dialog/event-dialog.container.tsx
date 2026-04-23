@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { t } from "@locale";
 import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { IReward } from "@organisms/event-reward/event-reward";
@@ -196,12 +196,12 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
           // updates event dialog
           refetch();
         } catch (error) {
-          Logger.error(error, { file: "event-dialog.container" });
+          Logger.notify(error, { file: "event-dialog.container" });
         }
 
         break;
       default:
-        Logger.error(new Error("Goal type not supported"), { file: "event-dialog.container" });
+        Logger.notify(new Error("Goal type not supported"), { file: "event-dialog.container" });
         break;
     }
   }, [eventId, goalDetails, dispatch, joinGoalMutation, refetch, navigateToComponentId, onCloseEvent]);

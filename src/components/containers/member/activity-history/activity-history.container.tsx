@@ -6,7 +6,8 @@ import { ActivityHistoryScreen } from "@screens";
 import moment from "moment";
 import { DATE_FORMAT, fetchActivityData } from "@utils";
 import { useBackHandler } from "@hooks";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getUserFeatures, getUserPassiveChallengesLastUpdate } from "@redux/user/user.selectors";
@@ -57,7 +58,7 @@ const ActivityHistoryContainer = ({ componentId }: IProps) => {
   const { sessionId } = useSelector(getUserPassiveChallengesLastUpdate);
 
   const onRefresh = useCallback(async () => {
-    Logger.logEvent("activity_history_updated");
+    EngagementTracking.logEvent("activity_history_updated");
 
     if (!features.canUpdateActivityHistory) {
       return getActivityHistory();
@@ -93,7 +94,7 @@ const ActivityHistoryContainer = ({ componentId }: IProps) => {
           );
         }
       } catch (e) {
-        Logger.error(e, { event: "@activity_history_reload_catched" });
+        Logger.notify(e, { event: "@activity_history_reload_catched" });
       }
     }
   }, [features, sessionId]);

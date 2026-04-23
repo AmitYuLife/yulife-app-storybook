@@ -24,7 +24,7 @@ import DailyStepsContent, {
 } from "@organisms/daily-steps/daily-steps-content/daily-steps-content";
 import { useUserFeatures } from "@hooks";
 import { handleTakeAChallengeCTA } from "@navigation/utils";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { FadeIn } from "react-native-reanimated";
 import media from "@styles/media";
 import { DETOX_ENABLED } from "@services/socket";
@@ -124,7 +124,7 @@ const DailyStepsScreen = ({
         return;
       }
 
-      Logger.logMixpanelEvent("button_pressed", {
+      EngagementTracking.logMixpanelEvent("button_pressed", {
         button_id: isChallengeActive ? "back_to_challenge" : "take_a_challenge",
         location: "streak",
       });

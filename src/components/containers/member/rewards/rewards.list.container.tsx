@@ -1,7 +1,7 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import React, { memo, useCallback } from "react";
 import { Navigation } from "@navigation/main";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import RewardsListScreen from "@screens/member/rewards/list/rewards-list.screen";
 import { showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit, useUserFeatures } from "@hooks";
@@ -61,7 +61,7 @@ const _RewardsListContainer = () => {
        * as locked but its isLocked value is false
        */
       if (reward.isLocked) {
-        Logger.logMixpanelEvent("reward_viewed", {
+        EngagementTracking.logMixpanelEvent("reward_viewed", {
           locked: true,
           reward_id: reward.id,
           reward_name: reward.name,

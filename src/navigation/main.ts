@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { ReactElement } from "react";
 import { ComponentProvider, ViewStyle, Dimensions, Platform, Keyboard } from "react-native";
 import {
@@ -218,7 +218,7 @@ export class Navigation {
     withModal = false,
   }: NavigationShowOverlayWithChildArgs) {
     if (modalId) {
-      Logger.logEvent("screen_view", { name: modalId });
+      EngagementTracking.logEvent("screen_view", { name: modalId });
     }
 
     return NativeNavigation.showOverlay({

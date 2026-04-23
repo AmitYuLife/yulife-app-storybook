@@ -10,7 +10,7 @@ import { RewardOnPressArgs } from "../member/rewards/rewards.types";
 import { showYuModal } from "@navigation/root";
 import { RewardMilestoneDetails } from "@components/screens/member/rewards/list/subcomponents/reward-milestone-details";
 import { t } from "@locale";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { isEmpty } from "lodash";
 import ShopfrontLoading from "./subcomponents/shopfront-loading";
 import ShopfrontScreen from "@components/screens/member/shopfront/shopfront.screen";
@@ -126,7 +126,7 @@ const RewardPassContainer = ({ leftIcons }: IRewardPassContainerProps) => {
        * as locked but its isLocked value is false
        */
       if (reward.isLocked) {
-        Logger.logMixpanelEvent("reward_viewed", {
+        EngagementTracking.logMixpanelEvent("reward_viewed", {
           locked: true,
           reward_id: reward.id,
           reward_name: reward.name,

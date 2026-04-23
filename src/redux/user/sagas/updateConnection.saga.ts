@@ -1,7 +1,7 @@
 import { MutationResult } from "@apollo/client";
 import client from "@graphql/_core/client";
 import { DeleteConnectionMutation, GetNewConnectionLinkMutation, gql } from "@graphql/__generated";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Linking } from "react-native";
 import { call, put, spawn } from "redux-saga/effects";
 
@@ -26,7 +26,7 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
     } catch (e) {
       yield put(updateConnectionFailed(payload));
       yield spawn(() => {
-        Logger.error(e, { event: "updateConnectionSaga_onDisconnect" });
+        Logger.notify(e, { event: "updateConnectionSaga_onDisconnect" });
       });
     }
   } else {
@@ -47,7 +47,7 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
     } catch (e) {
       yield put(updateConnectionFailed(payload));
       yield spawn(() => {
-        Logger.error(e, { event: "updateConnectionSaga_onConnect" });
+        Logger.notify(e, { event: "updateConnectionSaga_onConnect" });
       });
     }
   }

@@ -2,7 +2,7 @@ import { select, take, call } from "redux-saga/effects";
 import { getRouteState } from "../../app/app.selectors";
 import { GET_USER_ACTIVE_STREAK_SUCCESS } from "../../user/user.actions";
 import { getUserFeatures } from "../../user/user.selectors";
-import dd from "@services/datadog";
+import Logger from "@services/logger/logger";
 import { getStreaks } from "@redux/streaks/streaks.selectors";
 
 export default function* getStreakModalDetails() {
@@ -15,7 +15,7 @@ export default function* getStreakModalDetails() {
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
   if (features.loggingEnabled) {
-    yield call(dd.info, "show_streak_modal_attempt", {
+    yield call(Logger.info, "show_streak_modal_attempt", {
       streaksBeforeUpdate,
       streaks,
       activeRoute,

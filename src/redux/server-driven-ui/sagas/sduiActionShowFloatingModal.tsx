@@ -1,6 +1,6 @@
 import { call } from "redux-saga/effects";
 import { parseJSON } from "@utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { store as reduxStore } from "@redux/_core/store";
@@ -47,7 +47,7 @@ export function* sduiActionShowFloatingModal({ payload }: SduiActionWithServerPa
       );
     } catch (e) {
       yield call(() =>
-        Logger.error(e, {
+        Logger.notify(e, {
           location: "sduiActionShowFloatingModal",
         })
       );

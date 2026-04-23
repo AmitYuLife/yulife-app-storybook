@@ -1,7 +1,7 @@
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { call, put, spawn, select } from "redux-saga/effects";
 import { mapPedometerResults } from "@services/fitkit/fitkit.helpers";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getDailyStepsSyncState } from "@redux/daily-steps/daily-steps.selectors";
 import { PassiveExchangeRate } from "@redux/_core/types";
 import { updatePedometerSuccessAction } from "@redux/pedometer/pedometer.actions";
@@ -44,7 +44,7 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
     yield put(updateDailyStepsSuccessFromLocal(payload.steps));
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "updateDailySteps" });
+      Logger.notify(e, { event: "updateDailySteps" });
     });
     yield put(updateDailyStepsFailed(e.message));
   }

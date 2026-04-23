@@ -5,7 +5,7 @@ import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
 import { isForegroundServiceRunning, stopForegroundService } from "@yu-life/react-native-yu-health";
 import { getActiveLevel } from "../levels.selectors";
 import { isForegroundServiceEnabled } from "@utils/yuHealth";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 // Stop foreground pedometer if it happens to be running and we don't have a challenge
 // This can happen if challenge was cancelled externally (another device)
@@ -31,6 +31,6 @@ export default function* stopForegroundPedometerSaga() {
 
     yield call(stopForegroundService);
   } catch (e) {
-    Logger.error(e, { event: "stopForegroundPedometerSaga" });
+    Logger.notify(e, { event: "stopForegroundPedometerSaga" });
   }
 }

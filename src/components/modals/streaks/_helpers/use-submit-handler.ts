@@ -4,7 +4,7 @@ import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { VoidFunction } from "@utils";
 import { useDispatch } from "react-redux";
 
@@ -69,7 +69,7 @@ function buildSubmitHandler({
         }
       }
     } catch (error) {
-      Logger.error(error, { location: "streaks useSubmitHandler" });
+      Logger.notify(error, { location: "streaks useSubmitHandler" });
     } finally {
       Navigation.dismissModal(MODALS.streaks);
       onPressCtaPrimary?.();

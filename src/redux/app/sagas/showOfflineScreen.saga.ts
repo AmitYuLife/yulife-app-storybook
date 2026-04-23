@@ -2,7 +2,7 @@ import { setOfflineRoot } from "@navigation/root";
 import { call, select } from "redux-saga/effects";
 import { ROUTES } from "@navigation/constants";
 import { getRouteState } from "../app.selectors";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { UPDATE_OFFLINE_STATE, updateOfflineState } from "../app.actions";
 
 export default function* showOfflineScreenSaga(dataPayload: ReturnType<typeof updateOfflineState>) {
@@ -15,7 +15,7 @@ export default function* showOfflineScreenSaga(dataPayload: ReturnType<typeof up
         yield call(setOfflineRoot);
       }
     } catch (e) {
-      Logger.error(e, { event: "showOfflineScreen" });
+      Logger.notify(e, { event: "showOfflineScreen" });
     }
   }
 }

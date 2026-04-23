@@ -1,7 +1,7 @@
 import { Navigation } from "@navigation/main";
 import { call, delay, select, spawn, take } from "redux-saga/effects";
 import { MODALS } from "@navigation/constants";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Unpacked } from "@utils";
 import { getModalState } from "@redux/app/app.selectors";
 import { UPDATE_CURRENT_MODAL } from "@redux/app/app.actions";
@@ -64,7 +64,7 @@ export function* getMobileWhatsNewModalSaga() {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "getMobileWhatsNewModalSaga" });
+      Logger.notify(e, { event: "getMobileWhatsNewModalSaga" });
     });
   }
 }
@@ -74,7 +74,7 @@ export function* dismissWhatsNewModalSaga() {
     Navigation.dismissModal(MODALS.whatsNew);
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "dismissWhatsNewModalSaga" });
+      Logger.notify(e, { event: "dismissWhatsNewModalSaga" });
     });
   }
 }

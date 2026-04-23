@@ -1,5 +1,6 @@
 import { all, call, put, race, delay, select, take, fork, join } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { region } from "@locale";
 import { initStripe } from "@services/stripe";
 import { SyncAction } from "@redux/_core/types";
@@ -7,7 +8,6 @@ import deepLink from "@navigation/deepLink";
 import client, { regionalClients } from "@graphql/_core/client";
 import { GetMobileGameThemeDocument } from "@graphql/__generated";
 import { DETOX_ENABLED } from "@services/socket";
-import dd from "@services/datadog";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { READY_TO_SET_MAIN_ROOT, setMainRoot } from "../../app.actions";
 import { getToken } from "@services/storage";
@@ -50,14 +50,14 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
 
     const activeRoute: string = yield select(getRouteState);
     if (setMainRootTimeout) {
-      Logger.error(new Error("Listening to readyToSetMainRoot timed out."), {
+      Logger.notify(new Error("Listening to readyToSetMainRoot timed out."), {
         file: "hydrateApiConfigSaga",
         activeRoute,
       });
     }
 
     if (timeout) {
-      Logger.error(new Error("API config hydration timed out"), { file: "hydrateApiConfigSaga" });
+      Logger.notify(new Error("API config hydration timed out"), { file: "hydrateApiConfigSaga" });
     }
 
     yield put(setMainRoot());
@@ -112,12 +112,12 @@ function* runHydration({ type, payload }: SyncAction) {
       yield call(deepLink.setDynamicDeeplinks, sduiStaticDeeplinks);
     }
 
-    yield all([call(initStripe), call(dd.init)]);
+    yield all([call(initStripe), call(Logger.init)]);
   } catch (error) {
-    Logger.error(error, { file: "runHydration" });
+    Logger.notify(error, { file: "runHydration" });
   } finally {
     const durationMs = Date.now() - startTime;
-    Logger.logEvent(`config_hydration_completed`, { file: "runHydration", durationMs });
+    EngagementTracking.logEvent(`config_hydration_completed`, { file: "runHydration", durationMs });
   }
 
   return true;

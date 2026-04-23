@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { GetPendingUserFeedbackQuery, AnswerInput } from "@graphql/__generated";
 import { useBackHandler } from "@hooks";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { SUPPORTED_FEEDBACK_FORM_TYPES } from "@graphql/constants";
 
 export default function useFormState(
@@ -45,14 +45,14 @@ export default function useFormState(
       const nextQuestion = getNextQuestion(question, value, form.questions);
       if (nextQuestion) {
         setQuestion(nextQuestion);
-        Logger.logMixpanelEvent("question_interaction", {
+        EngagementTracking.logMixpanelEvent("question_interaction", {
           name: "feedback.modal",
           survey_title: form.label,
           reward_value: form.awardYucoin,
         });
       } else {
         submitForm(newAnswers);
-        Logger.logMixpanelEvent("survey_completed", {
+        EngagementTracking.logMixpanelEvent("survey_completed", {
           name: "feedback.modal",
           survey_title: form.label,
           reward_value: form.awardYucoin,

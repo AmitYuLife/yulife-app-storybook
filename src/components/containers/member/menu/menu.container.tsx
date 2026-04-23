@@ -10,7 +10,7 @@ import { IMenuLink, MenuScreen } from "@screens";
 import assets, { LINKS, LinkTypes } from "./assets";
 import { IS_DEVELOP } from "@utils";
 import { getMenuSide, showYuModal } from "@navigation/root";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { t } from "@locale";
 import { LayoutComponent } from "react-native-navigation";
 import { useUserFeatures } from "@hooks";
@@ -48,7 +48,7 @@ const MenuContainer = () => {
         },
       });
     } else {
-      Logger.logMixpanelEvent("screen_view", { name: "chat" });
+      EngagementTracking.logMixpanelEvent("screen_view", { name: "chat" });
       callback();
     }
   }, [permissions, dispatch]);
@@ -98,7 +98,7 @@ const MenuContainer = () => {
           handlePush(currentRoute, ROUTES.wellbeingHubItems);
           return null;
         case LINKS.REFERRALS_INFO:
-          Logger.logMixpanelEvent("user_action", {
+          EngagementTracking.logMixpanelEvent("user_action", {
             action_type: "pressed_referral_info",
             version: "v2",
           });

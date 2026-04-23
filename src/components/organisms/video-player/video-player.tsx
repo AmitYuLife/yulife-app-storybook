@@ -36,8 +36,7 @@ import {
   MEDIA_PORTRAIT_CLOSE,
 } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
-import dd from "@services/datadog";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useAppState, useBackHandler, useGetLottieJson, useGetVideoAvailableQualities } from "@hooks";
@@ -377,7 +376,7 @@ const VideoPlayer = ({
       );
     } catch (err) {
       reduxDispatch(getUserDataStart({ types: [AppDataType.activeChallenge] }));
-      Logger.error(err, {
+      Logger.notify(err, {
         location: "video-player-handleStartButton",
         activeCastProtocol,
       });
@@ -403,7 +402,7 @@ const VideoPlayer = ({
   ]);
 
   const handleOnEnd = useCallback(async (): Promise<void> => {
-    dd.info("video_player handleOnEnd invoked", {
+    Logger.info("video_player handleOnEnd invoked", {
       durationInSeconds: state.durationInSeconds,
       currentProgressInSeconds: state.currentProgressInSeconds,
       appCurrentState,
@@ -412,7 +411,7 @@ const VideoPlayer = ({
     });
 
     if (!canSafelyMarkVideoAsCompleted(state.durationInSeconds)) {
-      dd.info("video_player handleOnEnd blocked by anti-cheat", {
+      Logger.info("video_player handleOnEnd blocked by anti-cheat", {
         durationInSeconds: state.durationInSeconds,
         activeCastProtocol,
       });
@@ -422,7 +421,7 @@ const VideoPlayer = ({
     remotePlayback?.stop();
 
     if (appCurrentState !== "active") {
-      dd.info("video_player handleOnEnd deferred — app backgrounded", {
+      Logger.info("video_player handleOnEnd deferred — app backgrounded", {
         appCurrentState,
         activeCastProtocol,
       });
@@ -436,7 +435,7 @@ const VideoPlayer = ({
     } catch (err) {
       dispatch({ type: ActionTypes.SET_ON_END_ERROR });
       onError();
-      Logger.error(err, { location: "video-player-handleOnEnd", activeCastProtocol });
+      Logger.notify(err, { location: "video-player-handleOnEnd", activeCastProtocol });
     }
   }, [
     onEnd,
@@ -465,7 +464,7 @@ const VideoPlayer = ({
 
   const handleOnError = useCallback(
     async (err: any): Promise<void> => {
-      Logger.error(new Error(JSON.stringify(err?.error || {})), {
+      Logger.notify(new Error(JSON.stringify(err?.error || {})), {
         location: "video-player-onError",
         activeCastProtocol,
       });

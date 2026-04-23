@@ -1,6 +1,5 @@
 import { call, spawn, take } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
-import dd from "@services/datadog";
+import Logger from "@services/logger/logger";
 import { nativeEventsChannel } from "../nativeEvents.channels";
 
 interface NativeEvent {
@@ -13,10 +12,10 @@ export default function* listenToNativeEvents() {
   while (true) {
     try {
       const results: NativeEvent = yield take(channel);
-      yield call(dd.info, results.type, { message: results.message });
+      yield call(Logger.info, results.type, { message: results.message });
     } catch (e) {
       yield spawn(() => {
-        Logger.error(e, { event: "listenToNativeEvents" });
+        Logger.notify(e, { event: "listenToNativeEvents" });
       });
     }
   }

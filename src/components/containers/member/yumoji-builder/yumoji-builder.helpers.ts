@@ -2,7 +2,7 @@ import { MutableRefObject } from "react";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { t } from "@locale";
 
 export const showAwardModal = (onPress: () => void, yucoin: number) => {
@@ -40,7 +40,7 @@ export const showExitModal = (isBackPressed: MutableRefObject<boolean>) => {
         subheading: t("screens.yumoji_builder.exit_modal.subheading"),
         ctaLabel: t("labels.cta.exit"),
         onPress: () => {
-          Logger.logMixpanelEvent("avatar_save", { type: "discarded" });
+          EngagementTracking.logMixpanelEvent("avatar_save", { type: "discarded" });
           returnToYuScreen();
         },
         ctaLabelSecondary: t("screens.yumoji_builder.exit_modal.cta_label_secondary"),

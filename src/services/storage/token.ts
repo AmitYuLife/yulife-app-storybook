@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { AppState, Platform } from "react-native";
 import { Storage, EncryptedStorageKey } from "@utils/storage";
 
@@ -11,7 +11,7 @@ class TokenService {
       this.tempToken = token;
     } catch (e) {
       if (this.shouldLogError()) {
-        Logger.error(e, { event: "EncryptedStorage:setToken" });
+        Logger.notify(e, { event: "EncryptedStorage:setToken" });
       }
     }
   };
@@ -28,7 +28,7 @@ class TokenService {
       return securedToken;
     } catch (e) {
       if (this.shouldLogError()) {
-        Logger.error(e, { event: "EncryptedStorage:getToken" });
+        Logger.notify(e, { event: "EncryptedStorage:getToken" });
       }
 
       return null;
@@ -41,7 +41,7 @@ class TokenService {
       await Storage.removeEncryptedItem(EncryptedStorageKey.token);
     } catch (e) {
       if (this.shouldLogError()) {
-        Logger.error(e, { event: "EncryptedStorage:clearToken" });
+        Logger.notify(e, { event: "EncryptedStorage:clearToken" });
       }
 
       return;

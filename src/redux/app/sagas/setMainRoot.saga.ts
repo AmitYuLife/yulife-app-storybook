@@ -11,7 +11,7 @@ import {
   showUpdateAppModal,
 } from "@navigation/root";
 import { getUserSessionSuccess, refreshUserToken } from "@redux/user/user.actions";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getToken } from "@services/storage";
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import { call, delay, put, select } from "redux-saga/effects";
@@ -99,7 +99,7 @@ async function getTokenAndMobileUpgradeStatus(): Promise<ITokenAndMobileUpgradeS
 
     if (errors && errors.length) {
       for (const error of errors) {
-        Logger.error(new Error(error.message), {
+        Logger.notify(new Error(error.message), {
           message: "error trying to get user session",
           path: error.path?.join(","),
           locations: error.locations?.join(","),

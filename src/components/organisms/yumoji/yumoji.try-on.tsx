@@ -8,7 +8,7 @@ import { Colours, Style, StyleSheet } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
 import { Popover as PopoverMolecule, TouchableOpacityWithDelay } from "@molecules";
 import { Yumoji } from "./yumoji";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { useYumojiFittingRoom, AVATAR_WIDTH, AVATAR_HEIGHT } from "./hooks/useYumojiFittingRoom";
 import {
   CoverType,
@@ -170,7 +170,7 @@ function usePopover({ popover }: Pick<GetYumojiRemoteFittingRoomQuery["getYumoji
       await performOnboardingStep({ variables: { step: popover.id as unknown as MobileOnboardingStepPerformed } }); //remove unknown when we finish to refactor getYuScreen.gql
       setIsClosed(true);
     } catch (e) {
-      Logger.error(e, { where: "yumoji-try-on" });
+      Logger.notify(e, { where: "yumoji-try-on" });
     }
   }, [popover, performOnboardingStep]);
 

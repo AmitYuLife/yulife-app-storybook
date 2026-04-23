@@ -5,7 +5,7 @@ import YumojiBuilder from "@components/screens/member/yu-screen/yumoji-builder/y
 import { ActionTypes, INITIAL_STATE, reducer } from "./yumoji-builder.reducer";
 import SelectBody from "@components/screens/member/yu-screen/select-body/select-body";
 import { showAwardModal, returnToYuScreen, showExitModal } from "./yumoji-builder.helpers";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { cache } from "@services/image";
 import { showGenericModal } from "@navigation/utils";
 import { useBackHandler, useTranslation } from "@hooks";
@@ -69,7 +69,7 @@ const YumojiBuilderContainer = () => {
         returnToYuScreen();
       }
     } catch (e) {
-      Logger.error(e, { event: "@update_user_avatar_error", file: "yumoji-builder.container" });
+      Logger.notify(e, { event: "@update_user_avatar_error", file: "yumoji-builder.container" });
     }
   }, [updateUserAvatar, dispatch, returnToYuScreen, state]);
 

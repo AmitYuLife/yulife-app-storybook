@@ -1,7 +1,8 @@
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { Unpacked } from "@utils";
 import { call, put, select, spawn, delay } from "redux-saga/effects";
 import {
@@ -35,7 +36,9 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
   if (active) {
     const { milestones, milestonesLog, ...metaData } = active; // eslint-disable-line @typescript-eslint/no-unused-vars
 
-    yield spawn(() => Logger.logMixpanelEvent("end_challenge_triggered", { ...metaData, location: payload.location }));
+    yield spawn(() =>
+      EngagementTracking.logMixpanelEvent("end_challenge_triggered", { ...metaData, location: payload.location })
+    );
   }
 
   if (active.id) {
@@ -110,7 +113,7 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
       } catch (e) {
         yield put(challengeEndFailAction());
         yield spawn(() => {
-          Logger.error(e, { event: "endChallenge" });
+          Logger.notify(e, { event: "endChallenge" });
         });
       }
     }

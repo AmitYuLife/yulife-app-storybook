@@ -1,5 +1,5 @@
 import { call, spawn } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { getServerPayload } from "../sdui.helpers";
 import getMagicLinkWithClient from "@graphql/user/getMagicLink.gql";
@@ -47,7 +47,7 @@ export function* sduiActionOpenMagicLink({ payload }: SduiActionWithServerPayloa
           await client().refetchQueries({ include: refetchQueries });
         }
       } catch (e) {
-        Logger.error(e, {
+        Logger.notify(e, {
           location: "web-view-on-close",
           actions: JSON.stringify(dispatchActions),
           queries: JSON.stringify(refetchQueries),
@@ -58,7 +58,7 @@ export function* sduiActionOpenMagicLink({ payload }: SduiActionWithServerPayloa
     yield call(handleOpenWebView, { uri: data.getMagicLink, title, onClose });
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "sduiActionOpenMagicLink" });
+      Logger.notify(e, { event: "sduiActionOpenMagicLink" });
     });
   }
 }

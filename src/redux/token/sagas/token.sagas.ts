@@ -3,7 +3,7 @@ import { IntercomHashMethod, RefreshSessionMutation, gql } from "@graphql/__gene
 import client from "@graphql/_core/client";
 import { REFRESH_USER_TOKEN, refreshUserProfile } from "@redux/user/user.actions";
 import { TOKEN_EXPIRATION } from "@services/constants";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { setToken } from "@services/storage";
 import { Platform } from "react-native";
 import { call, put, takeLatest } from "redux-saga/effects";
@@ -24,7 +24,7 @@ export function* updateTokenIfExpired() {
     if (result.errors && result.errors.length) {
       yield call(() => {
         for (const error of result.errors) {
-          Logger.error(new Error(error.message), {
+          Logger.notify(new Error(error.message), {
             event: "refreshSession",
             path: error.path?.join(","),
             locations: error.locations?.join(","),

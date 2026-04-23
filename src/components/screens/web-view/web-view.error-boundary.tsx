@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Linking, SafeAreaView } from "react-native";
 import { GenericHeadingAbsolute } from "@organisms";
 
@@ -26,7 +26,7 @@ export class WebViewErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: Error) {
-    Logger.error(error, { url: this.props.uri });
+    Logger.notify(error, { url: this.props.uri });
   }
 
   render() {

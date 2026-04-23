@@ -1,12 +1,12 @@
 import Intercom from "@intercom/intercom-react-native";
-import Logger from "./logger";
+import Logger from "@services/logger/logger";
 
 export class IntercomClient {
   public static displayMessenger = async () => {
     try {
       await Intercom.present();
     } catch (e) {
-      Logger.error(e, { location: "IntercomClient.displayMessenger" });
+      Logger.notify(e, { location: "IntercomClient.displayMessenger" });
     }
   };
 
@@ -14,7 +14,7 @@ export class IntercomClient {
     try {
       await Intercom.presentMessageComposer();
     } catch (e) {
-      Logger.error(e, { location: "IntercomClient.displayMessageComposer" });
+      Logger.notify(e, { location: "IntercomClient.displayMessageComposer" });
     }
   };
 
@@ -22,7 +22,7 @@ export class IntercomClient {
     try {
       await Intercom.sendTokenToIntercom(token);
     } catch (e) {
-      Logger.error(e, { location: "IntercomClient.sendTokenToIntercom" });
+      Logger.notify(e, { location: "IntercomClient.sendTokenToIntercom" });
     }
   };
 }

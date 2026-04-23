@@ -5,7 +5,7 @@ import { getRouteState } from "../app.selectors";
 import { ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot, setUnauthenticatedRoot } from "@navigation/root";
 import { Unpacked } from "@utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 export default function* checkConnectionSaga() {
   const token: Unpacked<typeof getToken> = yield call(getToken);
@@ -25,7 +25,7 @@ export default function* checkConnectionSaga() {
         yield call(setAuthenticatedRoot);
       }
     } catch (error) {
-      Logger.error(error, { file: "checkConnection" });
+      Logger.notify(error, { file: "checkConnection" });
     }
   }
 }

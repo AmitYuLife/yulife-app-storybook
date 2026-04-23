@@ -1,5 +1,5 @@
 import { call, put, spawn } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { updateUserProfileEvents, updateUserProfileHeroCards } from "@redux/user/user.actions";
 import client from "@graphql/_core/client";
 import { GetMobileHeroCardsQuery, GetUserProfileEventsQuery, gql } from "@graphql/__generated";
@@ -34,7 +34,7 @@ export default function* getUserProfileEventsData() {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "getUserProfileEventsData" });
+      Logger.notify(e, { event: "getUserProfileEventsData" });
     });
   }
 }

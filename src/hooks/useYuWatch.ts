@@ -6,7 +6,7 @@ import { getCurrentUserId } from "@redux/user/user.selectors";
 import { getToken } from "@services/storage";
 import { getCurrentLocale, region } from "@locale";
 import Config from "react-native-config";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { useDispatch } from "react-redux";
 import { isEmpty } from "lodash";
@@ -35,7 +35,7 @@ export const useYuWatch = () => {
         locale: getCurrentLocale(),
       };
 
-      Logger.logEvent("watch_login", {
+      EngagementTracking.logEvent("watch_login", {
         message: "User logged in on watch",
         data: {
           ...response,

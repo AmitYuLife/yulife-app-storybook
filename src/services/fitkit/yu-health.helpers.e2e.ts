@@ -1,5 +1,5 @@
 import { IFeature } from "@redux/user/user.types";
-import getClient from "@services/bugsnag";
+import Logger from "@services/logger/logger";
 import { processYuHealthResult } from "./helpers/sampleToAggregatedData";
 import {
   BucketSize,
@@ -115,7 +115,7 @@ export async function yuHealthSampleQuery({ features, params }: IYuHealthSampleQ
     disableUserEntries: true,
   };
 
-  getClient().leaveBreadcrumb("YuHealth Sample Queried", { params }, "log");
+  Logger.breadcrumb("YuHealth Sample Queried", { params }, "log");
 
   const args: ISampleQueryParams = {
     ...params,

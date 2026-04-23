@@ -1,7 +1,7 @@
 import { Alert } from "react-native";
 import { call } from "redux-saga/effects";
 import { store as reduxStore } from "@redux/_core/store";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { parseJSON } from "@utils";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { getServerPayload } from "../sdui.helpers";
@@ -27,7 +27,7 @@ export function* sduiActionOpenAlertDialogSaga(action: SduiActionWithServerPaylo
     }
   } catch (e) {
     yield call(() =>
-      Logger.error(e, {
+      Logger.notify(e, {
         sdui: true,
         location: "sduiActionOpenAlertDialogSaga",
       })

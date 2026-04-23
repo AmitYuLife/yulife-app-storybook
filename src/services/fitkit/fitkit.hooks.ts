@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from "react";
 import { Alert, Linking, Platform } from "react-native";
 import RNFitKit, { FitKitAuthOptions, FitKitHealthTrackingPlatform, FitKitTypes } from "./fitkit.service";
-import Logger from "@services/logging/logger";
-import dd from "@services/datadog";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { mapGqlFitKitTypeToFitKitType } from "./cast/fitkitTypes";
 import { DATE_FORMAT_WITH_TZ, isSamsung } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +30,7 @@ export function useFitKit() {
     try {
       isAvailable = await RNFitKit.isAvailable();
     } catch (e) {
-      dd.error("RNFitKit.isAvailable error", {
+      Logger.error("RNFitKit.isAvailable error", {
         error: e.message,
         location: "fitkit",
       });
@@ -69,7 +69,7 @@ export function useFitKit() {
         isAuthorised = await RNFitKit.isAuthorised();
       }
     } catch (e) {
-      dd.error("RNFitKit.isAuthorised error", { error: e, location: "fitkit" });
+      Logger.error("RNFitKit.isAuthorised error", { error: e, location: "fitkit" });
     }
 
     await setMixpanelProperties(isAuthorised);
@@ -79,12 +79,12 @@ export function useFitKit() {
 
   const setMixpanelProperties = async (isAuthorised: boolean) => {
     if (!isAuthorised) {
-      Logger.setUserProperties({ health_app: "not_set" }, true);
+      EngagementTracking.setUserProperties({ health_app: "not_set" }, true);
       return;
     }
 
     if (Platform.OS === "ios") {
-      Logger.setUserProperties({ health_app: "apple" }, true);
+      EngagementTracking.setUserProperties({ health_app: "apple" }, true);
       return;
     }
 
@@ -107,11 +107,11 @@ export function useFitKit() {
         healthApps.push("samsung");
       }
 
-      Logger.setUserProperties({ health_app: healthApps }, true);
+      EngagementTracking.setUserProperties({ health_app: healthApps }, true);
       return;
     }
 
-    Logger.setUserProperties({ health_app: "google" }, true);
+    EngagementTracking.setUserProperties({ health_app: "google" }, true);
   };
 
   const checkSystemPermissions = async (options: FitKitAuthOptions) => {
@@ -254,7 +254,7 @@ export function useFitKit() {
           wasAuthorisationShown = true;
         }
       } catch (e) {
-        dd.error("RNFitKit.authorise error", {
+        Logger.error("RNFitKit.authorise error", {
           error: e.message,
           location: "fitkit",
         });
@@ -271,7 +271,7 @@ export function useFitKit() {
         try {
           await Linking.openURL("app-settings:");
         } catch (e) {
-          dd.error("Linking.openURL error", {
+          Logger.error("Linking.openURL error", {
             error: e.message,
             location: "fitkit",
           });
@@ -291,7 +291,7 @@ export function useFitKit() {
       try {
         await Storage.setItem(StorageKey.fitKitAuthorised, "true");
       } catch (e) {
-        dd.error("Storage.setItem error", {
+        Logger.error("Storage.setItem error", {
           error: e.message,
           location: "fitkit",
         });
@@ -318,7 +318,7 @@ export function useFitKit() {
 
         return isAuthorised;
       } catch (e) {
-        Logger.error(e, {
+        Logger.notify(e, {
           event: "authoriseFitKitTypes",
           fitKitTypes: fitKitTypesRead.map((fitKitType) => fitKitType.toString()).join(", "),
         });

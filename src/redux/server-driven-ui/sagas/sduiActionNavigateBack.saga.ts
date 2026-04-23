@@ -6,7 +6,7 @@ import { call, select, all, put, spawn } from "redux-saga/effects";
 import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { parseJSON } from "@utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Keyboard } from "react-native";
 
 export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPayload) {
@@ -29,7 +29,7 @@ export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPay
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "dispatchActions", file: "sduiActionNavigateBackSaga" });
+      Logger.notify(e, { event: "dispatchActions", file: "sduiActionNavigateBackSaga" });
     });
   }
 

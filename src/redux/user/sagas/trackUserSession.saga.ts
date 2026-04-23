@@ -1,6 +1,6 @@
 import { AUTHENTICATED } from "@redux/app/app.actions";
 import { refreshUserSession } from "@redux/app/sagas/setMainRoot.saga";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import { call, delay, select, spawn } from "redux-saga/effects";
@@ -27,7 +27,7 @@ export default function* trackUserSession({ type }: Params = { type: "" }) {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "trackUserSession" });
+      Logger.notify(e, { event: "trackUserSession" });
     });
   }
 }

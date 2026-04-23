@@ -1,5 +1,5 @@
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import moment from "moment";
 import { call, cancel, cancelled, fork, put, race, select, spawn, take, delay } from "redux-saga/effects";
@@ -201,7 +201,7 @@ export default function* startChallenge({
         inProgress = false;
       } catch (e) {
         yield spawn(() => {
-          Logger.error(e, { event: "startChallenge" });
+          Logger.notify(e, { event: "startChallenge" });
         });
       }
     } else if (challengeEnd) {

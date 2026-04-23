@@ -1,5 +1,5 @@
 import { t } from "@locale";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { Alert, AlertButton, PermissionsAndroid, Permission, PermissionStatus, Platform } from "react-native";
 import { FitKitAndroidSystemPermission } from "./fitkit.permissions";
 
@@ -24,8 +24,11 @@ const permissionsConfig: Map<FitKitAndroidSystemPermission, IPermissionConfig> =
       messageKey: "permissions.android.alert.location.message",
       multipleItemsMessageKey: "permissions.android.alert.location.multiple_items_message",
       tracking: (status: PermissionStatus) => {
-        Logger.logMixpanelEvent("permission_requested", { type: FitKitAndroidSystemPermission.location, status });
-        Logger.setUserProperties({ data_permission_location: status });
+        EngagementTracking.logMixpanelEvent("permission_requested", {
+          type: FitKitAndroidSystemPermission.location,
+          status,
+        });
+        EngagementTracking.setUserProperties({ data_permission_location: status });
       },
     },
   ],
@@ -36,7 +39,10 @@ const permissionsConfig: Map<FitKitAndroidSystemPermission, IPermissionConfig> =
       messageKey: "permissions.android.alert.activity.message",
       multipleItemsMessageKey: "permissions.android.alert.activity.multiple_items_message",
       tracking: (status: PermissionStatus) => {
-        Logger.logMixpanelEvent("permission_requested", { type: FitKitAndroidSystemPermission.activity, status });
+        EngagementTracking.logMixpanelEvent("permission_requested", {
+          type: FitKitAndroidSystemPermission.activity,
+          status,
+        });
       },
     },
   ],

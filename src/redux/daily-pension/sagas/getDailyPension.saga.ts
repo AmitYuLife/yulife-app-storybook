@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import { call, put, spawn } from "redux-saga/effects";
@@ -30,7 +30,7 @@ export default function* getDailyPension() {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "getDailyPension" });
+      Logger.notify(e, { event: "getDailyPension" });
     });
   }
 }

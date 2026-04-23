@@ -1,6 +1,7 @@
 import { spawn, delay, select, put } from "redux-saga/effects";
 import moment from "moment";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import { pedometerStepsChallengeStarted } from "../levels.actions";
 import { getLastResults } from "@redux/pedometer/pedometer.selectors";
@@ -23,7 +24,7 @@ export default function* setInitialSteps(startDateTime: string, features: IUserS
   if (isValidInitialSteps && lastUpdateIsValid) {
     yield put(pedometerStepsChallengeStarted(pedometerSteps));
     yield spawn(() =>
-      Logger.logMixpanelEvent("initial_pedometer_steps_set", {
+      EngagementTracking.logMixpanelEvent("initial_pedometer_steps_set", {
         steps: pedometerSteps,
         lastUpdated,
         source: "pedometer",
@@ -40,7 +41,7 @@ export default function* setInitialSteps(startDateTime: string, features: IUserS
     limitStepsLastUpdateEnabled,
     lastUpdateIsValid,
   };
-  yield spawn(() => Logger.logMixpanelEvent("invalid_pedometer_steps", eventProperties));
+  yield spawn(() => EngagementTracking.logMixpanelEvent("invalid_pedometer_steps", eventProperties));
 
   const startOfChallengeMoment = moment(startDateTime);
   const startOfDayMoment = startOfChallengeMoment.clone().startOf("day");
@@ -60,12 +61,14 @@ export default function* setInitialSteps(startDateTime: string, features: IUserS
       if (!data.error) {
         const steps = data.results.reduce((acc, payload) => acc + payload.value, 0);
         yield put(pedometerStepsChallengeStarted(steps));
-        yield spawn(() => Logger.logMixpanelEvent("initial_pedometer_steps_set", { steps, source: "querySteps" }));
+        yield spawn(() =>
+          EngagementTracking.logMixpanelEvent("initial_pedometer_steps_set", { steps, source: "querySteps" })
+        );
         return;
       }
     } catch (e) {
       yield spawn(() => {
-        Logger.error(e, { event: "setInitialSteps" });
+        Logger.notify(e, { event: "setInitialSteps" });
       });
     }
 

@@ -1,5 +1,5 @@
 import { call, put, spawn } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import { QueryResult } from "@apollo/client";
@@ -24,7 +24,7 @@ export function* queryHealthSmokingState() {
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "queryHealthSmokingState" });
+      Logger.notify(e, { event: "queryHealthSmokingState" });
     });
   }
 }

@@ -1,7 +1,7 @@
 import { setLocale, Language, getIntercomLanguage } from "@locale";
 import { Navigation } from "@navigation/main";
 import { SyncAction } from "@redux/_core/types";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { call } from "redux-saga/effects";
 
 export default function* updateLanguage({ payload }: SyncAction<{ locale: Language }>) {
@@ -13,6 +13,6 @@ export default function* updateLanguage({ payload }: SyncAction<{ locale: Langua
   const intercomLanguage = getIntercomLanguage(payload.locale);
 
   if (intercomLanguage) {
-    yield call(Logger.setUserLanguagePreferenceOnIntercom, payload.locale);
+    yield call(EngagementTracking.setUserLanguagePreferenceOnIntercom, payload.locale);
   }
 }

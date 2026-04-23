@@ -1,5 +1,5 @@
 import { parseJSON } from "@utils";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call } from "redux-saga/effects";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { getServerPayload } from "../sdui.helpers";
@@ -26,7 +26,7 @@ export function* sduiActionRefetchQueriesSaga(action: SduiActionWithServerPayloa
     }
   } catch (e) {
     yield call(() =>
-      Logger.error(e, {
+      Logger.notify(e, {
         sdui: true,
         location: "sduiActionRefetchQueriesSaga",
       })

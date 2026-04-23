@@ -1,6 +1,6 @@
 import { call } from "redux-saga/effects";
 import Share from "react-native-share";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { parseJSON } from "@utils";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { getServerPayload } from "../sdui.helpers";
@@ -26,7 +26,7 @@ export function* sduiActionOpenShareDialogSaga(action: SduiActionWithServerPaylo
     yield call(() => Share.open({ ...data, failOnCancel: false }));
   } catch (e) {
     yield call(() =>
-      Logger.error(e, {
+      Logger.notify(e, {
         sdui: true,
         location: "sduiActionOpenShareDialogSaga",
       })

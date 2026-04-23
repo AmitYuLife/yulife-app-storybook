@@ -5,7 +5,7 @@ import NumberSliderQuestion from "./questions/number-slider";
 import CommentQuestion from "./questions/comment";
 import MultipleChoice from "./questions/multiple-choice";
 import useFormState from "./form-state.hook";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 
 interface Props {
   form: GetPendingUserFeedbackQuery["form"];
@@ -22,7 +22,7 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
   const { defaultAnswer, saveAnswer, question, answers, canGoBack, goBack } = useFormState(form, submitForm);
   const onDismiss = useCallback(() => {
     submitForm(answers);
-    Logger.logMixpanelEvent("modal_dismissed", {
+    EngagementTracking.logMixpanelEvent("modal_dismissed", {
       name: "feedback.modal",
       survey_title: form?.title,
       reward_value: form.awardYucoin,

@@ -1,6 +1,5 @@
 import { call, select } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
-import dd from "@services/datadog";
+import Logger from "@services/logger/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { WHITELIST_REDUX_EVENTS } from "@redux/_core/logging";
@@ -22,10 +21,10 @@ export default function* logDeviceStateSaga(action: SyncAction) {
           payload: action.payload,
           timestamp,
         };
-        yield call(dd.info, "Redux state change", reduxEvent);
+        yield call(Logger.info, "Redux state change", reduxEvent);
       }
     }
   } catch (e) {
-    Logger.error(e, { file: "logDeviceStateSaga.saga" });
+    Logger.notify(e, { file: "logDeviceStateSaga.saga" });
   }
 }

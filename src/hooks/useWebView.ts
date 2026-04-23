@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { WebViewMessageEvent } from "react-native-webview";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { WebViewRenderProcessGoneEvent, ShouldStartLoadRequest } from "react-native-webview/lib/WebViewTypes";
 import { Linking, Platform } from "react-native";
 import { REGION } from "@locale";
@@ -43,7 +43,7 @@ export const useWebView = ({ onAppHandBack }: Props) => {
           case "sduiActions":
             //check if it's a valid sdui action
             if (!parsedData.payload.actions || !Array.isArray(parsedData.payload.actions)) {
-              Logger.error(new Error("Invalid SDUI actions received"), {
+              Logger.notify(new Error("Invalid SDUI actions received"), {
                 location: "webview.sduiActions",
                 data: parsedData.payload.actions,
               });
@@ -53,7 +53,7 @@ export const useWebView = ({ onAppHandBack }: Props) => {
             for (const action of parsedData.payload.actions) {
               //check if it's a valid sdui action type
               if (!Object.values(SduiActionType).includes(action.type)) {
-                Logger.error(new Error("Invalid SDUI action type"), {
+                Logger.notify(new Error("Invalid SDUI action type"), {
                   location: "webview.sduiActions",
                   data: action,
                 });
@@ -66,7 +66,7 @@ export const useWebView = ({ onAppHandBack }: Props) => {
             }
         }
       } catch (err) {
-        Logger.error(err, {
+        Logger.notify(err, {
           location: "handlePostMessage",
         });
       }

@@ -9,7 +9,7 @@ import { ContentItemButton } from "../../contentItemButton/contentItemButton";
 import { Alert } from "react-native";
 import { useSduiCallbackFunctionOrReduxAction } from "../../_hooks";
 import Config from "react-native-config";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 
 type Props = Pick<GqlPaymentButton, "onSubmit"> & {
   paymentIntent: StripePaymentIntent;
@@ -77,7 +77,7 @@ const StripePaymentButton = memo((props: Props) => {
       await handleSduiAction(); // TODO: Hook up event tracking
     } catch (err) {
       if (!errorsToSkip.includes(err.message)) {
-        Logger.error(err.message, { file: "stripePaymentButton.openPaymentSheet" });
+        Logger.notify(err.message, { file: "stripePaymentButton.openPaymentSheet" });
         Alert.alert("Error", err.message);
       }
     } finally {

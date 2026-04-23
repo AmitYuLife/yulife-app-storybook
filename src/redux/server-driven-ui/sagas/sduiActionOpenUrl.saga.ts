@@ -1,6 +1,6 @@
 import { all, call, put, spawn } from "redux-saga/effects";
 import { handleLinkPress } from "@services/app-link";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { getServerPayload } from "../sdui.helpers";
 import { parseJSON } from "@utils";
@@ -25,7 +25,7 @@ export function* sduiActionOpenUrlSaga({ payload }: SduiActionWithServerPayload)
     }
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "dispatchActions", file: "sduiActionOpenUrlSaga" });
+      Logger.notify(e, { event: "dispatchActions", file: "sduiActionOpenUrlSaga" });
     });
   }
 }

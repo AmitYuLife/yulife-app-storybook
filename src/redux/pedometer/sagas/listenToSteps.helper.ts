@@ -2,8 +2,8 @@ import moment from "moment";
 import { Platform } from "react-native";
 import { call, cancelled, put, select, spawn, take } from "redux-saga/effects";
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
-import Logger from "@services/logging/logger";
-import dd from "@services/datadog";
+import EngagementTracking from "@services/logging/engagement-tracking";
+import Logger from "@services/logger/logger";
 import { getUserFeatures } from "../../user/user.selectors";
 import {
   restartPedometerOnNewDay,
@@ -49,7 +49,7 @@ export default function* listenToSteps() {
       const currentSteps: ReturnType<typeof getSteps> = yield select(getSteps);
 
       if (results === ERROR_NOT_AUTHORISED) {
-        yield spawn(() => Logger.logEvent("pedometer_unauthorised", { event: "listenToSteps" }));
+        yield spawn(() => EngagementTracking.logEvent("pedometer_unauthorised", { event: "listenToSteps" }));
         yield put(updatePedometerNoNewDataAction());
         continue;
       }
@@ -60,7 +60,7 @@ export default function* listenToSteps() {
       }
 
       if (features.loggingEnabled) {
-        yield spawn(() => dd.info("Raw steps results passive", { ...results, location: "fitkit" }));
+        yield spawn(() => Logger.info("Raw steps results passive", { ...results, location: "fitkit" }));
       }
 
       const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
@@ -81,7 +81,7 @@ export default function* listenToSteps() {
       }
     } catch (e) {
       yield spawn(() => {
-        Logger.error(e, { event: "listenToSteps" });
+        Logger.notify(e, { event: "listenToSteps" });
       });
     } finally {
       const isCancelled: boolean = yield cancelled();

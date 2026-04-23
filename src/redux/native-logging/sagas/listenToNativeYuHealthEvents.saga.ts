@@ -1,6 +1,5 @@
 import { call, spawn, take } from "redux-saga/effects";
-import Logger from "@services/logging/logger";
-import dd from "@services/datadog";
+import Logger from "@services/logger/logger";
 import { yuHealthNativeEventsChannel } from "../yuHealthNativeEvents.channels";
 
 interface NativeEvent {
@@ -12,10 +11,10 @@ export default function* listenToNativeYuHealthEvents() {
   while (true) {
     try {
       const results: NativeEvent = yield take(channel);
-      dd.warn("YuHealth native event", { message: results.message, location: "yu-health-native" });
+      Logger.warn("YuHealth native event", { message: results.message, location: "yu-health-native" });
     } catch (e) {
       yield spawn(() => {
-        Logger.error(e, { event: "listenToNativeYuHealthEvents" });
+        Logger.notify(e, { event: "listenToNativeYuHealthEvents" });
       });
     }
   }

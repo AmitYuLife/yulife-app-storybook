@@ -1,4 +1,4 @@
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { call, spawn } from "redux-saga/effects";
 import { updateUserConsent } from "../user.actions";
 import { gql } from "@graphql/__generated";
@@ -14,7 +14,7 @@ export default function* updateUserConsentSaga({ payload }: ReturnType<typeof up
     );
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "updateUserConsentSaga" });
+      Logger.notify(e, { event: "updateUserConsentSaga" });
     });
   }
 }

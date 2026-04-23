@@ -6,7 +6,7 @@ import { setLoadingState } from "../sdui.actions";
 import { SduiSagaAction } from "../sdui.types";
 import { submitSduiJourney } from "../../../graphql/journey";
 import { getServerPayload } from "../sdui.helpers";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { SduiAction } from "@graphql/__generated";
 
 type MutationSduiAction = Partial<SduiAction> & { __typename?: "SduiAction" };
@@ -87,7 +87,7 @@ export function* sduiActionSendMutation(action: SduiSagaAction) {
     }
   } catch (e) {
     yield call(() =>
-      Logger.error(e, {
+      Logger.notify(e, {
         sdui: true,
         location: "sduiActionSendMutation",
       })

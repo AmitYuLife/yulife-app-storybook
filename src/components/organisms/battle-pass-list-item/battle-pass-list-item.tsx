@@ -15,7 +15,7 @@ import {
   BATTLE_PASS_LIST_ITEM_TITLE,
   BATTLE_PASS_LIST_ITEM,
 } from "@ids";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
 import { useDispatch } from "react-redux";
@@ -156,7 +156,7 @@ const BattlePassListItem = ({
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
         await handleClaimSduiAction();
       } catch (e) {
-        Logger.error(e, { event: "@battle_pass_list_item" });
+        Logger.notify(e, { event: "@battle_pass_list_item" });
       } finally {
         setLoadingState(DEFAULT_STATE);
       }

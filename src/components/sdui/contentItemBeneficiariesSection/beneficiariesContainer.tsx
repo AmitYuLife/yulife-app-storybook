@@ -9,7 +9,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { truncate } from "@utils";
 import { useQuery } from "@apollo/client";
 import { TEXT_TEMPLATE, ADD_BENEFICIARY, BENEFICIARY_DETAILS } from "@ids";
-import Logger from "@services/logging/logger";
+import EngagementTracking from "@services/logging/engagement-tracking";
 import { GetProductBeneficiariesQuery, gql } from "@graphql/__generated";
 
 interface IBeneficiariesProps {
@@ -95,7 +95,7 @@ const onAddBeneficiaryPress = (productId: string) => {
   /**
    * Event Taxonomy 104
    */
-  Logger.logEvent("benificiary_add_started");
+  EngagementTracking.logEvent("benificiary_add_started");
 
   showYuModal({
     component: {

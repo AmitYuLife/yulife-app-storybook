@@ -6,7 +6,7 @@ import { useTrack } from "@hooks";
 import { DONATION_LEVEL_UP_MODAL } from "@ids";
 import { t } from "@locale";
 import { ItemDetailsReward } from "@organisms";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { Style, StyleSheet } from "@styles";
 import * as Haptics from "expo-haptics";
 import { memo, useCallback, useEffect, useMemo } from "react";
@@ -54,7 +54,7 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
         await handleSduiAction();
       } catch (e) {
-        Logger.error(e, { event: "@battle_pass_level_up_modal" });
+        Logger.notify(e, { event: "@battle_pass_level_up_modal" });
       } finally {
         onClose();
       }
