@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { LeaderboardScreen } from "@components/screens";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,9 +7,9 @@ import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import { JoinLeaderboardOverlay, LeaderboardCommunityOverlay, showFloatingModal } from "@modals";
 import { Style } from "@styles";
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { NetworkStatus, useLazyQuery, useMutation } from "@apollo/client";
 import { showYuModal } from "@navigation/root";
-import { useNavigationComponentDidAppear, useUserFeatures } from "@hooks";
+import { useFocusEffect, useUserFeatures } from "@hooks";
 import {
   getActiveSocialGroup,
   getActiveSocialGroupLeaderboard,
@@ -39,15 +39,29 @@ export const LeaderboardContainer = () => {
   const { showDuels, showLeaderboardSearch, tempGameEnableAvatarFrames, showNotificationCentre, showReferrals } =
     useUserFeatures();
   const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"));
-  const [getLeaderboardFull, { data, loading, refetch }] = useLazyQuery(gql("GetLeaderboardFullDocument"), {
-    fetchPolicy: "network-only",
-  });
+  const [getLeaderboardFull, { data, loading, refetch, networkStatus }] = useLazyQuery(
+    gql("GetLeaderboardFullDocument"),
+    { notifyOnNetworkStatusChange: true }
+  );
 
-  useNavigationComponentDidAppear(() => {
+  const lastNetworkLeaderboardIdRef = useRef<string | undefined>(undefined);
+
+  const onLeaderboardScreenDidAppear = useCallback(() => {
     if (isEmpty(socialGroups)) {
       dispatch(getUserDataStart({ types: [AppDataType.socialGroups] }));
     }
-  }, componentId);
+
+    const leaderboardId = activeLeaderboard?.leaderboardId;
+    if (activeLeaderboard?.consent && leaderboardId) {
+      lastNetworkLeaderboardIdRef.current = leaderboardId;
+      getLeaderboardFull({
+        fetchPolicy: "cache-and-network",
+        variables: { leaderboardId },
+      });
+    }
+  }, [activeLeaderboard?.consent, activeLeaderboard?.leaderboardId, dispatch, getLeaderboardFull, socialGroups]);
+
+  useFocusEffect(onLeaderboardScreenDidAppear, { componentId, defer: true });
 
   const socialGroupsWithConsent = useMemo(
     () =>
@@ -72,17 +86,35 @@ export const LeaderboardContainer = () => {
   }, [data, activeLeaderboard]);
 
   useEffect(() => {
-    if (!activeLeaderboard?.consent) {
+    const leaderboardId = activeLeaderboard?.leaderboardId;
+
+    if (!activeLeaderboard?.consent || !leaderboardId) {
       return;
     }
 
-    if (activeLeaderboard?.leaderboardId) {
-      getLeaderboardFull({
-        variables: {
-          leaderboardId: activeLeaderboard?.leaderboardId,
-        },
-      });
+    getLeaderboardFull({
+      fetchPolicy: "cache-only",
+      variables: { leaderboardId },
+    });
+  }, [activeLeaderboard, getLeaderboardFull]);
+
+  useEffect(() => {
+    const leaderboardId = activeLeaderboard?.leaderboardId;
+
+    if (!activeLeaderboard?.consent || !leaderboardId) {
+      return;
     }
+
+    if (lastNetworkLeaderboardIdRef.current === leaderboardId) {
+      return;
+    }
+
+    lastNetworkLeaderboardIdRef.current = leaderboardId;
+
+    getLeaderboardFull({
+      fetchPolicy: "cache-and-network",
+      variables: { leaderboardId },
+    });
   }, [activeLeaderboard, getLeaderboardFull]);
 
   const selectSocialGroupLeaderboard = useCallback(
@@ -250,6 +282,9 @@ export const LeaderboardContainer = () => {
     [currentUserId, leaderboardItems]
   );
 
+  const itemsIsLoading = loading && data == null;
+  const isRefreshSpinner = networkStatus === NetworkStatus.refetch;
+
   const currentUserIsOutOfBounds = useMemo(() => {
     // the current user is considered out of bounds if there is a gap between the current user's position and the next user's position
     // the current user is always pushed to the end of the list if they are inserted out of bounds
@@ -272,8 +307,8 @@ export const LeaderboardContainer = () => {
       showDuels={showDuels}
       showSearch={showLeaderboardSearch && socialGroupsWithConsent.length > 0}
       onRefresh={refetch}
-      isLoading={loading}
-      itemsIsLoading={loading}
+      isLoading={isRefreshSpinner}
+      itemsIsLoading={itemsIsLoading}
       onQuestionMarkPress={onQuestionMarkPress}
       onLeftNavigationPress={onLeftNavigationPress}
       onDuelPress={onDuelPress}

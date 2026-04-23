@@ -1,4 +1,5 @@
 import { takeLatest, takeLeading } from "redux-saga/effects";
+import { REHYDRATE } from "redux-persist";
 import {
   GET_USER_ACTIVE_CHALLENGE_SUCCESS,
   GET_USER_SUCCESS,
@@ -15,7 +16,10 @@ import {
   CHALLENGE_START,
   CHALLENGE_RESET_SUCCESS,
   CHALLENGE_RESET,
+  CHALLENGE_RESET_FAIL,
+  CHALLENGE_END_SUCCESS,
 } from "../levels.actions";
+import { UPDATE_CURRENT_DATE } from "../../device/device.actions";
 
 import startChallengeIfActiveSaga from "./startChallengeIfActive.saga";
 import startChallengeSuccessSaga from "./startChallengeSuccess.saga";
@@ -29,6 +33,10 @@ import resetChallengeSuccessSaga from "./resetChallengeSuccessSaga.saga";
 import addModalsToQueueAfterChallengeCompleted from "./addModalsToQueueAfterChallengeCompleted.saga";
 import { AUTHENTICATED, UPDATE_APP_STATE } from "@redux/app/app.actions";
 import stopForegroundPedometerSaga from "./stopForegroundPedometer.saga";
+import {
+  refetchQuestMapDocumentForCacheUpdate,
+  refetchQuestMapIfLevelChangedOnColdStart,
+} from "./refetchQuestMapDocumentForCacheUpdate";
 
 export default [
   // startChallenges(),
@@ -43,4 +51,9 @@ export default [
   takeLeading([CHALLENGE_CANCEL, LOGOUT_START], cancelChallengeSaga),
   takeLatest(CHALLENGE_RESET, addModalsToQueueAfterChallengeCompleted),
   takeLatest([AUTHENTICATED, UPDATE_APP_STATE], stopForegroundPedometerSaga),
+  takeLatest(
+    [CHALLENGE_RESET_SUCCESS, CHALLENGE_RESET_FAIL, LOGIN_USER_SUCCESS, UPDATE_CURRENT_DATE, CHALLENGE_END_SUCCESS],
+    refetchQuestMapDocumentForCacheUpdate
+  ),
+  takeLatest(REHYDRATE, refetchQuestMapIfLevelChangedOnColdStart),
 ];

@@ -37,7 +37,7 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
   const features = useUserFeatures();
 
   const { data, loading: isLoading } = useQuery(gql("GetQuestMapDocument"), {
-    fetchPolicy: "network-only",
+    fetchPolicy: "cache-only",
     notifyOnNetworkStatusChange: true,
   });
 

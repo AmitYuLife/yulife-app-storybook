@@ -29,7 +29,7 @@ const LevelSelector = () => {
           yuniversalMap: newYuniversalMap,
           yuniversalLevel: newYuniversalLevel,
         },
-        refetchQueries: [{ query: gql("GetQuestMapDocument") }],
+        refetchQueries: [{ query: gql("GetQuestMapDocument"), fetchPolicy: "network-only" }],
       });
       if (success) {
         dispatch(
