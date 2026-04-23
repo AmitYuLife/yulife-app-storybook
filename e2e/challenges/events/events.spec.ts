@@ -206,16 +206,16 @@ Feature("As a user I can opt in and take an event", async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_76, data.AUTH_76), async () => {
       When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 5000), async () => {
         Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 4000));
-        Then("I should see the correct event title", then.idVisible(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#FFFFFF"), 4000));
-        Then("I should see the correct event description", then.idVisible(ids.EVENT_DESCRIPTION(tournamentEventDescription, "#FFFFFF"), 4000));
+        Then("I should see the correct event title", then.idVisible(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#464647"), 4000));
+        Then("I should see the correct event description", then.idVisible(ids.EVENT_DESCRIPTION(tournamentEventDescription, "#464647"), 4000));
       });
     });
-    When("I tap on the event card", when.tapID(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#FFFFFF")), async () => {
-      Then("I should see the correct remaining days", then.textVisible("6 days left", 2000));
+    When("I tap on the event card", when.tapID(ids.EVENT_HEADING(data.GOALS_TOURNAMENT.data.title, "#464647")), async () => {
+      Then("I should see the event tag and remaining time in the header subtitle", then.idVisible(ids.EVENT_DIALOG_HEADER_SUBTITLE(`${data.GOALS_TOURNAMENT.data.tag} • 6 days left`), 2000));
       Then("I should see the correct event info", then.onEventDetailsScreen(data.GOALS_TOURNAMENT));
-      Then("I should see the Leaderboard section", then.textVisible("Leaderboard", 2000));
-      Then("I should see my team section", then.textVisible("My team (Shoreditch)", 2000));
-      Then("I should see the total team score", then.textVisible("Total team score", 2000));
+      Then("I should see the current standings section", then.textVisible("Current standings", 2000));
+      Then("I should see my team name in the standings list", then.textVisible("Shoreditch", 2000));
+      Then("I should see my team's average score in the standings", then.textVisibleAtIndex("3,400", 1, 2000));
     });
   });
 

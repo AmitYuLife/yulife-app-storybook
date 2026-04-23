@@ -9,7 +9,12 @@ import { Box, Image } from "@atoms";
 import { addCommasToNumber } from "@utils";
 import { Source, ProgressBar, TextTemplate } from "@atoms";
 import { IReward } from "@organisms/event-reward/event-reward";
-import { EVENT_DIALOG_BUTTON, EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
+import {
+  EVENT_DIALOG_BUTTON,
+  EVENT_DIALOG_HEADER_SUBTITLE,
+  EVENT_DIALOG_SCREEN,
+  EVENT_DIALOG_SCREEN_SCROLL,
+} from "@ids";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Button, HeadingAndCopy, InfoPanel, Pressable } from "@molecules";
 import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList, ListItem } from "@organisms";
@@ -184,7 +189,13 @@ const EventDialogScreen = ({
           {title}
         </TextTemplate>
         {!labels ? null : (
-          <TextTemplate textAlign="center" numberOfLines={1} type="l2" color={headerTextColor}>
+          <TextTemplate
+            textAlign="center"
+            numberOfLines={1}
+            type="l2"
+            color={headerTextColor}
+            testID={EVENT_DIALOG_HEADER_SUBTITLE(labels.join(" • "))}
+          >
             {labels.join(" • ")}
           </TextTemplate>
         )}
