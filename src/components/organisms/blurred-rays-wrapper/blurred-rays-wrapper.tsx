@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import RaysSpotlightLayout from "@organisms/rays/rays-spotlight-layout";
 
 interface BlurredRaysWrapperProps {
-  title: string;
+  title?: string;
   children: ReactElement;
   rollingTextProps?: {
     previousValue: string;
@@ -27,6 +27,7 @@ interface BlurredRaysWrapperProps {
   acceessibilityLabelTitle?: string;
   isBlurred?: boolean;
   titlePaddingTop?: number;
+  centerContent?: boolean;
 }
 
 export const BLURRED_RAYS_Y_OFFSET = Style.adjust(130);
@@ -45,6 +46,8 @@ const BlurredRaysWrapper = ({
   testID,
   isBlurred = true,
   titlePaddingTop = 40,
+  backgroundColor,
+  centerContent = true,
 }: BlurredRaysWrapperProps) => {
   const { top, bottom } = useSafeAreaInsets();
 
@@ -57,33 +60,38 @@ const BlurredRaysWrapper = ({
   );
 
   return (
-    <BlurredWrapper tint="dark" isBlurred={isBlurred}>
+    <BlurredWrapper tint="dark" isBlurred={isBlurred} backgroundColor={backgroundColor}>
       <Animated.View entering={FadeIn.duration(200)} style={styles.wrapper}>
         <RaysSpotlightLayout showRays={showRays}>
           <Box style={wrapperStyle} testID={testID} gap={50}>
-            <Box pt={titlePaddingTop}>
-              <Animated.View
-                entering={FadeInDown.delay(200).duration(500)}
-                style={styles.levelUpText}
-                accessible={true}
-                accessibilityLabel={acceessibilityLabelTitle}
-              >
-                <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
-                  {title}
-                </TextTemplate>
-                {!rollingTextProps ? null : (
-                  <RollingText previousValue={rollingTextProps?.previousValue} newValue={rollingTextProps?.newValue} />
-                )}
-              </Animated.View>
-            </Box>
-            <Box flex={1} justifyContent="center" alignItems="center">
+            {title ? (
+              <Box pt={titlePaddingTop}>
+                <Animated.View
+                  entering={FadeInDown.delay(200).duration(500)}
+                  style={styles.levelUpText}
+                  accessible={true}
+                  accessibilityLabel={acceessibilityLabelTitle}
+                >
+                  <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
+                    {title}
+                  </TextTemplate>
+                  {!rollingTextProps ? null : (
+                    <RollingText
+                      previousValue={rollingTextProps?.previousValue}
+                      newValue={rollingTextProps?.newValue}
+                    />
+                  )}
+                </Animated.View>
+              </Box>
+            ) : null}
+            <Box flex={1} justifyContent={centerContent ? "center" : "flex-start"} alignItems="center">
               {children}
             </Box>
             {!buttonIsEnabled ? null : (
               <Box flex={1} justifyContent="flex-end" gap={5} mb={bottom + Style.adjust(10)} disableAutoAdjust={true}>
                 <Button
-                  testID={buttonTestID}
-                  translatedLabel={buttonLabel}
+                  testID={buttonTestID ?? ""}
+                  translatedLabel={buttonLabel ?? ""}
                   onPress={onButtonPress}
                   isLoading={isLoading}
                 />

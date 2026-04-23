@@ -1,6 +1,7 @@
 import { Colours } from "@styles";
-import React, { ComponentProps, memo, useEffect, useState } from "react";
+import { ComponentProps, ReactElement, ReactNode, memo, useEffect, useState } from "react";
 import {
+  // eslint-disable-next-line rulesdir/no-restricted-imports-clone
   Animated,
   ActivityIndicator,
   TouchableWithoutFeedback,
@@ -22,12 +23,12 @@ import { MobileGameTheme } from "@app/modules/themes/types";
 interface IProps {
   disabled?: boolean;
   testID?: string;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
   isLoading?: boolean;
   title?: string;
-  leftIcon?: React.ReactNode;
+  leftIcon?: ReactNode;
   iconUri?: string;
-  rightIcon?: React.ReactNode;
+  rightIcon?: ReactNode;
   borderColor?: string;
   color?: string;
   backgroundColor?: string;
@@ -37,7 +38,7 @@ interface IProps {
   height: number;
   delay?: number;
   disableAnimation?: boolean;
-  children?: React.ReactElement;
+  children?: ReactElement;
   hideShadow?: boolean;
   showBadge?: boolean;
   accessibilityLabel?: string;
@@ -157,7 +158,7 @@ export const ButtonBase = (props: IProps) => {
 type ShadowProps = "height" | "borderRadius" | "shadowColor" | "testID" | "disabled" | "theme";
 
 const Shadow = ({ height, borderRadius, shadowColor, testID, disabled, theme }: Pick<IProps, ShadowProps>) => {
-  const backgroundColor = getOptionallyDisabledColor({ color: shadowColor, disabled, theme });
+  const backgroundColor = getOptionallyDisabledColor({ color: shadowColor ?? "", disabled: !!disabled, theme });
 
   return (
     <View style={[styles.shadow, { height, borderRadius, backgroundColor }]}>
@@ -194,8 +195,8 @@ const Main = ({
   contentTextStyle,
   theme,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) => {
-  const adjustedColor = getOptionallyDisabledColor({ color, disabled, theme });
-  const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled, theme });
+  const adjustedColor = getOptionallyDisabledColor({ color: color ?? "", disabled: !!disabled, theme });
+  const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor ?? "", disabled: !!disabled, theme });
   const border = borderColor ? { borderColor: adjustedBorderColor, borderWidth: 1 } : {};
 
   return (
@@ -216,9 +217,9 @@ const Main = ({
           style={[styles.main, backgroundStyles.wrapper, { height, transform: [{ translateY: translateYAnimation }] }]}
         >
           <Background
-            disabled={disabled}
-            backgroundColor={backgroundColor}
-            backgroundGradient={backgroundGradient}
+            disabled={!!disabled}
+            backgroundColor={backgroundColor ?? ""}
+            backgroundGradient={backgroundGradient ?? []}
             theme={theme}
           />
         </Animated.View>
@@ -227,11 +228,11 @@ const Main = ({
         >
           <Content
             testID={`${testID}-text-view`}
-            title={title}
+            title={title ?? ""}
             leftIcon={leftIcon}
             iconUri={iconUri}
             rightIcon={rightIcon}
-            isLoading={isLoading}
+            isLoading={!!isLoading}
             color={adjustedColor}
             size={size}
             contentWrapperStyle={contentWrapperStyle}
@@ -252,12 +253,12 @@ const Main = ({
 
 interface ContentProps {
   title: string;
-  leftIcon?: React.ReactNode;
+  leftIcon?: ReactNode;
   iconUri?: string;
-  rightIcon?: React.ReactNode;
+  rightIcon?: ReactNode;
   isLoading: boolean;
   color: string;
-  children: React.ReactNode;
+  children: ReactNode;
   testID: string;
   size: Sizes;
   contentWrapperStyle?: ViewStyle;
@@ -308,7 +309,7 @@ const LeftIcon = memo(({ leftIcon, iconUri }: Pick<ContentProps, "leftIcon" | "i
   if (iconUri) {
     return (
       <View style={styles.leftIcon}>
-        <Image width={Style.adjust(16)} height={Style.adjust(16)} resizeMode="contain" source={{ uri: iconUri }} />
+        <Image width={Style.adjust(16)} height={Style.adjust(16)} contentFit="contain" source={{ uri: iconUri }} />
       </View>
     );
   }
@@ -334,7 +335,11 @@ const Background = memo(
       return <LinearGradient style={backgroundStyles.wrapper} colors={backgroundGradient} />;
     }
 
-    const adjustedBackgroundColor = getOptionallyDisabledColor({ color: backgroundColor, disabled, theme });
+    const adjustedBackgroundColor = getOptionallyDisabledColor({
+      color: backgroundColor ?? "",
+      disabled: !!disabled,
+      theme,
+    });
 
     return (
       <View style={StyleSheet.flatten([backgroundStyles.wrapper, { backgroundColor: adjustedBackgroundColor }])} />

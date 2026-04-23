@@ -1,4 +1,5 @@
-import React from "react";
+import { PureComponent } from "react";
+// eslint-disable-next-line rulesdir/no-restricted-imports-clone
 import { Animated, Easing, Platform, ViewStyle } from "react-native";
 import { DETOX_ENABLED } from "@services/socket";
 import PlusPoints from "./plus-points";
@@ -7,6 +8,11 @@ import { CHALLENGE_REWARD } from "@ids";
 import { TemplateTextType } from "@styles";
 
 type AnimatedType = "collect-reward" | "challenge-success";
+
+const animatedWrapperStyle: ViewStyle = {
+  height: 20,
+  transformOrigin: "center",
+};
 
 interface IProps {
   type: AnimatedType;
@@ -21,14 +27,14 @@ interface IState {
   scale: Animated.Value;
 }
 
-export default class AnimatedPlusPoints extends React.PureComponent<IProps, IState> {
+export default class AnimatedPlusPoints extends PureComponent<IProps, IState> {
   public state = {
     translateX: new Animated.Value(0),
     translateY: new Animated.Value(this.props.type === "collect-reward" ? -600 : Platform.OS === "android" ? -10 : 0),
     scale: new Animated.Value(1),
   };
 
-  public timeout: ReturnType<typeof setTimeout> = null;
+  public timeout: ReturnType<typeof setTimeout> | null = null;
 
   public componentDidMount() {
     const { translateX, translateY, scale } = this.state;
@@ -85,33 +91,26 @@ export default class AnimatedPlusPoints extends React.PureComponent<IProps, ISta
   }
 
   public componentWillUnmount() {
-    clearTimeout(this.timeout);
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
   public render() {
     const { translateX, translateY, scale } = this.state;
+    const coins = this.props.coins ?? 0;
     return (
       <Animated.View
         style={[
           styles.textWrapper,
+          animatedWrapperStyle,
           {
-            height: Platform.OS === "android" ? 40 : 20,
-            transform: [
-              { translateX },
-              {
-                translateY,
-              },
-              { scale },
-            ],
+            transform: [{ translateX }, { translateY }, { scale }],
           },
           this.props.style,
         ]}
       >
-        <PlusPoints
-          coins={this.props.coins}
-          testID={CHALLENGE_REWARD(this.props.coins)}
-          textType={this.props.textType}
-        />
+        <PlusPoints coins={coins} testID={CHALLENGE_REWARD(coins)} textType={this.props.textType} />
       </Animated.View>
     );
   }

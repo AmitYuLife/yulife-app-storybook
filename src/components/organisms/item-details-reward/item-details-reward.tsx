@@ -28,9 +28,9 @@ const ItemDetailsReward = ({
   starMultiplier = 3,
   imageSize = size,
 }: IItemDetailsRewardProps) => {
-  const starLottie1Ref = useRef<LottieViewRef>(null);
-  const starLottie2Ref = useRef<LottieViewRef>(null);
-  const bubbleRef = useRef<LottieViewRef>(null);
+  const starLottie1Ref = useRef<LottieViewRef>(null!);
+  const starLottie2Ref = useRef<LottieViewRef>(null!);
+  const bubbleRef = useRef<LottieViewRef>(null!);
 
   useEffect(() => {
     const timeout1 = setTimeout(() => {
@@ -78,18 +78,20 @@ const ItemDetailsReward = ({
           ref={bubbleRef}
           source={require("./item-details-level-up-bubbles.lottie")}
           style={[starStyles, styles.absoluteLottie]}
+          resizeMode="contain"
           loop={true}
         />
       )}
-      {children || (
-        <Image
-          suppressLoadingUi={true}
-          style={styles.rewardOverlayIcon}
-          width={Style.adjust(imageSize)}
-          height={Style.adjust(imageSize)}
-          source={source}
-        />
-      )}
+      {children ||
+        (source ? (
+          <Image
+            suppressLoadingUi={true}
+            style={styles.rewardOverlayIcon}
+            width={Style.adjust(imageSize)}
+            height={Style.adjust(imageSize)}
+            source={source}
+          />
+        ) : null)}
     </View>
   );
 };

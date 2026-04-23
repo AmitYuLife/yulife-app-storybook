@@ -1,17 +1,16 @@
 // tslint:disable:max-line-length
 import { Style } from "@styles/index";
-import React from "react";
 import Svg, { Polygon } from "react-native-svg";
 
 interface IProps {
-  isHighlighted: boolean;
+  isHighlighted?: boolean;
   scale?: number;
 }
 
 const StarMid = ({ isHighlighted, scale = 1 }: IProps) => (
   <Svg
-    width={String(Style.SCALE_UP_AND_DOWN(87 * 0.5 * scale))}
-    height={String(Style.SCALE_UP_AND_DOWN(84 * 0.5 * scale))}
+    width={String(Style.adjust(87 * 0.5 * scale))}
+    height={String(Style.adjust(84 * 0.5 * scale))}
     viewBox="0 0 87 84"
   >
     <Polygon
