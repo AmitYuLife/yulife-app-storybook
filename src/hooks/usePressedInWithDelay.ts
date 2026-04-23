@@ -1,15 +1,15 @@
 import { DETOX_ENABLED } from "@services/socket";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { GestureResponderEvent } from "react-native";
 
 interface Args {
   delay?: number;
-  onPress: (event?: GestureResponderEvent) => void;
+  onPress?: (event?: GestureResponderEvent) => void;
 }
 
 export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
   const currentDelay = DETOX_ENABLED ? 0 : delay;
-  const [isPressedIn, setIsPressedIn] = React.useState(false);
+  const [isPressedIn, setIsPressedIn] = useState(false);
   const isUnmounted = useRef(false);
   const isWaitingForResponse = useRef(false);
   const calledAt = useRef(getInitialDate());
@@ -20,7 +20,7 @@ export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
     };
   }, []);
 
-  return React.useMemo(
+  return useMemo(
     () => ({
       isPressedIn,
       handlePressIn() {

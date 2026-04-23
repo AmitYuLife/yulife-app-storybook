@@ -1,4 +1,4 @@
-import * as React from "react";
+import { ReactNode } from "react";
 import { ViewStyle, View, Insets } from "react-native";
 import { Colours, TemplateTextType, StyleSheet } from "@styles";
 import { usePressedInWithDelay } from "@hooks";
@@ -11,12 +11,13 @@ import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "./butt
 import { BUTTON_BASE } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 import { useTheme } from "@modules/themes/hooks/useTheme";
+import type { MobileGameTheme } from "@app/modules/themes/types";
 
 type DefaultProps = {
   isLoading?: boolean;
-  onPress: () => void;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  onPress?: () => void;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
   wrapperStyle?: ViewStyle;
   disabled?: boolean;
   testID?: string;
@@ -90,7 +91,7 @@ const Button = (props: IButtonProps) => {
         backgroundColor={resolvedBackgroundColor}
         shadowColor={resolvedShadowColor}
         color={textColor || Colours.neutral.white}
-        testID={testID || BUTTON_BASE(title, disabled)}
+        testID={testID || BUTTON_BASE(title ?? "", disabled)}
         height={height || buttonDimensions.height}
         isLoading={isLoading}
         disabled={disabled}
@@ -109,7 +110,7 @@ const Button = (props: IButtonProps) => {
         size={size}
         contentWrapperStyle={contentWrapperStyle}
         contentTextStyle={contentTextStyle}
-        theme={theme}
+        theme={theme as MobileGameTheme}
       />
       {!animate || DETOX_ENABLED ? null : <ButtonAnimation />}
     </View>
