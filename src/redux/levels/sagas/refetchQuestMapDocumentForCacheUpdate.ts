@@ -1,7 +1,7 @@
 import { call, select, take } from "redux-saga/effects";
 import client from "@graphql/_core/client";
 import { gql } from "@graphql/__generated";
-import Logger from "@services/logging/logger";
+import Logger from "@services/logger/logger";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { GET_USER_COIN_LEDGER_SUCCESS, getUserCoinLedgerSuccess } from "@redux/user/user.actions";
 
