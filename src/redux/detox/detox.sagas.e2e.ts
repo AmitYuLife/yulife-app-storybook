@@ -5,8 +5,7 @@ import { tokenService } from "@services/storage/token";
 import { setAuthenticated } from "@redux/app/app.actions";
 import { refreshUserSession } from "@redux/app/sagas/setMainRoot.saga";
 import { ApolloQueryResult } from "@apollo/client";
-import { region } from "@locale";
-import { REGION } from "@locale";
+import { region, REGION } from "@locale";
 
 // eslint-disable-next-line no-restricted-imports
 import { regionalClients } from "@graphql/_core/client";
@@ -24,21 +23,30 @@ function* listenToReduxActions() {
       const selectedRegion = action.payload.region || ("UK" as REGION);
       region.setRegion(selectedRegion);
 
+      const client = regionalClients.find((r) => r?.__REGION === selectedRegion);
+
+      if (!client) {
+        throw new Error(`No regional client for ${selectedRegion}`);
+      }
+
       const response: ApolloQueryResult<LoginUserMutation> = yield call(() =>
-        regionalClients
-          .find((r) => r.__REGION === selectedRegion)
-          .mutate({
-            mutation: gql("LoginUserDocument"),
-            fetchPolicy: "no-cache",
-            variables: {
-              email: action.payload.email,
-              password: action.payload.password,
-              method: LoginMethod.Password,
-            },
-          })
+        client.mutate({
+          mutation: gql("LoginUserDocument"),
+          fetchPolicy: "no-cache",
+          variables: {
+            email: action.payload.email,
+            password: action.payload.password,
+            method: LoginMethod.Password,
+          },
+        })
       );
 
-      yield call(tokenService.setToken, response.data.loginUser.token);
+      const token = response.data?.loginUser?.token;
+      if (!token) {
+        throw new Error("Login response missing token");
+      }
+
+      yield call(tokenService.setToken, token);
 
       yield call(refreshUserSession, { coldStart: true });
 

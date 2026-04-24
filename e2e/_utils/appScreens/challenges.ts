@@ -38,18 +38,20 @@ import { scrollUntilIdVisible, scrollFromID } from "_utils/navigation/scrolling"
 export const onChallengeComplete =
   (stepCount: number, level = 1) =>
   async () => {
-    const steps = `${stepCount} steps`;
+    const steps = `${stepCount}`;
     const challengeLevel = `Level ${level}`;
 
-    const screenCopy = ["Well done!", "Collect", steps, challengeLevel];
+    const screenCopy = ["Great work!", "Continue", challengeLevel];
 
-    await wait(5000)();
     for (const i of screenCopy) {
       await waitFor(element(by.text(i)))
         .toBeVisible()
         .withTimeout(10000);
-      await expect(element(by.text(i))).toBeVisible();
     }
+
+    await waitFor(element(by.text(steps)).atIndex(0))
+      .toBeVisible()
+      .withTimeout(10000);
   };
 
 export const onMeditationChallengeComplete = (minutes: number, level: number) => async () => {

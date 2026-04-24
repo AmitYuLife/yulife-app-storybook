@@ -114,7 +114,7 @@ Feature("As a user I can take a challenge", async () => {
     When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(3050, 7));
     });
-    When("I tap collect on the well done screen", when.tapText("Collect", 3000), async () => {
+    When("I tap continue on the well done screen", when.tapText("Continue", 3000), async () => {
       Then("I should see the chest modal appear", then.idVisible(ids.ANIMATED_CHEST_MODAL, 3000));
     });
     When("I tap collect to open the chest", when.tapText("Open the chest", 3000), async () => {
@@ -149,7 +149,7 @@ Feature("As a user I can take a challenge", async () => {
     When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(3050, 6));
     });
-    When("I tap collect on the well done screen", when.tapText(t("Collect"), 5000), async () => {
+    When("I tap continue on the well done screen", when.tapText(t("Continue"), 5000), async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
     When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
@@ -372,7 +372,7 @@ Feature("As a user I can take a challenge", async () => {
     When("I tap the hint", when.tapText("Unlock more challenges"), async () => {
       Then("I should see the challenge hint on the succes screen, as it should not be tappable", then.successScreenHintVisible);
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap continue", when.tapText("Continue"), async () => {
       When("I tap done", when.tapText("Done"), async () => {
         Then("I should see the level 51 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)));
       });
@@ -422,7 +422,7 @@ Feature("As a user I can take a challenge", async () => {
     });
     When("I tap the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(450, 1));
-      When("I tap to collect the reward from the walking challenge I completed just after midnight", when.tapText(t("Collect")), async () => {
+      When("I tap to collect the reward from the walking challenge I completed just after midnight", when.tapText(t("Continue")), async () => {
         Then("I should still see the correct yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560)));
       });
     });

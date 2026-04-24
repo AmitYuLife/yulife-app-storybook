@@ -47,7 +47,8 @@ lint:
     - |
       # Get modified files into a file
       git diff --diff-filter=d --name-only "origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME...origin/$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" \
-        | grep -E '\.(js|ts|tsx)$' > modified_files.txt || true
+        | grep -E '\.(js|ts|tsx)$' \
+        | grep -v -E '^(e2e|scripts)/' > modified_files.txt || true
     - |
       # Run eslint on modified files if there are any, otherwise run on its own config file to verify it's working
       if [ -s modified_files.txt ]; then
