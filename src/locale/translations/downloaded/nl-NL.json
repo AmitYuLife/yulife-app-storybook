@@ -442,13 +442,13 @@
       "rewards_collected": "Hier is alles wat je hebt!",
       "select_one": "Selecteer er een om verder te gaan",
       "title": "Je hebt een beloning gekregen!",
-      "won_reward": "Je hebt gewonnen %{reward}!"
+      "won_reward": "Je hebt %{reward} gewonnen!"
     },
     "push_notifications": {
       "from_challenge": {
         "cta_label": "natuurlijk",
         "cta_label_secondary": "misschien later",
-        "heading": "Mis niets",
+        "heading": "Mis het niet",
         "subheading": "Wil je dat we je een seintje geven als je een uitdaging hebt voltooid?"
       },
       "to_settings": {
@@ -463,7 +463,7 @@
     },
     "reflection_reminder": {
       "cta_label": "Herinnering instellen",
-      "heading": "Blijf op koers met je overdenkingen",
+      "heading": "Blijf op koers met je reflectie",
       "secondary_cta_label": "Skip",
       "subheading": "Kies een dagelijkse herinneringstijd zodat je geen dag mist en de Yunity Quest kunt ontgrendelen."
     },
@@ -473,7 +473,7 @@
     "smoking_streak_lapsed": {
       "page_1": {
         "cta": "Volgende",
-        "info": "Je voortgang wordt gereset, maar houd je ogen op de prijs gericht. %{goal} dagen rookvrij is ons echte doel. We zijn hier om je te helpen!",
+        "info": "Je voortgang wordt gereset, maar blijf gericht op het resultaat. %{goal} dagen rookvrij is ons echte doel. We zijn hier om je te helpen!",
         "info_title": "Kijk nu niet achterom",
         "text_1": "Stoppen met roken is moeilijk en het is normaal om tegenslagen te krijgen. Je bent een mens!",
         "text_2": "Waar het om gaat is om te erkennen hoe ver je al bent gekomen en om door te gaan.",
@@ -491,8 +491,8 @@
     "streak_saver": {
       "body": "Je hebt een dag gemist, maar we verdienen het allemaal om nog een keer te gaan - blijf die uitdagingen verpletteren!",
       "button": "Hebbes!",
-      "inventory_item": "Streepbeschermers",
-      "title": "Streep gered!"
+      "inventory_item": "Reeksbeschermers",
+      "title": "Reeks opgeslagen!"
     },
     "switch_to_google_fit": {
       "button_label": "Overschakelen naar Google Fit",
@@ -529,7 +529,7 @@
       "accessibility_label": "Plus %{coins} yucoin"
     },
     "inventory_banner": {
-      "subtitle": "Openen om je items te bekijken",
+      "subtitle": "Open om je items te bekijken",
       "title": "Inventaris"
     },
     "inventory_item": {
@@ -577,7 +577,7 @@
       "label": "Beloningen"
     },
     "yu": {
-      "accessibility_label": "Open uw scherm",
+      "accessibility_label": "Open je scherm",
       "accessibility_text_value": "3 van 5",
       "label": "Yu"
     },
@@ -619,8 +619,8 @@
       "alert": {
         "accept": "inschakelen",
         "activity": {
-          "message": "Om je beloningen aan te bieden moet je YuLife toestaan om je fysieke activiteit te lezen.",
-          "multiple_items_message": "Om je beloningen aan te bieden moet je YuLife toestaan om je fysieke activiteit te lezen.",
+          "message": "Om je beloningen aan te bieden moet je YuLife toestaan om je fysieke activiteit te bekijken.",
+          "multiple_items_message": "Om je beloningen aan te bieden moet je YuLife toestaan om je fysieke activiteit te bekijken.",
           "title": "Aan de slag"
         },
         "default": {
@@ -630,8 +630,8 @@
         },
         "deny": "Misschien later",
         "location": {
-          "message": "Als je beloond wilt worden voor het fietsen met de YuLife app moet je locatieservices inschakelen.",
-          "multiple_items_message": "Locatie is alleen nodig als je beloond wilt worden voor het fietsen.",
+          "message": "Als je in de YuLife app beloond wil worden voor fietsen, moet je locatieservices inschakelen.",
+          "multiple_items_message": "Locatie is alleen nodig als je beloond wil worden voor het fietsen.",
           "title": "Aan de slag"
         }
       },
@@ -657,7 +657,7 @@
           "title": "Training"
         },
         "meditation": {
-          "description": "Nodig voor de YuLife app om mindful minuten van je meditatiesessies te synchroniseren met je Health Connect account.",
+          "description": "Nodig voor de YuLife app om mindfulness-minuten van je meditatiesessies te synchroniseren met je Health Connect account.",
           "requirement": "Vereist: Mindfulness sessies",
           "title": "Mindful minuten"
         },
@@ -673,7 +673,7 @@
         "title": "Locatie"
       },
       "mindfulness_read": {
-        "description": "Nodig voor de YuLife app om mindful minuten van je meditatiesessies te synchroniseren met je Google Fit account.",
+        "description": "Nodig voor de YuLife app om mindfulness minuten van je meditatiesessies te synchroniseren met je Google Fit account.",
         "requirement": "Vereist: Fysieke herkenning",
         "title": "Mindful minuten"
       },
@@ -747,7 +747,7 @@
         "title": "Beloning verzameld!"
       },
       "yucoin": {
-        "body": "Bekijk het op het YuCoin-scherm",
+        "body": "Bekijk op het YuCoin-scherm",
         "title": "YuCoin verzameld!"
       },
       "yumoji": {
