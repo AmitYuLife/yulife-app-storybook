@@ -7,12 +7,13 @@ import { View } from "react-native";
 
 export const YuCoinAnimation = memo(() => {
   const sduiId = useContext(SduiIdContext);
-  const lottieRef: RefObject<Lottie> = useRef(null);
+  const lottieRef: RefObject<Lottie | null> = useRef(null);
 
   useEffect(() => {
-    lottieRef.current?.play();
+    const lottie = lottieRef.current;
+    lottie?.play();
 
-    return () => lottieRef.current?.pause();
+    return () => lottie?.pause();
   }, [sduiId]);
 
   return (

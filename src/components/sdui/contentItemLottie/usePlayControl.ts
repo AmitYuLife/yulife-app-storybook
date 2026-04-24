@@ -1,37 +1,33 @@
 import type LottieView from "lottie-react-native";
-import { MutableRefObject, useRef, useEffect } from "react";
+import { RefObject, useEffect, useRef } from "react";
 
-export const usePlayControl = (lottieRef: MutableRefObject<LottieView>, shouldPlay: boolean) => {
+export const usePlayControl = (lottieRef: RefObject<LottieView | null>, shouldPlay: boolean) => {
   const shouldPlayPrevious = useRef(false);
-  const firstTabPlayTimeout = useRef(null);
+  const firstTabPlayTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /**
-   * handles autoplay of first tab
-   */
   useEffect(() => {
-    if (shouldPlay) {
-      firstTabPlayTimeout.current = setTimeout(() => {
-        lottieRef.current?.play();
-      }, 1000);
+    const wasPlaying = shouldPlayPrevious.current;
+    shouldPlayPrevious.current = shouldPlay;
 
-      return () => {
+    if (!shouldPlay || wasPlaying) {
+      return;
+    }
+
+    if (lottieRef.current) {
+      lottieRef.current.reset();
+      lottieRef.current.play();
+      return;
+    }
+
+    firstTabPlayTimeout.current = setTimeout(() => {
+      lottieRef.current?.play();
+    }, 1000);
+
+    return () => {
+      if (firstTabPlayTimeout.current !== null) {
         clearTimeout(firstTabPlayTimeout.current);
         firstTabPlayTimeout.current = null;
-      };
-    }
-  }, []);
-
-  /**
-   * handles autoplay of non-first tabs
-   */
-  useEffect(() => {
-    if (!shouldPlayPrevious.current && lottieRef.current) {
-      if (shouldPlay) {
-        lottieRef.current.reset();
-        lottieRef.current.play();
       }
-    }
-
-    shouldPlayPrevious.current = shouldPlay;
-  }, [shouldPlay]);
+    };
+  }, [lottieRef, shouldPlay]);
 };

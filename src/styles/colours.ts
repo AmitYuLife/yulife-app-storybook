@@ -1,23 +1,24 @@
-import { clamp } from "lodash";
-
 type RGBType = {
   r: number;
   g: number;
   b: number;
 };
 
-const hexToRGB = (hex: string): RGBType | null => {
+const hexToRGB = (hex: string): RGBType => {
   // expand shorthand hex colors
   hex = hex.replace(/^#?([A-Fa-f\d])([A-Fa-f\d])([A-Fa-f\d])$/i, (_, r, g, b) => r + r + g + g + b + b);
 
   const result = /^#?([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
+
+  if (!result) {
+    return { r: 0, g: 0, b: 0 };
+  }
+
+  return {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16),
+  };
 };
 
 const toBase16 = (n: number) => {
@@ -29,34 +30,15 @@ const rgbToHex = ({ r = 0, g = 0, b = 0 }: RGBType): string => {
   return "#" + toBase16(r) + toBase16(g) + toBase16(b);
 };
 
-const toGrayScale = (hex: string): string | null => {
-  const rgb = hexToRGB(hex);
-  if (rgb) {
-    const { r, g, b } = rgb;
-    const newColor = 0.299 * r + 0.587 * g + 0.114 * b;
+const toGrayScale = (hex: string): string => {
+  const { r, g, b } = hexToRGB(hex);
+  const newColor = 0.299 * r + 0.587 * g + 0.114 * b;
 
-    return "#" + toBase16(newColor).repeat(3);
-  }
-
-  return null;
+  return "#" + toBase16(newColor).repeat(3);
 };
 
-const toGrayScaleArray = (hexArray: string[]): (string | null)[] => {
+const toGrayScaleArray = (hexArray: string[]): string[] => {
   return hexArray.map((hex) => toGrayScale(hex));
-};
-
-export const adjustColorBrightness = (hexColor: string, magnitude: number) => {
-  hexColor = hexColor.replace(`#`, ``);
-  if (hexColor.length === 6) {
-    const decimalColor = parseInt(hexColor, 16);
-    const r = clamp((decimalColor >> 16) + magnitude, 0, 255);
-    const g = clamp((decimalColor & 0x0000ff) + magnitude, 0, 255);
-    const b = clamp((decimalColor >> 8) & (0x00ff + magnitude), 0, 255);
-
-    return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
-  }
-
-  return hexColor;
 };
 
 export default {

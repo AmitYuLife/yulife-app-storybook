@@ -1,4 +1,5 @@
-import React, { memo, MutableRefObject, useEffect, useRef } from "react";
+import { memo, RefObject, useEffect, useRef } from "react";
+// eslint-disable-next-line rulesdir/no-restricted-imports-clone
 import { Animated, useWindowDimensions, View } from "react-native";
 import type Lottie from "lottie-react-native";
 import { Box, Image, TextTemplate } from "@atoms";
@@ -102,7 +103,7 @@ const Background = (props: IPageItem) => {
     return (
       <LottieBackground
         uri={lottie.jsonUri}
-        shouldPlay={isActive}
+        shouldPlay={!!isActive}
         shouldUseFadeIn={true}
         aspectRatio={lottie.aspectRatio}
       />
@@ -113,7 +114,7 @@ const Background = (props: IPageItem) => {
     return (
       <View style={styles.backgroundImage}>
         <Image
-          resizeMode="cover"
+          contentFit="cover"
           source={{ uri: backgroundImage.uri }}
           width={Style.DEVICE_WIDTH}
           height={Style.DEVICE_HEIGHT}
@@ -133,7 +134,7 @@ type LottieBackgroundProps = {
 };
 
 const LottieBackground = memo((props: LottieBackgroundProps) => {
-  const lottieRef = useRef<Lottie>(null);
+  const lottieRef = useRef<Lottie | null>(null);
   const { uri, shouldPlay, shouldUseFadeIn, aspectRatio } = props;
   const { opacity } = useFadeIn(shouldUseFadeIn);
   const { uri: lottieUri } = useGetLottieJson(uri);
@@ -155,11 +156,9 @@ const LottieBackground = memo((props: LottieBackgroundProps) => {
   );
 });
 
-/**
- * avoids flashing assets before playing
- */
 const useFadeIn = (shouldUseFadeIn: boolean) => {
   const opacity = useRef(new Animated.Value(shouldUseFadeIn ? 0 : 1)).current;
+
   useEffect(() => {
     if (!shouldUseFadeIn) {
       return;
@@ -172,42 +171,38 @@ const useFadeIn = (shouldUseFadeIn: boolean) => {
     }).start();
 
     return () => opacity.stopAnimation();
-  }, []);
+  }, [opacity, shouldUseFadeIn]);
 
   return { opacity };
 };
 
-const usePlayControl = (lottieRef: MutableRefObject<Lottie>, shouldPlay: boolean) => {
+const usePlayControl = (lottieRef: RefObject<Lottie | null>, shouldPlay: boolean) => {
   const shouldPlayPrevious = useRef(false);
-  const firstTabPlayTimeout = useRef(null);
+  const firstTabPlayTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /**
-   * handles autoplay of first tab
-   */
   useEffect(() => {
-    if (shouldPlay) {
-      firstTabPlayTimeout.current = setTimeout(() => {
-        lottieRef.current?.play();
-      }, 1000);
+    const wasPlaying = shouldPlayPrevious.current;
+    shouldPlayPrevious.current = shouldPlay;
 
-      return () => {
+    if (!shouldPlay || wasPlaying) {
+      return;
+    }
+
+    if (lottieRef.current) {
+      lottieRef.current.reset();
+      lottieRef.current.play();
+      return;
+    }
+
+    firstTabPlayTimeout.current = setTimeout(() => {
+      lottieRef.current?.play();
+    }, 1000);
+
+    return () => {
+      if (firstTabPlayTimeout.current !== null) {
         clearTimeout(firstTabPlayTimeout.current);
         firstTabPlayTimeout.current = null;
-      };
-    }
-  }, []);
-
-  /**
-   * handles autoplay of non-first tabs
-   */
-  useEffect(() => {
-    if (!shouldPlayPrevious.current && lottieRef.current) {
-      if (shouldPlay) {
-        lottieRef.current.reset();
-        lottieRef.current.play();
       }
-    }
-
-    shouldPlayPrevious.current = shouldPlay;
-  }, [shouldPlay]);
+    };
+  }, [lottieRef, shouldPlay]);
 };
