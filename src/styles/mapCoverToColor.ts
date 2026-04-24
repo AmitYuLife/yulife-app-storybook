@@ -70,7 +70,7 @@ export const mapCoverToColor = (coverType?: CoverType) => {
   }
 };
 
-const getSeparatorColor = (coverType: CoverType) => {
+const getSeparatorColor = (coverType?: CoverType) => {
   switch (coverType) {
     case CoverType.Common: {
       const common1 = Colours.hexToRGB(Colours.secondary.s30S1);
@@ -108,7 +108,7 @@ const getSeparatorColor = (coverType: CoverType) => {
   }
 };
 
-const getBorderColor = (coverType: CoverType) => {
+const getBorderColor = (coverType?: CoverType) => {
   switch (coverType) {
     case CoverType.Common: {
       const common1 = Colours.borders.commonGreen1;
@@ -140,7 +140,7 @@ const getBorderColor = (coverType: CoverType) => {
   }
 };
 
-const getShadowColor = (coverType: CoverType) => {
+const getShadowColor = (coverType?: CoverType) => {
   switch (coverType) {
     case CoverType.Common: {
       const common = Colours.hexToRGB(Colours.products.fib.common);

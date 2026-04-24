@@ -9,7 +9,7 @@ import { DETOX_ENABLED } from "@services/socket";
 export interface ILottieProps extends Omit<LottieViewProps, "source"> {
   suppressLoadingUi?: boolean;
   source: LottieViewProps["source"] | Source;
-  ref?: React.RefObject<LottieView>;
+  ref?: React.RefObject<LottieView | null>;
 }
 
 const LottieWrapper = ({ ref, ...props }: ILottieProps) => {
@@ -63,7 +63,7 @@ const LottieWrapper = ({ ref, ...props }: ILottieProps) => {
           {...props}
           autoPlay={autoPlay}
           loop={loop}
-          source={uri || props.source}
+          source={uri ?? (props.source as LottieViewProps["source"])}
           testID={LOTTIE_VIEW}
           onLayout={onLayout}
         />

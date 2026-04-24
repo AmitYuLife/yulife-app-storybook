@@ -34,7 +34,7 @@ const appVersioning = (() => {
   const [major, minor] = packageJson.version.split(".");
   // While we are migrating to Gitlab CI, use this temporary variable
   const tmpMigrationCode = process.env.GITLAB_CI
-    ? +process.env.CI_PIPELINE_IID + BUILD_NUMBER_INCREMENT
+    ? Number(process.env.CI_PIPELINE_IID) + BUILD_NUMBER_INCREMENT
     : process.env.BITRISE_BUILD_NUMBER;
   const versionCode: string = `${tmpMigrationCode || "1"}`; // need a non-zero default for local builds
   const short = `${major}.${minor}`;
