@@ -817,7 +817,7 @@
     },
     "battle_pass": {
       "accessibility": {
-        "donate_button": "Doneer %{amount} yu munt aan %{title}",
+        "donate_button": "Doneer %{amount} YuCoin aan %{title}",
         "donation_title": "%{title} donatie",
         "progress_bar": "%{step} van %{steps} yu munt uitgegeven om niveau %{level} te bereiken",
         "reward_item_details": "%{title} beloning",
@@ -886,7 +886,7 @@
     },
     "challenge_chest_modal": {
       "card": "Een kist vol YuCoin!",
-      "cta_label_is_next": "Laten we het doen",
+      "cta_label_is_next": "Doen!",
       "heading_is_completed": "Je krijgt %{yucoin} YuCoin",
       "heading_is_next": "Je bent er bijna! Doe een uitdaging om je beloning vrij te spelen.",
       "heading_is_not_next_level": "Ontgrendelen op niveau %{level}",
@@ -961,7 +961,7 @@
       },
       "details": {
         "bonus_info_popup": {
-          "cta_label": "Ik heb het",
+          "cta_label": "Ik snap het",
           "text": "Deze boost geeft je een extra vast bedrag aan YuCoin voor deze uitdaging."
         },
         "boosted_badge": "Boost",
@@ -995,7 +995,7 @@
     },
     "challenge_success": {
       "footer": "Goed gedaan!",
-      "great_work": "Geweldig werk!",
+      "great_work": "Geweldig gedaan!",
       "stage": "Stadium %{level}"
     },
     "challenge_unavailable": {
@@ -1017,7 +1017,7 @@
       "first_time": {
         "confirm": "Selectie bevestigen",
         "current_location": "Huidige locatie",
-        "description": "Geniet van een YuLife ervaring op maat van jouw regio. Maak je geen zorgen, je kunt je locatie later altijd nog veranderen als dat nodig is.",
+        "description": "Geniet van een YuLife ervaring gebaseerd op jouw regio. Maak je geen zorgen, je kunt je locatie later altijd nog veranderen als dat nodig is.",
         "heading": "Kies je locatie!"
       },
       "list": {
@@ -1082,7 +1082,7 @@
         },
         "unavailable": {
           "heading": "apparaat niet ondersteund",
-          "subheading_android": "je apparaat Google Play Services nodig heeft om deze app te kunnen gebruiken.",
+          "subheading_android": "je apparaat heeft Google Play Services nodig heeft om deze app te kunnen gebruiken.",
           "subheading_ios": "Je apparaat heeft Apple Healthkit nodig om deze app te kunnen gebruiken."
         }
       },
@@ -1099,7 +1099,7 @@
         "title": "Blijf kijken!"
       },
       "streak": {
-        "accessibility_label": "Streep %{currentStreak} uit %{maxStreak} dagen"
+        "accessibility_label": "Reeks %{currentStreak} uit %{maxStreak} dagen"
       },
       "surge": {
         "accessibility_label": "%{multiplier} keer schommeling %{time} resterend"
@@ -1113,7 +1113,7 @@
       "claim_button": "Beloningen claimen",
       "continue_journey_button": "Volgende melkwegstelsel",
       "open_chest_button": "Open de kist",
-      "space_travel_text": "Je bent precies waar je bent geweest, zwevend boven je wereld, maar hij is niet langer alleen.",
+      "space_travel_text": "Je bent precies waar je bent geweest, zwevend boven je wereld, maar niet langer alleen.",
       "title": "Je hebt verdiend",
       "travel_button": "Reizen"
     },
@@ -1167,14 +1167,14 @@
         "title": "Klaar om verbinding te maken met Google Fit?"
       },
       "android_heading": "Verbinding maken met Google Fit",
-      "connect_button": "Laten we verbinding maken",
+      "connect_button": "Verbinding maken",
       "connect_health_app": "Verbinden met een gezondheidsapp zodat we je kunnen belonen voor je dagelijkse activiteiten",
       "connect_message": "Maak verbinding met %{healthAppName} zodat we je kunnen belonen voor je dagelijkse activiteiten. Je kunt dit op elk moment aanpassen in de instellingen van je apparaat.",
       "ios_heading": "Synchroniseren met Apple Health",
       "link_button_label": "Privacyverklaring",
       "samsung_heading": "Een gezondheidsapp aansluiten",
       "secondary_button_label": "Sla deze stap over",
-      "unavailable_android": "je apparaat Google Play Services nodig heeft om deze app te kunnen gebruiken.",
+      "unavailable_android": "je apparaat heeft Google Play Services nodig om deze app te kunnen gebruiken.",
       "unavailable_heading": "apparaat niet ondersteund",
       "unavailable_ios": "Je apparaat heeft Apple Healthkit nodig om deze app te kunnen gebruiken."
     },
