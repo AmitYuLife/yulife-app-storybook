@@ -9,4 +9,7 @@ export const sudokuStateChanged: ActionCreatorWithOptionalPayload<SudokuStateCha
   typeof SUDOKU_STATE_CHANGED
 >(SUDOKU_STATE_CHANGED);
 
-export const sudokuReset = createAction<SudokuResetPayload, typeof SUDOKU_RESET>(SUDOKU_RESET);
+export const sudokuReset: ActionCreatorWithOptionalPayload<SudokuResetPayload> = createAction<
+  SudokuResetPayload,
+  typeof SUDOKU_RESET
+>(SUDOKU_RESET);

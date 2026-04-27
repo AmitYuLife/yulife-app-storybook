@@ -85,6 +85,7 @@ import SmokingJourneyStories from "../components/containers/member/debug/smoking
 import SmokingJourneyTree from "../components/containers/member/debug/smoking-journey/tree/tree";
 import LevelSelectorContainer from "../components/containers/member/debug/level-selector/level-selector.container";
 import PathwaysProgressContainer from "../components/containers/member/debug/pathways-progress/pathways-progress.container";
+import ChallengeFailedScreen from "../components/screens/member/challenges/challenge-failed/challenge-failed.screen";
 import WorkoutDebugContainer from "../components/containers/member/debug/workout-debug/workout-debug.container";
 import GenericHeadingContainer from "../components/containers/member/debug/generic-heading/generic-heading.container";
 import ThemeSwitcherContainer from "../components/containers/member/debug/theme-switcher/theme-switcher.container";
@@ -550,6 +551,11 @@ const routesForRegistration: RouteDefinition[] = [
     component: PathwaysProgressContainer,
   },
   {
+    name: ROUTES.challengeFailedDebug,
+    component: ChallengeFailedScreen,
+    renderAfterMs: 150,
+  },
+  {
     name: ROUTES.workoutDebug,
     component: WorkoutDebugContainer,
   },
@@ -750,6 +756,7 @@ const routesForRegistration: RouteDefinition[] = [
   },
   {
     name: MODALS.levelUnavailable,
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     component: LevelUnavailableModal,
   },
   {

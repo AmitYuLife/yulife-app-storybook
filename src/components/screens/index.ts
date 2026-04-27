@@ -34,6 +34,7 @@ export { default as SmokingCommitment } from "./member/smoking/smoking-commitmen
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";
 export { QuestsMapLevel } from "./member/quests/quests-scroll-screen/quests.context";
 export { default as ChallengeFailedScreen } from "./member/challenges/challenge-failed/challenge-failed.screen";
+export { default as ChallengeFailedOldScreen } from "./member/challenges/challenge-failed/challenge-failed-old.screen";
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress.screen";
 export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success.screen";
 export { default as ChallengeSuccessOldScreen } from "./member/challenges/challenge-success/challenge-success-old.screen";

@@ -1,7 +1,7 @@
-import { upperFirst } from "lodash";
+import { isNil, upperFirst } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
 import { SduiActionType, gql } from "@graphql/__generated";
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Alert } from "react-native";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,7 @@ import { clearSeenQuestMapNewUserOnboardingAnimation } from "@redux/quest-map/qu
 import moment from "moment";
 import { queryHealthSmokingState } from "@redux/health-smoking/health-smoking.actions";
 import { getCurrentUserId } from "@redux/user/user.selectors";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { DEBUG_MENU_ITEM } from "@ids";
 
 interface IDebugContainerProps {
@@ -68,6 +69,7 @@ enum DebugCodes {
   getThemes = "get-themes",
   welcomeScreen = "welcome-screen",
   scheduleWeeklyGoals = "schedule-weekly-goals",
+  challengeFailed = "challenge-failed",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -89,6 +91,7 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
   const { data } = useQuery(gql("GetDebugCodesDocument"), { fetchPolicy: "no-cache" });
 
   const currentUserId = useSelector(getCurrentUserId);
+  const currentLevel = useSelector(getCurrentLevel);
 
   const handleClose = useCallback((): void => {
     if (isModal) {
@@ -104,7 +107,13 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
     return formattedTitle;
   }, []);
 
-  const debugCodes = useMemo(() => [...Object.values<DebugCodes>(DebugCodes), ...(data?.getDebugCodes || [])], [data]);
+  const debugCodes = useMemo(
+    () => [
+      ...Object.values<DebugCodes>(DebugCodes),
+      ...(data?.getDebugCodes ?? []).filter((c): c is string => !isNil(c)),
+    ],
+    [data]
+  );
 
   const [debugFavourites, setDebugFavourites] = useState<{ [key: string]: boolean }>({});
 
@@ -121,7 +130,7 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
         switch (code) {
           case DebugCodes.querySmokingState:
             Alert.alert("Success");
-            return dispatch(queryHealthSmokingState());
+            return dispatch(queryHealthSmokingState(null));
 
           case DebugCodes.clearYuScreenAnimationSeen:
             Alert.alert("Success");
@@ -438,6 +447,20 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
               },
             });
           }
+
+          case DebugCodes.challengeFailed: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.challengeFailedDebug,
+                name: ROUTES.challengeFailedDebug,
+                passProps: {
+                  level: currentLevel,
+                  loading: false,
+                  onPress: () => Navigation.pop(ROUTES.challengeFailedDebug),
+                },
+              },
+            });
+          }
         }
 
         await resetData({ variables: { code } });
@@ -448,7 +471,7 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
         Alert.alert("Fail");
       }
     },
-    [componentId, currentUserId, dispatch, handleClose, resetData]
+    [componentId, currentLevel, currentUserId, dispatch, handleClose, resetData]
   );
 
   const listData: IDebugItem[] = useMemo(

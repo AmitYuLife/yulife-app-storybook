@@ -2,7 +2,7 @@ import moment from "moment";
 import { showYuModal } from "@navigation/root";
 import { getUnitTarget } from "@utils";
 import { Style } from "@styles/index";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
 import {
@@ -17,6 +17,7 @@ import { ActiveLevelStatus, ChallengeSourceType } from "@redux/levels/levels.typ
 import {
   ChallengeExitScreen,
   ChallengeFailedScreen,
+  ChallengeFailedOldScreen,
   ChallengeProgressScreen,
   ChallengeSuccessScreen,
   ChallengeSuccessOldScreen,
@@ -37,7 +38,7 @@ import { NOTIF_CENTRE } from "@ids";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 const QuestsContainer = () => {
-  const { componentId, onLeftMenuPress } = useNavigation();
+  const { componentId, onLeftMenuPress = () => {} } = useNavigation();
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
   const challengeFinishedResult = useSelector(getChallengeFinishedResult);
@@ -153,7 +154,7 @@ const QuestsContainer = () => {
         <SudokuProgressScreen
           onDismissPress={showCancelModal}
           onLeftMenuPress={onLeftMenuPress}
-          challengeId={activeLevel.id}
+          challengeId={activeLevel.id ?? ""}
         />
       );
     }
@@ -185,9 +186,11 @@ const QuestsContainer = () => {
         startDateTime={activeLevel.startDateTime}
         endDateTime={activeLevel.endDateTime}
         hideExternalLinks={hideExternalLinks}
-        progressTargets={activeLevel.milestones.map((item) => item.target[getUnitTarget(activeLevel.subtype)])}
+        progressTargets={activeLevel.milestones
+          .map((item) => item.target?.[getUnitTarget(activeLevel.subtype)])
+          .filter((t): t is number => t !== undefined)}
         level={activeLevel.level}
-        yuniversalMap={activeLevel.yuniversalMap}
+        yuniversalMap={activeLevel.yuniversalMap ?? undefined}
         levelSlotTemplateId={activeLevel.levelSlotTemplateId}
       />
     );
@@ -233,8 +236,14 @@ const QuestsContainer = () => {
   }
 
   if (challengeFinishedResult && challengeFinishedResult.status === ActiveLevelStatus.failed) {
+    if (features.tempGameEnableNewSuccessScreen) {
+      return (
+        <ChallengeFailedScreen loading={false} level={challengeFinishedResult.level} onPress={handleResetChallenge} />
+      );
+    }
+
     return (
-      <ChallengeFailedScreen
+      <ChallengeFailedOldScreen
         loading={false}
         level={challengeFinishedResult.level}
         yuniversalMap={yuniversalMap}
