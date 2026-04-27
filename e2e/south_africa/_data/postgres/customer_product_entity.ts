@@ -1,7 +1,6 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_SA_1, CUSTOMER_SA_2, CUSTOMER_SA_3, CUSTOMER_SA_4 } from "./customers";
+import { CUSTOMER_SA_1, CUSTOMER_SA_2, CUSTOMER_SA_3 } from "./customers";
 import moment from "moment";
-import { BUSINESS_EMPLOYEE_SA_4 } from "./business_employees";
 
 const type = "postgres";
 const modelName = "customer_product_entity";
@@ -136,20 +135,5 @@ export const CPE_GCI_SA_3 = {
     archived: false,
     taken_up: true,
     product_variant_id: "YuLifeSA_GCI_01_01",
-  },
-} as IDatabaseItem;
-
-export const CPE_OM_MeGL_SA_1 = {
-  type,
-  modelName,
-  data: {
-    customer_product_id: "SA_YUCPID0000001109",
-    customer_id: CUSTOMER_SA_4.data.customerId,
-    earn_rate: 10,
-    product_variant_id: "OldMutual_MeGL_01_01",
-    archived: false,
-    taken_up: true,
-    startDate: moment().subtract(7, "d").format(),
-    business_employee_id: BUSINESS_EMPLOYEE_SA_4.data.business_employee_id,
   },
 } as IDatabaseItem;

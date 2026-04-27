@@ -39,14 +39,3 @@ export const AUTH_SA_3 = {
     userId: customer.CUSTOMER_SA_3.data.customerId,
   },
 } as IDatabaseItem;
-
-export const AUTH_SA_4 = {
-  type: "mongo",
-  modelName: "authpassword",
-  data: {
-    ...AUTH_TEMPLATE.data,
-    lastIp: "37.34.118.97",
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_SA_4.data.customerId,
-  },
-} as IDatabaseItem;

@@ -7,13 +7,10 @@ import {
   CPE_LSDC_SA_1,
   CPE_MeGL_SA_1,
   CPE_MeGL_SA_2,
-  CPE_OM_MeGL_SA_1,
   CPE_SpGL_SA_2,
   CPE_TmpGIP_SA_1,
 } from "./customer_product_entity";
-import moment = require("moment");
 import {
-  BUSINESS_PRODUCT_1_OM_MeGL,
   BUSINESS_PRODUCT_SA_1_GCI,
   BUSINESS_PRODUCT_SA_1_GIP,
   BUSINESS_PRODUCT_SA_1_GrFun,
@@ -140,18 +137,5 @@ export const CBP_SA_3_GCI = {
     category_id: "1",
     start_date: CPE_GCI_SA_3.data.start_date,
     data: '{"jobTitle":"Director","benefitType":"Fixed","benefitAmount":30000,"salary":1200000,"maritalStatus":"","spouseIndicator":0,"annualRiskSalary":1200000,"targetCover":50000,"medicalUwRequired":true}',
-  },
-} as IDatabaseItem;
-
-export const CBP_SA_1_OM_MEGL = {
-  type,
-  modelName,
-  data: {
-    group_ind_policy_id: "SA_GPID0000590158",
-    business_product_id: BUSINESS_PRODUCT_1_OM_MeGL.product.data.product_id,
-    customer_product_id: CPE_OM_MeGL_SA_1.data.customer_product_id,
-    category_id: 1,
-    start_date: CPE_OM_MeGL_SA_1.data.start_date,
-    data: '{"jobTitle":"Director","benefitType":"Multiple of Salary","benefitAmount":2000000,"salary":1200000,"maritalStatus":"","spouseIndicator":1,"annualRiskSalary":1200000,"targetCover":4800000,"medicalUwRequired":true}',
   },
 } as IDatabaseItem;
